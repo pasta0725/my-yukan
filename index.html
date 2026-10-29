@@ -480,6 +480,7 @@ main{overflow-x:hidden}
 
   function renderArticle(a){
     markRead(a.id);
+    renderEditionHead(edition());
     const cat = catOf(a), C = CATS[cat];
     const c1 = cssVar(C.c1), c2 = cssVar(C.c2);
     const body = el("div",{class:"body"});
