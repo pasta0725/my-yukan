@@ -122,6 +122,21 @@ main .wrap{padding-block:16px 40px}
 .figure img{border-radius:12px;width:100%;background:var(--card);border:1px solid var(--line)}
 .figure figcaption{font-size:12.5px;color:var(--sub);line-height:1.5}
 .figure figcaption a{color:var(--sub)}
+.figure img{cursor:zoom-in}
+/* gallery: horizontal strip of more pictures */
+.gallery{display:grid;gap:8px;min-width:0}
+.gallery h4{margin:0;font-size:13px;letter-spacing:.06em;color:var(--sub);display:flex;justify-content:space-between;gap:8px}
+.gallery h4 span{font-weight:500;font-variant-numeric:tabular-nums}
+.strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left,0px)));padding-inline:max(16px, env(safe-area-inset-left,0px));scrollbar-width:thin}
+.strip figure{flex:none;margin:0;scroll-snap-align:start;width:min(72vw,300px);display:grid;gap:4px}
+.strip img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--card);cursor:zoom-in}
+.strip figcaption{font-size:11.5px;line-height:1.45;color:var(--sub);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:20;background:rgba(8,10,16,.92);display:grid;grid-template-rows:1fr auto;padding:calc(env(safe-area-inset-top,0px) + 12px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 16px) max(12px,env(safe-area-inset-left,0px));color:#fff}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;margin:auto;align-self:center}
+.lightbox p{margin:10px 0 0;font-size:13px;line-height:1.55;text-align:center;opacity:.9}
+.lightbox p a{color:#fff}
+.lightbox button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:max(12px,env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .srcbtn{display:flex;justify-content:center;align-items:center;gap:6px;text-decoration:none;background:var(--ink);color:var(--paper);border-radius:12px;padding:13px 16px;font-weight:700;font-size:15px}
 .srcbtn svg{width:18px;height:18px}
 .srcnote{font-size:12px;color:var(--sub);margin:0;text-align:center}
@@ -424,8 +439,44 @@ main{overflow-x:hidden}
     }
     const fig = el("figure",{class:"figure"}, img, cap);
     img.addEventListener("error", ()=>{ failedImg.add(b.src); fig.remove(); }, {once:true});
+    img.addEventListener("click", ()=>openLightbox(b));
     return fig;
   }
+
+  function gallery(b){
+    const items = (Array.isArray(b.items)?b.items:[]).filter(x=>x && isHttps(x.src) && !failedImg.has(x.src));
+    if(!items.length) return null;
+    const count = el("span",{text:`${items.length}枚`});
+    const strip = el("div",{class:"strip"});
+    const wrap = el("div",{class:"gallery"}, el("h4",null, b.title || "画像", count), strip);
+    const update = ()=>{ const n = strip.children.length; count.textContent = `${n}枚`; if(!n) wrap.remove(); };
+    for(const x of items){
+      const img = el("img",{src:x.src, alt:x.caption||"", loading:"lazy", decoding:"async", referrerpolicy:"no-referrer"});
+      const cap = el("figcaption",{text:[x.caption, creditText(x)].filter(Boolean).join("　")});
+      const fig = el("figure",null, img, cap);
+      img.addEventListener("error", ()=>{ failedImg.add(x.src); fig.remove(); update(); }, {once:true});
+      img.addEventListener("click", ()=>openLightbox(x));
+      strip.append(fig);
+    }
+    return wrap;
+  }
+
+  let lightboxEl = null;
+  function closeLightbox(){ if(lightboxEl){ lightboxEl.remove(); lightboxEl = null; } }
+  function openLightbox(x){
+    closeLightbox();
+    const p = el("p");
+    if(x.caption) p.append(x.caption, "　");
+    const cr = creditText(x);
+    if(cr){ if(isHttps(x.page)) p.append(el("a",{href:x.page,target:"_blank",rel:"noopener noreferrer",text:cr})); else p.append(cr); }
+    lightboxEl = el("div",{class:"lightbox",role:"dialog","aria-label":"画像の拡大表示"},
+      el("img",{src:x.src, alt:x.caption||"", referrerpolicy:"no-referrer"}), p,
+      el("button",{"aria-label":"閉じる",onclick:(e)=>{ e.stopPropagation(); closeLightbox(); }}, "×"));
+    lightboxEl.addEventListener("click", (e)=>{ if(e.target.tagName!=="A") closeLightbox(); });
+    document.body.append(lightboxEl);
+  }
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeLightbox(); });
+  window.addEventListener("hashchange", closeLightbox);
 
   function renderArticle(a){
     markRead(a.id);
@@ -449,6 +500,7 @@ main{overflow-x:hidden}
         body.append(s);
       }
       else if(b.type==="img"){ const f = figure(b); if(f) body.append(f); }
+      else if(b.type==="gallery"){ const g = gallery(b); if(g) body.append(g); }
     }
     const art = el("article",{class:"article view"},
       el("button",{class:"backbtn",onclick:()=>{ if(history.length>1 && location.hash) history.back(); else location.hash=""; }},
