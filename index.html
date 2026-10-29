@@ -125,7 +125,20 @@ main .wrap{padding-block:16px 40px}
 .srcbtn{display:flex;justify-content:center;align-items:center;gap:6px;text-decoration:none;background:var(--ink);color:var(--paper);border-radius:12px;padding:13px 16px;font-weight:700;font-size:15px}
 .srcbtn svg{width:18px;height:18px}
 .srcnote{font-size:12px;color:var(--sub);margin:0;text-align:center}
-@media (prefers-reduced-motion:no-preference){.view{animation:fade .18s ease-out}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}}
+@media (prefers-reduced-motion:no-preference){
+  .view{animation:fade .18s ease-out}
+  .view.from-right{animation:fromR .22s ease-out}
+  .view.from-left{animation:fromL .22s ease-out}
+  .view.bump-l{animation:bumpL .25s ease-out}
+  .view.bump-r{animation:bumpR .25s ease-out}
+  @keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+  @keyframes fromR{from{opacity:.3;transform:translateX(36px)}to{opacity:1;transform:none}}
+  @keyframes fromL{from{opacity:.3;transform:translateX(-36px)}to{opacity:1;transform:none}}
+  @keyframes bumpL{40%{transform:translateX(-10px)}to{transform:none}}
+  @keyframes bumpR{40%{transform:translateX(10px)}to{transform:none}}
+}
+main{overflow-x:hidden}
+.swipe-hint{font-size:11.5px;color:var(--sub);text-align:center;margin:-6px 0 12px}
 @media (prefers-reduced-motion:reduce){.reload.spin svg{animation:none}}
 </style>
 </head>
@@ -281,10 +294,64 @@ main .wrap{padding-block:16px 40px}
     for(const key of Object.keys(CATS)){
       const n = key==="all" ? arts.length : arts.filter(a=>catOf(a)===key).length;
       chipsEl.append(el("button",{class:"chip","aria-pressed":String(filter===key),onclick:()=>{
-        filter=key; try{localStorage.setItem("yukan-filter",key);}catch(e){} render();
+        const from = ORDER.indexOf(filter), to = ORDER.indexOf(key);
+        setFilter(key, to>from ? 1 : to<from ? -1 : 0);
       }}, CATS[key].label, el("span",{class:"n",text:String(n)})));
     }
+    // keep the selected chip visible in the chip row
+    const on = chipsEl.querySelector('[aria-pressed="true"]');
+    if(on){
+      const target = on.offsetLeft - (chipsEl.clientWidth - on.offsetWidth)/2;
+      chipsEl.scrollTo({left:Math.max(0,target), behavior: reduceMotion ? "auto" : "smooth"});
+    }
   }
+
+  /* Category switching (chips or horizontal swipe) */
+  const ORDER = Object.keys(CATS);
+  const reduceMotion = (()=>{ try{ return matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){ return false; } })();
+  function setFilter(key, dir){
+    if(!CATS[key] || key===filter) return;
+    filter = key; try{localStorage.setItem("yukan-filter",key);}catch(e){}
+    render();
+    const v = app.querySelector(".view");
+    if(v && dir && !reduceMotion){ v.classList.add(dir>0 ? "from-right" : "from-left"); }
+    if(window.scrollY > 0) window.scrollTo(0, 0);
+  }
+  (function swipe(){
+    let sx=0, sy=0, st=0, tracking=false, decided=false, horizontal=false;
+    const area = document.querySelector("main");
+    area.addEventListener("touchstart", e=>{
+      tracking = false;
+      if(e.touches.length!==1 || /^#a-/.test(location.hash) || !editions.length) return;
+      const t = e.touches[0];
+      // leave the screen edges to the system's back/forward gesture
+      if(t.clientX < 24 || t.clientX > window.innerWidth - 24) return;
+      sx=t.clientX; sy=t.clientY; st=Date.now(); tracking=true; decided=false; horizontal=false;
+    }, {passive:true});
+    area.addEventListener("touchmove", e=>{
+      if(!tracking || decided) return;
+      const t = e.touches[0], dx = t.clientX-sx, dy = t.clientY-sy;
+      if(Math.abs(dx) > 12 || Math.abs(dy) > 12){ decided = true; horizontal = Math.abs(dx) > Math.abs(dy)*1.4; if(!horizontal) tracking=false; }
+    }, {passive:true});
+    area.addEventListener("touchend", e=>{
+      if(!tracking || !horizontal) { tracking=false; return; }
+      tracking=false;
+      const t = e.changedTouches[0], dx = t.clientX-sx, dy = t.clientY-sy;
+      if(Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)*1.4 || Date.now()-st > 800) return;
+      const dir = dx < 0 ? 1 : -1;   // swipe left = next category
+      const i = ORDER.indexOf(filter) + dir;
+      if(i < 0 || i >= ORDER.length){ bump(dir); return; }
+      try{ localStorage.setItem("yukan-swiped","1"); }catch(e){}
+      setFilter(ORDER[i], dir);
+    }, {passive:true});
+    area.addEventListener("touchcancel", ()=>{ tracking=false; }, {passive:true});
+    function bump(dir){
+      if(reduceMotion) return;
+      const v = app.querySelector(".view"); if(!v) return;
+      v.classList.remove("bump-l","bump-r"); void v.offsetWidth;
+      v.classList.add(dir>0 ? "bump-l" : "bump-r");
+    }
+  })();
   function renderEditionHead(ed){
     editionEl.replaceChildren(el("b",{text: ed ? `${dateLabel(ed.date)}の号` : "まだ届いていません"}), ed && editions[0] && ed.date!==editions[0].date ? "過去の号を表示中" : "毎日夕方5時ごろ更新");
   }
@@ -304,6 +371,8 @@ main .wrap{padding-block:16px 40px}
     renderChips(arts);
     const shown = filter==="all" ? arts : arts.filter(a=>catOf(a)===filter);
     const frag = el("div",{class:"view"});
+    let hinted = false; try{ hinted = localStorage.getItem("yukan-swiped")==="1"; }catch(e){}
+    if(!hinted && "ontouchstart" in window) frag.append(el("p",{class:"swipe-hint",text:"左右にスワイプするとジャンルを切り替えられます"}));
     if(!shown.length){
       frag.append(el("div",{class:"state"}, el("h2",{text:"この号には該当するニュースがありません"}), el("p",{text:"ほかのジャンルを選んでみてください。"})));
     }else{
