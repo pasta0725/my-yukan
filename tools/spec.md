@@ -1,0 +1,36 @@
+# Task spec (shared by all workers)
+
+You collect news stories for a personal Japanese news app "マイ夕刊". Today is {TODAY} (Japan time).
+
+## Avoid repeats
+Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
+
+## Method
+- Search engines are weak for fresh Japanese news: open your assigned sites' new-article listing pages with WebFetch and pick stories there.
+- Open each article body with WebFetch and verify facts. Never guess. Check the real publish date in the article body.
+- Period: AI and kaden = published within the last 72 hours. fukugyo = within the last 7 days.
+- Skip thin PR pieces. If you use sponsored (PR) content, say so in the body.
+
+## Images (user's rule: ALL official images, at most 2 news-site photos per story)
+- Official images (kind "press"): find the company/organization's own announcement for the same news (press release, newsroom, product page, official blog, official notice). Collect all relevant images there (product shots, screens, diagrams, charts), up to 12.
+- News-site photos (kind "ogp"): from the news article itself, at most 2 in total.
+- Ask WebFetch to list every image URL on the page (absolute https) with what it shows (alt/caption/surrounding text), including og:image. Use ONLY URLs WebFetch actually returned. Never guess or construct URLs.
+- Skip: photos where a person's face is the main subject, logos alone, icons, ads/banners, site-generic share images, tiny thumbnails (prefer the large version).
+- No image is OK.
+
+## Writing
+Easy Japanese for a non-engineer, in YOUR OWN WORDS (never copy sentences). Avoid jargon. For fukugyo, the "point" block says what an individual seller should do or note.
+
+## Output: a JSON array, each item:
+{"id":"<category>-<short ascii slug>","category":"ai|kaden|fukugyo","title":"見出し30字前後","summary":"一言要約50字以内",
+ "image":{"src":"https://...","kind":"press|ogp","credit":"提供元","page":"https://found-on page"},   ← best thumbnail (official product image preferred); omit if none
+ "visual":{"icon":"one of: ai, chip, phone, pc, tv, appliance, camera, audio, game, cart, yen, box, globe, chart, doc, lock, car, spark","kicker":"全角8字以内"},
+ "body":[{"type":"p","text":"2〜4文"},
+         {"type":"img","src":"https://...","kind":"press|ogp","credit":"...","caption":"何が写っているか","page":"https://..."},   ← the 2nd-best image, if any
+         {"type":"p","text":"..."},
+         {"type":"stat","items":[{"value":"全角10字以内","label":"全角15字以内"}]},   ← exactly one, 2–3 items, numbers from the source only
+         {"type":"gallery","title":"公式の画像","items":[{"src":"...","kind":"press|ogp","credit":"...","caption":"...","page":"..."}]},   ← all remaining images, if any (title "そのほかの画像" if it contains ogp)
+         {"type":"point","items":["ポイント1","ポイント2","ポイント3"]}],   ← optional
+ "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD"}
+Text blocks (p/stat/point): 3–6. No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
+Validate with python3 json.load. Final reply: count, titles, image counts (press/ogp), problems.
