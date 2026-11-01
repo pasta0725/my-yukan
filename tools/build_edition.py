@@ -30,13 +30,12 @@ for f in sorted(glob.glob(f"{SRC}/*_[ABC].json")):
         if cat not in ("ai", "kaden", "fukugyo") or not ok(a.get("source_url")): continue
         if a.get("id") in DROP or a["id"] in seen_ids or a["source_url"] in seen_urls or a["source_url"] in used: continue
         # sanitize images: https only, no dup, news-site photos <= 2
-        seen_src, ogp = set(), 0
+        seen_src, ogp = set(), [0]
         def keep(x):
-            nonlocal ogp
             if not isinstance(x, dict) or not ok(x.get("src")) or x["src"] in seen_src: return False
             if x.get("kind") != "press":
-                if ogp >= 2: return False
-                ogp += 1
+                if ogp[0] >= 2: return False
+                ogp[0] += 1
             seen_src.add(x["src"]); return True
         if a.get("image") and not keep(a["image"]): a.pop("image")
         body = []
