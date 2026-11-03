@@ -1,8 +1,37 @@
 name: narration
+# Makes narration audio with Gemini TTS when a script file is pushed.
+# The API key lives in the repository secret GEMINI_API_KEY (never in the code).
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["narration/**/lines.json"]
+permissions:
+  contents: write
+concurrency: narration
 jobs:
-  noop:
+  tts:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "placeholder"
+      - uses: actions/checkout@v4
+      - name: make audio for every script that has no audio yet
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -e
+          made=0
+          for f in narration/*/lines.json; do
+            [ -e "$f" ] || continue
+            d=$(dirname "$f")
+            if [ ! -e "$d/s1.wav" ]; then
+              python3 -I tools/tts_gemini.py "$f" "$d" | tee "$d/tts_log.txt"
+              made=1
+            fi
+          done
+          if [ "$made" = 1 ]; then
+            git config user.name pasta0725
+            git config user.email pasta0725@users.noreply.github.com
+            git add narration
+            git commit -m "読み上げ音声を作成（Gemini TTS）"
+            git push
+          fi

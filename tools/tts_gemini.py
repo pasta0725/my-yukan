@@ -24,7 +24,10 @@ def speak(text):
             "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}},
         },
     }
-    req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={"Content-Type": "application/json"})
+    headers = {"Content-Type": "application/json"}
+    if os.environ.get("GEMINI_API_KEY"):  # GitHub Actions: key comes from the repository secret
+        headers["x-goog-api-key"] = os.environ["GEMINI_API_KEY"]
+    req = urllib.request.Request(url, data=json.dumps(body).encode(), headers=headers)
     for attempt in range(5):
         try:
             with urllib.request.urlopen(req, timeout=180) as r:
