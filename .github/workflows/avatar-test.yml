@@ -25,6 +25,7 @@ jobs:
           git clone --depth 1 https://github.com/pkhungurn/talking-head-anime-3-demo tha3demo
           pip install -q torch --index-url https://download.pytorch.org/whl/cpu
           pip install -q numpy pillow scipy matplotlib
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
           mkdir -p tha3demo/data/models/separable_float
           for f in editor eyebrow_decomposer eyebrow_morphing_combiner face_morpher two_algo_face_body_rotator; do
             curl -sSL -o tha3demo/data/models/separable_float/$f.pt \
