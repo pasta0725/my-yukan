@@ -1,0 +1,26 @@
+name: voicevox-samples
+# Makes VOICEVOX sample clips for choosing a narration voice (run by hand).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["narration/voicevox/request.txt"]
+permissions:
+  contents: write
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: start VOICEVOX engine
+        run: |
+          docker run -d --name vv -p 50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 60); do curl -s http://127.0.0.1:50021/version && break; sleep 3; done
+      - name: make samples
+        run: |
+          python3 -I tools/voicevox_samples.py narration/voicevox "$(cat narration/voicevox/request.txt)"
+          git config user.name pasta0725
+          git config user.email pasta0725@users.noreply.github.com
+          git add narration/voicevox
+          git commit -m "VOICEVOXの声の聞き比べ用サンプル" || true
+          git push
