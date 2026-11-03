@@ -13,3 +13,4 @@
 ## Xの声（Grok Bot）
 - build_edition.py writes data/x-todo.json (today's story list) every run. Commit it with the edition.
 - Grok Bot reads it and returns JSON (prompt: tools/grok.md). Save with `python3 -I tools/save_x.py <answer.txt> <date>` → data/x/<date>.json, commit, push. The site merges it.
+- Automatic since 2026-11-04: Grok Bot routine (18:00 JST) mails the JSON to pastachannel0725@gmail.com, subject 「マイ夕刊 Xの声 <date>」. Claude imports it at 18:40 via the Gmail connector (search `subject:(マイ夕刊 Xの声) newer_than:1d`), saves the mail body to a file, runs save_x.py, commits data/x/<date>.json, pushes.
