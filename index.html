@@ -500,7 +500,16 @@ main{overflow-x:hidden}
           el("a",{href:`https://twitter.com/i/status/${id}`,target:"_blank",rel:"noopener noreferrer",text:"Xで投稿を見る"}));
         list.append(bq);
       }
-      loadXWidgets().then(t=>{ if(t && t.widgets) return t.widgets.load(list); }).then(()=>{ btn.remove(); })
+      loadXWidgets().then(t=>{ if(t && t.widgets) return t.widgets.load(list); }).then(()=>{
+          btn.remove();
+          // hide posts that X could not show (deleted, private, or wrong id)
+          setTimeout(()=>{
+            list.querySelectorAll("blockquote.twitter-tweet, .twitter-tweet-error").forEach(n=>n.remove());
+            const shown = list.children.length;
+            wrap.querySelector("h4 span").textContent = `${shown}件`;
+            if(!shown) list.append(el("p",{class:"xnote",text:"表示できる投稿がありませんでした。"}));
+          }, 4000);
+        })
         .catch(()=>{ btn.disabled = false; btn.lastChild.textContent = "読み込めませんでした。もう一度試す"; list.replaceChildren(); });
     });
     return wrap;
@@ -607,6 +616,20 @@ main{overflow-x:hidden}
       const d = await getJSON(`data/${date}.json`);
       Object.assign(e, d, {date, articles: Array.isArray(d.articles)?d.articles:[]});
     }catch(err){ e.articles = []; }
+    // optional extra "Xの声" file (written later, e.g. by Grok): {"posts":{"<article id>":["https://x.com/.../status/ID", ...]}}
+    try{
+      const x = await getJSON(`data/x/${date}.json`);
+      const posts = (x && typeof x.posts === "object") ? x.posts : {};
+      for(const a of e.articles){
+        const add = Array.isArray(posts[a.id]) ? posts[a.id] : [];
+        const ids = (Array.isArray(a.x_posts) ? a.x_posts.map(String) : []);
+        for(const v of add){
+          const m = /status(?:es)?\/(\d{15,25})/.exec(String(v)) || /^(\d{15,25})$/.exec(String(v).replace(/\D/g,""));
+          if(m && !ids.includes(m[1])) ids.push(m[1]);
+        }
+        if(ids.length) a.x_posts = ids.slice(0,10);
+      }
+    }catch(err){}
   }
   async function loadAll(){
     reloadBtn.classList.add("spin");
