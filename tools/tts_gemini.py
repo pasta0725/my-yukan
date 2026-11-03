@@ -13,12 +13,22 @@ os.makedirs(out, exist_ok=True)
 model = cfg.get("model", "gemini-3.8-flash-tts")
 voice = cfg.get("voice", "Leda")
 style = cfg.get("style", "若い女性のニュース読み上げ。明るく可愛らしく、親しみやすい声で、ややテンポよく、はっきり読む。")
+# Instructions and spoken words are separated so the model never reads the style aloud
+# (an unseparated style line was read out in a test on 2026-11-04).
+PROMPT = """Synthesize speech for the performance below. The notes are direction only. Do NOT speak them. Speak ONLY the lines under #### TRANSCRIPT.
+
+### PERFORMANCE
+Style: {style}
+Language: Japanese
+
+#### TRANSCRIPT
+{text}"""
 url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 
 def speak(text):
     body = {
-        "contents": [{"parts": [{"text": f"{style}\n\n{text}"}]}],
+        "contents": [{"parts": [{"text": PROMPT.format(style=style, text=text)}]}],
         "generationConfig": {
             "responseModalities": ["AUDIO"],
             "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": voice}}},
