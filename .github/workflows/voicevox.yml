@@ -23,4 +23,4 @@ jobs:
           git config user.email pasta0725@users.noreply.github.com
           git add narration/voicevox
           git commit -m "VOICEVOXの声の聞き比べ用サンプル" || true
-          git push
+          git pull --rebase -q && git push

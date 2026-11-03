@@ -34,5 +34,5 @@ jobs:
             git config user.email pasta0725@users.noreply.github.com
             git add narration
             git commit -m "読み上げ音声を作成（Gemini TTS）"
-            git push
+            git pull --rebase -q && git push
           fi
