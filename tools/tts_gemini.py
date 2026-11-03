@@ -52,9 +52,16 @@ def speak(text):
 
 
 for i, text in enumerate(cfg["lines"], 1):
-    pcm = speak(text)
+    data = speak(text)
     path = os.path.join(out, f"s{i}.wav")
-    with wave.open(path, "wb") as w:
-        w.setnchannels(1); w.setsampwidth(2); w.setframerate(24000); w.writeframes(pcm)
-    print(f"s{i}.wav {len(pcm) / 48000:.2f}s")
+    if data[:4] == b"RIFF":
+        # The API now returns a finished WAV file (with a C2PA "made by AI" record at the end).
+        # Save it as it is; wrapping it in another header made the header and the record
+        # play as a click and a burst of noise at the end.
+        open(path, "wb").write(data)
+    else:  # older behaviour: raw 24 kHz 16-bit PCM
+        with wave.open(path, "wb") as w:
+            w.setnchannels(1); w.setsampwidth(2); w.setframerate(24000); w.writeframes(data)
+    with wave.open(path) as w:
+        print(f"s{i}.wav {w.getnframes() / w.getframerate():.2f}s")
     time.sleep(21)  # free tier hit 429 when requests came fast; keep it slow
