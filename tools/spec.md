@@ -24,6 +24,7 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 - If outlets disagree, say so plainly ("〇〇は△△と伝えています").
 - Write it all in YOUR OWN WORDS as one new explanation. Never copy sentences, never follow one article's paragraph order closely, never quote more than a few words.
 - List every article you actually read in "refs".
+- Write as a news explainer: no first person (「私は」「私が読んだ」), no notes about your search process. If an important point could not be confirmed, say it neutrally (「〇〇は明らかにされていません」「△△によると」).
 
 ## Images (user's rule: ALL official images, at most 2 news-site photos per story)
 - Official images (kind "press"): find the company/organization's own announcement for the same news (press release, newsroom, product page, official blog, official notice). Collect all relevant images there (product shots, screens, diagrams, charts), up to 12.
