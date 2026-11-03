@@ -9,3 +9,7 @@
 3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。
 4. 見出し一覧を見て、同じ出来事が別ジャンルにも入っていれば id を指定して作り直す。
 5. コミットして main に push する。
+
+## Xの声（Grok Bot）
+- build_edition.py writes data/x-todo.json (today's story list) every run. Commit it with the edition.
+- Grok Bot reads it and returns JSON (prompt: tools/grok.md). Save with `python3 -I tools/save_x.py <answer.txt> <date>` → data/x/<date>.json, commit, push. The site merges it.
