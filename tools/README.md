@@ -1,7 +1,7 @@
 # マイ夕刊の作り方（Claude用メモ）
 
 1. `git pull` して最新にする。作業フォルダ WORKDIR を作り、直近の号の source_url を `WORKDIR/used.txt` に書き出す。
-2. `tools/spec.md` の {TODAY} と {WORKDIR} を置き換えた指示で、Sonnet のサブエージェント9本を並列に動かす（各6本）。
+2. サブエージェントへの指示にサイトのURLを書かない（許可確認が出るため）。サイト名だけ伝え、URLは検索結果から辿らせる。`tools/spec.md` の {TODAY} と {WORKDIR} を置き換えた指示で、Sonnet のサブエージェント9本を並列に動かす（各6本）。
    - ai: A=ITmedia AI+/NEWS、B=Impress Watch・Publickey・日経クロステック、C=各社公式発表
    - kaden: A=家電 Watch、B=ケータイ/AV/PC Watch、C=ITmedia Mobile・PC USER・マイナビ・メーカー公式
    - fukugyo: A=ネットショップ担当者フォーラム、B=各サービス公式お知らせ、C=ECのミカタ・公的機関
