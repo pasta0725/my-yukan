@@ -34,7 +34,7 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 
 ## Writing
 Easy Japanese for a non-engineer, in YOUR OWN WORDS (never copy sentences). Avoid jargon (if a technical word is needed, explain it in a few words). For fukugyo, the "point" block says what an individual seller should do or note.
-Length: the "p" blocks together should be about 700–1200 Japanese characters (a rich explanation, not a short summary), in 4–7 paragraphs of 2–5 sentences. Short stories with little information may be shorter; never pad.
+Do NOT drop necessary information (user's request): keep every important fact you read — numbers, prices, dates, conditions, who is affected, what to do, what changes. Length: the "p" blocks together are usually 700–1500 Japanese characters, up to about 2000 when there are many facts, in 4–8 paragraphs of 2–5 sentences. Stories with little information may be shorter; never pad. Still your own words only.
 
 ## Output: a JSON array, each item:
 {"id":"<category>-<short ascii slug>","category":"ai|kaden|fukugyo","title":"見出し30字前後","summary":"一言要約50字以内",
@@ -48,5 +48,5 @@ Length: the "p" blocks together should be about 700–1200 Japanese characters (
          {"type":"point","items":["ポイント1","ポイント2","ポイント3"]}],   ← optional
  "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD",
  "refs":[{"name":"サイト名","url":"https://..."}]}   ← every article you read for this story (max 5, source_url first), URLs exactly as fetched
-Text blocks (p/stat/point): 6–10 (p 4–7 + one stat + optional point). No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
+Text blocks (p/stat/point): 6–10 (p 4–8 + one stat + optional point). No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
 Validate with python3 json.load. Final reply: count, titles, image counts (press/ogp), problems.
