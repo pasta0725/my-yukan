@@ -1,0 +1,54 @@
+name: avatar-test
+# Trial: make a talking VTuber-like clip with Talking Head Anime 3 on a CPU runner.
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: "image path in this repo (empty = sample image from the THA3 demo)"
+        default: ""
+      wav:
+        description: "voice wav path in this repo"
+        default: "narration/anime/Leda/s1.wav"
+permissions:
+  contents: write
+jobs:
+  avatar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: get Talking Head Anime 3 and its models
+        run: |
+          git clone --depth 1 https://github.com/pkhungurn/talking-head-anime-3-demo tha3demo
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -q numpy pillow scipy matplotlib
+          mkdir -p tha3demo/data/models/separable_float
+          for f in editor eyebrow_decomposer eyebrow_morphing_combiner face_morpher two_algo_face_body_rotator; do
+            curl -sSL -o tha3demo/data/models/separable_float/$f.pt \
+              https://huggingface.co/ksuriuri/talking-head-anime-3-models/resolve/main/separable_float/$f.pt
+          done
+          ls tha3demo/data/images | head
+      - name: render
+        run: |
+          IMG="${{ github.event.inputs.image }}"
+          if [ -z "$IMG" ]; then IMG=tha3demo/data/images/$(ls tha3demo/data/images | grep -i png | head -1); else IMG="$GITHUB_WORKSPACE/$IMG"; fi
+          echo "image: $IMG"
+          # the trial voice files end with a short noise burst (fixed later); cut it off
+          D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "${{ github.event.inputs.wav }}")
+          ffmpeg -v error -y -i "${{ github.event.inputs.wav }}" -t $(python3 -c "print($D-0.25)") /tmp/voice.wav
+          cd tha3demo
+          python3 $GITHUB_WORKSPACE/tools/avatar_tha3.py "$IMG" /tmp/voice.wav /tmp/out 30 separable_float | tee /tmp/render_log.txt
+          cd ..
+          mkdir -p narration/avatar_test
+          ffmpeg -v error -y -f lavfi -i "color=c=0xFFE3C2:s=1080x1080:r=30" -framerate 30 -i /tmp/out/frames/%05d.png -i /tmp/voice.wav \
+            -filter_complex "[1]scale=1024:1024:flags=lanczos[a];[0][a]overlay=(W-w)/2:H-h:shortest=1[v]" \
+            -map "[v]" -map 2:a -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -c:a aac -shortest narration/avatar_test/talk.mp4
+          cp /tmp/render_log.txt narration/avatar_test/render_log.txt
+          git config user.name pasta0725
+          git config user.email pasta0725@users.noreply.github.com
+          git add narration/avatar_test
+          git commit -m "VTuber風の動き（Talking Head Anime 3）の試作" || true
+          git pull --rebase -q && git push
