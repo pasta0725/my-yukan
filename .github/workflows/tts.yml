@@ -20,11 +20,12 @@ jobs:
         run: |
           set -e
           made=0
-          for f in narration/*/lines.json; do
-            [ -e "$f" ] || continue
+          for f in $(find narration -name lines.json | sort); do
             d=$(dirname "$f")
             if [ ! -e "$d/s1.wav" ]; then
-              python3 -I tools/tts_gemini.py "$f" "$d" | tee "$d/tts_log.txt"
+              # one failing script must not stop the others
+              python3 -I tools/tts_gemini.py "$f" "$d" > "$d/tts_log.txt" 2>&1 || true
+              cat "$d/tts_log.txt"
               made=1
             fi
           done
