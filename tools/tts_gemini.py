@@ -12,7 +12,8 @@ out = sys.argv[2]
 os.makedirs(out, exist_ok=True)
 model = cfg.get("model", "gemini-3.8-flash-tts")
 voice = cfg.get("voice", "Leda")
-style = cfg.get("style", "若い女性のニュース読み上げ。明るく可愛らしく、親しみやすい声で、ややテンポよく、はっきり読む。")
+# Default chosen by the user on 2026-11-04 (sample "G1"): Leda + anime heroine style.
+style = cfg.get("style", "日本のアニメに出てくる美少女キャラクターの声。高くて甘く、とてもかわいい。元気で明るく、語尾を少しはずませ、表情豊かに読む。声優のような演技。")
 # Instructions and spoken words are separated so the model never reads the style aloud
 # (an unseparated style line was read out in a test on 2026-11-04).
 PROMPT = """Synthesize speech for the performance below. The notes are direction only. Do NOT speak them. Speak ONLY the lines under #### TRANSCRIPT.
