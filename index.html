@@ -170,6 +170,7 @@ main .wrap{padding-block:16px 40px}
   @keyframes bumpR{40%{transform:translateX(10px)}to{transform:none}}
 }
 main{overflow-x:hidden}
+@supports (overflow:clip){main{overflow-x:clip}}
 .swipe-hint{font-size:11.5px;color:var(--sub);text-align:center;margin:-6px 0 12px}
 @media (prefers-reduced-motion:reduce){.reload.spin svg{animation:none}}
 /* ---- responsive: tablets and computers ---- */
@@ -209,6 +210,28 @@ main{overflow-x:hidden}
   .lead h2{font-size:30px}
 }
 
+
+/* ---- wide screens: list left, article right ---- */
+@media (min-width:1080px){
+  body[data-view="split"] main .wrap{max-width:1360px}
+  .split{display:grid;grid-template-columns:minmax(320px,380px) minmax(0,1fr);gap:36px;align-items:start}
+  .pane-list{position:sticky;top:calc(var(--mast-h,110px) + 12px);max-height:calc(100vh - var(--mast-h,110px) - 24px);overflow:auto;overscroll-behavior:contain;display:grid;gap:2px;align-content:start;padding:2px 8px 16px 2px;scrollbar-width:thin}
+  .srow{display:grid;grid-template-columns:minmax(0,1fr) 68px;gap:12px;align-items:start;padding:10px 12px;border:1px solid transparent;border-radius:10px;background:none;text-align:left;width:100%;cursor:pointer}
+  .srow:hover{background:color-mix(in srgb,var(--card) 70%,transparent)}
+  .srow[aria-current="true"]{background:var(--card);border-color:var(--line);box-shadow:inset 3px 0 0 var(--lamp)}
+  .srow .tx{min-width:0;display:grid;gap:3px}
+  .srow h3{font-size:14.5px;line-height:1.5;margin:0;font-weight:700}
+  .srow.read h3{color:var(--sub);font-weight:500}
+  .srow[aria-current="true"] h3{color:var(--ink)}
+  .srow .meta{font-size:11px}
+  .srow .th{width:68px;height:68px;border-radius:8px}
+  .srow .th .credit{display:none}
+  .pane-list .section-h{margin:20px 12px 8px}
+  .pane-list .back-issues{padding:0 12px}
+  .pane-article{min-width:0;max-width:780px}
+  .pane-article .backbtn{display:none}
+  .pane-article .article{padding-top:4px}
+}
 </style>
 </head>
 <body>
@@ -386,6 +409,7 @@ main{overflow-x:hidden}
   function setFilter(key, dir){
     if(!CATS[key] || key===filter) return;
     filter = key; try{localStorage.setItem("yukan-filter",key);}catch(e){}
+    if(isSplit() && location.hash){ history.replaceState(null,"",location.pathname+location.search); splitListScroll = 0; }
     render();
     const v = app.querySelector(".view");
     if(v && dir && !reduceMotion){ v.classList.add(dir>0 ? "from-right" : "from-left"); }
@@ -585,6 +609,11 @@ main{overflow-x:hidden}
   function renderArticle(a){
     markRead(a.id);
     renderEditionHead(edition());
+    document.body.dataset.view = "article";
+    app.replaceChildren(buildArticle(a));
+    window.scrollTo(0,0);
+  }
+  function buildArticle(a){
     const cat = catOf(a), C = CATS[cat];
     const c1 = cssVar(C.c1), c2 = cssVar(C.c2);
     const body = el("div",{class:"body"});
@@ -629,10 +658,53 @@ main{overflow-x:hidden}
     if(isHttps(a.source_url)){
       art.append(el("p",{class:"srcnote",text: refs.length>1 ? "文章はマイ夕刊が上の記事をもとにまとめ直したものです。画像は表示中の出典元のもので、詳しい内容はそれぞれの記事で確認できます。" : "文章はマイ夕刊による要約です。画像は表示中の出典元のもので、詳しい内容は元の記事で確認できます。"}));
     }
-    document.body.dataset.view = "article";
-    app.replaceChildren(art);
-    window.scrollTo(0,0);
+    return art;
   }
+
+  /* wide screens: list on the left, article on the right */
+  const splitMQ = matchMedia("(min-width:1080px)");
+  const isSplit = ()=> splitMQ.matches;
+  let splitListScroll = 0;
+  function renderSplit(picked){
+    const ed = edition();
+    if(!ed || !ed.articles){ renderList(); return; }
+    renderEditionHead(ed);
+    renderChips(ed.articles);
+    const shown = filter==="all" ? ed.articles : ed.articles.filter(x=>catOf(x)===filter);
+    const a = picked || shown[0] || null;
+    if(picked) markRead(picked.id);
+    const old = app.querySelector(".pane-list"); if(old) splitListScroll = old.scrollTop;
+    const list = el("nav",{class:"pane-list","aria-label":"記事一覧"});
+    if(!shown.length) list.append(el("p",{class:"state",text:"この号には該当するニュースがありません。"}));
+    for(const x of shown){
+      list.append(el("button",{class:"srow"+(readSet.has(x.id)?" read":""),"aria-current":String(!!a && x.id===a.id),onclick:()=>{ location.hash = "a-"+x.id; }},
+        el("div",{class:"tx"},
+          el("div",{class:"meta"}, el("span",{class:"cat "+catOf(x),text:CATS[catOf(x)].label}), readSet.has(x.id)?null:el("span",{class:"dot-new",text:"未読"})),
+          el("h3",{text:x.title})),
+        thumb(x,"square")));
+    }
+    if(editions.length>1){
+      list.append(el("div",{class:"section-h",text:"過去の号"}));
+      const bi = el("div",{class:"back-issues"});
+      for(const e of editions){
+        bi.append(el("button",{"aria-current":String(e.date===ed.date),onclick:()=>{ currentDate=e.date; history.replaceState(null,"",location.pathname+location.search); render(); }}, shortDate(e.date)+(e.date===editions[0].date?"（最新）":"")));
+      }
+      list.append(bi);
+    }
+    const pane = el("div",{class:"pane-article"}, a ? buildArticle(a) : el("div",{class:"state"}, el("p",{text:"左の一覧から記事を選んでください。"})));
+    document.body.dataset.view = "split";
+    app.replaceChildren(el("div",{class:"split"}, list, pane));
+    list.scrollTop = splitListScroll;
+    const cur = list.querySelector('[aria-current="true"]');
+    if(cur && (cur.offsetTop < list.scrollTop || cur.offsetTop > list.scrollTop + list.clientHeight - 80)) cur.scrollIntoView({block:"nearest"});
+  }
+  try{ splitMQ.addEventListener("change", ()=>{ if(editions.length) render(); }); }catch(e){}
+  (function mastHeight(){
+    const h = document.querySelector("header.mast");
+    const set = ()=> document.documentElement.style.setProperty("--mast-h", h.offsetHeight+"px");
+    set(); try{ new ResizeObserver(set).observe(h); }catch(e){ addEventListener("resize", set); }
+  })();
+
   function svgIcon(d){
     const s = document.createElementNS("http://www.w3.org/2000/svg","svg");
     s.setAttribute("viewBox","0 0 24 24"); s.setAttribute("fill","none"); s.setAttribute("stroke","currentColor");
@@ -643,6 +715,11 @@ main{overflow-x:hidden}
   let lastListScroll = 0;
   function render(){
     const m = /^#a-(.+)$/.exec(location.hash);
+    if(isSplit() && editions.length){
+      chipsEl.hidden = false;
+      renderSplit(m ? findArticle(decodeURIComponent(m[1])) : null);
+      return;
+    }
     if(m && editions.length){
       const a = findArticle(decodeURIComponent(m[1]));
       if(a){ chipsEl.hidden = true; renderArticle(a); return; }
@@ -651,6 +728,7 @@ main{overflow-x:hidden}
     renderList();
   }
   window.addEventListener("hashchange", ()=>{
+    if(isSplit()){ render(); window.scrollTo(0,0); return; }
     const toArticle = /^#a-/.test(location.hash);
     if(toArticle) lastListScroll = window.scrollY;
     render();
