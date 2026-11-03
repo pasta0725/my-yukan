@@ -1,0 +1,16 @@
+TTSテスト2回目（2026-11-03 19:57 UTC）
+結果：失敗
+
+■ 手順3 tts_gemini.py の出力
+Gemini TTS error 403: {
+  "error": {
+    "code": 403,
+    "message": "Method doesn't allow unregistered callers (callers without established identity). Please use API Key or other form of API consumer identity to call this API.",
+    "status": "PERMISSION_DENIED"
+  }
+}
+
+終了コード: 1
+
+■ 手順4 curl（models?pageSize=1）のHTTPコード
+403
