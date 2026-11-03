@@ -159,6 +159,10 @@ main .wrap{padding-block:16px 40px}
 .xlist{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:flex-start;padding:2px 0 8px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left,0px)));padding-inline:max(16px, env(safe-area-inset-left,0px));scrollbar-width:thin;min-width:0}
 .xcard{flex:0 0 min(330px,84%);scroll-snap-align:start;min-width:0}
 .xcard .twitter-tweet{margin:0!important}
+/* round the embedded post cleanly (no white corners in dark mode) */
+.xcard:not(.xskel){border-radius:12px;overflow:hidden;isolation:isolate}
+.xcard .twitter-tweet-rendered{border-radius:12px;overflow:hidden}
+.xcard iframe{display:block;border-radius:12px;color-scheme:normal;background:transparent!important}
 .xcard blockquote{margin:0;padding:12px;border:1px solid var(--line);border-radius:12px;font-size:13px;color:var(--sub);background:var(--card)}
 .xskel{height:180px;border-radius:12px;background:linear-gradient(90deg,var(--card),color-mix(in srgb,var(--line) 60%,var(--card)),var(--card));background-size:200% 100%;border:1px solid var(--line)}
 @media (prefers-reduced-motion:no-preference){.xskel{animation:xsh 1.2s linear infinite}@keyframes xsh{to{background-position:-200% 0}}}
