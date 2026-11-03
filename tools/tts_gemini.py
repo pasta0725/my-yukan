@@ -57,4 +57,4 @@ for i, text in enumerate(cfg["lines"], 1):
     with wave.open(path, "wb") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(24000); w.writeframes(pcm)
     print(f"s{i}.wav {len(pcm) / 48000:.2f}s")
-    time.sleep(7)  # stay under ~10 requests per minute
+    time.sleep(21)  # free tier hit 429 when requests came fast; keep it slow
