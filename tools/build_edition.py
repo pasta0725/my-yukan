@@ -64,6 +64,11 @@ ed = {"date": DATE, "label": f"{dt.month}月{dt.day}日（{WD[dt.weekday()]}）�
 json.dump(ed, open(f"{REPO}/data/{DATE}.json", "w"), ensure_ascii=False, indent=1)
 eds = sorted(set(idx.get("editions", []) + [DATE]), reverse=True)[:14]
 json.dump({"editions": eds, "updatedAt": now}, open(idx_path, "w"), ensure_ascii=False, indent=1)
+# fixed-URL list of today's stories, read by the Grok Bot routine that collects "Xの声"
+todo = {"date": DATE, "output_path": f"data/x/{DATE}.json",
+        "articles": [{"id": a["id"], "category": a["category"], "title": a["title"], "summary": a.get("summary", ""),
+                      "source_name": a.get("source_name", "")} for a in arts]}
+json.dump(todo, open(f"{REPO}/data/x-todo.json", "w"), ensure_ascii=False, indent=1)
 
 def count(a, kind):
     n = 1 if a.get("image", {}).get("kind") == kind else 0
