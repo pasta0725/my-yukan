@@ -149,15 +149,20 @@ main .wrap{padding-block:16px 40px}
 .refs a{color:var(--ink)}
 .srcnote{font-size:12px;color:var(--sub);margin:0;text-align:center}
 /* X voices */
-.xvoices{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
-.xvoices h4{margin:0;font-size:13px;letter-spacing:.06em;color:var(--sub);display:flex;justify-content:space-between;gap:8px}
-.xvoices h4 span{font-weight:500;font-variant-numeric:tabular-nums}
-.xvoices .xbtn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
-.xvoices .xbtn svg{width:16px;height:16px}
-.xvoices .xnote{font-size:12px;color:var(--sub);margin:0}
-.xlist{display:grid;gap:4px;min-width:0}
-.xlist .twitter-tweet{margin:0 auto!important}
-.xlist blockquote{margin:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:13px;color:var(--sub)}
+.xvoices{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px;min-width:0}
+.xvoices h4{margin:0;font-size:13px;letter-spacing:.06em;color:var(--sub);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.xvoices h4 > span:last-child{font-weight:500;font-variant-numeric:tabular-nums}
+.xtitle{display:inline-flex;align-items:center;gap:6px}
+.xtitle svg{width:13px;height:13px}
+.xvoices .xnote{font-size:11.5px;color:var(--sub);margin:0}
+/* phones and normal widths: swipe sideways through the posts */
+.xlist{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:flex-start;padding:2px 0 8px;margin-inline:calc(-1 * max(16px, env(safe-area-inset-left,0px)));padding-inline:max(16px, env(safe-area-inset-left,0px));scrollbar-width:thin;min-width:0}
+.xcard{flex:0 0 min(330px,84%);scroll-snap-align:start;min-width:0}
+.xcard .twitter-tweet{margin:0!important}
+.xcard blockquote{margin:0;padding:12px;border:1px solid var(--line);border-radius:12px;font-size:13px;color:var(--sub);background:var(--card)}
+.xskel{height:180px;border-radius:12px;background:linear-gradient(90deg,var(--card),color-mix(in srgb,var(--line) 60%,var(--card)),var(--card));background-size:200% 100%;border:1px solid var(--line)}
+@media (prefers-reduced-motion:no-preference){.xskel{animation:xsh 1.2s linear infinite}@keyframes xsh{to{background-position:-200% 0}}}
+.xmore{flex:0 0 auto;align-self:center;scroll-snap-align:start;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:10px 16px;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap}
 @media (prefers-reduced-motion:no-preference){
   .view{animation:fade .18s ease-out}
   .view.from-right{animation:fromR .22s ease-out}
@@ -270,6 +275,9 @@ main{overflow-x:hidden}
   .pane-rail{position:sticky;top:calc(var(--mast-h,110px) + 12px);max-height:calc(100vh - var(--mast-h,110px) - 24px);overflow:auto;display:grid;gap:14px;align-content:start;padding:2px 4px 16px;scrollbar-width:thin;max-width:440px}
   .pane-rail .srcnote{text-align:left}
   .pane-rail .xvoices{border-top:0;padding-top:0}
+  .pane-rail .xlist{display:grid;overflow:visible;margin:0;padding:0;gap:10px}
+  .pane-rail .xcard{flex:none;width:100%}
+  .pane-rail .xmore{justify-self:stretch}
 }
 </style>
 </head>
@@ -621,30 +629,48 @@ main{overflow-x:hidden}
   function xVoices(a){
     const ids = (Array.isArray(a.x_posts) ? a.x_posts : []).map(String).filter(x=>/^\d{5,25}$/.test(x)).slice(0,10);
     if(!ids.length) return null;
+    const BATCH = 4;
+    let next = 0, loading = false;
+    const count = el("span",{text:`${ids.length}件`});
     const list = el("div",{class:"xlist"});
-    const note = el("p",{class:"xnote",text:"X（旧Twitter）の投稿を公式の埋め込みで表示します。投稿の内容は投稿者のもので、マイ夕刊の意見ではありません。"});
-    const btn = el("button",{class:"xbtn"}, svgIcon('<path d="M4 4l16 16M20 4L4 20"/>'), `Xの声を見る（${ids.length}件）`);
-    const wrap = el("section",{class:"xvoices","aria-label":"Xの声"}, el("h4",null,"このニュースへのXの声", el("span",{text:`${ids.length}件`})), btn, note, list);
-    btn.addEventListener("click", ()=>{
-      btn.disabled = true; btn.lastChild.textContent = "読み込み中…";
+    const more = el("button",{class:"xmore"}, "もっと見る");
+    const wrap = el("section",{class:"xvoices","aria-label":"Xの声"},
+      el("h4",null, el("span",{class:"xtitle"}, svgIcon('<path d="M4 4l16 16M20 4L4 20"/>'), "このニュースへのXの声"), count),
+      list,
+      el("p",{class:"xnote",text:"X（旧Twitter）の公式の埋め込みで表示しています。投稿の内容は投稿者のもので、マイ夕刊の意見ではありません。"}));
+    function loadNext(){
+      if(loading || next >= ids.length) return;
+      loading = true; more.remove();
+      list.querySelectorAll(".xskel").forEach(n=>n.remove());
       const dark = matchMedia("(prefers-color-scheme: dark)").matches;
-      for(const id of ids){
-        const bq = el("blockquote",{class:"twitter-tweet","data-dnt":"true","data-conversation":"none","data-lang":"ja","data-theme":dark?"dark":"light"},
-          el("a",{href:`https://twitter.com/i/status/${id}`,target:"_blank",rel:"noopener noreferrer",text:"Xで投稿を見る"}));
-        list.append(bq);
+      const batch = ids.slice(next, next + BATCH); next += batch.length;
+      const holder = el("div",{class:"xbatch"});
+      for(const id of batch){
+        holder.append(el("div",{class:"xcard"},
+          el("blockquote",{class:"twitter-tweet","data-dnt":"true","data-conversation":"none","data-cards":"hidden","data-lang":"ja","data-width":"350","data-theme":dark?"dark":"light"},
+            el("a",{href:`https://twitter.com/i/status/${id}`,target:"_blank",rel:"noopener noreferrer",text:"Xで投稿を見る"}))));
       }
+      list.append(...holder.children);
+      const added = Array.from(list.querySelectorAll(".xcard:not(.done)"));
       loadXWidgets().then(t=>{ if(t && t.widgets) return t.widgets.load(list); }).then(()=>{
-          btn.remove();
-          // hide posts that X could not show (deleted, private, or wrong id)
-          setTimeout(()=>{
-            list.querySelectorAll("blockquote.twitter-tweet, .twitter-tweet-error").forEach(n=>n.remove());
-            const shown = list.children.length;
-            wrap.querySelector("h4 span").textContent = `${shown}件`;
-            if(!shown) list.append(el("p",{class:"xnote",text:"表示できる投稿がありませんでした。"}));
-          }, 4000);
-        })
-        .catch(()=>{ btn.disabled = false; btn.lastChild.textContent = "読み込めませんでした。もう一度試す"; list.replaceChildren(); });
-    });
+        setTimeout(()=>{
+          // drop posts X could not show (deleted, private, wrong id)
+          for(const c of added){ c.classList.add("done"); if(!c.querySelector("iframe, twitter-widget, .twitter-tweet-rendered")) c.remove(); }
+          const shown = list.querySelectorAll(".xcard").length;
+          count.textContent = `${shown}件` + (next < ids.length ? `＋` : "");
+          if(!shown && next >= ids.length){ wrap.remove(); return; }
+          loading = false;
+          if(next < ids.length){ more.textContent = `もっと見る（あと${ids.length-next}件）`; list.append(more); }
+        }, 2500);
+      }).catch(()=>{ loading = false; for(const c of added) c.remove(); next -= added.length; more.textContent = "読み込めませんでした。もう一度試す"; list.append(more); });
+    }
+    more.addEventListener("click", loadNext);
+    // start loading when the section comes close to the screen (no tap needed)
+    if("IntersectionObserver" in window){
+      const io = new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); loadNext(); } }, {rootMargin:"600px 0px"});
+      requestAnimationFrame(()=>io.observe(wrap));
+    }else loadNext();
+    list.append(el("div",{class:"xcard xskel","aria-hidden":"true"}), el("div",{class:"xcard xskel","aria-hidden":"true"}));
     return wrap;
   }
 
