@@ -140,6 +140,16 @@ main .wrap{padding-block:16px 40px}
 .srcbtn{display:flex;justify-content:center;align-items:center;gap:6px;text-decoration:none;background:var(--ink);color:var(--paper);border-radius:12px;padding:13px 16px;font-weight:700;font-size:15px}
 .srcbtn svg{width:18px;height:18px}
 .srcnote{font-size:12px;color:var(--sub);margin:0;text-align:center}
+/* X voices */
+.xvoices{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+.xvoices h4{margin:0;font-size:13px;letter-spacing:.06em;color:var(--sub);display:flex;justify-content:space-between;gap:8px}
+.xvoices h4 span{font-weight:500;font-variant-numeric:tabular-nums}
+.xvoices .xbtn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.xvoices .xbtn svg{width:16px;height:16px}
+.xvoices .xnote{font-size:12px;color:var(--sub);margin:0}
+.xlist{display:grid;gap:4px;min-width:0}
+.xlist .twitter-tweet{margin:0 auto!important}
+.xlist blockquote{margin:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:13px;color:var(--sub)}
 @media (prefers-reduced-motion:no-preference){
   .view{animation:fade .18s ease-out}
   .view.from-right{animation:fromR .22s ease-out}
@@ -461,6 +471,41 @@ main{overflow-x:hidden}
     return wrap;
   }
 
+  /* Voices on X: shown with X's official embed, loaded only when the reader taps */
+  let xScript = null;
+  function loadXWidgets(){
+    if(window.twttr && window.twttr.widgets) return Promise.resolve(window.twttr);
+    if(xScript) return xScript;
+    xScript = new Promise((res, rej)=>{
+      const s = document.createElement("script");
+      s.src = "https://platform.twitter.com/widgets.js"; s.async = true; s.charset = "utf-8";
+      s.onload = ()=>{ const t = window.twttr; (t && t.ready) ? t.ready(res) : res(t); };
+      s.onerror = ()=>{ xScript = null; rej(new Error("load")); };
+      document.head.append(s);
+    });
+    return xScript;
+  }
+  function xVoices(a){
+    const ids = (Array.isArray(a.x_posts) ? a.x_posts : []).map(String).filter(x=>/^\d{5,25}$/.test(x)).slice(0,10);
+    if(!ids.length) return null;
+    const list = el("div",{class:"xlist"});
+    const note = el("p",{class:"xnote",text:"X（旧Twitter）の投稿を公式の埋め込みで表示します。投稿の内容は投稿者のもので、マイ夕刊の意見ではありません。"});
+    const btn = el("button",{class:"xbtn"}, svgIcon('<path d="M4 4l16 16M20 4L4 20"/>'), `Xの声を見る（${ids.length}件）`);
+    const wrap = el("section",{class:"xvoices","aria-label":"Xの声"}, el("h4",null,"このニュースへのXの声", el("span",{text:`${ids.length}件`})), btn, note, list);
+    btn.addEventListener("click", ()=>{
+      btn.disabled = true; btn.lastChild.textContent = "読み込み中…";
+      const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+      for(const id of ids){
+        const bq = el("blockquote",{class:"twitter-tweet","data-dnt":"true","data-conversation":"none","data-lang":"ja","data-theme":dark?"dark":"light"},
+          el("a",{href:`https://twitter.com/i/status/${id}`,target:"_blank",rel:"noopener noreferrer",text:"Xで投稿を見る"}));
+        list.append(bq);
+      }
+      loadXWidgets().then(t=>{ if(t && t.widgets) return t.widgets.load(list); }).then(()=>{ btn.remove(); })
+        .catch(()=>{ btn.disabled = false; btn.lastChild.textContent = "読み込めませんでした。もう一度試す"; list.replaceChildren(); });
+    });
+    return wrap;
+  }
+
   let lightboxEl = null;
   function closeLightbox(){ if(lightboxEl){ lightboxEl.remove(); lightboxEl = null; } }
   function openLightbox(x){
@@ -510,7 +555,8 @@ main{overflow-x:hidden}
       el("div",{class:"meta"}, el("span",{class:"cat "+cat,text:C.label}), el("span",{text:a.source_name||""}), a.published?el("span",{text:shortDate(a.published)+" の記事"}):null),
       el("h1",{text:a.title}),
       a.summary?el("p",{class:"lede",text:a.summary}):null,
-      body
+      body,
+      xVoices(a)
     );
     if(isHttps(a.source_url)){
       art.append(el("a",{class:"srcbtn",href:a.source_url,target:"_blank",rel:"noopener noreferrer"}, "元の記事を読む（"+(a.source_name||"出典")+"）", svgIcon('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>')));
