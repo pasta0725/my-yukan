@@ -233,6 +233,44 @@ main{overflow-x:hidden}
   .pane-article .backbtn{display:none}
   .pane-article .article{padding-top:4px}
 }
+
+/* ---- big screens: use the width ---- */
+@media (min-width:1080px){
+  .pane-article .backbtn{display:inline-flex}
+}
+@media (min-width:1280px){
+  .wrap{max-width:1840px;padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}
+  body[data-view="split"] main .wrap{max-width:1840px}
+  .list{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  /* top page "すべて": one column per genre, like a newspaper page */
+  .board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:start}
+  .gcol{display:grid;gap:2px;align-content:start;min-width:0}
+  .gcol-h{display:flex;justify-content:space-between;align-items:center;border:0;border-bottom:2px solid currentColor;background:none;padding:4px 2px 8px;margin-bottom:10px;cursor:pointer;font:inherit}
+  .gcol.ai .gcol-h{color:var(--ai)} .gcol.kaden .gcol-h{color:var(--kaden)} .gcol.fukugyo .gcol-h{color:var(--fuku)}
+  .gcol-h .cat{font-size:15px}
+  .gcol-h .n{font-size:12.5px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .gtop{display:grid;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;text-align:left;cursor:pointer;padding:0;margin-bottom:8px;width:100%}
+  .gtop .th{aspect-ratio:16/9}
+  .gtop .tx{padding:12px 14px 14px;display:grid;gap:5px}
+  .gtop h3{font-size:18px;line-height:1.45;margin:0;font-weight:700}
+  .gtop p{margin:0;font-size:13.5px;color:var(--sub);line-height:1.6}
+  .grow{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:12px;align-items:start;padding:10px 4px;border:0;border-top:1px solid var(--line);background:none;text-align:left;cursor:pointer;width:100%}
+  .grow .tx{min-width:0;display:grid;gap:3px}
+  .grow h4{font-size:14.5px;line-height:1.5;margin:0;font-weight:700}
+  .grow .meta .cat,.gtop .meta .cat{display:none}
+  .grow .meta{font-size:11px}
+  .grow .th{width:64px;height:64px;border-radius:8px}
+  .grow .th .credit{display:none}
+  .gtop.read h3,.grow.read h4{color:var(--sub);font-weight:500}
+  .gtop:hover,.grow:hover{background:var(--card)}
+}
+@media (min-width:1560px){
+  .gtop .th{aspect-ratio:2/1}
+  .split.three{grid-template-columns:minmax(320px,360px) minmax(0,800px) minmax(300px,1fr);gap:40px}
+  .pane-rail{position:sticky;top:calc(var(--mast-h,110px) + 12px);max-height:calc(100vh - var(--mast-h,110px) - 24px);overflow:auto;display:grid;gap:14px;align-content:start;padding:2px 4px 16px;scrollbar-width:thin;max-width:440px}
+  .pane-rail .srcnote{text-align:left}
+  .pane-rail .xvoices{border-top:0;padding-top:0}
+}
 </style>
 </head>
 <body>
@@ -475,9 +513,28 @@ main{overflow-x:hidden}
     if(!shown.length){
       frag.append(el("div",{class:"state"}, el("h2",{text:"この号には該当するニュースがありません"}), el("p",{text:"ほかのジャンルを選んでみてください。"})));
     }else{
-      const [lead, ...rest] = shown;
       const open = a => ()=>{ location.hash = "a-"+a.id; };
       const meta = a => el("div",{class:"meta"}, el("span",{class:"cat "+catOf(a),text:CATS[catOf(a)].label}), el("span",{class:"src",text:a.source_name||""}), readSet.has(a.id)?null:el("span",{class:"dot-new",text:"未読"}));
+      if(filter==="all" && columnsMQ.matches){
+        const board = el("div",{class:"board"});
+        for(const key of ORDER.filter(k=>k!=="all")){
+          const items = arts.filter(a=>catOf(a)===key);
+          if(!items.length) continue;
+          const [top, ...more] = items;
+          const col = el("section",{class:"gcol "+key,"aria-label":CATS[key].label},
+            el("button",{class:"gcol-h",onclick:()=>setFilter(key)}, el("span",{class:"cat "+key,text:CATS[key].label}), el("span",{class:"n",text:items.length+"本"})),
+            el("button",{class:"gtop"+(readSet.has(top.id)?" read":""),onclick:open(top)},
+              thumb(top,"wide"),
+              el("div",{class:"tx"}, meta(top), el("h3",{text:top.title}), el("p",{text:top.summary||""}))));
+          for(const a of more){
+            col.append(el("button",{class:"grow"+(readSet.has(a.id)?" read":""),onclick:open(a)},
+              el("div",{class:"tx"}, meta(a), el("h4",{text:a.title})), thumb(a,"square")));
+          }
+          board.append(col);
+        }
+        frag.append(board);
+      }else{
+      const [lead, ...rest] = shown;
       frag.append(el("button",{class:"lead"+(readSet.has(lead.id)?" read":""),onclick:open(lead)},
         thumb(lead,"wide"),
         el("div",{class:"tx"}, meta(lead), el("h2",{text:lead.title}), el("p",{text:lead.summary||""}))));
@@ -489,6 +546,7 @@ main{overflow-x:hidden}
             thumb(a, matchMedia("(min-width:760px)").matches ? "wide" : "card")));
         }
         frag.append(list);
+      }
       }
     }
     if(editions.length>1){
@@ -665,6 +723,9 @@ main{overflow-x:hidden}
   /* wide screens: list on the left, article on the right */
   const splitMQ = matchMedia("(min-width:1080px)");
   const isSplit = ()=> splitMQ.matches;
+  const railMQ = matchMedia("(min-width:1560px)");
+  const columnsMQ = matchMedia("(min-width:1280px)");
+  try{ railMQ.addEventListener("change", ()=>{ if(editions.length) render(); }); columnsMQ.addEventListener("change", ()=>{ if(editions.length) render(); }); }catch(e){}
   let splitListScroll = 0;
   function renderSplit(picked){
     const ed = edition();
@@ -672,8 +733,8 @@ main{overflow-x:hidden}
     renderEditionHead(ed);
     renderChips(ed.articles);
     const shown = filter==="all" ? ed.articles : ed.articles.filter(x=>catOf(x)===filter);
-    const a = picked || shown[0] || null;
-    if(picked) markRead(picked.id);
+    const a = picked;
+    markRead(a.id);
     const old = app.querySelector(".pane-list"); if(old) splitListScroll = old.scrollTop;
     const list = el("nav",{class:"pane-list","aria-label":"記事一覧"});
     if(!shown.length) list.append(el("p",{class:"state",text:"この号には該当するニュースがありません。"}));
@@ -692,9 +753,17 @@ main{overflow-x:hidden}
       }
       list.append(bi);
     }
-    const pane = el("div",{class:"pane-article"}, a ? buildArticle(a) : el("div",{class:"state"}, el("p",{text:"左の一覧から記事を選んでください。"})));
+    const art = buildArticle(a);
+    const pane = el("div",{class:"pane-article"}, art);
+    const cols = [list, pane];
+    if(railMQ.matches){
+      // very wide: sources and voices on X go to a third column
+      const rail = el("aside",{class:"pane-rail","aria-label":"出典とXの声"});
+      for(const sel of [".srcbtn",".refs",".srcnote",".xvoices"]){ const n = art.querySelector(sel); if(n) rail.append(n); }
+      cols.push(rail);
+    }
     document.body.dataset.view = "split";
-    app.replaceChildren(el("div",{class:"split"}, list, pane));
+    app.replaceChildren(el("div",{class:"split"+(cols.length===3?" three":"")}, ...cols));
     list.scrollTop = splitListScroll;
     const cur = list.querySelector('[aria-current="true"]');
     if(cur && (cur.offsetTop < list.scrollTop || cur.offsetTop > list.scrollTop + list.clientHeight - 80)) cur.scrollIntoView({block:"nearest"});
@@ -725,10 +794,9 @@ main{overflow-x:hidden}
   let lastListScroll = 0;
   function render(){
     const m = /^#a-(.+)$/.exec(location.hash);
-    if(isSplit() && editions.length){
-      chipsEl.hidden = false;
-      renderSplit(m ? findArticle(decodeURIComponent(m[1])) : null);
-      return;
+    if(isSplit() && editions.length && m){
+      const a = findArticle(decodeURIComponent(m[1]));
+      if(a){ chipsEl.hidden = false; renderSplit(a); return; }
     }
     if(m && editions.length){
       const a = findArticle(decodeURIComponent(m[1]));
@@ -738,8 +806,14 @@ main{overflow-x:hidden}
     renderList();
   }
   window.addEventListener("hashchange", ()=>{
-    if(isSplit()){ render(); window.scrollTo(0,0); return; }
     const toArticle = /^#a-/.test(location.hash);
+    if(isSplit()){
+      const fromList = document.body.dataset.view === "list";
+      if(toArticle && fromList) lastListScroll = window.scrollY;
+      render();
+      requestAnimationFrame(()=>window.scrollTo(0, toArticle ? 0 : lastListScroll));
+      return;
+    }
     if(toArticle) lastListScroll = window.scrollY;
     render();
     if(!toArticle) requestAnimationFrame(()=>window.scrollTo(0,lastListScroll));
