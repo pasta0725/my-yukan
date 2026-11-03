@@ -88,12 +88,15 @@ main .wrap{padding-block:16px 40px}
 .lead h2{font-size:21px;line-height:1.45;margin:0;font-weight:700;text-wrap:balance}
 .lead p{margin:0;color:var(--sub);font-size:14.5px}
 
-.list{display:grid;border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:1fr 96px;gap:14px;align-items:start;padding:14px 0;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;cursor:pointer;width:100%}
-.row .tx{min-width:0;display:grid;gap:4px}
-.row h3{font-size:16px;line-height:1.5;margin:0;font-weight:700}
-.row .th{width:96px;height:96px;border-radius:10px}
+/* other stories: cards, 2 columns on phones */
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.row{display:grid;grid-template-rows:auto 1fr;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;text-align:left;cursor:pointer;width:100%;height:100%}
+.row .th{order:-1;width:100%;aspect-ratio:4/3}
 .row .th .credit{font-size:9px;padding:2px 5px}
+.row .tx{min-width:0;display:grid;gap:4px;padding:9px 10px 12px;align-content:start}
+.row h3{font-size:14.5px;line-height:1.5;margin:0;font-weight:700;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.row .meta{font-size:11px;gap:2px 8px}
+.row .meta .src{display:none}
 .row.read h3,.lead.read h2{color:var(--sub);font-weight:500}
 .dot-new{display:inline-block;font-size:10.5px;font-weight:700;color:var(--lamp-ink);border:1px solid var(--lamp);border-radius:4px;padding:0 5px;line-height:1.5}
 
@@ -176,12 +179,13 @@ main{overflow-x:hidden}
   .lead h2{font-size:26px}
   .lead p{font-size:15.5px}
   /* other stories: cards in columns */
-  .list{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;border-top:0}
-  .row{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:0;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;height:100%}
-  .row .th{order:-1;width:100%;height:auto;aspect-ratio:16/9;border-radius:0}
+  .list{gap:16px}
+  .row .th{aspect-ratio:16/9}
   .row .th .credit{font-size:10px;padding:3px 7px}
-  .row .tx{padding:12px 14px 16px;align-content:start}
-  .row h3{font-size:16.5px}
+  .row .tx{padding:12px 14px 16px}
+  .row h3{font-size:16.5px;-webkit-line-clamp:unset;display:block}
+  .row .meta{font-size:12px}
+  .row .meta .src{display:inline}
   .row:hover,.lead:hover{border-color:color-mix(in srgb,var(--ink) 30%,var(--line))}
   /* article */
   .article{gap:18px}
@@ -304,7 +308,7 @@ main{overflow-x:hidden}
     const icon = ICONS[v.icon] || ICONS[CAT_ICON[cat]];
     const kicker = (v.kicker || C.label).slice(0, 10);
     const h = hash(a.id || a.title);
-    const W = shape==="wide" ? 320 : 100, H = shape==="wide" ? 180 : 100;
+    const W = shape==="wide" ? 320 : shape==="card" ? 120 : 100, H = shape==="wide" ? 180 : shape==="card" ? 90 : 100;
     const gid = "g"+h.toString(36)+shape+Math.random().toString(36).slice(2,6), pid = "p"+gid;
     const kind = h % 3, ang = (h>>3) % 2 ? 45 : -45;
     let pat;
@@ -318,6 +322,11 @@ main{overflow-x:hidden}
       inner = `<g transform="translate(206 26) scale(5.2)" fill="none" stroke="#fff" stroke-opacity=".92" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">${icon}</g>
         <text x="20" y="34" fill="#fff" fill-opacity=".85" font-family="Zen Kaku Gothic New, sans-serif" font-weight="700" font-size="13" letter-spacing="1.5">${esc(C.label)}</text>
         <text x="20" y="${H-24}" fill="#fff" font-family="Dela Gothic One, sans-serif" font-size="${fs}">${esc(kicker)}</text>`;
+    }else if(shape==="card"){
+      const k = kicker.slice(0,7);
+      const fs = k.length<=3 ? 20 : k.length<=4 ? 17 : k.length<=5 ? 15 : k.length<=6 ? 13 : 11.5;
+      inner = `<g transform="translate(42 9) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${icon}</g>
+        <text x="60" y="76" text-anchor="middle" fill="#fff" font-family="Dela Gothic One, sans-serif" font-size="${fs}">${esc(k)}</text>`;
     }else{
       const k = kicker.slice(0,6);
       const fs = k.length<=3 ? 19 : k.length<=4 ? 16 : k.length<=5 ? 13.5 : 11.5;
@@ -439,7 +448,7 @@ main{overflow-x:hidden}
     }else{
       const [lead, ...rest] = shown;
       const open = a => ()=>{ location.hash = "a-"+a.id; };
-      const meta = a => el("div",{class:"meta"}, el("span",{class:"cat "+catOf(a),text:CATS[catOf(a)].label}), el("span",{text:a.source_name||""}), readSet.has(a.id)?null:el("span",{class:"dot-new",text:"未読"}));
+      const meta = a => el("div",{class:"meta"}, el("span",{class:"cat "+catOf(a),text:CATS[catOf(a)].label}), el("span",{class:"src",text:a.source_name||""}), readSet.has(a.id)?null:el("span",{class:"dot-new",text:"未読"}));
       frag.append(el("button",{class:"lead"+(readSet.has(lead.id)?" read":""),onclick:open(lead)},
         thumb(lead,"wide"),
         el("div",{class:"tx"}, meta(lead), el("h2",{text:lead.title}), el("p",{text:lead.summary||""}))));
@@ -448,7 +457,7 @@ main{overflow-x:hidden}
         for(const a of rest){
           list.append(el("button",{class:"row"+(readSet.has(a.id)?" read":""),onclick:open(a)},
             el("div",{class:"tx"}, meta(a), el("h3",{text:a.title})),
-            thumb(a, matchMedia("(min-width:760px)").matches ? "wide" : "square")));
+            thumb(a, matchMedia("(min-width:760px)").matches ? "wide" : "card")));
         }
         frag.append(list);
       }
