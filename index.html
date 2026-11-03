@@ -142,6 +142,10 @@ main .wrap{padding-block:16px 40px}
 .lightbox button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:max(12px,env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .srcbtn{display:flex;justify-content:center;align-items:center;gap:6px;text-decoration:none;background:var(--ink);color:var(--paper);border-radius:12px;padding:13px 16px;font-weight:700;font-size:15px}
 .srcbtn svg{width:18px;height:18px}
+.refs{border:1px solid var(--line);border-radius:12px;padding:12px 16px;background:var(--card)}
+.refs h4{margin:0 0 6px;font-size:13px;letter-spacing:.06em;color:var(--sub)}
+.refs ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:14px}
+.refs a{color:var(--ink)}
 .srcnote{font-size:12px;color:var(--sub);margin:0;text-align:center}
 /* X voices */
 .xvoices{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
@@ -615,7 +619,15 @@ main{overflow-x:hidden}
     );
     if(isHttps(a.source_url)){
       art.append(el("a",{class:"srcbtn",href:a.source_url,target:"_blank",rel:"noopener noreferrer"}, "元の記事を読む（"+(a.source_name||"出典")+"）", svgIcon('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>')));
-      art.append(el("p",{class:"srcnote",text:"文章はマイ夕刊による要約です。画像は表示中の出典元のもので、詳しい内容は元の記事で確認できます。"}));
+    }
+    const refs = (Array.isArray(a.refs) ? a.refs : []).filter(r=>r && isHttps(r.url));
+    if(refs.length > 1){
+      const ul = el("ul");
+      for(const r of refs.slice(0,5)) ul.append(el("li",null, el("a",{href:r.url,target:"_blank",rel:"noopener noreferrer",text:r.name||r.url})));
+      art.append(el("section",{class:"refs","aria-label":"参考にした記事"}, el("h4",{text:`参考にした記事（${Math.min(refs.length,5)}件）`}), ul));
+    }
+    if(isHttps(a.source_url)){
+      art.append(el("p",{class:"srcnote",text: refs.length>1 ? "文章はマイ夕刊が上の記事をもとにまとめ直したものです。画像は表示中の出典元のもので、詳しい内容はそれぞれの記事で確認できます。" : "文章はマイ夕刊による要約です。画像は表示中の出典元のもので、詳しい内容は元の記事で確認できます。"}));
     }
     document.body.dataset.view = "article";
     app.replaceChildren(art);

@@ -18,6 +18,13 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 - Period: AI and kaden = published within the last 72 hours. fukugyo = within the last 7 days.
 - Skip thin PR pieces. If you use sponsored (PR) content, say so in the body.
 
+## Read up to 5 articles per story (user's request: more information)
+- After you pick a story, WebSearch the same event (company/product + key words, also the official name) and find other outlets' articles and the official announcement about it. Read up to 5 in total (the first article included), from different sites. Fewer is fine when there are no more.
+- Combine the facts from all of them: what happened, concrete details (prices, dates, specs, numbers, who is affected), background / why it matters, what each outlet added that the others did not, and what happens next.
+- If outlets disagree, say so plainly ("〇〇は△△と伝えています").
+- Write it all in YOUR OWN WORDS as one new explanation. Never copy sentences, never follow one article's paragraph order closely, never quote more than a few words.
+- List every article you actually read in "refs".
+
 ## Images (user's rule: ALL official images, at most 2 news-site photos per story)
 - Official images (kind "press"): find the company/organization's own announcement for the same news (press release, newsroom, product page, official blog, official notice). Collect all relevant images there (product shots, screens, diagrams, charts), up to 12.
 - News-site photos (kind "ogp"): from the news article itself, at most 2 in total.
@@ -26,7 +33,8 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 - No image is OK.
 
 ## Writing
-Easy Japanese for a non-engineer, in YOUR OWN WORDS (never copy sentences). Avoid jargon. For fukugyo, the "point" block says what an individual seller should do or note.
+Easy Japanese for a non-engineer, in YOUR OWN WORDS (never copy sentences). Avoid jargon (if a technical word is needed, explain it in a few words). For fukugyo, the "point" block says what an individual seller should do or note.
+Length: the "p" blocks together should be about 700–1200 Japanese characters (a rich explanation, not a short summary), in 4–7 paragraphs of 2–5 sentences. Short stories with little information may be shorter; never pad.
 
 ## Output: a JSON array, each item:
 {"id":"<category>-<short ascii slug>","category":"ai|kaden|fukugyo","title":"見出し30字前後","summary":"一言要約50字以内",
@@ -38,6 +46,7 @@ Easy Japanese for a non-engineer, in YOUR OWN WORDS (never copy sentences). Avoi
          {"type":"stat","items":[{"value":"全角10字以内","label":"全角15字以内"}]},   ← exactly one, 2–3 items, numbers from the source only
          {"type":"gallery","title":"公式の画像","items":[{"src":"...","kind":"press|ogp","credit":"...","caption":"...","page":"..."}]},   ← all remaining images, if any (title "そのほかの画像" if it contains ogp)
          {"type":"point","items":["ポイント1","ポイント2","ポイント3"]}],   ← optional
- "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD"}
-Text blocks (p/stat/point): 3–6. No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
+ "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD",
+ "refs":[{"name":"サイト名","url":"https://..."}]}   ← every article you read for this story (max 5, source_url first), URLs exactly as fetched
+Text blocks (p/stat/point): 6–10 (p 4–7 + one stat + optional point). No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
 Validate with python3 json.load. Final reply: count, titles, image counts (press/ogp), problems.
