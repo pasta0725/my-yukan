@@ -287,6 +287,28 @@ main{overflow-x:hidden}
   .pane-rail .xcard{flex:none;width:100%}
   .pane-rail .xmore{justify-self:stretch}
 }
+
+/* ---- wide screens top page: 2 big stories, then 6 columns ---- */
+@media (min-width:1080px){
+  .hero2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-bottom:24px}
+  .big{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden;text-align:left;cursor:pointer;padding:0;width:100%}
+  .big .th{aspect-ratio:16/9}
+  .big .tx{padding:16px 20px 20px;display:grid;gap:8px;align-content:start}
+  .big h2{font-size:24px;line-height:1.45;margin:0;font-weight:700;text-wrap:balance}
+  .big p{margin:0;font-size:15px;color:var(--sub);line-height:1.6}
+  .big.read h2{color:var(--sub);font-weight:500}
+  .big:hover{border-color:color-mix(in srgb,var(--ink) 30%,var(--line))}
+  .list.grid6{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .grid6 .row .tx{padding:10px 12px 14px}
+  .grid6 .row h3{font-size:15px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .grid6 .row .meta{font-size:11px}
+  .grid6 .row .meta .src{display:none}
+}
+@media (min-width:1280px){
+  .list.grid6{grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+  .big .th{aspect-ratio:2/1}
+  .big h2{font-size:26px}
+}
 </style>
 </head>
 <body>
@@ -531,24 +553,21 @@ main{overflow-x:hidden}
     }else{
       const open = a => ()=>{ location.hash = "a-"+a.id; };
       const meta = a => el("div",{class:"meta"}, el("span",{class:"cat "+catOf(a),text:CATS[catOf(a)].label}), el("span",{class:"src",text:a.source_name||""}), readSet.has(a.id)?null:el("span",{class:"dot-new",text:"未読"}));
-      if(filter==="all" && columnsMQ.matches){
-        const board = el("div",{class:"board"});
-        for(const key of ORDER.filter(k=>k!=="all")){
-          const items = arts.filter(a=>catOf(a)===key);
-          if(!items.length) continue;
-          const [top, ...more] = items;
-          const col = el("section",{class:"gcol "+key,"aria-label":CATS[key].label},
-            el("button",{class:"gcol-h",onclick:()=>setFilter(key)}, el("span",{class:"cat "+key,text:CATS[key].label}), el("span",{class:"n",text:items.length+"本"})),
-            el("button",{class:"gtop"+(readSet.has(top.id)?" read":""),onclick:open(top)},
-              thumb(top,"wide"),
-              el("div",{class:"tx"}, meta(top), el("h3",{text:top.title}), el("p",{text:top.summary||""}))));
+      if(isSplit()){
+        // wide screens: two big stories on top, then a 6-column grid (also for each genre)
+        const [b1, b2, ...more] = shown;
+        const big = a => el("button",{class:"big"+(readSet.has(a.id)?" read":""),onclick:open(a)},
+          thumb(a,"wide"),
+          el("div",{class:"tx"}, meta(a), el("h2",{text:a.title}), el("p",{text:a.summary||""})));
+        frag.append(el("div",{class:"hero2"}, big(b1), b2 ? big(b2) : null));
+        if(more.length){
+          const grid = el("div",{class:"list grid6"});
           for(const a of more){
-            col.append(el("button",{class:"grow"+(readSet.has(a.id)?" read":""),onclick:open(a)},
-              el("div",{class:"tx"}, meta(a), el("h4",{text:a.title})), thumb(a,"square")));
+            grid.append(el("button",{class:"row"+(readSet.has(a.id)?" read":""),onclick:open(a)},
+              el("div",{class:"tx"}, meta(a), el("h3",{text:a.title})), thumb(a,"wide")));
           }
-          board.append(col);
+          frag.append(grid);
         }
-        frag.append(board);
       }else{
       const [lead, ...rest] = shown;
       frag.append(el("button",{class:"lead"+(readSet.has(lead.id)?" read":""),onclick:open(lead)},
