@@ -657,7 +657,7 @@ main{overflow-x:hidden}
           // drop posts X could not show (deleted, private, wrong id)
           for(const c of added){ c.classList.add("done"); if(!c.querySelector("iframe, twitter-widget, .twitter-tweet-rendered")) c.remove(); }
           const shown = list.querySelectorAll(".xcard").length;
-          count.textContent = `${shown}件` + (next < ids.length ? `＋` : "");
+          count.textContent = `${next < ids.length ? shown + (ids.length - next) : shown}件`;
           if(!shown && next >= ids.length){ wrap.remove(); return; }
           loading = false;
           if(next < ids.length){ more.textContent = `もっと見る（あと${ids.length-next}件）`; list.append(more); }
