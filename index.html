@@ -51,6 +51,7 @@ header.mast{position:sticky;top:0;z-index:5;background:var(--paper);border-botto
 .mast .wrap{padding-block:12px 10px;display:grid;gap:10px}
 .mast-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:var(--display);font-weight:400;font-size:26px;line-height:1;letter-spacing:.02em;margin:0;display:flex;align-items:center;gap:8px}
+.logo a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:8px}
 .logo .lamp{width:14px;height:14px;border-radius:50%;background:var(--lamp);box-shadow:0 0 0 4px color-mix(in srgb,var(--lamp) 25%,transparent)}
 .mast-right{display:flex;align-items:center;gap:6px}
 .edition{font-size:12.5px;color:var(--sub);text-align:right;line-height:1.35}
@@ -238,7 +239,7 @@ main{overflow-x:hidden}
 <header class="mast">
   <div class="wrap">
     <div class="mast-row">
-      <h1 class="logo"><span class="lamp" aria-hidden="true"></span>マイ夕刊</h1>
+      <h1 class="logo"><a href="./" id="home" aria-label="マイ夕刊（最新の号のトップへ）"><span class="lamp" aria-hidden="true"></span>マイ夕刊</a></h1>
       <div class="mast-right">
         <div class="edition" id="edition"><b>読み込み中</b>毎日夕方5時半ごろ更新</div>
         <button class="reload" id="reload" aria-label="最新の号を読み込む"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></button>
@@ -698,6 +699,15 @@ main{overflow-x:hidden}
     const cur = list.querySelector('[aria-current="true"]');
     if(cur && (cur.offsetTop < list.scrollTop || cur.offsetTop > list.scrollTop + list.clientHeight - 80)) cur.scrollIntoView({block:"nearest"});
   }
+  // logo: back to the top page (latest edition, all genres)
+  document.getElementById("home").addEventListener("click", e=>{
+    e.preventDefault();
+    currentDate = null; filter = "all"; splitListScroll = 0;
+    try{ localStorage.setItem("yukan-filter","all"); }catch(err){}
+    if(location.hash) history.pushState(null, "", location.pathname + location.search);
+    if(editions.length) render();
+    window.scrollTo(0, 0);
+  });
   try{ splitMQ.addEventListener("change", ()=>{ if(editions.length) render(); }); }catch(e){}
   (function mastHeight(){
     const h = document.querySelector("header.mast");
