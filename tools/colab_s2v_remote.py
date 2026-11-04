@@ -28,6 +28,6 @@ PROMPT = ("An anime girl with blue hair, a white lab coat and goggles on her hea
           "with natural head movement, blinking and small hand gestures. Plain solid green background. Anime illustration style, clean lines.")
 for n in ["intro", "verdict"]:
     if not os.path.exists(f"/content/in/{n}.wav"): continue
-    sh(f'cd Wan2.2 && python generate.py --task s2v-14B --size 720*1280 --ckpt_dir /content/S2V --offload_model False --convert_model_dtype '
+    sh(f'cd Wan2.2 && python generate.py --task s2v-14B --size 720*1280 --ckpt_dir /content/S2V --offload_model True --convert_model_dtype '
        f'--prompt "{PROMPT}" --image /content/in/base_green.png --audio /content/in/{n}.wav --save_file /content/out/{n}.mp4 --base_seed 7 2>&1 | grep -vE "it/s\\]|s/it\\]" | tail -25')
 sh("ls -la /content/out")
