@@ -1,0 +1,49 @@
+# Runs INSIDE a Colab GPU runtime. Makes the character speak with LongCat-Video-Avatar 1.5 (8-step distilled).
+# in: /content/in/{base_green.png,intro.wav,verdict.wav}   out: /content/out/<name>/*.mp4
+import json, os, subprocess, time
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+def sh(c):
+    print("$", c[:300], flush=True); t = time.time()
+    subprocess.run("set -o pipefail; " + c, shell=True, check=True, executable="/bin/bash"); print(f"  ({time.time()-t:.0f}s)", flush=True)
+sh("nvidia-smi --query-gpu=name,memory.total --format=csv,noheader")
+os.chdir("/content")
+# no flash-attn wheel for this Python/PyTorch: a tiny stand-in built on PyTorch's own attention
+os.makedirs("/content/shim/flash_attn", exist_ok=True)
+open("/content/shim/flash_attn/__init__.py", "w").write('''
+import torch, torch.nn.functional as F
+def flash_attn_func(q, k, v, dropout_p=0.0, softmax_scale=None, causal=False, **kw):
+    o = F.scaled_dot_product_attention(q.transpose(1, 2), k.transpose(1, 2), v.transpose(1, 2), dropout_p=dropout_p, is_causal=causal, scale=softmax_scale)
+    return o.transpose(1, 2)
+def flash_attn_varlen_func(q, k, v, cu_seqlens_q, cu_seqlens_k, max_seqlen_q=None, max_seqlen_k=None, dropout_p=0.0, softmax_scale=None, causal=False, **kw):
+    cq, ck, outs = cu_seqlens_q.tolist(), cu_seqlens_k.tolist(), []
+    for i in range(len(cq) - 1):
+        qi = q[cq[i]:cq[i+1]].transpose(0, 1)[None]; ki = k[ck[i]:ck[i+1]].transpose(0, 1)[None]; vi = v[ck[i]:ck[i+1]].transpose(0, 1)[None]
+        outs.append(F.scaled_dot_product_attention(qi, ki, vi, scale=softmax_scale, is_causal=causal)[0].transpose(0, 1))
+    return torch.cat(outs, 0)
+''')
+if not os.path.exists("LongCat-Video"):
+    sh("git clone -q --depth 1 https://github.com/meituan-longcat/LongCat-Video")
+sh('pip install -q "transformers==4.51.3" "diffusers==0.35.1" loguru ftfy av librosa soundfile pyloudnorm audio-separator einops imageio imageio-ffmpeg hf_transfer onnxruntime 2>&1 | grep -v "dependency conflicts\\|requires\\|^ERROR: pip" | tail -3 || true')
+W = "/content/w"
+if not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/lora/dmd_lora.safetensors"):
+    sh(f"""HF_HUB_ENABLE_HF_TRANSFER=1 python -c "
+from huggingface_hub import snapshot_download as s
+s('meituan-longcat/LongCat-Video-Avatar-1.5', local_dir='{W}/LongCat-Video-Avatar-1.5', max_workers=16,
+  allow_patterns=['*.json','base_model/*','lora/*','scheduler/*','vocal_separator/*','whisper-large-v3/model.safetensors','whisper-large-v3/*.json','whisper-large-v3/*.txt'])
+s('meituan-longcat/LongCat-Video', local_dir='{W}/LongCat-Video', max_workers=16, allow_patterns=['*.json','tokenizer/*','text_encoder/*','vae/*','scheduler/*'])
+" """)
+sh(f"du -sh {W}/*")
+PROMPT = ("A cheerful anime girl with short dark blue hair with bright blue tips, blue eyes, round glasses-like goggles resting on her head, "
+          "and computer-chip hair clips, wearing a white lab coat over a navy hoodie, stands facing the camera and talks like an energetic news presenter. "
+          "She speaks with lively facial expressions, natural head movement, blinking and small hand gestures. Plain solid green background. "
+          "Clean 2D anime illustration style, consistent character design.")
+jobs = [("intro", 1), ("verdict", 2)]
+for name, seg in jobs:
+    if not os.path.exists(f"/content/in/{name}.wav"): continue
+    js = f"/content/in/{name}.json"
+    json.dump({"prompt": PROMPT, "cond_image": "/content/in/base_green.png", "cond_audio": {"person1": f"/content/in/{name}.wav"}}, open(js, "w"))
+    sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
+       f"--context_parallel_size=1 --checkpoint_dir={W}/LongCat-Video-Avatar-1.5 --stage_1=ai2v --input_json={js} "
+       f"--use_distill --model_type avatar-v1.5 --resolution 720p --num_segments {seg} --output_dir /content/out/{name} "
+       f"2>&1 | grep -vE 'it/s\\]|s/it\\]' | tail -30")
+sh("ls -laR /content/out")
