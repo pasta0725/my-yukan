@@ -15,8 +15,11 @@ function card(x,y,w,h,r=36,fill='#ffffff'){g.fillStyle=fill;g.beginPath();g.roun
 function photo(img,cx,cy,size,zoom,gray=0){g.save();g.beginPath();g.roundRect(cx-size/2,cy-size/2,size,size,40);g.clip();
   g.fillStyle='#f1f2f6';g.fillRect(cx-size/2,cy-size/2,size,size);if(gray)g.filter=`grayscale(${gray})`;
   const s=size*zoom;g.drawImage(img,cx-s/2,cy-s/2,s,s);g.filter='none';g.restore();}
+const lum=c=>{const n=parseInt(c.slice(1),16);return (0.299*(n>>16)+0.587*(n>>8&255)+0.114*(n&255))/255;};
 function label(text,x,y,size,color,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';
-  g.lineJoin='round';g.lineWidth=size*0.22;g.strokeStyle='#000';g.strokeText(text,x,y);g.fillStyle=color;g.fillText(text,x,y);}
+  // dark text (on a bright card) gets no outline; bright text gets the thick black edge
+  if(lum(color)>0.45){g.lineJoin='round';g.lineWidth=size*0.22;g.strokeStyle='#000';g.strokeText(text,x,y);}
+  g.fillStyle=color;g.fillText(text,x,y);}
 function credit(text){g.font=`700 30px ${FONT}`;g.textAlign='right';g.textBaseline='alphabetic';g.fillStyle='rgba(255,255,255,0.75)';g.fillText(text,W-40,H-48);}
 // telop: white with thick black edge, keywords coloured by meaning
 const RULES=[[/ただし|別売り|必要|同じ/g,'#ff4d4d'],[/[0-9０-９][0-9０-９.,万円ニトコマ倍月日秒%]*|1\.7倍/g,'#ffd23f'],[/XREAL 1 Pro\+|XREAL|マイ夕刊/g,'#5fc8ff'],[/買い/g,'#4be37a'],[/待ち/g,'#8fb8ff']];
@@ -42,8 +45,8 @@ const S={
    g.globalAlpha=k2;card(110,1190,860,150,30,'#26355f');label('税込み 8万4980円',540,1265,78,'#ffd23f');g.globalAlpha=1;credit('画像：XREAL');},
  bright(u,d){bgFill(u);label('最大の明るさ（ニト）',540,300,66,'#fff',undefined,800);
    const full=820,e1=ease((u-0.4)/0.7),e2=ease((u-1.4)/1.0);
-   label('前のモデル',130,470,52,'#c9d1ea','left',800);card(130,520,full*700/1200*e1,120,24,'#8c97b8');label(String(Math.round(700*e1)),150+full*700/1200*e1-20,580,64,'#fff','right');
-   label('1 Pro+',130,730,52,'#ffd23f','left',800);card(130,780,full*e2,120,24,'#ffcc4d');label(String(Math.round(1200*e2)),150+full*e2-20,840,64,'#1a1400','right');
+   label('前のモデル',130,470,52,'#c9d1ea','left',800);card(130,520,full*700/1200*e1,120,24,'#8c97b8');label(String(Math.round(700*e1)),130+full*700/1200*e1-36,580,64,'#fff','right');
+   label('1 Pro+',130,730,52,'#ffd23f','left',800);card(130,780,full*e2,120,24,'#ffcc4d');label(String(Math.round(1200*e2)),130+full*e2-36,840,64,'#1a1400','right');
    if(e2>0.95){g.save();g.globalAlpha=ease((u-2.5)/0.3);label('約1.7倍',540,1010,120,'#ffd23f');g.restore();}},
  fps(u,d){bgFill(u);label('2D→3D変換のなめらかさ',540,300,62,'#fff',undefined,800);label('1秒あたりのコマ数',540,390,48,'#c9d1ea',undefined,700);
    label('30',300,640,220,'#8c97b8');label('→',540,640,140,'#ffd23f');const e=ease((u-0.6)/0.5);g.save();g.translate(780,640);g.scale(0.6+0.4*e,0.6+0.4*e);label('60',0,0,220,'#ffd23f');g.restore();
