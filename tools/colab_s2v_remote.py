@@ -1,9 +1,10 @@
 # Runs INSIDE a Colab GPU runtime (sent by `colab exec -f`).
 # Makes the character speak the given audio with Wan2.2-S2V-14B: /content/in/{base_green.png,intro.wav,verdict.wav} -> /content/out/*.mp4
 import glob, os, re, subprocess, time
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 def sh(c):
     print("$", c, flush=True); t = time.time()
-    subprocess.run(c, shell=True, check=True); print(f"  ({time.time()-t:.0f}s)", flush=True)
+    subprocess.run("set -o pipefail; " + c, shell=True, check=True, executable="/bin/bash"); print(f"  ({time.time()-t:.0f}s)", flush=True)
 sh("nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; df -h /content | tail -1")
 sh('python -c "import torch,sys;print(sys.version.split()[0], torch.__version__, torch.version.cuda)"')
 os.chdir("/content")
@@ -28,6 +29,6 @@ PROMPT = ("An anime girl with blue hair, a white lab coat and goggles on her hea
           "with natural head movement, blinking and small hand gestures. Plain solid green background. Anime illustration style, clean lines.")
 for n in ["intro", "verdict"]:
     if not os.path.exists(f"/content/in/{n}.wav"): continue
-    sh(f'cd Wan2.2 && python generate.py --task s2v-14B --size 720*1280 --ckpt_dir /content/S2V --offload_model True --convert_model_dtype '
-       f'--prompt "{PROMPT}" --image /content/in/base_green.png --audio /content/in/{n}.wav --save_file /content/out/{n}.mp4 --base_seed 7 2>&1 | grep -vE "it/s\\]|s/it\\]" | tail -25')
+    sh(f'cd Wan2.2 && python generate.py --task s2v-14B --size 720*1280 --ckpt_dir /content/S2V --offload_model False --convert_model_dtype '
+       f'--prompt "{PROMPT}" --image /content/in/base_green.png --audio /content/in/{n}.wav --save_file /content/out/{n}.mp4 --base_seed 7 2>&1 | grep -vE "it/s\\]|s/it\\]" | tail -40')
 sh("ls -la /content/out")
