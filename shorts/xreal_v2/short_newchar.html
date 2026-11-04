@@ -40,7 +40,7 @@ const S={
    else{const v=u-sw,k=ease(v/0.3);photo(IMG.pro,540,560,700,1.1);g.save();g.translate(540,1150);g.scale(0.8+0.2*k,0.8+0.2*k);g.globalAlpha=k;
      card(-430,-150,860,300,36,'#26355f');label('税込み 8万4980円',0,-45,92,'#ffd23f');g.font=`800 52px ${FONT}`;g.fillStyle='#e6ecff';g.textAlign='center';g.fillText('前のモデルと同じ値段',0,75);g.restore();credit('画像：XREAL');}},
  intro(u,d,i){bgFill(u);label('マイ夕刊',540,210,120,'#ff9a3c');label('毎日のニュースを30秒で',540,320,56,'#fff',undefined,700);
-   if(CUR)g.drawImage(CUR,144,512,792,1408);},
+   if(CUR)g.drawImage(CUR,72,485,936,1664);},
  product(u,d){bgFill(u);photo(IMG.pro,540,560,800,1.05+0.06*u/d);
    const k1=ease((u-0.3)/0.4),k2=ease((u-1.3)/0.4);
    g.globalAlpha=k1;card(110,1010,860,150,30,'#26355f');label('11月10日 発売',540,1085,78,'#5fc8ff');
@@ -62,7 +62,7 @@ const S={
    const k1=ease((u-0.2)/0.3),k2=ease((u-d*0.5)/0.3);
    g.save();g.globalAlpha=k1;card(70,170,450,330,36,'#ffcc4d');label('買い',295,265,110,'#1a1400');g.font=`800 40px ${FONT}`;g.fillStyle='#3a2e00';g.textAlign='center';g.fillText('明るい場所で',295,385);g.fillText('よく使う人',295,440);g.restore();
    g.save();g.globalAlpha=k2;card(560,170,450,330,36,'#2f4a8a');label('待ち',785,265,110,'#fff');g.font=`800 40px ${FONT}`;g.fillStyle='#e6ecff';g.textAlign='center';g.fillText('今のモデルで',785,385);g.fillText('満足な人',785,440);g.restore();
-   if(CUR)g.drawImage(CUR,198,704,684,1216);},
+   if(CUR)g.drawImage(CUR,126,652,828,1472);},
  logo(u){g.fillStyle='#0e1222';g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;label('マイ夕刊',540,880,170,'#ff9a3c');
    g.font=`700 50px ${FONT}`;g.fillStyle='#c9d1ea';g.textAlign='center';g.fillText('毎日夕方5時半ごろ更新',540,1040);g.globalAlpha=1;},
 };
