@@ -38,7 +38,8 @@ function glanceAt(t){let a=glances[0],b=glances[0];for(const gl of glances){if(g
 // mouth: weights per shape, smoothed so changes blend over a few frames
 const SHAPES=['closed','small','a','i','u','e','o'];
 function mouthAt(t){const f=Math.round(t*V.fps);const w=Object.fromEntries(SHAPES.map(s=>[s,0]));
-  for(let d=-2;d<=0;d++){const v=V.vis[clamp(f+d,0,V.vis.length-1)]||'closed';w[v]+=[0.25,0.35,0.4][d+2];}
+  // blend this frame with the previous one so shape changes are not instant
+  for(const [d,k] of [[-1,0.35],[0,0.65]]){const m=V.mouth[clamp(f+d,0,V.mouth.length-1)]||['closed',0];w[m[0]]+=k*m[1];}
   return w;}
 // draw a layer with a horizontal "bend" (top fixed, bottom swings): Live2D-style deformer substitute
 function bend(ctx,img,dx,box,power=1.6,sx=0,sy=0){
@@ -69,7 +70,7 @@ window.render=function(t){
   // mouth: weighted blend of shapes
   const [mx,my]=R.mouth, mw=mouthAt(t);
   hg.drawImage(L.mouth_closed,mx+fx,my+fy);
-  for(const s of SHAPES){if(s==='closed'||mw[s]<0.02)continue;hg.globalAlpha=clamp(mw[s]*1.3);hg.drawImage(L['mouth_'+s],mx+fx,my+fy);}
+  for(const s of SHAPES){if(s==='closed'||mw[s]<0.02)continue;hg.globalAlpha=clamp(mw[s]*1.15);hg.drawImage(L['mouth_'+s],mx+fx,my+fy);}
   hg.globalAlpha=1;
   // hair in front: side locks swing, bangs move most with the turn, ribbon tail swings
   bend(hg,L.side,sp.s*9,R.side_box,1.8,h.x*px*0.25,0);
