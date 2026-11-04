@@ -1,0 +1,29 @@
+name: s2v-colab
+on:
+  workflow_dispatch:
+    inputs:
+      gpu: { description: "A100 / G4 / L4", default: "A100" }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q google-colab-cli && colab version
+      - name: run on Colab
+        env:
+          COLAB_ADC: ${{ secrets.COLAB_ADC }}
+          GPU: ${{ inputs.gpu }}
+        run: |
+          printf '%s' "$COLAB_ADC" > "$RUNNER_TEMP/adc.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
+          bash tools/colab_s2v.sh
+      - if: always()
+        run: |
+          ls -la s2v
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          git add s2v/*.mp4 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "s2v: Colabでしゃべり動画を生成" && git pull --rebase -q && git push)
