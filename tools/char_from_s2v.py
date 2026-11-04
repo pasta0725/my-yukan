@@ -1,4 +1,4 @@
-"""Turn a Wan2.2-S2V clip (green background) into the presenter frames that short.html draws.
+"""Turn a Wan2.2-S2V or LongCat-Video-Avatar clip (green background) into the presenter frames that short.html draws.
 usage: python3 tools/char_from_s2v.py <clip.mp4> <plan.js> <line_index> <out_dir> [base_w,base_h]
 The clip is letter-boxed by the model; the black bars are cut and the picture is scaled back to the
 base image size (720x1280) so it lines up exactly like the still. Writes out_dir/f<frame>.png (RGBA)
@@ -13,7 +13,8 @@ BW, BH = [int(v) for v in (sys.argv[5] if len(sys.argv) > 5 else "720,1280").spl
 os.makedirs(out, exist_ok=True)
 txt = open(plan_p, encoding="utf-8").read(); P = json.loads(txt[txt.index("=") + 1:].rstrip(";\n "))
 FPS = P["fps"]
-SKIP = int(os.environ.get("S2V_SKIP", "3"))
+SKIP = int(os.environ.get("S2V_SKIP", "3"))  # Wan2.2-S2V: 3, LongCat-Avatar: 0
+KEY_FILL = (0, 255, 0)  # padding is made "green" so it keys out
 src_fps = eval(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v", "-show_entries", "stream=r_frame_rate",
                                "-of", "csv=p=0", clip], capture_output=True, text=True).stdout.strip())
 tmp = tempfile.mkdtemp()
@@ -24,7 +25,14 @@ src = sorted(glob.glob(os.path.join(tmp, "*.png")))
 def keyed(a):
     dark = (a.sum(2) < 60).mean(1); rows = np.where(dark < 0.9)[0]
     a = a[rows.min():rows.max() + 1]                       # cut the black bars
-    a = np.array(Image.fromarray(a.astype(np.uint8)).resize((BW, BH), Image.LANCZOS)).astype(np.float32)
+    h, w = a.shape[:2]
+    if abs(w / h - BW / BH) < 0.01:
+        a = np.array(Image.fromarray(a.astype(np.uint8)).resize((BW, BH), Image.LANCZOS)).astype(np.float32)
+    else:  # model centre-cropped the still to its own aspect: scale back by width and put it at the same height
+        nh = round(h * BW / w); a = np.array(Image.fromarray(a.astype(np.uint8)).resize((BW, nh), Image.LANCZOS)).astype(np.float32)
+        canvas = np.zeros((BH, BW, 3), np.float32); canvas[...] = KEY_FILL; top = (BH - nh) // 2
+        src0, dst0 = max(0, -top), max(0, top); n = min(nh - src0, BH - dst0)
+        canvas[dst0:dst0 + n] = a[src0:src0 + n]; a = canvas
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
     k = g - np.maximum(r, b)
     alpha = np.clip(1 - (k - 35) / 70, 0, 1)
