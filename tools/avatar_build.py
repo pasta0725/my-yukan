@@ -87,7 +87,12 @@ under = B[:, :, :3].copy()
 under_a = alpha.copy()
 for k in ("ribbon", "side", "bangs"):
     m, E = parts[k]
-    s = soft(m, 1.5)[..., None]
+    s = soft(m, 1.5)
+    if k in ("bangs", "side") and m.any():
+        # near the root keep the original hair underneath too, so the fade shows no seam
+        y0 = np.where(m.any(axis=1))[0][0]
+        s = s * np.clip((np.arange(H) - y0 - 20) / 45.0, 0, 1)[:, None]
+    s = s[..., None]
     under = under * (1 - s) + E * s
 for k in ("back", "side", "ribbon", "bangs"):
     m, E = parts[k]
@@ -96,7 +101,13 @@ for k in ("back", "side", "ribbon", "bangs"):
 save(under, under_a, "under")
 for k, order in (("back", "back"), ("side", "side"), ("bangs", "bangs"), ("ribbon", "ribbon")):
     m, _ = parts[k]
-    save(B[:, :, :3], soft(m, 1.2) * alpha, order)
+    a = soft(m, 1.2) * alpha
+    if k in ("bangs", "side") and m.any():
+        # the root of the bangs/side locks melts into the scalp hair instead of a hard cut
+        y0 = np.where(m.any(axis=1))[0][0]
+        ramp = np.clip((np.arange(H) - y0) / 45.0, 0, 1)[:, None]
+        a = a * ramp
+    save(B[:, :, :3], a, order)
 
 # --- eyes -----------------------------------------------------------------------
 eye_box = (300, 500, 330, 720)
