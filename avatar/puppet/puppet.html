@@ -1,0 +1,96 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#1b2238}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="rig.js"></script><script src="voice.js"></script>
+<script>
+// Live2D-like puppet from layered PNGs: head turn by parallax, spring hair, blink, glances, visemes.
+const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d');
+const R=window.RIG, V=window.VOICE, IW=R.size[0], IH=R.size[1];
+const NAMES=['back','under','side','bangs','ribbon','eye_whites','iris','eyes_half','eyes_closed',
+ 'mouth_closed','mouth_small','mouth_a','mouth_i','mouth_u','mouth_e','mouth_o'];
+const L={}; const load=s=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=s+'.png'});
+const mk=(w,h)=>{const k=document.createElement('canvas');k.width=w;k.height=h;return k};
+const headC=mk(IW,IH), hg=headC.getContext('2d'), tmpC=mk(IW,IH), tg=tmpC.getContext('2d');
+const irisC=mk(400,300), ig=irisC.getContext('2d');
+window.ready=(async()=>{for(const n of NAMES)L[n]=await load(n);})();
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), ease=x=>x*x*(3-2*x);
+// ---------- deterministic motion (same t -> same frame) ----------
+let rnd=7;const rand=()=>{rnd=(rnd*16807)%2147483647;return rnd/2147483647};
+const blinks=[],glances=[[0,0,0]],gest=[];
+for(let t=1.2;t<120;t+=2.2+rand()*2.8)blinks.push(t);
+for(let t=0;t<120;){t+=1.0+rand()*2.0;glances.push([t,(rand()-.5)*1.6,(rand()-.5)*0.8]);}
+const env=i=>V.env[clamp(i,0,V.env.length-1)]||0;
+function talk(t){let s=0;for(let d=-8;d<=8;d++)s+=env(Math.round(t*V.fps)+d);return s/17;}
+// head angles: slow idle + nods that follow the speech energy
+function headAt(t){const k=talk(t);
+  return {x:0.55*Math.sin(2*Math.PI*0.09*t)+0.25*Math.sin(2*Math.PI*0.23*t+1),
+          y:0.25*Math.sin(2*Math.PI*0.17*t+2)+0.6*k*Math.sin(2*Math.PI*1.4*t),
+          z:0.6*Math.sin(2*Math.PI*0.11*t+.5)+0.25*Math.sin(2*Math.PI*0.31*t)};}
+// spring hair: integrate from t=0 so it is deterministic
+function springs(t){let p={s:0,v:0,r:0,rv:0,b:0,bv:0};const dt=1/60;let prev=headAt(0);
+  for(let u=0;u<=t;u+=dt){const h=headAt(u);const ax=(h.x-prev.x)/dt*14+(h.z-prev.z)/dt*10;prev=h;
+    p.v+=(-70*p.s-6*p.v-ax)*dt;p.s+=p.v*dt; p.rv+=(-45*p.r-4*p.rv-ax*1.3)*dt;p.r+=p.rv*dt;
+    p.bv+=(-110*p.b-9*p.bv-ax*0.5)*dt;p.b+=p.bv*dt;}
+  return p;}
+function blinkAt(t){for(const b of blinks){const d=t-b;if(d>=0&&d<0.2)return d<0.05||d>0.15?1:2;}return 0;}
+function glanceAt(t){let a=glances[0],b=glances[0];for(const gl of glances){if(gl[0]<=t){a=gl}else{b=gl;break}}
+  const k=ease(clamp((t-a[0])/0.18));return [a[1],a[2]];}
+// mouth: weights per shape, smoothed so changes blend over a few frames
+const SHAPES=['closed','small','a','i','u','e','o'];
+function mouthAt(t){const f=Math.round(t*V.fps);const w=Object.fromEntries(SHAPES.map(s=>[s,0]));
+  for(let d=-2;d<=0;d++){const v=V.vis[clamp(f+d,0,V.vis.length-1)]||'closed';w[v]+=[0.25,0.35,0.4][d+2];}
+  return w;}
+// draw a layer with a horizontal "bend" (top fixed, bottom swings): Live2D-style deformer substitute
+function bend(ctx,img,dx,box,power=1.6,sx=0,sy=0){
+  if(!box||Math.abs(dx)<0.05){ctx.drawImage(img,sx,sy);return;}
+  const [x0,y0,x1,y1]=box,h=y1-y0,step=4;
+  ctx.drawImage(img,0,0,IW,y0,sx,sy,IW,y0);
+  for(let y=y0;y<y1;y+=step){const k=Math.pow((y-y0)/h,power);ctx.drawImage(img,0,y,IW,step+1,sx+dx*k,sy+y,IW,step+1);}
+  ctx.drawImage(img,0,y1,IW,IH-y1,sx+dx,sy+y1,IW,IH-y1);}
+window.render=function(t){
+  const h=headAt(t), sp=springs(t), k=talk(t);
+  const px=10; // parallax pixels per unit of head turn
+  // ----- head group (drawn into its own canvas, in image pixels) -----
+  hg.clearRect(0,0,IW,IH);
+  const [nx,ny]=R.neck;
+  // under layer above the neck, fading out across the neck
+  hg.drawImage(L.under,0,0);
+  hg.globalCompositeOperation='destination-in';
+  const gr=hg.createLinearGradient(0,ny-40,0,ny+40);gr.addColorStop(0,'rgba(0,0,0,1)');gr.addColorStop(1,'rgba(0,0,0,0)');
+  hg.fillStyle=gr;hg.fillRect(0,0,IW,IH);hg.globalCompositeOperation='source-over';
+  // eyes: whites, moving iris clipped to the whites, then blink lids
+  const [ex,ey]=R.eyes, fx=h.x*px*0.5, fy=h.y*px*0.3;
+  hg.drawImage(L.eye_whites,ex+fx,ey+fy);
+  const [gx,gy]=glanceAt(t);
+  ig.clearRect(0,0,irisC.width,irisC.height);
+  ig.drawImage(L.iris,gx*4+h.x*2.5,gy*3);ig.globalCompositeOperation='destination-in';ig.drawImage(L.eye_whites,0,0);ig.globalCompositeOperation='source-over';
+  hg.drawImage(irisC,ex+fx,ey+fy);
+  const bl=blinkAt(t); if(bl)hg.drawImage(bl===1?L.eyes_half:L.eyes_closed,ex+fx,ey+fy);
+  // mouth: weighted blend of shapes
+  const [mx,my]=R.mouth, mw=mouthAt(t);
+  hg.drawImage(L.mouth_closed,mx+fx,my+fy);
+  for(const s of SHAPES){if(s==='closed'||mw[s]<0.02)continue;hg.globalAlpha=clamp(mw[s]*1.3);hg.drawImage(L['mouth_'+s],mx+fx,my+fy);}
+  hg.globalAlpha=1;
+  // hair in front: side locks swing, bangs move most with the turn, ribbon tail swings
+  bend(hg,L.side,sp.s*9,R.side_box,1.8,h.x*px*0.25,0);
+  bend(hg,L.bangs,sp.b*4,R.bangs_box,1.4,h.x*px*0.9,h.y*px*0.2);
+  bend(hg,L.ribbon,sp.r*12,R.ribbon_box,1.7,-h.x*px*0.15,0);
+  // ----- compose on screen -----
+  g.fillStyle='#1b2238';g.fillRect(0,0,W,H);
+  g.fillStyle='#26314f';g.beginPath();g.roundRect(60,140,960,620,36);g.fill();
+  g.fillStyle='#9aa6c7';g.font='700 46px "Noto Sans CJK JP",sans-serif';g.textAlign='center';g.fillText('（ここに図解）',540,470);
+  const S=1.02, bx=W/2, by=H+40;
+  const sway=0.008*Math.sin(2*Math.PI*0.19*t)+0.004*Math.sin(2*Math.PI*0.41*t+1);
+  const breath=1+0.007*Math.sin(2*Math.PI*0.26*t), bob=-6*k*Math.abs(Math.sin(2*Math.PI*1.4*t));
+  g.save();g.translate(bx,by+bob);g.rotate(sway);g.scale(S,S*breath);g.translate(-IW/2,-1127-40/S);
+  // head transform around the neck
+  const headT=()=>{g.translate(nx,ny);g.rotate(h.z*0.035);g.translate(h.x*px*0.15,h.y*px*0.35-0);g.translate(-nx,-ny);};
+  g.save();headT();bend(g,L.back,-sp.s*5,R.back_box,1.5,-h.x*px*0.6,0);g.restore();   // back hair behind the body
+  // body: under layer below the neck
+  tg.clearRect(0,0,IW,IH);tg.drawImage(L.under,0,0);tg.globalCompositeOperation='destination-out';tg.fillStyle=gr;
+  const gr2=tg.createLinearGradient(0,ny-40,0,ny+40);gr2.addColorStop(0,'rgba(0,0,0,1)');gr2.addColorStop(1,'rgba(0,0,0,0)');tg.fillStyle=gr2;tg.fillRect(0,0,IW,IH);tg.globalCompositeOperation='source-over';
+  g.drawImage(tmpC,0,0);
+  g.save();headT();g.drawImage(headC,0,0);g.restore();
+  g.restore();
+};
+</script></body></html>
