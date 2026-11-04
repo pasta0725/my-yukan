@@ -1,0 +1,29 @@
+name: image-edit
+# Makes character part images by editing a base image with a Gemini image model.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["avatar/jobs/*.json"]
+permissions:
+  contents: write
+concurrency: image-edit
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: edit images
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          for f in avatar/jobs/*.json; do
+            n=$(basename "$f" .json)
+            [ -e "avatar/out/$n/log.txt" ] && continue
+            python3 -I tools/gemini_image_edit.py "$f" "avatar/out/$n" || true
+          done
+          git config user.name pasta0725
+          git config user.email pasta0725@users.noreply.github.com
+          git add avatar/out
+          git commit -m "キャラのパーツ用の画像を作成（Gemini画像編集）" || true
+          git pull --rebase -q && git push
