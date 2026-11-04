@@ -37,7 +37,7 @@ PROMPT = ("A cheerful anime girl with short dark blue hair with bright blue tips
           "and computer-chip hair clips, wearing a white lab coat over a navy hoodie, stands facing the camera and talks like an energetic news presenter. "
           "She speaks with lively facial expressions, natural head movement, blinking and small hand gestures. Plain solid green background. "
           "Clean 2D anime illustration style, consistent character design.")
-jobs = [("intro", 1), ("verdict", 2)]
+jobs = json.load(open("/content/in/jobs.json")) if os.path.exists("/content/in/jobs.json") else [("intro", 1), ("verdict", 2)]  # [[name, segments], ...]
 for name, seg in jobs:
     if not os.path.exists(f"/content/in/{name}.wav"): continue
     js = f"/content/in/{name}.json"
