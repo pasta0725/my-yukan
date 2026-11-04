@@ -1,0 +1,21 @@
+name: s2v
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q gradio_client
+      - run: |
+          for n in intro verdict; do
+            [ -f s2v/$n.mp4 ] && continue
+            timeout 1500 python tools/s2v_run.py s2v/base_green.png s2v/$n.wav s2v/$n.mp4 720P || true
+          done
+          ls -la s2v
+      - run: |
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          git add s2v/*.mp4 || true
+          git diff --cached --quiet || (git commit -m "s2v: しゃべり動画を生成" && git pull --rebase -q && git push)
