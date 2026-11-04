@@ -43,11 +43,13 @@ function mouthAt(t){const f=Math.round(t*V.fps);const w=Object.fromEntries(SHAPE
   return w;}
 // draw a layer with a horizontal "bend" (top fixed, bottom swings): Live2D-style deformer substitute
 function bend(ctx,img,dx,box,power=1.6,sx=0,sy=0){
-  if(!box||Math.abs(dx)<0.05){ctx.drawImage(img,sx,sy);return;}
-  const [x0,y0,x1,y1]=box,h=y1-y0,step=4;
-  ctx.drawImage(img,0,0,IW,y0,sx,sy,IW,y0);
-  for(let y=y0;y<y1;y+=step){const k=Math.pow((y-y0)/h,power);ctx.drawImage(img,0,y,IW,step+1,sx+dx*k,sy+y,IW,step+1);}
-  ctx.drawImage(img,0,y1,IW,IH-y1,sx+dx,sy+y1,IW,IH-y1);}
+  // root (top of the box) stays attached; the offset grows smoothly toward the tips
+  const tot=dx+sx;
+  if(!box||Math.abs(tot)<0.02&&Math.abs(sy)<0.02){ctx.drawImage(img,0,0);return;}
+  const [x0,y0,x1,y1]=box,h=y1-y0,step=1;
+  ctx.drawImage(img,0,0,IW,y0,0,0,IW,y0);
+  for(let y=y0;y<y1;y+=step){const k=Math.pow((y-y0)/h,power);ctx.drawImage(img,0,y,IW,step,tot*k,y+sy*k,IW,step+0.6);}
+  ctx.drawImage(img,0,y1,IW,IH-y1,tot,y1+sy,IW,IH-y1);}
 window.render=function(t){
   const h=headAt(t), sp=springs(t), k=talk(t);
   const px=10; // parallax pixels per unit of head turn
@@ -74,7 +76,7 @@ window.render=function(t){
   hg.globalAlpha=1;
   // hair in front: side locks swing, bangs move most with the turn, ribbon tail swings
   bend(hg,L.side,sp.s*9,R.side_box,1.8,h.x*px*0.25,0);
-  bend(hg,L.bangs,sp.b*4,R.bangs_box,1.4,h.x*px*0.9,h.y*px*0.2);
+  bend(hg,L.bangs,sp.b*4,R.bangs_box,1.2,h.x*px*0.7,h.y*px*0.2);
   bend(hg,L.ribbon,sp.r*12,R.ribbon_box,1.7,-h.x*px*0.15,0);
   // ----- compose on screen -----
   g.fillStyle='#1b2238';g.fillRect(0,0,W,H);
