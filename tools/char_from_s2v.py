@@ -13,6 +13,7 @@ BW, BH = [int(v) for v in (sys.argv[5] if len(sys.argv) > 5 else "720,1280").spl
 os.makedirs(out, exist_ok=True)
 txt = open(plan_p, encoding="utf-8").read(); P = json.loads(txt[txt.index("=") + 1:].rstrip(";\n "))
 FPS = P["fps"]
+SKIP = int(os.environ.get("S2V_SKIP", "3"))
 src_fps = eval(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v", "-show_entries", "stream=r_frame_rate",
                                "-of", "csv=p=0", clip], capture_output=True, text=True).stdout.strip())
 tmp = tempfile.mkdtemp()
@@ -38,7 +39,7 @@ nxt = P["lines"][li + 1]["start"] if li + 1 < len(P["lines"]) else P["voice_end"
 n = int(round(nxt * FPS)) - f0
 cache = {}
 for k in range(n):
-    j = min(int(k * src_fps / FPS), len(src) - 1)
+    j = max(SKIP, min(int(k * src_fps / FPS), len(src) - 1))  # first frames: the still, then the arm sweeping in (blurred) - skip them
     if j not in cache: cache[j] = keyed(np.array(Image.open(src[j]).convert("RGB")).astype(np.float32))
     cache[j].save(os.path.join(out, f"f{f0 + k}.png"))
 print(f"line {li}: {n} frames from {len(src)} clip frames ({src_fps} fps)")
