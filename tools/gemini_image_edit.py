@@ -57,7 +57,7 @@ for job in cfg["jobs"]:
             model_ok = m
             break
         except urllib.error.HTTPError as e:
-            say("fail", job["name"], m, e.code, e.read().decode(errors="replace")[:300].replace("\n", " "))
+            say("fail", job["name"], m, e.code, e.read().decode(errors="replace")[:900].replace("\n", " "))
         except Exception as e:  # noqa: BLE001
             say("fail", job["name"], m, repr(e)[:300])
     time.sleep(12)
