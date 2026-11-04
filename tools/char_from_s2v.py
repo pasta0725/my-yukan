@@ -1,5 +1,5 @@
 """Turn a Wan2.2-S2V or LongCat-Video-Avatar clip (green background) into the presenter frames that short.html draws.
-usage: python3 tools/char_from_s2v.py <clip.mp4> <plan.js> <line_index> <out_dir> [base_w,base_h]
+usage: python3 tools/char_from_s2v.py <clip.mp4> <plan.js> <line_index|-1> <out_dir> [base_w,base_h]   (-1 = whole video)
 The clip is letter-boxed by the model; the black bars are cut and the picture is scaled back to the
 base image size (720x1280) so it lines up exactly like the still. Writes out_dir/f<frame>.png (RGBA)
 for every 30 fps frame of that line, holding the last clip frame if the clip is shorter."""
@@ -41,13 +41,17 @@ def keyed(a):
     return Image.fromarray(np.clip(np.dstack([r, g2, b, alpha * 255]), 0, 255).astype(np.uint8), "RGBA")
 
 
-ln = P["lines"][li]
-f0 = int(round(ln["start"] * FPS))
-nxt = P["lines"][li + 1]["start"] if li + 1 < len(P["lines"]) else P["voice_end"] + 0.35
-n = int(round(nxt * FPS)) - f0
+if li < 0:  # -1 = one clip for the whole narration (its time 0 = video time 0): every frame of the video
+    f0, n, absolute = 0, int(round(P["T"] * FPS)), True
+else:
+    ln = P["lines"][li]
+    f0 = int(round(ln["start"] * FPS))
+    nxt = P["lines"][li + 1]["start"] if li + 1 < len(P["lines"]) else P["voice_end"] + 0.35
+    n = int(round(nxt * FPS)) - f0
+    absolute = False
 cache = {}
 for k in range(n):
     j = max(SKIP, min(int(k * src_fps / FPS), len(src) - 1))  # first frames: the still, then the arm sweeping in (blurred) - skip them
     if j not in cache: cache[j] = keyed(np.array(Image.open(src[j]).convert("RGB")).astype(np.float32))
     cache[j].save(os.path.join(out, f"f{f0 + k}.png"))
-print(f"line {li}: {n} frames from {len(src)} clip frames ({src_fps} fps)")
+print(f"line {li}: {n} frames from {len(src)} clip frames ({src_fps} fps)" + (" [whole video]" if absolute else ""))

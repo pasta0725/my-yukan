@@ -1,0 +1,122 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script>
+<script>
+// Design rules (see the design report): safe area x48-888 / y288-1248, centred text <= 696px wide,
+// palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
+const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C={bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784'};
+const CX=540, MAXW=696, CAP_Y=1150;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.src=s;});
+const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
+let CUR=null;
+window.ready=(async()=>{await Promise.all([load('kv','img/kv_phone.jpg'),load('p1','img/1pro_cut.png'),load('op','img/onepro_cut.png'),load('eye','img/eye_cut.png'),load('mini','char/f198.png')]);await document.fonts.ready;})();
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+// ---------- helpers ----------
+function bg(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle='rgba(255,255,255,0.025)';g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col=C.brand,a=0.35){const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+function rrect(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.shadowColor='rgba(0,0,0,0.45)';g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle='#05070D';g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){rrect(60,300,36,36,8,C.brand);text('マイ夕刊',110,319,34,C.text,'left');}
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor='rgba(150,190,255,0.55)';g.shadowBlur=40;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+// small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
+function mini(u){glow(230,1520,330,C.brand,0.25);const im=CUR||IMG.mini;g.drawImage(im,-30,1156,520,924);}
+function credit(){text('画像：XREAL',880,319,26,C.sub,'right',700);}
+// ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
+function marks(s,warn){const m=new Array(s.length).fill(C.text);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.acc); if(warn)paint(/ただし|別売り|必要/g,C.warn); return m;}
+function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
+  if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
+function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
+  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
+  const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
+  g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
+  let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
+    const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
+    for(let i=0;i<L.length;i++){const ch=L[i],cw=g.measureText(ch).width;edgeText(ch,x,yy,size,m[i],'left');x+=cw;}});
+  g.restore();}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+const S={
+ hook(u,d,L){bg(u);brandTag();mini(u);const t0=L.start,sw=telAt('なのに').start-t0,te=telAt('明るさは1.7倍').start-t0;
+   if(u<sw){ // conclusion first: headline from frame 0, official key visual under it
+     mixLine([['明るさ',C.text],['1.7倍',C.acc],['、値段',C.text],['そのまま',C.acc]],CX,385,58);
+     g.save();g.beginPath();g.roundRect(240,450,600,600,32);g.clip();const z=1+0.07*u/sw;g.drawImage(IMG.kv,CX-300*z,750-300*z,600*z,600*z);g.restore();
+     const k=(u-te)/0.3; if(k>0){g.save();g.globalAlpha=clamp(k*3);rrect(240,450,600,600,32,'rgba(11,18,34,0.6)');g.restore();
+       const sc=back(k);g.save();g.translate(CX,750);g.scale(sc,sc);text('明るさ',0,-110,64,C.text);text('1.7倍',0,40,210,C.acc);g.restore();}
+     credit();}
+   else{const v=u-sw,tc=telAt('値段は据え置き').start-t0-sw;
+     withEnter(enter(v,0),()=>mixLine([['値段は',C.text],['そのまま',C.acc]],CX,385,60));
+     withEnter(enter(v,0.1),()=>{lit(()=>{img('op',300,570,290);img('p1',780,570,290);});text('前のモデル',300,700,36,C.sub,'center',800);text('新モデル',780,700,36,C.text,'center',800);text('＝',CX,570,96,C.text);});
+     withEnter(enter(v,tc),()=>{rrect(192,770,696,290,32,C.card);text('税込み',CX,830,40,C.sub,'center',800);
+       g.save();g.translate(CX,925);const sc=back((v-tc)/0.35);g.scale(sc,sc);text('8万4980円',0,0,110,C.acc);g.restore();text('前のモデルと同じ',CX,1015,40,C.text,'center',800);});
+     credit();}},
+ intro(u){bg(u);brandTag();glow(CX,1000,600,C.brand,0.32);if(CUR)g.drawImage(CUR,36,373,1008,1792);},
+ product(u,d,L){bg(u);brandTag();mini(u);const t0=L.start,ta=telAt('11月10日発売で').start-t0,tb=telAt('税込み8万4980円').start-t0;
+   glow(CX,590,430,C.brand,0.33);
+   withEnter(enter(u,0,0.35),()=>{g.save();g.translate(0,8*Math.sin(u*1.6));lit(()=>img('p1',CX,590,660));g.restore();},40);
+   withEnter(enter(u,0.15),()=>text('XREAL 1 Pro+',CX,875,62,C.text));
+   withEnter(enter(u,ta),()=>{rrect(192,945,340,150,28,C.card);text('11月10日',362,998,56,C.acc);text('発売',362,1055,36,C.sub,'center',800);});
+   withEnter(enter(u,tb),()=>{rrect(548,945,340,150,28,C.card);text('8万4980円',718,998,52,C.acc);text('税込み',718,1055,36,C.sub,'center',800);});
+   credit();},
+ bright(u,d,L){bg(u);brandTag();mini(u);const t1=telAt('700ニトから1200ニトに').start-L.start;
+   mixLine([['明るさが ',C.text],['1.7倍に',C.acc]],CX,385,62);text('最大の明るさ（単位：ニト）',CX,455,36,C.sub,'center',800);
+   const full=520,X0=320,e1=ease((u-0.3)/0.6),e2=ease((u-t1)/0.9);
+   withEnter(enter(u,0.2),()=>{glow(175,640,140,C.brand,0.3);lit(()=>img('op',175,640,240));text('前のモデル',X0,575,38,C.sub,'left',800);
+     rrect(X0,605,Math.max(1,full*700/1200*e1),84,18,C.bar);text(String(Math.round(700*e1)),X0+full*700/1200*e1+18,648,52,C.text,'left');});
+   withEnter(enter(u,t1-0.2),()=>{glow(175,880,140,C.brand,0.3);lit(()=>img('p1',175,880,240));text('XREAL 1 Pro+',X0,815,38,C.text,'left',800);
+     rrect(X0,845,Math.max(1,full*e2),84,18,C.acc);if(e2>0.25)text(String(Math.round(1200*e2)),X0+full*e2-18,888,52,C.ink,'right');});
+   withEnter(enter(u,t1+1.0),()=>text('ニト＝画面の明るさの単位',CX,1030,36,C.sub,'center',800));
+   credit();},
+ fps(u){bg(u);brandTag();mini(u);text('2D→3D変換がなめらかに',CX,385,56,C.text);text('1秒あたりのコマ数',CX,455,36,C.sub,'center',800);
+   text('30',330,660,190,C.sub);text('→',CX,660,96,C.text);const e=back((u-0.5)/0.4);if(u>0.5){g.save();g.translate(770,660);g.scale(e,e);text('60',0,0,210,C.acc);g.restore();}
+   const p=clamp((u-0.3)/1.6);text('前のモデル',64,880,34,C.sub,'left',800);text('新モデル',64,980,34,C.text,'left',800);
+   for(let i=0;i<15;i++){g.fillStyle=i<Math.floor(p*15)?C.bar:'#24314F';g.beginPath();g.arc(290+i*39,880,13,0,7);g.fill();}
+   for(let i=0;i<30;i++){g.fillStyle=i<Math.floor(p*30)?C.acc:'#24314F';g.beginPath();g.arc(290+i*19.5,980,8,0,7);g.fill();}},
+ twist(u,d,L){bg(u);brandTag();mini(u);const t0=L.start,tr=telAt('視野の広さと画質は前のモデルと同じ').start-t0,t3=telAt('画面を空間に固定するなら').start-t0,te=telAt('別売りのカメラが必要').start-t0;
+   const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
+   const rows=[['視野の広さ','前と同じ',C.sub,tr],['画質','前と同じ',C.sub,tr+0.4],['空間に固定','別売りカメラ',C.warn,t3]];
+   rows.forEach(([a,b,col,t],j)=>withEnter(enter(u,t),()=>{const y=490+j*112;rrect(64,y,808,96,22,C.card);text(a,100,y+48,42,C.text,'left',800);text(b,836,y+48,42,col,'right');}));
+   withEnter(enter(u,te,0.3),()=>{glow(CX,935,190,C.brand,0.35);lit(()=>img('eye',CX,935,190));text('XREAL Eye（別売り）',CX,1068,38,C.text,'center',800);});
+   if(u>te)credit();},
+ verdict(u,d,L){bg(u);brandTag();glow(CX,1250,600,C.brand,0.32);const t2=telAt('今のモデルで満足なら').start-L.start;
+   const k1=back((u-0.15)/0.35),k2=back((u-t2)/0.35);
+   if(u>0.15){g.save();g.translate(261,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.acc);
+     g.strokeStyle=C.ink;g.lineWidth=12;g.lineCap='round';g.beginPath();g.moveTo(-140,-52);g.lineTo(-118,-28);g.lineTo(-78,-80);g.stroke();
+     text('買い',30,-50,92,C.ink);text('明るい場所で',0,32,36,C.ink,'center',800);text('よく使う人',0,76,36,C.ink,'center',800);g.restore();}
+   if(u>t2){g.save();g.translate(675,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.card2,C.brand);
+     g.fillStyle=C.text;g.fillRect(-138,-80,14,56);g.fillRect(-108,-80,14,56);
+     text('待ち',30,-50,92,C.text);text('今のモデルで',0,32,36,C.text,'center',800);text('満足な人',0,76,36,C.text,'center',800);g.restore();}
+   if(CUR)g.drawImage(CUR,90,540,900,1600);},
+ logo(u){g.fillStyle=C.bg1;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;rrect(250,842,76,76,16,C.brand);text('マイ夕刊',600,880,130,C.text);
+   text('毎日夕方5時半ごろ更新',CX,1010,44,C.sub,'center',700);g.globalAlpha=1;},
+};
+window.render=async function(t){
+  CUR=await charImg(Math.round(t*P.fps));
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
+  const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
+  S[L.scene](u,d,L);g.restore();
+  const cy=CAP_Y;
+  for(const tl of P.tel){if(t>=tl.start&&t<tl.end){if(['明るさは1.7倍','XREAL 1 Pro+','ただし'].includes(tl.text))break; // the big number replaces the caption here
+    caption(tl.text,cy,(t-tl.start),L.scene==='twist');break;}}
+};
+</script></body></html>
