@@ -82,7 +82,6 @@ const S={
      rrect(X0,605,Math.max(1,full*700/1200*e1),84,18,C.bar);text(String(Math.round(700*e1)),X0+full*700/1200*e1+18,648,52,C.text,'left');});
    withEnter(enter(u,t1-0.2),()=>{glow(175,880,140,C.brand,0.3);lit(()=>img('p1',175,880,240));text('XREAL 1 Pro+',X0,815,38,C.text,'left',800);
      rrect(X0,845,Math.max(1,full*e2),84,18,C.acc);if(e2>0.25)text(String(Math.round(1200*e2)),X0+full*e2-18,888,52,C.ink,'right');});
-   withEnter(enter(u,t1+1.0),()=>text('ニト＝画面の明るさの単位',CX,1030,36,C.sub,'center',800));
    credit();},
  fps(u){bg(u);brandTag();mini(u);text('2D→3D変換がなめらかに',CX,385,56,C.text);text('1秒あたりのコマ数',CX,455,36,C.sub,'center',800);
    text('30',330,660,190,C.sub);text('→',CX,660,96,C.text);const e=back((u-0.5)/0.4);if(u>0.5){g.save();g.translate(770,660);g.scale(e,e);text('60',0,0,210,C.acc);g.restore();}
@@ -103,7 +102,7 @@ const S={
    if(u>t2){g.save();g.translate(675,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.card2,C.brand);
      g.fillStyle=C.text;g.fillRect(-138,-80,14,56);g.fillRect(-108,-80,14,56);
      text('待ち',30,-50,92,C.text);text('今のモデルで',0,32,36,C.text,'center',800);text('満足な人',0,76,36,C.text,'center',800);g.restore();}
-   if(CUR)g.drawImage(CUR,90,540,900,1600);},
+   if(CUR)g.drawImage(CUR,54,420,972,1728);},
  logo(u){g.fillStyle=C.bg1;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;rrect(250,842,76,76,16,C.brand);text('マイ夕刊',600,880,130,C.text);
    text('毎日夕方5時半ごろ更新',CX,1010,44,C.sub,'center',700);g.globalAlpha=1;},
 };
