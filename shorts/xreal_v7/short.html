@@ -106,7 +106,7 @@ const S={
    rows.forEach(([a,b,col,t],j)=>withEnter(enter(u,t),()=>{const y=490+j*112;rrect(136,y,808,96,22,C.card);text(a,172,y+48,42,C.text,'left',800);text(b,908,y+48,42,col,'right');}));
    withEnter(enter(u,te,0.3),()=>{glow(CX,935,190,C.brand,0.35);lit(()=>img('eye',CX,935,190));text('XREAL Eye（別売り）',CX,1068,38,C.text,'center',800);});
    if(u>te)credit();},
- verdict(u,d,L){bg(u);brandTag();glow(CX,1250,600,C.brand,0.32);const t2=telAt('今のモデルで満足なら').start-L.start;
+ verdict(u,d,L){bg(u);brandTag();glow(CX,1250,600,C.brand,0.32);drawChar(CUR,18,510,1044,1856);const t2=telAt('今のモデルで満足なら').start-L.start;
    const k1=back((u-0.15)/0.35),k2=back((u-t2)/0.35);
    if(u>0.15){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.buyFill);
      g.strokeStyle=C.buyInk;g.lineWidth=12;g.lineCap='round';g.beginPath();g.moveTo(-140,-52);g.lineTo(-118,-28);g.lineTo(-78,-80);g.stroke();
@@ -114,7 +114,7 @@ const S={
    if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.card2,C.brand);
      g.fillStyle=C.waitText;g.fillRect(-138,-80,14,56);g.fillRect(-108,-80,14,56);
      text('待ち',30,-50,92,C.waitText);text('今のモデルで',0,32,36,C.waitText,'center',800);text('満足な人',0,76,36,C.waitText,'center',800);g.restore();}
-   drawChar(CUR,18,468,1044,1856);},
+   },
  logo(u){g.fillStyle=C.bg1;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;rrect(250,842,76,76,16,C.brand);text('マイ夕刊',600,880,130,C.text);
    text('毎日夕方5時半ごろ更新',CX,1010,44,C.sub,'center',700);g.globalAlpha=1;},
 };
