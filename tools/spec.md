@@ -33,6 +33,15 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 - Skip: photos where a person's face is the main subject, logos alone, icons, ads/banners, site-generic share images, tiny thumbnails (prefer the large version).
 - No image is OK.
 
+## Overseas (English) articles — worker ai_D, and anyone who meets one
+- ai_D: open the new-article listings of TechCrunch, The Verge, Ars Technica, VentureBeat, Reuters (technology) and the English official blogs/newsrooms of OpenAI, Anthropic, Google, Meta, Microsoft, NVIDIA (WebSearch for each listing first). Pick AI stories from the last 72 hours.
+- Prefer stories Japanese sites have NOT covered yet, and ones that matter to an ordinary person in Japan (new AI features, prices, availability, safety). Skip pure funding/personnel news.
+- source_url must be the official announcement or a major outlet. If you first saw the story on a small blog or rewrite site, use the official/major page as source_url (the small site may go in refs only if it adds facts).
+- Write everything in Japanese for a non-engineer. Keep product/company names as written officially; translate feature names into plain Japanese with the original in （ ） once.
+- Always say whether it is available in Japan / in Japanese. If the articles do not say, write 「日本での提供や日本語対応は発表されていません」.
+- Keep foreign prices in their currency (style.md section 6). Attribute facts the usual way (「〇〇社は〜と発表しました」「〜と米The Vergeが報じました」).
+- Also read Japanese coverage of the same event if it exists, and include it in refs.
+
 ## Writing
 FIRST read tools/style.md (マイ夕刊 記事執筆ルール 第2版) in the repository and follow it exactly. It decides the structure (keys → lead → h+p sections → stat → gallery → point), paragraph/sentence length, how to sort information, numbers, attribution and the banned "behind-the-scenes" phrases.
 Always: easy Japanese for a non-engineer, YOUR OWN WORDS only (never copy sentences), do NOT drop necessary information (sort it instead), only facts you actually read.

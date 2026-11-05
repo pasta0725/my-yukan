@@ -22,7 +22,7 @@ for d in idx.get("editions", []):
     except Exception: pass
 
 by_cat, seen_urls, seen_ids = defaultdict(list), set(), set()
-for f in sorted(glob.glob(f"{SRC}/*_[ABC].json")):
+for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
     try: items = json.load(open(f))
     except Exception as e: print("BAD", f, e); continue
     for a in items:
