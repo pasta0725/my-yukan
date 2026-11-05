@@ -22,7 +22,7 @@ from rembg import new_session, remove
 seg = new_session("isnet-anime")
 print("rembg providers:", getattr(seg, "inner_session", None) and seg.inner_session.get_providers(), flush=True)
 os.makedirs("/content/out", exist_ok=True)
-WIDTH = {"intro_lc": 1008, "verdict_lc": 1008}; DEFAULT_W = int(os.environ.get("MINI_W", "560"))  # drawn sizes in the 1080 video
+WIDTH = {"intro_lc": int(os.environ.get("INTRO_W", "1008")), "verdict_lc": int(os.environ.get("VERDICT_W", "1008"))}; DEFAULT_W = int(os.environ.get("MINI_W", "560"))  # drawn sizes in the 1080 video
 SEG = set(os.environ.get("SEG_CLIPS", "intro_lc,verdict_lc").split(","))   # segmentation is slow: only for the big presenter clips
 def enc(path, w, h, fps, fmt):
     return subprocess.Popen(["ffmpeg","-v","error","-y","-f","rawvideo","-pix_fmt",fmt,"-s",f"{w}x{h}","-r",fps,"-i","-",
