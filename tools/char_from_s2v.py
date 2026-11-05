@@ -36,6 +36,8 @@ def keyed(a):
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
     k = g - np.maximum(r, b)
     alpha = np.clip(1 - (k - 35) / 70, 0, 1)
+    if os.environ.get("S2V_ERODE"):  # tighter, softer edge: hides the green/dark fringe on light backgrounds
+        alpha = ndimage.gaussian_filter(ndimage.minimum_filter(alpha, size=3), 0.9)
     near = ndimage.gaussian_filter(alpha, 2.5) < 0.995      # green fringe on/near the edge
     g2 = np.where(near, np.minimum(g, np.maximum(r, b)), g)
     return Image.fromarray(np.clip(np.dstack([r, g2, b, alpha * 255]), 0, 255).astype(np.uint8), "RGBA")
