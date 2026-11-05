@@ -24,6 +24,19 @@ def flash_attn_varlen_func(q, k, v, cu_seqlens_q, cu_seqlens_k, max_seqlen_q=Non
 if not os.path.exists("LongCat-Video"):
     sh("git clone -q --depth 1 https://github.com/meituan-longcat/LongCat-Video")
 sh('pip install -q "transformers==4.51.3" "diffusers==0.35.1" loguru ftfy av librosa soundfile pyloudnorm audio-separator einops imageio imageio-ffmpeg hf_transfer onnxruntime 2>&1 | grep -v "dependency conflicts\\|requires\\|^ERROR: pip" | tail -3 || true')
+# 40 GB cards (A100): keep the 11 GB text encoder on the CPU (it runs once per clip) and park the KV cache in RAM
+if os.environ.get("LOWVRAM") == "1":
+    d = "LongCat-Video/run_demo_avatar_single_audio_to_video.py"; t = open(d).read()
+    if "LOWVRAM" not in t:
+        t = t.replace("    pipe.to(local_rank)\n",
+            "    dit.to(local_rank); vae.to(local_rank)  # LOWVRAM: text encoder stays on the CPU\n"
+            "    _dev = torch.device(f'cuda:{local_rank}')\n"
+            "    type(pipe)._execution_device = property(lambda self: _dev); type(pipe).device = property(lambda self: _dev)\n", 1)
+        t = t.replace("offload_kv_cache=False", "offload_kv_cache=True"); open(d, "w").write(t)
+    d = "LongCat-Video/longcat_video/pipeline_longcat_video_avatar.py"; t = open(d).read()
+    t = t.replace("self.text_encoder(text_input_ids.to(device), mask.to(device)).last_hidden_state",
+                  "self.text_encoder(text_input_ids.to(self.text_encoder.device), mask.to(self.text_encoder.device)).last_hidden_state.to(device)")
+    open(d, "w").write(t)
 W = "/content/w"
 if not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/lora/dmd_lora.safetensors"):
     sh(f"""HF_HUB_ENABLE_HF_TRANSFER=1 python -c "
