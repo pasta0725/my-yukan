@@ -1,5 +1,5 @@
 """Presenter frames from a cleaned-up clip (tools/colab_refine_remote.py: x2 anime upscale + segmentation mask).
-usage: python3 tools/char_from_refined.py <name_rgb.mp4> <name_a.mp4> <plan.js> <line_index|-1> <out_dir> <scale> [mode]
+usage: python3 tools/char_from_refined.py <name_rgb.mp4> <name_a.mp4|-> <plan.js> <line_index|-1> <out_dir> <scale> [mode]
   scale = output size relative to the 720x1280 still (1.4 for the big presenter, 0.75 for the small one)
   mode  = key | seg | both (default both: inside the segmentation mask trust the green key, outside drop everything)
 Writes out_dir/f<frame>.png (RGBA) laid out exactly like the still (letter-box / centre-crop undone)."""
@@ -23,7 +23,7 @@ def frames(p, gray=False):
         b = pr.stdout.read(n)
         if len(b) < n: break
         yield np.frombuffer(b, np.uint8).reshape(H, W) if gray else np.frombuffer(b, np.uint8).reshape(H, W, 3)
-src = list(zip(frames(rgb_p), frames(a_p, True)))
+src = list(zip(frames(rgb_p), frames(a_p, True) if a_p != "-" else iter(lambda: None, 1)))
 
 def to_base(a):  # undo the model's framing: scale by width to OW, centre on an OH canvas
     h, w = a.shape[:2]; nh = round(h * OW / w)
@@ -34,10 +34,10 @@ def to_base(a):  # undo the model's framing: scale by width to OW, centre on an 
     canvas[d0:d0 + n] = a[s0:s0 + n]; return canvas
 
 def rgba(rgb, seg):
-    u = to_base(rgb); m = to_base(seg) / 255
+    u = to_base(rgb); m = to_base(seg) / 255 if seg is not None else None
     r, g, b = u[..., 0], u[..., 1], u[..., 2]
     k = g - np.maximum(r, b); key = np.clip(1 - (k - 35) / 70, 0, 1)
-    if mode == "key": alpha = key
+    if mode == "key" or m is None: alpha = key
     elif mode == "seg": alpha = m
     else: alpha = np.minimum(key, ndimage.maximum_filter(m, size=5))  # green never stays; nothing outside the character
     alpha = ndimage.gaussian_filter(alpha, 0.6 * scale)
