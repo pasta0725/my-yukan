@@ -17,7 +17,7 @@ const CT={s:0.907,y0:360,y1:400};                                               
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
 const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
-const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.src=s;});
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
 const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
 let CUR=null;
 window.ready=(async()=>{await Promise.all([load('kv','img/kv_phone.jpg'),load('p1','img/1pro_cut.png'),load('op','img/onepro_cut.png'),load('eye','img/eye_cut.png'),load('mini','char/f198.png')]);await document.fonts.ready;})();
@@ -79,7 +79,7 @@ const S={
      withEnter(enter(v,tc),()=>{rrect(192,770,696,290,32,C.card);text('税込み',CX,830,40,C.sub,'center',800);
        g.save();g.translate(CX,925);const sc=back((v-tc)/0.35);g.scale(sc,sc);text('8万4980円',0,0,110,C.acc);g.restore();text('前のモデルと同じ',CX,1015,40,C.text,'center',800);});
      credit();}},
- intro(u){bg(u);brandTag();glow(CX,1000,600,C.brand,0.32);drawChar(CUR,36,373,1008,1792);},
+ intro(u){bg(u);brandTag();glow(CX,1000,600,C.brand,0.32);drawChar(CUR,-90,298,1260,2240);},
  product(u,d,L){bg(u);brandTag();mini(u);const t0=L.start,ta=telAt('11月10日発売で').start-t0,tb=telAt('税込み8万4980円').start-t0;
    glow(CX,590,430,C.brand,0.33);
    withEnter(enter(u,0,0.35),()=>{g.save();g.translate(0,8*Math.sin(u*1.6));lit(()=>img('p1',CX,590,660));g.restore();},40);
@@ -114,7 +114,7 @@ const S={
    if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.card2,C.brand);
      g.fillStyle=C.waitText;g.fillRect(-138,-80,14,56);g.fillRect(-108,-80,14,56);
      text('待ち',30,-50,92,C.waitText);text('今のモデルで',0,32,36,C.waitText,'center',800);text('満足な人',0,76,36,C.waitText,'center',800);g.restore();}
-   drawChar(CUR,54,470,972,1728);},
+   drawChar(CUR,18,468,1044,1856);},
  logo(u){g.fillStyle=C.bg1;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;rrect(250,842,76,76,16,C.brand);text('マイ夕刊',600,880,130,C.text);
    text('毎日夕方5時半ごろ更新',CX,1010,44,C.sub,'center',700);g.globalAlpha=1;},
 };
