@@ -1,0 +1,6486 @@
+{
+ "date": "2026-11-05",
+ "label": "11月5日（木）の号",
+ "updatedAt": "2026-11-05T14:48:09+09:00",
+ "articles": [
+  {
+   "id": "ai-openai-images-26",
+   "category": "ai",
+   "title": "ChatGPTでGIFアニメが作れる、Images 2.6登場",
+   "summary": "写真やスケッチから動くGIFを作れます。画像づくりは50％速くなり、無料プランも対象です。",
+   "image": {
+    "src": "https://us1.discourse-cdn.com/openai1/optimized/4X/c/5/a/c5a276fdf28c2daa48c85c31963ddb99902aaa8a_2_1024x576.jpeg",
+    "kind": "press",
+    "credit": "OpenAI",
+    "page": "https://community.openai.com/t/images-upgraded-introducing-chatgpt-images-2-6/1412901"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "画像生成AI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ChatGPTにGIFアニメ作成と「保存した参考画像」が加わった",
+      "画像の生成速度は50％向上。無料プランを含む全プランが対象",
+      "手描きのスケッチや写真を動かせる。日本語対応の詳細は未発表"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月4日（現地時間）、ChatGPTの画像生成AI「Images 2.6」を発表し、GIFアニメの作成に対応しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://us1.discourse-cdn.com/openai1/original/4X/e/3/3/e33abd12912cb767374c9ba20da5e1147aa315bc.gif",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "GIF作成機能のデモ（クリックで再生）",
+     "page": "https://community.openai.com/t/images-upgraded-introducing-chatgpt-images-2-6/1412901"
+    },
+    {
+     "type": "h",
+     "text": "GIFアニメが作れる"
+    },
+    {
+     "type": "p",
+     "text": "ChatGPTに「ループするアニメーションを作って」と頼むと、GIFアニメができます。手描きのスケッチを送って、キャラクターが手を振る動きにすることもできます。再生速度の調整と、完成したGIFの共有もできます。OpenAIは、会社のマスコットや商品のアニメ、SNSのリアクション画像などでの利用を想定しています。"
+    },
+    {
+     "type": "p",
+     "text": "Unite.AIによると、コマ（フレーム）ごとに見たり直したりすることもできます。"
+    },
+    {
+     "type": "h",
+     "text": "参考画像と編集の精度"
+    },
+    {
+     "type": "p",
+     "text": "写真に名前を付けて保存しておくと、別のチャットでも名前を伝えるだけで使えます。たとえば愛犬の写真を「Pepper」で保存すれば、次からは写真を選び直さずに、Pepperの絵を頼めます。"
+    },
+    {
+     "type": "p",
+     "text": "画像の一部だけ変える編集も、9月公開のImages 2.5より精度が上がりました。キャラクターの背景を変えても服などの細部を保ちやすく、編集を重ねても商品やブランドの特徴が崩れにくいとOpenAIは説明しています。生成速度は50％向上しました。何と比べた数字かは明らかにされていません。"
+    },
+    {
+     "type": "h",
+     "text": "使える人と提供状況"
+    },
+    {
+     "type": "p",
+     "text": "11月4日から、世界中のChatGPTとCodexの全プランで使えます。無料プランも対象で、Web、デスクトップアプリ、スマホアプリのどれでも使えます。GIFの作成は順次展開中で、まだ画面に出ない人もいます。日本語での使い方の詳細は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "開発者向けAPIと料金"
+    },
+    {
+     "type": "p",
+     "text": "開発者向けには、次の2種類のモデルがAPIで提供されます。\n・GPT-Image-2.6 Flare：速さ重視。低画質設定なら最短6秒で生成\n・GPT-Image-2.6 Sunburst：品質重視。細かい描写と、編集しても絵柄がぶれにくい点が特徴\n画像に書き込みを入れて直しを頼む機能と、拡大しても荒れないSVG形式での書き出しも加わりました。"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia NEWSによると、料金は2.5版から据え置きで、100万トークンあたり画像入力が8ドル、画像出力が30ドル、テキスト入力が5ドルです。一方、AI Weeklyは発表時点で料金が示されていないと伝えており、報道で食い違っています。"
+    },
+    {
+     "type": "h",
+     "text": "安全対策と利用規模"
+    },
+    {
+     "type": "p",
+     "text": "GIFには、静止画では見つけにくい有害な動きを判定する対策が加わりました。画像の出どころを確かめる仕組みも強まります。作成元を記録する従来のC2PAに加え、Google DeepMindの電子透かし「SynthID」をChatGPT、Codex、APIに導入します。"
+    },
+    {
+     "type": "p",
+     "text": "ChatGPT、Codex、APIで作られる画像は、週約40億枚、1日平均5億枚以上です。9月のImages 2.5発表時の週30億枚超から増えています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "50％",
+       "label": "画像の生成速度の向上"
+      },
+      {
+       "value": "最短6秒",
+       "label": "Flareの生成時間（低画質）"
+      },
+      {
+       "value": "週約40億枚",
+       "label": "作られる画像の数"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://us1.discourse-cdn.com/openai1/original/4X/b/c/6/bc66c67ba8208ca61151e3e8bb7cd49a4e8d0812.jpeg",
+       "kind": "press",
+       "credit": "OpenAI",
+       "caption": "保存した参考画像の機能に添えられた公式画像",
+       "page": "https://community.openai.com/t/images-upgraded-introducing-chatgpt-images-2-6/1412901"
+      },
+      {
+       "src": "https://us1.discourse-cdn.com/openai1/original/4X/1/5/5/1559b32c24fda93e8288a2a54e6144d9270fbe60.jpeg",
+       "kind": "press",
+       "credit": "OpenAI",
+       "caption": "API向けの新モデルの説明に添えられた公式画像",
+       "page": "https://community.openai.com/t/images-upgraded-introducing-chatgpt-images-2-6/1412901"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ChatGPTを使う人：無料プランでも使えます。アプリを更新して試し、GIFがまだ出ない場合は順次展開を待つ",
+      "SNSやお店の宣伝に使う人：商品やマスコットを動かすGIFを作れます。作った画像にはSynthIDなどの出どころ情報が付きます",
+      "開発者：APIにFlareとSunburstが加わります。料金は報道で食い違うため、OpenAIの料金ページで確かめる"
+     ]
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/05/2000002894/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/05/2000002894/"
+    },
+    {
+     "name": "OpenAI Developer Community",
+     "url": "https://community.openai.com/t/images-upgraded-introducing-chatgpt-images-2-6/1412901"
+    },
+    {
+     "name": "Unite.AI",
+     "url": "https://www.unite.ai/chatgpt-adds-animated-gif-creation-and-editing-with-images-2-6/"
+    },
+    {
+     "name": "AI Weekly",
+     "url": "https://aiweekly.co/alerts/openai-ships-chatgpt-images-26-with-gifs-and-faster-api-models"
+    }
+   ]
+  },
+  {
+   "id": "kaden-shark-glideclean",
+   "category": "kaden",
+   "title": "シャーク最軽量の掃除機、6万9850円で11月13日発売",
+   "summary": "約1.28kgで、ゴミを約30日ためる自動収集ドックが付きます。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-47bb5591a0548ecd88fc54312208670b-3900x2600.jpg",
+    "kind": "press",
+    "credit": "シャークニンジャ",
+    "caption": "Shark GlideClean",
+    "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "掃除機新製品"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "シャークニンジャが、同社最軽量のスティック掃除機を発売する",
+      "11月13日発売で、市場想定価格は6万9850円（税込み）",
+      "本体は約1.28kg。ゴミ捨ては約30日に1回で済む"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "シャークニンジャは、約1.28kgの掃除機「グライドクリーン」を11月13日に6万9850円（税込み）で発売します。"
+    },
+    {
+     "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-076fa438631184b2eac07f22a39ac38f-3900x2600.jpg",
+     "kind": "press",
+     "credit": "シャークニンジャ",
+     "caption": "Shark GlideClean のイメージ画像",
+     "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html",
+     "type": "img"
+    },
+    {
+     "type": "h",
+     "text": "発売日・価格・買える場所"
+    },
+    {
+     "type": "p",
+     "text": "発売日は11月13日（金）です。価格は市場想定価格で、6万9850円（税込み）です。全国の家電量販店、ネットショップ、シャークニンジャ公式オンラインストアで買えます。色は白と黒の2色で、保証は2年です。予約の開始時期は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "軽さと掃除の力"
+    },
+    {
+     "type": "p",
+     "text": "本体は約1.28kgです。日本で売るシャークのコードレススティック掃除機では最も軽いと、同社が自社調べ（2026年10月時点）で説明しています。パイプは本物のカーボン製です。掃除の性能は、同社の標準モデルより約20%高いといいます。"
+    },
+    {
+     "type": "p",
+     "text": "狭いすき間に入る小さめのヘッドが付き、カーペットの汚れにはブーストモードを使います。連続使用は、標準モードで約32分、ブーストモードで約7分30秒です。充電には約3.5時間かかります。"
+    },
+    {
+     "type": "h",
+     "text": "約30日ためる自動ゴミ収集ドック"
+    },
+    {
+     "type": "p",
+     "text": "充電台が、掃除機のダストカップ（ゴミをためる容器）の中身を、充電中に自動で吸い取ります。ためられるのは約30日分で、ゴミ捨ては月1回ほどです。1日1gのゴミが出る前提で、第三者機関が試した数字です。実際は部屋の状況で変わります。"
+    },
+    {
+     "type": "p",
+     "text": "台にはHEPAフィルターが入り、0.3〜3マイクロメートルの細かいホコリやアレルゲンを99.99%とらえるといいます。夜は、台の上のボタンで自動収集を止められます。"
+    },
+    {
+     "type": "h",
+     "text": "ハンディ化とお手入れ"
+    },
+    {
+     "type": "p",
+     "text": "ボタンを押すと、ハンディ掃除機に切り替わります。ハンディでは重さ約0.8kgで、標準モードで約35分、ブーストで約8分使えます。すき間用のブラシ付きノズルが付属します。"
+    },
+    {
+     "type": "p",
+     "text": "髪やペットの毛がからまりにくいヘッドも採用しています。ブラシロール、ダストカップ、フィルターは水洗いできます。"
+    },
+    {
+     "type": "h",
+     "text": "どんな人に向くか"
+    },
+    {
+     "type": "p",
+     "text": "重い掃除機がつらい人や、ゴミ捨てが面倒な人に向きそうです。一方で、連続使用は標準モードでも約32分なので、広い家を一度に掃除するには足りないかもしれません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約1.28kg",
+       "label": "本体の重さ"
+      },
+      {
+       "value": "約30日分",
+       "label": "ドックにためるゴミ"
+      },
+      {
+       "value": "約20%",
+       "label": "標準モデルより高い性能"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-0d4f6b386c7e2d3d4b41f1de979f4c3a-3900x2600.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "自動ゴミ収集ドックの画像",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-f50d6b01251f71f081d634a4fabc6e19-3900x2600.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "自動ゴミ収集ドックの画像",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-fac1050d4fd996f8f3e19c34d6d63c4f-3900x2600.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "HEPAフィルター",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-d76da02a78bd6a2ba431928630b35e38-3900x2600.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "パワフルなハンディクリーナーに切り替え",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-deaa2ce8ef418ad541954a98270fdbe7-3900x2600.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "ブラシ付き隙間用ノズル",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-937af272d899a87d00f563f907adc81d-3900x2600.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "高いところにも楽に掃除できる",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-5bc40250560b5327ffc34532786dc7f8-3900x2600.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "ブラシロール、ダストカップ、フィルターは水洗いできる",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-6f776b485bcec5afbeb4e778c467039c-547x2068.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "ホワイト",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/41047/69/41047-69-cc9aff19260db6938fa13206c9bd32ee-563x2071.jpg",
+       "kind": "press",
+       "credit": "シャークニンジャ",
+       "caption": "ブラック",
+       "page": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "軽い掃除機に替えたい人は、11月13日から量販店や公式オンラインストアで重さを確かめる",
+      "充電台に置いて使う。収納時は幅31.5×奥行23×高さ111cmなので、置き場所を測っておく",
+      "ゴミ捨てが約30日に1回になるかは、部屋の状況しだい。最初の1か月はダストカップの量を見る",
+      "連続使用は標準モードで約32分。広い家は部屋ごとに分けて掃除する"
+     ]
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2153575.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2153575.html"
+    },
+    {
+     "name": "シャークニンジャ（PR TIMES）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000069.000041047.html"
+    },
+    {
+     "name": "ASCII.jp",
+     "url": "https://ascii.jp/elem/000/004/448/4448420/?rss="
+    },
+    {
+     "name": "価格.com",
+     "url": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160067/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-melmaga-chosa",
+   "category": "fukugyo",
+   "title": "EC4258社のメルマガ調査、配信は18時台が最多",
+   "summary": "割引メールの中央値は20%。登録特典を出す店は1.3%でした。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/165098/116/165098-116-da6b714e6a3121bb2d072b947bb7083d-1672x941.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "SweetLeap（メルマガ図鑑）",
+    "page": "https://netshop.impress.co.jp/r/prtimes/items/000000116.000165098"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "メルマガ調査"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "国内EC4258社のメルマガ7621通を調べた調査で、配信は18時台が最多でした。",
+      "割引を打ち出すメールの割引率は中央値20%。登録特典を出す店は1.3%でした。",
+      "自分の店のメルマガを見直す目安になりますが、EC全体を代表する数字ではありません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "メルマガ図鑑のSweetLeapが、国内EC4258社のメール7621通の調査結果を公表しました。受信は9月27日〜10月10日です。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/165098/116/165098-116-8ebea8cfec9ac50d34f8e158ccb5d754-1672x941.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "SweetLeap（メルマガ図鑑）",
+     "caption": "登録時のお礼メールで案内された割引額の内訳（34ブランド）",
+     "page": "https://netshop.impress.co.jp/r/prtimes/items/000000116.000165098"
+    },
+    {
+     "type": "h",
+     "text": "調べた中身と調べた人"
+    },
+    {
+     "type": "p",
+     "text": "調査したのは、競合のメルマガを見比べられるデータベース「メルマガ図鑑」の運営会社です。定期配信は1156ブランドの3103通、登録直後のお礼メールは3980ブランドの4066通を集計しました。調査結果はこのデータベースの先行テスト参加を呼びかける発表の中で示されています。"
+    },
+    {
+     "type": "h",
+     "text": "配信が多い時間と曜日"
+    },
+    {
+     "type": "p",
+     "text": "定期配信3103通のうち、送信時刻が最も多かったのは18時台で15.6%でした。18時台から20時台までの3時間で、全体の39.8%（約4割）が集中しています。曜日では金曜が26.3%で最多で、木曜、水曜と続きました。"
+    },
+    {
+     "type": "h",
+     "text": "割引率と件名の傾向"
+    },
+    {
+     "type": "p",
+     "text": "割引率を打ち出した定期配信は717通で、割引率の中央値は20%でした。最も多かったのは10%台で、36.3%です。1万円の商品なら、2000円引きの8000円が真ん中の目安になります。"
+    },
+    {
+     "type": "p",
+     "text": "件名でよく使われた言葉は「限定」が13.9%、「OFF」が12.7%、「本日」が8.6%でした。"
+    },
+    {
+     "type": "h",
+     "text": "登録特典と配信停止の対応"
+    },
+    {
+     "type": "p",
+     "text": "登録直後のお礼メールで割引やクーポンを案内していたのは、3980ブランドのうち53ブランド（1.3%）でした。送料無料は4ブランド、ポイントは6ブランドです。割引額の中央値は500円で、500円が13ブランド、300円が9ブランド、1000円が6ブランドでした。割引率で案内した店の中央値は10%です。"
+    },
+    {
+     "type": "p",
+     "text": "メールの作りでは、ワンクリックで配信を止められる店が1156ブランド中1045ブランド（90.4%）でした。送信元が本物だと示す電子署名（DKIM）を付けた店は1025ブランド（88.7%）でした。両方そろっていたのは82.4%です。"
+    },
+    {
+     "type": "h",
+     "text": "数字を見るときの注意"
+    },
+    {
+     "type": "p",
+     "text": "対象は同社が購読登録したブランドで、国内EC全体から無作為に選んだものではないと明記されています。お礼メールの割引率（中央値10%）と定期配信の割引率（中央値20%）は、別のメールを集めた数字です。同じ基準で比べないでください。"
+    },
+    {
+     "type": "p",
+     "text": "夕方から夜は大手のメールも集中する時間帯です。小さな店は、配信後の開封数を見て自分のお客さまに合う時間を探すほうが確実かもしれません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "15.6%",
+       "label": "18時台に送る定期配信"
+      },
+      {
+       "value": "20%",
+       "label": "定期配信の割引率の中央値"
+      },
+      {
+       "value": "1.3%",
+       "label": "登録特典で割引を案内"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/165098/116/165098-116-195f06f88afedf31b7a5c21b4a6ae2a5-1672x941.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "SweetLeap（メルマガ図鑑）",
+       "caption": "配信停止とDKIMへの対応状況（定期配信1156ブランド）",
+       "page": "https://netshop.impress.co.jp/r/prtimes/items/000000116.000165098"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/165098/116/165098-116-0bb14144c7ba3311f003751305e89993-1672x941.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "SweetLeap（メルマガ図鑑）",
+       "caption": "メール受信から集計までの流れ",
+       "page": "https://netshop.impress.co.jp/r/prtimes/items/000000116.000165098"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/165098/116/165098-116-516b552df2b0878c3bbce826a13923a4-2880x1800.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "SweetLeap（メルマガ図鑑）",
+       "caption": "メルマガ図鑑のイベント別表示（ハロウィンやブラックフライデーなど）",
+       "page": "https://netshop.impress.co.jp/r/prtimes/items/000000116.000165098"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/165098/116/165098-116-0ebcdfe72a5dd6d7b52a053731862ba5-2880x1800.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "SweetLeap（メルマガ図鑑）",
+       "caption": "メルマガ図鑑のブランド別表示",
+       "page": "https://netshop.impress.co.jp/r/prtimes/items/000000116.000165098"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "メルマガを出している店は、配信後の開封数を見て、18時台以外の時間も試す。",
+      "登録特典を考えている店は、割引の目安が500円か10%とわかる。割引を案内している店は1.3%と少ない。",
+      "配信停止がワンクリックでできるか、DKIMが付いているかを、メール配信サービスの設定画面で確かめる。",
+      "この数字は一社の調査で、無作為抽出ではない。自分の店の目標にそのまま使わない。"
+     ]
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/05/16989",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/05/16989"
+    },
+    {
+     "name": "ネットショップ担当者フォーラム（調査元の発表）",
+     "url": "https://netshop.impress.co.jp/r/prtimes/items/000000116.000165098"
+    },
+    {
+     "name": "@DIME",
+     "url": "https://dime.jp/company_news/detail/?pr=2741542"
+    },
+    {
+     "name": "コマースピック",
+     "url": "https://www.commercepick.com/archives/104851"
+    }
+   ]
+  },
+  {
+   "id": "ai-us-midterm-ai-regulation",
+   "category": "ai",
+   "title": "米中間選挙で民主党が上下両院、AI規制に現実味",
+   "summary": "データセンターへの反発が追い風でしたが、拒否権があり新しい法律の成立は不透明です。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/image/2611/05/2000002888/10011333/728",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS（画像：トランプ氏のSNS投稿）",
+    "page": "https://www.itmedia.co.jp/news/article/2611/05/2000002888/"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "米国のAI政策"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "米中間選挙で民主党が上院と下院の過半数を獲得した",
+      "データセンターを禁止・制限する住民投票が少なくとも38か所で可決",
+      "AIの包括的な連邦法は不透明。当面は議会の調査と州・自治体の規制が中心"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "11月3日（現地時間）の米中間選挙で民主党が上下両院の過半数を取り、AI企業への監視が強まる見通しです。"
+    },
+    {
+     "type": "h",
+     "text": "選挙結果とAI企業への影響"
+    },
+    {
+     "type": "p",
+     "text": "これまではトランプ政権の共和党が、ホワイトハウスと議会の両方を握っていました。選挙後はIT政策に影響が出る見通しで、AIデータセンターの建設規制と、米IT大手への議会の監視が焦点です。"
+    },
+    {
+     "type": "p",
+     "text": "CNBCによると、民主党は議会の調査権限を使い、AI企業への監視を強める構えです。下院議員のグレッグ・カサー氏は、AI企業のCEOを議会に呼び、宣誓証言を求めるべきだと主張しています。AIが雇用に与える影響も論点になるとみられます。"
+    },
+    {
+     "type": "h",
+     "text": "データセンターへの反発"
+    },
+    {
+     "type": "p",
+     "text": "データセンターは、AIを動かす大量のコンピューターを置く施設で、電気と水を大量に使います。Washington Postによると、建設を禁止または制限する住民投票が、少なくとも38か所の自治体などで可決されました。"
+    },
+    {
+     "type": "p",
+     "text": "件数は報道で違います。Forbesは10州で41件の住民投票があり、うちオハイオ州が21件だと数えました。Ballotpediaの集計を引くYahoo Newsは、50件超のうち47件でデータセンターに否定的な結果が出たと伝えています。理由には、電気代への影響、騒音、事業の承認手続きへの不信が挙がっています。"
+    },
+    {
+     "type": "p",
+     "text": "首長や議員を選ぶ選挙にも影響が出ました。テキサス州では、データセンターの新規承認を止めると訴えた民主党のジーナ・イノホサ氏が、現職の共和党知事に勝ちました。オハイオ州では民主党のシェロッド・ブラウン氏が、現職のジョン・ハステッド上院議員に勝っています。"
+    },
+    {
+     "type": "h",
+     "text": "テキサスの新上院議員の公約"
+    },
+    {
+     "type": "p",
+     "text": "同じテキサス州では、民主党のジェームズ・タラリコ氏が共和党のケン・パクストン氏を破り、連邦上院議員になりました。公約は次のとおりです。\n・AIで生まれた利益に課税し、国民に還元する\n・データセンターの電力と水の使い方への規制を強める\n・IT大手への税制優遇をなくす\n・SNS企業に、未成年者へのアルゴリズムによるターゲティングの禁止を求める"
+    },
+    {
+     "type": "h",
+     "text": "株式市場の反応"
+    },
+    {
+     "type": "p",
+     "text": "Reutersによると、11月4日の米株式市場ではAmazonの株価が一時7.4％上がりました。Meta、Alphabet、Microsoftも2〜6.3％上がっています。新しいデータセンターの建設が制限されれば、すでに設備を持つ大手が有利になり、設備投資の負担も軽くなるとの見方が背景にあります。"
+    },
+    {
+     "type": "h",
+     "text": "法律はできるのか"
+    },
+    {
+     "type": "p",
+     "text": "トランプ大統領には拒否権があります。AIに関する包括的な連邦法が成立するかは不透明で、当面は議会による企業への調査と、州や自治体の規制強化が主な影響になるとみられます。"
+    },
+    {
+     "type": "p",
+     "text": "議会では、電力を大量に使う新設のデータセンター（20MW以上）に、電力設備の追加費用を全額負担させる上院の法案が準備されています。最初の採決は11月9日の予定で、可決には60票が必要です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "38か所以上",
+       "label": "規制が可決された自治体"
+      },
+      {
+       "value": "41件",
+       "label": "Forbesが数えた住民投票"
+      },
+      {
+       "value": "7.4％",
+       "label": "Amazon株の一時上昇率"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ChatGPTやClaudeなどを使う人：今すぐ使い方が変わる話ではありません。日本での利用に関わる変更も発表されていません",
+      "大手IT株を含む投資信託などを持つ人：選挙直後に株価が上がりましたが、今後の規制の行方で値動きは変わります",
+      "次に確認すること：11月9日の上院の採決と、AI企業のCEOが議会に呼ばれるかどうか"
+     ]
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/05/2000002888/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/05/2000002888/"
+    },
+    {
+     "name": "Forbes",
+     "url": "https://www.forbes.com/sites/zacharyfolk/2026/11/04/heres-where-voters-are-rejecting-data-centers-at-the-ballot-full-list/"
+    },
+    {
+     "name": "Broadband Breakfast",
+     "url": "https://broadbandbreakfast.com/midterm-voters-sent-data-centers-a-message/"
+    },
+    {
+     "name": "Yahoo News",
+     "url": "https://www.yahoo.com/news/politics/articles/voters-reject-data-centers-nearly-204547400.html"
+    },
+    {
+     "name": "Finimize",
+     "url": "https://finimize.com/content/wall-street-looked-past-ai-anxiety-and-toward-election-gridlock"
+    }
+   ]
+  },
+  {
+   "id": "kaden-anker-eufy-cyclone-e35-c30",
+   "category": "kaden",
+   "title": "Anker、サイクロン式ロボット掃除機が12万9900円から",
+   "summary": "ゴミを遠心力で分けるサイクロンを本体に載せ、吸引力が長続きするとうたう2機種です。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/16775/684/16775-684-647b39c43bd75a0074efd9d7d5cae510-3900x1598.png",
+    "kind": "press",
+    "credit": "アンカー・ジャパン",
+    "caption": "Eufy Omni E35 と C30 Edge の公式画像",
+    "page": "https://prtimes.jp/main/html/rd/p/000000684.000016775.html"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "ロボット掃除機"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Ankerが、本体にサイクロンを積んだロボット掃除機2機種を発表",
+      "上位のE35は19万9900円、標準のC30 Edgeは12万9900円（税込み）",
+      "11月12日までの発売記念セールで、最大54%引きになる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "アンカー・ジャパンは11月5日、ロボット掃除機「Eufy Omni E35」と「C30 Edge」を発表しました。E35は11月17日、C30 Edgeは11月5日に発売です。"
+    },
+    {
+     "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2152/602/002_l.jpg",
+     "kind": "ogp",
+     "credit": "家電 Watch",
+     "caption": "Anker Eufy Robot Vacuum Omni E35",
+     "page": "https://kaden.watch.impress.co.jp/docs/news/2152602.html",
+     "type": "img"
+    },
+    {
+     "type": "h",
+     "text": "発売日・価格・買える場所"
+    },
+    {
+     "type": "p",
+     "text": "E35は19万9900円（税込み）で、11月5日から予約を受け付けています。買えるのはアンカーの公式オンラインストア、Anker Store、Amazon、楽天市場と、一部の家電量販店です。"
+    },
+    {
+     "type": "p",
+     "text": "C30 Edgeは12万9900円（税込み）で、11月5日から買えます。取り扱いは公式オンラインストア、Anker Store、Amazon、楽天市場の4か所だけです。"
+    },
+    {
+     "type": "h",
+     "text": "11月12日までの発売記念セール"
+    },
+    {
+     "type": "p",
+     "text": "期間は11月5日11時から12日23時59分までです。E35は、Amazonと楽天市場でクーポンを使うと35%引きになります。公式ストアも35%引きで、交換用のダストバッグが付きます。"
+    },
+    {
+     "type": "p",
+     "text": "C30 Edgeは、Amazonでクーポンを使うと50%引き、公式ストアと楽天市場では54%引きです。楽天市場の54%引きにもクーポンが必要です。"
+    },
+    {
+     "type": "h",
+     "text": "本体に載ったサイクロン"
+    },
+    {
+     "type": "p",
+     "text": "サイクロンは、空気を回してゴミを遠心力で分ける仕組みです。フィルターが目詰まりしにくく、手入れの手間が減ります。吸引力が最長365日続くとアンカーは説明しています。E35は外部機関TÜV SÜDの試験、C30 Edgeは自社調べです。最大吸引力は、2機種とも3万5000Paです。"
+    },
+    {
+     "type": "h",
+     "text": "E35の特徴"
+    },
+    {
+     "type": "p",
+     "text": "ローラー型のモップが、走りながら本体の中で自分を洗います。壁際ではモップが最大32mm伸びます。アンカーは、掃除後の床の除菌率が99%以上、ダニや花粉などの除去が90%以上と説明しています。すべての菌やアレルゲンに効くわけではありません。"
+    },
+    {
+     "type": "p",
+     "text": "ステーションが、ゴミ回収、お湯でのモップ洗い、温風乾燥、洗剤の自動投入まで行います。障害物は「AI.See 3.0」が280種類以上を見分け、暗い部屋ではLEDライトを使います。連続運転は最長180分、ゴミの容量は300mlです。"
+    },
+    {
+     "type": "h",
+     "text": "C30 Edgeの特徴とE35との違い"
+    },
+    {
+     "type": "p",
+     "text": "2枚の回転モップが、約1kgの力で押しつけながら拭きます。壁際ではモップが最大7.6cm広がります。ステーションの高さは約31.5cmで、前の人気モデル「Eufy X10 Pro Omni」より約32%低くなりました。連続運転は最長240分、ゴミの容量は180mlです。"
+    },
+    {
+     "type": "p",
+     "text": "E35のステーションは幅37×奥行44.7×高さ41.1cm、C30 Edgeは幅33×奥行50×高さ31.5cmです。部屋が狭いなら、背が低いC30 Edgeが置きやすいかもしれません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "19万9900円",
+       "label": "E35の価格（税込み）"
+      },
+      {
+       "value": "12万9900円",
+       "label": "C30 Edgeの価格"
+      },
+      {
+       "value": "3万5000Pa",
+       "label": "2機種の最大吸引力"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "そのほかの画像",
+     "items": [
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/16775/684/16775-684-92bd4ec12845e5b1cd9188f5a2cb04c5-1652x1652.png",
+       "kind": "press",
+       "credit": "アンカー・ジャパン",
+       "caption": "製品の公式画像",
+       "page": "https://prtimes.jp/main/html/rd/p/000000684.000016775.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/16775/684/16775-684-2b3452eb0aec8fcf16e8262392c245f0-3900x3900.png",
+       "kind": "press",
+       "credit": "アンカー・ジャパン",
+       "caption": "製品の公式画像",
+       "page": "https://prtimes.jp/main/html/rd/p/000000684.000016775.html"
+      },
+      {
+       "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2152/602/007_l.jpg",
+       "kind": "ogp",
+       "credit": "家電 Watch",
+       "caption": "Anker Eufy Robot Vacuum Omni C30 Edge",
+       "page": "https://kaden.watch.impress.co.jp/docs/news/2152602.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買う人は、11月12日23時59分までの発売記念セールで、店ごとの価格を比べる。Amazonと楽天市場の一部はクーポンが必要",
+      "置き場所を決める前に、ステーションの大きさを測る。E35は幅37×奥行44.7×高さ41.1cm",
+      "家電量販店で実物を見たい人は、取り扱いがあるE35の店舗を探す。C30 Edgeは公式ストアなど4か所だけ",
+      "除菌や吸引力の数字は、メーカーが決めた条件の試験結果。すべての汚れに同じ効果があるとは限らない"
+     ]
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2152602.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2152602.html"
+    },
+    {
+     "name": "アンカー・ジャパン（PR TIMES）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000684.000016775.html"
+    },
+    {
+     "name": "ASCII.jp",
+     "url": "https://ascii.jp/elem/000/004/447/4447081/?rss="
+    },
+    {
+     "name": "corriente",
+     "url": "https://corriente.jp/anker-eufy-robot-vacuum-omni-e35-c30-edge-announced/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-amazon-q3-speed",
+   "category": "fukugyo",
+   "title": "Amazon、7〜9月に15億点超を当日・翌日配送",
+   "summary": "米Amazonは配送の速さが売上を押し上げていると説明。出品者向けの発表はありません。",
+   "image": {
+    "src": "https://assets.aboutamazon.com/b0/61/d441fbe34729ab3d162a3987f84c/about-amazon-inline-us2023db334-retail-brand-portrait-deliveryvan-driver-1-3x2-003042-jw-v4.jpg",
+    "kind": "press",
+    "credit": "Amazon",
+    "page": "https://www.aboutamazon.com/news/company-news/amazon-stores-growth-q3-2026-earnings"
+   },
+   "visual": {
+    "icon": "box",
+    "kicker": "Amazon決算"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "米Amazonは7〜9月に、プライム会員へ15億点超を当日か翌日に届けたと発表しました。",
+      "約30分で届く「Amazon Now」の注文点数は、前年の10倍になりました。",
+      "出品者向けの新ルールや手数料の発表はなく、すぐ必要な手続きもありません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "米Amazonは10月29日（現地時間）の決算発表で、7〜9月期は世界全体で過去最速の配送だったと明らかにしました。"
+    },
+    {
+     "type": "h",
+     "text": "配送の速さで何が変わった"
+    },
+    {
+     "type": "p",
+     "text": "アンディ・ジャシーCEOは、7〜9月にプライム会員へ当日か翌日に届けた商品が15億点を超えたと述べました。店舗事業の今年の販売数量は、前の年と比べて約15%増えました。"
+    },
+    {
+     "type": "p",
+     "text": "「Amazon Now」は注文から約30分で届くサービスで、450を超える都市・地域で使えます。注文点数は前年の10倍です。日本で使えるかどうかは、今回の発表では示されていません。"
+    },
+    {
+     "type": "h",
+     "text": "伸びているのは食品と日用品"
+    },
+    {
+     "type": "p",
+     "text": "生鮮食品と日用品は、7〜9月に店全体の約3倍の速さで伸びました。販売数量の約半分を占めています。"
+    },
+    {
+     "type": "p",
+     "text": "当日配送で生鮮食品を買う人は、使わない人より日用品を約7倍多く買っています。食料品をよく買う人は、家庭用品や衣料など食品以外も約4倍多く買い、使う金額は2倍を超えるとAmazonは説明しました。米専門メディアのSupermarket Newsによると、無料の当日配送で頼む生鮮食品は、月間注文数が1年で3倍超です。"
+    },
+    {
+     "type": "h",
+     "text": "配送コストと利益の見通し"
+    },
+    {
+     "type": "p",
+     "text": "Amazonは、商品1個あたりの配送コストを4年連続で下げる見込みです。コストを抑えることで、競合と同じか、より安い価格を出せるとしています。店舗事業は広告を含めて2桁の営業利益率を保っています。"
+    },
+    {
+     "type": "p",
+     "text": "会社全体の7〜9月期は、売上が2019億ドルで前年より12%増えました。営業利益率は13.9%で、過去最高です。広告収入は市場予想に届かなかったとSupermarket Newsは伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "出品者に関わる点と今後"
+    },
+    {
+     "type": "p",
+     "text": "今回の発表に、出品者向けの数字や手数料、ルール変更は含まれていません。AIの買い物アシスタントは、過去1年に4億人が使ったとSupermarket Newsが伝えています。やり取りは前年の570%増で、米国の利用者は使わない人より1回の注文で50%多く使うといいます。"
+    },
+    {
+     "type": "p",
+     "text": "買う人が早い配送に慣れるほど、発送に日数がかかる店は比べられやすくなるかもしれません。これは筆者の見方で、Amazonが述べたことではありません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "15億点超",
+       "label": "当日・翌日に届けた数"
+      },
+      {
+       "value": "10倍",
+       "label": "Amazon Nowの注文点数"
+      },
+      {
+       "value": "3倍",
+       "label": "生鮮・日用品の伸び"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Amazonで売っている人は、今回の発表で必要な手続きはない。",
+      "自分で発送している人は、商品ページに発送までの日数を書き、遅れそうなときは先に知らせる。",
+      "食品や日用品を扱う人は、早く届く競合が増える可能性を頭に入れておく。",
+      "日本の出品者向けの変更は、Amazonの出品者向けお知らせで確かめる。"
+     ]
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/05/16988",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/05/16988"
+    },
+    {
+     "name": "Amazon（公式）",
+     "url": "https://www.aboutamazon.com/news/company-news/amazon-stores-growth-q3-2026-earnings"
+    },
+    {
+     "name": "StartupHub.ai",
+     "url": "https://www.startuphub.ai/ai-news/public-companies/2026/amazon-stores-says-speed-is-fueling-its-growth.md"
+    },
+    {
+     "name": "Supermarket News",
+     "url": "https://www.supermarketnews.com/finance/amazon-touts-perishables-growth-in-q3"
+    },
+    {
+     "name": "Cord Cutters News",
+     "url": "https://cordcuttersnews.com/amazon-posts-201-9-billion-in-q3-sales-aws-revenue-climbs-39/"
+    }
+   ]
+  },
+  {
+   "id": "ai-openai-robots-build-datacenters",
+   "category": "ai",
+   "title": "OpenAI、ロボットでデータセンターを建てる構想",
+   "summary": "AIが半導体やデータセンターまで自分で増やす未来を、アルトマン氏が語りました。時期は未定です。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/business/articles/2611/05/dk_ms_2.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia ビジネスオンライン（提供：ゲッティイメージズ）",
+    "page": "https://www.itmedia.co.jp/business/articles/2611/05/news026.html"
+   },
+   "visual": {
+    "icon": "chip",
+    "kicker": "AIの増殖"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIがロボット事業の力をデータセンター建設に向ける構想を語った",
+      "アルトマン氏は「手の届くところ」と述べたが、時期や設計は未発表",
+      "今すぐ使い方が変わる話ではなく、実現するかも決まっていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIのサム・アルトマンCEOは、10月29日に公開された対談で、ロボットにデータセンターを建てさせる構想を語りました。"
+    },
+    {
+     "type": "h",
+     "text": "どんな構想か"
+    },
+    {
+     "type": "p",
+     "text": "アルトマン氏は、決済大手Stripe共同創業者のジョン・コリソン氏のポッドキャスト「Cheeky Pint」に出ました。AIがロボットを操って工場を動かし、タービンや太陽光パネルを作り、データセンターまで建てる。この未来を「手の届くところ」と呼び、「自己複製するデータセンター」と名付けています。狙いは、とても安い計算資源を大量に手に入れることです。"
+    },
+    {
+     "type": "h",
+     "text": "背景にある「AIがAIを作る」話"
+    },
+    {
+     "type": "p",
+     "text": "RSI（再帰的自己改善）とは、AIが次世代のAIの研究開発に加わり、その成果でさらに高性能なAIを作る仕組みです。アルトマン氏は、この話題はよく語られる一方、計算資源を作る物理的な仕組みにAIを使う話は少ないと述べました。"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia ビジネスオンラインに載ったエクサウィザーズ「AI新聞」の記事は、半導体や電力が足りなければAIの進化は止まると指摘します。筆者は、この構想をその壁を越える試みと位置づけています。"
+    },
+    {
+     "type": "h",
+     "text": "OpenAIの準備状況"
+    },
+    {
+     "type": "p",
+     "text": "アルトマン氏によると、OpenAIは独自の半導体をすでに作り、電力あたりの賢さで良い性能が出ています。自社でデータセンターを建てる方法も学んでいる最中です。TokenPostは、OpenAIが別に進める人型ロボットの試作機の披露が2027年に予定されていると伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "実現までのハードル"
+    },
+    {
+     "type": "p",
+     "text": "コリソン氏が、足りないのは作業員ではなく許可や部品ではないかと尋ねました。アルトマン氏は、ロボットが部品をもっと作れるので、長い時間をかけて解決すると答えています。導入の日付、ロボットの設計、具体的な作業内容は示されていません。"
+    },
+    {
+     "type": "p",
+     "text": "AIの評価会社Vals AIのラヤン・クリシュナン氏は、10月26日の対談で、半導体とエネルギーには大きな資源の制約が残ると述べました。同社が作る「RSI Index」は、AIが次世代AIの開発をどこまで自動化できるかを測る指標で、今後は半導体の設計なども評価に加える考えです。"
+    },
+    {
+     "type": "h",
+     "text": "コストの目安"
+    },
+    {
+     "type": "p",
+     "text": "アルトマン氏は、AI用の電力設備1ギガワット分を建て、5年動かすのに700億ドルかかると見ています。200億ドルになれば「ずっとうれしい」と話しました。TNWは、この数字を確認できていないとしています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "700億ドル",
+       "label": "1GW分の建設と5年運用"
+      },
+      {
+       "value": "200億ドル",
+       "label": "アルトマン氏が望む水準"
+      },
+      {
+       "value": "2027年",
+       "label": "人型ロボット試作機の披露"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ChatGPTなどを使う人：今すぐ変わることはありません。時期も設計も示されておらず、構想の段階です",
+      "ニュースを読むとき：「手の届くところ」はアルトマン氏本人の見方です。日程が示されていないため、実現するかはまだわかりません",
+      "次に確認すること：OpenAIが人型ロボットの試作機を披露するとされる2027年の発表"
+     ]
+    }
+   ],
+   "source_name": "ITmedia ビジネスオンライン",
+   "source_url": "https://www.itmedia.co.jp/business/articles/2611/05/news026.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ITmedia ビジネスオンライン（1ページ目）",
+     "url": "https://www.itmedia.co.jp/business/articles/2611/05/news026.html"
+    },
+    {
+     "name": "ITmedia ビジネスオンライン（2ページ目）",
+     "url": "https://www.itmedia.co.jp/business/articles/2611/05/news026_2.html"
+    },
+    {
+     "name": "The Next Web",
+     "url": "https://thenextweb.com/news/sam-altman-openai-robots-self-replicating-data-centres-cheeky-pint"
+    },
+    {
+     "name": "TokenPost",
+     "url": "https://www.tokenpost.com/news/technology/43797"
+    }
+   ]
+  },
+  {
+   "id": "kaden-lovot-godzilla",
+   "category": "kaden",
+   "title": "ゴジラLOVOTが64万6500円、予約は11月8日まで",
+   "summary": "映画『ゴジラ-0.0』とのコラボ。数量限定で、届くのは2027年1月下旬以降です。",
+   "image": {
+    "src": "https://lovot.life/_nuxt/body_set_lovot_large.CCZ7v9vu.webp",
+    "kind": "press",
+    "credit": "GROOVE X",
+    "caption": "ゴジラのベースウェアを着た LOVOT 3.0（こげ）",
+    "page": "https://lovot.life/lp/godzilla-minuszero"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "ロボット限定品"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "GROOVE Xが、ゴジラ姿のLOVOT 3.0を数量限定で販売する",
+      "価格は64万6500円（税込み、予定）で、予約は11月8日まで",
+      "届くのは2027年1月下旬以降で、月額料金が別にかかる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "GROOVE Xは、家庭用ロボット「LOVOT」のゴジラ仕様セットを64万6500円（税込み、予定）で数量限定販売します。予約は11月8日までです。"
+    },
+    {
+     "src": "https://lovot.life/_nuxt/lovot_front.CBORCYe2.webp",
+     "kind": "press",
+     "credit": "GROOVE X",
+     "caption": "ゴジラのベースウェアを着た LOVOT（正面）",
+     "page": "https://lovot.life/lp/godzilla-minuszero",
+     "type": "img"
+    },
+    {
+     "type": "h",
+     "text": "セットの中身"
+    },
+    {
+     "type": "p",
+     "text": "「ゴジラLOVOT本体セット」の中身は3つです。LOVOT 3.0の「こげ」色の本体、映画『ゴジラ-0.0』のベースウェア（着せる服）、このセット限りのTシャツです。本体の色は選べません。ウェアは、しわ加工の布でゴジラのごつごつした肌を、立体の背びれで姿を表しています。"
+    },
+    {
+     "type": "h",
+     "text": "価格・予約・届く時期"
+    },
+    {
+     "type": "p",
+     "text": "価格は64万6500円（税込み、予定）です。ほかに月額のサービス料がかかります。金額は公式サイトで確かめられます。予約は10月30日〜11月8日で、LOVOTのウェブストアと全国のLOVOTストアで受け付けます。神戸阪急店は取り扱いません。"
+    },
+    {
+     "type": "p",
+     "text": "数量は限定ですが、数は公表されていません。予定数に達すると、予約が早く終わる場合があります。発送は2027年1月下旬から順次です。価格や内容、時期は変わることがあります。"
+    },
+    {
+     "type": "h",
+     "text": "単品のグッズも発売中"
+    },
+    {
+     "type": "p",
+     "text": "10月30日から、単品のグッズも売っています。ベースウェアだけなら2万5000円、バッグチャームは3980円、クリアファイルは1300円です（すべて税込み）。ベースウェアは洗濯機で洗えません。"
+    },
+    {
+     "type": "h",
+     "text": "映画館や店でのコラボ"
+    },
+    {
+     "type": "p",
+     "text": "映画は11月3日に公開されました。ゴジラのウェアを着たLOVOTが、全国の対象の映画館のロビーなどで来場者を迎えます。映画の半券をLOVOTストアに持っていくと、オリジナルステッカーがもらえます。数に限りがあります。"
+    },
+    {
+     "type": "p",
+     "text": "ストアでゴジラ関連の商品を買うと、先着50人にステッカーが付きます。オンラインの注文は対象外で、色は選べません。本体セットを予約した人の中から抽選で1人に、山崎貴監督のサイン入りポスターが当たります。"
+    },
+    {
+     "type": "h",
+     "text": "どんな人に向くか"
+    },
+    {
+     "type": "p",
+     "text": "64万円台なので、映画のファンというより、LOVOTそのものを迎えたい人向けかもしれません。すでにLOVOTを持っている人は、2万5000円のベースウェアだけを買う選び方もあります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "64万6500円",
+       "label": "本体セットの価格"
+      },
+      {
+       "value": "11月8日",
+       "label": "予約の締め切り"
+      },
+      {
+       "value": "2万5000円",
+       "label": "ウェアだけの価格"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://lovot.life/_nuxt/lovot_back.DbGhoty0.webp",
+       "kind": "press",
+       "credit": "GROOVE X",
+       "caption": "ゴジラのベースウェアを着た LOVOT（背面）",
+       "page": "https://lovot.life/lp/godzilla-minuszero"
+      },
+      {
+       "src": "https://lovot.life/_nuxt/basewear_01_large.BSUH_YtQ.webp",
+       "kind": "press",
+       "credit": "GROOVE X",
+       "caption": "ゴジラのベースウェアの生地",
+       "page": "https://lovot.life/lp/godzilla-minuszero"
+      },
+      {
+       "src": "https://lovot.life/_nuxt/basewear_02_large.tIzM7lu7.webp",
+       "kind": "press",
+       "credit": "GROOVE X",
+       "caption": "ゴジラのベースウェアの背びれ",
+       "page": "https://lovot.life/lp/godzilla-minuszero"
+      },
+      {
+       "src": "https://lovot.life/_nuxt/bagcharm_large.B1y1cirh.webp",
+       "kind": "press",
+       "credit": "GROOVE X",
+       "caption": "映画『ゴジラ-0.0』バッグチャーム",
+       "page": "https://lovot.life/lp/godzilla-minuszero"
+      },
+      {
+       "src": "https://lovot.life/_nuxt/clearfile.DpwciT2m.webp",
+       "kind": "press",
+       "credit": "GROOVE X",
+       "caption": "映画『ゴジラ-0.0』クリアファイル（LOVOT面のイメージ）",
+       "page": "https://lovot.life/lp/godzilla-minuszero"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/55543/547/55543-547-43bf526661c8741b52a08032e4ac72b4-1920x1080.png",
+       "kind": "press",
+       "credit": "GROOVE X",
+       "caption": "ゴジラLOVOT本体セットの公式画像",
+       "page": "https://prtimes.jp/main/html/rd/p/000000547.000055543.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "本体セットがほしい人は、11月8日までにLOVOTのウェブストアか店舗で予約する",
+      "月額料金も別にかかる。公式サイトで金額を確かめてから決める",
+      "すでにLOVOTを持っている人は、ベースウェア単品（2万5000円）で楽しむ手もある",
+      "映画の半券があれば、対象のLOVOTストアでステッカーをもらえる。数に限りがある"
+     ]
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2153799.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2153799.html"
+    },
+    {
+     "name": "GROOVE X（PR TIMES 本体セット）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000547.000055543.html"
+    },
+    {
+     "name": "GROOVE X（PR TIMES コラボ）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000541.000055543.html"
+    },
+    {
+     "name": "LOVOT 公式サイト",
+     "url": "https://lovot.life/lp/godzilla-minuszero"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-etax-suspicious-stop",
+   "category": "fukugyo",
+   "title": "e-Taxが不審な通信で止まり5日再開　情報漏えいなし",
+   "summary": "申告・納税の窓口が半日以上止まった。情報は漏れていないが、原因はまだ不明。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/iw/docs/2153/812/01_l.png",
+    "kind": "ogp",
+    "credit": "INTERNET Watch",
+    "page": "https://internet.watch.impress.co.jp/docs/news/2153812.html"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "e-Tax停止"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "国税庁が不審な通信を検知し、e-Taxを11月4日に止めて5日に再開",
+      "国税庁は「納税者の情報は漏えいしていない」と確認、通信の中身は未公表",
+      "10月30日の接続障害の間に申告・納税した人は、受信通知の確認が必要"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "国税庁は11月5日、不審な通信を受けて止めていたe-Taxを再開しました。納税者の情報は漏えいしていないことを確認したとしています。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.itmedia.co.jp/news/article/image/2611/05/2000002887/10011329/728",
+     "kind": "ogp",
+     "credit": "ITmedia NEWS",
+     "caption": "国税庁がXで出した告知の画像。「本日、e-Taxにおいて不審な通信を検知した」と書かれている",
+     "page": "https://www.itmedia.co.jp/news/article/2611/05/2000002887/"
+    },
+    {
+     "type": "h",
+     "text": "4日に何が起きたのか"
+    },
+    {
+     "type": "p",
+     "text": "国税庁は11月4日、e-Taxで不審な通信を検知したと発表しました。確認のために機器のメンテナンスを行い、その間は申告も納税もできませんでした。"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia NEWSによると、昼ごろから使えなくなり、国税庁がXで知らせたのは午後8時過ぎでした。「昼休みに納税しようとしたらメンテ中だった」という声が出ています。年末調整の手続きを控えた人からは「できない」と困惑する投稿もありました。"
+    },
+    {
+     "type": "h",
+     "text": "情報は漏れたのか"
+    },
+    {
+     "type": "p",
+     "text": "国税庁は5日、必要な対応と安全の確認を終えて再開したと発表しました。あわせて、納税者の情報は漏えいしていないことを確認したと説明しています。"
+    },
+    {
+     "type": "p",
+     "text": "一方で、不審な通信の中身や原因、どこから来たのかは公表されていません。影響を受けた人の数もわかっていません。"
+    },
+    {
+     "type": "h",
+     "text": "10月30日の接続障害"
+    },
+    {
+     "type": "p",
+     "text": "国税庁によると、10月30日（金）の午前10時ごろから、e-Taxにつながりにくい状態が起きました。現在は解消しています。この間の申告や納税が、きちんと終わっていない場合があります。"
+    },
+    {
+     "type": "p",
+     "text": "国税庁は、e-Taxのメッセージボックスで受付結果（受信通知）を確かめるよう呼びかけています。創業手帳によると、受信通知が届くのが遅れた不具合もありました。一度確認した人も、もう一度見る必要があります。"
+    },
+    {
+     "type": "h",
+     "text": "ソフトの表示不具合も直った"
+    },
+    {
+     "type": "p",
+     "text": "9月26日の更新で、e-Taxソフトの一部の様式が正しく表示されない不具合が出ていました。11月2日に直した版が出ており、ソフトの入れ直しが必要です。創業手帳によると、申告や申請の内容に誤りが出ることはありません。"
+    },
+    {
+     "type": "p",
+     "text": "入れ直したかどうかは、メニューの「ヘルプ」から「バージョン情報」を開くとわかります。Version3.0.31と出ていれば最新です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "10月30日",
+       "label": "つながりにくくなった日"
+      },
+      {
+       "value": "11月4日",
+       "label": "不審な通信を検知"
+      },
+      {
+       "value": "11月5日",
+       "label": "e-Taxを再開"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "10月30日から11月5日の間にe-Taxで申告・納税した人は、メッセージボックスで受信通知を確認する",
+      "受付結果が見つからないときは、税務署や国税庁の案内で手続きの状況を確かめる",
+      "e-Taxソフトを使う人は、Version3.0.31になっているか確かめ、古ければ入れ直す",
+      "e-Taxをかたる不審メールへの注意が出ているので、メールのリンクは開かず公式サイトから入る"
+     ]
+    }
+   ],
+   "source_name": "創業手帳",
+   "source_url": "https://sogyotecho.jp/news/20261105e-tax/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "創業手帳",
+     "url": "https://sogyotecho.jp/news/20261105e-tax/"
+    },
+    {
+     "name": "国税庁 e-Tax",
+     "url": "https://www.e-tax.nta.go.jp/topics/2026/topics_20261030.htm"
+    },
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/05/2000002887/"
+    },
+    {
+     "name": "INTERNET Watch",
+     "url": "https://internet.watch.impress.co.jp/docs/news/2153812.html"
+    },
+    {
+     "name": "創業手帳",
+     "url": "https://sogyotecho.jp/news/20261104e-tax/"
+    }
+   ]
+  },
+  {
+   "id": "ai-copilot-dreaming",
+   "category": "ai",
+   "title": "GitHub、AIの指示書を自動で直すDreaming",
+   "summary": "Copilotに渡す指示書や記憶を裏で更新。有料プラン限定の試験公開です。",
+   "visual": {
+    "icon": "ai",
+    "kicker": "新機能"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "GitHubがAI「Copilot」の指示書や記憶を自動で整える新機能を発表",
+      "試験公開中。有料プランのみで、Copilot Proは対象外",
+      "実行のたびにAI利用枠を使うので、オンにする前に上限設定が必要"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "GitHubは10月28〜29日の開発者向けイベントで、Copilotの指示書を裏で更新する「Copilot Dreaming」を試験公開すると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何ができるのか"
+    },
+    {
+     "type": "p",
+     "text": "Copilot Dreamingは、AIに渡している指示書や記憶を、人の手を借りずに最新の状態へ保つ機能です。コードの中身が変わったり、AIモデルが入れ替わったりすると、古い指示書は役に立たなくなります。その古くなった部分を見つけて、直したり整理したりします。"
+    },
+    {
+     "type": "h",
+     "text": "どうやって学ぶのか"
+    },
+    {
+     "type": "p",
+     "text": "Copilotとのやりとりと、プルリクエスト（コードの変更案）への指摘を読み、そのプロジェクトの決まりごとを学びます。たとえば指示書に今は使わないテスト用コマンドが書かれていれば、直す案を出します。GitHubの説明ページによると、Copilotを開いていなくても動きます。"
+    },
+    {
+     "type": "p",
+     "text": "基調講演では、Javaで書いたアプリをSvelte（JavaScriptの仕組み）で作り直すデモがありました。Java向けの指示書を新しいコード向けに組み替え、変更案として出す様子が示されました。Publickeyが伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "変更がどう反映されるか"
+    },
+    {
+     "type": "p",
+     "text": "直したものが反映される方法は、3種類で違います。\n・記憶：承認なしで、追加・更新・削除される\n・指示書やスキルのファイル：プルリクエストで提案され、取り込むまで変わらない\n・コードレビュー用の指針：GitHub内部で更新され、プルリクエストは出ない"
+    },
+    {
+     "type": "h",
+     "text": "使える人と費用"
+    },
+    {
+     "type": "p",
+     "text": "対象は有料プランで、GPT-6.1 Solというモデルを使える人です。Copilot Proと、データの保存地域を指定するGitHub Enterprise Cloudは対象外です。1回動くごとにAIクレジット（利用枠）を使い、変更がなかった回や使っていないリポジトリ（コードの保管場所）でも消えます。価格の追加や正式版の時期は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "注意しておきたい点"
+    },
+    {
+     "type": "p",
+     "text": "AIが作った指針は間違うことがあります。GitHubは、提案されたファイルの変更を確認してから取り込むよう案内しています。記憶とコードレビュー用の指針は、プルリクエストを通さずに変わります。オフにしても、すでに行った変更は元に戻りません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "3種類",
+       "label": "自動で整えるもの"
+      },
+      {
+       "value": "1回ごと",
+       "label": "クレジットを使う単位"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "開発の仕事をしていない人は、今のところ特にすることはありません",
+      "仕事でCopilotを使う人は、有料プランでGPT-6.1 Solが使えるかを管理者に確認する",
+      "オンにする前に、AIクレジットの上限（支出の管理）を設定しておく",
+      "指示書の変更案が届いたら、中身を読んでから取り込む"
+     ]
+    }
+   ],
+   "source_name": "Publickey",
+   "source_url": "https://www.publickey1.jp/blog/26/github_copilot_dreaminggithub_universe_2026.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "Publickey",
+     "url": "https://www.publickey1.jp/blog/26/github_copilot_dreaminggithub_universe_2026.html"
+    },
+    {
+     "name": "GitHub Docs",
+     "url": "https://docs.github.com/en/copilot/concepts/prompting-and-context/copilot-dreaming"
+    },
+    {
+     "name": "Agent Patterns",
+     "url": "https://agentpatterns.ai/tools/copilot/copilot-dreaming/"
+    },
+    {
+     "name": "General Analysis",
+     "url": "https://generalanalysis.com/guides/github-copilot-dreaming-review-controls"
+    }
+   ]
+  },
+  {
+   "id": "kaden-roborock-qrevo-edge2-saros20",
+   "category": "kaden",
+   "title": "ロボロックの新型掃除機2機種、19万9000円から",
+   "summary": "伸びるローラーモップを持つ2機種で、発売は11月18日。差は洗浄温度などです。",
+   "image": {
+    "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104172628_528_.jpg",
+    "kind": "press",
+    "credit": "ロボロック（価格.com掲載）",
+    "caption": "Roborock Qrevo Edge 2 Flow",
+    "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160076/"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "ロボット掃除機"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ロボロックが、伸びるローラーモップ付きのロボット掃除機2機種を発表",
+      "Qrevo Edge 2 Flowは19万9000円、Saros 20 Flowは26万3780円",
+      "どちらも11月18日発売。Saros 20 Flowは予約中"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ロボロックは11月18日、ロボット掃除機「Qrevo Edge 2 Flow」を19万9000円、「Saros 20 Flow」を26万3780円で発売します。"
+    },
+    {
+     "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104181111_165_.jpg",
+     "kind": "press",
+     "credit": "ロボロック（価格.com掲載）",
+     "caption": "Roborock Saros 20 Flow",
+     "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160077/",
+     "type": "img"
+    },
+    {
+     "type": "h",
+     "text": "発売日・価格・買える場所"
+    },
+    {
+     "type": "p",
+     "text": "価格.comは、2機種の価格を税込みで載せています。発売日はどちらも11月18日です。Saros 20 Flowは、11月4日から全国のヤマダデンキとヤマダウェブコムで予約できます。Qrevo Edge 2 Flowの販売店は、発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "共通する掃除の仕組み"
+    },
+    {
+     "type": "p",
+     "text": "幅270mmのローラー型モップを、毎分最大240回転、最大15Nの力で押しつけて拭きます。壁際ではモップが伸びて、隅まで届きます。髪の毛やペットの毛がからまりにくい「デュアル絡まり防止ブラシ」と、角で回転の向きが変わるサイドブラシも付きます。"
+    },
+    {
+     "type": "p",
+     "text": "最大吸引力は、Qrevo Edge 2 Flowが3万5000Pa、Saros 20 Flowが3万6000Paです。Qrevo Edge 2 Flowは、カーペットの上でモップが最大15mm持ち上がり、カバーで水分の広がりを抑えます。"
+    },
+    {
+     "type": "h",
+     "text": "障害物と家具の下"
+    },
+    {
+     "type": "p",
+     "text": "2機種とも、家具の下に入るとセンサーが引っ込む「RetractSense」を採用します。Qrevo Edge 2 Flowの本体高さは8.98cmです。小物を見分けるAI「Reactive AI」も載ります。Qrevo Edge 2 Flowは280種類以上を見分けます。Saros 20 Flowは、幅と高さ約3cmの物を見つけます。"
+    },
+    {
+     "type": "p",
+     "text": "Saros 20 Flowは、2段階で合計8.8cmの段差を乗り越えます。Qrevo Edge 2 Flowは、前の「Qrevo Curv 2 Flow」より、角を掃除できる範囲が最大30%広くなりました。"
+    },
+    {
+     "type": "h",
+     "text": "ドックの違い"
+    },
+    {
+     "type": "p",
+     "text": "Qrevo Edge 2 Flowのドックは、最大75℃の水でモップを洗い、最大63℃の温風で乾かします。汚れ具合で洗い直しもします。Saros 20 Flowのドックは、最大100℃のお湯で洗い、洗剤を自動で入れます。ゴミの自動回収は、2機種とも最大65日分です。"
+    },
+    {
+     "type": "p",
+     "text": "Saros 20 Flowは、専用アプリで吸引力や水の量を変えられます。立入禁止の場所も決められます。スマートホームの規格Matterに対応し、Alexa、Siri、Google Homeから操作できます。"
+    },
+    {
+     "type": "h",
+     "text": "どちらを選ぶか"
+    },
+    {
+     "type": "p",
+     "text": "価格の差は6万4780円です。洗剤の自動投入や100℃のお湯洗い、段差越えを重くみるなら、Saros 20 Flowが向くかもしれません。価格を抑えたいなら、Qrevo Edge 2 Flowが候補になります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "19万9000円",
+       "label": "Qrevo Edge 2 Flowの価格"
+      },
+      {
+       "value": "26万3780円",
+       "label": "Saros 20 Flowの価格"
+      },
+      {
+       "value": "3万6000Pa",
+       "label": "Saros 20 Flowの吸引力"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104172628_246_.jpg",
+       "kind": "press",
+       "credit": "ロボロック（価格.com掲載）",
+       "caption": "Roborock Qrevo Edge 2 Flow",
+       "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160076/"
+      },
+      {
+       "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104172628_78_.jpg",
+       "kind": "press",
+       "credit": "ロボロック（価格.com掲載）",
+       "caption": "Roborock Qrevo Edge 2 Flow",
+       "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160076/"
+      },
+      {
+       "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104181111_237_.jpg",
+       "kind": "press",
+       "credit": "ロボロック（価格.com掲載）",
+       "caption": "Roborock Saros 20 Flow（モップ）",
+       "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160077/"
+      },
+      {
+       "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104181111_639_.jpg",
+       "kind": "press",
+       "credit": "ロボロック（価格.com掲載）",
+       "caption": "Roborock Saros 20 Flow（吸引とブラシ）",
+       "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160077/"
+      },
+      {
+       "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104181111_942_.jpg",
+       "kind": "press",
+       "credit": "ロボロック（価格.com掲載）",
+       "caption": "Roborock Saros 20 Flow（ナビゲーション）",
+       "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160077/"
+      },
+      {
+       "src": "https://img1.kakaku.k-img.com/Images/news_icv/900xM900/2026110/20261104181111_686_.jpg",
+       "kind": "press",
+       "credit": "ロボロック（価格.com掲載）",
+       "caption": "Roborock Saros 20 Flow（ドック）",
+       "page": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160077/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買う人は、発売日の11月18日を確認する。Saros 20 Flowは、11月4日からヤマダデンキなどで予約できる",
+      "Qrevo Edge 2 Flowの販売店は未発表。発売前に公式サイトや量販店で確かめる",
+      "ソファやベッドの下も掃除したい人は、本体の高さ（Qrevo Edge 2 Flowは8.98cm）を測っておく",
+      "カーペットが多い家は、モップの動きを店頭の説明で確かめる"
+     ]
+    }
+   ],
+   "source_name": "価格.com",
+   "source_url": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160076/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "価格.com（Qrevo Edge 2 Flow）",
+     "url": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160076/"
+    },
+    {
+     "name": "価格.com（Saros 20 Flow）",
+     "url": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2130/id=160077/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-yahoo-flea-safety-report",
+   "category": "fukugyo",
+   "title": "Yahoo!フリマ・ヤフオク、17.4万件を削除　転売AIも強化",
+   "summary": "転売対策のAI検知が46%から90%に上がり、出品者の見られ方も変わりそう。",
+   "image": {
+    "src": "https://www.lycorp.co.jp/ja/news/2026/c506132293a4c994663ca7d1a57ab7810429dd5f.png",
+    "kind": "press",
+    "credit": "LINEヤフー",
+    "page": "https://www.lycorp.co.jp/ja/news/release/020915/"
+   },
+   "visual": {
+    "icon": "cart",
+    "kicker": "フリマ安全策"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "LINEヤフーがYahoo!フリマとヤフオクの安全対策レポートを公開",
+      "2026年上半期に規約違反で消した商品は17.4万件で過去最多",
+      "出品者は、転売対策の強化とAI監視を前提に出品する必要がある"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "LINEヤフーは10月22日、Yahoo!フリマとヤフオクの安全対策レポートを公開しました。上半期の削除は17.4万件でした。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.lycorp.co.jp/ja/news/2026/628b87c87b686d27da3b541a9aa32cbed525f958.jpg",
+     "kind": "press",
+     "credit": "LINEヤフー",
+     "caption": "商品削除件数の推移。2026年上半期は過去最多の17.4万件",
+     "page": "https://www.lycorp.co.jp/ja/news/release/020915/"
+    },
+    {
+     "type": "h",
+     "text": "削除は過去最多の17.4万件"
+    },
+    {
+     "type": "p",
+     "text": "2026年上半期に、ガイドライン違反で削除した商品は17.4万件で、過去最多でした。LINEヤフーは、新しく作った転売対策ポリシーが数字を押し上げたとしています。"
+    },
+    {
+     "type": "h",
+     "text": "転売対策ポリシーの中身"
+    },
+    {
+     "type": "p",
+     "text": "このポリシーは4月に発表されました。利益目的の不正な買い占めや、買い占めで品薄になり正規の買い手が困る状況などに、出品を制限します。メーカーの注意や販売方法に反する取引も対象です。"
+    },
+    {
+     "type": "p",
+     "text": "転売をすべて禁じるわけではなく、市場への影響が大きい商品を指定して制限します。期間は、品薄が続く商品なら長く、発売日前後の需要増なら短くなります。過去には、2025年11月に定価超えの新品ゲームソフト、2026年1月に一部のプラモデルの出品が制限されました。"
+    },
+    {
+     "type": "h",
+     "text": "AIが出品と取引を見張る"
+    },
+    {
+     "type": "p",
+     "text": "新しく入れた「画像類似AI」は、公式サイトなどの基準画像と出品写真を見比べます。転売対策の対象商品では、検知率が文字による検知の46%から90%に上がりました。"
+    },
+    {
+     "type": "p",
+     "text": "出品時には、題名・説明文・写真をAIが読み、不正のリスクを点数にして、見回り担当者に知らせます。取引中も、メッセージからトラブルの兆候を探します。今後は、偽物や海賊版への対策として、AIによる見回りを強め、「権利侵害対策ガイドライン」も作る予定です。"
+    },
+    {
+     "type": "h",
+     "text": "出品者に関わる新機能"
+    },
+    {
+     "type": "p",
+     "text": "Yahoo!フリマに「他フリマ実績バッジ」が加わりました。ほかのフリマでの取引実績を連携し、審査を通ると、公式のバッジがプロフィールなどに出ます。Yahoo!フリマで新しく売る人が、信用を示す手段になります。"
+    },
+    {
+     "type": "p",
+     "text": "ヤフオクの鑑定サービスは、トレーディングカードに加えて、ファッション、アクセサリー、時計へ広がりました。対象は257ブランドです。"
+    },
+    {
+     "type": "h",
+     "text": "トラブルの割合と補償"
+    },
+    {
+     "type": "p",
+     "text": "取引トラブルの遭遇率は、Yahoo!フリマが0.26%、ヤフオクが0.10%でした。取引1万件あたり、それぞれ約26件と約10件です。算出方法を変えたため、過去の分も同じ基準でやり直しています。"
+    },
+    {
+     "type": "p",
+     "text": "買い手が「商品に満足できない」と申請できる「商品満足サポート」は、2026年8月時点で、審査が平均約0.7日で終わります。通過率は約93%で、お見舞いの付与は平均1日以内です。AIが申請内容を先に調べ、最終判断は専任スタッフが行います。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "17.4万件",
+       "label": "上半期に削除した商品"
+      },
+      {
+       "value": "90%",
+       "label": "転売の検知率（旧46%）"
+      },
+      {
+       "value": "0.26%",
+       "label": "フリマのトラブル遭遇率"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://www.lycorp.co.jp/ja/news/2026/39374313c5418c3a762b92d79ec23b54bc97f5f2.jpg",
+       "kind": "press",
+       "credit": "LINEヤフー",
+       "caption": "画像類似AIを使った転売対策の仕組みと、検知率の向上",
+       "page": "https://www.lycorp.co.jp/ja/news/release/020915/"
+      },
+      {
+       "src": "https://www.lycorp.co.jp/ja/news/2026/26db774edccc8c1429ee71b2d9487a631b0e6a65.jpg",
+       "kind": "press",
+       "credit": "LINEヤフー",
+       "caption": "出品時と取引中のAI検知の流れ、トラブル遭遇率の推移",
+       "page": "https://www.lycorp.co.jp/ja/news/release/020915/"
+      },
+      {
+       "src": "https://www.lycorp.co.jp/ja/news/2026/f05a98e8f47e7168e06cdffd43d1a5a1cc91cb2f.jpg",
+       "kind": "press",
+       "credit": "LINEヤフー",
+       "caption": "AIを使った補償審査の流れと、審査にかかる日数",
+       "page": "https://www.lycorp.co.jp/ja/news/release/020915/"
+      },
+      {
+       "src": "https://www.lycorp.co.jp/ja/news/2026/09b9a729889d5fb294617e4cb30b99ec70480428.jpg",
+       "kind": "press",
+       "credit": "LINEヤフー",
+       "caption": "Yahoo!フリマの「他フリマ実績バッジ」と、ヤフオクの鑑定対象の拡大",
+       "page": "https://www.lycorp.co.jp/ja/news/release/020915/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Yahoo!フリマやヤフオクで転売をする人は、対象商品に指定されていないか、制限ページで確かめる",
+      "定価超えの出品や買い占め品は、削除や出品制限の対象になりうるので避ける",
+      "ほかのフリマで実績がある人は、「他フリマ実績バッジ」の審査に申し込むと信用を示せる",
+      "買い手から「満足できない」と申請が出ると審査は約0.7日で終わるので、商品の状態は写真と説明文で正確に伝える"
+     ]
+    }
+   ],
+   "source_name": "ECのミカタ",
+   "source_url": "https://ecnomikata.com/ecnews/marketing/52064/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ECのミカタ",
+     "url": "https://ecnomikata.com/ecnews/marketing/52064/"
+    },
+    {
+     "name": "LINEヤフー",
+     "url": "https://www.lycorp.co.jp/ja/news/release/020915/"
+    },
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2150362.html"
+    },
+    {
+     "name": "CommercePick",
+     "url": "https://www.commercepick.com/archives/105342"
+    },
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/articles/2604/23/news091.html"
+    }
+   ]
+  },
+  {
+   "id": "ai-plamo3-translate",
+   "category": "ai",
+   "title": "PFNが翻訳AI「PLaMo 3 Translate」を公開",
+   "summary": "スマホでも動く翻訳AIの中身を公開。個人や小さな会社は無料で使えます。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2153/795/1.jpg",
+    "kind": "ogp",
+    "credit": "Impress Watch（AI Watch）",
+    "page": "https://ai.watch.impress.co.jp/docs/news/2153795.html"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "国産翻訳AI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "PFNが翻訳特化のAI「PLaMo 3 Translate」の中身を公開",
+      "53言語に対応し、4サイズ。小型版はスマホでオフライン翻訳できる",
+      "個人は無料。年間売上10億円以下の会社も、申込みで商用利用が無料"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "PFNは11月5日、翻訳に特化したAI「PLaMo 3 Translate」の中身を、誰でも入手できる形（オープンウェイト）で公開しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2153/784/2_l.png",
+     "kind": "ogp",
+     "credit": "Impress Watch（PC Watch）",
+     "caption": "PFNによるベンチマーク（性能比較）結果の図",
+     "page": "https://pc.watch.impress.co.jp/docs/news/2153784.html"
+    },
+    {
+     "type": "h",
+     "text": "何が公開されたのか"
+    },
+    {
+     "type": "p",
+     "text": "公開されたのは、PFNが自社の翻訳サービス「PLaMo翻訳」で使っているのと同じモデルです。AIの中身にあたる数値データ（重み）をHugging Face（AIの共有サイト）に置き、自分のパソコンや機器に入れて動かせるようにしました。"
+    },
+    {
+     "type": "h",
+     "text": "対応言語とサイズ"
+    },
+    {
+     "type": "p",
+     "text": "日本語と英語を含む53の言語の間で翻訳できます。大きさは0.8B・2B・8B・31Bの4種類で、数字が小さいほど軽く、動かす機器の性能に合わせて選べます。0.8B版（BF16形式）のデータは約1.78GBです。"
+    },
+    {
+     "type": "p",
+     "text": "小さい版は、スマホやノートPC、身につける機器の中で、ネットにつながなくても動きます。PC Watchによると、前後の文脈や用語集を渡して固有名詞の訳を固定したり、日本語を「です・ます」調か「だ・である」調かで指定したりもできます。"
+    },
+    {
+     "type": "h",
+     "text": "性能をどう比べたか"
+    },
+    {
+     "type": "p",
+     "text": "PFNの評価では、最小の0.8B版が、GoogleのTranslateGemmaやTencentのHy-MT2より、日本語がからむ翻訳で高い点数でした。Hugging Faceのページには、2B版が比べた翻訳特化AIをすべての指標で上回ったとも書かれています。いずれもPFN自身の評価で、第三者の検証結果は出ていません。"
+    },
+    {
+     "type": "h",
+     "text": "無料で使える条件"
+    },
+    {
+     "type": "p",
+     "text": "使い方は、PFNの「PLaMoコミュニティライセンス」で決まっています。\n・個人や学習、研究など商用でない利用：無料で、事前の登録は不要\n・前年度の売上が10億円以下の会社の商用利用：申込みフォームで登録すれば無料\n・売上が10億円を超える会社：別の契約が必要"
+    },
+    {
+     "type": "p",
+     "text": "入力と出力を合わせた長さは3万2768トークン（文字を数える単位）までです。これを超える長い文章は、分けて訳します。社内のサーバーで動かせば、契約書や研究資料を外部に送らずに訳せるとPFNは説明しています。PLaMo翻訳の料金や、日本の一般向けアプリは発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "53言語",
+       "label": "対応する言語の数"
+      },
+      {
+       "value": "4サイズ",
+       "label": "0.8B〜31Bの種類"
+      },
+      {
+       "value": "10億円",
+       "label": "商用が無料の売上上限"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "すぐ試したい人は、同じモデルを使うPLaMo翻訳のサービスを使う",
+      "自社で組み込みたい開発者は、前年度の売上が10億円以下でも、商用利用の前にフォーム登録をする",
+      "契約書など外に出せない文章を訳したい会社は、自社の機器で動かす形を検討する",
+      "長い文章は3万2768トークンを超えないよう、分けて入力する"
+     ]
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://ai.watch.impress.co.jp/docs/news/2153795.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "AI Watch",
+     "url": "https://ai.watch.impress.co.jp/docs/news/2153795.html"
+    },
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2153784.html"
+    },
+    {
+     "name": "Hugging Face（PFN）",
+     "url": "https://huggingface.co/pfnet/plamo-3-translate-0.8b"
+    }
+   ]
+  },
+  {
+   "id": "kaden-at-twx9mk3",
+   "category": "kaden",
+   "title": "オーテクの最上位イヤホン、4万1800円で11月20日発売",
+   "summary": "ノイキャンが耳に合わせて自動調整され、ONでも本体だけで11時間もつ新型です。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/29075/65/29075-65-db69bb2da8158c52b842749a9f4416a2-1187x512.png?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "オーディオテクニカ",
+    "page": "https://ascii.jp/elem/000/004/448/4448703/"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "完全ワイヤレス"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "オーディオテクニカが最上位の完全ワイヤレス新型を発売",
+      "価格は4万1800円。ノイキャンONで本体だけ11時間もつ",
+      "装着の状態に合わせて、雑音を消す強さが自動で変わる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "オーディオテクニカは11月20日、完全ワイヤレスイヤホンの新しい最上位「ATH-TWX9MK3」を発売します。色はブラックとベージュです。"
+    },
+    {
+     "type": "img",
+     "src": "https://av.watch.impress.co.jp/img/avw/list/2153/884/at01.jpg",
+     "kind": "ogp",
+     "credit": "AV Watch",
+     "caption": "ブラックのATH-TWX9MK3",
+     "page": "https://av.watch.impress.co.jp/docs/news/2153884.html"
+    },
+    {
+     "type": "h",
+     "text": "価格と買える場所"
+    },
+    {
+     "type": "p",
+     "text": "価格はオープンで、公式オンラインストアでは4万1800円です。Amazonでも2色とも扱われます。PHILE WEBは、税込みの実売予想を4万1800円前後と伝えています。"
+    },
+    {
+     "type": "p",
+     "text": "公式オンラインストアでは、11月27日23時59分までに買うか予約すると、オリジナルのミニポーチがもらえます。イヤホンを入れられ、カラビナ（留め具）が付いています。"
+    },
+    {
+     "type": "h",
+     "text": "耳に合わせて変わるノイキャン"
+    },
+    {
+     "type": "p",
+     "text": "新機能「フィット・アダプティブ」は、イヤホンの付け方や耳の形を測り、雑音を打ち消す設定を自動で調整します。ノイキャン（周りの音を打ち消す機能）の効きが、人によって変わりにくくなります。"
+    },
+    {
+     "type": "p",
+     "text": "雑音を拾うマイクも新しくなりました。感度のよいMEMSマイクを使い、雑音の検出精度が前モデルのMK2より上がったと、オーディオテクニカは説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "音質と対応する音声方式"
+    },
+    {
+     "type": "p",
+     "text": "音を出す部品は、5.8mmの新型ドライバー「Pure Motion Driver Gen2」です。振動板にベリリウムをコートし、音の立ち上がりと収まりを速くして、音のにじみを減らしたとしています。"
+    },
+    {
+     "type": "p",
+     "text": "Bluetoothは6.0で、LDACなどに加えて、最大192kHz/24bitのLHDC-V5に新しく対応します。ただし、対応するスマホやプレーヤーが必要です。LE AudioとAuracastの受信は、後日のアップデートで加わる予定だと、Android Plusが伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "電池の持ちと使い勝手"
+    },
+    {
+     "type": "p",
+     "text": "ノイキャンONの再生時間は、イヤホン単体で11時間、ケース併用で33時間です。OFFなら15時間と45時間に伸びます。ONの持ちはMK2の約1.8倍になりました。15分の充電で約1.5時間聴けます。"
+    },
+    {
+     "type": "p",
+     "text": "ケースはワイヤレス充電にも対応します。重さはイヤホン1個が約5.1g、ケースが約50gです。防水はIPX4相当で、汗や水しぶきに耐えます。耳に当たる部分の楕円形イヤーピースは、同社の完全ワイヤレスで初めてで、8通りが付属します。"
+    },
+    {
+     "type": "h",
+     "text": "アプリと試聴できる場所"
+    },
+    {
+     "type": "p",
+     "text": "専用アプリ「Connect」には、アルファ波やガンマ波のリズムを意識した環境音「ニューロミュージック」が加わりました。曲はVIE社が提供します。好みの音を4ステップで作る「サウンドナビゲーター」も使えます。"
+    },
+    {
+     "type": "p",
+     "text": "11月7日の「秋のヘッドフォン祭 2026」で、実機を試せます。会場は東京・八重洲のStation Conference Tokyoの5階503号室で、時間は11時から18時、入場は無料です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4万1800円",
+       "label": "公式ストアの価格"
+      },
+      {
+       "value": "11時間",
+       "label": "ノイキャンON・本体のみ"
+      },
+      {
+       "value": "約1.8倍",
+       "label": "MK2とのON時の持ち"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/29075/65/29075-65-bb74f882470798403cccbd1f0f9d7276-1547x450.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "オーディオテクニカ",
+       "caption": "新型ドライバーの分解図",
+       "page": "https://ascii.jp/elem/000/004/448/4448703/"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/29075/65/29075-65-a7216bfd82eec4afb675ff6e28ed165c-1213x809.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "オーディオテクニカ",
+       "caption": "フィット・アダプティブANCの紹介",
+       "page": "https://ascii.jp/elem/000/004/448/4448703/"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/29075/65/29075-65-381d423d7cd9523d953edea136fdbbbd-1211x808.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "オーディオテクニカ",
+       "caption": "ニューロミュージックの紹介",
+       "page": "https://ascii.jp/elem/000/004/448/4448703/"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/29075/65/29075-65-2a884946a3c6f7c4dcaee5cbfa379ffb-3900x2600.jpg?width=536&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "オーディオテクニカ",
+       "caption": "購入特典のミニポーチ",
+       "page": "https://ascii.jp/elem/000/004/448/4448703/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "MK2を使っている人は、ノイキャンONの再生時間が約1.8倍になる点が買い替えの目安です。",
+      "特典のミニポーチがほしい人は、11月27日23時59分までに公式オンラインストアで買うか予約します。",
+      "先に音を確かめたい人は、11月7日の「秋のヘッドフォン祭 2026」で試せます。",
+      "192kHz/24bitで聴くには、LHDC-V5に対応したスマホやプレーヤーが要ります。"
+     ]
+    }
+   ],
+   "source_name": "AV Watch",
+   "source_url": "https://av.watch.impress.co.jp/docs/news/2153884.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "AV Watch",
+     "url": "https://av.watch.impress.co.jp/docs/news/2153884.html"
+    },
+    {
+     "name": "PHILE WEB",
+     "url": "https://www.phileweb.com/news/d-av/202611/05/66293.html"
+    },
+    {
+     "name": "Android Plus",
+     "url": "https://androplus.jp/entry/ath-twx9mk3/"
+    },
+    {
+     "name": "ASCII.jp（オーディオテクニカ発表）",
+     "url": "https://ascii.jp/elem/000/004/448/4448703/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-nexer-trouble-survey",
+   "category": "fukugyo",
+   "title": "ネット通販の商品トラブル、最多は破損・汚れ19.1%",
+   "summary": "トラブルのあと同じ店で買い直した人は29.3%。梱包と検品が、次の注文を左右する。",
+   "image": {
+    "src": "https://img.ecnomikata.com/img_contents/ecnews/images/52059_thumbnail_main3.jpg?now=20261105120000",
+    "kind": "ogp",
+    "credit": "ECのミカタ",
+    "page": "https://ecnomikata.com/ecnews/marketing/52059/"
+   },
+   "visual": {
+    "icon": "box",
+    "kicker": "通販の不満"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "NEXER Groupと大黒が、ネット通販の商品トラブルの調査を発表",
+      "最多は破損・汚れの19.1%。トラブル後に同じ店で買い直した人は29.3%",
+      "個人の出品者も、梱包と検品の見直しが買い直しにつながるかもしれない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "NEXER Groupと物流会社の大黒が10月29日に調査を発表。商品トラブルは破損・汚れが19.1%で最多でした。"
+    },
+    {
+     "type": "img",
+     "src": "https://img.ecnomikata.com/img_contents/ecnews/images/52059_5_sub1.jpg?now=20261105120000",
+     "kind": "ogp",
+     "credit": "ECのミカタ",
+     "caption": "トラブルのあとに同じ店で買い直したかを示すグラフ",
+     "page": "https://ecnomikata.com/ecnews/marketing/52059/"
+    },
+    {
+     "type": "h",
+     "text": "どんな調査か"
+    },
+    {
+     "type": "p",
+     "text": "全国の男女500人が、インターネットで答えました。期間は10月14日から21日です。通販を「利用しない」と答えた人は19.4%いました。"
+    },
+    {
+     "type": "h",
+     "text": "トラブルの中身"
+    },
+    {
+     "type": "p",
+     "text": "通販を使う人のうち、トラブルが「なかった」人は58.6%でした。起きたトラブルで一番多いのは、破損や汚れの19.1%です。注文と違う商品が届いたのは13.6%でした。"
+    },
+    {
+     "type": "p",
+     "text": "回答には、電球が割れて届いた、荷物が雨でぬれていた、頼んだものとサイズが違ったといった例がありました。いずれも30代女性の声です。"
+    },
+    {
+     "type": "h",
+     "text": "トラブル後の買い直し"
+    },
+    {
+     "type": "p",
+     "text": "トラブルにあった人のうち、同じ店や出品者から買い直したのは29.3%でした。買い直さなかった人は43.7%で、買い直した人より多い結果です。NEXERは、一度のトラブルで購入を控える人が少なくないとみています。"
+    },
+    {
+     "type": "h",
+     "text": "梱包と検品を見る人は約7割"
+    },
+    {
+     "type": "p",
+     "text": "通販を使う人の69.7%が、梱包の丁寧さや出品者の検品の体制を気にしています。「とても」と「やや」の合計です。"
+    },
+    {
+     "type": "p",
+     "text": "出品者がプロの物流会社に検品と梱包を任せているとわかると、安心できる人も67.9%いました。NEXERは、商品の質に加えて、丁寧な梱包、検品、トラブル時の誠実な対応が、選ばれ続ける条件だと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "個人の出品者に置き換えると"
+    },
+    {
+     "type": "p",
+     "text": "この調査は買い手の声で、売り手の数字ではありません。ただ、フリマやネットショップでも、割れ物や雨ぬれは起きやすい失敗です。外箱の防水、緩衝材、発送前の確認といった基本が、リピーターを減らさない近道になるかもしれません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "19.1%",
+       "label": "破損・汚れの経験"
+      },
+      {
+       "value": "43.7%",
+       "label": "トラブル後に買い直さず"
+      },
+      {
+       "value": "69.7%",
+       "label": "梱包・検品を気にする人"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "割れ物や液体の商品は、緩衝材と防水の包装を使い、発送前に写真で状態を残す",
+      "注文と違う商品が出ないよう、梱包前に商品名・サイズ・色を注文内容と見比べる",
+      "トラブルが起きたら、返金や交換の連絡を早く出して、次の注文を失いにくくする",
+      "発送を自分で続けるのがきついときは、物流会社への委託も候補にする"
+     ]
+    }
+   ],
+   "source_name": "ECのミカタ",
+   "source_url": "https://ecnomikata.com/ecnews/marketing/52059/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ECのミカタ",
+     "url": "https://ecnomikata.com/ecnews/marketing/52059/"
+    }
+   ]
+  },
+  {
+   "id": "ai-askul-chatgpt",
+   "category": "ai",
+   "title": "アスクル、ChatGPTで商品を探して比べられる新機能",
+   "summary": "事業者向け通販ASKULがChatGPTと連携。商品名を知らなくても探せます。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/21550/552/21550-552-b7420c086d2689d16c4a1632b5422f46-3200x1800.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "アスクル",
+    "page": "https://prtimes.jp/main/html/rd/p/000000552.000021550.html"
+   },
+   "visual": {
+    "icon": "cart",
+    "kicker": "AIで買い物"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "アスクルが、ChatGPTの中でASKULの商品を探せる連携を始めた",
+      "ChatGPTで「@ASKUL」と入力。接続の承認は初回の1回だけ",
+      "買う手続きは、ChatGPTから案内されるASKULのサイトで行う"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "アスクルは11月5日、事業者向け通販「ASKUL」をChatGPTのプラグイン機能につなぎ、会話の中で商品を探せるようにしました。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/21550/552/21550-552-e44b568d08a70556903c0bea83c77b80-3200x1800.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "アスクル",
+     "caption": "アスクルの発表で使われた画像（2枚目）",
+     "page": "https://prtimes.jp/main/html/rd/p/000000552.000021550.html"
+    },
+    {
+     "type": "h",
+     "text": "何ができるようになったか"
+    },
+    {
+     "type": "p",
+     "text": "ChatGPTに使いたい場面や条件を話すと、ASKULの商品から候補を挙げてくれます。正確な商品名や、どれが目的に合うかを知らなくても大丈夫です。違いや選ぶ決め手も、検索をやり直さずに会話の中で聞けます。"
+    },
+    {
+     "type": "h",
+     "text": "使い始めるまでの手順"
+    },
+    {
+     "type": "p",
+     "text": "手順は次の3つです。\n・ChatGPTのプラグイン機能で「ASKUL」を探して選ぶ\n・画面の案内に従い、接続を承認する（初回の1回だけ）\n・メッセージの頭に「@ASKUL」と入力して、頼みたいことを書く"
+    },
+    {
+     "type": "p",
+     "text": "買うときは、候補の商品ページのリンクからASKULのサイトに移ります。ChatGPTの中では注文まで終わらず、サイトで検索や比較をして購入する流れです。"
+    },
+    {
+     "type": "h",
+     "text": "どんな頼み方ができるか"
+    },
+    {
+     "type": "p",
+     "text": "アスクルは、次のような例を挙げています。\n・梱包用のガムテープでおすすめを知りたい\n・オフィスの給湯室やトイレ用に、破れにくく肌ざわりのよいペーパータオルを探したい\n・調理用の手袋について、素材ごとの違いを比べたい"
+    },
+    {
+     "type": "h",
+     "text": "なぜ始めたのか"
+    },
+    {
+     "type": "p",
+     "text": "アスクルは、事業者の買い物では、使う人と注文する人が別になりがちだと説明しています。注文担当者は現場の「あいまいな依頼」をもとに商品を選ぶため、比べる手間がかかります。AIを使った買い物は、これまで衣料品や旅行など個人向けで先に広がっていました。今回それを事業者向けに広げた形です。"
+    },
+    {
+     "type": "h",
+     "text": "まだわかっていないこと"
+    },
+    {
+     "type": "p",
+     "text": "連携を使えるChatGPTのプランや、料金は発表されていません。利用できる地域や、ASKULの会員登録が必要かどうかも明らかにされていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "3手順",
+       "label": "使い始めるまでの流れ"
+      },
+      {
+       "value": "1回",
+       "label": "接続の承認が必要な回数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ASKULを仕事で使う人は、ChatGPTで「ASKUL」を選んで接続し、「@ASKUL」から頼めるか試す",
+      "商品名がわからない備品は、使う場面や条件を書いて候補を出してもらう",
+      "買う前に、ASKULのサイトで価格と仕様を必ず確かめる",
+      "利用できるプランと料金は未発表なので、アスクルの案内を待つ"
+     ]
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2153916.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2153916.html"
+    },
+    {
+     "name": "アスクル（PR TIMES）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000552.000021550.html"
+    },
+    {
+     "name": "LNEWS",
+     "url": "https://www.lnews.jp/2026/11/s1105503.html"
+    }
+   ]
+  },
+  {
+   "id": "kaden-iflytek-p1pro-recorder",
+   "category": "kaden",
+   "title": "iFLYTEKのAI録音機、議事録まで自動で2万9800円",
+   "summary": "録音から文字起こし、要約、やることの抜き出しまで任せられる約55gの録音機です。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2153/657/mw_p1pro_01_l.jpg",
+    "kind": "ogp",
+    "credit": "PC Watch",
+    "page": "https://pc.watch.impress.co.jp/docs/column/yajiuma-mini-review/2153657.html"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "AI録音機"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "中国発のiFLYTEKが、AI搭載の録音機「P1 Pro」を販売",
+      "実売価格は2万9800円。重さは約55gで、11言語の文字起こしに対応",
+      "録音後に要約や議事録、やることの一覧まで自動でできる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "iFLYTEKのAI録音機「P1 Pro」の実売価格は2万9800円です。会議や講演の録音から、議事録までまとめられます。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2153/657/mw_p1pro_02_l.jpg",
+     "kind": "ogp",
+     "credit": "PC Watch",
+     "caption": "従来のICレコーダーとの大きさの比較",
+     "page": "https://pc.watch.impress.co.jp/docs/column/yajiuma-mini-review/2153657.html"
+    },
+    {
+     "type": "h",
+     "text": "価格と月額プラン"
+    },
+    {
+     "type": "p",
+     "text": "本体は2万9800円で、税込みかどうかは示されていません。購入すると、文字起こしが月300分まで使える「スターター」プランが付きます。"
+    },
+    {
+     "type": "p",
+     "text": "もっと使いたい人向けの「プロ」プランは、月2000円か年1万4000円で、月1800分まで使えます。12月31日までに購入して有効にすると、スターターとプロが3カ月分付くキャンペーンもあります。"
+    },
+    {
+     "type": "h",
+     "text": "録音機としての作り"
+    },
+    {
+     "type": "p",
+     "text": "金属製の細い本体で、重さは約55gです。万年筆にたとえられる細さです。マイクは指向性（特定の向きの音を拾う性質）のものが1個、全方向の音を拾うものが2個あり、10m先の声も拾えるとしています。"
+    },
+    {
+     "type": "p",
+     "text": "録音ボタンを短く押すと指向性、2秒長押しすると全方向で録音します。3.2インチの有機ELタッチ画面があり、スマホなしで録音の確認や時計の設定ができます。4桁の暗証番号による画面ロックもあります。"
+    },
+    {
+     "type": "p",
+     "text": "音質は96kHz/24bitの高音質録音にも対応します。1時間あたりの容量は、標準で約80MB、高音質だと45分で約2GBです。高音質は容量が大きく、転送にも時間がかかるので、必要なときだけ使うのがよさそうです。"
+    },
+    {
+     "type": "h",
+     "text": "文字起こしと議事録づくり"
+    },
+    {
+     "type": "p",
+     "text": "録音中は、本体が日本語や英語、中国語など11言語でリアルタイムに文字起こしをします。ただし精度は荒めです。「今すぐ文字起こし」を押すと、録音をクラウド（ネット上のサーバー）に送り、正確な文章に直します。"
+    },
+    {
+     "type": "p",
+     "text": "クラウドでの処理が終わると、アプリに全文、要約、議事録、やることの一覧が出ます。文章はすべてコピーできます。これらのAI機能は、ネットにつながっている必要があります。外出先ではスマホの通信量を使います。"
+    },
+    {
+     "type": "h",
+     "text": "翻訳と専用アプリ"
+    },
+    {
+     "type": "p",
+     "text": "同時通訳は、専用アプリ「Deepting」で使います。アプリストアで「iFLYTEK」と検索しても出てこないので、アプリ名で探す必要があります。アプリから録音を始めることもでき、話し手のそばに置いた本体を離れて操作できます。"
+    },
+    {
+     "type": "h",
+     "text": "使ってみた結果"
+    },
+    {
+     "type": "p",
+     "text": "PC Watchの筆者は、イベントでP1 Proを試しました。全方向の録音で、登壇者も質問者もはっきり録れ、一瞬、ワイヤレスマイクが途切れても録音は続いたそうです。文字起こしの精度は、筆者の感覚で98%を超えていました。"
+    },
+    {
+     "type": "p",
+     "text": "TEDの講演では、リアルタイムの文字起こしは正確でした。一方、同時通訳には不自然な言い回しが残りました。録音が終わってからの翻訳は自然で、聞いている間は大意をつかみ、あとで細かいニュアンスを確かめる使い方が合うと、筆者は書いています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2万9800円",
+       "label": "本体の実売価格"
+      },
+      {
+       "value": "約55g",
+       "label": "本体の重さ"
+      },
+      {
+       "value": "11言語",
+       "label": "リアルタイム文字起こし"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "会議や講演の議事録づくりに時間がかかっている人は、録音から要約まで任せられるこの種の録音機が候補になります。",
+      "月300分を超えて使うなら、プロプラン（月2000円か年1万4000円）の費用も見込みます。",
+      "AI機能はネット接続が必要なので、外出先ではスマホの通信量を使うことになります。",
+      "同時通訳は不自然な訳が残るため、大事な内容は録音後の翻訳で確認します。"
+     ]
+    }
+   ],
+   "source_name": "PC Watch",
+   "source_url": "https://pc.watch.impress.co.jp/docs/column/yajiuma-mini-review/2153657.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/column/yajiuma-mini-review/2153657.html"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-tdb-food-price-nov",
+   "category": "fukugyo",
+   "title": "11月の食品値上げは1477品目、年間は2万品目超え",
+   "summary": "値上げの波は一服したが、仕入れ値は高いまま。2027年は小刻みな値上げが続く見通し。",
+   "image": {
+    "src": "https://img.ecnomikata.com/img_contents/ecnews/images/52066_thumbnail_insyokuryouhinneage.jpg?now=20261105140000",
+    "kind": "ogp",
+    "credit": "ECのミカタ",
+    "page": "https://ecnomikata.com/ecnews/marketing/52066/"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "食品値上げ"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "帝国データバンクが、11月の食品値上げは1477品目と発表",
+      "2026年は年間で2万327品目（確定分）と、2年連続で2万品目超え",
+      "食品を仕入れて売る人は、2027年も小刻みな値上げを見込んで価格を考える"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "帝国データバンクは10月30日、主要195社の飲食料品の値上げを調べ、11月は1477品目だったと発表しました。9月と10月に続いた大きな波は、いったん落ち着いています。"
+    },
+    {
+     "type": "img",
+     "src": "https://img.ecnomikata.com/img_contents/ecnews/images/52066_2_sub.jpg?now=20261105140000",
+     "kind": "ogp",
+     "credit": "ECのミカタ（帝国データバンクの調査グラフ）",
+     "caption": "食品主要195社の価格改定の調査結果をまとめたグラフ",
+     "page": "https://ecnomikata.com/ecnews/marketing/52066/"
+    },
+    {
+     "type": "h",
+     "text": "11月は1477品目、波は一服"
+    },
+    {
+     "type": "p",
+     "text": "11月の値上げは1477品目で、1回あたりの平均は17%でした。月の品目数が3000を下回ったのは、3か月ぶりです。ただ、2022年以降の11月では2番目に多く、2025年11月の150品目の約10倍です。"
+    },
+    {
+     "type": "p",
+     "text": "11月に一番多かったのは調味料の644品目で、ソースやマヨネーズなどです。年間の累計は2万327品目で、2025年の2万609品目に近づく見込みです。9月と10月だけで約8000品目、年間の約4割を占めました。"
+    },
+    {
+     "type": "h",
+     "text": "年間で多かった品目と理由"
+    },
+    {
+     "type": "p",
+     "text": "年間の品目別では、冷凍食品や包装米などの加工食品が6968品目で最多でした。調味料が6258品目、酒類・飲料が3381品目、菓子が1415品目と続きます。"
+    },
+    {
+     "type": "p",
+     "text": "理由の最多は原材料高の91.7%ですが、調べ始めた2023年以降で最も低い割合です。電気代などのエネルギーは63.9%、賃上げに伴う人件費は51.5%で、人件費は過去最高になりました。中東情勢を挙げた値上げも27.5%あります。"
+    },
+    {
+     "type": "h",
+     "text": "2027年の見通し"
+    },
+    {
+     "type": "p",
+     "text": "帝国データバンクは、食品の値上げは2027年も続くと見ています。ただ、2026年のような全国一斉の波ではなく、商品や分野ごとに時期をずらした値上げが中心になるとしています。パンなどでは、2027年の値上げがすでにわかっています。"
+    },
+    {
+     "type": "p",
+     "text": "企業は買い手の反応を見ながら価格に上乗せするため、ペースは2026年より遅くなる可能性があります。長引く物価高で家計は苦しいため、値上げの理由を以前より丁寧に説明する必要があるとも指摘しています。"
+    },
+    {
+     "type": "h",
+     "text": "個人の売り手に関わること"
+    },
+    {
+     "type": "p",
+     "text": "食品や食品に近い雑貨を仕入れて売る人は、仕入れ値と送料の動きが利益に直結します。ECのミカタは、仕入れ費用や物流の動きを踏まえて、価格と販売の計画を見直すよう呼びかけています。値上げするときは、理由を商品ページに書くと伝わりやすくなるでしょう。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1477品目",
+       "label": "2026年11月の値上げ"
+      },
+      {
+       "value": "2万327品目",
+       "label": "2026年の累計（確定分）"
+      },
+      {
+       "value": "17%",
+       "label": "1回あたりの平均上げ幅"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "食品を仕入れて売る人は、仕入れ値が上がった商品から、利益が残る価格かを確かめる",
+      "値上げする商品は、理由を商品ページやお知らせに書いて、買い手に伝える",
+      "2027年は商品ごとに時期をずらした値上げが続く見通しなので、仕入れ先の案内をこまめに見る",
+      "送料や梱包費も上がっていないかを、月ごとに確認する"
+     ]
+    }
+   ],
+   "source_name": "ECのミカタ",
+   "source_url": "https://ecnomikata.com/ecnews/marketing/52066/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ECのミカタ",
+     "url": "https://ecnomikata.com/ecnews/marketing/52066/"
+    }
+   ]
+  },
+  {
+   "id": "ai-replit-japan-smfl",
+   "category": "ai",
+   "title": "Replitが日本に拠点、SMFLと企業向けAI開発を展開",
+   "summary": "話しかけてアプリを作るReplitが日本へ。6人半年の作業が1人1週間に。",
+   "visual": {
+    "icon": "pc",
+    "kicker": "AIでアプリ開発"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "米Replitが日本に拠点を開設。企業向けのAI開発サービスを強める",
+      "三井住友ファイナンス＆リースの事例で、6人で半年の作業が1人1週間に",
+      "AIが作ったプログラムは、検査用のAIと人の技術者が確認する"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "米Replitは11月5日、日本に拠点を開き、三井住友ファイナンス＆リース（SMFL）と企業向けのAI開発を始めると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "Replitとはどんなサービスか"
+    },
+    {
+     "type": "p",
+     "text": "Replitは、ふつうの言葉で指示するとアプリを作ってくれる、ネット上の開発サービスです。プログラミングの専門知識がなくても使えます。こうした作り方は「バイブコーディング」と呼ばれます。Replitは9月に欧州向けのロンドン拠点を開いており、日本はアジア市場への足がかりという位置づけです。"
+    },
+    {
+     "type": "h",
+     "text": "SMFLが始める企業向けサービス"
+    },
+    {
+     "type": "p",
+     "text": "SMFLは、Replitを使って企業ごとにつくり込めるネット業務ソフト（SaaS）を提供すると発表しました。ふつうの業務ソフトでは対応しにくい、会社ごとの仕事のやり方に合わせるのが狙いです。現場の担当者が開発に直接加わり、言葉にしにくい経験やコツも反映できるといいます。"
+    },
+    {
+     "type": "h",
+     "text": "どれくらい早くなったか"
+    },
+    {
+     "type": "p",
+     "text": "SMFLの事例では、これまで6人で約半年かかっていた個別の作り込みを、Replitを使って1人が1週間で終えました。200以上の画面がある固定資産の会計システムの作り直しでは、要件を決めたあとの開発とテストの期間が、従来の3分の1になる見込みです。"
+    },
+    {
+     "type": "h",
+     "text": "安全と品質はどう守るか"
+    },
+    {
+     "type": "p",
+     "text": "SMFLは、自社の資産管理クラウド「assetforce」とReplitのアプリをつなぐ基盤「ADP」を作りました。データへの権限を管理し、会社が許した情報と操作だけを使える仕組みです。AIが書いたプログラムは、別の品質管理用AIが検査し、最後に人間の技術者が確認します。"
+    },
+    {
+     "type": "p",
+     "text": "Replit共同創業者でCEOのアムジャド・マサド氏は、企業が使うにはセキュリティと管理の仕組みが大事だと説明しました。会社専用のクラウド環境にReplitを入れる方法も紹介しています。"
+    },
+    {
+     "type": "h",
+     "text": "これからの予定とわからないこと"
+    },
+    {
+     "type": "p",
+     "text": "SMFLは、Replitのライセンス提供と顧客の紹介を始める準備を進めています。企業向けの研修も行い、11月27日には関連書籍「エンタープライズ バイブコーディングの衝撃」を発売する予定です。関連サービスの売上は5年で10倍にする目標です。料金と、日本での導入企業数の目標は発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "6人→1人",
+       "label": "個別の作り込みに要した人数"
+      },
+      {
+       "value": "半年→1週間",
+       "label": "その作業の期間"
+      },
+      {
+       "value": "3分の1",
+       "label": "開発・テスト期間の見込み"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "会社員や個人の方は、今のところ特にすることはありません。企業向けの動きです",
+      "業務ソフトの作り込みに悩む会社は、SMFLのライセンス提供や研修の案内を待つ",
+      "AIが作ったプログラムを使うときは、検査と人の確認が入っているか確かめる"
+     ]
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2153684.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2153684.html"
+    }
+   ]
+  },
+  {
+   "id": "kaden-xcpe-tvbox",
+   "category": "kaden",
+   "title": "Google、裏口入りTVボックス130万台の乗っ取りを阻止",
+   "summary": "安い無名ブランドのTVボックスを使う人は、買い替えも考えたい話です。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/pcuser/articles/2611/05/cover_news045.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia PC USER",
+    "page": "https://www.itmedia.co.jp/pcuser/articles/2611/05/news045.html"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "TV機器の裏口"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "中国メーカーが出荷前に裏口を仕込んだTVボックス130万台超を、Googleが止めた",
+      "裏口はアプリを消しても復活し、持ち主の回線が犯罪に使われた恐れがある",
+      "名前の知らない安いボックスを使っている人は、使い続けるか見直したい"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Googleは11月2日（米国時間）、中国メーカーが出荷前に裏口を仕込んだTVボックス130万台以上の乗っ取りを止めたと発表しました。警察庁も協力しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が起きたのか"
+    },
+    {
+     "type": "p",
+     "text": "「XCPE」と呼ばれる裏口プログラムが、テレビにつないで動画配信を見るAndroid TVボックスなどに入っていました。Googleは、この裏口を操る遠隔操作用のサーバーやドメインを、法的措置で止めました。警察庁のほか、LumenやHUMAN Security、Plume、Synthient、TrendAIが協力しています。"
+    },
+    {
+     "type": "h",
+     "text": "仕掛けたのは作った会社"
+    },
+    {
+     "type": "p",
+     "text": "Googleは、中国・深圳のVideostrong Technologyが裏口を作り、運用していたと高い確度で判断しています。複数の機種とブランドで何年も見つかったため、社員の暴走や作りのミスではないという見方です。同社は乗っ取った機器を使う権利を、犯罪グループに売っていました。"
+    },
+    {
+     "type": "p",
+     "text": "Googleは同社との関係を断ちました。Google認定のAndroid機器を作ることと、認定メーカーにソフトを提供することも、同社と今後の関連会社に禁じています。"
+    },
+    {
+     "type": "h",
+     "text": "裏口の動きと悪用のされ方"
+    },
+    {
+     "type": "p",
+     "text": "裏口はボックスの基本ソフトの領域に最初から入っていて、アプリとして消しても再起動で復活します。ウイルス対策機能のGoogle Play Protectを止め、ほかのアプリをこっそり入れることもできました。画面の撮影やキー入力の送信もできたと、BleepingComputerとThe Hacker Newsは伝えています。"
+    },
+    {
+     "type": "p",
+     "text": "犯罪グループの使い方は主に2つです。1つは広告詐欺で、見えない画面で広告を表示・クリックし、広告主からお金を取ります。もう1つは「住宅プロキシ」で、他人の家のネット回線を踏み台にし、その地域の家庭からのアクセスに見せかけます。"
+    },
+    {
+     "type": "h",
+     "text": "日本の家庭への影響"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia PC USERによると、感染は200以上の国と地域に広がっています。TrendAIは6月3日から10月1日の間に、206機種で147万2554台の感染を数えました。The Hacker Newsは、日本は感染が多い国の一覧に入っていないと伝えています。ただ、日本の家庭の回線も同じ手口で悪用される恐れがあります。"
+    },
+    {
+     "type": "p",
+     "text": "総務省は2026年3月に、「有料放送が無料で見られる」とうたう安い機器が、攻撃の中継に使われうると注意していました。今回は機器を作った会社自身が裏口を入れていた点が、これまでと違います。"
+    },
+    {
+     "type": "h",
+     "text": "すでに使っている人の対処"
+    },
+    {
+     "type": "p",
+     "text": "今回の遮断で、裏口そのものが機器から消えたわけではありません。Plumeは、ほかの裏口が入った恐れもあるため、工場出荷状態への初期化を勧めています。ただ、初期化で裏口が消えるかは明らかにされていません。Synthientは、感染した機器を捨てるよう勧めています。ネットから外せば、悪用は止められるとBleepingComputerは伝えています。"
+    },
+    {
+     "type": "p",
+     "text": "Googleが遮断で切り離せるとみる機器は、ほかの経路で感染した分を含め、1000万台以上です。遠隔医療用の機器、カラオケ機、電子看板にも感染が見つかっています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "130万台以上",
+       "label": "乗っ取られたボックス"
+      },
+      {
+       "value": "147万2554台",
+       "label": "TrendAIが数えた感染"
+      },
+      {
+       "value": "1000万台以上",
+       "label": "切り離せる感染機器"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "名前を知らないメーカーの安いAndroid TVボックスや、有料放送が無料になるとうたう機器を使っている人は、ネットから外すか買い替えを考える",
+      "機器のメーカー名と型番を確かめ、Android TVの公式サイトのパートナー一覧にあるメーカーか調べる",
+      "アプリを消すだけでは直らないので、初期化しても安心とは言い切れない。不安なら捨てて新しく買う",
+      "これから買うなら、値段だけで選ばず、信頼できるメーカーの製品にする"
+     ]
+    }
+   ],
+   "source_name": "ITmedia PC USER",
+   "source_url": "https://www.itmedia.co.jp/pcuser/articles/2611/05/news045.html",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "ITmedia PC USER",
+     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/05/news045.html"
+    },
+    {
+     "name": "BleepingComputer",
+     "url": "https://bleepingcomputer.com/news/security/google-disrupts-million-device-xcpe-android-malware-botnet-bans-tv-box-maker"
+    },
+    {
+     "name": "Help Net Security",
+     "url": "https://www.helpnetsecurity.com/?p=390007"
+    },
+    {
+     "name": "The Hacker News",
+     "url": "https://thehackernews.com/2026/11/google-disrupts-13-million-device.html"
+    },
+    {
+     "name": "Google Cloud Blog（転載）",
+     "url": "https://noise.getoto.net/2026/11/02/shutting-the-door-on-the-xcpe-botnet-threat-intelligence/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-minne-aeonpay",
+   "category": "fukugyo",
+   "title": "minneでAEON Payが使える　1.5%還元も",
+   "summary": "作品を買う人の支払い方法が増えました。出品側の手数料の話は出ていません。",
+   "visual": {
+    "icon": "cart",
+    "kicker": "minne決済追加"
+   },
+   "image": {
+    "src": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/images/img_kv_pc.jpg",
+    "kind": "press",
+    "credit": "イオン（AEON Pay公式）",
+    "page": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "minneが11月4日、支払い方法に「AEON Pay」を加えた",
+      "AEON Pay払いは、WAON POINT合計1.5%の還元企画の対象。月2万円分まで",
+      "買い手は対応アプリへの更新が必要。出品側の手数料の変更は出ていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ハンドメイド作品の通販サイトminneが、2026年11月4日に「AEON Pay」での支払いを始めました。イオンのスマホ決済で、ポイントの還元企画もあります。"
+    },
+    {
+     "type": "h",
+     "text": "支払いの流れ"
+    },
+    {
+     "type": "p",
+     "text": "アプリやスマホのブラウザでは、支払い方法でAEON Payを選びます。確認画面のAEON Payボタンを押し、AEON PayかiAEONのアプリを選ぶ流れです。"
+    },
+    {
+     "type": "p",
+     "text": "パソコンのブラウザではQRコードが出るので、スマホのアプリで読み取ります。支払い画面を途中で閉じると、注文は確定しません。"
+    },
+    {
+     "type": "h",
+     "text": "使うための条件"
+    },
+    {
+     "type": "p",
+     "text": "minneのアプリは、iOSが16.34.0以降、Androidが12.38.1以降である必要があります。Androidでは、Google Chromeのバージョン137以降も求められます。"
+    },
+    {
+     "type": "h",
+     "text": "1.5%還元の中身"
+    },
+    {
+     "type": "p",
+     "text": "還元はイオンフィナンシャルサービスの企画で、基本のポイントを含めて合計1.5%のWAON POINTが付きます。対象は1回200円（税込み）以上の支払いです。"
+    },
+    {
+     "type": "p",
+     "text": "対象になるのは、月の利用額2万円分までです。2万円ぶん使うと、300ポイントの計算になります。終了日は決まっていませんが、イオンは予告なく終わることがあるとしています。"
+    },
+    {
+     "type": "p",
+     "text": "付与の時期は、基本ポイントがカード払いなら翌月の請求明細、チャージ払いなら即時です。上乗せ分は翌々月末ごろに付きます。店ごとの内訳は、イオンの案内を参照してください。"
+    },
+    {
+     "type": "h",
+     "text": "出品する人にとっては"
+    },
+    {
+     "type": "p",
+     "text": "今回の告知に、出品者の手数料や入金に関する記載はありません。買い手の支払い方法が増えた、という内容です。"
+    },
+    {
+     "type": "p",
+     "text": "支払いや注文の問い合わせは、minneの問い合わせフォームが窓口です。還元やWAON POINTの質問は、イオンフィナンシャルサービスの企画FAQで受け付けています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1.5%",
+       "label": "WAON POINTの還元率"
+      },
+      {
+       "value": "200円",
+       "label": "1回の最低利用額"
+      },
+      {
+       "value": "2万円",
+       "label": "月の還元対象の上限"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/images/slide_01.png",
+       "kind": "press",
+       "credit": "イオン（AEON Pay公式）",
+       "caption": "いつでも2倍対象の店舗の還元内訳（基本1.0%と企画0.5%）",
+       "page": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/"
+      },
+      {
+       "src": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/images/slide_02.png",
+       "kind": "press",
+       "credit": "イオン（AEON Pay公式）",
+       "caption": "対象外の店舗の還元内訳（基本0.5%と企画1.0%）",
+       "page": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/"
+      },
+      {
+       "src": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/images/img_reset.png",
+       "kind": "press",
+       "credit": "イオン（AEON Pay公式）",
+       "caption": "利用上限は毎月リセットされる",
+       "page": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "minneで買い物をする人は、アプリをiOS 16.34.0以降・Android 12.38.1以降に更新する",
+      "AEON Payを使うなら、月2万円分までが1.5%還元の対象だと覚えておく",
+      "支払い画面を途中で閉じると注文は確定しない。完了の表示まで進める",
+      "作品を売る人は、手数料や入金の案内が別に出るか、minneのお知らせを見ておく"
+     ]
+    }
+   ],
+   "source_name": "minne お知らせ",
+   "source_url": "https://minne.com/infos/4333",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "minne お知らせ",
+     "url": "https://minne.com/infos/4333"
+    },
+    {
+     "name": "イオン AEON Pay キャンペーン",
+     "url": "https://www.aeon.com/aeonapp/campaign/202611_ap1-5/"
+    }
+   ]
+  },
+  {
+   "id": "ai-anthropic-flashprove",
+   "category": "ai",
+   "title": "AnthropicがAI返答の出どころを証明する技術",
+   "summary": "AIの答えが選んだモデルのものか、数学で確かめる研究です。今は実験段階です。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/aiplus/article/image/2611/04/2000002863/10011259/728",
+    "kind": "ogp",
+    "credit": "ITmedia AI+（画像：Anthropic）",
+    "page": "https://www.itmedia.co.jp/aiplus/article/2611/04/2000002863/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "AIの証明"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "AnthropicがAIの返答の出どころを証明する技術FlashProveを公開",
+      "証明の作成は通常の約70〜95倍のGPU時間、確認は約17秒",
+      "研究用の試作で、Claudeのサービスへの導入時期は未発表"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "米Anthropicは11月2日（現地時間）、AIの返答がどのモデルから出たかを数学で証明する技術「FlashProve」を公開しました。"
+    },
+    {
+     "type": "h",
+     "text": "何ができる技術か"
+    },
+    {
+     "type": "p",
+     "text": "AIサービスを使っていても、返ってきた答えが本当に自分の選んだモデルのものか、利用者には確かめられません。FlashProveは、特定のモデルが特定の質問にこの答えを返したことを、暗号の技術で証明します。コードと技術文書は、誰でも自由に使えるApache 2.0ライセンスでGitHubに公開されました。"
+    },
+    {
+     "type": "h",
+     "text": "なぜ必要なのか"
+    },
+    {
+     "type": "p",
+     "text": "仲介サービスが、コストを下げるために利用者の選んだモデルをこっそり別のモデルに替える恐れがあります。攻撃者が答えを書き換える場合もあります。どちらも、答えの質だけでは見分けられません。モデルの中身（重み）は非公開のものが多く、手に入っても同じモデルを動かして確かめるには大きな計算資源が要ります。"
+    },
+    {
+     "type": "h",
+     "text": "仕組みと想定する使い道"
+    },
+    {
+     "type": "p",
+     "text": "まずモデルの提供者が、モデルの中身に対応する短い「指紋」を公開します。依頼ごとに、その指紋のモデルが答えを出したことを示す証明ファイルを作ります。受け取った側はGPUのないパソコンでも確認でき、別のモデルの答えなら確認に失敗します。証明から中身は漏れませんが、モデルの構造は隠れません。"
+    },
+    {
+     "type": "p",
+     "text": "想定される使い道は次のとおりです。\n・第三者の評価機関が、評価したモデルと実際に提供されるモデルが同じか確かめる\n・サーバーが乗っ取られて答えが書き換えられたことに気づく\n・承認済みのモデルだけを出すよう求める規制への対応を確かめる"
+    },
+    {
+     "type": "h",
+     "text": "性能とコスト"
+    },
+    {
+     "type": "p",
+     "text": "Anthropicが試したのは、Metaの「Llama 4 Maverick」（4000億パラメータ、4ビットに軽くした版）です。NVIDIAのGPU「H100」1基で、毎秒約110トークン（文字のかたまり）の速さで証明を作れました。1024トークンの依頼1件の証明は約19MBで、24コアのCPUなら約17秒で確認できます。"
+    },
+    {
+     "type": "p",
+     "text": "一方、証明の作成には通常の答えを出す場合の約70〜95倍のGPU時間がかかります。同じモデルを対象にした既存のオープンソースの取り組みでは、1000トークンの証明に14.3時間かかりました。証明も93.6GBあったと伝えられています。ただし、性能の数字は第三者がまだ再現していないとの指摘もあります。"
+    },
+    {
+     "type": "h",
+     "text": "限界と今後"
+    },
+    {
+     "type": "p",
+     "text": "今回の公開は、完成品ではなく研究の途中経過です。制約は次のとおりです。\n・対象は専門家を切り替える方式（MoE）のモデルだけ\n・扱えるのは1024トークンまで\n・常に最も確率の高い言葉を選ぶ設定が前提\n・答えを返した後に証明するため、改ざんを防ぐのではなく後から見つける仕組み"
+    },
+    {
+     "type": "p",
+     "text": "開発はAnthropicのFrontier Red Teamが、スイスのEPFLや米マサチューセッツ工科大学（MIT）の研究者と進めました。性能改善はClaudeが手伝い、実行コードの多くもAIが作ったため、重要な安全性は数学の証明言語「Lean」で確かめて公開しています。Claudeのサービスに入る時期は発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約70〜95倍",
+       "label": "証明作成のGPU時間（通常比）"
+      },
+      {
+       "value": "約17秒",
+       "label": "24コアCPUでの確認時間"
+      },
+      {
+       "value": "約19MB",
+       "label": "1024トークンの証明サイズ"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ふだんAIを使うだけの人：今すぐやることはありません。Claudeなどの画面に新しい機能が出るわけではありません",
+      "仕事でAIサービスを選ぶ人：安いモデルへの差し替えを見抜く研究が進んでいますが、今は実験段階で、実際の導入には使えません",
+      "実用化の時期は未発表のため、Anthropicの今後の発表を待つ"
+     ]
+    }
+   ],
+   "source_name": "ITmedia AI+",
+   "source_url": "https://www.itmedia.co.jp/aiplus/article/2611/04/2000002863/",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/aiplus/article/2611/04/2000002863/"
+    },
+    {
+     "name": "Interesting Engineering",
+     "url": "https://interestingengineering.com/ai-robotics/anthropic-flashprove-cryptographic-model-verification"
+    },
+    {
+     "name": "AI Polix",
+     "url": "https://aipolix.com/en-us/news/anthropic-flashprove-open-source-zksnark-provable-inference-llama-4-maverick"
+    },
+    {
+     "name": "daily.dev（The New Stack）",
+     "url": "https://daily.dev/posts/anthropic-found-a-way-to-prove-which-ai-model-answered-you-but-there-s-a-costly-catch-2pxnso4df"
+    }
+   ]
+  },
+  {
+   "id": "kaden-panasonic-eolia-x-2027",
+   "category": "kaden",
+   "title": "パナソニックのエオリアX、27年度省エネ基準に全機種対応",
+   "summary": "運転中もカビ対策ができる新制御つき。発売は2027年1月下旬で、実売は29万〜43万円ほど。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/3442/6943/3442-6943-66af8fdd44055c6dd335df9babe9bedb-1600x1049.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "パナソニック",
+    "page": "https://prtimes.jp/main/html/rd/p/000006943.000003442.html"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "エアコン新製品"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "パナソニックが、2027年度の省エネ基準に全機種で対応したエアコンを発表",
+      "発売は2027年1月下旬。実売の目安は29万〜43万円ほど",
+      "暖房の電気を抑え、運転中も内部のカビ対策ができる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "パナソニックは11月2日、ルームエアコン「エオリアX」シリーズを2027年1月下旬に発売すると発表しました。価格はオープンです。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/3442/6943/3442-6943-d52244a00913712b99640ca65eec640b-1600x716.jpg?format=jpeg&auto=webp&fit=bounds&width=720&height=480",
+     "kind": "press",
+     "credit": "パナソニック",
+     "caption": "パナソニックの発表資料に載った、エオリアXシリーズの画像",
+     "page": "https://prtimes.jp/main/html/rd/p/000006943.000003442.html"
+    },
+    {
+     "type": "h",
+     "text": "発売日・価格・機種"
+    },
+    {
+     "type": "p",
+     "text": "6畳用から29畳用まで10機種で、冷暖房の能力は2.2〜9.0kWです。全機種が2027年度の省エネ基準を満たします。価格はオープンで、実売は29万〜43万円ほどの見込みです。電波新聞デジタルは、この金額が税込みだと伝えています。"
+    },
+    {
+     "type": "p",
+     "text": "3.6kW級の一部機種は、2026年10月下旬にすでに発売されています。この大きさの壁掛け型で、「期間消費電力量」（標準的な使い方での1年間の電気の量）は1016kWhです。パナソニックは、国内で最も少ないと自社調べで説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "暖房の電気を抑える工夫"
+    },
+    {
+     "type": "p",
+     "text": "2025年モデルから使っている「エコロータリーコンプレッサー」（熱を運ぶ心臓部）の制御を改良しました。暖房でいちばん弱く動かしたときの出力は、前のモデルの0.4kWから0.3kWに、約25%下がりました。室外機に霜がつきにくくなり、設定温度に届いて止まる回数も減っています。"
+    },
+    {
+     "type": "p",
+     "text": "パナソニックの試験（約14畳、外が7℃、室温25℃）では、安定した暖房1時間の電力量が減りました。前のモデルは320Wh、新型は272Whです。約15%の節約です。実際の使い方では条件によって変わります。"
+    },
+    {
+     "type": "h",
+     "text": "ナノイーXが72兆に強化"
+    },
+    {
+     "type": "p",
+     "text": "ナノイーXは、水分を含んだ微粒子でカビなどを抑える技術です。これまでの48兆から72兆に強まりました。付着したカビを抑えるまでの時間は、約8畳の試験で約2時間から約1時間に縮みました。実際の部屋で測った数字ではありません。"
+    },
+    {
+     "type": "h",
+     "text": "運転中も内部をクリーン"
+    },
+    {
+     "type": "p",
+     "text": "これまでの内部クリーンは、運転を止めたあとにだけ働きました。新しい制御では、使い続けている間も午前3時から約25分間、ナノイーXで内部を満たします。熱で乾かす工程はありません。事前の設定が必要です。"
+    },
+    {
+     "type": "p",
+     "text": "外部の試験機関が、30℃・湿度80%で14日間、24時間運転する実験を行いました。この設定にすると、カビの増え方が5段階の評価で2段階低くなりました。パナソニックのアンケートでは、約8割がカビに強いエアコンに魅力を感じると答えています。"
+    },
+    {
+     "type": "h",
+     "text": "快適さを保つ機能は継続"
+    },
+    {
+     "type": "p",
+     "text": "センサーで人や部屋の様子を見て自動で運転する「AI快適自動」は、前のモデルから引き続き使えます。いつも暖房を入れる時間を覚えて、すぐに温風を出す「AIチャージ」もあります。スマホアプリの「エオリアアプリ」にも対応しています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "48兆→72兆",
+       "label": "ナノイーXの強さ"
+      },
+      {
+       "value": "0.4→0.3kW",
+       "label": "暖房の最小出力"
+      },
+      {
+       "value": "約25分",
+       "label": "午前3時の内部クリーン"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "そのほかの画像",
+     "items": [
+      {
+       "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2153/402/003_l.jpg",
+       "kind": "ogp",
+       "credit": "家電 Watch",
+       "caption": "コンプレッサーとエネチャージで暖房の電気を抑える仕組み",
+       "page": "https://kaden.watch.impress.co.jp/docs/news/2153402.html"
+      },
+      {
+       "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2153/402/004_l.jpg",
+       "kind": "ogp",
+       "credit": "家電 Watch",
+       "caption": "ナノイーX（72兆）が内部を満たしてカビを抑えるイメージ",
+       "page": "https://kaden.watch.impress.co.jp/docs/news/2153402.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "エアコンの買い替えを考えている人は、2027年1月下旬の発売まで待つか、先行発売の機種にするかを店で相談する",
+      "内部クリーンは事前の設定が必要。買ったら取扱説明書で午前3時の運転を設定する",
+      "暖房の電気代の数字は試験の結果。住まいや使い方で変わるので目安として見る",
+      "実売は29万〜43万円ほど。同じ畳数の他社製品と店頭で価格を比べる"
+     ]
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2153402.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2153402.html"
+    },
+    {
+     "name": "パナソニック（PR TIMES）",
+     "url": "https://prtimes.jp/main/html/rd/p/000006943.000003442.html"
+    },
+    {
+     "name": "パナソニック ニュースルーム",
+     "url": "https://news.panasonic.com/jp/topics/206941"
+    },
+    {
+     "name": "デジタルマガジン",
+     "url": "https://digimaga.jp/64350/"
+    },
+    {
+     "name": "電波新聞デジタル",
+     "url": "https://dempa-digital.com/article/729457"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-food-tax-1percent-ec",
+   "category": "fukugyo",
+   "title": "食品の消費税、2027年4月から1%に　ネット販売の扱い",
+   "summary": "食品を売る個人やネットショップは、税率の3本立てと経過措置を今のうちに確認したい。",
+   "image": {
+    "src": "https://imgu.web.nhk/news/u/news/nd/kiji/20260915de50259/20260915de50259_E0000003843_1_l.jpg",
+    "kind": "ogp",
+    "credit": "NHK",
+    "page": "https://news.web.nhk/newsweb/na/nd-20260915de50259"
+   },
+   "visual": {
+    "icon": "yen",
+    "kicker": "食品の減税"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "酒類と外食を除く食品の消費税が、2027年4月から2年間1%になる予定",
+      "法案は10月9日に国会へ提出済み。ネット販売には旧税率8%を使える経過措置がある",
+      "食品を売る人は、税率の設定・値札・インボイスの書き方を見直す必要がある"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "政府は食品の消費税を、2027年4月1日から2年間、現在の8%から1%に下げる方針です。国税庁は11月4日、制度の特設ページにオンライン説明会の案内を加えました。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.easy-myshop.jp/column/wp-content/uploads/2026/08/Food-products-Subject-to-reduced-tax-rate.jpg",
+     "kind": "ogp",
+     "credit": "イージーマイショップ",
+     "caption": "減税の対象になる商品と、ならない商品を分けた図",
+     "page": "https://www.easy-myshop.jp/column/grocery-consumption-tax/"
+    },
+    {
+     "type": "h",
+     "text": "何がいつから変わるのか"
+    },
+    {
+     "type": "p",
+     "text": "政府は9月15日に大綱（制度の骨組み）を閣議決定しました。税率は8%から1%で、期間は2027年4月1日から2029年3月31日までです。実務解説サイトによると、法案は10月9日に国会へ出され、10月14日の時点ではまだ成立していません。成立しなければ始まりません。"
+    },
+    {
+     "type": "h",
+     "text": "対象になる商品・ならない商品"
+    },
+    {
+     "type": "p",
+     "text": "対象は、今の軽減税率（8%）が使われている飲食料品です。食品1万円（税抜き）なら、税込みは1万800円から1万100円になる計算です。"
+    },
+    {
+     "type": "p",
+     "text": "酒類、外食、ケータリング、社員食堂などでの飲食は、10%のままです。週2回以上出る新聞の定期購読は、8%が続きます。ネットスーパーの食品宅配は対象ですが、配達手数料の部分は10%になる場合があります。"
+    },
+    {
+     "type": "h",
+     "text": "ネット販売の切り替えルール"
+    },
+    {
+     "type": "p",
+     "text": "通信販売には経過措置があります。2027年1月1日より前に販売条件を示し、4月1日より前に注文を受けた分は、旧税率8%のままです。定期的に届ける契約も、2027年1月1日より前に結び、4月1日より前に代金を受け取った分は8%です。"
+    },
+    {
+     "type": "p",
+     "text": "値札の貼り替えが間に合わない店のために、総額表示の特例も予定されています。2027年2月1日から5月31日の間は、税込み価格を8%か1%のどちらかで表示できる見込みです。税抜き価格だけの表示や「＋税」だけの表示は認められません。"
+    },
+    {
+     "type": "h",
+     "text": "個人や小さなお店への影響"
+    },
+    {
+     "type": "p",
+     "text": "インボイス（適格請求書）には、1%・8%・10%の3つの税率が並びます。適用税率の欄には1%を書き、税額も1%で計算します。国税庁は9月15日に、全29ページのQ&Aを公表しました。"
+    },
+    {
+     "type": "p",
+     "text": "解説サイトによると、簡易課税や2割特例を使う事業者は、対象の食品の売上について、実質的に納める消費税が出ません。免税事業者への対応は、まだ詳しく伝えられていません。"
+    },
+    {
+     "type": "p",
+     "text": "経済産業省のレジ改修の補助は、従業員2000人以下の中堅小売りが対象で、上限は2500万円、補助率は3分の1です。個人の出品者は対象外です。中小企業庁は、スマートレジの導入を別に支援するとしています。"
+    },
+    {
+     "type": "h",
+     "text": "まだ決まっていないこと"
+    },
+    {
+     "type": "p",
+     "text": "法案の成立時期はわかっていません。収入に応じて配る就業者負担軽減支援金は、2027年4月に始まる予定ですが、金額は決まっていません。1人4万円といった数字は、決定額ではありません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1%",
+       "label": "食品の税率（今は8%）"
+      },
+      {
+       "value": "2年間",
+       "label": "2027年4月から"
+      },
+      {
+       "value": "2500万円",
+       "label": "中堅小売りの補助上限"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "食品を売っている人は、カート・商品ページ・請求書の税率と価格表示を洗い出す",
+      "2027年1月1日より前に販売条件を出す商品は、4月1日前の注文に8%が残る点を確かめる",
+      "インボイスを出す人は、1%・8%・10%の3税率で書けるか、使っているサービスに確認する",
+      "法案が成立するまでは内容が変わる可能性があるので、国税庁の特設ページとオンライン説明会を見ておく"
+     ]
+    }
+   ],
+   "source_name": "国税庁",
+   "source_url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/zeiritsuhikisage.htm",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "国税庁",
+     "url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/zeiritsuhikisage.htm"
+    },
+    {
+     "name": "経済産業省",
+     "url": "https://www.meti.go.jp/policy/economy/distribution/260915_shohizeitaiou.html"
+    },
+    {
+     "name": "NHK",
+     "url": "https://news.web.nhk/newsweb/na/nd-20260915de50259"
+    },
+    {
+     "name": "実務ガイド",
+     "url": "https://jitsumu-guide.com/food-consumption-tax-reduction-2027-guide/"
+    },
+    {
+     "name": "イージーマイショップ",
+     "url": "https://www.easy-myshop.jp/column/grocery-consumption-tax/"
+    }
+   ]
+  },
+  {
+   "id": "ai-plaud-one-agent",
+   "category": "ai",
+   "title": "PlaudのAIイヤホン型レコーダー、4万4000円で年内",
+   "summary": "録音から資料作成・共有までAIが進めます。数量限定で、一部の機能は順次提供です。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2150/094/01_l.jpg",
+    "kind": "ogp",
+    "credit": "AI Watch",
+    "page": "https://ai.watch.impress.co.jp/docs/news/2150094.html"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "AI録音"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Plaudが録音から資料作成・共有まで進めるAI機能を強化した",
+      "イヤホン型のPlaud Oneは4万4000円で、年内に数量限定で発売",
+      "通信料不要のeSIM入りだが、エージェント連携の一部は後から追加"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "AIボイスレコーダーの米Plaudは10月21日、eSIM内蔵のイヤホン型「Plaud One」を4万4000円で年内に数量限定発売すると発表しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2150/094/02_l.jpg",
+     "kind": "ogp",
+     "credit": "AI Watch",
+     "caption": "eSIMを内蔵した充電ケース",
+     "page": "https://ai.watch.impress.co.jp/docs/news/2150094.html"
+    },
+    {
+     "type": "h",
+     "text": "Plaud Oneの中身"
+    },
+    {
+     "type": "p",
+     "text": "充電ケースとイヤホンの組み合わせで、録音機、AIエージェント、イヤホンの3役をこなします。通話やオンライン会議はイヤホンで、対面の会議はケースで録音します。ケースにはマイクが4つあり、最大5メートル先の声を録音できます。"
+    },
+    {
+     "type": "p",
+     "text": "ケースにはeSIM（SIMカードの代わりに内蔵される通信機能）が入っています。スマホがなくても録音をクラウドに送れます。80以上の国と地域で使え、契約も通信料も要りません。使うキャリアは公表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "AIエージェントの使い方"
+    },
+    {
+     "type": "p",
+     "text": "ケースのAIボタンを長押しするか、イヤホンをつけて「Hey Plaud」と呼ぶと、AIエージェントが動きます。「今日の会議をまとめて、チーム向けのフォローアップを作って」と頼むと、決定事項と対応事項をまとめた文書ができます。答えはイヤホンかケースのスピーカーで聞けます。"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia NEWSの試用記事によると、Plaud Oneとエージェントの連携は、発売前のため動作していません。一部の機能は今後の更新で順次追加され、地域によって時期が違います。"
+    },
+    {
+     "type": "h",
+     "text": "強化されたAI機能群"
+    },
+    {
+     "type": "p",
+     "text": "Plaudの累計ユーザーは世界で300万人を超えました。AI機能群「Plaud Intelligence」は、書き起こしの先まで進めます。\n・アーティファクト：録音をもとに、スライドや文書、PDFを作る\n・コネクタ：Googleカレンダー、Slack、Notionなどで共有する\n・スキル、ルーティン：作業を登録し、予定に合わせて自動で動かす\n・メモリー：使うほど役割や好みを覚える"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia NEWSの試用では、録音をイベントやプロジェクト、顧客ごとに整理できました。「昨日の録音」のようなあいまいな指示でも動き、「結果をメールで送って」と頼むと、送る前に確認を求めました。"
+    },
+    {
+     "type": "h",
+     "text": "価格と同時発表の製品"
+    },
+    {
+     "type": "p",
+     "text": "Plaud Oneは4万4000円（税込みか税別かは明記されていません）で、年内に数量限定で発売されます。正確な発売日と数量は発表されていません。事前登録は10月21日に始まり、登録者には3520円分のクレジットが付きます。Plaud Intelligenceの一部機能は、このクレジットを使います。"
+    },
+    {
+     "type": "p",
+     "text": "同時に、カード型の「Plaud Note Pro Flow Edition」（2万9700円、10月29日発売）も発表されました。厚さ約3ミリ、重さ30グラムです。スマホに近づくと録音が自動で送られ、文字起こしと要約が作られます。自動転送は今のところiPhoneだけが対象です。"
+    },
+    {
+     "type": "h",
+     "text": "試用で挙がった気になる点"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia NEWSの筆者は2点を挙げています。1つ目は、イヤホンは娯楽の道具という印象が強く、商談の場になじむかは意見が分かれることです。2つ目は、アプリは録音時に参加者の同意を求めますが、ケースでの録音には同意についての記載がなく、盗聴に使われる恐れがあることです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4万4000円",
+       "label": "Plaud Oneの価格"
+      },
+      {
+       "value": "300万人",
+       "label": "Plaudの累計ユーザー数"
+      },
+      {
+       "value": "最大5メートル",
+       "label": "ケースで録音できる距離"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "会議や取材の録音が多い人：Plaud Oneは数量限定で、年内発売です。事前登録をすると3520円分のクレジットがもらえます",
+      "買う前に確かめること：エージェント連携の一部は発売後の更新で追加されます。使いたい機能が動くかを発売時に確かめる",
+      "対面で録音する人：ケースでの録音には同意の案内がないため、相手に一言伝えてから使う"
+     ]
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/04/2000002764/",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "ITmedia NEWS（1ページ目）",
+     "url": "https://www.itmedia.co.jp/news/article/2611/04/2000002764/"
+    },
+    {
+     "name": "ITmedia NEWS（2ページ目）",
+     "url": "https://www.itmedia.co.jp/news/article/2611/04/2000002764/2"
+    },
+    {
+     "name": "ケータイ Watch",
+     "url": "https://k-tai.watch.impress.co.jp/docs/news/2150106.html"
+    },
+    {
+     "name": "AI Watch",
+     "url": "https://ai.watch.impress.co.jp/docs/news/2150094.html"
+    },
+    {
+     "name": "マイナビニュース",
+     "url": "https://news.mynavi.jp/article/20261021-5169301/"
+    }
+   ]
+  },
+  {
+   "id": "kaden-jura-e8-gen5",
+   "category": "kaden",
+   "title": "JURAの新型E8、29万7000円で12月4日発売",
+   "summary": "60℃で入れる新抽出と時刻指定のタイマーが加わった、全自動コーヒーマシンです。",
+   "image": {
+    "src": "https://www.atpress.ne.jp/releases/645242/LL_img_645242_1.jpg",
+    "kind": "press",
+    "credit": "ブルーマチックジャパン",
+    "page": "https://www.zaikei.co.jp/releases/3696248/"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "コーヒー新製品"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "JURAの全自動コーヒーマシン「E8」の第5世代が発表された",
+      "12月4日発売で、価格は29万7000円。予約は11月12日から",
+      "60℃抽出などが加わり、11月8日から実機を見られる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ブルーマチックジャパンは11月4日、JURAの全自動コーヒーマシン「E8」の新型を12月4日に発売すると発表しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.atpress.ne.jp/releases/645242/LL_img_645242_2.jpg",
+     "kind": "press",
+     "credit": "ブルーマチックジャパン",
+     "caption": "新しい抽出方法「60℃ライトブリュー」",
+     "page": "https://www.zaikei.co.jp/releases/3696248/"
+    },
+    {
+     "type": "h",
+     "text": "発売日・価格・買える場所"
+    },
+    {
+     "type": "p",
+     "text": "発売は2026年12月4日（金）で、色はミッドナイトシルバーの1色です。価格は29万7000円と家電 Watchが伝えています。税込みかどうかは書かれていません。"
+    },
+    {
+     "type": "p",
+     "text": "予約は11月12日から、JURA公式オンラインショップなどで始まります。東京の二子玉川 蔦屋家電＋（1階）では、11月8日から実機の展示と試飲ができます。12月4日〜7日には、同じ場所で無料の試飲体験もあります。"
+    },
+    {
+     "type": "h",
+     "text": "60℃で入れる新しい抽出"
+    },
+    {
+     "type": "p",
+     "text": "「60℃ライトブリュー」は、約60℃のお湯で入れる新しい方法です。高温で入れる「ホット」と、水で入れる水出しの中間にあたります。ブルーマチックジャパンは、苦味と強い酸味を抑え、フルーティーな香りと自然な甘みが出ると説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "ほかに加わる2つの機能"
+    },
+    {
+     "type": "p",
+     "text": "「スイートフォーム」は、ミルクを泡立てるときにシロップを混ぜる機能です。味つきのラテが1杯でできます。「コーヒータイマー」は、決めた時刻に抽出を始める機能で、スマホアプリで設定します。"
+    },
+    {
+     "type": "p",
+     "text": "この3つは、いずれも今回の新搭載です。先代との細かい比較表は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "メニューと大きさ"
+    },
+    {
+     "type": "p",
+     "text": "メニューは全27種類で、「ホット」「ライト」「スイート」の3系統に分かれます。挽き方は7段階、濃さは10段階、コーヒーとお湯の温度は3段階で変えられます。3.5インチのカラー画面で選び、ワンタッチで自動洗浄もできます。"
+    },
+    {
+     "type": "p",
+     "text": "大きさは幅270×奥行446×高さ348mm、重さは9.6kgです。水タンクは1.9L、豆ホッパー（豆を入れる容器）は280gで、消費電力は1200Wです。"
+    },
+    {
+     "type": "h",
+     "text": "どんな人に向くか"
+    },
+    {
+     "type": "p",
+     "text": "30万円近い価格なので、気軽に買う家電ではありません。毎日何杯も飲み、ミルク系や味つきの飲み物も楽しみたい人に向くかもしれません。以前のE8からの買い替え向けの割引は、発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "29万7000円",
+       "label": "価格"
+      },
+      {
+       "value": "27種類",
+       "label": "メニューの数"
+      },
+      {
+       "value": "約60℃",
+       "label": "新しい抽出の温度"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://www.atpress.ne.jp/releases/645242/LL_img_645242_3.jpg",
+       "kind": "press",
+       "credit": "ブルーマチックジャパン",
+       "caption": "スマホで時刻を決める「コーヒータイマー機能」",
+       "page": "https://www.zaikei.co.jp/releases/3696248/"
+      },
+      {
+       "src": "https://www.atpress.ne.jp/releases/645242/LL_img_645242_4.jpg",
+       "kind": "press",
+       "credit": "ブルーマチックジャパン",
+       "caption": "シロップを混ぜられる「スイートフォーム機能」",
+       "page": "https://www.zaikei.co.jp/releases/3696248/"
+      },
+      {
+       "src": "https://www.atpress.ne.jp/releases/645242/LL_img_645242_5.jpg",
+       "kind": "press",
+       "credit": "ブルーマチックジャパン",
+       "caption": "3.5インチのカラー画面と操作の案内",
+       "page": "https://www.zaikei.co.jp/releases/3696248/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "実機を見たい人は、11月8日から二子玉川 蔦屋家電＋で展示と試飲ができる",
+      "買う人は、11月12日からの予約を公式オンラインショップなどで確認する。税込みかどうかも買う前に確かめる",
+      "置き場所は幅27cm×奥行45cm×高さ35cmほど。水タンクの出し入れのすき間も見ておく",
+      "朝の自動抽出を使いたい人は、スマホアプリでの設定方法を店頭で確かめる"
+     ]
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2153466.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2153466.html"
+    },
+    {
+     "name": "財経新聞（ブルーマチックジャパン プレスリリース）",
+     "url": "https://www.zaikei.co.jp/releases/3696248/"
+    },
+    {
+     "name": "グルメプレス（プレスリリース）",
+     "url": "https://gourmetpress.net/1493164/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-dentsu-purchase-survey",
+   "category": "fukugyo",
+   "title": "買い物はクーポン優先31.4%、AI利用は全世代で拡大",
+   "summary": "節約しながら賢く買う人が増えた。売り手は購入後の対応で差がつく。",
+   "image": {
+    "src": "https://img.ecnomikata.com/img_contents/ecnews/images/52027_thumbnail_koubaikoudoudentuutyousa.jpg?now=20261102120000",
+    "kind": "ogp",
+    "credit": "ECのミカタ",
+    "page": "https://ecnomikata.com/ecnews/marketing/52027/"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "買い方調査"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "電通デジタルが、ネットと店をまたぐ買い物の調査を10月27日に発表",
+      "増えた行動の1位は、クーポンやポイントを優先する31.4%",
+      "問い合わせ窓口などの購入後の対応は、まだ買い手の期待に届いていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "電通デジタルは10月27日、ネットと店頭をまたぐ買い物の実態調査を発表しました。クーポンやポイントを優先する人が、増えた行動の最多で31.4%でした。"
+    },
+    {
+     "type": "img",
+     "src": "https://img.ecnomikata.com/img_contents/ecnews/images/52027_6_sub2.jpg?now=20261102120000",
+     "kind": "ogp",
+     "credit": "ECのミカタ（電通デジタルの調査グラフ）",
+     "caption": "買い手が望む購入後の対応と、企業の実際の対応との差を示すグラフ",
+     "page": "https://ecnomikata.com/ecnews/marketing/52027/"
+    },
+    {
+     "type": "h",
+     "text": "調査の概要"
+    },
+    {
+     "type": "p",
+     "text": "今回が5回目で、2022年に始まりました。5月22日から24日にインターネットで調べ、20〜69歳の全国の人が対象です。事前調査は1万人、本調査は8700人でした。ファッション、食品、家電など13分野の29商品を聞いています。"
+    },
+    {
+     "type": "h",
+     "text": "節約しながら賢く買う"
+    },
+    {
+     "type": "p",
+     "text": "増えた行動の2位は、家計の支出を意識して抑えることで25.6%でした。以下は、生成AIの利用が12.2%、ネットで配達日時を指定する人が11.9%、商品の安全性を確認する人が11.5%です。フリマアプリや中古市場を使う人は9.9%でした。"
+    },
+    {
+     "type": "p",
+     "text": "ネットで買う割合は、2022年と比べて、知る・比べる・買うのどの段階でも増えました。ただ、この1年はほぼ横ばいです。比べる段階が最も伸びて、2022年より5.6ポイント増の55.6%になりました。知る段階は39.2%、買う段階は32.4%です。"
+    },
+    {
+     "type": "h",
+     "text": "困ったときの対応はまだ不足"
+    },
+    {
+     "type": "p",
+     "text": "買い手が望む購入後の対応と、企業が実際に行う対応の差は、2023年から縮まりました。問い合わせ窓口の対応は7.1ポイントから3.6ポイントに、24時間対応は6.9ポイントから3.8ポイントになっています。"
+    },
+    {
+     "type": "p",
+     "text": "差の数字は、その対応を望む人の割合から、企業が行っている割合を引いたものです。0なら需要と供給が合い、プラスなら企業側が足りません。電通デジタルは、返品や交換などのトラブル対応に課題が残るとしています。"
+    },
+    {
+     "type": "h",
+     "text": "AIの利用が広がる"
+    },
+    {
+     "type": "p",
+     "text": "買い物でAIサービスを使った経験は、男女のすべての年代で前の年より増えました。2025年から2026年にかけては、3つの場面で利用が広がっています。商品のおすすめ、よくある質問への自動返答、商品説明やレビューです。多くの分野で増えました。"
+    },
+    {
+     "type": "p",
+     "text": "電通デジタルは、調べて比べるのが楽になるほど、買ったあとの安心やサポートまで含めた体験づくりが大事になると見ています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "31.4%",
+       "label": "クーポン・ポイント優先"
+      },
+      {
+       "value": "9.9%",
+       "label": "フリマ・中古を使う人"
+      },
+      {
+       "value": "55.6%",
+       "label": "ネットで比べる割合"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "クーポンやポイント、セールの案内を出して、お得な買い方を探す人に見つけてもらう",
+      "返品・交換のルールと問い合わせの返事の目安を、商品ページに書いておく",
+      "配達日時を指定できる配送方法があるなら、商品ページで知らせる",
+      "質問への返事を、よくある質問としてまとめておくと、問い合わせの手間が減る"
+     ]
+    }
+   ],
+   "source_name": "ECのミカタ",
+   "source_url": "https://ecnomikata.com/ecnews/marketing/52027/",
+   "published": "2026-11-02",
+   "refs": [
+    {
+     "name": "ECのミカタ",
+     "url": "https://ecnomikata.com/ecnews/marketing/52027/"
+    }
+   ]
+  },
+  {
+   "id": "ai-astra-weight-edit",
+   "category": "ai",
+   "title": "AIが別のAIの数値を直接書き換え、数学正答率が6倍に",
+   "summary": "MITの研究で、対話AIが小型AIの数値を直接直しました。まだ研究段階です。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2153/457/02_l.jpg",
+    "kind": "ogp",
+    "credit": "Impress Watch（PC Watch）",
+    "page": "https://pc.watch.impress.co.jp/docs/news/2153457.html"
+   },
+   "visual": {
+    "icon": "chip",
+    "kicker": "AI研究"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "MITの研究チームが、対話AIにほかのAIの中身を直接書き換えさせる手法を発表",
+      "小型AIで0.016%の数値を直すと、数学テストの正答率が7.9%から48.1%に",
+      "研究段階の成果で、第三者による再現の情報はまだ伝えられていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "MITの研究チームは11月2日、AI「GPT-6 Astra」にほかのAIの中身を書き換えさせる研究結果を公開しました。"
+    },
+    {
+     "type": "h",
+     "text": "何をした研究か"
+    },
+    {
+     "type": "p",
+     "text": "AIの頭の中には、「重み」と呼ばれる膨大な数値が入っています。研究チームは、対話型のAIにこの数値を直接読ませ、書き換えさせる手法「Weight-Space Programming」を作りました。専用の学習ソフトは使わず、文章で指示するだけで書き換えます。"
+    },
+    {
+     "type": "h",
+     "text": "まず中身を読む実験"
+    },
+    {
+     "type": "p",
+     "text": "重みだけを渡しても、AIはそのAIが何のゲームをするのか、画像を作るAIが何を描くのかを言い当てました。720万個の数値でできた小型の言語AIでは、学習した言語を当てました。途中の層だけを渡した場合も当たったとされています。"
+    },
+    {
+     "type": "h",
+     "text": "書き換えの3つの実験"
+    },
+    {
+     "type": "p",
+     "text": "書き換えでは、次の結果が出ました。\n・車を丘に登らせるゲーム：重みの3.5%（6073個）を1回で直し、成功率が0%から100%に\n・小型の対話AI「Qwen3.5-0.8B」：考え続けて止まらない不具合の原因を見つけ、重みの0.016%（13万1072個）を変更。数学テスト「MATH-500」の正答率が7.9%から48.1%に"
+    },
+    {
+     "type": "p",
+     "text": "重みを一から作らせる実験もありました。3つのゲームで、ルールとプログラムを渡して重みを文章として書かせたところ、3つとも1億回の練習で鍛えた従来の手法を上回りました。"
+    },
+    {
+     "type": "h",
+     "text": "研究チームが挙げる使い道"
+    },
+    {
+     "type": "p",
+     "text": "チームは、AIの不具合や裏口（バックドア）の発見、学習にかかる費用の削減、機能の追加や削除を挙げています。AIが自分の重みを直して賢くなる使い方も例に出しました。これらは今後の見込みで、実際にできたとは示されていません。"
+    },
+    {
+     "type": "h",
+     "text": "まだわかっていないこと"
+    },
+    {
+     "type": "p",
+     "text": "専門家による審査や、別の研究者による再現の結果は伝えられていません。数学以外のテストでも約3倍の向上があったと研究者は説明していますが、テストの名前は明らかになっていません。PC Watchの見出しは「約6倍」、リードは「最大6倍」と書き分けています。"
+    },
+    {
+     "type": "p",
+     "text": "GPT-6 Astraは、OpenAIが9月3日（米国時間）に出した最上位のモデルです。ChatGPTのPlus・Pro・Business・Enterpriseの各プランとAPIで使えます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "0.016%",
+       "label": "書き換えた重みの割合"
+      },
+      {
+       "value": "7.9→48.1%",
+       "label": "MATH-500の正答率"
+      },
+      {
+       "value": "0→100%",
+       "label": "車の課題の成功率"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "一般の利用者は、今のところ特にすることはありません。まだ研究段階の成果です",
+      "「6倍」は小型AIの1つのテストの結果。ほかのAIでも同じ効果が出るとは限りません",
+      "AIを開発する人や導入を考える会社は、第三者による再現や論文審査の続報を待つ"
+     ]
+    }
+   ],
+   "source_name": "PC Watch",
+   "source_url": "https://pc.watch.impress.co.jp/docs/news/2153457.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2153457.html"
+    },
+    {
+     "name": "PC Watch（GPT-6 Astra発表）",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2138206.html"
+    }
+   ]
+  },
+  {
+   "id": "kaden-xiaomi-s60-vacuum",
+   "category": "kaden",
+   "title": "シャオミ、ロボット掃除機S60を早割2万6800円で発売",
+   "summary": "吸引力は前モデルの2.8倍。ハンディー掃除機も同時に出ました。",
+   "image": {
+    "src": "https://i02.appmifile.com/317_operator_jp/26/10/2026/b7f0049ee883c176b15b918aac044fad.jpg?thumb=1&w=1400&q=85",
+    "kind": "press",
+    "credit": "シャオミ公式サイト",
+    "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "掃除機"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "シャオミが水拭きもできるロボット掃除機S60を発売",
+      "早割は11月12日まで2万6800円（通常は3万800円、税込み）",
+      "電池は静音モードで最長285分。ハンディー型も同時発売"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "シャオミ・ジャパンは11月4日、ロボット掃除機「Xiaomiロボット掃除機 S60」とコードレスの「Mijia ハンディークリーナー」を発売しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/ktw/docs/2153/598/07_l.jpg",
+     "kind": "ogp",
+     "credit": "ケータイ Watch",
+     "caption": "Mijia ハンディークリーナー",
+     "page": "https://k-tai.watch.impress.co.jp/docs/news/2153598.html"
+    },
+    {
+     "type": "h",
+     "text": "価格と買える場所"
+    },
+    {
+     "type": "p",
+     "text": "S60の市場想定価格は3万800円（税込み）です。11月12日までは早割で2万6800円になり、4000円安く買えます。ハンディークリーナーは1万1800円で、早割は9980円です。"
+    },
+    {
+     "type": "p",
+     "text": "買えるのは、シャオミの直営店、公式サイト、楽天市場、Amazon、公式TikTok Shop、Yahoo!ショッピングです。公式ページには、予約特典の600円オフクーポンや、受け取り後に届く15%オフクーポンも案内されています。条件は公式ページで確認してください。"
+    },
+    {
+     "type": "h",
+     "text": "S60は吸引力が2.8倍に"
+    },
+    {
+     "type": "p",
+     "text": "S60の吸引力は2万8000Paで、2025年9月発売の前モデルS40（1万Pa）の2.8倍です。静音・標準・強力・ターボの4段階で切り替えます。ただしこの数字は、メーカーが吸い込む部品だけで測ったものです。"
+    },
+    {
+     "type": "p",
+     "text": "電池は5200mAhで、静音モードなら最長285分動きます。S40は約180分でした。この時間は水タンクを外した状態での値です。価格は、S40の市場想定価格2万5800円より5000円高くなりました。"
+    },
+    {
+     "type": "h",
+     "text": "水拭きとアプリでできること"
+    },
+    {
+     "type": "p",
+     "text": "水拭きは、モップを毎分最大1万5000回振動させて汚れをこすります。水の量は、スマホアプリ「Xiaomi Home」で3段階から選べます。水タンクは270mL、ごみをためるダストボックスは520mLです。"
+    },
+    {
+     "type": "p",
+     "text": "部屋はレーザーで測って地図にします。アプリでは、入ってほしくない場所や、掃除する場所を決められ、スケジュールも組めます。AlexaとGoogleアシスタントの声の操作にも対応します。"
+    },
+    {
+     "type": "h",
+     "text": "ハンディークリーナーの特徴"
+    },
+    {
+     "type": "p",
+     "text": "ハンディークリーナーの吸引力は2万3000Paです。吸うだけでなく、風を出す機能もあります。送風用のノズルを付けると、エアベッドやバランスボールなどに空気を入れられます。"
+    },
+    {
+     "type": "p",
+     "text": "電池は5個で、弱モードなら最長45分、ターボモードなら最長10分使えます。USB Type-Cから60Wの急速充電ができ、車内でも充電できます。重さは本体だけで約960gです。ごみは5段階のフィルターで集め、フィルターは水洗いできます。"
+    },
+    {
+     "type": "h",
+     "text": "まだ分からないこと"
+    },
+    {
+     "type": "p",
+     "text": "S60の付属品は充電台だけで、ごみを自動で回収する機能は紹介されていません。ダストボックスのごみは自分で捨てることになりそうです。ハンディークリーナーの電池の持ちも、モードによって大きく変わります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2万6800円",
+       "label": "S60の早割価格"
+      },
+      {
+       "value": "2万8000Pa",
+       "label": "S60の吸引力"
+      },
+      {
+       "value": "285分",
+       "label": "静音モードの最長稼働"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://i02.appmifile.com/741_operator_jp/26/10/2026/556fc5c65588196f494e69c9c357e12f.jpg?thumb=1&q=100",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "吸引力2万8000Paの紹介",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      },
+      {
+       "src": "https://i02.appmifile.com/927_operator_jp/26/10/2026/b908f0b94c5c33f2adbfe786da053947.jpg?thumb=1&q=100",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "振動で水拭きする仕組み",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      },
+      {
+       "src": "https://i02.appmifile.com/515_operator_jp/26/10/2026/def479692a1b9d5966b73575ebced714.jpg?thumb=1&q=100",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "5200mAhの大容量電池",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      },
+      {
+       "src": "https://i02.appmifile.com/308_operator_jp/26/10/2026/c9adbceed240131270095d0e37d3b61e.jpg?thumb=1&q=100",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "髪が絡みにくい構造",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      },
+      {
+       "src": "https://i02.appmifile.com/42_operator_jp/26/10/2026/946537fb54d22905f1c79c2123a2fa9e.jpg?thumb=1&w=1400&q=85",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "ハンディークリーナーで車内を掃除",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      },
+      {
+       "src": "https://i02.appmifile.com/525_operator_jp/27/10/2026/7ff460636dc175e78f187929396d6ea6.jpg?thumb=1&q=100",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "送風でエアベッドやボールをふくらます",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      },
+      {
+       "src": "https://i02.appmifile.com/962_operator_jp/27/10/2026/068eafead181f70acba3bcd123698c37.jpg?thumb=1&q=100",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "ワンタッチでごみを捨てる",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      },
+      {
+       "src": "https://i02.appmifile.com/373_operator_jp/27/10/2026/9cd6630c83e790e42f87f8bd50167e8f.jpg?thumb=1&q=100",
+       "kind": "press",
+       "credit": "シャオミ公式サイト",
+       "caption": "サイクロン式のダストカップ",
+       "page": "https://www.mi.com/jp/event/smart-device-new-products/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ロボット掃除機がほしい人は、早割が使える11月12日までに買うと、S60が2万6800円で済みます。",
+      "床の水拭きまで任せたい人に向きます。ごみ捨ては自分でするので、毎回のダストボックスの掃除は必要です。",
+      "車内や家具のすき間をこまめに掃除したい人は、ハンディークリーナー（早割9980円）が選べます。",
+      "クーポンの条件は購入先で変わるので、買う前に公式ページと販売ページで価格を確かめます。"
+     ]
+    }
+   ],
+   "source_name": "ケータイ Watch",
+   "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2153598.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "ケータイ Watch",
+     "url": "https://k-tai.watch.impress.co.jp/docs/news/2153598.html"
+    },
+    {
+     "name": "シャオミ公式サイト",
+     "url": "https://www.mi.com/jp/event/smart-device-new-products/"
+    },
+    {
+     "name": "gori.me（S60）",
+     "url": "https://gori.me/xiaomi/172056"
+    },
+    {
+     "name": "gori.me（ハンディー）",
+     "url": "https://gori.me/xiaomi/172061"
+    },
+    {
+     "name": "Smart Watch Life",
+     "url": "https://www.smartwatchlife.jp/87075/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-yfurima-first-fee",
+   "category": "fukugyo",
+   "title": "Yahoo!フリマ、初出品の無料枠を11月24日に縮小",
+   "summary": "はじめて出品する人の手数料無料は、90日・50個から30日・20個に減ります。",
+   "visual": {
+    "icon": "yen",
+    "kicker": "手数料の改定"
+   },
+   "image": {
+    "src": "https://www.lycorp.co.jp/ja/news/2026/news_020260519.png",
+    "kind": "press",
+    "credit": "LINEヤフー",
+    "page": "https://www.lycorp.co.jp/ja/news/release/020426/"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Yahoo!フリマが、初出品者の販売手数料の無料枠を11月24日に縮小する",
+      "条件達成が正午以降なら「30日以内・最大20個」。今は「90日以内・最大50個」",
+      "新規で始める人は、11月24日11時59分までに3個売ると有利"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "LINEヤフーのYahoo!フリマは、はじめて出品した人の販売手数料が無料になる期間と個数を、2026年11月24日（火）正午から減らします。"
+    },
+    {
+     "type": "h",
+     "text": "何が変わる"
+    },
+    {
+     "type": "p",
+     "text": "手数料が無料になる条件は変わりません。はじめて出品した日の翌日から30日以内に、3個の商品の購入手続きが完了することです。変わるのは、条件を満たした後の無料の期間（90日→30日）と個数（50個→20個）です。"
+    },
+    {
+     "type": "p",
+     "text": "条件を11月24日11時59分までに満たした人は、達成日の翌日から90日以内、最大50個が無料です。12時以降に満たした人は、達成日の翌日から30日以内、最大20個になります。"
+    },
+    {
+     "type": "h",
+     "text": "手取りでいくら違うか"
+    },
+    {
+     "type": "p",
+     "text": "Yahoo!フリマの通常の販売手数料は5%です（5月の発表による）。1個3000円の商品なら、手数料は1個150円です。"
+    },
+    {
+     "type": "p",
+     "text": "無料の個数を使い切った場合、免除される手数料は50個で7500円分、20個で3000円分です。差は4500円分です。もっと高い商品を売る人ほど、差は大きくなります。"
+    },
+    {
+     "type": "h",
+     "text": "すでに始めている人は"
+    },
+    {
+     "type": "p",
+     "text": "11月24日11時59分までに条件を満たした人は、12時以降も90日以内・最大50個のまま続きます。無料期間は、マイページに「無料対象」と表示された時点から数えます。表示まで数分かかることがあるため、マイページで確認が必要です。"
+    },
+    {
+     "type": "p",
+     "text": "条件の3個目までの商品と、表示が出る前の購入には、通常の手数料がかかります。取引がキャンセルになっても、達成の判定と対象個数では1個として数えます。"
+    },
+    {
+     "type": "h",
+     "text": "これまでの経緯"
+    },
+    {
+     "type": "p",
+     "text": "この無料施策は、5月19日の発表で「90日間・最大50個」に改められました。ほかのフリマで取引実績のある人向けに、実績を示す公式バッジも同時に始まっています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "90日→30日",
+       "label": "手数料が無料の期間"
+      },
+      {
+       "value": "50個→20個",
+       "label": "手数料が無料の個数"
+      },
+      {
+       "value": "4500円分",
+       "label": "3000円の品で免除差"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "これから出品を始める人は、11月24日11時59分までに3個の購入手続きを済ませる",
+      "始めたばかりの人は、マイページで「無料対象」の表示と残り期間・個数を確認する",
+      "1個あたりの手数料は5%。高い商品から売ると無料枠の得を生かせる",
+      "ガイドラインの全文は、Yahoo!フリマのお知らせページで確認する"
+     ]
+    }
+   ],
+   "source_name": "Yahoo!フリマ お知らせ",
+   "source_url": "https://paypayfleamarket.yahoo.co.jp/notice/rule/post_1340/",
+   "published": "2026-10-23",
+   "refs": [
+    {
+     "name": "Yahoo!フリマ お知らせ",
+     "url": "https://paypayfleamarket.yahoo.co.jp/notice/rule/post_1340/"
+    },
+    {
+     "name": "LINEヤフー ニュースリリース",
+     "url": "https://www.lycorp.co.jp/ja/news/release/020426/"
+    },
+    {
+     "name": "コマースピック",
+     "url": "https://www.commercepick.com/?p=93129"
+    }
+   ]
+  },
+  {
+   "id": "ai-nttE-netshukyaku",
+   "category": "ai",
+   "title": "NTT東、店のネット情報をAIで点検　月額2750円",
+   "summary": "店の住所や口コミを一括管理し、AI検索で自店が紹介されるかまで確認できます。",
+   "image": {
+    "src": "https://business.ntt-east.co.jp/service/citation/MV-citation01.jpg",
+    "kind": "press",
+    "credit": "NTT東日本",
+    "page": "https://business.ntt-east.co.jp/service/citation/"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "店のAI対策"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "NTT東日本が店舗向けの「おまかせネット集客サポート」を開始",
+      "月額2750円（税込み）、初期費用0円で、最低利用は12か月",
+      "AI検索で自店が正しく紹介されるか、口コミと合わせて確認できる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "NTT東日本は11月2日、店の情報をネット上でまとめて管理し、AI検索の答えも点検する新サービスを始めました。月額は店舗ごとに2750円（税込み）です。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2153/527/1_l.jpg",
+     "kind": "ogp",
+     "credit": "AI Watch",
+     "caption": "サービスの4つの機能を説明した図",
+     "page": "https://ai.watch.impress.co.jp/docs/news/2153527.html"
+    },
+    {
+     "type": "h",
+     "text": "住所や営業時間を1回で配信"
+    },
+    {
+     "type": "p",
+     "text": "店名、住所、電話番号、営業時間を専用の管理画面に登録すると、連携しているサイトやSNSにまとめて配信されます。連携先はGoogle、Googleマップ、Instagram、Facebook、TikTok、Bing、Apple Maps、Siri、Alexaなどで、NTT東日本は今後も増やす予定です。サイトごとに情報を直す手間を減らせます。"
+    },
+    {
+     "type": "h",
+     "text": "AI検索の答えを点検する"
+    },
+    {
+     "type": "p",
+     "text": "お客さんが生成AIに関連する言葉で質問したとき、どんな答えが返るかを集めて、自店が紹介されているかを管理画面で確かめられます。店になりすました情報や、古い情報、間違った情報が出ていないかも見つけられます。"
+    },
+    {
+     "type": "p",
+     "text": "ネット上の口コミや評判も一覧で見られます。AI検索での見え方を競合店と比べ、改善案をもらう機能もあります。"
+    },
+    {
+     "type": "h",
+     "text": "料金と契約の条件"
+    },
+    {
+     "type": "p",
+     "text": "初期費用は0円、月額は1店舗（1か所の住所）につき2750円（税込み）です。最低利用期間は12か月で、途中で解約すると残りの期間の月額を払います。"
+    },
+    {
+     "type": "p",
+     "text": "前提として、NTT東日本のビジネスIDと、電話帳サービス「iタウンページ」への登録が必要です。どちらも無料です。1つのIDで複数の店舗を管理できます。"
+    },
+    {
+     "type": "h",
+     "text": "申し込み方と問い合わせ先"
+    },
+    {
+     "type": "p",
+     "text": "問い合わせフォームか電話で相談すると、担当者が現状と目的を聞いたうえで申し込みを進めます。そのあと基本情報を登録し、各サイトへの配信と運用サポートが始まります。新規契約では、Googleビジネスプロフィールの登録を無料で受けられるキャンペーンを12月31日まで行っています。"
+    },
+    {
+     "type": "p",
+     "text": "電話は0120-455-116で、平日の9時から17時に受け付けます（12月29日〜1月3日は休み）。店名、住所、電話番号を変えるときは、連携先との紐づけの都合で変更手続きが必要になる場合があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2750円",
+       "label": "月額（1店舗・税込み）"
+      },
+      {
+       "value": "12か月",
+       "label": "最低利用期間"
+      },
+      {
+       "value": "0円",
+       "label": "初期費用"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://business.ntt-east.co.jp/service/citation/citation_about_img.webp",
+       "kind": "press",
+       "credit": "NTT東日本",
+       "caption": "サービスの概要",
+       "page": "https://business.ntt-east.co.jp/service/citation/"
+      },
+      {
+       "src": "https://business.ntt-east.co.jp/service/citation/80f7be1cdb7c3075ef5c99d2e738291f.png",
+       "kind": "press",
+       "credit": "NTT東日本",
+       "caption": "機能1　情報をまとめて配信",
+       "page": "https://business.ntt-east.co.jp/service/citation/"
+      },
+      {
+       "src": "https://business.ntt-east.co.jp/service/citation/d3866256a0a9299932fd2d48244930e8.png",
+       "kind": "press",
+       "credit": "NTT東日本",
+       "caption": "機能2　間違った情報の発見",
+       "page": "https://business.ntt-east.co.jp/service/citation/"
+      },
+      {
+       "src": "https://business.ntt-east.co.jp/service/citation/c096af4121565da1129d6086cd0ef918.png",
+       "kind": "press",
+       "credit": "NTT東日本",
+       "caption": "機能3　口コミの確認",
+       "page": "https://business.ntt-east.co.jp/service/citation/"
+      },
+      {
+       "src": "https://business.ntt-east.co.jp/service/citation/2908438fbf839dac5af20ea4f7d6baf0.png",
+       "kind": "press",
+       "credit": "NTT東日本",
+       "caption": "機能4　競合との比較",
+       "page": "https://business.ntt-east.co.jp/service/citation/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "お店や事務所を持つ人は、Googleマップなどの店舗情報が古くなっていないか、まず自分で確かめる",
+      "このサービスは最低12か月の契約です。月2750円×12か月の合計を見て、続けられるか決める",
+      "申し込みの前に、NTT東日本のビジネスIDとiタウンページの登録（どちらも無料）をそろえる",
+      "相談は0120-455-116（平日9〜17時）か、公式ページの問い合わせフォームから"
+     ]
+    }
+   ],
+   "source_name": "NTT東日本（公式サービスページ）",
+   "source_url": "https://business.ntt-east.co.jp/service/citation/",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "NTT東日本",
+     "url": "https://business.ntt-east.co.jp/service/citation/"
+    },
+    {
+     "name": "AI Watch",
+     "url": "https://ai.watch.impress.co.jp/docs/news/2153527.html"
+    }
+   ]
+  },
+  {
+   "id": "kaden-canon-dm-e10d-mic",
+   "category": "kaden",
+   "title": "キヤノン、ケーブル不要の小型マイクを12月下旬に発売",
+   "summary": "カメラに載せるだけで音が録れる59gのマイク。市場想定は約3万円です。",
+   "image": {
+    "src": "https://corporate.jp.canon/-/media/Project/Canon/CanonJP/Corporate/newsroom/newsrelease/2026/2026-11/photo-library/20261104b-1.png?sc_lang=ja-JP&hash=6046BDB814058C66AE9342A3DAD72A6F",
+    "kind": "press",
+    "credit": "キヤノン",
+    "page": "https://corporate.jp.canon/newsroom/newsrelease/2026/pr-1104b"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "撮影用マイク"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "キヤノンが、ケーブルも電池もいらない小型マイクを発表",
+      "市場想定価格は2万9700円前後で、発売は12月下旬",
+      "重さ約59g。カメラの前の人と、撮る人の声を同時に録れる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "キヤノンは11月4日、カメラ用の小型マイク「DM-E10D」を12月下旬に発売すると発表しました。Vlog（日常の動画記録）やライブ配信向けです。"
+    },
+    {
+     "type": "img",
+     "src": "https://corporate.jp.canon/-/media/Project/Canon/CanonJP/Corporate/newsroom/newsrelease/2026/2026-11/photo-library/20261104b-3.png?sc_lang=ja-JP&hash=3B8B42A191E11522CDC3FA0F1305A2E5",
+     "kind": "press",
+     "credit": "キヤノン",
+     "caption": "小型・軽量でVlogやライブ配信に使えるマイク",
+     "page": "https://corporate.jp.canon/newsroom/newsrelease/2026/pr-1104b"
+    },
+    {
+     "type": "h",
+     "text": "価格と発売時期"
+    },
+    {
+     "type": "p",
+     "text": "DM-E10Dはオープン価格で、AV Watchは市場想定価格を2万9700円前後と伝えています。PRONEWSは、キヤノンのオンラインショップでの税込み価格を2万9700円としています。"
+    },
+    {
+     "type": "p",
+     "text": "同時に、カメラに触れずに撮影できるタイマーリモコン「TC-N3」「TC-E3」も発表されました。市場想定価格は3万800円前後で、発売は2027年1月下旬です。"
+    },
+    {
+     "type": "h",
+     "text": "ケーブルも電池も要らない"
+    },
+    {
+     "type": "p",
+     "text": "マイクはカメラの上のマルチアクセサリーシューに差し込んで使います。この端子を通して、音のデータをカメラに送り、電気も受け取ります。ケーブルをつなぐ手間や、マイク用の電池の交換がありません。"
+    },
+    {
+     "type": "p",
+     "text": "音はモノラルで録ります。指向性（音を拾う向き）はスーパーカーディオイドで、カメラの正面にいる人と、撮影している本人の声の両方を拾いやすい作りです。マイクのMENUボタンを押すと、カメラの音声設定の画面が開きます。"
+    },
+    {
+     "type": "h",
+     "text": "前のマイクとの違い"
+    },
+    {
+     "type": "p",
+     "text": "キヤノンの現行品は、2022年3月発売のステレオマイク「DM-E1D」です。指向性を3種類から選べ、重さは約136gあります。DM-E10Dはモノラルで指向性の切り替えはない代わりに、重さが約59gと半分以下です。"
+    },
+    {
+     "type": "p",
+     "text": "大きさは幅約36.8mm、奥行き約61mm、高さ約53.7mmです。デジカメ Watchによると、周波数特性は60Hzから20kHz、風切り音を減らす機能と、大きな音を抑える機能（アッテネーター）も付きます。"
+    },
+    {
+     "type": "h",
+     "text": "使えるカメラ"
+    },
+    {
+     "type": "p",
+     "text": "対応機種は、デジカメ Watchが次のように伝えています。キヤノンの発表には、機種名の一覧はありません。\n・EOS R1、R3、R5 Mark II、R6 Mark III、R6 Mark II、R7、R8 Mark II、R8、R10、R50\n・EOS R6 V、R50 V、C400、C80、C50、PowerShot V1\n・EOS R5 Cは、VIDEOモードのみ対応"
+    },
+    {
+     "type": "h",
+     "text": "同時発表のリモコンとアプリ"
+    },
+    {
+     "type": "p",
+     "text": "タイマーリモコンは、星空の撮影やコマ撮り動画（タイムラプス）に使います。新しく時計機能が付き、日の出や日没の時刻を先に決めておけば、現地で待たなくても自動で撮れます。表示パネルの文字も大きくなりました。"
+    },
+    {
+     "type": "p",
+     "text": "TC-N3はN3端子、TC-E3はE3端子のカメラ用で、端子が違います。持っているカメラの端子を確かめてから選びます。このほか、リモートカメラの管理用PCアプリ「Camera Control Center」も、2027年1月上旬に無料で始まります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約59g",
+       "label": "DM-E10Dの重さ"
+      },
+      {
+       "value": "約136g",
+       "label": "従来品DM-E1Dの重さ"
+      },
+      {
+       "value": "2万9700円前後",
+       "label": "市場想定価格"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://corporate.jp.canon/-/media/Project/Canon/CanonJP/Corporate/newsroom/newsrelease/2026/2026-11/photo-library/20261104b-2.png?sc_lang=ja-JP&hash=E187A28DD7E5C93215B22A74AB73A1F1",
+       "kind": "press",
+       "credit": "キヤノン",
+       "caption": "タイマーリモコンTC-N3",
+       "page": "https://corporate.jp.canon/newsroom/newsrelease/2026/pr-1104b"
+      },
+      {
+       "src": "https://corporate.jp.canon/-/media/Project/Canon/CanonJP/Corporate/newsroom/newsrelease/2026/2026-11/photo-library/20261104b-4.png?sc_lang=ja-JP&hash=A42F5F9AD55D5AF5C19C7D467322432E",
+       "kind": "press",
+       "credit": "キヤノン",
+       "caption": "N3端子用（左）とE3端子用（右）",
+       "page": "https://corporate.jp.canon/newsroom/newsrelease/2026/pr-1104b"
+      },
+      {
+       "src": "https://corporate.jp.canon/-/media/Project/Canon/CanonJP/Corporate/newsroom/newsrelease/2026/2026-11/photo-library/20261104b-5.png?sc_lang=ja-JP&hash=C6898C88FCF95D9D35A5216C68834D8A",
+       "kind": "press",
+       "credit": "キヤノン",
+       "caption": "見やすくなったリモコンの表示パネル",
+       "page": "https://corporate.jp.canon/newsroom/newsrelease/2026/pr-1104b"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Vlogやライブ配信で、ケーブルなしで声をきれいに録りたい人は、12月下旬の発売を待ちます。",
+      "買う前に、持っているカメラが対応機種に入っているかを確かめます。",
+      "星空や日の出を撮る人は、リモコンの端子（N3かE3）が自分のカメラと合うか確認します。",
+      "マイクは12月下旬、リモコンは2027年1月下旬の発売で、今すぐ買えるものはありません。"
+     ]
+    }
+   ],
+   "source_name": "AV Watch",
+   "source_url": "https://av.watch.impress.co.jp/docs/news/2153522.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "AV Watch",
+     "url": "https://av.watch.impress.co.jp/docs/news/2153522.html"
+    },
+    {
+     "name": "キヤノン（ニュースリリース）",
+     "url": "https://corporate.jp.canon/newsroom/newsrelease/2026/pr-1104b"
+    },
+    {
+     "name": "PRONEWS",
+     "url": "https://jp.pronews.com/news/202611041818797317.html"
+    },
+    {
+     "name": "デジカメ Watch",
+     "url": "https://dc.watch.impress.co.jp/docs/news/2153425.html"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-mercarishops-nov",
+   "category": "fukugyo",
+   "title": "メルカリShops、11月の売れ筋と26日の超メルカリ市",
+   "summary": "冬物・年末ギフト・冬家電が伸びる時期。出品の準備は26日の前に。",
+   "visual": {
+    "icon": "chart",
+    "kicker": "11月の売れ筋"
+   },
+   "image": {
+    "src": "https://storage.googleapis.com/biyori-shop-media-prod/2026/10/6394a359-11%E6%9C%88%E8%B2%A9%E4%BF%83%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC_v5-1024x1018.png",
+    "kind": "press",
+    "credit": "メルカリShops",
+    "page": "https://jp-news.mercari.com/mercari-shops/info/53833"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "メルカリShopsが10月20日、11月の販促カレンダーと売れ筋レポートを公開",
+      "「超メルカリ市」は11月26日（木）8時に開始。出品やクーポンの準備を勧める",
+      "冬物アウター、年末ギフトの食品、冬支度の家電が11月に伸びやすい"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "メルカリShopsは2026年10月20日、11月向けのレポートを公開しました。11月26日（木）8時に始まる「超メルカリ市」に向けた準備を勧めています。"
+    },
+    {
+     "type": "h",
+     "text": "11月の販促予定"
+    },
+    {
+     "type": "p",
+     "text": "レポートが挙げる日付は3つです。毎月1日はメルペイのクレジット利用限度額がリセットされる日、8日はメルペイやメルカードの企画でおトク感が高まりやすい日です。"
+    },
+    {
+     "type": "p",
+     "text": "一番大きいのが26日8時開始の「超メルカリ市」です。新規出品、在庫の追加、タイムセールやクーポンの予約、売れ筋商品の写真・タイトル・説明の見直しを、始まる前に済ませるよう案内しています。"
+    },
+    {
+     "type": "h",
+     "text": "11月に伸びる3分野"
+    },
+    {
+     "type": "p",
+     "text": "ファッションでは冬物アウターです。前年は月初から需要が立ち上がり、月末まで上がり続けました。タイトルに「ダウン」「防寒」「ウール」と、サイズ・ブランド・色を入れるのがおすすめです。"
+    },
+    {
+     "type": "p",
+     "text": "食品は年末の贈り物です。カニ、海鮮、果物などが11月から動き出します。配送日、賞味期限、冷凍か冷蔵かを書くよう勧めています。生活家電は冬支度で、11月に需要が立ち上がり、月を通して高い水準でした。型番、畳数の目安、消費電力、付属品、動作確認の有無を明記します。"
+    },
+    {
+     "type": "h",
+     "text": "直近1週間の急上昇ワード"
+    },
+    {
+     "type": "p",
+     "text": "メルカリShopsは事業者向けの出店サービスですが、検索の動きは個人の出品の目安にもなります。以下は、10月8〜14日の検索数を1〜7日と比べた倍率です。本・雑誌では「汝、星のごとく」が3.0倍、「ちいかわ」が2.5倍でした。生活家電では「レコルト 自動調理ポット」が2.4倍、CD・DVDでは「山下達郎」が2.4倍です。"
+    },
+    {
+     "type": "p",
+     "text": "食品・飲料では「渋柿」が1.8倍でした。キッチン・日用品の「ちいかわ」は1.9倍です。ほかのカテゴリーの一覧は、公式のレポートを参照してください。検索数の実数は載っていません。"
+    },
+    {
+     "type": "h",
+     "text": "出品チャンスと注意点"
+    },
+    {
+     "type": "p",
+     "text": "「出品チャンス」は、検索の増え方が購入の増え方を上回る言葉です。生活家電ではノンフライヤー、ミキサー、ルンバ、家具ではこたつやスチールラックが挙がっています。食品では渋柿やりんご10kgです。"
+    },
+    {
+     "type": "p",
+     "text": "商品に関係のない言葉を入れるのはルール違反です。排気量125ccを超える自動車・バイク、消費期限切れの食品、生の食肉・魚介類、管理医療機器は出品が禁止か制限されます。このレポートはAIで作られており、正確さは保証されないと本文に書かれています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "11月26日",
+       "label": "超メルカリ市の開始日"
+      },
+      {
+       "value": "3.0倍",
+       "label": "「汝、星のごとく」の検索"
+      },
+      {
+       "value": "2.4倍",
+       "label": "自動調理ポットの検索"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://storage.googleapis.com/biyori-shop-media-prod/2026/10/895f3e29-11%E6%9C%88%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BCkv-scaled.jpeg",
+       "kind": "press",
+       "credit": "メルカリShops",
+       "caption": "11月の販促カレンダーのメイン画像",
+       "page": "https://jp-news.mercari.com/mercari-shops/info/53833"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "メルカリで出品する人は、26日8時の超メルカリ市の前に、新規出品と写真・タイトルの見直しを済ませる",
+      "冬物アウター、年末ギフト、冬の家電を持っている人は、11月の早いうちに出す",
+      "タイトルと説明には、サイズ・ブランド・型番・賞味期限など買い手が知りたい情報を入れる",
+      "急上昇ワードは1週間分の倍率にすぎない。参考程度に使い、関係のない言葉は載せない"
+     ]
+    }
+   ],
+   "source_name": "メルカリShops お知らせ",
+   "source_url": "https://jp-news.mercari.com/mercari-shops/info/53833",
+   "published": "2026-10-20",
+   "refs": [
+    {
+     "name": "メルカリShops お知らせ",
+     "url": "https://jp-news.mercari.com/mercari-shops/info/53833"
+    }
+   ]
+  },
+  {
+   "id": "ai-chatgpt-oshikatsu-site",
+   "category": "ai",
+   "title": "ChatGPTで推し活、OpenAIが特設サイトを開設",
+   "summary": "遠征の計画、ファンレター、グッズ作りまで、会話しながら相談できます。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2153/528/0301_l.jpg",
+    "kind": "ogp",
+    "credit": "AI Watch",
+    "page": "https://ai.watch.impress.co.jp/docs/news/2153528.html"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "推し活にAI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIが11月4日、ChatGPTで推し活を楽しむ特設サイトを開設",
+      "遠征の計画、ファンレター、グッズ作りの3つの使い方を紹介",
+      "料金や、無料で使えるかどうかは発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月4日の「いい推しの日」に合わせて、ChatGPTで推し活を楽しむ特設サイトを開きました。ハッシュタグは「#ChatGPTで推し活」です。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2153/528/0302_l.jpg",
+     "kind": "ogp",
+     "credit": "AI Watch",
+     "caption": "特設サイトの画面。会話しながら、または用意された質問やジャンルから選んで相談できる",
+     "page": "https://ai.watch.impress.co.jp/docs/news/2153528.html"
+    },
+    {
+     "type": "h",
+     "text": "どんなサイトなのか"
+    },
+    {
+     "type": "p",
+     "text": "サイトを開くと、ChatGPTが「どんなジャンルの推し活をしているか」「推しは誰か」と質問してきます。答えに合わせて、使い方を提案してくれます。自由に話しかけても、用意された質問やジャンルから選んで選択肢を絞ってもかまいません。"
+    },
+    {
+     "type": "h",
+     "text": "遠征と聖地巡りの計画"
+    },
+    {
+     "type": "p",
+     "text": "1つ目は遠征の準備です。例として、福岡のコンサートに行くために、交通費と宿泊費を合わせて5万円以内に収め、早めに着ける行き方を比べてもらう頼み方が紹介されています。持ち物のチェックリストも頼めます。"
+    },
+    {
+     "type": "p",
+     "text": "映画やドラマのロケ地をめぐる週末の旅なら、移動時間に余裕のあるルートを組んでもらえます。予算と到着時刻を伝えておくのがコツです。"
+    },
+    {
+     "type": "h",
+     "text": "ファンレターとグッズ作り"
+    },
+    {
+     "type": "p",
+     "text": "2つ目はファンレターです。好きなアーティストへの思い出を整理して、文章にまとめられます。紹介された例は、就職の面接に向かう勇気をくれた曲への感謝です。自分で書いた手紙を、言葉は変えずに誤字だけ見てもらう使い方もできます。"
+    },
+    {
+     "type": "p",
+     "text": "3つ目はグッズ作りです。たとえば、ぬいぐるみに着せる服を初心者が縫う場合、必要な道具と手順を順番に教えてもらえます。自分の腕前、持っている道具、予算に合わせた案が出ます。"
+    },
+    {
+     "type": "h",
+     "text": "料金と、まだわかっていないこと"
+    },
+    {
+     "type": "p",
+     "text": "サイトや機能が無料か有料か、有料プランが必要かは発表されていません。公式のリンクを開くと、推し活の相談用に用意された文面が入った状態でChatGPTの画面が開きます。"
+    },
+    {
+     "type": "p",
+     "text": "11月4日は、日本記念日協会に登録された「いい推しの日」です。NHKは同じ日に、推し活が盛んになり、国も地域のビジネスにつなげるイベントを開いていると伝えました。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "5万円",
+       "label": "遠征の予算の例"
+      },
+      {
+       "value": "3つ",
+       "label": "紹介された使い方"
+      },
+      {
+       "value": "11月4日",
+       "label": "いい推しの日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "コンサート遠征の予定がある人は、予算と日程を伝えて、行き方の比較とチェックリストを頼んでみる",
+      "ファンレターは自分で書き、誤字のチェックだけ頼む使い方もできる",
+      "料金や利用条件は未発表。使う前に、ChatGPTの画面で確認する",
+      "AIが組んだ予定は、運行時刻や予約の空きを公式サイトで確かめてから動く"
+     ]
+    }
+   ],
+   "source_name": "AI Watch",
+   "source_url": "https://ai.watch.impress.co.jp/docs/news/2153528.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "AI Watch",
+     "url": "https://ai.watch.impress.co.jp/docs/news/2153528.html"
+    },
+    {
+     "name": "YAYAFA",
+     "url": "https://www.yayafa.com/2927124/"
+    },
+    {
+     "name": "NHK",
+     "url": "https://news.web.nhk/newsweb/na/nd-20261104de70547"
+    }
+   ]
+  },
+  {
+   "id": "kaden-final-ze300-asmr",
+   "category": "kaden",
+   "title": "final、ASMR専用の完全ワイヤレスを7980円から発売",
+   "summary": "片側約4gでノイキャン付き。音の聞こえ方が違う2モデルから選べます。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/121822/238/121822-238-bf1765c45468181d3fff97f167eaea68-2712x2000.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "final",
+    "page": "https://prtimes.jp/main/html/rd/p/000000238.000121822.html"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "ASMRイヤホン"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "finalがASMR専用の完全ワイヤレス2モデルを11月4日に発売",
+      "価格は7980円と8980円（税込み）。片側の重さは約4g",
+      "ささやき声向けと、動く音向けの2種類から選べる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "finalは11月4日、ASMR専用の完全ワイヤレス「ZE300 for ASMR」2モデルを発売しました。価格は7980円からです。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/121822/238/121822-238-896a472477bc1d86d134631ae1c94af1-2000x1450.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "final",
+     "caption": "ZE300 for ASMRシリーズの製品画像",
+     "page": "https://prtimes.jp/main/html/rd/p/000000238.000121822.html"
+    },
+    {
+     "type": "h",
+     "text": "価格・色・買える場所"
+    },
+    {
+     "type": "p",
+     "text": "ZE300 for ASMRは7980円（税込み）で、色はMIDNIGHT NAVYです。ZE300 for ASMR 3Dは8980円（税込み）で、色はLATTEです。ASMRとは、ささやき声や耳かきの音など、聴いて心地よく感じる音のことです。"
+    },
+    {
+     "type": "p",
+     "text": "買えるのは、finalの公式オンラインストア、Amazon、全国のオーディオ専門店と家電量販店です。もとになった「ZE300」は、2025年10月に5980円で出ていました（AV Watch）。"
+    },
+    {
+     "type": "h",
+     "text": "2つのモデルの音の違い"
+    },
+    {
+     "type": "p",
+     "text": "ZE300 for ASMRは「超近接音場」で、音が頭の中にあるように聞こえます。低音から中音に厚みを持たせ、耳につく音をおさえています。ささやき声や耳かきの音に向きます。"
+    },
+    {
+     "type": "p",
+     "text": "ZE300 for ASMR 3Dは「近接3D音場」で、音が耳や肌のすぐそばにあるように聞こえます。高めの中音をなめらかにして、頭の上の音の位置も分かりやすくしました。シャンプーの音や、動き回る声のシチュエーション作品に向きます。"
+    },
+    {
+     "type": "h",
+     "text": "やさしい効きのノイキャン"
+    },
+    {
+     "type": "p",
+     "text": "ノイキャン（周りの音を打ち消す機能）は、強く効かせることより、耳が疲れにくいことを優先した設定です。エアコンや換気扇のような家の中の音をやわらげ、ささやき声や息づかいは聞こえるようにしています。"
+    },
+    {
+     "type": "p",
+     "text": "ノイズ制御は、ノイキャン、外音取り込み、オフの3つから、左側のワンタッチで切り替えます。エアフローポートという小さな穴もあり、耳を押さえたときの耳の中の圧力を逃がします。"
+    },
+    {
+     "type": "h",
+     "text": "小ささと使い勝手"
+    },
+    {
+     "type": "p",
+     "text": "本体は片側約4gで、finalのノイキャン付きイヤホンでは最小・最軽量です。同社の「ZE3000 SV」より体積が約20%小さくなりました。"
+    },
+    {
+     "type": "p",
+     "text": "「ASMRモード」にすると、タッチ操作と音声ガイダンスが止まり、触れて曲が止まったり、声が割り込んだりしません。表面は指紋や汗に強い加工で、防水はIPX4です。通話用のマイクも付きます。"
+    },
+    {
+     "type": "h",
+     "text": "電池と対応する音声方式"
+    },
+    {
+     "type": "p",
+     "text": "電池は、イヤホンだけで5.5時間、充電ケースを使うと合計16.5時間です。充電にかかる時間は、イヤホンもケースも約1.5時間です。対応する音声方式はSBCとAACの2つで、LDACなどの高音質方式はありません。"
+    },
+    {
+     "type": "p",
+     "text": "finalによると、ASMR向けの有線イヤホンは累計50万台超、完全ワイヤレスは累計30万台超が出荷されています（社内の推計）。付属のイヤーピースは、完全ワイヤレス用の「TYPE E」のSS・S・Mの3サイズです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "7980円",
+       "label": "ZE300 for ASMRの価格"
+      },
+      {
+       "value": "約4g",
+       "label": "イヤホン片側の重さ"
+      },
+      {
+       "value": "5.5時間",
+       "label": "イヤホン単体の連続再生"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/121822/238/121822-238-3da982073bd041453e8e3341c3df2662-2000x1450.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "final",
+       "caption": "2種類の音場の説明",
+       "page": "https://prtimes.jp/main/html/rd/p/000000238.000121822.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/121822/238/121822-238-9d0f0a5bef04f34243d706e252f33aa2-2000x1450.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "final",
+       "caption": "ノイズ制御の説明",
+       "page": "https://prtimes.jp/main/html/rd/p/000000238.000121822.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/121822/238/121822-238-2ef98b881c40538ad159db5b587f4e35-2000x1450.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "final",
+       "caption": "小型ボディの説明",
+       "page": "https://prtimes.jp/main/html/rd/p/000000238.000121822.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/121822/238/121822-238-0fb2cc5659b343d1d82c107e16ec3181-2000x1450.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "final",
+       "caption": "ASMRモードの説明",
+       "page": "https://prtimes.jp/main/html/rd/p/000000238.000121822.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ささやき声や耳かき音が好きな人は、頭の中で聞こえるZE300 for ASMR（7980円）が合います。",
+      "動き回る声やシャンプー音が好きな人は、耳の外で聞こえるZE300 for ASMR 3D（8980円）が向きます。",
+      "長く聴く人は、片側約4gの軽さと、触れても反応しないASMRモードが使いやすい点です。",
+      "音の方式はSBCとAACだけなので、LDACなどで聴きたい人には向きません。"
+     ]
+    }
+   ],
+   "source_name": "AV Watch",
+   "source_url": "https://av.watch.impress.co.jp/docs/news/2153494.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "AV Watch",
+     "url": "https://av.watch.impress.co.jp/docs/news/2153494.html"
+    },
+    {
+     "name": "final（PR TIMES）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000238.000121822.html"
+    },
+    {
+     "name": "final公式ストア",
+     "url": "https://final-inc.com/en/blogs/value-ws-1/news-346"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-mercari-fake-app",
+   "category": "fukugyo",
+   "title": "メルカリを装う「安心ガード」偽アプリのメールに注意",
+   "summary": "メルカリにそんなアプリはありません。メールのリンクは開かないでください。",
+   "visual": {
+    "icon": "lock",
+    "kicker": "偽アプリ注意"
+   },
+   "image": {
+    "src": "https://storage.googleapis.com/biyori-info-media-prod/2026/10/c61678ce-%E5%81%BD%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E7%94%BB%E9%9D%A2%E4%BE%8B-550x1024.png",
+    "kind": "press",
+    "credit": "メルカリ",
+    "page": "https://jp-news.mercari.com/info/55627"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "メルカリは「メルカリ安心ガード」というアプリを出していない",
+      "「期限までに対応しないと利用制限」とあおるメールで偽アプリを入れさせる",
+      "リンクは開かず、公式アプリで確認。入れたら削除し、別の端末でパスワードを変える"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "メルカリは10月16日、事務局を装って偽アプリ「メルカリ安心ガード」を入れさせるフィッシングメールへの注意を呼びかけました。"
+    },
+    {
+     "type": "h",
+     "text": "届くメールの手口"
+    },
+    {
+     "type": "p",
+     "text": "メールは、不正ログインやアカウントの乗っ取りが増えていると不安をあおります。実例では「2026年10月15日（木曜日）まで」の対応を求め、間に合わないとアカウントの利用が制限される、と書かれていました。"
+    },
+    {
+     "type": "p",
+     "text": "リンク先には、偽アプリのダウンロード画面が出ます。差出人の名前やアドレスが、本物のメールと同じに見えることもあります。"
+    },
+    {
+     "type": "h",
+     "text": "入れてしまうと起きること"
+    },
+    {
+     "type": "p",
+     "text": "偽アプリは、ログイン情報、認証コード、クレジットカード情報の入力を求めます。スマホを遠隔操作されたり、情報を盗まれたりするおそれもあります。"
+    },
+    {
+     "type": "p",
+     "text": "メルカリは9月25日にも、Android向けに似た手口を知らせています。Google Play以外のサイトでAPKファイルを取らせ、「提供元不明のアプリ」の許可を求める手口です。"
+    },
+    {
+     "type": "h",
+     "text": "ふだんからできる予防"
+    },
+    {
+     "type": "p",
+     "text": "メルカリが勧める予防は4つです。\n・メールやSMSのリンクは開かず、公式アプリか、ブックマークした公式サイトから入る\n・アプリはApp StoreかGoogle Playからだけ入れる\n・パスキー（指紋や顔でログインする仕組み。偽サイトでは使えない）を設定する\n・パスワードを使い回さず、身に覚えのないログインや取引がないか確認する"
+    },
+    {
+     "type": "p",
+     "text": "パスキーは、マイページの「個人情報設定」から登録できます。"
+    },
+    {
+     "type": "h",
+     "text": "入れてしまったときの対応"
+    },
+    {
+     "type": "p",
+     "text": "身に覚えのないアプリは、すぐに削除します。そのスマホは使い続けず、別の安全な端末からメルカリのパスワードを変えて、パスキーを設定します。カード情報を入力した場合は、カード会社に連絡して利用を止めてもらいます。"
+    },
+    {
+     "type": "p",
+     "text": "不正なアプリは、削除を邪魔することがあります。削除できても、安全な状態に戻ったとは限りません。通信をオフにし、必要なら携帯電話会社や端末メーカーにも相談します。メルカリへの連絡は、アプリ内の「お問い合わせ」からです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "10月15日",
+       "label": "実例メールの対応期限"
+      },
+      {
+       "value": "9月25日",
+       "label": "Android向け注意の日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "メルカリから「アプリを入れて」と案内するメールが来ても、リンクは開かない",
+      "メルカリのアプリは、App StoreかGoogle Playの公式ページからだけ入れる",
+      "まだなら、マイページの「個人情報設定」からパスキーを設定する",
+      "入れてしまった人は、別の端末でパスワードを変え、アプリ内の「お問い合わせ」から連絡する"
+     ]
+    }
+   ],
+   "source_name": "メルカリびより",
+   "source_url": "https://jp-news.mercari.com/info/55627",
+   "published": "2026-10-16",
+   "refs": [
+    {
+     "name": "メルカリびより（偽アプリの注意）",
+     "url": "https://jp-news.mercari.com/info/55627"
+    },
+    {
+     "name": "メルカリびより（不審なAndroidアプリ）",
+     "url": "https://jp-news.mercari.com/info/55501"
+    }
+   ]
+  },
+  {
+   "id": "ai-softbank-mwc27",
+   "category": "ai",
+   "title": "ソフトバンク、MWC27に初出展　通信会社向けAIを披露",
+   "summary": "世界の通信会社に、AIで新しい稼ぎ方を見せる展示です。利用者向けの話ではありません。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/ktw/docs/2153/592/01_l.jpg",
+    "kind": "ogp",
+    "credit": "ケータイ Watch",
+    "page": "https://k-tai.watch.impress.co.jp/docs/news/2153592.html"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "MWC初出展"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ソフトバンクが11月4日、2027年3月のMWC27バルセロナへの初出展を発表",
+      "展示の柱は4つで、AI基地局から宇宙に近い空の通信まで",
+      "世界の通信会社向けの展示。利用者向けの新サービスや料金は発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ソフトバンクは11月4日、2027年3月にスペインで開かれる通信業界の展示会「MWC27バルセロナ」に、初めて出展すると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何を誰に見せるのか"
+    },
+    {
+     "type": "p",
+     "text": "MWCは、通信業界の世界的な展示会です。会期は2027年3月1日から4日までの4日間で、会場はスペインのバルセロナです。ソフトバンクはグループ各社と一緒に出展します。"
+    },
+    {
+     "type": "p",
+     "text": "対象は、世界の通信会社です。AIを使った新しいサービスをつくり、今ある通信設備をもっと活用し、新しい収入源を生み出す方法を見せます。ソフトバンクは、通信会社としての経験と、AIの基盤を提供する力が強みだと説明しています。ブースの場所は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "AIと通信を組み合わせる展示"
+    },
+    {
+     "type": "p",
+     "text": "1つ目の柱は「AI-Nativeネットワーク」です。基地局の無線ネットワークにAIを組み込む「AITRAS」と、通信業界向けの生成AIのもとになる「Large Telecom Model」を出します。"
+    },
+    {
+     "type": "p",
+     "text": "2つ目は「AIクラウド基盤」です。AI用データセンターを動かすソフトウェア群「Infrinia AI Cloud OS」を紹介し、通信会社が持つ設備を生かして、次世代のAIクラウド事業を始める方法を示します。"
+    },
+    {
+     "type": "h",
+     "text": "電力と空の通信も展示"
+    },
+    {
+     "type": "p",
+     "text": "3つ目は「AIインフラ」です。太陽光パネルや蓄電池といった次世代の電力設備と、子会社BBIXが運営するIX（インターネットの接続点）のサービスを並べます。"
+    },
+    {
+     "type": "p",
+     "text": "4つ目は「つながる物理世界」です。ロボットなどが動く「フィジカルAI」を支えるため、つながる場所と対象を広げる取り組みです。6Gの研究、上空から電波を届ける成層圏通信プラットフォーム（HAPS）、Cubic3の接続サービスを紹介します。"
+    },
+    {
+     "type": "h",
+     "text": "私たちの生活との関係"
+    },
+    {
+     "type": "p",
+     "text": "この発表は、通信会社向けの展示の予告です。スマホの料金や、利用者向けの新サービスは、発表されていません。展示には、AI基地局や6Gなど、将来の通信に関わる技術が並びます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4つ",
+       "label": "展示の柱の数"
+      },
+      {
+       "value": "4日間",
+       "label": "会期（3月1〜4日）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ふだんスマホを使うだけの人は、今のところ、特にすることはありません",
+      "展示の中身は2027年3月1日〜4日のMWC27で公開される。AI基地局や6Gの続報は、そのころに確認する",
+      "ソフトバンクの個人向けの料金やサービスの変更は、この発表に含まれていない"
+     ]
+    }
+   ],
+   "source_name": "ケータイ Watch",
+   "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2153592.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "ケータイ Watch",
+     "url": "https://k-tai.watch.impress.co.jp/docs/news/2153592.html"
+    }
+   ]
+  },
+  {
+   "id": "kaden-club3d-csv2556-dock",
+   "category": "kaden",
+   "title": "Club 3Dの4K3画面ドック、Amazonで1万5980円",
+   "summary": "USB-C1本でモニター3台につなげ、パソコンの充電もできる12ポートのドックです。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2153/614/001_l.jpg",
+    "kind": "ogp",
+    "credit": "PC Watch",
+    "page": "https://pc.watch.impress.co.jp/docs/news/2153614.html"
+   },
+   "visual": {
+    "icon": "pc",
+    "kicker": "USB-Cドック"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Club 3Dが12-in-1のUSB-Cドック「CSV-2556」を11月4日に発売",
+      "3画面出力は4K/120Hz1台と4K/60Hz2台。Amazon価格は1万5980円",
+      "対象OSはWindows 11。パソコンへ最大85Wを給電できる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Club 3Dは11月4日、USB-C 1本で最大3台の4Kモニターにつなげるドック「CSV-2556」を発売しました。価格はオープンです。"
+    },
+    {
+     "type": "h",
+     "text": "価格と発売日"
+    },
+    {
+     "type": "p",
+     "text": "価格はオープン価格で、PC Watchによると、Amazon.co.jpでは1万5980円です。税込みかどうかは示されていません。色はブラックだけです。"
+    },
+    {
+     "type": "p",
+     "text": "対象のOSはWindows 11です。ドックは、パソコンの周りの端子を増やして、モニターやUSB機器をまとめてつなぐ機器のことです。"
+    },
+    {
+     "type": "h",
+     "text": "4Kモニター3台につなぐ条件"
+    },
+    {
+     "type": "p",
+     "text": "USB-Cケーブル1本の映像出力で、最大3台の4Kモニターに映せます。方式は、USB-Cの映像出力「DisplayPort 2.1 Alt Mode」です。"
+    },
+    {
+     "type": "p",
+     "text": "3台同時に映すときは、1台が4K/120Hz、残り2台が4K/60Hzになります。モニターを1台だけつなぐなら、最大8K/30Hzまで出力できます。"
+    },
+    {
+     "type": "h",
+     "text": "つなげる端子の数と種類"
+    },
+    {
+     "type": "p",
+     "text": "「12-in-1」の名前どおり、12個の端子とスロットを1台にまとめています。映像用のHDMIが3つ、データ用のUSB 3.2 Gen 2 Type-Cが2つ、電源入力用のUSB Type-Cが1つです。"
+    },
+    {
+     "type": "p",
+     "text": "そのほか、USB 3.2 Gen 2 Type-Aが1つ、USB 3.2 Gen 1が1つあります。SDカードとmicroSDカードのスロット、有線LAN（Gigabit Ethernet）、音声の入出力もそろっています。"
+    },
+    {
+     "type": "h",
+     "text": "充電と大きさ"
+    },
+    {
+     "type": "p",
+     "text": "USB PDという充電方式に対応し、電源から最大100Wを受けて、つないだパソコンに最大85Wを送れます。パソコンとつなぐ長さ1mのUSB-Cケーブルは、本体に付いています。"
+    },
+    {
+     "type": "p",
+     "text": "大きさは幅157mm、奥行き55mm、厚さ14mmで、重さは約191gです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1万5980円",
+       "label": "Amazonでの価格"
+      },
+      {
+       "value": "最大3台",
+       "label": "同時につなげる4Kモニター"
+      },
+      {
+       "value": "最大85W",
+       "label": "パソコンへの給電"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ノートPCにモニターを3台つなぎたいWindows 11の人が、候補にできるドックです。",
+      "買う前に、自分のパソコンがUSB-Cでの映像出力（DisplayPort Alt Mode）に対応しているかを確かめます。",
+      "3画面にすると、4K/120Hzになるのは1台だけで、残り2台は4K/60Hzです。",
+      "購入先はAmazonでの価格が確認されているので、ほかの店の価格は各店で調べます。"
+     ]
+    }
+   ],
+   "source_name": "PC Watch",
+   "source_url": "https://pc.watch.impress.co.jp/docs/news/2153614.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2153614.html"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-stores-funding",
+   "category": "fukugyo",
+   "title": "STORES資金調達を開始　手数料は3.75〜15%",
+   "summary": "個人事業主も使えますが、案内を受けた人だけが対象で、審査もあります。",
+   "visual": {
+    "icon": "yen",
+    "kicker": "売上の前受け"
+   },
+   "image": {
+    "src": "https://stores.fun/images/newsroom-2026-10-13-stores-funding.png",
+    "kind": "press",
+    "credit": "STORES",
+    "page": "https://stores.fun/newsroom/posts/2026-10-13-stores-funding"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "STORESが10月13日、将来の売上を先に受け取れる資金調達を始めた",
+      "50万〜1000万円を調達でき、手数料は3.75〜15%。入金は最短4営業日",
+      "ストアーズから案内を受けた事業者だけが対象。審査に通らないと使えない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "STORESは10月13日、売上データを使う資金調達「STORES 資金調達」を始めました。審査と資金提供は、提携先のカンムが行います。"
+    },
+    {
+     "type": "h",
+     "text": "しくみは「売上の買い取り」"
+    },
+    {
+     "type": "p",
+     "text": "融資ではありません。カンムが、事業者がこれから受け取る売上債権（まだ入金されていない売上を受け取る権利）を買い取り、その代金を先に払う形です。"
+    },
+    {
+     "type": "p",
+     "text": "後日、カンムから届く請求書で精算します。カンムはMUFGグループのフィンテック企業で、この仕組みは同社の「サクっと資金調達」をSTORES向けに出したものです。"
+    },
+    {
+     "type": "h",
+     "text": "金額・手数料・期間"
+    },
+    {
+     "type": "p",
+     "text": "調達できるのは50万〜1000万円です。実際の額は、カンムが示す買い取り額で決まります。手数料は3.75〜15%で、条件によって変わります。"
+    },
+    {
+     "type": "p",
+     "text": "手数料率を100万円にあてはめると、3万7500円〜15万円です。実際の金額は審査後の条件で決まります。精算までの期間は3カ月・6カ月・12カ月から選べます。入金は、申し込み完了から最短4営業日です。"
+    },
+    {
+     "type": "h",
+     "text": "対象と申し込み"
+    },
+    {
+     "type": "p",
+     "text": "対象は、ストアーズから案内を送られた事業者だけです。案内メールの専用フォームを開き、希望の額と期間を入力して申し込みます。"
+    },
+    {
+     "type": "p",
+     "text": "必要な書類は本人確認書類のみで、決算書、口座明細、担保、保証人はいりません。カンムは、サクっと資金調達として個人事業主向けに出すのは今回が初めてだと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "まだわかっていないこと"
+    },
+    {
+     "type": "p",
+     "text": "手数料の率が何で決まるのかは、公表されていません。手数料を掛ける金額の範囲も、発表には書かれていません。詳しい条件は、サービスの案内ページか相談フォームで確認できます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "50万〜1000万円",
+       "label": "調達できる金額"
+      },
+      {
+       "value": "3.75〜15%",
+       "label": "手数料の幅"
+      },
+      {
+       "value": "最短4営業日",
+       "label": "申し込みから入金まで"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://digitalpr.jp/simg/3061/145562/550_160_202610090854286ac82d34f0cbc.png",
+       "kind": "press",
+       "credit": "カンム",
+       "caption": "サービス概要の図（カンムの発表）",
+       "page": "https://digitalpr.jp/r/145562"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "STORESでお店を開いている人は、ストアーズからの案内メールが届いていないか確認する",
+      "使う前に、手数料率と実際に払う総額を、案内ページか相談フォームで確かめる",
+      "精算は請求書払い。3カ月・6カ月・12カ月のどれが資金繰りに合うか考える",
+      "案内が来ていない人は、今のところ申し込めない"
+     ]
+    }
+   ],
+   "source_name": "STORES お知らせ",
+   "source_url": "https://stores.fun/newsroom/posts/2026-10-13-stores-funding",
+   "published": "2026-10-13",
+   "refs": [
+    {
+     "name": "STORES お知らせ",
+     "url": "https://stores.fun/newsroom/posts/2026-10-13-stores-funding"
+    },
+    {
+     "name": "デジタルPR（カンムの発表）",
+     "url": "https://digitalpr.jp/r/145562"
+    },
+    {
+     "name": "VOIX",
+     "url": "https://voix.jp/?p=140013"
+    }
+   ]
+  },
+  {
+   "id": "ai-xacti-alert-ai-plus",
+   "category": "ai",
+   "title": "ザクティ、現場の危険をAIカメラで検知「アラートAI＋」",
+   "summary": "立入禁止の場所への進入や保護具の付け忘れを、AIが見つけて知らせます。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2153/401/0101_l.jpg",
+    "kind": "ogp",
+    "credit": "AI Watch",
+    "page": "https://ai.watch.impress.co.jp/docs/news/2153401.html"
+   },
+   "visual": {
+    "icon": "camera",
+    "kicker": "現場の安全"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ザクティが11月4日、AIカメラで現場の危険を見つける「アラートAI＋」を開始",
+      "立入禁止の場所への進入と、ヘルメットなどの未着用を検知して知らせる",
+      "価格は発表されていない。映像は最大1分分が保存される"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ザクティは11月4日、作業現場の危険をAIカメラで見つけて知らせる「アラートAI＋」の提供を始めました。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/aiw/docs/2153/401/0103_l.jpg",
+     "kind": "ogp",
+     "credit": "AI Watch",
+     "caption": "検知の様子を説明した画面",
+     "page": "https://ai.watch.impress.co.jp/docs/news/2153401.html"
+    },
+    {
+     "type": "h",
+     "text": "何を見つけて知らせるのか"
+    },
+    {
+     "type": "p",
+     "text": "AIカメラが見つけるのは2つの場面です。1つは、立入禁止の場所や重機が動くエリアに人が入ったとき。もう1つは、ヘルメットや反射ベストなどの安全用具を身につけていないときです。"
+    },
+    {
+     "type": "p",
+     "text": "危険を見つけると、すぐに通知が出ます。作業する人に、必要な用具を着けるよう促す仕組みも備えています。"
+    },
+    {
+     "type": "h",
+     "text": "映像は検知の前後が残る"
+    },
+    {
+     "type": "p",
+     "text": "検知した場面の直前から検知中までの映像が、自動でサーバーに保存されます。長さは最大1分です。通知の履歴と一緒に残るため、あとから安全指導の材料に使えます。"
+    },
+    {
+     "type": "h",
+     "text": "危険が多い場所と時間を分析"
+    },
+    {
+     "type": "p",
+     "text": "検知したデータは分析され、報告書にまとまります。危険が集中している場所や時間帯が、グラフでわかります。報告書はPDFとPPTで書き出せます。"
+    },
+    {
+     "type": "p",
+     "text": "狙いは、見回りや確認作業、報告書づくりの手間を減らすことです。"
+    },
+    {
+     "type": "h",
+     "text": "価格と導入について"
+    },
+    {
+     "type": "p",
+     "text": "価格は発表されていません。提供の地域やプランなど、そのほかの条件も明らかにされていません。導入を考える会社は、ザクティに問い合わせて確かめる必要があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "最大1分",
+       "label": "保存される映像の長さ"
+      },
+      {
+       "value": "11月4日",
+       "label": "提供開始の発表日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "作業現場の安全担当者は、見回りと報告書づくりを減らせるか、ザクティに問い合わせて確かめる",
+      "現場で働く人は、職場に導入されると、検知した場面の映像が最大1分分保存される点を知っておく",
+      "価格と導入条件は未発表。契約の前に見積もりを取る"
+     ]
+    }
+   ],
+   "source_name": "AI Watch",
+   "source_url": "https://ai.watch.impress.co.jp/docs/news/2153401.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "AI Watch",
+     "url": "https://ai.watch.impress.co.jp/docs/news/2153401.html"
+    }
+   ]
+  },
+  {
+   "id": "kaden-haier-rakoota-2026",
+   "category": "kaden",
+   "title": "ハイアール、洗剤を自動投入する洗濯機6機種を11月18日発売",
+   "summary": "洗剤の計量が要らない全自動洗濯機が、5万円前後から買えます。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-740aaa69c9bb3a64ca4cd4a145fe9d3e-2594x1663.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "ハイアールジャパンセールス",
+    "caption": "RAKOOTAのADシリーズ・SDシリーズ・Sシリーズ",
+    "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "洗濯機"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ハイアールが洗剤を自動で入れる全自動洗濯機6機種を、11月18日から順次発売する",
+      "価格はオープン。市場想定価格は5万円前後から10万円前後",
+      "計量の手間を省きたい人向け。前のモデルとの比較は発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ハイアールジャパンセールスは11月4日、洗剤を自動で入れる全自動洗濯機「RAKOOTA（ラクータ）」6機種を、11月18日から順次発売すると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "価格と買える場所"
+    },
+    {
+     "type": "p",
+     "text": "メーカーの価格はオープン価格です。市場想定価格は次のとおりで、税込みかどうかは示されていません。\n・JW-AD10A（洗濯10kg）：10万円前後\n・JW-AD8A（8kg）：8万5000円前後\n・JW-SD8A（8kg）：6万5000円前後\n・JW-SD6A（6kg）：6万円前後\n・JW-S8A（8kg）：5万5000円前後\n・JW-S6A（6kg）：5万円前後"
+    },
+    {
+     "type": "p",
+     "text": "売り場は、全国の家電量販店、ホームセンター、総合スーパー、ネット通販です。予約の受け付けは発表されていません。問い合わせは、ハイアールのフリーダイヤル0120-865-812（9時〜18時30分、年中無休）です。"
+    },
+    {
+     "type": "h",
+     "text": "全機種に付く3つの機能"
+    },
+    {
+     "type": "p",
+     "text": "1つ目は、液体洗剤と柔軟剤の自動投入です。計量しなくても適量が入り、「多め」「少なめ」も選べます。タンクは560mlの詰め替えパウチ1本分で、取り外して水洗いできます。"
+    },
+    {
+     "type": "p",
+     "text": "2つ目は「抗菌うずしお洗浄」です。洗濯槽とパルセーター（底の回転板）を逆向きに回し、立体的な水流で汚れを落とします。3つ目は「銀イオン抗菌水」で、洗うたびに銀イオンを溶かして衣類を抗菌します。"
+    },
+    {
+     "type": "h",
+     "text": "上位機と下位機の違い"
+    },
+    {
+     "type": "p",
+     "text": "10kgと8kgのADシリーズは、毛布など大きなものを出し入れしやすい「ワイド投入口」を備えます。静かなDDインバーターモーターも載り、運転音は洗濯時がJW-AD10Aで30dB、JW-AD8Aで32dB、脱水時はどちらも38dBです。しわ抑えコースと部屋干しコースもあります。"
+    },
+    {
+     "type": "p",
+     "text": "消費電力量は、JW-AD10Aが45Wh、JW-AD8Aが40Whです。槽の外側の汚れをこすり落とす「スクラブ自動槽洗浄」はJW-AD10Aだけに付きます。JW-AD8Aには、楽な姿勢で洗濯物を取り出せる「腰ラク底アサ設計」があります。"
+    },
+    {
+     "type": "p",
+     "text": "SDシリーズ（8kgと6kg）は、DDインバーターモーターを備えます。Sシリーズ（8kgと6kg）には、この記載がありません。約2分で終わる「ちょっと槽洗浄」は、JW-AD8A以下の5機種に付きます。"
+    },
+    {
+     "type": "h",
+     "text": "置き場所と、まだ不明な点"
+    },
+    {
+     "type": "p",
+     "text": "本体の幅は、ADシリーズが590mm、SDシリーズとSシリーズが540mmです。奥行きはそれぞれ593mmと562mmで、高さは機種によって983〜1050mmです。置き場所の防水パンの大きさと合うか、買う前に測るのが安心です。"
+    },
+    {
+     "type": "p",
+     "text": "前のモデルとの違いは、発表されていません。正式な価格や予約の有無も、今後のメーカーの案内を待つ必要があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "6機種",
+       "label": "今回発売するモデル数"
+      },
+      {
+       "value": "560ml",
+       "label": "洗剤タンクの容量"
+      },
+      {
+       "value": "30dB",
+       "label": "JW-AD10Aの洗濯時音"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "公式の画像",
+     "items": [
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-e15533b3b552cbc7ace9ee596993644b-3900x2600.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "液体洗剤・柔軟剤の自動投入",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-8a7536d3c49014fb768a59e833392ffd-3900x2600.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "ワイド投入口のイメージ",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-4a231beb16ccdd295c851191de3c85f6-600x540.jpg?width=1950&height=1350&quality=85&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "抗菌うずしお洗浄のイメージ",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-c2dae03e549f127157ea235bf062a051-600x540.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "銀イオン抗菌水のイメージ",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-0511ae05349b6763143655ff8229fc09-366x375.png?width=1950&height=1350&quality=85&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "スクラブ自動槽洗浄のイメージ",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-7826eb3cac5c087f4a56da2e30689fd4-3900x2601.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "お手入れのイメージ",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-6b088498339193fbd522d8861d448e47-1942x1322.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "ADシリーズの仕様表",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-95a55089c1c048a3a499f2860ddcae9a-1930x1204.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "SDシリーズの仕様表",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/20472/257/20472-257-1b91bad9bddca26f7dc052541249cff9-1930x1144.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "ハイアールジャパンセールス",
+       "caption": "Sシリーズの仕様表",
+       "page": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "洗剤の計量が面倒な人は、全機種に付く自動投入が使えます。タンクは560mlの詰め替えパウチ1本分なので、いつも使う洗剤の袋の大きさを確かめる",
+      "買うなら11月18日以降に量販店やネット通販へ。価格はオープンなので、店ごとの値段を見比べる",
+      "置き場所の幅と奥行きを測る。ADシリーズは幅590mm、SD・Sシリーズは幅540mm",
+      "夜に洗濯する人は、運転音が30dBと32dBのADシリーズが候補になる"
+     ]
+    }
+   ],
+   "source_name": "ハイアールジャパンセールス（PR TIMES）",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "ハイアールジャパンセールス（PR TIMES）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000257.000020472.html"
+    },
+    {
+     "name": "価格.com（メーカー発表の掲載）",
+     "url": "https://news.kakaku.com/prdnews/cd=kaden/ctcd=2110/id=160070/"
+    }
+   ]
+  },
+  {
+   "id": "fukugyo-rakuma-rule-1105",
+   "category": "fukugyo",
+   "title": "ラクマ、11月5日にルール改定　選択式と分割出品を禁止",
+   "summary": "個人の出品者は、商品ページの書き方と連絡先の載せ方を見直す必要があります。",
+   "visual": {
+    "icon": "doc",
+    "kicker": "ラクマ新ルール"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "楽天ラクマが11月5日（木）に、出品・購入・配送のルールを改定した",
+      "選択式や代金を分けた出品、連絡先や他サイトへの誘導の記載が禁止に",
+      "手数料の変更は発表されていない。出品中のページと自己紹介の点検を"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "楽天ラクマは、2026年11月5日（木）から出品・購入・取引のルールを改めました。10月5日に事前告知しています。"
+    },
+    {
+     "type": "h",
+     "text": "出品で禁止になること"
+    },
+    {
+     "type": "p",
+     "text": "出品まわりでは、次の行為が禁止だと明記されました。\n・複数の商品から買い手に選ばせる「選択形式」の出品\n・代金を分け、複数の商品として出す出品（1点1000円の品を500円×2件にするなど）\n・商品の貸し出し（レンタル・リース）\n・キャンセル料や取り置き料を求めること"
+    },
+    {
+     "type": "p",
+     "text": "傷や汚れを隠すなど、商品の全体がわからない画像も禁止です。中身がわからない商品の出品、同じ商品や似た商品の大量出品、他人と価格をそろえる持ちかけも対象です。"
+    },
+    {
+     "type": "h",
+     "text": "禁止商品の追加と明確化"
+    },
+    {
+     "type": "p",
+     "text": "医薬品と医療機器（一般医療機器は除く）の出品禁止が、具体例つきで書かれました。一般用医薬品、処方薬、漢方薬、国内で未承認の海外製医薬品などです。"
+    },
+    {
+     "type": "p",
+     "text": "武器として使われるおそれのある物も広がりました。刀剣類、スタンガン、催涙スプレー、エアガンなどのトイガンが並びます。トイガンは、発射の強さを示す確認画像の掲載が必要です。0.136J以上、または対象年齢18歳以上のものが規制対象で、0.135J以下などの証明が求められます。"
+    },
+    {
+     "type": "p",
+     "text": "中身がわからない福袋やオリジナルパックは、内容物をすべて載せるルールです。1点だけの出品でも同じです。宿題や自由研究の完成品も、禁止商品に加わりました。"
+    },
+    {
+     "type": "h",
+     "text": "連絡先の記載と取引のルール"
+    },
+    {
+     "type": "p",
+     "text": "他のサイトやアプリへ誘うことは禁止です。電話番号、メールアドレス、SNSのID、QRコードの記載も禁止です。発送や返品など、取引を進めるのに欠かせない共有は除かれます。"
+    },
+    {
+     "type": "p",
+     "text": "配送では、郵便局（営業所）留めでの送付先指定が禁止になりました。要冷蔵・冷凍の商品は、クール便以外での発送ができません。"
+    },
+    {
+     "type": "h",
+     "text": "買う側のルールも変わる"
+    },
+    {
+     "type": "p",
+     "text": "買い手側では、「転売利益を得る目的」の購入という書き方が「不当に利益を得る目的」の購入に変わりました。代金の分割払いを求めること、支払い能力がないのに購入することも禁止です。"
+    },
+    {
+     "type": "p",
+     "text": "偽ブランド品や盗品と知りながら買う行為、運転免許が必要な車両を免許なしで買う行為も禁止です。手数料など金額の変更は、今回の告知にありません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "11月5日",
+       "label": "ルール改定の日"
+      },
+      {
+       "value": "0.136J",
+       "label": "トイガンの規制の目安"
+      },
+      {
+       "value": "500円×2件",
+       "label": "分割出品の禁止例"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "すでに出品中の人は、選択式の商品や分割出品、貸し出し、画像の見せ方を点検する",
+      "商品説明やプロフィールから、電話番号・メール・SNSのID・QRコードを消す",
+      "福袋は中身をすべて載せる。エアガンなどトイガンは確認画像を付ける",
+      "禁止行為の詳しい一覧は、ラクマ公式のルールページで確認する"
+     ]
+    }
+   ],
+   "source_name": "ラクマplus（楽天ラクマ公式）",
+   "source_url": "https://magazine.fril.jp/rule-20261005/",
+   "published": "2026-10-05",
+   "refs": [
+    {
+     "name": "ラクマplus（楽天ラクマ公式）",
+     "url": "https://magazine.fril.jp/rule-20261005/"
+    }
+   ]
+  },
+  {
+   "id": "ai-apple-earnings-siri-ai",
+   "category": "ai",
+   "title": "Siri AIは1日25億件、Appleが利用上限を明言",
+   "summary": "日本語のSiri AIは今後、使える量に上限がつく見通しです。MacとiPadは品薄になりそうです。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/image/2611/03/2000002840/10011211/728",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS（画像：Apple）",
+    "page": "https://www.itmedia.co.jp/news/article/2611/03/2000002840/"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "Apple決算"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Appleの決算会見で、Siri AIへの依頼が1日25億件を超えると判明",
+      "サーバー側のAI機能には利用上限を設け、多く使う人の追加購入は将来の予定",
+      "日本語は10月に対応済み。メモリー高騰でMacとiPadは品薄の見込み"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Appleは7〜9月期の決算会見で、Siri AIへの依頼が1日25億件を超えたと明らかにし、利用上限を設ける方針を示しました。"
+    },
+    {
+     "type": "h",
+     "text": "Siri AIの利用状況"
+    },
+    {
+     "type": "p",
+     "text": "ジョン・ターナス氏は、9月1日にティム・クック氏の後任としてCEOに就きました。初の決算会見では、Siri AIを「私たちがずっと望んでいたSiri」と呼びました。Siri AIは9月に米国の英語向けベータ版（試験版）で始まり、10月にフランス語、日本語、韓国語、ポルトガル語、スペイン語へ広がりました。Siriへの依頼は1日25億件を超えています。"
+    },
+    {
+     "type": "h",
+     "text": "利用上限と追加購入の見通し"
+    },
+    {
+     "type": "p",
+     "text": "Appleは、サーバー側のAIモデルを使うSiri AIや、写真のインテリジェントな編集などの機能に、利用上限を設けます。たくさん使いたい人は、将来、拡張アクセスを買えるようになる見込みです。上限の回数、追加購入の価格、開始時期は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "AI機能の広がりとMac"
+    },
+    {
+     "type": "p",
+     "text": "Siri AIは今のところ、頼まれたことに答える使い方が中心です。ただ、AIの動きをまとめる「オーケストレーター」を軸にした新しい作りなので、機能を広げる余地があるとターナス氏は述べました。"
+    },
+    {
+     "type": "p",
+     "text": "Macについては「独自のAIの時代を迎えている」と話しました。Mac miniやMac Studioで、AIを自分の機械の中で動かす可能性が広がるという考えです。macOSとiOSを統合するような根本的な変更は、計画していないと答えています。"
+    },
+    {
+     "type": "h",
+     "text": "メモリー高騰の影響"
+    },
+    {
+     "type": "p",
+     "text": "ターナス氏は、メモリー価格の高騰を「前例のない」状況と述べ、10〜12月期はコストがさらに上がると見ています。Appleは6月末にMacとiPad、9月にiPhoneの価格を上げ、上昇分の一部を吸収しました。10〜12月期は、メモリー不足でMacとiPadの供給が制約される見込みです。"
+    },
+    {
+     "type": "p",
+     "text": "10〜12月期の粗利益率は45〜46％の見通しです。メモリーのコスト上昇に加え、Siri AIの拡大に伴う費用が影響するとAppleは説明しました。"
+    },
+    {
+     "type": "h",
+     "text": "7〜9月期の業績"
+    },
+    {
+     "type": "p",
+     "text": "売上高は1144億7700万ドルで、前年同期より12％増え、同じ四半期として過去最高でした。純利益は307億1100万ドルで、こちらも12％増です。iPhoneは575億8300万ドル（17％増）、Macは107億9200万ドル（24％増）、iPadは62億2900万ドル（10％減）でした。日本の売上高は65億4000万ドルで、1％減です。"
+    },
+    {
+     "type": "p",
+     "text": "10〜12月期の売上高は、前年同期比で7〜10％増を見込んでいます。折りたたみ型の「iPhone Duo」は、供給が追いついておらず、需給が釣り合う時期は予測しにくいとサビ・カーンCOOは述べました。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "25億件",
+       "label": "Siriへの1日の依頼数"
+      },
+      {
+       "value": "45〜46％",
+       "label": "10〜12月期の粗利益率見通し"
+      },
+      {
+       "value": "12％増",
+       "label": "7〜9月期の売上高（前年同期比）"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "そのほかの画像",
+     "items": [
+      {
+       "src": "https://www.itmedia.co.jp/news/article/image/2611/03/2000002840/10011212/728",
+       "kind": "ogp",
+       "credit": "ITmedia NEWS（画像：Apple）",
+       "caption": "地域別およびセグメント別の売上高の推移",
+       "page": "https://www.itmedia.co.jp/news/article/2611/03/2000002840/"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "iPhoneで日本語のSiri AIを使う人：日本語は10月に対応済みです。今後、サーバー側の機能には利用上限がつく見込みです",
+      "MacやiPadを買う予定の人：10〜12月期はメモリー不足で品薄になる見込みです。MacとiPadは6月末、iPhoneは9月に値上げ済みです",
+      "次に確認すること：利用上限の回数と、追加購入の価格や開始時期のAppleの発表"
+     ]
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/03/2000002840/",
+   "published": "2026-11-03",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/03/2000002840/"
+    }
+   ]
+  },
+  {
+   "id": "kaden-elecom-face-cable",
+   "category": "kaden",
+   "title": "エレコム、充電の状態を表情で見せるUSB-Cケーブル発売",
+   "summary": "コネクター部の小さな画面で充電中かどうかがひと目でわかる、1980円からのケーブルです。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/l/im/pcuser/articles/2611/04/l_yk30028_01_CCECDFWF.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia PC USER",
+    "caption": "MPA-CCECDFWFシリーズ",
+    "page": "https://www.itmedia.co.jp/pcuser/articles/2611/04/news070.html"
+   },
+   "visual": {
+    "icon": "chip",
+    "kicker": "充電ケーブル"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "エレコムが、充電状態を小さな画面に表示するUSB Type-Cケーブルを発売した",
+      "1mが1980円、2mが2080円（ともに税込み）。最大100Wの充電に対応する",
+      "画面にはキャラクターの4種類の表情が出る。データ転送はUSB 2.0どまり"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "エレコムは11月4日、コネクター部の小さな画面に充電状態を表示するUSB Type-Cケーブル「MPA-CCECDFWF」シリーズを発表し、販売を始めました。"
+    },
+    {
+     "type": "h",
+     "text": "長さと価格"
+    },
+    {
+     "type": "p",
+     "text": "長さは1mと2mの2種類です。予想実売価格は、1mが1980円、2mが2080円で、ともに税込みです。販売開始日は別に示されておらず、発表と同時に売り出されました。売り場はエレコムの公式通販「エレコムダイレクトショップ」で案内されています。ほかの店の取り扱いは、発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "画面の表示と性能"
+    },
+    {
+     "type": "p",
+     "text": "コネクターに、小さな画面が入っています。エレコムのキャラクター「しろちゃん」の表情が4種類あり、充電の状態や出力の大きさを知らせます。どの表情がどの状態か、詳しい対応は記事では示されていません。"
+    },
+    {
+     "type": "p",
+     "text": "充電は、USB Power Delivery（USB PD。パソコンやスマホを速く充電する規格）で最大100Wまで対応します。100Wで充電するには、充電器と充電される機器の側も100Wに対応している必要があります。"
+    },
+    {
+     "type": "h",
+     "text": "データ転送は速くない"
+    },
+    {
+     "type": "p",
+     "text": "接続規格は、USB 2.0のType-Cです。充電用としては十分ですが、大きな写真や動画をパソコンへ移す速さや、外部モニターへの映像出力は、より新しい規格のケーブルに及びません。"
+    },
+    {
+     "type": "h",
+     "text": "この画面が役に立つ場面"
+    },
+    {
+     "type": "p",
+     "text": "充電器につなぎ、機器側の画面を開かなくても、ケーブルの根元を見るだけで充電されているかがわかります。寝る前にスマホを差した人が、朝になって充電できていなかった、という失敗を避ける助けになるかもしれません。これは筆者の予想で、効果はエレコムの発表では説明されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1980円",
+       "label": "1mモデルの予想実売価格"
+      },
+      {
+       "value": "2080円",
+       "label": "2mモデルの予想実売価格"
+      },
+      {
+       "value": "100W",
+       "label": "充電できる最大の電力"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "そのほかの画像",
+     "items": [
+      {
+       "src": "https://image.itmedia.co.jp/l/im/pcuser/articles/2611/04/l_yk30028_03_CCECDFWF.jpg",
+       "kind": "ogp",
+       "credit": "ITmedia PC USER",
+       "caption": "MPA-CCECDFWFシリーズの製品写真",
+       "page": "https://www.itmedia.co.jp/pcuser/articles/2611/04/news070.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "充電の状態を確かめたい人は、1m（1980円）か2m（2080円）を選ぶ。ベッド脇で使うなら2mが便利なことがある",
+      "100Wで使うには、持っている充電器と機器が100Wに対応しているか確かめる",
+      "データの転送や映像出力にも使いたい人は、USB 2.0どまりなので別のケーブルを選ぶ",
+      "画面の表情が何を表すかは、買う前に公式の案内で確かめる"
+     ]
+    }
+   ],
+   "source_name": "ITmedia PC USER",
+   "source_url": "https://www.itmedia.co.jp/pcuser/articles/2611/04/news070.html",
+   "published": "2026-11-04",
+   "refs": [
+    {
+     "name": "ITmedia PC USER",
+     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/04/news070.html"
+    }
+   ]
+  },
+  {
+   "id": "ai-claude-text-watermark",
+   "category": "ai",
+   "title": "Claude、旧モデル4種の文章にも見えない透かしを追加",
+   "summary": "ふつうに使う人がすることはありません。文章は見た目も料金も変わりません。",
+   "image": {
+    "src": "https://labmemo.com/wp-content/uploads/2026/11/claude-watermark-eyecatch.png",
+    "kind": "ogp",
+    "credit": "labmemo",
+    "page": "https://labmemo.com/claude-text-watermark-four-older-models-2026-11/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "Claude透かし"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Anthropicが11月3日から、Claudeの旧モデル4種の文章に見えない透かしを入れた",
+      "文字は増えず、料金や品質は変わらない。利用者は止められない",
+      "ふつうに使う人がすることはない。文章を見分ける力は一般には公開されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Anthropicは11月3日から、Claudeの旧モデル4種が書く文章に、目に見えない透かしを入れ始めました。"
+    },
+    {
+     "type": "h",
+     "text": "何が変わったのか"
+    },
+    {
+     "type": "p",
+     "text": "透かしは、言葉の選び方に隠された目印です。同じくらい自然な言い方が複数あるとき、秘密の鍵に沿って選ぶ言葉をかたよらせます。文字や記号は増えません。コピーして貼り付けても残り、軽い手直しなら消えにくいとされています。"
+    },
+    {
+     "type": "p",
+     "text": "対象は、Claude Mythos 5、Opus 4.7、Opus 4.6、Sonnet 4.6です。Opus 5.5など、8月2日以降に出た新しいモデルには、最初から入っています。今回は、それより前に出た旧モデルにも同じ仕組みを広げた形です。"
+    },
+    {
+     "type": "h",
+     "text": "料金や使い心地への影響"
+    },
+    {
+     "type": "p",
+     "text": "Anthropicは、品質や読みやすさ、文章の創造性に差は出ず、料金や入力量の数え方（トークン数）も変わらないと説明しています。速度への影響もわずかです。透かしに、利用者や会社、会話の情報は入っていません。"
+    },
+    {
+     "type": "p",
+     "text": "一方で、言葉を鍵で選ぶと細かな言い回しの正確さが落ちるのではないかと、評論家のジョン・グルーバー氏は疑問を示しています。どちらの主張も、確かめられた証拠はまだ限られています。"
+    },
+    {
+     "type": "h",
+     "text": "なぜ今、世界で入れるのか"
+    },
+    {
+     "type": "p",
+     "text": "背景には、EUのAI規則（AI法）の第50条があります。AIが作った出力に、機械で読める印を付けるよう求める決まりです。8月2日より前に市場に出ていたシステムは、12月2日までに対応します。"
+    },
+    {
+     "type": "p",
+     "text": "Anthropicは地域ごとに印を付け分ける確かな方法がないため、EUの外でも一律に入れています。日本からの利用も対象ですが、日本向けの特別な扱いは伝えられていません。"
+    },
+    {
+     "type": "h",
+     "text": "見分けられる人と限界"
+    },
+    {
+     "type": "p",
+     "text": "透かしを読み取れるのは、Anthropicの鍵を持つ側だけです。検出用のAPI（プログラム向けの窓口）は、規制当局や報道機関、研究者などの承認された組織に限って試験提供されています。一般の人が文章を調べる方法は、まだ公開されていません。"
+    },
+    {
+     "type": "p",
+     "text": "画像のPNGやJPEGには、出どころを示すC2PAという別の表示が付きます。こちらは無料の「Claude Content Checker」で誰でも確認できます。"
+    },
+    {
+     "type": "p",
+     "text": "透かしがあっても、Claudeだけが書いた証拠にはなりません。校正や翻訳をClaudeに任せた人間の文章にも残るからです。逆に透かしがなくても、人が書いた証拠にはなりません。短い文章、事実を1つ答えただけの文、コード、全面的な書き直しでは、ほとんど検出できません。"
+    },
+    {
+     "type": "h",
+     "text": "開発者が知っておくこと"
+    },
+    {
+     "type": "p",
+     "text": "Opus 4.6とSonnet 4.6では、設定値のtemperature、top_p、top_kをすべて初期値のままにしたときだけ、透かしが入ります。1つでも変えると消えます。Anthropicは、透かしを法令対応に使う人は初期値のままにするよう呼びかけています。Mythos 5とOpus 4.7には、この注意はありません。"
+    },
+    {
+     "type": "p",
+     "text": "Amazon Bedrock経由の利用では、反映が数日遅れる可能性があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4種",
+       "label": "今回加わった旧モデル"
+      },
+      {
+       "value": "11月3日",
+       "label": "透かしが入り始めた日"
+      },
+      {
+       "value": "12月2日",
+       "label": "EU規則への対応期限"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Claudeをふつうに使う人は、設定の変更も手続きも要らない。料金も変わらない",
+      "Claudeに手直しを頼んだ文章でも、透かしが残る場合がある。学校や職場でAI利用が禁止されているなら、先に決まりを確認する",
+      "「透かしがない＝人が書いた」とは言えない。文章の出どころを断定する材料にはしない",
+      "開発者は、Opus 4.6とSonnet 4.6の設定を1つでも変えると透かしが消える点を確かめる"
+     ]
+    }
+   ],
+   "source_name": "labmemo",
+   "source_url": "https://labmemo.com/claude-text-watermark-four-older-models-2026-11/",
+   "published": "2026-11-03",
+   "refs": [
+    {
+     "name": "labmemo",
+     "url": "https://labmemo.com/claude-text-watermark-four-older-models-2026-11/"
+    },
+    {
+     "name": "justbeingresourceful",
+     "url": "https://justbeingresourceful.com/2026/11/02/anthropic-to-add-an-invisible-text-watermark-to-mythos-5-opus-4-7-opus-4-6-and-sonnet-4-6-on-03-nov-2026/"
+    },
+    {
+     "name": "MIND VERSE",
+     "url": "https://www.mind-verse.de/news/claude-wasserzeichen-api-parameter-909c4a46811d"
+    },
+    {
+     "name": "ライフハッカー・ジャパン",
+     "url": "https://www.lifehacker.jp/article/gizmodo-anthropics-claude-will-start-adding-invisible-watermarks-to-ai-generated-text/"
+    }
+   ]
+  },
+  {
+   "id": "kaden-galaxy-z-film-end",
+   "category": "kaden",
+   "title": "Galaxy折りたたみのフィルム無料貼替、12月1日で終了",
+   "summary": "12月からは、フィルムの貼り替えが有料の修理扱いになります。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/l/im/mobile/articles/2611/02/l_rk1640414_Galaxy-01.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia Mobile",
+    "caption": "Galaxy Z Fold8",
+    "page": "https://www.itmedia.co.jp/mobile/articles/2611/02/news071.html"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "Galaxy Z"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "サムスンが、Galaxy Zシリーズの保護フィルム無料貼り替えを12月1日で終える",
+      "終了後は、不具合などによる貼り替えが有料の修理サービスになる",
+      "対象は保証期間内の国内版Galaxy Z。具体的な金額は発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "サムスン電子ジャパンは11月2日、Galaxy Zシリーズの保護フィルムを無料で貼り替える特典を、12月1日で終えると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "どんな特典だったのか"
+    },
+    {
+     "type": "p",
+     "text": "折りたたみスマホは、内側の画面に保護フィルムが最初から貼られています。自分で剥がしたり貼り直したりしないよう案内されていて、傷んだり浮いたりしたら、店のスタッフが貼り替えます。"
+    },
+    {
+     "type": "p",
+     "text": "これまでは、日本で売られた保証期間内のGalaxy Zシリーズなら、スマホ診断サービスとあわせて無料で貼り替えてもらえました。窓口は3種類で、Galaxy原宿、Galaxy Studio Osaka、ドコモショップ内の「Galaxy Repair Corner」です。"
+    },
+    {
+     "type": "h",
+     "text": "12月1日から何が変わる"
+    },
+    {
+     "type": "p",
+     "text": "診断に合わせた無料の貼り替えは、12月1日で終わります。フィルムの不具合などで貼り替えが必要になったときは、有料の修理サービスとして受け付けます。"
+    },
+    {
+     "type": "p",
+     "text": "料金は、サムスンの保証の基準に沿って決まります。具体的な金額は、発表されていません。料金や条件は、予告なく変わることがあります。"
+    },
+    {
+     "type": "h",
+     "text": "なぜ終わるのか"
+    },
+    {
+     "type": "p",
+     "text": "サムスンは理由として、主な原材料の価格、人件費、物流費の上昇をあげています。業務の効率化に努めたものの、従来の条件でサービスを続けるのは難しくなったと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "まだわかっていないこと"
+    },
+    {
+     "type": "p",
+     "text": "無料の貼り替えを何回まで受けられたか、予約が必要かは、発表されていません。ドコモショップ以外の、auやソフトバンクの店での扱いも示されていません。有料になってからの金額も、まだ公表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "12月1日",
+       "label": "無料の貼り替えが終わる日"
+      },
+      {
+       "value": "3種類",
+       "label": "これまでの無料の窓口"
+      }
+     ]
+    },
+    {
+     "type": "gallery",
+     "title": "そのほかの画像",
+     "items": [
+      {
+       "src": "https://image.itmedia.co.jp/l/im/mobile/articles/2611/02/l_rk1640414_Galaxy-02.jpg",
+       "kind": "ogp",
+       "credit": "ITmedia Mobile",
+       "caption": "サムスンのお知らせ「保護フィルム無料貼替特典の終了とサービス改定のご案内」",
+       "page": "https://www.itmedia.co.jp/mobile/articles/2611/02/news071.html"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "保証期間内のGalaxy Zを使っていて、フィルムが浮いたり傷んだりしている人は、12月1日より前に窓口へ相談すると無料のうちに済ませやすい（筆者の予想）",
+      "12月以降は有料になる。金額は、サムスンの公式のお知らせで確かめる",
+      "フィルムは、自分で剥がしたり貼り直したりしない",
+      "窓口は、Galaxy原宿、Galaxy Studio Osaka、ドコモショップ内のGalaxy Repair Corner"
+     ]
+    }
+   ],
+   "source_name": "ITmedia Mobile",
+   "source_url": "https://www.itmedia.co.jp/mobile/articles/2611/02/news071.html",
+   "published": "2026-11-02",
+   "refs": [
+    {
+     "name": "ITmedia Mobile",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/02/news071.html"
+    }
+   ]
+  }
+ ]
+}
