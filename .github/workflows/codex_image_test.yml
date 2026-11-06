@@ -31,7 +31,7 @@ jobs:
           mkdir -p out; cd out
           PROMPT="${P:-A bright outdoor park in daylight, a young person wearing sleek black AR glasses looking at a floating virtual screen, clean modern anime illustration style, vertical 9:16, no text, no logos}"
           IMG=(); [ -n "$REF" ] && [ -f "$GITHUB_WORKSPACE/$REF" ] && IMG=(-i "$GITHUB_WORKSPACE/$REF") && PROMPT="Use the attached image as the character reference (same face, hair, outfit, colors and art style). $PROMPT"
-          timeout 600 codex exec --skip-git-repo-check -s workspace-write "${IMG[@]}" "\$imagegen Generate one image: $PROMPT. Save the final image as ./test.png in the current directory." 2>&1 | tail -40 || true
+          timeout 600 codex exec --skip-git-repo-check -s workspace-write "\$imagegen Generate one image: $PROMPT. Save the final image as ./test.png in the current directory." "${IMG[@]}" 2>&1 | tail -40 || true  # -i takes several files, so it must come after the prompt
           ls -la . "$CODEX_HOME/generated_images" 2>/dev/null || true
           find "$CODEX_HOME/generated_images" -type f -name '*.png' -exec cp {} . \; 2>/dev/null || true
           ls -la
