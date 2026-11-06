@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>マイ夕刊</title>
-<meta name="description" content="AI・テック、家電・新商品、副業・ネット販売のニュースが毎日夕方に届く自分専用のニュースアプリ">
+<meta name="description" content="AI・テック、家電・新商品、EC・フリマのニュースが毎日夕方に届く自分専用のニュースアプリ">
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -328,7 +328,7 @@ main{overflow-x:hidden}
   <div class="state" id="loading">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h13v14a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v9a2 2 0 0 1-2 2"/><path d="M7 9h7M7 12.5h7M7 16h4"/></svg>
     <h2>今日の夕刊を取りに行っています</h2>
-    <p>AI・テック、家電・新商品、副業・ネット販売のニュースが並びます。</p>
+    <p>AI・テック、家電・新商品、EC・フリマのニュースが並びます。</p>
   </div>
 </div></main>
 
@@ -338,7 +338,7 @@ main{overflow-x:hidden}
     all:{label:"すべて"},
     ai:{label:"AI・テック", c1:"--ai", c2:"--ai2"},
     kaden:{label:"家電・新商品", c1:"--kaden", c2:"--kaden2"},
-    fukugyo:{label:"副業・ネット販売", c1:"--fuku", c2:"--fuku2"}
+    fukugyo:{label:"EC・フリマ", c1:"--fuku", c2:"--fuku2"}
   };
   const ICONS = {
     ai:'<path d="M10 3l1.9 4.6L16.5 9l-4.6 1.4L10 15l-1.9-4.6L3.5 9l4.6-1.4z"/><path d="M17.5 13l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/>',
@@ -538,7 +538,7 @@ main{overflow-x:hidden}
       chipsEl.replaceChildren();
       app.replaceChildren(el("div",{class:"state view"},
         el("h2",{text:"今日の夕刊はまだ届いていません"}),
-        el("p",{text:"毎日夕方5時半ごろ、AI・テック、家電・新商品、副業・ネット販売のニュースがここに届きます。"})));
+        el("p",{text:"毎日夕方5時半ごろ、AI・テック、家電・新商品、EC・フリマのニュースがここに届きます。"})));
       return;
     }
     if(!ed.articles){ loadEdition(ed.date).then(render); return; }
