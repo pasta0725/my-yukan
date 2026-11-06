@@ -102,12 +102,12 @@ FACE = {"ai": "thinking", "service": "thinking", "ec": "smug", "mobile": "smug",
 def face(c): return f"/assets/rina-{FACE.get(c, 'smug')}.png"
 def tag(c, link=True):
     lab, _, var = CATS[c]
-    return (f'<a class="tag" style="--c:var({var})" href="/category/{SLUG[c]}/">{E(lab)}</a>' if link
-            else f'<span class="tag" style="--c:var({var})">{E(lab)}</span>')
+    return (f'<a class="tag" style="--c:var({var})" href="/category/{SLUG[c]}/"><span>{E(lab)}</span></a>' if link
+            else f'<span class="tag" style="--c:var({var})"><span>{E(lab)}</span></span>')
 
 def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
     full = f"{title}｜{NAME}" if title != NAME else NAME
-    navs = "".join(f'<a href="/category/{SLUG[k]}/"{" aria-current=\"page\"" if k == active else ""}>{E(v[0])}</a>' for k, v in CATS.items())
+    navs = "".join(f'<a href="/category/{SLUG[k]}/"{" aria-current=\"page\"" if k == active else ""}><span>{E(v[0])}</span></a>' for k, v in CATS.items())
     og = og_img or url("/assets/og.jpg")
     canon = f'<link rel="canonical" href="{E(url(path))}">' if BASE else ""
     return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8">
@@ -119,7 +119,7 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 <link rel="icon" href="/assets/icon-192.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="alternate" type="application/rss+xml" title="{E(NAME)}" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
 <link rel="stylesheet" href="/assets/style.css">{extra_head}</head><body>
 <header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-192.png" alt="" width="34" height="34"><b>{E(NAME)}</b></a>
 <nav class="cats" aria-label="カテゴリ">{navs}</nav></div></header>
@@ -127,10 +127,13 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 <footer><div class="wrap"><a href="/">トップ</a><a href="/about/">このサイトについて</a><a href="/privacy/">プライバシーポリシー</a><a href="{E(CFG['youtube'])}">YouTube</a><a href="/feed.xml">RSS</a>
 <small>© {datetime.date.today().year} {E(NAME)}</small></div></footer></body></html>'''
 
-RETRO_FONT = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap">'
+RETRO_FONT = ''  # Dela Gothic One is loaded on every page now
 ORBIT = ('<svg class="orbit" viewBox="0 0 120 60" aria-hidden="true"><ellipse cx="60" cy="34" rx="54" ry="14" fill="none" stroke="#f3e9d2" stroke-width="1.5" stroke-dasharray="3 4"/>'
          '<circle cx="60" cy="34" r="13" fill="#9fd3f5"/><path d="M60 4l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#ff8a00" transform="translate(40 -2) scale(.6)"/></svg>')
+SKEW = re.compile(r'(<div class="sec-h"[^>]*><h2>|<section class="keys"><h2>|<section class="box"><h2>|<h2 class="sub">)(.*?)(</h2>)')
 def write(path, content):
+    if path.endswith((".html", "/")):
+        content = SKEW.sub(lambda m: m.group(1) + "<span>" + m.group(2) + "</span>" + m.group(3), content)
     if PREFIX and path.endswith((".html", "/")):
         content = content.replace('="/', '="' + PREFIX + '/').replace(", /assets", ", " + PREFIX + "/assets")
         content = content.replace("<head>", '<head><meta name="robots" content="noindex">', 1)
