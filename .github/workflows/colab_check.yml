@@ -1,0 +1,18 @@
+name: colab-check
+# Checks that the COLAB_ADC secret can log in to Colab (prints only the remaining compute units).
+on: { workflow_dispatch: {} }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q google-colab-cli
+      - env: { COLAB_ADC: "${{ secrets.COLAB_ADC }}" }
+        run: |
+          test -n "$COLAB_ADC" || { echo "COLAB_ADC is empty"; exit 1; }
+          printf '%s' "$COLAB_ADC" > "$RUNNER_TEMP/adc.json"
+          python -c "import json,sys;d=json.load(open(sys.argv[1]));print('type:',d.get('type'))" "$RUNNER_TEMP/adc.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
+          colab --auth=adc usage
