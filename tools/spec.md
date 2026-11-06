@@ -40,6 +40,8 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 
 ## Images (user's rule: ALL official images, at most 2 news-site photos per story)
 - Official images (kind "press"): find the company/organization's own announcement for the same news (press release, newsroom, product page, official blog, official notice). Collect all relevant images there (product shots, screens, diagrams, charts), up to 12.
+  - (2026-11-07, for the public site 「星餓りなのテックニュース」) Take official images FROM THE OFFICIAL PAGE ITSELF: WebFetch the company's own newsroom / product page / official blog, or the PR TIMES release, and use the image URLs found there. "page" must be that official page, not a news article. An official image that you only saw inside a news site's article (hosted on or found on the news site, e.g. ITmedia, Impress, 価格.com, ネットショップ担当者フォーラム, ASCII) does NOT count as press — label it "ogp" (and it counts toward the 2 news-site photos), or better, open the official page and take the same image from there.
+  - Aim for at least 1 official image per story whenever the company has an announcement or product page. Product pages and PR TIMES usually have several.
 - News-site photos (kind "ogp"): from the news article itself, at most 2 in total.
 - Ask WebFetch to list every image URL on the page (absolute https) with what it shows (alt/caption/surrounding text), including og:image. Use ONLY URLs WebFetch actually returned. Never guess or construct URLs.
 - Skip: photos where a person's face is the main subject, logos alone, icons, ads/banners, site-generic share images, tiny thumbnails (prefer the large version).
