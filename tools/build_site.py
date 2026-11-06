@@ -92,6 +92,8 @@ def thumb(a):
     i = a["_img"]
     if i: return illus(a) + f'<img src="{E(i["src"])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">'
     return illus(a)
+FACE = {"ai": "thinking", "service": "thinking", "ec": "smug", "mobile": "smug", "gadget": "smug", "game": "smug", "future": "surprised", "other": "surprised"}
+def face(c): return f"/assets/rina-{FACE.get(c, 'smug')}.png"
 def tag(c, link=True):
     lab, _, var = CATS[c]
     return (f'<a class="tag" style="--c:var({var})" href="/category/{SLUG[c]}/">{E(lab)}</a>' if link
@@ -111,7 +113,7 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 <link rel="icon" href="/assets/icon-192.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="alternate" type="application/rss+xml" title="{E(NAME)}" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
 <link rel="stylesheet" href="/assets/style.css">{extra_head}</head><body>
 <header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-192.png" alt="" width="34" height="34"><b>{E(NAME)}</b></a>
 <nav class="cats" aria-label="カテゴリ">{navs}</nav></div></header>
@@ -158,12 +160,12 @@ latest = editions[0] if editions else None
 today = [a for a in arts if a["_date"] == latest]
 pk = picks_for(today)
 lead = pk[0] if pk else None
-hero = (f'<section class="desk"><img src="/assets/hero.jpg" alt="ニュースを手に持つ星餓りなのイラスト" width="1500" height="500">'
+hero = (f'<section class="desk"><picture><source media="(max-width:760px)" srcset="/assets/hero-m.webp" width="750" height="422"><source srcset="/assets/hero-750.webp 750w, /assets/hero.webp 1500w" sizes="(max-width:1120px) 100vw, 1088px"><img src="/assets/hero.jpg" alt="ニュースを手に持つ案内役の星餓りな" width="1500" height="500" fetchpriority="high"></picture>'
         f'<div class="desk-copy"><h1><span>今日のITニュースを、</span><span>りなと一緒に。</span></h1><p>{E(CFG["description"])}</p></div></section>')
 pick_html = ""
 if lead:
     say = lead["_rina"] or lead.get("summary", "")
-    pick_html = (f'<section class="pick"><img src="/assets/rina-face.png" alt="星餓りな" width="72" height="72"><div class="say">'
+    pick_html = (f'<section class="pick"><img src="{face(lead["_cat"])}" alt="案内役の星餓りな" width="72" height="72"><div class="say">'
                  f'<h2>{E(jdate(latest))}、りなのいちおし</h2><a class="t" href="{lead["_path"]}">{E(lead["title"])}</a><p>{E(say)}</p></div></section>')
 more_picks = "".join(row(a) for a in pk[1:])
 rest = [a for a in today if a not in pk]
@@ -212,7 +214,7 @@ for a in arts:
         elif t == "point" and b.get("items"):
             parts.append('<section class="box"><h2>あなたへの影響・やること</h2><ul>' + "".join(f"<li>{E(x)}</li>" for x in b["items"]) + "</ul></section>")
         elif t == "rina" and b.get("text"):
-            parts.append(f'<section class="rina"><img src="/assets/rina-face.png" alt="星餓りな" width="64" height="64"><div class="say"><h2>りなの見方</h2><p>{E(b["text"])}</p></div></section>')
+            parts.append(f'<section class="rina"><img src="{face(c)}" alt="案内役の星餓りな" width="64" height="64" loading="lazy"><div class="say"><h2>りなの見方</h2><p>{E(b["text"])}</p></div></section>')
     if a["_img"] and not any(b.get("type") == "img" for b in a["_body"][:4]):
         # show the main official image after the lead
         idx = next((i for i, p in enumerate(parts) if p.startswith("<p>")), 0) + 1
@@ -226,11 +228,12 @@ for a in arts:
             + "".join(row(x, True) for x in same) + "</ul></section>") if same else ""
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a.get("summary", ""),
           "datePublished": a["_date"], "dateModified": a["_date"], "articleSection": lab,
-          "author": {"@type": "Person", "name": "星餓りな"}, "publisher": {"@type": "Organization", "name": NAME}}
+          "author": {"@type": "Organization", "name": NAME}, "publisher": {"@type": "Organization", "name": NAME}}
     if a["_img"]: ld["image"] = [a["_img"]["src"]]
     if BASE: ld["mainEntityOfPage"] = url(a["_path"])
     body = (f'<article class="art" style="--c:var({var})"><div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
             f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span>{E(jdate(a["_date"]))}の号</span><span>出典：{E(a.get("source_name"))}</span></div>'
+            + ('<p class="prnote"><span class="pr">PR</span>この記事には広告（アフィリエイトリンク）が含まれます。</p>' if a.get("pr") else "")
             + "".join(parts) + src + "</article>" + more)
     og = a["_img"]["src"] if a["_img"] else url("/assets/og.jpg")
     write(a["_path"], page(a["title"], a.get("summary") or a["title"], body, a["_path"], active=c, og_img=og,
@@ -239,7 +242,8 @@ for a in arts:
 # static pages
 about = f'''<div class="doc"><h1>このサイトについて</h1>
 <p>{E(NAME)}は、AI、スマホやパソコン、家電、ネットサービス、ゲーム、EC、宇宙など、ITのニュースを毎日夕方にまとめて届けるサイトです。</p>
-<h2>記事の作り方</h2><p>1つのニュースにつき、公式発表と複数の報道を読み比べ、事実を整理してまとめています。元になった記事や発表は、各記事の最後に載せています。記事の最後の「りなの見方」は、案内役の星餓りなによる見方です。</p>
+<h2>記事の作り方</h2><p>1つのニュースにつき、公式発表と複数の報道を読み比べ、事実を整理してまとめています。記事づくりと、数字・日付・価格などの点検にはAIを活用しています。元になった記事や発表は、各記事の最後に載せています。</p>
+<h2>星餓りなについて</h2><p>星餓りなは、このサイトとYouTubeチャンネルの案内役のキャラクターです。記事の最後の「りなの見方」では、ニュースを読む人にとっての意味を、りなの目線でひとことにまとめています。</p>
 <h2>画像について</h2><p>画像は、メーカーや運営会社が公開している公式の画像を、提供元を明記して使っています。</p>
 <h2>広告・アフィリエイトについて</h2><p>商品を紹介する記事に、アフィリエイトリンク（購入されると当サイトに紹介料が入るリンク）を載せることがあります。その場合は「PR」と表示します。</p>
 <h2>内容の正確さについて</h2><p>正確な情報を載せるよう努めていますが、価格や提供内容は掲載時点のものです。最新の情報は、各社の公式発表でご確認ください。誤りに気づいた場合は、確認のうえ訂正します。</p>
