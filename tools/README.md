@@ -31,3 +31,8 @@
 - Grok Bot reads it and returns JSON (prompt: tools/grok.md). Save with `python3 -I tools/save_x.py <answer.txt> <date>` → data/x/<date>.json, commit, push. The site merges it.
 - Writing rules: tools/style.md (第2版, from 2026-11-04). Workers must read it.
 - Since 2026-11-04 (no PC needed): 14:22 cloud task (Sonnet workers with effort high) 「マイ夕刊 毎日の号づくり」 pushes the edition + data/x-todo.json by 16:15. 16:20 Grok Bot routine (its own cloud PC, GitHub token) runs save_x.py and pushes data/x/<date>.json directly (fallback: mails the JSON, subject 「マイ夕刊 Xの声 <date>」, to pastachannel0725@gmail.com). 17:19 cloud task 「Xの声の取り込み（2回目）と完成報告」 imports from Gmail only if data/x/<date>.json is missing, then sends the completion push notification. Prompts: tools/grok.md.
+
+## 公開サイト「星餓りなのテックニュース」（2026-11-07〜）
+- `python3 tools/build_site.py` が data/ の全号から site_dist/ に静的サイトを作る（標準ライブラリのみ）。Cloudflare Pages がプッシュのたびに実行して公開する（ビルドコマンド `python3 tools/build_site.py`、出力 `site_dist`）。
+- 公開側のルール：ニュースサイトの写真は出さない（公式・PR TIMESの画像だけ）、Xの声は出さない、記事ごとに1ページ、sitemap.xml・feed.xml・構造化データ付き。
+- 見た目は site/style.css、画像は site/assets/（Codexで生成）、サイト名やURLは site/config.json（base_url は Cloudflare のプロジェクト名が決まったら合わせる）。
