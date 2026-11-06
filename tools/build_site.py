@@ -86,6 +86,11 @@ for a in arts:  # keep first (newest) if a path repeats
 arts = list(by_path.values())
 
 def illus(a, w=112, h=84):
+    if a["_cat"] == "future":
+        return (f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="宇宙・未来技術"><rect width="{w}" height="{h}" fill="#14213d"/>'
+                f'<path d="M0 {h*.78} Q{w/2} {h*.6} {w} {h*.78} V{h} H0z" fill="#f3e9d2"/><circle cx="{w*.62}" cy="{h*.4}" r="{h*.17}" fill="#9fd3f5"/>'
+                f'<ellipse cx="{w*.62}" cy="{h*.4}" rx="{h*.32}" ry="{h*.08}" fill="none" stroke="#ff8a00" stroke-width="2.4"/>'
+                f'<path d="M{w*.22} {h*.2}l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#ff8a00"/><circle cx="{w*.85}" cy="{h*.18}" r="1.4" fill="#f3e9d2"/><circle cx="{w*.12}" cy="{h*.55}" r="1.2" fill="#f3e9d2"/></svg>')
     c = CATS[a["_cat"]]; icon = ICONS.get((a.get("visual") or {}).get("icon")) or ICONS[c[1]]
     return (f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="{E(c[0])}"><rect width="{w}" height="{h}" fill="var({c[2]})"/>'
             f'<g transform="translate({w/2-18},{h/2-18}) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{icon}</g></svg>')
@@ -122,6 +127,9 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 <footer><div class="wrap"><a href="/">トップ</a><a href="/about/">このサイトについて</a><a href="/privacy/">プライバシーポリシー</a><a href="{E(CFG['youtube'])}">YouTube</a><a href="/feed.xml">RSS</a>
 <small>© {datetime.date.today().year} {E(NAME)}</small></div></footer></body></html>'''
 
+RETRO_FONT = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap">'
+ORBIT = ('<svg class="orbit" viewBox="0 0 120 60" aria-hidden="true"><ellipse cx="60" cy="34" rx="54" ry="14" fill="none" stroke="#f3e9d2" stroke-width="1.5" stroke-dasharray="3 4"/>'
+         '<circle cx="60" cy="34" r="13" fill="#9fd3f5"/><path d="M60 4l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#ff8a00" transform="translate(40 -2) scale(.6)"/></svg>')
 def write(path, content):
     if PREFIX and path.endswith((".html", "/")):
         content = content.replace('="/', '="' + PREFIX + '/').replace(", /assets", ", " + PREFIX + "/assets")
@@ -183,9 +191,15 @@ write("/", page(NAME, CFG["description"], home, "/", og_img=url("/assets/og.jpg"
 # category pages
 for k, (lab, _, var) in CATS.items():
     items = [a for a in arts if a["_cat"] == k]
-    body = (f'<div class="cols"><div><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}</h2><span>{len(items)}本</span></div>'
+    banner = ""
+    if k == "future":
+        banner = ('<section class="retro"><picture><source media="(max-width:760px)" srcset="/assets/future-banner-m.webp" width="600" height="450">'
+                  '<img src="/assets/future-banner.webp" alt="宇宙服のヘルメットをかぶった星餓りなと、レトロなロケットの絵" width="1500" height="500" fetchpriority="high"></picture>'
+                  f'<div class="retro-copy"><h1>宇宙・未来技術</h1><p>ロケット、人工衛星、自動運転、ロボット、量子コンピューター。未来がいつ暮らしに届くのかを追いかけます。</p></div></section>')
+    body = (banner + f'<div class="cols"><div><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}{"の記事" if k == "future" else ""}</h2><span>{len(items)}本</span></div>'
             f'<ul class="rows">' + ("".join(row(a, True) for a in items[:200]) or '<li class="row"><p>この分野の記事はまだありません。毎日夕方に増えていきます。</p></li>') + '</ul></div>' + side(counts) + '</div>')
-    write(f"/category/{SLUG[k]}/", page(f"{lab}のニュース", f"{lab}の最新ニュースを、星餓りなの見方つきでまとめています。", body, f"/category/{SLUG[k]}/", active=k))
+    write(f"/category/{SLUG[k]}/", page(f"{lab}のニュース", f"{lab}の最新ニュースを、星餓りなの見方つきでまとめています。", body, f"/category/{SLUG[k]}/", active=k,
+                                        extra_head=RETRO_FONT if k == "future" else ""))
 
 # date pages
 for i, d in enumerate(editions):
@@ -235,13 +249,14 @@ for a in arts:
           "author": {"@type": "Organization", "name": NAME}, "publisher": {"@type": "Organization", "name": NAME}}
     if a["_img"]: ld["image"] = [a["_img"]["src"]]
     if BASE: ld["mainEntityOfPage"] = url(a["_path"])
-    body = (f'<article class="art" style="--c:var({var})"><div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
+    band = (f'<div class="retro-band">{ORBIT}<span>宇宙・未来技術</span></div>' if c == "future" else "")
+    body = (f'<article class="art{" future" if c == "future" else ""}" style="--c:var({var})">{band}<div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
             f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span>{E(jdate(a["_date"]))}の号</span><span>出典：{E(a.get("source_name"))}</span></div>'
             + ('<p class="prnote"><span class="pr">PR</span>この記事には広告（アフィリエイトリンク）が含まれます。</p>' if a.get("pr") else "")
             + "".join(parts) + src + "</article>" + more)
     og = a["_img"]["src"] if a["_img"] else url("/assets/og.jpg")
     write(a["_path"], page(a["title"], a.get("summary") or a["title"], body, a["_path"], active=c, og_img=og,
-                           extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'))
+                           extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' + (RETRO_FONT if c == "future" else "")))
 
 # static pages
 about = f'''<div class="doc"><h1>このサイトについて</h1>
