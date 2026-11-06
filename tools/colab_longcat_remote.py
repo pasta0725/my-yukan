@@ -52,12 +52,13 @@ PROMPT = ("A cheerful anime girl with short dark blue hair with bright blue tips
           "Clean 2D anime illustration style, consistent character design.")
 if os.path.exists("/content/in/prompt.txt"): PROMPT = open("/content/in/prompt.txt").read().strip()  # per-character description
 jobs = json.load(open("/content/in/jobs.json")) if os.path.exists("/content/in/jobs.json") else [("intro", 1), ("verdict", 2)]  # [[name, segments], ...]
-for name, seg in jobs:
+for job in jobs:
+    name, seg = job[0], job[1]; res = job[2] if len(job) > 2 else "720p"  # 480p is enough for the small presenter
     if not os.path.exists(f"/content/in/{name}.wav"): continue
     js = f"/content/in/{name}.json"
     json.dump({"prompt": PROMPT, "cond_image": "/content/in/base_green.png", "cond_audio": {"person1": f"/content/in/{name}.wav"}}, open(js, "w"))
     sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
        f"--context_parallel_size=1 --checkpoint_dir={W}/LongCat-Video-Avatar-1.5 --stage_1=ai2v --input_json={js} "
-       f"--use_distill --model_type avatar-v1.5 --resolution 720p --num_segments {seg} --output_dir /content/out/{name} "
+       f"--use_distill --model_type avatar-v1.5 --resolution {res} --num_segments {seg} --output_dir /content/out/{name} "
        f"2>&1 | grep -vE 'it/s\\]|s/it\\]' | tail -30")
 sh("ls -laR /content/out")
