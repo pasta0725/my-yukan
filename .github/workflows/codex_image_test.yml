@@ -1,0 +1,37 @@
+name: codex-image-test
+# Checks that the CODEX_AUTH secret works and that Codex can make an image without a person (uses the ChatGPT plan, no API key).
+on:
+  workflow_dispatch:
+    inputs:
+      prompt: { description: "image prompt", default: "" }
+jobs:
+  img:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm i -g @openai/codex >/dev/null 2>&1 && codex --version
+      - name: auth
+        env: { CODEX_AUTH: "${{ secrets.CODEX_AUTH }}" }
+        run: |
+          test -n "$CODEX_AUTH" || { echo "CODEX_AUTH is empty"; exit 1; }
+          export CODEX_HOME="$RUNNER_TEMP/codexhome"; mkdir -p "$CODEX_HOME"
+          printf '%s' "$CODEX_AUTH" > "$CODEX_HOME/auth.json"; chmod 600 "$CODEX_HOME/auth.json"
+          printf 'cli_auth_credentials_store = "file"\n' > "$CODEX_HOME/config.toml"
+          echo "CODEX_HOME=$CODEX_HOME" >> "$GITHUB_ENV"
+          python3 -c "import json,os;d=json.load(open(os.environ['CODEX_HOME']+'/auth.json'));print('keys:',sorted(d.keys()));print('last_refresh:',d.get('last_refresh'))"
+          codex login status || true
+          codex features list 2>/dev/null | grep -i -E "image" || true
+      - name: generate
+        env: { P: "${{ inputs.prompt }}" }
+        run: |
+          mkdir -p out; cd out
+          PROMPT="${P:-A bright outdoor park in daylight, a young person wearing sleek black AR glasses looking at a floating virtual screen, clean modern anime illustration style, vertical 9:16, no text, no logos}"
+          timeout 600 codex exec --skip-git-repo-check -s workspace-write "\$imagegen Generate one image: $PROMPT. Save the final image as ./test.png in the current directory." 2>&1 | tail -40 || true
+          ls -la . "$CODEX_HOME/generated_images" 2>/dev/null || true
+          find "$CODEX_HOME/generated_images" -type f -name '*.png' -exec cp {} . \; 2>/dev/null || true
+          ls -la
+          python3 -c "import json,os;d=json.load(open(os.environ['CODEX_HOME']+'/auth.json'));print('last_refresh after:',d.get('last_refresh'))"
+      - uses: actions/upload-artifact@v4
+        with: { name: images, path: out/*.png, if-no-files-found: warn }
