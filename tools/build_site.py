@@ -147,10 +147,10 @@ def row(a, show_date=False):
             f'<a class="t" href="{a["_path"]}">{E(a["title"])}</a><p>{E(a.get("summary"))}</p></div></li>')
 
 def side(counts):
-    cats = "".join(f'<li><a href="/category/{SLUG[k]}/">{E(v[0])}<span>{counts.get(k, 0)}本</span></a></li>' for k, v in CATS.items())
-    days = "".join(f'<li><a href="/date/{d}/">{E(jdate(d))}の号</a></li>' for d in editions[:14])
+    # bottom band (no category list: categories live only in the top bar)
+    days = "".join(f'<li><a href="/date/{d}/">{E(jdate(d))}</a></li>' for d in editions[:14])
     return (f'<aside class="side"><a class="yt" href="{E(CFG["youtube"])}"><b>星餓りなのショート動画</b><span>毎日1本、ニュースを1分で。YouTubeで見る</span></a>'
-            f'<h3>カテゴリ</h3><ul>{cats}</ul><h3>日付で読む</h3><ul>{days}</ul></aside>')
+            f'<div class="days"><h3>日付で読む</h3><ul>{days}</ul></div></aside>')
 
 def picks_for(day_arts, n=3):
     def score(a):
@@ -185,8 +185,7 @@ if lead:
 more_picks = "".join(row(a) for a in pk[1:])
 rest = [a for a in today if a not in pk]
 home = (hero + pick_html + '<div class="cols"><div>'
-        + (f'<div class="sec-h"><h2>ほかの注目</h2></div><ul class="rows">{more_picks}</ul>' if more_picks else "")
-        + (f'<div class="sec-h"><h2>{E(jdate(latest))}のニュース</h2><span>{len(today)}本</span></div><ul class="rows">' + "".join(row(a) for a in rest) + "</ul>" if latest else "")
+        + (f'<div class="sec-h"><h2>{E(jdate(latest))}のニュース</h2><span>{len(today)}本</span></div><ul class="rows">' + more_picks + "".join(row(a) for a in rest) + "</ul>" if latest else "")
         + (f'<p><a class="btn" href="/date/{editions[1]}/">前の日のニュースを読む</a></p>' if len(editions) > 1 else "")
         + '</div>' + side(counts) + '</div>')
 write("/", page(NAME, CFG["description"], home, "/", og_img=url("/assets/og.jpg")))
