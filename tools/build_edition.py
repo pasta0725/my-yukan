@@ -21,13 +21,15 @@ for d in idx.get("editions", []):
         for a in json.load(open(f"{REPO}/data/{d}.json"))["articles"]: used.add(a["source_url"])
     except Exception: pass
 
+# categories since 2026-11-07, in display order, with the max number of stories per day
+CATS = {"ai": 14, "mobile": 7, "gadget": 7, "service": 7, "game": 7, "ec": 7, "future": 4, "other": 5}
 by_cat, seen_urls, seen_ids = defaultdict(list), set(), set()
 for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
     try: items = json.load(open(f))
     except Exception as e: print("BAD", f, e); continue
     for a in items:
         cat = a.get("category")
-        if cat not in ("ai", "kaden", "fukugyo") or not ok(a.get("source_url")): continue
+        if cat not in CATS or not ok(a.get("source_url")): continue
         if a.get("id") in DROP or a["id"] in seen_ids or a["source_url"] in seen_urls or a["source_url"] in used: continue
         # sanitize images: https only, no dup, news-site photos <= 2
         seen_src, ogp = set(), [0]
@@ -52,10 +54,10 @@ for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
 
 for c in by_cat:
     by_cat[c].sort(key=lambda a: a.get("published", ""), reverse=True)
-    by_cat[c] = by_cat[c][:18]
+    by_cat[c] = by_cat[c][:CATS[c]]
 arts = []
-for i in range(18):
-    for c in ("ai", "kaden", "fukugyo"):
+for i in range(max(CATS.values())):
+    for c in CATS:
         if i < len(by_cat[c]): arts.append(by_cat[c][i])
 
 dt = datetime.date.fromisoformat(DATE)

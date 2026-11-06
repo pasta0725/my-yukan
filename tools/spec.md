@@ -12,10 +12,22 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 - To find a company's official announcement/product page: WebSearch for it (company + product + "ニュースリリース" / "製品"), then fetch the result URL. Or follow a link the news article itself contains.
 - If WebFetch returns PROVENANCE_REQUIRED or any permission error, do not retry that URL; find it via WebSearch instead, or skip it.
 
+## Categories (since 2026-11-07; your assignment names one of them)
+- ai = AI: generative AI, new models, AI features and services, AI rules. If a phone/app/service story is mainly about a new AI feature, it is ai.
+- mobile = スマホ・パソコン: smartphones, tablets, PCs, OS updates (iOS, Android, Windows, macOS), PC peripherals.
+- gadget = 家電・ガジェット: home appliances, smart home, audio, cameras, wearables, gadgets.
+- service = ネットサービス・アプリ: SNS, video, search, messaging, streaming, apps — new features, rule/price changes.
+- game = ゲーム: consoles, new titles, prices/release dates, online services, game events.
+- ec = EC・決済: online shopping, flea markets/handmade markets, sellers' rules and fees, cashless payments, points, related taxes and laws. Write for individual sellers and ordinary shoppers.
+- future = 宇宙・未来技術: space, rockets and satellites, self-driving, robots, quantum computers, new energy tech. Say when (if ever) it reaches ordinary people in Japan.
+- other = その他: ONLY big news from five areas: 通信・回線 (carriers, prices, big outages), セキュリティ (big leaks, attacks, scams), 企業・業界の動き (big acquisitions, results that shook the industry, top-level changes, big layoffs), 半導体・ハードウェア産業 (NVIDIA, TSMC, Rapidus, data centers), 法律・規制・政策 (laws passed or in force, court rulings, regulator actions).
+  "Big" = at least one of: covered by 3 or more major outlets; directly affects many people in Japan (e.g. a leak of 1 million+ people, a big carrier's price change or nationwide outage, a law taking effect); shakes the industry (deal of about 1 trillion yen or more, a top company's CEO change). Routine results, small leaks, minor partnerships = skip. Zero stories is fine.
+- One story goes to exactly one category. Pick the category of its main point.
+
 ## Method
 - Search engines are weak for fresh Japanese news: open your assigned sites' new-article listing pages with WebFetch and pick stories there.
 - Open each article body with WebFetch and verify facts. Never guess. Check the real publish date in the article body.
-- Period: AI and kaden = published within the last 72 hours. fukugyo = within the last 7 days.
+- Period: ai, mobile, gadget, service, game = published within the last 72 hours. ec, future, other = within the last 7 days.
 - Skip thin PR pieces. If you use sponsored (PR) content, say so in the body.
 
 ## Read up to 5 articles per story (user's request: more information)
@@ -47,7 +59,7 @@ FIRST read tools/style.md (マイ夕刊 記事執筆ルール 第2版) in the re
 Always: easy Japanese for a non-engineer, YOUR OWN WORDS only (never copy sentences), do NOT drop necessary information (sort it instead), only facts you actually read.
 
 ## Output: a JSON array, each item:
-{"id":"<category>-<short ascii slug>","category":"ai|kaden|fukugyo","title":"見出し30字前後","summary":"一言要約50字以内",
+{"id":"<category>-<short ascii slug>","category":"ai|mobile|gadget|service|game|ec|future|other","title":"見出し30字前後","summary":"一言要約50字以内",
  "image":{"src":"https://...","kind":"press|ogp","credit":"提供元","page":"https://found-on page"},   ← best thumbnail (official product image preferred); omit if none
  "visual":{"icon":"one of: ai, chip, phone, pc, tv, appliance, camera, audio, game, cart, yen, box, globe, chart, doc, lock, car, spark","kicker":"全角8字以内"},
  "body":[{"type":"keys","items":["3行でわかる1（何が起きた）","2（一番大事な数字・条件）","3（読者への影響）"]},

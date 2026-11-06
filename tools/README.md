@@ -1,11 +1,27 @@
 # マイ夕刊の作り方（Claude用メモ）
 
 1. `git pull` して最新にする。作業フォルダ WORKDIR を作り、直近の号の source_url を `WORKDIR/used.txt` に書き出す。
-2. サブエージェントへの指示にサイトのURLを書かない（許可確認が出るため）。サイト名だけ伝え、URLは検索結果から辿らせる。`tools/spec.md` の {TODAY} と {WORKDIR} を置き換えた指示で、Sonnet のサブエージェント10本を並列に動かす（各6本）。
-   - ai: A=ITmedia AI+/NEWS、B=Impress Watch・Publickey・日経クロステック、C=各社公式発表、D=海外（英語）：TechCrunch・The Verge・Ars Technica・VentureBeat・Reuters と、OpenAI・Anthropic・Google・Meta・Microsoft・NVIDIA の英語の公式ブログ（2026-11-05 ユーザーの希望で追加。日本のサイトに載る前の発表を早めに拾う）
-   - kaden: A=家電 Watch、B=ケータイ/AV/PC Watch、C=ITmedia Mobile・PC USER・マイナビ・メーカー公式
-   - fukugyo: A=ネットショップ担当者フォーラム、B=各サービス公式お知らせ、C=ECのミカタ・公的機関
-   - 出力は WORKDIR/{ai,kaden,fukugyo}_{A,B,C}.json と WORKDIR/ai_D.json
+2. サブエージェントへの指示にサイトのURLを書かない（許可確認が出るため）。サイト名だけ伝え、URLは検索結果から辿らせる。`tools/spec.md` の {TODAY} と {WORKDIR} を置き換えた指示で、Sonnet のサブエージェント16本を並列に動かす（本数は下の表のとおり。カテゴリの範囲は spec.md の Categories）。2026-11-07 にユーザーの希望で8カテゴリに変更。
+   | 担当 | カテゴリ | 担当サイト | 本数 |
+   |---|---|---|---|
+   | ai_A | AI | ITmedia AI+・ITmedia NEWS | 4 |
+   | ai_B | AI | Impress Watch・Publickey・日経クロステック | 4 |
+   | ai_C | AI | 各社公式発表（日本語） | 4 |
+   | ai_D | AI | 海外（英語）：TechCrunch・The Verge・Ars Technica・VentureBeat・Reuters と、OpenAI・Anthropic・Google・Meta・Microsoft・NVIDIA の英語の公式ブログ（spec.md の Overseas の節） | 4 |
+   | mobile_A | スマホ・パソコン | ケータイ Watch・ITmedia Mobile・各メーカー公式（スマホ・タブレット・スマホのOS） | 4 |
+   | mobile_B | スマホ・パソコン | PC Watch・ITmedia PC USER・窓の杜（パソコン・Windows/Mac・周辺機器） | 4 |
+   | gadget_A | 家電・ガジェット | 家電 Watch・家電メーカー公式 | 4 |
+   | gadget_B | 家電・ガジェット | AV Watch・GIZMODO JAPAN・マイナビニュース（オーディオ・カメラ・ウェアラブル・ガジェット） | 4 |
+   | service_A | ネットサービス・アプリ | ITmedia NEWS・Impress Watch・CNET Japan | 4 |
+   | service_B | ネットサービス・アプリ | 各サービスの公式お知らせ（YouTube・X・LINEヤフー・Google・Instagram・TikTok・Netflix など） | 4 |
+   | game_A | ゲーム | 4Gamer.net・GAME Watch | 4 |
+   | game_B | ゲーム | ファミ通・電撃オンライン・任天堂/SIE/Xbox 公式 | 4 |
+   | ec_A | EC・決済 | ネットショップ担当者フォーラム・ECのミカタ・公的機関（国税庁・消費者庁など）、7日以内 | 4 |
+   | ec_B | EC・決済 | メルカリ・minne・BASE・Amazon・楽天・PayPay など各サービスの公式お知らせ（フリマ・通販・キャッシュレス・ポイント）、7日以内 | 4 |
+   | future_A | 宇宙・未来技術 | sorae・MIT Technology Review・日経クロステック・TechCrunch（宇宙・自動運転・ロボット・量子）、7日以内 | 4 |
+   | other_A | その他 | 通信・セキュリティ・法律/規制の大きなニュースだけ：ケータイ Watch・ITmedia NEWS・Security NEXT・総務省/公正取引委員会/デジタル庁の発表、7日以内 | 0〜3 |
+   | other_B | その他 | 企業・業界と半導体の大きなニュースだけ：日経クロステック・EE Times Japan・ITmedia NEWS・Reuters、7日以内 | 0〜3 |
+   - 出力は WORKDIR/<担当名>.json（例 mobile_A.json）。build_edition.py が1日の上限（AI14・その他5・宇宙4・ほか各7）で切る。
 3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。
 4. 見出し一覧を見て、同じ出来事が別ジャンルにも入っていれば id を指定して作り直す。
 5. コミットして main に push する。
