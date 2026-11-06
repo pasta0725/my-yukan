@@ -96,8 +96,8 @@ def illus(a, w=112, h=84):
             f'<g transform="translate({w/2-18},{h/2-18}) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{icon}</g></svg>')
 def thumb(a):
     i = a["_img"]
-    if i: return illus(a) + f'<img src="{E(i["src"])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">'
-    return illus(a)
+    if i: return illus(a, 128, 80) + f'<img src="{E(i["src"])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">'
+    return illus(a, 128, 80)
 FACE = {"ai": "thinking", "service": "thinking", "ec": "smug", "mobile": "smug", "gadget": "smug", "game": "smug", "future": "surprised", "other": "surprised"}
 def face(c): return f"/assets/rina-{FACE.get(c, 'smug')}.png"
 def tag(c, link=True):
@@ -143,8 +143,8 @@ def write(path, content):
 
 def row(a, show_date=False):
     when = f'<span class="when">{E(jdate(a["_date"]))}</span>' if show_date else ""
-    return (f'<li class="row"><div>{tag(a["_cat"])}{when}<br><a class="t" href="{a["_path"]}">{E(a["title"])}</a>'
-            f'<p>{E(a.get("summary"))}</p></div><a class="thumb" href="{a["_path"]}" tabindex="-1" aria-hidden="true">{thumb(a)}</a></li>')
+    return (f'<li class="row" style="--c:var({CATS[a["_cat"]][2]})"><span class="thumb">{thumb(a)}</span><div class="tx">{tag(a["_cat"])}{when}'
+            f'<a class="t" href="{a["_path"]}">{E(a["title"])}</a><p>{E(a.get("summary"))}</p></div></li>')
 
 def side(counts):
     cats = "".join(f'<li><a href="/category/{SLUG[k]}/">{E(v[0])}<span>{counts.get(k, 0)}本</span></a></li>' for k, v in CATS.items())
@@ -173,7 +173,7 @@ for a in arts: counts[a["_cat"]] = counts.get(a["_cat"], 0) + 1
 # home
 latest = editions[0] if editions else None
 today = [a for a in arts if a["_date"] == latest]
-pk = picks_for(today)
+pk = picks_for(today, 4)
 lead = pk[0] if pk else None
 hero = (f'<section class="desk"><picture><source media="(max-width:760px)" srcset="/assets/hero-m.webp" width="750" height="422"><source srcset="/assets/hero-750.webp 750w, /assets/hero.webp 1500w" sizes="(max-width:1120px) 100vw, 1088px"><img src="/assets/hero.jpg" alt="ニュースを手に持つ案内役の星餓りな" width="1500" height="500" fetchpriority="high"></picture>'
         f'<div class="desk-copy"><h1><span>今日のITニュースを、</span><span>りなと一緒に。</span></h1><p>{E(CFG["description"])}</p></div></section>')
@@ -200,7 +200,7 @@ for k, (lab, _, var) in CATS.items():
                   '<img src="/assets/future-banner.webp" alt="宇宙服のヘルメットをかぶった星餓りなと、レトロなロケットの絵" width="1500" height="500" fetchpriority="high"></picture>'
                   f'<div class="retro-copy"><h1>宇宙・未来技術</h1><p>ロケット、人工衛星、自動運転、ロボット、量子コンピューター。未来がいつ暮らしに届くのかを追いかけます。</p></div></section>')
     body = (banner + f'<div class="cols"><div><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}{"の記事" if k == "future" else ""}</h2><span>{len(items)}本</span></div>'
-            f'<ul class="rows">' + ("".join(row(a, True) for a in items[:200]) or '<li class="row"><p>この分野の記事はまだありません。毎日夕方に増えていきます。</p></li>') + '</ul></div>' + side(counts) + '</div>')
+            f'<ul class="rows">' + ("".join(row(a, True) for a in items[:200]) or '<li class="row empty"><p>この分野の記事はまだありません。毎日夕方に増えていきます。</p></li>') + '</ul></div>' + side(counts) + '</div>')
     write(f"/category/{SLUG[k]}/", page(f"{lab}のニュース", f"{lab}の最新ニュースを、星餓りなの見方つきでまとめています。", body, f"/category/{SLUG[k]}/", active=k,
                                         extra_head=RETRO_FONT if k == "future" else ""))
 
