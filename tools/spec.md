@@ -70,8 +70,9 @@ Always: easy Japanese for a non-engineer, YOUR OWN WORDS only (never copy senten
          ... (3〜5 sections of h + p)
          {"type":"stat","items":[{"value":"全角10字以内","label":"全角15字以内"}]},   ← exactly one, 2–3 items, only numbers explained in the body
          {"type":"gallery","title":"公式の画像","items":[{"src":"...","kind":"press|ogp","credit":"...","caption":"...","page":"..."}]},   ← all remaining images, if any (title "そのほかの画像" if it contains ogp)
-         {"type":"point","items":["あなたへの影響・やること1","2","3"]}],
+         {"type":"point","items":["あなたへの影響・やること1","2","3"]},
+         {"type":"rina","text":"りなの見方：2〜3文・120字以内（tools/style.md 9-2）"}],
  "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD",
  "refs":[{"name":"サイト名","url":"https://..."}]}   ← every article you read for this story (max 5, source_url first), URLs exactly as fetched
-Blocks: one keys, a lead p, 3–5 h each followed by 1–2 p, one stat, one point (see tools/style.md). No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
+Blocks: one keys, a lead p, 3–5 h each followed by 1–2 p, one stat, one point, one rina at the very end (see tools/style.md). No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
 Validate with python3 json.load. Final reply: count, titles, image counts (press/ogp), problems.
