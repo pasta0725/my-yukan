@@ -36,13 +36,20 @@ def to_base(a):  # undo the model's framing: scale by width to OW, centre on an 
 def rgba(rgb, seg):
     u = to_base(rgb); m = to_base(seg) / 255 if seg is not None else None
     r, g, b = u[..., 0], u[..., 1], u[..., 2]
-    k = g - np.maximum(r, b); key = np.clip(1 - (k - 35) / 70, 0, 1)
+    k = g - np.maximum(r, b); key = np.clip(1 - (k - 35) / 70, 0, 1) if scale >= 1 else np.clip(1 - (k - 6) / 36, 0, 1)  # small size: anything greenish is background
     if mode == "key" or m is None: alpha = key
     elif mode == "seg": alpha = m
     else: alpha = np.minimum(key, ndimage.maximum_filter(m, size=5))  # green never stays; nothing outside the character
-    alpha = ndimage.gaussian_filter(alpha, 0.6 * scale)
-    near = ndimage.gaussian_filter(alpha, 2.0 * scale) < 0.995
+    if scale < 1: alpha = ndimage.minimum_filter(alpha, size=3)  # small presenter: shave the 1px green rim off thin strands
+    alpha = ndimage.gaussian_filter(alpha, max(0.6 * scale, 0.5))
+    near = ndimage.gaussian_filter(alpha, max(2.0 * scale, 3.0)) < 0.995
     g2 = np.where(near, np.minimum(g, np.maximum(r, b)), g)
+    if scale < 1:  # small presenter: semi-transparent edge pixels take the colour of the nearest solid pixel (no green/pink fringe)
+        solid = alpha > 0.95
+        if solid.any():
+            _, (iy, ix) = ndimage.distance_transform_edt(~solid, return_indices=True)
+            edge = ~solid
+            r = np.where(edge, r[iy, ix], r); b = np.where(edge, b[iy, ix], b); g2 = np.where(edge, g2[iy, ix], g2)
     return Image.fromarray(np.clip(np.dstack([r, g2, b, alpha * 255]), 0, 255).astype(np.uint8), "RGBA")
 
 if li < 0: f0, n = 0, int(round(P["T"] * FPS))
