@@ -134,3 +134,18 @@ footer a{color:#fff}
 footer .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
 footer small{width:100%;color:#8f9cb6;margin-top:6px}
 @media (prefers-reduced-motion:no-preference){.say{animation:pop .5s ease-out both}@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* 宇宙・未来技術: 1960s space-age poster accent (only the category banner, the article header band and thumbnails) */
+.retro{position:relative;margin:20px 0 0;border-radius:20px;overflow:hidden;background:#14213d}
+.retro img{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover;object-position:right center}
+.retro-copy{position:absolute;left:4%;top:50%;transform:translateY(-50%);width:min(46%,480px);color:#f3e9d2}
+.retro-copy h1{margin:0 0 8px;font:400 clamp(26px,4.2vw,48px)/1.2 "Dela Gothic One",var(--round);letter-spacing:.04em;color:#f3e9d2}
+.retro-copy p{margin:0;font-size:clamp(13px,1.4vw,15.5px);line-height:1.75;color:#d9e4f2}
+@media (max-width:760px){
+  .retro img{aspect-ratio:4/3;max-height:62vw;object-position:right top}
+  .retro-copy{position:static;transform:none;width:auto;padding:14px 16px 18px;background:#14213d}
+}
+.retro-band{display:flex;align-items:center;gap:10px;background:#14213d;color:#f3e9d2;border-radius:12px;padding:6px 14px;margin:0 0 14px}
+.retro-band span{font:400 15px/1.4 "Dela Gothic One",var(--round);letter-spacing:.06em}
+.retro-band .orbit{width:64px;height:32px;flex:none}
+.art.future h2.sub{border-left-color:#ff8a00}
