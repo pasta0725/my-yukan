@@ -1,0 +1,10 @@
+{
+  "note": "サムネ・動画素材用の星餓りなイラスト（背景透過PNG）。表情とニュースの対応は tools/thumbnail_rules.md。新しく作ったら tools/rina_cutout.py で切り抜いてここに追加する。",
+  "items": [
+    {"file": "rina_surprised_point_left.png", "style": "通常", "expression": "驚き＋指差し", "gaze": "左上を指差し・左を見る", "use": "新機能・驚きのニュース。右に置いて左の文字を指させる"},
+    {"file": "rina_thinking_left.png", "style": "通常", "expression": "考え中（あごに指）", "gaze": "左", "use": "比較・疑問。右に置く"},
+    {"file": "rina_smug_thumbsup.png", "style": "通常", "expression": "ドヤ（ウインク＋グッド）", "gaze": "正面", "use": "価格・お得・便利"},
+    {"file": "rina_chibi_shocked.png", "style": "デフォルメ", "expression": "ショック（両手を上げる）", "gaze": "右（左右反転して使うと左向き）", "use": "軽いノリの驚き・ツッコミ"},
+    {"file": "bg_lightblue_robots.png", "style": "背景", "expression": "-", "gaze": "-", "use": "薄い水色の背景。下にロボット、中央は空き（AI系ニュース向け）"}
+  ]
+}
