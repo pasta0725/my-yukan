@@ -80,6 +80,17 @@ for f in sorted(glob.glob(os.path.join(ROOT, "data/20??-??-??.json")), reverse=T
         a["_img"], a["_body"] = img, body
         a["_rina"] = next((b.get("text") for b in body if b.get("type") == "rina" and b.get("text")), "")
         arts.append(a)
+# voices on X (data/x/<date>.json written later by the Grok bot): {"posts": {"<article id>": [ids or URLs]}}
+XPOSTS = {}
+for f in glob.glob(os.path.join(ROOT, "data/x/20??-??-??.json")):
+    try: XPOSTS[os.path.basename(f)[:10]] = (json.load(open(f, encoding="utf-8")).get("posts") or {})
+    except Exception: pass
+for a in arts:
+    ids = [str(x) for x in (a.get("x_posts") or [])]
+    for v in XPOSTS.get(a["_date"], {}).get(a["id"], []):
+        m = re.search(r"status(?:es)?/(\d{15,25})", str(v)) or re.fullmatch(r"(\d{15,25})", str(v).strip())
+        if m and m.group(1) not in ids: ids.append(m.group(1))
+    a["_x"] = [i for i in ids if re.fullmatch(r"\d{5,25}", i)][:10]
 by_path = {}
 for a in arts:  # keep first (newest) if a path repeats
     by_path.setdefault(a["_path"], a)
@@ -87,12 +98,12 @@ arts = list(by_path.values())
 
 def illus(a, w=112, h=84):
     if a["_cat"] == "future":
-        return (f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="宇宙・未来技術"><rect width="{w}" height="{h}" fill="#14213d"/>'
+        return (f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="宇宙・未来技術"><rect width="{w}" height="{h}" fill="#14213d"/>'
                 f'<path d="M0 {h*.78} Q{w/2} {h*.6} {w} {h*.78} V{h} H0z" fill="#f3e9d2"/><circle cx="{w*.62}" cy="{h*.4}" r="{h*.17}" fill="#9fd3f5"/>'
                 f'<ellipse cx="{w*.62}" cy="{h*.4}" rx="{h*.32}" ry="{h*.08}" fill="none" stroke="#ff8a00" stroke-width="2.4"/>'
                 f'<path d="M{w*.22} {h*.2}l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#ff8a00"/><circle cx="{w*.85}" cy="{h*.18}" r="1.4" fill="#f3e9d2"/><circle cx="{w*.12}" cy="{h*.55}" r="1.2" fill="#f3e9d2"/></svg>')
     c = CATS[a["_cat"]]; icon = ICONS.get((a.get("visual") or {}).get("icon")) or ICONS[c[1]]
-    return (f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="{E(c[0])}"><rect width="{w}" height="{h}" fill="var({c[2]})"/>'
+    return (f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{E(c[0])}"><rect width="{w}" height="{h}" fill="var({c[2]})"/>'
             f'<g transform="translate({w/2-18},{h/2-18}) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{icon}</g></svg>')
 def thumb(a):
     i = a["_img"]
@@ -127,6 +138,10 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 <footer><div class="wrap"><a href="/">トップ</a><a href="/about/">このサイトについて</a><a href="/privacy/">プライバシーポリシー</a><a href="{E(CFG['youtube'])}">YouTube</a><a href="/feed.xml">RSS</a>
 <small>© {datetime.date.today().year} {E(NAME)}</small></div></footer></body></html>'''
 
+# loads X's official embed only when the "Xの声" box comes into view; matches the reader's light/dark setting
+XJS = """<script>(()=>{const box=document.querySelector('.xv');if(!box)return;const go=()=>{const d=matchMedia('(prefers-color-scheme: dark)').matches;box.querySelectorAll('blockquote.twitter-tweet').forEach(b=>b.dataset.theme=d?'dark':'light');const s=document.createElement('script');s.src='https://platform.twitter.com/widgets.js';s.async=true;s.charset='utf-8';document.head.append(s)};if('IntersectionObserver' in window){const o=new IntersectionObserver(e=>{if(e.some(x=>x.isIntersecting)){o.disconnect();go()}},{rootMargin:'400px'});o.observe(box)}else go()})();</script>"""
+# keeps the current article visible in the left list
+LISTJS = """<script>(()=>{const l=document.querySelector('.alist ul'),c=l&&l.querySelector('[aria-current]');if(c&&getComputedStyle(l.parentNode).display!=='none')l.parentNode.scrollTop=c.parentNode.offsetTop-80})();</script>"""
 RETRO_FONT = ''  # Dela Gothic One is loaded on every page now
 ORBIT = ('<svg class="orbit" viewBox="0 0 120 60" aria-hidden="true"><ellipse cx="60" cy="34" rx="54" ry="14" fill="none" stroke="#f3e9d2" stroke-width="1.5" stroke-dasharray="3 4"/>'
          '<circle cx="60" cy="34" r="13" fill="#9fd3f5"/><path d="M60 4l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#ff8a00" transform="translate(40 -2) scale(.6)"/></svg>')
@@ -255,7 +270,19 @@ for a in arts:
     body = (f'<article class="art{" future" if c == "future" else ""}" style="--c:var({var})">{band}<div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
             f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span>{E(jdate(a["_date"]))}の号</span><span>出典：{E(a.get("source_name"))}</span></div>'
             + ('<p class="prnote"><span class="pr">PR</span>この記事には広告（アフィリエイトリンク）が含まれます。</p>' if a.get("pr") else "")
-            + "".join(parts) + src + "</article>" + more)
+            + "".join(parts) + src + "</article>")
+    day = [x for x in arts if x["_date"] == a["_date"]]
+    alist = (f'<nav class="alist" aria-label="{E(jdate(a["_date"]))}のニュース"><h2>{E(jdate(a["_date"]))}のニュース</h2><ul>'
+             + "".join(f'<li><a href="{x["_path"]}"{" aria-current=\"page\"" if x is a else ""}><span class="lt">{thumb(x)}</span>'
+                       f'<span class="lx">{tag(x["_cat"], False)}<b>{E(x["title"])}</b></span></a></li>' for x in day) + '</ul></nav>')
+    if a["_x"]:
+        posts = "".join(f'<div class="xcard"><blockquote class="twitter-tweet" data-dnt="true" data-conversation="none" data-lang="ja" data-width="340">'
+                        f'<a href="https://twitter.com/i/status/{i}" rel="nofollow noopener">Xで投稿を見る</a></blockquote></div>' for i in a["_x"])
+        xv = (f'<aside class="xrail" aria-label="Xの声"><div class="xv"><h2>このニュースへのXの声<span>{len(a["_x"])}件</span></h2>{posts}'
+              '<p class="xnote">X（旧Twitter）の公式の埋め込みで表示しています。投稿の内容は投稿者のもので、当サイトの意見ではありません。</p></div></aside>')
+    else:
+        xv = '<aside class="xrail" aria-label="Xの声"><div class="xv"><h2>このニュースへのXの声</h2><p class="xnote">このニュースについてのXの投稿は、まだ集まっていません。</p></div></aside>'
+    body = f'<div class="agrid">{alist}<div class="amain">{body}</div>{xv}<div class="amore">{more}</div></div>' + (XJS if a["_x"] else "") + LISTJS
     og = a["_img"]["src"] if a["_img"] else url("/assets/og.jpg")
     write(a["_path"], page(a["title"], a.get("summary") or a["title"], body, a["_path"], active=c, og_img=og,
                            extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' + (RETRO_FONT if c == "future" else "")))
@@ -274,6 +301,7 @@ write("/about/", page("このサイトについて", f"{NAME}の運営方針と�
 privacy = f'''<div class="doc"><h1>プライバシーポリシー</h1>
 <h2>アクセス解析</h2><p>当サイトでは、サイトの改善のためにアクセス解析ツールを使うことがあります。個人を特定する情報は集めません。</p>
 <h2>広告・アフィリエイト</h2><p>当サイトは、Amazon、楽天市場などのアフィリエイトプログラムに参加することがあります。リンク先のサービスでは、Cookieなどを使って閲覧や購入の情報が扱われることがあります。詳しくは各サービスのプライバシーポリシーをご確認ください。</p>
+<h2>Xの投稿の埋め込み</h2><p>記事ページの「Xの声」では、X（旧Twitter）の投稿を公式の埋め込み機能で表示しています。表示するときに、お使いのブラウザとXのサーバーとの間で通信が行われます。詳しくはXのプライバシーポリシーをご確認ください。</p>
 <h2>外部リンク</h2><p>記事内のリンク先のサイトで起きたことについて、当サイトは責任を負いません。</p>
 <h2>改定</h2><p>このポリシーは、必要に応じて改定します。</p></div>'''
 write("/privacy/", page("プライバシーポリシー", f"{NAME}のプライバシーポリシー。", privacy, "/privacy/"))
