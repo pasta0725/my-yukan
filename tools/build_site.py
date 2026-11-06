@@ -12,6 +12,7 @@ OUT = os.path.join(ROOT, sys.argv[1] if len(sys.argv) > 1 else "site_dist")
 CFG = json.load(open(os.path.join(ROOT, "site/config.json"), encoding="utf-8"))
 ICONS = json.load(open(os.path.join(ROOT, "site/icons.json"), encoding="utf-8"))
 BASE = (os.environ.get("SITE_URL") or CFG.get("base_url") or "").rstrip("/")
+PREFIX = (os.environ.get("SITE_PREFIX") or "").rstrip("/")  # preview under a sub-path (e.g. /my-yukan/preview); also sets noindex
 NAME = CFG["site_name"]
 WD = "月火水木金土日"
 E = lambda s: html.escape(str(s or ""), quote=True)
@@ -122,6 +123,9 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 <small>© {datetime.date.today().year} {E(NAME)}</small></div></footer></body></html>'''
 
 def write(path, content):
+    if PREFIX and path.endswith((".html", "/")):
+        content = content.replace('="/', '="' + PREFIX + '/').replace(", /assets", ", " + PREFIX + "/assets")
+        content = content.replace("<head>", '<head><meta name="robots" content="noindex">', 1)
     p = os.path.join(OUT, path.lstrip("/"), "index.html") if path.endswith("/") else os.path.join(OUT, path.lstrip("/"))
     os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, "w", encoding="utf-8").write(content)
