@@ -1,0 +1,69 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Dela;src:url(../fonts/DelaGothicOne-Regular.ttf)}
+@font-face{font-family:Rampart;src:url(../fonts/RampartOne-Regular.ttf)}
+@font-face{font-family:Reggae;src:url(../fonts/ReggaeOne-Regular.ttf)}
+@font-face{font-family:Rock;src:url(../fonts/RocknRollOne-Regular.ttf)}
+@font-face{font-family:Mochiy;src:url(../fonts/MochiyPopOne-Regular.ttf)}
+@font-face{font-family:Maru;src:url(../fonts/ZenMaruGothic-Black.ttf)}
+@font-face{font-family:Kaku;src:url(../fonts/ZenKakuGothicNew-Black.ttf)}
+@font-face{font-family:Train;src:url(../fonts/TrainOne-Regular.ttf)}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}
+#c{position:relative;width:1080px;height:1920px;background-size:cover}
+.t{position:absolute;white-space:nowrap;line-height:1}
+.t>span{position:absolute;left:0;top:0}
+.ch{display:inline-block}
+</style></head><body><div id="c"></div><script>
+const NAVY='#14213D',ORG='#FF8A00',W='#fff';
+const id=location.hash.slice(1); const c=document.getElementById('c');
+c.style.backgroundImage=`url(base_${id}.png)`;
+// txt: string or [[text,{size,dy,rot,dx,fill}],...]; strokes outer→inner [[width,color],...]
+function T(txt,o){
+  const parts=typeof txt==='string'?[[txt,{}]]:txt;
+  const box=document.createElement('div'); box.className='t'; box.style.left=o.x+'px'; box.style.top=o.y+'px';
+  box.style.fontFamily=o.font; box.style.fontSize=o.size+'px'; box.style.letterSpacing=(o.ls||0)+'px';
+  box.style.transform=`rotate(${o.rot||0}deg) skewX(${o.skew||0}deg)`; box.style.transformOrigin='left center';
+  if(o.shadow) box.style.filter=`drop-shadow(${o.shadow})`;
+  const layer=(stroke,fill,front)=>{const s=document.createElement('span'); if(!front){s.style.position='absolute'} else {s.style.position='relative'}
+    for(const [t,p] of parts){const e=document.createElement('span'); e.className='ch'; e.textContent=t;
+      if(p.size) e.style.fontSize=p.size+'px'; e.style.transform=`translate(${p.dx||0}px,${p.dy||0}px) rotate(${p.rot||0}deg)`;
+      if(p.ls!=null) e.style.letterSpacing=p.ls+'px';
+      const f=p.fill||fill;
+      if(stroke){e.style.color=stroke[1]; e.style.webkitTextStroke=`${stroke[0]*2}px ${stroke[1]}`; e.style.paintOrder='stroke fill'}
+      else if(f.includes('gradient')){e.style.backgroundImage=f; e.style.webkitBackgroundClip='text'; e.style.color='transparent'}
+      else e.style.color=f;
+      s.appendChild(e)} return s};
+  // extrusion (3D) layers
+  if(o.extrude){const [n,dx,dy,col]=o.extrude; for(let i=n;i>0;i--){const s=layer([o.strokes[0][0],col]); s.style.left=(dx*i)+'px'; s.style.top=(dy*i)+'px'; box.appendChild(s)}}
+  let acc=0; for(const st of o.strokes){box.appendChild(layer(st))}
+  box.appendChild(layer(null,o.fill,true)); c.appendChild(box); return box}
+function tag(txt,o){const d=document.createElement('div'); d.textContent=txt; Object.assign(d.style,{position:'absolute',left:o.x+'px',top:o.y+'px',font:`${o.size}px ${o.font}`,color:o.color||NAVY,background:o.bg||ORG,padding:o.pad||'14px 28px 18px',borderRadius:(o.r??18)+'px',border:o.border||'6px solid #fff',transform:`rotate(${o.rot||0}deg) skewX(${o.skew||0}deg)`,boxShadow:'0 10px 18px rgba(0,0,0,.35)',whiteSpace:'nowrap',lineHeight:1}); c.appendChild(d); return d}
+
+const D={
+A(){ // AI-drawn comic lettering above, she points up at it
+  tag('AI速報',{x:60,y:642,size:60,font:'Kaku',rot:-3});
+  const im=document.createElement('img'); im.src='letter_comic.png'; Object.assign(im.style,{position:'absolute',left:'30px',top:'730px',width:'1020px',transform:'rotate(-6deg)',filter:'drop-shadow(0 12px 10px rgba(0,0,0,.5))'}); c.appendChild(im);
+  tag('時代、',{x:70,y:1010,size:84,font:'Rock',rot:-6,skew:-8,bg:'#fff',color:'#14213D',border:'6px solid #14213D'});
+  tag('もうすぐ？',{x:60,y:1135,size:96,font:'Rock',rot:-6,skew:-8,pad:'12px 34px 18px'});
+},
+B(){ // 考え中: soft rounded copy with a big "?" and a 2x badge
+  tag('AIの警告',{x:60,y:642,size:60,font:'Kaku'});
+  T('AIが自分を',{x:62,y:770,size:122,font:'Maru',fill:'#fff',strokes:[[14,NAVY]],shadow:'0 8px 8px rgba(0,0,0,.5)'});
+  T([['育',{size:200}],['てる',{size:150}],['日',{size:200}]],{x:56,y:905,size:180,font:'Maru',fill:'linear-gradient(#fff 30%,#bfe3ff)',strokes:[[22,'#fff'],[12,NAVY]],extrude:[8,0,3,NAVY],shadow:'0 12px 12px rgba(0,0,0,.5)'});
+  T([['開発ペース',{}],['2倍',{size:96,fill:'linear-gradient(#ffd34d,#ff8a00)'}],['へ',{}]],{x:66,y:1150,size:74,font:'Kaku',fill:'#fff',strokes:[[10,NAVY]],shadow:'0 6px 6px rgba(0,0,0,.5)'});
+},
+C(){ // no character: huge extruded golden "2倍"
+  tag('AI速報',{x:60,y:642,size:60,font:'Kaku'});
+  T('開発ペース',{x:64,y:760,size:132,font:'Dela',fill:'#fff',strokes:[[12,NAVY]],rot:-4,shadow:'0 8px 10px rgba(0,0,0,.5)'});
+  T([['2',{size:330}],['倍',{size:250}]],{x:50,y:870,size:300,font:'Dela',fill:'linear-gradient(#fff6c2 0%,#ffd34d 35%,#ff8a00 70%,#e05200 100%)',strokes:[[16,'#fff'],[8,'#7a2a00']],extrude:[14,3,3,'#5a1d00'],rot:-4,shadow:'0 0 40px rgba(255,160,40,.7)'});
+  T('へ',{x:640,y:1040,size:130,font:'Dela',fill:'#fff',strokes:[[12,NAVY]],rot:-4});
+  tag('AIがAIを作る時代',{x:62,y:1196,size:62,font:'Rock',rot:-4,skew:-8});
+},
+D(){ // chibi manga: jittery comic letters
+  tag('速報',{x:60,y:642,size:60,font:'Kaku',rot:-4});
+  T([['A',{rot:-6}],['I',{rot:4,dy:-8}],['が',{rot:-3,dy:6}]],{x:66,y:740,size:170,font:'Reggae',fill:NAVY,strokes:[[16,'#fff']],shadow:'0 8px 6px rgba(0,0,0,.35)'});
+  T([['A',{rot:5,dy:-6}],['I',{rot:-5,dy:8}],['を',{rot:6,size:120}],['作',{rot:-4,dy:-10}],['る',{rot:5,dy:4}],['!?',{rot:12,dy:-14,size:165,fill:'linear-gradient(#ffd34d,#ff5a00)'}]],{x:56,y:920,size:150,font:'Reggae',fill:NAVY,strokes:[[18,'#fff']],shadow:'0 8px 6px rgba(0,0,0,.35)',ls:-4});
+  tag('もうすぐ来るかも…',{x:70,y:1160,size:60,font:'Mochiy',bg:'#fff',color:NAVY,border:'6px solid '+NAVY,r:60,pad:'16px 36px 20px',rot:-3});
+}};
+document.fonts.ready.then(()=>{D[id](); Promise.all([...document.images].map(i=>i.complete?1:new Promise(r=>i.onload=r))).then(()=>setTimeout(()=>document.title='done',300))});
+for(const f of ['Dela','Rampart','Reggae','Rock','Mochiy','Maru','Kaku','Train']) document.fonts.load(`40px ${f}`,'AIが作る');
+</script></body></html>
