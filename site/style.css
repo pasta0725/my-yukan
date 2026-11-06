@@ -186,3 +186,42 @@ footer small{width:100%;color:#8f9cb6;margin-top:6px}
 .retro-band span{font:400 15px/1.4 "Dela Gothic One",var(--round);letter-spacing:.06em}
 .retro-band .orbit{width:64px;height:32px;flex:none}
 .art.future h2.sub{background:#14213d;box-shadow:inset 0 -3px 0 #ff8a00}
+
+/* article page: like My Yukan on PC — other stories on the left, the article in the middle, voices on X on the right */
+.agrid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "x" "more";gap:0 32px;align-items:start}
+.amain{grid-area:main;min-width:0}
+.xrail{grid-area:x;min-width:0;max-width:740px;width:100%;margin:0 auto 40px}
+.amore{grid-area:more;min-width:0}
+.alist{display:none}
+.amain .art{margin-bottom:32px}
+.xv h2{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 12px;font:400 17px/1.4 var(--head);padding:6px 14px;background:var(--ink);color:#fff;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+@media (prefers-color-scheme:dark){.xv h2{background:var(--blue)}}
+.xv h2 span{font:700 13px/1 var(--body);opacity:.85;padding-right:10px}
+.xcard{margin:0 0 12px}
+.xcard .twitter-tweet{margin:0!important}
+.xcard blockquote.twitter-tweet{padding:12px 14px;border:1.5px solid var(--line);background:var(--paper);font-size:14px}
+.xnote{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--sub)}
+.alist h2{margin:0 0 8px;font:400 16px/1.4 var(--head);color:#fff;background:var(--blue);padding:7px 14px;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.alist ul{list-style:none;margin:0;padding:0}
+.alist li a{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:start;padding:9px 8px;border-bottom:1.5px solid var(--line);color:var(--ink);text-decoration:none}
+.alist li a:hover{background:var(--paper)}
+.alist li a[aria-current]{background:var(--paper);box-shadow:inset 5px 0 0 var(--blue)}
+.alist .lt{position:relative;display:block;aspect-ratio:1;overflow:hidden;background:var(--line)}
+.alist .lt img{position:absolute;inset:0;background:#fff}
+.alist .lt img,.alist .lt svg{width:100%;height:100%;object-fit:cover;display:block}
+.alist .lx{min-width:0}
+.alist .lx .tag{font-size:11px;padding:0 7px;margin-bottom:2px}
+.alist .lx b{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:13.5px;line-height:1.5}
+@media (min-width:1100px){
+  .agrid{grid-template-columns:300px minmax(0,1fr);grid-template-areas:"list main" "list x" "list more";margin-top:26px}
+  .alist{display:block;grid-area:list;position:sticky;top:74px;max-height:calc(100vh - 92px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;margin-bottom:40px}
+  .amain .art{margin-top:0}
+}
+@media (min-width:1280px){
+  .agrid{grid-template-columns:260px minmax(0,1fr) 300px;grid-template-areas:"list main x" "list more x";gap:0 20px}
+  .xrail{position:sticky;top:74px;max-height:calc(100vh - 92px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;margin:0 0 40px}
+  .amain .art{padding-inline:clamp(20px,2.4vw,46px)}
+}
+@media (min-width:1600px){
+  .agrid{grid-template-columns:300px minmax(0,780px) 360px;gap:0 32px;justify-content:center}
+}
