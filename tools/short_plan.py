@@ -5,7 +5,8 @@ spec.json: {"wav_dir": "...", "lines": [{"say": "...", "show": "...", "scene": "
 period_pause / comma_max: the pause at 「。」 inside a line is cut to period_pause (no breath, like 岡野タケシ),
            the pause at 「、」 may stay up to comma_max; short silences such as the small 「っ」 are left alone (user, 2026-11-07).
            gap is the silence between lines (each line ends with 「。」, so it is short too)
-writes <work_dir>/plan.js (window.PLAN) and <work_dir>/audio.wav"""
+writes <work_dir>/plan.js (window.PLAN) and <work_dir>/audio.wav
+intro line: write "say": "このニュース、{SEC}秒でまとめます。" and put the number used for its TTS in spec "sec" (see step 2b)."""
 import json, os, re, subprocess, sys, wave
 import numpy as np
 
@@ -77,6 +78,17 @@ t = 0.25; lines = []
 for i, (ln, x) in enumerate(zip(spec["lines"], segs)):
     d = len(x) / SR; lines.append({**ln, "start": round(t, 3), "end": round(t + d, 3)}); t += d + gap
 voice_end = t - gap; T = voice_end + 0.35 + tail
+
+# 2b) 「このニュース、{SEC}秒でまとめます」: SEC = the talk AFTER that line (logo not counted), rounded UP to 10 s.
+#     The line's audio must say the same number: spec "sec" = the number used for that line's TTS.
+#     If it differs, exit 3 with the right number -> make that one line again with it, then run this again.
+import math
+for ln in lines:
+    if "{SEC}" in ln.get("say", "") or "{SEC}" in ln.get("show", ""):
+        sec = max(10, math.ceil((voice_end - ln["end"]) / 10 - 1e-9) * 10)
+        if spec.get("sec") != sec:
+            print(json.dumps({"need_sec": sec, "line": ln["say"].replace("{SEC}", str(sec))}, ensure_ascii=False)); sys.exit(3)
+        for k in ("say", "show"): ln[k] = ln.get(k, "").replace("{SEC}", str(sec))
 
 # 3) telop chunks: split the shown text into 5-15 character pieces, timed by length
 def chunks(s):
