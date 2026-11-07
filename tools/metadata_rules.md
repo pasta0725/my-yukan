@@ -73,4 +73,5 @@
 - カスタムサムネイルとコメントの固定は、星餓りなチャンネルの確認（電話番号・ワンタイム認証）が終わるまでできない（確認はユーザーが行う）。
 - コメントは youtube.com 側も右上のアカウントで「星餓りな」に切り替えてから、通常の動画ページ（/watch?v=）で投稿する。
 - タイトル・概要欄は contenteditable に execCommand('insertText') で入力できる。タグ欄は入力欄をクリックして「,」区切りで入力し Enter。
+- 字幕：字幕ページで日本語行の鉛筆 →「トラックの上書き」続行 → エディタ右上の︙ →「ファイルをアップロード」→「タイムコードあり」→ 公開。英語のタイトル・説明は「言語を追加 → 英語」の行の鉛筆から。英語の説明欄は textarea なので、focus → select → execCommand('insertText') で入れる（form_input や type だと途中に挿入されて崩れる）。
 - ファイル（字幕・サムネ）は、ファイル選択ボタンを押す前に HTMLInputElement.prototype.click を差し替えて、raw.githubusercontent.com から取ったファイルを入れる。
