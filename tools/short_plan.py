@@ -1,14 +1,17 @@
 """Assemble the timing plan and the final audio for a news Short.
 usage: python3 tools/short_plan.py <spec.json> <work_dir>
 spec.json: {"wav_dir": "...", "lines": [{"say": "...", "show": "...", "scene": "hook", "puppet": false, "se": "don"}, ...],
-            "speed": 1.12, "gap": 0.12, "tail_logo": 2.0, "sfx_dir": "...", "lipsync": "path/to/python-with-pyopenjtalk"}
+            "speed": 1.12, "gap": 0.03, "pause_max": 0.05, "tail_logo": 2.0, "sfx_dir": "...", "lipsync": "path/to/python-with-pyopenjtalk"}
+pause_max: every pause inside a line (at 、 and between phrases) is shortened to at most this many seconds,
+           and gap is the silence between lines -> the "no breath" delivery the user asked for (2026-11-07, like 岡野タケシ)
 writes <work_dir>/plan.js (window.PLAN) and <work_dir>/audio.wav"""
 import json, os, re, subprocess, sys, wave
 import numpy as np
 
 spec = json.load(open(sys.argv[1], encoding="utf-8")); W = sys.argv[2]; os.makedirs(W, exist_ok=True)
 SR = 48000; FPS = 30
-speed, gap, tail = spec.get("speed", 1.12), spec.get("gap", 0.12), spec.get("tail_logo", 2.0)
+speed, gap, tail = spec.get("speed", 1.12), spec.get("gap", 0.03), spec.get("tail_logo", 2.0)
+pause_max = spec.get("pause_max", 0.05)
 
 
 def run(*a): subprocess.run(a, check=True)
@@ -18,6 +21,25 @@ def readw(p):
     w = wave.open(p); x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
     if w.getnchannels() == 2: x = x.reshape(-1, 2).mean(axis=1)
     return x, w.getframerate()
+
+
+def squeeze(x, pmax, thr_db=-40, win=0.01):
+    """shorten every quiet run longer than pmax seconds to pmax; returns (new signal, kept [(start,end)] in samples)"""
+    if pmax is None: return x, [(0, len(x))]
+    h = int(SR * win); n = len(x) // h
+    if n == 0: return x, [(0, len(x))]
+    rms = np.sqrt((x[: n * h].reshape(n, h) ** 2).mean(axis=1) + 1e-12)
+    quiet = 20 * np.log10(rms) < thr_db
+    keep, i, k = [], 0, int(pmax / win)
+    while i < n:
+        j = i
+        while j < n and quiet[j] == quiet[i]: j += 1
+        if quiet[i] and (j - i) > k:
+            m = (i + j) // 2; keep.append((m - k // 2, m - k // 2 + k))   # keep pmax of silence from the middle
+        else: keep.append((i, j))
+        i = j
+    kept = [(a * h, b * h) for a, b in keep]; kept[-1] = (kept[-1][0], len(x))
+    return np.concatenate([x[a:b] for a, b in kept]), kept
 
 
 def writew(p, x, sr=SR, ch=1):
@@ -34,7 +56,8 @@ for i, ln in enumerate(spec["lines"], 1):
         f"silenceremove=start_periods=1:start_threshold=-42dB:start_silence=0.02,areverse,"
         f"silenceremove=start_periods=1:start_threshold=-42dB:start_silence=0.05,areverse,atempo={speed},aresample={SR}",
         "-ac", "1", dst)
-    x, _ = readw(dst); segs.append(x)
+    x, _ = readw(dst)
+    x, _ = squeeze(x, pause_max); writew(dst, x); segs.append(x)
 
 # 2) timeline
 t = 0.25; lines = []
