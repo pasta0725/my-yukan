@@ -22,7 +22,7 @@ for d in idx.get("editions", []):
     except Exception: pass
 
 # categories since 2026-11-07, in display order, with the max number of stories per day
-CATS = {"ai": 14, "mobile": 7, "gadget": 7, "service": 7, "game": 7, "ec": 7, "future": 4, "other": 5}
+CATS = {"ai": 14, "mobile": 7, "gadget": 7, "service": 7, "game": 7, "ec": 7, "future": 4, "other": 8}
 by_cat, seen_urls, seen_ids = defaultdict(list), set(), set()
 for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
     try: items = json.load(open(f))
