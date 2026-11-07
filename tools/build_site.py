@@ -98,13 +98,13 @@ arts = list(by_path.values())
 
 def illus(a, w=112, h=84):
     if a["_cat"] == "future":
-        return (f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="宇宙・未来技術"><rect width="{w}" height="{h}" fill="#14213d"/>'
+        return (f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="宇宙・未来技術"><rect width="{w}" height="{h}" fill="#0b1f4d"/>'
                 f'<path d="M0 {h*.78} Q{w/2} {h*.6} {w} {h*.78} V{h} H0z" fill="#f3e9d2"/><circle cx="{w*.62}" cy="{h*.4}" r="{h*.17}" fill="#9fd3f5"/>'
                 f'<ellipse cx="{w*.62}" cy="{h*.4}" rx="{h*.32}" ry="{h*.08}" fill="none" stroke="#ff8a00" stroke-width="2.4"/>'
                 f'<path d="M{w*.22} {h*.2}l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#ff8a00"/><circle cx="{w*.85}" cy="{h*.18}" r="1.4" fill="#f3e9d2"/><circle cx="{w*.12}" cy="{h*.55}" r="1.2" fill="#f3e9d2"/></svg>')
     c = CATS[a["_cat"]]; icon = ICONS.get((a.get("visual") or {}).get("icon")) or ICONS[c[1]]
-    return (f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{E(c[0])}"><rect width="{w}" height="{h}" fill="var({c[2]})"/>'
-            f'<g transform="translate({w/2-18},{h/2-18}) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{icon}</g></svg>')
+    return (f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="{E(c[0])}"><rect width="{w}" height="{h}" fill="var(--blue-soft)" style="fill:color-mix(in oklch,var({c[2]}) 16%,var(--paper))"/>'
+            f'<g transform="translate({w/2-18},{h/2-18}) scale(1.5)" fill="none" stroke="var({c[2]})" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{icon}</g></svg>')
 def thumb(a):
     i = a["_img"]
     if i: return illus(a, 128, 80) + f'<img src="{E(i["src"])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">'
