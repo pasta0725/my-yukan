@@ -1,0 +1,197 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script><script src="pal.js"></script>
+<script>
+// Design rules: iPhone shows x~98-982 (sides cropped), Shorts tabs end y~330, right buttons x>=885 from y~970,
+// channel/title text from y~1480. Diagrams live in y400-1080 centred on x540, captions in their own band below, mini presenter under that.
+// palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
+const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
+  line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
+  glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+const CX=540, MAXW=680, CAP_Y=1168;
+let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+const CT={s:1.04,y0:360,y1:350};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
+let CUR=null;
+function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
+  if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('share','img/share.png'),load('mini','char/f300.png')]);await document.fonts.ready;})();
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
+// ---------- helpers ----------
+function bg(u){abs(()=>bg0(u));}
+function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+function rrect(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+// small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
+function mini(u){abs(()=>glow(210,1380,260,C.brand,0.22));drawChar(CUR||IMG.mini,22,1188,380,675);}  // face between the caption band and the channel name
+function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
+function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
+function credit(t='出典：TechCrunch ほか'){abs(()=>text(t,950,362,26,C.sub,'right',700));}
+// ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
+function marks(s,warn){const m=new Array(s.length).fill(C.capText);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum); if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
+  if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
+function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
+  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
+  const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
+  g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
+  let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
+    const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
+    // two passes: every edge first, then every letter, so a letter's edge never covers its neighbour
+    const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='round';g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;
+    for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
+  g.restore();}
+
+// ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
+const BX=372,BY=1165,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+178);g.lineTo(BX-40,BY+150);g.lineTo(BX,BY+120);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
+function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
+  bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
+// line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
+function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);
+  const keep=j=>j>=3&&s.length-j>=3;  // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
+  cuts.push(s.length);
+  const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  let best=null;const c=[...new Set(cuts)].sort((a,b)=>a-b).filter(x=>x>0&&x<s.length&&keep(x));
+  const PEN=a=>(s.slice(a,a+2)==='いう'&&s[a-1]==='と')?size*0.6:('をにはがでとのもへやかよね、。てばし'.includes(s[a-1])?0:size*0.9);  // prefer breaking right after a particle
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));const sc=m+PEN(a);if(m<=maxw*1.15&&(!best||sc<best.sc))best={L,m,sc};}if(!best)for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));if(!best||m<best.m)best={L,m,sc:m};}
+  if(best&&best.m<=maxw)return best.L;
+  let b3=null;for(const a of c)for(const b of c)if(b-a>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const m=Math.max(...L.map(W));if(!b3||m<b3.m)b3={L,m};}
+  return (b3&&(!best||best.m>maxw*1.12))?b3.L:(best?best.L:[s]);}
+function bubbleText(s,k,warn){abs(()=>{let size=74;let lines=wrapJa(s,size,BMAXW);
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>BMAXW)size=Math.floor(size*BMAXW/w);}
+  if(lines.length===3)size=Math.min(size,64);
+  const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
+  const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:m[off+i];g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+const UI={};function uiImg(n){n=Math.max(1,Math.min(624,Math.round(n)));const k='u'+String(n).padStart(3,'0');return new Promise(r=>{if(UI[k])return r(UI[k]);const i=new Image();i.onload=()=>{UI[k]=i;r(i)};i.onerror=()=>r(null);i.src='img/ui/'+k+'.jpg';});}
+let UICUR=null;
+// small flat app icons (generic, no brands)
+function appIcon(kind,x,y,s,col){g.save();g.translate(x,y);rrect(-s/2,-s/2,s,s,s*0.24,col||C.brand);g.strokeStyle='#FFFFFF';g.fillStyle='#FFFFFF';g.lineWidth=s*0.07;g.lineCap='round';g.lineJoin='round';const q=s*0.26;
+  if(kind==='cal'){g.strokeRect(-q,-q*0.8,2*q,1.8*q);g.beginPath();g.moveTo(-q,-q*0.25);g.lineTo(q,-q*0.25);g.stroke();for(let i=0;i<3;i++)for(let j=0;j<2;j++)g.fillRect(-q*0.7+i*q*0.55,q*0.1+j*q*0.45,q*0.3,q*0.25);}
+  else if(kind==='cart'){g.beginPath();g.moveTo(-q*1.1,-q*0.9);g.lineTo(-q*0.7,-q*0.9);g.lineTo(-q*0.4,q*0.4);g.lineTo(q*0.9,q*0.4);g.lineTo(q*1.1,-q*0.5);g.lineTo(-q*0.55,-q*0.5);g.stroke();g.beginPath();g.arc(-q*0.25,q*0.9,q*0.18,0,7);g.arc(q*0.7,q*0.9,q*0.18,0,7);g.fill();}
+  else if(kind==='ticket'){g.beginPath();g.moveTo(-q*1.1,-q*0.6);g.lineTo(q*1.1,-q*0.6);g.lineTo(q*1.1,-q*0.15);g.arc(q*1.1,q*0.1,q*0.25,-Math.PI/2,Math.PI/2,true);g.lineTo(q*1.1,q*0.6);g.lineTo(-q*1.1,q*0.6);g.lineTo(-q*1.1,q*0.35);g.arc(-q*1.1,q*0.1,q*0.25,Math.PI/2,-Math.PI/2,true);g.closePath();g.stroke();}
+  else if(kind==='plane'){g.beginPath();g.moveTo(-q*1.1,q*0.1);g.lineTo(q*1.1,-q*0.2);g.moveTo(-q*0.1,-q*0.05);g.lineTo(-q*0.6,-q*0.9);g.moveTo(q*0.1,-q*0.1);g.lineTo(q*0.2,q*0.8);g.stroke();}
+  else if(kind==='mail'){g.strokeRect(-q,-q*0.7,2*q,1.4*q);g.beginPath();g.moveTo(-q,-q*0.7);g.lineTo(0,q*0.15);g.lineTo(q,-q*0.7);g.stroke();}
+  else if(kind==='pin'){g.beginPath();g.arc(0,-q*0.2,q*0.6,Math.PI*0.85,Math.PI*0.15);g.lineTo(0,q*1.0);g.closePath();g.stroke();g.beginPath();g.arc(0,-q*0.2,q*0.2,0,7);g.fill();}
+  else if(kind==='gift'){g.strokeRect(-q*0.9,-q*0.3,1.8*q,1.2*q);g.beginPath();g.moveTo(0,-q*0.3);g.lineTo(0,q*0.9);g.moveTo(-q,-q*0.3);g.lineTo(q,-q*0.3);g.stroke();g.beginPath();g.ellipse(-q*0.35,-q*0.6,q*0.35,q*0.2,0.5,0,7);g.ellipse(q*0.35,-q*0.6,q*0.35,q*0.2,-0.5,0,7);g.stroke();}
+  else if(kind==='chat'){g.beginPath();g.roundRect(-q*1.05,-q*0.8,2.1*q,1.4*q,q*0.4);g.stroke();g.beginPath();g.moveTo(-q*0.5,q*0.6);g.lineTo(-q*0.7,q*1.05);g.lineTo(-q*0.05,q*0.6);g.stroke();}
+  g.restore();}
+function chip(label,icon,x,y,k,col){withEnter(k,()=>{rrect(x,y-56,400,112,28,C.card);appIcon(icon,x+62,y,72,col||C.brand);text(label,x+118,y,42,C.text,'left',900);},24);}
+function phone(im,x,y,w,h,z=1,fy=0.5){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=30;g.shadowOffsetY=10;rrect(x-10,y-10,w+20,h+20,48,'#16213A');g.restore();
+  g.save();g.beginPath();g.roundRect(x,y,w,h,40);g.clip();g.fillStyle='#FFFFFF';g.fillRect(x,y,w,h);if(im){const s=Math.max(w/im.width,h/im.height)*z;const iw=im.width*s,ih=im.height*s;const oy=Math.min(0,Math.max(h-ih,h/2-ih*fy));g.drawImage(im,x+(w-iw)/2,y+oy,iw,ih);}g.restore();}
+function creditAt(s,x,y){g.font=`700 24px ${FONT}`;const w=g.measureText(s).width;g.save();g.globalAlpha*=0.85;rrect(x-w-16,y-18,w+32,36,18,'#FFFFFF');g.restore();text(s,x,y,24,C.sub,'right',700);}
+const S={
+ // L0 hook: official key visual + "talk -> a table that updates itself"
+ hook(u,d,L){bg(u);mini(u);const t2=telHas(L,'勝手に');
+   mixLine([['話すだけで',C.text],['表ができる',C.acc]],CX,385,64);
+   withEnter(enter(u,0,0.35),()=>{g.save();g.beginPath();g.roundRect(130,450,820,560,36);g.clip();const z=1.0+0.06*u/d;const i=IMG.share;
+     if(i){const h=560*z,w=h*i.width/i.height;g.drawImage(i,CX-w*0.5-20,730-h/2,w,h);}g.restore();rrect(130,450,820,560,36,null,C.bar);},40);
+   const k=(u-t2)/0.3;if(k>0){const sc=back(k);g.save();g.translate(CX,1040);g.rotate(-0.04);g.scale(sc,sc);rrect(-250,-62,500,124,28,C.acc);text('勝手に更新',0,0,72,C.onAcc);g.restore();}
+   creditAt('出典：Meta',925,985);},
+ intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);drawChar(CUR,-90,298,1260,2240);},
+ // L2 who / what / when
+ what(u,d,L){bg(u);mini(u);const tm=telHas(L,'Muse'),ts=telHas(L,'Spaces');
+   mixLine([['Meta',C.brand],['の新機能',C.text]],CX,385,64);
+   withEnter(enter(u,0.05),()=>{rrect(150,455,780,300,32,C.card);
+     g.save();g.beginPath();g.arc(300,605,105,0,7);g.clip();const i=IMG.share;if(i){const h=440,w=h*i.width/i.height;g.drawImage(i,300-w*0.30,605-h*0.42,w,h);}g.restore();
+     g.beginPath();g.arc(300,605,105,0,7);g.lineWidth=5;g.strokeStyle=C.bar;g.stroke();
+     text('AIエージェント',440,560,36,C.sub,'left',800);text('Muse',440,630,84,C.brand,'left',900);text('ミューズ',440,700,32,C.sub,'left',800);});
+   withEnter(enter(u,ts),()=>{rrect(150,790,780,190,32,C.card2);text('新機能',230,885,38,'#FFFFFF','left',800);
+     g.save();g.translate(640,885);const sc=back((u-ts)/0.35);g.scale(sc,sc);text('Spaces',0,-8,84,'#FFB074');text('スペーシズ',0,52,28,'#CDD8EC','center',800);g.restore();});
+   withEnter(enter(u,ts+0.6),()=>{text('11月6日発表・日本でも使える',CX,1040,40,C.text,'center',900);});
+   creditAt('出典：Meta',905,730);},
+ // L3 how: the real app (official video) + examples
+ how(u,d,L){bg(u);mini(u);const tg=telHas(L,'贈り物'),tc=telHas(L,'チャット'),tm=telHas(L,'Museが');
+   mixLine([['頼むだけで',C.text],['表になる',C.acc]],CX,385,64);
+   const zz=1+0.4*ease((u-tc-0.3)/0.5)-0.4*ease((u-tm)/0.4);withEnter(enter(u,0,0.3),()=>phone(UICUR,150,450,330,710,zz,0.74),30);
+   chip('旅行の計画','plane',540,520,enter(u,0.1));
+   chip('贈り物リスト','gift',540,670,enter(u,tg));
+   chip('チャットで頼む','chat',540,820,enter(u,tc),C.acc);
+   if(u>tm){const k=back((u-tm)/0.35);g.save();g.translate(740,990);g.scale(k,k);rrect(-200,-60,400,120,28,C.acc);text('表にしてくれる',0,0,46,C.onAcc);g.restore();}
+   creditAt('出典：Meta（公式動画）',940,1090);},
+ // L4 auto: connect apps -> the table updates itself
+ auto(u,d,L){bg(u);mini(u);const ta=telHas(L,'アプリ'),tp=telHas(L,'値段'),tr=telHas(L,'頼まなくても');
+   mixLine([['頼まなくても',C.text],['自動で更新',C.acc]],CX,385,62);
+   const icons=[['cal','#337BD0'],['cart','#2F8F6A'],['ticket','#7A5BB0'],['mail','#C0566E']];
+   icons.forEach(([k,col],j)=>withEnter(enter(u,ta+j*0.12),()=>appIcon(k,230,500+j*150,104,col),20));
+   // arrows into the table
+   if(u>ta+0.5){const a=ease((u-ta-0.5)/0.4);g.save();g.globalAlpha*=a;g.strokeStyle=C.sub;g.lineWidth=6;g.setLineDash([12,12]);g.lineDashOffset=-u*40;for(let j=0;j<4;j++){g.beginPath();g.moveTo(300,500+j*150);g.lineTo(390,725);g.stroke();}g.restore();}
+   withEnter(enter(u,0.1),()=>{rrect(400,470,560,520,30,C.card);text('旅行の計画',440,525,38,C.text,'left',900);text('※イメージ',925,525,24,C.sub,'right',700);
+     const rows=[['ホテル','¥18,000'],['ライブ','12月20日'],['航空券','¥42,000'],['予算','残り¥60,000']];
+     rows.forEach(([a,b],j)=>{const y=610+j*95;g.fillStyle=C.bar;g.fillRect(430,y-47,500,2);text(a,445,y,34,C.sub,'left',800);
+       let val=b,hl=0;
+       if(j===0&&u>tp+0.2){hl=clamp((u-tp-0.2)/0.3);val='¥15,800';}
+       if(j===1&&u>tr+0.1){hl=clamp((u-tr-0.1)/0.3);val='12/20・12/21';}
+       if(hl>0){g.save();g.globalAlpha*=hl*(0.55+0.45*Math.abs(Math.sin((u)*4)))*0.35;rrect(600,y-36,345,72,14,C.acc);g.restore();}
+       text(val,930,y,38,hl>0?C.acc:C.text,'right',900);
+       if(hl>0){g.save();g.globalAlpha*=hl;text(j===0?'値下がり':'追加',610,y-30,22,C.acc,'left',900);g.restore();}});});
+   if(u>tr){const k=back((u-tr)/0.35);g.save();g.translate(680,1050);g.scale(k,k);rrect(-150,-44,300,88,44,C.brand);text('↻ 自動で更新',0,0,40,'#FFFFFF');g.restore();}},
+ // L5 but: more apps = AI sees more
+ twist(u,d,L){bg(u);mini(u);const tb=telHas(L,'AIに');
+   const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
+   // apps -> AI eye; info cards pile up
+   const ks=['cal','cart','ticket','mail','pin','chat'];
+   ks.forEach((k,j)=>withEnter(enter(u,0.3+j*0.18),()=>appIcon(k,200+(j%3)*130,560+Math.floor(j/3)*140,96,C.bar),16));
+   withEnter(enter(u,0.5),()=>{g.save();g.translate(780,630);g.beginPath();g.arc(0,0,120,0,7);g.fillStyle=C.card;g.fill();g.lineWidth=6;g.strokeStyle=C.brand;g.stroke();
+     g.beginPath();g.ellipse(0,0,74,40,0,0,7);g.fillStyle='#FFFFFF';g.fill();g.lineWidth=7;g.stroke();g.beginPath();g.arc(0,0,22,0,7);g.fillStyle=C.brand;g.fill();text('AI',0,90,30,C.brand);g.restore();});
+   if(u>0.8){g.save();g.strokeStyle=C.warn;g.lineWidth=7;g.lineCap='round';const a=ease((u-0.8)/0.5);g.globalAlpha*=a;g.beginPath();g.moveTo(520,630);g.lineTo(640,630);g.moveTo(620,610);g.lineTo(640,630);g.lineTo(620,650);g.stroke();g.restore();}
+   if(u>1.0){for(let j=0;j<4;j++){const p=((u-1.0)*0.9+j*0.25)%1;const x=540+p*120,y=630+(j%2?-1:1)*(1-p)*40;g.save();g.globalAlpha*=Math.sin(p*Math.PI);rrect(x-18,y-24,36,48,6,'#FFFFFF',C.warn);g.restore();}}
+   withEnter(enter(u,tb),()=>{rrect(136,820,808,220,26,C.card);text('つなぐアプリが多いほど',CX,885,44,C.text);text('AIに見せる情報も増える',CX,965,52,C.warn);});},
+ // L6 verdict
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);drawChar(CUR,18,510,1044,1856);const t2=telHas(L,'つなぐ');
+   const k1=back((u-0.4)/0.35),k2=back((u-t2)/0.35);
+   if(u>0.4){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+     text('日本でも',0,-58,38,'#CDD8EC','center',800);text('使える',0,18,70,'#FFFFFF');text('まずは無料で1つ',0,80,30,'#CDD8EC','center',800);g.restore();}
+   if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+     text('つなぐアプリ',0,-58,38,C.buyInk,'center',800);text('必要な',0,12,62,C.buyInk);text('ものだけ',0,74,40,C.buyInk,'center',800);g.restore();}},
+ logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
+   if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
+   text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
+};
+window.render=async function(t){
+  CUR=await charImg(Math.round(origT(t)*P.fps));
+  {const L=P.lines.find(x=>x.scene==='how');if(L&&t>=L.start-0.2&&t<L.end+0.2){const u=Math.max(0,t-L.start),tc=telHas(L,'チャット'),tm=telHas(L,'Museが');UICUR=await uiImg(u<tc?310+u*30:u<tm?Math.min(258,236+(u-tc)*12):330+(u-tm)*20);}}
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
+  const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
+  BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
+  S[L.scene](u,d,L);g.restore();g.restore();
+  // keep the last line on screen through short pauses
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}
+  const BIG=['intro','verdict'];  // presenter fills the screen: normal caption over her, no bubble
+  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
+  else{bubble();if(last)bubbleText(last.text,(t-last.start),L.scene==='twist');}
+};
+</script></body></html>
