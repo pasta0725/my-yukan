@@ -129,6 +129,7 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
     canon = f'<link rel="canonical" href="{E(url(path))}">' if BASE else ""
     return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="s8sQWUdAthvMJoTKYdTWfjc80z75_3NTsDHLvw996rY">
 <title>{E(full)}</title><meta name="description" content="{E(desc)}">{canon}
 <meta property="og:site_name" content="{E(NAME)}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}">
 <meta property="og:type" content="{'article' if path.startswith('/news/') else 'website'}"><meta property="og:image" content="{E(og)}">{f'<meta property="og:url" content="{E(url(path))}">' if BASE else ''}
