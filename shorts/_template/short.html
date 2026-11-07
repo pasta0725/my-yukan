@@ -20,6 +20,8 @@ const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Ma
 const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
 const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
 let CUR=null;
+function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
+  if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
 window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('chain','img/chain.png'),load('graph','img/graph.png'),load('mini','char/f300.png')]);await document.fonts.ready;})();
 const telAt=(txt)=>P.tel.find(x=>x.text===txt);
 const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
@@ -68,10 +70,10 @@ function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let line
 
 // ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
 const BX=372,BY=1165,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
-function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;
-  g.beginPath();g.roundRect(BX,BY,BW,BH,44);g.moveTo(BX+4,BY+120);g.lineTo(BX-40,BY+150);g.lineTo(BX+4,BY+178);g.closePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
-  g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
-  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+178);g.lineTo(BX-40,BY+150);g.lineTo(BX,BY+120);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();g.stroke();});}
+function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+178);g.lineTo(BX-40,BY+150);g.lineTo(BX,BY+120);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
+function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
+  bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
 function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);
@@ -100,7 +102,7 @@ const S={
    const k=(u-ts)/0.3;if(k>0){const sc=back(k);g.save();g.translate(CX,990);g.rotate(-0.04);g.scale(sc,sc);rrect(-230,-62,460,124,28,C.acc);text('もうすぐ？',0,0,76,C.onAcc);g.restore();}},
  // L1: big presenter with the channel logo as the title
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);drawChar(CUR,-90,298,1260,2240);
-   const k=ease(u/0.35);abs(()=>{const sc=0.9+0.1*back(u/0.4);g.save();g.globalAlpha=k;g.translate(CX,430);g.scale(sc,sc);rrect(-400,-70,800,140,30,C.card2);mixLine([['AIが',C.waitText],['AIを作る',C.acc],['時代',C.waitText]],0,0,70);g.restore();});},
+   },
  // L2: who warned, where, the key words
  what(u,d,L){bg(u);brandTag();mini(u);const tq=telHas(L,'書類');
    mixLine([['Anthropic',C.brand],['が警告',C.text]],CX,385,62);
@@ -148,7 +150,7 @@ const S={
    text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
 };
 window.render=async function(t){
-  CUR=await charImg(Math.round(t*P.fps));
+  CUR=await charImg(Math.round(origT(t)*P.fps));
   g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
   let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
   if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
@@ -156,8 +158,10 @@ window.render=async function(t){
   g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
   BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
   S[L.scene](u,d,L);g.restore();g.restore();
-  bubble();
-  // keep the last line in the bubble through short pauses, so the bubble is never empty
-  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(last)bubbleText(last.text,(t-last.start),L.scene==='twist');
+  // keep the last line on screen through short pauses
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}
+  const BIG=['intro','verdict'];  // presenter fills the screen: normal caption over her, no bubble
+  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
+  else{bubble();if(last)bubbleText(last.text,(t-last.start),L.scene==='twist');}
 };
 </script></body></html>
