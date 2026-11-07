@@ -44,6 +44,15 @@ def groups(dim, order, limit, bot=True):
 
 
 if os.environ.get("CF_DEBUG"):
+    for days in (1, 7, 30):
+        s2 = (now - datetime.timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        q = ('query($acc: string, $filter: ZoneHttpRequestsAdaptiveGroupsFilter_InputObject) { viewer { accounts(filter: {accountTag: $acc}) {'
+             ' g: rumPageloadEventsAdaptiveGroups(limit: 5000, filter: $filter) { count sum { visits } dimensions { ts: datetimeHour } } } } }')
+        try:
+            g = gql(q, {"acc": ACCOUNT, "filter": {"AND": [{"datetime_geq": s2, "datetime_leq": end}, {"bot": 0}, {"siteTag_in": [SITE]}]}})["g"]
+            print("debug2", days, len(g), sum(x["count"] for x in g))
+        except SystemExit as e:
+            print("debug2 error", days, str(e)[:300])
     for bot in (True, False):
         for dim in ("date", "datetimeHour"):
             try:
