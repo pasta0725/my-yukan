@@ -110,12 +110,13 @@ function chip(label,icon,x,y,k,col){withEnter(k,()=>{rrect(x,y-56,400,112,28,C.c
 function phone(im,x,y,w,h,z=1,fy=0.5){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=30;g.shadowOffsetY=10;rrect(x-10,y-10,w+20,h+20,48,'#16213A');g.restore();
   g.save();g.beginPath();g.roundRect(x,y,w,h,40);g.clip();g.fillStyle='#FFFFFF';g.fillRect(x,y,w,h);if(im){const s=Math.max(w/im.width,h/im.height)*z;const iw=im.width*s,ih=im.height*s;const oy=Math.min(0,Math.max(h-ih,h/2-ih*fy));g.drawImage(im,x+(w-iw)/2,y+oy,iw,ih);}g.restore();}
 function creditAt(s,x,y){g.font=`700 24px ${FONT}`;const w=g.measureText(s).width;g.save();g.globalAlpha*=0.85;rrect(x-w-16,y-18,w+32,36,18,'#FFFFFF');g.restore();text(s,x,y,24,C.sub,'right',700);}
+function t0h(L,u){return u+L.start;}
 const S={
  // L0 hook: official key visual + "talk -> a table that updates itself"
  hook(u,d,L){bg(u);mini(u);const t2=telHas(L,'勝手に');
    mixLine([['話すだけで',C.text],['表ができる',C.acc]],CX,385,64);
-   withEnter(enter(u,0,0.35),()=>{g.save();g.beginPath();g.roundRect(130,450,820,560,36);g.clip();const z=1.0+0.06*u/d;const i=IMG.share;
-     if(i){const h=560*z,w=h*i.width/i.height;g.drawImage(i,CX-w*0.5-20,730-h/2,w,h);}g.restore();rrect(130,450,820,560,36,null,C.bar);},40);
+   withEnter(enter(t0h(L,u),0,0.35),()=>{g.save();g.beginPath();g.roundRect(130,450,820,560,36);g.clip();const z=1.0+0.06*u/d;const i=IMG.share;
+     if(i){const h=560*z,w=h*i.width/i.height;g.drawImage(i,CX-w*0.5-48,730-h/2,w,h);}g.restore();rrect(130,450,820,560,36,null,C.bar);},40);
    const k=(u-t2)/0.3;if(k>0){const sc=back(k);g.save();g.translate(CX,1040);g.rotate(-0.04);g.scale(sc,sc);rrect(-250,-62,500,124,28,C.acc);text('勝手に更新',0,0,72,C.onAcc);g.restore();}
    creditAt('出典：Meta',925,985);},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);drawChar(CUR,-90,298,1260,2240);},
@@ -169,9 +170,9 @@ const S={
    withEnter(enter(u,tb),()=>{rrect(136,820,808,220,26,C.card);text('つなぐアプリが多いほど',CX,885,44,C.text);text('AIに見せる情報も増える',CX,965,52,C.warn);});},
  // L6 verdict
  verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);drawChar(CUR,18,510,1044,1856);const t2=telHas(L,'つなぐ');
-   const k1=back((u-0.4)/0.35),k2=back((u-t2)/0.35);
-   if(u>0.4){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
-     text('日本でも',0,-58,38,'#CDD8EC','center',800);text('使える',0,18,70,'#FFFFFF');text('まずは無料で1つ',0,80,30,'#CDD8EC','center',800);g.restore();}
+   const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
+   if(u>0.1){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+     text('日本でも',0,-62,38,'#CDD8EC','center',800);text('使える',0,8,70,'#FFFFFF');text('まずは無料で1つ',0,76,36,'#FFB074','center',900);g.restore();}
    if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
      text('つなぐアプリ',0,-58,38,C.buyInk,'center',800);text('必要な',0,12,62,C.buyInk);text('ものだけ',0,74,40,C.buyInk,'center',800);g.restore();}},
  logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
@@ -189,9 +190,9 @@ window.render=async function(t){
   BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
   S[L.scene](u,d,L);g.restore();g.restore();
   // keep the last line on screen through short pauses
-  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
   const BIG=['intro','verdict'];  // presenter fills the screen: normal caption over her, no bubble
   if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
-  else{bubble();if(last)bubbleText(last.text,(t-last.start),L.scene==='twist');}
+  else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),L.scene==='twist');}
 };
 </script></body></html>
