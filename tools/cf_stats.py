@@ -32,34 +32,32 @@ def gql(query, variables):
 
 
 def groups(dim, order, limit, bot=True):
-    f = '{siteTag: $site, datetime_geq: $start, datetime_leq: $end' + (', bot: 0' if bot else '') + '}'
+    """one dimension over the last 30 days. Cloudflare answers nothing for a range this long in one go
+    (found 2026-11-08: 1 and 7 days work, 30 days returns empty), so ask in 6-day pieces and add them up."""
+    f = '{AND: [{datetime_geq: $start, datetime_leq: $end}, {siteTag_in: [$site]}' + (', {bot: 0}' if bot else '') + ']}'
     q = ('query($acc: string!, $site: string!, $start: Time!, $end: Time!) { viewer { accounts(filter: {accountTag: $acc}) {'
          f' g: rumPageloadEventsAdaptiveGroups(filter: {f}, limit: {limit}, orderBy: [{order}])'
          f' {{ count sum {{ visits }} dimensions {{ {dim} }} }} }} }} }}')
-    try:
-        return gql(q, {"acc": ACCOUNT, "site": SITE, "start": start, "end": end})["g"]
-    except SystemExit as e:
-        if bot and "bot" in str(e): return groups(dim, order, limit, bot=False)
-        raise
-
-
-if os.environ.get("CF_DEBUG"):
-    for days in (1, 7, 30):
-        s2 = (now - datetime.timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
-        q = ('query($acc: string, $filter: ZoneHttpRequestsAdaptiveGroupsFilter_InputObject) { viewer { accounts(filter: {accountTag: $acc}) {'
-             ' g: rumPageloadEventsAdaptiveGroups(limit: 5000, filter: $filter) { count sum { visits } dimensions { ts: datetimeHour } } } } }')
+    merged = {}
+    t0 = now - datetime.timedelta(days=30)
+    while t0 < now:
+        t1 = min(now, t0 + datetime.timedelta(days=6))
         try:
-            g = gql(q, {"acc": ACCOUNT, "filter": {"AND": [{"datetime_geq": s2, "datetime_leq": end}, {"bot": 0}, {"siteTag_in": [SITE]}]}})["g"]
-            print("debug2", days, len(g), sum(x["count"] for x in g))
+            rows = gql(q, {"acc": ACCOUNT, "site": SITE, "start": t0.strftime("%Y-%m-%dT%H:%M:%SZ"), "end": t1.strftime("%Y-%m-%dT%H:%M:%SZ")})["g"]
         except SystemExit as e:
-            print("debug2 error", days, str(e)[:300])
-    for bot in (True, False):
-        for dim in ("date", "datetimeHour"):
-            try:
-                g = groups(dim, f"{dim}_ASC", 100, bot=bot)
-                print("debug", "bot-filter" if bot else "no-filter", dim, len(g), sum(x["count"] for x in g))
-            except SystemExit as e:
-                print("debug error", bot, dim, str(e)[:300])
+            if bot and "bot" in str(e): return groups(dim, order, limit, bot=False)
+            raise
+        for g in rows:
+            k = g["dimensions"][dim]
+            m = merged.setdefault(k, {"count": 0, "sum": {"visits": 0}, "dimensions": {dim: k}})
+            m["count"] += g["count"]; m["sum"]["visits"] += g["sum"]["visits"]
+        t0 = t1
+    out = list(merged.values())
+    if order.startswith("count"): out.sort(key=lambda g: -g["count"])
+    elif order.startswith("sum_visits"): out.sort(key=lambda g: -g["sum"]["visits"])
+    else: out.sort(key=lambda g: g["dimensions"][dim] or "")
+    return out[:limit]
+
 
 # article titles for paths (/news/<date>/<id>/)
 titles = {}
