@@ -71,7 +71,10 @@ for f in sorted(glob.glob(os.path.join(ROOT, "data/20??-??-??.json")), reverse=T
                 if public_img(b): body.append(b)
             elif t == "gallery":
                 items = [x for x in b.get("items", []) if public_img(x)]
-                if items: body.append(dict(b, items=items, title="公式の画像"))
+                if not items: continue
+                if not b.get("title"):  # a row of pictures inside the text (tools/place_images.py)
+                    body.append(dict(items[0], type="img") if len(items) == 1 else dict(b, items=items))
+                else: body.append(dict(b, items=items, title="公式の画像"))
             else: body.append(b)
         if not img:  # fall back to the first public image in the body
             for b in body:
@@ -248,7 +251,7 @@ for a in arts:
         elif t == "img": parts.append(fig(b))
         elif t == "stat" and b.get("items"):
             parts.append('<div class="stats">' + "".join(f'<div><b>{E(x.get("value"))}</b><span>{E(x.get("label"))}</span></div>' for x in b["items"]) + "</div>")
-        elif t == "gallery": parts.append(f'<h2 class="sub">{E(b.get("title"))}</h2><div class="gal">' + "".join(fig(x) for x in b["items"]) + "</div>")
+        elif t == "gallery": parts.append((f'<h2 class="sub">{E(b.get("title"))}</h2>' if b.get("title") else "") + '<div class="gal">' + "".join(fig(x) for x in b["items"]) + "</div>")
         elif t == "point" and b.get("items"):
             parts.append('<section class="box"><h2>あなたへの影響・やること</h2><ul>' + "".join(f"<li>{E(x)}</li>" for x in b["items"]) + "</ul></section>")
         elif t == "rina" and b.get("text"):

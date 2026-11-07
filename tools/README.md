@@ -22,7 +22,7 @@
    | other_A | その他 | 通信・セキュリティ・法律/規制の注目ニュース（基準は spec.md、2026-11-08に引き下げ）：ケータイ Watch・ITmedia NEWS・Security NEXT・総務省/公正取引委員会/デジタル庁の発表、7日以内 | 4 |
    | other_B | その他 | 企業・業界と半導体の注目ニュース：日経クロステック・EE Times Japan・ITmedia NEWS・Reuters、7日以内 | 4 |
    - 出力は WORKDIR/<担当名>.json（例 mobile_A.json）。build_edition.py が1日の上限（AI14・その他8・宇宙4・ほか各7）で切る。
-3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。
+3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。公式画像の補充（add_official_images.py）のあとに `python3 -I tools/place_images.py data/YYYY-MM-DD.json` で画像を本文の合間に配る（2026-11-08 ユーザーの希望）。
 4. 見出し一覧を見て、同じ出来事が別ジャンルにも入っていれば id を指定して作り直す。
 5. コミットして main に push する。
 

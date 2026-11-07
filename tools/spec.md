@@ -48,6 +48,7 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
 - Ask WebFetch to list every image URL on the page (absolute https) with what it shows (alt/caption/surrounding text), including og:image. Use ONLY URLs WebFetch actually returned. Never guess or construct URLs.
 - Skip: photos where a person's face is the main subject, logos alone, icons, ads/banners, site-generic share images, tiny thumbnails (prefer the large version).
 - Zero images is acceptable only after the searches above found nothing usable.
+- Placement (user, 2026-11-08): put each picture right after the h section it illustrates, as an "img" block between paragraphs/sections — not all together at the end. Use "gallery" only for leftovers. tools/place_images.py also spreads any gallery through the text automatically.
 
 ## Overseas (English) articles — worker ai_D, and anyone who meets one
 - ai_D: open the new-article listings of TechCrunch, The Verge, Ars Technica, VentureBeat, Reuters (technology) and the English official blogs/newsrooms of OpenAI, Anthropic, Google, Meta, Microsoft, NVIDIA (WebSearch for each listing first). Pick AI stories from the last 72 hours.
@@ -73,7 +74,8 @@ Always: easy Japanese for a non-engineer, YOUR OWN WORDS only (never copy senten
          {"type":"p","text":"段落：2〜4文、150字前後、最大200字"},
          ... (3〜5 sections of h + p)
          {"type":"stat","items":[{"value":"全角10字以内","label":"全角15字以内"}]},   ← exactly one, 2–3 items, only numbers explained in the body
-         {"type":"gallery","title":"公式の画像","items":[{"src":"...","kind":"press|ogp","credit":"...","caption":"...","page":"..."}]},   ← all remaining images, if any (title "そのほかの画像" if it contains ogp)
+         {"type":"img", ...}   ← more pictures: one right after the section each one illustrates (see Images → Placement)
+         {"type":"gallery","title":"そのほかの画像","items":[...]},   ← only leftovers that fit no section, if any
          {"type":"point","items":["あなたへの影響・やること1","2","3"]},
          {"type":"rina","text":"りなの見方：2〜3文・120字以内（tools/style.md 9-2）"}],
  "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD",
