@@ -1,9 +1,10 @@
 """Assemble the timing plan and the final audio for a news Short.
 usage: python3 tools/short_plan.py <spec.json> <work_dir>
 spec.json: {"wav_dir": "...", "lines": [{"say": "...", "show": "...", "scene": "hook", "puppet": false, "se": "don"}, ...],
-            "speed": 1.12, "gap": 0.03, "pause_max": 0.05, "tail_logo": 2.0, "sfx_dir": "...", "lipsync": "path/to/python-with-pyopenjtalk"}
-pause_max: every pause inside a line (at 、 and between phrases) is shortened to at most this many seconds,
-           and gap is the silence between lines -> the "no breath" delivery the user asked for (2026-11-07, like 岡野タケシ)
+            "speed": 1.15, "gap": 0.03, "period_pause": 0.04, "comma_max": 0.30, "tail_logo": 2.0, "sfx_dir": "...", "lipsync": "path/to/python-with-pyopenjtalk"}
+period_pause / comma_max: the pause at 「。」 inside a line is cut to period_pause (no breath, like 岡野タケシ),
+           the pause at 「、」 may stay up to comma_max; short silences such as the small 「っ」 are left alone (user, 2026-11-07).
+           gap is the silence between lines (each line ends with 「。」, so it is short too)
 writes <work_dir>/plan.js (window.PLAN) and <work_dir>/audio.wav"""
 import json, os, re, subprocess, sys, wave
 import numpy as np
@@ -11,7 +12,7 @@ import numpy as np
 spec = json.load(open(sys.argv[1], encoding="utf-8")); W = sys.argv[2]; os.makedirs(W, exist_ok=True)
 SR = 48000; FPS = 30
 speed, gap, tail = spec.get("speed", 1.12), spec.get("gap", 0.03), spec.get("tail_logo", 2.0)
-pause_max = spec.get("pause_max", 0.05)
+period_pause, comma_max = spec.get("period_pause", 0.04), spec.get("comma_max", 0.30)
 
 
 def run(*a): subprocess.run(a, check=True)
@@ -23,23 +24,35 @@ def readw(p):
     return x, w.getframerate()
 
 
-def squeeze(x, pmax, thr_db=-40, win=0.01):
-    """shorten every quiet run longer than pmax seconds to pmax; returns (new signal, kept [(start,end)] in samples)"""
-    if pmax is None: return x, [(0, len(x))]
+def squeeze(x, say, period=0.04, comma_max=0.30, min_pause=0.14, thr_db=-40, win=0.01):
+    """no breath at 「。」: the pause at each sentence end inside the line is cut to `period` seconds.
+    「、」 may keep a breath (capped at comma_max). Short silences (< min_pause), such as the small 「っ」, are never touched.
+    Which pause belongs to which 「。」 is found by position: each 。 takes the nearest long pause to where it falls in the text."""
     h = int(SR * win); n = len(x) // h
-    if n == 0: return x, [(0, len(x))]
-    rms = np.sqrt((x[: n * h].reshape(n, h) ** 2).mean(axis=1) + 1e-12)
-    quiet = 20 * np.log10(rms) < thr_db
-    keep, i, k = [], 0, int(pmax / win)
+    if n == 0: return x
+    quiet = 20 * np.log10(np.sqrt((x[: n * h].reshape(n, h) ** 2).mean(axis=1) + 1e-12)) < thr_db
+    runs, i = [], 0
     while i < n:
         j = i
         while j < n and quiet[j] == quiet[i]: j += 1
-        if quiet[i] and (j - i) > k:
-            m = (i + j) // 2; keep.append((m - k // 2, m - k // 2 + k))   # keep pmax of silence from the middle
-        else: keep.append((i, j))
+        if quiet[i] and i > 0 and j < n and (j - i) * win >= min_pause: runs.append([i, j, "comma"])
         i = j
-    kept = [(a * h, b * h) for a, b in keep]; kept[-1] = (kept[-1][0], len(x))
-    return np.concatenate([x[a:b] for a, b in kept]), kept
+    body = say.rstrip("。！？ 　")
+    chars = [c for c in body if c not in "、。！？「」 　"]; tot = max(1, len(chars))
+    k = 0
+    for c in body:
+        if c in "。！？" and runs:
+            frac = k / tot; want = frac * n
+            free = [r for r in runs if r[2] == "comma"]
+            if free: min(free, key=lambda r: abs((r[0] + r[1]) / 2 - want))[2] = "period"
+        elif c not in "、「」 　": k += 1
+    out, pos = [], 0
+    for a, b, kind in runs:
+        keep = int((period if kind == "period" else min(comma_max, (b - a) * win)) / win)
+        m = (a + b) // 2
+        out.append(x[pos * h: (m - keep // 2) * h]); pos = m - keep // 2 + keep
+    out.append(x[pos * h:])
+    return np.concatenate(out)
 
 
 def writew(p, x, sr=SR, ch=1):
@@ -57,7 +70,7 @@ for i, ln in enumerate(spec["lines"], 1):
         f"silenceremove=start_periods=1:start_threshold=-42dB:start_silence=0.05,areverse,atempo={speed},aresample={SR}",
         "-ac", "1", dst)
     x, _ = readw(dst)
-    x, _ = squeeze(x, pause_max); writew(dst, x); segs.append(x)
+    x = squeeze(x, ln["say"], period_pause, comma_max); writew(dst, x); segs.append(x)
 
 # 2) timeline
 t = 0.25; lines = []
