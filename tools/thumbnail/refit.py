@@ -1,9 +1,10 @@
 """refit a 9:16 thumbnail so eyes and title fit the Shorts window.
-usage: refit.py in.png out.png eye_y title_bottom_y  (y on 1080x1920 scale)"""
+usage: refit.py in.png out.png eye_y title_bottom_y [eye_target title_target]  (y on 1080x1920 scale; default 645 1300.
+  The window is y 600-1320; 620/1312 keeps the frame tighter = less blurred edge)"""
 import sys, numpy as np
 from PIL import Image, ImageFilter
 src, dst, ey, tb = sys.argv[1], sys.argv[2], float(sys.argv[3]), float(sys.argv[4])
-W, H = 1080, 1920; E, T = 645, 1300
+W, H = 1080, 1920; E, T = (float(sys.argv[5]), float(sys.argv[6])) if len(sys.argv) > 6 else (645, 1300)
 im = Image.open(src).convert("RGB").resize((W, H), Image.LANCZOS)
 s = min(1.0, (T - E) / (tb - ey))
 # keep eyes at E (or above-window margin) after scaling
