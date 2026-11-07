@@ -133,7 +133,7 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 <link rel="icon" href="/assets/icon-192.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="alternate" type="application/rss+xml" title="{E(NAME)}" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=M+PLUS+Rounded+1c:wght@800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
 <link rel="stylesheet" href="/assets/style.css">{extra_head}</head><body>
 <header class="top"><div class="wrap"><a class="brand" href="/"><img src="/assets/icon-192.png" alt="" width="34" height="34"><b>{E(NAME)}</b></a>
 <nav class="cats" aria-label="カテゴリ">{navs}</nav></div></header>
@@ -145,7 +145,7 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 XJS = """<script>(()=>{const box=document.querySelector('.xv');if(!box)return;const go=()=>{const d=matchMedia('(prefers-color-scheme: dark)').matches;box.querySelectorAll('blockquote.twitter-tweet').forEach(b=>b.dataset.theme=d?'dark':'light');const s=document.createElement('script');s.src='https://platform.twitter.com/widgets.js';s.async=true;s.charset='utf-8';document.head.append(s)};if('IntersectionObserver' in window){const o=new IntersectionObserver(e=>{if(e.some(x=>x.isIntersecting)){o.disconnect();go()}},{rootMargin:'400px'});o.observe(box)}else go()})();</script>"""
 # keeps the current article visible in the left list
 LISTJS = """<script>(()=>{const l=document.querySelector('.alist ul'),c=l&&l.querySelector('[aria-current]');if(c&&getComputedStyle(l.parentNode).display!=='none')l.parentNode.scrollTop=c.parentNode.offsetTop-80})();</script>"""
-RETRO_FONT = ''  # Dela Gothic One is loaded on every page now
+RETRO_FONT = ''  # the heading font (Noto Sans JP 900) is loaded on every page
 ORBIT = ('<svg class="orbit" viewBox="0 0 120 60" aria-hidden="true"><ellipse cx="60" cy="34" rx="54" ry="14" fill="none" stroke="#f3e9d2" stroke-width="1.5" stroke-dasharray="3 4"/>'
          '<circle cx="60" cy="34" r="13" fill="#b3cbf9"/><path d="M60 4l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#ff8a00" transform="translate(40 -2) scale(.6)"/></svg>')
 SKEW = re.compile(r'(<div class="sec-h"[^>]*><h2>|<section class="keys"><h2>|<section class="box"><h2>|<h2 class="sub">)(.*?)(</h2>)')
