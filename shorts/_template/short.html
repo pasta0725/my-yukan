@@ -159,9 +159,9 @@ window.render=async function(t){
   BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
   S[L.scene](u,d,L);g.restore();g.restore();
   // keep the last line on screen through short pauses
-  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];  // first frames: show the first line, never an empty bubble
   const BIG=['intro','verdict'];  // presenter fills the screen: normal caption over her, no bubble
   if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
-  else{bubble();if(last)bubbleText(last.text,(t-last.start),L.scene==='twist');}
+  else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),L.scene==='twist');}
 };
 </script></body></html>
