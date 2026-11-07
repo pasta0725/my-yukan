@@ -9,7 +9,7 @@
      - every text pair passes WCAG 4.5:1 */
   --ice:#eef4ff; --paper:#ffffff; --ink:#0b1f4d; --sub:#4b5b7a; --line:#cddaf1;
   --blue:#1246c4; --blue-2:#0938ab; --blue-soft:#dde8ff; --link:#0938ab;
-  --signal:#ff8a00; --signal-ink:#a75901; --bubble:#fff3e8;
+  --signal:#ff8a00; --signal-ink:#a75901; --bubble:#fff3ea;
   --ec:#806a00; --future:#427c35; --gadget:#007d70; --mobile:#007894; --ai:#735ba9; --game:#92508c; --service:#a44a5e; --other:#474d58;
   --navy:#0b1f4d; --foot-t:#cdd8ec; --foot-s:#a4b2cb; --foot-bg:var(--navy); --tag-t:#ffffff;
   --head:"Dela Gothic One","M PLUS Rounded 1c","Hiragino Sans",system-ui,sans-serif;
@@ -22,7 +22,7 @@
   /* same hues, raised lightness (dark-room versions) */
   --ice:#071125; --paper:#101d38; --ink:#eaf0fd; --sub:#b1bed8; --line:#283757;
   --blue:#3a63be; --blue-2:#1b44a3; --blue-soft:#1b2c51; --link:#92b7ff;
-  --signal:#ff8a00; --signal-ink:#fcb26f; --bubble:#332214;
+  --signal:#ff8a00; --signal-ink:#ffb074; --bubble:#332215;
   --ec:#cdb760; --future:#91c985; --gadget:#57cebd; --mobile:#5bc7ea; --ai:#bda9f6; --game:#df9ed9; --service:#f499aa; --other:#989fab;
   --foot-bg:#020617; --tag-t:#071125;
   color-scheme:dark;
@@ -186,7 +186,7 @@ footer small{width:100%;color:var(--foot-s);margin-top:6px}
 .retro img{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover;object-position:right center}
 .retro-copy{position:absolute;left:4%;top:50%;transform:translateY(-50%);width:min(46%,480px);color:#f3e9d2}
 .retro-copy h1{margin:0 0 8px;font:400 clamp(26px,4.2vw,48px)/1.2 "Dela Gothic One",var(--round);letter-spacing:.04em;color:#f3e9d2}
-.retro-copy p{margin:0;font-size:clamp(13px,1.4vw,15.5px);line-height:1.75;color:#d9e4f2}
+.retro-copy p{margin:0;font-size:clamp(13px,1.4vw,15.5px);line-height:1.75;color:#d9d0bb}
 @media (max-width:760px){
   .retro img{aspect-ratio:4/3;max-height:62vw;object-position:right top}
   .retro-copy{position:static;transform:none;width:auto;padding:14px 16px 18px;background:var(--navy)}

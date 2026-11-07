@@ -99,7 +99,7 @@ arts = list(by_path.values())
 def illus(a, w=112, h=84):
     if a["_cat"] == "future":
         return (f'<svg viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="宇宙・未来技術"><rect width="{w}" height="{h}" fill="#0b1f4d"/>'
-                f'<path d="M0 {h*.78} Q{w/2} {h*.6} {w} {h*.78} V{h} H0z" fill="#f3e9d2"/><circle cx="{w*.62}" cy="{h*.4}" r="{h*.17}" fill="#9fd3f5"/>'
+                f'<path d="M0 {h*.78} Q{w/2} {h*.6} {w} {h*.78} V{h} H0z" fill="#f3e9d2"/><circle cx="{w*.62}" cy="{h*.4}" r="{h*.17}" fill="#b3cbf9"/>'
                 f'<ellipse cx="{w*.62}" cy="{h*.4}" rx="{h*.32}" ry="{h*.08}" fill="none" stroke="#ff8a00" stroke-width="2.4"/>'
                 f'<path d="M{w*.22} {h*.2}l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#ff8a00"/><circle cx="{w*.85}" cy="{h*.18}" r="1.4" fill="#f3e9d2"/><circle cx="{w*.12}" cy="{h*.55}" r="1.2" fill="#f3e9d2"/></svg>')
     c = CATS[a["_cat"]]; icon = ICONS.get((a.get("visual") or {}).get("icon")) or ICONS[c[1]]
@@ -144,7 +144,7 @@ XJS = """<script>(()=>{const box=document.querySelector('.xv');if(!box)return;co
 LISTJS = """<script>(()=>{const l=document.querySelector('.alist ul'),c=l&&l.querySelector('[aria-current]');if(c&&getComputedStyle(l.parentNode).display!=='none')l.parentNode.scrollTop=c.parentNode.offsetTop-80})();</script>"""
 RETRO_FONT = ''  # Dela Gothic One is loaded on every page now
 ORBIT = ('<svg class="orbit" viewBox="0 0 120 60" aria-hidden="true"><ellipse cx="60" cy="34" rx="54" ry="14" fill="none" stroke="#f3e9d2" stroke-width="1.5" stroke-dasharray="3 4"/>'
-         '<circle cx="60" cy="34" r="13" fill="#9fd3f5"/><path d="M60 4l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#ff8a00" transform="translate(40 -2) scale(.6)"/></svg>')
+         '<circle cx="60" cy="34" r="13" fill="#b3cbf9"/><path d="M60 4l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#ff8a00" transform="translate(40 -2) scale(.6)"/></svg>')
 SKEW = re.compile(r'(<div class="sec-h"[^>]*><h2>|<section class="keys"><h2>|<section class="box"><h2>|<h2 class="sub">)(.*?)(</h2>)')
 def write(path, content):
     if path.endswith((".html", "/")):
