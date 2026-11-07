@@ -112,9 +112,12 @@ def thumb(a):
 FACE = {"ai": "thinking", "service": "thinking", "ec": "smug", "mobile": "smug", "gadget": "smug", "game": "smug", "future": "surprised", "other": "surprised"}
 def face(c): return f"/assets/rina-{FACE.get(c, 'smug')}.png"
 def tag(c, link=True):
-    lab, _, var = CATS[c]
-    return (f'<a class="tag" style="--c:var({var})" href="/category/{SLUG[c]}/"><span>{E(lab)}</span></a>' if link
-            else f'<span class="tag" style="--c:var({var})"><span>{E(lab)}</span></span>')
+    # icon + words, so the category is clear without relying on color (color-vision friendly)
+    lab, ic, var = CATS[c]
+    svg = (f'<svg class="ti" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" '
+           f'stroke-linecap="round" stroke-linejoin="round">{ICONS[ic]}</svg>')
+    return (f'<a class="tag" style="--c:var({var})" href="/category/{SLUG[c]}/"><span>{svg}{E(lab)}</span></a>' if link
+            else f'<span class="tag" style="--c:var({var})"><span>{svg}{E(lab)}</span></span>')
 
 def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
     full = f"{title}｜{NAME}" if title != NAME else NAME
