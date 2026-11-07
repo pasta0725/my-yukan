@@ -1,0 +1,163 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script><script src="pal.js"></script>
+<script>
+// Design rules: iPhone shows x~98-982 (sides cropped), Shorts tabs end y~330, right buttons x>=885 from y~970,
+// channel/title text from y~1480. Diagrams live in y400-1080 centred on x540, captions in their own band below, mini presenter under that.
+// palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
+const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
+  line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
+  glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+const CX=540, MAXW=680, CAP_Y=1168;
+let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+const CT={s:1.04,y0:360,y1:350};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
+let CUR=null;
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('chain','img/chain.png'),load('graph','img/graph.png'),load('mini','char/f300.png')]);await document.fonts.ready;})();
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
+// ---------- helpers ----------
+function bg(u){abs(()=>bg0(u));}
+function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+function rrect(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+// small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
+function mini(u){abs(()=>glow(210,1380,260,C.brand,0.22));drawChar(CUR||IMG.mini,22,1188,380,675);}  // face between the caption band and the channel name
+function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
+function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
+function credit(t='出典：TechCrunch ほか'){abs(()=>text(t,950,362,26,C.sub,'right',700));}
+// ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
+function marks(s,warn){const m=new Array(s.length).fill(C.capText);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum); if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
+  if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
+function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
+  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
+  const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
+  g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
+  let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
+    const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
+    // two passes: every edge first, then every letter, so a letter's edge never covers its neighbour
+    const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='round';g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;
+    for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
+  g.restore();}
+
+// ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
+const BX=372,BY=1165,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;
+  g.beginPath();g.roundRect(BX,BY,BW,BH,44);g.moveTo(BX+4,BY+120);g.lineTo(BX-40,BY+150);g.lineTo(BX+4,BY+178);g.closePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
+  g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+178);g.lineTo(BX-40,BY+150);g.lineTo(BX,BY+120);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();g.stroke();});}
+// line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
+function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);
+  const keep=j=>j>=3&&s.length-j>=3;  // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
+  cuts.push(s.length);
+  const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  let best=null;const c=[...new Set(cuts)].sort((a,b)=>a-b).filter(x=>x>0&&x<s.length&&keep(x));
+  const PEN=a=>(s.slice(a,a+2)==='いう'&&s[a-1]==='と')?size*0.6:('をにはがでとのもへやかよね、。てばし'.includes(s[a-1])?0:size*0.9);  // prefer breaking right after a particle
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));const sc=m+PEN(a);if(m<=maxw*1.15&&(!best||sc<best.sc))best={L,m,sc};}if(!best)for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));if(!best||m<best.m)best={L,m,sc:m};}
+  if(best&&best.m<=maxw)return best.L;
+  let b3=null;for(const a of c)for(const b of c)if(b-a>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const m=Math.max(...L.map(W));if(!b3||m<b3.m)b3={L,m};}
+  return (b3&&(!best||best.m>maxw*1.12))?b3.L:(best?best.L:[s]);}
+function bubbleText(s,k,warn){abs(()=>{let size=74;let lines=wrapJa(s,size,BMAXW);
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>BMAXW)size=Math.floor(size*BMAXW/w);}
+  if(lines.length===3)size=Math.min(size,64);
+  const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(k/0.08);
+  const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:m[off+i];g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+const S={
+ // L0: conclusion-first hook over a generated picture of AI building AI
+ hook(u,d,L){bg(u);brandTag();mini(u);const ts=telHas(L,'そんな段階');
+   mixLine([['AIが',C.text],['AIを作る',C.acc],['時代',C.text]],CX,385,62);
+   withEnter(enter(u,0,0.35),()=>{g.save();g.beginPath();g.roundRect(240,450,600,600,32);g.clip();const z=1.04+0.10*u/d;const i=IMG.chain;
+     if(i){const w=600*z,h=w*i.height/i.width;g.drawImage(i,CX-w/2,750-h*0.45,w,h);}g.restore();},40);
+   const k=(u-ts)/0.3;if(k>0){const sc=back(k);g.save();g.translate(CX,990);g.rotate(-0.04);g.scale(sc,sc);rrect(-230,-62,460,124,28,C.acc);text('もうすぐ？',0,0,76,C.onAcc);g.restore();}},
+ // L1: big presenter with the channel logo as the title
+ intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);drawChar(CUR,-90,298,1260,2240);
+   const k=ease(u/0.35);abs(()=>{const sc=0.9+0.1*back(u/0.4);g.save();g.globalAlpha=k;g.translate(CX,430);g.scale(sc,sc);rrect(-400,-70,800,140,30,C.card2);mixLine([['AIが',C.waitText],['AIを作る',C.acc],['時代',C.waitText]],0,0,70);g.restore();});},
+ // L2: who warned, where, the key words
+ what(u,d,L){bg(u);brandTag();mini(u);const tq=telHas(L,'書類');
+   mixLine([['Anthropic',C.brand],['が警告',C.text]],CX,385,62);
+   withEnter(enter(u,0.1),()=>{rrect(192,460,696,300,32,C.card);
+     g.save();g.translate(330,610);rrect(-62,-82,124,164,14,'#FFFFFF',C.bar);g.fillStyle=C.bar;for(let i=0;i<5;i++)g.fillRect(-38,-50+i*24,i==4?44:76,8);g.restore();
+     text('上場のための申請書',420,575,44,C.text,'left',900);text('（修正版・11月2日提出）',420,635,32,C.sub,'left',800);text('AI企業 Anthropic',420,690,32,C.sub,'left',800);});
+   withEnter(enter(u,tq),()=>{rrect(192,800,696,250,32,C.card2);text('申請書の言葉',CX,850,34,C.sub,'center',800);
+     g.save();g.translate(CX,950);const sc=back((u-tq)/0.35);g.scale(sc,sc);text('「まもなく達しうる」',0,0,64,C.acc);g.restore();});
+   credit();},
+ // L3: what "the threshold" means: progress twice as fast
+ rsi(u,d,L){bg(u);brandTag();mini(u);const t2=telHas(L,'そこに');
+   mixLine([['目安：開発のペースが',C.text],['2倍',C.acc]],CX,385,56);
+   // AI -> AI -> AI, each a little bigger (the "AI builds AI" chain)
+   const R=[56,72,90],X=[270,520,800];
+   R.forEach((r,j)=>withEnter(enter(u,0.15+j*0.25),()=>{const pul=1+0.04*Math.sin(u*3+j);g.save();g.translate(X[j],580);g.scale(pul,pul);
+     g.beginPath();g.arc(0,0,r,0,7);g.fillStyle=j==2?C.acc:C.card;g.fill();g.lineWidth=6;g.strokeStyle=j==2?C.acc:C.brand;g.stroke();text('AI',0,2,r*0.8,j==2?C.onAcc:C.brand);g.restore();
+     if(j<2){const xa=X[j]+R[j]+18,xb=X[j+1]-R[j+1]-18;g.strokeStyle=C.sub;g.lineWidth=7;g.lineCap='round';g.beginPath();g.moveTo(xa,580);g.lineTo(xb,580);g.moveTo(xb-18,562);g.lineTo(xb,580);g.lineTo(xb-18,598);g.stroke();}},20));
+   withEnter(enter(u,0.9),()=>text('AIが、より賢いAIを作る連鎖',CX,700,36,C.sub,'center',800));
+   const e1=ease((u-1.1)/0.6),e2=ease((u-1.6)/0.9),full=500,X0=330;
+   withEnter(enter(u,1.0),()=>{text('1年で進む量',CX,770,36,C.sub,'center',800);
+     text('ふだん',X0-24,850,40,C.sub,'right',800);rrect(X0,812,Math.max(1,full/2*e1),76,18,C.bar);text('1年分',X0+full/2*e1+16,850,40,C.text,'left',800);
+     text('目安',X0-24,960,40,C.text,'right',800);rrect(X0,922,Math.max(1,full*e2),76,18,C.acc);if(e2>0.4)text('2年分',X0+full*e2-16,960,40,C.onAcc,'right',900);});
+   if(u>t2){const k=back((u-t2)/0.35);g.save();g.translate(CX,1060);g.scale(k,k);text('まもなく届きうる',0,0,48,C.text);g.restore();}},
+ // L4: they admit they once noticed a jump only afterwards (generated picture)
+ missed(u,d,L){bg(u);brandTag();mini(u);
+   mixLine([['急な成長に',C.text],['気づけなかった',C.acc]],CX,385,60);
+   withEnter(enter(u,0,0.35),()=>{g.save();g.beginPath();g.roundRect(240,450,600,600,32);g.clip();const z=1.04+0.08*u/d;const i=IMG.graph;
+     if(i){const w=600*z,h=w*i.height/i.width;g.drawImage(i,CX-w/2,750-h*0.47,w,h);}g.restore();},40);
+   withEnter(enter(u,0.8),()=>{rrect(300,1000,480,74,20,C.card);text('過去にあったと認める',CX,1037,36,C.text,'center',800);});},
+ // L5: but... (red stamp only here)
+ twist(u,d,L){bg(u);brandTag();mini(u);const tb=telHas(L,'投資家');
+   const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
+   withEnter(enter(u,0.35),()=>{rrect(136,500,808,250,26,C.card);text('今のモデル',CX,560,40,C.sub,'center',800);text('「超えた」とはまだ認めていない',CX,640,48,C.text);text('（「まもなく」は次のモデルの話）',CX,705,30,C.sub,'center',700);});
+   withEnter(enter(u,tb),()=>{rrect(136,790,808,250,26,C.card);text('別の見方',CX,850,40,C.sub,'center',800);text('投資家向けの宣伝？',CX,930,52,C.warn);text('（申請書は宣伝の面もある）',CX,995,30,C.sub,'center',700);});
+   credit();},
+ // L6: verdict: nothing changes today / watch the safety rules
+ verdict(u,d,L){bg(u);brandTag();glow(CX,1250,600,C.brand,0.32);drawChar(CUR,18,510,1044,1856);const t2=telHas(L,'注目');
+   const k1=back((u-0.4)/0.35),k2=back((u-t2)/0.35);
+   if(u>0.4){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+     text('今のClaude',0,-58,38,C.sub,'center',800);text('変わらない',0,22,66,C.waitText);text('機能も料金も',0,78,30,C.sub,'center',700);g.restore();}
+   if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+     text('注目',0,-58,38,C.buyInk,'center',800);text('安全ルール',0,16,62,C.buyInk);text('の見直し',0,74,36,C.buyInk,'center',800);g.restore();}},
+ logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
+   if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
+   text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
+};
+window.render=async function(t){
+  CUR=await charImg(Math.round(t*P.fps));
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
+  const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
+  BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
+  S[L.scene](u,d,L);g.restore();g.restore();
+  bubble();
+  // keep the last line in the bubble through short pauses, so the bubble is never empty
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(last)bubbleText(last.text,(t-last.start),L.scene==='twist');
+};
+</script></body></html>
