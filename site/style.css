@@ -114,7 +114,8 @@ img{max-width:100%;height:auto}
   .when{font-size:12px}
 }
 .tag{display:inline-block;margin:0 4px 4px 2px;padding:1px 10px;background:var(--c,var(--blue));color:var(--tag-t);text-decoration:none;font-size:12.5px;font-weight:700;line-height:1.6;transform:skewX(var(--slant))}
-.tag>span{display:inline-block;transform:skewX(12deg)}
+.tag>span{display:inline-flex;align-items:center;gap:4px;transform:skewX(12deg)}
+.tag .ti{width:1.05em;height:1.05em;flex:none}
 
 .when{color:var(--sub);font-size:13px;margin-left:8px;font-weight:700}
 
