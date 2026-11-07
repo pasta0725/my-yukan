@@ -186,6 +186,8 @@ def picks_for(day_arts, n=3):
 # ---------- build ----------
 if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(os.path.join(OUT, "assets"))
+for f in glob.glob(os.path.join(ROOT, "site/root/*")):  # files that must sit at the top of the site (Search Console check, etc.)
+    shutil.copy(f, OUT)
 for f in glob.glob(os.path.join(ROOT, "site/assets/*")) + [os.path.join(ROOT, "site/style.css")]:
     shutil.copy(f, os.path.join(OUT, "assets"))
 counts = {}
@@ -305,7 +307,7 @@ about = f'''<div class="doc"><h1>このサイトについて</h1>
 <h2>お問い合わせ</h2><p>お問い合わせ窓口は準備中です。</p></div>'''
 write("/about/", page("このサイトについて", f"{NAME}の運営方針と記事の作り方。", about, "/about/"))
 privacy = f'''<div class="doc"><h1>プライバシーポリシー</h1>
-<h2>アクセス解析</h2><p>当サイトでは、サイトの改善のためにアクセス解析ツールを使うことがあります。個人を特定する情報は集めません。</p>
+<h2>アクセス解析</h2><p>当サイトでは、サイトの改善のために Cloudflare Web Analytics（Cookieを使わない解析ツール）で、閲覧されたページ・参照元・端末の種類などを集計しています。また、Google Search Console で Google 検索での表示回数などを確認しています。個人を特定する情報は集めません。</p>
 <h2>広告・アフィリエイト</h2><p>当サイトは、Amazon、楽天市場などのアフィリエイトプログラムに参加することがあります。リンク先のサービスでは、Cookieなどを使って閲覧や購入の情報が扱われることがあります。詳しくは各サービスのプライバシーポリシーをご確認ください。</p>
 <h2>Xの投稿の埋め込み</h2><p>記事ページの「Xの声」では、X（旧Twitter）の投稿を公式の埋め込み機能で表示しています。表示するときに、お使いのブラウザとXのサーバーとの間で通信が行われます。詳しくはXのプライバシーポリシーをご確認ください。</p>
 <h2>外部リンク</h2><p>記事内のリンク先のサイトで起きたことについて、当サイトは責任を負いません。</p>
