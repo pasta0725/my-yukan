@@ -1,0 +1,31 @@
+name: fetch-media
+# Downloads public media files (official press images/videos) listed in media/<name>/urls.txt into the same folder.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["media/*/urls.txt"]
+permissions:
+  contents: write
+concurrency: fetch-media
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: download
+        run: |
+          for f in media/*/urls.txt; do
+            d=$(dirname "$f")
+            while read -r name url; do
+              [ -z "$name" ] && continue
+              [ -e "$d/$name" ] && continue
+              curl -sSL --fail --max-time 120 -A "Mozilla/5.0" -o "$d/$name" "$url" || echo "failed: $url"
+            done < "$f"
+          done
+          ls -la media/*
+          git config user.name pasta0725
+          git config user.email pasta0725@users.noreply.github.com
+          git add media
+          git commit -m "公式の画像・動画を取得" || true
+          git pull --rebase -q && git push
