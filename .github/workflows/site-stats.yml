@@ -16,7 +16,7 @@ jobs:
       - name: collect
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: python3 -I tools/cf_stats.py stats.json
+        run: CF_DEBUG=1 python3 -I tools/cf_stats.py stats.json
       - uses: actions/upload-artifact@v4
         with:
           name: site-stats

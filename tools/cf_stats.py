@@ -43,6 +43,15 @@ def groups(dim, order, limit, bot=True):
         raise
 
 
+if os.environ.get("CF_DEBUG"):
+    for bot in (True, False):
+        for dim in ("date", "datetimeHour"):
+            try:
+                g = groups(dim, f"{dim}_ASC", 100, bot=bot)
+                print("debug", "bot-filter" if bot else "no-filter", dim, len(g), sum(x["count"] for x in g))
+            except SystemExit as e:
+                print("debug error", bot, dim, str(e)[:300])
+
 # article titles for paths (/news/<date>/<id>/)
 titles = {}
 for f in glob.glob(os.path.join(ROOT, "data/20??-??-??.json")):
