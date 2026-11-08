@@ -77,7 +77,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
 function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);
-  const keep=j=>j>=3&&s.length-j>=3&&!/[0-9.]/.test(s[j-1])&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j]));  // never split a number from its unit
+  const keep=j=>j>=3&&s.length-j>=3&&!/[0-9.]/.test(s[j-1])&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j]))&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='「');  // never split a number from its unit
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
   cuts.push(s.length);
   const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
@@ -154,8 +154,8 @@ function tube(x,y,s,col){g.save();g.translate(x,y);g.rotate(0.35);rrect(-s*0.22,
 const CRED='出典：Apple';
 const S={
  // L0 hook: the official screen with Health Age
- hook(u,d,L){bg(u);mini(u);const ta=telHas(L,'体の年齢');
-   mixLine([['iPhone',C.brand],['のヘルスケアが',C.text]],CX,385,64);
+ hook(u,d,L){bg(u);mini(u);const ta=Math.min(0.6,telHas(L,'体の年齢'));
+   mixLine([['iPhone',C.brand],['で',C.text],['「体の年齢」',C.acc],['がわかる',C.text]],CX,385,62);
    withEnter(enter(u,0,0.3),()=>{const z=1.0+0.06*u/d;pic('hero',150,445,780,600,z*1.05,0.5,0.2);},40);
    if(u>ta){const k=ease((u-ta)/0.4);g.save();g.globalAlpha*=k;g.strokeStyle=C.acc;g.lineWidth=8;g.beginPath();g.arc(395,612,96,0,7);g.stroke();g.restore();
      stamp('体の年齢を表示',690,560,(u-ta)/0.35,C.acc,50,-0.05);}
