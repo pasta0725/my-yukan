@@ -1,0 +1,26 @@
+name: factcheck-pages
+# Fact check (step 5-2): downloads the source_url and refs of every story in data/<edition>.json,
+# saves the page text as factcheck/<edition>/<story id>.txt and pushes it to the branch "factcheck".
+# The Claude session then reads them with `git fetch origin factcheck` — it opens no web page itself.
+on:
+  workflow_dispatch:
+    inputs:
+      edition: {description: "edition id, e.g. 2026-11-10-am", required: true}
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q requests beautifulsoup4
+      - run: python3 tools/fetch_refs.py "${{ inputs.edition }}" "/tmp/fc/${{ inputs.edition }}"
+      - name: push to branch factcheck
+        run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          git fetch origin factcheck || true
+          if git rev-parse -q --verify origin/factcheck; then git checkout -q -B factcheck origin/factcheck; else git checkout -q --orphan factcheck; git rm -rfq .; fi
+          mkdir -p factcheck; rm -rf "factcheck/${{ inputs.edition }}"; cp -r "/tmp/fc/${{ inputs.edition }}" factcheck/
+          git add factcheck; git commit -qm "factcheck pages ${{ inputs.edition }}" || true
+          git push -q origin factcheck
