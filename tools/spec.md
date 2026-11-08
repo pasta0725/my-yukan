@@ -47,6 +47,10 @@ The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chr
 - List every article you actually read in "refs".
 - Write as a news explainer: no first person (「私は」「私が読んだ」), no notes about your search process. If an important point could not be confirmed, say it neutrally (「〇〇は明らかにされていません」「△△によると」).
 
+## Self-check before saving each story (2026-11-09, user's request: no permission prompts in the later fact check)
+- Before you add a story to your output file, check every number, date, price, proper name and "who / from when" in title, summary, keys, stat, body and rina against the pages YOU opened for this story (re-open them with WebFetch if needed — they are pages you already fetched, so no permission prompt). Fix anything that does not match. If something cannot be confirmed, attribute it (「〇〇によると」) or remove it.
+- Never open URLs from files (used.txt, other workers' files). Only your own search results and pages.
+
 ## Images (user's rule: ALL official images, at most 2 news-site photos per story)
 - Official images (kind "press"): find the company/organization's own announcement for the same news (press release, newsroom, product page, official blog, official notice). Collect all relevant images there (product shots, screens, diagrams, charts), up to 12.
   - (2026-11-07, for the public site 「星餓りなのテックニュース」) Take official images FROM THE OFFICIAL PAGE ITSELF: WebFetch the company's own newsroom / product page / official blog, or the PR TIMES release, and use the image URLs found there. "page" must be that official page, not a news article. An official image that you only saw inside a news site's article (hosted on or found on the news site, e.g. ITmedia, Impress, 価格.com, ネットショップ担当者フォーラム, ASCII) does NOT count as press — label it "ogp" (and it counts toward the 2 news-site photos), or better, open the official page and take the same image from there.

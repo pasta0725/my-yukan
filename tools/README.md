@@ -46,6 +46,15 @@
 - 公開側のルール：ニュースサイトの写真は出さない（公式・PR TIMESの画像だけ）、Xの声は出さない、記事ごとに1ページ、sitemap.xml・feed.xml・構造化データ付き。
 - 見た目は site/style.css、画像は site/assets/（Codexで生成）、サイト名やURLは site/config.json（base_url は Cloudflare のプロジェクト名が決まったら合わせる）。
 
+## 事実の点検（手順5-2、2026-11-09〜：許可確認を出さないやり方）
+ファイルに書かれたURL（refs）を号づくりのセッションで WebFetch すると、出どころが確かめられず許可確認が出ることがある。そこで2段構えにする。
+1. 書いた担当が保存前に自分で点検する（spec.md の Self-check の節）。自分で開いたページなので確認は出ない。
+2. 号を作ったら（build_edition.py の後）、GitHub 側で参考記事のページを取ってくる：
+   `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/factcheck-pages.yml/dispatches -f ref=main -f 'inputs[edition]=<号のID>'`
+   （tools/fetch_refs.py：各記事の source_url と refs を最大6本取得し、本文の文字だけを factcheck/<号のID>/<記事id>.txt にして、ブランチ factcheck に push。1〜2分）
+   終わったら `git fetch origin factcheck && git archive origin/factcheck factcheck/<号のID> | tar -x -C <作業用フォルダ>` で取り出す。
+3. 点検役の Sonnet 4本（effort high）は、その .txt と記事を照らし合わせるだけ。WebFetch・WebSearch・curl は使わない。取得に失敗したページ（403 など）は、その記事の中だけで食い違いを点検し、確かめられない数字は出どころを付けるか削る。
+
 ## 公式画像の補充（2026-11-09〜、毎日6:12と16:31の別作業）
 号づくりの中では開けない公式ページが多く、画像ゼロの記事が多かった（11/8号は49本中41本）。そこで公開後に、GitHub の実行環境で画像を集めて足す。
 1. `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/official-images.yml/dispatches -f ref=main -f 'inputs[dates]=<号のID>'`
