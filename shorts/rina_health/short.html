@@ -1,0 +1,292 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script><script src="pal.js"></script>
+<script>
+// Design rules: iPhone shows x~98-982 (sides cropped), Shorts tabs end y~330, right buttons x>=885 from y~970,
+// channel/title text from y~1480. Diagrams live in y400-1080 centred on x540, captions in their own band below, mini presenter under that.
+// palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
+const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
+  line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
+  glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+const CX=540, MAXW=680, CAP_Y=1168;
+let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+const CT={s:1.04,y0:360,y1:350};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
+let CUR=null;
+function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
+  if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('hero','img/hero.jpg'),load('insights_sleep','img/insights_sleep.jpg'),load('heart','img/heart.jpg'),load('readiness_phone','img/readiness_phone.jpg'),load('fitness','img/fitness.jpg'),load('foryou','img/foryou.jpg'),load('readiness_watch','img/readiness_watch.jpg'),load('readiness_both','img/readiness_both.jpg'),load('vitals_night','img/vitals_night.jpg'),load('healthage_poster','img/healthage_poster.jpg'),load('longevity_poster','img/longevity_poster.jpg'),load('lang','img/lang.jpg'),load('mini','char/f300.png')]);await document.fonts.ready;})();
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
+// ---------- helpers ----------
+function bg(u){abs(()=>bg0(u));}
+function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+function rrect(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+// small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
+function mini(u){abs(()=>glow(210,1380,260,C.brand,0.22));drawChar(CUR||IMG.mini,22,1188,380,675);}  // face between the caption band and the channel name
+function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
+function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
+function credit(t='出典：Anthropic'){abs(()=>text(t,950,362,26,C.sub,'right',700));}
+// ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
+function marks(s,warn){const m=new Array(s.length).fill(C.capText);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum); if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
+  if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
+function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
+  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
+  const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
+  g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
+  let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
+    const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
+    // two passes: every edge first, then every letter, so a letter's edge never covers its neighbour
+    const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='round';g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;
+    for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
+  g.restore();}
+
+// ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
+const BX=372,BY=1165,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+178);g.lineTo(BX-40,BY+150);g.lineTo(BX,BY+120);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
+function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
+  bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
+// line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
+function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);
+  const keep=j=>j>=3&&s.length-j>=3&&!/[0-9.]/.test(s[j-1]);  // never split a number from its unit
+    // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
+  cuts.push(s.length);
+  const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  let best=null;const c=[...new Set(cuts)].sort((a,b)=>a-b).filter(x=>x>0&&x<s.length&&keep(x));
+  const PEN=a=>(s.slice(a,a+2)==='いう'&&s[a-1]==='と')?size*0.6:('をにはがでとのもへやかよね、。てばし'.includes(s[a-1])?0:size*0.9);  // prefer breaking right after a particle
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));const sc=m+PEN(a);if(m<=maxw*1.15&&(!best||sc<best.sc))best={L,m,sc};}if(!best)for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));if(!best||m<best.m)best={L,m,sc:m};}
+  if(best&&best.m<=maxw)return best.L;
+  let b3=null;for(const a of c)for(const b of c)if(b-a>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const m=Math.max(...L.map(W));if(!b3||m<b3.m)b3={L,m};}
+  return (b3&&(!best||best.m>maxw*1.12))?b3.L:(best?best.L:[s]);}
+function bubbleText(s,k,warn){abs(()=>{let size=74;let lines=wrapJa(s,size,BMAXW);
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>BMAXW)size=Math.floor(size*BMAXW/w);}
+  if(lines.length===3)size=Math.min(size,64);
+  const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
+  const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:m[off+i];g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+const UI={};function uiImg(n){n=Math.max(1,Math.min(624,Math.round(n)));const k='u'+String(n).padStart(3,'0');return new Promise(r=>{if(UI[k])return r(UI[k]);const i=new Image();i.onload=()=>{UI[k]=i;r(i)};i.onerror=()=>r(null);i.src='img/ui/'+k+'.jpg';});}
+let UICUR=null;
+// small flat app icons (generic, no brands)
+function appIcon(kind,x,y,s,col){g.save();g.translate(x,y);rrect(-s/2,-s/2,s,s,s*0.24,col||C.brand);g.strokeStyle='#FFFFFF';g.fillStyle='#FFFFFF';g.lineWidth=s*0.07;g.lineCap='round';g.lineJoin='round';const q=s*0.26;
+  if(kind==='cal'){g.strokeRect(-q,-q*0.8,2*q,1.8*q);g.beginPath();g.moveTo(-q,-q*0.25);g.lineTo(q,-q*0.25);g.stroke();for(let i=0;i<3;i++)for(let j=0;j<2;j++)g.fillRect(-q*0.7+i*q*0.55,q*0.1+j*q*0.45,q*0.3,q*0.25);}
+  else if(kind==='cart'){g.beginPath();g.moveTo(-q*1.1,-q*0.9);g.lineTo(-q*0.7,-q*0.9);g.lineTo(-q*0.4,q*0.4);g.lineTo(q*0.9,q*0.4);g.lineTo(q*1.1,-q*0.5);g.lineTo(-q*0.55,-q*0.5);g.stroke();g.beginPath();g.arc(-q*0.25,q*0.9,q*0.18,0,7);g.arc(q*0.7,q*0.9,q*0.18,0,7);g.fill();}
+  else if(kind==='ticket'){g.beginPath();g.moveTo(-q*1.1,-q*0.6);g.lineTo(q*1.1,-q*0.6);g.lineTo(q*1.1,-q*0.15);g.arc(q*1.1,q*0.1,q*0.25,-Math.PI/2,Math.PI/2,true);g.lineTo(q*1.1,q*0.6);g.lineTo(-q*1.1,q*0.6);g.lineTo(-q*1.1,q*0.35);g.arc(-q*1.1,q*0.1,q*0.25,Math.PI/2,-Math.PI/2,true);g.closePath();g.stroke();}
+  else if(kind==='plane'){g.beginPath();g.moveTo(-q*1.1,q*0.1);g.lineTo(q*1.1,-q*0.2);g.moveTo(-q*0.1,-q*0.05);g.lineTo(-q*0.6,-q*0.9);g.moveTo(q*0.1,-q*0.1);g.lineTo(q*0.2,q*0.8);g.stroke();}
+  else if(kind==='mail'){g.strokeRect(-q,-q*0.7,2*q,1.4*q);g.beginPath();g.moveTo(-q,-q*0.7);g.lineTo(0,q*0.15);g.lineTo(q,-q*0.7);g.stroke();}
+  else if(kind==='pin'){g.beginPath();g.arc(0,-q*0.2,q*0.6,Math.PI*0.85,Math.PI*0.15);g.lineTo(0,q*1.0);g.closePath();g.stroke();g.beginPath();g.arc(0,-q*0.2,q*0.2,0,7);g.fill();}
+  else if(kind==='gift'){g.strokeRect(-q*0.9,-q*0.3,1.8*q,1.2*q);g.beginPath();g.moveTo(0,-q*0.3);g.lineTo(0,q*0.9);g.moveTo(-q,-q*0.3);g.lineTo(q,-q*0.3);g.stroke();g.beginPath();g.ellipse(-q*0.35,-q*0.6,q*0.35,q*0.2,0.5,0,7);g.ellipse(q*0.35,-q*0.6,q*0.35,q*0.2,-0.5,0,7);g.stroke();}
+  else if(kind==='music'){g.beginPath();g.moveTo(-q*0.35,q*0.7);g.lineTo(-q*0.35,-q*0.9);g.lineTo(q*0.85,-q*1.1);g.lineTo(q*0.85,q*0.5);g.stroke();g.beginPath();g.ellipse(-q*0.65,q*0.75,q*0.35,q*0.27,-0.4,0,7);g.ellipse(q*0.55,q*0.55,q*0.35,q*0.27,-0.4,0,7);g.fill();}
+  else if(kind==='chat'){g.beginPath();g.roundRect(-q*1.05,-q*0.8,2.1*q,1.4*q,q*0.4);g.stroke();g.beginPath();g.moveTo(-q*0.5,q*0.6);g.lineTo(-q*0.7,q*1.05);g.lineTo(-q*0.05,q*0.6);g.stroke();}
+  g.restore();}
+function chip(label,icon,x,y,k,col){withEnter(k,()=>{rrect(x,y-56,400,112,28,C.card);appIcon(icon,x+62,y,72,col||C.brand);text(label,x+118,y,42,C.text,'left',900);},24);}
+function phone(im,x,y,w,h,z=1,fy=0.5,fx=0.5){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=30;g.shadowOffsetY=10;rrect(x-10,y-10,w+20,h+20,48,'#16213A');g.restore();
+  g.save();g.beginPath();g.roundRect(x,y,w,h,40);g.clip();g.fillStyle='#FFFFFF';g.fillRect(x,y,w,h);if(im){const s=Math.max(w/im.width,h/im.height)*z;const iw=im.width*s,ih=im.height*s;const oy=Math.min(0,Math.max(h-ih,h/2-ih*fy));g.drawImage(im,x+(w-iw)*fx,y+oy,iw,ih);}g.restore();}
+function creditAt(s,x,y){g.font=`700 24px ${FONT}`;const w=g.measureText(s).width;g.save();g.globalAlpha*=0.85;rrect(x-w-16,y-18,w+32,36,18,'#FFFFFF');g.restore();text(s,x,y,24,C.sub,'right',700);}
+function t0h(L,u){return u+L.start;}
+function chatMock(x,y,w,h,u,gray){g.save();g.beginPath();g.roundRect(x,y,w,h,32);g.clip();rrect(x,y,w,h,32,C.card);
+  const msgs=[['me','旅行の計画を立てて'],['ai',3],['me','ホテルの値段は？'],['ai',2],['me','前の計画どこ？'],['ai',2],['me','もう一回教えて'],['ai',2]];
+  const sc=w/580;let yy=y+70*sc-u*95*sc;
+  for(const [who,m] of msgs){const hh=(who==='me'?64:28+m*30)*sc;
+    if(yy>y-200&&yy<y+h){g.save();const fade=clamp((yy-y-20)/(120*sc));g.globalAlpha*=(0.25+0.75*fade)*(gray?0.6:1);
+      if(who==='me'){const fs=Math.round(32*sc);g.font=`800 ${fs}px ${FONT}`;const tw=g.measureText(m).width;rrect(x+w-30*sc-tw-44*sc,yy,tw+44*sc,64*sc,30*sc,gray?'#9AA6BA':C.brand);text(m,x+w-30*sc-tw/2-22*sc,yy+32*sc,fs,'#FFFFFF','center',800);}
+      else{rrect(x+30*sc,yy,400*sc,hh,26*sc,'#EEF1F6');for(let j=0;j<m;j++){g.fillStyle='#C3CAD6';g.fillRect(x+56*sc,yy+(24+j*30)*sc,(j===m-1?220:340)*sc,12*sc);}}
+      g.restore();}
+    yy+=hh+26*sc;}
+  const gr=g.createLinearGradient(0,y,0,y+150*sc);gr.addColorStop(0,C.card);gr.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(x,y,w,150*sc);
+  g.restore();rrect(x,y,w,h,32,null,C.bar);}
+// ---------- extra helpers for this short ----------
+function card(x,y,w,h,r=30,fill){rrect(x,y,w,h,r,fill||C.card);}
+function pic(k,x,y,w,h,z=1,fx=0.5,fy=0.5,r=28){const i=IMG[k];if(!i)return;g.save();g.beginPath();g.roundRect(x,y,w,h,r);g.clip();g.fillStyle='#FFFFFF';g.fillRect(x,y,w,h);
+  const s=Math.max(w/i.width,h/i.height)*z;const iw=i.width*s,ih=i.height*s;g.drawImage(i,x+(w-iw)*fx,y+(h-ih)*fy,iw,ih);g.restore();rrect(x,y,w,h,r,null,C.bar);}
+function stamp(s,x,y,k,col,size=60,rot=-0.06){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.rotate(rot);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w=g.measureText(s).width+size*0.9;
+  rrect(-w/2,-size*0.8,w,size*1.6,size*0.35,col);text(s,0,2,size,'#FFFFFF');g.restore();}
+function check(x,y,s,ok){g.save();g.translate(x,y);g.beginPath();g.arc(0,0,s,0,7);g.fillStyle=ok?'#1F9D6A':C.warn;g.fill();g.strokeStyle='#FFFFFF';g.lineWidth=s*0.22;g.lineCap='round';g.lineJoin='round';g.beginPath();
+  if(ok){g.moveTo(-s*0.45,0);g.lineTo(-s*0.1,s*0.35);g.lineTo(s*0.5,-s*0.35);}else{g.moveTo(-s*0.38,-s*0.38);g.lineTo(s*0.38,s*0.38);g.moveTo(s*0.38,-s*0.38);g.lineTo(-s*0.38,s*0.38);}g.stroke();g.restore();}
+function bank(x,y,s,col){g.save();g.translate(x,y);g.fillStyle=col||C.brand;g.beginPath();g.moveTo(-s,-s*0.35);g.lineTo(0,-s*0.95);g.lineTo(s,-s*0.35);g.closePath();g.fill();
+  for(let i=-2;i<=2;i++)g.fillRect(i*s*0.4-s*0.1,-s*0.25,s*0.2,s*0.8);g.fillRect(-s*1.05,s*0.6,s*2.1,s*0.22);g.restore();}
+function arrowR(x0,x1,y,k,col){if(k<=0)return;g.save();g.globalAlpha*=clamp(k);g.strokeStyle=col||C.sub;g.fillStyle=col||C.sub;g.lineWidth=8;g.lineCap='round';const xe=x0+(x1-x0)*ease(k);
+  g.beginPath();g.moveTo(x0,y);g.lineTo(xe-14,y);g.stroke();g.beginPath();g.moveTo(xe,y);g.lineTo(xe-26,y-20);g.lineTo(xe-26,y+20);g.closePath();g.fill();g.restore();}
+function bigNum(s,unit,x,y,k,col,size=150){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w1=g.measureText(s).width;g.font=`900 ${size*0.4}px ${FONT}`;const w2=g.measureText(unit).width;
+  const x0=-(w1+w2+8)/2;text(s,x0,0,size,col||C.acc,'left');text(unit,x0+w1+8,size*0.18,size*0.4,C.text,'left');g.restore();}
+// ---------- extra helpers for the health short ----------
+function heartIcon(x,y,s,col){g.save();g.translate(x,y);g.fillStyle=col||'#E8384F';g.beginPath();g.moveTo(0,s*0.35);g.bezierCurveTo(-s*1.1,-s*0.35,-s*0.45,-s*1.05,0,-s*0.45);g.bezierCurveTo(s*0.45,-s*1.05,s*1.1,-s*0.35,0,s*0.35);g.fill();g.restore();}
+function pill(s,x,y,size,fill,ink){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(s).width+size*1.1;rrect(x-w/2,y-size*0.85,w,size*1.7,size*0.85,fill);text(s,x,y+2,size,ink||'#FFFFFF');return w;}
+function ring(x,y,r,k,col,lw){g.save();g.lineCap='round';g.lineWidth=lw||22;g.strokeStyle='#E3E8F0';g.beginPath();g.arc(x,y,r,0,7);g.stroke();g.strokeStyle=col||C.acc;g.beginPath();g.arc(x,y,r,-Math.PI/2,-Math.PI/2+Math.PI*2*clamp(k));g.stroke();g.restore();}
+function figure(x,y,s,pose,col){g.save();g.translate(x,y);g.strokeStyle=col||C.brand;g.fillStyle=col||C.brand;g.lineWidth=s*0.16;g.lineCap='round';g.lineJoin='round';
+  g.beginPath();g.arc(0,-s*1.55,s*0.32,0,7);g.fill();g.beginPath();
+  if(pose==='reach'){g.moveTo(0,-s*1.15);g.lineTo(0,-s*0.1);g.moveTo(0,-s*0.9);g.lineTo(-s*0.75,-s*1.75);g.moveTo(0,-s*0.9);g.lineTo(s*0.75,-s*1.75);g.moveTo(0,-s*0.1);g.lineTo(-s*0.55,s*0.95);g.moveTo(0,-s*0.1);g.lineTo(s*0.55,s*0.95);}
+  else if(pose==='squat'){g.moveTo(0,-s*1.15);g.lineTo(-s*0.15,-s*0.25);g.moveTo(0,-s*0.95);g.lineTo(s*0.85,-s*0.85);g.moveTo(-s*0.15,-s*0.25);g.lineTo(s*0.45,s*0.25);g.lineTo(s*0.1,s*0.95);g.moveTo(-s*0.15,-s*0.25);g.lineTo(-s*0.6,s*0.3);g.lineTo(-s*0.55,s*0.95);}
+  else{g.moveTo(0,-s*1.15);g.lineTo(0,-s*0.1);g.moveTo(0,-s*0.9);g.lineTo(-s*0.9,-s*0.9);g.moveTo(0,-s*0.9);g.lineTo(s*0.9,-s*0.9);g.moveTo(0,-s*0.1);g.lineTo(-s*0.2,s*0.95);g.moveTo(0,-s*0.1);g.lineTo(s*0.75,-s*0.35);}
+  g.stroke();g.restore();}
+function lockIcon(x,y,s,col){g.save();g.translate(x,y);rrect(-s*0.55,-s*0.1,s*1.1,s*0.85,s*0.14,col||C.brand);g.strokeStyle=col||C.brand;g.lineWidth=s*0.16;g.beginPath();g.arc(0,-s*0.12,s*0.36,Math.PI,0);g.stroke();g.restore();}
+function watchIcon(x,y,s,col){g.save();g.translate(x,y);rrect(-s*0.32,-s*0.95,s*0.64,s*1.9,s*0.2,'#9AA6BA');rrect(-s*0.5,-s*0.6,s*1.0,s*1.2,s*0.28,col||'#16213A');rrect(-s*0.38,-s*0.48,s*0.76,s*0.96,s*0.2,'#2E3A55');g.restore();}
+function tube(x,y,s,col){g.save();g.translate(x,y);g.rotate(0.35);rrect(-s*0.22,-s*0.9,s*0.44,s*1.7,s*0.22,'#FFFFFF',C.bar);g.fillStyle=col||'#C0392B';g.beginPath();g.roundRect(-s*0.18,s*0.0,s*0.36,s*0.76,s*0.18);g.fill();rrect(-s*0.3,-s*1.0,s*0.6,s*0.24,s*0.08,C.brand);g.restore();}
+const CRED='出典：Apple';
+const S={
+ // L0 hook: the official screen with Health Age
+ hook(u,d,L){bg(u);mini(u);const ta=telHas(L,'体の年齢');
+   mixLine([['iPhone',C.brand],['のヘルスケアが',C.text]],CX,385,64);
+   withEnter(enter(u,0,0.3),()=>{const z=1.0+0.06*u/d;pic('hero',150,445,780,600,z*1.05,0.5,0.2);},40);
+   if(u>ta){const k=ease((u-ta)/0.4);g.save();g.globalAlpha*=k;g.strokeStyle=C.acc;g.lineWidth=8;g.beginPath();g.arc(395,612,96,0,7);g.stroke();g.restore();
+     stamp('体の年齢を表示',690,560,(u-ta)/0.35,C.acc,50,-0.05);}
+   creditAt(CRED,925,1025);},
+ intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);drawChar(CUR,-90,298,1260,2240);},
+ // L2 what: announced in September
+ what(u,d,L){bg(u);mini(u);const t9=telHas(L,'9月');
+   mixLine([['Apple',C.brand],['の新しいヘルスケア',C.text]],CX,385,62);
+   withEnter(enter(u,0),()=>{pic('readiness_both',150,450,440,590,1.0,0.5,0.4);});
+   withEnter(enter(u,0.3),()=>{card(615,450,315,590);text('発表',772,520,36,C.sub,'center',800);text('2026年',772,600,44,C.text);
+     bigNum('9','月',772,700,(u-0.35)/0.35,C.acc,140);text('Watch新機種と',772,840,30,C.sub,'center',800);text('いっしょに',772,885,30,C.sub,'center',800);text('アプリを刷新',772,960,40,C.brand);});
+   creditAt(CRED,575,1020);},
+ // L3 when: announced in September, in the iOS 27.3 developer beta on Nov 3
+ when(u,d,L){bg(u);mini(u);const tb=telHas(L,'iOS');
+   mixLine([['Apple',C.brand],['の新ヘルスケア',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{pic('readiness_both',150,450,330,420,1.0,0.5,0.35);card(500,450,430,190);text('2026年9月',715,505,34,C.sub,'center',800);text('Watch新機種と発表',715,575,38,C.text);
+     card(500,660,430,210);text('2026年',715,705,30,C.sub,'center',800);bigNum('11','月3日',715,790,(u-0.2)/0.35,C.acc,100);});
+   withEnter(enter(u,tb),()=>{card(150,895,780,170,30,C.card2);text('iOS 27.3 開発者向けベータ',CX,950,44,'#FFFFFF');
+     text('一般向けではない試験版・27.2の試験版では一度外された',CX,1020,26,'#FFB074','center',800);});
+   creditAt(CRED,470,860);},
+ // L4 before: just graphs
+ before(u,d,L){bg(u);mini(u);
+   mixLine([['これまで',C.sub],['は…',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,590);text('記録を並べるだけ',CX,510,40,C.sub,'center',900);
+     ['歩数','心拍数','睡眠'].forEach((s,j)=>{const y=600+j*150;text(s,200,y,34,C.text,'left',900);
+       for(let i=0;i<12;i++){const h=20+((i*37+j*53)%70);const k=clamp((u-0.2-j*0.15)*3-i*0.08);rrect(330+i*48,y+40-h*k,30,Math.max(2,h*k),6,'#B7BEC7');}});});
+   withEnter(enter(u,1.1),()=>stamp('どう読めばいい？',700,990,(u-1.1)/0.3,C.sub,40,-0.04),4);},
+ // L5 after: AI sums it up and advises
+ after(u,d,L){bg(u);mini(u);const ta=telHas(L,'アドバイス');
+   mixLine([['これから',C.acc],['は',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{const z=1.0+0.03*u;pic('insights_sleep',150,450,430,590,z*1.0,0.5,0.25);});
+   withEnter(enter(u,0.3),()=>{card(605,450,325,270);text('AIが',767,520,38,C.sub,'center',800);text('毎日',767,595,62,C.text);text('まとめる',767,670,44,C.brand);});
+   withEnter(enter(u,ta),()=>{card(605,745,325,295,30,C.buyFill);text('おすすめ',767,830,40,C.buyInk,'center',800);text('まで',767,900,40,C.buyInk,'center',800);text('出す',767,975,58,C.buyInk);});
+   withEnter(enter(u,0.4),()=>text('Apple Intelligenceが土台',365,1065,26,C.sub,'center',800),6);
+   creditAt(CRED,570,1025);},
+ // L6 Insights tab: heart, sleep, fitness all day
+ insights(u,d,L){bg(u);mini(u);
+   mixLine([['「インサイト」',C.acc],['タブ',C.text]],CX,385,64);
+   const P3=[['heart','心臓',0],['insights_sleep','睡眠',0.45],['fitness','運動',0.9]];
+   P3.forEach(([k,s,t0],j)=>withEnter(enter(u,t0),()=>{const x=150+j*265;pic(k,x,450,250,470,1.0,0.5,0.12);pill(s,x+125,960,40,j===0?'#E8384F':j===1?C.brand:'#1F9D6A');},24));
+   withEnter(enter(u,1.4),()=>{rrect(150,1020,780,64,22,C.card2);text('1日中、新しい記録で更新',CX,1052,32,'#FFFFFF','center',900);},10);
+   creditAt(CRED,925,915);},
+ // L7 For You: concrete suggestion
+ foryou(u,d,L){bg(u);mini(u);const tt=telHas(L,'提案');
+   mixLine([['「For You」',C.brand],['で提案',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{pic('foryou',150,450,400,590,1.0,0.5,0.2);});
+   withEnter(enter(u,0.3),()=>{card(575,450,355,250);text('夜ふかしが',752,530,40,C.text);text('何日も続いた',752,600,40,C.text);text('睡眠の記録',752,665,28,C.sub,'center',800);});
+   arrowR(752,752,720,0,C.sub);
+   withEnter(enter(u,tt),()=>{card(575,730,355,310,30,C.buyFill);text('寝る前の',752,820,40,C.buyInk,'center',900);text('過ごし方を',752,890,40,C.buyInk,'center',900);text('見直そう',752,965,52,C.buyInk);});
+   withEnter(enter(u,tt+0.2),()=>text('※公式発表の例',925,1065,22,C.sub,'right',700),6);
+   creditAt(CRED,515,1025);},
+ // L8 readiness 0-10 on the newest watches
+ readiness(u,d,L){bg(u);mini(u);const t5=telHas(L,'5秒'),t0=telHas(L,'0から');
+   mixLine([['今日の',C.text],['「準備度」',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{pic('readiness_watch',150,450,780,400,1.08,0.5,0.5);});
+   const lv=[['0','回復'],['3','ペース控えめ'],['7','準備OK'],['10','全力で']];
+   if(u>t0)lv.forEach(([n,s],j)=>withEnter(enter(u,t0+j*0.12),()=>{const x=248+j*195;text(s,x,830,26,C.text,'center',900);},8));
+   withEnter(enter(u,0.3),()=>{card(150,870,370,170);text('Series 12・Ultra 4',335,915,28,C.sub,'center',800);text('最新2機種',335,980,46,C.text);});
+   withEnter(enter(u,t5),()=>{card(560,870,370,170,30,C.card2);text('心拍を',745,915,30,'#CDD8EC','center',800);bigNum('5','秒ごと',745,985,(u-t5)/0.35,'#FFB074',90);});
+   creditAt(CRED,925,780);},
+ // L9 Longevity tab: 7 areas
+ longevity(u,d,L){bg(u);mini(u);const t7=telHas(L,'7つ');
+   mixLine([['「ロンジェビティ」',C.acc],['タブ',C.text]],CX,385,62);
+   withEnter(enter(u,0),()=>{pic('longevity_poster',150,450,780,260,1.0,0.5,0.5);});
+   const A=['心臓','睡眠','心の健康','体の動き','代謝','聴覚','栄養'];
+   A.forEach((s,j)=>withEnter(enter(u,0.35+j*0.12),()=>{const col=j%4,row=Math.floor(j/4);const x=245+col*197-(row?-98:0),y=780+row*110;pill(s,x,y,34,['#E8384F','#5856D6','#30B0C7','#FF9500','#34C759','#007AFF','#AF52DE'][j]);},10));
+   if(u>t7)stamp('7分野',CX,990,(u-t7)/0.3,C.acc,56,-0.04);
+   creditAt(CRED,925,700);},
+ // L10 Health Age
+ healthage(u,d,L){bg(u);mini(u);const tc=telHas(L,'実年齢');
+   mixLine([['中心は',C.text],['「ヘルス年齢」',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{const z=1.0+0.05*u/d;pic('healthage_poster',150,450,400,590,z*1.0,0.5,0.25);});
+   withEnter(enter(u,0.3),()=>{card(575,450,355,330);text('もとになる記録',752,500,28,C.sub,'center',800);
+     ['最大酸素摂取量','安静時の心拍','睡眠','心拍の変動'].forEach((s,j)=>text(s,752,555+j*52,30,C.text,'center',900));text('＋血液検査も追加可',752,758,28,C.brand,'center',900);});
+   withEnter(enter(u,tc),()=>{card(575,805,355,235,30,C.card2);text('例',610,840,24,'#CDD8EC','left',800);
+     text('ヘルス年齢 26.1歳',752,880,32,'#FFFFFF','center',900);text('実年齢 30歳',752,935,32,'#CDD8EC','center',900);text('3.9歳 若い',752,1000,46,'#FFB074');});
+   creditAt(CRED,515,1025);},
+ // L11 add blood tests
+ lab(u,d,L){bg(u);mini(u);
+   mixLine([['血液検査',C.acc],['も足せる',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,330);tube(300,615,110,'#C0392B');tube(400,630,90,'#8E44AD');
+     text('A1c',680,560,70,C.brand);text('（血糖の目安）',680,630,30,C.sub,'center',800);text('LDLコレステロール',680,710,44,C.text);});
+   withEnter(enter(u,0.6),()=>{card(150,810,780,230,30,C.card2);text('米国では',CX,860,30,'#CDD8EC','center',800);
+     text('アプリから検査を予約',CX,925,46,'#FFFFFF');text('50項目超・119ドル（Quest）',CX,995,34,'#FFB074','center',900);});},
+ // L12 movement test with the camera, nothing saved
+ movement(u,d,L){bg(u);mini(u);const tv=telHas(L,'動画');
+   mixLine([['カメラで',C.text],['体を測る',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,330);const poses=['reach','squat','stand'];const p=poses[Math.floor(u/0.9)%3];
+     figure(360,660,70,p,C.brand);g.save();g.translate(640,735);g.rotate(-0.25);rrect(-40,-75,80,150,16,'#16213A');rrect(-32,-66,64,132,12,'#4A5875');g.restore();
+     g.save();g.globalAlpha*=0.35+0.25*Math.sin(u*6);g.fillStyle=C.brand;g.beginPath();g.moveTo(625,705);g.lineTo(420,500);g.lineTo(300,780);g.closePath();g.fill();g.restore();
+     text('家で・機材なし',800,520,30,C.sub,'center',800);watchIcon(820,640,48,C.brand);text('Watchで心拍',820,725,26,C.sub,'center',800);});
+   const M=['柔軟性','筋力','バランス','最大酸素摂取量'];
+   M.forEach((s,j)=>withEnter(enter(u,0.4+j*0.25),()=>{const x=j<3?150+j*265:150,w=j<3?250:780,y=j<3?815:900;if(j<3){rrect(x,y,w,70,22,C.card);text(s,x+w/2,y+36,36,C.text);}else{rrect(x,y,w,70,22,C.card);text(s+'（VO2 max）',CX,y+36,36,C.text);}},10));
+   withEnter(enter(u,tv),()=>{rrect(150,990,780,80,22,C.card2);lockIcon(215,1027,40,'#FFFFFF');text('動画は記録も保存もされない',575,1030,36,'#FFFFFF','center',900);},10);},
+ // L13 but: Apple Watch needed
+ twist(u,d,L){bg(u);mini(u);const tr=telHas(L,'準備度');
+   const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
+   withEnter(enter(u,0.3),()=>{card(150,480,780,260);watchIcon(260,610,70,'#16213A');text('ヘルス年齢',590,560,44,C.text);text('Apple Watchが必須',590,640,50,C.warn);text('iPhoneだけでは出ない',590,705,30,C.sub,'center',800);});
+   withEnter(enter(u,tr),()=>{card(150,770,780,190);text('準備度',300,865,48,C.text);text('Series 12・Ultra 4だけ',650,865,44,C.warn);});
+   withEnter(enter(u,tr+0.5),()=>{rrect(150,985,780,70,22,C.card2);text('アプリはApple Intelligence対応のiPhoneで',CX,1021,30,'#FFFFFF','center',800);},10);},
+ // L14 Japanese: 10 languages, free, this year
+ japan(u,d,L){bg(u);mini(u);const t10=telHas(L,'10言語'),ty=telHas(L,'年内');
+   mixLine([['日本語',C.acc],['にも対応',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{pic('lang',150,450,780,330,1.0,0.5,0.5);});
+   withEnter(enter(u,t10),()=>{card(150,810,380,230);text('日本語を含む',340,860,32,C.sub,'center',800);bigNum('10','言語',340,960,(u-t10)/0.35,C.acc,120);});
+   withEnter(enter(u,ty),()=>{card(550,810,380,230,30,C.card2);text('一般向けは',740,860,32,'#CDD8EC','center',800);text('年内・無料',740,935,56,'#FFFFFF');text('日付は未発表',740,1000,28,'#FFB074','center',800);});
+   creditAt(CRED,925,770);},
+ // L15 verdict
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);drawChar(CUR,18,510,1044,1856);const t2=telHas(L,'健康');
+   const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
+   if(u>0.1){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+     text('これまで',0,-60,36,'#CDD8EC','center',800);text('記録帳',0,12,66,'#FFFFFF');text('数字を見るだけ',0,78,30,'#CDD8EC','center',800);g.restore();}
+   if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+     text('これから',0,-60,36,C.buyInk,'center',800);text('健康のコーチ',0,12,58,C.buyInk);text('AIが毎日アドバイス',0,78,30,C.buyInk,'center',800);g.restore();}},
+
+ logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
+   if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
+   text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
+};
+window.render=async function(t){
+  CUR=await charImg(Math.round(origT(t)*P.fps));
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
+  const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
+  BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
+  S[L.scene](u,d,L);g.restore();g.restore();
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
+  const BIG=['intro','verdict'];
+  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
+  else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),L.scene==='twist');}
+};
+</script></body></html>
