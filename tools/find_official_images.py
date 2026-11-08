@@ -293,7 +293,7 @@ def main():
     extra = json.load(open(a.extra, encoding="utf-8")) if a.extra and os.path.exists(a.extra) else {}
     dates = [d.strip() for d in a.dates.split(",") if d.strip()]
     if dates == ["all"]:
-        dates = sorted(os.path.basename(f)[:10] for f in glob.glob("data/20??-??-??.json"))
+        dates = sorted(os.path.basename(f)[:-5] for f in glob.glob("data/20*.json") if re.fullmatch(r"20\d\d-\d\d-\d\d(-am|-pm)?\.json", os.path.basename(f)))
     stories = []
     for d in dates:
         p = f"data/{d}.json"

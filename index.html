@@ -55,7 +55,7 @@ button{font:inherit;color:inherit}
 header.mast{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 .mast .wrap{padding-block:12px 10px;display:grid;gap:10px}
 .mast-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-family:var(--display);font-weight:400;font-size:26px;line-height:1;letter-spacing:.02em;margin:0;display:flex;align-items:center;gap:8px}
+.logo{font-family:var(--display);font-weight:400;font-size:26px;line-height:1;letter-spacing:.02em;margin:0;display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0}
 .logo a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:8px}
 .logo .lamp{width:14px;height:14px;border-radius:50%;background:var(--lamp);box-shadow:0 0 0 4px color-mix(in srgb,var(--lamp) 25%,transparent)}
 .mast-right{display:flex;align-items:center;gap:6px}
@@ -326,7 +326,7 @@ main{overflow-x:hidden}
     <div class="mast-row">
       <h1 class="logo"><a href="./" id="home" aria-label="マイ夕刊（最新の号のトップへ）"><span class="lamp" aria-hidden="true"></span>マイ夕刊</a></h1>
       <div class="mast-right">
-        <div class="edition" id="edition"><b>読み込み中</b>毎日夕方5時半ごろ更新</div>
+        <div class="edition" id="edition"><b>読み込み中</b>朝7時・夕方5時半ごろ更新</div>
         <button class="reload" id="reload" aria-label="最新の号を読み込む"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></button>
       </div>
     </div>
@@ -413,6 +413,11 @@ main{overflow-x:hidden}
     return `${+m[2]}月${+m[3]}日（${WD[dt.getDay()]}）`;
   }
   function shortDate(d){ const m=/^\d{4}-(\d{2})-(\d{2})/.exec(d||""); return m?`${+m[1]}/${+m[2]}`:(d||""); }
+  // editions: YYYY-MM-DD-am (朝刊, 7:00) / YYYY-MM-DD-pm (夕刊, 17:30); old ones are plain YYYY-MM-DD
+  const SLOT = {am:"朝刊", pm:"夕刊"};
+  function slotOf(d){ const m=/-(am|pm)$/.exec(d||""); return m?m[1]:""; }
+  function edName(d){ return slotOf(d) ? `${dateLabel(d)}の${SLOT[slotOf(d)]}` : `${dateLabel(d)}の号`; }
+  function edShort(d){ return shortDate(d) + (slotOf(d) ? (slotOf(d)==="am"?" 朝":" 夕") : ""); }
   function catOf(a){ const c = LEGACY[a.category] || a.category; return CATS[c] && c!=="all" ? c : "other"; }
   function creditText(img){
     if(!img) return "";
@@ -544,7 +549,7 @@ main{overflow-x:hidden}
     }
   })();
   function renderEditionHead(ed){
-    editionEl.replaceChildren(el("b",{text: ed ? `${dateLabel(ed.date)}の号` : "まだ届いていません"}), ed && editions[0] && ed.date!==editions[0].date ? "過去の号を表示中" : "毎日夕方5時半ごろ更新");
+    editionEl.replaceChildren(el("b",{text: ed ? edName(ed.date) : "まだ届いていません"}), ed && editions[0] && ed.date!==editions[0].date ? "過去の号を表示中" : "朝7時・夕方5時半ごろ更新");
   }
 
   function renderList(){
@@ -604,7 +609,7 @@ main{overflow-x:hidden}
       frag.append(el("div",{class:"section-h",text:"過去の号"}));
       const bi = el("div",{class:"back-issues"});
       for(const e of editions){
-        bi.append(el("button",{"aria-current":String(e.date===ed.date),onclick:()=>{currentDate=e.date; render(); window.scrollTo(0,0);}}, shortDate(e.date)+(e.date===editions[0].date?"（最新）":"")));
+        bi.append(el("button",{"aria-current":String(e.date===ed.date),onclick:()=>{currentDate=e.date; render(); window.scrollTo(0,0);}}, edShort(e.date)+(e.date===editions[0].date?"（最新）":"")));
       }
       frag.append(bi);
     }
@@ -826,7 +831,7 @@ main{overflow-x:hidden}
       list.append(el("div",{class:"section-h",text:"過去の号"}));
       const bi = el("div",{class:"back-issues"});
       for(const e of editions){
-        bi.append(el("button",{"aria-current":String(e.date===ed.date),onclick:()=>{ currentDate=e.date; history.replaceState(null,"",location.pathname+location.search); render(); }}, shortDate(e.date)+(e.date===editions[0].date?"（最新）":"")));
+        bi.append(el("button",{"aria-current":String(e.date===ed.date),onclick:()=>{ currentDate=e.date; history.replaceState(null,"",location.pathname+location.search); render(); }}, edShort(e.date)+(e.date===editions[0].date?"（最新）":"")));
       }
       list.append(bi);
     }
@@ -933,7 +938,7 @@ main{overflow-x:hidden}
     reloadBtn.classList.add("spin");
     try{
       const idx = await getJSON("data/index.json");
-      const dates = (Array.isArray(idx.editions)?idx.editions:[]).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)).sort().reverse().slice(0,14);
+      const dates = (Array.isArray(idx.editions)?idx.editions:[]).filter(d=>/^\d{4}-\d{2}-\d{2}(-am|-pm)?$/.test(d)).sort().reverse().slice(0,20);
       const old = new Map(editions.map(e=>[e.date,e]));
       editions = dates.map(d=> old.get(d) && old.get(d).articles ? old.get(d) : {date:d});
       if(currentDate && !dates.includes(currentDate)) currentDate = null;

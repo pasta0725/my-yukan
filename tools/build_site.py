@@ -51,13 +51,19 @@ def public_img(x):
 def cat_of(a):
     c = LEGACY.get(a.get("category"), a.get("category"))
     return c if c in CATS else "other"
+SLOTS = {"am": "朝刊", "pm": "夕刊"}  # editions: YYYY-MM-DD-am (7:00) / YYYY-MM-DD-pm (17:30); old ones are plain YYYY-MM-DD
 def jdate(d):
-    y, m, dd = map(int, d.split("-")); return f"{m}月{dd}日（{WD[datetime.date(y, m, dd).weekday()]}）"
+    y, m, dd = map(int, d[:10].split("-")); s = f"{m}月{dd}日（{WD[datetime.date(y, m, dd).weekday()]}）"
+    return s + (" " + SLOTS[d[11:]] if d[11:] in SLOTS else "")
+def jed(d):  # an edition's name: "11月10日（火） 朝刊" / old ones "11月8日（日）の号"
+    return jdate(d) if d[11:] in SLOTS else jdate(d) + "の号"
+def ed_time(d): return d[:10] + ("T07:00:00+09:00" if d.endswith("-am") else "T17:30:00+09:00")
+ED_FILE = re.compile(r"^20\d\d-\d\d-\d\d(-am|-pm)?\.json$")
 def url(path): return (BASE + path) if BASE else path
 
 # ---------- load all editions (newest first) ----------
 arts, editions = [], []
-for f in sorted(glob.glob(os.path.join(ROOT, "data/20??-??-??.json")), reverse=True):
+for f in sorted((f for f in glob.glob(os.path.join(ROOT, "data/20*.json")) if ED_FILE.match(os.path.basename(f))), key=os.path.basename, reverse=True):
     ed = json.load(open(f, encoding="utf-8"))
     date = ed["date"]; editions.append(date)
     for a in ed["articles"]:
@@ -85,8 +91,8 @@ for f in sorted(glob.glob(os.path.join(ROOT, "data/20??-??-??.json")), reverse=T
         arts.append(a)
 # voices on X (data/x/<date>.json written later by the Grok bot): {"posts": {"<article id>": [ids or URLs]}}
 XPOSTS = {}
-for f in glob.glob(os.path.join(ROOT, "data/x/20??-??-??.json")):
-    try: XPOSTS[os.path.basename(f)[:10]] = (json.load(open(f, encoding="utf-8")).get("posts") or {})
+for f in glob.glob(os.path.join(ROOT, "data/x/20*.json")):
+    try: XPOSTS[os.path.basename(f)[:-5]] = (json.load(open(f, encoding="utf-8")).get("posts") or {})
     except Exception: pass
 for a in arts:
     ids = [str(x) for x in (a.get("x_posts") or [])]
@@ -170,7 +176,7 @@ def row(a, show_date=False):
 
 def side(counts):
     # bottom band (no category list: categories live only in the top bar)
-    days = "".join(f'<li><a href="/date/{d}/">{E(jdate(d))}</a></li>' for d in editions[:14])
+    days = "".join(f'<li><a href="/date/{d}/">{E(jdate(d))}</a></li>' for d in editions[:20])
     return (f'<aside class="side"><a class="yt" href="{E(CFG["youtube"])}"><b>星餓りなのショート動画</b><span>毎日1本、ニュースを1分で。YouTubeで見る</span></a>'
             f'<div class="days"><h3>日付で読む</h3><ul>{days}</ul></div></aside>')
 
@@ -210,7 +216,7 @@ more_picks = "".join(row(a) for a in pk[1:])
 rest = [a for a in today if a not in pk]
 home = (hero + pick_html + '<div class="cols"><div>'
         + (f'<div class="sec-h"><h2>{E(jdate(latest))}のニュース</h2><span>{len(today)}本</span></div><ul class="rows">' + more_picks + "".join(row(a) for a in rest) + "</ul>" if latest else "")
-        + (f'<p><a class="btn" href="/date/{editions[1]}/">前の日のニュースを読む</a></p>' if len(editions) > 1 else "")
+        + (f'<p><a class="btn" href="/date/{editions[1]}/">前の号のニュースを読む</a></p>' if len(editions) > 1 else "")
         + '</div>' + side(counts) + '</div>')
 write("/", page(NAME, CFG["description"], home, "/", og_img=url("/assets/og.jpg")))
 
@@ -223,7 +229,7 @@ for k, (lab, _, var) in CATS.items():
                   '<img src="/assets/future-banner.webp" alt="宇宙服のヘルメットをかぶった星餓りなと、レトロなロケットの絵" width="1500" height="500" fetchpriority="high"></picture>'
                   f'<div class="retro-copy"><h1>宇宙・未来技術</h1><p>ロケット、人工衛星、自動運転、ロボット、量子コンピューター。未来がいつ暮らしに届くのかを追いかけます。</p></div></section>')
     body = (banner + f'<div class="cols"><div><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}{"の記事" if k == "future" else ""}</h2><span>{len(items)}本</span></div>'
-            f'<ul class="rows">' + ("".join(row(a, True) for a in items[:200]) or '<li class="row empty"><p>この分野の記事はまだありません。毎日夕方に増えていきます。</p></li>') + '</ul></div>' + side(counts) + '</div>')
+            f'<ul class="rows">' + ("".join(row(a, True) for a in items[:200]) or '<li class="row empty"><p>この分野の記事はまだありません。毎日、朝と夕方に増えていきます。</p></li>') + '</ul></div>' + side(counts) + '</div>')
     write(f"/category/{SLUG[k]}/", page(f"{lab}のニュース", f"{lab}の最新ニュースを、星餓りなの見方つきでまとめています。", body, f"/category/{SLUG[k]}/", active=k,
                                         extra_head=RETRO_FONT if k == "future" else ""))
 
@@ -231,9 +237,9 @@ for k, (lab, _, var) in CATS.items():
 for i, d in enumerate(editions):
     items = [a for a in arts if a["_date"] == d]
     nav = ""
-    if i + 1 < len(editions): nav += f'<a class="btn" href="/date/{editions[i+1]}/">前の日</a> '
-    if i > 0: nav += f'<a class="btn" href="/date/{editions[i-1]}/">次の日</a>'
-    body = (f'<div class="cols"><div><div class="sec-h"><h2>{E(jdate(d))}の号</h2><span>{len(items)}本</span></div>'
+    if i + 1 < len(editions): nav += f'<a class="btn" href="/date/{editions[i+1]}/">前の号</a> '
+    if i > 0: nav += f'<a class="btn" href="/date/{editions[i-1]}/">次の号</a>'
+    body = (f'<div class="cols"><div><div class="sec-h"><h2>{E(jed(d))}</h2><span>{len(items)}本</span></div>'
             f'<ul class="rows">{"".join(row(a) for a in items)}</ul><p>{nav}</p></div>' + side(counts) + '</div>')
     write(f"/date/{d}/", page(f"{jdate(d)}のITニュース", f"{jdate(d)}のITニュース{len(items)}本。", body, f"/date/{d}/"))
 
@@ -271,13 +277,13 @@ for a in arts:
     more = (f'<section class="more"><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}のほかのニュース</h2></div><ul class="rows">'
             + "".join(row(x, True) for x in same) + "</ul></section>") if same else ""
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a.get("summary", ""),
-          "datePublished": a["_date"], "dateModified": a["_date"], "articleSection": lab,
+          "datePublished": ed_time(a["_date"]), "dateModified": ed_time(a["_date"]), "articleSection": lab,
           "author": {"@type": "Organization", "name": NAME}, "publisher": {"@type": "Organization", "name": NAME}}
     if a["_img"]: ld["image"] = [a["_img"]["src"]]
     if BASE: ld["mainEntityOfPage"] = url(a["_path"])
     band = (f'<div class="retro-band">{ORBIT}<span>宇宙・未来技術</span></div>' if c == "future" else "")
     body = (f'<article class="art{" future" if c == "future" else ""}" style="--c:var({var})">{band}<div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
-            f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span>{E(jdate(a["_date"]))}の号</span><span>出典：{E(a.get("source_name"))}</span></div>'
+            f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span>{E(jed(a["_date"]))}</span><span>出典：{E(a.get("source_name"))}</span></div>'
             + ('<p class="prnote"><span class="pr">PR</span>この記事には広告（アフィリエイトリンク）が含まれます。</p>' if a.get("pr") else "")
             + "".join(parts) + src + "</article>")
     day = [x for x in arts if x["_date"] == a["_date"]]
@@ -298,7 +304,7 @@ for a in arts:
 
 # static pages
 about = f'''<div class="doc"><h1>このサイトについて</h1>
-<p>{E(NAME)}は、AI、スマホやパソコン、家電、ネットサービス、ゲーム、EC、宇宙など、ITのニュースを毎日夕方にまとめて届けるサイトです。</p>
+<p>{E(NAME)}は、AI、スマホやパソコン、家電、ネットサービス、ゲーム、EC、宇宙など、ITのニュースを毎日、朝7時と夕方5時半の2回まとめて届けるサイトです。</p>
 <h2>記事の作り方</h2><p>1つのニュースにつき、公式発表と複数の報道を読み比べ、事実を整理してまとめています。記事づくりと、数字・日付・価格などの点検にはAIを活用しています。元になった記事や発表は、各記事の最後に載せています。</p>
 <h2>星餓りなについて</h2><p>星餓りなは、このサイトとYouTubeチャンネルの案内役のキャラクターです。記事の最後の「りなの見方」では、ニュースを読む人にとっての意味を、りなの目線でひとことにまとめています。</p>
 <h2>画像について</h2><p>画像は、メーカーや運営会社が公開している公式の画像を、提供元を明記して使っています。</p>
@@ -324,7 +330,7 @@ if BASE:
           + "".join(f"<url><loc>{E(url(p))}</loc></url>" for p in locs) + "</urlset>\n")
 items = "".join(f'<item><title>{E(a["title"])}</title><link>{E(url(a["_path"]))}</link><guid>{E(url(a["_path"]))}</guid>'
                 f'<description>{E(a.get("summary"))}</description><category>{E(CATS[a["_cat"]][0])}</category>'
-                f'<pubDate>{datetime.datetime.fromisoformat(a["_date"]+"T17:30:00+09:00").strftime("%a, %d %b %Y %H:%M:%S %z")}</pubDate></item>' for a in arts[:60])
+                f'<pubDate>{datetime.datetime.fromisoformat(ed_time(a["_date"])).strftime("%a, %d %b %Y %H:%M:%S %z")}</pubDate></item>' for a in arts[:60])
 write("/feed.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>{E(NAME)}</title><link>{E(url("/"))}</link>'
       f'<description>{E(CFG["description"])}</description><language>ja</language>{items}</channel></rss>\n')
 print("pages:", len(arts), "articles,", len(editions), "days → ", OUT)

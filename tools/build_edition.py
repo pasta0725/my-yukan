@@ -1,11 +1,14 @@
 """Build one day's edition from worker JSON files and update data/index.json.
-usage: python3 build_edition.py <src_dir> <YYYY-MM-DD> [drop_id ...]
+usage: python3 build_edition.py <src_dir> <edition> [drop_id ...]
+edition = YYYY-MM-DD-am (朝刊, ready at 7:00) or YYYY-MM-DD-pm (夕刊, ready at 17:30). Old editions are plain YYYY-MM-DD.
 """
 import json, glob, re, sys, datetime
 from collections import defaultdict
 
 REPO = "/home/claude/my-yukan-repo"
 SRC, DATE = sys.argv[1], sys.argv[2]
+if not re.fullmatch(r"20\d\d-\d\d-\d\d(-am|-pm)?", DATE): sys.exit("edition must be YYYY-MM-DD-am or YYYY-MM-DD-pm")
+SLOT = {"am": "朝刊", "pm": "夕刊"}.get(DATE[11:], "")
 DROP = set(sys.argv[3:])
 WD = "月火水木金土日"
 
@@ -69,14 +72,14 @@ for i in range(max(CATS.values())):
     for c in CATS:
         if i < len(by_cat[c]): arts.append(by_cat[c][i])
 
-dt = datetime.date.fromisoformat(DATE)
+dt = datetime.date.fromisoformat(DATE[:10])
 now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec="seconds")
-ed = {"date": DATE, "label": f"{dt.month}月{dt.day}日（{WD[dt.weekday()]}）の号", "updatedAt": now, "articles": arts}
+ed = {"date": DATE, "label": f"{dt.month}月{dt.day}日（{WD[dt.weekday()]}）の{SLOT or '号'}", "updatedAt": now, "articles": arts}
 json.dump(ed, open(f"{REPO}/data/{DATE}.json", "w"), ensure_ascii=False, indent=1)
-eds = sorted(set(idx.get("editions", []) + [DATE]), reverse=True)[:14]
+eds = sorted(set(idx.get("editions", []) + [DATE]), reverse=True)[:20]
 json.dump({"editions": eds, "updatedAt": now}, open(idx_path, "w"), ensure_ascii=False, indent=1)
 # fixed-URL list of today's stories, read by the Grok Bot routine that collects "Xの声"
-todo = {"date": DATE, "output_path": f"data/x/{DATE}.json",
+todo = {"date": DATE, "edition_label": ed["label"], "output_path": f"data/x/{DATE}.json",
         "articles": [{"id": a["id"], "category": a["category"], "title": a["title"], "summary": a.get("summary", ""),
                       "source_name": a.get("source_name", "")} for a in arts]}
 json.dump(todo, open(f"{REPO}/data/x-todo.json", "w"), ensure_ascii=False, indent=1)

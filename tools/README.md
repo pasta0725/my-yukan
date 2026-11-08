@@ -1,6 +1,14 @@
 # マイ夕刊の作り方（Claude用メモ）
 
-1. `git pull` して最新にする。作業フォルダ WORKDIR を作り、直近の号の source_url を `WORKDIR/used.txt` に書き出す。
+0. 号は1日2回（2026-11-10〜）：朝刊 `YYYY-MM-DD-am`（4:12開始・6:05までに push・7:00完成）と夕刊 `YYYY-MM-DD-pm`（14:22開始・16:15までに push・17:30完成）。それより前の号は `YYYY-MM-DD`。どちらも同じ予定作業の指示文で、日本時間12時より前に動いたら朝刊、後なら夕刊を作る。
+   | 時刻（朝刊／夕刊） | 作業 |
+   |---|---|
+   | 4:12 ／ 14:22 | 号づくり（Claude） |
+   | 6:10 ／ 16:20 | Xの声を集める（Grok Bot、tools/grok.md） |
+   | 6:12 ／ 16:31 | 公式画像の補充（Claude） |
+   | 6:41 ／ 17:04 | Xの声の取り込み1回目（Grok が push できなかったときのメールから） |
+   | 6:56 ／ 17:19 | Xの声の取り込み2回目と完成報告 |
+1. `git pull` して最新にする。作業フォルダ WORKDIR を作り、data/index.json の号の「source_url（タブ）見出し」を1行ずつ `WORKDIR/used.txt` に書き出す。spec.md の {EDITION} は「朝刊」か「夕刊」に置き換える。
 2. サブエージェントへの指示にサイトのURLを書かない（許可確認が出るため）。サイト名だけ伝え、URLは検索結果から辿らせる。`tools/spec.md` の {TODAY} と {WORKDIR} を置き換えた指示で、Sonnet のサブエージェント16本を並列に動かす（本数は下の表のとおり。カテゴリの範囲は spec.md の Categories）。2026-11-07 にユーザーの希望で8カテゴリに変更。
    | 担当 | カテゴリ | 担当サイト | 本数 |
    |---|---|---|---|
@@ -23,7 +31,7 @@
    | other_B | その他 | 企業・業界と半導体の注目ニュース：日経クロステック・EE Times Japan・ITmedia NEWS・Reuters、7日以内 | 4 |
    - 出力は WORKDIR/<担当名>.json（例 mobile_A.json）。build_edition.py が1日の上限（AI14・その他8・宇宙4・ほか各7）で切る。
    - ユーザーが個人的に関心のある話題（Apple・Google・Xiaomi・Anker・Dreame・任天堂・SONY・GeForce NOW・ChatGPT・Claude・Grok・Muse）は積極的に記事にする（2026-11-09）。各担当が自分のカテゴリに合うものを検索で探し、build_edition.py はこれらを優先して残し、カテゴリごとに上限を2本まで超えてよい。詳しくは spec.md の Personal-interest topics。
-3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。公式画像の補充（add_official_images.py）のあとに `python3 -I tools/place_images.py data/YYYY-MM-DD.json` で画像を本文の合間に配る（2026-11-08 ユーザーの希望）。
+3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD-am（または -pm） [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。公式画像の補充（add_official_images.py）のあとに `python3 -I tools/place_images.py data/YYYY-MM-DD.json` で画像を本文の合間に配る（2026-11-08 ユーザーの希望）。
 4. 見出し一覧を見て、同じ出来事が別ジャンルにも入っていれば id を指定して作り直す。
 5. コミットして main に push する。
 
@@ -38,10 +46,10 @@
 - 公開側のルール：ニュースサイトの写真は出さない（公式・PR TIMESの画像だけ）、Xの声は出さない、記事ごとに1ページ、sitemap.xml・feed.xml・構造化データ付き。
 - 見た目は site/style.css、画像は site/assets/（Codexで生成）、サイト名やURLは site/config.json（base_url は Cloudflare のプロジェクト名が決まったら合わせる）。
 
-## 公式画像の補充（2026-11-09〜、毎日16:31の別作業）
+## 公式画像の補充（2026-11-09〜、毎日6:12と16:31の別作業）
 号づくりの中では開けない公式ページが多く、画像ゼロの記事が多かった（11/8号は49本中41本）。そこで公開後に、GitHub の実行環境で画像を集めて足す。
-1. `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/official-images.yml/dispatches -f ref=main -f 'inputs[dates]=<日付>'`
+1. `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/official-images.yml/dispatches -f ref=main -f 'inputs[dates]=<号のID>'`
    （tools/find_official_images.py：公式画像0〜1枚の記事について、参考記事の中の公式ページへのリンクをたどり、画像を集めて候補一覧の画像 sheet_NN.jpg と candidates.json を作る。公開サイトから表示できるかも確かめる）
 2. `gh run download <実行ID> -n official-images` で取得。候補一覧を見て、記事に合う画像を選ぶ（顔が主役・ロゴだけ・無関係・ニュースサイトの画像は除く）。選んだ結果は {"記事id":[{"n":番号,"caption":"何が写っているか"}]}。
-3. 候補がなかった記事は、WebSearch だけで公式ページを探し（WebFetch は使わない）、{"記事id":["公式ページURL"]} を imgjobs/<日付>.json に置いて push、`inputs[extra]=imgjobs/<日付>.json`・`inputs[only_extra]=yes` でもう一度実行して選ぶ。
+3. 候補がなかった記事は、WebSearch だけで公式ページを探し（WebFetch は使わない）、{"記事id":["公式ページURL"]} を imgjobs/<号のID>.json に置いて push、`inputs[extra]=imgjobs/<号のID>.json`・`inputs[only_extra]=yes` でもう一度実行して選ぶ。
 4. `python3 -I tools/pick_official_images.py candidates.json picks*.json` で号に取り込み（add_official_images.py と place_images.py も自動で動く）、コミットして push。
