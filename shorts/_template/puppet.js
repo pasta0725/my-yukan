@@ -72,7 +72,9 @@
   }
   function chibi(g, x, y, w, h, t, m) {
     const a = A.chibi, im = IM.chibi; if (!im) return;
-    const sc = w / a.size[0];
+    // keep the picture's shape: fit inside the box, standing on its bottom, centred
+    const sc = Math.min(w / a.size[0], h / a.size[1]);
+    x += (w - a.size[0] * sc) / 2; y += h - a.size[1] * sc; w = a.size[0] * sc; h = a.size[1] * sc;
     const talk = m && m[1] > 0.12 ? m[1] : 0;
     const bob = -2.2 * talk + Math.sin(t * 2.1) * 0.8;      // breathing, a little up while talking
     const rot = Math.sin(t * 1.3) * 0.006;                    // gentle sway around the feet

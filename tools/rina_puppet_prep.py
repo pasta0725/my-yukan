@@ -20,9 +20,10 @@ POSES = os.path.join(ROOT, "channel", "rina_poses")
 
 # eyes = iris centres (left, right on screen); mouth = centre and width of the closed mouth line
 ASSETS = {
-    # small presenter (left-bottom): super-deformed Rina, full body
-    "chibi": {"src": os.path.join(SRC, "chibi_raw.png"), "kind": "chibi",
-              "eyes": [[360, 488], [580, 488]], "eye_box": [113, 125], "mouth": [470, 590], "mouth_w": 60, "skin_at": [470, 560]},
+    # small presenter (left-bottom): super-deformed Rina, full body, sticker style (bold outlines) — chosen by the user 2026-11-09
+    # (the first version is kept as src/chibi_v1_raw.png: eyes [[360,488],[580,488]], eye_box [113,125], mouth [470,590], w60)
+    "chibi": {"src": os.path.join(SRC, "chibi_sticker_raw.png"), "kind": "chibi",
+              "eyes": [[543, 412], [715, 412]], "eye_box": [110, 82], "mouth": [629, 490], "mouth_w": 52, "skin_at": [629, 470]},
     # big presenter (登場・最後): normal proportions, 720x1280 pose canvas
     "big_base": {"src": os.path.join(POSES, "base_green.png"), "kind": "big",
                  "eyes": [[310.6, 256], [416.9, 256]], "mouth": [363.8, 312.5], "mouth_w": 44, "skin_at": [364, 296]},
@@ -43,6 +44,7 @@ def key(path):
     r, g, b = x[..., 0], x[..., 1], x[..., 2]
     gd = g - np.maximum(r, b)
     a = np.clip(1 - (gd - 30) / 80, 0, 1)
+    a[a < 0.04] = 0  # faint noise left in the green
     g = np.minimum(g, np.maximum(r, b) + 8)  # remove the green fringe
     return np.dstack([r, g, b, a * 255])
 
@@ -96,6 +98,13 @@ def main():
         a = ASSETS[name]
         x = key(a["src"])
         info = {"kind": a["kind"]}
+        a = dict(a)
+        if a["kind"] == "chibi":
+            # trim the empty background (the page fits the whole picture into its box), anchors move with it
+            ys, xs = np.nonzero(x[..., 3] > 60); m = 8
+            l, t, r, b = int(max(0, xs.min() - m)), int(max(0, ys.min() - m)), int(min(x.shape[1], xs.max() + m + 1)), int(min(x.shape[0], ys.max() + m + 1))
+            x = x[t:b, l:r]
+            a["eyes"] = [[ex - l, ey - t] for ex, ey in a["eyes"]]; a["mouth"] = [a["mouth"][0] - l, a["mouth"][1] - t]
         if a.get("match_colour_to"):
             x, gain = colour_match(x, pics[a["match_colour_to"]]); info["colour_gain"] = [round(float(v), 3) for v in gain]
         if a.get("mouth"):
