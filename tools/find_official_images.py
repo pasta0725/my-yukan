@@ -45,7 +45,13 @@ NEWS = ("itmedia.co.jp", "impress.co.jp", "mynavi.jp", "gizmodo.jp", "nikkei.com
         "9to5google", "9to5mac", "appleinsider", "digitaltrends", "mashable", "cnbc", "fortune.com", "time.com",
         "spaceflightnow", "space.com", "nasaspaceflight", "uchubiz.com", "sorae", "itmedia.co.jp", "ledge.ai", "aismiley",
         "bcnretail.com", "av.watch", "markezine.jp", "netkeizai.com", "ryutsuu.biz", "tsuhan-shinbun", "senken.co.jp",
-        "wwdjapan.com", "fashionsnap.com")
+        "wwdjapan.com", "fashionsnap.com", "stereonet.com", "game8.jp", "biggo", "notebookcheck",
+        "interestingengineering.com", "gamebiz.jp", "newswitch.jp", "compositesworld.com", "gaming-style", "gamewith.jp",
+        "appmedia.jp", "altema.jp", "dotesports", "gamerant.com", "thurrott.com", "winaero.com", "bleepingcomputer.com",
+        "securityweek.com", "thehackernews.com", "darkreading.com", "scan.netsecurity.ne.jp", "security-next.com",
+        "cybersecurity-jp.com", "itmedia", "nordot.app", "news.yahoo", "tbsnews", "fnn.jp", "ntv.co.jp", "tv-asahi",
+        "sponichi", "oricon.co.jp", "natalie.mu", "animatetimes.com", "gamer.ne.jp", "gamespot.com", "videogameschronicle",
+        "insider-gaming", "rockpapershotgun", "pocketgamer", "androidauthority", "gsmarena.com", "phonearena", "xda-developers")
 # press-release services: their pages count as official
 PRESS = ("prtimes.jp", "atpress.ne.jp", "value-press.com", "dreamnews.jp", "newscast.jp", "businesswire.com",
          "prnewswire.com", "globenewswire.com", "kyodonewsprwire.jp")
@@ -221,7 +227,7 @@ def check_img(c):
     w, h = im.size
     if w < 500 or h < 280 or not (0.4 <= w / h <= 3.2): return None
     if im.mode not in ("RGB", "L"): im = im.convert("RGB")
-    th = im.copy(); th.thumbnail((300, 220))
+    th = im.copy(); th.thumbnail((222, 138))
     return dict(c, w=w, h=h, hash=ahash(im), thumb=th)
 
 
