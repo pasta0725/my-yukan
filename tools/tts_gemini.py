@@ -46,7 +46,7 @@ def speak(text):
             part = d["candidates"][0]["content"]["parts"][0]["inlineData"]
             return base64.b64decode(part["data"])
         except urllib.error.HTTPError as e:
-            msg = e.read().decode(errors="replace")[:300]
+            msg = e.read().decode(errors="replace")[:1500]
             if e.code in (429, 500, 502, 503, 504) and attempt < 4:
                 time.sleep(15 * (attempt + 1)); continue
             sys.exit(f"Gemini TTS error {e.code}: {msg}")
