@@ -144,6 +144,20 @@ music[stop - fade:stop] *= np.linspace(1, 0, fade); music[stop:] = 0
 envv = np.convolve(np.abs(nar), np.ones(2400) / 2400, mode="same"); music *= 1 - 0.35 * np.clip(envv * 12, 0, 1)
 mix = nar * 0.95 + music + se * 0.6
 writew(os.path.join(W, "audio.wav"), mix / max(1.0, np.abs(mix).max() / 0.98))
-plan = {"T": round(T, 3), "fps": FPS, "voice_end": round(voice_end, 3), "lines": lines, "tel": tel, "voices": voices, "fingers": spec.get("fingers")}
+# pose_at: when rina must be in the finger pose = when she starts saying the number after 「このニュース、」
+#          (end of the comma pause in the intro line). The page moves her into the pose just before it (puppet.js).
+pose_at = None
+for ln, x in zip(lines, segs):
+    if ln.get("scene") == "intro":
+        h = int(SR * 0.01); n2 = len(x) // h
+        q = 20 * np.log10(np.sqrt((x[: n2 * h].reshape(n2, h) ** 2).mean(axis=1) + 1e-12)) < -40
+        best, i = None, 0
+        while i < n2:
+            j = i
+            while j < n2 and q[j] == q[i]: j += 1
+            if q[i] and 0.15 * n2 < i < 0.85 * n2 and (best is None or j - i > best[1] - best[0]): best = (i, j)
+            i = j
+        pose_at = round(ln["start"] + (best[1] if best else n2 * 0.45) * 0.01, 3)
+plan = {"T": round(T, 3), "fps": FPS, "voice_end": round(voice_end, 3), "lines": lines, "tel": tel, "voices": voices, "fingers": spec.get("fingers"), "pose_at": pose_at}
 open(os.path.join(W, "plan.js"), "w", encoding="utf-8").write("window.PLAN=" + json.dumps(plan, ensure_ascii=False) + ";")
 print(json.dumps({"T": plan["T"], "fingers": plan["fingers"], "lines": [(l["scene"], l["start"], l["end"]) for l in lines], "telops": len(tel)}, ensure_ascii=False))

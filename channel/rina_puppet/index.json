@@ -1,0 +1,127 @@
+{
+ "assets": {
+  "chibi": {
+   "kind": "chibi",
+   "skin": [
+    254,
+    226,
+    220
+   ],
+   "eyes": [
+    [
+     360,
+     488
+    ],
+    [
+     580,
+     488
+    ]
+   ],
+   "eye_box": [
+    113,
+    125
+   ],
+   "mouth": [
+    470,
+    590
+   ],
+   "mouth_w": 60,
+   "size": [
+    941,
+    1672
+   ]
+  },
+  "big_base": {
+   "kind": "big",
+   "skin": [
+    251,
+    218,
+    220
+   ],
+   "eyes": [
+    [
+     310.6,
+     256
+    ],
+    [
+     416.9,
+     256
+    ]
+   ],
+   "mouth": [
+    363.8,
+    312.5
+   ],
+   "mouth_w": 44,
+   "size": [
+    720,
+    1280
+   ]
+  },
+  "big_finger1": {
+   "kind": "big",
+   "colour_gain": [
+    0.995,
+    1.024,
+    1.014
+   ],
+   "skin": [
+    251,
+    219,
+    222
+   ],
+   "eyes": [
+    [
+     313.8,
+     268.8
+    ],
+    [
+     420,
+     260.6
+    ]
+   ],
+   "mouth": [
+    375,
+    334
+   ],
+   "mouth_w": 46,
+   "size": [
+    720,
+    1280
+   ]
+  },
+  "big_ib_finger1_1": {
+   "kind": "between",
+   "colour_gain": [
+    0.996,
+    1.024,
+    1.026
+   ],
+   "size": [
+    720,
+    1280
+   ]
+  },
+  "big_ib_finger1_2": {
+   "kind": "between",
+   "colour_gain": [
+    0.997,
+    1.028,
+    1.025
+   ],
+   "size": [
+    720,
+    1280
+   ]
+  }
+ },
+ "transitions": {
+  "base_to_finger1": [
+   "big_base",
+   "big_ib_finger1_1",
+   "big_ib_finger1_2",
+   "big_finger1"
+  ]
+ },
+ "note": "made by tools/rina_puppet_prep.py"
+}
