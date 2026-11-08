@@ -6,7 +6,8 @@ period_pause / comma_max: the pause at 「。」 inside a line is cut to period_
            the pause at 「、」 may stay up to comma_max; short silences such as the small 「っ」 are left alone (user, 2026-11-07).
            gap is the silence between lines (each line ends with 「。」, so it is short too)
 writes <work_dir>/plan.js (window.PLAN) and <work_dir>/audio.wav
-intro line: write "say": "このニュース、{SEC}でまとめます。" ({SEC} becomes 「40秒」 or 「1分」, max 60) and put the number used for its TTS in spec "sec" (see step 2b)."""
+intro line: if channel/rina_intro/<sec>s.wav exists, add "fixed_wav": "channel/rina_intro/<sec>s.wav" to that line (its talking clip
+            channel/rina_intro/<sec>s.mp4 is reused, no new Colab run). Otherwise write "say": "このニュース、{SEC}でまとめます。" ({SEC} becomes 「40秒」 or 「1分」, max 60) and put the number used for its TTS in spec "sec" (see step 2b)."""
 import json, os, re, subprocess, sys, wave
 import numpy as np
 
@@ -66,6 +67,10 @@ def writew(p, x, sr=SR, ch=1):
 segs = []
 for i, ln in enumerate(spec["lines"], 1):
     src = os.path.join(spec["wav_dir"], f"s{i}.wav"); dst = os.path.join(W, f"l{i}.wav")
+    if ln.get("fixed_wav"):  # a stored finished line (e.g. channel/rina_intro/60s.wav, whose talking clip is reused): use as is
+        run("ffmpeg", "-v", "error", "-y", "-i", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ln["fixed_wav"]),
+            "-ac", "1", "-ar", str(SR), dst)
+        x, _ = readw(dst); segs.append(x); continue
     run("ffmpeg", "-v", "error", "-y", "-i", src, "-af",
         f"silenceremove=start_periods=1:start_threshold=-42dB:start_silence=0.02,areverse,"
         f"silenceremove=start_periods=1:start_threshold=-42dB:start_silence=0.05,areverse,atempo={speed},aresample={SR}",

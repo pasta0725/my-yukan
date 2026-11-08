@@ -48,7 +48,7 @@
 ## パソコンなしで作る道具（2026-11-09）
 - ウェブページ：.github/workflows/fetch-to-branch.yml で GitHub 側が取得し、ブランチ fetched に置く（作業中にサイトの許可確認を出さない）。公式の画像・動画は media/<名前>/urls.txt（fetch-media）。
 - サムネ：.github/workflows/codex-images.yml（頼み方の JSON を渡すと、ブランチ generated に画像が届く）。
-- 大きいりなの話す動画：.github/workflows/longcat-colab.yml（入力フォルダに jobs.json・絵・<名前>.wav、G4で約2.5秒の音声ごとに1区切り・数分）。区切り数は音声の長さに合わせる。
+- 大きいりなの話す動画：.github/workflows/longcat-colab.yml（入力フォルダに jobs.json・絵・<名前>.wav、G4で約2.5秒の音声ごとに1区切り・数分）。区切り数は音声の長さに合わせる。（作った動画から絵を作るのは tools/big_clip.py。ポーズを変えるときは --switch で途中の絵2枚をはさむ）
 
 ## りなの動かし方（2026-11-09 ユーザー決定）
 - PNGTuber方式にするのは左下の小さいデフォルメりなだけ。話す動画の生成（LongCat・Colab）を小さいりなには使わない。

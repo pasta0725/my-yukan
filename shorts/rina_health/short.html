@@ -164,8 +164,7 @@ const S={
    if(u>ta){const k=ease((u-ta)/0.4);g.save();g.globalAlpha*=k;g.strokeStyle=C.acc;g.lineWidth=8;g.beginPath();g.arc(395,612,96,0,7);g.stroke();g.restore();
      stamp('体の年齢を表示',690,560,(u-ta)/0.35,C.acc,50,-0.05);}
    sampleTag(170,1000);creditAt(CRED,925,1025);},
- intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);const pose=Puppet.transition('base_to_finger1',P.pose_at-CURT);
-   abs(()=>Puppet.big(g,pose,-90,298,1260,2240,CURT,(pose==='big_base'||pose==='big_finger1')?mouthNow():null));},
+ intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},  // big Rina = LongCat clip frames (big/intro/)
  // L2 what: announced in September
  what(u,d,L){bg(u);mini(u);const t9=telHas(L,'9月');
    mixLine([['Apple',C.brand],['の新しいヘルスケア',C.text]],CX,385,62);
@@ -270,7 +269,7 @@ const S={
    withEnter(enter(u,ty),()=>{card(550,810,380,230,30,C.card2);text('一般向けは',740,860,32,'#CDD8EC','center',800);text('年内・無料',740,935,56,'#FFFFFF');text('日付は未発表',740,1000,28,'#FFB074','center',800);});
    creditAt(CRED,925,770);},
  // L15 verdict
- verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);abs(()=>Puppet.big(g,'big_base',18,510,1044,1856,CURT,mouthNow()));const t2=telHas(L,'健康');
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,18,510,1044,1856));const t2=telHas(L,'健康');
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
    if(u>0.1){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
      text('これまで',0,-60,36,'#CDD8EC','center',800);text('記録帳',0,12,66,'#FFFFFF');text('数字を見るだけ',0,78,30,'#CDD8EC','center',800);g.restore();}
@@ -281,11 +280,14 @@ const S={
    if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
    text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
 };
+const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
+let BIGF=null;
 window.render=async function(t){
   g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
   let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
   if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
   CURI=cur;CURT=t;
+  if(['intro','verdict'].includes(P.lines[cur].scene)){let k=Math.floor(Math.max(0,t-P.lines[cur].start)*30);let im=await bigImg(P.lines[cur].scene,k);while(!im&&k>0){k--;im=await bigImg(P.lines[cur].scene,k);}BIGF=im;}
   const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
   g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
   BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
