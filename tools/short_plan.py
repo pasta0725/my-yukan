@@ -50,8 +50,8 @@ def squeeze(x, say, period=0.04, comma_max=0.30, min_pause=0.14, thr_db=-40, win
     out, pos = [], 0
     for a, b, kind in runs:
         keep = int((period if kind == "period" else min(comma_max, (b - a) * win)) / win)
-        m = (a + b) // 2
-        out.append(x[pos * h: (m - keep // 2) * h]); pos = m - keep // 2 + keep
+        k0 = (a + b) // 2 - keep // 2                      # keep `keep` windows in the middle of the pause, cut the rest
+        out.append(x[pos * h: a * h]); out.append(x[k0 * h: (k0 + keep) * h]); pos = b
     out.append(x[pos * h:])
     return np.concatenate(out)
 

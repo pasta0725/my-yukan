@@ -75,8 +75,8 @@
     // keep the picture's shape: fit inside the box, standing on its bottom, centred
     const sc = Math.min(w / a.size[0], h / a.size[1]);
     x += (w - a.size[0] * sc) / 2; y += h - a.size[1] * sc; w = a.size[0] * sc; h = a.size[1] * sc;
-    const talk = m && m[1] > 0.12 ? m[1] : 0;
-    const bob = -2.2 * talk + Math.sin(t * 2.1) * 0.8;      // breathing, a little up while talking
+    // only a slow breathing move (no bounce that follows the mouth: frame-by-frame mouth changes made her twitch, user 2026-11-09)
+    const bob = Math.sin(t * 2.0) * 1.2;
     const rot = Math.sin(t * 1.3) * 0.006;                    // gentle sway around the feet
     g.save(); g.translate(x + w / 2, y + h); g.rotate(rot); g.translate(-(x + w / 2), -(y + h) + bob);
     g.drawImage(im, x, y, w, h);
