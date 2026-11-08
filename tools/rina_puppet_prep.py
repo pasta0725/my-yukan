@@ -24,6 +24,9 @@ ASSETS = {
     # (the first version is kept as src/chibi_v1_raw.png: eyes [[360,488],[580,488]], eye_box [113,125], mouth [470,590], w60)
     "chibi": {"src": os.path.join(SRC, "chibi_sticker_raw.png"), "kind": "chibi",
               "eyes": [[543, 412], [715, 412]], "eye_box": [110, 82], "mouth": [629, 490], "mouth_w": 52, "skin_at": [629, 470]},
+    # small presenter since 2026-11-09 (user): normal proportions like the big one, sticker style (bold black outlines) — 案A
+    "small_sticker": {"src": os.path.join(SRC, "small_sticker_raw.png"), "kind": "small",
+                      "eyes": [[427, 210], [516, 210]], "eye_box": [50, 30], "mouth": [473, 256], "mouth_w": 38, "skin_at": [473, 245]},
     # big presenter (登場・最後): normal proportions, 720x1280 pose canvas
     "big_base": {"src": os.path.join(POSES, "base_green.png"), "kind": "big",
                  "eyes": [[310.6, 256], [416.9, 256]], "mouth": [363.8, 312.5], "mouth_w": 44, "skin_at": [364, 296]},
@@ -94,14 +97,14 @@ def place(x, src_eyes, dst_eyes, size=(720, 1280)):
 
 def main():
     pics, index = {}, {"assets": {}, "transitions": TRANSITIONS, "note": "made by tools/rina_puppet_prep.py"}
-    for name in ["chibi", "big_base", "big_finger1", "big_ib_finger1_1", "big_ib_finger1_2"]:
+    for name in ["chibi", "small_sticker", "big_base", "big_finger1", "big_ib_finger1_1", "big_ib_finger1_2"]:
         a = ASSETS[name]
         x = key(a["src"])
         info = {"kind": a["kind"]}
         a = dict(a)
-        if a["kind"] == "chibi":
+        if a["kind"] in ("chibi", "small"):
             # trim the empty background (the page fits the whole picture into its box), anchors move with it
-            ys, xs = np.nonzero(x[..., 3] > 60); m = 8
+            solid = x[..., 3] > 60; cs, rs = np.nonzero(solid.sum(0) > 2)[0], np.nonzero(solid.sum(1) > 2)[0]; xs, ys = cs, rs; m = 8  # ignore stray dots
             l, t, r, b = int(max(0, xs.min() - m)), int(max(0, ys.min() - m)), int(min(x.shape[1], xs.max() + m + 1)), int(min(x.shape[0], ys.max() + m + 1))
             x = x[t:b, l:r]
             a["eyes"] = [[ex - l, ey - t] for ex, ey in a["eyes"]]; a["mouth"] = [a["mouth"][0] - l, a["mouth"][1] - t]

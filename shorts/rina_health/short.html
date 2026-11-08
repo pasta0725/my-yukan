@@ -14,7 +14,7 @@ const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60
   glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
 const CX=540, MAXW=680, CAP_Y=1168;
 let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
-const CT={s:1.04,y0:360,y1:350};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const CT={s:1.12,y0:360,y1:375};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
 const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
@@ -45,7 +45,7 @@ function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.
 function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
 // small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
 let CURI=0,CURT=0;const mouthNow=()=>{const L=P.lines[CURI];return L&&L.puppet?Puppet.mouthAt(P.voices[CURI],CURT-L.start):null;};
-function mini(u){abs(()=>glow(210,1380,260,C.brand,0.22));abs(()=>Puppet.chibi(g,22,1170,380,675,CURT,mouthNow()));}  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
+function mini(u){abs(()=>glow(200,1430,280,C.brand,0.22));const a=Puppet.assets.small_sticker,s=0.8;abs(()=>Puppet.chibi(g,-40,1308,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker'));}  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
 function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
 function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
 function sampleTag(x,y){abs(()=>{});rrect(x,y-22,170,44,22,'rgba(11,18,34,0.78)');text('画面は見本',x+85,y,24,'#FFFFFF','center',800);}
@@ -72,9 +72,9 @@ function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let line
   g.restore();}
 
 // ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
-const BX=372,BY=1165,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+const BX=372,BY=1300,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
 function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
-  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+178);g.lineTo(BX-40,BY+150);g.lineTo(BX,BY+120);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+226);g.lineTo(BX-40,BY+196);g.lineTo(BX,BY+166);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
 function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big

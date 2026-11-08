@@ -70,8 +70,9 @@
       g.beginPath(); g.moveTo(x - rw * 0.85, y + rh * 0.1); g.quadraticCurveTo(x, y + rh * 0.62, x + rw * 0.85, y + rh * 0.1); g.stroke();
     }
   }
-  function chibi(g, x, y, w, h, t, m) {
-    const a = A.chibi, im = IM.chibi; if (!im) return;
+  // small presenter (lower-left). name: 'small_sticker' (normal proportions, sticker style, 2026-11-09) or 'chibi' (old)
+  function chibi(g, x, y, w, h, t, m, name) {
+    name = name || 'chibi'; const a = A[name], im = IM[name]; if (!im) return;
     // keep the picture's shape: fit inside the box, standing on its bottom, centred
     const sc = Math.min(w / a.size[0], h / a.size[1]);
     x += (w - a.size[0] * sc) / 2; y += h - a.size[1] * sc; w = a.size[0] * sc; h = a.size[1] * sc;
@@ -81,7 +82,7 @@
     g.save(); g.translate(x + w / 2, y + h); g.rotate(rot); g.translate(-(x + w / 2), -(y + h) + bob);
     g.drawImage(im, x, y, w, h);
     if (blinking(t)) closedEyes(g, a, x, y, sc);
-    drawMouth(g, a, x, y, sc, m, true);
+    drawMouth(g, a, x, y, sc, m, name === 'chibi');
     g.restore();
   }
   function big(g, name, x, y, w, h, t, m) {
