@@ -216,6 +216,8 @@ def check_img(c):
     if r is None or r.status_code != 200: return None
     ct = r.headers.get("content-type", "")
     if not ct.startswith("image/") or "svg" in ct: return None
+    # browsers refuse to show pictures marked same-origin/same-site on our site
+    if r.headers.get("cross-origin-resource-policy", "").lower() in ("same-origin", "same-site"): return None
     data = b""
     for chunk in r.iter_content(65536):
         data += chunk
