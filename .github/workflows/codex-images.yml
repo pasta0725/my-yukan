@@ -1,0 +1,56 @@
+name: codex-images
+# Makes several images with Codex (ChatGPT plan, CODEX_AUTH secret) and pushes them to the branch "generated"
+# as generated/<dir>/<name>.png, so the Claude session can read them with `git fetch origin generated`.
+# jobs: a JSON file in the repo: [{"name": "thumb1", "prompt": "...", "ref": "channel/rina_ref.png"}, ...]
+on:
+  workflow_dispatch:
+    inputs:
+      jobs: {description: "jobs json path in the repo", required: true}
+      dir: {description: "output folder name", required: true}
+permissions:
+  contents: write
+jobs:
+  img:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm i -g @openai/codex >/dev/null 2>&1 && codex --version
+      - name: auth
+        env: { CODEX_AUTH: "${{ secrets.CODEX_AUTH }}" }
+        run: |
+          test -n "$CODEX_AUTH" || { echo "CODEX_AUTH is empty"; exit 1; }
+          export CODEX_HOME="$RUNNER_TEMP/codexhome"; mkdir -p "$CODEX_HOME"
+          printf '%s' "$CODEX_AUTH" > "$CODEX_HOME/auth.json"; chmod 600 "$CODEX_HOME/auth.json"
+          printf 'cli_auth_credentials_store = "file"\n' > "$CODEX_HOME/config.toml"
+          echo "CODEX_HOME=$CODEX_HOME" >> "$GITHUB_ENV"
+      - name: generate
+        env: { JOBS: "${{ inputs.jobs }}" }
+        run: |
+          mkdir -p /tmp/out
+          n=$(python3 -c "import json,os;print(len(json.load(open(os.environ['JOBS']))))")
+          for i in $(seq 0 $((n-1))); do
+            NAME=$(python3 -c "import json,os;print(json.load(open(os.environ['JOBS']))[$i]['name'])")
+            P=$(python3 -c "import json,os;print(json.load(open(os.environ['JOBS']))[$i]['prompt'])")
+            REF=$(python3 -c "import json,os;print(json.load(open(os.environ['JOBS']))[$i].get('ref',''))")
+            rm -rf "$CODEX_HOME/generated_images"; mkdir -p "/tmp/w$i"; cd "/tmp/w$i"
+            IMG=(); PROMPT="$P"
+            [ -n "$REF" ] && [ -f "$GITHUB_WORKSPACE/$REF" ] && IMG=(-i "$GITHUB_WORKSPACE/$REF") && PROMPT="Use the attached image as the character reference (same face, hair, outfit, colors and art style). $P"
+            timeout 600 codex exec --skip-git-repo-check -s workspace-write "\$imagegen Generate one image: $PROMPT. Save the final image as ./out.png in the current directory." "${IMG[@]}" 2>&1 | tail -5 || true
+            f=$(ls -t ./out.png "$CODEX_HOME"/generated_images/*/*.png "$CODEX_HOME"/generated_images/*.png 2>/dev/null | head -1)
+            [ -n "$f" ] && cp "$f" "/tmp/out/$NAME.png" || echo "no image for $NAME"
+            cd "$GITHUB_WORKSPACE"
+          done
+          ls -la /tmp/out
+      - name: push to branch generated
+        env: { DIR: "${{ inputs.dir }}" }
+        run: |
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin generated; then git checkout -q -B generated origin/generated; else git checkout -q --orphan generated; fi
+          mkdir -p "generated/$DIR"; cp /tmp/out/*.png "generated/$DIR/" 2>/dev/null || true
+          git add generated; git commit -qm "generated $DIR" || true
+          git push -q origin generated

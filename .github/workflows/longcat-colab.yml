@@ -1,0 +1,56 @@
+name: longcat-colab
+# Makes the presenter talk with LongCat-Video-Avatar 1.5 on a Colab GPU (COLAB_ADC secret, Google AI Pro compute units).
+# input dir = a folder in the repo with: jobs.json ([[name, segments, res, image, extra_prompt], ...]), the images and <name>.wav,
+# and optionally prompt.txt. Clips are pushed to the branch "generated" as generated/<dir>/<name>.mp4.
+on:
+  workflow_dispatch:
+    inputs:
+      dir: {description: "input folder in the repo (e.g. shorts/rina_health/longcat)", required: true}
+      gpu: {description: "A100 / G4 / L4", default: "G4"}
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q google-colab-cli && colab version
+      - name: run on Colab
+        env:
+          COLAB_ADC: ${{ secrets.COLAB_ADC }}
+          GPU: ${{ inputs.gpu }}
+          DIR: ${{ inputs.dir }}
+        run: |
+          printf '%s' "$COLAB_ADC" > "$RUNNER_TEMP/adc.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
+          C="colab --auth=adc"
+          $C usage || true
+          $C new -s lc --gpu $GPU
+          trap '$C usage || true; $C stop -s lc || true' EXIT
+          echo 'import os; os.makedirs("/content/in", exist_ok=True); print("ready")' | $C exec -s lc --timeout 0
+          for f in "$DIR"/*; do $C upload -s lc "$f" "/content/in/$(basename "$f")"; done
+          $C exec -s lc --timeout 0 -f tools/colab_longcat_remote.py
+          echo 'import glob,shutil,os
+          for d in glob.glob("/content/out/*/"):
+              v=sorted(glob.glob(d+"**/*.mp4",recursive=True), key=os.path.getmtime)
+              if v: shutil.copy(v[-1], d.rstrip("/")+".mp4"); print(d, v[-1])' | $C exec -s lc --timeout 0
+          mkdir -p /tmp/out
+          for n in $(python3 -c "import json,os;print(' '.join(j[0] for j in json.load(open(os.environ['DIR']+'/jobs.json'))))"); do
+            $C download -s lc /content/out/$n.mp4 /tmp/out/$n.mp4 || echo "no clip $n"
+          done
+          ls -la /tmp/out
+      - name: push to branch generated
+        if: always()
+        env: { DIR: "${{ inputs.dir }}" }
+        run: |
+          N=$(basename "$(dirname "$DIR")")_$(basename "$DIR")
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin generated; then git checkout -q -B generated origin/generated; else git checkout -q --orphan generated; fi
+          mkdir -p "generated/$N"; cp /tmp/out/*.mp4 "generated/$N/" 2>/dev/null || true
+          git add generated; git commit -qm "longcat $N" || true
+          git push -q origin generated
