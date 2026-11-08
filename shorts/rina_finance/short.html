@@ -187,16 +187,14 @@ const S={
    if(u>tt){const k=ease((u-tt)/0.4);g.save();g.globalAlpha*=k*0.85;g.strokeStyle=C.acc;g.lineWidth=7;g.beginPath();g.roundRect(150,735,780,210,16);g.stroke();g.restore();
      stamp('項目ごとに合計',CX,1010,(u-tt)/0.35,C.acc,46,-0.03);}
    creditAt('出典：Anthropic',935,935);},
- // L7 official example numbers as bars
- numbers(u,d,L){bg(u);mini(u);const tf=telHas(L,'飲食');
-   mixLine([['公式の例',C.sub],['（1カ月）',C.text]],CX,385,60);
-   withEnter(enter(u,0),()=>{card(150,450,780,600);text('支出の合計',190,515,34,C.sub,'left',800);text('$4,309.37',900,515,56,C.text,'right',900);
-     const rows=[['家賃・光熱費',2339.51,'$2,339.51'],['飲食',1024.51,'$1,024.51'],['買い物',322.85,'$322.85']];
-     rows.forEach(([n,v,s],j)=>{const y=625+j*115,k=clamp((u-0.3-j*0.2)/0.5),hl=j===1&&u>tf;const w=520*v/2339.51*ease(k);
-       text(n,190,y-38,34,hl?C.acc:C.text,'left',900);rrect(190,y-10,Math.max(8,w),52,14,hl?C.acc:C.bar);text(s,190+w+16,y+16,36,hl?C.acc:C.sub,'left',900);});
-     text('※金額は公式の例（米ドル）',190,1025,24,C.sub,'left',700);});
-   if(u>tf)bigNum('1024','ドル',CX,950,(u-tf)/0.35,C.acc,110);
-   creditAt('出典：Anthropic',925,1025);},
+ // L7 follow-up questions in the same chat
+ numbers(u,d,L){bg(u);mini(u);const tc=telHas(L,'続けて');
+   mixLine([['続けて',C.text],['聞ける',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,600);text('同じ会話の中で',CX,505,32,C.sub,'center',800);});
+   const qs=[['先月より多い？',0.1],['ほかに見落としは？',tc],['給料日まで残りは？',tc+0.5]];
+   qs.forEach(([s,t0],j)=>withEnter(enter(u,t0),()=>{const y=600+j*150;g.font=`900 44px ${FONT}`;const w=g.measureText(s).width+70;rrect(900-w,y-44,w,88,44,j===0?C.acc:C.brand);text(s,900-w/2,y,44,'#FFFFFF');
+     rrect(190,y+52,300,24,12,'#E3E8F0');},18));
+   withEnter(enter(u,0.5),()=>{text('※質問の例は公式ブログより',900,1020,24,C.sub,'right',700);});},
  // L8 what is easy to miss
  detect(u,d,L){bg(u);mini(u);const tj=telHas(L,'じわじわ');
    mixLine([['見落としを',C.text],['見つける',C.acc]],CX,385,64);
@@ -207,13 +205,13 @@ const S={
      const pts=[[220,990],[360,975],[500,955],[640,930],[780,900],[880,860]];const k=clamp((u-tj)/0.8);
      g.save();g.strokeStyle=C.acc;g.lineWidth=9;g.lineCap='round';g.lineJoin='round';g.beginPath();pts.forEach(([x,y],i)=>{const kk=clamp(k*pts.length-i);if(kk>0){i?g.lineTo(x,y):g.moveTo(x,y);}});g.stroke();g.restore();
      text('1年',220,1015,26,C.sub,'center',800);text('いま',880,1015,26,C.sub,'center',800);text('毎月の料金',880,830,28,C.sub,'right',800);});},
- // L9 what's left before payday (official screen)
- payday(u,d,L){bg(u);mini(u);const tn=telHas(L,'1393');
+ // L9 what's left before payday (official example screen)
+ payday(u,d,L){bg(u);mini(u);const tn=telHas(L,'いくら');
    mixLine([['給料日まで',C.text],['あといくら？',C.acc]],CX,385,62);
-   withEnter(enter(u,0),()=>{const z=1.0+0.03*u;pic('payday',130,450,820,560,z*1.12,0.5,0.25);});
-   if(u>tn){const k=back((u-tn)/0.35);g.save();g.translate(CX,900);g.scale(k,k);rrect(-330,-95,660,190,36,C.acc);text('残り',-200,0,46,'#FFFFFF');text('1393',40,-4,104,'#FFFFFF');text('ドル',250,10,46,'#FFFFFF');g.restore();}
-   withEnter(enter(u,0.4),()=>{rrect(150,1030,380,60,20,C.card2);text('4件の引き落とし',340,1060,30,'#FFFFFF','center',900);},10);
-   creditAt('出典：Anthropic',935,1050);},
+   withEnter(enter(u,0),()=>{const z=1.0+0.03*u;pic('payday',130,450,820,560,z*1.12,0.5,1.0);});
+   if(u>tn){const k=ease((u-tn)/0.4);g.save();g.globalAlpha*=k*0.9;g.strokeStyle=C.acc;g.lineWidth=7;g.beginPath();g.roundRect(145,880,790,125,16);g.stroke();g.restore();}
+   withEnter(enter(u,0.3),()=>{rrect(150,1030,520,60,20,C.card2);text('※Anthropicが用意した例の家計',410,1060,26,'#FFFFFF','center',800);},10);
+   creditAt('出典：Anthropic',935,1060);},
  // L10 read-only
  safe(u,d,L){bg(u);mini(u);const tp=telHas(L,'パスワード');
    mixLine([['できるのは',C.text],['読むことだけ',C.acc]],CX,385,64);
@@ -227,6 +225,12 @@ const S={
    withEnter(enter(u,0),()=>{card(150,450,780,150);text('専用画面での会話',CX,525,48,C.text);});
    withEnter(enter(u,0.5),()=>{card(150,630,380,380);check(340,740,62,true);text('AIの学習に',340,870,38,C.text,'center',900);text('使われない',340,930,44,C.acc);});
    withEnter(enter(u,ta),()=>{card(550,630,380,380);check(740,740,62,true);text('広告や',740,870,38,C.text,'center',900);text('おすすめなし',740,930,44,C.acc);});},
+ // L12 rival: OpenAI did something similar in May
+ rival(u,d,L){bg(u);mini(u);const tm=telHas(L,'5月');
+   mixLine([['ライバルも',C.text],['同じ動き',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,260);text('OpenAI',CX,540,84,C.text);text('ChatGPT',CX,630,48,C.brand);});
+   if(u>tm)stamp('2026年5月',800,470,(u-tm)/0.3,C.acc,40,0.05);
+   withEnter(enter(u,tm+0.2),()=>{card(150,740,780,290);text('ChatGPTも',CX,800,38,C.sub,'center',800);text('銀行口座と連携',CX,875,60,C.text);text('米国のProプランから・Plaid経由',CX,960,32,C.sub,'center',800);});},
  // L12 but: what Claude already said stays
  twist(u,d,L){bg(u);mini(u);const tr=telHas(L,'過去'),tk=telHas(L,'自動');
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
