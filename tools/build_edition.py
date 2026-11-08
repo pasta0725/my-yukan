@@ -52,9 +52,18 @@ for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
         a["body"] = body
         by_cat[cat].append(a); seen_ids.add(a["id"]); seen_urls.add(a["source_url"])
 
+# the user's personal-interest topics (2026-11-09): kept first, and up to 2 over the daily limit
+PRIORITY = re.compile(r"Apple|iPhone|iPad|\bMac|macOS|iOS|watchOS|AirPods|Vision Pro|Siri|アップル|"
+                      r"Google|Gemini|Android|Pixel|Chrome|Gmail|グーグル|"
+                      r"Xiaomi|シャオミ|Redmi|POCO|Anker|アンカー|Soundcore|eufy|Nebula|Dreame|ドリーミー|"
+                      r"任天堂|Nintendo|Switch|ニンテンドー|SONY|Sony|ソニー|PlayStation|PS5|Xperia|"
+                      r"GeForce NOW|ジーフォース|ChatGPT|OpenAI|Claude|Anthropic|Grok|xAI|\bMuse\b")
+def prio(a): return bool(PRIORITY.search(" ".join([a.get("title", ""), a.get("summary", ""), a.get("id", "")])))
 for c in by_cat:
-    by_cat[c].sort(key=lambda a: a.get("published", ""), reverse=True)
-    by_cat[c] = by_cat[c][:CATS[c]]
+    by_cat[c].sort(key=lambda a: (prio(a), a.get("published", "")), reverse=True)
+    n = CATS[c]
+    while n < len(by_cat[c]) and n < CATS[c] + 2 and prio(by_cat[c][n]): n += 1
+    by_cat[c] = by_cat[c][:n]
 arts = []
 for i in range(max(CATS.values())):
     for c in CATS:

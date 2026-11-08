@@ -25,6 +25,13 @@ Do NOT use any article (or the same event) listed in {WORKDIR}/used.txt.
   Skip only: thin press releases, small companies' routine personnel or partnership news, rumors without a reliable source. Aim for 4 stories per worker.
 - One story goes to exactly one category. Pick the category of its main point.
 
+## Personal-interest topics (the user's request, 2026-11-09 — cover these actively)
+The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chrome, Gmail), Xiaomi, Anker (Soundcore, eufy, Nebula), Dreame, 任天堂 (Nintendo, Switch), SONY (PlayStation, Xperia, audio, cameras), GeForce NOW, ChatGPT (OpenAI), Claude (Anthropic), Grok (xAI), Muse (Meta's AI app).
+- Besides your assigned sites, do 2–4 WebSearch queries for the topics that fit your category (e.g. "<topic> 新機能", "<topic> 発表", "<topic> 発売", "<topic> アップデート", "<topic> 値下げ"). Period rules stay the same.
+- When choosing between stories, prefer these. Never drop a real news item about them for a weaker story. Still: no rumors without a reliable source, no repeats, and the category follows the story's main point.
+- Which worker looks for what: ai → ChatGPT, Claude, Grok, Gemini, Muse, Apple Intelligence/Siri / mobile → iPhone, iPad, Mac, iOS/macOS, Pixel, Android, Xiaomi phones, Xperia / gadget → Anker, Dreame, Xiaomi home products, Sony audio and cameras, Apple Watch, AirPods / service → Google services and apps, new non-AI features of the ChatGPT/Claude/Grok apps / game → Nintendo, PlayStation, GeForce NOW / ec → sales and campaigns of these brands, Apple Pay, Google Pay / future → Xiaomi cars, Sony Honda Mobility, Google Waymo / other → results, leadership, lawsuits, regulation and leaks of these companies.
+- tools/build_edition.py keeps stories about these first and allows up to 2 over the daily limit per category.
+
 ## Method
 - Search engines are weak for fresh Japanese news: open your assigned sites' new-article listing pages with WebFetch and pick stories there.
 - Open each article body with WebFetch and verify facts. Never guess. Check the real publish date in the article body.
