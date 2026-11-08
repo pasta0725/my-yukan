@@ -36,3 +36,11 @@
 - `python3 tools/build_site.py` が data/ の全号から site_dist/ に静的サイトを作る（標準ライブラリのみ）。Cloudflare Pages がプッシュのたびに実行して公開する（ビルドコマンド `python3 tools/build_site.py`、出力 `site_dist`）。
 - 公開側のルール：ニュースサイトの写真は出さない（公式・PR TIMESの画像だけ）、Xの声は出さない、記事ごとに1ページ、sitemap.xml・feed.xml・構造化データ付き。
 - 見た目は site/style.css、画像は site/assets/（Codexで生成）、サイト名やURLは site/config.json（base_url は Cloudflare のプロジェクト名が決まったら合わせる）。
+
+## 公式画像の補充（2026-11-09〜、毎日16:31の別作業）
+号づくりの中では開けない公式ページが多く、画像ゼロの記事が多かった（11/8号は49本中41本）。そこで公開後に、GitHub の実行環境で画像を集めて足す。
+1. `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/official-images.yml/dispatches -f ref=main -f 'inputs[dates]=<日付>'`
+   （tools/find_official_images.py：公式画像0〜1枚の記事について、参考記事の中の公式ページへのリンクをたどり、画像を集めて候補一覧の画像 sheet_NN.jpg と candidates.json を作る。公開サイトから表示できるかも確かめる）
+2. `gh run download <実行ID> -n official-images` で取得。候補一覧を見て、記事に合う画像を選ぶ（顔が主役・ロゴだけ・無関係・ニュースサイトの画像は除く）。選んだ結果は {"記事id":[{"n":番号,"caption":"何が写っているか"}]}。
+3. 候補がなかった記事は、WebSearch だけで公式ページを探し（WebFetch は使わない）、{"記事id":["公式ページURL"]} を imgjobs/<日付>.json に置いて push、`inputs[extra]=imgjobs/<日付>.json`・`inputs[only_extra]=yes` でもう一度実行して選ぶ。
+4. `python3 -I tools/pick_official_images.py candidates.json picks*.json` で号に取り込み（add_official_images.py と place_images.py も自動で動く）、コミットして push。
