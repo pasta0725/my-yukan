@@ -1,0 +1,1198 @@
+===== https://gigazine.net/news/20261107-harmony/
+(status 200)
+▼サーバー運営を助ける支援をお願いします
+  ▲サーバー運営を助ける支援をお願いします
+毎月
+825円(税込)
+900円
+(うち手数料33円)
+毎月
+1回
+    親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！
+    ・
+これまでGIGAZINEを支援してくれたメンバーのリスト
+2026年11月07日 18時00分
+レビュー
+無料でDiscordのようなチャット・音声・動画・ボットなどを駆使した小さなコミュニティを自分たちで運営できる「Harmony」、既存のDiscordサーバーと接続できるブリッジ機能もオープンソースでセルフホスト可能
+友人同士でチャットや音声通話を楽しんだり趣味の仲間と情報を共有したりする際には、Discordのようなコミュニティ向けサービスが便利です。こうした環境を自分たちで運営しながら既存のDiscordサーバーとも交流を続けられるようにしたのが、チャット・音声・動画・画面共有・ボットなどの機能を備えた無料のオープンソースソフトウェア「
+Harmony
+」です。
+Harmony - chat that belongs to the people in it
+https://mony.lol/
+◆Harmonyの主な機能
+Harmonyは
+Discord
+に似た画面でコミュニティを運営できる無料のオープンソースソフトウェアで、左側にチャンネル一覧、中央に会話、右側に参加者が並びます。
+コミュニティを作成するとテキスト用の「general」と音声用の「voice chat」が用意され、目的に応じてチャンネルを追加できます。
+テキストチャンネルではメッセージへの返信や絵文字のリアクションに対応。
+投稿を起点とするスレッドで話題を分けることもできます。
+さらにアンケートを作成すると選択肢ごとの投票数や割合が表示され、メンバー間で場所や日程などを決める際にも利用できます。
+◆Discordサーバーとメッセージを双方向に同期
+Harmonyの特徴が既存のDiscordサーバーと接続する「Discord Bridge」で、両サービスのテキストチャンネルを1対1で対応付けられます。
+設定画面で「Discord ブリッジ」を開くとインスタンス側のBotを使う方法や独自Botを使う方法から運用方式を選択できます。
+Discordサーバーと接続した後に両サービスのチャンネルを選び、同期方向を「双方向」にするとメッセージを双方向に中継できます。
+Discordから送信したメッセージは投稿者の名前やアイコンとともにHarmonyへ表示され、Discordから来たことを示すバッジも付きます。
+Harmonyで送信したメッセージもDiscordへ届くため、メンバーが異なるサービスから同じ会話に参加できます。
+メッセージの編集・削除やリアクション、スレッドにも対応し、それぞれの同期は設定画面で切り替えられます。
+なお音声・動画の通話はブリッジの対象外で、停止していた間の投稿も後から自動取得できません。
+◆音声・動画通話と空間オーディオ
+音声チャンネルをクリックすると通話に参加でき、マイクのほかカメラや画面共有も利用できます。
+通話画面の「空間オーディオ」を有効にすると参加者が平面上に配置され、相手のアイコンを近づけるほど声が大きく、遠ざけるほど小さく聞こえます。
+ほかにも通話中に効果音を再生する「Soundboard」やリアクション機能を備えています。
+◆異なるサーバー間で交流できる分散型ネットワーク
+Harmonyは「
+ActivityPub
+」という分散型SNSの通信規格にも対応し、異なる運営者のHarmonyインスタンス同士で交流できます。
+◆その他の機能
+このほかロールによる権限管理・迷惑投稿を制限する「AutoMod」・Bot用API・Webhook・独自絵文字・二要素認証なども備えています。
+◆Harmonyの導入方法
+・Web版でHarmonyを利用する
+ブラウザから「https://har.mony.lol/」へアクセスし「Register」のリンクをクリック。
+アカウント登録フォームの「Email」にメールアドレス、「Password」にパスワードを入力して「Create account」をクリック。
+登録したメールアドレスに送信されたメール内の承認用リンクをクリック。
+プロフィール設定フォームの「表示名」に任意の表示名を、「ユーザー名」にユーザー名を記入して「続ける」をクリック。
+おすすめのサーバーへの参加を求められますが、今回は「今はスキップ」をクリック。
+チャットの初期画面が表示されれば利用可能な状態です。
+・WindowsのDocker DesktopでDiscordブリッジを構築
+今回はWindowsに
+Docker Desktop
+と
+Git for Windows
+のGit Bashを用意した環境でDiscordブリッジを構築します。先にDiscordのBotを作成するため
+Discord Developer Portal
+にログインしサイドメニューの「アプリケーション」をクリック。
+「新しいアプリケーション」をクリック。
+アプリ作成フォームの「名前」に名前を入力し、「規約と開発者ポリシー」にチェックをして「作成」をクリック。
+アプリの管理画面になったらサイドメニューの「Bot」をクリック。
+「Message Content Intent」と「Server Members Intent」を有効化し「変更を保存」をクリック。
+トークンを取得するため「トークンをリセット」をクリック。
+リセットするか質問されるので「実行します！」をクリック。
+トークンが作成されるのでメモしておきます。
+次にHarmony側のBotを作成するためHarmony側で自分が作成したサーバーのメニューから「サーバー設定」をクリック。
+サーバー設定のサイドメニューから「Discordブリッジ」をクリックし「ブリッジをどこで動かしますか？」の選択画面で「自分で動かす」をクリック。
+「Discordボットを作成」手順の説明画面が表示されるので「トークンを用意しました」をクリック。
+「ブリッジを起動」手順の説明画面が表示されるので「Docker Compose」をクリックして内容をコピーします。
+作業フォルダーで「docker-compose.yml」ファイルを作成しコピーした内容をペーストして保存後、コンテナを起動。
+vi docker-compose.yml
+docker compose up -d
+コンテナが起動したらHarmony側の画面に戻り「ボットをDiscordサーバーに招待」をクリック。
+Discordが起動し「サーバーに追加」から同期したいサーバーを選択して「続行」をクリック。
+権限の認証画面になるので「認証」をクリック。
+Harmony側の画面に戻り「チャンネルをペアにする」で「Harmonyのチャンネル」と「Discord」のチャンネルを選択し「ペアを追加」をクリックして同期したいチャンネルを追加してから「次へ」をクリック。
+同期する内容を選択して「設定を完了」をクリック。
+Harmony側のチャット画面に戻り同期したチャンネルで文章を送信。
+Discord側のチャンネルにもメッセージが届いていることが確認できればDiscordブリッジの構築は完了です。
+・モバイルアプリ
+Android向けには
+APK
+が公開されているほか、iPhoneやiPadではSafariからWebアプリとしてホーム画面に
+追加
+して利用できます。
+◆Harmonyの評価
+ソーシャル系ニュースサイトの
+Hacker News
+ではHarmonyについて
+議論
+が行われており、2600人規模のDiscordサーバーを管理するユーザーからDiscordブリッジについて「とてもよく考えられた機能」という
+評価
+がある一方、「バグや信頼性の低下が予想される」という
+懐疑的な意見
+も投稿されています。
+Google
+優先ソースに設定
+Clipboard
+記事タイトルとURLをコピー
+X
+Facebook
+Bluesky
+Discord
+Threads
+・関連記事
+無料でDiscordの代替を目指すエンドツーエンド暗号化対応＆セルフホスティング可能なオープンソースのチャットサービス「Strafe」 - GIGAZINE
+無料でDiscordのようなチャットサーバーをセルフホストできる「Chatto」、消費リソースが極めて少なく軽快な動作でチャットデータは暗号化されているのが特徴 - GIGAZINE
+Discordの代替アプリランキング - GIGAZINE
+Discordの20億件以上のメッセージが公開APIを使ってスクレイピングされオンラインで公開されてしまう、2015年から2024年まで3167サーバー分 - GIGAZINE
+6億人以上のDiscordユーザーをスパイしていた「Spy Pet」が閉鎖される、Discordは法的措置を検討 - GIGAZINE
+Discord内で動作するゲームやアプリの開発キットが公開決定 - GIGAZINE
+Discordが2025年6月からスマホ版アプリにも動画広告を導入することを発表 - GIGAZINE
+・関連コンテンツ
+FacebookがClubhouseに対抗する音声サービス「Hotline」のベータテストを開始
+Windows・macOS・Linux・Android・iOSと連係しさまざまな操作ができセルフホスト可能なパーソナルAIアシスタント「OpenClaw」
+無料＆広告なし＆時間制限なしでビデオ会議・音声通話・ファイル共有できてセキュアなチャットアプリ「Element」
+付箋紙のようにテキスト・写真・ムービーを貼り付けて複数人で共有できる「Stormboard」
+無料で1.6km圏内の人と匿名チャットできるアプリ「Popcorn Messaging」を使ってみました
+無料でTwitterやGmailなど60種類以上のサービスをまとめて管理できるツール「Franz」を使ってみた
+無料でブラウザ上からPCやスマホでビデオ会議できる「Pop」レビュー
+Twitterアプリで「ダイレクトメッセージに写真埋め込み」など新機能が登場
+2026年11月07日 18時00分00秒
+ in  
+ソフトウェア
+,   
+レビュー
+,  Posted by darkhorse_logmk
+You can read the machine translated English article 
+Harmony is a free platform that allows y…
+.
+お邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。
+×
+いいえ、後で時間があれば
+はい、寄付します
+←
+
+===== https://mony.lol/
+(status 200)
+open source ¬∑ federated ¬∑ free
+C
+h
+a
+t
+t
+h
+a
+t
+b
+e
+l
+o
+n
+g
+s
+t
+o
+t
+h
+e
+p
+e
+o
+p
+l
+e
+i
+n
+i
+t
+.
+Servers, voice, threads and bots, the way Discord does them. Except anyone can run a server, and every server talks to every other one, across the fediverse.
+Open Harmony 
+‚Üí
+Download
+free at 
+har.mony.lol
+ ¬∑ or 
+run your own
+ with one command
+har.mony.lol
+pi.closet.net
+club.school.edu
+mastodon.social
+#playtest
+frontier collective
+fc
+ar
++
+frontier collective 
+‚åÑ
+text
+# general
+# playtest
+‚îî patch notes 
+12
+# art-drop 
+voice
+ war-room
+m
+mira
+t
+theo
+y
+you
+@har.mony.lol
+#
+playtest
+v0.9 build, feedback here
+m
+mira
+21:04
+pushed the new map to the test server, come look
+t
+theo
+21:04
+on my way. voice?
+üëç 2
+‚Üí
+theo
+ joined war-room
+21:05
+k
+kei
+@harbor.city
+21:06
+joining from my own instance, can someone drop the invite for #playtest?
+m
+mira
+21:06
+sent. works across instances, that‚Äôs the point
+üî• 3
+üêª 1
+n
+nyx
+@mastodon.social
+21:07
+boosted the patch notes from my mastodon, people are asking
+12 replies ¬∑ patch notes
++
+Message #playtest
+‚Üê drag the title bar. try the green globe
+no ads
+no tracking
+no investors
+open source
+talks to Mastodon
+self-host with one command
+export everything
+made by people
+no ads
+no tracking
+no investors
+open source
+talks to Mastodon
+self-host with one command
+export everything
+made by people
+patch notes
+#playtest ‚Ä∫ thread
+m
+mira
+21:12
+1.7.9 is out. what should we fix next?
+zoom quirks
+48%
+video previews
+30%
+bridge lag
+22%
+23 votes ¬∑ tap to vote ¬∑ ends in 2 days
+t
+‚Ü± 
+mira
+ 1.7.9 is out. what should we fix next?
+theo
+21:13
+already fixed my favourite one:
+- zoom: 125%   save button falls off screen
++ zoom: 125%   save button stays put
+üéâ 4
+üêª 2
+k
+kei
+@harbor.city
+21:15
+voted. also 
+the new map has a secret room
+**bold**
+_italic_
+`code`
+||spoiler||
+spatial audio
+war-room
+Spatial audio
+4 participants
+ Listen
+Center
+m
+152px
+mira
+t
+233px
+theo
+k
+162px
+kei@harbor.city
+you
+Spatial audio on
+Drag anyone. Closer is louder.
+network
+activitypub
+har.mony.lol
+harbor.city
+mastodon.social
+misskey.io
+pixelfed.social
+chat.mycrew.net
+address
+@you
+@har.mony.lol
+who
+where they live
+#general
+on Discord
+s
+sam
+anyone up for tonight?
+m
+mira
+Harmony
+yes! trying harmony for the voice room
+s
+sam
+ok I see you from here, nice
+k
+kei
+Harmony
+replies and reactions come across too
+bridge
+#general
+on Harmony
+s
+sam
+Discord
+anyone up for tonight?
+m
+mira
+yes! trying harmony for the voice room
+s
+sam
+Discord
+ok I see you from here, nice
+k
+kei
+replies and reactions come across too
+Set up the bridge
+ssh me@chat.mycrew.net
+a fresh Linux server
+$ curl -fsSL https://raw.githubusercontent.com/y4my4my4m/harmony/master/self-host/install.sh | bash. ‚úì docker, swap, ports 80/443. ? domain ‚Ä∫ chat.mycrew.net. ‚úì DNS points here. ‚úì certificates. ‚úì database, migrations. ? admin email ‚Ä∫ me@mycrew.net. ‚úì Harmony is up at https://chat.mycrew.net. . $ harmony doctor. [ OK ] compose [ OK ] database [ OK ] webfinger. [ OK ] memory [ OK ] migrations [ OK ] bot-gateway. [WARN] backup none yet ‚Üí harmony backup
+$ 
+curl -fsSL https://raw.githubusercontent.com/y4my4my4m/harmony/master/self-host/install.sh | bash
+‚úì docker, swap, ports 80/443
+? domain ‚Ä∫
+ chat.mycrew.net
+‚úì DNS points here
+‚úì certificates
+‚úì database, migrations
+? admin email ‚Ä∫
+ me@mycrew.net
+‚úì Harmony is up at https://chat.mycrew.net
+$ 
+harmony doctor
+[ OK ] compose     [ OK ] database    [ OK ] webfinger
+[ OK ] memory      [ OK ] migrations  [ OK ] bot-gateway
+[WARN] backup      none yet ‚Üí harmony backup
+copy
+~/bots
+ping.js
+deploy.sh
+1
+const
+ token = process.env.BOT_TOKEN
+2
+const
+ api = 
+'https://har.mony.lol/bot-gateway/api/v1'
+3
+const
+ ws = 
+new
+WebSocket
+(
+'wss://har.mony.lol/bot-gateway/gateway'
+)
+4
+const
+ send = (op, d) => ws.
+send
+(JSON.
+stringify
+({ op, d }))
+5
+let
+ seq = 
+null
+6
+7
+ws.onopen = () => 
+send
+(
+2
+, { token })
+8
+ws.onmessage = ({ data }) => {
+9
+const
+ { t, d, s } = JSON.
+parse
+(data)
+10
+  seq = s ?? seq
+11
+if
+ (t === 
+'READY'
+) 
+setInterval
+(() => 
+send
+(
+1
+, seq), d.heartbeat_interval)
+12
+if
+ (t === 
+'MESSAGE_CREATE'
+ && d.content === 
+'!ping'
+)
+13
+fetch
+(
+`${api}/channels/${d.channel_id}/messages`
+, {
+14
+method
+: 
+'POST'
+,
+15
+headers
+: { 
+Authorization
+: 
+`Bot ${token}`
+, 
+'Content-Type'
+: 
+'application/json'
+ },
+16
+body
+: JSON.
+stringify
+({ 
+content
+: 
+'Pong!'
+, 
+reply_to
+: d.id }),
+17
+    })
+18
+}
+PROMISES.md
+~/harmony
+8
+ promises
+# 
+Built for the day 
+you want to leave.
+That's how you know you can stay.
+01
+## 
+No ads. No tracking. No investors.
+There's nobody to sell your attention to and nobody asking for growth at all costs. The flagship runs on donations.
+02
+## 
+Leave whenever you like.
+Export your data, move your account to another server or to your own box, and your followers follow you there.
+03
+## 
+If we vanish, the code doesn't.
+AGPL-3.0 means anyone can run it, fork it and keep it going. Nothing is held hostage on a single company server.
+04
+## 
+Private when you need it.
+Servers can turn on end-to-end encryption, so even the person running the server cannot read the messages.
+[how privacy and encryption work]
+[read the code]
+git log --releases
+y4my4my4m/harmony
+v1.7.9
+2026-10-13
+HEAD ‚Üí master
+Zoom that behaves, video previews that fit, servers reopen where you left off, bridge bots stay online.
+v1.7.8
+2026-10-12
+Markdown fixes in the message box, wrapping code blocks, channels open at the newest message.
+v1.7.7
+2026-10-12
+Harmony posts behave like any Mastodon post across the fediverse.
+v1.7.5
+2026-10-11
+Threads across the Discord bridge, link previews for embed-fixer sites.
+v1.7.2
+2026-10-11
+Screen reader and keyboard pass, voice messages, channel and emoji fixes.
+all releases ‚Üó
+10
+ say hi
+Come hang out.
+The official server is where people ask questions, share what they built and tell us what is broken. Bring your friends, or bring your whole community.
+Open Harmony 
+‚Üí
+Join the official server
+
+===== https://docs.mony.lol/run/discord-bridge
+(status 200)
+Discord bridge 
+​
+This page is for Harmony server owners and members with the Manage Server permission who want to connect their server with a Discord server. It covers the three ways to run the bridge, the setup steps in 
+Server settings
+ → 
+Discord Bridge
+, what crosses the bridge, the Discord permissions it needs, and how to fix what it reports. Instance operators who want to offer bridges to their communities read 
+Hosting Discord bridges
+.
+What the bridge does 
+​
+A bridge links channels of one Harmony server with channels of one Discord server. You pair channels one to one; a message posted in a paired channel appears in its partner on the other side.
+On Harmony, a Discord member's message shows their Discord server nickname (else their Discord display name, else their username) and their Discord avatar, with a Discord badge next to the name.
+On Discord, a Harmony member's message is posted through a channel webhook named "Harmony Bridge" under their Harmony server nickname (else display name, else username) and avatar. Discord refuses webhook names containing "discord" or "clyde"; the bridge removes those words.
+On the Harmony side the bridge acts as a bot named 
+Discord Bridge
+, which the bridge page creates and installs on your server for you. On the Discord side it is a Discord bot: either the instance's bot or one you create.
+A server has at most one bridge, and a bridge links one Discord server. The Harmony server has to live on the instance you are signed in to.
+Choose where the bridge runs 
+​
+The first screen of the bridge page, 
+Where should the bridge run?
+, offers the options your instance supports.
+Option
+What you do
+Whose Discord bot
+Offered when
+Use 
+instance
+'s bot
+ (marked 
+Recommended
+)
+Click 
+Add to Discord
+, pick your Discord server, then pair channels
+The instance operator's
+The operator set up the instance bot
+Use your own bot, run on this instance
+Create a Discord bot, paste its token into Harmony
+Yours; the instance stores its token
+The operator turned on hosting
+Run it yourself
+Create a Discord bot, run one Docker command on a computer that stays on
+Yours; the token stays on your computer
+Always
+How to choose:
+The instance's bot
+ needs no Discord bot of your own and nothing to install. The bot carries the instance's name and avatar on Discord, and the instance operator can read every Discord channel the bot has access to.
+Your own bot, run on this instance
+ gives the bot your own name and avatar with nothing to install. The operator holds your bot token and can read any Discord channel the bot can see.
+Run it yourself
+ keeps the token away from the instance. The bridge works only while your computer is on and online.
+In every mode, messages in bridged channels pass through the Harmony instance like any other message. Whatever you choose, give the Discord bot access only to the channels you bridge.
+You need:
+on Harmony: ownership of the server, or the Manage Server permission (
+Roles and permissions
+);
+on Discord: the Manage Server permission on the Discord server you connect;
+for 
+/bridge
+ commands in Discord: the Discord Administrator permission.
+Open the bridge page 
+​
+Click the server name at the top of the channel list and choose 
+Server settings
+.
+Open 
+Discord Bridge
+. The entry appears only to members who can manage the server.
+The page polls every few seconds, so checks and channel lists update without a reload.
+Set up with the instance's bot 
+​
+On 
+Where should the bridge run?
+, click 
+Use 
+instance
+'s bot
+. The page shows the step 
+Add the bot to Discord
+.
+Click 
+Add to Discord
+. Discord opens.
+Pick your Discord server and click 
+Authorize
+. Discord sends you back to the bridge page, which says 
+Linked to
+server
+. 
+Now pair the channels.
+On 
+Pair channels
+, pair at least one channel (see 
+Pair channels
+). The first time, the Discord channels can take up to a minute to appear: the page shows 
+Connecting to
+server
+… until the instance has started your bridge.
+On 
+Options
+, choose what the bridge copies (see 
+Bridge options
+), then click 
+Finish setup
+.
+The link Harmony prepares for 
+Add to Discord
+ works once and expires after 15 minutes. In the desktop app, 
+Add to Discord
+ opens your system browser, and Discord returns you to Harmony in that browser.
+The instance's bot joins a Discord server only through this button. A Discord server can be linked to one Harmony server on the instance at a time.
+Set up with your own Discord bot 
+​
+Both own-bot options share the same six steps: 
+Create your Discord bot
+, 
+Start the bridge
+ (or 
+Give this instance the token
+), 
+Check the connection
+, 
+Choose the Discord server
+, 
+Pair channels
+ and 
+Options
+.
+Click 
+Run it myself
+ or 
+Use my own bot here
+ on the first screen to start. 
+Chose the wrong option?
+Start over
+ below the steps removes the half-made bridge so you can choose again.
+Create your Discord bot 
+​
+Open the 
+Discord Developer Portal
+ and log in.
+Click 
+New Application
+, type the name people will see in Discord, accept Discord's terms and click 
+Create
+.
+In the menu on the left, click 
+Bot
+.
+Under 
+Privileged Gateway Intents
+, set the switches as the bridge page lists them (see 
+Gateway intents
+). The page shows 
+Sync member list
+ and 
+Sync presence
+ next to the list, because these two options decide which intents you need.
+Click 
+Save Changes
+.
+Scroll up to 
+Token
+, click 
+Reset Token
+, then 
+Yes, do it!
+, and click 
+Copy
+.
+Treat the token like a password: anyone who has it controls your bot. Discord shows it only once; if you lose it, reset it again. Click 
+I have the token
+ to continue.
+Give this instance the token 
+​
+For 
+Use your own bot, run on this instance
+:
+Paste the token into 
+Discord bot token
+ and click 
+Save token
+.
+The page answers 
+Token saved. This instance starts your bridge within a minute or two.
+The instance stores the token encrypted and never shows it again. Saving a new token replaces the old one. The field recognises the other values on the Developer Portal pages: if it says 
+That's the Application ID
+, 
+That's the Public Key
+ or 
+That looks like the Client Secret
+, go back to 
+Bot
+ → 
+Reset Token
+ → 
+Copy
+.
+Start the bridge 
+​
+For 
+Run it yourself
+, the bridge is a small program in Docker on a computer that stays on: a home server, a VPS, a Raspberry Pi. On Windows or macOS install and start Docker Desktop; on Linux install Docker Engine.
+The page issues a 
+Setup code
+ (
+HB-XXXX-XXXX-XXXX
+). A code works once, expires after 30 minutes, and 
+New code
+ cancels older ones.
+Under 
+How to start the bridge
+, pick 
+Docker command
+ or 
+Docker Compose
+ and copy what the page shows. The Docker command has this shape:
+bash
+docker
+ run
+ -d
+ --name
+ harmony-discord-bridge
+ --restart
+ unless-stopped
+ -e
+ HARMONY_URL=https://chat.example.com
+ -e
+ HARMONY_SETUP_CODE=HB-XXXX-XXXX-XXXX
+ -e
+ DISCORD_TOKEN=PASTE_YOUR_DISCORD_BOT_TOKEN_HERE
+ -v
+ harmony-bridge-data:/data
+ ghcr.io/y4my4my4m/harmony-discord-bridge:latest
+Replace 
+PASTE_YOUR_DISCORD_BOT_TOKEN_HERE
+ with the token from step 1.
+Run it in a terminal on that computer (PowerShell on Windows, Terminal on macOS). With Docker Compose, save the file as 
+docker-compose.yml
+ in an empty folder and run 
+docker compose up -d
+ there.
+Click 
+I ran the command
+.
+On its first start the bridge trades the setup code for its own Harmony credentials and keeps them in the 
+harmony-bridge-data
+ volume, so later starts need no code. It starts again by itself after a reboot.
+Check the connection 
+​
+Check the connection
+ shows five checks, each 
+done
+, 
+needs attention
+ or 
+waiting
+:
+Check
+Done when
+Bridge connected
+The bridge reported in during the last 90 seconds
+Discord accepted the bot token
+The bridge logged in to Discord
+Discord intents are switched on
+Every intent your options need is on
+The bot is in your Discord server
+The bot is in at least one Discord server
+Bridge signed in to Harmony
+The bridge is connected to Harmony
+While the bot is in no Discord server, the check offers 
+Invite the bot to your Discord server
+: pick your server in the Discord window that opens and click 
+Authorize
+. The invite asks for the permissions in 
+Discord permissions
+. 
+Next
+ unlocks once every check is done.
+Choose the Discord server 
+​
+If the bot is in exactly one Discord server, that server is chosen for you. If it is in several, pick one and click 
+Bridge this server
+. 
+Server missing from the list?
+ links to the invite again.
+Once channels are paired, the choice is locked: to bridge a different Discord server, remove all channel pairs first.
+Pair channels 
+​
+Each pair links one Harmony text channel with one Discord text or announcement channel. On 
+Pair channels
+ (or 
+Paired channels
+ on the status page):
+Under 
+Add a pair
+, choose a 
+Harmony channel
+ and a 
+Discord channel
+.
+Choose a 
+Direction
+.
+Click 
+Add pair
+.
+Direction
+Effect
+Both ways
+Messages go both ways (the default)
+Discord → Harmony only
+Discord messages appear on Harmony; Harmony messages stay on Harmony
+Harmony → Discord only
+Harmony messages appear on Discord; Discord messages stay on Discord
+When channels have the same name on both sides (ignoring case, emoji and punctuation), 
+Channels with the same name
+ offers to pair them all at once, both ways.
+The Discord channel list marks channels the bot cannot use. A pair cannot be added while the bot 
+can't see
+ the Discord channel or, for a direction that posts to Discord, 
+can't post
+ there. 
+No webhook permission
+ does not block the pair, but Harmony messages then arrive under the bot's name with the author's name in bold instead of each sender's own name and picture.
+You can also pair from Discord: run 
+/bridge link
+ in the Discord channel and choose the Harmony channel from the list. 
+/bridge unlink
+ removes the pair of the channel it runs in. 
+/bridge clone-server
+ creates a Harmony channel for every Discord channel, voice channels included unless 
+include_voice
+ is false, and pairs them all (see 
+Discord commands
+).
+Private and read-only Harmony channels
+The bridge's Harmony bot follows its channel access. By default it sees only channels 
+@everyone
+ can view and posts only where 
+@everyone
+ can post. To bridge a channel hidden from 
+@everyone
+, or one where 
+@everyone
+ cannot post, open 
+Server settings
+ → 
+Advanced settings
+ → 
+Server bots
+, click 
+Channels
+ on the 
+Discord Bridge
+ bot, choose 
+Selected channels
+ and tick the channel.
+A channel with end-to-end encryption cannot be bridged: the bridge cannot read it. See 
+Privacy and security
+.
+Bridge options 
+​
+Options
+ holds five switches. Changes reach a running bridge within seconds.
+Option
+Default
+Effect
+Discord intent needed
+Sync member list
+on
+Discord members appear in this server's member list
+Server Members Intent
+Sync presence
+off
+Discord members' online status and custom status show on Harmony; only changes are sent
+Presence Intent
+Sync reactions
+on
+Emoji reactions are copied both ways
+none
+Sync edits
+on
+An edited message updates its copy on the other side
+none
+Sync deletions
+on
+A deleted message deletes its copy on the other side
+none
+Presence sync works only together with member list sync. With the instance's bot, the intents are the operator's: presence works only while the operator has turned presence on for the bot.
+What crosses the bridge 
+​
+Content
+Discord → Harmony
+Harmony → Discord
+Messages
+Yes, with the author's Discord name and avatar
+Yes, through the channel webhook as the Harmony author
+Replies
+A real reply when the original message was bridged
+A link to the original Discord message on the first line, and a mention of its author
+Threads
+A Discord thread becomes a Harmony thread, on the copy of its starting message or standalone
+A Harmony thread becomes a Discord thread, on the copy of its starting message or standalone
+Reactions
+Yes (
+Sync reactions
+)
+Yes, as one bot reaction per emoji, removed when the last Harmony user removes theirs
+Edits
+Yes (
+Sync edits
+)
+Yes (
+Sync edits
+)
+Deletions
+Yes, including bulk deletes (
+Sync deletions
+)
+Yes (
+Sync deletions
+); see below
+Files and pictures
+Linked from Discord's CDN; see 
+Attachments from Discord
+Uploaded to Discord as attachments up to 8 MB per message by default and within the Discord server's upload limit; larger files are posted as a link
+Voice messages, audio
+Play in Harmony's audio player
+As files
+Stickers
+As pictures; animated Lottie stickers as the text 
+[sticker: name]
+Not applicable
+Forwarded messages
+With an italic 
+↪ Forwarded
+ line
+Not applicable
+Custom emoji
+As the Discord emoji picture, or as the Harmony server emoji imported from it
+As Discord application emoji the bridge uploads on first use
+Mentions
+Paired channel mentions and synced role mentions become Harmony mentions; 
+@name
+ typed by hand becomes a Harmony mention
+A mentioned Discord member is pinged on Discord
+Member list
+Discord members appear in the member list (
+Sync member list
+)
+Not sent
+Presence
+Online, away, busy, offline and custom status (
+Sync presence
+)
+Not sent
+A Harmony message longer than 2000 characters, Discord's limit, is posted as several Discord messages, split at line breaks or spaces; an open code block is closed and reopened across the split.
+Thread notes:
+Threads cross the bridge on Harmony 1.7.5 or later with bridge 2.4.0 or later. The Discord bot needs 
+Create Public Threads
+ and 
+Send Messages in Threads
+.
+Threads that existed before the bridge are picked up when someone next writes in them.
+On Harmony 1.7.6 or later, the "started a thread" notice names the Discord member who started the thread.
+Deletion notes:
+Deleting a Discord member's message on Harmony, by a moderator or by AutoMod, deletes it on Discord too when the bot holds 
+Manage Messages
+ there. A bot added without that permission keeps the Discord message; add the bot again to grant it (see 
+Maintain the bridge
+).
+Deleting the Discord copy of a Harmony message does not delete the Harmony original.
+To mention a Harmony member from Discord, use the 
+/mention
+ (or 
+/m
+) command; it autocompletes Harmony users.
+What does not cross 
+​
+Messages sent while the bridge is offline. The bridge copies messages as they arrive and does not replay missed ones.
+Messages posted by Discord bots, and by Harmony bots other than the bridge itself.
+Harmony's join, leave, kick and ban notices.
+Renaming, archiving or deleting a thread.
+Audio and video in voice channels.
+Games, music and other Discord activities in presence.
+Channels with end-to-end encryption.
+Attachments from Discord 
+​
+Discord's file links expire after a while. The instance operator chooses what Harmony does with them, instance-wide: keep the Discord link (it stops working when it expires), refresh an expired link when someone views it, or copy the file into the instance's storage. Ask your instance's admin which policy applies.
+Discord permissions 
+​
+The invite links and 
+Add to Discord
+ request these Discord permissions:
+Permission
+Used for
+View Channels
+Seeing the paired channels
+Read Message History
+Reading the paired channels
+Send Messages
+Posting Harmony messages, as the bot when no webhook is available
+Manage Webhooks
+Posting each Harmony message under its author's name and avatar
+Embed Links
+Link previews and Harmony invite cards in bridged messages
+Attach Files
+Uploading Harmony files as attachments
+Add Reactions
+Copying Harmony reactions
+Manage Messages
+Deleting a Discord member's message that was deleted on Harmony
+Create Public Threads
+Starting the Discord side of a Harmony thread
+Send Messages in Threads
+Posting into bridged threads
+Use External Emojis
+Instance bot only
+Bot
+Permission integer
+Your own bot (run yourself, or on the instance)
+309774642240
+The instance's bot
+309774904384
+Both invites use the scopes 
+bot
+ and 
+applications.commands
+. To build the invite for your own bot by hand, replace 
+APPLICATION_ID
+ with the 
+Application ID
+ from 
+General Information
+:
+text
+https://discord.com/oauth2/authorize?client_id=APPLICATION_ID&permissions=309774642240&scope=bot+applications.commands
+In Discord, a channel's own permission settings can take these away again. The bridge page lists each channel where the bot cannot see, post or manage webhooks, with the fix.
+Gateway intents 
+​
+Intent (Developer Portal name)
+Needed
+Message Content Intent
+Always; without it the bridge cannot read what people write
+Server Members Intent
+While 
+Sync member list
+ is on
+Presence Intent
+While 
+Sync presence
+ is on
+These are switched on in the Developer Portal under 
+Bot
+ → 
+Privileged Gateway Intents
+. With the instance's bot, the operator manages them.
+Discord commands 
+​
+The bridge registers these commands in the bridged Discord server. 
+/bridge
+ is visible to, and works for, members with the Discord Administrator permission only.
+Command
+Effect
+/mention
+, 
+/m
+Mention up to five Harmony users with a message; autocompletes Harmony users
+/bridge status
+Paired channels and current problems, in plain language
+/bridge link
+Pair this Discord channel with a Harmony channel chosen from the list; optional direction
+/bridge unlink
+Remove this channel's pair
+/bridge clone-server
+Create a Harmony channel for every Discord channel and pair them; never overwrites; 
+dry_run
+, 
+include_voice
+ and 
+clone_roles
+ options
+/bridge sync-order
+Copy Discord's channel and category order to Harmony
+/bridge sync-perms
+Copy Discord roles and the permissions of every paired channel to Harmony
+/bridge import-emojis
+Copy the Discord server's custom emoji into the Harmony server under the same names; a rerun adds only new ones (Harmony 1.6.25 or later)
+/bridge link
+ offers only Harmony channels the bridge's Harmony bot can see. An imported emoji is one emoji on both sides, so reactions with it count together; a Harmony emoji that already has the same name is linked instead of duplicated.
+Moderation and spam 
+​
+Harmony's AutoMod treats each Discord author as a separate person, whatever the server's bot exemption says:
+message flood, duplicate spam and mention spam rules apply to bridged messages;
+new-member rules use the Discord member's join date when the bridge reports it;
+keyword, preset, invite and link rules apply only when bots are not exempt;
+a blocked message is not posted on Harmony, and AutoMod's log and alerts name the Discord author;
+timeouts do not apply to Discord authors.
+The bridge also limits each Discord member to 8 messages per 10 seconds in a channel and 30 per minute across channels, and drops the same text sent again within 30 seconds. See 
+Moderation
+.
+Maintain the bridge 
+​
+After 
+Finish setup
+, the bridge page shows the bridge's state: 
+Bridge is online
+, 
+Bridge is online, with problems
+, 
+Bridge is offline
+ or 
+Bridge hasn't connected yet
+, with 
+Runs
+, 
+Discord server
+, 
+Discord bot
+ and 
+Bridge version
+. Below are the problems to fix, 
+Paired channels
+, 
+Options
+ and 
+Maintenance
+. 
+Show setup steps
+ opens the steps again.
+Maintenance
+ depends on the mode:
+Mode (
+Runs
+)
+Maintenance action
+What it does
+On your computer
+Move the bridge to another computer, or reinstall it
+Get a setup code
+ issues a new code and shows the command again
+On this instance
+Replace the Discord bot token
+Saves a new token; the instance restarts your bridge with it
+With this instance's Discord bot
+Re-link the bot, or link a different Discord server
+Add to Discord again
+When a bridge you run yourself starts with a new setup code, it gets new Harmony credentials and the old installation can no longer sign in; remove the old container.
+With the instance's bot, adding the bot to the same Discord server again keeps the channel pairs and grants permissions an older link lacks, such as 
+Manage Messages
+ and the thread permissions. Adding it to another Discord server moves the bridge there and removes the channel pairs; the bot leaves the old Discord server by itself within about ten minutes.
+With your own bot, 
+Invite the bot to your Discord server
+ on the status page re-invites it with the current permission set.
+Update a bridge you run yourself 
+​
+bash
+docker
+ pull
+ ghcr.io/y4my4my4m/har

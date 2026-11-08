@@ -1,0 +1,329 @@
+===== https://techcrunch.com/2026/11/06/hundreds-of-artex-ai-hacking-tools-found-publicly-exposed-to-the-web/
+(status 200)
+Security researchers have discovered hundreds of copies of a Chinese-made AI hacking tool publicly exposed to the internet for anyone to access, potentially allowing outsiders to launch cyberattacks against unsuspecting targets.
+The hacking software, called Artex, is an open source autonomous penetration testing tool, meaning software that automatically probes computer systems for weaknesses, and it’s been linked to several cyberattacks since its public release in July. As open source software, it’s free for anyone to download and run on their own servers, making it a popular tool for those who cannot access Anthropic or OpenAI’s 
+most advanced cybersecurity AI models
+ for discovering security vulnerabilities. Microsoft has 
+previously described
+ Artex as a system of AI agents that can conduct cyberattacks “from reconnaissance through data exfiltration with little needed human interaction.”
+In a 
+blog post
+, cybersecurity firm Censys, which scans the internet for exposed or vulnerable systems, said that it identified more than 800 distinct deployments of Artex that were accessible from the web without needing a password to log in.
+Silas Cutler, principal security researcher at Censys who wrote the blog post, said that not every instance of Artex is operated maliciously and many are used for authorized testers. But it’s unclear why hundreds of these Artex systems are exposed to the web, as the software does not require them to be accessible from the internet. 
+The findings underscore how even powerful hacking tools can be misconfigured to be publicly accessible by anyone, increasing the chance that someone will find and misuse them. The publicly accessible systems also expose attack tools, such as implants (hidden malicious software) used to compromise and maintain persistent access to a victim’s network.
+Security companies have linked the use of Artex to several broad-scale cyberattacks, including 
+against the Korean finance industry in September
+. Cybersecurity giant CrowdStrike attributed the attacks to a Chinese-speaking hacker who used an Artex instance in the attacks, in part because the hacker had left an “open directory” hosting the system. Censys said that its data showed the Artex instance in question had been publicly exposed for months, and appeared to contain more attack data that extended “well beyond South Korean banks,” including payment and gaming companies.
+Artex was also used in an attack on IT support giant ConnectWise 
+earlier in October
+, which allowed Chinese-linked hackers to spy on thousands of organizations whose data and files are hosted in Microsoft’s cloud. Microsoft, which has visibility into the attack, said in a blog post that the hackers used Artex to break into customers’ cloud environments and steal their data at such speed that defenders had “little time to detect and respond.”
+Many of the attacks linked to Artex involved exploiting simple vulnerabilities, such as guessing weak or known passwords, and a lack of multi-factor authentication. 
+The findings show that simple vulnerabilities, including misconfigurations, can expose both the attacker and their targets.
+Artex has since announced it would go closed-source, effectively limiting further releases for paid customers. There are still dozens of copies of Artex’s code available on code-sharing sites that can still be used in active attacks. 
+Topics
+AI
+, 
+artex
+, 
+cyberattack
+, 
+cybersecurity
+, 
+Security
+When you purchase through links in our articles, 
+we may earn a small commission
+. This doesn’t affect our editorial independence.
+			Zack Whittaker	
+Security Editor
+Zack Whittaker is the security editor at TechCrunch. He also authors the weekly cybersecurity newsletter, 
+this week in security
+. 
+He can be reached via encrypted message at zackwhittaker.1337 on Signal. You can also contact him by email, or to verify outreach, at 
+[email protected]
+. 
+View Bio 
+November 4
+Boston
+Buy One Pass, Get a Second Free
+Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner for free
+Book before the BOGO deal expires
+Register Now
+Most Popular
+Tesla will stop making the Cybertruck in 2027
+Sean O'Kane
+Claude can now analyze your spending with its new Personal Finance tool
+Aisha Malik
+Data centers are turning to old jet engines as the wait for power grows
+Aditya Mehta
+New York City’s Mamdani criticizes Madison Square Garden owner over surveillance tech
+Zack Whittaker
+Anthropic warns that it’s very close to RSI capability, aka self-building AI
+Julie Bort
+New York Times and other outlets sue web browser Brave over alleged content scraping
+Rebecca Bellan
+Ninja’s first-ever microwave just replaced two of my kitchen appliances at once
+Lauren Forristal
+
+===== https://censys.com/blog/artex-agentic-asbestos/
+(status 200)
+Executive summary
+ARTEX
+ is an open-source, LLM-driven autonomous penetration testing framework released in July 2026. In October, two threat intelligence companies attributed its use as part of threat actor operations; CrowdStrike linked it to a campaign against South Korean financial institutions, and Microsoft linked it to Storm-0940’s compromise of ConnectWise customer tenants.
+As of November 4, 2026, Censys observed 
+1,465 hosts
+ running an exposed ARTEX console. About 650 sit in two blocks of identically configured hosting, which leaves roughly 
+815
+ distinct-looking deployments. The ARTEX console does not require public-facing access, and overall global deployment is likely higher.
+155 ARTEX hosts (10.6%)
+ also run at least one other threat that Censys detects. These include other AI attack frameworks, recon platforms, tunneling tools, and C2: Vshell, Cobalt Strike, and Adaptix C2.
+Censys saw open directories on the ARTEX server named in CrowdStrike’s report starting 
+August 18, 2026
+, seven weeks before that report was published. The directories exposed exploit binaries and a 
+.claude
+ folder.
+That mistake is common: 
+32 open directories
+ run on other ARTEX hosts today, exposing post-exploitation kits, stagers, and implants.
+What is ARTEX?
+ARTEX was published on GitHub as 
+Autumn-27/ARTEX
+ on July 26, 2026, under the AGPL-3.0 license. Its developer, 
+Autumn-27
+, is also the author of 
+ScopeSentry
+, a widely used Chinese asset-discovery and vulnerability-scanning platform with more than 2,000 GitHub stars. ARTEX is best understood as an AI agent layer on top of that recon foundation. It syncs assets found by ScopeSentry’s domains, subdomains, IPs, ports, and endpoints straight into its own asset graph.
+Figure 1: Web UI of ARTEX
+Following public release, the project grew quickly, reaching an estimated 1,500-2,000 stars within ten weeks of release. On October 8, the day after CrowdStrike released a report detailing observed malicious usage, the author (
+Autumn-27
+) posted a statement on their GitHub profile, claiming they were not involved in the attacks and that ARTEX was meant for testing within authorized asset scopes. 
+Autumn-27
+ then stated that the project would go closed-source with no further releases. The repository has since been taken down, but archived copies, translations, and rebrands such as ScopeWeaver are still circulating.
+ARTEX is written in Go and uses a Next.js web console, backed by PostgreSQL. ARTEX usage starts with users defining 
+Tasks
+, which outline the scope, test accounts and goal for agents – the example shown by default is “
+What to achieve, e.g., gain admin panel access or server privileges
+”. Running tasks leverages multiple sub-agents for completing the goal.
+A 
+Planner
+ agent turns the goal into attack “intents”. 
+Worker
+ agents claim those intents, run tools (e.g., nmap, which ships in the Docker image), and write results back. An event-driven engine repeats that explore-decide-execute loop until the goal is met. ARTEX tracks two graphs: an 
+asset graph
+ of what the target looks like, and an 
+exploration graph
+ of how much of it has been tested. It also includes 
+mitmproxy
+ for traffic recording, and it works with Anthropic, OpenAI, or any OpenAI-compatible model endpoint. 
+Microsoft describes
+ it as able to run “from reconnaissance through data exfiltration” with minimal human input.
+The following is a logical diagram of ARTEX’s structure with ScopeSentry running in parallel to manage the Asset graph:
+Figure 2: Diagram of ARTEX’s workflow with ScopeSentry
+ARTEX in two campaigns
+Not every ARTEX instance is operated with malicious intent, and some of the hosts publicly exposed are likely operated by authorized testers. As with all offensive security tools, there exists the potential for malicious usage. Two notable reports were released in October 2026 that provided context into observed malicious usage. 
+South Korean finance (CrowdStrike, October 7)
+On 7 October 2026, CrowdStrike 
+reported
+ that an unattributed actor using ARTEX targeted a South Korean finance company from late September to early October. The actor was  assessed with moderate confidence to be a financially motivated Chinese speaker. The actor breached a broker-facing loan inquiry service at one bank and an employee mobile system at another, and exfiltrated data. ARTEX ran on 
+38.244.50[.]120
+ with DeepSeek v4.1-flash as its main model, which the actor likely bought through an API reseller. The actor also ran Claude Code sessions backed by GLM and Grok. CrowdStrike found the activity because the actor left open directories exposing a 
+.claude
+ folder, prompts, session histories, and ARTEX configuration files.
+CrowdStrike’s report identified an open directory exposed at 
+38.244.50[.]120:18899
+. Censys scan history for that host shows how long it had been exposed:
+Figure 3: Service history for 38.244.50[.]120
+The file names show the actor working on targets well beyond South Korean banks, including payment and gaming services. That fits CrowdStrike’s observation of broader activity tied to the same persona.
+The more useful finding for defenders is that this mistake is not unusual. During the writing of this report, Censys observed 
+32 open directories on ARTEX hosts
+. Examples:
+Host
+Exposed contents
+110.42.215[.]163:18080
+GodPotato, Invoke-TheHash / SMBExec / WMIExec, pass-the-hash scripts, MSSQL UDF DLL: a Windows lateral-movement kit
+111.68.4[.]13:18080
+A public CVE-2021-3156 (sudo “Baron Samedit”) exploit, heap dumps, and brute-force scripts
+108.165.147[.]226:8299
+Three beacon_linux_amd64 implant builds and reverse-shell scripts, on a host that also runs FRP and CyberStrikeAI
+206.187.215[.]173:8081
+c2.py, stager.c
+, and a compiled Windows stager
+181.41.194[.]136:8081
+About 18 HTA droppers, batch loaders, a 
+wpad.dat
+, and a MITM root CA private key
+203.195.243[.]103:80
+The fscan internal scanner and payload executables, next to a Vshell listener
+154.12.86[.]207:18080
+An operator’s entire home directory, including 
+.ssh
+, 
+.bash_history
+, and the ARTEX install
+Most of these directories were only active for hours to a couple of days. Between November 3 and November 5, 10 closed and 15 new ones appeared on other ARTEX hosts. Because Censys keeps scan history, the file listings remain available after the operator takes the directory down.
+Storm-0940 and ConnectWise (Microsoft, October 21)
+Microsoft 
+attributed
+ the ConnectWise Cloud Backup supply-chain compromise to Storm-0940, a China state-aligned actor active since 2021. The group used ARTEX to automate scanning, password spraying, and OAuth application abuse. It attempted sign-ins to more than 2,250 tenants, peaking at 2,900 attempts per minute, and some victims saw privileged cloud access in under three hours. Microsoft also notes it has seen multiple actors across regions using ARTEX.
+Censys ARC Perspective
+Censys detects ARTEX consoles by their page title (localized versions start with “ARTEX” followed by a space, colon, or dash) together with Next.js static assets. Censys Platform users can see them under the threat label 
+ARTEX
+ for hosts and web properties. 
+(web.endpoints.http.html_title=~"^ARTEX[ :—]" and web.endpoints.http.body: "_next/static" ) or (host.services.endpoints.http.html_title =~ "^ARTEX[ :—]" and host.services.endpoints.http.body: "_next/static")
+As of November 3, 2026, this matches 
+1,465 hosts
+.
+Measurement
+Observed
+Most common console port
+8787, the ARTEX default (1,931 endpoints), then 8790, 443, 80
+Top countries
+United States – 726 Hong Kong – 387China – 177Japan – 51Singapore – 38South Korea – 21
+Console language
+The Chinese default dominates. English, Korean, Japanese, Russian, and Portuguese localizations also appear
+Two hosting netblocks account for about 44% of hosts and merit further analysis:
+PEG Tech (AS54600): 493 hosts.
+ They share one of two identical port layouts across 13 /24 networks. 125 hosts each sit in 
+38.11.221[.]0/24
+ and 
+38.11.173[.]0/24
+.
+Yancy Limited (AS138415): 157 hosts.
+ They share an identical CyberPanel-plus-mail-server template, mostly in 
+156.234.0[.]0/16
+.
+Uniform configurations like these suggest a provisioning template rather than hundreds of individual operators. 
+Excluding them leaves about 815 ARTEX deployments.
+ Yancy Limited and Zenixcloud (22 ARTEX hosts) also hosted proxy IPs listed in CrowdStrike’s report.
+Yancy Limited (AS138415) has come up in Censys reporting before. In December 2025, we observed a surge of Cobalt Strike listeners, mostly on Yancy, that peaked at 407 new hosts in a day and dropped to zero within two weeks. We assessed them as likely “a couple of unique instances spread across hundreds of IP aliases.” The Yancy ARTEX hosts follow the same pattern: one server template repeated across many addresses. The full details connection between the two remains unclear, but in both cases a large host count likely comes down to a few real servers.
+We also see customized builds: 
+ARTEX MX
+ on four adjacent hosts at 
+104.250.149[.]210
+ – 
+104.250.149[.]210
+, plus 
+ARTEX v2 · Agent Security Workbench
+ and a handful of other renamed consoles. 
+What else runs on ARTEX hosts
+Of the 1,465 ARTEX hosts, 
+155 (10.6%)
+ carry at least one other Censys threat detection.
+Figure 4: Threats identified running on the same hosts as ARTEX
+Three patterns stand out.
+Operators stack AI attack frameworks.
+ The most common companion to ARTEX is another AI pentesting tool. CyberStrikeAI shares hosts with ARTEX on 70 hosts, and PentAGI, HexStrike AI, and RedAmon also appear. Operators appear to be using multiple agent frameworks side by side. 
+AI tooling sits next to conventional C2.
+ A small but clear set of hosts pairs ARTEX with established command-and-control and tunneling tools:
+1.14.104[.]208
+: ARTEX and PentAGI, alongside a 
+Cobalt Strike
+ teamserver on port 50050 and an 
+Adaptix C2
+ listener on 4321.
+1.14.193[.]53
+: two ARTEX consoles, 
+Vshell
+, 
+NPS
+, 
+Gophish
+, a mail server admin panel, and a page titled “SuperAgent 主监督” (“SuperAgent main supervisor”). 
+101.42.4[.]91
+: an ARTEX console on 443 and a Vshell login on 18080
+192.210.193[.]156
+: ARTEX with two Vshell listeners and an FRP server.
+45.87.53[.]3
+,
+45.87.53[.]4
+,
+45.87.53[.]6
+,
+45.87.53[.]10
+,
+45.87.53[.]14
+: five identically configured hosts, each running ARTEX, CyberStrikeAI, ARL(Asset Reconnaissance Lighthouse), and Vshell. Likely this is either a device with multiple public IPs on the same subnet or a cloned image.
+LLM access is part of the tech stack.
+ 43 ARTEX hosts also run self-hosted LLM gateway or reseller software, mainly CLIProxyAPI (19) and New API (18). The actor in CrowdStrike’s report bought DeepSeek access through a reseller. For defenders, unfamiliar LLM proxies and resellers in egress logs are worth investigating.
+Hunting ARTEX with Censys
+Console:
+ the query above, or the ARTEX / ScopeWeaver threat labels in the Censys Platform.
+Default port:
+ 8787/tcp, with 8790 and 443 common.
+Pivots:
+ look for co-located open directories, Vshell or FRP listeners, and LLM proxy software (CLIProxyAPI, New API) on the same host.
+History:
+ check scan history for mitmproxy banners and short-lived Python 
+SimpleHTTP
+ servers on high ports. They often appear before the console does.
+Indicators
+Reported by CrowdStrike and Microsoft:
+Indicators
+Context
+38.244.50[.]120
+ARTEX host and open directory (CrowdStrike)
+101.53.80[.]20
+205.214.59[.]31
+124.155.252[.]63
+154.201.79[.]246
+23.248.249[.]90
+23.158.220[.]98
+103.248.148[.]84
+203.160.133[.]172
+209.209.85[.]38
+Proxies (CrowdStrike)
+xcai[.]pro
+LLM API reseller (CrowdStrike)
+144.172.64[.]60
+144.172.64[.]99
+144.172.64[.]128
+Storm-0940 infrastructure (Microsoft)
+Censys-observed hosts referenced in this post: 
+1.14.104[.]208
+1.14.193[.]53
+101.42.4[.]91
+192.210.193[.]156
+45.87.53[.]3
+45.87.53[.]4
+45.87.53[.]6
+45.87.53[.]10
+45.87.53[.]14
+104.250.149[.]210
+104.250.149[.]211
+104.250.149[.]212
+104.250.149[.]213
+110.42.215[.]163
+111.68.4[.]13
+108.165.147[.]226
+206.187.215[.]173
+181.41.194[.]136
+203.195.243[.]103
+154.12.86[.]207
+References
+CrowdStrike, 
+Unknown Threat Actor Uses AI-Driven ARTEX to Target South Korean Finance
+Microsoft Threat Intelligence, 
+AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise
+BleepingComputer, 
+Hacker used ARTEX AI and Claude agents to target South Korean banks
+Autumn-27 GitHub profile and ARTEX statement
+ScopeSentry
+Zendot, 
+ARTEX: A Self-Hosted Autonomous Penetration Testing System Written in Go
+AUTHOR
+            Silas Cutler        
+                Principal Security Researcher            
+Silas Cutler is a Principal Security Researcher with Censys ARC where he focuses on tracking organized cyber-crime groups. Silas brings over a decade of experience investigating and responding to incidents such as Solarwinds, Shamoon, WannaCry, and other destructive attacks.
+Share
+Share on Facebook
+Share on X
+Share on Linkedin
+Share by Mail
+Censys on Bluesky
+Censys on Mastodon
+
+===== https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/
+(status 200)
+November 6				
+				8 min read			
+						ARTEX abuse expands as cybercriminals target financial sector						
+					In October 2026, the financially motivated threat actor Storm-3358 began targeting organizations in the financial sector using the agentic AI offensive framework ARTEX.

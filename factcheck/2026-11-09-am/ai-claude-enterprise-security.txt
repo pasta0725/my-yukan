@@ -1,0 +1,398 @@
+===== https://claude.com/resources/articles/claude-enterprise-security-updates
+(status 200)
+Claude Enterprise has new security and admin features, including a security center, generally available inference hooks, centralized management, and additional access controls.
+To see how Claude is set up, the security center shows how your organization’s Claude settings compare with Anthropic’s recommended configuration. To apply your policies, inference hooks send prompts and tool calls to your data security tools for a check. To manage access, centralized management gives your company one admin console for company-wide settings, and new access controls let you sign members out through the Admin API, manage your IP allowlist yourself, and help prevent shadow IT by blocking personal and other outside Claude accounts in Claude Desktop on managed computers.
+We also recently announced an Endpoint Detection and Response (EDR) integration, which runs your organization's sensor inside the 
+unified Claude
+ and Cowork virtual machine on the user's computer.
+Security teams need to see how Claude is configured, what it does on company devices, and how data is handled as people work. These features give them that visibility and control.
+Security center: review your Claude security settings in one place
+Security teams can review Claude's security settings for chat, Cowork, and Claude Code on one page, instead of setting by setting. The security center is a new page in Organization settings that compares settings with Anthropic's recommended configuration, so your team can see what to change and where to change it.
+For each control, the security center shows the current value, the recommended value where there is one, and a link to the setting where you can change it. It also shows which settings are new or recently changed. The security center checks your configuration each time the page loads, so automatically checked controls reflect your current settings. Organizations with the Compliance API can read the same results through it.
+Attestations give your admins a shared workspace for security reviews. They can work through the process together once, recording the current state of each control, accepting risks, and flagging issues in one place.
+You can download the security center page as a report to share with auditors and relevant stakeholders. The report marks which controls the page checked automatically and which an Owner confirmed. The security center is guidance based on Anthropic's recommendations, not a certification or a guarantee of compliance with any law or standard.
+Inference hooks
+Inference hooks connect Claude to the data security tools your organization already uses, so your data loss prevention (DLP) and security policies can apply to prompts and tool calls as people work.
+There are two kinds of hooks, both now generally available:
+Prompt hooks send prompts from supported Claude products to your security tool for a check.
+Pre-tool-call hooks check tool calls in supported Claude products before they run.
+Hooks work with security vendors. Your team keeps the policies it has already written and applies them to Claude.
+Centralized management: one console for identity and access across your organization
+Centralized management gives your parent organization, which represents your company across its Claude Enterprise and Claude Platform organizations, its own admin console at admin.claude.com. Admins manage company-wide settings there once for the organizations under your parent, instead of from individual organization settings. These settings include single sign-on, directory sync (SCIM), domain verification, groups, and Compliance API keys.
+The console shows every organization under the parent in one place and adds two roles. Parent organization owners can manage everything at the parent level, including who holds the owner and admin roles. Parent organization admins can manage everything except those role assignments.
+Companies can also connect more than one identity provider, each with its own single sign-on and SCIM configuration. An acquired company can keep its existing provider, or your team can move to a new provider one domain at a time.
+Each organization keeps its own members, roles, settings, and organization-level security controls, such as IP allowlisting, tenant restrictions, and session duration. A parent role doesn't grant access inside an organization by default, but Compliance API keys created at the parent can read data across organizations.
+Access controls: member sign-out and shadow IT prevention  
+Security teams can now sign a member out of Claude with a single Admin API call, without removing them from the organization. The call ends that member's sign-in sessions on every browser and device, and apps like Claude Code have to sign in again. It doesn't end API keys, cloud sessions already running, or scheduled routines, and the member can sign in again afterwards.
+Enterprise admins can now set up and manage their IP allowlist themselves, without going through Anthropic. An IP allowlist limits access to most Claude products to the IP addresses your organization approves.
+Admins can now set the most-used Claude Desktop settings, with no device management push. To help prevent shadow IT, admins can also block personal and other outside Claude accounts in Claude Desktop on managed computers. Owners can also limit which workspace folders people can use with Claude.
+Endpoint Detection and Response (EDR) in Cowork and unified Claude
+When Cowork and unified Claude work locally, they run shell commands and code in an isolated virtual machine on the user's computer for additional protection. That isolation helps protect the device, and security teams have asked for the same visibility into the virtual machine that they have everywhere else on the endpoint.
+Admins can now run their organization's EDR sensor inside the Cowork virtual machine. The sensor reports activity there to the same console your security team already monitors. This covers the virtual machine on the user's computer, not Cowork sessions in the cloud.
+Admins set up the integration through device management on macOS and Windows. Each time the virtual machine starts, Claude verifies the sensor package's signature from your EDR vendor before installing it. Sensors run in detection mode: they report activity to your security team and don't block it. The integration works with supported EDR vendors, which are listed in the 
+Help Center
+.
+Getting started
+These features are available for Claude Enterprise, with some exceptions during beta listed in the 
+Help Center
+.
+The 
+security center
+ is in beta. 
+Inference hooks
+, including prompt hooks and pre-tool-call hooks, are generally available. Admins can manage both inference hooks and the security center in Organization settings.
+Centralized management
+ is also in beta. To start setup, an admin of any organization under your parent goes to admin.claude.com and proposes the parent organization admins. Admins of the other organizations review and approve, and the last approval completes setup. Setup can't be undone, so identify your parent organization admins before you start.
+Signing members out
+ through the Admin API and the 
+self-serve IP allowlist
+ are in beta. Owners can manage 
+Claude Desktop settings
+ in Organization settings, also in beta.
+Endpoint detection and response
+ in Cowork is in beta on macOS and Windows for Claude Team and Enterprise, and for the Claude desktop app on Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry, deployed through MDM for supported vendors.
+Article
+Nov 5, 2026
+Introducing Personal Finance in Claude
+Ask Claude about your money and get straight answers from the accounts you connect.
+Article
+Nov 4, 2026
+New agents and products for security, productivity, and creative work on Claude Marketplace
+Article
+Nov 2, 2026
+Make long-running agents faster with message threads
+New in the Messages API, send your conversation once, and the API receives only what’s new with every turn.
+Claude Platform
+Article
+Oct 28, 2026
+Smart reports, surveys, and pooled group budgets for Claude Enterprise
+In many organizations, members have identified the unique work that Claude can unlock. The next step is expanding that work to every team. 
+Claude Enterprise
+
+===== https://www.crowdstrike.com/en-us/blog/crowdstrike-secures-ai-agents-inside-claude-cowork/
+(status 200)
+Blog
+Featured
+How Adversaries Are Turning the Vulnerability Ecosystem Against Defenders
+Nov 05, 2026
+CrowdStrike Introduces Agentic Adversary Emulation to Counter AI-Enabled Adversaries
+Nov 04, 2026
+CrowdStrike Extends the Agentic SOC to Detect and Stop Agent Insider Threats
+Nov 04, 2026
+New Falcon Cloud Security Innovations Secure the Cloud AI Runs On
+Nov 04, 2026
+Recent
+How Adversaries Are Turning the Vulnerability Ecosystem Against Defenders
+Nov 05, 2026
+CrowdStrike Introduces Agentic Adversary Emulation to Counter AI-Enabled Adversaries
+Nov 04, 2026
+CrowdStrike Extends the Agentic SOC to Detect and Stop Agent Insider Threats
+Nov 04, 2026
+New Falcon Cloud Security Innovations Secure the Cloud AI Runs On
+Nov 04, 2026
+Video
+Video Highlights the 4 Key Steps to Successful Incident Response
+Dec 02, 2019
+Helping Non-Security Stakeholders Understand ATT&CK in 10 Minutes or Less [VIDEO]
+Feb 21, 2019
+Analyzing Targeted Intrusions Through the ATT&CK Framework Lens [VIDEO]
+Jan 22, 2019
+Qatar’s Commercial Bank Chooses CrowdStrike Falcon®: A Partnership Based on Trust [VIDEO]
+Aug 20, 2018
+Category
+Agentic SOC
+Agentic SOC
+CrowdStrike Extends the Agentic SOC to Detect and Stop Agent Insider Threats
+11/04/26 
+What Makes a Good Security Agent? 5 Lessons from the AgentWorks Hackathon
+11/02/26 
+CrowdStrike Delivers the Next Evolution of the Agentic SOC
+09/02/26 
+Teaching AI to Reason Through Detection Triage
+08/17/26 
+Cloud & Application Security
+Cloud & Application Security
+New Falcon Cloud Security Innovations Secure the Cloud AI Runs On
+11/04/26 
+New in Falcon Cloud Security: Third-Party App Insights and AI-Enhanced Remediation
+10/05/26 
+CrowdStrike Named Strongest Overall Leader in 2026 Frost Radar™: Cloud Workload Protection Platforms
+08/20/26 
+Falcon Cloud Security July 2026 Release: Helping Security Teams Move Faster in the Cloud
+07/29/26 
+Threat Hunting & Intel
+Threat Hunting & Intel
+How Adversaries Are Turning the Vulnerability Ecosystem Against Defenders
+11/05/26 
+CrowdStrike Introduces Agentic Adversary Emulation to Counter AI-Enabled Adversaries
+11/04/26 
+CrowdStrike Expands Falcon Adversary OverWatch Threat Hunting Across AI and Google Cloud
+10/30/26 
+VAPOR PANDA Uses AI-Driven ARTEX to Scale a Global Espionage Campaign
+10/29/26 
+Endpoint Security & XDR
+Endpoint Security & XDR
+CrowdStrike Brings Enterprise Browser Security to the Falcon Platform 
+11/04/26 
+CrowdStrike Named a Leader in the 2026 IDC MarketScape for Worldwide Modern Endpoint Security for Enterprises Vendor Assessment
+10/07/26 
+CrowdStrike Extends Endpoint Security to Stop Software Supply Chain Attacks
+09/02/26 
+Browser Security: Zero-Days Are Only Part of the Problem 
+06/30/26 
+Engineering & Tech
+Engineering & Tech
+EMBER2024: Advancing the Training of Cybersecurity ML Models Against Evasive Malware
+09/03/25 
+Falcon Platform Prevents COOKIE SPIDER’s SHAMOS Delivery on macOS
+08/20/25 
+CrowdStrike’s Approach to Better Machine Learning Evaluation Using Strategic Data Splitting
+08/11/25 
+CrowdStrike Researchers Develop Custom XGBoost Objective to Improve ML Model Release Stability
+03/20/25 
+Executive Viewpoint
+Executive Viewpoint
+Beyond the Model: Harnessing Frontier AI for Stronger Cyber Defense
+07/20/26 
+Frontier AI Is Collapsing the Exploit Window. Here’s How Defenders Must Respond.
+04/20/26 
+Frontier AI for Defenders: CrowdStrike and OpenAI TAC
+04/16/26 
+Anthropic Claude Mythos Preview: The More Capable AI Becomes, the More Security It Needs
+04/06/26 
+From The Front Lines
+From The Front Lines
+CrowdStrike Protects Customers from Threats Delivered via PHP2Shell
+10/21/26 
+CrowdStrike Achieves NCSC CIR Enhanced Level Assurance
+10/20/26 
+CrowdStrike Technical Risk Assessments Reveal Common Exposure Patterns 
+05/04/26 
+Introducing the CrowdStrike Shadow AI Visibility Service
+04/21/26 
+Next-Gen Identity Security
+Next-Gen Identity Security
+Solving the Continuous Authorization Conundrum
+10/08/26 
+CrowdStrike Announces Agentic Identity Provider
+09/02/26 
+The Identity Problem Hiding in AI Agent Deployments 
+06/24/26 
+CrowdStrike Announces Continuous Identity for AI Agents
+06/15/26 
+Next-Gen SIEM & Log Management
+Next-Gen SIEM & Log Management
+Build an Intelligence Advantage with Falcon Next-Gen SIEM
+10/30/26 
+CrowdStrike Threat Hunts for Shell Command Obfuscation on VMware ESX
+08/07/26 
+Falcon Platform IOAs Arrive in Falcon Next-Gen SIEM to Identify New Threats
+07/29/26 
+5 High-Impact Use Cases for Falcon Onum
+07/27/26 
+Public Sector
+Public Sector
+CrowdStrike Expands Federal SOC Modernization Through CISA-Funded SIEMaaS
+10/01/26 
+CrowdStrike Falcon Platform Helps Meet U.S. Government Mandates for CISA BOD-26-04 
+07/22/26 
+Falcon Platform for Government Now Offers Falcon for XIoT to Secure Connected Assets 
+03/18/26 
+CrowdStrike Innovates to Modernize National Security and Protect Critical Systems 
+03/18/26 
+Exposure Management
+Exposure Management
+October 2026 Patch Tuesday: 1,413 CVEs Include Three Zero-Days and 75 Critical Vulnerabilities
+10/13/26 
+CrowdStrike Named a Leader in The Forrester Wave™: Proactive Security Platforms, Q3 2026
+09/24/26 
+September 2026 Patch Tuesday: Two Exploited Zero-Days and 113 Critical Vulnerabilities Among 972 CVEs
+09/08/26 
+August 2026 Patch Tuesday: One Exploited Zero-Day and 62 Critical Vulnerabilities Among 415 CVEs
+08/11/26 
+Securing AI
+Securing AI
+Introducing AI Kill Switch: Taking Control When AI Agents Go Rogue
+11/03/26 
+CrowdStrike Secures AI Agents Inside Claude Cowork
+11/03/26 
+CrowdStrike Advances AI Security and Safety from Endpoint to Cloud
+11/03/26 
+CrowdStrike to Acquire Dreadnode to Bring Automated AI Security Testing to the Falcon Platform
+11/03/26 
+Data Security
+Data Security
+Falcon Data Security for SaaS Secures Sensitive Data in Microsoft 365
+10/05/26 
+CrowdStrike Accelerates Real-Time Data Classification with On-Device AI
+09/16/26 
+ISO 42001:2023 and the New Reality of Cloud AI Data Risk
+06/04/26 
+Falcon Data Security Secures Data Wherever It Lives and Moves
+03/24/26 
+Start Free Trial
+Featured
+Recent
+Video
+Category
+Start Free Trial
+CrowdStrike Secures AI Agents Inside Claude Cowork
+Built in partnership with Anthropic, this integration extends Falcon protection to AI agents across their lifecycle, from agent creation through job execution.
+November 03, 2026
+•
+                Michael Devins
+•
+Securing AI
+When Claude Cowork executes code locally, it runs inside an isolated virtual machine on the user's computer. On the host, that VM runs as a single opaque process: The agent's activity inside the VM, including the processes it spawns, the packages it installs, and the network connections it makes, is not visible to the host's endpoint security sensor. Because host folders can be mounted into the VM, sensitive data can sit within the agent's reach.
+Today at Fal.Con Europe 2026, CrowdStrike announced it is bringing 
+CrowdStrike Falcon® Guardian
+ protection natively into Anthropic's Claude Cowork. Built in partnership with Anthropic in response to enterprise customer demand, this integration extends Falcon protection to AI agents across their lifecycle, from agent creation through job execution. It runs the Falcon sensor directly inside the Cowork VM on both macOS and Windows to bring runtime visibility and detection into the agent's execution environment. 
+The integration is now available in beta on macOS, with Windows support expected later in November.
+See Falcon Guardian in action:
+How It Works
+Consider this scenario: A user asks Cowork for a script to align their slides to a brand standard. While completing the task, the agent installs the latest version of a common Python package. Neither the user nor the agent knows that an adversary has compromised the package at its source. Once installed, that package reads host data through a mounted folder and sends it out to a known malicious endpoint. The Falcon sensor running inside the VM would detect it. This is exactly the type of malicious activity and potential data exfiltration the integration is built to detect as agents execute tasks. 
+CrowdStrike’s sensor integration with the Cowork VM will deliver:
+Visibility and detection where agents execute
+: Process, package, and network activity inside the Cowork VM will no longer be a blind spot, so teams can detect and investigate threats with the same Falcon telemetry they use everywhere else.
+The same visibility on macOS and Windows
+: The VM runs the same Linux environment on both, so customers get consistent coverage regardless of the OS.
+Deployment and control through the CrowdStrike Falcon® platform
+: Admins will turn the integration on through their existing device management, the same way they deploy the Falcon sensor today, and the Falcon Linux sensor deploys inside the Cowork VM. From there, the team controls it through the Falcon platform so Claude Cowork comes under the same security control plane as the rest of the environment.
+Built with Anthropic
+CrowdStrike and Anthropic worked together to bring Falcon protection directly into Claude Cowork's execution environment. Anthropic enabled Falcon deployment within Cowork, while CrowdStrike engineered and tested the integration across installation, real-time protection, and ongoing updates. Through this beta integration, enterprises can extend the security they already trust from the Falcon platform to AI agents in Claude Cowork, alongside the virtual machine, permissions, and admin controls built into Cowork.
+CrowdStrike’s Architectural Difference
+AI agents don't operate in one layer, and neither does Falcon Guardian. Agents reach out over the network to communicate with LLMs, but they also execute processes locally on the workstations where they’re installed. These actions may never cross network boundaries. The Falcon sensor and Falcon Guardian see both agentic workstreams and fuse them together in a single view from CrowdStrike’s endpoint network inspection and OS-level visibility. This unified view, CrowdStrike® Agent Graph, shows analysts not only what agents were asked to do, but what they did at runtime. 
+CrowdStrike also delivers agent-level enforcement controls via hook integrations for agents such as Claude Code, OpenAI Codex, GitHub Copilot, OpenCode, and Cursor.
+The Claude Cowork integration extends Falcon Guardian coverage to a new place agents work. It takes Falcon Guardian’s runtime security foundation into the VM where Cowork runs its code, providing visibility and detection for what the agent executes, installs, and connects to across its lifecycle, from agent creation through job execution.
+What's Next
+Endpoint agents like Claude Cowork run their code inside a VM that host-only security can't see into. By running the Falcon Linux sensor inside the Cowork VM on macOS and Windows, this integration will close that gap. It will bring Falcon visibility and detection to where agents execute, it will be deployed and controlled through Falcon, and it will extend the runtime foundation of the three layers of AI security in Falcon Guardian.
+The integration is focused on visibility and detection inside the VM. Available in beta on macOS, with Windows support expected later in November 2026, it enables customers to deploy the Falcon Linux sensor inside the Cowork VM through their existing device management tools. Their teams gain visibility and detection across the processes, packages, and network activity inside the VM.
+Forward-Looking Statements
+This release includes discussion of unreleased services or features. Any unreleased services or features referenced here are still in development and subject to change. Customers should make their purchase decisions based upon features that are currently available.
+Related Content
+                        Securing AI | Nov 03, 2026
+Introducing AI Kill Switch: Taking Control When AI Agents Go Rogue
+                        Securing AI | Nov 03, 2026
+CrowdStrike Advances AI Security and Safety from Endpoint to Cloud
+                        Securing AI | Nov 03, 2026
+CrowdStrike to Acquire Dreadnode to Bring Automated AI Security Testing to the Falcon Platform
+Categories
+Agentic SOC
+57
+Cloud & Application Security
+151
+Data Security
+27
+Endpoint Security & XDR
+363
+Engineering & Tech
+87
+Executive Viewpoint
+181
+Exposure Management
+127
+From The Front Lines
+207
+Next-Gen Identity Security
+76
+Next-Gen SIEM & Log Management
+117
+Public Sector
+44
+Securing AI
+64
+Threat Hunting & Intel
+234
+CrowdStrike Falcon Platform 
+Ready to protect your business? 
+Try CrowdStrike free today
+Start free trial
+Subscribe
+Sign up now to receive the latest notifications and updates from CrowdStrike
+Subscribe
+See CrowdStrike Falcon in action
+Explore demos
+Copyright © 2026 CrowdStrike
+                Privacy
+                Request Info
+                Blog
+                Contact Us
+ 1.888.512.8906
+                Accessibility
+
+===== https://claude.com/resources/articles/new-agents-and-products-claude-marketplace
+(status 200)
+We’ve added new agents and products to 
+Claude Marketplace
+, where teams find partner tools and services to help them get more from Claude. The additions cover security, developer infrastructure, creative, and productivity.
+Eligible enterprise customers can apply a portion of their committed Anthropic spend toward these solutions. This lets them use one commitment across Claude and partner products, whether they’re buying something new or expanding with a platform they already use.
+There are now over 25 partner agents and products on the marketplace. Here are the latest additions and what teams can do with them.
+Products and agents for securing code and systems
+Chainguard
+:
+ Chainguard Harness builds applications from source in an isolated microVM and probes the live app for exploitable vulnerabilities. It helps teams fix what Claude finds, with custom remediation recommendations for reproducible vulnerabilities.
+Checkmarx
+:
+ Checkmarx One pairs rules-based analysis with AI reasoning to find vulnerabilities in code. It helps teams prioritize findings and fix them before code ships.
+Cyera
+:
+ Cyera Agent Guardian inventories Claude deployments, governs permissions before Claude runs, and enforces policy on prompts, files, and tool calls. It helps teams test those controls through red teaming.
+Rubrik
+:
+ Rubrik Code Guardian uses frontier AI models from Anthropic to review a secure copy of GitHub or Azure DevOps repositories for multi-step attack paths. It helps security and engineering teams rank issues by severity and turn confirmed critical ones into tracked tickets.
+Tanium
+:
+ Tanium Cloud gives teams real-time visibility and control across their endpoints. It helps IT and security teams find and fix vulnerabilities, misconfigurations, and missing patches.
+Development infrastructure for engineering teams
+Datadog
+:
+ Datadog Agent Observability traces agent execution through tools and services. It helps teams improve agent quality, performance, and cost efficiency by surfacing production patterns and recommending fixes.
+Netlify
+:
+ Netlify Enterprise deploys apps, sites, and agents to a global edge network, with preview URLs on every change. It helps teams take what they build with Claude from prototype to production with no infrastructure to configure, and includes SSO, role-based access, and audit logs.
+Tools for marketing and creative work
+AirOps
+:
+ AirOps provides an agentic platform for AI search strategy, content, and multichannel execution. It helps marketing teams analyze brand performance in AI search and tie results to pipeline and revenue.
+Runway
+:
+ Runway generates and edits video, images, and audio. It helps creative and marketing teams turn a brief into finished assets and edit footage with natural language.
+Webflow
+:
+ Webflow provides built-in tools to build, manage, and optimize websites. It helps marketers, designers, developers, and agents make changes, with controls and governance built in.
+Productivity apps for every team
+Asana
+: Asana AI Teammates are prebuilt agents that use context from the Asana Work Graph, each with its own identity, scoped permissions, and audit trail. They help teams handle multi-step work, routing decisions that need judgment to the owner.
+Glean
+:
+ Glean connects company knowledge and workflows across systems. It helps employees find answers and complete multi-step tasks across connected apps.
+monday
+:
+ monday agents work inside projects, boards, docs, and meetings, using their owners and deadlines as context. They help PMO, IT, marketing, finance, and operations teams control what AI can access, approve, and spend.
+Zoom:
+ Zoom Agentic Search answers questions inside Claude using the latest meeting summaries, work conversations, documents, and connected third-party sources. Teams get permission-aware results without analyzing raw transcripts or chaining tools together.
+Get started
+You can browse all agents and products on 
+Claude Marketplace
+ and request to buy from any listing. If you’re building on Claude and want to join the marketplace, see the 
+ways to join
+.
+Article
+Nov 5, 2026
+Introducing Personal Finance in Claude
+Ask Claude about your money and get straight answers from the accounts you connect.
+Article
+Nov 5, 2026
+More visibility and control over Claude Enterprise for security teams
+Claude Enterprise
+Claude apps
+Article
+Nov 2, 2026
+Make long-running agents faster with message threads
+New in the Messages API, send your conversation once, and the API receives only what’s new with every turn.
+Claude Platform
+Article
+Oct 28, 2026
+Smart reports, surveys, and pooled group budgets for Claude Enterprise
+In many organizations, members have identified the unique work that Claude can unlock. The next step is expanding that work to every team. 
+Claude Enterprise

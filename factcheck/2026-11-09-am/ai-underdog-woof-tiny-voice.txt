@@ -1,0 +1,141 @@
+===== https://techcrunch.com/2026/11/06/underdog-shows-off-a-32mb-speech-model-in-new-demo/
+(status 200)
+AI companies across the world are racing to make bigger and better models, but the problem is all of them need massive amounts of processing power. On the other end, some researchers and startups are creating smaller models that can run on edge devices, like your phone or computer.
+One such startup, Underdog, has released 
+a game
+ built with its new voice model called Woof that’s only 32MB large.
+The game features a room with a retro tech theme, a typewriter, and a CRT monitor. There is a desk lamp, which makes a sound when you click its switch. The intro warns users about “intrusive” cloud providers in the town — ostensibly a jab at cloud-based models.
+You can interact with the typewriter and music tuner.
+We made a game for our new frontier text-to-speech model, Woof. 31.7 MB, so small that it runs in your browser  
+Play the game on X… all voices are Woof. Defeat Darkcloud for an invite 
+https://t.co/ImUFYDCBQG
+pic.twitter.com/tthHx7ZGBK
+— Underdog AI (@UnderdogAI) 
+November 5, 2026
+You can type anything on the typewriter using your keyboard, and the game will speak it back. You can also rotate the tuner to generate different kinds of music.
+All of this works within the browser through Underdog’s speech generation model, which, the company says, can run on most devices without any internet connection. The model has 31 million parameters and is open for everyone to download. 
+While such a small model likely won’t replace bigger models, it may still be enough to drive local assistant experiences or create personalized podcasts.
+This demo comes weeks after Underdog launched 
+Bark
+, a 167MB speech-to-text model also designed to run on edge devices for transcription and dictation.
+Sigil Wen, 
+the founder of Underdog
+, told TechCrunch that he started building the app because, instead of using notetakers like Granola, he wanted to build his own system with AI models that can run on users’ devices and let them own their data.
+“I think we will be able to run most capable models of today on the devices you already own within months. We just want to train the best open models that are American-made, that are open, that are capable and allow people to have private AI,” he said, referring to 
+his manifesto
+.
+In addition to the two voice models mentioned above, Underdog has also released 
+a 27-billion-parameter model
+ that can run on laptops, along with a waitlisted app that the company is positioning as a locally hosted alternative to Muse and Instinct.
+Topics
+AI
+, 
+local AI
+, 
+underdog
+When you purchase through links in our articles, 
+we may earn a small commission
+. This doesn’t affect our editorial independence.
+			Ivan Mehta	
+Ivan covers global consumer tech developments at TechCrunch. He is based out of India and has previously worked at publications including Huffington Post and The Next Web.
+You can contact or verify outreach from Ivan by emailing 
+[email protected]
+ or via encrypted message at ivan.42 on Signal.
+View Bio 
+November 4
+Boston
+Buy One Pass, Get a Second Free
+Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner for free
+Book before the BOGO deal expires
+Register Now
+Most Popular
+Tesla will stop making the Cybertruck in 2027
+Sean O'Kane
+Claude can now analyze your spending with its new Personal Finance tool
+Aisha Malik
+Data centers are turning to old jet engines as the wait for power grows
+Aditya Mehta
+New York City’s Mamdani criticizes Madison Square Garden owner over surveillance tech
+Zack Whittaker
+Anthropic warns that it’s very close to RSI capability, aka self-building AI
+Julie Bort
+New York Times and other outlets sue web browser Brave over alleged content scraping
+Rebecca Bellan
+Ninja’s first-ever microwave just replaced two of my kitchen appliances at once
+Lauren Forristal
+
+===== https://techcrunch.com/2026/10/06/silicon-valleys-ai-wunderkind-launches-underdog-the-most-private-instinct-muse-competitor-yet/
+(status 200)
+When self-taught coder Sigil Wen was 17, he moved to Silicon Valley and lived in an AI hacker house with famed AI researcher Andrej Karpathy.
+While there, he hacked and coded alongside other people who would become the biggest names in AI, like Perplexity founder Aravind Srinivas and OpenAI researcher Noam Brown. He tested early versions of AI tools that would later become well known, including a chatbot shared by Anthropic co-founder Ben Mann that would become Claude, an image generator from David Holz that would become Midjourney, and what would become OpenAI’s GPT-3 and the image generator Stable Diffusion. Prominent investor and entrepreneur Naval Ravikant hired him for Airchat, Ravikant’s now-defunct rival to the Clubhouse social network. 
+For fun, he figured out how to get GPT-2 running on his Apple Watch. “It was a magical time,” Wen told TechCrunch.
+Now a Thiel Fellow — the program from investor Peter Thiel that invites young founders to pursue projects instead of college — Wen on Monday 
+launched
+ an invite-only beta of Underdog, one of the most private AI assistants Silicon Valley has yet to offer. The model runs wholly on-device, meaning the user’s data remains on devices they already own, currently Macs and Windows PCs, with Linux, iPhone, and Android versions coming soon.
+Underdog is powered by Husky, the inference engine Wen built to run AI models quickly on a user’s own hardware. Wen says it moves less data between a computer’s main chip and its graphics chip than rival on-device engines.
+Underdog has other security features baked in, too, like encrypting the keys to the email and other accounts that users authorize Underdog to access.
+Underdog is, however, using much smaller models than today’s state-of-the-art ones hosted in data centers. It currently uses a 27-billion parameter reasoning model fine-tuned from Qwen3.8-27B.
+Wen argues that this model compares favorably with Claude Opus 4.6 
+in some benchmarks
+, or what was considered top performance six months ago. He says that means it can handle the everyday tasks that people want an AI assistant to do, like shopping research or answering math homework questions.
+“You don’t need to sacrifice your privacy for the capability because they’re just as capable,” Wen says. He adds that small on-device models will continue to grow more capable over time.
+Perhaps the most interesting thing about Underdog is its early business model. The app will be free at first and never ad-supported. Since the AI runs on users’ machines, Underdog doesn’t have the giant overhead of paying a provider for inference. “I don’t have to charge you a subscription to run this because my costs are so super low,” he said.
+Instead, with Stripe co-founder Patrick Collison as one of his angel investors, he’s borrowing a play from the fintech era. Underdog will take a tiny percentage of payment transactions that the AI assistant makes using Stripe’s secure payment rails, something like an interchange fee. In this way, the AI assistant never has to mine your data. It is as aligned with you as your bank or credit card providers.
+This runs contrary to the business motivations of
+ many of the other players
+ in AI assistants, whose privacy policies allow them to 
+collect data on users
+ that they may sell to advertisers or other third parties, or use to train other models.
+That kind of data collection could be a particularly treacherous trade-off for users of an AI assistant, which may need access to the most intimate details about you in order to be useful, from medical conditions to financial data to data on your kids.
+As Wen wrote in what he calls his 
+AI manifesto
+, “Why should using AI require surrendering your private information?”
+He tells TechCrunch: “I honestly want to build Underdog for myself. I’m building a product that I would be proud for my future children to use.”
+The startup behind Underdog is named Conway Research, and Collison isn’t its only big-name investor. Conway is 
+backed by Andreessen Horowitz
+ via partner Chris Dixon, as well as Khosla Ventures, Hummingbird, SV Angel, the Anthology Fund (the partnership fund between Menlo Ventures and Anthropic), and a 
+prominent list of angel investors
+ that includes Vercel founder Guillermo Rauch, Noam Brown, and Deedy Das, among others.
+Topics
+AI assistant
+, 
+Apps
+, 
+Startups
+, 
+TC
+, 
+underdog
+When you purchase through links in our articles, 
+we may earn a small commission
+. This doesn’t affect our editorial independence.
+			Julie Bort	
+Venture Editor
+		Julie Bort is the Startups/Venture Desk editor for TechCrunch. 
+You can contact or verify outreach from Julie by emailing 
+[email protected]
+ or via 
+@Julie188
+ on X.	
+View Bio 
+November 4
+Boston
+Buy One Pass, Get a Second Free
+Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner for free
+Book before the BOGO deal expires
+Register Now
+Most Popular
+Tesla will stop making the Cybertruck in 2027
+Sean O'Kane
+Claude can now analyze your spending with its new Personal Finance tool
+Aisha Malik
+Data centers are turning to old jet engines as the wait for power grows
+Aditya Mehta
+New York City’s Mamdani criticizes Madison Square Garden owner over surveillance tech
+Zack Whittaker
+Anthropic warns that it’s very close to RSI capability, aka self-building AI
+Julie Bort
+New York Times and other outlets sue web browser Brave over alleged content scraping
+Rebecca Bellan
+Ninja’s first-ever microwave just replaced two of my kitchen appliances at once
+Lauren Forristal
