@@ -1,0 +1,43 @@
+name: fetch-to-branch
+# Downloads the given URLs (raw HTML + plain text) and pushes them to the branch "fetched" as fetched/<name>/.
+# The Claude session reads them with `git fetch origin fetched` and never opens a web page itself.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "folder name", required: true}
+      urls: {description: "space separated URLs", required: true}
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - run: pip install -q beautifulsoup4
+      - name: download
+        env: {URLS: "${{ inputs.urls }}"}
+        run: |
+          mkdir -p /tmp/out; i=0
+          for u in $URLS; do i=$((i+1))
+            curl -sSL --max-time 60 -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15" -o "/tmp/out/$i.html" "$u" || echo "failed $u"
+            echo "$i $u" >> /tmp/out/index.txt
+            python3 - "/tmp/out/$i.html" "/tmp/out/$i.txt" <<'EOF'
+          import sys, re
+          from bs4 import BeautifulSoup
+          try: s = BeautifulSoup(open(sys.argv[1], 'rb').read(), 'html.parser')
+          except Exception as e: open(sys.argv[2], 'w').write(f'(failed {e})'); sys.exit()
+          for t in s(['script', 'style', 'noscript']): t.decompose()
+          open(sys.argv[2], 'w').write(re.sub(r'\n\s*\n+', '\n', s.get_text('\n')).strip())
+          EOF
+          done
+          ls -la /tmp/out
+      - name: push to branch fetched
+        env: {NAME: "${{ inputs.name }}"}
+        run: |
+          git init -q r && cd r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin fetched; then git checkout -q -B fetched origin/fetched; else git checkout -q --orphan fetched; fi
+          mkdir -p "fetched/$NAME"; rm -rf "fetched/$NAME"/*; cp /tmp/out/* "fetched/$NAME/"
+          git add fetched; git commit -qm "fetched $NAME" || true
+          git push -q origin fetched
