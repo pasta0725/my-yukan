@@ -32,11 +32,9 @@ jobs:
           trap '$C usage || true; $C stop -s lc || true' EXIT
           echo 'import os; os.makedirs("/content/in", exist_ok=True); print("ready")' | $C exec -s lc --timeout 0
           for f in "$DIR"/*; do $C upload -s lc "$f" "/content/in/$(basename "$f")"; done
-          $C exec -s lc --timeout 0 -f tools/colab_longcat_remote.py
-          echo 'import glob,shutil,os
-          for d in glob.glob("/content/out/*/"):
-              v=sorted(glob.glob(d+"**/*.mp4",recursive=True), key=os.path.getmtime)
-              if v: shutil.copy(v[-1], d.rstrip("/")+".mp4"); print(d, v[-1])' | $C exec -s lc --timeout 0
+          cp tools/colab_longcat_remote.py /tmp/run.py
+          printf '%s\n' 'import glob as _g, shutil as _s, os as _o' 'for _d in _g.glob("/content/out/*/"):' '    _v = sorted(_g.glob(_d + "**/*.mp4", recursive=True), key=_o.path.getmtime)' '    if _v: _s.copy(_v[-1], _d.rstrip("/") + ".mp4"); print("clip", _d, _v[-1], flush=True)' >> /tmp/run.py
+          $C exec -s lc --timeout 0 -f /tmp/run.py || echo "exec ended with an error (clips may still be there)"
           mkdir -p /tmp/out
           for n in $(python3 -c "import json,os;print(' '.join(j[0] for j in json.load(open(os.environ['DIR']+'/jobs.json'))))"); do
             $C download -s lc /content/out/$n.mp4 /tmp/out/$n.mp4 || echo "no clip $n"

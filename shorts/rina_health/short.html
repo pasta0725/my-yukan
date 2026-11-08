@@ -77,7 +77,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
 function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);
-  const keep=j=>j>=3&&s.length-j>=3&&!/[0-9.]/.test(s[j-1]);  // never split a number from its unit
+  const keep=j=>j>=3&&s.length-j>=3&&!/[0-9.]/.test(s[j-1])&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j]));  // never split a number from its unit
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
   cuts.push(s.length);
   const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
@@ -214,7 +214,8 @@ const S={
    const lv=[['0','回復'],['3','ペース控えめ'],['7','準備OK'],['10','全力で']];
    if(u>t0)lv.forEach(([n,s],j)=>withEnter(enter(u,t0+j*0.12),()=>{const x=248+j*195;text(s,x,830,26,C.text,'center',900);},8));
    withEnter(enter(u,0.3),()=>{card(150,870,370,170);text('Series 12・Ultra 4',335,915,28,C.sub,'center',800);text('最新2機種',335,980,46,C.text);});
-   withEnter(enter(u,t5),()=>{card(560,870,370,170,30,C.card2);text('心拍を',745,915,30,'#CDD8EC','center',800);bigNum('5','秒ごと',745,985,(u-t5)/0.35,'#FFB074',90);});
+   withEnter(enter(u,t5),()=>{card(560,870,370,170,30,C.card2);text('新センサーで心拍を',745,915,28,'#CDD8EC','center',800);if(u>t5){const k=back((u-t5)/0.35);g.save();g.translate(745,985);g.scale(k,k);mixLine([['5','#FFB074'],['秒ごと','#FFFFFF']],0,0,64);g.restore();}});
+   withEnter(enter(u,t0+0.5),()=>text('点数は活動・バイタル・睡眠から毎日計算',CX,1068,28,C.sub,'center',800),6);
    creditAt(CRED,925,780);},
  // L9 Longevity tab: 7 areas
  longevity(u,d,L){bg(u);mini(u);const t7=telHas(L,'7つ');
