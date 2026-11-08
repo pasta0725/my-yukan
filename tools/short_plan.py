@@ -6,7 +6,7 @@ period_pause / comma_max: the pause at 「。」 inside a line is cut to period_
            the pause at 「、」 may stay up to comma_max; short silences such as the small 「っ」 are left alone (user, 2026-11-07).
            gap is the silence between lines (each line ends with 「。」, so it is short too)
 writes <work_dir>/plan.js (window.PLAN) and <work_dir>/audio.wav
-intro line: write "say": "このニュース、{SEC}秒でまとめます。" and put the number used for its TTS in spec "sec" (see step 2b)."""
+intro line: write "say": "このニュース、{SEC}でまとめます。" ({SEC} becomes 「40秒」 or 「1分」, max 60) and put the number used for its TTS in spec "sec" (see step 2b)."""
 import json, os, re, subprocess, sys, wave
 import numpy as np
 
@@ -79,16 +79,23 @@ for i, (ln, x) in enumerate(zip(spec["lines"], segs)):
     d = len(x) / SR; lines.append({**ln, "start": round(t, 3), "end": round(t + d, 3)}); t += d + gap
 voice_end = t - gap; T = voice_end + 0.35 + tail
 
-# 2b) 「このニュース、{SEC}秒でまとめます」: SEC = the talk AFTER that line (logo not counted), rounded UP to 10 s.
+# 2b) 「このニュース、{SEC}でまとめます」: SEC = the talk AFTER that line (logo not counted), rounded UP to 10 s, at most 60.
+#     40 -> 「40秒」, 60 -> 「1分」 (user rule 2026-11-08). Over 60 s: exit 4, the script must be made shorter.
 #     The line's audio must say the same number: spec "sec" = the number used for that line's TTS.
 #     If it differs, exit 3 with the right number -> make that one line again with it, then run this again.
+#     plan "fingers" = how many fingers rina shows in the intro (10-50 s -> 1-5, 1分 -> 1). Old specs that write "{SEC}秒" still work.
 import math
+def sec_word(s): return "1分" if s == 60 else f"{s}秒"
 for ln in lines:
     if "{SEC}" in ln.get("say", "") or "{SEC}" in ln.get("show", ""):
-        sec = max(10, math.ceil((voice_end - ln["end"]) / 10 - 1e-9) * 10)
+        after = voice_end - ln["end"]
+        sec = max(10, math.ceil(after / 10 - 1e-9) * 10)
+        if sec > 60:
+            print(json.dumps({"too_long": round(after, 1), "max": 60, "cut": round(after - 60, 1)}, ensure_ascii=False)); sys.exit(4)
         if spec.get("sec") != sec:
-            print(json.dumps({"need_sec": sec, "line": ln["say"].replace("{SEC}", str(sec))}, ensure_ascii=False)); sys.exit(3)
-        for k in ("say", "show"): ln[k] = ln.get(k, "").replace("{SEC}", str(sec))
+            print(json.dumps({"need_sec": sec, "line": ln["say"].replace("{SEC}秒", "{SEC}").replace("{SEC}", sec_word(sec))}, ensure_ascii=False)); sys.exit(3)
+        for k in ("say", "show"): ln[k] = ln.get(k, "").replace("{SEC}秒", "{SEC}").replace("{SEC}", sec_word(sec))
+        spec["fingers"] = 1 if sec == 60 else sec // 10
 
 # 3) telop chunks: split the shown text into 5-15 character pieces, timed by length
 def chunks(s):
@@ -137,6 +144,6 @@ music[stop - fade:stop] *= np.linspace(1, 0, fade); music[stop:] = 0
 envv = np.convolve(np.abs(nar), np.ones(2400) / 2400, mode="same"); music *= 1 - 0.35 * np.clip(envv * 12, 0, 1)
 mix = nar * 0.95 + music + se * 0.6
 writew(os.path.join(W, "audio.wav"), mix / max(1.0, np.abs(mix).max() / 0.98))
-plan = {"T": round(T, 3), "fps": FPS, "voice_end": round(voice_end, 3), "lines": lines, "tel": tel, "voices": voices}
+plan = {"T": round(T, 3), "fps": FPS, "voice_end": round(voice_end, 3), "lines": lines, "tel": tel, "voices": voices, "fingers": spec.get("fingers")}
 open(os.path.join(W, "plan.js"), "w", encoding="utf-8").write("window.PLAN=" + json.dumps(plan, ensure_ascii=False) + ";")
-print(json.dumps({"T": plan["T"], "lines": [(l["scene"], l["start"], l["end"]) for l in lines], "telops": len(tel)}, ensure_ascii=False))
+print(json.dumps({"T": plan["T"], "fingers": plan["fingers"], "lines": [(l["scene"], l["start"], l["end"]) for l in lines], "telops": len(tel)}, ensure_ascii=False))
