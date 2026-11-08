@@ -1,0 +1,272 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script><script src="pal.js"></script>
+<script>
+// Design rules: iPhone shows x~98-982 (sides cropped), Shorts tabs end y~330, right buttons x>=885 from y~970,
+// channel/title text from y~1480. Diagrams live in y400-1080 centred on x540, captions in their own band below, mini presenter under that.
+// palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
+const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
+  line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
+  glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+const CX=540, MAXW=680, CAP_Y=1168;
+let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+const CT={s:1.04,y0:360,y1:350};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
+let CUR=null;
+function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
+  if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('connect','img/connect.png'),load('breakdown','img/breakdown.png'),load('payday','img/payday.png'),load('og','img/og.png'),load('mini','char/f300.png')]);await document.fonts.ready;})();
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
+// ---------- helpers ----------
+function bg(u){abs(()=>bg0(u));}
+function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+function rrect(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+// small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
+function mini(u){abs(()=>glow(210,1380,260,C.brand,0.22));drawChar(CUR||IMG.mini,22,1188,380,675);}  // face between the caption band and the channel name
+function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
+function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
+function credit(t='出典：Anthropic'){abs(()=>text(t,950,362,26,C.sub,'right',700));}
+// ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
+function marks(s,warn){const m=new Array(s.length).fill(C.capText);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum); if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
+  if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
+function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
+  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
+  const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
+  g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
+  let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
+    const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
+    // two passes: every edge first, then every letter, so a letter's edge never covers its neighbour
+    const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='round';g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;
+    for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
+  g.restore();}
+
+// ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
+const BX=372,BY=1165,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+178);g.lineTo(BX-40,BY+150);g.lineTo(BX,BY+120);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
+function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
+  bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
+// line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
+function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);
+  const keep=j=>j>=3&&s.length-j>=3;  // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
+  cuts.push(s.length);
+  const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  let best=null;const c=[...new Set(cuts)].sort((a,b)=>a-b).filter(x=>x>0&&x<s.length&&keep(x));
+  const PEN=a=>(s.slice(a,a+2)==='いう'&&s[a-1]==='と')?size*0.6:('をにはがでとのもへやかよね、。てばし'.includes(s[a-1])?0:size*0.9);  // prefer breaking right after a particle
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));const sc=m+PEN(a);if(m<=maxw*1.15&&(!best||sc<best.sc))best={L,m,sc};}if(!best)for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));if(!best||m<best.m)best={L,m,sc:m};}
+  if(best&&best.m<=maxw)return best.L;
+  let b3=null;for(const a of c)for(const b of c)if(b-a>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const m=Math.max(...L.map(W));if(!b3||m<b3.m)b3={L,m};}
+  return (b3&&(!best||best.m>maxw*1.12))?b3.L:(best?best.L:[s]);}
+function bubbleText(s,k,warn){abs(()=>{let size=74;let lines=wrapJa(s,size,BMAXW);
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>BMAXW)size=Math.floor(size*BMAXW/w);}
+  if(lines.length===3)size=Math.min(size,64);
+  const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
+  const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:m[off+i];g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+const UI={};function uiImg(n){n=Math.max(1,Math.min(624,Math.round(n)));const k='u'+String(n).padStart(3,'0');return new Promise(r=>{if(UI[k])return r(UI[k]);const i=new Image();i.onload=()=>{UI[k]=i;r(i)};i.onerror=()=>r(null);i.src='img/ui/'+k+'.jpg';});}
+let UICUR=null;
+// small flat app icons (generic, no brands)
+function appIcon(kind,x,y,s,col){g.save();g.translate(x,y);rrect(-s/2,-s/2,s,s,s*0.24,col||C.brand);g.strokeStyle='#FFFFFF';g.fillStyle='#FFFFFF';g.lineWidth=s*0.07;g.lineCap='round';g.lineJoin='round';const q=s*0.26;
+  if(kind==='cal'){g.strokeRect(-q,-q*0.8,2*q,1.8*q);g.beginPath();g.moveTo(-q,-q*0.25);g.lineTo(q,-q*0.25);g.stroke();for(let i=0;i<3;i++)for(let j=0;j<2;j++)g.fillRect(-q*0.7+i*q*0.55,q*0.1+j*q*0.45,q*0.3,q*0.25);}
+  else if(kind==='cart'){g.beginPath();g.moveTo(-q*1.1,-q*0.9);g.lineTo(-q*0.7,-q*0.9);g.lineTo(-q*0.4,q*0.4);g.lineTo(q*0.9,q*0.4);g.lineTo(q*1.1,-q*0.5);g.lineTo(-q*0.55,-q*0.5);g.stroke();g.beginPath();g.arc(-q*0.25,q*0.9,q*0.18,0,7);g.arc(q*0.7,q*0.9,q*0.18,0,7);g.fill();}
+  else if(kind==='ticket'){g.beginPath();g.moveTo(-q*1.1,-q*0.6);g.lineTo(q*1.1,-q*0.6);g.lineTo(q*1.1,-q*0.15);g.arc(q*1.1,q*0.1,q*0.25,-Math.PI/2,Math.PI/2,true);g.lineTo(q*1.1,q*0.6);g.lineTo(-q*1.1,q*0.6);g.lineTo(-q*1.1,q*0.35);g.arc(-q*1.1,q*0.1,q*0.25,Math.PI/2,-Math.PI/2,true);g.closePath();g.stroke();}
+  else if(kind==='plane'){g.beginPath();g.moveTo(-q*1.1,q*0.1);g.lineTo(q*1.1,-q*0.2);g.moveTo(-q*0.1,-q*0.05);g.lineTo(-q*0.6,-q*0.9);g.moveTo(q*0.1,-q*0.1);g.lineTo(q*0.2,q*0.8);g.stroke();}
+  else if(kind==='mail'){g.strokeRect(-q,-q*0.7,2*q,1.4*q);g.beginPath();g.moveTo(-q,-q*0.7);g.lineTo(0,q*0.15);g.lineTo(q,-q*0.7);g.stroke();}
+  else if(kind==='pin'){g.beginPath();g.arc(0,-q*0.2,q*0.6,Math.PI*0.85,Math.PI*0.15);g.lineTo(0,q*1.0);g.closePath();g.stroke();g.beginPath();g.arc(0,-q*0.2,q*0.2,0,7);g.fill();}
+  else if(kind==='gift'){g.strokeRect(-q*0.9,-q*0.3,1.8*q,1.2*q);g.beginPath();g.moveTo(0,-q*0.3);g.lineTo(0,q*0.9);g.moveTo(-q,-q*0.3);g.lineTo(q,-q*0.3);g.stroke();g.beginPath();g.ellipse(-q*0.35,-q*0.6,q*0.35,q*0.2,0.5,0,7);g.ellipse(q*0.35,-q*0.6,q*0.35,q*0.2,-0.5,0,7);g.stroke();}
+  else if(kind==='music'){g.beginPath();g.moveTo(-q*0.35,q*0.7);g.lineTo(-q*0.35,-q*0.9);g.lineTo(q*0.85,-q*1.1);g.lineTo(q*0.85,q*0.5);g.stroke();g.beginPath();g.ellipse(-q*0.65,q*0.75,q*0.35,q*0.27,-0.4,0,7);g.ellipse(q*0.55,q*0.55,q*0.35,q*0.27,-0.4,0,7);g.fill();}
+  else if(kind==='chat'){g.beginPath();g.roundRect(-q*1.05,-q*0.8,2.1*q,1.4*q,q*0.4);g.stroke();g.beginPath();g.moveTo(-q*0.5,q*0.6);g.lineTo(-q*0.7,q*1.05);g.lineTo(-q*0.05,q*0.6);g.stroke();}
+  g.restore();}
+function chip(label,icon,x,y,k,col){withEnter(k,()=>{rrect(x,y-56,400,112,28,C.card);appIcon(icon,x+62,y,72,col||C.brand);text(label,x+118,y,42,C.text,'left',900);},24);}
+function phone(im,x,y,w,h,z=1,fy=0.5,fx=0.5){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=30;g.shadowOffsetY=10;rrect(x-10,y-10,w+20,h+20,48,'#16213A');g.restore();
+  g.save();g.beginPath();g.roundRect(x,y,w,h,40);g.clip();g.fillStyle='#FFFFFF';g.fillRect(x,y,w,h);if(im){const s=Math.max(w/im.width,h/im.height)*z;const iw=im.width*s,ih=im.height*s;const oy=Math.min(0,Math.max(h-ih,h/2-ih*fy));g.drawImage(im,x+(w-iw)*fx,y+oy,iw,ih);}g.restore();}
+function creditAt(s,x,y){g.font=`700 24px ${FONT}`;const w=g.measureText(s).width;g.save();g.globalAlpha*=0.85;rrect(x-w-16,y-18,w+32,36,18,'#FFFFFF');g.restore();text(s,x,y,24,C.sub,'right',700);}
+function t0h(L,u){return u+L.start;}
+function chatMock(x,y,w,h,u,gray){g.save();g.beginPath();g.roundRect(x,y,w,h,32);g.clip();rrect(x,y,w,h,32,C.card);
+  const msgs=[['me','旅行の計画を立てて'],['ai',3],['me','ホテルの値段は？'],['ai',2],['me','前の計画どこ？'],['ai',2],['me','もう一回教えて'],['ai',2]];
+  const sc=w/580;let yy=y+70*sc-u*95*sc;
+  for(const [who,m] of msgs){const hh=(who==='me'?64:28+m*30)*sc;
+    if(yy>y-200&&yy<y+h){g.save();const fade=clamp((yy-y-20)/(120*sc));g.globalAlpha*=(0.25+0.75*fade)*(gray?0.6:1);
+      if(who==='me'){const fs=Math.round(32*sc);g.font=`800 ${fs}px ${FONT}`;const tw=g.measureText(m).width;rrect(x+w-30*sc-tw-44*sc,yy,tw+44*sc,64*sc,30*sc,gray?'#9AA6BA':C.brand);text(m,x+w-30*sc-tw/2-22*sc,yy+32*sc,fs,'#FFFFFF','center',800);}
+      else{rrect(x+30*sc,yy,400*sc,hh,26*sc,'#EEF1F6');for(let j=0;j<m;j++){g.fillStyle='#C3CAD6';g.fillRect(x+56*sc,yy+(24+j*30)*sc,(j===m-1?220:340)*sc,12*sc);}}
+      g.restore();}
+    yy+=hh+26*sc;}
+  const gr=g.createLinearGradient(0,y,0,y+150*sc);gr.addColorStop(0,C.card);gr.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(x,y,w,150*sc);
+  g.restore();rrect(x,y,w,h,32,null,C.bar);}
+// ---------- extra helpers for this short ----------
+function card(x,y,w,h,r=30,fill){rrect(x,y,w,h,r,fill||C.card);}
+function pic(k,x,y,w,h,z=1,fx=0.5,fy=0.5,r=28){const i=IMG[k];if(!i)return;g.save();g.beginPath();g.roundRect(x,y,w,h,r);g.clip();g.fillStyle='#FFFFFF';g.fillRect(x,y,w,h);
+  const s=Math.max(w/i.width,h/i.height)*z;const iw=i.width*s,ih=i.height*s;g.drawImage(i,x+(w-iw)*fx,y+(h-ih)*fy,iw,ih);g.restore();rrect(x,y,w,h,r,null,C.bar);}
+function stamp(s,x,y,k,col,size=60,rot=-0.06){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.rotate(rot);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w=g.measureText(s).width+size*0.9;
+  rrect(-w/2,-size*0.8,w,size*1.6,size*0.35,col);text(s,0,2,size,'#FFFFFF');g.restore();}
+function check(x,y,s,ok){g.save();g.translate(x,y);g.beginPath();g.arc(0,0,s,0,7);g.fillStyle=ok?'#1F9D6A':C.warn;g.fill();g.strokeStyle='#FFFFFF';g.lineWidth=s*0.22;g.lineCap='round';g.lineJoin='round';g.beginPath();
+  if(ok){g.moveTo(-s*0.45,0);g.lineTo(-s*0.1,s*0.35);g.lineTo(s*0.5,-s*0.35);}else{g.moveTo(-s*0.38,-s*0.38);g.lineTo(s*0.38,s*0.38);g.moveTo(s*0.38,-s*0.38);g.lineTo(-s*0.38,s*0.38);}g.stroke();g.restore();}
+function bank(x,y,s,col){g.save();g.translate(x,y);g.fillStyle=col||C.brand;g.beginPath();g.moveTo(-s,-s*0.35);g.lineTo(0,-s*0.95);g.lineTo(s,-s*0.35);g.closePath();g.fill();
+  for(let i=-2;i<=2;i++)g.fillRect(i*s*0.4-s*0.1,-s*0.25,s*0.2,s*0.8);g.fillRect(-s*1.05,s*0.6,s*2.1,s*0.22);g.restore();}
+function arrowR(x0,x1,y,k,col){if(k<=0)return;g.save();g.globalAlpha*=clamp(k);g.strokeStyle=col||C.sub;g.fillStyle=col||C.sub;g.lineWidth=8;g.lineCap='round';const xe=x0+(x1-x0)*ease(k);
+  g.beginPath();g.moveTo(x0,y);g.lineTo(xe-14,y);g.stroke();g.beginPath();g.moveTo(xe,y);g.lineTo(xe-26,y-20);g.lineTo(xe-26,y+20);g.closePath();g.fill();g.restore();}
+function bigNum(s,unit,x,y,k,col,size=150){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w1=g.measureText(s).width;g.font=`900 ${size*0.4}px ${FONT}`;const w2=g.measureText(unit).width;
+  const x0=-(w1+w2+8)/2;text(s,x0,0,size,col||C.acc,'left');text(unit,x0+w1+8,size*0.18,size*0.4,C.text,'left');g.restore();}
+const S={
+ // L0 hook: the official app screen + the promise
+ hook(u,d,L){bg(u);mini(u);const t2=telHas(L,'診断');
+   mixLine([['Claude',C.brand],['が',C.text],['家計を診断',C.acc]],CX,385,66);
+   withEnter(enter(u,0,0.3),()=>{const z=1.05+0.10*u/d;pic('connect',120,450,840,480,z*1.55,0.5,0.18);},40);
+   withEnter(enter(u,0.5),()=>{rrect(150,970,340,100,26,C.card2);bank(210,1025,30,'#FFFFFF');text('銀行口座',370,1018,40,'#FFFFFF','center',900);},20);
+   arrowR(505,580,1018,(u-0.8)/0.3,C.acc);
+   if(u>t2-0.1)stamp('家計を診断',770,1018,(u-t2+0.1)/0.35,C.acc,52,-0.04);
+   creditAt('出典：Anthropic',935,905);},
+ intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);drawChar(CUR,-90,298,1260,2240);},
+ // L2 who/when/what
+ what(u,d,L){bg(u);mini(u);const td=telHas(L,'11月'),tn=telHas(L,'新機能');
+   mixLine([['Anthropic',C.brand],['の発表',C.text]],CX,385,64);
+   withEnter(enter(u,0.05),()=>{card(150,450,780,250);text('米国のAI企業',CX,500,34,C.sub,'center',800);text('Anthropic',CX,575,92,C.brand);text('アンソロピック',CX,650,30,C.sub,'center',800);});
+   if(u>td)stamp('11月5日',790,470,(u-td)/0.3,C.acc,44,0.05);
+   withEnter(enter(u,tn),()=>{pic('og',150,735,300,300,1.25,0.45,0.5);card(475,735,455,300);text('Claudeの新機能',703,800,36,C.sub,'center',800);
+     g.save();g.translate(703,895);const k=back((u-tn-0.1)/0.35);g.scale(k,k);text('Personal',0,-34,64,C.acc);text('Finance',0,36,64,C.acc);g.restore();text('家計管理',703,985,36,C.text,'center',900);});
+   creditAt('出典：Anthropic',445,1020);},
+ // L3 who can use it
+ who(u,d,L){bg(u);mini(u);const tb=telHas(L,'β');
+   mixLine([['使えるのは',C.text],['米国だけ',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,210);text('米国',CX,530,96,C.text);text('の有料プラン',CX,615,40,C.sub,'center',800);});
+   ['Pro','Max','Ultra'].forEach((p,j)=>withEnter(enter(u,0.35+j*0.15),()=>{const x=165+j*255;rrect(x,690,240,120,28,C.brand);text(p,x+120,750,56,'#FFFFFF');},18));
+   withEnter(enter(u,0.9),()=>{rrect(150,840,780,90,24,C.card);text('無料・Team・Enterprise は対象外',CX,885,36,C.sub,'center',800);});
+   if(u>0.9)stamp('β版',CX,1010,(u-0.9)/0.3,C.warn,60,-0.04);},
+ // L4 before: open every bank app, do the math yourself
+ before(u,d,L){bg(u);mini(u);const tc=telHas(L,'自分で');
+   mixLine([['これまで',C.sub],['は…',C.text]],CX,385,64);
+   const cols=['#337BD0','#2F8F6A','#7A5BB0','#C0566E'];
+   cols.forEach((c,j)=>withEnter(enter(u,j*0.12),()=>{const x=190+j*180,y=560+(j%2)*40;rrect(x-75,y-90,150,180,30,C.card);bank(x,y-5,40,c);text('銀行'+(j+1),x,y+62,26,C.sub,'center',800);},18));
+   if(u>tc){const k=enter(u,tc,0.3);withEnter(k,()=>{card(200,760,680,260);
+     g.save();g.translate(330,890);rrect(-80,-100,160,200,22,'#5B6375');rrect(-62,-82,124,50,10,'#DDE6F0');text('4309',0,-57,30,'#16213A','center',900);
+     for(let i=0;i<3;i++)for(let j=0;j<3;j++)rrect(-62+i*44,-18+j*38,36,30,8,'#B7BEC7');g.restore();
+     text('自分で',600,850,44,C.sub,'center',900);text('計算…',600,925,70,C.text);text('アプリを行ったり来たり',600,990,30,C.sub,'center',800);});}},
+ // L5 after: log in once -> 16 banks, 2 years
+ after(u,d,L){bg(u);mini(u);const t16=telHas(L,'最大'),t2=telHas(L,'2年');
+   mixLine([['これから',C.acc],['は',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,200);bank(260,550,46,C.brand);text('銀行',260,620,30,C.sub,'center',800);
+     arrowR(330,450,550,(u-0.2)/0.3);rrect(460,505,200,90,24,C.card2);text('Plaid',560,550,44,'#FFFFFF');text('ログインするだけ',560,625,28,C.sub,'center',800);
+     arrowR(670,790,550,(u-0.5)/0.3);g.save();g.translate(850,550);g.beginPath();g.arc(0,0,58,0,7);g.fillStyle=C.acc;g.fill();text('C',0,4,60,'#FFFFFF');g.restore();text('Claude',850,625,28,C.sub,'center',800);});
+   withEnter(enter(u,t16),()=>{card(150,690,380,340);text('つなげる銀行',340,750,34,C.sub,'center',800);bigNum('16','行',340,880,(u-t16)/0.35,C.acc,170);text('最大',340,985,34,C.sub,'center',800);});
+   withEnter(enter(u,t2),()=>{card(550,690,380,340);text('読める取引',740,750,34,C.sub,'center',800);bigNum('2','年分',740,880,(u-t2)/0.35,C.acc,170);text('最大',740,985,34,C.sub,'center',800);});},
+ // L6 ask in your own words (official screen)
+ ask(u,d,L){bg(u);mini(u);const tt=telHas(L,'支出');
+   mixLine([['ふつうの言葉',C.acc],['で聞ける',C.text]],CX,385,64);
+   withEnter(enter(u,0),()=>{const z=1+0.04*u;pic('breakdown',130,450,820,500,z,0.0,0.0);});
+   withEnter(enter(u,0.35),()=>{rrect(300,462,640,96,44,C.brand);text('今月のお金、どこに消えた？',620,510,40,'#FFFFFF','center',900);},16);
+   if(u>tt){const k=ease((u-tt)/0.4);g.save();g.globalAlpha*=k*0.85;g.strokeStyle=C.acc;g.lineWidth=7;g.beginPath();g.roundRect(150,735,780,210,16);g.stroke();g.restore();
+     stamp('項目ごとに合計',CX,1010,(u-tt)/0.35,C.acc,46,-0.03);}
+   creditAt('出典：Anthropic',935,935);},
+ // L7 official example numbers as bars
+ numbers(u,d,L){bg(u);mini(u);const tf=telHas(L,'飲食');
+   mixLine([['公式の例',C.sub],['（1カ月）',C.text]],CX,385,60);
+   withEnter(enter(u,0),()=>{card(150,450,780,600);text('支出の合計',190,515,34,C.sub,'left',800);text('$4,309.37',900,515,56,C.text,'right',900);
+     const rows=[['家賃・光熱費',2339.51,'$2,339.51'],['飲食',1024.51,'$1,024.51'],['買い物',322.85,'$322.85']];
+     rows.forEach(([n,v,s],j)=>{const y=625+j*115,k=clamp((u-0.3-j*0.2)/0.5),hl=j===1&&u>tf;const w=520*v/2339.51*ease(k);
+       text(n,190,y-38,34,hl?C.acc:C.text,'left',900);rrect(190,y-10,Math.max(8,w),52,14,hl?C.acc:C.bar);text(s,190+w+16,y+16,36,hl?C.acc:C.sub,'left',900);});
+     text('※金額は公式の例（米ドル）',190,1025,24,C.sub,'left',700);});
+   if(u>tf)bigNum('1024','ドル',CX,950,(u-tf)/0.35,C.acc,110);
+   creditAt('出典：Anthropic',925,1025);},
+ // L8 what is easy to miss
+ detect(u,d,L){bg(u);mini(u);const tj=telHas(L,'じわじわ');
+   mixLine([['見落としを',C.text],['見つける',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,270);text('二重請求',290,500,40,C.warn,'left',900);
+     for(let j=0;j<2;j++){const y=575+j*80;rrect(200,y-32,680,64,16,'#F2F4F8');text('動画配信サービス',230,y,32,C.text,'left',800);text('$15.99',850,y,34,C.text,'right',900);}
+     text('※イメージ',900,690,22,C.sub,'right',700);if(u>0.6)stamp('同じ請求が2回',700,505,(u-0.6)/0.3,C.warn,34,0.04);});
+   withEnter(enter(u,tj-0.2),()=>{card(150,750,780,290);text('じわじわ値上がり',190,800,40,C.acc,'left',900);
+     const pts=[[220,990],[360,975],[500,955],[640,930],[780,900],[880,860]];const k=clamp((u-tj)/0.8);
+     g.save();g.strokeStyle=C.acc;g.lineWidth=9;g.lineCap='round';g.lineJoin='round';g.beginPath();pts.forEach(([x,y],i)=>{const kk=clamp(k*pts.length-i);if(kk>0){i?g.lineTo(x,y):g.moveTo(x,y);}});g.stroke();g.restore();
+     text('1年',220,1015,26,C.sub,'center',800);text('いま',880,1015,26,C.sub,'center',800);text('毎月の料金',880,830,28,C.sub,'right',800);});},
+ // L9 what's left before payday (official screen)
+ payday(u,d,L){bg(u);mini(u);const tn=telHas(L,'1393');
+   mixLine([['給料日まで',C.text],['あといくら？',C.acc]],CX,385,62);
+   withEnter(enter(u,0),()=>{const z=1.0+0.03*u;pic('payday',130,450,820,560,z*1.12,0.5,0.25);});
+   if(u>tn){const k=back((u-tn)/0.35);g.save();g.translate(CX,900);g.scale(k,k);rrect(-330,-95,660,190,36,C.acc);text('残り',-200,0,46,'#FFFFFF');text('1393',40,-4,104,'#FFFFFF');text('ドル',250,10,46,'#FFFFFF');g.restore();}
+   withEnter(enter(u,0.4),()=>{rrect(150,1030,380,60,20,C.card2);text('4件の引き落とし',340,1060,30,'#FFFFFF','center',900);},10);
+   creditAt('出典：Anthropic',935,1050);},
+ // L10 read-only
+ safe(u,d,L){bg(u);mini(u);const tp=telHas(L,'パスワード');
+   mixLine([['できるのは',C.text],['読むことだけ',C.acc]],CX,385,64);
+   const rows=[['残高・取引を読む',true],['送金',false],['投資',false]];
+   rows.forEach(([s,ok],j)=>withEnter(enter(u,j*0.25),()=>{const y=500+j*125;card(150,y-50,780,105,26);check(220,y+2,34,ok);text(s,290,y+2,46,ok?C.text:C.sub,'left',900);},18));
+   withEnter(enter(u,tp),()=>{card(150,880,780,150,26,C.card2);g.save();g.translate(250,955);rrect(-36,-10,72,60,12,'#FFFFFF');g.strokeStyle='#FFFFFF';g.lineWidth=10;g.beginPath();g.arc(0,-12,24,Math.PI,0);g.stroke();g.restore();
+     text('銀行のパスワードは',580,925,36,'#CDD8EC','center',800);text('Claudeに渡らない',580,985,50,'#FFFFFF');});},
+ // L11 privacy
+ privacy(u,d,L){bg(u);mini(u);const ta=telHas(L,'広告');
+   mixLine([['家計の会話',C.text],['は守られる',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,150);text('専用画面での会話',CX,525,48,C.text);});
+   withEnter(enter(u,0.5),()=>{card(150,630,380,380);check(340,740,62,true);text('AIの学習に',340,870,38,C.text,'center',900);text('使われない',340,930,44,C.acc);});
+   withEnter(enter(u,ta),()=>{card(550,630,380,380);check(740,740,62,true);text('広告や',740,870,38,C.text,'center',900);text('おすすめなし',740,930,44,C.acc);});},
+ // L12 but: what Claude already said stays
+ twist(u,d,L){bg(u);mini(u);const tr=telHas(L,'過去'),tk=telHas(L,'自動');
+   const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
+   withEnter(enter(u,0.3),()=>{card(150,480,780,170);bank(260,565,40,C.sub);
+     g.save();g.strokeStyle=C.sub;g.lineWidth=10;g.lineCap='round';g.beginPath();g.moveTo(340,565);g.lineTo(450,565);g.moveTo(520,565);g.lineTo(630,565);g.stroke();g.strokeStyle=C.warn;g.beginPath();g.moveTo(465,535);g.lineTo(505,595);g.stroke();g.restore();
+     text('連携を解除',790,565,44,C.text,'center',900);});
+   withEnter(enter(u,tr),()=>{card(150,680,780,350);text('それでも残るもの',CX,735,36,C.sub,'center',800);
+     [['過去の回答','chat'],['共有リンク','mail']].forEach(([s,ic],j)=>{const x=200+j*370;rrect(x,780,320,160,24,'#F2F4F8');appIcon(ic,x+70,860,80,C.brand);text(s,x+125,860,38,C.text,'left',900);});});
+   if(u>tk)stamp('自動では消えない',CX,1000,(u-tk)/0.3,C.warn,46,-0.03);},
+ // L13 balances can lag
+ caveat(u,d,L){bg(u);mini(u);const tm=telHas(L,'大事な');
+   mixLine([['数字は',C.text],['明細で確認',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,300);g.save();g.translate(290,600);g.beginPath();g.arc(0,0,80,0,7);g.fillStyle='#F2F4F8';g.fill();g.strokeStyle=C.brand;g.lineWidth=10;g.stroke();
+     g.lineCap='round';g.beginPath();g.moveTo(0,0);g.lineTo(0,-50);g.moveTo(0,0);g.lineTo(38+0*u,18);g.stroke();g.restore();
+     text('残高は',640,545,40,C.sub,'center',800);text('1〜2日',640,625,84,C.acc);text('遅れることも',640,705,40,C.text,'center',900);});
+   withEnter(enter(u,tm),()=>{card(150,790,780,240);g.save();g.translate(290,910);rrect(-60,-85,120,170,10,'#FFFFFF',C.bar);for(let i=0;i<4;i++){g.fillStyle=C.bar;g.fillRect(-40,-55+i*34,80,10);}g.restore();check(345,960,34,true);
+     text('大事な数字は',640,870,40,C.sub,'center',800);text('銀行の明細で確認',640,950,54,C.text);});},
+ // L14 verdict
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);drawChar(CUR,18,510,1044,1856);const t2=telHas(L,'家計簿');
+   const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
+   if(u>0.1){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+     text('日本の銀行',0,-60,38,'#CDD8EC','center',800);text('まだ未対応',0,10,58,'#FFFFFF');text('今は海外の動き',0,76,32,'#FFB074','center',900);g.restore();}
+   if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+     text('家計簿は',0,-58,38,C.buyInk,'center',800);text('AIに聞く',0,12,62,C.buyInk);text('時代へ',0,76,40,C.buyInk,'center',800);g.restore();}},
+ logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
+   if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
+   text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
+};
+window.render=async function(t){
+  CUR=await charImg(Math.round(origT(t)*P.fps));
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
+  const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
+  BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
+  S[L.scene](u,d,L);g.restore();g.restore();
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
+  const BIG=['intro','verdict'];
+  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
+  else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),L.scene==='twist');}
+};
+</script></body></html>
