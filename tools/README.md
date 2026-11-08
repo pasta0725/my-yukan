@@ -53,3 +53,10 @@
 2. `gh run download <実行ID> -n official-images` で取得。候補一覧を見て、記事に合う画像を選ぶ（顔が主役・ロゴだけ・無関係・ニュースサイトの画像は除く）。選んだ結果は {"記事id":[{"n":番号,"caption":"何が写っているか"}]}。
 3. 候補がなかった記事は、WebSearch だけで公式ページを探し（WebFetch は使わない）、{"記事id":["公式ページURL"]} を imgjobs/<号のID>.json に置いて push、`inputs[extra]=imgjobs/<号のID>.json`・`inputs[only_extra]=yes` でもう一度実行して選ぶ。
 4. `python3 -I tools/pick_official_images.py candidates.json picks*.json` で号に取り込み（add_official_images.py と place_images.py も自動で動く）、コミットして push。
+
+## 図解（2026-11-09〜、公式画像の補充のあと）
+公式画像がない記事には、記事の事実から作った図解を付ける（ユーザーの選択。画像生成AIの絵は使わない）。
+- `python3 tools/make_diagrams.py data/<号のID>.json [--specs specs.json]` → data/diagrams/<号のID>/<記事id>.png（1200×675）と記事の "diagram"。
+- 何も指定しなければ、記事の数字の欄（stat）から「数字カード」、無ければ「3行でわかる」から「要点」を自動で作る。
+- 合う記事は specs.json で型を選べる：number（数字1〜3個）／timeline（時系列2〜5個）／compare（今まで・これからの比較）／who（対象・いつから・何が変わる・注意）／points（要点）。書き方は make_diagrams.py の先頭。記事にない数字があると、その指定は使わず自動の図にする。
+- アプリと公開サイトは、公式画像がない記事でこの図を一覧の絵と記事の先頭に出す。

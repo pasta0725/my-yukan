@@ -70,6 +70,10 @@ for f in sorted((f for f in glob.glob(os.path.join(ROOT, "data/20*.json")) if ED
         a = dict(a); a["_date"] = date; a["_cat"] = cat_of(a)
         a["_path"] = f"/news/{date}/{re.sub(r'[^a-z0-9-]', '-', a['id'].lower())}/"
         img = public_img(a.get("image"))
+        dg = a.get("diagram") or {}
+        if not img and re.fullmatch(r"data/diagrams/[A-Za-z0-9-]+/[A-Za-z0-9-]+\.png", dg.get("src", "")) and os.path.exists(os.path.join(ROOT, dg["src"])):
+            # no official picture: show the diagram made from the story's facts (tools/make_diagrams.py)
+            img = {"src": "/" + dg["src"][len("data/"):], "kind": "diagram", "credit": "記事の内容をもとに作成", "caption": dg.get("caption", "図解")}
         body = []
         for b in a.get("body", []):
             t = b.get("type")
@@ -195,6 +199,8 @@ if os.path.exists(OUT): shutil.rmtree(OUT)
 os.makedirs(os.path.join(OUT, "assets"))
 for f in glob.glob(os.path.join(ROOT, "site/root/*")):  # files that must sit at the top of the site (Search Console check, etc.)
     shutil.copy(f, OUT)
+if os.path.isdir(os.path.join(ROOT, "data/diagrams")):  # diagram pictures (tools/make_diagrams.py) → /diagrams/<edition>/<id>.png
+    shutil.copytree(os.path.join(ROOT, "data/diagrams"), os.path.join(OUT, "diagrams"))
 for f in glob.glob(os.path.join(ROOT, "site/assets/*")) + [os.path.join(ROOT, "site/style.css")]:
     shutil.copy(f, os.path.join(OUT, "assets"))
 counts = {}
@@ -247,7 +253,7 @@ for i, d in enumerate(editions):
 def fig(x):
     cap = E(x.get("caption")); cred = E(x.get("credit"))
     return (f'<figure><img src="{E(x["src"])}" alt="{cap}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">'
-            f'<figcaption>{cap}{"　" if cap and cred else ""}{("画像提供：" + cred) if cred else ""}</figcaption></figure>')
+            f'<figcaption>{cap}{"　" if cap and cred else ""}{(("" if x.get("kind") == "diagram" else "画像提供：") + cred) if cred else ""}</figcaption></figure>')
 for a in arts:
     c = a["_cat"]; lab, _, var = CATS[c]
     parts, first_img_done = [], False
@@ -279,7 +285,7 @@ for a in arts:
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a.get("summary", ""),
           "datePublished": ed_time(a["_date"]), "dateModified": ed_time(a["_date"]), "articleSection": lab,
           "author": {"@type": "Organization", "name": NAME}, "publisher": {"@type": "Organization", "name": NAME}}
-    if a["_img"]: ld["image"] = [a["_img"]["src"]]
+    if a["_img"]: ld["image"] = [a["_img"]["src"] if a["_img"]["src"].startswith("http") else url(a["_img"]["src"])]
     if BASE: ld["mainEntityOfPage"] = url(a["_path"])
     band = (f'<div class="retro-band">{ORBIT}<span>宇宙・未来技術</span></div>' if c == "future" else "")
     body = (f'<article class="art{" future" if c == "future" else ""}" style="--c:var({var})">{band}<div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
@@ -298,7 +304,7 @@ for a in arts:
     else:
         xv = '<aside class="xrail" aria-label="Xの声"><div class="xv"><h2>このニュースへのXの声</h2><p class="xnote">このニュースについてのXの投稿は、まだ集まっていません。</p></div></aside>'
     body = f'<div class="agrid">{alist}<div class="amain">{body}</div>{xv}<div class="amore">{more}</div></div>' + (XJS if a["_x"] else "") + LISTJS
-    og = a["_img"]["src"] if a["_img"] else url("/assets/og.jpg")
+    og = (a["_img"]["src"] if a["_img"]["src"].startswith("http") else url(a["_img"]["src"])) if a["_img"] else url("/assets/og.jpg")
     write(a["_path"], page(a["title"], a.get("summary") or a["title"], body, a["_path"], active=c, og_img=og,
                            extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' + (RETRO_FONT if c == "future" else "")))
 

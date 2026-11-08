@@ -421,8 +421,18 @@ main{overflow-x:hidden}
   function catOf(a){ const c = LEGACY[a.category] || a.category; return CATS[c] && c!=="all" ? c : "other"; }
   function creditText(img){
     if(!img) return "";
+    if(img.kind==="diagram") return "図解：記事の内容をもとに作成";
     const who = img.credit || "";
     return img.kind==="press" ? `画像提供：${who}` : `画像：${who}`;
+  }
+  // diagram pictures made from the story's facts when there is no official picture (tools/make_diagrams.py, 2026-11-09)
+  function isDiagram(u){ return typeof u==="string" && /^data\/diagrams\/[A-Za-z0-9-]+\/[A-Za-z0-9-]+\.png$/.test(u); }
+  function mainImage(a){
+    const im = a.image, d = a.diagram;
+    if(im && im.kind==="press" && isHttps(im.src) && !failedImg.has(im.src)) return im;
+    if(d && isDiagram(d.src) && !failedImg.has(d.src)) return Object.assign({kind:"diagram"}, d);
+    if(im && isHttps(im.src) && !failedImg.has(im.src)) return im;
+    return null;
   }
 
   /* Generated illustration: category colors, seeded pattern, line icon, big kicker word */
@@ -466,10 +476,11 @@ main{overflow-x:hidden}
   /* Thumbnail: real photo (with credit) when available, generated illustration otherwise or if it fails to load */
   function thumb(a, shape){
     const box = el("div",{class:"th"});
-    const img = a.image;
+    const img = mainImage(a);
     const fallback = ()=>{ box.innerHTML = illus(a, shape); };
-    if(img && isHttps(img.src) && !failedImg.has(img.src)){
-      const pic = el("img",{src:img.src, alt:"", loading:shape==="wide"?"eager":"lazy", decoding:"async", referrerpolicy:"no-referrer"});
+    if(img){
+      const pic = el("img",{src:img.src, alt:img.kind==="diagram"?(a.title||""):"", loading:shape==="wide"?"eager":"lazy", decoding:"async", referrerpolicy:"no-referrer"});
+      if(img.kind==="diagram"){ pic.style.objectFit = shape==="wide" ? "contain" : "cover"; pic.style.objectPosition = "center 70%"; pic.style.background = "#EEF4FF"; }
       pic.addEventListener("error", ()=>{ failedImg.add(img.src); fallback(); }, {once:true});
       pic.addEventListener("load", ()=>{ if(pic.naturalWidth < 40){ failedImg.add(img.src); fallback(); } }, {once:true});
       box.append(pic);
