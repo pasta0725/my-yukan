@@ -6,7 +6,7 @@ Same input folder as longcat-colab.yml: jobs.json ([[name, segments, res, image,
   models: longcat    LongCat-Video-Avatar 1.5, 8-step distilled (what we use on Colab; tools/colab_longcat_remote.py)
           kandinsky  Kandinsky S2V 1.0 Pro distilled HD (Oct 2026; tools/remote_kandinsky_s2v.py)
           echomimic  EchoMimicV3-Flash (Jan 2026; tools/remote_echomimic3.py)
-GPUs: A100 80GB for LongCat (about $2.5/h, peak ~47 GB), H100 for Kandinsky (its flash-attention 3 needs Hopper), L40S 48GB for EchoMimic.
+GPUs: A100 80GB for LongCat (about $2.5/h, peak ~47 GB), A100 80GB for Kandinsky too (PyTorch attention instead of its Hopper-only flash-attention 3; H100 needs a card on Modal), L40S 48GB for EchoMimic.
 Weights are kept in the Modal volume "rina-avatar-weights", so only the first run of each model downloads them.
 Each remote script is the Colab-style runner: reads /content/in, writes /content/out/<name>.mp4, keeps weights in /content/w."""
 import os, pathlib
@@ -55,7 +55,7 @@ def longcat(files: dict, script: str) -> dict:
     return _run(files, script)
 
 
-@app.function(image=img_kandinsky, gpu="H100", volumes={"/vol": vol}, timeout=3 * 3600)
+@app.function(image=img_kandinsky, gpu="A100-80GB", volumes={"/vol": vol}, timeout=3 * 3600)
 def kandinsky(files: dict, script: str) -> dict:
     return _run(files, script)
 

@@ -20,7 +20,7 @@ jobs = json.load(open("/content/in/jobs.json"))
 for job in jobs:
     name = job[0]; img = job[3] if len(job) > 3 and job[3] else "base_green.png"; extra = job[4] if len(job) > 4 else ""
     if not os.path.exists(f"/content/in/{name}.wav"): continue
-    sh(f"cd /opt/kandy && uv run --no-sync kandy-s2v generate --config src/kandinsky_s2v/configs/s2v_pro_distill_hd.yaml "
+    sh(f"cd /opt/kandy && uv run --no-sync kandy-s2v generate --config src/kandinsky_s2v/configs/s2v_pro_distill_hd.yaml --attention-engine sdpa "
        f"--audio /content/in/{name}.wav --image /content/in/{img} --out /content/out/{name}.mp4 "
        f"--prompt {json.dumps((PROMPT + ' ' + extra).strip())} --negative {json.dumps(NEG)} 2>&1 | tail -40")
 sh("ls -la /content/out")
