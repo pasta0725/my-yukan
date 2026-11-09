@@ -1,0 +1,38 @@
+name: modal-avatar
+# Talking-presenter clips on Modal (tools/modal_avatar.py). Same input folder as longcat-colab.yml.
+# Needs the repository secrets MODAL_TOKEN_ID and MODAL_TOKEN_SECRET (registered by the owner).
+# Clips go to the branch "generated" as generated/<parent>_<dir>_<model>/<name>.mp4.
+on:
+  workflow_dispatch:
+    inputs:
+      dir: {description: "input folder in the repo (e.g. shorts/rina_zelda/longcat)", required: true}
+      model: {description: "longcat / kandinsky / echomimic", default: "longcat"}
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q modal
+      - name: run on Modal
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: modal run tools/modal_avatar.py --dir "${{ inputs.dir }}" --model "${{ inputs.model }}" --out /tmp/out
+      - name: push to branch generated
+        if: always()
+        env: { DIR: "${{ inputs.dir }}", MODEL: "${{ inputs.model }}" }
+        run: |
+          N=$(basename "$(dirname "$DIR")")_$(basename "$DIR")_$MODEL
+          ls -la /tmp/out 2>/dev/null || exit 0
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin generated; then git checkout -q -B generated origin/generated; else git checkout -q --orphan generated; fi
+          mkdir -p "generated/$N"; cp /tmp/out/*.mp4 "generated/$N/" 2>/dev/null || true
+          git add generated; git commit -qm "modal $N" || true
+          git push -q origin generated
