@@ -1,0 +1,43 @@
+name: metrics
+# Daily numbers for the weekly self-improvement review (tools/collect_metrics.py, tools/learning/README.md).
+# Output: branch "metrics", metrics/<date>.json. No secret is printed.
+on:
+  schedule:
+    - cron: "13 0 * * *"   # 09:13 Japan time
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  issues: read
+  actions: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q google-api-python-client google-auth modal google-colab-cli
+      - name: collect
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+          COLAB_ADC: ${{ secrets.COLAB_ADC }}
+        run: |
+          printf '%s' "$COLAB_ADC" > "$RUNNER_TEMP/adc.json"; export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
+          python3 tools/collect_metrics.py /tmp/m.json
+      - name: push to branch metrics
+        run: |
+          D=$(python3 -c "import json;print(json.load(open('/tmp/m.json'))['date'])")
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin metrics; then git checkout -q -B metrics origin/metrics; else git checkout -q --orphan metrics; fi
+          mkdir -p metrics; cp /tmp/m.json "metrics/$D.json"
+          git add metrics; git commit -q --allow-empty -m "metrics $D"
+          for i in 1 2 3; do git push -q origin metrics && break; git pull -q --rebase origin metrics; done
