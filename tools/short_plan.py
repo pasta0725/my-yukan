@@ -114,10 +114,11 @@ def chunks(s):
         while len(p) > 15:
             inq = lambda j: (p[:j].count("『") + p[:j].count("「")) > (p[:j].count("』") + p[:j].count("」"))
             # cut after a particle or just before a quote, never inside 『』「」 (it split 『ゼルダの|伝説』, 2026-11-09)
-            c = [m.end() for m in re.finditer(r"[をにはがでとのもへ]", p[:15]) if not inq(m.end())] + [m.start() for m in re.finditer(r"[『「]", p[:15])]
+            c = [m.end() for m in re.finditer(r"[をにはがでとのもへや]", p[:15]) if not inq(m.end()) and p[m.end():m.end() + 1] not in "りるれろっまんいうえ" and not (re.match(r"[ぁ-ん]", p[m.start() - 1:m.start()] or "x") and re.match(r"[ぁ-ん]", p[m.end():m.end() + 1] or "x"))] + [m.start() for m in re.finditer(r"[『「]", p[:15])]  # not inside a verb such as 下が|りました (2026-11-10)
             c = [j for j in c if j >= 4 and len(re.sub(r"[、。]", "", p[j:])) > 3]   # no tiny leftover such as 「演奏で|きます」
             if not c and len(p) <= 18: break
             cut = max(c or [12])
+            while cut > 4 and re.match(r"[A-Za-z0-9. ]", p[cut - 1]) and re.match(r"[A-Za-z0-9. ]", p[cut]): cut -= 1  # never inside a Latin name such as Opu|s 5.5 (2026-11-10)
             out.append(p[:cut]); p = p[cut:]
         if p:
             if len(re.sub(r"[、。]", "", p)) <= 3 and out and len(out[-1]) + len(p) <= 18: out[-1] += p  # no tiny leftovers
