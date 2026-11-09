@@ -14,7 +14,7 @@
   const SHAPE = { a: [0.95, 0.78], i: [1.05, 0.34], u: [0.52, 0.48], e: [0.92, 0.52], o: [0.64, 0.72], small: [0.46, 0.3] };
   function load(base) {
     return Promise.all(Object.keys(A).map(k => new Promise(r => {
-      const i = new Image(); i.onload = () => { IM[k] = i; r(); }; i.onerror = () => r(); i.src = base + k + '.png';
+      const i = new Image(); i.onload = () => { IM[k] = i; r(); }; i.onerror = () => r(); i.src = base + k + '.webp';
     })));
   }
   function mouthAt(voice, u) {

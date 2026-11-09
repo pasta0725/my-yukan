@@ -99,3 +99,6 @@
 - 完成動画は GitHub に残さない（作り直すたびに履歴に残り、容量が増え続けるため）。保管場所は Google ドライブの「星餓りな ショート動画」フォルダ（ID 1qTyAGlQurDbu4FrZrxZWua7EoKmPvDCu、pastachannel0725）。
 - 投稿の流れ：完成版だけを使い捨てのブランチ upload-tmp（親なしの1コミット）に置く → 内蔵ブラウザで raw.githubusercontent.com/pasta0725/my-yukan/upload-tmp/<名前>.mp4 を読み込み、YouTube と ドライブの両方へアップロード → 終わったらブランチ upload-tmp を消す。
 - 作り直しの途中の版はコミットしない（shorts/*/short_v*.mp4、channel/uploads/ は .gitignore 済み）。
+- 公開したら、その動画の素材（media/<名前>、narration/<名前>*、shorts/<名前> の画像・動画・音声、channel/thumbs のサムネ）をzipにして同じドライブの「素材と試作の保管」フォルダ（ID 1-zsIlQf3Azjbql2WJyQro7MvBxDoaGQ1）へ移し、GitHubからは消す（台本・ページなど文字のファイルは残す）。作り直すときはzipから戻す。
+- 作業用ブランチ（generated・fetched・upload-tmp）は、中身を取り出したら消す（次に使うワークフローが作り直す）。
+- りなの絵（channel/rina_puppet）は可逆のWebPで保存する（PNGより約3割小さく、画質は同じ）。

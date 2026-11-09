@@ -2,7 +2,7 @@
 
 usage: python3 tools/rina_puppet_prep.py
 reads  channel/rina_puppet/src/* and channel/rina_poses/*.png (green-screen pictures)
-writes channel/rina_puppet/<name>.png (transparent) and channel/rina_puppet/index.json
+writes channel/rina_puppet/<name>.webp (transparent, lossless) and channel/rina_puppet/index.json
 
 index.json describes every picture: size, where the eyes and the mouth are (in the picture's own pixels),
 the skin colour used to cover the mouth/eyes, and for the big poses how they are placed on the 720x1280 pose canvas.
@@ -22,10 +22,10 @@ POSES = os.path.join(ROOT, "channel", "rina_poses")
 ASSETS = {
     # small presenter (left-bottom): super-deformed Rina, full body, sticker style (bold outlines) — chosen by the user 2026-11-09
     # (the first version is kept as src/chibi_v1_raw.png: eyes [[360,488],[580,488]], eye_box [113,125], mouth [470,590], w60)
-    "chibi": {"src": os.path.join(SRC, "chibi_sticker_raw.png"), "kind": "chibi",
+    "chibi": {"src": os.path.join(SRC, "chibi_sticker_raw.webp"), "kind": "chibi",
               "eyes": [[543, 412], [715, 412]], "eye_box": [110, 82], "mouth": [629, 490], "mouth_w": 52, "skin_at": [629, 470]},
     # small presenter since 2026-11-09 (user): normal proportions like the big one, sticker style (bold black outlines) — 案A
-    "small_sticker": {"src": os.path.join(SRC, "small_sticker_raw.png"), "kind": "small",
+    "small_sticker": {"src": os.path.join(SRC, "small_sticker_raw.webp"), "kind": "small",
                       "eyes": [[427, 210], [516, 210]], "eye_box": [50, 30], "mouth": [473, 256], "mouth_w": 38, "skin_at": [473, 245]},
     # big presenter (登場・最後): normal proportions, 720x1280 pose canvas
     "big_base": {"src": os.path.join(POSES, "base_green.png"), "kind": "big",
@@ -34,9 +34,9 @@ ASSETS = {
                     "eyes": [[313.8, 268.8], [420, 260.6]], "mouth": [375, 334], "mouth_w": 46, "skin_at": [375, 306],
                     "close_mouth": {"c": [378, 330], "rx": 48, "ry": 28}, "match_colour_to": "big_base"},
     # in-between drawings for the move 立ち絵 → 指1本 (1/3 and 2/3 of the way); aligned by the eyes
-    "big_ib_finger1_1": {"src": os.path.join(SRC, "ib1_raw.png"), "kind": "between",
+    "big_ib_finger1_1": {"src": os.path.join(SRC, "ib1_raw.webp"), "kind": "between",
                          "eyes": [[415.6, 350], [550, 333.75]], "align_to": ["big_base", "big_finger1", 1 / 3], "match_colour_to": "big_base"},
-    "big_ib_finger1_2": {"src": os.path.join(SRC, "ib2_raw.png"), "kind": "between",
+    "big_ib_finger1_2": {"src": os.path.join(SRC, "ib2_raw.webp"), "kind": "between",
                          "eyes": [[518.75, 296.25], [631.25, 283.75]], "align_to": ["big_base", "big_finger1", 2 / 3], "match_colour_to": "big_base"},
 }
 TRANSITIONS = {"base_to_finger1": ["big_base", "big_ib_finger1_1", "big_ib_finger1_2", "big_finger1"]}
@@ -126,7 +126,7 @@ def main():
         for k in ("eyes", "eye_box", "mouth", "mouth_w"):
             if k in a and not a.get("align_to"): info[k] = a[k]
         info["size"] = [x.shape[1], x.shape[0]]
-        Image.fromarray(x.astype(np.uint8), "RGBA").save(os.path.join(OUT, name + ".png"), optimize=True)
+        Image.fromarray(x.astype(np.uint8), "RGBA").save(os.path.join(OUT, name + ".webp"), "WEBP", lossless=True, method=6, exact=True)
         index["assets"][name] = info
         print(name, info)
     json.dump(index, open(os.path.join(OUT, "index.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
