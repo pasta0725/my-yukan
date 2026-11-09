@@ -23,7 +23,7 @@ const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);
 let CUR=null;
 function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
   if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
-window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('kv','img/intro_kv_bg.webp'),load('pkg','img/package.webp'),load('logoZ','img/mv_logo.webp'),load('oca','img/age_01.webp'),load('child','img/age_06.webp'),load('castle','img/intro_05.webp'),load('jump','img/action_chara.webp'),load('horse','img/age_04.webp'),load('oca2','img/world_03.webp'),load('puzzle','img/world_02.webp'),Puppet.load('../../channel/rina_puppet/')]);await document.fonts.ready;measureFits();})();
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('kv','img/intro_kv_bg.webp'),load('pkg','img/package.webp'),load('logoZ','img/mv_logo.webp'),load('oca','img/age_01.webp'),load('child','img/age_06.webp'),load('castle','img/intro_05.webp'),load('jump','img/action_chara.webp'),load('horse','img/age_04.webp'),load('oca2','img/world_03.webp'),load('puzzle','img/world_02.webp'),(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]);await document.fonts.ready;measureFits();})();
 const telAt=(txt)=>P.tel.find(x=>x.text===txt);
 const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
 // ---------- helpers ----------
@@ -262,7 +262,7 @@ const S={
    withEnter(enter(u,tp),()=>{card(150,1030,780,135);text('パッケージ版',190,1097,40,C.text,'left',900);mixLine([['8980',C.acc],['円',C.text]],760,1097,64);});
    creditAt(CRED,535,830);},
  // L14 verdict
- verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,18,560,1044,1856));const t2=telHas(L,'歯ごたえ');
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'歯ごたえ');  // Colab was full: the big still as a PNGTuber (user 2026-11-09)
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
    if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.buyFill);
      text('初めての人',0,-60,36,C.buyInk,'center',800);text('最高の入口',0,12,62,C.buyInk);text('ほぼ満点の評価',0,78,30,C.buyInk,'center',800);g.restore();}

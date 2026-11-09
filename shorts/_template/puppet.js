@@ -90,6 +90,7 @@
     const sc = w / a.size[0], bob = Math.sin(t * 1.9) * 1.6;
     g.save(); g.translate(0, bob);
     g.drawImage(im, x, y, w, h);
+    if (a.eyes && blinking(t)) closedEyes(g, Object.assign({ eye_box: [62, 40] }, a), x, y, sc);  // blink (big still used as a puppet, 2026-11-09)
     if (a.mouth) drawMouth(g, a, x, y, sc, m, false);
     g.restore();
   }
