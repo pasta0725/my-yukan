@@ -45,7 +45,7 @@ function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.
 function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
 // small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
 let CURI=0,CURT=0;const mouthNow=()=>{const L=P.lines[CURI];return L&&L.puppet?Puppet.mouthAt(P.voices[CURI],CURT-L.start):null;};
-function mini(u){abs(()=>glow(266,1440,260,C.brand,0.22));const a=Puppet.assets.small_sticker,s=0.7;abs(()=>Puppet.chibi(g,55,1332,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker'));}  // whole body side inside YouTube's ~50px side crop  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
+function mini(u){abs(()=>glow(220,1450,240,C.brand,0.22));const a=Puppet.assets.small_sticker,s=0.56;abs(()=>Puppet.chibi(g,62,1355,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker'));}  // whole body side inside YouTube's ~50px side crop  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
 function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
 function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
 function sampleTag(x,y){abs(()=>{});rrect(x,y-22,170,44,22,'rgba(11,18,34,0.78)');text('画面は見本',x+85,y,24,'#FFFFFF','center',800);}
@@ -160,10 +160,10 @@ const S={
  // L0 hook: the official screen with Health Age
  hook(u,d,L){bg(u);mini(u);const ta=Math.min(0.6,telHas(L,'体の年齢'));
    mixLine([['iPhone＋Watch',C.brand],['で',C.text],['「体の年齢」',C.acc]],CX,385,62);
-   withEnter(enter(u,0,0.3),()=>{const z=1.0+0.06*u/d;pic('hero',150,445,780,600,z*1.05,0.5,0.2);},40);
+   withEnter(enter(u,0,0.3),()=>{const z=1.0+0.06*u/d;pic('hero',150,445,780,690,z*1.05,0.5,0.2);},40);
    if(u>ta){const k=ease((u-ta)/0.4);g.save();g.globalAlpha*=k;g.strokeStyle=C.acc;g.lineWidth=8;g.beginPath();g.arc(395,612,96,0,7);g.stroke();g.restore();
      stamp('体の年齢を表示',690,560,(u-ta)/0.35,C.acc,50,-0.05);}
-   sampleTag(170,1000);creditAt(CRED,925,1025);},
+   sampleTag(170,1090);creditAt(CRED,925,1115);},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},  // big Rina = LongCat clip frames (big/intro/)
  // L2 what: announced in September
  what(u,d,L){bg(u);mini(u);const t9=telHas(L,'9月');
@@ -175,69 +175,68 @@ const S={
  // L3 when: announced in September, in the iOS 27.3 developer beta on Nov 3
  when(u,d,L){bg(u);mini(u);const tb=telHas(L,'iOS');
    mixLine([['Apple',C.brand],['の新ヘルスケア',C.text]],CX,385,64);
-   withEnter(enter(u,0),()=>{pic('readiness_both',150,450,330,420,1.0,0.5,0.35);card(500,450,430,190);text('2026年9月',715,505,34,C.sub,'center',800);text('Watch新機種と発表',715,575,38,C.text);
-     card(500,660,430,210);text('2026年',715,705,30,C.sub,'center',800);bigNum('11','月3日',715,790,(u-0.2)/0.35,C.acc,100);});
-   withEnter(enter(u,tb),()=>{card(150,895,780,170,30,C.card2);text('iOS 27.3 開発者向けベータ',CX,950,44,'#FFFFFF');
-     text('一般向けではない試験版・27.2の試験版では一度外された',CX,1020,26,'#FFB074','center',800);});
-   creditAt(CRED,470,860);},
+   withEnter(enter(u,0),()=>{pic('readiness_both',150,450,330,510,1.0,0.5,0.35);card(500,450,430,235);text('2026年9月',715,525,34,C.sub,'center',800);text('Watch新機種と発表',715,605,38,C.text);
+     card(500,705,430,255);text('2026年',715,765,30,C.sub,'center',800);bigNum('11','月3日',715,860,(u-0.2)/0.35,C.acc,100);});
+   withEnter(enter(u,tb),()=>{card(150,985,780,170,30,C.card2);text('iOS 27.3 開発者向けベータ',CX,1040,44,'#FFFFFF');
+     text('一般向けではない試験版・27.2の試験版では一度外された',CX,1110,26,'#FFB074','center',800);});
+   creditAt(CRED,470,950);},
  // L4 before: just graphs
  before(u,d,L){bg(u);mini(u);
    mixLine([['これまで',C.sub],['は…',C.text]],CX,385,64);
-   withEnter(enter(u,0),()=>{card(150,450,780,590);text('記録を並べるだけ',CX,510,40,C.sub,'center',900);
-     ['歩数','心拍数','睡眠'].forEach((s,j)=>{const y=600+j*150;text(s,200,y,34,C.text,'left',900);
+   withEnter(enter(u,0),()=>{card(150,450,780,680);text('記録を並べるだけ',CX,515,40,C.sub,'center',900);
+     ['歩数','心拍数','睡眠'].forEach((s,j)=>{const y=615+j*180;text(s,200,y,34,C.text,'left',900);
        for(let i=0;i<12;i++){const h=20+((i*37+j*53)%70);const k=clamp((u-0.2-j*0.15)*3-i*0.08);rrect(330+i*48,y+40-h*k,30,Math.max(2,h*k),6,'#B7BEC7');}});});
-   withEnter(enter(u,1.1),()=>stamp('どう読めばいい？',700,990,(u-1.1)/0.3,C.sub,40,-0.04),4);},
+   withEnter(enter(u,1.1),()=>stamp('どう読めばいい？',700,1080,(u-1.1)/0.3,C.sub,40,-0.04),4);},
  // L5 after: AI sums it up and advises
  after(u,d,L){bg(u);mini(u);const ta=telHas(L,'アドバイス');
    mixLine([['これから',C.acc],['は',C.text]],CX,385,64);
-   withEnter(enter(u,0),()=>{const z=1.0+0.03*u;pic('insights_sleep',150,450,430,590,z*1.0,0.5,0.25);});
-   withEnter(enter(u,0.3),()=>{card(605,450,325,270);text('AIが',767,520,38,C.sub,'center',800);text('毎日',767,595,62,C.text);text('まとめる',767,670,44,C.brand);});
-   withEnter(enter(u,ta),()=>{card(605,745,325,295,30,C.buyFill);text('おすすめ',767,830,40,C.buyInk,'center',800);text('まで',767,900,40,C.buyInk,'center',800);text('出す',767,975,58,C.buyInk);});
-   withEnter(enter(u,0.4),()=>text('Apple Intelligenceが土台',365,1065,26,C.sub,'center',800),6);
-   creditAt(CRED,570,1025);},
+   withEnter(enter(u,0),()=>{const z=1.0+0.03*u;pic('insights_sleep',150,450,430,680,z*1.0,0.5,0.25);});
+   withEnter(enter(u,0.3),()=>{card(605,450,325,310);text('AIが',767,535,38,C.sub,'center',800);text('毎日',767,625,62,C.text);text('まとめる',767,715,44,C.brand);});
+   withEnter(enter(u,ta),()=>{card(605,785,325,345,30,C.buyFill);text('おすすめ',767,880,40,C.buyInk,'center',800);text('まで',767,955,40,C.buyInk,'center',800);text('出す',767,1040,58,C.buyInk);});
+   withEnter(enter(u,0.4),()=>text('Apple Intelligenceが土台',365,1155,26,C.sub,'center',800),6);
+   creditAt(CRED,570,1115);},
  // L6 Insights tab: heart, sleep, fitness all day
  insights(u,d,L){bg(u);mini(u);
    mixLine([['「インサイト」',C.acc],['タブ',C.text]],CX,385,64);
    const P3=[['heart','心臓',0],['insights_sleep','睡眠',0.45],['fitness','運動',0.9]];
-   P3.forEach(([k,s,t0],j)=>withEnter(enter(u,t0),()=>{const x=150+j*265;pic(k,x,450,250,470,1.0,0.5,0.12);pill(s,x+125,960,40,j===0?'#E8384F':j===1?C.brand:'#1F9D6A');},24));
-   withEnter(enter(u,1.4),()=>{rrect(150,1020,780,64,22,C.card2);text('1日中、新しい記録で更新',CX,1052,32,'#FFFFFF','center',900);},10);
-   creditAt(CRED,925,915);},
+   P3.forEach(([k,s,t0],j)=>withEnter(enter(u,t0),()=>{const x=150+j*265;pic(k,x,450,250,560,1.0,0.5,0.12);pill(s,x+125,1050,40,j===0?'#E8384F':j===1?C.brand:'#1F9D6A');},24));
+   withEnter(enter(u,1.4),()=>{rrect(150,1110,780,64,22,C.card2);text('1日中、新しい記録で更新',CX,1142,32,'#FFFFFF','center',900);},10);
+   creditAt(CRED,925,1005);},
  // L7 For You: concrete suggestion
  foryou(u,d,L){bg(u);mini(u);const tt=telHas(L,'提案');
    mixLine([['「For You」',C.brand],['で提案',C.text]],CX,385,64);
-   withEnter(enter(u,0),()=>{pic('foryou',150,450,400,590,1.0,0.5,0.2);});
-   withEnter(enter(u,0.3),()=>{card(575,450,355,250);text('夜ふかしが',752,530,40,C.text);text('何日も続いた',752,600,40,C.text);text('睡眠の記録',752,665,28,C.sub,'center',800);});
-   arrowR(752,752,720,0,C.sub);
-   withEnter(enter(u,tt),()=>{card(575,730,355,310,30,C.buyFill);text('寝る前の',752,820,40,C.buyInk,'center',900);text('過ごし方を',752,890,40,C.buyInk,'center',900);text('見直そう',752,965,52,C.buyInk);});
-   withEnter(enter(u,tt+0.2),()=>text('※公式発表の例',925,1065,22,C.sub,'right',700),6);
-   creditAt(CRED,515,1025);},
+   withEnter(enter(u,0),()=>{pic('foryou',150,450,400,680,1.0,0.5,0.2);});
+   withEnter(enter(u,0.3),()=>{card(575,450,355,290);text('夜ふかしが',752,545,40,C.text);text('何日も続いた',752,625,40,C.text);text('睡眠の記録',752,700,28,C.sub,'center',800);});
+   withEnter(enter(u,tt),()=>{card(575,770,355,360,30,C.buyFill);text('寝る前の',752,880,40,C.buyInk,'center',900);text('過ごし方を',752,955,40,C.buyInk,'center',900);text('見直そう',752,1040,52,C.buyInk);});
+   withEnter(enter(u,tt+0.2),()=>text('※公式発表の例',925,1155,22,C.sub,'right',700),6);
+   creditAt(CRED,515,1115);},
  // L8 readiness 0-10 on the newest watches
  readiness(u,d,L){bg(u);mini(u);const ts=telHas(L,'運動'),t0=telHas(L,'今日の体の調子');
    mixLine([['「準備度」',C.acc],['＝今日の体の調子',C.text]],CX,385,58);
-   withEnter(enter(u,0),()=>{pic('readiness_watch',150,450,780,400,1.08,0.5,0.5);});
+   withEnter(enter(u,0),()=>{pic('readiness_watch',150,450,780,460,1.08,0.5,0.5);});
    const lv=[['0','回復'],['3','ペース控えめ'],['7','準備OK'],['10','全力で']];
-   if(u>t0)lv.forEach(([n,s],j)=>withEnter(enter(u,t0+j*0.12),()=>{const x=248+j*195;text(s,x,830,26,C.text,'center',900);},8));
-   withEnter(enter(u,0.3),()=>{card(150,870,370,170);text('Series 12・Ultra 4',335,915,28,C.sub,'center',800);text('最新2機種',335,980,46,C.text);});
-   withEnter(enter(u,ts),()=>{card(560,870,370,170,30,C.card2);text('運動・睡眠・体の数値から',745,915,26,'#CDD8EC','center',800);if(u>t0){const k=back((u-t0)/0.35);g.save();g.translate(745,985);g.scale(k,k);mixLine([['0〜10','#FFB074'],['点','#FFFFFF']],0,0,64);g.restore();}});
-   withEnter(enter(u,t0+0.5),()=>text('心拍は新センサーで5秒ごとに測定',CX,1068,28,C.sub,'center',800),6);
-   creditAt(CRED,925,780);},
+   if(u>t0)lv.forEach(([n,s],j)=>withEnter(enter(u,t0+j*0.12),()=>{const x=248+j*195;text(s,x,890,26,C.text,'center',900);},8));
+   withEnter(enter(u,0.3),()=>{card(150,930,370,200);text('Series 12・Ultra 4',335,985,28,C.sub,'center',800);text('最新2機種',335,1060,46,C.text);});
+   withEnter(enter(u,ts),()=>{card(560,930,370,200,30,C.card2);text('運動・睡眠・体の数値から',745,985,26,'#CDD8EC','center',800);if(u>t0){const k=back((u-t0)/0.35);g.save();g.translate(745,1060);g.scale(k,k);mixLine([['0〜10','#FFB074'],['点','#FFFFFF']],0,0,64);g.restore();}});
+   withEnter(enter(u,t0+0.5),()=>text('心拍は新センサーで5秒ごとに測定',CX,1160,28,C.sub,'center',800),6);
+   creditAt(CRED,925,840);},
  // L9 Longevity tab: 7 areas
  longevity(u,d,L){bg(u);mini(u);const t7=telHas(L,'7つ');
    mixLine([['「ロンジェビティ」',C.acc],['タブ',C.text]],CX,385,62);
-   withEnter(enter(u,0),()=>{pic('longevity_poster',150,450,780,260,1.0,0.5,0.5);});
+   withEnter(enter(u,0),()=>{pic('longevity_poster',150,450,780,330,1.0,0.5,0.5);});
    const A=['心臓','睡眠','心の健康','体の動き','代謝','聴覚','栄養'];
-   A.forEach((s,j)=>withEnter(enter(u,0.35+j*0.12),()=>{const col=j%4,row=Math.floor(j/4);const x=245+col*197-(row?-98:0),y=780+row*110;pill(s,x,y,34,['#E8384F','#5856D6','#30B0C7','#FF9500','#34C759','#007AFF','#AF52DE'][j]);},10));
-   if(u>t7)stamp('7分野',CX,990,(u-t7)/0.3,C.acc,56,-0.04);
-   creditAt(CRED,925,700);},
+   A.forEach((s,j)=>withEnter(enter(u,0.35+j*0.12),()=>{const col=j%4,row=Math.floor(j/4);const x=245+col*197-(row?-98:0),y=880+row*120;pill(s,x,y,34,['#E8384F','#5856D6','#30B0C7','#FF9500','#34C759','#007AFF','#AF52DE'][j]);},10));
+   if(u>t7)stamp('7分野',CX,1110,(u-t7)/0.3,C.acc,56,-0.04);
+   creditAt(CRED,925,770);},
  // L10 Health Age
  healthage(u,d,L){bg(u);mini(u);const tc=telHas(L,'実年齢');
    mixLine([['中心は',C.text],['「ヘルス年齢」',C.acc]],CX,385,64);
-   withEnter(enter(u,0),()=>{const z=1.0+0.05*u/d;pic('healthage_poster',150,450,400,590,z*1.0,0.5,0.25);});
-   withEnter(enter(u,0.3),()=>{card(575,450,355,330);text('もとになる記録',752,500,28,C.sub,'center',800);
-     ['最大酸素摂取量','安静時の心拍','睡眠','心拍の変動'].forEach((s,j)=>text(s,752,555+j*52,30,C.text,'center',900));text('＋血液検査も追加可',752,758,28,C.brand,'center',900);});
-   withEnter(enter(u,tc),()=>{card(575,805,355,235,30,C.card2);text('実年齢と比べて',752,860,32,'#CDD8EC','center',900);
-     text('何歳若いか',752,925,44,'#FFFFFF');text('上かを表示',752,985,44,'#FFB074');});
-   sampleTag(170,1000);creditAt(CRED,515,1025);},
+   withEnter(enter(u,0),()=>{const z=1.0+0.05*u/d;pic('healthage_poster',150,450,400,680,z*1.0,0.5,0.25);});
+   withEnter(enter(u,0.3),()=>{card(575,450,355,370);text('もとになる記録',752,505,28,C.sub,'center',800);
+     ['最大酸素摂取量','安静時の心拍','睡眠','心拍の変動'].forEach((s,j)=>text(s,752,570+j*58,30,C.text,'center',900));text('＋血液検査も追加可',752,795,28,C.brand,'center',900);});
+   withEnter(enter(u,tc),()=>{card(575,845,355,285,30,C.card2);text('実年齢と比べて',752,910,32,'#CDD8EC','center',900);
+     text('何歳若いか',752,985,44,'#FFFFFF');text('上かを表示',752,1055,44,'#FFB074');});
+   sampleTag(170,1090);creditAt(CRED,515,1115);},
  // L11 add blood tests
  lab(u,d,L){bg(u);mini(u);
    mixLine([['血液検査',C.acc],['も足せる',C.text]],CX,385,64);
@@ -248,32 +247,32 @@ const S={
  // L12 movement test with the camera, nothing saved
  movement(u,d,L){bg(u);mini(u);const tv=telHas(L,'動画');
    mixLine([['カメラで',C.text],['体を測る',C.acc]],CX,385,64);
-   withEnter(enter(u,0),()=>{card(150,450,780,330);const poses=['reach','squat','stand'];const p=poses[Math.floor(u/0.9)%3];
-     figure(360,660,70,p,C.brand);g.save();g.translate(640,735);g.rotate(-0.25);rrect(-40,-75,80,150,16,'#16213A');rrect(-32,-66,64,132,12,'#4A5875');g.restore();
-     g.save();g.globalAlpha*=0.35+0.25*Math.sin(u*6);g.fillStyle=C.brand;g.beginPath();g.moveTo(625,705);g.lineTo(420,500);g.lineTo(300,780);g.closePath();g.fill();g.restore();
-     text('家で・機材なし',800,520,30,C.sub,'center',800);watchIcon(820,640,48,C.brand);text('Watchで心拍',820,725,26,C.sub,'center',800);});
+   withEnter(enter(u,0),()=>{card(150,450,780,400);const poses=['reach','squat','stand'];const p=poses[Math.floor(u/0.9)%3];
+     figure(360,700,80,p,C.brand);g.save();g.translate(640,775);g.rotate(-0.25);rrect(-40,-75,80,150,16,'#16213A');rrect(-32,-66,64,132,12,'#4A5875');g.restore();
+     g.save();g.globalAlpha*=0.35+0.25*Math.sin(u*6);g.fillStyle=C.brand;g.beginPath();g.moveTo(625,745);g.lineTo(420,520);g.lineTo(300,830);g.closePath();g.fill();g.restore();
+     text('家で・機材なし',800,525,30,C.sub,'center',800);watchIcon(820,680,52,C.brand);text('Watchで心拍',820,775,26,C.sub,'center',800);});
    const M=['柔軟性','筋力','バランス','最大酸素摂取量'];
-   M.forEach((s,j)=>withEnter(enter(u,0.4+j*0.25),()=>{const x=j<3?150+j*265:150,w=j<3?250:780,y=j<3?815:900;if(j<3){rrect(x,y,w,70,22,C.card);text(s,x+w/2,y+36,36,C.text);}else{rrect(x,y,w,70,22,C.card);text(s+'（VO2 max）',CX,y+36,36,C.text);}},10));
-   withEnter(enter(u,tv),()=>{rrect(150,990,780,80,22,C.card2);lockIcon(215,1027,40,'#FFFFFF');text('動画は記録も保存もされない',575,1030,36,'#FFFFFF','center',900);},10);},
+   M.forEach((s,j)=>withEnter(enter(u,0.4+j*0.25),()=>{const x=j<3?150+j*265:150,w=j<3?250:780,y=j<3?885:975;if(j<3){rrect(x,y,w,70,22,C.card);text(s,x+w/2,y+36,36,C.text);}else{rrect(x,y,w,70,22,C.card);text(s+'（VO2 max）',CX,y+36,36,C.text);}},10));
+   withEnter(enter(u,tv),()=>{rrect(150,1070,780,80,22,C.card2);lockIcon(215,1107,40,'#FFFFFF');text('動画は記録も保存もされない',575,1110,36,'#FFFFFF','center',900);},10);},
  // L13 but: Apple Watch needed
  twist(u,d,L){bg(u);mini(u);const tr=telHas(L,'カメラ');
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
-   withEnter(enter(u,0.3),()=>{card(150,480,780,260);watchIcon(260,610,70,'#16213A');text('体の年齢（ヘルス年齢）',590,560,40,C.text);text('Apple Watchが必要',590,640,50,C.warn);text('iPhoneだけでは出ない',590,705,30,C.sub,'center',800);});
-   withEnter(enter(u,tr),()=>{card(150,770,780,190);text('カメラの測定',320,865,44,C.text);text('Watchで心拍も測る',670,865,42,C.warn);});
-   withEnter(enter(u,tr+0.5),()=>{rrect(150,985,780,70,22,C.card2);text('アプリはApple Intelligence対応のiPhoneで',CX,1021,30,'#FFFFFF','center',800);},10);},
+   withEnter(enter(u,0.3),()=>{card(150,490,780,310);watchIcon(260,645,80,'#16213A');text('体の年齢（ヘルス年齢）',590,580,40,C.text);text('Apple Watchが必要',590,670,52,C.warn);text('iPhoneだけでは出ない',590,745,30,C.sub,'center',800);});
+   withEnter(enter(u,tr),()=>{card(150,830,780,220);text('カメラの測定',320,940,44,C.text);text('Watchで心拍も測る',670,940,42,C.warn);});
+   withEnter(enter(u,tr+0.5),()=>{rrect(150,1080,780,76,22,C.card2);text('アプリはApple Intelligence対応のiPhoneで',CX,1119,30,'#FFFFFF','center',800);},10);},
  // L14 Japanese: 10 languages, free, this year
  japan(u,d,L){bg(u);mini(u);const t10=telHas(L,'10言語'),ty=telHas(L,'年内');
    mixLine([['日本語',C.acc],['にも対応',C.text]],CX,385,64);
-   withEnter(enter(u,0),()=>{pic('lang',150,450,780,330,1.0,0.5,0.5);});
-   withEnter(enter(u,t10),()=>{card(150,810,380,230);text('日本語を含む',340,860,32,C.sub,'center',800);bigNum('10','言語',340,960,(u-t10)/0.35,C.acc,120);});
-   withEnter(enter(u,ty),()=>{card(550,810,380,230,30,C.card2);text('一般向けは',740,860,32,'#CDD8EC','center',800);text('年内・無料',740,935,56,'#FFFFFF');text('日付は未発表',740,1000,28,'#FFB074','center',800);});
-   creditAt(CRED,925,770);},
+   withEnter(enter(u,0),()=>{pic('lang',150,450,780,410,1.0,0.5,0.5);});
+   withEnter(enter(u,t10),()=>{card(150,890,380,260);text('日本語を含む',340,950,32,C.sub,'center',800);bigNum('10','言語',340,1060,(u-t10)/0.35,C.acc,120);});
+   withEnter(enter(u,ty),()=>{card(550,890,380,260,30,C.card2);text('一般向けは',740,950,32,'#CDD8EC','center',800);text('年内・無料',740,1030,56,'#FFFFFF');text('日付は未発表',740,1100,28,'#FFB074','center',800);});
+   creditAt(CRED,925,850);},
  // L15 verdict
- verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,18,510,1044,1856));const t2=telHas(L,'健康');
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,18,560,1044,1856));const t2=telHas(L,'健康');
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
-   if(u>0.1){g.save();g.translate(333,465);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+   if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
      text('これまで',0,-60,36,'#CDD8EC','center',800);text('記録帳',0,12,66,'#FFFFFF');text('数字を見るだけ',0,78,30,'#CDD8EC','center',800);g.restore();}
-   if(u>t2){g.save();g.translate(747,465);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+   if(u>t2){g.save();g.translate(747,400);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
      text('これから',0,-60,36,C.buyInk,'center',800);text('健康のコーチ',0,12,58,C.buyInk);text('AIが毎日アドバイス',0,78,30,C.buyInk,'center',800);g.restore();}},
 
  logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
