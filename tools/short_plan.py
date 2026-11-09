@@ -112,10 +112,15 @@ def chunks(s):
     for p in parts:
         p = p.strip()
         while len(p) > 15:
-            cut = max([m.end() for m in re.finditer(r"[をにはがでとのもへ]", p[:15])] or [12])
+            inq = lambda j: (p[:j].count("『") + p[:j].count("「")) > (p[:j].count("』") + p[:j].count("」"))
+            # cut after a particle or just before a quote, never inside 『』「」 (it split 『ゼルダの|伝説』, 2026-11-09)
+            c = [m.end() for m in re.finditer(r"[をにはがでとのもへ]", p[:15]) if not inq(m.end())] + [m.start() for m in re.finditer(r"[『「]", p[:15])]
+            c = [j for j in c if j >= 4 and len(re.sub(r"[、。]", "", p[j:])) > 3]   # no tiny leftover such as 「演奏で|きます」
+            if not c and len(p) <= 18: break
+            cut = max(c or [12])
             out.append(p[:cut]); p = p[cut:]
         if p:
-            if len(p) <= 3 and out and len(out[-1]) + len(p) <= 18: out[-1] += p  # no tiny leftovers
+            if len(re.sub(r"[、。]", "", p)) <= 3 and out and len(out[-1]) + len(p) <= 18: out[-1] += p  # no tiny leftovers
             else: out.append(p)
     return out
 tel = []
