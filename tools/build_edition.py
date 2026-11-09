@@ -2,10 +2,10 @@
 usage: python3 build_edition.py <src_dir> <edition> [drop_id ...]
 edition = YYYY-MM-DD-am (朝刊, ready at 7:00) or YYYY-MM-DD-pm (夕刊, ready at 17:30). Old editions are plain YYYY-MM-DD.
 """
-import json, glob, re, sys, datetime
+import json, glob, os, re, sys, datetime
 from collections import defaultdict
 
-REPO = "/home/claude/my-yukan-repo"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # the repo this script lives in (the morning task clones it elsewhere, 2026-11-10)
 SRC, DATE = sys.argv[1], sys.argv[2]
 if not re.fullmatch(r"20\d\d-\d\d-\d\d(-am|-pm)?", DATE): sys.exit("edition must be YYYY-MM-DD-am or YYYY-MM-DD-pm")
 SLOT = {"am": "朝刊", "pm": "夕刊"}.get(DATE[11:], "")
