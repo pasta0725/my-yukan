@@ -8,13 +8,13 @@ Runs on GitHub Actions (.github/workflows/codex-research.yml).
           -> <out_dir>/<id>.txt  (each page: '===== url' line then its text) and <out_dir>/<id>.json (the found list, checked)
 """
 import json, os, re, sys, concurrent.futures as cf
-import requests
-from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15"}
 
 
 def text_of(u):
+    import requests
+    from bs4 import BeautifulSoup
     try:
         r = requests.get(u, headers=UA, timeout=30)
         r.encoding = r.apparent_encoding if r.encoding in (None, "ISO-8859-1") else r.encoding
