@@ -7,13 +7,13 @@
 // Design rules: iPhone shows x~98-982 (sides cropped), Shorts tabs end y~330, right buttons x>=885 from y~970,
 // channel/title text from y~1480. Diagrams live in y400-1080 centred on x540, captions in their own band below, mini presenter under that.
 // palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
-const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+let W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
 const FONT='"Noto Sans CJK JP",sans-serif';
 const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
   line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
   glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
 const CX=540, MAXW=680, CAP_Y=1168;
-let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+let BASE=null,MEASURE=false;function abs(fn){if(MEASURE)return;g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
 const CT={s:1.12,y0:360,y1:375};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
@@ -23,7 +23,7 @@ const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);
 let CUR=null;
 function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
   if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
-window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('hero','img/hero.jpg'),load('insights_sleep','img/insights_sleep.jpg'),load('heart','img/heart.jpg'),load('readiness_phone','img/readiness_phone.jpg'),load('fitness','img/fitness.jpg'),load('foryou','img/foryou.jpg'),load('readiness_watch','img/readiness_watch.jpg'),load('readiness_both','img/readiness_both.jpg'),load('vitals_night','img/vitals_night.jpg'),load('healthage_poster','img/healthage_poster.jpg'),load('longevity_poster','img/longevity_poster.jpg'),load('lang','img/lang.jpg'),Puppet.load('../../channel/rina_puppet/')]);await document.fonts.ready;})();
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('hero','img/hero.jpg'),load('insights_sleep','img/insights_sleep.jpg'),load('heart','img/heart.jpg'),load('readiness_phone','img/readiness_phone.jpg'),load('fitness','img/fitness.jpg'),load('foryou','img/foryou.jpg'),load('readiness_watch','img/readiness_watch.jpg'),load('readiness_both','img/readiness_both.jpg'),load('vitals_night','img/vitals_night.jpg'),load('healthage_poster','img/healthage_poster.jpg'),load('longevity_poster','img/longevity_poster.jpg'),load('lang','img/lang.jpg'),Puppet.load('../../channel/rina_puppet/')]);await document.fonts.ready;measureFits();})();
 const telAt=(txt)=>P.tel.find(x=>x.text===txt);
 const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
 // ---------- helpers ----------
@@ -45,7 +45,7 @@ function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.
 function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
 // small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
 let CURI=0,CURT=0;const mouthNow=()=>{const L=P.lines[CURI];return L&&L.puppet?Puppet.mouthAt(P.voices[CURI],CURT-L.start):null;};
-function mini(u){abs(()=>glow(200,1430,280,C.brand,0.22));const a=Puppet.assets.small_sticker,s=0.8;abs(()=>Puppet.chibi(g,-40,1308,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker'));}  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
+function mini(u){abs(()=>glow(266,1440,260,C.brand,0.22));const a=Puppet.assets.small_sticker,s=0.7;abs(()=>Puppet.chibi(g,55,1332,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker'));}  // whole body side inside YouTube's ~50px side crop  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
 function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
 function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
 function sampleTag(x,y){abs(()=>{});rrect(x,y-22,170,44,22,'rgba(11,18,34,0.78)');text('画面は見本',x+85,y,24,'#FFFFFF','center',800);}
@@ -72,7 +72,7 @@ function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let line
   g.restore();}
 
 // ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
-const BX=372,BY=1300,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+const BX=400,BY=1300,BW=515,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
 function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
   g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+226);g.lineTo(BX-40,BY+196);g.lineTo(BX,BY+166);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
 function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
@@ -282,6 +282,18 @@ const S={
 };
 const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
 let BIGF=null;
+// each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
+// measured once from the scene's finished state (user 2026-11-09: no wasted space)
+const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
+function measureFits(){const oc=document.createElement('canvas');oc.width=W;oc.height=H;const g0=g;g=oc.getContext('2d');MEASURE=true;const seen=new Set();
+  for(let i=0;i<P.lines.length;i++){const L=P.lines[i];if(['intro','verdict'].includes(L.scene)||seen.has(L.scene))continue;seen.add(L.scene);
+    const d=(P.lines[i+1]?P.lines[i+1].start:P.voice_end)-L.start;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);CURI=i;CURT=L.start+d-0.02;BASE=g.getTransform();
+    g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);try{S[L.scene](d-0.02,d,L);}catch(e){}g.restore();
+    const a=g.getImageData(0,0,W,H).data;let x0=W,x1=0,y0=H,y1=0;
+    for(let y=0;y<H;y+=2)for(let x=0;x<W;x+=2){if(a[(y*W+x)*4+3]>10){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;}}
+    if(x1<=x0)continue;const k=Math.min(1.5,(FX1-FX0)/(x1-x0),(FY1-FY0)/(y1-y0));
+    FIT[L.scene]={k,tx:(FX0+FX1)/2-k*(x0+x1)/2,ty:(FY0+FY1)/2-k*(y0+y1)/2,box:[x0,y0,x1,y1]};}
+  MEASURE=false;g=g0;window.FIT=FIT;}
 window.render=async function(t){
   g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
   let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
@@ -290,7 +302,7 @@ window.render=async function(t){
   if(['intro','verdict'].includes(P.lines[cur].scene)){let k=Math.floor(Math.max(0,t-P.lines[cur].start)*30);let im=await bigImg(P.lines[cur].scene,k);while(!im&&k>0){k--;im=await bigImg(P.lines[cur].scene,k);}BIGF=im;}
   const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
   g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
-  BASE=g.getTransform();g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
+  BASE=g.getTransform();g.save();const F=FIT[L.scene];if(F){g.translate(F.tx,F.ty);g.scale(F.k,F.k);}g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
   S[L.scene](u,d,L);g.restore();g.restore();
   let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
   const BIG=['intro','verdict'];
