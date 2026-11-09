@@ -6,26 +6,29 @@ on:
   workflow_dispatch:
     inputs:
       name: {description: "short name, e.g. rina_health (channel/meta/<name>.json)", required: true}
-      video: {description: "file name on branch upload-tmp, e.g. rina_health.mp4 (- = only check the keys)", required: true}
+      video: {description: "file on branch upload-tmp (e.g. rina_health.mp4), - = check keys, or thumb:/stop:/go:/status:/comment:<videoId>", required: true}
       comment: {description: "first comment (optional)", default: ""}
       privacy: {description: "public / private / unlisted", default: "public"}
+      publish_at: {description: "scheduled publish time, e.g. 2026-11-10T21:00:00+09:00 (uploads as private until then)", default: ""}
 jobs:
   upload:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    outputs: { video_id: "${{ steps.up.outputs.video_id }}" }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q google-api-python-client google-auth
       - name: get the video
-        if: inputs.video != '-' && !startsWith(inputs.video, 'thumb:')
+        if: inputs.video != '-' && !contains(inputs.video, ':')
         env: { V: "${{ inputs.video }}" }
         run: |
           git fetch -q origin upload-tmp
           git show "origin/upload-tmp:$V" > /tmp/video.mp4
           ls -la /tmp/video.mp4
       - name: upload
+        id: up
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
@@ -34,6 +37,36 @@ jobs:
           C: ${{ inputs.comment }}
           P: ${{ inputs.privacy }}
           V: ${{ inputs.video }}
+          T: ${{ inputs.publish_at }}
         run: |
-          F=/tmp/video.mp4; [ "$V" = "-" ] && F=-; case "$V" in thumb:*) F="$V";; esac
-          python3 tools/youtube_upload.py "$N" "$F" --comment "$C" --privacy "$P"
+          F=/tmp/video.mp4; [ "$V" = "-" ] && F=-; case "$V" in *:*) F="$V";; esac
+          python3 tools/youtube_upload.py "$N" "$F" --comment "$C" --privacy "$P" --publish-at "$T"
+  comment:
+    # a scheduled video is private until publish_at, so the first comment is posted a few minutes after it goes public
+    needs: upload
+    if: inputs.publish_at != '' && inputs.comment != '' && needs.upload.outputs.video_id != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q google-api-python-client google-auth
+      - name: wait until public, then comment
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          N: ${{ inputs.name }}
+          C: ${{ inputs.comment }}
+          T: ${{ inputs.publish_at }}
+          ID: ${{ needs.upload.outputs.video_id }}
+        run: |
+          w=$(( $(date -d "$T" +%s) - $(date +%s) + 180 )); [ $w -gt 0 ] && sleep $w
+          for i in 1 2 3 4 5 6; do
+            s=$(python3 tools/youtube_upload.py "$N" "status:$ID" | grep -oE 'privacy: [a-z]+' | cut -d' ' -f2)
+            echo "privacy: $s"
+            [ "$s" = public ] && { python3 tools/youtube_upload.py "$N" "comment:$ID" --comment "$C"; exit 0; }
+            [ "$s" = private ] && [ $i -ge 2 ] && { echo "still private (stopped?) - no comment"; exit 0; }
+            sleep 300
+          done
