@@ -26,6 +26,11 @@ for d in idx.get("editions", []):
 
 # categories since 2026-11-07, in display order, with the max number of stories per day
 CATS = {"ai": 14, "mobile": 7, "gadget": 7, "service": 7, "game": 7, "ec": 7, "future": 4, "other": 8}
+try:   # the weekly review may tune these within limits (tools/learning/params.json, 2026-11-10)
+    _p = json.load(open(os.path.join(REPO, "tools", "learning", "params.json"), encoding="utf-8"))["edition"]["category_limits"]
+    CATS = {k: int(_p[k]["value"]) for k in CATS if k in _p} | {k: v for k, v in CATS.items() if k not in _p}
+except Exception:
+    pass
 by_cat, seen_urls, seen_ids = defaultdict(list), set(), set()
 for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
     try: items = json.load(open(f))
