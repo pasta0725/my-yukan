@@ -24,7 +24,7 @@ img_kandinsky = (modal.Image.debian_slim(python_version="3.13").apt_install(*SYS
 img_echomimic = (modal.Image.debian_slim(python_version="3.11").apt_install(*SYS)
                  .pip_install("torch==2.6.0", "torchvision==0.21.0", "torchaudio==2.6.0", "huggingface_hub[hf_transfer]<1.0")
                  .run_commands("git clone -q --depth 1 https://github.com/antgroup/echomimic_v3 /opt/em3 && cd /opt/em3 && "
-                               "grep -viE '^(tensorflow|retina-face|gradio|tensorboard|torch)' requirements.txt > /tmp/req.txt && pip install -q -r /tmp/req.txt"))
+                               "grep -viE '^(tensorflow|retina-face|gradio|tensorboard|torch)' requirements.txt > /tmp/req.txt && pip install -q -r /tmp/req.txt pyloudnorm"))
 
 RUNNERS = {"longcat": "colab_longcat_remote.py", "kandinsky": "remote_kandinsky_s2v.py", "echomimic": "remote_echomimic3.py"}
 

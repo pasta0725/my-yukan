@@ -65,5 +65,5 @@ for job in jobs:
     sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
        f"--context_parallel_size=1 --checkpoint_dir={W}/LongCat-Video-Avatar-1.5 --stage_1=ai2v --input_json={js} "
        f"--use_distill --model_type avatar-v1.5 {'--use_int8 ' if LOW else ''}--resolution {res} --num_segments {seg} --output_dir /content/out/{name} "
-       f"2>&1 | grep -vE 'it/s\\]|s/it\\]' | tail -30")
+       f"2>&1 | grep -vE 'it/s\\]|s/it\\]' | tail -150")  # long tail: the real error of the child process sits above torchrun's own traceback
 sh("ls -laR /content/out")
