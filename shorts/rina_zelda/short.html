@@ -262,7 +262,7 @@ const S={
    withEnter(enter(u,tp),()=>{card(150,1030,780,135);text('パッケージ版',190,1097,40,C.text,'left',900);mixLine([['8980',C.acc],['円',C.text]],760,1097,64);});
    creditAt(CRED,535,830);},
  // L14 verdict
- verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(VDIR&&BIGF)abs(()=>{g.drawImage(BIGF,18,560,1044,1856);Puppet.face(g,'big_hq',18,560,1044,1856,CURT,mouthNow(),(window.FACE||[])[BIGK]);});else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'歯ごたえ');  // Colab was full: the big still as a PNGTuber (user 2026-11-09)
+ verdict(u,d,L){if(VDIR==='verdict_s'&&BIGF)abs(()=>endScene(u));else{bg(u);glow(CX,1250,600,C.brand,0.32);}if(VDIR==='verdict_s'){}else if(VDIR&&BIGF)abs(()=>{g.drawImage(BIGF,18,560,1044,1856);Puppet.face(g,'big_hq',18,560,1044,1856,CURT,mouthNow(),(window.FACE||[])[BIGK]);});else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'歯ごたえ');  // Colab was full: the big still as a PNGTuber (user 2026-11-09)
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
    if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.buyFill);
      text('初めての人',0,-60,36,C.buyInk,'center',800);text('最高の入口',0,12,62,C.buyInk);text('ほぼ満点の評価',0,78,30,C.buyInk,'center',800);g.restore();}
@@ -273,9 +273,19 @@ const S={
    if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
    text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
 };
-const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
+const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+(sc==='verdict_s'?'.jpg':'.png');});}
+// ending as a living picture (画像AIの一枚絵＋風・光・カメラ, 試作 2026-11-09): frames from tools/end_scene_warp.py
+function endScene(u){const s=1.035+0.045*ease(Math.min(1,u/4.6)),fx=548,fy=900;g.save();g.translate(fx,fy-50);g.scale(s,s);g.translate(-fx,-fy);  // slow push-in; up 50 so her hands and the ocarina stay above the caption (scale>=1.03 keeps the bottom edge covered)
+  g.drawImage(BIGF,0,0,1080,1920);g.restore();
+  const sx=934,sy=880,p=0.5+0.5*Math.sin(u*2.4);g.save();g.globalCompositeOperation='screen';   // sun breathing
+  let gr=g.createRadialGradient(sx,sy,0,sx,sy,260+30*p);gr.addColorStop(0,`rgba(255,214,150,${0.55+0.15*p})`);gr.addColorStop(1,'rgba(255,170,90,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);
+  for(let i=0;i<46;i++){const r1=((Math.sin(i*91.7)*43758.5)%1+1)%1,r2=((Math.sin(i*12.3)*24634.6)%1+1)%1,r3=((Math.sin(i*55.1)*13579.2)%1+1)%1;  // floating light
+    const x=r1*W+30*Math.sin(u*0.9+i),y=H*(0.42+0.58*r2)-u*(18+40*r3),a=(0.35+0.65*Math.max(0,Math.sin(u*(1.5+r3*2)+i*1.7)))*(0.55+0.45*r3),rad=3+7*r3;
+    const q=g.createRadialGradient(x,y,0,x,y,rad*4);q.addColorStop(0,`rgba(255,240,180,${a})`);q.addColorStop(0.25,`rgba(255,210,120,${a*0.6})`);q.addColorStop(1,'rgba(255,200,100,0)');
+    g.fillStyle=q;g.beginPath();g.arc(x,y,rad*4,0,Math.PI*2);g.fill();}
+  g.restore();}
 let BIGF=null,BIGK=0;const VDIR=(location.hash.match(/v=(\w+)/)||[])[1]||null;  // #v=verdict_a: ending from a moving-still folder (試作)
-if(VDIR)document.write('<script src="big/'+VDIR+'/face.js"><\/script>');
+if(VDIR&&VDIR!=='verdict_s')document.write('<script src="big/'+VDIR+'/face.js"><\/script>');
 // each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
 // measured once from the scene's finished state (user 2026-11-09: no wasted space)
 const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
@@ -300,7 +310,7 @@ window.render=async function(t){
   S[L.scene](u,d,L);g.restore();g.restore();
   let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
   const BIG=['intro','verdict'];
-  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
+  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,(L.scene==='verdict'&&VDIR==='verdict_s')?1420:1330,(t-last.start),false);}
   else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),L.scene==='twist');}
 };
 </script></body></html>
