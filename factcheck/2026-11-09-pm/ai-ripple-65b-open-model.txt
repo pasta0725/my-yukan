@@ -1,0 +1,82 @@
+===== https://gigazine.net/news/20261108-ripple-65b-preview/
+(status 200)
+▼サーバー運営を助ける支援をお願いします
+  ▲サーバー運営を助ける支援をお願いします
+毎月
+825円(税込)
+900円
+(うち手数料33円)
+毎月
+1回
+    親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！
+    ・
+これまでGIGAZINEを支援してくれたメンバーのリスト
+2026年11月08日 19時00分
+AI
+アメリカ産のAIでオープンモデル「Ripple-65B Preview」登場、パラメーター数10倍の大型モデルを上回る性能で開発費は10分の1
+AIを使用してシリコンチップを設計する
+再帰的自己改善
+に取り組むアメリカのスタートアップ「
+Ricursive Intelligence
+」が、アメリカ産のオープンウェイトモデル「
+Ripple-65B Preview
+」をリリースしました。Ripple-65B Previewはエージェント型コーディングのベンチマーク「Terminal-Bench 2.1」で80.52点を記録し、より大規模なAIモデルを上回ったと報告されています。
+Ripple-65B Preview, a Frontier Open-Weight Model | Ricursive Intelligence
+https://www.ricursive.com/ripple
+Ripple-65B Previewは12兆トークンで事前学習されており、最大1Mのコンテキスト長をサポートしています。Ripple-65B Previewはエージェントコーディングで優れた結果を示し、 TerminalBench 2.1でアメリカのオープンウェイトモデルにおける最先端である「80.52」のスコアを達成しました。
+以下は横軸がパラメーター数、縦軸がスコアを示したグラフ。5010億パラメータの「
+Beam 501B
+」はスコア「80.1」、Metaの8160億パラメーターのオープンウェイトAI「
+Muse Spark Open
+」はスコア「76.4」、約1兆パラメーターの「
+Inkling 975B
+」はスコア「63.8」です。一方で、Ripple-65B Previewのパラメーター数は650億でありながら、パラメーター数ではるかに大規模なアメリカ産オープンウェイトモデルを上回るスコアを発揮したと報告されています。
+以下はエージェントコーディングのベンチマーク「Terminal-Bench 2.1」「SWE-bench Pro v2.0 Hard」「DeepSWE 1.1」において、アメリカ産オープンモデルと比較したグラフ。
+また以下は、左から数学ベンチマークの「HMMT Feb 2026」、安全性ベンチマークの「FORTRESS Adversarial」、AIエージェントの実務能力を測る「AutomationBench (Public)」のスコア。いずれも、MuseのSpark Openが首位、Beam 501Bが次点、Ripple-65B Previewは3番手となっています。
+Ripple-65B Previewの大きな特徴として、開発コストの低さが挙げられています。OpenAIのサム・アルトマンCEOは「GPT-4の学習コストが1億ドル(約150億円)を超えた」と述べていたり、Anthropicのダリオ・アモデイCEOは「最先端のAIモデルの学習には最大10億ドル(約1500億円)かかる可能性があり、事前学習だけでも2026年から2027年までに1000億ドル(約15兆円)に達する」と予測していたりと、学習コストが非常に高額なことで知られています。一方でRicursive Intelligenceによると、Ripple-65B Previewをゼロから開発するためにかかった費用は3200万ドル(約50億円)だったとのこと。この金額には、事前学習の規模を段階的に拡大する実験やデータの調整、評価、デバッグ、合成データの生成、追加学習の手法開発、最終的な学習など、研究開発全体の費用が含まれています。
+開発コストを抑えることができた理由について、Ricursive Intelligenceは「力任せの強化学習に投資するのではなく、計算効率を重視しながら、SFTと強化学習の手法を慎重に改良しました。学習後のデータは一切購入せず、独自の合成データパイプライン、品質フィルタリング、カバレッジ指標を開発しました。これにより、従来のオープンウェイトモデルの最高性能記録を更新したモデルの開発費と比較して、約10分の1に抑えることができました」と説明しています。実際に、Terminal-Bench 2.1のスコアを80.5点まで引き上げるために必要だった試行回数は140万回で、従来の最高スコアを記録していたBeamの試行回数の約70分の1となるそうです。
+Ripple-65B Previewのアーキテクチャは、NVIDIAハードウェア上で効率的に学習および配信できるよう設計されています。また、モデルのパラメーター数が650億と比較的小さいことから、データセンター向けの大型GPUだけでなく、ローカル環境でも効率的に実行できるとしています。
+Ripple-65B Previewは
+Hugging Face
+で無償公開されています。また、
+Together AI
+・
+GMI Cloud、OpenRouter
+・
+Fireworks
+などのAPIサービスでも利用可能です。
+Google
+優先ソースに設定
+Clipboard
+記事タイトルとURLをコピー
+X
+Facebook
+Bluesky
+Discord
+Threads
+・関連記事
+中国のオープンソースAIに対抗するためReflectionがパラメーター数5010億のオープンモデル「Beam」を発表、GLM 5.2に匹敵し使用する計算量は3～4分の1でAIエージェントタスクではQwen3.8-Maxに匹敵すると主張 - GIGAZINE
+Metaが8160億パラメーターのオープンウェイトAI「Muse Spark Open」を公開、Mac Studioわずか2台で動作 - GIGAZINE
+約1兆パラメーターで画像・音声の理解やコーディングに対応、用途別に調整できるオープンウェイトAIモデル「Inkling」登場 - GIGAZINE
+OpenAI元CTOのAI企業が高性能AIモデル「Inkling 2 Small」を発表、近日中にオープンモデルとして公開される予定 - GIGAZINE
+・関連コンテンツ
+NVIDIAがTransformerとMambaを組み合わせたハイブリッド推論モデル「Nemotron Nano 2」をリリース
+NVIDIAが1200億パラメータ規模の日本語対応ハイブリッドMoEオープンウェイトAIモデル「Nemotron 3 Super」を発表
+ついに「DeepSeek-V4」が登場、Claude Opus 4.6を超える性能のオープンモデル
+軽量で高性能なコーディングエージェント「Qwen3-Coder-Next」が登場
+Microsoftが小規模推論モデル「Phi-4-reasoning」「Phi-4-reasoning-plus」「Phi-4-mini-reasoning」を発表
+Stability AIがChatGPTと同等の性能を持つオープンソースの大規模言語モデル「FreeWilly」を公開
+GoogleがオープンAIモデル「Gemma 4」を発表、ライセンスをApache 2.0に変更
+ローカルで動く中国製オープンモデル「Qwen3.8 27B」はGPT-5.6 Terra超えのエージェント性能で同等規模のモデルより圧倒的に高性能という分析結果
+2026年11月08日 19時00分00秒
+ in  
+AI
+,  Posted by log1e_dh
+You can read the machine translated English article 
+An open model, 'Ripple-65B Preview,' dev…
+.
+お邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。
+×
+いいえ、後で時間があれば
+はい、寄付します
+←

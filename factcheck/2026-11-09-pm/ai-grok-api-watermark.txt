@@ -1,0 +1,374 @@
+===== https://www.inside.com.tw/article/42793-xai-grok-api-text-watermark-eu-ai-act
+(status 200)
+Photo Credit: x.ai
+人工智慧
+xAI Grok API 11 月 7 日起預設加上隱形浮水印，7 款模型全球適用、管理員可逐模型退出
+Claire
+2026/11/02
+api
+                                                                        、                                                
+Grok
+                                                                        、                                                
+法規遵循
+                                                                        、                                                
+隱形浮水印
+                                                                        、                                                
+歐盟人工智慧法
+                    xAI 更新開發者文件，自 11 月 7 日起，7 款 Grok 模型透過 API 產生的文字預設加上隱形浮水印，適用全球端點，理由是遵循《歐盟人工智慧法》第 50 條。本文對照 Anthropic、OpenAI 的預設值與退出設計，以及 xAI 在歐盟實務守則中只簽署 Safety and Security 章節的現況，並交代管理員關閉浮水印時須自行承擔的法律責任。
+加入偏好來源
+加入偏好來源
+xAI 在 10 月 31 日更新的
+開發者文件
+中寫明，自 2026 年 11 月 7 日起，grok-4.7、grok-4.6 等 7 款 Grok 模型透過 API 產生的文字，將預設嵌入肉眼看不見的浮水印，開發者不需修改程式碼，也沒有對應的請求參數。文件列出的理由是遵循《歐盟人工智慧法》（EU AI Act），適用範圍卻不限歐盟，全球端點 api.x.ai 與各區域端點一體適用。
+這份說明頁的內文一律以 SpaceXSI 稱呼服務方，程式碼範例與網域則仍是 x.ai；內容只涵蓋 API，沒有提到 X 平台上的 Grok 與 Grok App 是否同步標記。
+精選文章直送，
+點擊立刻訂閱 INSIDE 電子報
+！
+7 款 Grok 模型預設加浮水印，連工具呼叫的參數都會被標記
+適用名單包括 grok-4.7、grok-4.6、grok-4.5、grok-4.3，以及 grok-4.20 的推理（reasoning）、非推理（non-reasoning）與多 Agent（multi-agent）3 個版本。浮水印適用於所有文字生成 API，文件點名 Responses API 與 Chat Completions API，一般文字回應、結構化輸出（structured outputs）與工具呼叫（tool call）的參數都會加上浮水印。
+開發者要確認某次回應是否被標記，可以讀取回應標頭 x-watermark，值為 true 代表已加浮水印，其他值或沒有這個標頭，則代表該次輸出沒有浮水印。
+浮水印藏在 token 挑選過程，偵測 API 採申請制開放
+xAI 在文件中說明，浮水印在生成過程中以些微調整 token 選擇的方式嵌入，不會增加任何字元、標記或隱藏文字。偵測採統計方法，結果分為「有浮水印」「無浮水印」與「無法判定」3 種，文字越長、訊號越強，偵測 API 則須提出申請才能使用。
+常見問答頁寫道，浮水印不會影響回應品質與速度，但說明頁沒有附上測試數據，也沒有提到文字經過改寫或編輯後，浮水印還能保留多少。
+歐盟寬限到 12 月 2 日，xAI 只簽 GPAI 守則安全章節
+歐盟執委會在問答頁說明，《歐盟人工智慧法》第 50 條自 2026 年 8 月 2 日起適用，要求生成合成音訊、圖像、影片或文字的 AI 系統供應商，讓輸出「以機器可讀格式標記，並可被偵測為人工生成或操縱」。8 月 2 日前已上市的系統，標記與偵測義務可延到 12 月 2 日才需遵循（xAI 的浮水印則自 11 月 7 日起生效）。違規罰鍰最高可達 1,500 萬歐元或前一會計年度全球營業額的 3%，對中小企業與小型中型企業（small mid-caps）可考量比例原則。
+執委會另訂有自願性質的 AI 生成內容透明度實務守則，簽署者可據此證明合規。這份守則與 2025 年 7 月 10 日公布的通用目的 AI（GPAI）實務守則是兩份文件。GPAI 守則對應第 53、55 條的模型層級義務，第 50 條的標記要求則落在系統層級，兩者互補。執委會在 GPAI 守則頁面註明，xAI 只簽署安全與資安（Safety and Security）章節，透明度與著作權義務須以其他適當方式證明合規。
+Anthropic 全球適用、OpenAI 歐盟先行，3 家預設值各異
+Anthropic 8 月公開 Claude 文字浮水印原理時表示，推出階段先全球一體適用，因為尚未有長期可行的方式按地區區分，並稱會持續評估其他做法。OpenAI 則在 10 月 5 日的官方部落格宣布，未來數週陸續替歐盟合格用戶的 ChatGPT 與 Codex 文字加入名為 textGrain 的隱形浮水印；API 預設關閉，全球 API 客戶可自行選擇對部分模型開啟。
+xAI 的 API 則是全球預設開啟、另留退出選項。面對同一條第 50 條，3 家的預設值與退出設計並不相同。
+只有團隊管理員能逐模型退出，須自行承擔標示的法律責任
+退出權限只開放給團隊管理員，個別開發者無法自行關閉。管理員可在團隊設定頁的「模型輸出浮水印」（Model output watermarking）逐一取消勾選模型，設定會套用到團隊所有 API 金鑰，約 5 分鐘內對新請求生效，每一次開啟與關閉都會寫入團隊稽核紀錄。部分模型可能被鎖定為強制開啟，無法從 Console 關閉，文件請用戶洽團隊管理員，或寫信至 
+[email protected]
+。
+管理員按下退出前，必須確認依適用法律存在例外情形，並同意由自己全權負責任何標示、揭露或其他法律要求。
+核稿編輯：Mia 
+精選文章直送，
+點擊立刻訂閱 INSIDE 電子報
+！
+延伸閱讀：
+ChatGPT 生圖視覺廣告美國先測！OpenAI 同日宣布歐盟文字加隱形浮水印、Codex 也納入
+Anthropic 公開 Claude 文字浮水印原理，換掉挑字的亂數來源、短文本與程式碼較難測出
+複製貼上也能追蹤！Claude AI 生成內容浮水印技術解析
+將 INSIDE 設為 Google 偏好來源
+
+===== https://smartscope.blog/en/blog/grok-api-default-invisible-watermarks-text-output-starting-2026/
+(status 200)
+On this page
+Conclusion
+Reader Impact: What Changes and What Stays the Same
+Evidence: What Is Stated on the Page
+Supported Models and APIs
+Method
+Reason
+Identifying Watermarks via Response Headers
+What Admins and Developers Need to Do
+Separate from Other Companies' Watermarks
+Details Not Confirmed in Official Documentation
+Key points of this article
+This article reflects information as of 
+November 2, 2026, 06:04
+ JST. The information may have been updated since then; check the official source for the latest.
+Conclusion
+According to official documentation, starting November 7, 2026, the Grok API will enable invisible watermarking by default on text outputs from supported models. No additional request arguments are sent, so integrations function without changing code. The documentation notes that no characters or symbols are added, and neither output quality nor generation speed is affected.
+If you do not want watermarks applied, a team administrator can disable the feature on a per-model basis in the console settings. Changes take effect within 5 minutes and apply to all API keys across the team. When opting out, administrators are required to confirm that they personally assume legal responsibility.
+The source is a single page, 
+Output Watermarking (xAI Docs)
+ (displaying a last updated date of October 31, 2026). This article is based solely on the details available on that page. Because xAI is referred to as SpaceXSI on the page, this article follows that notation below.
+Reader Impact: What Changes and What Stays the Same
+What changes is that invisible watermarks will be embedded into the text returned by covered models. The documentation states that responses from target models on and after the effective date will contain watermarks. The feature is on by default, with per-model opt-outs available.
+What does not change includes:
+Request-side code. The page states that "there are no arguments to send" and that "integrations function identically with or without watermarking."
+Response format. The FAQ states that, aside from the x-watermark header, the response format does not change.
+Quality and speed. The FAQ notes that "watermarking does not change response quality or speed."
+In other words, developers integrating Grok output into applications, as well as users using the output directly as written text, will receive watermarked output starting November 7 if no action is taken. The output cannot be distinguished visually.
+Evidence: What Is Stated on the Page
+Supported Models and APIs
+The page lists the following models as including watermarks in their responses starting November 7, 2026:
+grok-4.7
+grok-4.6
+grok-4.5
+grok-4.3
+grok-4.20-reasoning
+grok-4.20-non-reasoning
+grok-4.20-multi-agent
+This applies to text generation outputs across all text generation APIs, including the Responses API and Chat Completions API. Covered generated text includes standard text responses, structured outputs, and tool call arguments. Watermarking is stated to be active across all SpaceXSI API endpoints, including the global endpoint (api.x.ai) and regional endpoints.
+In the wording of the page, watermarking applies to "each model for teams that have watermarking enabled."
+Method
+According to the page, the watermarks are invisible. The method works by slightly biasing token selection while the model generates text, without adding characters, markup, or hidden text.
+Detection is statistical: SpaceXSI scores the text against the watermark and reports it as "watermarked," "unwatermarked," or "unknown." Longer text yields a stronger signal. Access to the detection API is request-based and must be requested via an application form on the page.
+Reason
+The page explicitly states that SpaceXSI is adding watermarks to text outputs to comply with the EU AI Act.
+Identifying Watermarks via Response Headers
+In Responses or Chat Completions responses, checking the x-watermark header shows whether that request was watermarked. If the value is true, the request's output was generated with a watermark. For any other value, or if the header is absent, no watermark is applied. The page provides sample code for extracting the header in JavaScript, Python, and curl.
+What Admins and Developers Need to Do
+According to the page, no changes are required on the request side if you accept the watermarks. Whether to use the x-watermark header is at the user's discretion.
+If you do not want watermarks added, a team administrator must complete the following steps before November 7:
+Open the team settings page in the SpaceXSI Console and locate the "Model output watermarking" row. It displays "On (all models)", "Off (all models)", or "Custom", and is visible only to team administrators.
+Select the settings icon next to the row, and uncheck the models you wish to opt out. You can also use "Select all" to toggle all models at once.
+Click Save. If models are disabled, confirm with "Opt Out".
+The update takes effect for new requests within 5 minutes. New requests made after disabling will not be watermarked, and turning it back on will apply watermarks again. The setting applies at the team level across all API keys and can be configured separately for each model.
+The confirmation required when opting out carries significant weight. According to the page, administrators must confirm that an applicable legal exception applies to their use case, and that they solely assume responsibility for legal requirements such as labeling and disclosure.
+Additionally, certain models are locked to "On" for the team and cannot be disabled in the console. Locked models appear in the dialog but do not have checkboxes. The page instructs users to consult their team administrator regarding locked models, and to contact support if questions remain.
+All opt-ins and opt-outs are recorded in the team's audit log. Administrators can search the console audit log page by event ID, description, or user, and can filter by date range.
+In practice, it is advisable to proceed in the following order:
+Before November 7, administrators should check their team's current status (On, Off, Custom) in the console and verify whether any models are locked.
+If keeping watermarks, add code to log the x-watermark header as needed.
+If disabling watermarks, review the confirmation text and uncheck only the target models. After making changes, confirm that records appear in the audit log.
+If you wish to use detection results, submit an application for the request-based detection API.
+Separate from Other Companies' Watermarks
+Watermarking is also being discussed at other companies. This site has published separate articles covering watermarking for ChatGPT and Claude. For example, see the 
+article covering ChatGPT's EU watermark rollout
+, the 
+article covering Claude and EU AI Act Article 50
+, and the 
+article covering Claude older models and November 3 detection
+.
+Those involve different mechanisms from different companies and are distinct from the subject of this article. For this Grok API update, information is based solely on what is documented on the xAI page above. Please do not apply other companies' specifications to this situation.
+Details Not Confirmed in Official Documentation
+The following points were not mentioned on the verified official page:
+Watermarking for images, video, and audio. The page addresses text output only.
+Any method for end users to disable watermarking. The only opt-out method described is the console setting for team administrators.
+Treatment of users in Japan. While watermarking is stated to be active across all endpoints, whether there is special treatment for users in Japan is not mentioned.
+What will happen in the future to new models other than the target models.
+Pricing, terms of use, and accuracy metrics for the detection API.
+What the legal exceptions for opting out specifically entail.
+Which models are locked, and the criteria for locking them.
+Additionally, on xAI's release notes page (https://docs.x.ai/developers/release-notes), no items regarding watermarking were found; there was only a menu link pointing to the documentation page.
+This information is current as of November 2, and the page is subject to change. Please refer to the 
+Official Page
+ for the latest details.
+Published by SmartScope Editorial · 
+How we write
+EXPLORE NEXT
+Read next
+01
+Can Text Written With Claude Be Detected? How Invisible Watermarks Work, Plans for Older Models, and What You Need to Do
+October 31, 2026
+02
+Claude: Auto Mode Default Changes Starting Next Week and How to Switch Back to Manual
+October 23, 2026
+03
+Grok Bot: X Connector Developer Account Requirements, Free Usage, and Limitations
+October 28, 2026
+04
+What Is Grok Bot? What It Can Do on X, How to Start, and Pricing ($30/Month)
+October 20, 2026
+
+===== https://www.datastudios.org/post/grok-api-invisible-text-watermarking-default-november-7-eu-ai-act
+(status 200)
+SpaceXSI, the company formerly known as xAI, will start watermarking text generated through the 
+Grok API
+ by default on 
+November 7, 2026
+. The change is described on a new "Output Watermarking" page in the official developer documentation, last updated on October 31, 2026, and it covers seven models: grok-4.7, grok-4.6, grok-4.5, grok-4.3 and the three grok-4.20 variants (reasoning, non-reasoning and multi-agent). From that date, text returned by these models will carry a statistical mark that the company can later use to identify the output as machine-generated.
+The documentation states that the watermark is applied to comply with the EU AI Act and that it is enabled on every SpaceXSI API endpoint, including the global endpoint at api.x.ai and the regional endpoints. The scope is wide. It covers the Responses API and the Chat Completions API, and within those it applies to ordinary text, to structured outputs and to the arguments the model writes when it calls a tool. Developers do not need to change their requests, because there is no parameter to send and the response body keeps its format.
+The only visible sign of the change is a new response header, `x-watermark`, which returns `true` when the output was watermarked. Team administrators can switch the feature off model by model in the SpaceXSI Console, but only after confirming that a legal exception applies to them and accepting sole responsibility for any marking or disclosure obligations that remain.
+··········
+⁣⁣⁣⁣⁣⁣⁣⁣⁣⁣⁣⁣
+HOW GROK API OUTPUT WATERMARKING WORKS.
+According to the documentation, the watermark is applied during generation. It slightly influences which tokens the model selects, so it adds no characters, no markup and no hidden text to the response. A string copied from a watermarked Grok answer therefore looks exactly like any other string; there are no zero-width characters to strip and nothing that a text sanitizer would detect.
+Detection works statistically. SpaceXSI says its detector returns one of three verdicts, "watermarked", "not watermarked" or "uncertain", and that longer passages give a stronger signal. That last point follows from the method: a token-selection bias becomes measurable only across many tokens, so a one-line reply or a short JSON object will often fall into the uncertain band. The company has not published accuracy figures, false-positive rates or results after paraphrasing or translation, which are the usual weaknesses of statistical text watermarks.
+Access to the detection API is not open. The page says it is granted by application through a form, and it does not say who qualifies, whether detection will be offered to the public or whether it will be priced. For now, the people who can check whether a given text came from a watermarked Grok model are SpaceXSI and the organizations it admits to that program.
+SpaceXSI also states that watermarking does not affect response quality or speed. That is a vendor claim. The company has not released evaluations comparing watermarked and unwatermarked outputs on benchmarks, structured-output validity or tool-calling accuracy.
+··········
+WHICH GROK MODELS AND ENDPOINTS ARE COVERED.
+The seven models named in the documentation span the current Grok API catalog. The table below lists them with the context window and standard prices published on the official models page, as checked on November 1, 2026. Prices are unchanged by the watermarking policy and are shown here to identify the models.
+........
+Model (API name)
+Context
+Input, USD per 1M tokens
+Output, USD per 1M tokens
+Watermark by default from Nov 7
+grok-4.7
+500K
+$2.00
+$6.00
+Yes
+grok-4.6
+500K
+$2.00
+$6.00
+Yes
+grok-4.5
+500K
+$2.00
+$6.00
+Yes
+grok-4.3
+1M
+$1.25
+$2.50
+Yes
+grok-4.20-0309-reasoning
+1M
+$1.25
+$2.50
+Yes
+grok-4.20-0309-non-reasoning
+1M
+$1.25
+$2.50
+Yes
+grok-4.20-multi-agent-0309
+1M
+$1.25
+$2.50
+Yes
+grok-build-0.1
+256K
+$1.00
+$2.00
+Not listed
+........
+Input and output prices are those for prompts under 200,000 tokens; above that threshold the official page doubles both. The watermarking page refers to the grok-4.20 models without the "-0309" date suffix used on the models page. The coding model grok-build-0.1 appears on the models page but is absent from the watermarking list, and the documentation does not explain whether it is exempt or simply not yet included.
+A broader comparison of Grok 4.7 prices with rival flagship models is available in 
+our analysis of GPT-6.1 Terra, Claude Sonnet 5.5, Gemini 4 Argon and Grok 4.7 API pricing
+.
+The policy applies to text generation only. The documentation does not extend it to Grok's image, video or voice products, which are governed by separate pages.
+··········
+[[ADPLUS_300x250_1]]
+WHAT CHANGES FOR DEVELOPERS USING THE GROK API.
+For most applications nothing breaks on November 7. Requests stay the same, the response schema stays the same and the content of answers does not gain any extra characters. The practical questions concern disclosure, logging and agent pipelines.
+The first decision is whether to keep the default. Teams that publish Grok-generated text to end users in the EU, or that sell products which do, will generally want the watermark on, since machine-readable marking is exactly what the AI Act asks generative AI providers to supply. Teams that use Grok for internal processing, classification or code generation may prefer to opt out, but the console flow makes them confirm that a legal exception applies before it accepts the change.
+The opt-out procedure, as documented, runs as follows:
+........
+Step
+What happens
+Open Team settings in the SpaceXSI Console
+The "Model output watermarking" row shows On (all models), Off (all models) or Custom
+Open the row's settings
+Each model has its own checkbox, plus a "Select all" toggle
+Clear the models to opt out and save
+Turning a model off requires confirming with "Opt Out"
+Wait for propagation
+New requests reflect the change within 5 minutes
+Audit
+Every opt-in and opt-out is recorded in the team audit log
+........
+The setting is team-wide and applies to every API key in the team, so a company cannot keep watermarking for a customer-facing product while disabling it for an internal tool under the same team. Running those workloads under separate teams is the practical way to get different behavior. The page also warns that some models may be locked on for a given team; those appear in the dialog without a checkbox, and the documentation directs affected users to their team admin or to support.
+Applications that log responses can record the `x-watermark` header alongside each completion, which gives an audit trail of which outputs were marked. The documentation includes examples for the AI SDK, the OpenAI SDK in JavaScript and Python, and curl. The snippet below is an illustrative sketch using the OpenAI Python SDK's raw-response interface against the Grok API base URL.
+from openai import OpenAI
+client = OpenAI(api_key="XAI_API_KEY", base_url="https://api.x.ai/v1")
+raw = client.chat.completions.with_raw_response.create(
+    model="grok-4.7",
+    messages=[{"role": "user", "content": "Summarize the AI Act transparency rules."}],
+)
+completion = raw.parse()
+watermarked = raw.headers.get("x-watermark") == "true"
+print(watermarked, completion.choices[0].message.content)
+Agent builders have the most to test. Because the watermark also applies to structured outputs and to tool-call arguments, it touches the parts of a response that software parses rather than people read. SpaceXSI says quality is unaffected, but teams running JSON-heavy workflows or long chains of function calls should compare schema-validation failures and tool-selection errors before and after November 7, at least until independent measurements exist.
+··········
+THE EU AI ACT RULE BEHIND GROK API WATERMARKING.
+The legal basis cited by SpaceXSI is the transparency chapter of the EU AI Act. According to the European Commission's published summary of the rules, which apply from 2 August 2026, providers of generative AI systems must apply a machine-readable mark to synthetic content generated or manipulated by AI and must make that mark detectable. The obligation covers text as well as images, video and audio.
+The Commission lists exceptions. Marking is not required when an AI system performs an assistive function for standard editing, or when it does not substantially alter the input data supplied by the deployer or its meaning. Those exceptions explain the shape of the opt-out in the SpaceXSI Console, where an administrator must state that one of them, or another legal exception, applies.
+The Commission's page also describes a grace period. For generative AI systems placed on the market before 2 August 2026, the marking obligation under Article 50(2), as amended by the AI Omnibus, applies only from December 2026. A default switch on November 7 lands about a month before that grace period ends for older systems. Fines for breaching the transparency obligations can reach €15 million or 3% of worldwide annual turnover, according to the same Commission summary.
+Compliance can also be demonstrated through the voluntary Code of Practice on Transparency of AI-generated Content, which the Commission published on 10 June 2026. SpaceXSI's documentation does not say whether the company has signed it, and it does not say whether the watermark follows any shared technical standard that third-party detectors could read.
+··········
+⁣⁣⁣⁣⁣⁣⁣⁣⁣⁣⁣⁤
+GROK API WATERMARKING: CONFIRMED FACTS AND OPEN QUESTIONS.
+The documented facts are specific. From November 7, 2026, seven Grok text models will watermark their output by default on all API endpoints, across the Responses and Chat Completions APIs, including structured outputs and tool-call arguments. The mark is statistical, invisible and signalled by an `x-watermark: true` header, and team administrators can opt out per model only by asserting a legal exception, with every change logged.
+Several points remain undisclosed. SpaceXSI has published no detection accuracy, no results on how the mark survives paraphrasing or translation, and no criteria for access to the detection API. The page does not explain why grok-build-0.1 is absent from the list or which models may be locked on for particular teams. Its statement that quality and speed are unaffected has not been checked independently, which leaves agent and structured-output workloads as the area where developers will need their own measurements once the default takes effect.
+··········
+FOLLOW US FOR MORE.
+·····
+DATA STUDIOS
+·····
+datastudios.org
+
+===== https://aiera.blog/?p=3281
+(status 200)
+Key Takeaways
+From 7 November 2026, text from seven Grok API models carries an invisible watermark by default, according to xAI developer documentation reported by multiple outlets.
+The seven models are grok-4.7, grok-4.6, grok-4.5, grok-4.3, grok-4.20-reasoning, grok-4.20-non-reasoning, and grok-4.20-multi-agent, on every API endpoint.
+The mark shapes token selection during generation and adds no characters, markup, or visible text.
+The x-watermark response header shows true when a response was watermarked.
+Team admins can opt out per model in the SpaceXSI Console, but only after confirming a legal exception applies, and the team then bears responsibility. Some models may be locked on.
+Detection is statistical, with three outcomes, watermarked, not watermarked, or uncertain, and access is by application only.
+The stated reason is EU AI Act compliance, under Article 50 transparency rules, with a 2 December 2026 deadline for pre-existing systems.
+The change covers API text only. It does not, as far as the documentation reported so far shows, cover grok.com, the Grok apps, or Grok on X.
+An invisible mark, switched on by default
+If you build with Grok through its API, a quiet change arrives on Saturday 7 November 2026. From that date, text returned by seven Grok models will carry an invisible watermark by default. You do not need to change your code to receive it. You do not need to send a new parameter. And your users will not see anything different, because the watermark adds nothing visible to the text at all. That combination, automatic, invisible, and consequential, is why the change deserves a careful explanation rather than a one-line announcement.
+The source for the change is xAI’s developer documentation, where the company appears under the name SpaceXSI. Multiple outlets reporting on the documentation agree on the core facts: the date, the seven models, the default-on setting, the header, the opt-out process, and the EU AI Act reason. Where outlets differ or where the documentation itself is silent, this article says so, rather than filling the gap with a guess. That matters, because a watermark is only useful if people understand exactly what it does and does not prove.
+Which models, and which channels
+The seven models covered are grok-4.7, grok-4.6, grok-4.5, grok-4.3, grok-4.20-reasoning, grok-4.20-non-reasoning, and grok-4.20-multi-agent. The marking applies on every xAI API endpoint, including the global api.x.ai endpoint and regional endpoints, so it is not a setting reserved for European developers. It covers both the Responses API and the Chat Completions API, and inside a response it touches plain text, structured outputs, and the arguments of tool calls, which are the commands the model hands to another program.
+The scope is, in practice, the API. For the Grok app, the website grok.com, and the subscription inside X, no date has been announced, according to the reporting on the documentation. One outlet notes that Superpower Daily points out the change targets developer products, not consumer ones. That distinction is important for ordinary Grok users. If you chat with Grok in the app or on X, nothing in the reported documentation says your text will be watermarked from 7 November. If the same text passes through an API, an automation, or a third-party service that uses the API, it can come out marked without anyone noticing, because the mark is invisible by design.
+This is also why the change matters more to builders than to readers. A reader will never see the watermark. A builder who puts Grok inside a product, a customer support tool, a content pipeline, or a student-facing service will have to decide, model by model, whether to keep the mark, and to record the reason. That decision, and the paperwork around it, is the real work of 7 November.
+How a watermark that adds nothing actually works
+A text watermark sounds like a hidden stamp, but the Grok watermark described in the documentation works differently. While the model writes, it slightly shifts the probabilities it uses to choose words. At each step, the model has a range of plausible next words. The watermarking process nudges that choice in a statistically detectable direction, without inserting hidden characters, tags, or markup. A reader notices nothing. Copying and pasting leaves no visible trace, because there is no visible trace to copy.
+Checking, therefore, is not a matter of looking for a hidden character. It is a matter of statistics. A detector, holding the right key, examines a piece of text and asks whether its pattern of word choices looks like the pattern the watermarking process would produce. The detector gives three possible outcomes: watermarked, not watermarked, or uncertain. The signal gets stronger as the text gets longer. On a paragraph, the signal is weak. On a full page, it becomes readable. On a short or heavily edited text, the most likely answer is uncertain, and the documentation, as reported, does not say how well the mark survives a rewrite or paraphrasing. That limitation should be kept in mind by anyone tempted to treat a watermark result as a final verdict.
+The detector itself is not public. Access goes through an application form, so today no journalist, teacher, or company can check a suspicious Grok text on their own, unless they have been granted access by xAI. An ordinary AI text detector, which measures writing style, does not read this signal, and is not an equivalent alternative. That gap between a mark that is on by default and a detector that is available only by application is one of the most important practical facts about the system. It means the watermark is currently more useful as a record for those who already have access than as a general tool for the public to verify authorship.
+Developers do have one direct tool. Every response from the two APIs carries the HTTP header x-watermark, and the value true means that request was generated with the mark. Any other value, or no header at all, means the mark was not there. For a company that has to prove what it marked, that header is a small but handy record, and it is worth logging if your compliance depends on it.
+How to turn it off, and who answers for it
+Team admins find a row called “Model output watermarking” in the xAI console, which shows whether the mark is on for all models, off for all, or customised. You untick the models you want to exclude, save, and confirm. Changes reach new requests within five minutes, apply to every API key on the team, and land in the audit log, according to the reporting on the documentation.
+The part that weighs most is the confirmation. Turning the watermark off means declaring that a legal exception applies to that use and that the team takes on every marking or disclosure obligation by itself. Responsibility, in practice, moves from the provider to the user. That is not a casual toggle. It is a legal statement, and it should be made only after someone who understands the applicable law has reviewed the use case. Some models may also show up locked on for a given team, in which case the checkbox does not even appear. If you find a model locked on, that is not a bug to work around. It is a constraint to plan around, and it should be recorded as such.
+For anyone with products already in production, the deadline is short. It makes sense to read the console row right away, decide model by model whether to keep the mark, and write down the reason. If the text ends up with customers, students, or readers, the simplest route is still to disclose the use of AI in plain language. The watermark helps whoever wants to check, but it does not replace a clear sentence in the document. Transparency that only a detector can read is not transparency for a human reader.
+Why xAI is doing it now: the EU AI Act
+The stated reason for the change is compliance with the EU AI Act. Article 50 of the regulation asks providers of systems that generate synthetic text, images, audio, or video to mark outputs in a machine-readable format that can be detected as artificial. The transparency obligations run from 2 August 2026, and for systems already on the European market before that date, analysis cited in the reporting points to a transition window until 2 December 2026. The 7 November date falls inside that window, so xAI is moving ahead of the deadline rather than waiting until the last day.
+That timing also places xAI in a wider industry shift. The reporting notes that Anthropic began marking Claude text in August, and that OpenAI took a narrower route with its own system, limited to EU text in the reporting cited. For API-generated text, the line is shifting from “some yes, some no” to “almost all yes, with a legal exit”. One outlet also notes, citing City AM, that xAI had not signed the code of practice on transparency, and that the new default-on mark puts it in a different position. Whether that characterisation is fair is a matter of interpretation, but the direction of travel is clear: regulators in Europe want machine-readable marks on synthetic text, and the largest labs are responding, each in a slightly different way.
+It is important to be precise about what the EU AI Act does and does not do here. It requires marking in a machine-readable format that can be detected as artificial. It does not require that every human reader can see the mark, nor does it make a watermark a guarantee of authorship in a courtroom. A watermark is a tool for detection, not a certificate of origin that settles every dispute. Treating it as more than that would overstate its power and create false confidence.
+How Grok compares with OpenAI on watermarking
+One contrast in the brief for this story deserves emphasis, because it is easy to get wrong. OpenAI’s API watermarking stays opt-in, while Grok’s API watermarking becomes opt-out from 7 November. That is a real difference in default, and it matters for builders who use both systems. With OpenAI’s API, you choose to turn watermarking on. With Grok’s API, watermarking is on unless you actively turn it off, model by model, with a legal confirmation.
+That contrast should not be stretched into a claim that one approach is lawful and the other is not, or that one company cares about transparency and the other does not. Both companies are navigating the same regulation, and they have chosen different defaults and different scopes. The practical point for builders is narrower: if you switch between providers, or if you use both in the same product, do not assume the watermark settings carry over. Check each provider’s console, each model’s setting, and each response header, and record what you find. A product that assumes a uniform watermark policy across providers will be wrong for at least one of them.
+For readers who want to compare watermarking across assistants, our existing explainer, 
+Claude AI Watermark: How It Works & How to Detect It
+, covers Anthropic’s approach in detail. It is a useful companion piece, because it shows how a different lab implemented a similar idea, and where the limits of detection are similar. A second useful companion is 
+AI Agent Security Checklist: Before You Connect Any Tool
+, which covers the broader discipline of checking what a tool does with your data before you connect it, a discipline that applies just as much to watermark settings as to permissions. A third is 
+1Password AI Agent Login: How Agents Sign In Without Ever Seeing Your Password
+, which explains why credentials and approval codes should be kept out of agent-accessible channels, a theme that returns in our coverage of agent spending controls.
+What builders should do before 7 November
+First, open the SpaceXSI Console and read the “Model output watermarking” row for your team. Note which models are on, off, or customised, and whether any are locked on. Second, decide, model by model, whether to keep the mark. The default answer, for most teams, will be to keep it, because turning it off requires a legal exception and shifts responsibility to you. Third, if you do turn any model off, get that decision reviewed, record the legal basis, and keep the audit log entry. Fourth, start logging the x-watermark header for responses where compliance matters, so you have a contemporaneous record of what was marked. Fifth, tell your users in plain language when AI-generated text reaches them, because the watermark alone does not do that job.
+There are also three things not to do. Do not assume the watermark proves authorship on its own, especially for short or edited text, where the detector is likely to return uncertain. Do not assume that paraphrasing removes the watermark, because the documentation, as reported, does not say how well the mark survives a rewrite, and nobody has published measurements on Grok. And do not assume that the app, website, or X experience carries the same mark, because no date has been announced for those channels. Each of those assumptions would turn a useful tool into a false assurance.
+Limitations to keep in mind
+The promise that the watermark changes neither quality nor speed comes from xAI and has no independent testing reported so far. Anyone running Grok in production would do well to compare their own benchmarks before and after 7 November, rather than taking that promise on trust. Quality in this context means more than whether the text reads well. It means whether the model’s choices on structured outputs, tool call arguments, and edge cases remain the same when the watermarking nudge is applied. A small statistical shift could, in principle, affect a narrow set of outputs, and only production testing will reveal whether it does in your use case.
+A second limitation is the detector’s availability. Until access is broader, the watermark is a promise of future checkability rather than a tool that any reader can use today. That may change, and xAI may open detection more widely, but as of the reporting for this story, access is by application only. Builders should plan on that basis, and should not promise customers or readers that they can verify a Grok text themselves.
+A third limitation is scope. The documentation covers API text. It does not, as reported, cover images, audio, or video from Grok, and it does not cover consumer channels. If your product uses Grok for more than API text, you need a separate transparency plan for those outputs, and you should not assume the text watermark covers them.
+The bottom line
+The Grok API watermark is a small technical change with a large administrative consequence. From 7 November 2026, seven Grok models will mark their API text by default, invisibly, on every endpoint, with a header to prove it and a detector that only some people can use. Builders can opt out per model, but only by confirming a legal exception and taking responsibility themselves. The reason is EU AI Act compliance, ahead of the 2 December 2026 deadline for pre-existing systems. For ordinary Grok users on the app, website, or X, nothing is announced to change. For builders, the task is clear: check the console, decide model by model, record the reason, log the header, and tell your users in plain words. A watermark that nobody can see is only useful if the people who build with it take it seriously, and 7 November is the date when that seriousness becomes the default.
+Sources: 
+Pasquale Pillitteri, Grok watermark arrives on xAI API text on November 7
+; 
+TeslaNorth, Grok API watermark November
+; 
+FourWeekMBA, AI SpaceX AI will watermark Grok text by default for EU AI Act
+.
+
+===== https://www.cityam.com/?p=2449797
+(status 200)
+Elon Musk's AI firm will still have to comply with applicable EU AI Act rules
+Elon Musk’s Grok is poised to swerve rivals’ plans to ‘watermark’ all artificially-generated content,
+ City AM 
+understands, after refusing to sign up to a European push forcing firms to make AI content traceable.
+xAI was the only major large language model maker to shun a European Union-led move to tighten AI transparency rules that means the likes of Anthropic, Google and OpenAI’s responses will contain an invisible watermark.
+On Monday, Claude-maker Anthropic became the first major AI firm to announce plans to place machine-readable signals indicating a text had been generated using its model. The company said its machines would “mark AI-generated content from day one” as part of its commitment to the EU’s AI Act.
+But other AI firms – including Microsoft, Meta and Mistral – also signed up to the charter, paving the way for others to follow in Anthropic’s footsteps.
+City AM 
+understands that OpenAI plans to watermark text outputs as part of their EU AI Act commitment, and that the company is currently working through the details.
+Stay in the know
+Three daily briefings with the key market moves and top business and political stories.
+SUBSCRIBE HERE
+Sam Altman’s AI firm has said its goal is to expand its existing content provenance measures to text, indicating that ChatGPT is set to follow Claude in making its written output easier to identify.
+Google is also expected to introduce measures covering AI-generated content under the code, although exactly how the requirements will be applied to text produced by Gemini has yet to be set out.
+“Consistent with our commitments under the European Commission’s Code of Practice on Transparency of AI-generated content, our goal is to expand provenance signals to all modalities including text,” OpenAI said in a post on its own support website this month.
+The ChatGPT maker added that the measures were intended to give customers and developers “clear ways to meet their own transparency obligations as standards and tooling continue to mature”.
+OpenAI has not said exactly how it will mark text or confirmed that it will use the same invisible watermarking method announced by Anthropic this week.
+But xAI, Elon Musk’s company behind Grok, did not sign the code, meaning it has made no equivalent commitment through the agreement for Grok.
+However, Musk’s AI firm will still have to comply with applicable requirements under the 
+EU AI Act
+, and so could eventually be made to introduce its own system for marking AI-generated material despite staying outside the code.
+City AM 
+approached OpenAI, Google and xAI for comment.
+Claude announces watermarking plans
+As part of its update on Monday, Anthropic said new Claude models will embed an invisible, machine-readable watermark directly into generated text. Anthropic said the mark should remain when text is copied and pasted and may survive some editing.
+Supported images and other files will carry signed provenance information recording that they have been processed by Claude.
+Despite the change being driven by European rules, Anthropic said it will apply the marking worldwide wherever supported Claude models are available.
+Even human-written text could carry a Claude watermark if someone subsequently asks the chatbot to proofread, translate or edit it. But AI-generated text that is heavily edited or paraphrased may lose a detectable mark.
+That is partly because the EU rules distinguish between content generated by AI and cases where the technology is merely assisting with standard editing. Article 50 provides an exception where AI performs an assistive editing function without substantially changing the original material or its meaning.
+Grok scrutiny continues
+Grok faced regulatory scrutiny earlier this year over its ability to create sexualised images of real people on its platform.
+The European Commission opened an investigation into X in January over concerns that Grok had been used to create manipulated sexually explicit images and whether the company had properly assessed and addressed the risks involved.
+In the UK, Ofcom separately launched an investigation after reports that Grok was being used to digitally remove clothing from images of real people, including concerns around sexualised images involving children.
+X subsequently said it had stopped Grok from altering images to remove people’s clothing in jurisdictions where such content is illegal, saying users prompting Grok to produce illegal material would face the same consequences as those uploading it themselves.
+The investigations are separate from the AI Act’s transparency requirements, but put Grok’s handling of AI-generated material under scrutiny months before the new rules took effect.
+Regulators in Australia, France and Germany also examined the chatbot, while Grok was temporarily restricted in Indonesia and Malaysia.
+The European Commission’s investigation sits under the Digital Services Act and could result in penalties if it ultimately finds X breached the rules, yet no such finding has yet been made.

@@ -1,0 +1,145 @@
+===== https://ai.watch.impress.co.jp/docs/news/2154707.html
+(status 200)
+ニュース
+OpenAI、セキュリティ企業Hacktronと提携
+ 「Daybreak Red」でフロンティアモデルへの利用権限を拡大 
+編集部：船津稔
+2026年11月9日 11:33
+ 　OpenAIは、システムにおける脆弱性を発見するため、Hacktronとのパートナーシップ締結した。同社では、サイバー防御を加速させる取り組みを進める一方で、自社システムの脆弱性の発見と修正にも同様に緊急性をもって取り組んでいくとしている。 
+ 　OpenAIのエンジニアとHacktronのセキュリティ研究者は、優先度の高い領域を選定し、特に、同社のシステムがサードパーティサービスとどのように連携するかに重点を置きながら共同でテストを実施する。このパートナーシップの一環として、Daybreak Redを通じHacktronがOpenAIの最先端モデルにアクセスできるよう、アクセス範囲を拡大した。 
+ 　Hacktronの研究者チームは、コードレビュー、侵入テスト、レッドチーム演習のためのAIエージェントを開発中。アプリケーション、クラウドインフラストラクチャ、およびIDシステム間の相互作用における脆弱性を明らかにしており、これらの研究によりセキュリティエンジニアの研究が加速し、さらに今後の可能性も高めている。 
+ 　OpenAIは、Hacktronと協力することでより深く検証し、得られた知見を防御体制の強化に役立てることができるとコメントしている。 
+URL
+🔗ニュースリリース
+https://openai.com/index/partnering-with-hacktron/
+🔗OpenAI
+https://openai.com/
+
+===== https://dev.to/hiroki-ii-ai/ai-daily-digest-november-8-2026-openai-taps-hacktron-for-bug-hunts-muse-wonder-for-everyone-gin
+(status 200)
+Saturday's digest is about consolidation rather than spectacle: OpenAI invites an external security firm to attack its own systems, image generation gets a cross-surface upgrade with GIF support, Meta pushes flagship agent memory to every user, Microsoft ships a package manager for the agent ecosystem, NVIDIA redefines inference economics through memory scheduling, and Google's agent framework graduates its experimental core. Seven stories, each anchored to an official source.
+  1. OpenAI partners with Hacktron to hunt vulnerabilities in its own systems
+OpenAI announced on November 7 a partnership with security firm Hacktron to probe OpenAI's systems for vulnerabilities, with a focus on how its services interact with third-party platforms. OpenAI engineers and Hacktron researchers will jointly select high-priority areas for testing, and Hacktron also gains expanded access to frontier models through the Daybreak Red program. "As we work to accelerate cyber defense with frontier AI, we're applying the same urgency to finding and fixing vulnerabilities in our own systems," the company said in its announcement.
+Hacktron brings a specific specialty rather than generic consulting credentials. The firm builds AI agents for code review, penetration testing, and red teaming, and its researchers have previously found vulnerabilities in how applications, cloud infrastructure, and identity systems interact. That expertise lands exactly where OpenAI is most exposed: as agents connect to external services in new ways, the seams between authentication flows, data handoffs, and permission boundaries are where traditional application security reviews stop covering.
+The partnership fits into a deliberate sequence. Earlier this week OpenAI said Cathedral's researchers would join its next security sprint, and it raised bug bounty rewards shortly before that. Yesterday's GPT-6 Cyber story was about handing offensive capability to vetted professionals; today's is about inviting an outside attacker into the building. Together they sketch a company extending its security perimeter from internal testing to the whole ecosystem.
+— OpenAI
+🔗 
+OpenAI announcements
+  2. Images 2.6 ships: image generation gets faster everywhere, GIFs become the headline
+OpenAI released Images 2.6 across ChatGPT, Codex, and the API simultaneously. The core number is a 50% average speedup in generation, and the most eye-catching new capability is creating GIF animations from images, aimed at character animation, social stickers, and dynamic storyboards. The update is available to all ChatGPT and Codex subscription tiers worldwide.
+The API side carries more engineering weight. OpenAI now offers two models: Flare, tuned for speed, and Sunburst, tuned for higher quality and consistency across repeated edits. The API also adds annotation-based image editing, SVG export, and a complexity parameter that lets developers control how much planning the model applies to complicated scenes. Edit consistency turning from a caveat into a tunable parameter signals that image generation is moving from one-shot renders to an iterable pipeline.
+Putting GIFs in the headline is smart positioning. Users often want neither a static image nor a 15-second video; they want a moving sticker or a short looping shot. Letting the image model handle motion natively adds a cheap tier between stills and full video models, which for content-distribution teams is a materially cheaper production line rather than a novelty feature.
+— OpenAI
+🔗 
+OpenAI announcements
+  3. Meta rolls Muse Wonder-derived models out to every user
+Meta announced on November 6 that a set of specialized models trained from its flagship Muse Wonder series is now rolling out to all Muse and Meta AI users. The stronger Wonder Full stays reserved for paid subscribers handling complex tasks. The notable choice is that Meta did not simply distill a smaller model; it retrained for the actual behaviors of a personal assistant, such as when to act autonomously, when to ask for confirmation, and how to keep context after a user correction.
+Two capabilities anchor the release. Active Memory lets the assistant retain key information across conversations and retrieve it when relevant: the new models are 2.4 times less likely to forget goal-critical details, and correct use of key context rose from 76% of tasks to 90%. Active Focus keeps a task moving when something breaks: completion rates on interrupted daily tasks improved by 67%. On Meta's internal Personal Superintelligence Index, the new models score 47%, up from 38%.
+The agent race is shifting from answering well to remembering and enduring. Conversational quality has compressed into a tie across the majors; the real differentiation is whether a detail from three weeks ago resurfaces when it matters and whether the assistant recovers when a website errors out. Meta has distribution leverage through its free tier and social apps, and pushing flagship-derived models to the full user base trains hundreds of millions of people on a memory-bearing assistant rhythm first.
+— Meta AI
+🔗 
+Meta AI
+  4. Microsoft open-sources APM, a package manager for the agent ecosystem
+Microsoft released APM (Agent Package Manager) on November 7, an MIT-licensed dependency manager built specifically for AI agents. Developers declare skills, prompts, instructions, plugins, and MCP servers in a single apm.yml manifest, run apm install once, and the tool deploys the right primitives to whichever harness is in use across nine supported environments including GitHub Copilot, Claude Code, and Cursor. It builds on the AGENTS.md, Agent Skills, and MCP standards.
+The engineering details are where this gets serious. A lockfile pins exact versions and content hashes so a fresh clone resolves byte-for-byte identical dependencies. The security model is deny-by-default: every install scans for hidden Unicode characters, and transitive MCP servers are blocked unless explicitly declared or trusted. Enterprise governance ships as apm-policy.yml with a tighten-only inheritance model flowing from enterprise to org to repo. Support extends to GitLab, Azure DevOps, Bitbucket, and Gitea rather than locking into GitHub.
+This fills the missing foundation layer of the agent ecosystem. npm ended JavaScript's dependency chaos; agent skills, prompts, and MCP servers until now traveled by copy-paste with no guarantee two machines ran the same thing. Anthropic donated the Agent Skills standard to the Agentic AI Foundation last month, and Microsoft followed with the package manager. The supply chain layer is becoming the next battleground for the majors.
+— Microsoft · GitHub
+🔗 
+microsoft/apm repository
+  5. NVIDIA details the Vera Rubin memory strategy: 3% more HBM, up to 30x the inference throughput
+NVIDIA laid out the memory strategy behind its Vera Rubin NVL72 systems this week, claiming up to 30 times the cost-adjusted agentic inference throughput of the previous GB300 NVL72 generation. The striking part: per-GPU HBM capacity rises only about 3%, so the gains come from system-level design. These are vendor-reported figures, and independent benchmarks have yet to verify them.
+The technique is a stack of moves rather than one trick. Model weights and the KV cache compress into the NVFP4 low-precision format, weights spread across all 72 GPUs to free local high-bandwidth memory, the Vera CPU's large memory acts as a buffer tier, Dynamo handles context migration, and RAG indexes plus inactive context sink to cheaper storage layers. Memory becomes a rack-wide shared resource to schedule instead of a fixed ceiling on each chip.
+The competitive yardstick is quietly changing axes. Peak compute and memory capacity mattered before; useful tokens per dollar matters now, because agentic workloads feature long contexts, multi-turn calls, and heavy repeated cache reads where memory management decides the bill. Treat the 30x "up to" number with skepticism, but the direction is real: next-generation inference cost gaps will come from scheduling and compression, software problems, rather than bolting on more memory.
+— NVIDIA
+🔗 
+NVIDIA blog
+  6. NVIDIA completes its $1 billion investment in NAVER, deepening Korea's sovereign AI push
+According to a NAVER regulatory filing dated November 6, NVIDIA's $1 billion investment in the Korean internet company has completed payment. NAVER received about 1.3 trillion won, issued over 6.5 million new shares through third-party allotment, and NVIDIA now holds a 4.13% stake. The deal follows the AI factory partnership the two companies announced in June, binding capital investment to GPU infrastructure buildout.
+The deployment path is explicit. NAVER plans to build GPU compute infrastructure starting from its Sejong data center and expand a GPU-as-a-Service business so customers can rent capacity through the cloud. Korea has spent this year pushing sovereign AI initiatives with domestic cloud providers queueing up for NVIDIA hardware; making NVIDIA a shareholder raises the depth of that binding another notch.
+For NVIDIA, investments of this kind buy distribution. At the platform stage of the chip race, whoever sits at the compute gateway of flagship internet companies in each country extends their ecosystem moat. One billion dollars for a default seat in a national AI infrastructure build is hard to call a bad trade, and it shows NVIDIA's capital extending from chip orders into the equity layer of national AI infrastructure.
+— NAVER regulatory filing · Anue
+🔗 
+NAVER corporate site
+  7. Google ADK 2.14.0: the agent framework enters its stable era
+Google released Agent Development Kit 2.14.0 on November 7, a major version dedicated to graduating experimental features. Execution environments, the A2A protocol, evaluation modules, and the core runtime are all stable now, with 26 auth, environment, and app modules plus 16 toolset features leaving their experimental labels. ADK is Google's open-source, code-first agent toolkit with SDKs for Python, TypeScript, Go, Java, and Kotlin.
+Three functional changes stand out. Multi-run evaluation arrives with MultiRunConfig and parallelism controls so each test case can run concurrently many times, paired with a ToolArgsMatcher that compares tool arguments semantically, upgrading agent testing from "it runs" to "it runs reliably". A new TeamsRunner connects agents to Microsoft Teams, and an OpenAIDecisionsClassifier gates workflows using OpenAI's Decisions API. On performance, long multi-turn workflows run 23% faster with 9% lower peak memory.
+The line worth underlining in your own notes is A2A reaching stable. Once the agent-to-agent protocol settles, frameworks from different vendors share a common language for calling each other, which is infrastructure-grade good news for multi-agent architectures across the industry. A Google framework integrating a competitor's Decisions API as a decision gate also shows how far toolchain competition has refined: the differentiators at the framework layer are now stability and interoperability, not feature counts.
+— Google · GitHub
+🔗 
+google/adk-python repository
+KD Agentic · AI Daily Digest
+
+===== https://aidapted.ro/en/articles/ai-news-8-november-2026/
+(status 200)
+OpenAI raises $11 billion at a valuation of $1.25 trillion
+OpenAI has secured 
+$11 billion
+ in a new funding round, the first part of a larger operation. The deal values the company at roughly 
+$1.25 trillion
+, below the $1.5 trillion level OpenAI was reportedly seeking initially. Investors include SoftBank and MGX, and the total round could reach approximately $20 billion. 
+Reuters reports on OpenAI's funding
+.
+Why it matters:
+ the sum confirms the extraordinary financial scale of the AI race, but the valuation is perhaps more important than the amount raised. OpenAI is accepting, at least at this stage, a valuation below the one it previously sought, at a time when investors have become more wary of the enormous costs of AI infrastructure. In parallel, the market is preparing for the Anthropic IPO, which will offer a public test of the real value assigned to frontier companies.
+Anthropic enters the decisive stage ahead of its IPO, but investor valuations are falling
+Anthropic is approaching the stage of promoting its initial public offering, but investor appetite appears more cautious than it was a few weeks ago. According to information cited by Reuters, some investors are discussing valuations of around 
+$1.5 trillion
+, compared with the roughly $2 trillion circulated earlier. At the same time, the financial results show that quarterly revenue rose to $16.96 billion, but the pace of growth has slowed sharply, and the company reported additional costs of about $5 billion for computing infrastructure.
+Why it matters:
+ the Anthropic IPO could become one of the most important tests for the current AI economy. Companies in the field need enormous sums for compute, and investors have to decide how much this growth is worth relative to the necessary spending. If valuations fall before the listing, the pressure could spread across the entire sector, including chip, cloud and infrastructure providers.
+Microsoft: attackers' AI agents can go from GitHub to cloud data in five minutes
+Microsoft Threat Intelligence has identified attackers using the agentic AI framework 
+ARTEX
+ to automatically search for exposed secrets in public GitHub repositories. The agents do not stop at finding passwords or API keys: they can analyze the information they discover and continue the attack on the cloud infrastructure. In one case observed by Microsoft, the agent went from searching for secrets on GitHub to exfiltrating data from an 
+Azure Key Vault
+ in about five minutes. 
+Microsoft describes the AI agent attack in detail
+.
+Why it matters:
+ this is one of the clearest demonstrations of how AI is changing cyberattacks. In the past, an attacker had to go through several stages manually: gathering information, verifying credentials, identifying vulnerable services and attempting access. An agent can automate much of this chain and adapt its actions based on intermediate results. Security thus also becomes a matter of 
+speed
+: organizations may have far less time to revoke a compromised credential.
+Google DeepMind uses AI agents to find weaknesses in RSA-1024
+Google DeepMind presented research on 6 November in which AI agents, guided by researchers, helped identify two weaknesses in 
+1024-bit RSA
+ cryptographic systems. The research targets a standard already considered outdated, and the results do not mean that RSA-2048 is compromised. In an isolated experiment, two AI agents designed, launched and debugged, in less than four days, a computation that reproduced an earlier result, using about 3.5 times less processing power than the original experiment.
+Why it matters:
+ the novelty is not that AI "broke RSA," but that agents can contribute to advanced cryptographic research and automate part of the work needed to test algorithms. For organizations that still use RSA-1024, the results are one more reason to migrate to more modern standards. For the security industry, the more important signal is that AI can also accelerate research that probes the limits of existing protection systems.
+OpenAI introduces BioBasicsBench to test AI agents in laboratories
+OpenAI has released 
+BioBasicsBench
+, a benchmark (a standardized set of tests) with 
+100 tasks
+ that checks whether AI agents can interpret raw data from laboratory experiments. The tests use real images and experimental results, from gels and cell cultures to microscopy and instrument readings, and check not only whether the model reaches the correct answer, but also whether it can identify errors or recognize that the evidence does not support a firm conclusion. OpenAI says GPT-6 Astra achieved 66.7% of the available credit in the "xhigh" reasoning configuration, compared with 43.8% for GPT-5.6 Sol. 
+OpenAI presents BioBasicsBench and the test results
+.
+Why it matters:
+ this is a significant shift from classic benchmarks, which often test well-formulated problems and clean data. In a real laboratory there are ambiguous images, failed experiments and contradictory results, and an agent must know when it 
+does not have enough evidence
+. The ability to handle such situations is essential if AI is to take part directly in biomedical research.
+Thinking Machines launches Inkling 2 Small, a model with 594 billion parameters
+Thinking Machines Lab, the company founded by former OpenAI chief technology officer Mira Murati, has released 
+Inkling 2 Small
+, a Mixture-of-Experts model with 
+594 billion parameters in total
+, of which 17 billion are activated for each token. The model accepts images and is geared toward, among other things, agentic programming, document analysis and long-running autonomous tasks. It is initially available through the Tinker platform, and the company intends to publish the weights later under the Apache 2.0 license, after external safety testing and red-teaming. 
+The official Thinking Machines announcement
+ provides the technical details and benchmark results.
+Why it matters:
+ Inkling 2 Small shows the direction AI models for agents are heading: not just better answers, but the ability to work autonomously over longer periods, write code, use tools and verify results. At the same time, the fact that Thinking Machines makes the release of the weights conditional on safety evaluations shows that open-weight models are becoming harder and harder to separate from the problem of risk control.
+NVIDIA optimizes infrastructure for AI agents with the Vera CPU
+NVIDIA is promoting the 
+Vera CPU
+ as a processor designed specifically for agentic AI workloads, in which the processor coordinates code execution, database access, tool use and other operations between two GPU processing stages. The company claims that, in a comparison carried out for a 100 MW data center, Vera can support more agents per watt than the x86 processors tested. NVIDIA says Perplexity achieved roughly 1.5 times faster execution with Vera in agentic programming tasks. 
+NVIDIA explains the role of the Vera CPU in AI infrastructure
+.
+Why it matters:
+ the AI race is shifting from simply training models to running a very large number of agents working simultaneously. They do not spend all their time on the GPU: they search for data, execute code, interact with services and coordinate tools. That is why the CPU is once again becoming a strategic component of AI infrastructure. If agents become the main interface to software, processors optimized for these workflows could become as important as the accelerators for foundation models.
+OpenAI partners with Hacktron to test its own systems with AI agents
+OpenAI announced on 6 November a partnership with 
+Hacktron
+ to identify vulnerabilities in its own systems. Hacktron researchers and OpenAI engineers will jointly select high-priority areas, especially how OpenAI's systems interact with third-party services. Hacktron will receive extended access to frontier models through Daybreak Red for research activities. The company says the Hacktron team is developing AI agents for code review, penetration testing and red teaming (controlled testing of systems by simulating an attack). 
+OpenAI announces the partnership with Hacktron
+.
+Why it matters:
+ there is an interesting logic in using AI to attack one's own systems in a controlled way. The more capable agents become at finding vulnerabilities, the more useful they become for defense as well. For OpenAI, the partnership is also a test of the idea that frontier models can be integrated directly into security processes, where they must discover complex problems before attackers exploit them.
