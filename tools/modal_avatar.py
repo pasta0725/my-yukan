@@ -18,7 +18,7 @@ SYS = ["git", "ffmpeg", "libgl1", "libglib2.0-0", "libsndfile1"]
 
 img_longcat = (modal.Image.debian_slim(python_version="3.12").apt_install(*SYS)
                .pip_install("torch==2.8.0", "torchvision==0.23.0", "torchaudio==2.8.0", "numpy<2.3", "scipy", "opencv-python-headless",
-                            "pillow", "accelerate", "safetensors", "sentencepiece", "psutil", "audioread", "huggingface_hub[hf_transfer]<1.0"))
+                            "pillow", "accelerate", "safetensors", "sentencepiece", "psutil", "audioread", "protobuf", "requests", "huggingface_hub[hf_transfer]<1.0"))
 img_kandinsky = (modal.Image.debian_slim(python_version="3.13").apt_install(*SYS).pip_install("uv", "huggingface_hub[hf_transfer]")
                  .run_commands("git clone -q --depth 1 https://github.com/kandinskylab/kandinsky-s2v /opt/kandy && cd /opt/kandy && uv sync --no-dev"))
 img_echomimic = (modal.Image.debian_slim(python_version="3.11").apt_install(*SYS)
