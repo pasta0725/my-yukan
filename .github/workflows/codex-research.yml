@@ -18,15 +18,15 @@ jobs:
       - uses: actions/checkout@v4
       - id: s
         run: |
-          python3 tools/research_pages.py split "data/${{ inputs.edition }}.json" 4 /tmp/sh ${{ inputs.max_refs }}
-          echo "n=4" >> "$GITHUB_OUTPUT"
+          python3 tools/research_pages.py split "data/${{ inputs.edition }}.json" 6 /tmp/sh ${{ inputs.max_refs }}
+          echo "n=6" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         with: { name: shards, path: /tmp/sh }
   search:
     needs: split
     runs-on: ubuntu-latest
     timeout-minutes: 50
-    strategy: { fail-fast: false, matrix: { k: [0, 1, 2, 3] } }
+    strategy: { fail-fast: false, matrix: { k: [0, 1, 2, 3, 4, 5] } }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -44,6 +44,7 @@ jobs:
           echo "CODEX_HOME=$CODEX_HOME" >> "$GITHUB_ENV"
       - name: search with codex
         run: |
+          [ "$(python3 -c "import json;print(len(json.load(open('/tmp/sh/shard_${{ matrix.k }}.json'))))")" = 0 ] && { mkdir -p /tmp/out; exit 0; }
           mkdir -p /tmp/w && cp /tmp/sh/shard_${{ matrix.k }}.json /tmp/w/stories.json && cd /tmp/w
           start=$(date +%s)
           timeout 2400 codex --search exec --skip-git-repo-check -s workspace-write "You are a news research assistant.

@@ -6,6 +6,9 @@ Runs on GitHub Actions (.github/workflows/codex-research.yml).
   fetch:  python3 tools/research_pages.py fetch <found.json> <out_dir>
           found.json = {"<id>": {"refs":[{"url","site","title"}], "official":{"url","images":[...]}}} (what Codex wrote)
           -> <out_dir>/<id>.txt  (each page: '===== url' line then its text) and <out_dir>/<id>.json (the found list, checked)
+  export: python3 tools/research_pages.py export data/<ED>.json <dir>      one file <dir>/<id>.json per article (for the rewrite workers)
+  import: python3 tools/research_pages.py import data/<ED>.json <dir>      put rewritten <dir>/<id>.json back (same id; id/category/image kept),
+          and copy title/summary into data/x-todo.json
 """
 import json, os, re, sys, concurrent.futures as cf
 
@@ -61,3 +64,36 @@ elif sys.argv[1] == "fetch":
         res = list(ex.map(job, found.items()))
     for sid, n, ok in res: print(sid, "refs", n, "pages ok", ok)
     print("stories", len(res), "avg refs", round(sum(r[1] for r in res) / max(1, len(res)), 2))
+
+elif sys.argv[1] == "export":
+    ed, out = sys.argv[2], sys.argv[3]
+    os.makedirs(out, exist_ok=True)
+    for a in json.load(open(ed))["articles"]:
+        json.dump(a, open(f"{out}/{a['id']}.json", "w"), ensure_ascii=False, indent=1)
+    print("exported", len(os.listdir(out)))
+
+elif sys.argv[1] == "import":
+    ed, src = sys.argv[2], sys.argv[3]
+    d = json.load(open(ed)); n = 0; bad = []
+    for i, a in enumerate(d["articles"]):
+        f = f"{src}/{a['id']}.json"
+        if not os.path.exists(f): continue
+        try:
+            b = json.load(open(f))
+            assert isinstance(b.get("body"), list) and b.get("title") and any(x.get("type") == "rina" for x in b["body"])
+        except Exception as e:
+            bad.append(f"{a['id']}: {e}"); continue
+        for k in ("id", "category", "image"):
+            if k in a: b[k] = a[k]
+        refs = [r for r in b.get("refs", []) if isinstance(r, dict) and str(r.get("url", "")).startswith("http")]
+        b["refs"] = list({r["url"]: r for r in refs}.values())[:6]
+        if b != a: d["articles"][i] = b; n += 1
+    json.dump(d, open(ed, "w"), ensure_ascii=False, indent=1)
+    xt = os.path.join(os.path.dirname(ed), "x-todo.json")
+    if os.path.exists(xt):
+        x = json.load(open(xt)); by = {a["id"]: a for a in d["articles"]}
+        for r in x.get("articles", []):
+            if r["id"] in by: r["title"], r["summary"] = by[r["id"]]["title"], by[r["id"]]["summary"]
+        json.dump(x, open(xt, "w"), ensure_ascii=False, indent=1)
+    print("updated", n, "articles; skipped (broken):", bad)
+    print("avg refs", round(sum(len(a.get("refs", [])) for a in d["articles"]) / max(1, len(d["articles"])), 2))

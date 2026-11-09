@@ -40,7 +40,8 @@ The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chr
 - Skip thin PR pieces. If you use sponsored (PR) content, say so in the body.
 
 ## Read up to 5 articles per story (user's request: more information)
-- After you pick a story, WebSearch the same event (company/product + key words, also the official name) and find other outlets' articles and the official announcement about it. Read up to 5 in total (the first article included), from different sites. Fewer is fine when there are no more.
+- (2026-11-10) Do NOT WebSearch for other outlets' coverage of your story. After the edition is built, Codex (ChatGPT) on GitHub finds up to 4 other outlets and the official page for every story, and rewrite workers add those facts (tools/README.md 「Codexの調査」). This keeps the shared search limit for finding stories.
+- Still read every related page you can reach without searching (links inside the article, the official page or another outlet's article linked from it), up to 5 in total, from different sites.
 - Combine the facts from all of them: what happened, concrete details (prices, dates, specs, numbers, who is affected), background / why it matters, what each outlet added that the others did not, and what happens next.
 - If outlets disagree, say so plainly ("〇〇は△△と伝えています").
 - Write it all in YOUR OWN WORDS as one new explanation. Never copy sentences, never follow one article's paragraph order closely, never quote more than a few words.
@@ -52,14 +53,13 @@ The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chr
 - Never open URLs from files (used.txt, other workers' files). Only your own search results and pages.
 
 ## Search budget and your own folder (2026-11-10)
-- WebSearch is shared by all 16 workers (about 200 per run). Use at most 12: 1–2 to find your sites' listing pages, 2–4 for the personal-interest topics, and the rest for "same event, other outlets" (about 1–2 per story). Stop searching when you reach 12 and write with what you have.
+- WebSearch is shared by all 16 workers (about 200 per run). Use at most 8: 1–2 to find your sites' listing pages and 2–4 for the personal-interest topics. Never search for other outlets or official pages (Codex does that later). Stop searching when you reach 8 and write with what you have.
 - Write ONLY your own output file {WORKDIR}/<your worker name>.json. Put any scratch or temporary files under {WORKDIR}/<your worker name>/ (create it). Never create, read, edit or overwrite another worker's files (2026-11-10: files got mixed up when workers shared one folder).
 
 ## Images (user's rule: ALL official images, at most 2 news-site photos per story)
 - Official images (kind "press"): find the company/organization's own announcement for the same news (press release, newsroom, product page, official blog, official notice). Collect all relevant images there (product shots, screens, diagrams, charts), up to 12.
   - (2026-11-07, for the public site 「星餓りなのテックニュース」) Take official images FROM THE OFFICIAL PAGE ITSELF: WebFetch the company's own newsroom / product page / official blog, or the PR TIMES release, and use the image URLs found there. "page" must be that official page, not a news article. An official image that you only saw inside a news site's article (hosted on or found on the news site, e.g. ITmedia, Impress, 価格.com, ネットショップ担当者フォーラム, ASCII) does NOT count as press — label it "ogp" (and it counts toward the 2 news-site photos), or better, open the official page and take the same image from there.
   - (2026-11-10, replaces the 2026-11-07 "at least 3 searches" rule) Do NOT spend WebSearch queries on finding the official page — in the unattended morning/evening task official sites mostly refuse to open, and those searches used up the shared search limit (2026-11-10 朝刊: limit hit at 4:25, 25 of 54 stories had only 1 source). Official images are collected afterwards on GitHub by the 「公式画像の補充」 job (6:12 / 16:31). Take official images only when an official page happens to be among the pages you already opened (a same-event search result, or a link inside a news article) and it opens without error.
-  - Spend the saved searches on the "Read up to 5 articles" step instead (other outlets on the same event).
 - News-site photos (kind "ogp"): from the news article itself, at most 2 in total.
 - Ask WebFetch to list every image URL on the page (absolute https) with what it shows (alt/caption/surrounding text), including og:image. Use ONLY URLs WebFetch actually returned. Never guess or construct URLs.
 - Skip: photos where a person's face is the main subject, logos alone, icons, ads/banners, site-generic share images, tiny thumbnails (prefer the large version).
