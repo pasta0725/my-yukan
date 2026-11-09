@@ -20,7 +20,6 @@ ap.add_argument("name"); ap.add_argument("video")
 ap.add_argument("--comment", default=""); ap.add_argument("--privacy", default="public")
 a = ap.parse_args()
 
-meta = json.load(open(os.path.join(ROOT, "channel", "meta", f"{a.name}.json"), encoding="utf-8"))
 creds = Credentials(None, refresh_token=os.environ["YT_REFRESH_TOKEN"], token_uri="https://oauth2.googleapis.com/token",
                     client_id=os.environ["YT_CLIENT_ID"], client_secret=os.environ["YT_CLIENT_SECRET"],
                     scopes=["https://www.googleapis.com/auth/youtube.force-ssl", "https://www.googleapis.com/auth/youtube.upload"])
@@ -30,6 +29,9 @@ me = yt.channels().list(part="snippet", mine=True).execute()["items"][0]
 print("channel:", me["snippet"]["title"], me["id"])
 if me["id"] != "UCDIg0hL5OV6xB5V8GtV-g9A":
     sys.exit("not the 星餓りな channel - authorize again and pick 星餓りな")
+if a.video == "-":   # setup check only: the keys work and point at the right channel
+    print("check ok"); sys.exit(0)
+meta = json.load(open(os.path.join(ROOT, "channel", "meta", f"{a.name}.json"), encoding="utf-8"))
 
 body = {
     "snippet": {"title": meta["title"], "description": meta["description"], "tags": meta.get("tags", []),

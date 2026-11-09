@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       name: {description: "short name, e.g. rina_health (channel/meta/<name>.json)", required: true}
-      video: {description: "file name on branch upload-tmp, e.g. rina_health.mp4", required: true}
+      video: {description: "file name on branch upload-tmp, e.g. rina_health.mp4 (- = only check the keys)", required: true}
       comment: {description: "first comment (optional)", default: ""}
       privacy: {description: "public / private / unlisted", default: "public"}
 jobs:
@@ -19,6 +19,7 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install -q google-api-python-client google-auth
       - name: get the video
+        if: inputs.video != '-'
         env: { V: "${{ inputs.video }}" }
         run: |
           git fetch -q origin upload-tmp
@@ -32,4 +33,7 @@ jobs:
           N: ${{ inputs.name }}
           C: ${{ inputs.comment }}
           P: ${{ inputs.privacy }}
-        run: python3 tools/youtube_upload.py "$N" /tmp/video.mp4 --comment "$C" --privacy "$P"
+          V: ${{ inputs.video }}
+        run: |
+          F=/tmp/video.mp4; [ "$V" = "-" ] && F=-
+          python3 tools/youtube_upload.py "$N" "$F" --comment "$C" --privacy "$P"
