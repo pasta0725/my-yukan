@@ -70,6 +70,7 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 4. `python3 -I tools/research_pages.py export data/ED.json WORKDIR/arts` で記事を1本ずつのファイルにし、Sonnet（effort high）8本に分けて書き足させる。各担当は WORKDIR/arts/<id>.json と research/ED/<id>.txt だけを読み、ウェブは開かない。同じ出来事を伝えているページ（status 200 で本文があるもの）から、新しい事実（数字・日付・価格・仕様・対象・背景・各社の反応・今後）を style.md どおり自分の言葉で足す。媒体どうしで食い違えば「〇〇は△△と伝えています」。使ったページだけを refs に {name,url} で足す（最大6本、source_url を先頭のまま）。別の出来事のページ・まとめサイト・転載は使わない。id・category・image は変えない。同じファイルに上書き保存。
 5. `python3 -I tools/research_pages.py import data/ED.json WORKDIR/arts` で戻す（x-todo.json の見出し・要約も合わせる）。そのあと手順5-1・5-2へ（事実の点検は新しい refs も取得する）。
 - Codexが締め切り（5:15／15:25）までに終わらなければ待たずに次へ進む。
+- Codexが見つけた公式ページは、あとの「公式画像の補充」がそのまま使う（`python3 -I tools/research_pages.py imgjobs WORKDIR/research/ED imgjobs/ED.json` → official-images.yml の extra。補充の作業は自分では検索しない。2026-11-10）。
 
 ## 公式画像の補充（2026-11-09〜、毎日6:12と16:31の別作業）
 - 2026-11-10〜：号づくりの各担当は公式ページを検索して探さない（自動の作業では公式サイトが開けず、検索の上限を使い切ったため）。公式画像はこの補充作業が担当する。各担当は自分専用のフォルダ WORKDIR/<担当名>/ を使い、push の前に必ず git fetch → git rebase origin/main で最新に合わせる。

@@ -9,6 +9,8 @@ Runs on GitHub Actions (.github/workflows/codex-research.yml).
   export: python3 tools/research_pages.py export data/<ED>.json <dir>      one file <dir>/<id>.json per article (for the rewrite workers)
   import: python3 tools/research_pages.py import data/<ED>.json <dir>      put rewritten <dir>/<id>.json back (same id; id/category/image kept),
           and copy title/summary into data/x-todo.json
+  imgjobs: python3 tools/research_pages.py imgjobs <research/ED dir> imgjobs/<ED>.json
+          official pages Codex found -> {"<id>": [url]} for official-images.yml's "extra" input
 """
 import json, os, re, sys, concurrent.futures as cf
 
@@ -97,3 +99,14 @@ elif sys.argv[1] == "import":
         json.dump(x, open(xt, "w"), ensure_ascii=False, indent=1)
     print("updated", n, "articles; skipped (broken):", bad)
     print("avg refs", round(sum(len(a.get("refs", [])) for a in d["articles"]) / max(1, len(d["articles"])), 2))
+
+elif sys.argv[1] == "imgjobs":
+    src, out = sys.argv[2], sys.argv[3]
+    jobs = {}
+    for f in sorted(os.listdir(src)):
+        if not f.endswith(".json"): continue
+        u = str((json.load(open(f"{src}/{f}")).get("official") or {}).get("url", ""))
+        if u.startswith("http"): jobs[f[:-5]] = [u]
+    os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+    json.dump(jobs, open(out, "w"), ensure_ascii=False, indent=1)
+    print("official pages:", len(jobs))
