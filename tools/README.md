@@ -56,6 +56,7 @@
 3. 点検役の Sonnet 4本（effort high）は、その .txt と記事を照らし合わせるだけ。WebFetch・WebSearch・curl は使わない。取得に失敗したページ（403 など）は、その記事の中だけで食い違いを点検し、確かめられない数字は出どころを付けるか削る。
 
 ## 公式画像の補充（2026-11-09〜、毎日6:12と16:31の別作業）
+- 2026-11-10〜：号づくりの各担当は公式ページを検索して探さない（自動の作業では公式サイトが開けず、検索の上限を使い切ったため）。公式画像はこの補充作業が担当する。各担当は自分専用のフォルダ WORKDIR/<担当名>/ を使い、push の前に必ず git fetch → git rebase origin/main で最新に合わせる。
 号づくりの中では開けない公式ページが多く、画像ゼロの記事が多かった（11/8号は49本中41本）。そこで公開後に、GitHub の実行環境で画像を集めて足す。
 1. `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/official-images.yml/dispatches -f ref=main -f 'inputs[dates]=<号のID>'`
    （tools/find_official_images.py：公式画像0〜1枚の記事について、参考記事の中の公式ページへのリンクをたどり、画像を集めて候補一覧の画像 sheet_NN.jpg と candidates.json を作る。公開サイトから表示できるかも確かめる）
