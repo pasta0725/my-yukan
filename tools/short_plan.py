@@ -14,7 +14,7 @@ import numpy as np
 spec = json.load(open(sys.argv[1], encoding="utf-8")); W = sys.argv[2]; os.makedirs(W, exist_ok=True)
 SR = 48000; FPS = 30
 speed, gap, tail = spec.get("speed", 1.12), spec.get("gap", 0.03), spec.get("tail_logo", 2.0)
-_lv = spec.get("logo_voice", "channel/rina_voice/name.wav")  # her name on the logo card: keep the card long enough for it
+_lv = spec.get("logo_voice")  # her name on the logo card: keep the card long enough for it
 if _lv and os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), _lv)):
     with wave.open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), _lv)) as _w: tail = max(tail, 0.12 + _w.getnframes() / _w.getframerate() + 0.5)
 period_pause, comma_max = spec.get("period_pause", 0.04), spec.get("comma_max", 0.30)
@@ -133,7 +133,7 @@ for i, ln in enumerate(lines):
         run(spec["lipsync"], "-I", os.path.join(os.path.dirname(__file__), "lipsync_ja.py"), ln["say"], os.path.join(W, f"l{i+1}.wav"), js, str(FPS))
         txt = open(js, encoding="utf-8").read(); voices[i] = json.loads(txt[txt.index("=") + 1:].rstrip(";\n "))
 
-# 5) audio: narration + quiet music + effects, music stops with the voice; on the logo she only says her name
+# 5) audio: narration + quiet music + effects, music stops with the voice (logo is silent)
 n = int(T * SR); nar = np.zeros(n); se = np.zeros(n)
 for ln, x in zip(lines, segs):
     s = int(ln["start"] * SR); nar[s:s + len(x)] += x[: max(0, n - s)]
@@ -151,8 +151,8 @@ music[stop - fade:stop] *= np.linspace(1, 0, fade); music[stop:] = 0
 # duck the music a little while she speaks
 envv = np.convolve(np.abs(nar), np.ones(2400) / 2400, mode="same"); music *= 1 - 0.35 * np.clip(envv * 12, 0, 1)
 mix = nar * 0.95 + music + se * 0.6
-# the logo card: rina says her name 「星餓りな」 as the logo appears (user 2026-11-09). spec "logo_voice": false turns it off.
-lv = spec.get("logo_voice", "channel/rina_voice/name.wav")
+# optional voice on the logo card (spec "logo_voice": path). Off by default: the user chose a silent logo (2026-11-09).
+lv = spec.get("logo_voice")
 if lv:
     lvp = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), lv)
     if os.path.exists(lvp):
