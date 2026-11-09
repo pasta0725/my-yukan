@@ -262,7 +262,7 @@ const S={
    withEnter(enter(u,tp),()=>{card(150,1030,780,135);text('パッケージ版',190,1097,40,C.text,'left',900);mixLine([['8980',C.acc],['円',C.text]],760,1097,64);});
    creditAt(CRED,535,830);},
  // L14 verdict
- verdict(u,d,L){if(VDIR==='verdict_s'&&BIGF)abs(()=>endScene(u));else{bg(u);glow(CX,1250,600,C.brand,0.32);}if(VDIR==='verdict_s'){}else if(VDIR&&BIGF)abs(()=>{g.drawImage(BIGF,18,560,1044,1856);Puppet.face(g,'big_hq',18,560,1044,1856,CURT,mouthNow(),(window.FACE||[])[BIGK]);});else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'歯ごたえ');  // Colab was full: the big still as a PNGTuber (user 2026-11-09)
+ verdict(u,d,L){if(VDIR==='verdict_s'&&BIGF)abs(()=>endScene(u));else{bg(u);glow(CX,1250,600,C.brand,0.32);}if(VDIR==='verdict_s'){}else if(VDIR&&BIGF&&!FACEV)abs(()=>g.drawImage(BIGF,18,560,1044,1856));else if(VDIR&&BIGF)abs(()=>{g.drawImage(BIGF,18,560,1044,1856);Puppet.face(g,'big_hq',18,560,1044,1856,CURT,mouthNow(),(window.FACE||[])[BIGK]);});else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'歯ごたえ');  // Colab was full: the big still as a PNGTuber (user 2026-11-09)
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
    if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.buyFill);
      text('初めての人',0,-60,36,C.buyInk,'center',800);text('最高の入口',0,12,62,C.buyInk);text('ほぼ満点の評価',0,78,30,C.buyInk,'center',800);g.restore();}
@@ -285,7 +285,8 @@ function endScene(u){const s=1.035+0.045*ease(Math.min(1,u/4.6)),fx=548,fy=900;g
     g.fillStyle=q;g.beginPath();g.arc(x,y,rad*4,0,Math.PI*2);g.fill();}
   g.restore();}
 let BIGF=null,BIGK=0;const VDIR=(location.hash.match(/v=(\w+)/)||[])[1]||null;  // #v=verdict_a: ending from a moving-still folder (試作)
-if(VDIR&&VDIR!=='verdict_s')document.write('<script src="big/'+VDIR+'/face.js"><\/script>');
+const FACEV=VDIR==='verdict_a'||VDIR==='verdict_c';  // still-picture trials that need a painted mouth; Modal clips (verdict_longcat etc.) are drawn as they are
+if(FACEV)document.write('<script src="big/'+VDIR+'/face.js"><\/script>');
 // each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
 // measured once from the scene's finished state (user 2026-11-09: no wasted space)
 const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
