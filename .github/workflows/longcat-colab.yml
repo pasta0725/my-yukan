@@ -2,11 +2,15 @@ name: longcat-colab
 # Makes the presenter talk with LongCat-Video-Avatar 1.5 on a Colab GPU (COLAB_ADC secret, Google AI Pro compute units).
 # input dir = a folder in the repo with: jobs.json ([[name, segments, res, image, extra_prompt], ...]), the images and <name>.wav,
 # and optionally prompt.txt. Clips are pushed to the branch "generated" as generated/<dir>/<name>.mp4.
+# 2026-11-10: Colab answers "Service Unavailable" when no GPU is free at that moment; others got G4/A100 after a few retries.
+# So it retries G4 and A100 (80GB only) every 30 s for up to `wait` minutes, and if no GPU (or no clip) it makes the clips on Modal instead.
 on:
   workflow_dispatch:
     inputs:
       dir: {description: "input folder in the repo (e.g. shorts/rina_health/longcat)", required: true}
-      gpu: {description: "A100 / G4 / L4", default: "G4"}
+      gpu: {description: "GPUs to try in order (space separated)", default: "G4 A100"}
+      wait: {description: "minutes to keep retrying Colab before using Modal", default: "20"}
+      fallback: {description: "use Modal when Colab gives no clip (yes/no)", default: "yes"}
 permissions:
   contents: write
 jobs:
@@ -28,7 +32,24 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
           C="colab --auth=adc"
           $C usage || true
-          $C new -s lc --gpu $GPU
+          mkdir -p /tmp/out
+          end=$(( $(date +%s) + ${{ inputs.wait }} * 60 )); got=""; n=0
+          while [ -z "$got" ] && [ $(date +%s) -lt $end ]; do
+            for g in $GPU; do
+              n=$((n+1))
+              if $C new -s lc --gpu $g >/tmp/new.log 2>&1; then
+                mem=$(echo 'import subprocess;print(subprocess.run(["nvidia-smi","--query-gpu=memory.total","--format=csv,noheader,nounits"],capture_output=True,text=True).stdout.strip())' | $C exec -s lc --timeout 0 | grep -oE '^[0-9]+' | head -1)
+                echo "try $n: got $g (${mem:-?} MB)"
+                if [ "${mem:-0}" -ge 70000 ]; then got=$g; break; fi
+                echo "  too little memory, giving it back"; $C stop -s lc || true
+              else
+                echo "try $n: $g $(grep -oE 'Service Unavailable|Too Many Requests|quota|entitlement' /tmp/new.log | head -1)"
+              fi
+            done
+            [ -z "$got" ] && sleep 30
+          done
+          if [ -z "$got" ]; then echo "no Colab GPU after $n tries"; exit 0; fi
+          echo "colab $got" > /tmp/out/via.txt
           trap '$C usage || true; $C stop -s lc || true' EXIT
           echo 'import os; os.makedirs("/content/in", exist_ok=True); print("ready")' | $C exec -s lc --timeout 0
           for f in "$DIR"/*; do $C upload -s lc "$f" "/content/in/$(basename "$f")"; done
@@ -40,6 +61,19 @@ jobs:
             $C download -s lc /content/out/$n.mp4 /tmp/out/$n.mp4 || echo "no clip $n"
           done
           ls -la /tmp/out
+      - name: fallback to Modal
+        if: always() && inputs.fallback == 'yes'
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+          DIR: ${{ inputs.dir }}
+        run: |
+          mkdir -p /tmp/out
+          ls /tmp/out/*.mp4 >/dev/null 2>&1 && { echo "Colab made the clips"; exit 0; }
+          echo "no clip from Colab -> Modal (LongCat)"
+          pip install -q modal
+          modal run tools/modal_avatar.py --dir "$DIR" --model longcat --out /tmp/out
+          echo "modal longcat" > /tmp/out/via.txt
       - name: push to branch generated
         if: always()
         env: { DIR: "${{ inputs.dir }}" }
@@ -49,6 +83,6 @@ jobs:
           git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
           git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
           if git fetch -q origin generated; then git checkout -q -B generated origin/generated; else git checkout -q --orphan generated; fi
-          mkdir -p "generated/$N"; cp /tmp/out/*.mp4 "generated/$N/" 2>/dev/null || true
-          git add generated; git commit -qm "longcat $N" || true
+          mkdir -p "generated/$N"; cp /tmp/out/*.mp4 /tmp/out/via.txt "generated/$N/" 2>/dev/null || true
+          git add generated; git commit -qm "longcat $N ($(cat /tmp/out/via.txt 2>/dev/null))" || true
           git push -q origin generated
