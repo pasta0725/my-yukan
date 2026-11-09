@@ -1,0 +1,339 @@
+===== https://www.techradar.com/phones/ios/a-very-light-touch-form-of-censorship-the-iphone-has-a-gray-list-of-words-and-phrases-that-apple-wont-auto-complete-for-you
+(status 200)
+Struggling to type certain phrases on the iPhone? This could be why
+(Image credit: Philip Berne / Future)
+Copy link
+Facebook
+X
+Whatsapp
+Reddit
+Pinterest
+Flipboard
+Threads
+Email
+Share this article
+0
+Join the conversation
+Follow us
+Add us as a preferred source on Google
+Newsletter
+Subscribe to our newsletter
+iOS bans certain terms from auto-complete and swipe-to-type
+They include references to politics and drugs, researchers report
+The list could include more than 100,000 entries, apparently
+Try and type out phrases like "sleepy Joe", "dictator Trump", or "Tibetan independence" on your iPhone, and you'll notice that you don't get auto-complete suggestions for them, and you can't swipe-type them — evidence of a 'gray list' of terms that has been discovered hidden in iOS.
+The so-called gray list was discovered by researcher Derek Kauffman and reported by 
+Reuters
+, and verified by an independent cybersecurity engineer. It's thought that there are at least 100,000 words and phrases in the list.
+Other entries on the gray list, as reported by 
+The Guardian
+, include "NSA spies", "question your sexuality", and even "Australia is a very bad place". References to drug use also seem to be unavailable through auto-complete or swipe typing.
+Latest Videos From
+TechRadar
+Watch full video here: 
+There's no issue with typing out any of these terms and including them in any kind of message — but the point is that iOS won't try and auto-complete them like it will with other words and phrases, or let you type them through swiping.
+More transparency
+iOS being shown off at WWDC 
+(Image credit: Apple)
+Apple
+ is keeping its cards close to its chest: it didn't comment on the list directly in an email sent to Reuters, but did acknowledge that the iPhone keyboard was set up to avoid offering suggestions that might be inappropriate or offensive.
+You may remember last year there was 
+something of a kerfuffle
+ over iPhones changing "Trump" to "racist" during dictation. It wasn't clear exactly what happened, but with any kind of AI-driven automation, these sorts of issues can arise.
+The Electronic Frontier Foundation's David Greene told Reuters that while he could see the thinking behind a gray list for the iOS keyboard, "this is something users should be really well aware of and have some ability to customize".
+Get daily insight, inspiration and deals in your inbox
+Sign up for breaking news, reviews, opinion, top tech deals, and more.
+For Kauffman as well, a bit more transparency from Apple about exactly what's going on here, and why, would be welcome. "It's a very light-touch form of censorship," the researcher told Reuters. "But at the scale that Apple is operating, it only takes a light touch to have a big impact."
+Follow TechRadar on Google News
+ and
+add us as a preferred source
+ to get our expert news, reviews, and opinion in your feeds.
+TOPICS
+David Nield
+Freelance Contributor
+Dave is a freelance tech journalist who has been writing about gadgets, apps and the web for more than two decades. Based out of Stockport, England, on TechRadar you'll find him covering news, features and reviews, particularly for phones, tablets and wearables. Working to ensure our breaking news coverage is the best in the business over weekends, David also has bylines at Gizmodo, T3, PopSci and a few other places besides, as well as being many years editing the likes of PC Explorer and The Hardware Handbook.
+View More
+You must confirm your public display name before commenting
+Please logout and then login again, you will then be prompted to enter your display name.
+Logout
+LATEST ARTICLES
+1
+Google pushes ahead with plans for $17 billion Wyoming data center despite US midterms dashing support for AI across the US
+2
+How to watch Rivals: Fury vs Joshua for free, online and from anywhere
+3
+CUBOT KingKong Dura review: a cheap rugged phone with a trick up its sleeve
+4
+New study finds half of tech workers have a side hustle — despite often being the best paid
+5
+Workers feel pressure to use AI and show off to bosses — even when it slows them down
+
+===== https://www.macworld.com/article/3279221/revealed-apples-secret-list-of-slurs-insults-and-political-phrases-that-cant-be-swiped.html
+(status 200)
+According to a research project by Derik Kauffman, Apple has a built-in list of words and phrases that the keyboard suggested words will never complete, and the swiping keyboard will not produce. This isn’t a censorship list—typing individual characters always works—but it can slow you down if you’re looking to use swiping or suggested words to speed up your iPhone typing.
+The project is detailed at 
+Swipeblocked.com
+, with additional code and data 
+hosted on GitHub
+. There, Kauffman details his forensics to discover this feature and the blocked phrases.
+Here’s how it works: Apple has built into iOS a hash table of “blocked” phrases. It’s not storing plain text of words, but rather matching hashes of word IDs to a set of banned hashes. If there’s a match, the iOS keyboard will not suggest the word. And if you are swiping, it will either input some other word for your swiped word or replace an earlier word in your phrase with a different word that has a similar swipe pattern.
+The list of phrases has not been made public by Apple, and the company does not disclose how it chooses what goes on it. Kauffman reverse-engineered it from the hash table within iOS.
+The phrases are mostly what you would expect. They include vulgarities, politically and socially charged phrases, rascist terms, various forms of bigotry, and so on. You can literally type out the phrase, “smoking weed,” but if you type “smoking wee…” then the keyboard suggestions to finish off that second word will never include the obvious “weed.” Instead, you’ll get “weekend” or “weekly.” And if you’re using Apple’s QuickPath (Slide to Type), you’ll get “smoking Wed” or some other word, no matter how precise you are about swiping the word “weed” correctly.
+The Swipeblocked site has a 
+list of all the English-language banned phrases
+ in iOS 27. 
+Warning: Many of them are not safe for work and highly offensive.
+ But some are things that you may very well wish to type or swipe, especially in a particular context (illegal immigrant, NBA surveillance, etc.), and the refusal of the iOS keyboard to complete swiping entry or suggest the natural next word is one reason users are frustrated with it.
+In addition to the phrases that are blocked from the suggested word area or swiping, there is a mechanism to prevent the autocomplete and suggested word list from suggesting 
+individual words
+. The iOS dictionary labels words as either vulgar, offensive, or sensitive. Vulgar words are not suggested until the user manually types them three times. Offensive words are never suggested or completed by swiping (though you can always type them out yourself). Sensitive words are similarly never offered as a prediction or completion, and some of them can’t be swiped.
+Why does Apple do all this? It’s likely less about policing your speech than it is about avoiding lawsuits and bad PR. All it takes is one person posting a screenshot of the iOS keyboard suggesting the word “good” after they type “The Nazis were” or “real” after Santa isn’t” (both included in the list) to cause a bad viral moment criticizing Apple’s intentions, even if the keyboard suggestions would only suggest things that the user had typed several times before.
+However, it’s still overreaching. A good solution would be to give users a choice. Allow a keyboard setting, enabled by default, to moderate the suggested word list and swipe keyboard to avoid offensive content, but also give users the ability to turn it off. But until then, you’ll need to type a little more slowly if you want to write certain phrases.
+
+===== https://ca.investing.com/news/stock-market-news/exclusiveapples-predictive-text-restrictions-include-dictator-trump-and-sleepy-joe-researcher-finds-4938245
+(status 403)
+
+
+===== https://www.digitaltrends.com/phones/apples-iphone-keyboard-has-a-hidden-list-of-words-it-refuses-to-suggest-and-some-entries-are-surprising/
+(status 200)
+Chinese smartphone brands have often found themselves in hot water over restrictions on what you can do or type on them, thanks to built-in, system-level text filtering and censorship capabilities. Even third-party apps such as LINE have had to follow these censorship rules and block hundreds of words and phrases deemed sensitive or offensive in China, even though they are perfectly normal elsewhere. 
+It appears 
+Apple
+ also maintains such a list of filtered words, and tens of thousands of them are baked into its iPhone keyboard at the system level. However, these words and phrases are not outright blocked. You can still type them, but the autocomplete and swipe-typing systems automatically ignore them, so they never appear among the suggested words above the keyboard.
+Michi NekoMichi
+What exactly is Apple hiding in its iPhone keyboard?
+Independent researcher Derik Kauffman detailed the discovery (via 
+Swipe Blocked
+). A majority of the words are the usual suspects, related to violence, drugs, and overtly sexual themes. But a few other items are going to raise censorship concerns. For example, phrases like “dictator Trump” and “sleepy Joe,” both widely used in public political commentary, are on the keyboard’s gray list. 
+Recommended Videos
+In a statement shared with 
+Reuters
+, Apple did not offer a detailed explanation and only said the iPhone’s built-in keyboard is designed to avoid suggesting words that could be offensive or inappropriate.
+But this odd behavior isn’t limited to words or themes related to the US. The predictive typing system in the iOS keyboard also blocks terms like “Tibetan independence” and “United Ireland,” as well as phrases that mock politicians, including Indian Prime Minister Narendra Modi and Leader of the Opposition Rahul Gandhi. Kauffman says that every major language supported by the 
+iOS
+ keyboard has some version of this invisible gray list, which Apple has never disclosed publicly.
+Joe Maring / Digital Trends
+How did researchers uncover Apple’s hidden word list?
+Kauffman says he first suspected that such a gray list existed when he tried to swipe-type phrases like “bad boy” and “white man.” He then used 
+OpenAI’s Codex
+ and Anthropic’s Claude Code to dig into iOS, and eventually discovered thousands of words and phrases on the gray list.
+Reuters’ own testing found that when you try to swipe-type “Tibetan independence” and “United Ireland,” the keyboard often changes them to “Tibetan independences” and “United Iceland.” Likewise, swipe-typing “white man” yields “white mean,” while “red man” and “blue man” go through without a problem.
+The discovery is surprising, although not entirely shocking. Over the past few years, users have reported scattered instances of trying to type a word, only for the predictive system to refuse to comply. David Greene, a lawyer at the digital rights group Electronic Frontier Foundation, told Reuters that part of him found the list “creepy,” even though he could see the case for curbing inflammatory suggestions.
+Related Coverage
+The iPhone Duo can now come with a piece of outer space if you’ve got $15,000
+Apple explains how the glowing Apple logo works and how you can turn it off
+Mac users will soon get the Dynamic Island experience without buying a new MacBook Pro
+Apple Watch learned new hand gestures in just a minute. It’s the most exciting wearable research 
+I’ve
+ seen in years.
+
+===== https://swipeblocked.com/
+(status 200)
+Swipeblocked
+The iPhone keyboard carries a hidden list of thousands of phrases it will never suggest or let you swipe. Alongside slurs, sex and drugs, the list covers political slogans, historical events and public figures.
+Apple doesn't publish the list or say how it's chosen. This site decodes it from the keyboard's own data files, as of iOS 27.0.
+q
+w
+e
+r
+t
+y
+u
+i
+o
+p
+a
+s
+d
+f
+g
+h
+j
+k
+l
+z
+x
+c
+v
+b
+n
+m
+123
+space
+return
+After “Left wing”, swiping 
+conspiracy
+ makes the keyboard rewrite the word before it. 
+Wing
+ becomes 
+wrong
+, so the blocked phrase never appears.
+Replay
+What the keyboard does
+Predictive text never offers a phrase on the list, even when it's the obvious next word.
+Swipe typing won't produce most of them either. The keyboard picks another word, sometimes an implausible one, and can change a word you already entered.
+Typing letter by letter always works. Nothing on the list stops you writing it.
+The rules match exact word sequences. A blocked phrase can go through with a slightly different wording.
+Some phrases are blocked only in suggestions and can still be swiped. They're marked Swipe works below. Separately, single words Apple labels offensive are never suggested, and vulgar ones only after you've typed them three times; see 
+Word labels
+.
+Examples
+A selection from the English list. Each phrase stands for its other word forms too, so “sleepy Joe” also covers “sleepier Joe”.
+Conspiracies
+NSA surveillance
+Also: NSA spies on
+left wing conspiracy
+Also: right wing conspiracy, left and right wing propaganda
+Covid was a hoax
+Also: a scam, a lie, a myth, a joke
+Swipe works
+Santa isn't real
+Terrorist attacks
+Belfast confetti
+marathon bombing
+Mumbai attack
+school shooting
+subway attack
+Politics
+sleepy Joe
+Tibetan independence
+Trayvon Martin
+The only person's full name on the list
+Kashmir dispute
+United Ireland
+Taiwan is country
+Only this wording. “Taiwan is a country” isn't blocked.
+Tamil homeland
+Also: guerrilla, heartland, militant, minorities, rebel, separatist
+Muslim extremist
+Also Shiite and Sunni, with extremism, fighter, fundamentalism, fundamentalist, insurgence, insurgent, militant, militia, militiaman, rebel, separatism, separatist and slum
+dictator Trump
+Also: dictator Benito, Ferdinand, Francisco, Josef, Joseph, Kim, Manuel, Mobutu, Mohamed, Rafael, Suharto
+Swipe works
+illegal immigrant
+Also: alien, immigration, immunization, migrant, people, vote, voter
+Swipe works
+make America great again
+Swipe works
+Contested beliefs
+homosexuality is a sin
+support gays
+Nazis were good
+Slurs and stereotypes
+Indian giver
+slit eye
+towel head
+Insults
+Bible thumper
+male chauvinist pig
+son of a bitch
+trailer trash
+tree hugger
+Sex
+booty call
+Cleveland steamer
+cunning linguist
+flick the bean
+send nudes
+sixty nine
+watching porn
+Drugs
+crystal meth
+smoking weed
+And
+iMessage isn't working
+See all 4,513 English phrases
+Full list
+One side of the pair
+Sometimes a phrase is blocked while its obvious counterpart isn't.
+Blocked
+Not blocked
+bad girl
+bad boy
+white man
+black man
+“White woman” and “black woman” also are both blocked.
+I'm white
+I'm black
+read gay smut
+read smut
+Other languages
+Apple keeps similar lists for 27 other languages and scripts, many as long as the English one. A few entries are below; translations are approximate. Apple's data often drops capitals and accents (“deutschland uber alles”); they're restored here for reading.
+Chinese
+六四
+June Fourth, the 1989 Tiananmen crackdown
+台独
+Taiwan independence
+习大大
+“Big Daddy Xi”, a nickname for Xi Jinping
+刘晓波
+Liu Xiaobo, the jailed Nobel Peace Prize laureate
+钓鱼岛是日本
+“The Diaoyu Islands are Japan's”, Japan's side of the dispute over the islands it calls the Senkakus
+国民党
+The KMT, Taiwan's Nationalist party. In Simplified Chinese the name of China's Communist Party isn't blocked; in Traditional Chinese both are.
+Chinese works differently. These words still appear as candidates when you type them in pinyin, but once you pick one the keyboard stops suggesting what comes next. In one part of the Chinese typing engine, Apple's code also skips suggestions whenever a word is “taiwan” or “tibet”, written in English.
+Hindi
+मंदिर वहीं बनेगा
+“The temple will be built right there”, the Ayodhya Ram temple slogan
+अच्छे दिन आने
+“Good days are coming”, a 2014 BJP campaign slogan
+पप्पू है राहुल
+“Rahul is Pappu”, a jibe at Rahul Gandhi
+लव जिहाद
+“Love jihad”
+Arabic
+حركة حماس
+The Hamas movement
+العدوان الإسرائيلي
+“Israeli aggression”
+أحتلال أمريكي
+“American occupation”. Israeli, Iranian and Saudi occupation are blocked too.
+Hebrew
+השטחים הכבושים
+“The occupied territories”. The whole Hebrew list has six entries.
+Spanish
+inmigrante ilegal
+“Illegal immigrant”
+Gibraltar español
+“Spanish Gibraltar”, Spain's side of the dispute with Britain
+German
+Heil Hitler
+Along with dozens of Nazi slogans and banned neo-Nazi groups
+Deutschland über alles
+“Germany above all”, from the first verse of the old national anthem, no longer sung since the Nazi era
+NSA spioniere
+“NSA spies”. NSA torture and CIA spying are blocked too.
+French
+bombardement d'israélien
+“Israeli bombing”. American bombing, and bombing in Syria and in France, are blocked too.
+immigration trop élevée
+“Immigration too high”
+Italian
+Crimea è russa
+“Crimea is Russian”
+Dutch
+ctrl-alt-delete jezelf
+“Ctrl-alt-delete yourself”, a way of saying “kill yourself”
+Swedish and Danish
+bevara Sverige svenskt
+“Keep Sweden Swedish”, a nationalist slogan
+dum svenske
+Danish for “stupid Swede”
+Turkish
+Ermeni soykırım
+“Armenian genocide”
+baş örtülü
+“Headscarf-wearing”, about women. The opposite, baş örtmeyen, is blocked too.
+Punjabi
+ਖਾਲਿਸਤਾਨ ਜਿੰਦਾਬਾਦ
+“Long live Khalistan”
+Browse every language
+Full list
+More
+Changes since 2020
+What Apple added and removed in each update
+Word labels
+Single words Apple tags as vulgar, offensive or sensitive
+How the list was decoded
+Apple stores fingerprints, not words. Here's how they were matched.

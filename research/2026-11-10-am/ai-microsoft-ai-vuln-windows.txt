@@ -1,0 +1,147 @@
+===== https://www.technologyrecord.com/article/microsoft-reports-more-than-1100-vulnerabilities-addressed-in-windows-update
+(status 200)
+
+
+===== https://actualiza2.org/en/windows-report
+(status 404)
+
+
+===== https://www.thelatentdaily.com/news/microsoft-windows-ai-vulnerability-management-mdash-1100-cves/
+(status 200)
+Photo: Coolcaesar / Wikimedia Commons, CC BY-SA 4.0
+Advertisement
+Microsoft said on November 5 that AI now plays a central role in how it finds, assesses and tests fixes for Windows security flaws, and that the October 2026 monthly security update addressed more than 1,100 CVEs for Windows. In the same post, Microsoft gave a sobering figure on the other side of the process: in August 2026 diagnostic data from a measured enterprise sample, fewer than half of devices had installed the security update two weeks after release, and about one in four had not installed it after four weeks.
+How Microsoft finds vulnerabilities with AI
+Microsoft describes an agentic code scanner called MDASH. It combines multiple AI models and specialized agents to find and validate potential vulnerabilities, and Microsoft security and engineering teams review what it reports. Once a flaw is confirmed, AI assists engineers with several steps: assessing impact, identifying which Windows versions are affected, finding variants of the same bug, evaluating candidate fixes, planning backports to older versions, and building security and regression tests. Microsoft stresses that engineers remain responsible for final decisions.
+The post cites Anthropic’s June 8, 2026 article “Measuring LLMs’ impact on N-day exploits,” whose finding, as Microsoft summarizes it, is that AI can shorten exploit development for known flaws from days to hours. That is the pressure behind the announcement: if attackers can turn a patch into a working exploit faster, defenders have less time between release and installation.
+How updates are validated
+Windows validation combines internal flighting, functional testing, security proof-of-concept testing and application compatibility testing. External partners join through the Security Update Validation Program, which includes OEMs, security vendors, software vendors and customers. Microsoft says AI also supports test selection, test creation, triage, analysis and reporting. After release, the company monitors diagnostic data, rollout reporting, support inquiries and public forums, and can respond with updated guidance, workarounds, Known Issue Rollback or out-of-band updates.
+The gap between patch release and installation
+The most useful figure for administrators is not about discovery but about deployment. If fewer than half of devices in a measured enterprise sample were patched two weeks after release, the exposure window for a published fix is long, and it is precisely the window in which faster exploit development hurts. Microsoft’s recommendations are conventional but pointed:
+Prioritize internet-facing systems, identity infrastructure and high-value assets first.
+Stay on supported Windows versions; treat extended security updates as a temporary bridge only.
+Reduce unnecessary exposure, use security baselines, keep endpoint detection running and apply available mitigations.
+Prepare response and recovery practices.
+Patches only protect devices that install them, which is the gap Microsoft's deployment figures highlight. 
+Photo: Richard Nowell / Wikimedia Commons, CC BY-SA 4.0
+Tools that shrink the window
+Microsoft points to existing mechanisms. On Windows 11, Windows Autopatch through Microsoft Intune offers staged deployments and reporting, and hotpatching on eligible devices applies monthly security updates without a restart, although periodic baseline updates still require one. On Windows Server 2025, hotpatching is supported across eligible Azure, Azure Local and Azure Arc-connected environments, with Azure Update Manager for orchestration; Arc-connected hotpatching is available at no additional cost, and the Datacenter: Azure Edition has it on by default. CVE details are published in the Security Update Guide with severity, impact and exploitability, and in machine-readable CSAF, VEX and API formats that teams can feed into their own tooling.
+How this compares with other AI security moves
+Microsoft is describing defense at scale, in contrast with recent offensive-capability news. We covered 
+OpenAI’s GPT-6 Cyber
+ and 
+PHP flaws found by AI models and quickly exploited
+. Taken together they show the same dynamic from both sides: AI shortens the time to find a bug, and the remaining bottleneck is how fast organizations apply fixes. Microsoft gives no figures on how many of the 1,100 CVEs were found by MDASH specifically, so the post does not measure the scanner’s contribution.
+What to watch next
+Whether Microsoft publishes how many CVEs MDASH or other AI tools discovered.
+Changes in patch adoption rates after the guidance.
+Wider use of hotpatching on Windows 11 enterprise fleets.
+Responses from other vendors on AI-assisted patch pipelines.
+Key takeaways
+Microsoft credits AI-assisted discovery, triage and testing for part of its Windows patch process, with engineers making final decisions.
+The October 2026 update covered more than 1,100 Windows CVEs.
+Under half of sampled devices had the August update after two weeks; roughly a quarter lacked it after four.
+Hotpatching, Autopatch and prioritization are Microsoft’s suggested ways to cut exposure.
+Frequently asked questions
+What is MDASH?
+Microsoft describes MDASH as an agentic code scanner that combines multiple AI models and specialized agents to find and validate potential vulnerabilities, with human review of results.
+How many Windows flaws did the October 2026 update fix?
+Microsoft says the October 2026 monthly security update addressed more than 1,100 CVEs for Windows.
+Why does patch speed matter more now?
+Microsoft cites research that AI can compress exploit development for known flaws from days to hours, so the time between a patch release and installation is more dangerous.
+Advertisement
+ Sources
+This story was reported and written in our own words from the sources below. Primary sources are preferred.
+A new standard for vulnerability management in the AI era
+ — Microsoft Windows Experience Blog
+
+===== https://blogs.windows.com/windowsexperience/2026/11/05/a-new-standard-for-vulnerability-management-in-the-ai-era/
+(status 200)
+A new standard for vulnerability management in the AI era
+							Written By
+								Nuno Costa
+																	– 
+Partner Director, Windows Servicing and Delivery
+							published
+							November 5, 2026
+Windows is evolving vulnerability management as advances in AI make it possible to discover and analyze security vulnerabilities faster and at greater scale.
+AI is accelerating vulnerability discovery on both sides. It can help defenders find and fix vulnerabilities earlier. It can also help attackers search for vulnerabilities before fixes are available and analyze published fixes after release. All of this increases the importance of timely protection.
+Our approach is straightforward: lead across the vulnerability management lifecycle. We’re using advances in AI to find and fix vulnerabilities earlier, while maintaining a high-quality bar so you and your organization can deploy updates with confidence. We’re promptly publishing information about what we fix so security teams can take action. Just as importantly, we’re strengthening the systems that help organizations deploy updates quickly and respond when issues arise.
+Since our 
+last communication on this topic
+, we have continued to advance this work across vulnerability discovery, remediation, validation, and deployment.
+Finding vulnerabilities earlier
+Identifying vulnerabilities before they can be exploited remains the best opportunity to reduce exposure. Microsoft receives vulnerability findings through responsible disclosure from security researchers and partners, while our engineering and security teams find issues internally. These paths come together through the 
+Microsoft Security Response Center
+ (MSRC), which serves as Microsoft’s central hub for vulnerability reporting, security updates and coordinated response.
+We are increasingly using AI to help security and engineering teams identify vulnerabilities and act on them more efficiently. One example is 
+MDASH
+, an agentic code scanner that uses multiple AI models and specialized agents to find and validate potential vulnerabilities. Security and engineering teams then review the findings and determine the appropriate response, keeping human judgment and accountability central to the process.
+The objective is not simply to find more issues. The goal is to identify meaningful vulnerabilities earlier and make the findings more actionable. By using AI-assisted capabilities, we can distinguish relevant findings from false positives. We can give our engineers better information. As vulnerability discovery accelerates, these capabilities help us focus engineering resources on vulnerabilities that have the potential to affect customers more efficiently.
+Moving from discovery to remediation faster
+Finding vulnerabilities more quickly only helps if engineering processes can keep pace. We are applying AI assistance across the remediation process to help engineers assess impact, determine which versions of Windows are affected, identify variants in related code, evaluate remediation options, develop backport strategies for different versions of Windows, and build security and regression tests. Engineers remain responsible for reviewing the work, making the engineering decisions, and owning the final output. This distinction matters. Our goal is to use automation and AI to help engineers investigate and remediate issues more efficiently, not to remove engineering judgment from security decisions.
+Strengthening validation
+Increased discovery and remediation also require validation systems that can operate at greater scale. Windows validation combines multiple sources of evidence. Today, it’s internal flighting, functional testing, security proof-of-concept testing, application compatibility testing, and validation with OEMs, security vendors, ISVs, and customers through the Security Update Validation Program. We also apply AI-assisted capabilities to areas including test selection, test creation, triage, analysis, and reporting. Together, those signals provide evidence for engineers making release-quality decisions.
+Optional non-security preview updates
+ remain an important part of this process. Organizations can install these updates on select devices before the content becomes part of the following month’s security update, providing additional real-world validation across devices, applications, hardware and configurations.
+Making vulnerability discovery actionable
+AI-assisted discovery is helping us find more vulnerabilities, across more code and earlier in the development process, so we can address more of them through Windows security updates. In fact, the October 2026 monthly security update addressed more than 1,100 Common Vulnerabilities and Exposures (CVEs) for Windows.
+The number of CVEs doesn’t tell the full story, though. We are using AI to examine more code, more deeply. The research community continues to find and report vulnerabilities. And we are prioritizing fixes in real time as vulnerabilities are identified. A higher number of CVEs does not mean Windows has become less secure. It means more vulnerabilities have been discovered and closed, reducing the opportunities attackers have to exploit them.
+Transparency makes those fixes more actionable. We publish CVE information for the vulnerabilities we address, whether they are reported by external researchers or identified by our own teams and AI systems. The 
+Security Update Guide
+ provides details on severity, impact, exploitability, and guidance for each CVE. We also make this data available in machine-readable formats, including Common Security Advisory Framework (CSAF) advisories, Vulnerability Exploitability eXchange (VEX) documents, and API, so it can flow straight into your vulnerability management and compliance tools.
+Security teams can use CVE information to:
+Track which vulnerabilities are addressed on each device.
+Prioritize which devices receive updates first based on exposure, starting with internet-facing systems, identity infrastructure, and high-value assets.
+Measure protection in days from release, not in patch cycles.
+Because Windows security updates are cumulative, prioritization should decide which devices update first, not which fixes get deployed.
+When protection becomes available, the clock starts
+On Patch Tuesday, Microsoft releases monthly security updates and the 
+information and resources
+ you need to evaluate and deploy them. This includes release notes, vulnerability information (available in the 
+Security Update Guide
+), cumulative updates (through Windows Update and other deployment channels), and updated servicing media.
+Releasing an update changes what information is publicly available. Before an update is released, vulnerabilities are triaged through coordinated disclosure. Once the update and associated guidance become public, the fix itself can be analyzed. That means attackers might be able to use a published fix to better understand the underlying vulnerability and develop an exploit—potentially within hours.
+That’s why our work doesn’t stop when an update is released. We monitor diagnostic data and rollout reporting, customer support and inquiries, and feedback from social channels and forums. Automated systems help us correlate those signals and identify patterns for engineering investigation. Engineers investigate potential issues, validate their cause, and determine the appropriate response. Depending on the cause and impact, that response can include updated documentation or guidance, a workaround, 
+Known Issue Rollback (KIR)
+ to mitigate an affected change, or an 
+out-of-band update
+.
+This is the lifecycle in practice: discover vulnerabilities earlier, develop and validate protections, publish them transparently, monitor their performance after release, and respond quickly when needed. But there is one part of that lifecycle Microsoft cannot complete alone: getting those protections onto devices.
+Reducing your exposure window
+Microsoft engineering systems are one half of the equation. Deployment is the other.
+The time between an update becoming available and reaching your devices is part of your security posture. A recent article by Anthropic
+1
+ noted that N-day exploits (the time between when vulnerabilities are disclosed but only patched on some devices) is a “patch gap”, as large language models now accelerate developing N-day exploits in hours not days as in the past. This has created a heightened risk threat for devices in the “patch gap”.
+Yet some organizations still take weeks to deploy updates. 
+Diagnostic data
+ from August 2026 showed that, among a measured Windows enterprise sample, fewer than half of devices had installed the security update two weeks after release, and about one in four still had not installed the update after four weeks. That gap between available protection and deployed protection is the exposure window we need to close.
+We are seeing organizations move in the right direction, accelerating rollout, moving to supported versions of Windows, and adopting newer update management and servicing capabilities. But 
+faster deployment
+ needs to become the standard, not the exception.
+Organizations should focus on four practical areas: 
+Stay on supported versions and install updates promptly after they are released.
+Reduce unnecessary exposure and use 
+security baselines
+ to implement well-tested, industry-proven configurations.
+Maintain endpoint detection and apply available mitigations.
+Establish effective response and recovery practices.
+Of those, staying current is foundational. Shortening the time between when Microsoft publishes a fix and when devices receive it reduces how long a known vulnerability remains unpatched. Newer, supported versions of Windows and modern management tools provide capabilities designed to make updating faster and less disruptive.
+For Windows 11, Windows Autopatch provides update management through Microsoft Intune, including staged deployments and reporting. For eligible devices, hotpatching can apply monthly security updates without a restart, while standard cumulative baseline updates are required periodically.
+Hotpatching
+ also provides a path to faster protection for Windows Server while reducing restart requirements. Windows Server 2025 supports hotpatch updates
+2
+ across eligible Azure, Azure Local, and Azure Arc-connected environments, with Azure Update Manager providing patch orchestration.
+Organizations running older supported versions of Windows client or Windows Server should continue to keep those environments current and use the update management capabilities available to them. Where extended security updates are necessary, treat them as a bridge while moving to a supported version, not as a substitute for modernization.
+The goal is simple: turn an available fix into deployed protection as quickly as possible. Reduce the update deployment window wherever possible instead of treating security updates as a task that can routinely wait.
+Leading at the pace of change
+AI is changing the pace of vulnerability management. It gives defenders new ways to find vulnerabilities, analyze code, and develop protections. At the same time, it can shorten the time between public disclosure and potential exploitation.
+At Microsoft, our commitment is to stay ahead of that change. We are expanding AI-assisted vulnerability discovery, helping engineers move more efficiently from validated findings to fixes, strengthening validation, and monitoring updates after release. We are also investing in the tools and servicing capabilities that help organizations deploy protection faster. As we apply AI across this lifecycle, human judgment and accountability remain fundamental to how we build and service Windows.
+Our request of every organization is to 
+move with urgency
+. Stay on supported versions, maintain layered protections, monitor security guidance, and make reducing the time from release to deployment a security priority.
+Vulnerability management will continue to evolve as AI advances. We intend to lead that evolution, share what we learn along the way, and give customers the information and tools they need to act. But protection ultimately depends on both sides moving quickly: our ability to find, fix, validate, and publish protections, and your ability to deploy them.
+1. 
+Measuring LLMs’ impact on N-day exploits
+. Jun 8, 2026. Anthropic
+2. Hotpatch updates for eligible Windows Server 2025 machines connected through Azure Arc are available at no additional cost. Windows Server 2025 Datacenter: Azure Edition does not require Azure Arc for hotpatching and has hotpatch updates enabled by default.

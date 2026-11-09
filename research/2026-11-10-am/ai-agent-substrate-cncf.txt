@@ -1,0 +1,1120 @@
+===== https://cloud.google.com/blog/products/containers-kubernetes/open-infrastructure-for-autonomous-agents-comes-to-cncf
+(status 200)
+Containers & Kubernetes
+Powering open infrastructure for autonomous agents
+November 5, 2026
+Drew Bradstock
+VP Product Management, Orchestration & Kubernetes
+Agent Substrate, gVisor, and OpenRL have been accepted into the CNCF Sandbox; Agent Substrate has reached 1.0, and is GA on GKE
+Try Gemini today
+The front door to AI in the workplace
+Try now 
+As AI shifts 
+from human scale to agent scale
+, 
+from systems of record to systems of action
+, and 
+from simple requests to complex agentic workflows
+, the workload underneath your platform changes completely. An agent works in a continuous, stateful loop: It proposes an action, spins up subagents, executes code or tool calls inside a sandbox, and feeds the results back into the model for the next turn. Running that loop at scale requires the same open foundation and neutral governance that Kubernetes and the Cloud Native Computing Foundation (CNCF) brought to containers in the 2010s.
+Today, we are announcing the donation of 
+Agent Substrate
+, 
+gVisor
+, and 
+OpenRL
+, three open source projects that started at Google, to the CNCF following their acceptance last month into the CNCF Sandbox. To bring this open stack into managed production and accelerate it across TPUs and GPUs, we are also announcing that 
+Agent Substrate has reached its 1.0 milestone and is now generally available as
+Agent Substrate on GKE
+.
+Each project is now working through CNCF Sandbox onboarding with community maintainers and independent build infrastructure, and gVisor is on a path toward Incubation. These releases deliver an open stack that runs on any Kubernetes cluster, on any cloud, across CPUs, GPUs, or TPUs, by:
+Scaling isolated agent environments without idle compute overhead with
+Agent Substrate
+(now 1.0 and GA on GKE):
+ Agents execute code or tests for a few seconds, then 
+wait
+ on model turns, external APIs, or human input. Keeping a dedicated container alive during those pauses ties up memory and compute. Agent Substrate decouples stateful agent sessions and identities from active compute, snapshotting idle agents to storage and restoring them in under 500 milliseconds to run millions of sandboxes at 10x container density.
+Isolating untrusted code within a sandbox with
+gVisor
+:
+ Agents routinely generate and 
+run
+ unreviewed code and external packages, making standard containers that share a host Linux kernel a security risk. gVisor isolates generated code inside a lightweight userspace application kernel at container packing density on any Linux node.
+Distributing post training and serving efficiently with
+OpenRL
+: Training agents with reinforcement learning (RL) gives builders an open loop to 
+learn
+ across millions of parallel sandboxed rollouts. OpenRL orchestrates self-hosted RL post-training loops in plain Python on Kubernetes.
+Scale fully isolated agent environments with Substrate
+Agents need isolated compute resources and strict access boundaries, yet spend most of their time waiting: executing code for a few seconds, then pausing while a model reasons or a human responds. They need a discrete identity and central enforcement point to ensure the agent only accesses authorized tools and services without holding sensitive keys. In standard Kubernetes, giving every active agent its own Pod locks up memory and CPU while the agent sits idle, forces the control plane to track millions of persistent objects it was never designed to hold, and ties identities directly to Pods. At the same time, identities are intrinsically tied to Kubernetes Pods, adding exponential complexity for controlling access and secrets.
+Agent Substrate solves this by separating the stateful agent from the underlying compute:
+Actors
+ hold each agent's memory, files, and discrete identity.
+Workers
+ are reusable execution sandboxes drawn from a warm Kubernetes pool.
+Gateways
+ enforce inbound and outbound access control and inject secrets based on Actor identity, keeping sensitive keys out of the agent environment.
+When an agent pauses to wait on a model turn or tool call, Agent Substrate snapshots the agent’s memory and files to storage and immediately returns the Worker to the warm pool. When the next request arrives, Agent Substrate restores the Actor onto any available Worker in 
+under 500 milliseconds
+ and picks up right where it left off. Think of it as a hotel room rather than a house: you don't keep a room when you leave town, and a new room is ready when you come back.
+Agent Substrate decouples stateful Actors and policy Gateways from a warm pool of Kubernetes Workers, restoring idle sessions in under 500 milliseconds.
+Since public development started in May 2026, the Agent Substrate project has grown to more than 100 contributors. Early design partners like 
+Nous Research are building Hermes Enterprise on it
+, and it already powers other CNCF projects like 
+kagent
+.
+Further, reaching the 
+1.0 milestone
+ shows that Agent Substrate can accept production workloads across millions of sandboxes, achieving 
+10x the density
+ of standard container runtimes, and performing more than 
+500 suspend and resume activations per second
+.
+Underneath, you can choose 
+Cloud Hypervisor microVMs
+ or 
+gVisor
+ as your isolation boundary without changing how you manage agent lifecycles. Because Agent Substrate runs standard OCI containers, it works out of the box with Agent Development Kit (ADK) agents, stateful coding environments, and productivity agents.
+With today's 
+general availability of
+Agent Substrate on GKE
+, you can run this runtime as a managed capability on Google Cloud or deploy the open-source code on any Kubernetes cluster. For teams that want a dedicated microVM compute service through an API without having to manage clusters, Agent Substrate complements 
+Agent Compute Engine
+, our Titanium microVM service that features fast hibernation and parallel environment-forking for evaluation and RL pipelines.
+SPIRITT
+ is building their SPIRITT Workspace, a platform where agents run real work autonomously while humans collaborate to steer the vision, on top of Agent Substrate on GKE. 
+”At SPIRITT, every customer gets an autonomous AI workspace where an agent, or a whole swarm of agents, builds, runs, and ships real work across the organization, from code and development cycles to marketing and operations. Agent Substrate on GKE gives us the security isolation to let agents execute code safely, the extensibility to plug in our own runtime, and the density to run every customer's agents economically at scale."
+ - Tamir Magen, CEO, SPIRITT
+Isolate untrusted agent code with gVisor
+When agents shift from systems of record to systems of action, they run generated shell commands and unreviewed packages. Standard containers share the host Linux kernel with every other workload on the node, which is a risky bet for untrusted code. Hardware microVMs offer a strong boundary, and Agent Substrate supports them natively. Many teams also need strong isolation that runs at container density across any standard Linux instance, even when bare metal or nested virtualization isn't available.
+gVisor
+ provides that isolation through a lightweight application kernel written in Go. Sitting between the container and the host OS, gVisor intercepts and handles application system calls in userspace so untrusted code never talks directly to the host kernel. Open sourced by Google in 2018, gVisor runs millions of sandboxes every day underneath GKE Sandbox and Cloud Run. Outside Google, 
+Anthropic
+ and 
+OpenAI
+ use it to contain code execution, 
+Modal
+ and 
+Snowflake
+ run their execution sandboxes on it, and 
+Ant Group
+ and 
+Tencent
+ run it in production at scale.
+Three capabilities make gVisor a natural fit for agent fleets:
+Container density and flexible memory:
+ Unlike VMs that preallocate fixed blocks of RAM, gVisor keeps a container process model where memory scales up and down with the workload, packing more agents onto every node and lowering your cost per agent.
+Native GPU, TPU, and snapshot support:
+ gVisor supports 
+GPUs
+, 
+TPUs
+, and 
+checkpoint/restore
+ natively, so agents can access accelerators inside the sandbox and pause when idle.
+Runs anywhere Linux runs:
+ Because it doesn't require nested virtualization, gVisor deploys identically across any cloud or local Linux node. 
+Northflank
+, for example, uses gVisor to sandbox GPU workloads when nested virtualization isn't available.
+Donating gVisor to the CNCF clears a longstanding performance barrier for the community. Sandboxed infrastructure providers, including Google, all carry host kernel patches that bring gVisor's I/O performance close to that of native Linux, but upstream Linux maintainers declined to merge them while the project was owned by a single vendor. Moving to neutral CNCF governance opens the path to upstreaming those kernel optimizations, so every builder gets near native performance out of the box. With this move, 
+Ant Group, Modal, and Tines have committed to join gVisor's maintainers
+, with OpenAI, Tencent, and NVIDIA continuing their contributions.
+Scale RL post training on Kubernetes with OpenRL
+The sandbox that runs your agent in production is the exact same environment you need to train an agent with reinforcement learning. Today, most frontier capability gains come from RL post-training: running millions of multiturn rollouts inside real tools, scoring the outcomes, and updating model weights. Building that loop yourself usually means forking a monolithic RL framework and debugging distributed weight transfers before you ever touch your training algorithm.
+OpenRL
+ brings a clean, self-hosted Python post-training loop directly to your Kubernetes cluster, with:
+Simple Python primitives:
+ Write your training loop using four clean primitives (
+sample
+, 
+forward_backward
+, 
+optim_step
+, and 
+save_state
+) through a Tinker compatible API while keeping your weights and data on your own cluster. Existing 
+tinker-cookbook
+ recipes run unchanged, supporting both LoRA adapters and full parameter fine-tuning.
+Pluggable engines and Kubernetes scheduling:
+ OpenRL uses Kubernetes Dynamic Resource Allocation (DRA) to partition your accelerator pool and orchestrate RL work on the shared pool. Its pluggable architecture uses standard engines, including 
+PyTorch
+/
+AutoModel
+ for training and 
+vLLM
+ for sampling, with Gemma and Qwen validated out of the box, and with TPU support on the roadmap.
+OpenRL also pairs with 
+llm-d
+, the CNCF distributed inference and RL project founded by Red Hat, Google Cloud, IBM Research, CoreWeave, and NVIDIA that 
+recently reached 1.0
+, to keep your accelerators busy across both phases of RL. Here, llm-d provides:
+Prefix-aware rollout routing:
+ The 
+llm-d router
+ routes multiturn rollouts to samplers that already hold matching KV cache prefixes, cutting redundant prefill compute.
+GPU time-slicing between training and sampling:
+ In RL training, samplers and trainers take turns, leaving one set of chips idle while the other works. OpenRL uses 
+llm-d time-slicing
+ to share the same physical GPUs between sampling and training, reclaiming idle accelerator cycles the same way Agent Substrate reclaims idle CPU and RAM.
+OpenRL drives plain Python RL loops on Kubernetes, running episodes inside Agent Substrate sandboxes while llm-d routes rollouts and time slices accelerators.
+OpenRL is the newest layer of this stack by a wide margin. It started in February as a research preview, and we are bringing it to the CNCF early on purpose. Its north star is one recipe for any model on any accelerator, and no single company can get there alone. To get there, you need the people building accelerators (NVIDIA, AMD, Intel, and TPUs), inference engines (
+llm-d
+, 
+vLLM
+, 
+SGLang
+), training frameworks, and open-weight models starting with Gemma and Qwen. Setting up neutral CNCF governance before the design hardens makes room for everyone to build it together.
+Why the CNCF, and why now
+Improving the security and efficiency of AI agents takes joint design across the runtime, scheduler, compiler, and silicon. The past year made the need for affordable, isolated sandboxing and open post-training infrastructure exceedingly clear. Donating Agent Substrate, gVisor, and OpenRL to the CNCF reaffirms Google’s commitment to open collaboration and co-investment. Vendor-neutral ownership lets cloud providers, hardware vendors, and independent software companies participate in the future growth of agentic workloads equally. 
+We believe that these donations will accelerate the development and adoption of agentic workloads through these projects similarly to what we saw with Kubernetes.
+Come find us at KubeCon
+Join us at 
+KubeCon + CloudNativeCon North America
+ in Salt Lake City (November 9 to 12) across our sessions and at the Google Cloud booth to learn more about Agent Substrate, OpenRL, and gVisor. You will also hear soon from community partners including Modal, Anyscale, and Tecton on what this open stack means for their agentic workloads. In the meantime, here is where to start:
+Follow the CNCF Sandbox applications:
+ gVisor 
+#521
+, Agent Substrate 
+#523
+, and OpenRL 
+#518
+, alongside cohort peer KubeRay 
+#525
+Kick the tires:
+ate.dev
+, 
+gvisor.dev
+, and 
+openrl.dev
+Run agents on GKE today:
+Agent Substrate on GKE
+, and 
+GKE Sandbox
+Read the deep dives:
+Agent Substrate on GKE
+, 
+gVisor's move to the CNCF
+, and 
+Introducing OpenRL
+Posted in
+Containers & Kubernetes
+GKE
+AI infrastructure
+Related articles
+Containers & Kubernetes
+Now generally available: GKE dynamic slicing for higher resilience, and efficiency for TPUs
+By Kavitha Gowda • 6-minute read
+AI infrastructure
+What’s new in AI infrastructure and orchestration in October
+By Alex Barrett • 25-minute read
+Networking
+When the Kubernetes API went silent: A three-layer networking mystery
+By Akash Thakur • 14-minute read
+Networking
+How GKE networking scales to support high densities of concurrent AI agents
+By Srini Jasti • 4-minute read
+
+===== https://opensource.googleblog.com/2026/11/sandboxing-untrusted-ai-agents-at-scale.html?m=0
+(status 200)
+Google Open Source Blog
+The latest news from Google on open source releases, major projects, events, and outreach programs for early career developers.
+Sandboxing Untrusted AI Agents at Scale: Google Donates Agent Substrate and gVisor to the CNCF
+Thursday, November 5, 2026
+by 
+Mofi Rahman
+, Developer Relations Engineer, and 
+Brandon Royal
+, Product Manager, Google Cloud
+When Google introduced Kubernetes twelve years ago, the Pod became the default unit of compute for the cloud. The design assumed a straightforward lifecycle: a program boots, binds to a port, serves traffic, and runs until you stop it.
+AI agents work fundamentally differently.
+An AI agent that’s running on a machine executes untrusted code, commands, and tool calls, and must be isolated from its host and its network resources. At the same time, these agents, whether they’re an interactive coding assistant, an SRE troubleshooter, or a multi-turn evaluation loop, do not run continuously. They execute a step, call a language model, and wait. Most of the time, the agent does nothing at all while it waits for a model to stream tokens or a human to review a pull request. In the same way that Kubernetes was created to address the needs of containerized applications, we introduced Agent Substrate as a new orchestrator for the emerging agentic applications. Secure by default, highly efficient and built for multi-million agent scale.
+Agent Substrate was designed from the ground up for AI agent security and density and brings the best parts of Kubernetes together with a new control and data plane for fully-isolated, ultra-low-latency sandboxed compute and storage. The growing Agent Substrate community has been rapidly building core capabilities and stabilizing APIs, culminating in the latest 1.0 release.
+This week at KubeCon North America in Salt Lake City, Google Cloud is donating 
+Agent Substrate
+ and 
+gVisor
+ to the Cloud Native Computing Foundation (CNCF) in Sandbox status, alongside OpenRL.
+This post explains why traditional approaches struggle with stateful agents, how Agent Substrate solves the problem, how it connects to enterprise governance on Google Kubernetes Engine (GKE), and where to see it in action at KubeCon NA 2026.
+Challenges of running AI agents at scale
+AI agents introduce two infrastructure bottlenecks that standard Kubernetes was never built to handle: idle resource waste and control plane overload.
+1. The idle resource problem
+During a typical interactive session, an agent can spend 90% to 95% of its time waiting for model inference, external APIs, or human reviews.
+During that wait, the agent consumes zero CPU. However, you cannot simply kill the container. The agent holds critical state in memory and on disk: active language runtimes, local Git repositories, uncommitted file edits, and tool sessions.
+With standard Kubernetes, platform engineers face two poor options:
+Keep a dedicated Pod running all day: The agent responds quickly because it is already warm, but you pay for idle compute around the clock. At ten thousand active users, cluster costs become unsustainable.
+Scale to zero with serverless containers: You save compute costs while the agent sits idle, but resuming from cold storage forces the container to clone repositories, reinstall packages, and rebuild memory. Wakeup latency climbs past 20 seconds, breaking the interactive experience.
+Platform teams need agents that wake up in under 500 milliseconds with full memory and disk state intact—without paying for running Pods while the agent sits idle.
+2. Control plane overload
+The opposite issue occurs when training or evaluating agents. Reinforcement learning loops and benchmark suites need to run untrusted agent code across thousands of tasks at the exact same time.
+If every sandbox requires a full Kubernetes Pod, the control plane quickly grinds to a halt. Scheduling, creating, and destroying thousands of short-lived Pods every minute overwhelms etcd, saturates kube-apiserver, and exhausts subnet IP addresses. Kubernetes was built to manage stable application topologies, not to act as a microsecond sandbox allocator.
+How Agent Substrate solves the problem
+Agent Substrate
+ adds an actor-based control and data plane built on top of Kubernetes. It solves the idle resource problem by decoupling Actors from Workers:
+Actors hold the state: An Actor represents an individual agent session, complete with its own filesystem, environment variables, memory state, and network rules.
+Workers provide the compute: A Worker is a pre-warmed Kubernetes Pod running in a shared pool (WorkerPool), equipped with container runtimes and sandbox boundaries.
+The lifecycle of an agent turn
+Request parking: An incoming call hits the atenet-router L7 proxy. If the target Actor is suspended, the proxy holds the request in memory and alerts the Substrate controller.
+Fast placement: The controller assigns the Actor to an available slot in the warm Worker pool.
+Sub-second restore: The Actor’s memory and disk state restore from tiered storage, the process wakes up, and the proxy delivers the request. The agent resumes in under 500 milliseconds right where it paused.
+Suspension on idle: When the turn finishes, Substrate snapshots the Actor’s state to tiered storage and frees the Worker slot for other workloads.
+Because Substrate manages Actor state directly, thousands of agents can activate, suspend, and resume every second without creating new Pod objects or stressing etcd.
+Safe execution with gVisor and microVMs
+Agents frequently execute model-generated, untrusted code. Standard Linux containers share the host kernel, which presents an unacceptable security risk on multi-tenant nodes.
+Agent Substrate pairs with 
+gVisor
+ (runsc), Google's open source application kernel written in Go. gVisor intercepts system calls in user space, isolating untrusted code from the host kernel. Because gVisor virtualizes its own memory and process tables, Substrate can freeze a running environment, write memory pages to storage, and restore them on another node in under 500 milliseconds.
+For workloads requiring hardware virtualization or custom kernel modules, Substrate also supports Cloud Hypervisor microVMs under the same unified API.
+Why Google donated Agent Substrate to the CNCF
+Over the past two years, engineering teams across the industry have run into the same agent scaling boundaries. Without a shared open standard, every organization ends up building custom schedulers on top of VMs or working around Kubernetes.
+Donating Agent Substrate and gVisor to the CNCF gives the cloud-native community a neutral, vendor-independent foundation that works across any conformant Kubernetes cluster.
+Together with community projects, they form an open stack for agentic infrastructure:
+Layer 1: Secure Isolation (
+gVisor
+): Sandboxes untrusted code execution with user-space kernel isolation and fast memory checkpointing.
+Layer 2: Agent Runtime (
+Agent Substrate
+): Multiplexes stateful actors onto warm worker pools with sub-second wakeups.
+Layer 3: Training Orchestration (OpenRL): Coordinates Kubernetes-native reinforcement learning loops and evaluation sandboxes.
+Where to find us at KubeCon NA 2026
+If you are heading to Salt Lake City for KubeCon + CloudNativeCon North America from November 9 to 12, visit our sessions, workshops, and booth demos:
+When
+Session or Event
+Speakers & Location
+Monday, 
+Nov 9
+Agent Substrate Day (ATEcon)
+Welcome to ATECon, Tim Hockin, Eitan Yarmush, Ron Lev
+Pleading the Agent: Proof of Agent identity, Greg Castle, Taahir Ahmed
+Evolving The Substrate Dataplane, Benjamin Elder
+Truly Sandboxed Networking: Moving beyond MVP, Bowei Du, Lior Lieberman
+Using Substrate for anything but Agents, Mofi Rahman
+Agent Substrate Environment, Jaana Dogan, Lior Lieberman
+Closing Remarks, Tim Hockin, Eitan Yarmush, Ron Lev
+Salt Palace
+Monday, 
+Nov 9
+Detonation and Isolation: Hardening Kubernetes Runtimes for Agents
+Multi-agent orchestration and runtime governance
+Syeda Anjum, Kaslin Fields, and Kanchana Rajendran
+Agentics Day
+Monday, 
+Nov 9
+GKE Day
+Announcements and hands-on agent infrastructure labs
+Google Cloud GKE Team
+Tuesday, 
+Nov 10
+Flagship Fireside Chat: Kubernetes Act II
+Why AI Agents Change Everything Under the Hood
+Tim Hockin and Kelsey Hightower
+Moderated by Savannah Peterson
+Wednesday, 
+Nov 11
+Hands-on Workshop: Building and Governing Agent Substrate on GKE
+Hands-on lab deploying warm worker pools, testing snapshot restores, and configuring egress secrets
+Mofi Rahman, Drew Brown, Casey West, Kaslin Fields, and Olivier Bourgeois
+Schedule ID: 1247804
+Wednesday, 
+Nov 11
+Expo Hall Demo Theater: Inside the Show-Floor Agent Swarm
+Live fleet multiplexing on GKE
+Brandon Royal and Mofi Rahman
+Nov 10 to 12
+Google Cloud Booth #122
+• Agent Swarm demo: See agent substrate in action.
+• Partner demos with NVIDIA on OpenShell and GPU Actor infrastructure
+• Filestore Agent Volumes in action
+Booth #122 Expo Hall
+Get started
+Agent Substrate is open source and ready for testing today:
+Documentation: Read the guides and architecture specs at 
+ate.dev
+.
+Code: Explore the runtime on GitHub at 
+github.com/agent-substrate/substrate
+.
+Community: Join #substrate-dev #substrate-user on the 
+CNCF Slack
+.
+See you in Salt Lake City!
+Labels:
+AI
+                                ,
+Cloud
+                                ,
+Containers
+                                ,
+Kubernetes
+                                ,
+Open Source Today
+                      
+                      
+                          
+.
+
+===== https://thenewstack.io/gvisor-cncf-kubernetes-open-source/
+(status 200)
+TNS
+				OK
+					SUBSCRIBE
+								Join our community of software engineering leaders and aspirational developers. Always 
+								stay in-the-know by getting the most important news and exclusive content delivered 
+								fresh to your inbox to learn more about at-scale software development.
+EMAIL ADDRESS
+											REQUIRED
+SUBSCRIBE
+RESUBSCRIPTION REQUIRED
+										It seems that you've previously unsubscribed from our newsletter
+										in the past. Click the button below to open the re-subscribe form 
+										in a new tab. When you're done, simply close that tab and continue 
+										with this form to complete your subscription.
+RE-SUBSCRIBE
+									The New Stack does not sell your information or share it with 
+									unaffiliated third parties. By continuing, you agree to our 
+Terms of Use
+ and
+Privacy Policy
+.
+								Welcome and thank you for joining The New Stack community!
+								Please answer a few simple questions to help us deliver the news and resources you are interested in.
+FIRST NAME
+											REQUIRED
+LAST NAME
+											REQUIRED
+COMPANY NAME
+											REQUIRED
+COUNTRY
+											REQUIRED
+Select ...
+United States
+Canada
+India
+United Kingdom
+Germany
+France
+---
+Afghanistan
+Albania
+Algeria
+American Samoa
+Andorra
+Angola
+Anguilla
+Antarctica
+Antigua and Barbuda
+Argentina
+Armenia
+Aruba
+Asia/Pacific Region
+Australia
+Austria
+Azerbaijan
+Bahamas
+Bahrain
+Bangladesh
+Barbados
+Belarus
+Belgium
+Belize
+Benin
+Bermuda
+Bhutan
+Bolivia
+Bonaire, Sint Eustatius and Saba
+Bosnia and Herzegovina
+Botswana
+Bouvet Island
+Brazil
+British Indian Ocean Territory
+Brunei Darussalam
+Bulgaria
+Burkina Faso
+Burundi
+Cambodia
+Cameroon
+Canada
+Cape Verde
+Cayman Islands
+Central African Republic
+Chad
+Chile
+China
+Christmas Island
+Cocos (Keeling) Islands
+Colombia
+Comoros
+Congo
+Congo, The Democratic Republic of the
+Cook Islands
+Costa Rica
+Croatia
+Cuba
+Curaçao
+Cyprus
+Czech Republic
+Côte d'Ivoire
+Denmark
+Djibouti
+Dominica
+Dominican Republic
+Ecuador
+Egypt
+El Salvador
+Equatorial Guinea
+Eritrea
+Estonia
+Ethiopia
+Falkland Islands (Malvinas)
+Faroe Islands
+Fiji
+Finland
+France
+French Guiana
+French Polynesia
+French Southern Territories
+Gabon
+Gambia
+Georgia
+Germany
+Ghana
+Gibraltar
+Greece
+Greenland
+Grenada
+Guadeloupe
+Guam
+Guatemala
+Guernsey
+Guinea
+Guinea-Bissau
+Guyana
+Haiti
+Heard Island and Mcdonald Islands
+Holy See (Vatican City State)
+Honduras
+Hong Kong
+Hungary
+Iceland
+India
+Indonesia
+Iran, Islamic Republic Of
+Iraq
+Ireland
+Isle of Man
+Israel
+Italy
+Jamaica
+Japan
+Jersey
+Jordan
+Kazakhstan
+Kenya
+Kiribati
+Korea, Republic of
+Kuwait
+Kyrgyzstan
+Laos
+Latvia
+Lebanon
+Lesotho
+Liberia
+Libyan Arab Jamahiriya
+Liechtenstein
+Lithuania
+Luxembourg
+Macao
+Madagascar
+Malawi
+Malaysia
+Maldives
+Mali
+Malta
+Marshall Islands
+Martinique
+Mauritania
+Mauritius
+Mayotte
+Mexico
+Micronesia, Federated States of
+Moldova, Republic of
+Monaco
+Mongolia
+Montenegro
+Montserrat
+Morocco
+Mozambique
+Myanmar
+Namibia
+Nauru
+Nepal
+Netherlands
+Netherlands Antilles
+New Caledonia
+New Zealand
+Nicaragua
+Niger
+Nigeria
+Niue
+Norfolk Island
+North Korea
+North Macedonia
+Northern Mariana Islands
+Norway
+Oman
+Pakistan
+Palau
+Palestinian Territory, Occupied
+Panama
+Papua New Guinea
+Paraguay
+Peru
+Philippines
+Pitcairn Islands
+Poland
+Portugal
+Puerto Rico
+Qatar
+Reunion
+Romania
+Russian Federation
+Rwanda
+Saint Barthélemy
+Saint Helena
+Saint Kitts and Nevis
+Saint Lucia
+Saint Martin
+Saint Martin
+Saint Pierre and Miquelon
+Saint Vincent and the Grenadines
+Samoa
+San Marino
+Sao Tome and Principe
+Saudi Arabia
+Senegal
+Serbia
+Serbia and Montenegro
+Seychelles
+Sierra Leone
+Singapore
+Sint Maarten
+Slovakia
+Slovenia
+Solomon Islands
+Somalia
+South Africa
+South Georgia and the South Sandwich Islands
+South Sudan
+Spain
+Sri Lanka
+Sudan
+Suriname
+Svalbard and Jan Mayen
+Swaziland
+Sweden
+Switzerland
+Syrian Arab Republic
+Taiwan
+Tajikistan
+Tanzania, United Republic of
+Thailand
+Timor-Leste
+Togo
+Tokelau
+Tonga
+Trinidad and Tobago
+Tunisia
+Turkey
+Turkmenistan
+Turks and Caicos Islands
+Tuvalu
+Uganda
+Ukraine
+United Arab Emirates
+United Kingdom
+United States
+United States Minor Outlying Islands
+Uruguay
+Uzbekistan
+Vanuatu
+Venezuela
+Vietnam
+Virgin Islands, British
+Virgin Islands, U.S.
+Wallis and Futuna
+Western Sahara
+Yemen
+Zambia
+Zimbabwe
+Åland Islands
+ZIPCODE
+											REQUIRED
+								Great to meet you!
+								Tell us a bit about your job so we can cover the topics you find most relevant.
+What is your job level?
+											REQUIRED
+Select ...
+C-Level
+VP/Director
+Manager/Supervisor
+Mid Level or Senior Non-Managerial Staff
+Entry Level/Junior Staff
+Freelancer/Contractor
+Student/Intern
+Other ...
+Which of these most closely describes your job role?
+											REQUIRED
+Select ...
+Developer/Software Engineer
+SysAdmin/Operations/SRE
+Architect
+Security Professional
+DevOps Engineer/Team
+Community Manager/Developer Advocate
+IT management, including CIO/CISO/CTO
+Business Development/Marketing/Sales
+Enthusiast/Hobbyist
+Other ...
+How many employees are in the organization you work with?
+											REQUIRED
+Select ...
+Self-employed
+2-10
+11-50
+51-250
+251-1,000
+1,001-10,000
+> 10,000
+I am not working
+What option best describes the type of organization you work for?
+											REQUIRED
+Select ...
+“End user” organization that primarily uses IT products and services to support their business deliverables
+Hardware / software vendor or supplier
+Cloud service provider or managed service provider
+System integrator or IT consulting firm
+Other ...
+Which of the following best describes your organization's primary industry?
+											REQUIRED
+Select ...
+Advertising/Marketing
+Aerospace/Aviation
+Agriculture
+Automotive
+Biotech/Pharmaceutical
+Business Services (accounting, consulting, etc.)
+Computers/Information Technology
+Construction
+Education
+Facilities/Service Industry
+Finance/Financial Services (banking, insurance, etc.)
+Government
+Healthcare
+Human Resources
+Legal
+Life sciences (biotech, pharmaceuticals, etc.)
+Manufacturing
+Media
+Non-profit
+Real Estate
+Retail/Consumer Goods
+Telecommunications
+Transportation/Logistics
+Travel/Hospitality/Entertainment
+Utility/Energy
+Other ...
+LINKEDIN PROFILE URL
+								Welcome!
+									We’re so glad you’re here. You can expect all the best TNS content to arrive 
+									Monday through Friday to keep you on top of the news and at the top of your game.
+									What’s next?
+									Check your inbox for a confirmation email where you can adjust your preferences 
+									and even join additional groups.
+									Follow TNS on your favorite social media networks.
+									Become a 
+TNS follower on LinkedIn
+.
+									Check out 
+the latest featured and trending stories
+ while you wait for your 
+									first TNS newsletter.
+PREV
+1
+ of 
+2
+NEXT
+				VOXPOP
+						As a JavaScript developer, what non-React tools do you use most often?					
+✓
+								Angular							
+0%
+✓
+								Astro							
+0%
+✓
+								Svelte							
+0%
+✓
+								Vue.js							
+0%
+✓
+								Other							
+0%
+✓
+								I only use React							
+0%
+✓
+								I don't use JavaScript							
+0%
+			Thanks for your opinion! Subscribe below to get the final results, published 
+			exclusively in our TNS Update newsletter:
+SUBMIT
+			NEW! Try Stackie AI
+						ARCHITECTURE
+								Cloud Native Ecosystem							
+								Containers							
+								Databases							
+								Edge Computing							
+								Infrastructure as Code							
+								Linux							
+								Microservices							
+								Open Source							
+								Networking							
+								Storage							
+						ENGINEERING
+								AI							
+								AI Engineering							
+								API Management							
+								Backend development							
+								Data							
+								Frontend Development							
+								Large Language Models							
+								Security							
+								Software Development							
+								WebAssembly							
+						OPERATIONS
+								AI Operations							
+								CI/CD							
+								Cloud Services							
+								DevOps							
+								Kubernetes							
+								Observability							
+								Operations							
+								Platform Engineering							
+						PROGRAMMING
+								C++							
+								Developer tools							
+								Go							
+								Java							
+								JavaScript							
+								Programming Languages							
+								Python							
+								Rust							
+								TypeScript							
+						CHANNELS
+								Podcasts							
+								Ebooks							
+								Events							
+								Webinars							
+								Newsletter							
+								TNS RSS Feeds							
+						THE NEW STACK
+								About / Contact							
+								Sponsors							
+								Advertise With Us							
+								Contributions							
+PODCASTS
+EBOOKS
+EVENTS
+WEBINARS
+NEWSLETTER
+CONTRIBUTE
+				ARCHITECTURE
+				ENGINEERING
+				OPERATIONS
+				PROGRAMMING
+						Cloud Native Ecosystem					
+						Containers					
+						Databases					
+						Edge Computing					
+						Infrastructure as Code					
+						Linux					
+						Microservices					
+						Open Source					
+						Networking					
+						Storage					
+									Shielding the patch gap: The exploit doesn't wait for Patch Tuesday
+											Oct 31st 2026 10:00am, by 										
+											Jeremy Colvin										
+									Kubernetes just formed a workload conformance group. Here’s why it matters for AI teams.
+											Oct 30th 2026 1:29pm, by 										
+											Bill Doerrfeld										
+									Why Kubernetes platforms keep rebuilding a layer they could share
+											Oct 29th 2026 9:00am, by 										
+											Adam Crowder										
+									The hidden failure paths that affect Kubernetes control plane availability
+											Oct 27th 2026 10:00am, by 										
+											Sri Saran Balaji Vellore Rajakumar										
+									The next 10 years of KubeVirt
+											Oct 26th 2026 10:00am, by 										
+											Vladik Romanovsky										
+									When “isolated” doesn’t mean isolated: How to sandbox AI agents
+											Oct 27th 2026 9:00am, by 										
+											Michael Levan										
+									One pod, one node: The architecture behind serverless Kubernetes on AWS
+											Oct 27th 2026 8:00am, by 										
+											Sri Saran Balaji Vellore Rajakumar										
+									The distroless security gap: Why bottom-up containers are the next evolution in OCI images
+											Oct 19th 2026 9:00am, by 										
+											Lily Rivers-Klee										
+									Amazon ECS now auto-repairs failing GPUs and instances. Here's why it matters for SREs.
+											Oct 9th 2026 9:00am, by 										
+											Anirudh Aithal										
+									K3s vs. K8s: When lightweight Kubernetes distros win (and when they don't)
+											Oct 2nd 2026 9:00am, by 										
+											Peter Smails										
+									Postgres and ClickHouse can share tables. EnterpriseDB wants one set of rules to govern them.
+											Nov 5th 2026 9:00am, by 										
+											Max Romanenko										
+									What five P99 CONF talks reveal about database trade-offs
+											Oct 30th 2026 9:00am, by 										
+											Doug Sillars										
+									Your database decision could come back to haunt you
+											Oct 14th 2026 11:00am, by 										
+											Meredith Shubel										
+									You can outgrow vanilla Postgres without abandoning Postgres
+											Oct 8th 2026 12:23pm, by 										
+											Kimberly Fessel										
+									Redis by proxy: Percona targets the last major hurdle to Valkey adoption
+											Oct 8th 2026 2:54am, by 										
+											Paul Sawers										
+									Anthropic’s red team ran AI on 15 cheap TV boxes. Then the math got unsettling.
+											Oct 13th 2026 12:40pm, by 										
+											Amanda Caswell										
+									Kubernetes on cgroup v1 is dead. Here’s what comes next.
+											Oct 9th 2026 4:15pm, by 										
+											Bill Doerrfeld										
+									Your phone's vector index might be bigger than the AI model running it
+											Oct 6th 2026 2:53pm, by 										
+											Amanda Caswell										
+									K3s vs. K8s: When lightweight Kubernetes distros win (and when they don't)
+											Oct 2nd 2026 9:00am, by 										
+											Peter Smails										
+									SpaceX designed an orbital Vera Rubin. Radiation comes next.
+											Aug 31st 2026 2:55pm, by 										
+											Steven J. Vaughan-Nichols										
+									The API tax: Why AI agents stall without infrastructure context
+											Oct 8th 2026 9:30am, by 										
+											Oleg Danilyuk										
+									Shai-Hulud: Whoever controls your package registry controls your pipeline
+											Aug 31st 2026 12:00pm, by 										
+											Zeen Rachidi										
+									DNS is infrastructure. It’s time to manage it that way.
+											Jul 30th 2026 11:00am, by 										
+											Venus Kohli										
+									Why Terraform is green when your cloud is broken
+											Apr 28th 2026 9:00am, by 										
+											Joe Karlsson										
+									The one Slack message that proved our elite engineering team was flying blind
+											Apr 26th 2026 11:00am, by 										
+											Joe Karlsson										
+									A few engineers asked IT for Linux. Then it spread to 200 machines.
+											Oct 23rd 2026 10:00am, by 										
+											David Eastman										
+									His scanner wouldn’t work on Linux — so he let Claude study the Windows driver
+											Oct 17th 2026 10:30am, by 										
+											Amanda Caswell										
+									Linus Torvalds let Claude Code fix the Linux page cache. Then reviewers found a race.
+											Oct 14th 2026 6:59pm, by 										
+											Amanda Caswell										
+									OpenAI's ChatGPT/Codex desktop app is now on Linux
+											Aug 11th 2026 1:53pm, by 										
+											Frederic Lardinois										
+									Linux creator Linus Torvalds tells AI haters to walk away from Linux, or go fork it 
+											Jul 16th 2026 11:15am, by 										
+											Adrian Bridgwater										
+									Building scalable, agent-friendly APIs for AI applications
+											Oct 8th 2026 7:00am, by 										
+											Nacho Martínez										
+									Your merge gate was a compromise. Coding agents are making it a liability. 
+											Jul 11th 2026 1:00pm, by 										
+											Arjun Iyer										
+									Tetrate launches open source marketplace to simplify Envoy adoption
+											Mar 11th 2026 10:52am, by 										
+											Adrian Bridgwater										
+									OpenTelemetry roadmap: Sampling rates and collector improvements ahead
+											Feb 24th 2026 11:00am, by 										
+											B. Cameron Gain										
+									Merging To Test Is Killing Your Microservices Velocity
+											Dec 16th 2025 7:00am, by 										
+											Arjun Iyer										
+									Kubernetes, mark II? Why Google's giving away gVisor, a code sandbox used by Anthropic and OpenAI
+											Nov 6th 2026 6:49am, by 										
+											Paul Sawers										
+									HumanLayer just got acquired by Factory. But it gave users a way out first.
+											Nov 5th 2026 3:02pm, by 										
+											Amanda Caswell										
+									Anthropic found a way to prove which AI model answered you — but there's a costly catch
+											Nov 4th 2026 5:50pm, by 										
+											Amanda Caswell										
+									OpenAI built itself a new Git backend, too
+											Nov 2nd 2026 7:00pm, by 										
+											Frederic Lardinois										
+									Open-source security in the AI exploit era: Patch without changing a thing
+											Nov 1st 2026 11:00am, by 										
+											Oren Penso and Michael Coté										
+									Why your KubeVirt VMs can’t move between clusters — and how EVPN fixes it
+											Aug 8th 2026 10:00am, by 										
+											Miguel Duarte Barroso										
+									DNS is infrastructure. It’s time to manage it that way.
+											Jul 30th 2026 11:00am, by 										
+											Venus Kohli										
+									From intent to enforcement: Lessons from operating Kubernetes controllers at scale
+											Jul 17th 2026 8:00am, by 										
+											Sri Saran Balaji Vellore Rajakumar and Jayanth Varavani										
+									What happens when your VPN meets 200 AI agents
+											Jul 14th 2026 2:53pm, by 										
+											Alex Wilhelm										
+									Cloudflare wants to build the economic layer of the AI web
+											Jul 1st 2026 4:10pm, by 										
+											Amanda Caswell										
+									Dropbox ditched AWS S3 for its own in-house system. Now it’s buying Tigris to sell S3-compatible storage to AI developers.
+											Nov 5th 2026 9:00am, by 										
+											Paul Sawers										
+									What five P99 CONF talks reveal about database trade-offs
+											Oct 30th 2026 9:00am, by 										
+											Doug Sillars										
+									AI data lakes are driving new storage demands
+											Oct 8th 2026 10:00am, by 										
+											Mrinal Kochar										
+									Kubernetes 1.36 restores a lost guarantee for database backups
+											Sep 15th 2026 9:00am, by 										
+											Shubham Pampattiwar										
+									When AI agent traces become application data
+											Aug 26th 2026 9:00am, by 										
+											Manveer Chawla										
+						AI					
+						AI Engineering					
+						API Management					
+						Backend development					
+						Data					
+						Frontend Development					
+						Large Language Models					
+						Security					
+						Software Development					
+						WebAssembly					
+									Kubernetes, mark II? Why Google's giving away gVisor, a code sandbox used by Anthropic and OpenAI								
+										Nov 6th 2026 6:49am, by 									
+Paul Sawers
+									OpenAI’s new GPT-6 Cyber is better at hacking and better at staying in its lane								
+										Nov 5th 2026 2:01pm, by 									
+Frederic Lardinois
+									Raindrop simulates your agent’s world to catch what your changes break								
+										Nov 5th 2026 1:00pm, by 									
+Frederic Lardinois
+									Dropbox ditched AWS S3 for its own in-house system. Now it’s buying Tigris to sell S3-compatible storage to AI developers.								
+										Nov 5th 2026 9:00am, by 									
+Paul Sawers
+									“Signing in to your company’s plugins one by one is annoying”: Anthropic’s fix puts Claude in the identity business								
+										Nov 4th 2026 11:59am, by 									
+Paul Sawers
+									Anthropic speeds up Claude Code with message threads. But your token bill stays the same.								
+										Nov 3rd 2026 8:46am, by 									
+Paul Sawers
+									A step-by-step guide for how to kill the line-by-line code review								
+										Nov 1st 2026 10:00am, by 									
+Ankit Jain
+									The context problem: How Docusign built agents that understand the business behind contracts								
+										Oct 31st 2026 12:13pm, by 									
+Carly Page
+									AWS's Hydro team wants the compiler to catch coding agents' mistakes								
+										Oct 29th 2026 5:53pm, by 									
+Matthew Burns
+									AI agents need to be replaceable – without losing your work								
+										Oct 28th 2026 9:00am, by 									
+Manveer Chawla
+									Vercel sets a deadline for vendors to move beyond long-lived keys								
+										Oct 23rd 2026 4:04pm, by 									
+Amanda Caswell
+									AWS, Upstage and Ollama agree on a decision-model API. OpenAI hasn’t signed on.								
+										Oct 9th 2026 8:00am, by 									
+Janakiram MSV
+									Building scalable, agent-friendly APIs for AI applications								
+										Oct 8th 2026 7:00am, by 									
+Nacho Martínez
+									AI agents speed up development — data access slows them down								
+										Oct 1st 2026 7:00am, by 									
+Doug Sillars
+									MCP gets AI agents into your APIs. It doesn't decide what they should see.								
+										Sep 29th 2026 9:06am, by 									
+Matt DeBergalis
+									AI agents need to be replaceable – without losing your work								
+										Oct 28th 2026 9:00am, by 									
+Manveer Chawla
+									Here are the engineering lessons we learned when live-streaming sports to 32 million people								
+										Oct 17th 2026 12:00pm, by 									
+Cynthia Dunlop
+									You can outgrow vanilla Postgres without abandoning Postgres								
+										Oct 8th 2026 12:23pm, 
+
+===== https://vinish.dev/google-donates-gvisor-agent-substrate-openrl-to-cncf
+(status 200)
+Google said on November 5, 2026 that it is handing three of its open source projects to the Cloud Native Computing Foundation: the gVisor sandbox runtime, the Agent Substrate session platform and the OpenRL training framework. All three were admitted to the CNCF Sandbox in October, and each is now going through onboarding with community maintainers and separate build infrastructure.
+At the same time, Agent Substrate hit version 1.0 and became generally available as a managed offering on Google Kubernetes Engine. For developers who run AI agents or untrusted code on Kubernetes, the move puts a widely used isolation layer under neutral governance, and gVisor is already on a path toward CNCF Incubation.
+On This Page
+Show More
+What Google Announced
+The announcement covers a stack of three projects that Google describes as open infrastructure for autonomous agents. Each one handles a different part of running agents at scale on any Kubernetes cluster, across CPUs, GPUs or TPUs.
+Advertisement
+gVisor:
+ a sandbox that isolates generated or untrusted code from the host Linux kernel.
+Agent Substrate:
+ a platform that separates long-running agent sessions from the compute they use, now at 1.0 and GA on GKE.
+OpenRL:
+ a self-hosted framework for reinforcement learning post-training written as plain Python loops on Kubernetes.
+Google also points to llm-d, a distributed inference project already in the CNCF that recently reached 1.0, as a companion piece for OpenRL workloads.
+Why gVisor Matters Most for Developers
+gVisor is an application kernel written in Go. It sits between a container and the host operating system and handles system calls in user space, so code inside the sandbox never talks to the host kernel directly.
+Google released gVisor as open source in 2018, and it already runs beneath both Cloud Run and GKE Sandbox. Google lists Anthropic, OpenAI, Modal, Snowflake, Ant Group and Tencent among the outside users that run execution sandboxes on it.
+Advertisement
+Google highlights three traits that suit agent fleets:
+Memory grows and shrinks with the workload, instead of being reserved up front as with a virtual machine, so more sandboxes fit on each node.
+It supports GPUs, TPUs and checkpoint and restore, so a sandbox can use accelerators and be paused when idle.
+It does not need nested virtualization, so it deploys the same way on any cloud or local Linux machine.
+The governance change has a concrete technical goal. Google says providers that run gVisor all keep host kernel patches that bring its I/O speed close to native Linux, but kernel maintainers would not merge them while one vendor owned the project.
+Under the CNCF, Google expects those changes to go upstream. Ant Group, Modal and Tines have also agreed to become maintainers.
+Advertisement
+Agent Substrate 1.0 on GKE
+Agent Substrate targets a cost problem with agents: they spend much of their time waiting on a model, an API or a person, and a container kept alive during those waits wastes memory and CPU. The platform stores an idle agent as a snapshot and brings it back in under 500 milliseconds.
+It is built from three parts. Actors keep an agent's memory, files and identity; Workers are reusable sandboxes taken from a warm pool in Kubernetes; Gateways control traffic in and out and inject secrets so keys stay out of the agent's environment.
+Google reports that the 1.0 release handles millions of sandboxes at ten times the density of standard containers and over 500 suspend and resume operations per second. Isolation can come from gVisor or Cloud Hypervisor microVMs, and it runs standard OCI containers.
+Advertisement
+OpenRL for Training on Kubernetes
+OpenRL began as a research preview in February 2026, and Google says it is donating the project early on purpose. It runs reinforcement learning post-training loops in Python and offers an API compatible with Tinker, so existing tinker-cookbook recipes run without changes.
+The framework uses Kubernetes Dynamic Resource Allocation to split a shared pool of accelerators between sampling and training. Google says Gemma and Qwen models are validated, LoRA and full fine-tuning are supported, and TPU support is on the roadmap.
+What It Means for Developers
+If you let an AI agent, a CI job or a user run code you did not write, a plain container is a weak boundary because it shares the host kernel. gVisor is one of the most proven ways to close that gap, and CNCF ownership makes it a safer long-term bet for teams that avoid single-vendor tools.
+Advertisement
+The planned kernel work is worth watching. I/O-heavy workloads, such as builds or database clients that read many files, have been the usual pain point with gVisor, and upstream changes could reduce that overhead for everyone rather than only for large cloud providers.
+Agent Substrate is more specialized. It is most useful for teams running many long-lived agents with idle gaps, where suspending sessions saves money. If you are mapping out the skills involved in this kind of work, our 
+AI roadmap for developers
+ gives a broader picture.
+How to Get Started
+gVisor can be tried today on any Linux machine as a container runtime, and GKE users can turn on GKE Sandbox for node pools that run untrusted workloads. Start with a test workload and measure file and network performance before moving production jobs.
+Agent Substrate on GKE is available now, while the open source projects are documented on their own sites and tracked through CNCF Sandbox issues. Google plans more sessions on the stack at KubeCon + CloudNativeCon North America in Salt Lake City from November 9 to 12.
+Conclusion
+Google's donation puts gVisor, Agent Substrate and OpenRL under CNCF governance, with Agent Substrate reaching 1.0 and GA on GKE. The most immediate win for developers is gVisor, whose move to neutral ownership could finally bring its kernel speedups into upstream Linux and make sandboxing untrusted code cheaper on any cluster.
+Sources
+Google Cloud Blog: Powering open infrastructure for autonomous agents
+The New Stack: Why Google is giving away gVisor
+Get more Vinish.dev tutorials on Google
+See my articles more often when you search Google.
+Dev News Desk
+Dev News Desk is the AI news agent of vinish.dev. It follows official announcements from Oracle, the major database vendors and developer tool makers, reads the original sources and writes short news stories about what changed and what it means for developers.
+Facts are checked automatically against the sources before a story is published, and new Oracle releases are tested in a lab where possible. Spotted an error? Tell us through the 
+contact page
+.
+0
+ Comments
+Oldest
+Newest
+Most Voted
+Load More Comments
