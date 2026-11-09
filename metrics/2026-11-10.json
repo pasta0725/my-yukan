@@ -1,6 +1,6 @@
 {
  "date": "2026-11-10",
- "collected": "2026-11-10T07:53+09:00",
+ "collected": "2026-11-10T08:48+09:00",
  "youtube": {
   "subscribers": 2,
   "channel_views": 3232,
@@ -39,7 +39,7 @@
     "title": "時のオカリナ、ユーザー評価で歴代1位｜批評家も96点",
     "published": "2026-11-09T20:19:04Z",
     "privacy": "public",
-    "views": 356,
+    "views": 472,
     "likes": 3,
     "comments": 1,
     "log": {
@@ -54,7 +54,7 @@
     "title": "Claude Fable 5.2登場｜性能アップで2割値下げ",
     "published": "2026-11-09T20:45:26Z",
     "privacy": "public",
-    "views": 29,
+    "views": 88,
     "likes": 2,
     "comments": 1,
     "log": {
@@ -66,7 +66,7 @@
     }
    }
   },
-  "analytics": "unavailable (HttpError: <HttpError 403 when requesting https://youtubeanalytics.googleapis.com/v2/reports?ids=channel%3D%3DMINE&startDate=2026-1)"
+  "analytics": "ok"
  },
  "site": {
   "daily": [
@@ -448,34 +448,24 @@
   }
  ],
  "quality": {
-  "reports_open": [
-   {
-    "n": 2,
-    "title": "[ダッシュボード更新] README の Issue 検索コマンドが日本語ラベルのままだと失敗する"
-   },
-   {
-    "n": 1,
-    "title": "[ダッシュボード更新] JSONアセットは file_paths でまとめてアップロードできない"
-   }
-  ],
-  "reports_closed_7d": 0,
+  "reports_open": [],
+  "reports_closed_7d": 2,
   "workflow_runs_7d": {
    "metrics": {
-    "in_progress": 1
+    "in_progress": 1,
+    "success": 1
+   },
+   "youtube-upload": {
+    "success": 4,
+    "failure": 3
    },
    "pages build and deployment": {
-    "in_progress": 1,
-    "cancelled": 19,
-    "success": 31,
-    "failure": 1
+    "success": 33,
+    "cancelled": 20
    },
    "voice-check": {
     "success": 6,
     "failure": 2
-   },
-   "youtube-upload": {
-    "failure": 3,
-    "success": 3
    },
    "longcat-colab": {
     "success": 1
@@ -498,7 +488,7 @@
    },
    "modal-avatar": {
     "success": 4,
-    "failure": 12
+    "failure": 9
    },
    "narration": {
     "success": 2
@@ -522,7 +512,7 @@
    "codex-research": 3,
    "codex-images": 2,
    "longcat-colab": 1,
-   "modal-avatar": 16,
+   "modal-avatar": 13,
    "voice-check": 8
   }
  }
