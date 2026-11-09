@@ -19,7 +19,7 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install -q google-api-python-client google-auth
       - name: get the video
-        if: inputs.video != '-'
+        if: inputs.video != '-' && !startsWith(inputs.video, 'thumb:')
         env: { V: "${{ inputs.video }}" }
         run: |
           git fetch -q origin upload-tmp
@@ -35,5 +35,5 @@ jobs:
           P: ${{ inputs.privacy }}
           V: ${{ inputs.video }}
         run: |
-          F=/tmp/video.mp4; [ "$V" = "-" ] && F=-
+          F=/tmp/video.mp4; [ "$V" = "-" ] && F=-; case "$V" in thumb:*) F="$V";; esac
           python3 tools/youtube_upload.py "$N" "$F" --comment "$C" --privacy "$P"

@@ -31,6 +31,9 @@ if me["id"] != "UCDIg0hL5OV6xB5V8GtV-g9A":
     sys.exit("not the 星餓りな channel - authorize again and pick 星餓りな")
 if a.video == "-":   # setup check only: the keys work and point at the right channel
     print("check ok"); sys.exit(0)
+if a.video.startswith("thumb:"):   # thumb:<videoId> = only set the thumbnail again (it can hit "too many thumbnails recently", 2026-11-10)
+    t = os.path.join(ROOT, "channel", "thumbs", f"{a.name}.jpg")
+    yt.thumbnails().set(videoId=a.video[6:], media_body=MediaFileUpload(t, mimetype="image/jpeg")).execute(); print("ok: thumbnail"); sys.exit(0)
 meta = json.load(open(os.path.join(ROOT, "channel", "meta", f"{a.name}.json"), encoding="utf-8"))
 
 body = {
