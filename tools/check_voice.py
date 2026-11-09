@@ -45,7 +45,7 @@ for op, i1, i2, j1, j2 in sm.get_opcodes():
                    "line": li + 1, "say": lines[li]["say"] if li >= 0 else "",
                    "expected": W[i1:i2], "heard": H[j1:j2], "context_heard": H[max(0, j1 - 8):j2 + 8]})
 # the intro line's {SEC} is spoken as e.g. 「1分」「40秒」 - not an error
-issues = [x for x in issues if not ("{SEC}" in x["say"] and x["kind"] == "台本にない声" and re.fullmatch(r"[0-9０-９いちにさんよんごろくななはちきゅうじゅっぷんびょう]+", x["heard"]))]
+issues = [x for x in issues if not ("{SEC}" in x["say"] and x["kind"] == "台本にない声" and re.fullmatch(r"[0-9０-９いちにさんよんごろくななはちきゅうじゅっぷふんびょう]+", x["heard"]))]
 # 2 characters are enough to catch a misreading (ようかかん -> ようとうかん differs by か/とう)
 big = [x for x in issues if max(len(x["expected"]), len(x["heard"])) >= 2]
 rep = {"similarity": round(sm.ratio(), 3), "issues_2plus": big, "issues_all": len(issues), "heard": heard_txt,
