@@ -262,7 +262,7 @@ const S={
    withEnter(enter(u,tp),()=>{card(150,1030,780,135);text('パッケージ版',190,1097,40,C.text,'left',900);mixLine([['8980',C.acc],['円',C.text]],760,1097,64);});
    creditAt(CRED,535,830);},
  // L14 verdict
- verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'歯ごたえ');  // Colab was full: the big still as a PNGTuber (user 2026-11-09)
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(VDIR&&BIGF)abs(()=>{g.drawImage(BIGF,18,560,1044,1856);Puppet.face(g,'big_hq',18,560,1044,1856,CURT,mouthNow(),(window.FACE||[])[BIGK]);});else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'歯ごたえ');  // Colab was full: the big still as a PNGTuber (user 2026-11-09)
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
    if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.buyFill);
      text('初めての人',0,-60,36,C.buyInk,'center',800);text('最高の入口',0,12,62,C.buyInk);text('ほぼ満点の評価',0,78,30,C.buyInk,'center',800);g.restore();}
@@ -274,7 +274,8 @@ const S={
    text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
 };
 const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
-let BIGF=null;
+let BIGF=null,BIGK=0;const VDIR=(location.hash.match(/v=(\w+)/)||[])[1]||null;  // #v=verdict_a: ending from a moving-still folder (試作)
+if(VDIR)document.write('<script src="big/'+VDIR+'/face.js"><\/script>');
 // each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
 // measured once from the scene's finished state (user 2026-11-09: no wasted space)
 const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
@@ -292,7 +293,7 @@ window.render=async function(t){
   let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
   if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
   CURI=cur;CURT=t;
-  if(['intro','verdict'].includes(P.lines[cur].scene)){let k=Math.floor(Math.max(0,t-P.lines[cur].start)*30);let im=await bigImg(P.lines[cur].scene,k);while(!im&&k>0){k--;im=await bigImg(P.lines[cur].scene,k);}BIGF=im;}
+  if(['intro','verdict'].includes(P.lines[cur].scene)){let k=Math.floor(Math.max(0,t-P.lines[cur].start)*30);const bd=(VDIR&&P.lines[cur].scene==='verdict')?VDIR:P.lines[cur].scene;let im=await bigImg(bd,k);while(!im&&k>0){k--;im=await bigImg(bd,k);}BIGF=im;BIGK=k;}
   const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
   g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
   BASE=g.getTransform();g.save();const F=FIT[L.scene];if(F){g.translate(F.tx,F.ty);g.scale(F.k,F.k);}g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);

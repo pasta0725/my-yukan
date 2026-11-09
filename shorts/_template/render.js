@@ -15,10 +15,11 @@ process.on('uncaughtException', e => { if (e.code !== 'EPIPE') throw e; });
   if (only) { for (const t of only) { await p.evaluate(t => window.render(t), t); await p.screenshot({ path: D + `snap_${t}.png` }); } await b.close(); return; }
   let f0 = 0, f1 = N; const part = process.env.PART;
   if (part) { const [i, n] = part.split('/').map(Number); f0 = Math.floor(N * i / n); f1 = Math.floor(N * (i + 1) / n); }
+  if (process.env.RANGE) { const [a, b2] = process.env.RANGE.split(',').map(Number); f0 = Math.round(a * fps); f1 = Math.round(b2 * fps); }  // only seconds a..b (video only)
   const args = ['-y', '-f', 'image2pipe', '-framerate', '30', '-i', '-'];
-  if (!part) args.push('-i', D + 'work/audio.wav');
+  if (!part && !process.env.RANGE) args.push('-i', D + 'work/audio.wav');
   args.push('-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p');
-  if (!part) args.push('-c:a', 'aac', '-b:a', '192k', '-shortest');
+  if (!part && !process.env.RANGE) args.push('-c:a', 'aac', '-b:a', '192k', '-shortest');
   args.push(D + (process.env.OUT || 'short.mp4'));
   const ff = spawn('ffmpeg', args, { stdio: ['pipe', 'ignore', 'ignore'] });
   for (let i = f0; i < f1; i++) {

@@ -94,6 +94,36 @@
     if (a.mouth) drawMouth(g, a, x, y, sc, m, false);
     g.restore();
   }
+  // mouth and blink only, on a moving big presenter (frames from tools/rina_idle_warp.py or a past clip):
+  // sh = [mouth dx, mouth dy, eye dx, eye dy] in the frame's 1080x1920 pixels (face.js)
+  function face(g, name, x, y, w, h, t, m, sh) {
+    const a0 = A[name]; if (!a0) return; sh = sh || [0, 0, 0, 0];
+    const sc = w / a0.size[0], k = a0.size[0] / 1080;
+    const a = Object.assign({ eye_box: [62, 40] }, a0, { mouth: [a0.mouth[0] + sh[0] * k, a0.mouth[1] + sh[1] * k],
+      eyes: a0.eyes.map(e => [e[0] + sh[2] * k, e[1] + sh[3] * k]) });
+    if (window.FACE_COVER) {            // past clip: its old mouth is covered by the still's closed mouth first, no extra blink (the clip blinks)
+      const im = IM[name];
+      if (im) {
+        if (!face.patch) {                // closed mouth of the still with a soft round edge (made once)
+          const s = im.width / a0.size[0], cw = Math.round(100 * s), ch = Math.round(64 * s), c = document.createElement('canvas'); c.width = cw; c.height = ch;
+          const q = c.getContext('2d'); q.drawImage(im, a0.mouth[0] * s - cw / 2, a0.mouth[1] * s - ch / 2, cw, ch, 0, 0, cw, ch);
+          q.globalCompositeOperation = 'destination-in'; q.setTransform(1, 0, 0, ch / cw, 0, 0);   // oval soft edge
+          const gr = q.createRadialGradient(cw / 2, cw / 2, 0, cw / 2, cw / 2, cw / 2);
+          gr.addColorStop(0, '#000'); gr.addColorStop(0.7, '#000'); gr.addColorStop(1, 'rgba(0,0,0,0)'); q.fillStyle = gr; q.fillRect(0, 0, cw, cw);
+          face.patch = c; face.patchSize = [100, 64];
+        }
+        // skin over the old mouth (its open lower lip reached below the still's mouth): colour taken from the frame itself, between nose and mouth
+        const sx = x + a.mouth[0] * sc, sy = y + (a.mouth[1] - 13) * sc, px = g.getImageData(Math.round(sx), Math.round(sy), 1, 1).data;
+        const sk = `rgba(${px[0]},${px[1]},${px[2]},`, cx = sx, cy = y + (a.mouth[1] + 7) * sc, rx = 38 * sc, ry = 24 * sc;
+        g.save(); g.translate(cx, cy); g.scale(1, ry / rx); const gr2 = g.createRadialGradient(0, 0, 0, 0, 0, rx);
+        gr2.addColorStop(0, sk + '1)'); gr2.addColorStop(0.72, sk + '1)'); gr2.addColorStop(1, sk + '0)'); g.fillStyle = gr2;
+        g.beginPath(); g.arc(0, 0, rx, 0, Math.PI * 2); g.fill(); g.restore();
+        const [pw, ph] = face.patchSize;
+        g.drawImage(face.patch, x + (a.mouth[0] - pw / 2) * sc, y + (a.mouth[1] - ph / 2) * sc, pw * sc, ph * sc);
+      }
+    } else if (blinking(t)) closedEyes(g, a, x, y, sc);
+    drawMouth(g, a, x, y, sc, m, false);
+  }
   // moving into a pose: 3 frames per in-between drawing, ending exactly when the pose is reached
   function transition(key, before) {
     const seq = (IDX.transitions || {})[key]; if (!seq) return null;
@@ -102,5 +132,5 @@
     if (before > n * step) return seq[0];
     return seq[1 + Math.floor((n * step - before) / step)];
   }
-  window.Puppet = { load, mouthAt, chibi, big, transition, assets: A };
+  window.Puppet = { load, mouthAt, chibi, big, face, transition, assets: A };
 })();
