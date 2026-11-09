@@ -4,7 +4,7 @@ Finds: misreadings (8日間 read as ようとうかん), leftover pieces of othe
 
   python3 tools/check_voice.py <video.mp4 or audio> <spec.json> [--out report.json]
 spec.json = the short's spec (lines[].say). Runs on GitHub Actions (.github/workflows/voice-check.yml).
-Exit code 0 = no difference of 2+ characters, 2 = something to look at (see the report; every difference must be explained or fixed). Numbers/English written differently
+Exit code 0 = no difference, 2 = differences to look at (see the report; every difference must be explained or fixed). Numbers/English written differently
 in the transcript can show up as small differences; the report gives the context so a person/agent can judge."""
 import json, re, sys, difflib, argparse, subprocess, os
 
@@ -46,11 +46,12 @@ for op, i1, i2, j1, j2 in sm.get_opcodes():
                    "expected": W[i1:i2], "heard": H[j1:j2], "context_heard": H[max(0, j1 - 8):j2 + 8]})
 # the intro line's {SEC} is spoken as e.g. 「1分」「40秒」 - not an error
 issues = [x for x in issues if not ("{SEC}" in x["say"] and x["kind"] == "台本にない声" and re.fullmatch(r"[0-9０-９いちにさんよんごろくななはちきゅうじゅっぷふんびょう]+", x["heard"]))]
-# 2 characters are enough to catch a misreading (ようかかん -> ようとうかん differs by か/とう)
-big = [x for x in issues if max(len(x["expected"]), len(x["heard"])) >= 2]
-rep = {"similarity": round(sm.ratio(), 3), "issues_2plus": big, "issues_all": len(issues), "heard": heard_txt,
+# every difference is listed: one character is enough for a misreading (8日間 read as ようとうかん was heard as 用途間 = よう「と」かん).
+# Usually only 3-6 differences, mostly numbers/English written differently - judge each one.
+big = issues
+rep = {"similarity": round(sm.ratio(), 3), "issues": big, "issues_all": len(issues), "heard": heard_txt,
        "segments": [{"start": round(s.start, 2), "end": round(s.end, 2), "text": s.text} for s in segs]}
 json.dump(rep, open(a.out, "w"), ensure_ascii=False, indent=1)
-print("similarity", rep["similarity"], "| differences of 2+ characters:", len(big))
+print("similarity", rep["similarity"], "| differences:", len(big))
 for x in big: print(f'  line {x["line"]} {x["kind"]}: expected「{x["expected"]}」 heard「{x["heard"]}」  …{x["context_heard"]}…')
 sys.exit(0 if rep["similarity"] >= 0.95 and not big else 2)
