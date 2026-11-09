@@ -1,0 +1,81 @@
+name: codex-research
+# 2026-11-10: lets Codex (ChatGPT plan, CODEX_AUTH secret) do the web searching for the 号づくり workers, so Claude's
+# per-session search limit is not reached. For each story it finds other outlets' articles on the same event and the
+# official page/images, then fetches their text. Output: branch "research", research/<edition>/<story id>.{json,txt}.
+# Claude workers read them with `git fetch origin research` and never search themselves for these.
+on:
+  workflow_dispatch:
+    inputs:
+      edition: {description: "edition id, e.g. 2026-11-10-am (uses data/<edition>.json)", required: true}
+      max_refs: {description: "only stories with at most this many refs (empty = all)", required: false, default: ""}
+permissions:
+  contents: write
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    outputs: { n: "${{ steps.s.outputs.n }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - id: s
+        run: |
+          python3 tools/research_pages.py split "data/${{ inputs.edition }}.json" 4 /tmp/sh ${{ inputs.max_refs }}
+          echo "n=4" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with: { name: shards, path: /tmp/sh }
+  search:
+    needs: split
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    strategy: { fail-fast: false, matrix: { k: [0, 1, 2, 3] } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: shards, path: /tmp/sh }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm i -g @openai/codex >/dev/null 2>&1 && codex --version && pip install -q requests beautifulsoup4
+      - name: auth
+        env: { CODEX_AUTH: "${{ secrets.CODEX_AUTH }}" }
+        run: |
+          test -n "$CODEX_AUTH" || { echo "CODEX_AUTH is empty"; exit 1; }
+          export CODEX_HOME="$RUNNER_TEMP/codexhome"; mkdir -p "$CODEX_HOME"
+          printf '%s' "$CODEX_AUTH" > "$CODEX_HOME/auth.json"; chmod 600 "$CODEX_HOME/auth.json"
+          printf 'cli_auth_credentials_store = "file"\n' > "$CODEX_HOME/config.toml"
+          echo "CODEX_HOME=$CODEX_HOME" >> "$GITHUB_ENV"
+      - name: search with codex
+        run: |
+          mkdir -p /tmp/w && cp /tmp/sh/shard_${{ matrix.k }}.json /tmp/w/stories.json && cd /tmp/w
+          start=$(date +%s)
+          timeout 2400 codex exec --skip-git-repo-check --search -s workspace-write "You are a news research assistant.
+          Read ./stories.json. Each item is a tech news story (Japanese title and summary, the article it came from in source_url,
+          and URLs we already have in have). For EVERY story, use web search to find:
+          1) up to 4 MORE articles from OTHER outlets (not in have, not the same site as source_url) that report this same event,
+             published within a few days of it. Prefer major outlets and the company's own blog/press release. Japanese or English.
+          2) the official page for it (company press release, blog post, product page, paper, or government notice) and, if that
+             page has them, up to 3 direct URLs of official images (og:image or figures shown on that page; real image files).
+          Only include URLs you actually saw in search results or opened. Never guess or build URLs.
+          Write ./found.json as one JSON object: {\"<story id>\": {\"refs\": [{\"url\": \"...\", \"site\": \"outlet name\", \"title\": \"...\"}],
+          \"official\": {\"url\": \"...\", \"images\": [\"...\"]}}} with every story id as a key (empty lists if nothing found).
+          Work through the stories one by one and rewrite found.json after each story so partial work is kept." 2>&1 | tail -15 || true
+          echo "seconds $(( $(date +%s) - start ))"
+          test -f found.json || echo '{}' > found.json
+          python3 -c "import json;json.load(open('found.json'))" || echo '{}' > found.json
+          python3 "$GITHUB_WORKSPACE/tools/research_pages.py" fetch found.json /tmp/out
+      - uses: actions/upload-artifact@v4
+        with: { name: "res${{ matrix.k }}", path: /tmp/out }
+  push:
+    needs: search
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: /tmp/all, pattern: "res*", merge-multiple: true }
+      - run: |
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin research; then git checkout -q -B research origin/research; else git checkout -q --orphan research; fi
+          D="research/${{ inputs.edition }}"; mkdir -p "$D"; cp /tmp/all/* "$D/" 2>/dev/null || true
+          ls "$D" | wc -l
+          git add research; git commit -qm "research ${{ inputs.edition }}" || true
+          for i in 1 2 3; do git push -q origin research && break; git pull -q --rebase origin research; done
