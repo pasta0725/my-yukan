@@ -41,7 +41,7 @@
 ## 不具合・改善点の報告（2026-11-10〜、ユーザーの依頼）
 - 毎日の自動作業のAIは、作業中に不具合（失敗・食い違い・回避した問題）や改善点を見つけたら、GitHub の Issue にラベル「AIからの報告」を付けて書く：
   `gh api -X POST repos/pasta0725/my-yukan/issues -f title="[作業名] 一言の要約" -f body="何が起きたか／どう回避したか／影響／改善の提案" -f 'labels[]=AIからの報告'`
-- 先に `gh api 'repos/pasta0725/my-yukan/issues?labels=AIからの報告&state=open'` で同じ話題を探し、あればコメントを足す（`.../issues/<番号>/comments -f body=...`）。
+- 先に `gh api -X GET repos/pasta0725/my-yukan/issues -f labels=AIからの報告 -f state=open`（ラベル名を URL に直接書くと失敗する。2026-11-10 Issue #2） で同じ話題を探し、あればコメントを足す（`.../issues/<番号>/comments -f body=...`）。
 - 仕組み（指示文・ワークフロー・ルール文書）は自分で変えず、報告だけにする。トークンや鍵の中身は書かない。日本語で書く。
 - 保守役の Claude が報告を読んで直し、直したら Issue を閉じる。
 
