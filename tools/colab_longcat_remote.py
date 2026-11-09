@@ -25,7 +25,10 @@ if not os.path.exists("LongCat-Video"):
     sh("git clone -q --depth 1 https://github.com/meituan-longcat/LongCat-Video")
 sh('pip install -q "transformers==4.51.3" "diffusers==0.35.1" loguru ftfy av librosa soundfile pyloudnorm audio-separator einops imageio imageio-ffmpeg hf_transfer onnxruntime 2>&1 | grep -v "dependency conflicts\\|requires\\|^ERROR: pip" | tail -3 || true')
 # 40 GB cards (A100): keep the 11 GB text encoder on the CPU (it runs once per clip) and park the KV cache in RAM
-if os.environ.get("LOWVRAM") == "1":
+_vram = int(subprocess.run("nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits", shell=True, capture_output=True, text=True).stdout.split()[0] or 0)
+LOW = os.environ.get("LOWVRAM") == "1" or _vram < 70000   # A100 40GB / L4: int8 DiT (official --use_int8) + text encoder on the CPU
+print("GPU memory MB", _vram, "low-memory mode" if LOW else "", flush=True)
+if LOW:
     d = "LongCat-Video/run_demo_avatar_single_audio_to_video.py"; t = open(d).read()
     if "LOWVRAM" not in t:
         t = t.replace("    pipe.to(local_rank)\n",
@@ -38,11 +41,11 @@ if os.environ.get("LOWVRAM") == "1":
                   "self.text_encoder(text_input_ids.to(self.text_encoder.device), mask.to(self.text_encoder.device)).last_hidden_state.to(device)")
     open(d, "w").write(t)
 W = "/content/w"
-if not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/lora/dmd_lora.safetensors"):
+if not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/lora/dmd_lora.safetensors") or (LOW and not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/base_model_int8")):
     sh(f"""HF_HUB_ENABLE_HF_TRANSFER=1 python -c "
 from huggingface_hub import snapshot_download as s
 s('meituan-longcat/LongCat-Video-Avatar-1.5', local_dir='{W}/LongCat-Video-Avatar-1.5', max_workers=16,
-  allow_patterns=['*.json','base_model/*','lora/*','scheduler/*','vocal_separator/*','whisper-large-v3/model.safetensors','whisper-large-v3/*.json','whisper-large-v3/*.txt'])
+  allow_patterns=['*.json','{'base_model_int8' if LOW else 'base_model'}/*','lora/*','scheduler/*','vocal_separator/*','whisper-large-v3/model.safetensors','whisper-large-v3/*.json','whisper-large-v3/*.txt'])
 s('meituan-longcat/LongCat-Video', local_dir='{W}/LongCat-Video', max_workers=16, allow_patterns=['*.json','tokenizer/*','text_encoder/*','vae/*','scheduler/*'])
 " """)
 sh(f"du -sh {W}/*")
@@ -61,6 +64,6 @@ for job in jobs:
     json.dump({"prompt": (PROMPT + " " + extra).strip(), "cond_image": f"/content/in/{img}", "cond_audio": {"person1": f"/content/in/{name}.wav"}}, open(js, "w"))
     sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
        f"--context_parallel_size=1 --checkpoint_dir={W}/LongCat-Video-Avatar-1.5 --stage_1=ai2v --input_json={js} "
-       f"--use_distill --model_type avatar-v1.5 --resolution {res} --num_segments {seg} --output_dir /content/out/{name} "
+       f"--use_distill --model_type avatar-v1.5 {'--use_int8 ' if LOW else ''}--resolution {res} --num_segments {seg} --output_dir /content/out/{name} "
        f"2>&1 | grep -vE 'it/s\\]|s/it\\]' | tail -30")
 sh("ls -laR /content/out")
