@@ -46,7 +46,7 @@ jobs:
         run: |
           mkdir -p /tmp/w && cp /tmp/sh/shard_${{ matrix.k }}.json /tmp/w/stories.json && cd /tmp/w
           start=$(date +%s)
-          timeout 2400 codex exec --skip-git-repo-check --search -s workspace-write "You are a news research assistant.
+          timeout 2400 codex --search exec --skip-git-repo-check -s workspace-write "You are a news research assistant.
           Read ./stories.json. Each item is a tech news story (Japanese title and summary, the article it came from in source_url,
           and URLs we already have in have). For EVERY story, use web search to find:
           1) up to 4 MORE articles from OTHER outlets (not in have, not the same site as source_url) that report this same event,
@@ -77,5 +77,5 @@ jobs:
           if git fetch -q origin research; then git checkout -q -B research origin/research; else git checkout -q --orphan research; fi
           D="research/${{ inputs.edition }}"; mkdir -p "$D"; cp /tmp/all/* "$D/" 2>/dev/null || true
           ls "$D" | wc -l
-          git add research; git commit -qm "research ${{ inputs.edition }}" || true
+          git add research; git commit -q --allow-empty -m "research ${{ inputs.edition }}"
           for i in 1 2 3; do git push -q origin research && break; git pull -q --rebase origin research; done
