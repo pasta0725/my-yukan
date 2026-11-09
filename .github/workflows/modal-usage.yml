@@ -1,0 +1,18 @@
+name: modal-usage
+# Shows how much Modal (cloud GPU) has been used this month (no secrets printed).
+on: { workflow_dispatch: {} }
+jobs:
+  usage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q modal && modal --version
+      - env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: |
+          modal billing --help || true
+          modal billing report --for "this month" || modal billing report --start "$(date -u +%Y-%m-01)" || true
+          modal billing report --for "this month" --resolution d || true
+          modal app list || true
