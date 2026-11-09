@@ -1,0 +1,529 @@
+===== https://www.itmedia.co.jp/pcuser/articles/2611/09/news041.html
+(status 200)
+メディア
+Sponsord｜ 
+PHILIPS
+日本マイクロソフト
+レノボ
+AI PC Now!
+ミニPC
+プロナビ
+ゲーミング
+クリエイター
+Windows 10終了
+30周年
+デジモノ
+教育とIT
+Mac・iPad
+アキバ
+PCパーツの道
+チョイ得
+ITmedia PC USER
+ >
+なぜ8GBメモリでもWindows 11が快適に動くようになるのか？　Microsoftが取り組む最適化の仕組みと次期Windows「27H2」への展望
+：
+Windowsフロントライン
+（1/3 ページ）
+»
+2026年11月09日 06時00分 公開
+[
+鈴木淳也（Junya Suzuki）
+，
+ITmedia
+]
+　11月3日（米国時間）、米MicrosoftでWindows＋Devices部門を統括するエグゼクティブバイスプレジデント（EVP）のパヴァン・ダヴルリ氏が「
+Raising the bar for 8 GB Windows 11 PCs: what’s improved and how to get it
+」と題したブログを投稿し、8GBメモリのPCでもWindows 11が快適に動作するよう、どのような最適化を施したのかを解説している。
+　今回は、メモリ容量の少ないPCにおける動作改善の概要と、最新バージョンのWindowsを取り巻く背景をまとめたい。
+米MicrosoftでWindowsやデバイス部門を統括するパヴァン・ダヴルリ氏のブログ投稿
+「8GBメモリでも快適」はこうして実現される
+　今回のブログは、基本的に
+ダヴルリ氏が7月に投稿した内容
+に沿ったもので、具体的にどこを改良したのか、どのような仕組みで実現しているのかを詳しくまとめた形だ。
+　改善点は
+Feedback Hub
+に寄せられた声をベースに、テレメトリーを含むさまざまなデータを基に洗い出した。その上で、同社ラボにある2万台以上のPC（最新の8GBモデルを含む）で実際のワークロードを実行し、カメラを用いて時間を計測するテストを行ったという。
+　こうした過程を経て、次のようなパフォーマンス改善が実現している。
+8GBメモリで応答性が20％向上　マルチタスク処理は40％高速化
+　これまで8GBメモリのPCでタスクマネージャーを開いたとき、メモリのほとんどが既に使用済みだったという経験があるかもしれない。空きメモリが少ない状態でアプリを動かすため、Windowsは“スワップ”という動作で、メモリ内の“すぐには使わない”データをSSDなど別の記憶領域へ一時的に退避する。
+　一般にSSDはDRAMに比べてアクセス速度が遅く、このスワップが体感速度の悪化につながる。
+　アプリが1つだけならまだ大きな問題にはならないが、Windowsでは複数のアプリを同時に使える。この場合、残り少ない空きメモリを複数のアプリが奪い合い、スワップが多発して体感速度の悪化として跳ね返ってくる。Microsoftは、いくつかのアプローチでこの問題に対処している。
+　1つ目は、圧縮とスワップのタイミングの調整だ。Windowsはスワップによるレスポンス低下を抑えるため、Windows 10以降、非アクティブなデータを圧縮してできるだけメモリ内に保持する機能を備えている。
+　この仕組みはWindows 11にも引き継がれているが、今回は8GBのPC向けにチューニングを施した。圧縮率やデータの出し入れ、再読み込みのタイミングを最適化し、最大で2GB多くメモリを確保できるようになっている。
+　2つ目は、Windowsの操作そのものの応答速度の向上だ。メモリに比較的余裕のあるPCでも、スタートメニューを開いたり右クリックしたりしたときに“引っかかり”を感じたことはないだろうか。
+　検索やファイルエクスプローラーなど、即応性が求められる操作で応答速度が改善しており、Microsoftによれば、2026年1月に提供されていたビルド（Build 26200.7628）と最新ビルド（Build 26300.9550）の比較で、8GBのPCにおける応答速度が最大20％ほど向上したという。
+　3つ目は、フォアグラウンド処理の優先だ。ユーザーが操作している間はユーザーが要求した作業を優先し、例えば検索のインデックス作成といったバックグラウンドのタスクを一時的に止めることで、“メイン”のアプリが快適に動くようにした。
+　同社によれば、アップデート後の再起動直後に“Webブラウザを開く”といった操作で効果を体感できるとしている。
+　この他、Microsoft Edgeのようにバックグラウンドで既に動作していることが多いアプリは、実行中の状態を直接呼び出すことで起動速度を最大33％高速化した。Teamsのように比較的“重い”アプリは、10月のTeamsアップデートで導入された“効率モード”で実行されるため、やはり起動速度が最大20％ほど向上する。
+　なお、Edgeを例に挙げたアプリ起動の高速化については次項で触れる。
+　4つ目は、マルチタスク時の動作速度の改善だ。
+YouTubeで動画が公開
+されているが、テスト機はSnapdragon X Plus（8コア）と8GBメモリを搭載した「HP OmniBook 3」だ。
+　Edgeで20個のタブを開いて4K動画を再生し、Word／Excel／PowerPointで3つの巨大なファイルを開き、さらにOutlookとファイルエクスプローラーも開いたままにした状態で、先ほどの「Build 26200.7628」と「Build 26300.9550」の動作を比較している。これで最大40％の高速化を実現できたという。
+Accelerated App Launch
+　正式名称ではないようだが、今回Edgeで導入された、アプリを高速に起動するための機能だ。
+Neowinなどが報じていた
+ように、これまではアプリ上でWebページへのリンクをクリックすると、対象のアプリ（この場合はEdge）が既に起動していても、一度起動のための呼び出しが行われ、その後にリンクを処理するという2段階のステップを踏んでいた。
+　この仕組みを使うと、起動中のアプリが該当するメッセージ（リンクを開く）を直接受け取れるようになり、ステップが1段階減って高速化につながる。
+　詳細はMicrosoftの
+解説ページ
+を参照してほしいが、注意点は「誰でもすぐに使えるわけではない（CFRによる段階的なロールアウト）」「既に起動している場合のみ有効（ウォームスタート）」「対応するのはMicrosoft Edge 150以降のみ」の3つだ。他のブラウザが対応するかどうかは、今後の各社の動き次第となる。
+Accelerated App Launchの仕組み。起動中の（対応）アプリであれば、必要なステップを1段階省略できる
+Windowsと主要アプリでメモリ効率を向上
+関連記事
+個人向けMicrosoft 365のストレージ容量が削減、代わりにAI機能を開放──Microsoftの狙いは？
+個人向けMicrosoft 365のFamily以上のプランで、OneDriveの容量が「1人1TB」から「6人で2TB共有」に縮小される。その一方で、契約者以外のメンバーにもCopilotを開放する方針だ。改定の中身と各プランの違いを整理する。
+米Microsoftはなぜ最大6万人に早期退職を打診するのか？　決算資料から読み解く巨額AI投資の“台所事情”
+米Microsoftが、従業員の4人に1人に相当する最大6万人を対象とした早期退職プログラムを発表した。不調のゲームやPC部門だけでなく、売り出し中のAI部門までもが対象に含まれている。直後に発表された2027年度第1四半期決算の「Azure」と「CapEx」の数字から、その背景を読み解く。
+「Copilot+ PC」ブランドは終了したのか？　普及に伴い変化するMicrosoftのAI戦略
+2024年5月に発表され、PC市場で大々的にアピールされてきた「Copilot+ PC」のブランディング戦略に変化が起きている。MicrosoftのSurface担当CVPが、最新モデルで「Copilot+ PC」という呼称を使用していないことを明かすなど、同ブランド名によるマーケティングは後退しつつあるようだ。ブランド呼称消滅の背景と、AI体験が標準化していくPC市場の現状をひもとく。
+「Recall」の反省を生かした手動型？　Windowsの新AI機能「Project Pantheon」とは
+物議を醸した「Recall」の自動記録とは異なり、ユーザー自身が選んだ情報をマルチモーダルに記憶し、AIで自在に引き出せる新機能「Project Pantheon」がMicrosoftでひそかにテストされている。その仕組みと、かつてNPU必須機能として登場した「Recall」との違いから、Windowsにおける次世代のAI活用像を考察する。
+ミュンヘン市はなぜ再びオープンソースソフトウェアへ回帰するのか？　脱Microsoftを巡る欧州の最新事情
+ドイツのミュンヘン市が、かつて断念したオープンソースソフトウェア（OSS）の活用へと再びカジを切っている。欧州各地で進む「脱Microsoft」の動きはどうなっているのか。技術的課題と政治的背景が交錯するミュンヘン市の事例から、行政システムにおけるOSS活用の現在地を読み解く。
+1
+|
+2
+|
+3
+次のページへ
+Copyright © ITmedia, Inc. All Rights Reserved.
+Special
+PR
+ITmedia デバイス＆サービス通信
+ITmedia PC USER Facebook
+@itm_lifestyle
+ITmedia PC USER 最新記事一覧
+ITmedia PC USER はてなブックマーク
+Special
+PR
+アクセストップ10
+2026年11月10日 更新
+      なぜ8GBメモリでもWindows 11が快適に動くようになるのか？　Microsoftが取り組む最適化の仕組みと次期Windows「27H2」への展望
+（2026年11月09日）
+      有機EL＆タッチ対応の新型「MacBook Pro」を試す　M6とM5 Maxの性能差、使い勝手はどう変わった？
+（2026年11月09日）
+      初登場時の約3倍！　でも“通常価格”の120万円台に高騰した「GeForce RTX 5090」――それでもアキバで買い手が途絶えない理由
+（2026年11月07日）
+      メーカー自身がバックドアを仕込み、犯罪集団に“販売”　乗っ取られたTV用端末130万台超、Googleが遮断　日本の警察庁も参加
+（2026年11月05日）
+      Windows PC向けゲームの「ロード待ち」はなぜ起こる？　背景に過去との「互換性」
+（2026年11月05日）
+      ロジテック、薄型筐体を採用したUSB外付けBlu-ray Discドライブ
+（2026年11月09日）
+      「ChatGPT Classic」デスクトップアプリ、2027年1月30日で提供終了／Bluetooth SIGが新機能「High Data Throughput」の採択を発表　通信速度が最大7.5Mbpsに
+（2026年11月08日）
+      光らない簡易水冷「CyberFlow Core」や120mmファン用フィギュア台など、魅せるPCの新境地
+（2026年11月09日）
+      Magic Mouseを裏返さずに充電できる薄型設計の充電ドック
+（2026年11月09日）
+      ソニー、初代ウォークマン付属ヘッドフォンをイメージしたType-C有線ヘッドフォン
+（2026年11月07日）
+ランキングトップ30
+最新トピックス
+PR
+過去記事カレンダー
+2026年
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2025年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2024年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2023年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2022年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2021年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2020年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2019年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2018年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2017年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2016年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2015年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2014年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2013年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2012年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2011年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2010年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2009年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2008年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2007年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2006年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2005年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2004年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+5月
+4月
+3月
+2月
+1月
+2003年
+12月
+11月
+10月
+9月
+8月
+7月
+6月
+Feed Back
+ご意見・ご感想
+リリース送付先
+広告掲載のお問い合わせ
+Specialインデックス
+RSS一覧
+利用規約
+ITmediaはアイティメディア株式会社の登録商標です。
+メディア一覧
+ | 
+公式SNS
+ | 
+広告案内
+ | 
+お問い合わせ
+ | 
+プライバシーポリシー
+ | 
+RSS
+ | 
+運営会社
+ | 
+採用情報
+ | 
+推奨環境
+
+===== https://www.watch.impress.co.jp/docs/news/2153446.html
+(status 200)
+ニュース
+Windows 11、8GB搭載PCでスタートや検索が最大20%高速化
+清宮信志
+2026年11月4日 12:39
+ Microsoftは、8GBメモリを搭載するPC向けに、Windows 11のメモリ管理と応答性を改善した。2026年1月の更新版と比べ、スタートメニューや検索、右クリックメニューなどの応答が最大20%高速化。同社の社内テストでは、複数のアプリやファイルを順に開く作業も最大40%短縮されたという。 
+ 8GB搭載PC向けにメモリ圧縮やストレージへの退避のタイミングを調整し、作業中のデータを従来より最大2GB多くメモリ上に保持できるようにした。開いたままのアプリやブラウザーのタブに戻った際、再読み込みが起きにくくなる。また、ユーザーの操作を一時的に優先し、検索インデックスの作成などのバックグラウンド処理を抑えることで、負荷がかかっているときの応答性を高めた。 
+ 最大40%の短縮を確認したテストでは、同じ8GB搭載PCで、Microsoft Edgeの20個のタブや4K動画、大容量のWord、PowerPoint、Excelファイルなどを順に開き、そのまま保持した状態で一連の作業にかかる時間を比較した。 
+ メモリ使用量を抑えるため、8GB以下のPCではウィジェットを開いたときにだけ読み込むように変更。閉じている間のメモリ確保量を約200MB削減した。Edgeでは、操作していないタブをスリープさせるまでの既定時間を2時間から15分に短縮している。 
+ 改善を適用するには、Windows 11 バージョン26H2のビルド26300.9818以降が必要。一部の改善はアプリの更新で提供されるため、Edge、Microsoft 365、Teamsも最新版に更新する必要がある。
+
+===== https://www.thurrott.com/?p=343464
+(status 200)
+There’s still no end in sight for the AI-fueled memory and storage crisis, and the situation is forcing many tech companies to adapt. For Microsoft, that means optimizing Windows 11’s memory use on PCs with just 8GB of RAM, which most tech-savvy people saw as insufficient not long ago.
+Today, Pavan Davuluri, Executive Vice President, Windows + Devices at Microsoft, 
+detailed new memory improvements
+ enabled by the latest Windows 11 updates. According to the exec, Windows 11 is now up to 20% more responsive on PCs with just 8GB of RAM. These results are based on telemetry measurements of response times for Search, Start, right-click, Settings, Snipping Tool, and File Explorer on Windows 11 PCs with 8GB of RAM running the 
+September Preview updates
+.
+In another lab test, the company observed that multitasking was up to 40% faster on Intel-based and Qualcomm-based PCs with 8GB of RAM after installing the latest Windows 11 updates. These performance improvements are the result of Windows 11 making better use of compression to keep up to 2GB more of active data in memory instead of moving it to slower storage.
+Microsoft also did some work to reduce the memory usage of Microsoft Edge and Microsoft 365 apps. Microsoft observed that these apps reduced committed-memory growth by up to 900 MB. To save an extra 200MB of memory, Widgets on PCs with 8GB of memory now only load when users open them.
+To make Windows 11 more responsive in general, Microsoft implemented other under-the-hood changes. The OS is now capable of “briefly prioritizing the work you ask for and backing off background tasks such as search indexing while you’re active.” A new Windows capability can also streamline the launch of apps with already-running instances, and this 
+already benefits Microsoft’s Edge browser
+.
+Microsoft isn’t done optimizing memory use on Windows 11, however. The company is already planning to improve memory compression even further, and it’s working with app developers, PC makers, and silicon partners to optimize Windows 11 and apps for 8GB PCs. Lastly, this won’t be immediately noticeable to end users, but experiences like Windows Search, Widgets, OneDrive, and Photos will share the same web engine to save memory. “Windows features and apps will share common parts instead of each carrying its own,” Davuluri explained.
+Tagged with
+          Windows 11        
+Share post
+© 2026 Thurrott LLC
+              Become a Thurrott member            
+              Contact help and support            
+              Contact Paul            
+              Advertising            
+RSS
+
+===== https://thenextweb.com/news/windows-11-20-percent-8gb-ram
+(status 200)
+Windows 11
+Credit: KK IN HK
+Microsoft says months of work have made Windows 11 up to 20% more responsive and that better memory management makes a meaningful difference on PCs with 8GB of RAM. The only published hands-on test found gains on 16GB and larger machines, and none at all on an 8GB PC.
+Microsoft says Windows 11 is now up to 20% more responsive, and that memory work makes an especially meaningful difference on 8GB PCs. The one published test of an 8GB machine found no change.
+The Verge reported
+ the claims on Thursday. Navjot Virk, corporate vice president of Windows experiences, wrote in 
+Microsoft’s post
+ that Windows can keep up to 2GB more active data in memory instead of moving it to slower storage.
+Widgets now load only when opened, which Virk said frees more than 200MB on machines with 8GB or less. Start, File Explorer, Search, Snipping Tool and Edge were all touched.
+The taskbar can finally sit at the sides or top of a display. Windows Hello sign-in is faster, and AirPods pair up to 15 seconds faster, on a different build.
+The promise is not new. Pavan Davuluri said in August that Microsoft would 
+shrink Windows to fit
+ 8GB machines, naming the memory allocator, WinUI 3 and WebView2.
+Microsoft did publish a baseline. The 20% compares build 26300.9550 against 26200.7628, timing Search, Start, right-click, Settings, Snipping Tool and File Explorer. None of those is a memory test.
+The reliability half of the plan has a record. June’s update fixed 208 flaws and brought 
+a cascade of bugs
+, including BitLocker recovery screens on some HP and Dell machines.
+The memory claims carry no such measurement. Their footnote says only that they rest on improvements in the same build. Windows Latest tested it this month: a 16GB laptop used about 2GB less, and an 8GB PC nothing at all, still at 96%.
+Price is why any of this is happening. Google said in July it was 
+reworking Android
+ to need less RAM, citing Morgan Stanley figures of $2.80 per gigabyte in 2025 against $12 now.
+Memory makers have moved capacity to high-bandwidth memory for AI data centres. Samsung does not expect relief until 2028.
+Europe is where the squeeze shows. 
+European desktop shipments
+ fell about 20% in the third quarter, with almost 30% forecast for the fourth. Laptops should drop 20%.
+Context found that what buying there was came from the end of Windows 10 support, not AI PC features. Europeans replaced machines because the old one died.
+Gartner expects the sub-$500 PC to all but disappear by 2028, and the average American machine already sells for 
+more than $1,000
+. Microsoft is optimising for 8GB because it is becoming the ceiling.
+Get the TNW newsletter
+Get the most important tech news in your inbox each week.
+Also tagged with
+Windows
+Microsoft
