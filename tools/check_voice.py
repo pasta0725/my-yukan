@@ -23,7 +23,9 @@ wav = "/tmp/voice_check.wav"
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", a.media, "-ac", "1", "-ar", "16000", wav], check=True)
 from faster_whisper import WhisperModel
 m = WhisperModel(a.model, device="cpu", compute_type="int8")
-segs, _ = m.transcribe(wav, language="ja", beam_size=5, vad_filter=False, condition_on_previous_text=False)
+import wave, numpy as np   # pass samples, not the path (PyAV 15 broke faster-whisper's own file reading)
+with wave.open(wav) as w: audio = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
+segs, _ = m.transcribe(audio, language="ja", beam_size=5, vad_filter=False, condition_on_previous_text=False)
 segs = list(segs)
 heard_txt = "".join(s.text for s in segs)
 
