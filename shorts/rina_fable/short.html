@@ -261,7 +261,7 @@ const S={
 const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
 const VF={};function vidImg(sc,k){const key=sc+k;if(key in VF)return Promise.resolve(VF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{VF[key]=i;r(i)};i.onerror=()=>{VF[key]=null;r(null)};i.src='vid/'+sc+'/'+String(k+1).padStart(4,'0')+'.jpg';});}
 const VIDN={os:235,robot:231};let VIDF=null;
-let BIGF=null;const VERDICT_CLIP=false;  // true once big/verdict holds the talking ending clip
+let BIGF=null;const VERDICT_CLIP=true;  // true once big/verdict holds the talking ending clip
 // each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
 // measured once from the scene's finished state (user 2026-11-09: no wasted space)
 const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
