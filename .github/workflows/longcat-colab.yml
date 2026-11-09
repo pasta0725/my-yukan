@@ -3,12 +3,12 @@ name: longcat-colab
 # input dir = a folder in the repo with: jobs.json ([[name, segments, res, image, extra_prompt], ...]), the images and <name>.wav,
 # and optionally prompt.txt. Clips are pushed to the branch "generated" as generated/<dir>/<name>.mp4.
 # 2026-11-10: Colab answers "Service Unavailable" when no GPU is free at that moment; others got G4/A100 after a few retries.
-# So it retries G4 and A100 (80GB only) every 30 s for up to `wait` minutes, and if no GPU (or no clip) it makes the clips on Modal instead.
+# So it retries G4 (and A100 80GB if listed) every 30 s for up to `wait` minutes, and if no GPU (or no clip) it makes the clips on Modal instead.
 on:
   workflow_dispatch:
     inputs:
       dir: {description: "input folder in the repo (e.g. shorts/rina_health/longcat)", required: true}
-      gpu: {description: "GPUs to try in order (space separated)", default: "G4 A100"}
+      gpu: {description: "GPUs to try in order (space separated). Colab gives this account only the 40GB A100, which LongCat cannot use (2026-11-10), so G4 only", default: "G4"}
       wait: {description: "minutes to keep retrying Colab before using Modal", default: "20"}
       fallback: {description: "use Modal when Colab gives no clip (yes/no)", default: "yes"}
 permissions:
