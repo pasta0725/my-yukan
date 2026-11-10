@@ -3,12 +3,14 @@ name: longcat-colab
 # input dir = a folder in the repo with: jobs.json ([[name, segments, res, image, extra_prompt], ...]), the images and <name>.wav,
 # and optionally prompt.txt. Clips are pushed to the branch "generated" as generated/<dir>/<name>.mp4.
 # 2026-11-10: Colab answers "Service Unavailable" when no GPU is free at that moment; others got G4/A100 after a few retries.
-# So it retries G4 (and A100 80GB if listed) every 30 s for up to `wait` minutes, and if no GPU (or no clip) it makes the clips on Modal instead.
+# So it retries every 30 s for up to `wait` minutes, and if no GPU (or no clip) it makes the clips on Modal instead.
+# 2026-11-10 (colab-check): the 80GB A100 needs the --high-mem option ("A100:hm"); without it Colab gives the 40GB one.
+# H100 and G4 --high-mem are not allowed on this account; plain G4 answers "Service Unavailable" every time so far.
 on:
   workflow_dispatch:
     inputs:
       dir: {description: "input folder in the repo (e.g. shorts/rina_health/longcat)", required: true}
-      gpu: {description: "GPUs to try in order (space separated). Colab gives this account only the 40GB A100, which LongCat cannot use (2026-11-10), so G4 only", default: "G4"}
+      gpu: {description: "GPUs to try in order (space separated, ':hm' = --high-mem). A100:hm is the 80GB A100", default: "A100:hm G4"}
       wait: {description: "minutes to keep retrying Colab before using Modal", default: "20"}
       fallback: {description: "use Modal when Colab gives no clip (yes/no)", default: "yes"}
 permissions:
@@ -37,13 +39,14 @@ jobs:
           while [ -z "$got" ] && [ $(date +%s) -lt $end ]; do
             for g in $GPU; do
               n=$((n+1))
-              if $C new -s lc --gpu $g >/tmp/new.log 2>&1; then
+              hm=""; [ "${g%%:*}" != "$g" ] && hm="--high-mem"
+              if $C new -s lc --gpu ${g%%:*} $hm >/tmp/new.log 2>&1; then
                 mem=$(echo 'import subprocess;print(subprocess.run(["nvidia-smi","--query-gpu=memory.total","--format=csv,noheader,nounits"],capture_output=True,text=True).stdout.strip())' | $C exec -s lc --timeout 0 | grep -oE '^[0-9]+' | head -1)
                 echo "try $n: got $g (${mem:-?} MB)"
                 if [ "${mem:-0}" -ge 70000 ]; then got=$g; break; fi
                 echo "  too little memory, giving it back"; $C stop -s lc || true
               else
-                echo "try $n: $g $(grep -oE 'Service Unavailable|Too Many Requests|quota|entitlement' /tmp/new.log | head -1)"
+                echo "try $n: $g $(grep -oE 'Service Unavailable|Too Many Requests|rejected accelerator|quota|entitlement' /tmp/new.log | head -1)"
               fi
             done
             [ -z "$got" ] && sleep 30
