@@ -23,6 +23,15 @@ CATS = {  # id: (label, icon, css var)
     "game": ("ゲーム", "game", "--game"), "ec": ("EC・決済", "cart", "--ec"),
     "future": ("宇宙・未来技術", "spark", "--future"), "other": ("その他", "chart", "--other")}
 LEGACY = {"kaden": "gadget", "fukugyo": "ec"}
+CAT_COPY = {  # category page banner: (image alt, one line about the category) - 2026-11-10
+    "ai": ("光る対話画面にふれる星餓りなと、小さなロボット", "ChatGPT、Claude、Gemini。新しいAIで何ができるようになったのかを、使う場面でわかりやすく伝えます。"),
+    "mobile": ("スマホを見せる星餓りなと、ノートパソコンとタブレット", "iPhone、Android、Mac、Windows。新しい機種とアップデートを、買うか待つかの判断に役立つ形でまとめます。"),
+    "gadget": ("イヤホンをつけてスピーカーを持つ星餓りなと、ロボット掃除機", "イヤホン、ロボット掃除機、スマート家電。暮らしを少し便利にする新製品を追いかけます。"),
+    "service": ("浮かぶアプリのアイコンにふれる星餓りな", "いつも使うネットサービスとアプリの変更点を、自分に関係があるかどうかで整理します。"),
+    "game": ("ゲームのコントローラーを持つ星餓りな", "任天堂、PlayStation、クラウドゲーム。新作、ゲーム機、セールの話題をまとめます。"),
+    "ec": ("買い物袋とカードを持つ星餓りな", "ネット通販、セール、キャッシュレス決済。お得と損を見分けるためのニュースを集めます。"),
+    "other": ("新聞を持つ星餓りなと、盾とチップのアイコン", "通信、セキュリティ、半導体、企業の動き。見逃すと困る大きなニュースだけを選んでいます。"),
+}
 SLUG = {"ai": "ai", "mobile": "mobile", "gadget": "gadget", "service": "service", "game": "game", "ec": "ec", "future": "future", "other": "other"}
 # images hosted on / found on news sites are not used on the public site
 NEWS_HOSTS = ("itmedia.co.jp", "impress.co.jp", "mynavi.jp", "gizmodo.jp", "nikkei.com", "techcrunch.com", "theverge.com",
@@ -252,7 +261,12 @@ for k, (lab, _, var) in CATS.items():
         banner = ('<section class="retro"><picture><source media="(max-width:760px)" srcset="/assets/future-banner-m.webp" width="600" height="450">'
                   '<img src="/assets/future-banner.webp" alt="宇宙服のヘルメットをかぶった星餓りなと、レトロなロケットの絵" width="1500" height="500" fetchpriority="high"></picture>'
                   f'<div class="retro-copy"><h1>宇宙・未来技術</h1><p>ロケット、人工衛星、自動運転、ロボット、量子コンピューター。未来がいつ暮らしに届くのかを追いかけます。</p></div></section>')
-    body = (banner + f'<div class="cols"><div><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}{"の記事" if k == "future" else ""}</h2><span>{len(items)}本</span></div>'
+    elif k in CAT_COPY and os.path.exists(os.path.join(ROOT, "site", "assets", f"cat-{k}.webp")):   # 2026-11-10: a Rina banner for every category
+        alt, copy = CAT_COPY[k]
+        banner = (f'<section class="cban" style="--c:var({var})"><picture><source media="(max-width:760px)" srcset="/assets/cat-{k}-m.webp" width="600" height="450">'
+                  f'<img src="/assets/cat-{k}.webp" alt="{E(alt)}" width="1500" height="500" fetchpriority="high"></picture>'
+                  f'<div class="cban-copy"><h1>{E(lab)}</h1><p>{E(copy)}</p></div></section>')
+    body = (banner + f'<div class="cols"><div><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}{"の記事" if banner else ""}</h2><span>{len(items)}本</span></div>'
             f'<ul class="rows">' + ("".join(row(a, True) for a in items[:200]) or '<li class="row empty"><p>この分野の記事はまだありません。毎日、朝と夕方に増えていきます。</p></li>') + '</ul></div>' + side(counts) + '</div>')
     write(f"/category/{SLUG[k]}/", page(f"{lab}のニュース", f"{lab}の最新ニュースを、星餓りなの見方つきでまとめています。", body, f"/category/{SLUG[k]}/", active=k,
                                         extra_head=RETRO_FONT if k == "future" else ""))

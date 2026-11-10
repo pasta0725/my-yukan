@@ -250,3 +250,16 @@ footer small{width:100%;color:var(--foot-s);margin-top:6px}
 .lb-n{right:12px;top:50%;transform:translateY(-50%)}
 .lb-c{position:absolute;top:22px;left:16px;font-size:14px;color:#b1bed8}
 @media (max-width:760px){.lb-p,.lb-n{top:auto;bottom:12px;transform:none}.lb figure{padding-bottom:72px}}
+
+/* category banner with Rina (2026-11-10, every category; space keeps its retro version above) */
+.cban{position:relative;margin:22px 0 0;overflow:hidden;background:var(--navy);clip-path:polygon(0 0,100% 0,100% calc(100% - 36px),calc(100% - 36px) 100%,0 100%)}
+.cban img{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover;object-position:right center}
+.cban::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,31,77,.88) 0%,rgba(11,31,77,.6) 38%,rgba(11,31,77,0) 60%);pointer-events:none}
+.cban-copy{position:absolute;z-index:1;left:4%;top:50%;transform:translateY(-50%);width:min(46%,480px);color:#fff}
+.cban-copy h1{margin:0 0 8px;font:900 clamp(26px,4.2vw,48px)/1.2 var(--head);letter-spacing:.04em;color:#fff;border-left:8px solid var(--c);padding-left:12px}
+.cban-copy p{margin:0;font-size:clamp(13px,1.4vw,15.5px);line-height:1.75;color:#dfe7f8}
+@media (max-width:760px){
+  .cban img{aspect-ratio:4/3;max-height:62vw;object-position:right top}
+  .cban::after{display:none}
+  .cban-copy{position:static;transform:none;width:auto;padding:14px 16px 18px;background:var(--navy)}
+}
