@@ -12,7 +12,7 @@ Runs weekly on GitHub Actions (.github/workflows/competitors.yml) -> branch "met
    and what makes it work. Gemini only reads public videos; nothing is downloaded or copied.
 Never prints secrets.
 """
-import json, os, re, sys, datetime, urllib.request
+import json, os, re, sys, datetime, urllib.request, urllib.error
 from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,7 +40,7 @@ def our_topics():
             for w in re.findall(r"[A-Za-z][A-Za-z0-9.+-]{2,}|[ァ-ヴー]{3,}", a.get("title", "")):
                 words[w] += 1
     stop = {"AI", "App", "The", "ニュース", "サービス", "アプリ"}
-    return [w for w, _ in words.most_common(30) if w not in stop][:4]
+    return [f"{w} ニュース" for w, _ in words.most_common(30) if w not in stop][:4]
 
 
 def main():
@@ -65,6 +65,7 @@ def main():
         for v in yt.videos().list(part="snippet,statistics,contentDetails", id=",".join(ids[i:i + 50])).execute()["items"]:
             dur = iso_dur(v["contentDetails"].get("duration"))
             if dur == 0 or dur > 180 or v["snippet"]["channelId"] == OUR_CHANNEL: continue
+            if not re.search(r"[ぁ-んァ-ヴ]", v["snippet"]["title"]): continue   # Japanese Shorts only (the first test run picked up Tamil, Indonesian, ...)
             pub = datetime.datetime.fromisoformat(v["snippet"]["publishedAt"].replace("Z", "+00:00"))
             days = max(0.5, (NOW - pub).total_seconds() / 86400)
             s = v["statistics"]
@@ -113,7 +114,12 @@ def gemini_watch(v):
                 "generationConfig": {"responseMimeType": "application/json"}}
         req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{_MODEL}:generateContent",
                                      data=json.dumps(body).encode(), headers={"x-goog-api-key": key, "Content-Type": "application/json"})
-        r = json.load(urllib.request.urlopen(req, timeout=300))
+        import time
+        for attempt in range(4):   # Gemini often answers 503 (busy) - wait and try again
+            try: r = json.load(urllib.request.urlopen(req, timeout=300)); break
+            except urllib.error.HTTPError as e:
+                if e.code not in (429, 500, 503) or attempt == 3: raise
+                time.sleep(30 * (attempt + 1))
         txt = r["candidates"][0]["content"]["parts"][0]["text"]
         out = json.loads(txt); out["_model"] = _MODEL
         return out
