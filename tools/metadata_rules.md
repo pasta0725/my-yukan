@@ -102,3 +102,8 @@
 - 公開したら、その動画の素材（media/<名前>、narration/<名前>*、shorts/<名前> の画像・動画・音声、channel/thumbs のサムネ）をzipにして同じドライブの「素材と試作の保管」フォルダ（ID 1-zsIlQf3Azjbql2WJyQro7MvBxDoaGQ1）へ移し、GitHubからは消す（台本・ページなど文字のファイルは残す）。作り直すときはzipから戻す。
 - 作業用ブランチ（generated・fetched・upload-tmp）は、中身を取り出したら消す（次に使うワークフローが作り直す）。
 - りなの絵（channel/rina_puppet）は可逆のWebPで保存する（PNGより約3割小さく、画質は同じ）。
+
+## チャンネルバナー（2026-11-10）
+- tools/make_banner.py で作る（ロゴは最後のロゴ画面と同じ channel/logo.png、りなは channel/banner_src/）。ロゴ・説明・りなの顔はスマホでも見える中央 1546x423 の中に置く。
+- 差し替えは youtube-upload.yml を name=banner・video=banner:channel/banner.jpg で動かす。
+- りなの絵はサムネと同じ点検をする（スマートウォッチの画面は手の甲側。手のひらが見えている向きならベルトだけ）。
