@@ -34,5 +34,5 @@ jobs:
             git config user.email pasta0725@users.noreply.github.com
             git add narration
             git commit -m "読み上げ音声を作成（Gemini TTS）"
-            git pull --rebase -q && git push
+            for i in 1 2 3 4 5; do git pull --rebase -q && git push && break; echo "push failed ($i), retrying"; sleep $((i*10)); done   # other pushes often land at the same time (Issue #4)
           fi
