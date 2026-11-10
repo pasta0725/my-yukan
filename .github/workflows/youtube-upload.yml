@@ -42,9 +42,11 @@ jobs:
           F=/tmp/video.mp4; [ "$V" = "-" ] && F=-; case "$V" in *:*) F="$V";; esac
           python3 tools/youtube_upload.py "$N" "$F" --comment "$C" --privacy "$P" --publish-at "$T"
   comment:
-    # a scheduled video is private until publish_at, so the first comment is posted a few minutes after it goes public
+    # a scheduled video is private until publish_at, so the first comment is posted a few minutes after it goes public.
+    # 2026-11-10: a thumbnail set while the video is still private does not reach the channel's Shorts grid (it showed a frame),
+    # so the thumbnail is set once more right after it goes public.
     needs: upload
-    if: inputs.publish_at != '' && inputs.comment != '' && needs.upload.outputs.video_id != ''
+    if: inputs.publish_at != '' && needs.upload.outputs.video_id != ''
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
@@ -52,7 +54,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q google-api-python-client google-auth
-      - name: wait until public, then comment
+      - name: wait until public, then set the thumbnail again and comment
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
@@ -66,7 +68,11 @@ jobs:
           for i in 1 2 3 4 5 6; do
             s=$(python3 tools/youtube_upload.py "$N" "status:$ID" | grep -oE 'privacy: [a-z]+' | cut -d' ' -f2)
             echo "privacy: $s"
-            [ "$s" = public ] && { python3 tools/youtube_upload.py "$N" "comment:$ID" --comment "$C"; exit 0; }
+            if [ "$s" = public ]; then
+              python3 tools/youtube_upload.py "$N" "thumb:$ID" || echo "thumbnail again failed (set it with video=thumb:$ID)"
+              [ -n "$C" ] && python3 tools/youtube_upload.py "$N" "comment:$ID" --comment "$C"
+              exit 0
+            fi
             [ "$s" = private ] && [ $i -ge 2 ] && { echo "still private (stopped?) - no comment"; exit 0; }
             sleep 300
           done
