@@ -1,0 +1,604 @@
+===== https://www.404media.co/reverse-engineer-anything-ai-companies-crack-down-on-the-coolest-thing-people-were-doing-with-ai/
+(status 200)
+It was a fun few weeks while it lasted. People using both Anthropic’s Claude and OpenAI’s Codex to do AI-powered “reverse-engineering” or decompiling are now hitting guardrails or having their accounts limited while trying to do things like unbrick their internet-of-things devices or remove surveillance ads from their smart TVs. 
+Several people have reported triggering “safety checks” in Claude Code that prevented them from doing AI-powered reverse engineering; a 
+highly upvoted Reddit post in r/ClaudeCode
+ reads “The Dream is dead. Reverse Engineer Anything (REA) is not likely to work with Claude.” A thread in the Reverse Engineer Anything Discord from last week reads, “Claude is refusing to decompile anything,” with multiple users responding saying they have hit similar walls. And X  user log4j, who used OpenAI’s Codex to reverse engineer Samsung TVs, 
+reported having their OpenAI
+ account 
+banned
+ for 
+violating
+ its rules on “cyber abuse.” Other users said they asked Codex to reverse engineer hardware or their own code now say they have either been warned by the company or had their accounts 
+restricted
+. A project 
+called Decomp.wtf
+ that made it easier to reverse engineer software and games has also shut down in recent days.
+As we reported last month, 
+Reverse Engineer-Anything
+ has made it easy for people to use AI tools to hack electronics that they own and replace a manufacturer’s software or operating system with an open source or vibecoded one. People have installed new operating systems on their smart TVs, have turned baby monitors into AI assistants, have unbricked internet-of-things devices that were abandoned by their manufacturers, and have installed new software on very old hardware. At the time, I wasn’t sure how I felt about the trend, but as I’ve seen people take ownership and control back over the devices that manufacturers have purposefully bricked, turned into spyware, or have placed artificial limitations on, I have come to see AI-powered reverse engineering of electronic devices as one of the few LLM uses genuinely worth getting excited about. And so big companies have immediately taken steps to restrict this behavior. 
+The policy tweaks show that big AI corporations will protect other big corporations when their users find ways to use LLMs to circumvent the artificial constraints that hardware manufacturers put on their devices. AI-powered copyright circumvention is OK with big tech when it’s a massive company scraping the entire internet to build their LLMs, but is not OK when people then use those tools to liberate their internet-of-things devices. It’s not the end of AI-powered reverse engineering, but people suddenly getting locked out of their accounts for asking AI to reverse engineer their gadgets suggests that the future of this practice lies in open weight, local, and uncensored models, making it less accessible to the masses and the people who could probably benefit from it most. 
+Tarun Gogineni, an OpenAI engineer, 
+tweeted that people
+ are not supposed to have their OpenAI accounts restricted for reverse engineering: “these blocks are mostly accidental and a result of difficult decision boundaries; there is no prohibition against reverse engineering with codex. it’s getting fixed,” he tweeted. 
+But people who are doing AI-powered reverse-engineering suggest that they are moving away from big companies’ models to alternatives where they aren’t going to have their accounts disabled or have to figure out how to work around AI company guardrails. 
+“My general experience about reverse-engineering getting blocked has been more or less 100% correlated with the ‘cyber’ category blocks I have received. My take is that the lab[s] are probably under pressure to not have their models take part in some kind of criminal hacking activities and their cyber guardrails are erring on the side of being too strict,” Matt Brown, principal consultant at Brown Fine Security and someone who has been using AI to reverse-engineer devices, told 404 Media. “I am investing in hardware and trying to stay up to speed because the frontier labs guardrails will randomly change without warning on the same model. For my security research and pentesting work I really don’t want to invest tooling and energy into an ecosystem that will eventually lock me out. These guardrails on the frontier side have come at the same time as open weight models from (mostly) China are getting better and better.” 
+Brown posted a YouTube video last week
+ explaining how he found hidden Bluetooth commands in an internet-of-things gas monitor attached to his propane tank with the open weight model GLM 5.3. He has explained in 
+various posts
+ that the guardrails big companies are putting on reverse engineering are why local AI and 
+open weight models
+ are important.
+AI-powered reverse-engineering isn’t going anywhere, but it does look like it’s going to become much harder to use the most popular frontier models from OpenAI and Anthropic for it. It’s unclear how much longer it will be possible for you to open an OpenAI Codex window, ask it to find a smart TV hooked up to your network, and tell it to install a new operating system on it. Moving forward, it looks like this type of work will be best done with open source, open weight, uncensored, and local models. That’s a bummer, because one of the things that was so exciting about the Reverse Engineer-Anything trend was how easily accessible it had become.
+Last month, researchers and law professors at Cornell Tech, Columbia University, and New York University 
+published a paper
+ about how cheap, AI-assisted reverse-engineering is challenging big manufacturers’ dominance over the devices their make, and is challenging existing intellectual property law. 
+“AI systems can identify hardware components, extract firmware, decompile object code, and clone entire apps. The resulting struggle between technology vendors and reverse engineers will challenge a wide range of laws, including trade secret, copyright, anti-circumvention, computer misuse, and contract,” they write. “The law of reverse engineering was built for a world where opening a device took time, tools, and rare expertise. That friction is vanishing as agents whittle endless, precise picks for the many little locks that fill our digital lives.”
+In recent days, people have started modifying older digital cameras with new, vibe-coded operating systems. In a video about hacking old cameras, the 
+YouTuber Breno Loves Cameras explains
+ why it’s such a big deal and why camera companies don’t like it; that same logic can be applied to any device manufacturer.
+“Camera companies have this practice of keeping features to release on newer cameras, and having distinctions [in features] in camera lines,” the YouTuber Breno said in one video. “This is breaking that from those big companies, which are going to lose a lot of money if this becomes a big thing.”
+ Through that lens, it’s easy to see why big companies are protecting other big companies. People finally found a thing to do with AI tools that gives consumers a bit more control over the devices they bought; it must be immediately stamped out.
+“This vibe-code hacking is only called ‘reverse’ when somebody who lacks a trillion dollars is doing it,” the science fiction author Bruce Sterling tweeted. “When you ‘reverse engineer’ the entire Internet Common Crawl, you just built a nice AI model.”
+About the author
+Jason is a cofounder of 404 Media. He was previously the editor-in-chief of Motherboard. He loves the Freedom of Information Act and surfing.
+More from Jason Koebler
+
+===== https://github.com/morluto/rea
+(status 200)
+English
+ · 
+简体中文
+ · 
+繁體中文
+ · 
+日本語
+ · 
+한국어
+ · 
+Türkçe
+ · 
+Русский
+ · 
+Tiếng Việt
+ · 
+ไทย
+ · 
+Deutsch
+ · 
+Español
+ · 
+Français
+ · 
+Українська
+ · 
+Polski
+ · 
+Português (Brasil)
+ · 
+العربية
+ · 
+فارسی
+ · 
+Bahasa Indonesia
+ · 
+Italiano
+· 
+Ελληνικά
+ · 
+മലയാളം
+ · 
+Roman Urdu
+ · 
+Română
+ · 
+Български
+REA: Reverse Engineer Anything
+One MCP for reverse engineering across binaries, applications, and runtime behavior.
+See a feature you like. Understand how it works, down to the binary level.
+Website
+ · 
+Guides
+ · 
+Showcases
+Quick start
+ · 
+How REA works
+ · 
+What you can analyze
+ · 
+Showcases
+ · 
+Build RL environments
+ · 
+FAQ
+ · 
+Documentation
+npx rea-agents setup
+Important
+Get REA from 
+morluto/rea
+,
+rea.tools
+, or the 
+rea-agents npm package
+.
+Follow the installation and release links from these official sources. A similar
+repository name or copied README does not establish that a download is official.
+Join the Reverse Engineering Community
+Discord · Q&A · Show and Tell
+See a feature in an app that you want in your own product? Ask your agent to investigate it with REA. It can inspect the app without its source code, explain how the feature works, show the evidence, and build a version for your project.
+REA connects your agent to tools for inspecting native binaries, JavaScript and Electron apps, .NET assemblies, and websites. You can also use the same tools from your terminal. Analysis runs locally, and results include the evidence and limitations behind each conclusion.
+Setup registers REA with your agent and installs matching workflow instructions. Native analysis can use an existing Hopper, Ghidra, IDA or Kuna installation; setup can optionally install Hopper with approval. Static JavaScript analysis needs no native analysis engine.
+Visit the REA website
+ for setup instructions, illustrated guides, and real case studies.
+Quick start
+On Linux, Ghidra, JADX, firmware tool launches and static JavaScript/Electron
+analysis require a procps-compatible 
+ps
+ on REA's 
+PATH
+ for process ownership
+checks. Recovery steps are in 
+docs/getting-started/installation.md
+ under
+"Linux owned-process prerequisite".
+Set up your agent
+With Node.js and npm installed, run:
+npx rea-agents setup
+Choose your agents, review the proposed changes, and approve them. Setup adds
+REA's MCP server and matching workflow instructions, with backups of existing
+configuration. Restart your agent afterward. Setup records the selected runtime and REA
+entry script directly. If acquired through a package runner, keep its cache entry
+available. Run package acquisition from a trusted directory outside the target
+project. Installation and recovery details are in the setup guide below.
+Setup supports Claude Code, Codex, Cursor, Gemini CLI, Grok Build and
+other agents
+. See
+installation and setup
+ for provider configuration and
+manual MCP registration and Claude Code/Codex plugin installation.
+MCP uses compact input schemas by default to reduce context overhead. Set
+REA_MCP_INPUT_SCHEMA_PROFILE=full
+ in your MCP registration when you need the
+complete advertised field guidance and nested validation details. Both profiles
+keep the full tool set and canonical server validation. See
+"Compact input schema profile" in the MCP contracts guide.
+Complete output schemas are advertised by default. If your client caps the
+complete 
+tools/list
+ frame, set 
+REA_MCP_OUTPUT_SCHEMA_PROFILE=compact
+ to
+bound each advertised output schema, or 
+off
+ to omit output schemas entirely.
+Both settings keep canonical server-side validation and complete structured
+results. See "Output schemas" in the MCP contracts guide.
+Ask your agent
+Understand how search works in the Notes app, show me the evidence, and build a
+similar feature for my project.
+Replace Notes with your target app and the feature you want to understand.
+Use the terminal
+Inspect an extracted JavaScript/Electron app directory or ASAR:
+npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/app --json
+The result includes modules, imports, Electron boundaries and their evidence.
+Replace the path with your target, such as 
+"D:/apps/example"
+ on Windows.
+To install the 
+rea
+ command for regular use:
+npm install --global rea-agents
+rea --help
+For native analysis, configure a provider first. See the
+CLI and Evidence guide
+ for native commands, provider selection,
+snapshots and scripting.
+Update REA
+REA changes quickly, and new releases include frequent bug fixes. Keep your
+installation up to date.
+For a CLI installed with 
+npm install --global
+ or 
+bun add --global
+:
+rea update
+rea --update
+ is an alias for this verified workflow and accepts the same global
+output flags. Use 
+rea update
+ when combining it with other command controls.
+Updater commands retain at most 4 MiB of stdout and stderr combined. Oversized
+metadata replies are rejected after the command exits; verbose installs continue
+with bounded diagnostics. Human progress output respects terminal backpressure
+and waits for submitted writes to finish.
+Bun global updates require Bun 1.2.17 or later. With an older Bun release,
+upgrade Bun manually before running 
+rea update
+.
+To refresh your agent registrations and skill, run the setup command printed
+by the update.
+If you use 
+npx
+, update your agent setup with:
+npx rea-agents@latest setup
+Review the setup changes and restart your agent. For one-off CLI commands,
+use 
+npx rea-agents@latest
+ followed by the command. With Bun, use
+bunx rea-agents@latest
+ in place of 
+npx rea-agents@latest
+.
+How REA works
+Your agent calls REA through MCP to inspect the target and trace relevant code.
+REA returns findings with their evidence. The agent uses them to ask follow-up
+questions, explain the behavior, or write and test an implementation.
+CLI commands use the same workflows.
+Open the full-size figure
+.
+What you can analyze
+REA requires Node.js 22.x (>=22.23.4), 24.x (>=24.22.1), or 26.12.1+, plus npm.
+Additional tools and host support depend on the target:
+Target
+What REA returns
+Requirements and guide
+Desktop installations
+Runtime candidates, supporting files, component markers and next probes
+Built-in bounded directory/header inspection; 
+desktop applications
+Native binaries
+Pseudocode, assembly, strings, symbols, calls and references
+Hopper, Ghidra, IDA or Kuna; 
+native analysis
+Offline ELF layout
+Sections, segments, original symbols/relocations and static mitigation candidates
+Caller-supplied pwntools on Linux x64; 
+binary diagnostics
+Go binaries
+Embedded compiler version, modules, replacements and build settings
+Built-in static ELF/PE/thin Mach-O inspection; no Go installation required
+GPU code objects
+CUDA/HIP targets, selected kernel parameters and resources, retained PTX text
+Built-in static ELF/PE/fatbin/CUBIN/PTX inspection; 
+GPU code objects
+Model artifacts
+GGUF / safetensors metadata, tensor declarations and derived totals
+Built-in header inspection; optional full-file hash; 
+model files
+IL2CPP metadata
+Unity global-metadata.dat assembly images, type and method names and index ranges
+Built-in static decoding of versions 24, 27, 29, 31 and 39; no Unity required
+Godot PCK
+Archive inventory and extraction, original header/directory facts and selected content identities
+Built-in static formats 2, 3 and 4; no Godot required
+Rust binaries
+Embedded cargo-auditable crate names, versions, sources and dependency edges
+Built-in static ELF/PE/thin Mach-O inspection; 
+Rust binaries
+PE certificates
+Authenticode WIN_CERTIFICATE entries and PKCS#7 signer/X.509 identity fields
+Built-in static PE inspection; 
+PE certificates
+PE imports
+Import and delay-load DLL names, ordinals, IAT RVAs and pefile import hash
+Built-in static PE inspection; 
+PE imports
+Windows shortcuts
+Shell Link target, arguments, working dir, ExtraData and Tracker droid facts
+Built-in static LNK inspection; 
+Windows shortcuts
+ELF notes
+PT_NOTE/SHT_NOTE owners, types, GNU build-id and ABI-tag fields
+Built-in static ELF inspection; 
+ELF notes
+Binary hardening
+PIE, NX, RELRO, CFG and related header flags for ELF, PE and Mach-O
+Built-in static header inspection; 
+binary hardening
+Apple IPS crashes
+.ips metadata, threads, images, registers and documented crash classes
+Built-in static JSON inspection; 
+Apple IPS
+Linux kernel modules
+.modinfo keys, __versions CRCs, this_module presence, and signature trailer
+Built-in static ELF inspection; 
+kernel modules
+Erlang BEAM
+IFF chunks, atoms, exports, imports, lambdas and the Code header
+Built-in static BEAM inspection; 
+Erlang BEAM
+WASM artifact
+Validation, sections, exact import/export WAT forms and decoded WAT
+Caller-supplied WABT 1.0.42; 
+inspect_wasm_artifact
+EVM bytecode
+Dispatch selectors, byte offsets, inferred arguments and mutability
+Local raw/hex carrier on Linux x64; 
+offline EVM guide
+SQLite databases
+Tables, columns, indexes, views, triggers and selected ordinary-table rows
+Local database/WAL snapshot; Node.js 24.x >=24.15 or 26+ with native SQLite limits
+Recorded Linux crashes
+Raw notes, every recorded thread's registers/signals and optional mapping candidates
+Caller-supplied pwntools on Linux x64; optional GDB/pwndbg; 
+recorded crashes
+JavaScript / Electron
+Modules, imports, source maps, routes, IPC and native add-on relationships
+Node.js and npm; Linux: procps-compatible 
+ps
+; 
+application analysis
+Websites
+Page structure, scripts, network observations and requested screenshots
+A Chrome-family browser; 
+browser analysis
+Saved network captures
+Requests, responses, exposed payloads and source locations
+HAR or Fiddler Everywhere SAZ; mitmdump on Linux for native mitmproxy; 
+capture guide
+.NET assemblies
+Metadata, CIL instructions, declared native dependencies and build comparisons
+None (static only); 
+managed-code guide
+Android APKs
+Manifest declarations, classes, decompiled methods and references
+Headless JADX and a full JDK on Linux/macOS/Windows x64; 
+Android guide
+APK signatures
+v1/v2/v3/v3.1 signers, certificate fingerprints, key rotation and digest self-consistency
+None (static only); 
+inspect_apk_signature
+Android devices
+Devices, packages, processes, logs, dumps, screen captures, and APK/file transfers
+Caller-supplied adb (emulator or hardware); 
+ADB guide
+JEB projects
+Engine-backed project units, artifact digests and type/method pseudo-code
+A caller-started JEB client serving MCP, selected with REA_JEB_MCP_URL; 
+JEB guide
+Android resources
+Decoded manifest, string tables, locales and version facts
+Caller-supplied Apktool launcher; 
+resource guide
+Flutter apps
+Dart snapshot hash, per-ABI library digests and engine build provenance
+None (static APK parsing); 
+Flutter guide
+Firmware
+Regions, extraction results and native-analysis handoffs
+Binwalk / Unblob on Linux; 
+firmware guide
+Recorded packets
+Selected fields, repeated values, filters and decode-as rules
+Linux: TShark 4.x + prlimit; 
+capture guide
+Packet summaries
+Endpoints, DNS, TLS SNI, protocol distribution and HTTP requests
+Caller-supplied tshark and capinfos (Linux-verified); 
+pcap guide
+Recorded logic signals
+Decoder annotations, sample ranges and diagnostics
+Linux: sigrok-cli 0.7.2 + prlimit; 
+signal recordings
+Packages and resources
+File inventories, digests, plists, Apple bundle anatomy and extracted resources
+Artifact and JavaScript guide
+, 
+Apple applications
+Process behavior
+Terminal output, interactions, exit and filesystem observations, and run comparisons
+Linux/macOS with a native PTY; 
+process capture
+PyInstaller executables
+CArchive members, Python version, entry scripts and extracted bytecode
+None (static only); 
+Python packaged applications
+Deno compile binaries
+Virtual files, entry point, recorded options, npm snapshot length
+None (static only); 
+Deno compile executables
+Static JavaScript and .NET inspection read the supplied files without running
+the application. Runtime capture runs or interacts with the selected target
+using your user permissions; each runtime guide describes its effects.
+For offline native-binary inspection, REA also supports caller-supplied GNU
+objdump and Rizin. See the 
+reverse-engineering tools guide
+for provider setup, CLI commands, and Evidence limitations. REA does not install
+or update either provider.
+Native formats and host support vary by provider. See
+Hopper and Ghidra setup
+, the
+IDA guide
+ (including an optional native MCP bridge), the
+Kuna decompiler guide
+, and
+experimental Windows Ghidra support
+.
+Ghidra also supports 
+16-bit DOS analysis
+.
+For large binaries, raise the provider's startup deadline with
+REA_GHIDRA_STARTUP_TIMEOUT_MS
+ or 
+REA_HOPPER_STARTUP_TIMEOUT_MS
+.
+For provider selection, see the 
+CLI guide
+.
+Check 
+release availability
+for features added since the latest npm release.
+Showcases
+DX-Ball: reconstruct a sound-pan calculation
+Follow a sound call into its position-to-pan helper, inspect the instructions,
+and turn incomplete pseudocode into C. The reconstruction passes 3,205
+original-x86 cases and reproduces all 63 compiled function bytes.
+Read the case study
+ ·
+Reconstruction repository
+Notion: trace the Electron clipboard bridge
+Find the renderer's clipboard API, follow it through preload and IPC into the
+main process, and inspect the rich clipboard format.
+Read the case study
+TH04: recover a DOS bullet-ring calculation
+Inspect the original PC-98 game's 16-bit instructions, recover the fixed and
+aimed angle calculations, and compare the reconstructed C++ with the
+historical compiler output.
+Read the case study
+ ·
+Reconstruction repository
+Build RL environments with REA
+Record a web app session, turn its API into tools, and export an environment an AI agent can use. Run it with AgentEnv, then add tasks and reward checks for RL training or evaluation.
+Read the guide
+ ·
+Watch the video
+If you've used REA on something interesting, we'd love to see it. Share your
+case in an 
+issue
+ or a
+pull request
+, including the target,
+your question, how REA helped, and what you found.
+Build RL environments
+Give an AI agent a local environment to practice tasks such as finding an issue or creating a folder, without running the original app. Use it for reinforcement learning (RL) or to test how well an agent completes tasks.
+REA turns recorded API requests and responses into tools the agent can call. The environment uses the recorded data and supports changes only when the recording confirms their effects.
+With REA set up in your agent, replace the example URL and folder tasks below with your own:
+Use REA to build an RL environment from my test web app at
+http://127.0.0.1:3000.
+Cover listing, creating, renaming, and deleting folders. You may create and
+remove test folders. Leave existing data unchanged.
+Save it in a folder named my-env. Check which operations work and tell me
+how to run it.
+Use the command line instead
+Use these commands if you already have a file containing the app’s recorded browser requests and responses. Running the result also requires AgentEnv and Docker.
+rea environment-build ./session.har ./my-env --name my-env --json
+agent-env run ./my-env
+REA exports a runnable environment with a basic test to check that it starts and responds. Use it with your RL framework to define task goals, add reward checks, and run training.
+Build an environment
+ ·
+Environment reference
+ ·
+Watch the demo on X
+Desktop app environments
+REA can also build an environment of a Linux desktop app, which an agent uses through screenshots, the mouse and the keyboard. From a one-line request, such as "Build me a Gnote environment where the agent adds olive oil to the shopping list note", your agent installs the app on a local build computer, writes the task, exports the environment and checks the task in a fresh computer. The machine that builds it needs Linux on amd64 or arm64, Docker and the agentenv framework version the guide pins.
+Set up desktop app environments
+FAQ
+Which agents can use REA?
+Any agent that supports local MCP servers. Setup configures the
+supported agents
+; other clients can use
+manual MCP registration
+.
+Do I need a native analysis engine?
+Deep native analysis uses Hopper, Ghidra, IDA or Kuna, depending on the target
+and operation. Static JavaScript and .NET inspection work without a native
+analysis engine. Setup can install Hopper after approval; Ghidra, IDA and Kuna
+use your existing installations. See 
+provider setup
+for the options and their supported targets.
+Do I need to start Hopper first?
+REA starts Hopper when an operation needs it. On macOS, a first-run dialog may
+ask you to choose demo mode or activate your license. Complete that prompt in the
+same user session before your first CLI/MCP operation or unattended job. Open
+Hopper manually if needed. See
+Hopper startup and troubleshooting
+.
+What does installing the skill from skills.sh do?
+The skill supplies investigation instructions for your agent. Use 
+npx rea-agents setup
+to register REA's MCP server and install the matching instructions, then restart
+your agent. See 
+skill-only installation
+.
+What code does REA return?
+Native analysis returns pseudocode and assembly. JavaScript/Electron analysis
+recovers modules and their relationships. Your agent uses these findings to
+write and test an implementation; the 
+showcases
+ give worked examples.
+Does REA upload my app?
+REA analyzes targets locally. Your agent receives the tool results, and its
+model provider has its own data policy.
+What should I do if I hit a bug?
+Update first; a recent release may already fix it.
+For a CLI installed with 
+npm install --global
+ or 
+bun add --global
+:
+rea update
+For agent setup through 
+npx
+:
+npx rea-agents@latest setup
+If you're using an agent, complete the 
+setup refresh
+ and restart
+it. Retry the same task. If the problem persists, 
+open an issue
+with your REA version, target type, steps to reproduce and error output.
+Documentation
+Start with the website's 
+worked guides
+.
+For exact options, prerequisites and result contracts:
+Installation and setup
+: agent registration, provider configuration, updates and uninstall.
+Readiness and troubleshooting
+: diagnose one agent or analysis engine.
+CLI and Evidence
+: commands, provider selection, snapshots, import/export and exit statuses.
+MCP contracts
+ and 
+agent prompts
+: tool results, sessions and guided investigations.
+Tool catalog
+: generated inventory of tools, providers and CLI commands.
+Roadmap
+: planned work and capability trackers.
+Report vulnerabilities through 
+SECURITY.md
+.
+Star history
+🎉 
+400,000 GitHub stars — thank you!
+Thanks to everyone using REA, reporting bugs, requesting features, testing builds, and contributing fixes.
+Disclaimer
+See 
+DISCLAIMER.md
+ for responsible-use guidance.
+The project's position on illegal or unauthorized use covers all REA versions,
+distribution channels, and platforms; each copy retains its applicable licenses.
+REA is for lawful research, education, interoperability, software preservation,
+and analysis of software you own or are authorized to examine.
+Contributing
+We'd love your help with REA! 
+Open an issue
+ to
+report a bug or suggest a feature, or 
+send a pull request
+to improve the code or docs.
+See 
+CONTRIBUTING.md
+ for development setup and checks,
+testing
+ for verification lanes, and the
+architecture map
+ for selected layers and dependency paths.
+License
+MIT
+REA-authored code is licensed under MIT. Third-party material retains its own
+licenses and copyright notices; see
+Third-party notices
+ for the dependency inventory,
+preserved license texts, and external-tool terms.
+You must legally obtain and be authorized to use commercial tools
+, including
+IDA Pro / Hex-Rays decompilers, Hopper, and JEB, under their applicable
+licenses. REA grants no tool license, key, or activation entitlement. Trials and
+demos remain subject to vendor terms, including user, feature, automation, and
+output sharing restrictions. Cracked copies, stolen keys, unauthorized key
+sharing, and bypassing license restrictions are not authorized. This guidance
+does not amend MIT or third-party licenses.
