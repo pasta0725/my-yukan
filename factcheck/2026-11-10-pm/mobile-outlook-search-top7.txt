@@ -1,0 +1,449 @@
+===== https://forest.watch.impress.co.jp/docs/news/2154680.html
+(status 200)
+ニュース
+「Outlook」の検索が改善 ～待ち時間を削減、接続不良時はローカルへ自動切り替え
+ 独自の小規模言語モデルによるランキングも開発中 
+樽井 秀人
+2026年11月9日 14:30
+「Outlook」の検索が改善
+ 　メールアプリ「Outlook」で検索機能の改善が進められているとのこと。米Microsoftが11月3日（現地時間）、公式ブログ「Outlook Blog」でここ数カ月にわたる取り組みを明らかにした。 
+「上位の結果」枠を拡大
+ 　ユーザーから見える変更としては、関連性の高いアイテム（上位の結果）が上位3件ではなく、最大7件まで検索結果に表示されるようになった。残りはその下に日付順でリストアップされる。 
+関連性の高い結果が最大7件に（左：従来、右：変更後）。画面はWindows版クラシック「Outlook」
+ 　関連性の順位付け（ランキング）には、メールの新しさや差出人、過去にそのメールを操作したかどうかといったシグナルが考慮されるとのこと。 
+ 　この変更はWindows版クラシック「Outlook」（サブスクリプション版の最新チャネルと月次エンタープライズチャネル）、Web版「Outlook」、新しい「Outlook」、モバイル版で利用可能。Mac版では11月に展開される。法人向け・個人向けの両方が対象だ。 
+クラウド検索を優先、接続不良時はローカルへ自動切り替え
+ 　クラシック版「Outlook」の検索機能は現在、クラウドサービスと、PCにローカルインデックスを保持する「Windows Desktop Search」を組み合わせて行っている。しかし、他の「Outlook」はもっぱらクラウド検索を利用しており、機能面で差異ができていた。 
+ 　そこで、クラシック版「Outlook」でもクラウド検索をおもに利用するようになった。「Find Related」や一部の高度な検索構文、より幅広い言語でのクエリなどがローカルからクラウドへ移管される。これにより、他の「Outlook」と同等の体験が得られる。 
+ 　ただし、クラウドが遅延している場合やオフライン環境ではローカル検索にもメリットがある。そのため、クラウド検索が利用できない場合や、PSTファイル、POP/IMAPアカウントといったクラウド検索の対象外のコンテンツには、引き続きローカル検索が用いられる。 
+クラウドから応答が得られない場合は、ローカルインデックスでの検索に自動で切り替わる（左：従来、右：変更後）
+ 　この自動切り替えは、Windows版クラシック「Outlook」（サブスクリプション版の最新チャネル）、モバイル版、Mac版で利用できる。新しい「Outlook」では開発中だ。 
+遅い検索の待ち時間を短縮
+ 　また、検索の待ち時間も改善された。クラシック版「Outlook」でもっとも遅い5％の検索について、認証経路の最適化で法人向けメールボックスの待ち時間が40％短縮。ローカルからクラウドへ移行した種類のクエリでも、もっとも遅い5％の待ち時間が4.5秒から1.3秒へ短縮されたという。 
+ 　こちらはWindows版クラシック「Outlook」（サブスクリプション版の最新チャネルと月次エンタープライズチャネル）が対象で、法人向け・個人向けの両方で利用できる。 
+予定表の検索結果をカレンダー上に表示
+ 　さらに、Web版「Outlook」と新しい「Outlook」には、11月から「Calendar search spotlight」が展開される。検索に一致した予定を予定表ビューに直接表示する機能で、前後の予定や重複といった文脈もあわせて把握できる。ワンクリックで従来のリスト表示に戻すことも可能だ。 
+「Calendar search spotlight」。検索に一致した予定を前後の予定とあわせて表示する
+検索結果の満足度をフィードバック
+ 　そのほかにも、検索結果ページに「サムズアップ」「サムズダウン」で検索の満足度を伝えるプロンプトが追加されている。メールを開いたり読んだりといった行動指標では、検索が成功したように見えても、実際にはユーザーが失敗だと感じているケースがあり、明示的なフィードバックでそうしたズレを把握できるという。11月から12月にかけて、対象となる検索画面をさらに広げる予定だ。 
+検索結果ページに追加されたフィードバック用のボタン
+独自の小規模言語モデルによるランキングも開発中
+ 　同社によると、こうした改善は今後も継続されるとのこと。その一環として、「Outlook」専用の小規模言語モデル（SLM）によるランキングの開発も進められているという。 
+ 　このSLMは大きなモデルが小さなモデルを教える“蒸留”と呼ばれる手法で作られており、初期のオフライン評価は有望で、社内テストが始まっているとのこと。検索結果の関連性と応答速度の両立を目指している。 
+ 　なお、「the」「and」「is」といったストップワード（頻出するため情報量が少なく、検索や分析で除外される単語）の扱いの改善などもすでに展開済み。ストップワードの改善は全検索の約3％に影響し、それらの検索ではメールを開いて利用するクリックが増えたとしている。 
+ストップワードの扱いの改善（左：従来、右：変更後）
+Amazonで購入
+「Outlook」関連商品
+Amazonで購入
+
+===== https://techcommunity.microsoft.com/blog/outlook/how-outlook-search-is-changing-ranking-resilience-and-the-feedback-loop/4568760
+(status 200)
+Outlook Blog 
+5 MIN READ
+How Outlook Search is changing: ranking, resilience, and the feedback loop
+ElbioAbib
+Microsoft
+Nov 03, 2026
+Search quality is easy to describe and difficult to engineer. A user may remember a sender, a phrase, or the approximate time of a message—but not the exact terms that an index expects. The system must retrieve the right candidates, rank them well, and respond quickly across large, noisy mailboxes.
+We’ve been listening closely to customer feedback and looking at where the search experience isn’t meeting expectations and where we can do better. That feedback, together with our engineering signals, has helped us focus on the areas that matter most. Over the past several months, the Outlook team has been working on all three parts of that problem: improving result ranking, making search more resilient when connectivity is poor, and building a tighter feedback loop between user experience and our engineering signals. Here is what has changed, the technical reasoning behind it, and what we are testing next.
+1. Changes users can see
+Expanding the relevance-ranked set
+The ranking system now has more room to surface likely matches before results transition to chronological order.
+Outlook now shows up to seven relevance-ranked results at the top, followed by the remaining results ordered by date. Ranking considers signals such as recency, sender, and prior interaction with messages. Increasing the relevance-ranked set is a presentation change, but it also creates a larger surface for evaluating ranking quality. We are continuing to tune both the ranking logic and the boundary between relevance and date-based ordering, while keeping additional sort options accessible.
+Availability:
+ Classic Outlook for Windows Current Channel and Monthly Enterprise Channel with Subscription, Outlook on the web, new Outlook, and Outlook Mobile. Rollout on Outlook for Mac is in November. Available across Commercial and Consumer.
+Comparison of the previous three-result relevance block with the expanded set of up to seven top results in Classic Outlook for Windows.
+Cloud-first search with automatic local fallback
+The goal is consistent capability when online and graceful degradation when the network is not reliable.
+Classic Outlook combines Microsoft’s cloud search service with Windows Desktop Search, which maintains a local index on the PC. Some query classes historically stayed local, including Find Related, portions of advanced search syntax, and queries in a broader set of languages. Eligible searches now use the cloud service so they can benefit from the same search capabilities and service-side improvements as other Outlook clients. Local search remains necessary for offline scenarios and for content that is not stored in the cloud, including PST files and POP or IMAP accounts. Classic Outlook search now automatically falls back to the local index when connectivity or service latency prevents a timely response from the cloud service.
+Availability for automatic fallback:
+ Classic Outlook for Windows Current Channel with Subscription, Outlook Mobile, Outlook for Mac. New Outlook is in development.
+Classic Outlook search automatically falls back to the local index when connectivity or service latency prevents a timely response.
+Improving latency
+Average latency matters, but the slowest searches disproportionately shape whether search feels dependable.
+Two changes produced meaningful gains in the slowest 5% of Classic Outlook searches:
+Authentication-path optimization:
+ reduced latency for the slowest 5% of searches by 40% for Commercial mailboxes.
+Migration to cloud search:
+ for query classes moved from the local index to the cloud, latency for the slowest 5% fell from 4.5 seconds to 1.3 seconds.
+Availability: 
+Classic Outlook for Windows Current Channel and Monthly Enterprise Channel with Subscription. Available for Commercial and Consumer.
+Calendar search spotlight adds temporal context
+Calendar search spotlight renders matching events directly in the calendar view. That context matters: the event before or after a match, and any overlap, may be as useful as the match itself. Users can switch back to the traditional list with one click.
+Availability: 
+Rolling out to Outlook on the web and new Outlook in November. Available across Commercial and Consumer. We are evaluating feedback before expanding this experience across Outlook clients.
+Calendar search spotlight displays matching events in their surrounding schedule context, with an option to return to list view.
+2. How we evaluate and improve ranking
+How we measure search improvements
+Search improvements need repeatable evaluation before they reach production.
+We begin with offline tests against generated mailboxes designed to reproduce the characteristics of real enterprise inboxes: thousands of messages, meeting invitations, newsletters, group mail, and topics that overlap across projects. Generated data gives us control and repeatability without using a customer mailbox as a test fixture.
+The evaluation set contains thousands of queries with known expected answers. Its distribution is informed by thousands of real search patterns, including keywords, names, email addresses, and combinations of those terms. Offline evaluation is useful for iteration, but it cannot reproduce every mailbox or intent. Before broad rollout, we therefore validate changes through controlled live experiments and online quality metrics.
+Distilling a ranking model for Outlook scale
+Better semantic ranking is useful only if it fits the latency and throughput constraints of a service used at Outlook scale.
+We are building an Outlook-specific small language model ranker. The model is trained through distillation: a larger model provides supervision to a smaller model that is practical to serve within Outlook’s performance envelope. The engineering objective is not simply model quality in isolation; it is a better relevance-latency trade-off under production load. Early offline results are promising. Internal testing is underway.
+Alongside this work, we rolled out several smaller service changes, including better handling of stop words such as “the,” “and,” and “is.” This stop-word improvement affected about 3% of searches. Those searches saw an increase in result clicks where users opened and engaged with the mail.
+Availability for stop words handling: 
+All Outlooks endpoints. Available for Commercial and Consumer.
+Knowledge distillation trains a smaller, Outlook-specific student ranker to mimic a larger teacher model's relevance scores, meeting production latency requirements.
+3. Closing the gap between metrics and user intent
+Outlook now includes a thumbs-up or thumbs-down prompt on the search results page. With appropriate diagnostic context, that signal helps engineers identify query classes and result patterns that need investigation. One finding is especially important: behavioral metrics can suggest success—for example, a result was opened or read—while the user still reports that the search failed. Explicit feedback exposes cases where proxy metrics do not capture intent.
+Availability:
+ Classic Outlook for Windows Exchange Online and Outlook.com accounts on Current Channel with Subscription, Outlook on the web, new Outlook, Outlook Mobile, and Mac. We are adding thumbs to more Outlook Search surfaces in November and December. Available for Commercial and Consumer.
+The in-product feedback prompt captures an explicit quality signal alongside diagnostic context.
+Why explicit feedback matters
+If a search result doesn’t match your intent, use the thumbs-up or thumbs-down prompt to tell us. Enterprise mailboxes vary widely in vocabulary, communication patterns, retention history, and organizational structure. Two users can issue the same query with different intended results, or remember the same message through entirely different details. That makes search a continuing systems problem rather than a feature that reaches a fixed endpoint. If a result set misses your intent, the thumbs signal gives us evidence that clicks and dwell time alone cannot provide—and helps us prioritize the next investigation.
+Updated 
+Nov 02, 2026
+Version 1.0
+Like
+Like
+Comment
+Comment
+ElbioAbib
+Microsoft
+Joined 
+October 27, 2026
+Send Message
+View Profile
+Outlook Blog 
+Welcome to the Outlook Blog! Learn best practices, news, and trends and directly from the Outlook team.
+
+===== https://www.windowscentral.com/microsoft/microsoft-office/microsoft-is-tackling-the-outlook-problem-that-wastes-my-time-every-week
+(status 200)
+Click for next article
+Copy link
+Facebook
+X
+Reddit
+Pinterest
+Flipboard
+Bluesky
+Threads
+Email
+Share this article
+0
+Join the conversation
+Follow us
+Add us as a preferred source on Google
+Newsletter
+Subscribe to our newsletter
+Searching for a specific email in Outlook can prove challenging. Outlook search can sometimes return irrelevant results while missing the exact email you need. Microsoft is looking to improve that frustrating experience with a revamped search.
+The new search has a feature that genuinely removes the most frustrating part of Outlook for me. That phrase is thrown around a lot online and is often clickbait, but I mean it here 
+emphatically
+.
+Outlook now handles stop words better. Those words, such as "the," "and," and "is," often clog search results with irrelevant emails. I can't tell you how many times those tiny words have led to terrible searches that made me fish through the results that appear chronologically.
+Latest Videos From
+Windows Central
+Microsoft's example from a 
+blog post
+ shows how drastically different the results are when searching "the FY27 budget" using the old Outlook search versus the new one.
+Microsoft's example shows how Outlook's updated search ranks relevant emails higher in the results instead of surfacing messages that only happen to contain common search terms. 
+(Image credit: Microsoft)
+The improvements highlighted by Microsoft center around ranking emails better. Microsoft focused on three areas when building the new search tool in Outlook: better ranking, improved performance when connectivity is poor, and a tighter feedback loop.
+When you search for an email within Outlook, you will see seven ranked results rather than three. Those emails are ranked based on recency, sender, how much the message has been interacted with, and other factors. Expanding the number of ranked messages presented should show users more relevant emails while also helping Microsoft improve its ranking systems over time.
+The new ranking layout is available across several versions of Outlook, including the new and Classic versions.
+There are other upgrades as well. Classic Outlook now automatically falls back to locally indexed content when connectivity is poor. That same functionality is on the way to new Outlook but will ship later.
+Users of Classic Outlook should also see faster search results. Microsoft also said recent improvements reduced latency for the slowest 5% of Outlook searches.
+The improved rankings in Outlook are the result of a small language model ranker built specifically for Outlook. That model is trained through distillation, meaning it is built under the supervision of a larger model.
+Distillation helps Outlook search be more efficient than if it had to run a larger model just to look through and rank emails.
+I'd probably be okay with using a larger model in Outlook if it cut out irrelevant results that appear simply for using an article or common verb like "is." I bet I'd still save some time that way. But I don't have to test that theory because the new Outlook search is lightweight.
+Join us on 
+Reddit at r/WindowsCentral 
+to share your insights and discuss our latest news, reviews, and more.
+Sean Endicott
+News Writer
+Sean Endicott is a News Writer at Windows Central, where he covers Windows 11, Surface hardware, Microsoft 365, AI, apps, and the broader PC ecosystem. Since joining the site in 2017, he has written well over a thousand articles across the Microsoft landscape, covering breaking news, analysis, and feature reporting.
+He writes 
+Windows Wrap
+, a weekly column covering the biggest stories in Windows and the PC industry, and what they mean for the platform going forward.
+Before joining Windows Central full-time, Sean worked in journalism and media production after earning a First Class degree in Broadcast Journalism from Nottingham Trent University. Outside of tech, he is an award-winning American football coach based in Nottingham, England, and was named BAFCA Youth Coach of the Year in 2024.
+View More
+You must confirm your public display name before commenting
+Please logout and then login again, you will then be prompted to enter your display name.
+Logout
+LATEST ARTICLES
+1
+I’m stacking these Newegg codes on top of sales to beat today’s PC prices
+2
+'We Are Mass Effect' parks protest billboard on EA's lawn for N7 Day
+3
+World of Warcraft Forever is the biggest launch in WoW history, beating Wrath of the Lich King
+4
+If you use Magnifier across multiple screens, this Windows 11 update could make a huge difference
+5
+This free tool tells you what is hogging your GPU
+
+===== https://helpdeskgeek.com/microsoft-outlook-search-update-ranking-resilience-feedback/
+(status 200)
+Microsoft published a 
+Microsoft Tech Community post
+ on November 3, 2026 titled “How Outlook Search is changing,” detailing changes to how Outlook ranks search results, how search behaves when the connection is poor, and how a new thumbs-up/thumbs-down prompt feeds back into ranking. 
+Windows Central also covered
+ the update.
+The headline change: Outlook now shows up to seven relevance-ranked results at the top of a search instead of three. Availability differs by feature and by Outlook client, so the details below matter more than usual.
+What Happened: The Outlook Search Update in Plain Terms
+Microsoft’s post groups the changes into three areas: ranking, resilience when connectivity is poor, and a tighter feedback loop. Here they are one at a time.
+1. Ranking: up to seven top results instead of three
+According to 
+Microsoft’s post
+, Outlook now shows 
+up to seven relevance-ranked results
+ at the top, followed by the remaining results ordered by date. Microsoft’s own comparison image shows the previous three-result relevance block next to the new one. Ranking considers signals such as:
+Recency
+: how new the message is
+Sender
+: who the message came from
+Prior interaction
+: how you’ve engaged with the message before
+Microsoft says it’s still tuning both the ranking logic and where results switch from relevance to date order, and that other sort options stay available.
+Microsoft lists availability for the expanded ranking as Classic Outlook for Windows (Current Channel and Monthly Enterprise Channel with a Microsoft 365 subscription), Outlook on the web, new Outlook, and Outlook Mobile, with Outlook for Mac rolling out in November. Microsoft says the expanded ranking covers both work and personal accounts; the fallback, latency and feedback changes have their own, narrower client lists below.
+Microsoft also says it now handles stop words such as “the,” “and,” and “is” better, so they don’t drag irrelevant mail into results. Microsoft says this affected about 3% of searches, which saw more result clicks afterward, and lists it as available on all Outlook endpoints.
+Behind the ranking is an Outlook-specific small language model ranker, trained by distillation from a larger model. 
+Windows Central
+ describes the improved rankings as the result of that ranker, while Microsoft’s post frames the ranking work as still being tuned and tested. Expect the order of your top results to keep shifting as Microsoft adjusts it.
+2. Resilience: search that keeps working on bad connections
+This is the change that matters most if you search mail on hotel Wi-Fi, a train, or a flaky office network.
+Classic Outlook combines Microsoft’s cloud search service with Windows Desktop Search, which keeps a local index on your PC. Microsoft says more kinds of searches now go to the cloud service, and 
+Classic Outlook now automatically falls back to the local index
+ when connectivity or service delays prevent a timely cloud response.
+The local index only covers what’s on your PC. Microsoft notes local search is still what handles offline work and content that isn’t stored in the cloud, such as PST files and POP or IMAP accounts.
+Microsoft lists automatic fallback as available in Classic Outlook for Windows (Current Channel with a subscription), Outlook Mobile, and Outlook for Mac. For 
+new Outlook
+, Microsoft says only that the fallback “is in development,” with no date.
+3. Speed: the slowest searches got faster
+Microsoft focused on the slowest 5% of Classic Outlook searches, the ones that make search feel unreliable. It reports two figures:
+An authentication-path change cut latency for the slowest 5% of searches by 
+40% for work (Commercial) mailboxes
+.
+For query types moved from the local index to the cloud, latency for the slowest 5% fell from 
+4.5 seconds to 1.3 seconds
+.
+These numbers are Microsoft’s own, and they apply to Classic Outlook for Windows on Current Channel and Monthly Enterprise Channel with a subscription. We found no independent measurement of them in the coverage we reviewed.
+4. Feedback: thumbs up or down on results
+Outlook now shows a 
+thumbs-up or thumbs-down prompt on the search results page
+. Microsoft says the signal, together with diagnostic context, helps engineers find searches where people opened a message but still didn’t find what they wanted.
+Microsoft lists the prompt as available in Classic Outlook for Windows (Exchange Online and Outlook.com accounts on Current Channel with a subscription), Outlook on the web, new Outlook, Outlook Mobile, and Mac, with thumbs coming to more Outlook search surfaces in November and December.
+Also mentioned: Calendar search spotlight
+Microsoft also describes a Calendar search spotlight that shows matching events directly in the calendar view, so you can see what comes before and after a match. It’s rolling out to Outlook on the web and new Outlook in November, and you can switch back to the regular list with one click.
+What’s still thin
+Microsoft’s post lists channels and client availability but no build numbers or completion dates. We also found no documented way to opt out of or roll back the ranking change in the sources we reviewed, though that doesn’t rule one out.
+Who This Affects
+Change
+Classic Outlook (Windows)
+New Outlook
+Outlook on the web
+Outlook Mobile
+Outlook for Mac
+Up to seven ranked top results
+Yes (Current Channel / Monthly Enterprise Channel, subscription)
+Yes
+Yes
+Yes
+Rolling out in November
+Better stop-word handling
+Yes
+Yes
+Yes
+Yes
+Yes
+Automatic local-index fallback
+Yes (Current Channel, subscription)
+In development
+Not listed
+Yes
+Yes
+Faster slowest searches (40%, 4.5s to 1.3s)
+Yes (Current Channel / Monthly Enterprise Channel, subscription)
+Not listed
+Not listed
+Not listed
+Not listed
+Thumbs-up/down feedback on results
+Yes (Exchange Online and Outlook.com accounts, Current Channel, subscription)
+Yes
+Yes
+Yes
+Yes
+Calendar search spotlight
+Not listed
+Rolling out in November
+Rolling out in November
+Not listed
+Not listed
+Source for every row: Microsoft’s November 3, 2026 Tech Community post.
+On Windows
+If you use 
+Classic Outlook
+ with a Microsoft 365 subscription on Current Channel, you get the full package, including the automatic fallback and the latency gains. If your organization keeps you on a slower update channel, some pieces may arrive later or not be listed for your channel yet.
+If you’ve moved to 
+new Outlook
+, you get the ranking, stop-word and feedback changes, plus the calendar spotlight in November, but the automatic fallback is still in development. This matches a pattern Windows Central has covered before: Microsoft keeps 
+listing reasons to switch to new Outlook
+, while user feedback in that coverage says it still isn’t ready to replace Classic.
+On the web, Mac and mobile
+Outlook on the web gets the expanded ranking, stop-word handling, feedback prompt and calendar spotlight. Outlook Mobile gets those (except the calendar spotlight) and is listed for automatic fallback too. Outlook for Mac is listed for fallback and feedback, with the expanded ranking arriving in November.
+How It Stacks Up
+Measure
+Before
+After
+Source
+Relevance-ranked results at the top
+3
+Up to 7
+Microsoft Tech Community
+Slowest 5% of searches, Commercial mailboxes (Classic)
+Baseline
+40% lower latency
+Microsoft Tech Community
+Slowest 5% of searches moved to cloud (Classic)
+4.5 seconds
+1.3 seconds
+Microsoft Tech Community
+Search when the cloud is slow or unreachable (Classic)
+Could stall
+Falls back to the local index
+Microsoft Tech Community
+All of these are Microsoft’s figures; we found no independent before-and-after test in the sources we reviewed.
+Don’t confuse this with the separate 
+Windows 11 Search
+ changes 
+Windows Central reported on
+. That’s about system-wide search on the taskbar, not searching your mailbox.
+The Reaction
+Public reaction so far is thin. Windows Central’s Sean Endicott wrote that the better stop-word handling “genuinely removes the most frustrating part of Outlook for me,” pointing to Microsoft’s example of searching for “the FY27 budget.”
+Beyond that, we found no linked, attributable posts from named accounts discussing the update in detail, so we’re not presenting reactions we can’t verify. The people most likely to push back are new Outlook users waiting on the automatic fallback.
+What to Do Next
+You likely don’t need to install anything specific. Microsoft describes these as changes rolling out across Outlook clients and update channels.
+In 
+Classic Outlook
+, keep Microsoft 365 Apps updated through your normal Office updates. Several changes are listed for Current Channel and Monthly Enterprise Channel with a subscription, so on a work PC your IT department controls when they arrive.
+In 
+new Outlook
+, Outlook on the web, and Outlook Mobile, Microsoft lists the ranking changes as available, so there’s usually nothing to do.
+Run a search you do often. If you see up to seven relevance-ranked results at the top before the date-ordered list, the change has reached you. If you get a thumbs-up/down prompt on a bad result, use it.
+If you’re the family or office tech helper, here’s the short answer for anyone who asks: “Nothing to install. Search may just get better on its own.”
+If your 
+Outlook search is already broken
+, for example it can’t find emails you know exist, this update may help with some slow or stalled searches, but it won’t fix every indexing, sync or account problem. In Classic Outlook, PST files and POP or IMAP accounts still depend on the local Windows Search index, so a damaged index is still worth checking.
+Our Take
+Verdict: Let it roll in. No action needed, and very little reason to worry.
+Seven ranked results instead of three is the headline, but the 
+automatic fallback
+ and the 
+latency cuts
+ in Classic Outlook are the parts most likely to fix real everyday frustration: search that hangs instead of answering. Ranking by recency, sender and your own interaction is a sensible set of signals, and the thumbs prompt gives Microsoft a direct way to hear when it gets it wrong.
+Keep your expectations measured for three reasons:
+Channel matters
+: several Classic Outlook changes are listed only for Current Channel or Monthly Enterprise Channel with a subscription.
+New Outlook’s fallback is still in development
+, with no date.
+The speed figures are Microsoft’s alone
+, and Microsoft says it is still tuning the ranking.
+Your mail itself isn’t touched by a ranking change, but the order of your top results may shift, and you may start seeing feedback prompts.
+Wrapping Up
+The Outlook Search update brings up to seven relevance-ranked results instead of three, better handling of common words, an automatic local-index fallback in Classic Outlook, Outlook Mobile and Mac, faster worst-case searches in Classic Outlook, and a thumbs-up/down prompt on results. New Outlook’s fallback is still in development.
+Keep Outlook updated and let it arrive. If you’re on new Outlook and often search on spotty connections, Classic Outlook is still the safer bet until Microsoft ships the fallback there.
+Step
+Action
+Applies To
+1
+Nothing to install; changes roll out to your client and channel
+Clients and channels listed for each change
+2
+Keep Microsoft 365 Apps updated
+Classic Outlook (Current Channel / Monthly Enterprise Channel)
+3
+Look for up to seven ranked results at the top of searches
+Classic, new Outlook, web, Mobile (Mac from November)
+4
+Use the thumbs-up/down prompt on bad results
+Clients listed in Microsoft’s post
+5
+Use Classic Outlook for searches on weak connections
+New Outlook users, until the fallback ships
+
+===== https://windowsforum.com/news/outlook-search-update-seven-ranked-results-thumbs-feedback-and-stop-word-fix.450898/
+(status 200)
+O
+utlook search has long been bad at one specific thing. You type a few words you're sure are in the email, and the results are full of messages that happen to share a "the" or an "is" with your query. The email you actually wanted is somewhere further down. Microsoft is now trying to fix that, and it's asking users to help by grading the results.
+The changes are described in a November 3 Outlook Blog post on Microsoft's Tech Community titled "How Outlook Search is changing: ranking, resilience, and the feedback loop." It covers several separate updates. Some are already rolling out, one is still in internal testing, and the update for each Outlook client arrives on a different schedule. That last point matters, as you'll see below.
+The grading part: thumbs up, thumbs down​
+The headline feature is a thumbs-up or thumbs-down prompt on the search results page. Windows Central reports that Microsoft says Outlook search now surfaces more relevant emails and lets users rate results with a thumbs up or thumbs down.
+Microsoft explains why it wants your rating instead of just counting clicks. Behavioral data can mislead. If you open an email from your results, that looks like a successful search, even though you may have opened it only to check whether it was the right one and then given up. In its blog post, Microsoft says an explicit rating exposes cases where clicks and dwell time don't show what the user actually wanted. Microsoft also says the rating is sent "with appropriate diagnostic context," which helps engineers find the types of queries that fail.
+Be realistic about what the button does. Microsoft presents feedback as evidence that helps engineers decide what to investigate next. It does not say that a thumbs-down will fix your own future results. You're filing a report, not training a personal assistant.
+Where the feedback prompt is available, according to Microsoft:
+Classic Outlook for Windows with Exchange Online and Outlook.com accounts on Current Channel with a subscription
+Outlook on the web
+New Outlook
+Outlook Mobile
+Outlook for Mac
+More search surfaces getting the prompt in November and December 2026, for both commercial and consumer users
+In short:
+ The thumbs prompt gives Microsoft a direct signal when a search fails. It doesn't let you correct your own results.
+Seven ranked results instead of three​
+The most visible change is how results are laid out. Windows Central puts it simply: when you search for an email within Outlook, you will see seven ranked results rather than three. According to Microsoft's post, Outlook now shows up to seven relevance-ranked results at the top, and the rest of the results follow in date order. The ranking looks at signals such as how recent a message is, who sent it, and how you've interacted with it before.
+Microsoft says it is still adjusting both the ranking logic and the point where relevance order switches to date order. Other sort options remain available.
+Availability for the seven-result block:
+Client
+Status
+Classic Outlook for Windows (Current Channel and Monthly Enterprise Channel, subscription)
+Available
+Outlook on the web
+Available
+New Outlook
+Available
+Outlook Mobile
+Available
+Outlook for Mac
+Rolling out in November 2026
+Microsoft says this applies to both commercial and consumer accounts. It hasn't given a completion date for the Mac rollout.
+If you'd rather keep strict date order​
+Not everyone wants Outlook choosing what's "relevant," and a bigger ranked block means more of that. The setting to turn it off already exists. In a Microsoft Q&A support thread, the suggested fix for Outlook on the web is to go to Settings > General > Search, clear the checkbox for "Show top seven most relevant results," select Save, then refresh the page and perform the search again. The same answer notes that disabling this option usually makes the results appear closer to chronological order. You can also open Sort in the upper‑right corner of the results pane and select Newest on top after running a search.
+For Classic Outlook on Windows, an older Microsoft Q&A answer gives the path Outlook > File > options > search > uncheck - Show most relevant search results on top. That answer dates from 2023, so the exact wording may be different in current builds.
+Before you switch it off, think about whether the new ranking might work better than the old three-result block did.
+In short:
+ Most clients now get more ranked results, and you can still turn ranking off if you prefer date order.
+The stop-word fix is already live​
+This is the change that actually addresses the "the" and "is" problem. Microsoft says it has rolled out service changes that improve how Outlook handles common stop words such as "the," "and," and "is." According to the company, the change affected about 3% of searches, and those searches saw more result clicks where users opened and engaged with the mail. Microsoft didn't say how large that increase was.
+Windows Central illustrates the change with Microsoft's before-and-after example of a search for "the FY27 budget." The example shows how Outlook's updated search ranks relevant emails higher in the results instead of surfacing messages that only happen to contain common search terms.
+Microsoft lists the stop-word handling as available on all Outlook endpoints, for commercial and consumer users.
+The AI model isn't shipping yet​
+Windows Central's coverage gets one thing wrong. It states that the improved rankings in Outlook are the result of a small language model ranker built specifically for Outlook. Microsoft's own post doesn't support that.
+Microsoft says it is 
+building
+ an Outlook-specific small language model (SLM) ranker. It is trained through distillation: a larger "teacher" model supervises a smaller "student" model that is cheap enough to run at Outlook's scale. The company calls early offline results "promising" and says internal testing is underway. It gives no release date and doesn't say the model is generally available.
+So the stop-word improvement and the seven-result layout are shipping now. The SLM ranker is still in testing. Microsoft actually describes the stop-word fix as one of several "smaller service changes" made "alongside" the model work, not as something the model produced. If your searches got better this week, credit the stop-word change and the new layout, not an AI model.
+Microsoft's reasoning for distillation is sound. It says the goal isn't model quality on its own but a better balance between relevance and speed under real-world load. A large model that finds the perfect email after eight seconds would still make search feel broken.
+In short:
+ The SLM ranker is still in internal testing. The improvements you can see today come from the stop-word fix and the new layout.
+Classic Outlook gets faster and handles bad connections better​
+Classic Outlook users get two more changes, and the details matter.
+Cloud first, with automatic local fallback.
+ Classic Outlook combines Microsoft's cloud search service with Windows Desktop Search, which keeps a local index on the PC. Microsoft says some query types used to stay local, including Find Related, parts of the advanced search syntax, and queries in a broader set of languages. Eligible searches now go to the cloud, so they get the same service-side improvements as other Outlook clients.
+Local search is still needed offline and for content that isn't in the cloud, such as PST files and POP or IMAP accounts. Classic Outlook now switches to the local index automatically when the connection or a slow service response prevents a timely cloud result. Microsoft lists automatic fallback for Classic Outlook for Windows (Current Channel, subscription), Outlook Mobile and Outlook for Mac. For new Outlook, the feature is still "in development."
+Latency numbers, with their limits.
+ Microsoft credits two changes for improvements in the slowest 5% of Classic Outlook searches:
+Authentication-path optimization:
+ a 40% latency reduction for the slowest 5% of searches, for commercial mailboxes only.
+Migration to cloud search:
+ for query types moved from the local index to the cloud, latency for the slowest 5% fell from 4.5 seconds to 1.3 seconds.
+These are tail-latency figures for specific groups of searches, not averages for every search. Microsoft argues that the slowest searches shape whether search feels dependable, and anyone who has watched the "searching..." spinner while a meeting starts will agree. Microsoft lists these gains for Classic Outlook on Current Channel and Monthly Enterprise Channel with a subscription.
+For admins:
+ Users on PSTs or POP/IMAP accounts still rely on Windows Desktop Search, so a healthy local index still matters. And if new Outlook users complain that search fails on weak hotel Wi-Fi, the automatic fallback hasn't reached that client yet.
+How Microsoft tests ranking​
+Microsoft says it starts with offline tests against generated mailboxes built to resemble real enterprise inboxes: thousands of messages, meeting invites, newsletters, group mail and overlapping project topics. Using generated data means no real customer mailbox becomes a test fixture. The evaluation set has thousands of queries with known correct answers, based on real search patterns such as keywords, names, email addresses and combinations of those.
+Microsoft admits that offline tests can't cover every mailbox or every user's intent. That's why it runs controlled live experiments before broad rollout, and why it wants the thumbs feedback. As the post notes, two people can type the same query while looking for different emails.
+Also new: Calendar search spotlight​
+The same post announces 
+Calendar search spotlight
+, which shows matching events directly in the calendar view so you can see what's before, after or overlapping them. You can switch back to the old list view with one click. It's rolling out to Outlook on the web and new Outlook in November 2026, and Microsoft says it is reviewing feedback before bringing it to other clients. It's a calendar feature and has nothing to do with grading email results.
+Verdict​
+This is a worthwhile set of updates. The stop-word fix addresses a long-standing complaint, the Classic Outlook latency gains are measured where users notice them most, and asking for explicit feedback is a reasonable admission that click data doesn't tell the whole story.
+Keep expectations in check, though. The AI ranker isn't shipping yet, automatic fallback hasn't reached new Outlook, and a thumbs-down tells Microsoft about a problem without fixing your own results. Rate your searches honestly anyway. Microsoft says it will use those ratings to decide which search failures to investigate next.
+References
+The search in Outlook gives the top 3 results. How can I make this stop and customize? - Microsoft Q&A
+											learn.microsoft.com
+How Outlook Search is changing: ranking, resilience, and the feedback loop | Microsoft Community Hub
+											techcommunity.microsoft.com
+Click to expand...

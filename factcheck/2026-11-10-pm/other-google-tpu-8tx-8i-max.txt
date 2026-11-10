@@ -1,0 +1,367 @@
+===== https://pc.watch.impress.co.jp/docs/news/2154906.html
+(status 200)
+ニュース
+脱GPUへ一手、Googleが独自AIチップ「TPU」に新モデル2種
+笠原 一輝
+2026年11月9日 22:00
+Google Cloudが発表したTPU 8tx(左)とTPU 8i Max(右、写真提供: Google Cloud)
+ 　Googleのクラウドサービス事業部門となるGoogle Cloudは11月9日(米国時間)、AI演算装置であるTPU(Tensor Processing Unit)の最新製品「TPU 8tx」と「TPU 8i Max」を発表した。TPUは、同社が社内のAI環境(一般消費者向けのGeminiや法人向けGemini Enterpriseなど)やクラウドサービス事業の顧客向けに提供しているもの。 
+ 　両製品ともに、4月にGoogle Cloudが発表した第8世代TPU(「TPU 8t」、「TPU 8i」)のバリエーション。TPU 8txは、TPU 8tとAMDの第5世代EPYCが備えるConfidential Computing機能を統合した製品。TEE(Trusted Execution Environment、信頼できる実行環境)を作り出して処理をその中で実行することで、外部からの干渉を防ぎ、高いセキュリティ性を実現できる。 
+ 　TPU 8i Maxは、1つのパッケージ上に2つのTPU 8iを統合した製品。ラックあたりに格納できるTPUの密度を2倍にすることで、ラック全体でのコンピューティング性能やメモリ容量を2倍にできる。 
+ 　第8世代TPUは、4月の発表後にGoogle自社のデータセンターへの納入が進んでいる。10月にはOracleのクラウドサービス事業であるOCI(Oracle Cloud Infrastructure)と、ほかのハイパースケーラーのクラウドサービス事業者での採用も決まった。今回の2製品は、その普及をさらに後押しするものだ。 
+採用が拡大するGoogle CloudのTPU
+4月のGoogle Cloud Next'26で発表されたTPU 8i(左)とTPU 8t(右)
+ 　AIの分野では「誰がどれだけの処理能力をいくらで得るのか」が競争になりつつある。たとえば、10月27日にラスベガスで行なわれたOracle AI Worldにおいて、OCIの事業責任者であるマヘシュ・シャガラジャン氏は、OpenAIが9月に発表したフロンティアAIモデル「GPT-6 Astra」の学習や開発などが、OCIがOracleのデータセンターに構築しているGPUクラスターで行なわれたことを明らかにしている。同氏は、OpenAIやAnthropicなどが繰り広げている最先端モデルの開発について、「最先端のモデルにはそれなりの演算インフラが必要だ」と述べ、大規模な演算インフラの重要性を強調している。 
+ 　OpenAIやAnthropicといった新興のAIソフトウェアベンダーは、OCIのようなハイパースケーラーのクラウドサービス事業者のインフラを大規模に借りて、AI学習を行なうことが一般的だ。それに対してGoogleは、自社内にGoogle Cloudというクラウドサービス事業者を持っていることもあり、基本的には自社のインフラを使って開発を行なっている。 
+ 　Googleは割合こそ公開していないが、そうしたAI演算のインフラの一部として自社開発のカスタムチップであるTPUを利用している。Googleは、このTPUを2015年以来AI演算インフラの一部として使ってきた。当初は推論向けの専用エンジンという目的で開発されたのだが、その後学習用が投入され、近年は推論に特化したモデルに回帰している。 
+ 　Google CloudがこうしたTPUに力を入れる理由は2つある。1つは、学習用としては高い市場シェアを持つGPUの入手困難に対応するため。そしてもう1つは、GPUの価格が高騰傾向にあるため。つまり、性能あたりの単価が安い自社チップを導入することで、コストを下げることを目指してきた。 
+ 　そして、今年(2026年)の4月に行なったGoogle Cloud Next'26で発表したのが第8世代TPUだ。TPU 8tは学習、TPU 8iは推論にフォーカスしたもので、それぞれ目的に応じて利用できる。 
+関連記事
+半導体/周辺機器
+その他
+Google Cloud、Geminiを裏で支える学習向け「TPU 8t」と推論向け「TPU 8i」
+ 　TPUはこれまで事実上Googleのクラウドでのみ提供されてきたが、Oracleは10月に開催したOracle AI Worldにおいて、自社のデータセンターにTPUを導入すると明らかにした。 
+関連記事
+市場
+AI
+その他
+脱GPUが加速、OracleもGoogle製TPUを選択
+TEEをEPYCで実現したTPU 8txと密度2倍のTPU 8i Max
+第8世代TPUのブレードの違い、左からTPU 8t、TPU 8i、TPU 8tx、TPU 8i Max(写真提供: Google Cloud)
+ 　Googleは今回、こうしたTPUのラインナップを拡充する。TPU 8txはTPU 8t、TPU 8i MaxはTPU 8iの派生モデル。いずれのチップそのものは基本的にTPU 8tおよびTPU 8iと同じだが、インフラ側に拡張が入る形になる。なお、Google Cloudによれば、1年間で4つのTPUを発表するというのはTPUの歴史の中でも初めてのことだという。 
+TPU 8tx(写真提供: Google Cloud)
+ 　TPU 8tは、従来はGoogle Cloudがカスタムチップとして設計したArm ISAのCPUであるAxionと組み合わせて利用されてきた。それに対して新しいTPU 8txでは、CPUがAMDの第5世代EPYC(開発コードネーム: Turin)に変更された。これにより、第5世代EPYCで実装されているAMDのConfidential Computingのハードウェア(SEV)が作り出すTEEを利用できるようになる。 
+ 　TEEは、ハードウェアの機能を利用してメモリ空間の中に信頼できる実行環境を作り出し、そのTEEのメモリ空間で動作するプログラムがマルウェアなどから影響を受けることを防ぐことができる。ソフトウェアだけだと、そうした環境を作ることは難しいのだが、ハードウェアの機能を利用することでTEEを作り出せる。 
+ 　TPU 8txでは、AMD CPUを利用したTEEを作り出すことで、外部に漏れては困るAI学習用のデータなどを格納しながら実行できるようになる。大企業が安全な環境でAIモデルを開発したい場合などに、有望な選択肢となる可能性がある。 
+TPU 8i Max(写真提供: Google Cloud)
+ 　それに対してTPU 8i Maxでは、ラックあたりに格納できるTPUの密度を増やす。従来は1つのパッケージに1つのTPU 8iが実装されていたのに対して、1つのパッケージに2つのTPU 8iが実装される形になっている。 
+ 　サーバーの1枚の基板には、従来は4つのTPU 8iが搭載可能だったのに対して、TPU 8i Maxでは8つが実装可能になる。これにより、1枚の基板に搭載できるTPU 8iのチップ数が倍になり、1つのラックに格納できるTPU 8iの数も従来の倍になる。シンプルにいえば、同じデータセンターの面積でも、TPU 8iをTPU 8i Maxに置きかえることで、理論的に性能が倍になるということだ。 
+TPU 8t、TPU 8i、TPU 8tx、TPU 8i Maxのスペック(写真提供: Google Cloud)
+ 　また、Googleは4月のGoogle Cloud Next'26で発表していた「PyTorch on TPU」のGA(一般提供開始)も明らかにしている。PyTorch on TPUは、TPUがPyTorchにネイティブ対応し、CUDA向けに書かれたPyTorchのコードを簡単にTPU向けに書き換えることを可能にするというもの。 
+ 　これにより、PyTorchで作成したAI学習のソフトウェアをTPU上で走らせやすくなり、CUDA GPUからTPUへの乗り換えがより容易になる。なお、PyTorch on TPUに関しての詳細は以前の記事をご参照いただきたい。 
+関連記事
+半導体/周辺機器
+CPU
+その他
+【笠原一輝のユビキタス情報局】Googleの新型AI演算チップ「TPU 8t」と「TPU 8i」は何が違うのか？
+「TPU」関連アイテム
+Amazonで購入
+
+===== https://pc.watch.impress.co.jp/docs/news/2151701.html
+(status 200)
+ニュース
+脱GPUが加速、OracleもGoogle製TPUを選択
+笠原 一輝
+2026年10月28日 06:00
+Google Cloudが4月に発表したTPU 8iとTPU 8t(4月のGoogle Cloud Nextで撮影)
+ 　Oracleは、10月25日から10月28日に同社の年次イベント「Oracle AI World 2026」を米ラスベガスで開催している。この中で、ハイパースケール級のクラウドサービス事業となるOCI(Oracle Cloud Infrastructure)が、Google開発のAIアクセラレータであるTPU(Tensor Processing Unit)を採用したことが明らかになった。 
+記事目次
+GPUコストが大きな課題に。AIアクセラレータに注目が集まる
+NVIDIAやAMDのGPUに続き、Google TPUが選択可能になったOCI
+GPUコストが大きな課題に。AIアクセラレータに注目が集まる
+Google Cloudの基板に搭載されているTPU 8t(4月のGoogle Cloud Nextで撮影)
+ 　現在Oracleが開催しているOracle AI World 2026では、フロンティアAIモデルを採用した新しいサービスなどが発表されている。 
+ 　フロンティアAIモデルの普及に伴い、OracleなどのCSP(Cloud Service Provider: クラウドサービス事業者)やSaaS事業者にとって、それを利用したサービスが次々と提供されている現状は、コスト上昇の要因となっている。 
+ 　というのも、フロンティアAIモデルが推論時に消費するトークンが文字通りうなぎ登りに増えており、それに伴って、CPUやGPUといった演算装置を増強しなければいけないからだ。 
+ 　CPUやGPUを導入する際には、2つのコストを考慮する必要がある。1つは導入時の初期導入コストで、GPUのラック(たとえばVera Rubin NVL72やGB300 NVL72など)を購入する価格であり、もう1つがランニングコストだ。具体的には電気代やデータセンターを運営するのに必要なコスト(冷却用の工業用水のコストなど)になる。 
+ 　演算器を強化すれば、初期導入コストが積み上がり、同時にランニングコストも増えていく。それによりクラウドサービス事業者がSaaSを提供していくうえでのコストが跳ね上がり、従来の価格モデルでは運用するのが難しくなりつつある。 
+ 　たとえば、フロンティアAIモデルがベースの「Copilot Cowork」や「Autopilot」は従量制課金で提供されており、SaaSベンダーにとってフロンティアAIモデルでサービスを提供することは、GPUも含めてコストとのにらみ合いになっている。 
+ 　そんな中、MicrosoftはGPUの代替になり得るAIアクセラレータ「Maia 300」を2027年から順次投入していくと先日発表。ほかにも、GoogleのTPU、AWSのTrainiumといったAIアクセラレータがGPUの代替として、特に推論時のトークンコストを下げる手法の1つとして注目を集めている。 
+NVIDIAやAMDのGPUに続き、Google TPUが選択可能になったOCI
+Google TPU 8t(4月のGoogle Cloud Nextで撮影)
+ 　OCIは特定のプロセッサベンダーには依存しないという戦略をとっており、どのプロセッサベンダーとも対等に付き合っている。 
+ 　実際、OCIはNVIDIA GPUだけでなく、その代替といえるAMD Instinctの採用に積極的に取り組んできた。AMDのAIデータセンター向けGPU「Instinct MI350」などのInstinctシリーズを、ハイパースケール級のCSPとしていち早く採用したのがその代表例だ。 
+ 　今回Oracleが発表したのは、そうしたOCIのAI演算向けプロセッサの選択肢に、GoogleのTPUが加わるということだ。GoogleのTPUは、GPUに比べて低い初期コストと高い電力効率が特徴で、ランニングコストも抑えることが可能だという。 
+ 　NVIDIAやGoogleは具体的な価格やコストモデルを明らかにしていないため検証のしようはないが、その可能性は高いと考えられている。OCIがTPUを推論に採用することで、フロンティアAIモデルの推論時のトークンコストを下げられると考えられる。 
+ 　Googleはこれまで自社のクラウドサービス事業だけでTPUを活用してきたが、TPUの外販は自社の開発コストを下げることにつながる。半導体は「規模の経済」であり、出荷数が増えれば増えるほど開発コストは下がり、利益率が上がるからだ。 
+Google TPU 8i(4月のGoogle Cloud Nextで撮影)
+ 　なお、Googleは2026年4月に開催したGoogle Cloud Nextにおいて、第8世代のTPU 8tとTPU 8iの2つの製品を発表している。記事執筆時点ではどの世代のTPUがOCIに導入されるか不明だが、当然その2つも導入のターゲットになるだろう。Oracleによれば、2027年に提供が開始され、顧客ニーズに応じて今後数年にわたり導入規模が拡大されていく予定だ。
+
+===== https://pc.watch.impress.co.jp/docs/news/2103691.html
+(status 200)
+ニュース
+Google Cloud、Geminiを裏で支える学習向け「TPU 8t」と推論向け「TPU 8i」
+笠原 一輝
+2026年4月22日 21:00
+左がTPU 8i、右がTPU 8t
+ 　Alphabet傘下のGoogle Cloudは、4月22日～4月25日(米国時間)に米国ネバダ州ラスベガス市のマンダレイベイ・コンベンションセンターにおいて、同社の年次イベント「Google Cloud Next '26」を開催する。 
+ 　同社はそれに先だって報道発表を行ない、同社が自社のAIインフラ向けに開発して投入しているTPU(Tensor Processor Unit)の第8世代製品を発表した。従来のTPUは初代が推論向けだった以外は、基本的にAI学習用、あるいは学習/推論両用に位置づけられてきたが、この世代では学習向けのTPU 8tと推論向けのTPU 8iに分離されて投入される。 
+ 　学習向けのTPU 8tは12.6PFLOPS(FP4利用時)、推論向けのTPU 8iは10.1PFLOPSというスループットを実現しており、8tは216GB、8iは288GBのHBMメモリを採用している。 
+Googleが自社で設計し、Google Cloudのデータセンターでだけ活用しているAI向けカスタムシリコン「TPU」
+TPUの歴史
+ 　GoogleのTPUは、2015年に発表されたAIに特化したカスタムシリコン。外販はされず、基本的にはGoogle Cloudのデータセンターでだけ利用されている。GeminiのようなGoogleの自社サービスやGoogle Cloudのインスタンス向けに投入されており、外部のユーザーが利用したい場合にはGoogle Cloudのインスタンスを契約して利用する必要がある。 
+2015年に発表されたTPUv1
+2018年のTPUv2
+2020年のTPUv3
+2022年のTPUv4
+2023年のTPUv5p
+2023年のTPUv5e
+ 　Googleはここ数年、1年に1度新しいTPUを投入しており、2024年では「Trillium」、2025年では「Ironwood」を発表しており、今回のTPU 8t/8iはその後継製品となる。 
+関連記事
+半導体/周辺機器
+CPU
+その他
+Google、従来比性能4.7倍のTPU。HBMの速度/容量も2倍に
+半導体/周辺機器
+CPU
+その他
+Googleの新TPU「Ironwood」が登場。El Capitanを24倍上回る42.5EFLOPSを実現
+半導体/周辺機器
+CPU
+その他
+【笠原一輝のユビキタス情報局】なぜGoogleは「Ironwood」の“推論特化”を強調するのか？
+ 　従来GoogleはTPUを、TPUv3、TPUv4、TPUv5のように世代名で呼んでいたのだが、TPUv6に相当する2024年モデルからTrillium、TPUv7に相当する2025年モデルはIronwoodとコードネームをそのまま製品名として採用する方針に転換していた。しかし、今回発表された第8世代TPUではTPU 8と世代名に変更されている。 
+2024年のTrillium
+Ironwood
+ 　それに加えて、第8世代TPUでは、学習向けのTPU 8tと、推論向けのTPU 8iに分離して製品展開される。Googleは第5世代TPUで、TPUv5pとTPUv5eという2つのラインナップに分離していたが、その当時はどちらも学習向けという位置づけであり、前世代となるIronwoodは学習/推論両用という位置づけだったものの、チップは1ラインナップのみだった。 
+学習向けのTPU 8tと推論向けのTPU 8iの2つのチップ構成、Vera Rubin NVL72も本年中に投入
+TPU 8t
+ 　学習向けのTPU 8tは、より大規模なスケールアップやスケールアウトして使うことを前提にしたチップになる。チップ単体の性能は12.6PFLOPS、パッケージに搭載されているHBMメモリ(HBMの世代は明らかにされていない)は216GBとなっている。 
+ 　スケールアウト時に利用するネットワークの帯域は前世代となるIronwoodがチップあたり100Gbpsだったのに対して、TPU 8tでは400Gbpsに引き上げられている。スケールアウトネットワークを利用すると最大で9,600基までスケールアウト可能。これは、前世代のIronwoodの9,216基より増えており、ポッド(クラスター)全体の性能も、Ironwoodの42.5EFLOPSから121EFLOPS(いずれもFP4時)と約2.85倍に引き上げられている。 
+【表1】TPU 8tとTPU 8iのスペック(Google Cloud提供の資料より筆者作成)
+TPU 8t
+TPU 8i
+ターゲット処理
+大規模学習
+リーズニングなど
+特別チップ機能
+SparseCore+LLMデコーダエンジン
+CAE
+オンチップSRAM
+128MB
+384MB
+ピーク・スループット(FP4)
+12.6PFLOPS
+10.1PFLOPS
+HBM容量
+216GB
+288GB
+HBM帯域幅
+6,528GB/s
+8,601GB/s
+クラスタ上限
+9,600基
+1,152基
+ 　推論向けのTPU 8iは、従来のTPUが4つのSparseCoreを搭載していたのに対して、2つのTensorCoreと1つのCAE(Collectives Acceleration Engine)に置き換えられ、288GBのHBMメモリ(8,601GB/s)に加えて、384MBというSRAMキャッシュをオンチップ搭載しており、広帯域かつ低遅延でメモリにアクセスできることが特徴で、低遅延での動作が期待される推論処理に向いているといえる。 
+ 　「AIエージェントやエージェンティックAIでは、低遅延であることが重要になる」(Google上級副社長兼AI・インフラストラクチャ担当技術責任者アミン・ヴァーダット氏)との通りで、特に今後増えていくであろうAIエージェント/エージェント型AIを動作させるのに必要な設計になっている。 
+TPU 8i
+ 　処理能力は10.1PFLOPS(FP4時)で、最大1,152基までスケールアウトすることができる。従来世代のIronwoodの少ない方のクラスタ構成では最大256基だったため、FP8時のクラスター全体での性能は1.2EFLOPSから11.6EFLOPSと約9.67倍に引き上げられている。 
+ 　また、GoogleはNVIDIAのVera Rubin NVL72のVM(AWS的な言い方をするならインスタンス)となる「A5X」として今年(2026年)中に投入することを明らかにしており、AI学習、推論向けのソリューションを充実させることで、増え続けるAI処理向けのコンピューティングリソースを今後も拡大していく意向だ。
+
+===== https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/
+(status 200)
+Our newest TPUs: 8tx and 8i Max, built for the agentic era
+Nov 09, 2026
+|
+x.com
+Facebook
+LinkedIn
+Mail
+Copy link
+                We’ve expanded our eighth generation TPU portfolio with TPU 8tx and TPU 8i Max, marking four new TPU systems in a single year.
+Amin Vahdat
+SVP and Chief Technologist, AI and Infrastructure
+                  Share
+x.com
+Facebook
+LinkedIn
+Mail
+Copy link
+        Read AI-generated summary
+We’re expanding our eighth-generation TPU portfolio with the new TPU 8tx for secure, confidential inference and TPU 8i Max for massive context windows. These systems help you manage complex agentic workloads by providing specialized hardware for security, density, and reasoning. You can learn more about these additions and our latest software updates by watching our broadcast or visiting the Google Cloud website to explore our full infrastructure lineup.
+              Summaries were generated by Google AI. Generative AI is experimental.
+We are expanding our eighth-generation TPU portfolio with the new TPU 8tx and TPU 8i Max systems.
+TPU 8tx provides hardware-level security for sensitive data, while TPU 8i Max handles massive context windows.
+These systems join TPU 8t and TPU 8i to offer specialized performance for every AI lifecycle stage.
+We are making TPUs more accessible by supporting PyTorch, open-source software, and automated tools for developers.
+              Summaries were generated by Google AI. Generative AI is experimental.
+            Explore other styles:
+                  General summary
+                  Bullet points
+We first designed TPUs more than a decade ago motivated by Google’s internal demands, including voice recognition and language translation. Eight generations of TPUs later, the use cases have exploded, covering: i) training and serving our own Gemini models, ii) agentic workloads, iii) delivering services to Google Cloud customers on our cloud infrastructure, and most recently, iv) allowing customers to deploy TPUs directly into their own data centers. TPUs are now a rapidly growing business with nearly 100 customers — including frontier labs, trading firms, retailers, universities, and more.
+At Google Cloud Next in April, we 
+introduced
+ two new specialized TPUs in the same generation — 8t for large-scale training and 8i for real-time reasoning. TPU 8t and 8i offer up to 2.7 times better training performance and 80% better inference price performance, respectively, versus our previous generation of TPUs.
+Today, we’re taking that a step further, expanding our eighth-generation TPU portfolio with two additional systems: TPU 8i Max for massive context windows and the highest compute density per rack, and TPU 8tx for secure and confidential inference. This is the first time we have introduced four TPU systems in a single year.
+Our expanded eighth-generation TPU portfolio: TPU 8t, TPU 8i, TPU 8tx, and TPU 8i Max.
+While we’ve always co-designed our TPUs in partnership with Google DeepMind, we’re now increasingly getting feedback from external organizations on their specific needs. With computing moving from human to agent scale, businesses are asking for accelerators that can reason across AI models’ massive context windows. In addition, some highly regulated customers are asking for specialized encryption capabilities for unique workloads.
+The new TPU systems we are announcing today address this new reality. Coupled with 
+our recent PyTorch announcements
+, our aim is to make TPUs more easily accessible to every developer and Cloud customer. By combining modular custom silicon with an open and easy-to-use software stack, we can deliver new hardware and system configurations at the pace of the AI industry.
+Building the computer around the chip
+Today, we’re announcing two new TPU systems — and there’s an important difference between a new chip and a new system.
+Designing a new chip means laying out billions of microscopic transistors on a silicon wafer in a multi-year process bound by the laws of physics and a complex, long-duration manufacturing lifecycle. A system, on the other hand, is about how we bring together the compute, networking, and storage around the chip. This can include how they are packaged with the chips, to quickly meet emerging customer needs and research use cases.
+When we built our very first TPU more than a decade ago, we knew AI software would evolve much faster than silicon manufacturing ever could. So we made a foundational bet on system balance and modularity, architecting our TPUs as building blocks as part of our 
+AI Hypercomputer
+, so engineers could rapidly adjust packaging, high-speed memory, optical networking, and security around them. That approach allows us to deliver specialized supercomputers in a matter of months rather than years.
+Specializing for secure, high-context AI
+Each system in our eighth-generation TPU portfolio targets a distinct part of the AI lifecycle.
+ TPU 8t and TPU 8i established the baseline for this generation of chips:
+TPU 8t was designed to be a training powerhouse for massive foundation models with maximum “goodput” — or the useful intelligence delivered per watt of energy used.
+TPU 8i is the reasoning engine, designed to break the memory wall, cutting inter-chip communication delays by up to half.
+Now, as enterprises bring autonomous agents into production, we have created two new configurations of these foundational systems to solve two urgent new challenges: hardware-level data security and million-token context scale.
+TPU 8tx
+TPU 8tx, our third eighth-generation system, is optimized for secure and confidential inference and is also great for small-scale training. It’s built for regulated enterprises and governments running frontier or proprietary models and autonomous agents alongside their most sensitive data.
+Normally, data is encrypted when stored or sent over a network, but has to be unlocked in memory while a computer processes it. Built on the same silicon as TPU 8t and paired with 5th Generation AMD EPYC CPU hosts, TPU 8tx builds security directly into the hardware layer, keeping sensitive data and model weights protected and isolated even while in active use. And by adopting the same low-latency Boardfly network we created for real-time reasoning, TPU 8tx keeps multi-step agents moving, delivering up to 2x lower latency compared to TPU 8t with a near-zero performance penalty.
+Pairing training-grade compute with a fast inference network also means organizations can simultaneously run and customize their models on a single system. TPU 8tx enables teams to fine-tune models using their private data, distill large models into smaller ones, and train their agents through reinforcement learning, all without needing to migrate sensitive data between separate clusters.
+Designed for sensitive enterprise workloads, TPU 8tx provides hardware-level confidential compute for private fine-tuning and secure agent execution.
+TPU 8i Max
+Our fourth system, TPU 8i Max, is built for a different problem: the memory wall.
+When dozens of AI agents work together across an entire software codebase or hours of video at once, memory bandwidth quickly becomes the bottleneck. So we took two low-latency TPU 8i chips and combined them onto a single package.
+TPU 8i Max scales compute and memory in lockstep, delivering double the compute, double the SRAM and double the HBM bandwidth of TPU 8i, so processors remain equipped with essential data and so that large workloads do not stall. Further, because TPU 8i Max fits twice the silicon within the existing rack footprint, data centers can deploy significantly more computing power per square foot and per watt.
+The dual-chip TPU 8i Max system, engineered for massive context windows and maximum compute density.
+While flexible across workloads, together the four systems in our eighth-generation TPUs give customers a purpose-built accelerator for every stage of the agentic lifecycle. TPU 8t for scale-up training, TPU 8i for low-latency reasoning, TPU 8tx for confidential computing, and TPU 8i Max for massive context windows and the highest compute density per rack.
+Opening up TPUs to every developer
+When we launched the first TPU more than a decade ago, there were only a handful of companies running workloads that needed the processing power of a TPU. The use cases were specialized, so engineers would use optimized frameworks and hand-tuned code.
+Over the years, as AI has advanced, more and more companies began using accelerators. Now, AI adoption is at a point where TPUs are excellent for a wide range of companies and use cases, and as a result, we’ve been working systematically to remove barriers to adoption so that TPUs are as easy-to-use as general-purpose hardware.
+This investment comes together today across these key areas:
+Opening up TPU development to every PyTorch developer; no code rewrites needed:
+ Last month, we open-sourced 
+TorchTPU
+, so PyTorch code and Hugging Face models now run natively on TPUs, alongside out-of-the-box TPU backends for leading open-source inference engines like vLLM and SGLang. And to make hardware optimization effortless, our new open-source 
+TPU agent suite
+ (now in preview) plugs directly into coding tools like Claude Code, Cursor, and Google Antigravity to automate TPU onboarding in minutes, diagnose bottlenecks, and autotune custom kernels using plain language. For production deployments, our new open-source 
+XLA Serving Engine
+ lets you train models in Python and serve them directly in a low-latency C++ runtime across TPUs, GPUs, and CPUs.
+Industry-leading production performance on InferenceX and AgentX benchmarks:
+ In production, what really matters is outcomes on real AI workloads rather than theoretical peak chip speeds. On industry-standard InferenceX and AgentX 
+benchmarks
+, which test realistic agentic coding and long-context work, our native vLLM-TorchTPU software stack on TPUs achieved state-of-the-art price-performance marks. 
+New evaluations
+ demonstrate these advantages extend across a wide range of frontier open models and open-source serving stacks while maintaining high model accuracy. Upcoming software optimizations on this same hardware will drive those results even further.
+Eliminating idle compute waste for autonomous agents:
+ Because AI agents are stateful, they frequently pause for seconds or hours while waiting on a database lookup, an external software tool, or human feedback. To make our agents more resource-efficient during those pauses, our new
+ Agent Compute Engine
+ software automatically suspends and resumes idle sessions, cutting operational infrastructure costs.
+Breaking through the memory wall with the model-state layer (TPU Sync):
+ Building the computer around the chip also means unifying memory, storage, and networking in software. As agents reason across million-token contexts and continuous reinforcement learning (RL) loops, memory quickly becomes the bottleneck. We’re open-sourcing 
+TPU Sync
+, the model-state layer for TPU clusters. TPU Sync turns chip HBM, host DRAM, shared storage, and the data center network into a single, co-designed memory hierarchy — automatically tiering massive KV caches off the chip in milliseconds, streaming context across disaggregated prefill and decode nodes, and synchronizing RL weights to cut KV transfer latency and Time to First Token (TTFT) by more than 90%.
+Scaling distributed workloads across TPUs from a single controller:
+ Now 
+generally available
+ on Google Kubernetes Engine (GKE),
+ Cloud Pathways
+ brings the Google DeepMind runtime behind Gemini to every Google Cloud customer. Using a single-controller architecture and
+ pathwaysutils
+, you can orchestrate large-scale TPU systems across multiple slices as if they were one local machine for pre-training, reinforcement learning, and multihost inference. Cloud Pathways keeps long-running jobs moving through hardware disruptions with colocated Python sidecars, sub-minute slice hot-swapping, and elastic resharding.
+Stitching custom TPU topologies on-demand with GKE dynamic slicing:
+ Now generally available,
+ GKE dynamic slicing
+ decouples physical hardware provisioning from logical slice formation using optical circuit switching (OCS) technology. By dynamically assembling TPU cubes into larger topologies (super-slicing) or partitioning them into smaller, isolated workloads (sub-slicing) on-the-fly, this update completely eliminates rigid, manual nodepool recreation cycles. This topology agility slashes job startup times by up to 5x and accelerates fault recovery by up to 4.5x, maximizing overall fleet utilization and workload goodput across all TPUs.
+Co-designing with a decade of experience
+Shipping four TPU systems and a unified, open software stack in a single year only happens when silicon architects, networking engineers, compiler teams, and Google DeepMind researchers build side-by-side.
+Increasingly, we’re even tapping into AI to ideate and build the next generation of AI infrastructure. From using Google DeepMind’s 
+AlphaChip
+ reinforcement learning system to using Gemini to deliver chip layouts in hours rather than weeks, we’re using TPU-powered AI services to rapidly accelerate next-generation TPU hardware development. This is true co-design and a unique Google differentiator.
+Learn more about our new TPU systems by tuning into today’s 
+broadcast
+ at 9 a.m. PT.
+            Get the latest news from Google in your inbox
+            Sign up for our newsletters with product updates, event information, special offers, and more.
+Done. Just one step more.
+        Check your inbox to confirm your subscription.
+    You can also subscribe with a 
+different email address
+.
+            Your information will be used in accordance with 
+Google's privacy policy.
+ You may opt out at any time.
+Posted in:
+
+===== https://www.techtarget.com/news/google-specializes-tpus-for-agentic-confidential-computing/874084/
+(status 200)
+An article from
+                Google specializes TPUs for agentic, confidential computing
+Google customized the TPU 8i Max to increase rack density and the TPU 8tx to ensure enterprise data sovereignty.
+        Published Nov. 9, 2026
+By
+Joab Jackson
+Industry Expert
+Share
+Copy link
+Email
+LinkedIn
+X/Twitter
+Facebook
+Print
+Add us on Google
+            Getty Images
+Extending its eighth generation of TPUs, Google has added two new variants, the 8i Max and 8tx, which specialize respectively in agentic computing and confidential computing. 
+Google created its 
+TPU
+ (Tensor Processing Unit) line of hardware accelerators to meet the specific demands of its AI work and, increasingly, that of its cloud customers. Each new generation of TPUs has addressed the particular bottlenecks for AI at the time.
+The latest designs optimize not just the chips but also the CPUs, memory, networking and shared storage around them for specific AI workloads. 
+“[AI] used to be mostly about how much compute you had available, but now it's also about how quickly data can move, how efficiently you can use the memory, how do you minimize latency, and how you manage the cost and security of running all these workloads at scale,” said 
+Mark Lohmeyer
+, Google Cloud’s vice president and general manager for AI and computing infrastructure, in a press briefing last week.
+A TPU for agentic work
+Google designed the TPU 8i Max for supporting massive context windows required for agentic work. 
+“
+With roughly two-thirds of AI compute now going to inference, specializing [in] inference hardware is the right call,” wrote Patrick Moorhead, founder, CEO and chief analyst of 
+Moor Insights & Strategy, in an email
+.
+Google designed the 8i Max to give agents as much memory as possible, mostly by adding a second TPU onto a multi-chip package. A group of AI agents may work together on tasks such as developing software or creating a video. Thanks to a two-chip design, the 8i Max gets 768 MB of on-chip static RAM and 17.2 TB/s of high-bandwidth memory (HBM) bandwidth.
+When used in large numbers, these TPUs can also 
+maximize the amount of compute
+ per square foot of the data center.
+Many TPUs can collectively work on bigger problems. New software Google recently open-sourced, called 
+TPU Sync
+, orchestrates chip HBM, host DRAM, shared storage and the data center network into a single memory hierarchy.
+Securing the workload
+The TPU 8tx focuses on secure and confidential inference. 
+Secure AI computing
+ is one emerging class of workloads the company is finding from customers. Google built the TPU 8tx for sensitive government work and enterprises in regulated industries.  
+“A bank or government agency can fine-tune, distill and run reinforcement learning on the same confidential system that serves the model, without moving sensitive data between clusters,” Moorhead wrote.
+TPU 8tx enables teams to fine-tune models using their private data, distill large models into smaller ones, and train their agents through reinforcement learning, all without migrating sensitive data between separate clusters, according to a 
+blog posted Monday
+ by Amin Vahdat, senior vice president and chief technologist of AI and infrastructure at Google.
+Data and model weights remain encrypted and isolated at the hardware level during processing, with a near-zero performance penalty and half the latency than the TPU 8t, Lohmeyer said during the briefing.  
+An increasingly diverse user base
+As with previous generations, Google designed the TPUs with the input of the Google DeepMind research lab. But with each generation, the company is building a base of outside users to consult with, both from its cloud service and channel sales. 
+More than 100 customers and partners – including frontier labs, trading firms, retailers and universities – are now using TPUs, according to the company. One is Anthropic, which will 
+expand its use
+ of 
+next-generation TPUs beginning in 2027
+. The California Institute of Technology has shifted some of its own cancer research 
+over to Google Cloud TPUs
+ from its own HPC system, Moorhead learned in a conversation with the team in charge of that operation. 
+Google did not provide any availability dates and pricing for the TPU 8i Max and TPU 8tx. 
+For Moorhead, these new TPUs represent a turning point in the direction of AI computing. No longer is the GPU the only focal point. 
+“Agents put the CPU and host platform back at the center,” Moorhead wrote. 
+Hardware specialization
+Google revealed the first batch of 
+eighth generation TPUs
+ in April, with two variants, still due to go online by the end of this year. The 8t variant is for large-scale training, and the 8i is for inferencing. This generation of TPUs was the first to bifurcate the AI workload into two separate specialties, each with its own modifications to hardware, Lohmeyer said. 
+Key to the TPU architecture has always been a rack-level design, rather than just innovating at the chip level itself. The eighth generation takes that approach further, tailoring the whole system to different AI workloads. The hardware specialization allows the 8t to offer up to 2.7 times better training performance and the 8i to provide 80% better inference price-performance compared to previous TPU generations, according to Vahdat.
+"You can't optimize that infrastructure just by focusing on the chip,” Lohmeyer said. 
+The new TPUs continue this design practice, addressing the current bottlenecks of AI operations.
+Freelance news writer Joab Jackson has been writing about back-end IT technologies for the past three decades. His grandfather programmed mainframes, and his father wrote computer games for hobbyist programming magazines in the 1980s.
+Add us on Google
+Share
+Copy link
+Email
+LinkedIn
+X/Twitter
+Facebook
+Print
+Filed Under:
+AI
+, 
+Infrastructure
+, 
+AI Infrastructure
+, 
+Data Center
+
+===== https://www.techno-edge.net/article/2026/11/10/5690.html
+(status 200)
+Google Cloudは11月9日（米国時間）、第8世代TPUに新しいシステムを2つ追加すると発表しました。機密データを扱う推論向けの「TPU 8tx」と、長いコンテキストを扱うAIエージェント向けの「TPU 8i Max」です。4月に発表した学習向けの「TPU 8t」、推論向けの「TPU 8i」に続くTPUです。なおいずれも提供開始時期や価格などは明らかにされていません。
+TPU 8tx：使用中のデータを守る
+データは保存中や通信中なら暗号化できますが、計算するときにはメモリ上で復号するため、これまでは計算中のデータは暗号化できていませんでした。今回のTPU 8txは、暗号化の仕組みをソフトウェアではなくチップ側に持たせることでこの問題に対処します。
+チップ性能は4月に発表したTPU 8tと同じもので、FP4（4ビット浮動小数点）で12.6PFLOPSの演算性能と216GBの広帯域メモリを備えます。発表によると、1）ホストとTPUを結ぶPCIe接続の暗号化、2）このTPUとホストが正規のハードウェアとソフトウェアで動いているということの証明、3）メモリの中に外から読めない囲いを作る仕組み（エンクレーブ）を、ハードウェアで実現すると説明しました。独自のLLMや社内データを計算中も外から見えない状態で動かせるということです。
+TPU 8i Max：エージェントを同時にたくさん動かすためのメモリ
+100万トークン級のコンテキストを持つエージェントを並列に動かすと、計算速度よりもメモリの帯域がボトルネックになります。その場合、コンテキストを削るか、同時に動かすエージェントの数を減らすか、遅延を受け入れるかのどれかを選ぶしかありません。
+TPU 8i Maxは、TPU 8iのチップ2つを1つのパッケージにまとめた構成です。広帯域メモリは384GBで、TPU 8i（288GB）より33%多くなります。メモリの読み書き速度は17.2TB/sでTPU 8iの2倍、オンチップSRAMは768MBでこちらも同2倍。演算性能もTPU 8iの2倍です。ただし、1つのエージェントがトークンを生成する速さは変わりません。増えた計算力とメモリは、同時に動かせるエージェントの数を増やすことに使われます。Googleはこれを「制限速度は変えずに車線を増やす」とたとえています。今のラックと同じ設置面積に2倍のシリコンを載せられるため、床面積あたり・電力あたりの計算能力も上がります。
+ソフトウェアも同時に発表
+TPUの分散実行基盤「Cloud Pathways」をコンテナ管理サービスのGKE（Google Kubernetes Engine）で一般提供し、光回線スイッチでTPUの割り当てを組み替える「GKE動的スライシング」も一般提供を始めました。動的スライシングはジョブの起動時間を最大5分の1に縮め、障害からの復旧を最大4.5倍速くするとしています。待機中のエージェントのKVキャッシュをチップの外へ退避させる「TPU Sync」もオープンソースで公開しました。KVキャッシュの転送遅延と、最初のトークンが出るまでの時間（TTFT）を90%以上減らすとしています。

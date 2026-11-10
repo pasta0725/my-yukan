@@ -1,0 +1,295 @@
+===== https://forest.watch.impress.co.jp/docs/news/insiderpre/2154665.html
+(status 200)
+Windows Insider Preview
+ゲームを邪魔する［固定キー］［フィルター キー］機能がついに改善へ！
+ Windows Insiderでテスト開始 
+樽井 秀人
+2026年11月9日 14:11
+ 　このコーナーでは、「Windows 11 Insider Preview」ビルドでテストされている最新のOS機能を紹介します。ただし、テストの結果、紹介した機能が製品版OSに搭載されないこともあります。あらかじめご留意ください。 
+突如表示される「固定キー機能を有効にしますか？」というダイアログ
+ 　Webブラウジングやゲームをしていると、突如「固定キー機能を有効にしますか？」「フィルター キー機能を有効にしますか？」というダイアログが現れて戸惑ったことはないだろうか。作業やプレイを中断させられ、不快な思いをしたこともあるだろう。誤って設定を変えてしまい、思いどおりの操作ができずに困ったユーザーも少なくないはずだ。 
+「フィルター キー機能を有効にしますか？」ダイアログが表示されることも
+ 　これらはキーボードのアクセシビリティ機能の一種で、以下のような役割がある。 
+固定キー
+（Sticky Keys）：身体障害や怪我で修飾キー（［Shift］、［Ctrl］、［Alt］など）を同時押しするのが難しいユーザーのための支援機能。有効にしておけば、たとえば［Ctrl］キーを押して離す、［C］キーを押して離すという一連の操作（1つずつ順番に押す）で［Ctrl］＋［C］キーを実現できる。
+［Shift］キーを5回連続で押す
+と、有効化するかを問うダイアログが現れる
+フィルター キー
+（Filter Keys）：手の震えや素早い連打で誤入力が起こる場合に、短い瞬間的なキー操作や同じキーの連続入力を無視する支援機能。
+右［Shift］キーを8秒間長押し
+すると、有効化するかを問うダイアログが現れる
+ 　［アクセシビリティ］－［キーボード］設定ページでダイアログが出ないように調整することも可能だが、わざわざアクセスするのは面倒だし、これを知らないユーザーもいるだろう。 
+［アクセシビリティ］－［キーボード］設定ページ
+ 　そこで、米国時間11月6日にリリースされた「Windows 11 Insider Experimental Preview」Build 26340.9882（バージョン 26H2）では、「固定キー機能」や「フィルター キー機能」を有効にするかどうかを尋ねるダイアログが改善。チェックボックスをONにすると、そのショートカットでは機能を有効にしない設定にでき、確認ダイアログの再表示も防げる。 
+新しい［フィルター キー機能］ダイアログ。チェックボックスが追加された（現時点では英語表記）。［固定キー機能］ダイアログにも同様の改善
+ 　なお、Windows 11では
+古いWin32ダイアログを「WinUI」で作り直す取り組み
+も進められており、これらのダイアログもその対象になっているという。段階的に展開されているため、すぐには利用できない場合もある。 
+Windows 11 just keeps getting better, and Microsoft has finally added a checkbox to the Sticky Keys pop-up, allowing you to permanently dismiss it instead of accidentally triggering the same annoying dialog every time you press Shift five times.
+ Funnily enough, this pop-up exists because of a game! 
+ Charles Oppermann, who wrote the original dialog in 1995, revealed that Brad Silverberg, who led Windows 95, had kids who kept accidentally activating Sticky Keys while playing Space Cadet Pinball. 
+ Microsoft actually considered adding a checkbox back then, but decided against it to make accessibility features more visible. 
+ It took 31 years to reconsider that decision! 
+ I tested the new option in Windows 11's latest Insider build, and it also applies to the Filter Keys prompt. 
+ Microsoft's design boss Marcus Ash has separately confirmed that modernizing these old Win32 dialogs is also on the team's list. 
+ I love these little improvements, especially when Microsoft is finally paying attention to the everyday annoyances that have survived in Windows for decades. 
+— Windows Latest (@WindowsLatest)
+November 8, 2026
+Amazonで購入
+「Windows」関連商品
+Amazonで購入
+Windows Insider Preview 最新記事一覧
+ゲームを邪魔する［固定キー］［フィルター キー］機能がついに改善へ！
+「Microsoft Edge」の起動が最大33％高速化 ～Windows 11の新機能「Accelerated App Launch」で
+Windows 11の「拡大鏡」にまぶしさを抑えるテーマ、マルチモニター対応も拡充 ～間もなく一般展開
+Windows 11、IPv6専用ネットワークでもIPv4アプリが使える「CLAT」に対応へ
+Windows 11の［クイック設定］パネルから手軽に行える省エネ対策、プレビュー版でテスト中
+
+===== https://www.engadget.com/2311340/windows-11-is-finally-adding-an-easier-way-to-disable-sticky-keys-pop-up/
+(status 200)
+Big Tech
+Microsoft
+Windows 11 is finally adding an easier way to disable the Sticky Keys pop-up
+There’s a checkbox that simply turns it off.
+By
+Lawrence Bonk
+Nov. 9, 2026 2:42 pm EST
+Unsplash/Daniel Romero
+Add Engadget on Google:
+Preferred Source
+Google Discover
+Microsoft is finally 
+making it easier to disable
+ the Sticky Keys pop-up. This window shows up whenever a user hits Shift five times in succession and lets users activate multi-key shortcuts, like Ctrl+Alt+Del, with a single key.
+There's just one problem. Sticky Keys are incredibly useful as an accessibility feature, but not everyone needs them. However, the pop-up rears its head each and every time Shift is pressed five times consecutively. This has been a frustration for long-time Windows users who have no interest in Sticky Keys and are annoyed by constant pop-ups. Shift is the default button for many actions in PC games, including sprinting and walking.
+We're adding the ability to permanently turn off the prompt to enable sticky keys from the pop up itself 
+pic.twitter.com/kWBYmGPA6M
+— Jen Gentleman 🌺 (@JenMsft) 
+November 7, 2026
+The solution is downright simple. The pop-up now arrives with a checkbox that says "never turn on Sticky Keys with this shortcut." Clicking the checkbox ensures the annoying window goes away permanently.
+There's a spot of bad news here. The checkbox is currently only available to those enrolled in the Windows Insider program. It's just an 
+experimental beta release
+ for now. However, this has been a long-requested feature so it's likely to make the jump to all Windows 11 users in the future.
+There's a more traditional way to turn off Sticky Keys, while we wait for general availability. Navigate to "Settings" and then "Accessibility" and finally "Keyboard." Make sure "Sticky Keys" is toggled to the off position. Next, make sure "Keyboard shortcut for Sticky Keys" is also toggled to the off position.
+It might be hard to believe, but those wacky Sticky Keys are more than 30 years old. They were first introduced in Windows 95.
+
+===== https://www.theregister.com/os-platforms/2026/11/09/microsoft-takes-three-decades-to-make-sticky-keys-less-sticky/5308491
+(status 200)
+os platforms
+    Microsoft takes three decades to make Sticky Keys less sticky
+        Windows preview adds a 'don't ask again' option to accessibility prompts, sparing users a trip through Settings
+Richard Speed
+Richard
+Speed
+MICROSOFT ECOSYSTEM REPORTER
+Published
+mon 9 Nov 2026 // 16:43 UTC
+Make us preferred on Google
+READ MORE
+Dev error bricked 600 PCs, caused $1M CD-ROM write-off
+17 hours ago
+Copilot Chat has usage caps, and Microsoft would rather you found them by hitting them
+4 days ago
+Microsoft admits certifications can be a drag, launches creds that recognize skills
+4 days ago
+HP Inc hires former GSK boss as CEO
+5 days ago
+Windows pushed AI PCs, but now it's hit a wall of RAM prices
+5 days ago
+Windows testers are getting a new option in the Sticky Keys and Filter Keys dialogs – one to banish the pop-ups without needing to venture deep into Settings.
+It's only taken several decades for Microsoft to put the off switch where the interruption actually happens. The accessibility features themselves are useful, though triggering their activation prompts by accident is another matter.
+Once enabled, Sticky Keys let users press modifier keys (such as Control) one at a time instead of holding them down together. For example, rather than holding Control and pressing C to copy, a user can press and release Control, then press C. Filter Keys, meanwhile, ignores brief or repeated keystrokes and adjusts the keyboard's repeat behavior.
+REG AD
+However, the dialogs are of little use to people who don't need the features, and they can pop up at the most inconvenient moments. Tap Shift five times, and you'll see what we mean: Windows chimes and shows a dialog asking whether you'd like to turn on Sticky Keys. Dismiss it, hit Shift five times, and there it is again.
+REG AD
+Or hold down the right Shift key for eight seconds to be treated to the Filter Keys pop-up.
+You can stop this behavior elsewhere in the system, but it requires a trek through Windows settings. The change, 
+introduced
+ in the Experimental Windows Insider Build 26340.9882, adds an option to the Sticky Keys or Filter Keys dialogs to dismiss the prompts permanently.
+It's a small change, but one that should spare users an irritating interruption. Better late than never – even if "never ask me again" has taken roughly three decades to reach the dialog.
+Former Microsoft engineer Charles Opperman 
+said
+ he wrote the dialog in early 1995 "after @bradsilverberg kids kept activating StickeyKeys [sic] while playing Space Cadet pinball." 
+Opperman added that a link to Settings was added in Windows 98 or what would become Windows 2000, and a checkbox was considered even then, but it wasn't deemed a priority. Users could turn off the prompt via settings. Now the option is front and center.
+The option is also 
+rolling out in the Windows Insider Beta channel
+, although Microsoft has not announced a general release date. ®
+windows
+microsoft
+os platforms
+Make us preferred on Google
+
+===== https://xenospectrum.com/windows-11-insider-sticky-keys-dialog/
+(status 200)
+AD
+ã�“ã�®è¨˜äº‹ã�®ãƒ�ã‚¤ãƒ³ãƒˆ
+ä½•ã�Œèµ·ã��ã�Ÿ: Microsoftã�¯Windows 11ã�®Insiderè©¦é¨“ç‰ˆã�§ã€�å›ºå®šã‚­ãƒ¼ã�¨ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚­ãƒ¼ã�®ç¢ºèª�ç”»é�¢ã�‹ã‚‰ã€�ä»Šå¾Œã�®ç¢ºèª�è¡¨ç¤ºã‚’çœ�ç•¥ã�§ã��ã‚‹ã‚ˆã�†ã�«ã�—ã�Ÿã€‚
+ã�ªã�œé‡�è¦�ã�‹: æ”¯æ�´æ©Ÿèƒ½ã��ã�®ã‚‚ã�®ã�¨ã€�ã��ã�®æ©Ÿèƒ½ã‚’å‘¼ã�³å‡ºã�™ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�¯åˆ¥ã€…ã�«åˆ¶å¾¡ã�§ã��ã‚‹ã€‚å¿…è¦�ã�ªæ”¯æ�´æ©Ÿèƒ½ã‚’ç¶­æŒ�ã�—ã�ªã�Œã‚‰ã€�æ„�å›³ã�—ã�ªã�„å‘¼ã�³å‡ºã�—ã�«å¯¾å‡¦ã�§ã��ã‚‹ç‚¹ã�Œé‡�è¦�ã� ã€‚
+æ¬¡ã�«è¦‹ã‚‹ã�¹ã��ç‚¹: ä¸€èˆ¬æ��ä¾›ã�®æ™‚æœŸã�¯æœªå…¬è¡¨ã� ã€‚ã�¾ã�Ÿã€�ã‚²ãƒ¼ãƒ ã�Œã‚¢ã‚¯ã‚»ã‚·ãƒ“ãƒªãƒ†ã‚£è¨­å®šã‚’å¤‰æ›´ã�™ã‚‹å ´å�ˆã�¯ã€�åˆ©ç”¨ä¸­ã�®æ”¯æ�´æ©Ÿèƒ½ã‚’ç¶­æŒ�ã�—ã€�å¤‰æ›´ã�—ã�Ÿè¨­å®šã‚’çµ‚äº†æ™‚ã�«å¾©å…ƒã�™ã‚‹å¿…è¦�ã�Œã�‚ã‚‹ã€‚
+Microsoft
+ã�¯11æœˆ6æ—¥ã€�
+Windows 11
+ã�®Insiderè©¦é¨“ç‰ˆã�§ã€�å›ºå®šã‚­ãƒ¼ã�¨ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚­ãƒ¼ã�®ç¢ºèª�ç”»é�¢ã�«ã€�ä»Šå¾Œã�®ç¢ºèª�è¡¨ç¤ºã‚’çœ�ç•¥ã�™ã‚‹é�¸æŠ�è‚¢ã‚’è¿½åŠ ã�—ã�Ÿã€‚Shiftã‚­ãƒ¼ã‚’5å›�æŠ¼ã�—ã�Ÿéš›ã�«è¡¨ç¤ºã�•ã‚Œã‚‹å›ºå®šã‚­ãƒ¼ã�®ç¢ºèª�ç”»é�¢ã‚‚å¯¾è±¡ã�¨ã�ªã‚‹ã€‚å›ºå®šã‚­ãƒ¼ã�¯ã€�Ctrlã�ªã�©ã�®ã‚­ãƒ¼ã‚’æŠ¼ã�—ç¶šã�‘ã�ªã�Œã‚‰åˆ¥ã�®ã‚­ãƒ¼ã‚’æŠ¼ã�™ä»£ã‚�ã‚Šã�«ã€�ã��ã‚Œã��ã‚Œã�®ã‚­ãƒ¼ã‚’é †ç•ªã�«æŠ¼ã�›ã‚‹ã‚ˆã�†ã�«ã�™ã‚‹ã‚¢ã‚¯ã‚»ã‚·ãƒ“ãƒªãƒ†ã‚£æ©Ÿèƒ½ã� ã€‚ä»Šå›�ã�®å¤‰æ›´ã‚’ç�†è§£ã�™ã‚‹ã�†ã�ˆã�§ã�¯ã€�æ”¯æ�´æ©Ÿèƒ½ã��ã�®ã‚‚ã�®ã�®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã�¨ã€�ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�«ã‚ˆã‚‹å‘¼ã�³å‡ºã�—ã‚’åŒºåˆ¥ã�™ã‚‹å¿…è¦�ã�Œã�‚ã‚‹ã€‚
+AD
+ç¢ºèª�ç”»é�¢ã�‹ã‚‰ä»Šå¾Œã�®è¡¨ç¤ºã‚’çœ�ç•¥ã�§ã��ã‚‹ã‚ˆã�†ã�«
+ä»Šå›�ã�®å¤‰æ›´ã�«ã‚ˆã‚Šã€�åˆ©ç”¨è€…ã�¯å›ºå®šã‚­ãƒ¼ã‚„ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚­ãƒ¼ã�®ç¢ºèª�ç”»é�¢ã�‹ã‚‰ã€�ä»Šå¾Œå�Œã�˜ç¢ºèª�ã‚’è¡¨ç¤ºã�—ã�ªã�„ã‚ˆã�†é�¸æŠ�ã�§ã��ã‚‹ã‚ˆã�†ã�«ã�ªã�£ã�Ÿã€‚
+Microsoftã�®Betaç‰ˆãƒªãƒªãƒ¼ã‚¹ãƒ�ãƒ¼ãƒˆ
+ã�§ã�¯ã€�ç¢ºèª�ç”»é�¢ã�‹ã‚‰ç›´æ�¥ã€�ä»Šå¾Œã�¯å°‹ã�­ã�ªã�„ã‚ˆã�†è¨­å®šã�§ã��ã‚‹ã�¨èª¬æ˜�ã�—ã�¦ã�„ã‚‹ã€‚å¾“æ�¥ã�®ã‚ˆã�†ã�«ç¢ºèª�ç”»é�¢ã�Œè¡¨ç¤ºã�•ã‚Œã‚‹ã�Ÿã�³ã�«å¯¾å¿œã�™ã‚‹ã�®ã�§ã�¯ã�ªã��ã€�ã��ã�®ç”»é�¢ä¸Šã�§å†�è¡¨ç¤ºã‚’çœ�ç•¥ã�™ã‚‹é�¸æŠ�ã�Œã�§ã��ã‚‹ç‚¹ã�Œæ–°ã�—ã�„ã€‚
+ã�“ã�®å¤‰æ›´ã�¯ã€�11æœˆ6æ—¥ä»˜ã�®Windows 11 Insider Preview Beta Build 26320.9876ã�¨ã€�
+Experimental Build 26340.9882
+ã�®ä¸¡æ–¹ã�«è¨˜è¼‰ã�•ã‚Œã�¦ã�„ã‚‹ã€‚Experimentalã�§ã�¯æ®µéš�çš„ã�«å±•é–‹ã�™ã‚‹å¤‰æ›´ã�®ä¸€ã�¤ã�¨ã�•ã‚Œã�¦ã�Šã‚Šã€�å�Œã�˜ãƒ“ãƒ«ãƒ‰ã‚’ä½¿ç”¨ã�—ã�¦ã�„ã�¦ã‚‚ã€�ã�™ã�¹ã�¦ã�®åˆ©ç”¨è€…ã�«ã�™ã��å��æ˜ ã�•ã‚Œã‚‹ã�¨ã�¯é™�ã‚‰ã�ªã�„ã€‚ã�¾ã�Ÿã€�ã€Œä»Šå¾Œã�¯å°‹ã�­ã�ªã�„ã€�ã�¨ã�„ã�†è¡¨ç�¾ã�¯Microsoftã�®è‹±èª�ã�«ã‚ˆã‚‹èª¬æ˜�ã‚’è¨³ã�—ã�Ÿã‚‚ã�®ã�§ã€�æ­£å¼�ã�ªæ—¥æœ¬èª�ãƒ©ãƒ™ãƒ«ã‚„ç”»é�¢ä¸Šã�®é…�ç½®ã�¯å…¬è¡¨ã�•ã‚Œã�¦ã�„ã�ªã�„ã€‚ä»Šå›�è¿½åŠ ã�•ã‚Œã�Ÿã�®ã�¯ç¢ºèª�ç”»é�¢ã�‹ã‚‰é�¸ã�¹ã‚‹è¨­å®šã�§ã�‚ã‚Šã€�æ”¯æ�´æ©Ÿèƒ½ã��ã�®ã‚‚ã�®ã�Œå¤‰æ›´ã�•ã‚Œã�Ÿã‚�ã�‘ã�§ã�¯ã�ªã�„ã€‚
+å›ºå®šã‚­ãƒ¼æ©Ÿèƒ½ã�¨å‘¼ã�³å‡ºã�—ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�®é�•ã�„
+å›ºå®šã‚­ãƒ¼ã�¯ã€�é€šå¸¸ã�ªã‚‰è¤‡æ•°ã�®ã‚­ãƒ¼ã‚’å�Œæ™‚ã�«æŠ¼ã�™æ“�ä½œã‚’ã€�é †ç•ªã�«å…¥åŠ›ã�§ã��ã‚‹ã‚ˆã�†ã�«ã�™ã‚‹æ©Ÿèƒ½ã� ã€‚ä¾‹ã�ˆã�°ã€�ã‚³ãƒ”ãƒ¼æ“�ä½œã�§ã�¯Ctrlã‚­ãƒ¼ã‚’æŠ¼ã�—ã�¦é›¢ã�—ã�Ÿå¾Œã�«Cã‚­ãƒ¼ã‚’æŠ¼ã�™ã�“ã�¨ã�§ã€�Ctrl+Cã�¨å�Œã�˜æ“�ä½œã�Œã�§ã��ã‚‹ã€‚
+Microsoftã�®å›ºå®šã‚­ãƒ¼ã�«é–¢ã�™ã‚‹APIè³‡æ–™
+ã�«ã‚ˆã‚‹ã�¨ã€�Shiftã€�Ctrlã€�Altã�ªã�©ã�®ä¿®é£¾ã‚­ãƒ¼ã‚’1å›�æŠ¼ã�™ã�¨ã€�æ¬¡ã�«ä¿®é£¾ã‚­ãƒ¼ä»¥å¤–ã�®ã‚­ãƒ¼ã‚’æŠ¼ã�™ã�‹ã€�ãƒ�ã‚¦ã‚¹ã‚’ã‚¯ãƒªãƒƒã‚¯ã�™ã‚‹ã�¾ã�§æŠ¼ã�•ã‚Œã�ŸçŠ¶æ…‹ã�Œç¶­æŒ�ã�•ã‚Œã‚‹ã€‚å�Œã�˜ä¿®é£¾ã‚­ãƒ¼ã‚’2å›�æŠ¼ã�—ã�Ÿå ´å�ˆã�¯ã€�ã��ã�®ã‚­ãƒ¼ã‚’å†�ã�³æŠ¼ã�™ã�¾ã�§ãƒ­ãƒƒã‚¯ã�•ã‚Œã‚‹ä»•çµ„ã�¿ã� ã€‚
+ä¸€æ–¹ã€�Shiftã‚­ãƒ¼ã‚’5å›�æŠ¼ã�™æ“�ä½œã�¯ã€�å›ºå®šã‚­ãƒ¼æ©Ÿèƒ½ã‚’å‘¼ã�³å‡ºã�™ã�Ÿã‚�ã�®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�§ã�‚ã‚‹ã€‚æ©Ÿèƒ½è‡ªä½“ã�®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã�¨ã€�ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�«ã‚ˆã‚‹å‘¼ã�³å‡ºã�—ã�¯åˆ¥ã€…ã�«åˆ¶å¾¡ã�•ã‚Œã�¦ã�„ã‚‹ã€‚Microsoftã�®APIè³‡æ–™ã�¨
+ã‚²ãƒ¼ãƒ é–‹ç™ºè€…å�‘ã�‘ã�®ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³
+ã‚’ã‚‚ã�¨ã�«ã€�å›ºå®šã‚­ãƒ¼ã�«é–¢ã�™ã‚‹ä¸»ã�ªåˆ¶å¾¡ã‚’æ•´ç�†ã�™ã‚‹ã�¨æ¬¡ã�®ã‚ˆã�†ã�«ã�ªã‚‹ã€‚
+åˆ¶å¾¡å¯¾è±¡
+APIã�®å®šç¾©ä¾‹
+å½¹å‰²
+å›ºå®šã‚­ãƒ¼æ©Ÿèƒ½ã��ã�®ã‚‚ã�®
+SKF_STICKYKEYSON
+å›ºå®šã‚­ãƒ¼æ©Ÿèƒ½ã�Œæœ‰åŠ¹ã�‹ã�©ã�†ã�‹ã‚’åˆ¶å¾¡ã�™ã‚‹
+å‘¼ã�³å‡ºã�—ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆ
+SKF_HOTKEYACTIVE
+ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�«ã‚ˆã‚‹å‘¼ã�³å‡ºã�—ã�®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’åˆ¶å¾¡ã�™ã‚‹
+ç¢ºèª�ç”»é�¢ã�®è¡¨ç¤º
+SKF_CONFIRMHOTKEY
+ç¢ºèª�è¡¨ç¤ºã‚’åˆ¶å¾¡ã�™ã‚‹ãƒ•ãƒ©ã‚°ã€‚ã�Ÿã� ã�—ã€�è³‡æ–™ã�®èª¬æ˜�ã�¯Windows 95/98ã�Šã‚ˆã�³Windows 2000ã�Œå¯¾è±¡
+ã�“ã�®ã‚ˆã�†ã�«ã€�Windowsã�®APIã�§ã�¯å›ºå®šã‚­ãƒ¼æ©Ÿèƒ½ã�®å‹•ä½œã�¨ã€�ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�«ã‚ˆã‚‹å‘¼ã�³å‡ºã�—ã‚’åŒºåˆ¥ã�—ã�¦æ‰±ã�ˆã‚‹ã€‚ã�Ÿã� ã�—ã€�ç¢ºèª�è¡¨ç¤ºã‚’åˆ¶å¾¡ã�™ã‚‹
+SKF_CONFIRMHOTKEY
+ã�«ã�¤ã�„ã�¦ã�¯ã€�Microsoftã�®è³‡æ–™ã�Œå�¤ã�„Windowsã‚’å¯¾è±¡ã�¨ã�—ã�¦ã�„ã‚‹ç‚¹ã�«æ³¨æ„�ã�Œå¿…è¦�ã� ã€‚ä»Šå›�è¿½åŠ ã�•ã‚Œã�Ÿé�¸æŠ�è‚¢ã�Œå†…éƒ¨çš„ã�«ã�©ã�®ãƒ•ãƒ©ã‚°ã‚„è¨­å®šã‚’å¤‰æ›´ã�™ã‚‹ã�®ã�‹ã�¯å…¬è¡¨ã�•ã‚Œã�¦ã�„ã�ªã�„ã�Ÿã‚�ã€�ã�“ã�®è¡¨ã�‹ã‚‰æ–°ã�—ã�„ç¢ºèª�ç”»é�¢ã�®å®Ÿè£…ã‚’ç‰¹å®šã�™ã‚‹ã�“ã�¨ã�¯ã�§ã��ã�ªã�„ã€‚ã�¾ã�Ÿã€�ã�“ã�“ã�«æŒ™ã�’ã�Ÿå®šç¾©ã�¯å›ºå®šã‚­ãƒ¼ã�«é–¢ã�™ã‚‹ã‚‚ã�®ã�§ã�‚ã‚Šã€�ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚­ãƒ¼ã�«ã‚‚ã��ã�®ã�¾ã�¾é�©ç”¨ã�§ã��ã‚‹ã‚�ã�‘ã�§ã�¯ã�ªã�„ã€‚
+AD
+ã‚²ãƒ¼ãƒ é–‹ç™ºè€…ã�«ã�¯è¨­å®šã‚’å¾©å…ƒã�™ã‚‹è²¬ä»»ã�Œæ®‹ã‚‹
+å›ºå®šã‚­ãƒ¼ã�®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�¯ã€�ã‚²ãƒ¼ãƒ ä¸­ã�«æ„�å›³ã�›ã�šå‘¼ã�³å‡ºã�•ã‚Œã‚‹ã�“ã�¨ã�Œã�‚ã‚‹ã€‚Microsoftã�®ã‚²ãƒ¼ãƒ é–‹ç™ºè€…å�‘ã�‘æ–‡æ›¸ã�§ã�¯ã€�Shiftã‚­ãƒ¼ã‚’ä½¿ç”¨ã�™ã‚‹ã‚²ãƒ¼ãƒ ã�§ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã�Œä½œå‹•ã�—ã€�æ—¢å®šã�®ç¢ºèª�ç”»é�¢ã�Œè¡¨ç¤ºã�•ã‚Œã‚‹ã�“ã�¨ã�§ã€�ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚²ãƒ¼ãƒ ã�Œæœ€å°�åŒ–ã�•ã‚Œã‚‹å ´å�ˆã�Œã�‚ã‚‹ã�¨èª¬æ˜�ã�—ã�¦ã�„ã‚‹ã€‚ã�Ÿã� ã�—ã€�ã�“ã‚Œã�¯ã�™ã�¹ã�¦ã�®ç�¾è¡Œã‚²ãƒ¼ãƒ ã�§å�Œæ§˜ã�®å•�é¡Œã�Œç™ºç”Ÿã�™ã‚‹ã�“ã�¨ã‚’å®Ÿæ¸¬ã�—ã�Ÿçµ�æ�œã�§ã�¯ã�ªã�„ã€‚
+å�Œæ–‡æ›¸ã�¯ã€�å›ºå®šã‚­ãƒ¼ã�ªã�©ã�®ã‚¢ã‚¯ã‚»ã‚·ãƒ“ãƒªãƒ†ã‚£æ©Ÿèƒ½ã�Œä¸€éƒ¨ã�®åˆ©ç”¨è€…ã�«ã�¨ã�£ã�¦ä¸�å�¯æ¬ ã�§ã�‚ã‚Šã€�æ©Ÿèƒ½ã��ã�®ã‚‚ã�®ã�¯ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚²ãƒ¼ãƒ ã�®å¦¨ã�’ã�«ã�ªã‚‰ã�ªã�„ã�¨æŒ‡æ‘˜ã�—ã�¦ã�„ã‚‹ã€‚ã��ã�®ã�Ÿã‚�ã€�ã‚²ãƒ¼ãƒ é–‹ç™ºè€…ã�«å¯¾ã�—ã�¦ã�¯ã€�åˆ©ç”¨è€…ã�®ã‚¢ã‚¯ã‚»ã‚·ãƒ“ãƒªãƒ†ã‚£è¨­å®šã‚’ã‚€ã‚„ã�¿ã�«å¤‰æ›´ã�—ã�ªã�„ã‚ˆã�†æ±‚ã‚�ã�¦ã�„ã‚‹ã€‚ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’ç„¡åŠ¹åŒ–ã�™ã‚‹å ´å�ˆã‚‚ã€�å¯¾è±¡ã�®æ”¯æ�´æ©Ÿèƒ½ã�Œã‚ªãƒ•ã�«ã�ªã�£ã�¦ã�„ã‚‹ã�¨ã��ã�«é™�ã‚Šã€�ã‚²ãƒ¼ãƒ ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã�¸åˆ‡ã‚Šæ›¿ã�ˆã�Ÿéš›ã‚„çµ‚äº†æ™‚ã�«ã�¯ã€�å…ƒã�®è¨­å®šã�«æˆ»ã�™ã‚ˆã�†æ�¨å¥¨ã�—ã�¦ã�„ã‚‹ã€‚
+è¨­å®šã�®å¾©å…ƒã�Œé‡�è¦�ã�ªã�®ã�¯ã€�APIã‚’é€šã�˜ã�¦å¤‰æ›´ã�—ã�Ÿå†…å®¹ã�Œã€�ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã�®çµ‚äº†å¾Œã‚‚æ®‹ã‚‹ã�Ÿã‚�ã� ã€‚ã‚²ãƒ¼ãƒ ã�Œã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’ç„¡åŠ¹åŒ–ã�—ã�Ÿã�¾ã�¾çµ‚äº†ã�™ã‚‹ã�¨ã€�åˆ©ç”¨è€…ã�®æ„�å›³ã�—ã�ªã�„è¨­å®šå¤‰æ›´ã�Œã��ã�®å¾Œã‚‚ç¶šã��å�¯èƒ½æ€§ã�Œã�‚ã‚‹ã€‚ä»Šå›�è¿½åŠ ã�•ã‚Œã�Ÿç¢ºèª�ç”»é�¢ã�®é�¸æŠ�è‚¢ã�¯ã€�åˆ©ç”¨è€…è‡ªèº«ã�Œä»Šå¾Œã�®ç¢ºèª�è¡¨ç¤ºã‚’çœ�ç•¥ã�™ã‚‹ã�Ÿã‚�ã�®ã‚‚ã�®ã�§ã�‚ã‚Šã€�ã‚²ãƒ¼ãƒ ã�Œä¸€æ™‚çš„ã�«å¤‰æ›´ã�—ã�Ÿè¨­å®šã‚’å¾©å…ƒã�™ã‚‹å‡¦ç�†ã�¨ã�¯ç›®çš„ã‚‚ç•°ã�ªã‚‹ã€‚ã�—ã�Ÿã�Œã�£ã�¦ã€�ç¢ºèª�ç”»é�¢ã�®æ”¹å–„ã�«ã‚ˆã�£ã�¦ã€�ã‚²ãƒ¼ãƒ é–‹ç™ºè€…ã�Œè¨­å®šã‚’é�©åˆ‡ã�«ç®¡ç�†ã�™ã‚‹å¿…è¦�æ€§ã�Œã�ªã��ã�ªã‚‹ã‚�ã�‘ã�§ã�¯ã�ªã�„ã€‚
+ã�ªã�Šã€�Microsoftã�¯ä»Šå›�ã�®å¤‰æ›´ã‚’ä¸€èˆ¬å�‘ã�‘Windows 11ã�«æ��ä¾›ã�™ã‚‹æ™‚æœŸã‚’æ˜�ã‚‰ã�‹ã�«ã�—ã�¦ã�„ã�ªã�„ã€‚Insiderè©¦é¨“ç‰ˆã�«å°�å…¥ã�•ã‚Œã�Ÿæ©Ÿèƒ½ã�¯ã€�æ­£å¼�å…¬é–‹ã�¾ã�§ã�«ä»•æ§˜ã�Œå¤‰æ›´ã�•ã‚Œã�Ÿã‚Šã€�æ��ä¾›è‡ªä½“ã�Œè¦‹é€�ã‚‰ã‚Œã�Ÿã‚Šã�™ã‚‹å�¯èƒ½æ€§ã‚‚ã�‚ã‚‹ã€‚ä»Šå¾Œã�¯ã€�ã�“ã�®é�¸æŠ�è‚¢ã�Œä¸€èˆ¬å�‘ã�‘ã�«ã‚‚å°�å…¥ã�•ã‚Œã‚‹ã�‹ã�«åŠ ã�ˆã€�ã‚²ãƒ¼ãƒ ã�ªã�©ã�®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã�Œå¿…è¦�ã�ªã‚¢ã‚¯ã‚»ã‚·ãƒ“ãƒªãƒ†ã‚£æ©Ÿèƒ½ã‚’ç¶­æŒ�ã�—ã�ªã�Œã‚‰ã€�å¤‰æ›´ã�—ã�Ÿè¨­å®šã‚’ç¢ºå®Ÿã�«å¾©å…ƒã�§ã��ã‚‹ã�‹ã�Œé‡�è¦�ã�«ã�ªã‚‹ã€‚
+◆
+Sources
+ä¸€æ¬¡è³‡æ–™
+Microsoft â€” Windows 11 Insider Preview Build 26320.9876 Beta
+Microsoft â€” Windows 11 Insider Preview Build 26340.9882 Experimental
+Microsoft â€” Disabling Shortcut Keys in Games
+Microsoft â€” STICKYKEYS structure
+2026-11-09 å�‚ç…§ç¢ºèª�
+é–¢é€£ã�™ã‚‹äº‹ç‰©
+ä¼�æ¥­
+Microsoft
+æŠ€è¡“ãƒ»è£½å“�
+Windows 11
+ãƒ†ãƒ¼ãƒ�
+Personal Computing
+ã�“ã�®è¨˜äº‹ã�¯ã�„ã�‹ã�Œã�§ã�—ã�Ÿã�‹ï¼Ÿ
+ğŸ“š
+å­¦ã�³ã�«ã�ªã�£ã�Ÿ
+0
+ğŸ’¡
+æ–°ã�—ã�„è¦–ç‚¹
+0
+ğŸ› ï¸�
+å®Ÿç”¨çš„
+0
+ğŸ“£
+ç¶šã��ã�Œèª­ã�¿ã�Ÿã�„
+0
+ã�‚ã�¨ã�§èª­ã‚€
+Share
+ãƒ�ã‚¹ãƒˆ
+LINE
+Bluesky
+Threads
+ã�¯ã�¦ã�ª
+Readwise
+ã‚³ãƒ”ãƒ¼
+AD
+é–¢é€£è¨˜äº‹
+ä¿�å­˜æ¸ˆã�¿ âœ“
+GeForceã�®Tensoråˆ¶é™�è§£é™¤ã�ŒWindowsã�¸ã€�ç”»åƒ�ç”Ÿæˆ�12.1ç§’â†’8ç§’ã�®å ±å‘Šã‚‚
+GeForceã�®Tensoræ¼”ç®—åˆ¶é™�ã‚’èµ·å‹•å‰�ã�«è§£é™¤ã�™ã‚‹é��å…¬å¼�UEFIãƒ„ãƒ¼ãƒ«ã�§ã€�Windowså®Ÿæ¸¬ã�Œå ±å‘Šã�•ã‚Œã�Ÿã€‚ç”»åƒ�ç”Ÿæˆ�12.1ç§’ã�‹ã‚‰8.0ç§’ã�¸ã�®çŸ­ç¸®ã�¨ã€�å¤–ä»˜ã�‘GPUã�§åŠ¹æ�œã‚’å¤±ã�£ã�Ÿä¾‹ã�‹ã‚‰ã€�å®Ÿéš›ã�«ä½¿ã�ˆã‚‹æ�¡ä»¶ã‚’èª­ã‚€ã€‚
+2026å¹´10æœˆ31æ—¥
+ä¿�å­˜æ¸ˆã�¿ âœ“
+Android 11ã�Œä»Šã�ªã�Š10.5%ã�®ã‚·ã‚§ã‚¢ã€�æœ€æ–°Android 17ã�®ç´„12å€�ã�«é�”ã�™ã‚‹
+Googleã�®10æœˆæ›´æ–°è¡¨ç¤ºã�§ã�¯Android 11ã�Œ10.5%ã‚’å� ã‚�ã‚‹ã€‚æœ€ä½�å¯¾å¿œOSã‚’12ã�«ä¸Šã�’ã�Ÿå ´å�ˆã�®å¯¾è±¡ç¯„å›²ã�®å·®ã‚’è¨ˆç®—ã�—ã€�ã‚¢ãƒ—ãƒªäº’æ�›æ€§ã�¨Mainlineã�®æ›´æ–°æ”¯æ�´ã�®é�•ã�„ã‚’æ•´ç�†ã�™ã‚‹ã€‚
+2026å¹´11æœˆ3æ—¥
+ä¿�å­˜æ¸ˆã�¿ âœ“
+PS3ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼ã€ŒRPCS3ã€�ã�Œç‰©ç�†ãƒ‡ã‚£ã‚¹ã‚¯ç›´æ�¥èµ·å‹•ã�«å¯¾å¿œã€�å…¨OSã�§ãƒ€ãƒ³ãƒ—ä¸�è¦�ã�®ãƒ—ãƒ¬ã‚¤ã‚’å®Ÿç�¾
+PS3ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼ã€ŒRPCS3ã€�ã�Œã€�PCã�®Blu-rayãƒ‰ãƒ©ã‚¤ãƒ–ã�‹ã‚‰ç‰©ç�†ãƒ‡ã‚£ã‚¹ã‚¯ã‚’ç›´æ�¥èª­ã�¿è¾¼ã‚“ã�§èµ·å‹•ã�™ã‚‹å…¨OSå¯¾å¿œã‚’å®Œäº†ã�—ã�Ÿã€‚äº‹å‰�ã�®ãƒ€ãƒ³ãƒ—ä½œæ¥­ã‚„å¤§å®¹é‡�SSDã�®æ¶ˆè²»ã�ªã�—ã�«ã€�æ‰‹æŒ�ã�¡ã�®å…‰å­¦ãƒ‡ã‚£ã‚¹ã‚¯ã�§20å¹´å‰�ã�®ã‚²ãƒ¼ãƒ ã‚’å�³åº§ã�«å‹•ã�‹ã�›ã‚‹ã€‚
+2026å¹´9æœˆ8æ—¥
+// æ¬¡ã�«èª­ã‚€
+GeForceã�®Tensoråˆ¶é™�è§£é™¤ã�ŒWindowsã�¸ã€�ç”»åƒ�ç”Ÿæˆ�12.1ç§’â†’8ç§’ã�®å ±å‘Šã‚‚
+
+===== https://learn.microsoft.com/en-us/windows-insider/release-notes/experimental/preview-build-26340-9882
+(status 200)
+Table of contents 
+Exit editor mode
+Ask Learn
+Ask Learn
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+						Access to this page requires authorization. You can try 
+signing in
+ or 
+changing directories
+.
+						Access to this page requires authorization. You can try 
+changing directories
+.
+Windows 11 Insider Experimental Preview Build 26340.9882
+Feedback
+						Summarize this article for me
+Release date: 6 November 2026
+Changes and improvements gradually being rolled out
+[Windows Hello]
+Windows Hello sign-in improvement
+Sign-in and unlock now behave more consistently and give clearer guidance. You no longer have to wait for face or fingerprint recognition to finish before entering your PIN. Use whichever method works first. At certain times, such as after a restart, you'll need your PIN first. After that, biometrics work as usual.
+Sign in with face, fingerprint, or PIN, whichever works first.
+Windows Hello logging for IT admins
+New Windows Hello events let IT admins see how users sign in. The sign-in experience doesn't change. In 
+Event Viewer > Windows Logs > Security
+, event 4628 records the Windows Hello methods a user has set up and which method they used to sign in (PIN, face, fingerprint, or no Windows Hello). Event 4629 records failed Windows Hello sign-in attempts. Both events use the existing 
+Audit Logon
+ policy.
+For troubleshooting, events 5010 and 7010 in 
+Event Viewer > Applications and Services Logs > Microsoft > Windows > HelloForBusiness > Operational
+ record each Windows Hello sign-in and unlock, along with the result.
+[Live captions]
+Live captions now gives you control over what gets transcribed. Previously, captions used system audio, with an option to add your microphone. In Live captions settings, you can now choose system audio, your microphone, or both, so captions follow the sound you care about. Caption an in-person conversation without picking up system audio, or follow audio from your PC during a meeting or while watching a video.
+[Input]
+The dialogs that ask whether you'd like to turn on Sticky Keys or Filter Keys are being updated, making it easier to dismiss these prompts permanently. If you don't use these keyboard features, you can choose not to be asked again directly from the dialog, helping you continue what you're doing with fewer interruptions.
+[Math equations in Braille with Narrator]
+Building on Narrator's math reading and navigation support, the experience is expanding to refreshable Braille displays. When Narrator reads supported equations in Microsoft Word, PowerPoint, Edge, or Google Chrome, Narrator Math is now shown on your connected Braille display, letting you explore them by touch while listening to Narrator.
+Math is at the heart of STEM education and learning, and this update helps students and professionals independently read, understand, and explore equations, formulas, and scientific notation with confidence.
+You can choose a math format in Braille without changing your default Braille output table. Supported math output formats include Nemeth (default), UEB, CMU, Vietnamese, Swedish, LaTeX, and ASCIIMath. In Narrator Math settings, you can also customize the reading language, speech behavior, and navigation preferences.
+Narrator Math settings in Windows Settings, showing options for math reading, navigation, speech, and Braille formats.
+[Settings]
+Discover your account benefits in Settings.
+ It's now easier to discover the benefits and services available with your Microsoft account, right in Windows Settings.
+Microsoft account benefits and services available in Windows Settings.
+Microsoft account benefits welcome page.
+[Known issues]
+Reports from Insiders that the CPU speed shown in Task Manager no longer updates after the latest flights are under investigation.
+Reminders for Windows Insiders in the Experimental channel
+Updates are based on Windows 11, version 26H2 via 
+an enablement package
+ (Build 26340.9882).
+Many features are rolled out using 
+Controlled Feature Rollout
+ technology, starting with a subset of Insiders and ramping up over time. We monitor feedback to see how they land before pushing them out to everyone in this channel.
+The desktop watermark shown at the lower right corner of the desktop is normal for Windows Insider pre-release builds.
+Features and experiences included in these builds might never get released as we try out different concepts and get feedback. Features might change over time, be removed, or replaced and never get released beyond Windows Insiders. Some of these features and experiences could show up in future Windows releases when they're ready.
+Some features in active development we preview with Windows Insiders might not be fully localized, and localization will happen over time as features are finalized. As you see issues with localization in your language, report those issues to us via Feedback Hub.
+Check out 
+Flight Hub
+ for a complete look at what build is in which Insider channel.
+				Additional resources
+Last updated on 
+		2026-11-06
