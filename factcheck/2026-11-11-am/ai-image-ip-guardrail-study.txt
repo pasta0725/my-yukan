@@ -1,0 +1,631 @@
+===== https://www.itmedia.co.jp/news/article/2611/09/2000002982/
+(status 200)
+Share
+印刷する
+ちょっと昔のInnovative Tech
+画像生成AIは既存のキャラクターをどれくらい出力する？　ソニーAIなどが14モデルを調査
+公開
+2026年11月09日 12時00分
+著者
+山下（Seamless）
+[ITmedia]
+印刷する
+連載新着通知を受け取る
+Googleで優先するソースとして追加
+ちょっと昔のInnovative Tech：
+2019年の開始以来、多様な最新論文を取り上げている連載「Innovative Tech」。ここではその番外編として“ちょっと昔”に発表された世界中の個性的な研究論文を独自視点で厳選、解説する。執筆は研究論文メディア「
+Seamless
+」（シームレス）を主宰し、日課として数多くの論文に目を通す山下氏が担当。イラストや漫画は、同メディア所属のアーティスト・
+おね
+氏が手掛けている。X：
+＠shiropen2
+　ソニー系の研究組織Sony AIなどに所属する研究者らが7月に発表した論文「
+Evaluating Intellectual Property Guardrails of Generative Image Models: A Technical Report
+」は、画像生成AIが既存の知的財産（IP）を認識できる画像をどの程度生成してしまうのか、またそれを防ぐ安全対策（ガードレール）がどれほど機能しているのかを検証した研究報告だ。
+　研究チームは、14の画像生成モデルを対象にテストを実施した。対象には、3つのオープンウェイトモデル（Stable Diffusion 3 Medium、FLUX.1-dev、PixArt-Sigma-XL-2-1024-MS）と、Google、OpenAI、Amazon、Runway、Stability AIの5社がAPI経由で提供する11の商用モデル（Stable Image Ultra 1、Stable Image Core 1、Stable Diffusion 3.5、Imagen 3、Imagen 4、Nano Banana、DALL·E 3、GPT Image 1、Nova Canvas、Titan Image G2、Gen-4 Image）が含まれる。
+　検証には「実在の有名な人物」「漫画・アニメのキャラクター」「スーパーヒーロー／ヴィラン」「ゲームのキャラクター」「企業の商用ロゴ」の5カテゴリーから、201のIPを用いた。AIへのプロンプトは、名前を直接指定する直接プロンプトと、名前を伏せて外見の特徴やキーワードのみを記述する間接プロンプトの計1809通りを作成した。
+　出力された画像に認識可能なIPが含まれているかの判定には、視覚言語モデル「Qwen3-VL」を採用した。
+　検証の結果、オープンウェイトの3モデルは生成拒否率が0％であり、初期状態ではIPをブロックする仕組みを持たないことが示唆された。一方、11の商用モデルはすべて何らかの生成拒否を示したが、その頻度は提供企業によって異なった。
+　例えばStability AIのモデルは拒否率が約1%にとどまったのに対し、AmazonのTitan Image G2は約50%の指示をブロックした。
+　ガードレールの有無にかかわらず、テストした全14モデルが10％以上の確率で認識可能なIP画像を生成し、半数近くのモデルではその割合が40％を超えた。
+14モデルについて、1809件のプロンプトが「生成拒否」（灰色）、「IPを含まない画像を生成」（緑）、「認識可能なIPを含む画像を生成」（オレンジ）のいずれに至ったかの内訳
+　プロンプトの種類別に見ると、名前を直接含む指示に対しては、拒否率上位のモデル（AmazonやRunway）で約80％がブロックされた。ところが、名前を出さずに外見の特徴だけを説明する間接プロンプトになると拒否率は低下した。ただし、名前を伏せた間接プロンプトでも平均27～28％の割合で認識可能なIPが生成されている。
+「ワンダーウーマン」を4種類のプロンプト（上2行は名前あり、下2行は名前なし）で14モデルに生成させた結果
+　IPのカテゴリーによっても偏りが見られた。制限が緩かったのは「商用ロゴ」で、普段は拒否率が高いモデルであっても1～2％しかブロックせず、Appleなどのロゴが高い割合で生成された（例外的にOpenAIのDALL·E 3のみロゴに対して24％と高い拒否率を示した）。
+Appleロゴを同じ4種類のプロンプトで14モデルに生成させた結果
+　反対に厳しく制限されたのは「スーパーヒーロー／ヴィラン」で、Amazonのモデルは半数以上をブロックした。一方、「実在の有名な人物」は拒否率が2番目に低いにもかかわらず、実際に本人と認識できる画像が生成された割合は全カテゴリー中で最も低かった。
+Source and Image Credits: Hoag, Austin T., et al. “Evaluating Intellectual Property Guardrails of Generative Image Models: A Technical Report.” arXiv preprint arXiv:2607.02582 (2026).
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+Innovative Tech
+2019年にスタートした本連載「Innovative Tech」は、世界中の幅広い分野から最先端の研究論文を独自視点で厳選、解説している。執筆は研究論文メディア「Seamless」（シームレス）を主宰し、日課として数多くの論文に目を通す山下氏が担当。イラストや漫画は、同メディア所属のアーティスト・おね氏が手掛けている。 
+連載新着通知を受け取る
+この連載の記事をもっと見る
+この記事の著者
+山下（Seamless）
+2014年から幅広い分野の研究論文をピックアップして解説しているメディア「Seamless」（シームレス）を主宰している。
+関連記事
+Stable Diffusionを手元で動かしたい！　画像生成AIを動かすならどんなPCを選んだらいい？
+誤解の多い「AIと著作権の関係」　クリエイターが真に戦うべき相手、被害の実態からひもとく
+“AIグラビア”でよくない？　生成AI時代に現実はどこまで必要か
+画像生成AIに“AIが作った画像”を学習させ続けると？　“品質や多様性が悪化”　「モデル自食症」に
+画像生成AI活用で賛否、ゲーム「神魔狩りのツクヨミ」は“成功”したのか──金子一馬氏＆開発Pに手応えを聞いた
+Special
+PR
+こんなメディアも見られています
+        ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+「命の砂時計」連呼のGMO会見──熊谷代表の発言にXではツッコミ続出
+中国メーカー、出荷前のAndroid端末に犯罪用のバックドアを設置か　Googleが取引停止
+Special
+PR
+本日の新着記事
+ソフトバンクG、マスク氏の「債務不履行」投稿に「全くの事実無根」　7〜9月期決算は1兆円超の赤字
+スキマバイト「シェアフル」に不正アクセス　最大750万アカウント漏えいか　給与振込用の口座情報なども
+サイバー攻撃急増で「人の手では対応しきれない」──ソフトバンク宮川社長、終わりの見えないパッチ修正に「疲弊しきっている」と吐露
+ケンタッキー、一部メニュー画像に生成AI　実験販売の商品など　SNSは「違和感」の声も
+マイナカードを使うコンビニ交付に障害　自治体が相次ぎ公表　富士フイルム系システムで通信異常か
+アクセスランキング
+1
+ドコモ不正アクセスで「本人確認書類の番号」も流出　見舞金検討
+2
+マイナカードを使うコンビニ交付に障害　自治体が相次ぎ公表　富士フイルム系システムで通信異常か
+3
+NTTデータ、住友生命から受託したシステムに不正アクセス　「Vitality」利用者約8万人の情報漏えい
+4
+ケンタッキー、一部メニュー画像に生成AI　実験販売の商品など　SNSは「違和感」の声も
+5
+ソフトバンクG、マスク氏の「債務不履行」投稿に「全くの事実無根」　7〜9月期決算は1兆円超の赤字
+6
+サイバー攻撃急増で「人の手では対応しきれない」──ソフトバンク宮川社長、終わりの見えないパッチ修正に「疲弊しきっている」と吐露
+7
+アクセスキー直書き→委託先がテスト用イメージをネット公開　「ラフールサーベイ」約2.4万人の情報漏えい
+8
+農水省の“クソダサ”ポスター話題　「AIよりよっぽど良い」の声も　担当者に狙いを聞いた
+9
+無印良品、ネットストア再開延期　リスト型攻撃を確認、新たに約27万件漏えいか
+10
+「朝食を抜くと頭が働かない」はホント？　食べた人と食べてない人の認知能力を比較、3000人以上を調査
+ もっと見る 
+    ITmedia NEWS SNS
+ITmedia News
+ Tweets by itmedia_news 
+        @itmedia_newsをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
+
+===== https://arxiv.org/html/2607.02582v1
+(status 200)
+Evaluating Intellectual Property Guardrails of Generative Image Models: A Technical Report
+Austin T. Hoag
+†
+†
+thanks: 
+Corresponding author
+Affiliation: 
+Sony AI
+Affiliation: 
+New York, NY, USA
+Email: 
+austin.hoag@sony.com
+Apostolos Modas
+Affiliation: 
+Sony AI
+Affiliation: 
+Zurich, Switzerland
+Yunhao Ba
+Affiliation: 
+Sony AI
+Affiliation: 
+New York, NY, USA
+Julienne M. LaChance
+Affiliation: 
+Sony AI
+Affiliation: 
+New York, NY, USA
+Jinru Xue
+Affiliation: 
+Sony AI
+Affiliation: 
+New York, NY, USA
+Wiebke Hutiri
+Affiliation: 
+Sony AI
+Affiliation: 
+Zurich, Switzerland
+Jan Simson
+Affiliation: 
+Sony AI
+Affiliation: 
+Zurich, Switzerland
+Tiffany Georgievski
+Affiliation: 
+Sony AI
+Affiliation: 
+New York, NY, USA
+Alex Towli
+Affiliation: 
+Sony Group Corporation
+Affiliation: 
+London, UK
+Joseph Smith
+Affiliation: 
+Sony Group Corporation
+Affiliation: 
+London, UK
+Yuki Mitsufuji
+Affiliation: 
+Sony Group Corporation
+Affiliation: 
+New York, NY, USA
+Alice Xiang
+Affiliation: 
+Sony AI
+Affiliation: 
+New York, NY, USA
+Abstract
+Generative image models are capable of producing images that bear a strong resemblance to, or replicate, recognizable intellectual property (IP). In this technical report, we present a benchmark and automated evaluation pipeline to test for evidence of IP guardrails in generative image models along with the propensity for these models to generate images with recognizable IP. The IP categories we tested include fictional characters, celebrity likeness, and commercial logos and do not encompass the full range of IP which may be implicated by image generation models. We evaluated fourteen widely used text-to-image models, including three self-hosted open weights models and eleven private models. While all of the private models were observed to refuse generations at some level due to IP guardrails, the frequency of generation refusals varied substantially among models. The refusal rates also varied considerably across the different IP categories tested. Commercial logos were refused least frequently and were successfully generated at the highest rate, on average. Though the rate varies, all models tested readily generated images containing recognizable IP as of March 2026.
+1 
+Introduction
+Generative AI models are trained on vast amounts of data, much of which to date has come from the public internet. Among the many potential legal and ethical issues associated with sourcing AI training data from the internet is the fact that a significant amount of intellectual property (IP) is implicated. In many cases, the data has been web-scraped and used and reproduced without the consent of or compensation to IP rightsholders. IP manifests on the internet differently depending on the data type. In the image domain, IP appears as commercial logos, fictional characters, likenesses of public figures, and various other categories that are outside the scope of this work. When used without permission, generated images featuring IP can cause damage to the IP rights holders.
+A number of prominent cases are being litigated over IP rightsholders’ claims that training of generative AI models and/or generative AI model outputs infringe their rights 
+[
+1
+, 
+2
+, 
+3
+, 
+4
+]
+. Several high profile legal disputes have emerged specifically with respect to generated images 
+[
+4
+, 
+5
+]
+, as well as legislation to protect one’s right of publicity in AI-generated contents 
+[
+6
+]
+.
+Numerous approaches for mitigating the generation of IP-protected content in generative vision models have been proposed in the literature, ranging from training-time measures including deduplication of training data 
+[
+7
+]
+ and adjustments to the training loss function 
+[
+8
+]
+, to inference-time guardrail measures such as prompt refusal and image classification 
+[
+9
+, 
+10
+, 
+11
+]
+. IP guardrails are an emerging practice for vision model providers, similar to the implementation of other types of safety guardrails such as toxicity and nudity filters. While IP guardrails are an important step toward more ethical and responsible generative AI practices, they do not erase the fact that models have been trained on protected content, and they do not obviate ethical training practices such as optional opt-in and data licensing agreements.
+Transparency around the implementation specifics of IP guardrails varies by model developer. For example, Google’s Responsible AI and usage guidelines state that safety guardrails for celebrities exist at both the input (prompt) level and output (image) level 
+[
+12
+]
+, while OpenAI’s DALL·E 3 System Card lists five safety mitigation measures, but only one of these, "Prompt Transformations," specifically mentions IP 
+[
+13
+]
+. Based on the partial information provided by model system cards as well as previous work studying IP generation in generative image models 
+[
+10
+, 
+11
+]
+, model developers may employ an array of measures to mitigate IP generation, ranging from prompt input classifiers and blocklists to image output classifiers.
+In this work, we refer to the inference-time mitigation measures collectively as “IP guardrails.” Amidst the changing landscape of IP guardrails, it is difficult for developers and end users to understand how generative image models differ in their IP guardrail coverage and tendency to produce recognizable IP. To help address this uncertainty, in this technical report we sought to answer the following three questions:
+Q1
+How frequently do IP guardrails refuse generations in the most widely used generative image models, and to what extent do these models produce images with recognizable IP?
+Q2
+How does the presence vs. absence (i.e., description only) of the IP entity name in the prompt impact the guardrail activation and the extent to which the models generate images with IP?
+Q3
+How do the category, geographical region of origin, and popularity of the IP entity affect the guardrail activation and the extent to which the models generate images with IP?
+To address these questions, we created a diverse prompt benchmark comprising hundreds of IP entities across five distinct IP categories within the scope of fictional characters, celebrity likeness, and commercial logos. We developed an automated evaluation pipeline that prompts generative image models with the benchmark, performs binary classification of the outputs using a vision-language model, and aggregates the results for analysis. We ran the pipeline on fourteen widely used generative image models and performed a comparative analysis.
+Throughout this work, for the generative image models that are consumed via private APIs, we use the term “model“ to encompass the whole deployed system, not only the model weights. For simplicity, we use the terms “model developer” and “model provider” as synonyms and to mean the entity responsible for building and/or serving the model for public consumption. The private generative image models studied in this work are consumed from the following delivery platforms: Amazon Bedrock (Amazon, Stability AI), Open AI API (Open AI Models), Runway API (Runway Models) and Vertex AI (Google models). All open weights models were downloaded from Hugging Face 
+[
+14
+]
+ and run locally. All models were evaluated in March 2026.
+Disclaimer:
+The benchmark and the evaluation results we present in this work are informational only and are not an assessment of legal risk, nor should they be relied upon in any legal capacity. The results should also not be interpreted to assess whether models are doing enough to meet their legal obligations in connection with the generation of protected IP. The results presented represent a snapshot view at the time of testing in March 2026, and the IP guardrail implementations as well as overall model capabilities may have shifted since then. Furthermore, this work does not intend to assess the training practices of the generative models mentioned in this work.
+2 
+Background and Related Work
+Prior work has shown that visual generative models memorize portions of their training data, enabling them to reproduce IP content at inference time such as recognizable fictional characters, even when the character name is not explicitly mentioned in the prompt 
+[
+7
+, 
+15
+, 
+11
+, 
+10
+]
+. Rando et al. 
+[
+16
+]
+ further showed that the Stable Diffusion safety filter could be easily bypassed through prompt dilution and did not restrict the generation of public figures (politicians).
+Building on these findings, several works have sought to quantify and address the propensity for models to generate IP. Wang et al. 
+[
+10
+]
+ evaluated six fictional characters across multiple models using human annotation, showing that IP generation persists under description-based prompts. He et al. 
+[
+11
+]
+ expanded the scope to 50 copyrighted characters with metrics capturing both similarity to protected content and user intent consistency, while also studying mitigation strategies such as prompt rewriting and negative prompting. Xu et al. 
+[
+17
+]
+ shifted focus to the detection side, evaluating whether vision-language models (VLMs) can reliably identify IP that is recognizable to humans in AI-generated images. Zhang et al. 
+[
+18
+]
+ used VLMs to evaluate the propensity for open weights T2I models to generate logos and cartoon characters, among many non-IP safety-related content. They also explored the efficacy of post-training mitigation strategies such as concept erasure and safety-specific fine-tuning. Despite these contributions, existing IP benchmark studies remain narrow in scope, covering predominantly fictional characters with small entity lists and without systematically varying prompt strategies, entity popularity, or geographic region. Our work seeks to partially address these gaps with a benchmark of 201 entities across five IP categories, a structured and comprehensive prompt dataset, and an automated evaluation pipeline applied to fourteen text-to-image models.
+3 
+IP Taxonomy
+In this section we introduce the taxonomy underlying the design of the evaluation benchmark. The taxonomy comprises four dimensions, namely: (1) 
+user intent
+ upon generation, (2) diverse 
+categories of IP
+ represented, (3) 
+geographical origin
+ of IP and (4) 
+popularity
+ of an IP within its region of origin. Together, these dimensions ensure the benchmark captures a range of IP generation scenarios for the categories of IP tested. The remainder of this section describes each dimension in detail.
+3.1 
+User Intent
+We consider two scenarios of user intent in our taxonomy: 
+inadvertent
+ generation of IP, without the user’s awareness or intent, and 
+adversarial
+ generation, with the deliberate aim of producing protected content.
+Inadvertent generation.
+This scenario models everyday content creation without the inclusion of IP names in the prompts and without the intention of generating protected content. See the indirect type prompts in 
+Table
+6
+ for examples.
+Adversarial generation.
+Additionally, we consider actors intentionally attempting to generate IP. This scenario informs downstream data-collection design considerations, including the use of both direct and indirect model prompts (the latter replicating a case in which the tested IP name is not provided explicitly, yet IP content may still be generated). See the direct type prompts in 
+Table
+6
+ for examples.
+3.2 
+Categories of IP
+Table 1
+: 
+Overview of the scope of prior benchmarks related to the generation of IP by generative image models.
+Name
+Scope
+Dimensions
+He et al. 
+[
+11
+]
+50 characters with 3 categories (superhero movies, animations and video games)
+regional diversity (US & international)
+Xu et al. 
+[
+17
+]
+5 characters with no explicit categorization
+direct/indirect prompting, positive/negative examples
+Wang et al. 
+[
+10
+]
+6 characters with no explicit categorization
+direct/indirect prompting, mitigation strategies
+Zhang et al. 
+[
+19
+]
+25 topics with 3 categories (movies, video games and logos)
+Zhang et al. 
+[
+18
+]
+203 cartoon characters and 200 company logos
+Somepalli et al. 
+[
+20
+]
+3,840 tags of artistic styles
+Ours
+201 entities with 5 categories (celebrities, comic characters, superheroes/villains, video game characters, logos/trademarks)
+regional diversity (Western, & Eastern), direct/indirect prompting
+To address 
+Q3
+, we intended for the benchmark to span a range of different sources of protectable IP (e.g., celebrities for publicity rights, commercial logos for trademarks). Expanding on prior benchmarking efforts 
+[
+11
+, 
+17
+, 
+10
+, 
+19
+]
+ (see Table 
+1
+), we arrive on the following five IP categories. While the array of IP categories tested is wider than prior studies, as noted above, it does not encompass the full range of copyright- or trademark-protected IP:
+1.
+Celebrities: Mix of actors, musicians, entrepreneurs, and artists, e.g., Julia Roberts, Taylor Swift, Elon Musk, and Park Bo-gum.
+2.
+Comic/Cartoon/Manga Characters: Diverse animated and illustrated characters, e.g., Gon Freecss, Luffy, and Mickey Mouse.
+3.
+Comic Superheroes/Villains: Superhero and villain characters, e.g., Superman, Iron Man, and Zatanna.
+4.
+Video Game Characters/Protagonists: Iconic and less mainstream gaming characters, e.g., Donkey Kong, Aloy, and Akira Yuki.
+5.
+Commercial Logos: Recognizable corporate brand identities, e.g., Adidas, Google, and Tata Motors.
+3.3 
+Geographical Diversity and Popularity
+We balance the entity list along two additional dimensions to increase benchmark diversity: regional diversity (“Eastern” vs. “Western” nations) and popularity within each region (“more mainstream” vs. “less mainstream”).
+Regions.
+To capture regional diversity, we stratify entities into two broad regional groups: 
+Western
+ for IP originating primarily from North America and Europe (e.g., Hollywood franchises, European fashion brands) and 
+Eastern
+ for IP originating primarily from East and Southeast Asia (e.g., Japanese manga, Korean entertainment, Chinese technology brands). We recognize that this binary grouping does not encapsulate global diversity and is a simplification. Still, it allows us to capture meaningful differences in IP ecosystems.
+Popularity.
+Popularity stratification ensures we capture not only well-known entities, whose generation may be more readily noticed, but also less mainstream ones, which may be less apparent to users and therefore more likely to be inadvertently generated and published. We stratify entities into two categories: 
+more mainstream
+ for entities with high recognition in their region of origin and 
+less mainstream
+ for entities with lower visibility. For more details, see 
+Section
+4.2
+.
+4 
+Benchmark Design
+In this section, we introduce the design of the IP Generation Benchmark and end-to-end evaluation pipeline. The benchmark consists of a structured prompt dataset used to generate images with text-to-image models. These generated images were then evaluated using an automatic IP detector (see 
+Section
+5
+) to assess whether they contain recognizable IP. To be clear, this judgement is not a legal conclusion as to whether the output is substantially similar to the source IP, and the legal test is different from this evaluation method.
+4.1 
+Design Principles and Goals
+The prompt dataset was constructed according to the following principles:
+1.
+Grounding in the IP taxonomy.
+IP entities, their categorization, and their distribution across regions and popularity levels were derived from the taxonomy and user intent analysis in 
+Section
+3
+. This ensures the prompt dataset reflects a range of generation scenarios.
+2.
+Multi-strategy prompt elicitation.
+The dataset includes five prompt formulations to capture different ways users may request, reference, or invoke IP-related content. These formulations stem from two broader strategies:
+•
+Direct prompts
+explicitly reference the IP entity by name. These were constructed from fixed templates and extended with an LLM-generated appearance description.
+•
+Indirect prompts
+were generated by an LLM to describe the visual appearance of the entity without naming it, simulating attempts to bypass safeguards.
+The five resulting prompt types, their templates, and LLM generation instructions are summarized in 
+Table
+2
+.
+To improve generation quality, prompts were enriched with contextual metadata such as entity category and origin (e.g., occupation, franchise, or series). It is important to note that this enrichment technique may have increased the activation of IP guardrails and the refusal rates observed because of the additional signals around IP contained within the prompts.
+Table 2
+: 
+Summary of prompt types, their templates, and generation strategies.
+Prompt Type
+Directness
+Length Limit
+Template / Generation Instruction
+Basic direct
+Direct
+Fixed template
+‘‘A depiction of {Entity Name} ({Category} -- {Origin}).’’
+Direct with dilution
+Direct
+∼
+\sim
+60 words
+‘‘A depiction of {Entity Name} ({Category} -- {Origin}). {LLM-generated 60-word appearance description from the long description type}.’’
+Keyword-based
+Indirect
+50 keywords
+‘‘Give me 50 keywords describing the appearance of {Entity Name} ({Origin}) you believe are very related to {Entity Name} ({Category} -- {Origin}), separated by comma. DO NOT mention the name or aliases of {Entity Name} in the response. Start your response directly.’’
+Short description
+Indirect
+∼
+\sim
+30 words
+‘‘Describe how {Entity Name} ({Category} -- {Origin}) looks like. DO NOT mention the name or aliases of {Entity Name} in the description. Limit your response to around {Word Count} words. Start your answer directly.’’
+Long description
+Indirect
+∼
+\sim
+60 words
+(Same template as above with 
+{Word Count}
+=60)
+4.2 
+IP entity list selection
+For the selection of IP entities, we prompted Llama 3.1-8B 
+[
+21
+]
+ to generate lists of entities for a given 
+category
+ and 
+popularity
+ level within a target 
+region
+, as specified in 
+Sections
+3.2
+ and 
+3.3
+.
+To improve coverage and robustness, we further employed multiple LLMs to generate plausible aliases for each entity and used additional LLMs as verifiers to validate the generated aliases. Alias generation was performed using Llama 3.1-8B, Mixtral 8x7B 
+[
+22
+]
+, and DeepSeek-R1 
+[
+23
+]
+, while alias verification used Mixtral 8x7B, Llama 3.1-8B, and Gemma 3 
+[
+24
+]
+. Finally, we conducted a manual quality assurance (QA) review to ensure the overall reasonableness of the resulting IP entity list.
+4.3 
+Prompt Construction Methodology
+The prompt construction pipeline is shown in 
+Fig.
+1
+. Starting from a curated list of IP entities annotated with category and origin metadata (e.g., occupation, franchise, or series), prompts were generated according to the types defined in 
+Table
+2
+.
+Direct prompts
+ were created by combining a fixed template (e.g., “A depiction of”) with the entity name and its associated metadata.
+Direct dilution prompts
+ extend direct prompts by appending an LLM-generated appearance description, constrained to a maximum of 60 words. The appearance descriptions explicitly prohibit inclusion of the entity name or known aliases. Prompt dilution is an established red-teaming technique, where additional and often irrelevant details are added to a prompt as distractors 
+[
+16
+]
+.
+Indirect prompts
+ were LLM-generated and explicitly prohibit inclusion of the entity name or known aliases. Indirect prompts include:
+•
+Keyword-based prompts:
+ comma-separated lists of up to 50 visual attributes.
+•
+Description-based prompts:
+ natural language descriptions of the entity’s appearance (short: up to 30 words, long: up to 60 words).
+LLM-generated prompts (dilution, keyword, description types) were produced with Llama 3.1-8B 
+[
+21
+]
+. It is important to note that because some models may leverage LLMs in their implementation of IP guardrails, our technique of LLM-assisted drafting of the diluted and indirect prompts may have resulted in increased activation of IP guardrails and increased refusal rates compared to non-LLM assisted prompt drafting.
+Figure 1
+: 
+Prompt dataset construction pipeline. From a list
+
+===== https://damemoto.co.jp/image-generation-ip-guardrails-14-models-report/
+(status 200)
+画像生成AIはキャラクターやロゴをどこまで出す？｜14モデル調査と制作の確認点
+画像生成AIが、有名なキャラクターやロゴに似た画像を出してしまう。広告やSNSの素材を作る担当者には、気になる話ではないでしょうか。Sony AIなどの研究者は14モデルを調べた技術報告を公開しており、11月9日にITmedia NEWSが紹介しました。論文は7月の投稿で、試験は3月時点です。新しい発表ではない点を踏まえ、制作現場で使える読み方を整理します。
+この記事の結論
+有名人・キャラクター・ロゴを合わせた全指示のうち、認識可能な知的財産を含むとAIが判定した割合は、14モデルすべてで10％を超えました。ブロック機能があっても「出ないはず」とは考えず、公開前に人が確認する工程が欠かせません。ただしこの結果は法的な判断ではなく、3月時点のモデルの試験結果です。
+201件の知的財産を、1,809通りの指示で試した
+調査の対象、指示の種類、判定方法の流れ
+対象は、研究者がローカルで動かしたオープンウェイトの3モデルと、APIで使う非公開の11モデルです。Stable Diffusion 3 MediumやFLUX.1-dev、Imagen 4、GPT Image 1などが含まれます。有名人、漫画・アニメのキャラクター、スーパーヒーローとヴィラン、ゲームのキャラクター、企業ロゴの5分類で、201件を用意しました。
+指示文には、名前を直接書く形と、名前を出さず外見だけを説明する形があります。生成された画像に対象が認識できるかは、画像を読むAI（Qwen3-VL）で自動判定しました。別の検証データでの判定精度は正解率67.7％、F1スコア71.3％で、著者らも「良いが優れてはいない」と説明しています。個別の数字には誤差があるものとして読むのが妥当です。著者らの評価では、この判定器は知的財産ありと判定しすぎる傾向も見られました。
+＼ AI活用、何から始めればいいか迷ったら ／
+AI導入の相談内容を見てみる
+初回相談無料
+｜「何を相談すればいいか分からない」段階でもお気軽にどうぞ
+拒否率には大きな差、それでも全モデルで生成された
+拒否率と生成率について公表された結果の整理
+公表された結果
+数値・傾向
+読むときの注意
+オープンウェイト3モデルの拒否率
+0％
+初期状態の試験結果
+Stability AIのモデルの拒否率
+約1％（いずれも2％未満）
+生成を止める頻度の低さ
+Amazon Titan Image G2の拒否率
+約50％
+モデルによる差が大きい
+認識可能な画像の生成率
+全14モデルで10％超、6モデルは40％超
+AIの自動判定。拒否された指示も分母に含む
+企業ロゴ
+拒否が最も少なく、生成率は平均で最も高い
+有名ロゴは拒否機能に頼らず確認
+非公開の11モデルはいずれも何らかの拒否を示しましたが、頻度はモデルや分類で大きく異なりました。名前を直接書く指示の方が拒否されやすく、外見だけの説明では拒否が減る傾向も報告されています。「固有名詞を書かなければ安全」とはいえない結果だと感じます。
+注意したいのは調査の限界です。著者らは、結果は情報提供であり法的な評価ではないと明記しています。著作権や商標の侵害にあたるかどうかは、この研究からは判断できません。試験後にガードレールやモデルが変更された可能性もあり、現在のモデルの順位として読むのは避けたいところです。5分類以外の知的財産も対象外です。
+＼ AI活用、何から始めればいいか迷ったら ／
+AI導入の相談内容を見てみる
+初回相談無料
+｜「何を相談すればいいか分からない」段階でもお気軽にどうぞ
+企業は、ツールの拒否に頼らず公開前に確認する
+広告やSNS素材を公開するまでの確認表
+ここからはDAMEMOTOの提案です。ツールの選定よりも、人が確認する工程を公開フローへ組み込むことを優先してください。外見の説明だけで似た画像が出る以上、依頼文に問題がなくても、結果の確認は必要です。
+工程
+確認すること
+残す記録
+依頼文
+既存キャラクターや作家名、他社ブランドの指定がないか
+指示文と担当者
+生成結果
+有名キャラクターやロゴに似た要素、背景の小さな商標
+確認者と確認日
+類似の調査
+有名な素材と似ていないか、画像検索などで照合
+調査の方法と結果
+利用条件
+ツールの商用条件と補償の範囲
+確認した規約の版
+判断に迷うもの
+社内の法務や弁護士へ相談し、不採用も選択肢に
+判断の理由
+法律上の考え方は
+生成AIと著作権の解説
+で扱っています。画像生成の機能面は
+Images 2.6の確認点
+もあわせてご覧ください。個別の案件で法的な判断が必要なときは、専門家への確認をおすすめします。
+DAMEMOTOの
+AI導入支援
+では、用途の整理から導入・制作・運用時の確認までご相談いただけます。
+画像生成の社内ルールと確認工程を相談する
+出典と確認日
+Hoag ほか：Evaluating Intellectual Property Guardrails of Generative Image Models（arXiv、7月1日投稿）
+ITmedia NEWS：国内報道（11月9日）
+2026年11月9日（日本時間）に本文を確認。公開された論文と報道を読んだ記事で、DAMEMOTOによる追試や法的評価ではありません。
+あわせて読みたい関連記事
+関連する実務と確認方法を読む
+生成AIと著作権｜侵害になる条件と記事作成の注意点【チェックリスト付き】
+生成AIと著作権は、AIの学習と生成物の利用で考え方が分かれます。学習は著作権法30条の4で原則として許諾不要ですが、公開する生成物は類似性と依拠性で侵害が判断されます。文化庁の考え方をもとに、記事作成の注意点と最新動向を整理しました。
+関連する実務と確認方法を読む
+Images 2.6公開｜GIF・画像編集の変更点と、企業制作で確認したいこと
+OpenAIがImages 2.6を発表。GIF生成、画像編集、APIの変更と提供範囲を公式資料で確認し、商品情報・表示・権利・制作時間を評価する企業向けチェック表に整理します。
+関連する最新ニュース
+Adobeとディズニーが進める独自モデルと制作工程
+AdobeとディズニーがAIで複数年提携｜Firefly Foundryの独自モデルと制作工程
+AdobeとディズニーがAdobe MAXで複数年の提携を発表。Firefly Foundryで開発する専用モデル、先行するテーマパークの制作例、企業が確認したい素材の利用範囲と公開承認を整理します。
