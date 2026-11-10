@@ -79,7 +79,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-const FIXW={"19日に再入荷の予定です": ["19日に", "再入荷の予定です"], "見ながら直せて": ["見ながら", "直せて"], "11月10日の時点で品切れで": ["11月10日の", "時点で品切れで"], "作りたいゲームを文章で頼んで": ["作りたいゲームを", "文章で頼んで"], "セーブも消えることがあります": ["セーブも消える", "ことがあります"], "書き込めば本体だけで遊べます": ["書き込めば", "本体だけで遊べます"], "ボタン操作も自動で試せます": ["ボタン操作も", "自動で試せます"], "参加者に配られた限定品が": ["参加者に配られた", "限定品が"]};
+const FIXW={"19日に再入荷の予定です": ["19日に", "再入荷の予定です"], "見ながら直せて": ["見ながら", "直せて"], "11月10日の時点で品切れで": ["11月10日の", "時点で", "品切れで"], "作りたいゲームを文章で頼んで": ["作りたい", "ゲームを", "文章で頼んで"], "セーブも消えることがあります": ["セーブも", "消えることが", "あります"], "書き込めば本体だけで遊べます": ["書き込めば", "本体だけで", "遊べます"], "ボタン操作も自動で試せます": ["ボタン操作も", "自動で", "試せます"], "参加者に配られた限定品が": ["参加者に", "配られた", "限定品が"], "Game Boy系の": ["Game Boy系の"]};
 function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
   const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
@@ -179,9 +179,9 @@ const S={
  // hook: OpenAI sells a Game Boy compatible handheld; play your own AI-made games on it
  hook(u,d,L){bg(u);mini(u);const tj=telHas(L,'AIで');
    mixLine([['OpenAI',C.brand],['の携帯ゲーム機',C.text]],CX,385,64);
-   withEnter(enter(u,0,0.3),()=>{const z=1.0+0.04*u/d;g.save();g.translate(CX,770);g.scale(z,z);g.translate(-CX,-770);picC('g_device',150,450,780,640,'#000');g.restore();},40);
+   withEnter(enter(u,0,0.3),()=>{const z=1.0+0.04*u/d;g.save();g.translate(CX,770);g.scale(z,z);g.translate(-CX,-770);picC('g_device',150,450,780,585,'#000');g.restore();},40);
    if(u>tj)withEnter(enter(u,tj),()=>{rrect(150,1060,780,100,30,C.buyFill);text('AIで作ったゲームが遊べる',CX,1110,46,C.buyInk);},10);
-   creditAt(CRG,915,1030);},
+   creditAt(CRG,915,1010);},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},
  // when: Nov 9, OpenAI x ModRetro, Chromatic special edition
  when(u,d,L){bg(u);mini(u);const tc=telHas(L,'Chromatic');
@@ -234,7 +234,7 @@ const S={
  play(u,d,L){bg(u);mini(u);const tw=telHas(L,'カートリッジ'),th=telHas(L,'本体');
    mixLine([['できたゲームは',C.text]],CX,385,64);
    withEnter(enter(u,0),()=>{pic('playable',150,450,780,375,1.0);creditAt(CRO,915,800);});
-   const st=(x,lab,t0,hi)=>withEnter(enter(u,t0),()=>{card(x,860,240,300,30,hi?C.buyFill:C.card);text(lab[0],x+120,975,44,hi?C.buyInk:C.text);text(lab[1],x+120,1060,32,hi?C.buyInk:C.sub,'center',800);});
+   const st=(x,lab,t0,hi)=>withEnter(enter(u,t0),()=>{card(x,860,240,300,30,hi?C.buyFill:C.card);text(lab[0],x+120,975,44,hi?C.buyInk:C.text);text(lab[1],x+120,1060,36,hi?C.buyInk:C.sub,'center',800);});
    st(150,['ブラウザ','で試す'],0.2,false);arrowR(395,425,1010,(u-tw)/0.3,C.acc);st(420,['書き込む','カートリッジに'],Math.max(0.35,tw),false);
    arrowR(665,695,1010,(u-th)/0.3,C.acc);st(690,['本体だけ','で遊ぶ'],Math.max(0.5,th),true);},
  // japan: ships to Japan, billed in USD, shipping and duties extra
@@ -242,7 +242,7 @@ const S={
    mixLine([['日本',C.acc],['にも届く',C.text]],CX,385,64);
    const P2=['日本','米国','カナダ','英国','EU','豪州・NZ'];
    P2.forEach((p,i)=>withEnter(enter(u,0.05*i),()=>{const x=150+(i%3)*265,y=450+Math.floor(i/3)*150;card(x,y,250,130,26,i===0?C.buyFill:C.card);text(p,x+125,y+65,i===0?54:44,i===0?C.buyInk:C.text);}));
-   withEnter(enter(u,Math.max(0.3,tb)),()=>{card(150,775,780,170);text('価格は',330,860,44,C.text);text('米ドル',640,860,72,C.acc);});
+   withEnter(enter(u,Math.max(0.3,tb)),()=>{card(150,775,780,170);text('価格は',290,860,44,C.text);text('米ドル建て',610,860,68,C.acc);});
    withEnter(enter(u,Math.max(0.5,ts)),()=>{card(150,970,780,190,30,C.card2);text('送料・関税は',CX,1030,44,'#CDD8EC','center',800);text('別にかかる',CX,1105,58,'#FFFFFF');});},
  // stock: sold out now, restock planned for Nov 19
  stock(u,d,L){bg(u);mini(u);const tr=telHas(L,'19日');
@@ -269,7 +269,7 @@ const S={
 const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
 const VF={};function vidImg(sc,k){const key=sc+k;if(key in VF)return Promise.resolve(VF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{VF[key]=i;r(i)};i.onerror=()=>{VF[key]=null;r(null)};i.src='vid/'+sc+'/'+String(k+1).padStart(4,'0')+'.jpg';});}
 const VIDN={how:314,twist:158};let VIDF=null;
-let BIGF=null;const VERDICT_CLIP=false;  // true once big/verdict holds the talking ending clip
+let BIGF=null;const VERDICT_CLIP=true;  // true once big/verdict holds the talking ending clip
 // each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
 // measured once from the scene's finished state (user 2026-11-09: no wasted space)
 const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
