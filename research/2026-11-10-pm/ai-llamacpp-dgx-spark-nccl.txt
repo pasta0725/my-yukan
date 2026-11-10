@@ -1,0 +1,932 @@
+===== https://github.com/ggml-org/llama.cpp/pull/31646
+(status 200)
+Conversation
+ggerganov
+      commented
+Nov 4, 2026
+•
+          edited
+Loading
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+              Copy link
+              Copy Markdown
+Member
+Overview
+This release adds OCP FP8 E4M3 quantization support, a new 
+flash_attn_ext_rows
+ op that makes the unified KV cache efficient for multi-sequence inference, and a generic batched tensor copy API. Four new architectures are supported (Clover, Limite, Metis-1.6 and Mistral Large 4), audio generation and transcription expand with Chatterbox TTS, Nemotron 3.5 Transcribe and predefined Pocket TTS voices, and the Gemma 4 E2B/E4B models get major prefill optimizations. 
+ggml
+ is updated to v0.29.0, bringing FP8 E4M3, flash attention rows, NCCL-based multi-node tensor parallelism and performance work across the CPU, CUDA, SYCL, Metal, Vulkan, OpenCL and Hexagon backends. The server and UI receive a round of fixes and refinements.
+Highlights
+Quant: OCP FP8 E4M3 tensor type (saturating mode) with conversion helpers and a new ftype (
+#27512
+)
+llama: 
+flash_attn_ext_rows
+ - more efficient unified KV for multi-seq, restoring non-unified KV prefill performance (
+#29510
+)
+ggml: batched tensor copy API (
+ggml_backend_tensor_copy_n
+/
+set_n
+/
+get_n
+) superseding the 
+_2d
+ API, implemented for Metal and CUDA (
+#30881
+)
+For a 3rd year in a row, 
+llama.cpp
+ is a featured repo in the 
+Github Octoverse report
+:
+API changes
+llama.h: add 
+LLAMA_FTYPE_MOSTLY_F8_E4M3
+ (
+#27512
+)
+mtmd.h: add 
+MTMD_GEN_AUDIO_TYPE_CHATTERBOX
+ and 
+n_voices
+ to 
+mtmd_gen_audio_info
+ (
+#30993
+)
+mtmd.h: add predefined-voice APIs: 
+mtmd_gen_audio_voice_name()
+, 
+mtmd_gen_audio_get_voice()
+, 
+mtmd_gen_state_set_ref()
+ (
+#30993
+)
+mtmd.h: add 
+mtmd_bitmap_is_voice()
+ and 
+mtmd_gen_audio_read_tensor()
+ (
+#30993
+)
+mtmd.h: add 
+MTMD_VIDEO_TEMPLATE_QWEN3VL
+ video prompt template (
+#31619
+)
+server: 
+GET /props
+ reports the model's predefined TTS 
+voices
+; the TTS endpoint accepts predefined voice names (
+#30993
+)
+server: 
+/v1/responses
+ now merges 
+extra_params
+ (seed, min_p, ...) into the converted chat-completions response (
+#30959
+)
+New models
+Clover-35B-A3B-Preview diffusion model, AR mode (
+#31306
+)
+Limite 1B - Violetto (
+#29433
+)
+Metis-1.6 (Praxis ~2.9B and Logos ~10.2B): hybrid Mamba-2 / GQA attention with fixed-depth recurrence and LatentMoE (
+#31134
+)
+Mistral Large 4 (
+#31376
+)
+Core changes
+gemma4: graph optimizations with massive prefill gains for E2B and E4B (
+#31356
+); create 
+token_embd
+ before the tied output in gemma3n and gemma4 (
+#31394
+)
+LFM3: enable NVFP4 GGUFs (
+#31608
+), enable tensor split (
+#31431
+), quantize the audio codec decoder (
+#31386
+)
+spec dec: save and restore MTP hidden state in context checkpoints (
+#30141
+) and record LFM3 layer inputs (
+#31598
+)
+dflash: copy hidden features via device copies (
+#31506
+); qwen4exp: write the conv state tail without an intermediate cont (
+#31443
+)
+model loading: reuse the tensor staging buffer and skip the direct-IO bounce buffer (
+#31321
+)
+kv-cache: keep Hadamard rotation constants on the GPU (
+#31073
+) and fix attention tensor rotation in layers with shared KV (
+#31406
+)
+kv-cache: never return 0 
+kv_rows
+ for sequences without cells (
+#31570
+) and refuse rollbacks past the snapshots of the last ubatch (
+#31368
+)
+Gemma4 MTP assistant: follow 
+ctx_other
+ devices and flash-attention setting (
+#31635
+); DSV4: remove simple batch splitting (
+#31300
+)
+chat: strip the qwen3-coder think block with 
+reasoning_format none
+ (
+#31380
+) and end reasoning budget forcing on a prompt end tag (
+#31374
+)
+chat: allow a constraint type after the gpt-oss final channel (
+#31556
+); common: fix 
+-hf
+ tag matching inside longer quant names (
+#31620
+) and bound control vector layer indices (
+#31336
+)
+tools: reject mismatched shards in GGUF split merge (
+#31579
+), fix 
+imatrix --nextn
+ crash (
+#31522
+), fix 
+gguf-py
+np_roundf
+ dropping the sign (
+#31310
+)
+vendor: miniaudio 0.11.26 (
+#31459
+) and cpp-httplib 0.64.0 (
+#31400
+); embed an app manifest in all Windows executables (
+#31329
+)
+Multi-modality changes
+add Chatterbox TTS support (
+#30993
+)
+add Nemotron 3.5 Transcribe support: offline transcription in 40 languages with prompt context and speaker attribution (
+#31471
+)
+Pocket TTS: support predefined voices without voice cloning (
+#31429
+)
+accurate support for the qwen3-vl video prompt format (
+#31619
+)
+resize Gemma 4 images without letterbox padding (
+#30922
+) and fix InternVL CLS token order (
+#30886
+)
+Server changes
+cap shared decision prefixes at the first output (
+#30710
+)
+restore the speculative checkpoint for drafts longer than 
+n_rs_seq
+ (
+#31350
+)
+UI changes
+add MCP group checkboxes in the tools settings (
+#31303
+) and request persistent storage on startup (
+#31299
+)
+keep chats at the bottom until the reader scrolls up (
+#31311
+) and show the submit button when the input has content (
+#31324
+)
+reveal the collapsed sidebar from its logo (
+#31307
+) and align alert dialog styling (
+#31312
+)
+keep queued steering messages in their own conversation (
+#31304
+) and show an interrupted state for tool calls that never returned (
+#31314
+)
+disable model deletion the server would refuse (
+#31305
+) and prefer a loading model in pre-selection (
+#31326
+)
+add a Playwright harness for recording demo videos (
+#31318
+) and run local browser tests in installed Chrome (
+#31596
+)
+ggml changes
+v0.29.0
+: ggml v0.29.0 adds an OCP FP8 E4M3 tensor type, a new 
+ggml_flash_attn_ext_rows
+ op where each query slice attends to its own list of K/V rows, a batched tensor copy API, and initial support for multi-node tensor parallelism through a new multi-process communicator interface. Core improvements include bounding tensor views by the bytes their strides reach, zero-copy GGUF export of host-buffer tensors, and 
+vm_allocate
+-based allocations on Apple platforms. Performance work spans all major backends: new SVE kernels in the CPU backend, DPAS flash attention for quantized KV in SYCL, fused MoE MMQ in CUDA, faster MXFP4 mat-vec in Metal, split-K tuning in Vulkan, and a large expansion of quantized GEMM/GEMV coverage in OpenCL. The Hexagon backend gains support for several new ops, including the lightning indexer, top-k mask, conv2d and upscale.
+ggerganov
+        added 
+2
+ commits
+November 4, 2026 12:03
+llama.cpp : bump version to 0.9.0
+a0b1f6d
+authors : update
+efc9f8b
+github-actions
+Bot
+          added
+  the 
+  build
+Compilation issues
+ label
+Nov 4, 2026
+danbev
+              approved these changes
+Nov 4, 2026
+View reviewed changes
+CISC
+              approved these changes
+Nov 4, 2026
+View reviewed changes
+Hide details
+View details
+ggerganov
+            merged commit 
+cd959ba
+          into
+master
+Nov 4, 2026
+            11 of 31 checks passed
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+ggerganov
+    deleted the
+        llama-rc-v0.9.0
+    branch
+November 4, 2026 12:06
+edwardyoon
+      pushed a commit
+        to edwardyoon/focus-llama
+      that referenced
+      this pull request
+Nov 6, 2026
+llama.cpp : bump version to 0.9.0 (
+ggml-org#31646
+)
+…
+b21fbcc
+* llama.cpp : bump version to 0.9.0
+* authors : update
+(cherry picked from commit 
+cd959ba
+)
+Sign up for free
+to join this conversation on GitHub
+.
+    Already have an account?
+Sign in to comment
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+    Labels
+build
+Compilation issues
+      3 participants
+Add this suggestion to a batch that can be applied as a single commit.
+This suggestion is invalid because no changes were made to the code.
+Suggestions cannot be applied while the pull request is closed.
+Suggestions cannot be applied while viewing a subset of changes.
+Only one suggestion per line can be applied in a batch.
+Add this suggestion to a batch that can be applied as a single commit.
+Applying suggestions on deleted lines is not supported.
+You must change the existing code in this line in order to create a valid suggestion.
+Outdated suggestions cannot be applied.
+This suggestion has been applied or marked resolved.
+Suggestions cannot be applied from pending reviews.
+Suggestions cannot be applied on multi-line comments.
+Suggestions cannot be applied while the pull request is queued to merge.
+Suggestion cannot be applied right now. Please check back later.
+
+===== https://github.com/ggml-org/llama.cpp/pull/28967
+(status 200)
+Conversation
+zyang-dev
+      commented
+Sep 15, 2026
+•
+          edited
+Loading
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+              Copy link
+              Copy Markdown
+Contributor
+Overview
+Add a backend interface for collectives across ranks running in separate processes, implement it in the CUDA backend using NCCL, and use it in the RPC server when available.
+The implementation is on top of PR 
+#26610
+.
+Results on DGX spark:
+single node:
+./build/bin/llama-bench -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_M -ngl 99 -d 0,8192 -r 3
+| model                          |       size |     params | backend    | ngl |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA       |  99 |           pp512 |       846.54 ± 18.78 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA       |  99 |           tg128 |         13.02 ± 0.01 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA       |  99 |   pp512 @ d8192 |       801.23 ± 10.67 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA       |  99 |   tg128 @ d8192 |         12.64 ± 0.01 |
+Two nodes with NCCL:
+./build/bin/llama-bench -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_M -ngl 99 -sm tensor  --rpc NODE-1-IP:50052,NODE-2-IP:50052 -dev RPC0/RPC1 -d 0,8192 -r 3
+| model                          |       size |     params | backend    | ngl |     sm | dev          |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | -----: | ------------ | --------------: | -------------------: |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |           pp512 |      1348.29 ± 38.62 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |           tg128 |         23.51 ± 0.19 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |   pp512 @ d8192 |      1282.35 ± 33.41 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |   tg128 @ d8192 |         22.86 ± 0.10 |
+Two nodes with pairwise:
+./build/bin/llama-bench -hf unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_M -ngl 99 -sm tensor  --rpc NODE-1-IP:50052,NODE-2-IP:50052 -dev RPC0/RPC1 -d 0,8192 -r 3
+| model                          |       size |     params | backend    | ngl |     sm | dev          |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | -----: | ------------ | --------------: | -------------------: |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |           pp512 |       961.61 ± 17.51 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |           tg128 |         22.33 ± 0.17 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |   pp512 @ d8192 |       911.15 ± 53.39 |
+| qwen35 27B Q4_K - Medium       |  15.32 GiB |    27.32 B | CUDA,RPC   |  99 | tensor | RPC0/RPC1    |   tg128 @ d8192 |         22.14 ± 0.18 |
+Ratio to a single node:
+┌───────────────┬──────────────────────┬───────┐
+│               │ pairwise (PR #26610) │ NCCL  │
+├───────────────┼──────────────────────┼───────┤
+│ pp512         │                1.14x │ 1.59x │
+├───────────────┼──────────────────────┼───────┤
+│ tg128         │                1.72x │ 1.81x │
+├───────────────┼──────────────────────┼───────┤
+│ pp512 @ d8192 │                1.14x │ 1.60x │
+├───────────────┼──────────────────────┼───────┤
+│ tg128 @ d8192 │                1.75x │ 1.81x │
+└───────────────┴──────────────────────┴───────┘
+Requirements
+I have read and agree with the 
+contributing guidelines
+AI usage disclosure:  Yes,  used claude
+zyang-dev
+                requested review from
+a team
+ and 
+ggerganov
+  as 
+code owners
+September 15, 2026 20:00
+zyang-dev
+              marked this pull request as draft
+September 15, 2026 20:00
+github-actions
+Bot
+            added
+  ggml
+changes relating to the ggml tensor library for machine learning
+  CUDA
+Related to the CUDA backend
+  labels
+Sep 15, 2026
+am17an
+      commented
+Sep 16, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Do you have any 
+llama-bench
+ results?
+JohannesGaessler
+              reviewed
+Sep 16, 2026
+View reviewed changes
+Comment thread
+ggml/include/ggml-backend.h
+              Outdated
+      Comment on lines
+      +212
+ to 
+      +220
+    // Same as above, but each rank is a separate process, so a process owns one backend of the
+    // communicator rather than all of them.
+    // One rank produces the unique id. Every other rank needs it, out of band, before calling
+    // comm_init_rank, which blocks until all ranks have joined. Free with ggml_backend_comm_free_t.
+#define GGML_BACKEND_COMM_UNIQUE_ID_SIZE 128
+    typedef bool   (*ggml_backend_comm_get_unique_id_t)(void * id_out);
+    typedef void * (*ggml_backend_comm_init_rank_t)(ggml_backend_t backend, const void * id, int rank, int world_size);
+    typedef bool   (*ggml_backend_comm_allreduce_rank_t)(void * comm_ctx, struct ggml_tensor * tensor);
+JohannesGaessler
+Sep 16, 2026
+              Copy link
+              Copy Markdown
+Contributor
+There was a problem hiding this comment.
+Choose a reason for hiding this comment
+      The reason will be displayed to describe this comment to others. 
+Learn more
+.
+Without having looked at any of the other code, changes to the ggml backend API like this should be avoided if at all possible.
+zyang-dev
+Sep 16, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Author
+There was a problem hiding this comment.
+Choose a reason for hiding this comment
+      The reason will be displayed to describe this comment to others. 
+Learn more
+.
+Added 
+llama-bench
+ results.
+Removed 
+ggml_backend_comm_allreduce_rank_t
+ and now reuse 
+ggml_backend_comm_allreduce_tensor
+ for per-rank communicators.
+@am17an
+ ,  
+@JohannesGaessler
+, do you have any suggestions for handling 
+ggml_backend_comm_get_unique_id_t
+ and 
+ggml_backend_comm_init_rank_t
+?
+gaugarg-nv
+Oct 17, 2026
+•
+          edited
+Loading
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+              Copy link
+              Copy Markdown
+Contributor
+There was a problem hiding this comment.
+Choose a reason for hiding this comment
+      The reason will be displayed to describe this comment to others. 
+Learn more
+.
+@JohannesGaessler
+ we are taking the same approach for single-process multi-GPU where all comm typedefs are defined in 
+ggml-backend.h
+.
+An alternative could be to move all these typedefs to 
+ggml-backend-impl.h
+ to not expose them in the public API.
+am17an
+      commented
+Sep 17, 2026
+              Copy link
+              Copy Markdown
+Contributor
+what's the reason why using NCCL is so much faster for PP vs TG? Maybe there is something to optimize in the generic path too
+zyang-dev
+      commented
+Sep 18, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Author
+what's the reason why using NCCL is so much faster for PP vs TG? Maybe there is something to optimize in the generic path too
+@am17an
+,
+Decode communicates far fewer tensor elements per collective than prefill. This explains why NCCL and pairwise have similar decode performance, while NCCL is significantly faster during prefill.
+I tested three optimizations on the pairwise path:
+Duplex exchange (
+ggml-rpc.cpp
+). Previously, rank 0 sent its entire payload before receiving, leaving one direction of the full-duplex link idle during each transfer phase. Changed 
+comm_allreduce_pairwise
+ to exchange chunks, with both ranks sending a chunk and then receiving, allowing traffic in both directions concurrently.
+Deeper send queue (
+transport.cpp
+). Previously, 
+rdma_send
+ posted one 256 KiB work request and waited for completion before posting the next. Changed it to allow up to four outstanding sends, reducing gaps between transfers. Increasing the depth further to eight did not improve performance.
+Direct registered buffers. Previously, the data path was 
+GPU → application host buffer → RDMA host buffer → network
+, with the reverse copies on receive. Replaced the intermediate buffers with persistent, pinned host buffers registered directly with RDMA: 
+GPU → registered host buffer → network
+. This eliminated the extra host-to-host copies while retaining GPU ↔ host transfers.
+Further improvement likely requires restructuring the collective into an overlapping pipeline of GPU transfers, network communication, and reduction.
+┌─────────────────────────────┬─────────────────┬────────────────┐
+│                             │      pp512      │ vs single node │
+├─────────────────────────────┼─────────────────┼────────────────┤
+│ pairwise (PR #26610)        │  961.61 ± 17.51 │          1.14x │
+├─────────────────────────────┼─────────────────┼────────────────┤
+│ + duplex exchange           │ 1057.67 ± 12.13 │          1.25x │
+├─────────────────────────────┼─────────────────┼────────────────┤
+│ + deep send queue           │  1144.75 ± 9.24 │          1.35x │
+├─────────────────────────────┼─────────────────┼────────────────┤
+│ + direct registered buffers │ 1213.09 ± 36.06 │          1.43x │
+├─────────────────────────────┼─────────────────┼────────────────┤
+│ NCCL                        │ 1348.29 ± 38.62 │          1.59x │
+└─────────────────────────────┴─────────────────┴────────────────┘
+am17an
+      commented
+Sep 18, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Ah okay nice these can be even added to the original PR I think. 
+@ggerganov
+ perhaps it may help in the metal speedup. Do you have a branch with these changes?
+mamama1
+      commented
+Sep 18, 2026
+              Copy link
+              Copy Markdown
+errr I'm very confused, I've recently acquired a third 5060 Ti and started using tensor parallelism with NCCL enabled. Enabling NCCL doubled decode - I think prefill also increased significantly.
+I admit that I don't fully understand (or barely understand) the mechanics underneath - that's why the following question came to my mind when reading this PR:
+why does the PR say "Add nccl support for tensor parrallel" if that's something that apparently is already working?
+thanks
+am17an
+      commented
+Sep 18, 2026
+              Copy link
+              Copy Markdown
+Contributor
+This PR is for NCCL support over RDMA, not related to your setup. 
+@zyang-dev
+ perhaps change the title to reflect it better
+zyang-dev
+        changed the title
+Add nccl support for tensor parrallel
+Add nccl support for multi-node tensor parallelism
+Sep 20, 2026
+zyang-dev
+      commented
+Sep 20, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Author
+Ah okay nice these can be even added to the original PR I think. 
+@ggerganov
+ perhaps it may help in the metal speedup. Do you have a branch with these changes?
+The changes are on the 
+rpc-pairwise-perf
+ branch: 
+https://github.com/zyang-dev/llama.cpp/tree/rpc-pairwise-perf
+zyang-dev
+      commented
+Sep 20, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Author
+This PR is for NCCL support over RDMA, not related to your setup. 
+@zyang-dev
+ perhaps change the title to reflect it better
+Added multi-node to the title.
+ggerganov
+force-pushed
+    the
+rpc_tensor
+ branch
+      5 times, most recently
+    from
+cf00d3b
+    to
+d09d1c7
+Compare
+September 29, 2026 05:28
+ggerganov
+force-pushed
+    the
+rpc_tensor
+ branch
+      3 times, most recently
+    from
+267d466
+    to
+2ab5211
+Compare
+October 6, 2026 06:48
+am17an
+force-pushed
+    the
+rpc_tensor
+ branch
+      2 times, most recently
+    from
+3a10a77
+    to
+f6ae027
+Compare
+October 6, 2026 10:16
+gaugarg-nv
+      commented
+Oct 8, 2026
+              Copy link
+              Copy Markdown
+Contributor
+@zyang-dev
+ can you rebase your PR on TOT master and make master the target branch as 
+#26610
+ is now merged?
+zyang-dev
+force-pushed
+    the
+rpc_nccl
+ branch
+    from
+a50c8f7
+    to
+ce3d4c8
+Compare
+October 13, 2026 01:01
+github-actions
+Bot
+            added
+  documentation
+Improvements or additions to documentation
+  model
+Model specific
+  labels
+Oct 13, 2026
+0cc4m
+            removed
+  server/ui
+  conversion
+  vendor
+  labels
+Oct 15, 2026
+gaugarg-nv
+      commented
+Oct 17, 2026
+              Copy link
+              Copy Markdown
+Contributor
+The PR looks in good shape to me.
+@am17an
+@ggerganov
+@JohannesGaessler
+  can you please take a look? This provides a much faster path on Nvidia GPUs.
+ggerganov
+              self-assigned this
+Oct 17, 2026
+am17an
+      commented
+Oct 18, 2026
+              Copy link
+              Copy Markdown
+Contributor
+what about doing the improvements here too? 
+#28967 (comment)
+. These would help non-NV GPUs too or NV GPUs running vulkan
+gaugarg-nv
+      commented
+Oct 18, 2026
+              Copy link
+              Copy Markdown
+Contributor
+what about doing the improvements here too? 
+#28967 (comment)
+. These would help non-NV GPUs too or NV GPUs running vulkan
+Can that be done in separate PR?
+JohannesGaessler
+      commented
+Oct 18, 2026
+              Copy link
+              Copy Markdown
+Contributor
+I think the current implementation is coupled too tightly to NCCL-specific structures. My understanding is that the unique NCCL ID is generated once by one process and then broadcast to the other processes. So I would suggest that we instead change 
+ggml_backend_comm_init_t
+ to accept a single 
+ggml_backend_t
+ as well as a capacity 
+n_backends
+ for the total number of backends. And then add some function like 
+ggml_backend_comm_attach_t
+ that lets another backend connect to a pre-existing communicator. To my understanding the CUDA, Hexagon, and SYCL backends would need to be transitioned to the new interface. To avoid having this PR stuck in review hell for too long we can temporarily add some function like 
+ggml_backend_comm_init_new_t
+ and preferentially use that until the other backends have followed suit in follow-up PRs.
+@ggml-org/ggml-rpc lease tell me if my understanding is wrong or my idea of how to do this is flawed.
+zyang-dev
+      commented
+Oct 19, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Author
+@JohannesGaessler
+,
+In your proposal, how do other ranks know rank 0's information in order to connect to it? which function will send rank 0's information to other processes?
+zyang-dev
+      commented
+Oct 20, 2026
+•
+          edited
+Loading
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+              Copy link
+              Copy Markdown
+Contributor
+Author
+@JohannesGaessler
+ ,
+The 
+comm_attach
+ interface helps to get rid of 
+ggml_backend_comm_init_rank_t
+, but it introduces additional work to change the code for the one-process scenario. And it seems we still need a new interface for bootstrapping the initial information exchange between processes (ranks).
+Another option is to keep two different sets of APIs for the one-process and multi-process scenarios. I'll replace the two new interfaces (
+ggml_backend_comm_get_unique_id_t
+, 
+ggml_backend_comm_init_rank_t
+) with more generic ones that can handle libraries like NCCL. For example:
+typedef bool   (*ggml_backend_comm_bootstrap_callback)(void * user_data, const void * send_buf, void * recv_buf, size_t size);
+typedef void * (*ggml_backend_comm_init_rank_t)(ggml_backend_t backend, int rank, int world_size, ggml_backend_comm_bootstrap_callback bootstrap_callback, void * bootstrap_callback_data);
+The first one is implemented by the caller and moves the bytes between ranks. The library decides what to exchange and how many rounds to run, so different libraries can do their own initial information exchange. The second one is similar to the current 
+ggml_backend_comm_init_rank_t
+, with the new parameter 
+ggml_backend_comm_bootstrap_callback
+.
+gaugarg-nv
+      commented
+Oct 27, 2026
+              Copy link
+              Copy Markdown
+Contributor
+@rgerganov
+@am17an
+ could you please review RPC changes?
+ggerganov
+      commented
+Oct 28, 2026
+              Copy link
+              Copy Markdown
+Member
+@am17an
+ Let me know if you can reproduce the reported numbers on your DGX Sparks. On my pair I can't reproduce (i.e. perf is same as 
+master
+), but I am starting to think that the reason is because one of my Sparks is under-clocked to 1200 Hz due to power issues.
+am17an
+      commented
+Oct 28, 2026
+              Copy link
+              Copy Markdown
+Contributor
+I can reproduce these numbers when both sparks run at 2400mhz
+am17an
+              reviewed
+Oct 28, 2026
+View reviewed changes
+Comment thread
+ggml/src/ggml-rpc/ggml-rpc.cpp
+static void * ggml_backend_rpc_comm_init(ggml_backend_t * backends, size_t n_backends) {
+    if (n_backends 
+!=
+ 2 || std::getenv("GGML_RPC_NO_COMM") != nullptr) {
+    if (n_backends 
+<
+ 2 || std::getenv("GGML_RPC_NO_COMM") != nullptr) {
+am17an
+Sep 17, 2026
+              Copy link
+              Copy Markdown
+Contributor
+There was a problem hiding this comment.
+Choose a reason for hiding this comment
+      The reason will be displayed to describe this comment to others. 
+Learn more
+.
+this will probably not work for all RDMA devices right?
+zyang-dev
+Oct 28, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Author
+There was a problem hiding this comment.
+Choose a reason for hiding this comment
+      The reason will be displayed to describe this comment to others. 
+Learn more
+.
+I think this check should be fine for now. 
+ggml_backend_rpc_comm_init
+ is only used for pairwise and nccl currently.  On a config that doesn't have nccl and has more than 2 nodes, the code will fall back to pairwise. 
+rpc_server::comm_init
+ rejects pairwise with the check 
+(request.world != 2)
+. So the client gets nullptr, and the meta backend uses its generic path, the same as before the change.
+am17an
+      commented
+Oct 28, 2026
+              Copy link
+              Copy Markdown
+Contributor
+I did not notice that each NCCL instance takes 2GB more per RPC node. Do we know why that is?
+zyang-dev
+      commented
+Oct 28, 2026
+              Copy link
+              Copy Markdown
+Contributor
+Author
+@am17an
+ ,
+Regarding the question of NCCL memory usage, I pushed a new change to set 
+maxCTAs
+ in 
+ncclConfig_t
+ to 8 for dgx spark in 
+ggml_backend_cuda_comm_init_rank
+. NCCL allocates buffers for each channel, and on DGX Spark it picks 64 channels by default.  This change reduces NCCL's memory usage on dgx spark and makes NCCL run faster on dgx spark for prefill.  Can you try again with the latest changes?
+zyang-dev
+        added 
+5
+ commits
+November 2, 2026 10:18
+Add a backend interface for collectives across ranks running in separ…
+    …
+ea0c997
+…ate processes, implement it in the CUDA backend using NCCL, and use it in the RPC server when available.
+Drop ggml_backend_comm_allreduce_rank_t and reuse ggml_backend_comm_a…
+    …
+3b87bd5
+…llreduce_tensor for per-rank communicators
+reuse ggml_backend_cuda_comm_allreduce_nccl for per-rank communicator…
+    …
+f4e4e45
+…s. Remove the helper function backend_comm_proc_address
+Change ggml_backend_comm_get_unique_id_t and ggml_backend_comm_init_r…
+    …
+6d229d9
+…ank_t to more generic multi-process backend communicator interfaces
+set maxCTAs in ncclConfig_t to 8 for dgx spark in ggml_backend_cuda_c…
+    …
+b3d57de
+…omm_init_rank
+zyang-dev
+force-pushed
+    the
+rpc_nccl
+ branch
+    from
+91dd6f8
+    to
+b3d57de
+Compare
+November 2, 2026 19:21
+am17an
+              approved these changes
+Nov 3, 2026
+View reviewed changes
+gaugarg-nv
+              approved these changes
+Nov 3, 2026
+View reviewed changes
+Hide details
+View details
+gaugarg-nv
+            merged commit 
+71efc55
+          into
+ggml-org
+:
+mas

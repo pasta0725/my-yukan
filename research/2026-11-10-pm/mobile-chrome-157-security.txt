@@ -1,0 +1,553 @@
+===== https://pc.watch.impress.co.jp/docs/news/2153547.html
+(status 200)
+ニュース
+Google Chromeバージョン157公開。メニューのUI刷新や多数の脆弱性修正
+宇都宮 充
+2026年11月4日 17:22
+ 　Googleは、Webブラウザ「Google Chrome」のバージョン157を提供開始した。メニューUIの刷新や、213件のセキュリティ修正などが含まれる。 
+ 　本バージョンでは、その他メニューのUIデザインを刷新。モダンですっきりとしたものへと変更した。Windows/macOS/Linux/ChromeOS向けに順次展開されている。またWindows版では、Chromeを再起動することなく、新たに起動した子プロセスにセキュリティアップデートを動的に適用できる機能を追加した。 
+刷新されたその他メニューのUI
+ 　Windows/macOS/Linux版向けのセキュリティ修正では計213件の不具合に対応。このうち、深刻度がもっとも高い「Critical」のものは以下の計7件となっている。 
+Dawnにおけるバッファオーバーフロー(CVE-2026-121156、CVE-2026-121247)
+ANGLEにおけるメモリ破壊(CVE-2026-121229)
+WebGLにおける解放後メモリ使用(CVE-2026-121246)
+Prerenderにおける解放後メモリ使用(CVE-2026-121035)
+Geometryにおける解放後メモリ使用(CVE-2026-121203)
+Coreにおける解放後メモリ使用(CVE-2026-121126)
+「Chromebook」関連アイテム
+Amazonで購入
+
+===== https://www.securityweek.com/chrome-157-rolls-out-with-213-security-fixes-seven-rated-critical/
+(status 200)
+Google has promoted Chrome 157 to the stable channel with patches for 213 vulnerabilities, including seven critical memory safety bugs.
+At the top of the list is a buffer overflow issue in Dawn, the open source and cross-platform implementation of the WebGPU standard. It earned the reporting researcher a $10,000 reward.
+The second is a memory corruption in the open source graphics engine abstraction layer ANGLE that was awarded a $1,000 bug bounty.
+No rewards were listed for the remaining five critical flaws (four use-after-free defects and a buffer overflow). Google reported two of them, Anthropic’s Xinyang Ge reported two, and researcher Wenbin Liu reported the fifth.
+Chrome 157 also fixes 77 high-severity vulnerabilities, including more than a dozen reported by external researchers. However, Google has disclosed only the bounties paid for two of them, namely $10,000 for an incorrect authorization, and $2,000 for an out-of-bounds read.
+Per Google’s 
+advisory
+, the company handed out $31,000 in rewards to the reporting researchers, but it has not determined the bug bounties to be paid for 39 of the flaws.
+Advertisement. Scroll to continue reading.
+The most common types of vulnerabilities the fresh browser update resolves include incorrect/missing authorization (51), use-after-free (45), UI misrepresentation (19), type confusion (13), information leak (13), out-of-bounds read/write (11), improper input validation (9), and uninitialized resource (9).
+Google makes no mention of any of these security defects being exploited in the wild, but users should update their browsers as soon as possible.
+The latest Chrome iteration is now rolling out as versions 157.0.8103.38/.39 for Windows and macOS, and as version 157.0.8103.38 for Linux.
+Related:
+Android’s November 2026 Updates Patch Over 200 Vulnerabilities
+Related:
+Critical Node-RED Flaw Exploited in Attacks
+Related:
+Meta Shares Top Muse Bug Bounty Findings as Payouts Reach $1.2 Million
+Related:
+Chrome and Firefox Updates Patch Over 200 Vulnerabilities
+Written By
+Ionut Arghire
+Ionut Arghire is an international correspondent for SecurityWeek.
+Daily Briefing Newsletter
+            Subscribe to the SecurityWeek Email Briefing for the latest cybersecurity threats, trends, and expert
+            insights.
+More from 
+Ionut Arghire
+Brava Security Emerges From Stealth With $15 Million in Funding
+DigiCert Data Breach Impacts Business Customer Information
+US Agencies Urge Organizations to Harden Refrigeration Controllers
+Researchers Find Residential Proxies on White House Network
+OpenSSH Rushes Patches for ‘SSHole’ Authentication Bypass
+Bank Phishing Sites Show Fake ‘Suspended’ Pages to Evade Takedowns
+Cisco, WatchGuard Release Patches; SonicWall Won’t Fix GMS Flaws
+Zyxel Switch Hacks Blamed on Patched Flaw Actually Exploited a Zero-Day
+Latest News
+Revolve Puts Data Breach Victim Count at 1.5 Million
+Plex2Shell Exploited Against QNAP NAS Users
+Iris Plaza Breach May Have Exposed Data of 7.7 Million Customers
+Italy’s Meloni Blames Pro-Russian Hackers for Leak of Foreign Minister’s Data on the Dark Web
+Hackers Exploiting ‘SSHole’ Authentication Bypass in OpenSSH
+Amplifon Americas Data Breach Impacts 1.3 Million
+Over 3 Million People Hit by Frontline Education Data Breach
+Google DeepMind’s AI Agents Make 1024-Bit RSA Keys Cheaper to Attack
+Trending
+DigiCert Data Breach Impacts Business Customer Information
+SonicWall Patches Exploited SonicOS Vulnerability That Weakens VPN Logins
+OpenAI Model Wrote Its Own Network Code to Get Around Sandbox Restrictions
+Researchers Find Residential Proxies on White House Network
+Hackers Exploiting ‘SSHole’ Authentication Bypass in OpenSSH
+Japan Announces Emergency Cybersecurity Package Following a Wave of Attacks
+In Other News: Trezor Implant, LLMJacking Bills Hit $1M, SAP Flaws Weaponized Within Days
+Amplifier Security Emerges From Stealth With AI Copilot, Human-in-the-Loop Automation
+Daily Briefing Newsletter
+Subscribe to the SecurityWeek Email Briefing to stay informed on the latest threats, trends, and technology, along with insightful columns from industry experts.
+Webinar:
+ Agentic Pentesting for a Stronger CTEM Program
+November 4, 2026
+Close the security gaps between pentests. Join this session to explore agentic pentesting and gain a practical framework for continuous exposure validation in your CTEM program.
+Register
+Virtual Event:
+ CISO Forum 2026 Summit
+November 10 & 11, 2026
+Join as we bring together CISOs, senior cybersecurity executives, practitioners, industry experts, and other security leaders to share practical experience and examine the issues shaping enterprise cybersecurity strategy.
+Register
+People on the Move
+Tal Kapulnik has been named CMO at Terra Security.
+Cloudflare has appointed Christian Smith as President of Revenue.
+Doran Stienike has become CIO at Presidio.
+More People On The Move
+Expert Insights
+The Agent Smith Dilemma: Governing Agentic Identities
+Every autonomous AI agent deployed across your enterprise today is a new proxy identity operating inside your perimeter.
+(Danelle Au)
+Passkeys Are Better Than Passwords. But They Are Not Enough.
+As organizations eliminate passwords, attackers will adapt. Instead of attacking the authenticator directly, they will look for opportunities around it.
+(Torsten George)
+When Risk Becomes Personal: What Security Leaders Can Learn From a Cancer Diagnosis
+Risk managers are trained to spot weak signals, plan for disruption and make hard decisions under uncertainty. But the discipline looks different when the risk is not a system or an enterprise, but you.
+(Steve Durbin)
+Nobody Trusts the Security Questionnaire. We Rely on It Anyway.
+The process that gates nearly every B2B deal is a self-assessment the sender distrusts and the receiver accepts. There is finally a better basis for trust between companies.
+(Sravish Sridhar)
+This is Fine: What NetScaler Zero-Days Tell Us About the New Normal
+Keep your patch management pipelines primed in case another round of Citrix NetScaler patches get released soon.
+(Tod Beardsley)
+Flipboard
+Reddit
+Whatsapp
+Whatsapp
+Email
+
+===== https://helentech.jp/news-chrome-157-stable-release-93233/
+(status 200)
+Google、Chrome 157 安定版をリリース。深刻度「Critical」の脆弱性 7 件を含む 213 件を修正
+2026
+11/04
+2026年11月4日
+Masahide Omura
+当サイトは Google Adsense、Amazon アソシエイト等 アフィリエイト広告を利用して収益を得ています.
+Google は 2026 年 11 月 3 日 (現地時間)、Windows、Mac、Linux のデスクトップ向けに Google Chrome 157 安定版 (Stable) へのメジャーアップデートをリリースしたことを
+発表
+しました。
+今回のアップデートにより、デスクトップ版 Chrome のバージョンは Windows および macOS 向けが 
+157.0.8103.38 / .39
+ へ、Linux 向けが 
+157.0.8103.38
+ へと更新されます。アップデートは今後数日から数週間にかけて順次展開される予定です。
+なお、
+管理者向けの Chrome 157 リリースノート
+はすでに公開されています。
+目次
+今回のアップデートで修正された脆弱性
+今回のアップデートには、合計 213 件のセキュリティ修正が含まれています。
+公開された
+リリースノート
+によると、深刻度が「クリティカル (Critical)」のものが 7 件、「高 (High)」が 77 件、「中 (Medium)」が 75 件、「低 (Low)」が 54 件となっています。
+深刻度が最も高いクリティカルの修正は、以下の 7 件です。
+CVE-2026-121156
+: Dawn におけるバッファオーバーフロー
+CVE-2026-121229
+: ANGLE におけるメモリ破壊
+CVE-2026-121246
+: WebGL における解放後使用
+CVE-2026-121035
+: Prerender における解放後使用
+CVE-2026-121247
+: Dawn におけるバッファオーバーフロー
+CVE-2026-121203
+: Geometry における解放後使用
+CVE-2026-121126
+: Core における解放後使用
+High・Medium・Low に分類された脆弱性については、V8、ANGLE、GPU、WebGL、Skia、DevTools、Extensions など広範なコンポーネントにわたる修正が含まれています。
+Android 版 Chrome も 157 に更新
+Google は同日、Android 版 Chrome のバージョン 157.0.8103.38 も公開しました。Google Play では今後数日かけて利用できるようになります。
+リリースノートによると、安定性とパフォーマンスの改善が行われているほか、特に記載がない限り、デスクトップ版と同じセキュリティ修正が適用されています。
+記事執筆時点では、
+Googlebook
+ 向けの Chrome に関するリリースノートや変更点は公開されていません。
+Google は、Chrome 157 に含まれる新機能や大規模な取り組みについて、今後 Chrome と Chromium のブログで紹介するとしています。
+「優先するソース」に追加すると、HelenTech の最新記事を検索結果で見つけやすくなります。
+				Chrome			
+				Chrome			
+				Chrome 157			
+				Google			
+				Google 公式発表			
+      X    
+      Facebook    
+      Threads    
+      Bluesky    
+      はてな    
+      LINE    
+関連記事
+Gemini アプリに「メモリーの要約」が追加。記憶している情報を確認、編集、削除可能に
+2026年11月10日
+Google、Antigravity に「Knowledge Work」レイアウトを追加。Git やターミナルを省いた画面に
+2026年11月10日
+Google ストアのブラックフライデーセール、11 月 20 日から開始。Pixel 11 シリーズ全 4 機種が対象
+2026年11月10日
+Google ドライブやドキュメントなど、自動適用された分類ラベルをバナーのボタンで承認可能に
+2026年11月10日
+Google、11 月 28 日以降 Fitbit スマートウォッチのサードパーティ製アプリと時計の新規インストールと更新を終了
+2026年11月10日
+Google、Android Auto の有線接続の最小要件も Android 11.0 以上に引き上げ。ヘルプページを更新
+2026年11月10日
+著者情報
+		尾村 真英	
+			Technical Writer		
+			HelenTech を運営している 
+尾村 真英
+ です。これまでに 
+50 台以上の Chromebook をレビュー
+ しており、主に小規模事業者を対象に Chromebook や Google Workspace の導入・活用支援も行っています。
+現在は、Chrome Enterprise 公式ユーザーコミュニティのモデレーターとしても活動し、Professional ChromeOS Administrator 資格を保有しています。							
+						運営者情報
+
+===== https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop.html
+(status 200)
+Chrome Releases
+                  Release updates from the Chrome team
+Stable Channel Update for Desktop
+Tuesday, November 3, 2026
+                        Google
+Labels:
+Desktop Update
+                                ,
+Stable updates
+                      
+                          
+                          
+Labels
+                      
+Admin Console
+43
+Android WebView
+19
+Beta
+26
+Beta update
+22
+Beta updates
+2349
+chrome
+15
+Chrome Dev for Android
+226
+Chrome for Android
+1298
+Chrome for iOS
+561
+Chrome for Meetings
+5
+Chrome OS
+1172
+Chrome OS Flex
+41
+Chrome OS Management
+13
+Chromecast Update
+6
+ChromeOS
+436
+ChromeOS Flex
+424
+Desktop Update
+1513
+dev update
+268
+Dev updates
+1713
+Early Stable Updates
+128
+Extended Stable updates
+231
+Flash Player update
+5
+Flex
+1
+Hangouts Meet hardware
+5
+LTS
+151
+stable
+13
+Stable updates
+1598
+                      
+Archive
+                      
+                    
+                        
+2026
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2025
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2024
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2023
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2022
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2021
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2020
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2019
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2018
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2017
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2016
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2015
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2014
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2013
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2012
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2011
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2010
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2009
+Dec
+Nov
+Oct
+Sep
+Aug
+Jul
+Jun
+May
+Apr
+Mar
+Feb
+Jan
+                    
+                        
+2008
+Dec
+Nov
+Oct
+Sep
+Give us feedback in our 
+Product Forums
+.
+              Google
+              Privacy
+              Terms

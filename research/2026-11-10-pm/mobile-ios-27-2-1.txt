@@ -1,0 +1,182 @@
+===== https://www.macrumors.com/2026/11/09/ios-27-2-1-security-fixes/
+(status 200)
+Here's What Apple Fixed in iOS 27.2.1 and macOS 27.2.1
+Monday November 9, 2026 3:07 pm PST
+ by 
+Juli Clover
+The 
+iOS 27.2.1
+, iPadOS 27.2.1, and 
+macOS 27.2.1
+ updates Apple released today fix a handful of security vulnerabilities. With the security fixes implemented, it's a good idea to update as soon as you can.
+A bug with iMessage could let a remote attacker join a group chat to receive its messages, and another could let users see messages sent before they joined a group chat.
+Most of the vulnerabilities involved 
+AirPlay
+ and Bluetooth. A malicious Bluetooth device could pair without user interaction, and another bug could let a nearby attacker corrupt process memory. Several bugs could allow an attacker to bypass the rate limit on ‌AirPlay‌ pairing code attempts.
+Apple credits itself on four of the vulnerabilities, so they were found internally.
+With the macOS update, Apple also 
+addressed the eMudhra certificate vulnerability
+, adding protections for command-line tools.
+Apple did not say that the flaws have been exploited in the wild, but with the details on each vulnerability now public, devices that are not running the new software could be more vulnerable to attack.
+Related Roundups: 
+iOS 27
+, 
+iPadOS 27
+Related Forum: 
+iOS 27
+[ 
+17 comments
+ ]
+
+===== https://9to5mac.com/2026/11/09/apple-releases-ios-27-2-1-for-iphone-heres-whats-new/
+(status 200)
+iOS 27
+iOS 27.2
+Apple releases iOS 27.2.1 for iPhone, here’s what’s new
+Ryan Christoffel
+ | Nov 9 2026 - 10:09 am PT																
+								0 Comments							
+Apple has released a minor new software update for iPhone users today: iOS 27.2.1. Here’s what’s new.
+iOS 27.2.1 introduces new bug fixes and security updates for iPhone
+iOS 27.2 launched late in October as a 
+major update packed with new features
+.
+Today, Apple has another new iPhone software update rolling out: iOS 27.2.1.
+As often happens when a big update arrives, Apple has followed up with a minor release that addresses some bugs in the last update and adds the latest security fixes too.
+Here are Apple’s official release notes:
+This update provides bug fixes and security updates for your iPhone.
+For information on the security content of Apple software updates, please visit: 
+https://support.apple.com/100100
+Apple’s webpage linked above hasn’t yet received details on the new security updates, but it should be updated in the coming hours with those specifics.
+If you own an iPad, iPadOS 27.2.1 has also been released with similar fixes.
+The next big update that will offer new features is iOS 27.3, which is currently available in beta. It includes major 
+Siri AI
+ upgrades including 
+Siri Recap
+, plus 
+new Apple Music features
+, and a lot more.
+Have you installed iOS 27.2.1? Notice any specific bug fixes? Let us know in the comments.
+Best iPhone accessories
+AirPods Pro 3 (
+now only $199
+, down from $249)
+MagSafe Car Mount for iPhone
+10-year AirTag battery case
+100W USB-C fast charging power adapter
+HomeKit Garage Door Opener
+FTC: We use income earning auto affiliate links.
+More.
+You’re reading 9to5Mac — experts who break news about Apple and its surrounding ecosystem, day after day. Be sure to check out 
+our homepage
+ for all the latest news, and follow 9to5Mac on 
+Twitter
+, 
+Facebook
+, and 
+LinkedIn
+ to stay in the loop. Don’t know where to start? Check out our 
+exclusive stories
+, 
+reviews
+, 
+how-tos
+, and 
+subscribe to our YouTube channel
+Check out 9to5Mac on YouTube for more Apple news:
+Comments
+You must be 
+logged in
+ to post a comment.
+Expand
+Close
+ comments
+Guides
+iOS 27
+iOS 27.2
+Author
+			Ryan Christoffel		
+iryantldr			
+Ryan got his start in journalism as an Editor at MacStories, where he worked for four years covering Apple news, writing app reviews, and more. For two years he co-hosted the Adapt podcast on Relay FM, which focused entirely on the iPad. As a result, it should come as no surprise that his favorite Apple device is the iPad Pro.
+
+===== https://appleinsider.com/articles/26/11/09/unauthorized-bluetooth-pairing-imessage-snooping-patched-in-ios-2721
+(status 403)
+
+
+===== https://developer.apple.com/news/releases/?id=11092026b
+(status 200)
+iOS 27.2.1 (24B156)
+November 9, 2026
+View downloads
+
+===== https://support.apple.com/en-hk/149715
+(status 200)
+Download JSON
+About the security content of iOS 27.2.1 and iPadOS 27.2.1
+This document describes the security content of iOS 27.2.1 and iPadOS 27.2.1.
+About Apple security updates
+For our customers' protection, Apple doesn't disclose, discuss, or confirm security issues until an investigation has occurred and patches or releases are available. Recent releases are listed on the 
+Apple security releases
+ page.
+Apple security documents reference vulnerabilities by 
+CVE-ID
+ when possible.
+For more information about security, see the 
+Apple Product Security
+ page.
+iOS 27.2.1 and iPadOS 27.2.1
+Released November 9, 2026
+AirPlay
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: An attacker in Bluetooth range may be able to bypass the rate limit on pairing code attempts
+Description: A logic issue was addressed with improved state management.
+CVE-2026-113968: Apple
+App Intents
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: An app may be able to access sensitive user data
+Description: An authorization issue was addressed with improved state management.
+CVE-2026-113963: László Várady
+Bluetooth
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: An attacker in Bluetooth range may be able to corrupt process memory
+Description: A use-after-free issue was addressed with improved memory management.
+CVE-2026-113970: Apple
+brotli
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: Processing maliciously crafted input may lead to memory corruption
+Description: An out-of-bounds write issue was addressed with improved input validation.
+CVE-2026-111497
+CoreUtils
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: A malicious Bluetooth device may be able to establish a pairing without user interaction
+Description: This issue was addressed with improved checks.
+CVE-2026-113965: Apple
+CoreUtils
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: An attacker in Bluetooth range may be able to bypass the rate limit on pairing code attempts and pair with a device without user interaction
+Description: A logic issue was addressed with improved state management.
+CVE-2026-113964: an anonymous researcher
+Messages
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: A remote attacker may be able to join an iMessage group chat and receive its messages
+Description: An authorization issue was addressed with improved validation.
+CVE-2026-113961: an anonymous researcher
+Messages
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: A user added to an iMessage group may be able to access messages sent before they joined
+Description: This issue was addressed by removing the vulnerable code.
+CVE-2026-113960: an anonymous researcher
+rapportd
+Available for: iPhone 11 and later, iPad Pro 12.9-inch 4th generation and later, iPad Pro 11-inch 2nd generation and later, iPad Air 4th generation and later, iPad 9th generation and later, and iPad mini 6th generation and later
+Impact: An attacker on the same network may be able to bypass the rate limit on AirPlay pairing code attempts
+Description: A logic issue was addressed with improved state management.
+CVE-2026-113969: Apple
+Information about products not manufactured by Apple, or independent websites not controlled or tested by Apple, is provided without recommendation or endorsement. Apple assumes no responsibility with regard to the selection, performance, or use of third-party websites or products. Apple makes no representations regarding third-party website accuracy or reliability. 
+Contact the vendor
+ for additional information.
+Published Date:
+November 09, 2026
+Helpful?
+                    Yes
+                    No
+        Thanks for your feedback.

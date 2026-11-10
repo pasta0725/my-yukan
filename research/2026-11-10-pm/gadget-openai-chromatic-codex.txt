@@ -1,0 +1,429 @@
+===== https://developers.openai.com/blog/build-a-game-with-modretro-chromatic
+(status 200)
+Your browser does not support the video tag. 
+With all due respect to the iPhone, the Game Boy might be the most iconic handheld device of all time. A generation of kids stomped Koopas on the bus and battled their friends in Pokémon over a link cable, all on a device that fit in your pocket. Or at least a pocket of your backpack.
+With today’s powerful coding models and tools like Codex, building your own games has never been easier (or, in my opinion, more fun). But there’s something special about a game running on purpose-built hardware, like the Game Boy Color, that’s hard to replace. That’s why I am 
+sooo excited
+ to share that the 
+ModRetro plugin for Codex
+ lets you build Game Boy Color games and play them on a Chromatic.
+Order the special edition ModRetro Chromatic
+.
+Let’s jump right in and explain how it works.
+Install the plugin
+In the ChatGPT desktop app, select 
+Codex
+ from the 
+ChatGPT
+ dropdown.
+Open 
+Plugins
+ and search for 
+ModRetro Chromatic
+. Select 
+ModRetro Chromatic Plugin
+ by ModRetro, then click 
+Install
+.
+Open a local project folder and start a chat. Type 
+@
+ and choose the plugin so Codex knows which tools to use.
+Ask Codex to set up the plugin and check for any missing build tools. You can build and play your first game on your computer.
+  Your browser does not support the video tag. 
+Prompt your first game
+With the plugin selected in your Codex chat, describe the game you want to build. To follow along with the video, use this example prompt.
+Build a top-down adventure game called Lodge Podge where a pixel beaver must chew down small trees to gather sticks to build a lodge in the center of the level.
+  Your browser does not support the video tag. 
+Next, ask Codex to build the game and open the preview. You can also ask it to point you to these files in your GB Studio project folder.
+Open the 
+.gbsproj
+ file in GB Studio to edit scenes, actors, and events.
+Look in 
+assets/
+ for the sprite sheets, backgrounds, and audio used by the project.
+Run the compiled 
+.gbc
+ file in an emulator or install it on a cartridge.
+From there, play a few rounds and tell Codex what would make the game more fun. In Lodge Podge, I asked Codex to make the beaver chonkier (for maximum cuteness) and to require mud and leaves as well as sticks to build the lodge.
+What’s in the plugin
+The ModRetro Chromatic plugin contains developer tools the model can use on your behalf.
+Animate a character
+Ask Codex to create a sprite sheet and show you the frames side by side. To revise the animation, identify the pose or direction you want to change, then ask Codex to rebuild the preview.
+Build a map the player can walk through
+Ask Codex to show you a scene’s background and collision map side by side. The collision map marks which tiles block movement. Use the background to identify the area you mean, then tell Codex which tiles to mark as blocked or walkable.
+Play the ROM in Codex
+Ask Codex to open the game preview in its built-in browser. Use the arrow keys for the Game Boy’s D-pad, 
+Z
+ for 
+A
+, 
+X
+ for 
+B
+, and 
+Enter
+ for 
+Start
+. Use the toolbar above the emulator to pause or resume.
+Point to the part you want to change
+Choose 
+Annotate game
+ in the preview toolbar, then click the game display to freeze a frame. Select the sprite, tile, or area you want to change and describe the edit. Choose 
+Resume game
+ to return to the emulator. After Codex makes the change, ask it to rebuild the ROM and reopen the preview.
+Have Codex test a sequence of moves
+You can also control the emulator from chat. Ask Codex to run the ROM, send a sequence of button presses, and capture a frame after each step. Ask for the frames side by side so you can inspect them together.
+Edit in GB Studio
+GB Studio is a visual editor for building Game Boy games. Open your project’s 
+.gbsproj
+ file and choose 
+Game World
+. Select a scene in the navigator to see its properties in the sidebar. You can drag an actor to a new tile or edit collisions directly on the scene. Save the project, then return to your Codex chat and ask it to rebuild and open the preview. The 
+GB Studio guide to scenes
+ explains how backgrounds, actors, and triggers fit together.
+Other development options
+Extend a GB Studio game.
+ If the built-in events don’t cover a mechanic, you can add a custom event in GBVM, GB Studio’s virtual-machine language, or extend the engine in C. See the 
+GB Studio plugin guide
+.
+Write the game in C with GBDK-2020.
+ The ModRetro plugin can compile standalone C with GBDK’s 
+lcc
+ compiler. GBDK’s 
+Game Boy APIs
+ give you access to buttons, sprites, tiles, and palettes. Ask Codex to start with a game loop that reads the D-pad and moves a single sprite.
+Write your own engine.
+ You can have Codex implement the game loop, scrolling, and collisions from scratch. For an assembly project, build the ROM with a separately installed toolchain such as 
+RGBDS
+. Then give the resulting 
+.gb
+ or 
+.gbc
+ file to the plugin to inspect and playtest.
+Deploy to device
+You’ll need a Chromatic, a compatible rewritable homebrew cartridge, and a USB data cable. Follow 
+ModRetro’s quickstart
+ to update the firmware and activate Developer Mode using the computer you’ll connect to the handheld.
+Insert the cartridge, connect the Chromatic to your computer, and open the game preview in your local Codex chat.
+Choose 
+Install on Chromatic
+, select your connected device, and click 
+Install
+. Read the confirmation carefully. Writing the new ROM erases the game on that cartridge and can erase its saves. The installer doesn’t back up the cartridge.
+Choose 
+Confirm Install
+ when you’re ready. Leave the cable connected until the plugin reports success, then start the game on the Chromatic.
+  Your browser does not support the video tag. 
+“The Power of Science is Staggering!”
+With the ModRetro plugin for Codex, you can prompt your way to original Game Boy Color games and use all the tools in the thriving GBC homebrew development ecosystem. This is going to be so, so much fun. You can 
+order your own ModRetro Chromatic
+ and 
+explore ModRetro’s other projects
+. Happy Game Boy hacking!
+
+===== https://www.aigamer.gg/news/openai-modretro-chromatic-codex-edition
+(status 200)
+Home
+›
+News
+📰
+News
+Announcement
+OpenAI sells $200 Codex Edition ModRetro Chromatic for building Game Boy Color games
+The handheld includes a rewritable cartridge, and a new OpenAI walkthrough shows the Codex plugin building, playtesting and installing a game. As of November 10 it awaits a restock expected November 19.
+By 
+Hitesh K
+ · 
+10 November 2026
+Key points
+The Codex Edition Chromatic costs $200 on OpenAI's Supply Co. store and includes one programmable cartridge; as of November 10, a restock was expected November 19.
+The ModRetro Chromatic plugin for Codex builds GB Studio or GBDK projects, playtests the ROM in an emulator and can install it on a cartridge.
+Installing a ROM overwrites the game on that cartridge and may wipe its saves, and nothing is backed up first.
+Image: 
+OpenAI
+OpenAI put a Codex Edition of ModRetro's Chromatic handheld on sale through its Supply Co. merchandise store on November 9, 2026, the OpenAI Developers account (@OpenAIDevs) announced on X. The $200 device comes with one programmable cartridge, and it pairs with the ModRetro Chromatic plugin for Codex, OpenAI's coding agent, which builds Game Boy Color games from text prompts.
+The plugin isn't new. ModRetro and OpenAI announced the partnership on September 29 at OpenAI's DevDay 2026, where attendees received a transparent DevDay Edition of the handheld, as The Shortcut and Generation Amiga reported the next day. The Supply Co. product page says the Codex Edition is that DevDay exclusive "back with a new look."
+Alongside the sale, OpenAI published a walkthrough on its developer blog by Kevin Whinnery. In it, the plugin turns a single prompt into a GB Studio project, draws sprite sheets, and puts a scene's background next to its collision map so you can say which tiles the player can cross. Codex can run the ROM in an emulator in its built-in browser, play through a list of button presses and grab a frame after each one. The plugin can also compile C code with GBDK-2020.
+To play on the hardware, you update the Chromatic's firmware, turn on Developer Mode and connect it over USB, then install the ROM on a rewritable homebrew cartridge. According to the blog, installing overwrites whatever game is on that cartridge and may wipe its save data, with no automatic backup.
+OpenAI's developer site also hosts 13 games made with Codex for the Game Boy Color, including FlapGPT and Ember Escape. Each can be played in a browser or downloaded as a ROM.
+Why it matters: it pairs an AI coding agent with a real, tightly limited retro target and a way to put the result on physical hardware. Because the projects are ordinary GB Studio and GBDK files, a developer can take over by hand at any point, and the emulator controls let the agent playtest its own work.
+Caveat: we haven't tested the plugin or the device, and the claims about what it can build are OpenAI's own. The Supply Co. page ships to the US, Canada, Australia, New Zealand, Japan, the UK and the EU only.
+As of November 10, the product page listed the Codex Edition as "Restock soon," with a restock expected on November 19.
+Read the original on 
+OpenAI Developers (blog, by Kevin Whinnery)
+ →
+Share
+Sources
+Based on the company's own announcement.
+OpenAI Developers (blog, by Kevin Whinnery)
+: 
+Build a retro handheld game with Codex and ModRetro Chromatic
+OpenAI Developers (@OpenAIDevs) on X
+: 
+The Codex edition ModRetro Chromatic is now on Supply Co.
+OpenAI Supply Co. (product page)
+: 
+ModRetro Chromatic: Codex Edition
+OpenAI Developers
+: 
+ModRetro + Codex game collection
+ModRetro (@modretro) on X
+: 
+ModRetro and OpenAI are collaborating on game creation for the Chromatic
+OpenAI
+: 
+DevDay 2026
+The Shortcut (Reece Bithrey)
+: 
+ModRetro has announced a partnership with OpenAI so you can make your own Chromatic games
+Generation Amiga
+: 
+Chromatic gets OpenAI Codex support for creating Game Boy Color games
+ModRetro
+: 
+ModRetro
+Image: 
+OpenAI
+Written in our own words; quotes are marked and credited.
+How we report
+
+===== https://gaming-st.com/news/modretro-chromatic-codex-edition-openai-200-dollar/
+(status 200)
+残り3日
+Amazonスマイルセール開催中
+ゲーミングモニター・SSD・周辺機器の狙い目をまとめています。11月12日（木）23時59分に終了します。
+狙い目を今すぐ見る
+OpenAIが200ドルのゲームボーイ互換機を発売 Codexで作ったゲームをカートリッジで遊べる
+ニュース
+2026.11.10
+本記事にはアフィリエイト広告（Amazon・楽天市場等）のリンクが含まれています。
+NEWS / 2026-11
+OpenAIが200ドルのゲームボーイ互換機を発売
+Codexで作ったゲームを本物のカートリッジで遊べる
+ModRetro Chromatic: Codex Editionは
+200ドルで日本にも発送、次回入荷は11月19日予定
+です。
+200ドル
+日本発送対応
+自作ゲームをカートリッジへ
+出典：
+OpenAI Supply Co.（製品ページ）
+／
+Supply Co. よくある質問
+／
+OpenAI Developers「ModRetro + Codex」
+／
+Codex Cartridge商品ページ
+／
+Chromatic Case商品ページ
+（いずれも2026年11月10日確認）
+OpenAIが、ゲームボーイ互換の携帯機「ModRetro Chromatic: Codex Edition」を公式ショップ「Supply Co.」で一般販売しています。開発者イベントDevDayで限定品として登場し、人気になった製品の再登場です。
+価格は
+200ドル
+で、配送先に日本が含まれます。AIコーディングエージェントのCodexで作ったゲームを、付属の書き込み可能カートリッジ「Codex Cartridge」に入れて、PCなしで遊べるのが特徴です。ゲームボーイとゲームボーイカラーの既存カートリッジも動きます。
+ただし2026年11月10日時点では在庫切れで、再入荷予定は11月19日です。AIが動くのはPC側で、本体にAI機能はありません。送料・関税・為替が上乗せされる点も、買う前に知っておきたい部分です。
+目次
+要点
+価格・仕様・入荷日をまとめて確認
+i
+買う前に押さえる3点
+本体は200ドル、配送先は米国・カナダ・オーストラリア・ニュージーランド・日本・英国・EUです。次回入荷は11月19日の予定で、変更される場合があります。ゲームを作るのはPC上のCodexで、本体にAI機能はありません。
+項目
+内容
+備考
+価格
+200ドル
+送料・関税・税金は別
+ディスプレイ
+2.56インチ IPS液晶
+160×144ピクセル
+電源
+単3形電池3本（付属）
+ModRetro Rechargeable Power Coreにも対応
+対応ソフト
+ゲームボーイ／ゲームボーイカラー／Chromatic用カートリッジ
+自作ゲームはCodex Cartridgeに書き込み
+付属品
+Codex Cartridge 1個、Chromatic Case
+追加のカートリッジは別売り
+端子
+USB-C、3.5mmヘッドホン、通信ケーブルポート、赤外線ポート
+メニューボタン・音量調節あり
+サイズ・重さ
+5.2×3×1.2インチ、6.2オンス
+約132×76×30mm、約176g（換算値）
+仕組み
+文章で指示してゲームを作り、カートリッジに書き込むまで
+ゲーム制作に使うのは、OpenAIのコーディングエージェント「Codex」と「ModRetro Chromatic」プラグインです。世界観やキャラクター、遊び方を文章で伝えると、プラグインがゲームの作成からテスト、カートリッジへの書き込みまでを支援します。
+製品ページが示す流れは次の4段階です。
+プロンプトで世界観やキャラクター、遊び方を伝える
+Codexにプラグインを追加し、プロンプトをゲームにする
+GB Studioでシーンやアート、ゲームロジックを作り込む
+ゲームファイル（ROM）をビルドし、テスト・共有・カートリッジへの書き込みに使う
+GB Studioは、ゲームボーイ向けのゲームをビジュアルに作れる開発ツールです。AIが作った中身を、自分の手で細かく直せる余地が残っています。一度の指示で完成品が出てくる仕組みではなく、動かして直す往復が前提です。
+遊び方は3種類
+方法
+使うもの
+向いている場面
+PCで遊ぶ
+ブラウザー上のテスト環境
+作って試して直す往復
+Chromaticで試す
+PCからChromaticへストリーミング
+実機の画面・音・操作感の確認
+カートリッジで遊ぶ
+ROMを書き込んだCodex Cartridge
+PCなしで持ち出して遊ぶ
+カートリッジに書き込む前に、ファームウェアの更新と開発者モードの有効化が必要です。開発者モードを有効にするアクティベーションコードはCodex Cartridgeに付属し、利用できるのは2台までです。
+作例
+Codexで作られたゲームは無料で試せる
+OpenAIのDevelopersサイトでは、Codexで作ったゲームボーイカラー向けゲーム13本がブラウザーで遊べます。ROMをダウンロードできる作品もあります。製品ページでは植物モチーフのタイルマッチ「Seedy’s Sweet Garden」、ダンジョン探索の「Hollow Descent」、リズムゲームの「Codex Dance」の3本が紹介されています。
+Codexで作られたゲーム Hollow Descentの画面（画像：OpenAI Supply Co.）
+パズル、探索、リズムと、ジャンルが違う作品が並びます。本体を買う前にブラウザーで仕上がりの水準を確かめられます。ただし、公開されている作品の出来がそのまま自分の作るゲームの出来になるわけではありません。
+比較
+本体を買う場合と、PCだけで試す場合の違い
+AIでゲームボーイ向けのゲームを作ること自体に、Chromatic本体は必須ではありません。本体の価値は、書き込んだカートリッジを実機で遊べる点にあります。
+✓
+本体を買う価値がある人
+自作ゲームを実物のカートリッジにして持ち歩きたい
+手持ちのゲームボーイ・ゲームボーイカラーのソフトも遊びたい
+160×144のドット絵とレトロな操作感が好き
+i
+PCで試すだけで足りる人
+AIで簡単なゲームが作れるかを知りたいだけ
+Developersサイトの公開作品で雰囲気をつかめれば十分
+現代的な高解像度の携帯ゲーム機を探している
+画面は160×144ピクセルで、ゲームボーイカラーと同じ解像度です。3Dゲームや大作を遊ぶための機械ではありません。現代のゲーム向け携帯機を探している場合は、Steam Deckなどの携帯ゲーミングPCが別の選択肢になります。
+購入
+日本からの買い方と総額の考え方
+購入先はOpenAI Supply Co.の公式ショップです。支払いはクレジットカードまたはデビットカードで、請求は米ドルになります。
+品目
+価格
+内容
+Chromatic: Codex Edition
+200ドル
+本体、Codex Cartridge 1個、Chromatic Case
+Codex Cartridge（追加）
+50ドル
+書き込み可能。コードは2台まで
+Chromatic Case Codex Edition
+35ドル
+ハードシェル。予備カートリッジ1本収納
+送料は、日本を含むアジア太平洋地域の一部の配送先で、125ドルを超える注文の通常配送が30ドルの割引料金です。速達、関税、税金、遠隔地手数料は別に計算されます。本体200ドルに送料30ドルを足すと230ドルで、そこへ輸入にかかる税や手数料、為替・カード手数料が加わる可能性があります。最終的な総額は、購入手続きの画面で確認してください。
+不良品以外の返品・交換は受け付けていません。サポートと保証は、ModRetroが直接担当します。
+在庫は11月19日の再入荷待ち
+11月10日時点の製品ページは「近日再入荷予定」で、再入荷予定日は11月19日です。追加カートリッジとケースも同じ日が表示されています。これは発売日ではなく在庫補充の予定日で、変わることがあります。
+まとめ
+まとめ｜自作ゲームを実機で遊びたい人向けの200ドル
+Chromatic: Codex Editionは、AIで作ったゲームを実物のカートリッジに書き込んで遊べるゲームボーイ互換機です。価格は200ドルで日本への発送に対応し、次回入荷は11月19日の予定です。
+まとめ
+本体200ドルに送料30ドルなどが加わります。AIが動くのはPC側のCodexで、携帯機は完成したゲームを動かす役割です。自作ゲームを手に持って遊びたい人、ゲームボーイのソフトも遊びたい人に向いています。
+あわせて読みたい
+ゲーミングPC
+Steam Deckは今買いか｜値上げ後の日本価格137,980円と待つ判断
+ゲーミングPC
+Predator Atlas 8とROG Xbox Ally X20を比較
+2026
+BEST BUY — GPU 部門
+16GB VRAM
+RX 9060 XT 16GB
+Amazon 
+WQHD高画質
+RX 9070 XT 16GB
+Amazon 
+WQHD定番
+RTX 5070 12GB
+Amazon 
+ミドルハイ
+RTX 5070 Ti 16GB
+Amazon 
+Amazonの価格・在庫情報について
+Amazon
+PICK UP — ゲーマー必携アイテム
+多ボタン
+Logicool G502 X
+Amazon 
+プロ配信マイク
+SHURE MV7+
+Amazon 
+コスパ24型
+MSI MAG 255F X24
+Amazon 
+競技定番
+G PRO X SL2
+Amazon 
+足音定位
+Sony INZONE H6 Air
+Amazon 
+Amazonの価格・在庫情報について
+Writer
+ゲーミングスタイル管理人
+自作PC愛好家・ゲーム歴15年超
+ゲーミングPC歴は15年以上。毎年パーツを更新しながら最新トレンドを追いかけています。初心者にもわかりやすく、上級者も満足できる情報発信を心がけています。
+
+===== https://aipingnews.com/en/news/2247-openai-chromatic-codex-edition
+(status 200)
+Tools
+·
+Published 
+11/09/2026, 19:10 UTC
+Updated 
+11/09/2026, 19:13 UTC
+Chromatic Codex Edition goes on sale for $200 with a programmable cartridge
+Edited and reviewed by AI Ping Editorial Team
+3-line summary
+1
+OpenAI’s store lists the Codex Edition with one programmable cartridge included.
+2
+Device shipping is limited to specified markets; South Korea is excluded.
+3
+Extra cartridges cost $50 and the case $35, both with a November 19 restock estimate.
+Practical
+Developers
+Share
+AI-generated conceptual image: a game cartridge and an imaginary handheld · AI Ping
+OpenAI listed the ModRetro Chromatic: Codex Edition in its Supply Co. store on November 9 for $200, including one programmable game cartridge. Previously introduced as a DevDay exclusive, the handheld returns with a new look.
+Shipping for this device is limited to the United States, Canada, Australia, New Zealand, Japan, the United Kingdom and the European Union. South Korea is outside that list, even though it appears in the store’s general shipping guidance. The product-specific FAQ ties the narrower destinations to the electronics safety and compliance testing completed for the device.
+The manufacturer’s hardware manual describes a 160-by-144-pixel backlit screen and support for Game Boy, Game Boy Color and Chromatic cartridges. It also identifies a headphone jack, speaker and USB-C video output to a PC. Those details come from an existing May manual, rather than a newly announced hardware revision. Charging through USB-C uses the separately sold rechargeable battery pack.
+Game creation takes place on a computer using the Codex desktop app and ModRetro’s plugin. The manufacturer’s quickstart describes turning an idea into a GB Studio project, then changing scenes, characters and artwork while testing a browser preview.
+GB Studio’s build documentation separates the editable project from its exports. A ROM export produces a game file for a compatible emulator. A web export creates an HTML5 build that can be hosted on a server, with touch controls available in mobile and tablet browsers. Its scene-selection preview can build only the selected parts of a larger project, letting a developer inspect a changed area before testing the entire game.
+AI-generated conceptual image: a fictional workspace for building tile-based games · AI Ping
+From a preview to a physical cartridge
+There are three ways to play during development. A browser emulator provides a repeatable preview on the computer. Streaming lets the developer try a computer-run game through the Chromatic’s controls, display and audio. Writing the ROM to a Codex Cartridge makes it possible to play on the handheld without the computer.
+Physical cartridge writing requires a firmware update and activation of Developer-Mode for the computer. The quickstart describes entering the included code through the updater. After flashing, it calls for manual checks of booting, gameplay and audio on the device.
+Editorial diagram: computer preview, device streaming and cartridge play · AI Ping
+An additional Codex Cartridge is listed at $50, with a November 19 restock estimate at the time of checking. It supports .gb and .gbc formats and includes a Developer-Mode activation code. The product page limits the code to two devices and specifies that it is exclusive to the Codex Edition.
+The separate protective case costs $35 and carries the same November 19 restock estimate. It has a hard shell, soft lining and space for an extra cartridge. Those accessory listings have their own availability status; the handheld package already includes one programmable cartridge.
+OpenAI’s related game collection contains 13 Game Boy Color titles built with Codex. Visitors can play them in a browser or download a ROM for compatible hardware. FlapGPT, Seedy’s Sweet Garden and Hollow Descent are among the listed games. The collection provides examples of finished games; the new retail listing does not establish a new release date for every title in it.
+ModRetro handles support and warranty coverage for the device and accessories. Supply Co.’s general policy says in-stock orders typically ship within four business days, with international duties and import taxes calculated at checkout. Sales are final except for damaged, defective or incorrect orders.
+Sources
+ModRetro Chromatic: Codex Edition
+ — 
+OpenAI Supply Co.
+Shipping, support and customer service FAQ
+ — 
+OpenAI Supply Co.
+Chromatic: Codex Edition Quickstart Guide
+ — 
+ModRetro Support
+Building Your Game
+ — 
+GB Studio
+ModRetro Codex Cartridge
+ — 
+OpenAI Supply Co.
+ModRetro Chromatic Case: Codex Edition
+ — 
+OpenAI Supply Co.
+ModRetro + Codex game collection
+ — 
+OpenAI Developers
+Welcome to Chromatic: Know Your Chromatic
+ — 
+ModRetro Support
+Corrections
+November 9, 2026
+Removed two repeated explanations and clarified the sentence on return exceptions.
+
+===== https://openai.com/supply/co-lab/chromatic/
+(status 403)

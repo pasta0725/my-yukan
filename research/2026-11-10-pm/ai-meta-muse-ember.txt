@@ -1,0 +1,1017 @@
+===== https://research.meta.ai/blog/muse-ember
+(status 200)
+Today, we're introducing Muse Ember, our smallest and most efficient model designed for complex reasoning execution and the work agents repeat all day: tool calls, coding subtasks, routing, extraction, and long document parsing.
+Muse Ember delivers more intelligence per dollar than Claude Haiku 5.5 or GPT-6 Luna at any reasoning setting: it matches Haiku's best score at about a third of the cost and beats every Luna setting. It also sits on the efficiency frontier of the full Artificial Analysis leaderboard: no model scores higher for less per task.
+Intelligence vs. Cost Per Task
+Artificial Analysis Intelligence Index against cost per task at each reasoning effort, from the raw Artificial Analysis results. Muse Ember costs are estimates at proposed pricing.
+Intelligence vs. Cost Per Task
+$0.00
+$0.10
+$0.20
+$0.30
+$0.40
+15
+20
+25
+30
+35
+40
+Cost Per Task (USD)
+Artificial Analysis Intelligence Index
+xhigh
+max
+medium
+high
+xhigh
+max
+high
+xhigh
+max
+Muse Ember
+Claude Haiku 5.5
+GPT-6 Luna
+Intelligence vs. Cost Per Task
+$0.00
+$0.10
+$0.20
+$0.30
+$0.40
+15
+20
+25
+30
+35
+40
+Cost Per Task (USD)
+Artificial Analysis Intelligence Index
+xhigh
+max
+medium
+high
+xhigh
+max
+high
+xhigh
+max
+Muse Ember
+Claude Haiku 5.5
+GPT-6 Luna
+xhigh
+max
+medium
+high
+xhigh
+max
+high
+xhigh
+max
+Muse Ember
+Claude Haiku 5.5
+GPT-6 Luna
+Intelligence vs. Cost Per Task: Intelligence vs. Cost Per Task
+Series
+Measurement
+Value
+Muse Ember
+Cost Per Task (USD)
+$0.116
+Muse Ember
+Score
+33.9
+Muse Ember
+Cost Per Task (USD)
+$0.136
+Muse Ember
+Score
+35.8
+Claude Haiku 5.5
+Cost Per Task (USD)
+$0.092
+Claude Haiku 5.5
+Score
+24.6
+Claude Haiku 5.5
+Cost Per Task (USD)
+$0.159
+Claude Haiku 5.5
+Score
+29.6
+Claude Haiku 5.5
+Cost Per Task (USD)
+$0.248
+Claude Haiku 5.5
+Score
+34.3
+Claude Haiku 5.5
+Cost Per Task (USD)
+$0.411
+Claude Haiku 5.5
+Score
+36.2
+GPT-6 Luna
+Cost Per Task (USD)
+$0.073
+GPT-6 Luna
+Score
+21.4
+GPT-6 Luna
+Cost Per Task (USD)
+$0.104
+GPT-6 Luna
+Score
+23.3
+GPT-6 Luna
+Cost Per Task (USD)
+$0.152
+GPT-6 Luna
+Score
+27.8
+Artificial Analysis | November 9, 2026. Each point is one reasoning-effort setting. Muse Ember cost at list pricing.
+Muse Ember evaluation results
+Muse Ember evaluation results: Evaluation results
+Evaluation results
+Featured model.
+Muse Ember (max)
+Claude Haiku 5.5 (max)
+GPT-6 Luna (max)
+Agents
+AutomationBench-AA
+E2E business workflows
+Best result.
+37.8
+13.9
+20.2
+Agents' Last Exam
+End-to-end agent tasks
+Best result.
+61.6
+57.0
+57.1
+Personal Superintelligence Index
+Internal composite index of personal and knowledge work
+Best result.
+46.8
+36.1
+37.0
+Coding
+Terminal-Bench 4.0
+Agentic terminal coding, best published harness
+Best result.
+40.9
+39.2
+16.4
+Coding Agent Index-AA
+Coding in real agent harnesses
+Best result.
+46
+37
+31
+FrontierCode 2.0-AA
+Real engineering tasks judged on mergeability
+27.2
+Best result.
+34.9
+25.2
+Multimodal
+GDP.pdf-AA
+Professional work over long documents
+Best result.
+22.8
+20.8
+Best result.
+22.8
+OSWorld 2.1
+Computer use across desktop apps
+Best result.
+69.5
+(partial)
+33.8
+(binary)
+68.9
+(partial)
+27.8
+(binary)
+50.5
+(partial)
+17.0
+(binary)
+PerceptionBench (w/ tools)
+Fine-grained visual perception
+Best result.
+80.6
+78.6
+62.8
+General
+Artificial Analysis Index
+Best result.
+36
+Best result.
+36
+28
+For more details about our evaluations, see our 
+report
+.
+Muse Ember is available today on the Meta Model API, at $0.10 per million input tokens and $0.50 per million output tokens.
+In early testing, our partners put Muse Ember to work on the kinds of tasks agents repeat all day, from reviewing contracts to writing code.
+Box
+Cline
+Oracle
+Cloudflare
+You.com
+Box
+Previous slide
+Next slide
+“
+On the Box AI Complex Work Eval, Muse Ember delivers impressive accuracy, speed and token efficiency. It can score a contract against a company's negotiation playbook clause by clause and land on the right overall risk rating, or screen candidates against a detailed brief and flag the borderline ones who still qualify as alternates. Muse Ember is a fast, efficient foundation for agents doing real work on enterprise content.
+”
+Author
+Yashodha Bhavnani
+Role
+VP of AI Products
+Company
+Box
+“
+It's incredible seeing Meta release a lightweight model for developers who want a fast, low-cost model they can rely on, and for teams cutting costs by running it as the subagent in their harness. Muse Ember is purpose-built for, and excels at, subagent work like coding and document analysis.
+”
+Author
+Saoud Rizwan
+Role
+Founder
+Company
+Cline
+“
+Muse Ember showed an encouraging ability to tackle complex engineering tasks in our early testing. We see strong potential for it to become a valuable tool for engineering teams.
+”
+Author
+Konstantinos Papamiltiadis (kp)
+Role
+SVP, Global Partnerships
+Company
+Oracle
+“
+What stood out in our testing was speed. Muse Ember ran up to 30% faster at the tail than the comparable model we tested, and it handled broad, multi-repo investigation tasks well. It’s a strong fit for fast, high-throughput agentic workloads.
+”
+Author
+Dane Knecht
+Role
+CTO
+Company
+Cloudflare
+“
+Muse Ember completed every coding quest in our testing with the lowest latency of any model we tested: a p95 of 2.2 seconds, about 4x to 13x faster than leading open-weight models, and with 36–48% fewer output tokens. We’re excited about what Meta Superintelligence Labs is building next and about bringing it to our customers.
+”
+Author
+Chak Pothina
+Role
+Inference Lead
+Company
+You.com
+Agents
+Agents spend most of their tokens on many small, structured steps, and Muse Ember is built for exactly that. It can carry a business workflow end to end, pulling records, calling tools in sequence, and updating systems across apps.
+With a 1M-token context window and up to 512K output tokens, it can take in a full codebase or document set in a single call.
+AutomationBench-AA
+AutomationBench-AA results at max reasoning, reproduced from the doc's current chart.. Score
+AutomationBench-AA
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+40%
+Score
+37.8%
+20.2%
+13.9%
+AutomationBench-AA
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude
+Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+40%
+Score
+37.8%
+20.2%
+13.9%
+AutomationBench-AA: AutomationBench-AA
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+37.8%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+20.2%
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+13.9%
+Artificial Analysis | November 9, 2026. Strict pass@1.
+Agents' Last Exam
+Agents' Last Exam results at max reasoning, reproduced from the doc's current chart.. Score
+Agents' Last Exam
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+Score
+61.6%
+57.1%
+57.0%
+Agents' Last Exam
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude
+Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+Score
+61.6%
+57.1%
+57.0%
+Agents' Last Exam: Agents' Last Exam
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+61.6%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+57.1%
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+57.0%
+Meta internal evaluation. Linux subset.
+Personal Superintelligence Index
+Personal Superintelligence Index results at max reasoning, reproduced from the doc's current chart.. Score
+Personal Superintelligence Index
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+Score
+46.8%
+37.0%
+36.1%
+Personal Superintelligence Index
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude
+Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+Score
+46.8%
+37.0%
+36.1%
+Personal Superintelligence Index: Personal Superintelligence Index
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+46.8%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+37.0%
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+36.1%
+Internal composite index of personal and knowledge work.
+Coding
+Muse Ember is built for the coding subtasks an agent sends off hundreds of times a session: reading files, running tests, making targeted fixes.
+Terminal-Bench 4.0
+Terminal-Bench 4.0 results at max reasoning, reproduced from the doc's current chart.. Score
+Terminal-Bench 4.0
+Muse Ember
+(max)
+Claude Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+Score
+40.9%
+39.2%
+16.4%
+Terminal-Bench 4.0
+Muse Ember
+(max)
+Claude
+Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+Score
+40.9%
+39.2%
+16.4%
+Terminal-Bench 4.0: Terminal-Bench 4.0
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+40.9%
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+39.2%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+16.4%
+Each model in its best published harness. See footnote 1.
+Coding Agent Index-AA
+Coding Agent Index-AA results at max reasoning, reproduced from the doc's current chart.. Score
+Coding Agent Index-AA
+Muse Ember
+(max)
+Claude Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0
+10
+20
+30
+40
+50
+Score
+46
+37
+31
+Coding Agent Index-AA
+Muse Ember
+(max)
+Claude
+Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0
+10
+20
+30
+40
+50
+Score
+46
+37
+31
+Coding Agent Index-AA: Coding Agent Index-AA
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+46
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+37
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+31
+Artificial Analysis | November 9, 2026
+FrontierCode 2.0-AA
+FrontierCode 2.0-AA results at max reasoning, reproduced from the doc's current chart.. Score
+FrontierCode 2.0-AA
+Claude Haiku 5.5
+(max)
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+Score
+34.9%
+27.2%
+25.2%
+FrontierCode 2.0-AA
+Claude
+Haiku 5.5
+(max)
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+Score
+34.9%
+27.2%
+25.2%
+FrontierCode 2.0-AA: FrontierCode 2.0-AA
+Series
+Measurement
+Value
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+34.9%
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+27.2%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+25.2%
+Artificial Analysis | November 9, 2026
+For the hardest problems, pair it with Muse Wonder: Muse Wonder plans, Muse Ember handles the volume.
+Multimodal
+Muse Ember natively understands text, images, audio, and video, so agents can read screenshots, charts, and scanned documents, or work from voice memos, meeting recordings, and video without a separate model. It can work through long real-world documents, operate a computer directly from screenshots, and pick out fine visual detail.
+GDP.pdf-AA
+GDP.pdf-AA results at max reasoning, reproduced from the doc's current chart.. Score
+GDP.pdf-AA
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+Score
+22.8%
+22.8%
+20.8%
+GDP.pdf-AA
+Muse Ember
+(max)
+GPT-6 Luna
+(max)
+Claude
+Haiku 5.5
+(max)
+0%
+10%
+20%
+30%
+Score
+22.8%
+22.8%
+20.8%
+GDP.pdf-AA: GDP.pdf-AA
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+22.8%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+22.8%
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+20.8%
+Artificial Analysis | November 9, 2026
+OSWorld 2.1
+OSWorld 2.1 results at max reasoning, reproduced from the doc's current chart.. Score
+OSWorld 2.1
+Muse Ember
+(max)
+Claude Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+Score
+69.5%
+68.9%
+50.5%
+OSWorld 2.1
+Muse Ember
+(max)
+Claude
+Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+Score
+69.5%
+68.9%
+50.5%
+OSWorld 2.1: OSWorld 2.1
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+69.5%
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+68.9%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+50.5%
+Meta internal evaluation. Partial-credit reward.
+PerceptionBench
+PerceptionBench results at max reasoning, reproduced from the doc's current chart.. Score
+PerceptionBench
+Muse Ember
+(max)
+Claude Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+80%
+90%
+Score
+80.6%
+78.6%
+62.8%
+PerceptionBench
+Muse Ember
+(max)
+Claude
+Haiku 5.5
+(max)
+GPT-6 Luna
+(max)
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+80%
+90%
+Score
+80.6%
+78.6%
+62.8%
+PerceptionBench: PerceptionBench
+Series
+Measurement
+Value
+Muse Ember (max)
+Model
+Muse Ember (max)
+Muse Ember (max)
+Score
+80.6%
+Claude Haiku 5.5 (max)
+Model
+Claude Haiku 5.5 (max)
+Claude Haiku 5.5 (max)
+Score
+78.6%
+GPT-6 Luna (max)
+Model
+GPT-6 Luna (max)
+GPT-6 Luna (max)
+Score
+62.8%
+Meta internal evaluation. With tools.
+Safety
+Before release, we evaluated Muse Ember under our Meta Superintelligence Scaling Framework, including chemical and biological, cybersecurity, and loss-of-control risks. Across the categories assessed, our evaluations found that Muse Ember remained below the framework’s high-risk thresholds. Though it’s a small model, it received the same core safety training and testing. We also evaluated how Muse Ember behaves when acting on users' behalf. That covers whether it respects user intent, handles sensitive information appropriately, resists instructions hidden in web pages, documents, or tool outputs that try to redirect it, and seeks human input before high-impact actions.
+Availability
+Muse Ember is available today on Muse Code and Meta Model API as 
+muse-ember-1.0
+. It costs $0.10 per million input tokens, $0.004 per million cached input tokens and $0.50 per million output tokens, with a 1M-token context window and up to 512K output tokens. Muse Ember supports the Responses API.
+When we introduced Muse Wonder and Muse Wonder Full, we said we would use them to develop specialized models we can bring to everyone. Muse Ember is the first trained using Muse Wonder Full. It rounds out our portfolio of models: Muse Wonder for the hardest problems, Muse Spark for coding and agentic workflows, and Muse Ember for repeatable coding and agentic tasks at scale at about $0.14 per Artificial Analysis task, a cost low enough to run in every product, for everyone.
+Muse Ember and Muse Spark 1.3 comparison
+Muse Ember and Muse Spark 1.3 comparison: Artificial Analysis comparison
+Artificial Analysis
+Featured model.
+Muse Ember (max)
+Featured model.
+Muse Spark 1.3 (max)
+Intelligence Index
+36
+Best result.
+37
+Cost Per Intelligence Index Task
+Best result.
+$0.14
+$2.39
+Price Per 1M Input / Output
+Tokens
+Best result.
+$0.10
+(input)
+$0.50
+(output)
+$1.25
+(input)
+$4.25
+(output)
+Our goal is personal superintelligence: models that help you pursue your goals, create what you imagine, deepen your relationships, and take action on what you value most. Bringing it to everyone takes more than frontier capability. It takes frontier capability at a price that scales. We have even more efficient models in training and look forward to sharing what's next. Muse Ember, Muse Spark and Muse Wonder are now available on 
+Google Cloud
+ and Oracle Cloud.
+Try Muse Ember today
+
+===== https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/
+(status 200)
+Meta Superintelligence Lab released a new AI model on Monday called Muse Ember, the lab’s lightest and most cost-efficient AI model yet. In its release, Meta said Ember was “designed for complex reasoning execution and the work agents repeat all day: tool calls, coding subtasks, routing, extraction, and long document parsing.”
+Meta particularly emphasized Ember’s cost-per-task, using 
+Artificial Analysis’s composite benchmark score
+ to show Ember as cheaper and smarter than competitors like Anthropic’s Haiku and OpenAI’s Luna.
+Image Credits:
+Meta Superintelligence Labs
+At 10 cents per million input tokens, Ember is significantly cheaper than frontier competitors like Haiku and Luna. Not only that, it’s cost-competitive with open source competitors like DeepSeek V4.1 Flash and GLM 5.3 Flash. 
+Given the emphasis on low cost and accuracy at scale, Ember is designed to pair with a larger model like Meta’s Muse Wonder in an agentic harness. In the case of a customer-support agent, for instance, you might see a heavier model establishing rules for how to handle a particular issue, then sending a lighter-weight model to apply the rules across tens of thousands of cases. As Meta puts it in the announcement, “Muse Wonder plans, Muse Ember handles the volume.”
+With volume-heavy use cases in mind, Meta also trained Ember to work well across different types of media, including text, images, and audio. The result makes the model surprisingly flexible in what kind of inputs it can handle. As Meta puts it in the announcement, “agents can read screenshots, charts, and scanned documents, or work from voice memos, meeting recordings, and video without a separate model.”
+Ember is the fourth model released under Meta’s Muse brand, following the mid-weight Spark (
+released in April
+), Spark’s open source twin Glimmer (
+released in August
+), and the Wonder frontier model (
+released in October
+). The flagship consumer AI product, the Muse Agent, was 
+released in September
+ to 
+unexpected success
+, with new features like 
+Spaces
+ and 
+video chat
+ rolling out earlier this month.
+Topics
+AI
+, 
+Meta
+, 
+meta superintelligence lab
+, 
+muse
+, 
+TC
+When you purchase through links in our articles, 
+we may earn a small commission
+. This doesn’t affect our editorial independence.
+			Russell Brandom	
+AI Editor
+		Russell Brandom has been covering the tech industry since 2012, with a focus on platform policy and emerging technologies. He previously worked at The Verge and Rest of World, and has written for Wired, The Awl and MIT’s Technology Review.
+ He can be reached at 
+[email protected]
+ or on Signal at 412-401-5489.	
+View Bio 
+2027
+San Francisco
+Get an Early Peek at the Next TechCrunch Disrupt
+Disrupt, Startup Battlefield, and more will return next year, and you can be at the front of the line.
+Sign up for our waitlist
+Register Now
+Most Popular
+Musk says Tesla will refund some Cybertruck deposits, defends decision to end production
+Kirsten Korosec
+Tesla will stop making the Cybertruck in 2027
+Sean O'Kane
+Claude can now analyze your spending with its new Personal Finance tool
+Aisha Malik
+Harbinger raises $240M after expanding into defense
+Sean O'Kane
+Almost no one uses AI agents to book their Uber, company says
+Sarah Perez
+Meta acquires AI coding startup Conductor
+Lucas Ropek
+Data centers are turning to old jet engines as the wait for power grows
+Aditya Mehta
+
+===== https://nvdium.com/en/articles/526641939
+(status 200)
+What happened
+Meta's Muse Ember hits 36 on AA's Intelligence Index, tying Claude Haiku 5.5 at $0.136 vs $0.411 per task.
+$0.10/$0.50 per 1M tokens, 1M context.
+Meta just pushed the small-model price floor down another notch. Muse Ember is live today on the Meta Model API and Muse Code as 
+muse-ember-1.0
+, at $0.10 per million input tokens, $0.004 cached input and $0.50 output.
+The number that matters is on Artificial Analysis Intelligence Index v5: Ember (max) scores 36, tying Claude Haiku 5.5 (max), with GPT-6 Luna (max) at 28. But one AA task costs $0.136 on Ember versus $0.411 on Haiku 5.5. Same score, a third of the bill. Every Luna reasoning setting sits below it.
+The spec sheet is built for agent pipelines: 1M-token context, up to 512K output tokens, native text, image, audio and video input, and Responses API support. Meta's positioning is blunt. Muse Wonder plans the hard problems; Ember handles the volume: tool calls, routing, extraction, long-document parsing, running tests and targeted fixes.
+The more interesting part is the lineage. Ember is the first model trained using Muse Wonder Full, the first payoff of Meta's plan to distill its biggest model into specialized small ones. And it undercuts Meta's own lineup: Ember scores 36 on the AA index to Muse Spark 1.3's 37, but costs $0.14 per task against Spark's $2.39. That's 17x cheaper for one point. For good-enough subagent work, Spark just got cannibalized.
+The widest gaps are on agent work: AutomationBench-AA 37.8 vs Haiku's 13.9 and Luna's 20.2; Coding Agent Index-AA 46 vs 37 and 31; Terminal-Bench 4.0 40.9 vs 39.2 and 16.4; OSWorld 2.1 binary 33.8 vs 27.8.
+Don't read the table as a sweep. On FrontierCode 2.0-AA, which grades real engineering tasks on mergeability, Ember's 27.2 loses to Haiku's 34.9. Hard work still belongs to bigger models. Agents' Last Exam, PSI, OSWorld and PerceptionBench are Meta-internal evals, and Terminal-Bench compares each model in its own best harness (mini-swe-agent for Ember, Claude Code for Haiku, Codex for Luna), not like for like. Ember's cost-per-task points are also estimates at list pricing.
+Early partners lead with latency. Cloudflare says tail latency ran up to 30% faster than the comparable model it tested; You.com measured a 2.2-second p95 on coding tasks, 4x to 13x faster than leading open-weight models, with 36–48% fewer output tokens. Box, Cline and Oracle are also in the launch cohort. It's API and Muse Code only; no weights.
+For the past year, small models competed on how close they could get to the big ones. Ember changes the question to who's cheapest at the same score. If $0.136 a task holds up in production, the next move from Haiku and Luna won't be a higher score. It'll be a lower price.
+— Nvdium Tech Editor
+Was this useful?
+Like
+Dislike
+Share this article
+Share
+WhatsApp
+Telegram
+X
+Copy
+LinkedIn
+Facebook
+Email
+Create share image
+
+===== https://artificialwatch.com/wire/meta-muse-ember-launch
+(status 200)
+✳ the wire
+ · analysis
+Meta ships Muse Ember at Claude Haiku 5.5's $0.10 / $0.50, and Artificial Analysis scores the two level at 36
+2026-11-09
+Muse Ember
+confirmed
+by ArtificialWatch
+An email when 
+every new Meta model
+ answers on a public API, about 15 minutes after members, plus every frontier launch · no card
+ArtificialWatch title card · verified against a primary source
+Meta released Muse Ember today, its smallest and most efficient model, built for the work agents repeat all day: tool calls, coding subtasks, routing, extraction and long documents. It is on Meta Model API now as muse-ember-1.0, and in Muse Code. Mark Zuckerberg announced it on X at 17:54 UTC; @AIatMeta followed at 18:04.
+THE PRICE AND SPECS
+$0.10 input / $0.50 output per 1M tokens, $0.004 for cached input. That is the same sticker as Claude Haiku 5.5 (for prompts up to 100K tokens).
+1M-token context window and up to 512K output tokens, per Meta.
+Text, image, audio and video in; text out. It supports the Responses API.
+Meta says Ember is the first model trained using Muse Wonder Full, the stronger Wonder variant in Muse Code.
+OpenCode added it to its Zen gateway the same day, at the same price.
+THE INDEPENDENT NUMBER
+Artificial Analysis scores Muse Ember (Max) 36 on its Intelligence Index, the same as Claude Haiku 5.5 (Max); its model pages list Haiku 5.5 first and Ember second of 32 on intelligence (read on its site today). It puts Ember's cost at $0.14 per index task. Meta's "about a third of the cost" is per task, not per token: the two list at the same price, and Meta's chart, built from Artificial Analysis results, has Haiku 5.5 at $0.41 a task at max effort.
+META'S OWN BENCHMARKS
+These are Meta's figures, at max reasoning effort, against Claude Haiku 5.5 and GPT-6 Luna:
+Terminal-Bench 4.0: 40.9, against 39.2 and 16.4.
+AutomationBench-AA: 37.8, against 13.9 and 20.2.
+OSWorld 2.1 (partial credit): 69.5, against 68.9 and 50.5.
+Meta's internal Personal Superintelligence Index: 46.8, against 36.1 and 37.0.
+SAFETY
+Meta says it evaluated Ember under its Meta Superintelligence Scaling Framework for chemical and biological, cybersecurity and loss-of-control risks, and that it stayed below the framework's high-risk thresholds in every category assessed.
+HOW WE CAUGHT IT
+Our radar saw muse-ember-1.0 on the public copy of Meta's own model list at 17:54:06 UTC, 34 seconds before Zuckerberg's post, and sent the alert at 17:55:06. It is now a row on /lead-time.
+WHAT WE DO NOT KNOW
+How it scores on other public boards. Only Artificial Analysis has a score so far.
+Whether Meta will release Ember's weights. Its post does not say.
+Source:
+Meta AI Research blog, @AIatMeta and Artificial Analysis
+ ↗
+ · 
+Muse Ember
+ tracker
+ · 
+the bench index
+Data:
+Live before it's announced
+ · 
+LLM API pricing
+ · 
+LLM context windows
+Cite this page
+Writing about 
+this story
+? Copy a link or a citation.
+<a href="https://artificialwatch.com/wire/meta-muse-ember-launch">Meta ships Muse Ember at Claude Haiku 5.5's $0.10 / $0.50, and Artificial Analysis scores the two level at 36</a>
+Copy link
+ArtificialWatch, "Meta ships Muse Ember at Claude Haiku 5.5's $0.10 / $0.50, and Artificial Analysis scores the two level at 36", https://artificialwatch.com/wire/meta-muse-ember-launch
+Copy citation

@@ -1,0 +1,418 @@
+===== https://markenote.jp/article/8344
+(status 200)
+同じdotに複数のパソコンを接続できる
+2026
+11/10
+				AI・SEOニュース			
+				生成AI			
+				ChatGPT			
+				OpenAI			
+2026年11月10日 9:17
+2026年11月10日 9:40
+文：
+AB通信 編集部
+｜
+運営：
+株式会社abcompany
+平山 大樹
+　AB通信 運営責任者
+AB通信 編集部が、企業・行政の公式発表や決算資料などの一次情報を確認して書いています。
+運営会社・編集方針
+目次
+この記事のポイント
+OpenAIは2026年11月9日（日本時間10日早朝）、同じdotに複数のローカルパソコンを接続し、作業ごとに使うパソコンを選べるようにしたと発表しました
+公式の例では、専用マシンでアプリのビルドやテストをさせつつ、手元のノートPCではコーディングを続ける使い方を示しています
+接続は、つなぎたいパソコンごとのChatGPTアプリで、dotのプロフィール→Computers→Allow→Allow accessです
+独立した作業は別スレッドにし、各スレッドは一度に1台のパソコンを使います。クラウド側のコンピュータは接続したままです
+dots自体の対象は、Pro（EEA・英国・スイスを除く）、Business Premium、対象のEnterprise／Edu／Healthcareなどです
+同じdotに、複数のローカルパソコンを接続できるようになりました
+OpenAI Developersの公式X（
+@OpenAIDevs
+）は、2026年11月9日20:01 UTC（日本時間10日 5:01）、同じdotに複数のローカルパソコンを接続し、作業ごとにどのパソコンを使うかを選べるようになったと案内しました。投稿では、「専用マシンでアプリのビルドとテストをさせつつ、手元のノートPCではコーディングを続けられる」と説明しています。
+同じ内容は、OpenAI CommunityのDotsカテゴリでも発表されています。くわしい手順と仕様は、ChatGPT Learnの公式ガイド「
+Connect computers and apps to your dot
+」に載っています。dots本体の説明は「
+Meet dots
+」です。
+出典：
+ChatGPT Learn「Connect computers and apps to your dot」
+のページ画像（2026年11月10日時点）
+公式が示したできることと事例
+公式Xの続きの投稿と、Communityの発表では、次のような試し方が挙げられています。
+iOSアプリの開発：2台目のMacのXcodeで変更をテストさせ、見た目のスクリーンショットを送ってもらう
+バグの再現：同じテストを、普段使っているノートPCと、古いSDKが入ったマシンの両方で走らせて結果を比べる
+UIの確認：2台目のパソコンで画面操作を進め、どこで壊れるかを記録させる。自分の画面とカーソルは空けたまま直せる
+デモ動画では、dot「Felipe」に複数のDevices（Laptop、Mac Studio、Dev Box、MacBook Pro）が並び、「Mac StudioでiOSビルドを確認し、Dev BoxでLinearの最新のバックエンド不具合を直す」と頼むと、両タスクが同時に走っている様子が示されています。
+公式デモ動画の一場面。複数のDevicesが一覧されている。出典：
+OpenAI Developers公式Xのデモ動画
+（2026年11月9日）
+公式デモ動画の一場面。Mac StudioとDev Boxを指定した依頼。出典：
+OpenAI Developers公式Xのデモ動画
+（2026年11月9日）
+公式デモ動画の一場面。2つの作業が並行して走っている表示。出典：
+OpenAI Developers公式Xのデモ動画
+（2026年11月9日）
+接続のしかたと、作業の進め方
+出典：
+ChatGPT Learn「Connect computers and apps to your dot」
+（2026年11月10日時点）をもとにAB通信が作成
+公式ガイドの手順は次のとおりです。
+つなぎたいパソコンでChatGPTアプリを開く
+そのdotのプロフィールを開き、Computersの中で使っているパソコンを見つけてAllowを選ぶ
+確認画面を読んでAllow accessを選ぶ
+別のパソコンを足すときは、そのパソコンのChatGPTアプリで同じ手順を繰り返す
+独立した作業は、パソコンごとに別スレッドを始めるようdotに頼む、とガイドに書かれています。各スレッドは一度に1台のパソコンを使います。dotのクラウドコンピュータは接続したままです。パソコンへのアクセスは、同じdotにスマホから話しかけたときにも使えます。
+dotは、接続したパソコン上でローカルのWorkやCodexのタスクを新しく作ったり、既存のローカルCodexタスクを続けたりできます。クラウド側でタスクを管理しつつ、接続パソコンのファイルやツールを使うこともできます。クラウドのブラウザがサイトに弾かれたときは、接続パソコンで試すよう頼む方法もあります（別のローカルタスクになることがあり、クラウド側のログイン状態は引き継がれません）。
+注意点と制限
+接続パソコンを使うときは、そのパソコンをオンラインにし、ChatGPTアプリを開いたままにする必要があります
+Offline表示は、そのパソコンが使えない状態を意味します。接続そのものが取り消されたわけではありません
+アクセスを外すときはRevoke accessを選びます
+dotのローカルパソコン権限は、Codexへのパソコン接続やWork Syncとは別です。どちら一方だけでは、dotからそのパソコンは使えません
+メッセージ用の連絡手段（Slackなど）を足しても、アプリやパソコンへの権限は自動では付きません
+ローカルのスキルを使うときも、接続したパソコンが必要です
+dotsの対象プランと地域
+Meet dots
+のAccessによると、dotsは対象のProとBusiness Premiumへ順次広がっており、Enterprise／Edu／Healthcareでも対象ワークスペースで一般提供されています。
+Pro 100／200／500：18歳以上で、欧州経済領域（EEA）、英国、スイス以外
+Business Premium：対応しているChatGPTの地域で、ワークスペースの条件あり
+Enterprise／Edu／Healthcare：対象ワークスペースで一般提供。UAEのデータ／推論レジデンシーのワークスペースは対象外。管理者プレビュー中は管理者が役割ごとに有効化でき、2026年11月18日から既定オン（オプトアウト可）
+Enterprise向けの一般提供については、
+既存記事「Enterprise向けdotsが一般提供、11/18に既定オン」
+でも整理しています。dotsのこれまでの更新は
+dotsの更新履歴（5804）
+、ChatGPT全体は
+ChatGPTの更新履歴（4323）
+にまとめています。
+この複数パソコン接続そのものに、別料金が付くという記載は、今回確認した公式ガイドと発表投稿にはありません。WorkやCodex側の利用枠は、従来どおり各プロダクトの上限に入ります（Meet dotsのAccessの説明）。
+出典
+OpenAI Developers公式X「複数のローカルパソコンを同じdotに接続」
+（2026年11月9日 20:01 UTC／日本時間10日 5:01）
+OpenAI Developers公式Xの続き（事例の案内）
+（2026年11月9日 20:01 UTC）
+OpenAI Community「You can now connect multiple local computers to the same dot」
+（2026年11月9日）
+ChatGPT Learn「Connect computers and apps to your dot」
+ChatGPT Learn「Meet dots」
+ChatGPT Learn「Get started with your dot」
+OpenAI Release notes（Dots for Enterprise, Edu, and Healthcare／2026年11月4日）
+更新履歴
+2026年11月10日：初版
+営業メールなし／無料
+AI・SEOの動きは、
+毎朝7時のメールで追いつける
+毎朝6時に私がピックアップしてます！
+平山 大樹｜AB通信 運営責任者
+もうXを追いかけなくていい。前日にAB通信で公開したAI・SEOの新着記事を、朝のうちにまとめてお届けします。
+営業メールは送りません。無料で、配信はいつでも解除できます。
+登録後に届く確認メールの
+「登録を確定する」
+ボタンで完了です（迷惑メールフォルダもご確認ください）。
+				AI・SEOニュース			
+				生成AI			
+				ChatGPT			
+				OpenAI			
+Meta AIの最新アップデート・更新履歴（公式リリースノートまとめ）
+【2026年11月10日】Grok Botの週次利用枠が全ユーザーでリセット
+関連記事
+Google公式、AIモード広告を10か国超で英語配信と案内
+2026年11月10日
+【2026年11月10日】Grok Botの週次利用枠が全ユーザーでリセット
+2026年11月10日
+AnthropicがClaude Fable 5.2を公開、料金は2割安く
+2026年11月10日
+Metaが最小モデルMuse Emberを公開、入力0.1ドル
+2026年11月10日
+AnthropicのAI開発は約2倍の速さに、外部団体METRが評価
+2026年11月9日
+ChatGPTで同僚のサイトを会話で作り替える「Remix」が開始
+2026年11月9日
+Google「良いSEOが良いGEO」、AI検索専用の対策は不要と説明
+2026年11月9日
+Perplexityが仕事を任せられるAI「Teammates」を開始
+2026年11月9日
+
+===== https://geroundtable.com/chatgpt-dots-multiple-local-computers/
+(status 200)
+One ChatGPT Dot Can Now Juggle Several Computers
+By
+Faheem R. Khattak
+•
+Updated: Nov 10, 2026
+•
+                                    Filed Under                                    
+ChatGPT
+                                Human Verified                            
+                                0                            
+Share to: 
+, 
+Reddit
+ and 
+Copy Shortlink
+OpenAI’s always-on agents can now spread across a desk. A single ChatGPT dot can connect to several local computers at once and choose which machine runs each task, OpenAI said on November 9. Until now a dot could lean on only one local machine at a time. The change answers the most repeated request from dot users since the agents launched at the end of September: let one dot work on a laptop and a dedicated machine at the same time.
+How it works
+Connecting a computer takes a few taps. Open the dot’s profile in the ChatGPT app on that machine, find it under Computers, select Allow, and confirm with Allow access. Repeat the steps on each computer you want to add, and the dot keeps all of them connected.
+The dot’s cloud computer stays connected too, so a dot with two local machines effectively has three at its disposal. Each thread still uses one computer at a time, so parallel work means starting a separate thread on each machine.
+OpenAI’s examples are about development. A dot can build and test an app on a dedicated machine while the developer keeps writing code on a laptop. It can test a change in Xcode on a second Mac and send screenshots, or run one test on a laptop and a machine with an older SDK and compare the results.
+What runs where
+A dot can create or continue local Work and Codex tasks on a connected computer, and changing the selected computer does not move an existing task. That matters because dots and Codex are converging: 
+ChatGPT and Codex will share one usage pool in December
+, so the same agent can move between chatting, coding and running jobs on a user’s machines.
+Permissions stay coarse for now. Allowing a computer gives the dot that machine’s local files, code and apps, and OpenAI documents no finer per-folder controls and no way to set different permissions per machine. An offline computer is simply unavailable until it comes back, and it stays connected until access is revoked.
+Who gets it
+Dots are rolling out. OpenAI lists Pro 100, Pro 200 and Pro 500 accounts for users aged 18 and older outside the European Economic Area, the United Kingdom and Switzerland, plus Business Premium and Enterprise, education and healthcare workspaces in an admin preview. 
+OpenAI doubled Pro limits
+ in late October, and dots are part of what those plans now unlock.
+From November 18, access is on by default for the enterprise, education and healthcare workspaces unless the workspace opts out. 
+OpenAI is also building a Business Hub
+ that gives companies analytics and citation controls for ChatGPT, a sign that dots are being aimed at workplaces as much as at individual developers.
+Our Read
+This is a small change with a large implication. A dot that can reach every machine a developer owns stops being a chatbot with a computer and starts being a coordinator across a desk. The examples OpenAI chose, building on one machine while coding on another, are the daily shape of software work.
+The limits are worth noting. No independent test has measured how reliably a dot coordinates two machines, what happens when a selected computer drops offline mid-task, or how the single Allow access step holds up against a machine full of sensitive files. Until those answers exist, the sensible move is to connect only machines you would hand to an agent.
+Why It Matters
+Dots are OpenAI’s bet that the next interface is an agent with its computer, not a chat window. Multi-computer support makes that bet credible for developers, who live across a laptop, a build machine and a test rig. If dots can run jobs across all three, they become the connective tissue of a developer’s setup, not another tab.
+The open question is trust. A dot with access to several machines holds the keys to a developer’s working life, and OpenAI’s documentation concedes the permissions are all-or-nothing per machine. Adoption will depend on whether the convenience of a dot that works everywhere outweighs the risk of an agent that can reach everything.
+Background
+Dots launched at the end of September as always-on agents inside ChatGPT, each with its own cloud computer and browser, plus the option to connect a local machine. The multi-computer request was the most repeated ask in OpenAI’s developer forum, and the November 9 announcement answers it, with the access widening to business and education workspaces from November 18.
+Source: 
+OpenAI’s announcement
+ and 
+Sulat’s report
+Share to: 
+, 
+Reddit
+ and 
+Copy Shortlink
+Founder & Senior Editor
+Faheem R. Khattak
+                                Senior automation engineer and AI marketing journo covering LLMs, algorithms, analytics, core updates, Bing search, and technical SEO.                            
+✓ 10+ Years Covering Google Search & AI
+Related Articles
+            Filed Under            
+ChatGPT
+ChatGPT Enterprise Moves Into Amazon’s Marketplace
+OpenAI now sells ChatGPT Enterprise through AWS Marketplace, letting companies buy it with existing AWS billing and count spending toward cloud commitments.
+Updated: Nov 10, 2026
+            0        
+            — by            
+Faheem R. Khattak
+            Filed Under            
+ChatGPT
+One in Three Koreans Now Opens ChatGPT Every Month
+ChatGPT passed 18 million monthly users in South Korea for the first time, while Claude grew fifteenfold to second place in a market ChatGPT now dominates.
+Updated: Nov 8, 2026
+            0        
+            — by            
+Faheem R. Khattak
+            Filed Under            
+ChatGPT
+ChatGPT Images 2.6 Brings Your Pictures to Life
+OpenAI's Images 2.6 adds animated GIFs to ChatGPT, generates pictures 50% faster, and ships two new API models — Flare for speed and Sunburst for detail.
+Updated: Nov 8, 2026
+            0        
+            — by            
+Faheem R. Khattak
+0 Comments
+Leave a Reply 
+Cancel reply
+This site uses Akismet to reduce spam. 
+Learn how your comment data is processed.
+
+===== https://fourweekmba.com/ai-openai-dots-drop-the-one-computer-limit-access-from-100/
+(status 403)
+Checking your browser...
+
+===== https://readmodelmag.com/stories/openai-dots-multiple-computers
+(status 200)
+OpenAI dots can now connect to more than one local computer. Not tested by MODEL.
+Illustration by MODEL.
+Original
+.
+Image source
+.
+What changed.
+ On Monday, Nov. 9, 
+@OpenAIDevs announced
+ (opens in a new tab)
+ that you can now connect multiple local computers to the same dot and choose which one it uses for a task. A dot is OpenAI's always-on agent in ChatGPT. It has its own cloud computer and browser, and it can also work on your own machines once you allow it. OpenAI's example: the dot builds and tests your app on a dedicated machine while you keep coding on your laptop.
+Until now, OpenAI's own help page said you could connect only one personal computer at a time (see the 
+Nov. 5 version, unofficial archive
+ (opens in a new tab)
+). The 
+current page
+ (opens in a new tab)
+ drops that line.
+How you set it up.
+ Per OpenAI's docs, on each computer you want to add:
+Open your dot's profile in the ChatGPT app on that computer.
+Under Computers, find the computer you're using and select Allow.
+Confirm with Allow access.
+Repeat on the next computer. The dot's cloud computer stays connected too.
+How it works.
+ You ask the dot to start a separate thread on each computer for independent tasks. 
+Each thread uses one computer at a time
+, so one task doesn't get split across machines. The dot can create local Work or Codex tasks there and continue existing local Codex tasks.
+Ideas OpenAI suggests.
+ Test an iOS change in Xcode on a second Mac and get screenshots back; run the same test on your laptop and on a machine with an older SDK to reproduce a bug; have the dot click through a UI flow on a second computer so your own screen and cursor stay free.
+Who it's for.
+ Developers with a spare Mac or build box who already use a dot and want long builds, test runs or UI checks off their main machine.
+What you need.
+ Dots are rolling out gradually. OpenAI lists Pro 100, Pro 200 and Pro 500 (18+, outside the EEA, UK and Switzerland), Business Premium, and Enterprise, Edu and Healthcare workspaces (admin preview; on by default from Nov. 18 unless the workspace opts out). Each computer needs the ChatGPT app installed, online and open while the dot uses it.
+The caveats.
+Allowing a computer gives the dot that machine's local files, code and apps for its work. OpenAI's docs describe one Allow access step per computer; we did not find finer per-folder controls documented there. Connect only machines you'd hand to an agent, and select Revoke access to remove access.
+An Offline computer is just unavailable; it stays connected until you revoke it.
+This permission is separate from connecting a computer to Codex or turning on Work Sync. Neither of those alone gives your dot access.
+The use cases above are OpenAI's examples. MODEL has not checked how reliably a dot coordinates work across two machines.
+Disclosure:
+ Not tested by MODEL. Not sponsored. No affiliate links.
+MODEL Editors
+Get three tested tools every Friday
+Free, weekly. Unsubscribe anytime.
+Sources
+Connect computers and apps to your dot
+ChatGPT Learn (OpenAI)
+Meet dots (incl. Access)
+ChatGPT Learn (OpenAI)
+You can now connect multiple local computers to the same dot
+OpenAI Developer Community
+OpenAI Developers on X
+X (@OpenAIDevs)
+Keep reading
+Builder tip
+The cleanup prompt everyone bookmarked today: "find everything that's broken"
+Anthropic's Alex Albert says he runs one prompt on all his projects whenever a new model ships. More than 10,000 people saved it within hours. Here's the prompt, and how to run it without losing your evening.
+November 9, 2026
+ · 
+MODEL Editors
+Tool test
+We ran Vale on an AI-written README. Its stock styles missed all 10 filler phrases.
+Vale 3.26.0 with its built-in, write-good and proselint styles flagged 'very' and 'utilize' but none of the stock AI phrases we planted. A 14-line custom rule caught all 10 and failed the run.
+November 9, 2026
+ · 
+MODEL Editors
+Builder tip
+Builder tip: your duplicate-code check probably misses the copy your agent renamed
+We planted two copy-pasted functions in a small TypeScript repo and ran jscpd 5.4.3. On default settings it found the exact copy, missed the one with renamed variables, and still exited 0. Two flags fix both problems.
+November 9, 2026
+ · 
+MODEL Editors
+Tool Launch
+Expo previews Exact, an app framework built for coding agents
+Write the interface once in a small language called Contract, add logic in TypeScript or Rust, and run it natively on web, iOS, macOS and Linux. An agent can build, run, screenshot and test it on each. It is pre-1.0 and changes daily. Not tested by MODEL.
+November 9, 2026
+ · 
+MODEL Editors
+FREE · EVERY WEEK
+The top AI tools this week, tested.
+Every week MODEL's editors pick the AI tools worth your time, try them hands-on, and tell you what's good, what's not, and who it's for. Free, in your inbox.
+Free. Unsubscribe anytime. Our picks are editorial and can't be bought.
+
+===== https://learn.chatgpt.com/docs/dots/computers-and-apps
+(status 200)
+Your dot lives in the cloud and has its own computer and browser. It stays
+available when your computer is off. Connecting your own computer and apps
+gives it access to more of your work. These connections are separate from
+the 
+channels you use to message your dot
+. You can send
+a request from your phone while your dot works in the cloud or coordinates
+work on a connected computer.
+Use the cloud computer
+Open your dot’s profile and look under 
+Computers
+ to inspect its cloud
+computer. You can also select 
+Open computer
+ when your dot offers a browser
+handoff.
+Opening the computer doesn’t give you control. Select 
+Take over
+ to use its
+mouse and keyboard, then 
+Return control
+ when your dot can continue.
+Use the cloud computer for research, documents, data analysis, or software
+work. Cloud work can continue while your devices are off, and the computer can
+keep its state between periods of use. It has its own files, software, and
+browser sessions. Signing in to a website on your computer doesn’t sign your
+dot in to that website.
+Annotate a browser page or file
+Browser and file annotations are rolling out in the ChatGPT desktop app for Pro, Business Premium, and Enterprise. Use an annotation to show your dot which part of a page or file you want it to work on.
+For a browser page, use the annotation tool in the in-app browser toolbar. Select the part of the page you want to discuss, add a comment, and send it to your dot.
+For a file, open a PDF, document, presentation, or spreadsheet in your own dot. Select the part you want to discuss, add a comment, and select 
+Send
+ in the file viewer.
+Cloud threads
+Your dot can start separate threads for cloud work. These appear in your desktop, web, and mobile apps, where you can review results and give further instructions while your dot continues coordinating. For coding work, it can use a Codex cloud environment you’ve set up with the repository and configuration it needs.
+Your dot can work on several things in parallel, and you can keep talking to it while those threads run. See 
+Tasks and memory
+.
+Sign in to a website
+Your dot uses the same private sign-in flow as ChatGPT Work. When a website
+needs a login, your dot can send a request with a private form. Enter your
+credentials there and complete any verification the website requires, such as
+a verification code. The form sends this information to the remote browser
+outside your conversation.
+You can also choose to sign in on the website instead. This opens your dot’s
+browser in takeover mode so you can complete the steps yourself. Return control
+when you’re ready for your dot to continue.
+Staying signed in
+A website session can remain available for later work until you sign out or
+the website expires it. Your dot’s cloud browser has its own sessions; it doesn’t
+inherit logins from your personal browser. Some websites block cloud browsers
+or require further verification.
+Saving and reusing a login
+When offered, 
+Save to Passwords
+ lets you save a login for future
+sign-ins. Saving is optional. If a matching saved login is available for a new
+sign-in request, you can confirm that you want to use it or enter another account.
+A saved login and an active website session are different. Your dot can continue
+using a valid session without signing in again. Reusing a saved login to sign in
+requires your confirmation.
+Connect your computers
+Connect your computer once to make its local files, code, and apps available
+for your dot’s work:
+Open your dot’s profile in the ChatGPT app on that computer.
+Under 
+Computers
+, find the computer you’re using and select 
+Allow
+.
+Review the confirmation and select 
+Allow access
+ to connect it.
+To connect another computer, repeat these steps in the ChatGPT app on that computer. Ask your dot to start a separate thread on each computer for independent tasks. Each thread uses one computer at a time.
+Your dot’s cloud computer stays connected. Access to your computer applies
+wherever you message the same dot, including from your phone.
+Your dot can create local Work or Codex tasks and continue existing local Codex
+tasks. A task can be managed
+in the cloud while using files and tools on your connected computer. Open the
+task to inspect where the work is happening or give instructions directly. See
+Tasks and memory
+ for task types
+and connection requirements.
+If a website blocks the cloud browser, ask your dot to try your connected
+computer. This may create a separate local task. It doesn’t transfer the cloud
+browser’s session or guarantee that a particular local browser is supported.
+The connection persists between tasks. Keep your computer online and the
+ChatGPT app open while your dot uses it.
+An 
+Offline
+ status means the computer is unavailable; it doesn’t revoke
+the connection. Select 
+Revoke access
+ to remove access. Your dot’s
+local-computer permission is separate from connecting a computer to Codex or
+enabling Work Sync. Neither connection alone gives your dot access.
+Connect apps
+Your dot can use supported 
+plugins
+ installed and enabled for your account. Access depends on the plugin’s connected account, permissions, and the environment where the work runs. Local skills require a connected computer.
+For example, connect Gmail to find relevant email, Google Drive to read and update documents, or GitHub to investigate an issue and prepare a pull request. Install and connect each plugin you want your dot to use. On iOS, supported Gmail message links from your dot open the referenced email in the Gmail app when available, or in your browser.
+Review
+the connected account and its allowed actions. Your existing ChatGPT app
+permissions apply to your dot. For example, you can allow it to read email
+without allowing it to send email. If a connection expires, open the request
+to reconnect it before continuing.
+Adding a contact method doesn’t grant access to your apps or computer. For
+example, messaging your dot in Slack doesn’t connect your inbox.
