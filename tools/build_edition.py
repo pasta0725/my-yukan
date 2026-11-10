@@ -77,6 +77,9 @@ for i in range(max(CATS.values())):
     for c in CATS:
         if i < len(by_cat[c]): arts.append(by_cat[c][i])
 
+for a in arts:   # the page shows the heading 「りなの見方」 itself, so drop it if a worker wrote it into the text (Issue #3)
+    for b in a.get("body", []):
+        if b.get("type") == "rina": b["text"] = re.sub(r"^\s*(?:【?りなの見方】?[：:]?)\s*", "", b.get("text", ""))
 dt = datetime.date.fromisoformat(DATE[:10])
 now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec="seconds")
 ed = {"date": DATE, "label": f"{dt.month}月{dt.day}日（{WD[dt.weekday()]}）の{SLOT or '号'}", "updatedAt": now, "articles": arts}
