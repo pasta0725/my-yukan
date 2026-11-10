@@ -7,7 +7,7 @@ usage: python3 tools/youtube_upload.py <name> <video.mp4> [--comment TEXT] [--pr
   video can also be a command for an existing video:
     thumb:<id>   set the thumbnail again          stop:<id>    cancel a scheduled publish / make it private
     go:<id>      make it public now               comment:<id> post --comment as the first comment
-    status:<id>  print privacy and publish time
+    status:<id>  print privacy and publish time   banner:<path> replace the channel banner (2560x1440 jpg in the repo)
 uses channel/meta/<name>.json (title, description, tags, title_en, description_en),
      channel/thumbs/<name>.jpg (if present), channel/captions/<name>_ja.srt (if present).
 Uploads go public right away (checked 2026-11-10), so use --publish-at when nobody has looked at the video yet.
@@ -39,6 +39,13 @@ if a.video == "-":   # setup check only: the keys work and point at the right ch
 if a.video.startswith("thumb:"):   # thumb:<videoId> = only set the thumbnail again (it can hit "too many thumbnails recently", 2026-11-10)
     t = os.path.join(ROOT, "channel", "thumbs", f"{a.name}.jpg")
     yt.thumbnails().set(videoId=a.video[6:], media_body=MediaFileUpload(t, mimetype="image/jpeg")).execute(); print("ok: thumbnail"); sys.exit(0)
+if a.video.startswith("banner:"):   # banner:<image in the repo> = replace the channel banner (2026-11-10, tools/make_banner.py)
+    p = os.path.join(ROOT, a.video[7:])
+    url = yt.channelBanners().insert(media_body=MediaFileUpload(p, mimetype="image/jpeg")).execute()["url"]
+    ch = yt.channels().list(part="brandingSettings", id=me["id"]).execute()["items"][0]
+    bs = ch["brandingSettings"]; bs.setdefault("image", {})["bannerExternalUrl"] = url   # resend the rest unchanged (update replaces the whole part)
+    yt.channels().update(part="brandingSettings", body={"id": me["id"], "brandingSettings": bs}).execute()
+    print("ok: banner"); sys.exit(0)
 cmd, _, vid0 = a.video.partition(":")
 if cmd in ("stop", "go", "status", "comment") and vid0:
     v = yt.videos().list(part="status", id=vid0).execute()["items"]

@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       name: {description: "short name, e.g. rina_health (channel/meta/<name>.json)", required: true}
-      video: {description: "file on branch upload-tmp (e.g. rina_health.mp4), - = check keys, or thumb:/stop:/go:/status:/comment:<videoId>", required: true}
+      video: {description: "file on branch upload-tmp (e.g. rina_health.mp4), - = check keys, or thumb:/stop:/go:/status:/comment:<videoId>, banner:<repo path>", required: true}
       comment: {description: "first comment (optional)", default: ""}
       privacy: {description: "public / private / unlisted", default: "public"}
       publish_at: {description: "scheduled publish time, e.g. 2026-11-10T21:00:00+09:00 (uploads as private until then)", default: ""}
