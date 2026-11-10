@@ -1,6 +1,10 @@
 name: colab-check
 # Checks that the COLAB_ADC secret can log in to Colab (prints only the remaining compute units).
-on: { workflow_dispatch: {} }
+# 2026-11-10: with `try`, also asks for each GPU once ("H100", "G4:hm" = with --high-mem), prints the full answer and the GPU's name/memory, then gives it back.
+on:
+  workflow_dispatch:
+    inputs:
+      try: {description: "GPUs to ask for once each (e.g. H100 G4 G4:hm A100:hm). Empty = only log in", default: ""}
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -16,3 +20,15 @@ jobs:
           python -c "import json,sys;d=json.load(open(sys.argv[1]));print('type:',d.get('type'))" "$RUNNER_TEMP/adc.json"
           export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
           colab --auth=adc usage
+          C="colab --auth=adc"
+          for t in ${{ inputs.try }}; do
+            g=${t%%:*}; hm=""; [ "$t" != "$g" ] && hm="--high-mem"
+            echo "=== $g $hm"
+            if $C new -s chk --gpu $g $hm >/tmp/new.log 2>&1; then
+              echo 'import subprocess;print(subprocess.run(["nvidia-smi","--query-gpu=name,memory.total","--format=csv,noheader"],capture_output=True,text=True).stdout.strip())' | $C exec -s chk --timeout 0 | tail -2
+              $C stop -s chk >/dev/null 2>&1 || true
+            else
+              sed -E 's/[A-Za-z0-9_-]{40,}/<long>/g' /tmp/new.log | tail -15
+            fi
+          done
+          [ -n "${{ inputs.try }}" ] && $C usage || true
