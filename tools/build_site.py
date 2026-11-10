@@ -158,6 +158,24 @@ def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
 # loads X's official embed only when the "Xの声" box comes into view; matches the reader's light/dark setting
 XJS = """<script>(()=>{const box=document.querySelector('.xv');if(!box)return;const go=()=>{const d=matchMedia('(prefers-color-scheme: dark)').matches;box.querySelectorAll('blockquote.twitter-tweet').forEach(b=>b.dataset.theme=d?'dark':'light');const s=document.createElement('script');s.src='https://platform.twitter.com/widgets.js';s.async=true;s.charset='utf-8';document.head.append(s)};if('IntersectionObserver' in window){const o=new IntersectionObserver(e=>{if(e.some(x=>x.isIntersecting)){o.disconnect();go()}},{rootMargin:'400px'});o.observe(box)}else go()})();</script>"""
 # keeps the current article visible in the left list
+# tap an image in an article to see it large (2026-11-10, user: most news sites do this). Arrows / swipe move between the article's images.
+LBJS = """<script>(()=>{const ims=[...document.querySelectorAll('.art figure img')];if(!ims.length)return;
+const d=document.createElement('dialog');d.className='lb';d.setAttribute('aria-label','画像の拡大表示');
+d.innerHTML='<figure><img alt=""><figcaption></figcaption></figure><button class="lb-x" aria-label="閉じる">×</button><button class="lb-p" aria-label="前の画像">‹</button><button class="lb-n" aria-label="次の画像">›</button><span class="lb-c"></span>';
+document.body.append(d);const im=d.querySelector('img'),cap=d.querySelector('figcaption'),cnt=d.querySelector('.lb-c');let i=0;
+const live=()=>ims.filter(x=>x.isConnected);
+const show=k=>{const L=live();if(!L.length)return;i=(k+L.length)%L.length;const s=L[i];im.src=s.currentSrc||s.src;im.alt=s.alt;
+const fc=s.closest('figure').querySelector('figcaption');cap.textContent=fc?fc.textContent:'';cnt.textContent=L.length>1?(i+1)+' / '+L.length:'';
+d.querySelector('.lb-p').hidden=d.querySelector('.lb-n').hidden=L.length<2};
+ims.forEach(x=>{x.tabIndex=0;x.setAttribute('role','button');x.title='タップで拡大';
+const o=()=>{show(live().indexOf(x));d.showModal();document.documentElement.style.overflow='hidden'};
+x.addEventListener('click',o);x.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();o()}})});
+d.addEventListener('close',()=>{document.documentElement.style.overflow='';im.removeAttribute('src')});
+d.querySelector('.lb-x').onclick=()=>d.close();d.querySelector('.lb-p').onclick=e=>{e.stopPropagation();show(i-1)};d.querySelector('.lb-n').onclick=e=>{e.stopPropagation();show(i+1)};
+d.addEventListener('click',e=>{if(e.target===d||e.target.tagName==='FIGURE')d.close()});
+d.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
+let sx=null;d.addEventListener('touchstart',e=>{sx=e.touches.length===1?e.touches[0].clientX:null},{passive:true});
+d.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(dx<0?i+1:i-1);sx=null},{passive:true})})();</script>"""
 LISTJS = """<script>(()=>{const l=document.querySelector('.alist ul'),c=l&&l.querySelector('[aria-current]');if(c&&getComputedStyle(l.parentNode).display!=='none')l.parentNode.scrollTop=c.parentNode.offsetTop-80})();</script>"""
 RETRO_FONT = ''  # the heading font (Noto Sans JP 900) is loaded on every page
 ORBIT = ('<svg class="orbit" viewBox="0 0 120 60" aria-hidden="true"><ellipse cx="60" cy="34" rx="54" ry="14" fill="none" stroke="#f3e9d2" stroke-width="1.5" stroke-dasharray="3 4"/>'
@@ -303,7 +321,7 @@ for a in arts:
               '<p class="xnote">X（旧Twitter）の公式の埋め込みで表示しています。投稿の内容は投稿者のもので、当サイトの意見ではありません。</p></div></aside>')
     else:
         xv = '<aside class="xrail" aria-label="Xの声"><div class="xv"><h2>このニュースへのXの声</h2><p class="xnote">このニュースについてのXの投稿は、まだ集まっていません。</p></div></aside>'
-    body = f'<div class="agrid">{alist}<div class="amain">{body}</div>{xv}<div class="amore">{more}</div></div>' + (XJS if a["_x"] else "") + LISTJS
+    body = f'<div class="agrid">{alist}<div class="amain">{body}</div>{xv}<div class="amore">{more}</div></div>' + (XJS if a["_x"] else "") + LISTJS + LBJS
     og = (a["_img"]["src"] if a["_img"]["src"].startswith("http") else url(a["_img"]["src"])) if a["_img"] else url("/assets/og.jpg")
     write(a["_path"], page(a["title"], a.get("summary") or a["title"], body, a["_path"], active=c, og_img=og,
                            extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' + (RETRO_FONT if c == "future" else "")))

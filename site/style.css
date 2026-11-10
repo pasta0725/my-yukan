@@ -235,3 +235,18 @@ footer small{width:100%;color:var(--foot-s);margin-top:6px}
 @media (min-width:1600px){
   .agrid{grid-template-columns:300px minmax(0,780px) 360px;gap:0 32px;justify-content:center}
 }
+
+/* image lightbox (2026-11-10): tap an article image to see it large */
+.art figure img{cursor:zoom-in}
+.lb{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(7,17,37,.97);color:#fff}
+.lb::backdrop{background:rgba(7,17,37,.6)}
+.lb figure{margin:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 12px 20px;box-sizing:border-box}
+.lb img{max-width:100%;max-height:calc(100% - 64px);object-fit:contain;background:#fff;border-radius:4px;cursor:default}
+.lb figcaption{margin-top:12px;max-width:900px;font-size:14px;line-height:1.6;color:#eaf0fd;text-align:center}
+.lb button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;font:700 30px/1 var(--head);width:48px;height:48px;border-radius:50%;cursor:pointer}
+.lb button:hover{background:rgba(255,255,255,.28)}
+.lb-x{top:10px;right:12px}
+.lb-p{left:12px;top:50%;transform:translateY(-50%)}
+.lb-n{right:12px;top:50%;transform:translateY(-50%)}
+.lb-c{position:absolute;top:22px;left:16px;font-size:14px;color:#b1bed8}
+@media (max-width:760px){.lb-p,.lb-n{top:auto;bottom:12px;transform:none}.lb figure{padding-bottom:72px}}
