@@ -15,6 +15,7 @@
 | 20:30 を過ぎても確認が通らない | アップロードしない。理由を通知して終わる |
 
 ## 1. 記事選び（YouTubeで見られそうなもの）
+- **最初に channel/next_short.json を見る**：date が今日なら、点数で選ばずにその article_id の記事を作る（ユーザーの指定。通知の「選んだ理由」は「あなたの指定」）。使ったら date を null に戻してコミットする（1回限り）。ユーザーが「この記事を動画にして」と言ったときも、Claude はここに書けばよい。
 - 点数と公開時刻の値は tools/learning/params.json の shorts（selection_points・category_bonus・publish_time）を使う。週1回の見直しが少しずつ調整する（下の数字は初期値）。選んだ記事の点数の内訳は channel/shorts_log.csv のメモに書く（見直しで使う）。
 - 候補は夕刊の全記事。点数の高い順に1本：
   - 誰でも知っている会社・製品（Apple・Google・OpenAI・Anthropic・任天堂・SONY・Microsoft・Amazon・メタ など）＋3点
