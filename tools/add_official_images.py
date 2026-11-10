@@ -35,7 +35,8 @@ def main():
             src = (n.get("src") or "").strip()
             if not src.startswith("https://") or src in have: continue
             have.add(src)
-            items.append({"src": src, "kind": "press", "credit": n.get("credit", ""), "caption": n.get("caption", ""), "page": n.get("page", "")})
+            items.append({"src": src, "kind": "press", "credit": n.get("credit", ""), "caption": n.get("caption", ""), "page": n.get("page", ""),
+                          **({"w": n["w"], "h": n["h"]} if n.get("w") else {})})
         items = items[:max(0, 12 - press_now)]
         if not items: continue
         stories += 1; added_total += len(items)
@@ -44,7 +45,7 @@ def main():
         if not main.get("src") or main.get("kind") != "press":
             if main.get("src"): moved = dict(main)
             first = items.pop(0)
-            a["image"] = {k: first[k] for k in ("src", "kind", "credit", "page")}
+            a["image"] = {k: first[k] for k in ("src", "kind", "credit", "page", "w", "h") if k in first}
             a["image"]["caption"] = first.get("caption", "")
         rest = items + ([moved] if moved else [])
         if not rest: continue

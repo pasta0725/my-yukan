@@ -1,0 +1,30 @@
+name: indexnow
+# Tells Bing (and other IndexNow search engines) about the new edition's articles right after the site is rebuilt (2026-11-11).
+# The key is public by design: it is also served at https://<site>/<key>.txt so the search engine can check the site is ours.
+on:
+  push:
+    branches: [main]
+    paths: ["data/20*.json"]
+  workflow_dispatch: {}
+concurrency: { group: indexnow, cancel-in-progress: true }
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: wait for Cloudflare, then send the new URLs
+        run: |
+          BASE=$(python3 -c "import json;print(json.load(open('site/config.json'))['base_url'])")
+          KEY=$(python3 -c "import json;print(json.load(open('site/config.json'))['indexnow_key'])")
+          sleep 240
+          for i in 1 2 3 4 5 6; do curl -sf "$BASE/$KEY.txt" | grep -q "$KEY" && break; sleep 60; done
+          curl -sf "$BASE/new-urls.txt" > urls.txt || { echo "no new-urls.txt"; exit 0; }
+          python3 - "$BASE" "$KEY" <<'PY'
+          import json, sys, urllib.request
+          base, key = sys.argv[1], sys.argv[2]
+          urls = [u.strip() for u in open("urls.txt") if u.strip().startswith(base)][:1000] + [base + "/"]
+          body = json.dumps({"host": base.split("//")[1], "key": key, "keyLocation": f"{base}/{key}.txt", "urlList": urls}).encode()
+          r = urllib.request.urlopen(urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"}), timeout=60)
+          print("IndexNow", r.status, len(urls), "URLs")
+          PY

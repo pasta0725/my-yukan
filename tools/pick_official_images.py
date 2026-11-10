@@ -21,7 +21,8 @@ for sid, ps in picks.items():
     for p in ps:
         i = imgs.get(p.get("n"))
         if not i: print("unknown number:", sid, p.get("n")); continue
-        out.append({"src": i["src"], "credit": i["credit"], "caption": p.get("caption") or i.get("alt", ""), "page": i["page"]})
+        out.append({"src": i["src"], "credit": i["credit"], "caption": p.get("caption") or i.get("alt", ""), "page": i["page"],
+                    **({"w": i["w"], "h": i["h"]} if i.get("w") else {})})   # size: the site uses only >=1200px pictures for shares (2026-11-10)
     if out: by_date.setdefault(c["date"], {})[sid] = out
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for d, res in sorted(by_date.items()):

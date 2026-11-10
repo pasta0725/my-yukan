@@ -141,17 +141,18 @@ def tag(c, link=True):
     return (f'<a class="tag" style="--c:var({var})" href="/category/{SLUG[c]}/"><span>{svg}{E(lab)}</span></a>' if link
             else f'<span class="tag" style="--c:var({var})"><span>{svg}{E(lab)}</span></span>')
 
-def page(title, desc, body, path, active=None, og_img=None, extra_head=""):
+def page(title, desc, body, path, active=None, og_img=None, extra_head="", noindex=False, og_size=None, times=None):
     full = f"{title}｜{NAME}" if title != NAME else NAME
     navs = "".join(f'<a href="/category/{SLUG[k]}/"{" aria-current=\"page\"" if k == active else ""}><span>{E(v[0])}</span></a>' for k, v in CATS.items())
     og = og_img or url("/assets/og.jpg")
-    canon = f'<link rel="canonical" href="{E(url(path))}">' if BASE else ""
+    canon = f'<link rel="canonical" href="{E(url(path))}">' if BASE and path != "/404.html" else ""
     return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="s8sQWUdAthvMJoTKYdTWfjc80z75_3NTsDHLvw996rY">
 <title>{E(full)}</title><meta name="description" content="{E(desc)}">{canon}
+<meta name="robots" content="{"noindex,follow" if noindex else "max-image-preview:large,max-snippet:-1"}">
 <meta property="og:site_name" content="{E(NAME)}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}">
-<meta property="og:type" content="{'article' if path.startswith('/news/') else 'website'}"><meta property="og:image" content="{E(og)}">{f'<meta property="og:url" content="{E(url(path))}">' if BASE else ''}
+<meta property="og:type" content="{'article' if path.startswith('/news/') else 'website'}"><meta property="og:image" content="{E(og)}">{(f'<meta property="og:image:width" content="{og_size[0]}"><meta property="og:image:height" content="{og_size[1]}">' if og_size else '')}{(f'<meta property="article:published_time" content="{times}"><meta property="article:modified_time" content="{times}">' if times else '')}<meta property="og:locale" content="ja_JP">{f'<meta property="og:url" content="{E(url(path))}">' if BASE else ''}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/icon-192.png"><link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="alternate" type="application/rss+xml" title="{E(NAME)}" href="/feed.xml">
@@ -268,7 +269,7 @@ for k, (lab, _, var) in CATS.items():
                   f'<div class="cban-copy"><h1>{E(lab)}</h1><p>{E(copy)}</p></div></section>')
     body = (banner + f'<div class="cols"><div><div class="sec-h" style="border-color:var({var})"><h2>{E(lab)}{"の記事" if banner else ""}</h2><span>{len(items)}本</span></div>'
             f'<ul class="rows">' + ("".join(row(a, True) for a in items[:200]) or '<li class="row empty"><p>この分野の記事はまだありません。毎日、朝と夕方に増えていきます。</p></li>') + '</ul></div>' + side(counts) + '</div>')
-    write(f"/category/{SLUG[k]}/", page(f"{lab}のニュース", f"{lab}の最新ニュースを、星餓りなの見方つきでまとめています。", body, f"/category/{SLUG[k]}/", active=k,
+    write(f"/category/{SLUG[k]}/", page(f"{lab}のニュース", (CAT_COPY[k][1] if k in CAT_COPY else f"{lab}の最新ニュースを、星餓りなの見方つきでまとめています。"), body, f"/category/{SLUG[k]}/", active=k,
                                         extra_head=RETRO_FONT if k == "future" else ""))
 
 # date pages
@@ -279,12 +280,33 @@ for i, d in enumerate(editions):
     if i > 0: nav += f'<a class="btn" href="/date/{editions[i-1]}/">次の号</a>'
     body = (f'<div class="cols"><div><div class="sec-h"><h2>{E(jed(d))}</h2><span>{len(items)}本</span></div>'
             f'<ul class="rows">{"".join(row(a) for a in items)}</ul><p>{nav}</p></div>' + side(counts) + '</div>')
-    write(f"/date/{d}/", page(f"{jdate(d)}のITニュース", f"{jdate(d)}のITニュース{len(items)}本。", body, f"/date/{d}/"))
+    write(f"/date/{d}/", page(f"{jdate(d)}のITニュース", f"{jdate(d)}のITニュース{len(items)}本。" + "・".join(x["title"] for x in items[:2]), body, f"/date/{d}/", noindex=True))
 
 # article pages
-def fig(x):
+def share_img(a):
+    """picture for search/Discover/X cards (2026-11-11): Discover shows large cards only for pictures >=1200px wide.
+    An official picture with a known size under 1200px is skipped for the diagram (1200x675) or the site picture (1200x630)."""
+    i = a["_img"]
+    if i and i.get("kind") != "diagram" and int(i.get("w") or 0) >= 1200:
+        return i["src"], (i["w"], i["h"])
+    dg = a.get("diagram") or {}
+    if re.fullmatch(r"data/diagrams/[A-Za-z0-9-]+/[A-Za-z0-9-]+\.png", dg.get("src", "")) and os.path.exists(os.path.join(ROOT, dg["src"])):
+        return url("/" + dg["src"][len("data/"):]), (1200, 675)
+    if i and i.get("kind") != "diagram" and not i.get("w"):   # size unknown (pictures added before 2026-11-11): keep it
+        return (i["src"] if i["src"].startswith("http") else url(i["src"])), None
+    return url("/assets/og.jpg"), (1200, 630)
+def art_desc(a):
+    """search-result text: the summary plus the first 「3行でわかる」 points, about 80-120 characters (2026-11-11)"""
+    d = (a.get("summary") or a["title"]).strip()
+    keys = next((b.get("items") for b in a["_body"] if b.get("type") == "keys" and b.get("items")), []) or []
+    for k in keys:
+        if len(d) >= 80: break
+        k = k.strip()
+        if k and k not in d: d += ("" if d.endswith(("。", "！", "？")) else "。") + k
+    return d[:140]
+def fig(x, first=False):
     cap = E(x.get("caption")); cred = E(x.get("credit"))
-    return (f'<figure><img src="{E(x["src"])}" alt="{cap}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">'
+    return (f'<figure><img src="{E(x["src"])}" alt="{cap}" {'fetchpriority="high"' if first else 'loading="lazy"'} referrerpolicy="no-referrer" onerror="this.parentNode.remove()">'
             f'<figcaption>{cap}{"　" if cap and cred else ""}{(("" if x.get("kind") == "diagram" else "画像提供：") + cred) if cred else ""}</figcaption></figure>')
 for a in arts:
     c = a["_cat"]; lab, _, var = CATS[c]
@@ -316,12 +338,17 @@ for a in arts:
             + "".join(row(x, True) for x in same) + "</ul></section>") if same else ""
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a.get("summary", ""),
           "datePublished": ed_time(a["_date"]), "dateModified": ed_time(a["_date"]), "articleSection": lab,
-          "author": {"@type": "Organization", "name": NAME}, "publisher": {"@type": "Organization", "name": NAME}}
+          "author": {"@type": "Organization", "name": NAME + "編集部", "url": url("/about/")},
+          "publisher": {"@type": "Organization", "name": NAME, "url": url("/"), "logo": {"@type": "ImageObject", "url": url("/assets/icon-512.png"), "width": 512, "height": 512}}}
     if a["_img"]: ld["image"] = [a["_img"]["src"] if a["_img"]["src"].startswith("http") else url(a["_img"]["src"])]
     if BASE: ld["mainEntityOfPage"] = url(a["_path"])
     band = (f'<div class="retro-band">{ORBIT}<span>宇宙・未来技術</span></div>' if c == "future" else "")
+    for n, p_ in enumerate(parts):   # the first picture loads right away
+        if p_.startswith("<figure>") or p_.startswith('<h2 class="sub">') and '<div class="gal">' in p_:
+            parts[n] = p_.replace('loading="lazy"', 'fetchpriority="high"', 1); break
     body = (f'<article class="art{" future" if c == "future" else ""}" style="--c:var({var})">{band}<div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
-            f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span>{E(jed(a["_date"]))}</span><span>出典：{E(a.get("source_name"))}</span></div>'
+            f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span><time datetime="{ed_time(a["_date"])}">{E(a["_date"][:4])}年{E(jed(a["_date"]))}（{"7:00" if a["_date"].endswith("-am") else "17:30"}）</time></span><span>出典：{E(a.get("source_name"))}</span></div>'
+            f'<p class="byline">文：<a href="/about/">{E(NAME)}編集部</a></p>'
             + ('<p class="prnote"><span class="pr">PR</span>この記事には広告（アフィリエイトリンク）が含まれます。</p>' if a.get("pr") else "")
             + "".join(parts) + src + "</article>")
     day = [x for x in arts if x["_date"] == a["_date"]]
@@ -336,8 +363,9 @@ for a in arts:
     else:
         xv = '<aside class="xrail" aria-label="Xの声"><div class="xv"><h2>このニュースへのXの声</h2><p class="xnote">このニュースについてのXの投稿は、まだ集まっていません。</p></div></aside>'
     body = f'<div class="agrid">{alist}<div class="amain">{body}</div>{xv}<div class="amore">{more}</div></div>' + (XJS if a["_x"] else "") + LISTJS + LBJS
-    og = (a["_img"]["src"] if a["_img"]["src"].startswith("http") else url(a["_img"]["src"])) if a["_img"] else url("/assets/og.jpg")
-    write(a["_path"], page(a["title"], a.get("summary") or a["title"], body, a["_path"], active=c, og_img=og,
+    og, ogs = share_img(a)
+    ld["image"] = [og]
+    write(a["_path"], page(a["title"], art_desc(a), body, a["_path"], active=c, og_img=og, og_size=ogs, times=ed_time(a["_date"]),
                            extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' + (RETRO_FONT if c == "future" else "")))
 
 # static pages
@@ -361,14 +389,25 @@ write("/privacy/", page("プライバシーポリシー", f"{NAME}のプライ�
 write("/404.html", page("ページが見つかりません", "ページが見つかりません。", '<div class="doc"><h1>ページが見つかりません</h1><p>URLが変わったか、削除された可能性があります。<a href="/">トップページ</a>から探してください。</p></div>', "/404.html"))
 
 # robots, sitemap, rss
-write("/robots.txt", "User-agent: *\nAllow: /\n" + (f"Sitemap: {BASE}/sitemap.xml\n" if BASE else ""))
-if BASE:
-    locs = ["/", "/about/", "/privacy/"] + [f"/category/{s}/" for s in SLUG.values()] + [f"/date/{d}/" for d in editions] + [a["_path"] for a in arts]
+write("/robots.txt", "User-agent: *\nAllow: /\n" + (f"Sitemap: {BASE}/sitemap.xml\nSitemap: {BASE}/news-sitemap.xml\n" if BASE else ""))
+LATEST = ed_time(editions[0]) if editions else ""
+if BASE:   # date pages are left out (noindex); lastmod tells search engines what changed (2026-11-11)
+    locs = [(p, LATEST) for p in ["/"] + [f"/category/{s_}/" for s_ in SLUG.values()]] + [("/about/", ""), ("/privacy/", "")] + [(a["_path"], ed_time(a["_date"])) for a in arts]
     write("/sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-          + "".join(f"<url><loc>{E(url(p))}</loc></url>" for p in locs) + "</urlset>\n")
-items = "".join(f'<item><title>{E(a["title"])}</title><link>{E(url(a["_path"]))}</link><guid>{E(url(a["_path"]))}</guid>'
-                f'<description>{E(a.get("summary"))}</description><category>{E(CATS[a["_cat"]][0])}</category>'
-                f'<pubDate>{datetime.datetime.fromisoformat(ed_time(a["_date"])).strftime("%a, %d %b %Y %H:%M:%S %z")}</pubDate></item>' for a in arts[:60])
-write("/feed.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>{E(NAME)}</title><link>{E(url("/"))}</link>'
-      f'<description>{E(CFG["description"])}</description><language>ja</language>{items}</channel></rss>\n')
+          + "".join(f"<url><loc>{E(url(p))}</loc>{f'<lastmod>{m}</lastmod>' if m else ''}</url>" for p, m in locs) + "</urlset>\n")
+    recent = [a for a in arts if a["_date"] in editions[:4]][:1000]   # Google News sitemap: articles of the last 2 days
+    write("/news-sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">'
+          + "".join(f'<url><loc>{E(url(a["_path"]))}</loc><news:news><news:publication><news:name>{E(NAME)}</news:name><news:language>ja</news:language></news:publication>'
+                    f'<news:publication_date>{ed_time(a["_date"])}</news:publication_date><news:title>{E(a["title"])}</news:title></news:news></url>' for a in recent) + "</urlset>\n")
+    if CFG.get("indexnow_key"):   # Bing and others learn new pages from IndexNow (.github/workflows/indexnow.yml); the key is public by design
+        write(f"/{CFG['indexnow_key']}.txt", CFG["indexnow_key"])
+    write("/new-urls.txt", "\n".join(url(a["_path"]) for a in arts if a["_date"] == editions[0]) + "\n")
+def rfc(t): return datetime.datetime.fromisoformat(t).strftime("%a, %d %b %Y %H:%M:%S %z")
+items = "".join(f'<item><title>{E(a["title"])}</title><link>{E(url(a["_path"]))}</link><guid isPermaLink="true">{E(url(a["_path"]))}</guid>'
+                f'<description>{E(art_desc(a))}</description><category>{E(CATS[a["_cat"]][0])}</category>'
+                + (f'<enclosure url="{E(share_img(a)[0])}" type="image/{"png" if share_img(a)[0].endswith(".png") else "jpeg"}" length="0"/>' if share_img(a)[0] else "")
+                + f'<pubDate>{rfc(ed_time(a["_date"]))}</pubDate></item>' for a in arts[:60])
+write("/feed.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>{E(NAME)}</title><link>{E(url("/"))}</link>'
+      f'<atom:link href="{E(url("/feed.xml"))}" rel="self" type="application/rss+xml"/><description>{E(CFG["description"])}</description><language>ja</language>'
+      f'{f"<lastBuildDate>{rfc(LATEST)}</lastBuildDate>" if LATEST else ""}{items}</channel></rss>\n')
 print("pages:", len(arts), "articles,", len(editions), "days → ", OUT)
