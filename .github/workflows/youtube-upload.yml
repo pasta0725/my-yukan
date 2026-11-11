@@ -64,8 +64,8 @@ jobs:
           T: ${{ inputs.publish_at }}
           ID: ${{ needs.upload.outputs.video_id }}
         run: |
-          w=$(( $(date -d "$T" +%s) - $(date +%s) + 180 )); [ $w -gt 0 ] && sleep $w
-          for i in 1 2 3 4 5 6; do
+          w=$(( $(date -d "$T" +%s) - $(date +%s) + 20 )); [ $w -gt 0 ] && sleep $w   # 2026-11-12: check right after the publish time (was +3 min)
+          for i in $(seq 1 40); do
             s=$(python3 tools/youtube_upload.py "$N" "status:$ID" | grep -oE 'privacy: [a-z]+' | cut -d' ' -f2)
             echo "privacy: $s"
             if [ "$s" = public ]; then
@@ -73,6 +73,6 @@ jobs:
               [ -n "$C" ] && python3 tools/youtube_upload.py "$N" "comment:$ID" --comment "$C"
               exit 0
             fi
-            [ "$s" = private ] && [ $i -ge 2 ] && { echo "still private (stopped?) - no comment"; exit 0; }
-            sleep 300
+            [ "$s" = private ] && [ $i -ge 20 ] && { echo "still private (stopped?) - no comment"; exit 0; }
+            sleep 30
           done
