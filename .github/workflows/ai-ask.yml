@@ -1,0 +1,55 @@
+name: ai-ask
+# Asks ChatGPT (through Codex, signed in with the user's ChatGPT account) and Gemini (API) the same questions and keeps
+# their real answers for the 「比べてみた」 videos (2026-11-12). Output: branch "ask", ask/<name>/{chatgpt,gemini}.json.
+on:
+  workflow_dispatch:
+    inputs:
+      questions: {description: "questions file in the repo (see tools/ai_ask.py)", required: true}
+permissions: { contents: write }
+jobs:
+  ask:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm i -g @openai/codex >/dev/null 2>&1 && codex --version
+      - name: ChatGPT (Codex, no tools, no web)
+        env: { CODEX_AUTH: "${{ secrets.CODEX_AUTH }}", Q: "${{ inputs.questions }}" }
+        run: |
+          export CODEX_HOME="$RUNNER_TEMP/codexhome"; mkdir -p "$CODEX_HOME"
+          printf '%s' "$CODEX_AUTH" > "$CODEX_HOME/auth.json"; chmod 600 "$CODEX_HOME/auth.json"
+          printf 'cli_auth_credentials_store = "file"\n' > "$CODEX_HOME/config.toml"
+          mkdir -p /tmp/out /tmp/empty && cd /tmp/empty
+          python3 - "$GITHUB_WORKSPACE/$Q" <<'PY'
+          import json, subprocess, sys, datetime, re
+          q = json.load(open(sys.argv[1], encoding="utf-8"))
+          out = {"ai": "ChatGPT", "via": "Codex CLI", "model": "", "answers": []}
+          for x in q["questions"]:
+              t = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
+              p = subprocess.run(["codex", "exec", "--skip-git-repo-check", "-s", "read-only", "-o", "/tmp/last.txt",
+                                  "Answer the user's question directly in Japanese. Do not run any commands or use any tools; answer from your own thinking only.\n\n" + x["prompt"]],
+                                 capture_output=True, text=True, timeout=600)
+              m = re.search(r"^model:\s*(\S+)", p.stderr + p.stdout, re.M)
+              if m: out["model"] = m.group(1)
+              ans = open("/tmp/last.txt", encoding="utf-8").read().strip() if p.returncode == 0 else f"(error {p.returncode})"
+              ran_tools = bool(re.search(r"^(exec|tool)\b", p.stderr, re.M))
+              out["answers"].append({"id": x["id"], "asked_at": t, "answer": ans, "used_tools": ran_tools})
+          json.dump(out, open("/tmp/out/chatgpt.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+          print("chatgpt", out["model"], [a["answer"][:60] for a in out["answers"]])
+          PY
+      - name: Gemini (API, no tools)
+        env: { GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}", Q: "${{ inputs.questions }}" }
+        run: python3 tools/ai_ask.py gemini "$Q" /tmp/out/gemini.json && python3 -c "import json;d=json.load(open('/tmp/out/gemini.json'));print(d['model'],[a['answer'][:60] for a in d['answers']])"
+      - name: push to branch ask
+        if: always()
+        env: { Q: "${{ inputs.questions }}" }
+        run: |
+          N=$(python3 -c "import json,os;print(json.load(open(os.environ['Q']))['name'])")
+          cp "$Q" /tmp/out/questions.json
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin ask; then git checkout -q -B ask origin/ask; else git checkout -q --orphan ask; fi
+          mkdir -p "ask/$N"; cp /tmp/out/*.json "ask/$N/"
+          git add ask; git commit -qm "ask $N" || true
+          for i in 1 2 3; do git push -q origin ask && break; git pull -q --rebase origin ask; done
