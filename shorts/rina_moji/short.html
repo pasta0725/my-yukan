@@ -113,7 +113,7 @@ function badge(i,x,y,s){const a=AIS[i];rrect(x-s/2,y-s/2,s,s,s*0.26,a.col);g.fon
 function aiCard(i,x,y,w,h,k,sub){withEnter(k,()=>{const a=AIS[i];card(x,y,w,h);badge(i,x+70,y+h/2,96);text(a.name,x+140,y+h/2-(sub?22:0),52,C.text,'left');if(sub)text(a.model,x+140,y+h/2+38,32,C.sub,'left',800);},24);}
 // one row per AI: name, its answer word for word, right/wrong
 function answers(q,u,t0){AIS.forEach((a,i)=>withEnter(enter(u,t0+0.18*i),()=>{const y=450+i*175;card(150,y,780,155);badge(i,215,y+77,84);text(a.name,280,y+48,34,C.sub,'left',800);
-  const s=a.ans[q];g.font=`900 44px ${FONT}`;let t=s;while(g.measureText(t).width>520&&t.length>2)t=t.slice(0,-1);if(t!==s)t=t.slice(0,-1)+'…';text('「'+t+'」',272,y+104,44,C.text,'left');
+  const t='「'+a.ans[q]+'」';g.font=`900 44px ${FONT}`;const fs=Math.min(44,44*500/g.measureText(t).width);text(t,272,y+104,fs,C.text,'left');
   check(870,y+77,34,a.ok[q]);},20));}
 function quoteNote(){text('※ 各AIの実際の答え（11月12日）',915,1000,24,C.sub,'right',700);}
 const S={
