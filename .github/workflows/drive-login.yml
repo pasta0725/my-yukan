@@ -8,7 +8,7 @@ on:
     inputs:
       mode: {description: "check = only test that the sign-in can start; login = sign in and save the key", default: "login"}
 permissions:
-  contents: read
+  contents: write
 jobs:
   login:
     runs-on: ubuntu-latest
@@ -19,7 +19,10 @@ jobs:
         env: { DRIVE_CLIENT_ID: "${{ secrets.DRIVE_CLIENT_ID }}", DRIVE_CLIENT_SECRET: "${{ secrets.DRIVE_CLIENT_SECRET }}", YT_CLIENT_ID: "${{ secrets.YT_CLIENT_ID }}", YT_CLIENT_SECRET: "${{ secrets.YT_CLIENT_SECRET }}" }
         run: |
           if [ "${{ inputs.mode }}" = check ]; then python3 tools/drive_store.py check; exit $?; fi
-          python3 tools/drive_store.py login /tmp/rt
+          # the short code (not a key) goes to the branch drive-code so Claude can tell the user while the run waits
+          git init -q /tmp/dc && cd /tmp/dc && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name github-actions; git config user.email github-actions@users.noreply.github.com; cd -
+          CODE_FILE=/tmp/dc/code.txt python3 tools/drive_store.py login /tmp/rt
       - name: save the key as a secret
         if: inputs.mode != 'check'
         env: { GH_TOKEN: "${{ secrets.GH_SECRETS_TOKEN }}" }

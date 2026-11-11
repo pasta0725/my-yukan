@@ -42,6 +42,9 @@ def login(out):
            f"（{d['expires_in'] // 60}分以内に。この画面は待っていれば自動で進みます）\n")
     print(msg, flush=True)
     if os.environ.get("GITHUB_STEP_SUMMARY"): open(os.environ["GITHUB_STEP_SUMMARY"], "a").write(msg)
+    if os.environ.get("CODE_FILE"):   # the run's log is shown only after it ends, so the code is also put on the branch drive-code
+        open(os.environ["CODE_FILE"], "w").write(f"{d['verification_url']} {d['user_code']}\n")
+        os.system("cd /tmp/dc && git add code.txt && git commit -qm code && git push -q -f origin HEAD:drive-code")
     end, wait = time.time() + d["expires_in"], d.get("interval", 5)
     while time.time() < end:
         time.sleep(wait)
