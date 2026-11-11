@@ -15,6 +15,17 @@ def models():
             if "generateContent" in m.get("supportedGenerationMethods", [])]
 
 
+def picks(names):
+    """newest pro, then newest flash: the free tier often has no quota for pro (429), then flash answers"""
+    ok = [n for n in names if re.match(r"gemini-\d", n) and not re.search(r"tts|image|live|audio|lite|exp|embed|robotics|computer", n)]
+    ver = lambda n: [float(x) for x in re.findall(r"\d+(?:\.\d+)?", n)[:1]] or [0]
+    out = []
+    for kind in ("pro", "flash"):
+        c = sorted([n for n in ok if kind in n], key=lambda n: (ver(n), "preview" not in n), reverse=True)
+        if c: out.append(c[0])
+    return out or ["gemini-flash-latest"]
+
+
 def pick(names):
     """the newest general model: pro first, then flash (no tts/image/live/lite/exp/embedding variants)"""
     ok = [n for n in names if re.match(r"gemini-\d", n) and not re.search(r"tts|image|live|audio|lite|exp|embed|preview-tts|robotics|computer", n)]
@@ -29,21 +40,25 @@ def ask(model, prompt):
     body = {"contents": [{"parts": [{"text": prompt}]}]}
     req = urllib.request.Request(f"{API}/models/{model}:generateContent", data=json.dumps(body).encode(),
                                  headers={"x-goog-api-key": KEY, "Content-Type": "application/json"})
-    for a in range(5):
+    for a in range(3):
         try:
             r = json.load(urllib.request.urlopen(req, timeout=300)); break
         except urllib.error.HTTPError as e:
-            if e.code not in (429, 500, 503) or a == 4: raise
+            if e.code not in (429, 500, 503) or a == 2: raise
             time.sleep(20 * (a + 1))
     return "".join(p.get("text", "") for p in r["candidates"][0]["content"]["parts"] if not p.get("thought"))
 
 
 if __name__ == "__main__":
     q = json.load(open(sys.argv[2], encoding="utf-8"))
-    m = pick(models())
-    out = {"ai": "Gemini", "model": m, "answers": []}
-    for x in q["questions"]:
-        out["answers"].append({"id": x["id"], "asked_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-                               "answer": ask(m, x["prompt"]).strip()})
+    for m in picks(models()):
+        try:
+            out = {"ai": "Gemini", "model": m, "answers": []}
+            for x in q["questions"]:
+                out["answers"].append({"id": x["id"], "asked_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+                                       "answer": ask(m, x["prompt"]).strip()})
+            break
+        except urllib.error.HTTPError as e:
+            print("model", m, "failed", e.code, "- trying the next one")
     json.dump(out, open(sys.argv[3], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("gemini", m, len(out["answers"]))
