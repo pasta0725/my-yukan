@@ -1,0 +1,761 @@
+===== https://www.anthropic.com/research/claude-electronics-design
+(status 200)
+01
+Reasoning through geometric problems
+A little over a year ago, we began testing how well Claude could design basic electronic circuits. We 
+collaborated with Diode Computers
+,
+1
+ a company that designs and manufactures circuit boards, to train Claude on simple tasks—for example, on reading a chip’s datasheet and working out which parts a chip needs in order to run. The models we experimented with back then couldn’t reliably lay out a circuit board; they also struggled to design components that fit together. Now, Claude can both design and prototype electronic hardware from start to finish.
+Engineering an electronic device requires working through many complex steps and practical constraints. You have to not only design and simulate a circuit board, but also reason about the board’s physical layout and how it will behave, model the mechanical components, and write firmware—all while keeping track of which parts are readily available and what a factory is set up to build.
+To see how newer Claude models have improved in this area, we collaborated with Diode again, this time asking Claude Fable 5.2 to design three electronic devices: a speakerphone, a voice-assistant hub, and a handheld virtual pet. With minimal prompting, Claude was able to use geometric reasoning to lay out each circuit board, anticipate manufacturing constraints, and make sure its designs would work within them. It revised its own work, modeled its designs in computer-aided design (CAD) software, and, finally, directed human engineers to build prototypes that worked without any fixes to their circuitry.
+For each design, we began by giving Claude a simple prompt that outlined what kind of device to build and its main hardware requirements. The prompt for the speakerphone, for example, asked for “a puck that plugs into a computer over USB-C and includes microphones and a speaker, supporting Bluetooth with a PCB antenna.” Claude proceeded to write the device’s specifications, draw clean visual schematics, choose where to place the components on a printed circuit board (PCB), route the copper connections between them, design a 3D-printable enclosure, code the firmware, and prepare a parts list. Diode assembled the circuit boards and ran the firmware, under Claude’s direction. The final result was a prototype of a speakerphone that still works after weeks of use.
+Claude went through a similar process to build the voice-assistant hub and the virtual pet, and both are also still in good working order. Because the devices are early prototypes, we don’t yet know how they’ll hold up with continued use or whether they would pass commercial certifications.
+The three devices built from Claude’s designs, from left to right: a battery-powered handheld pet, a home voice-assistant hub, and a USB speakerphone. Claude engineered the electronics and the enclosures and wrote firmware for each one.
+Reasoning through geometric problems
+The most substantial difference between Fable 5.2 and the models we used in our earlier tests was in how well Fable 5.2 reasoned through complex geometric problems, such as where to place components on a circuit board and how to route the copper connections between them.
+Earlier models had struggled to decide how to arrange basic components—placing supporting parts too far from the chips they served, for example, or orienting connectors incorrectly. Fable 5.2, by contrast, produced more compact, practical layouts. It routed the most important connections first: those that carry high-speed signals or high currents, or that are sensitive to noise. For example, for the voice-assistant hub, Claude started by routing the USB and Ethernet connections, which transmit signals along pairs of tracks—thin strips of copper on the board. It routed one pair of tracks at a time, keeping the two tracks in each pair the same length and correctly spaced. It also added tuning patterns—small zigzags that lengthen a track so that signals arrive at the same time—and arranged the parts of the power supply to make it more efficient.
+To demonstrate how much better Fable 5.2 is than earlier models at laying out circuit boards, we asked Diode to run PCB Gym—an internal benchmark that scores models based on how well they can place components and reroute connections on board designs whose layouts have been removed. Fable 5.2 scored 69% on the benchmark, compared with 25% for Fable 5 (Figure 2). It also performed better on 
+BenchCAD 2.1
+, a public benchmark that tests whether models can rebuild 3D parts, assemblies, and circuit boards from engineering drawings and rendered images. Fable 5.2 scored 83.5%, nearly double the score of its predecessor, Claude Fable 5.1.
+Scores plotted against total API cost for recent frontier models on Diode PCB Gym, a benchmark that instructs models to place components and route connections on circuit boards whose layouts have been removed.
+Revising designs
+Earlier models rarely revised their own work when designing PCB layouts, even when it became clear that their placement choices would never let them finish routing the connections. Over the past year, Diode designed many boards with these models that were 95% complete but still unusable.
+When Claude noticed one of its designs wasn’t working, it would change course without being prompted to do so. For instance, when designing the speakerphone’s circuit board, which has four layers of copper, it reassigned signals to different pins on two of the chips. This allowed the tracks under the speakerphone’s touch-sensitive controls to stay on a single layer without crossing one another. Later, when the back of the board became too crowded, Claude swapped the signals on interchangeable pins and laid out a whole corner of the board again, rather than patching the problem with extra jumps between layers.
+And when placing tracks in its design file for the voice-assistant hub, Claude noticed that the copper connections were “getting too tangled to trace visually” and reasoned, “I should just rip these traces [tracks] and start fresh.” It proceeded to delete and reroute copper connections dozens of times until it found an arrangement that worked.
+The routing for the voice-assistant hub before and after Claude reorganized the connections. Left: the microphone’s power track (blue lines) loops around the ground ring at the sound port, a front-side track (red) crosses the ring, and a via—a small hole that connects layers of copper—is placed between the microphone’s pads. Right: the same area after Claude rerouted the power track, with the ring clear and grounded. Claude’s reasoning for redoing the version on the left: “That’s risky placement under a bottom-port MEMS mic, even if clearance is technically fine, so I want to redo the local routing cleanly for both identical mic footprints.”
+Using software and documentation
+When a design decision for one of the devices depended on the details of a particular part, Claude often checked that part’s datasheet—a technical document published by the manufacturer. When asked whether the handheld pet would work without a battery, Claude read the charger’s datasheet and answered that it would run on USB power but predicted that the charging light would flicker, because the charger keeps recharging a small capacitor in the battery’s place.
+2
+To route the connections on the voice-assistant hub, Claude started with the design software Diode provided, which let it run the router (a tool for drawing tracks) built into KiCad, a widely used circuit board design program. KiCad’s router drew one track at a time between two points Claude chose. But the hub had long tracks running from a 100-pin connector, and Claude judged that routing these one by one would take too much step-by-step guidance.
+Instead, Claude wrote its own router: an algorithm that divides the board into a grid and searches it to find a clear path for each track. Within about half an hour, Claude had a router that could lay each long track in roughly a second. When Claude spotted an audio clock track running too close to the Ethernet tracks, it adjusted the router to leave more room around sensitive tracks.
+Keeping track of constraints and downstream effects
+Decisions made in one part of a design have downstream effects, which Claude kept track of. While designing each device’s enclosure, it wrote code to check that a 3D model of the circuit board would fit inside the enclosure without any components colliding. For example, it found that the speakerphone’s board couldn’t be lowered straight into the enclosure, because the mute switch would hit the back wall. Claude worked out that the board would fit if it was tilted by about 25 degrees during installation. It tested this in its 3D model and added the step to the assembly instructions.
+When designing the enclosure for the voice-assistant hub, Claude calculated that a 25 mm-long microphone port—the opening that lets sound reach the microphone—would resonate near 3.4 kHz. That is “right in the voice band,” it reasoned, “which is not ideal though still usable for voice assistant purposes. A better approach is a wedge-shaped enclosure that’s tall at the rear and steps down low at the front.” The wedge shape shortened the ports to about 10 mm, which raised the resonant frequency to about 8.9 kHz, at the very edge of the range used for speech. Claude also wrote firmware for the speakerphone that dims its ring of LED lights as the audio becomes louder, to keep the device under the electrical current limit Claude had designed into the board.
+Claude’s designs for the home voice-assistant hub and the finished prototype. Claude wrote the code that modeled the case in CAD, laid out the circuit board, and wrote the firmware.
+Designing for real-world manufacturing
+In electronics design, engineers have to work within the constraints of the real world. That is, they have to make sure a factory can actually make the thing they want to build. They do this by running two kinds of checks: design-for-manufacturing (DFM) checks, which compare a circuit board’s geometry with the factory’s manufacturing limits, and sourcing checks, which confirm that their distributors have the parts in stock.
+Claude ran these checks itself and sorted the results into problems that needed fixing and flags it could ignore. Its checks for the voice-assistant hub flagged six slivers of solder mask (the protective coating on a circuit board) as too thin to manufacture. Claude fixed them by widening the openings in the solder mask, without moving any parts. The checks also flagged a connection between two grounds (shared return paths for electrical current) as an error, because the automated checker hadn’t recognized that the connection was deliberate. Claude correctly reasoned that it wouldn’t affect performance and ignored the flag.
+Diode manufactured all three boards directly from Claude’s design files, without any back-and-forth over adjustments. Factories and engineers often have to work through multiple rounds of manufacturing changes, and the Diode team told us they were surprised that they didn’t have to do this with Claude.
+Layer 1: front
+Layer 2: inner 1
+Layer 3: inner 2
+Layer 4: back
+The speakerphone’s four copper layers. The dashed circle marks the touch wheel, where copper electrodes sense the user’s finger. Moving a track from one layer to another requires drilling a hole in the board, and under the touch wheel, that hole would go through an electrode. To avoid this, Claude kept each signal track under the wheel on a single layer, and it chose the chips’ pin assignments so that those tracks wouldn’t need to cross one another. It also kept the area around the Bluetooth antenna (the zigzag at the top) clear of other copper and holes on every layer, so nearby metal wouldn’t weaken its signal.
+The speakerphone’s four copper layers. The dashed circle marks the touch wheel, where copper electrodes sense the user’s finger. Moving a track from one layer to another requires drilling a hole in the board, and under the touch wheel, that hole would go through an electrode. To avoid this, Claude kept each signal track under the wheel on a single layer, and it chose the chips’ pin assignments so that those tracks wouldn’t need to cross one another. It also kept the area around the Bluetooth antenna (the zigzag at the top) clear of other copper and holes on every layer, so nearby metal wouldn’t weaken its signal.
+The speakerphone’s four copper layers. The dashed circle marks the touch wheel, where copper electrodes sense the user’s finger. Moving a track from one layer to another requires drilling a hole in the board, and under the touch wheel, that hole would go through an electrode. To avoid this, Claude kept each signal track under the wheel on a single layer, and it chose the chips’ pin assignments so that those tracks wouldn’t need to cross one another. It also kept the area around the Bluetooth antenna (the zigzag at the top) clear of other copper and holes on every layer, so nearby metal wouldn’t weaken its signal.
+The speakerphone’s four copper layers. The dashed circle marks the touch wheel, where copper electrodes sense the user’s finger. Moving a track from one layer to another requires drilling a hole in the board, and under the touch wheel, that hole would go through an electrode. To avoid this, Claude kept each signal track under the wheel on a single layer, and it chose the chips’ pin assignments so that those tracks wouldn’t need to cross one another. It also kept the area around the Bluetooth antenna (the zigzag at the top) clear of other copper and holes on every layer, so nearby metal wouldn’t weaken its signal.
+Layer 1: front
+Layer 2: inner 1
+Layer 3: inner 2
+Layer 4: back
+The voice-assistant hub’s four copper layers. Claude added two areas of grounded copper to the power layer (green), directly behind most of the tracks on the back of the board that carry high-speed signals. This gives the signals a nearby return path, which helps reduce interference.
+The voice-assistant hub’s four copper layers. Claude added two areas of grounded copper to the power layer (green), directly behind most of the tracks on the back of the board that carry high-speed signals. This gives the signals a nearby return path, which helps reduce interference.
+The voice-assistant hub’s four copper layers. Claude added two areas of grounded copper to the power layer (green), directly behind most of the tracks on the back of the board that carry high-speed signals. This gives the signals a nearby return path, which helps reduce interference.
+The voice-assistant hub’s four copper layers. Claude added two areas of grounded copper to the power layer (green), directly behind most of the tracks on the back of the board that carry high-speed signals. This gives the signals a nearby return path, which helps reduce interference.
+The speakerphone’s circuit board can’t be lowered straight into the enclosure, because the mute switch’s knob would hit the back wall (red). Claude worked out how to install the board by tilting it about 25 degrees and then swinging it flat, and added this step to the assembly instructions.
+Limitations and next steps
+All three of these devices are still prototypes: they haven’t been through electrical validation, antenna tuning, thermal testing, or certification, and they weren’t designed for mass production. Since Claude wasn’t connected to test equipment or to the machines that make and assemble circuit boards, engineers at Diode had to physically build and test the prototypes. Even so, over the past year, Claude has improved substantially at reasoning through decisions about component placement and routing, and it can now design electronics with minimal human guidance and help people build the prototypes. Other models are making progress here, too: OpenAI recently 
+wrote about using its models
+ to design a handheld device. Work like this could help engineers build and test new hardware designs faster.
+Next, we plan to investigate whether Claude can design denser, faster, and more complex boards, check them in simulation, and learn from measurements taken on the finished devices.
+Footnotes
+01
+ Anthropic has a commercial relationship with Diode.
+02
+ This was one of the few instances where the Diode team prompted Claude (“Will it work if there is no battery?”). Overall, their prompting was minimal and limited to short directives (e.g., “clean up the schematic” and “continue”).
+Authors & acknowledgements
+Acknowledgements
+This post is a collaboration between researchers and engineers at Anthropic, including Mike Cretella, Connor Jennings, and Brent Yi, and Craig Chen and the team at Diode Computers. Anthropic has worked with Diode electrical engineers on PCB design since 2025. Editorial support from Xander Balwit, Tom Chivers, Rebecca Hiscott, and Caitlin Love.
+
+===== https://www.anthropic.com/claude-fable-and-mythos-5-2
+(status 200)
+We’ve upgraded Claude Fable and Claude Mythos—models that are designed to tackle the most daunting technical challenges.
+Claude Fable 5.2 and Claude Mythos 5.2 show improvements in areas like coding, reasoning, and vision. During prerelease testing they’ve helped our engineers complete otherwise-infeasible software migrations, designed three working electronic devices from scratch, solved two open problems in the physics of black holes, made substantial progress on robotics evaluations, and formalized the proof of Fermat’s Last Theorem in 30 hours—among many other applications we’ll discuss below.
+Claude Fable and Claude Mythos are the same underlying model. Fable has strong cybersecurity and biology safeguards to guard against misuse, which allows us to make it available to all users. Organizations pursuing beneficial applications in cybersecurity or biomedical research can apply for access to Mythos through our recently expanded 
+Life Sciences
+ and 
+Cyber
+ Verification Programs.
+Testers have found that Fable 5.2 and Mythos 5.2 communicate more clearly than past Fable and Mythos models. They generate outputs up to 30% faster than Claude Fable 5.1 and Claude Mythos 5.1, and they’re available at a lower price: $8 per million input tokens and $40 per million output tokens.
+Fable 5.2 and Mythos 5.2 also come with an optional fast mode, which speeds up token generation by up to 2.5 times. Fast mode is available for $16 per million input tokens and $80 per million output tokens.
+Safety and alignment.
+ To help ensure safety and alignment keep step with growing model capabilities, we ran extensive prerelease safety testing on the model that underlies Fable 5.2 and Mythos 5.2. This included developing novel evaluations that give deeper insight into specific concerning behaviors like sandbox escapes. We believe high-stakes risks from misalignment remain low, and the model performed as well as, or better than, our recent models on most alignment measures. Fable 5.2’s cyber and biology safeguards are as robust as those of Fable 5.1 but produce fewer unnecessary blocks, and we have implemented our strongest-ever protections against distillation attacks.
+We describe more about our safety testing below, and full details can be found in the 
+Claude Fable 5.2 and Mythos 5.2 System Card
+.
+When to use Claude Fable 5.2 and Mythos 5.2.
+ Fable and Mythos are best for the most ambitious, open-ended technical work. For most coding and knowledge tasks, we recommend that users start with Claude Opus 5.5, our strongest daily driver, and then switch to a different model as required, depending on the scope and complexity of their work—upward to Fable or Mythos, or downward to Claude Sonnet 5.5 or Claude Haiku 5.5. Fable 5.2 can also play the role of 
+Advisor
+ (where Haiku, Sonnet, or Opus models consult it to help solve harder problems) or 
+Orchestrator
+ (where it delegates simpler tasks to smaller models).
+Evaluating Claude Fable 5.2 and Mythos 5.2
+Benchmark performance.
+ The benchmarks table below shows that Claude Fable 5.2 and Mythos 5.2 are a step above Opus 5.5 in almost all the capabilities we evaluated:
+Fable 5.2
+Fable 5.1
+Opus 5.5
+GPT-6 Astra
+Gemini 4 Carbon
+Agentic coding
+FrontierCode 2.0
+Agentic coding
+FrontierCode 2.0
+49.1%
+Xhigh effort
+32.4%
+Xhigh effort
+45.5%
+42.8%
+41.1%
+Medium effort
+Agentic coding
+FrontierSWE v2
+Agentic coding
+FrontierSWE v2
+69.9%
+56.3%
+62.3%
+65.5%
+61.2%
+Business workflows
+AutomationBench
+Business workflows
+AutomationBench
+51.4%
+31.4%
+42.5%
+41.4%
+53.9%
+Agentic scientific research
+Terminal-Bench-Science 0.1
+Agentic scientific research
+Terminal-Bench-Science 0.1
+74.6%
+75.3% (Mythos 5.2)
+52.6%
+58.7%
+68.1%
+64.8%
+Cybersecurity
+CyScenarioBench
+†
+Cybersecurity
+CyScenarioBench
+†
+76.3%
+Mythos 5.2
+61.7%
+Mythos 5.1
+67.6%
+without safeguards
+61%
+GPT-6 Cyber
+—
+Cybersecurity
+CVE Rediscovery
+Cybersecurity
+CVE Rediscovery
+89.6%
+Mythos 5.2
+78.3%
+Mythos 5.1
+81.3%
+without safeguards
+—
+—
+Protein design
+De novo binder design (24 hr)
+Protein design
+De novo binder design (24 hr)
+85.1
+Mythos 5.2
+79.1
+Mythos 5.1
+82.6
+without safeguards
+—
+—
+Agentic search
+WANDR (relaxed score)
+Agentic search
+WANDR (relaxed score)
+82.1%
+68.7%
+72.3%
+—
+—
+Computer use
+OSWorld 2.1 (offline set, partial)
+Computer use
+OSWorld 2.1 (offline set, partial)
+89.3%
+83.5%
+87.2%
+79.5%
+81.5%
+Robotics
+RoboDojo Sim
+‡
+Robotics
+RoboDojo Sim
+‡
+64.9%
+27.6%
+39.4%
+29.8%
+—
+Knowledge work
+AA-Briefcase v1.1
+Knowledge work
+AA-Briefcase v1.1
+66.1%
+rubric
+61.5%
+rubric
+61.2%
+rubric
+52.0%
+rubric
+61.8%
+rubric
+1785
+Elo
+1669
+Elo
+1800
+Elo
+1569
+Elo
+1611
+Elo
+Knowledge work
+Remote Labor Index (RLI)
+Knowledge work
+Remote Labor Index (RLI)
+41.3%
+High effort
+17.9%
+21.3%
+20.8%
+—
+Multidisciplinary reasoning
+Humanity’s Last Exam (with tools)
+Multidisciplinary reasoning
+Humanity’s Last Exam (with tools)
+74.2%
+65.6%
+67.7%
+57.2%
+—
+Visual chart recognition
+Chartography (no tools)
+Visual chart recognition
+Chartography (no tools)
+73.4%
+44.8%
+64.4%
+71.0%
+72.5%
+For details on evaluation methodology, see the 
+Claude Fable 5.2 and Claude Mythos 5.2 System Card
+. Scores for Fable 5.2, Fable 5.1, and Opus 5.5 show results with safeguards on unless otherwise noted. All scores show each model’s highest-available effort unless otherwise noted. 
+†
+ On CyScenarioBench, each lab’s scores are based on unique tasks. 
+‡
+ RoboDojo Sim shows the highest-available effort and was run internally.
+Effort and efficiency.
+ On Medium effort (the default in Claude apps and Claude Code), Fable 5.2 can accomplish challenging tasks with fewer tokens than Fable 5.1. In early testing on the FrontierCode 2.0 evaluation, Fable 5.2 at High effort scored about level with Opus 5.5 at Max effort, for roughly half the cost per task. At Xhigh effort, it also scored the highest of any released model tested.
+Agentic coding: FrontierCode 2.0
+Agentic search: WANDR
+Hardware engineering: BenchCAD 2.1
+Multidisciplinary reasoning: Humanity’s Last Exam
+Visual chart recognition: Chartography
+Agentic coding: FrontierCode 2.0
+Agentic search: WANDR
+Hardware engineering: BenchCAD 2.1
+Multidisciplinary reasoning: Humanity’s Last Exam
+Visual chart recognition: Chartography
+FrontierCode 2.0
+Accuracy vs. cost
+Fable 5.2
+Opus 5.5
+Fable 5.1
+GPT-6 Astra
+Gemini 4 Carbon
+10
+20
+30
+40
+50
+0
+Score (%)
+1
+2
+5
+10
+20
+50
+Cost per task (USD, log scale)
+Low
+Med
+High
+Xhigh
+Max
+FrontierCode measures whether a model’s code changes would be merged by the maintainers of open-source repositories. At High effort, Fable 5.2 scores about the same as Opus 5.5’s best score (45.3% vs. 45.5%) for roughly half the cost per task, and ahead of GPT-6 Astra’s best score (42.8%) at about the same cost. At Xhigh effort, Fable 5.2 reaches 49.1%, the highest score of any released model we’ve tested.
+WANDR (relaxed score)
+Accuracy vs. cost
+Fable 5.2
+Opus 5.5
+Fable 5.1
+30
+40
+50
+60
+70
+80
+90
+0
+Score (%)
+1
+2
+5
+10
+20
+50
+Cost per attempt (USD, log scale)
+Low
+Med
+High
+Xhigh
+Max
+Perplexity’s WANDR benchmark measures agents on large data-collection tasks. At Medium effort, Fable 5.2 matches Opus 5.5’s top score for about 40% of the cost per task.
+BenchCAD 2.1 (with tools)
+Accuracy vs. cost
+Fable 5.2
+Opus 5.5
+Fable 5.1
+0
+20
+40
+60
+80
+Score (0–100)
+0.03
+0.10
+0.30
+1
+3
+10
+30
+Cost per attempt (USD, log scale)
+Low
+Med
+High
+Xhigh
+Max
+BenchCAD 2.1 measures hardware engineering, specifically how closely a model’s designs match reference geometry and circuits, and is scored 0–100 with partial credit. At Max effort, Fable 5.2 scores 83.5, ahead of Opus 5.5 (65.3) and Fable 5.1 (44.4).
+Humanity’s Last Exam (with tools)
+Accuracy vs. cost
+Fable 5.2
+Opus 5.5
+Fable 5.1
+50
+60
+70
+80
+0
+Score (%)
+0.10
+0.20
+0.50
+1
+2
+5
+Cost per attempt (USD, log scale)
+GPT-6 Astra (Max): 57.2%
+Low
+Med
+High
+Xhigh
+Max
+Humanity’s Last Exam (HLE) is a test of expert-level academic knowledge and reasoning. At Low effort, Fable 5.2 matches Opus 5.5’s top score for less than one-tenth of the cost per task.
+Chartography (no tools)
+Accuracy vs. cost
+Fable 5.2
+Opus 5.5
+Fable 5.1
+30
+40
+50
+60
+70
+80
+0
+Score (%)
+0.02
+0.05
+0.10
+0.20
+0.50
+1
+Cost per attempt (USD, log scale)
+GPT-6 Astra (Max): 71.0%
+Gemini 4 Carbon: 72.5%
+Low
+Med
+High
+Xhigh
+Max
+Chartography tests how accurately a model can read charts and figures. At Medium effort, Fable 5.2 scores 66.4%, ahead of Opus 5.5 at Max effort (64.4%) for less than one-tenth of the cost per task.
+Coding
+Over 90% of the changes merged into Anthropic’s core codebase are now written by Claude (with human guidance). We’ve used Fable 5.2 to fix stubborn bugs in minutes, optimize performance across all of our services, and complete high-value software projects that would otherwise have been too slow or too costly to attempt. A team of agents running an earlier version of Fable 5.2 migrated a critical production service from Python to Rust—the service is now more efficient, more reliable, and starts about 26 times faster. We’ve found that Fable 5.2 exercises strong engineering judgment and can produce high-quality results from even ambiguous requests.
+As an experiment, one Anthropic engineer gave Fable 5.2 the task of designing a prototype operating system. Starting from an empty folder, the model coordinated over 1,000 subagents, working around the clock for eight days writing, testing, and reviewing code. It produced a working operating system that boots on a laptop, with its own core that runs the machine, drivers for the disk, keyboard, and network, permanent file storage, windows, a login screen, an installer, and built-in Claude functionality (see the video below).
+Early testers have been impressed at how successfully Fable 5.2’s coding skills can be applied to a wide range of tasks:
+Vercel
+Shopify
+Datadog
+Unity
+Uber
+Oracle
+iGent
+Snowflake
+Cognition
+Vercel
+Shopify
+Datadog
+Unity
+Uber
+Oracle
+iGent
+Snowflake
+Cognition
+Quote
+“The model is in my head. It understands the intent behind every prompt I’ve given it. I haven’t had to say ‘No, I meant…’ a single time. Projects we’ve been pushing along with other models for weeks got finished and approved by our teammates in a few days with Claude Fable 5.2, and the humans reviewing its code had less to say.”
+Company
+Vercel
+Author
+Joe Haddad, Member of Technical Staff
+Quote
+“Claude Fable 5.2 is great for taking a loose idea and refining it. Its answers are really well-considered, and within a few turns I can almost always say ‘ok, go do that,’ and trust that it’ll complete it with little intervention. It feels like working with another staff-level engineer.”
+Company
+Shopify
+Author
+Tom Pritchard, Staff Engineer
+Quote
+“You can just throw Claude Fable 5.2 at new, ambiguous systems it has never seen before, and it will figure out how to actually work within them. It’s almost like an incident commander that can send out faster models to get quick signals and coordinate, which removes that burden from me as an operator.”
+Company
+Datadog
+Author
+Matt Lee, Senior Staff Engineer
+Quote
+“Claude Fable 5.2 can complete tasks that previous models struggled with. The clearest examples so far are building higher-quality 3D scenes from scratch and rebuilding an experience from a visual reference. It’s very strong on the harder game-dev tasks, where it keeps iterating and improving instead of getting stuck.”
+Company
+Unity
+Author
+Sam Zhang, Creative Technologist
+Quote
+“I had Claude Fable 5.2 run a 10–12 hour security audit. It sent out about 170 reviewer agents and came back with a write-up, fix pull requests and a policy proposal. It works until the job is actually complete instead of stopping at a plausible checkpoint. Its self-correction and honesty about gaps impressed me. At High effort, I’d use this over what I run today for long unattended audits and doc-heavy work.”
+Company
+Uber
+Author
+Andrew Mager, Staff Engineer, Agentic Systems
+Quote
+“In one test combining country debt summaries, repayment history, and regional benchmarks, Claude Fable 5.2 generated SQL that returned the expected results. The SQL generated by two other models also ran successfully, but incorrectly summed country-level summary amounts, producing values 5–8x the expected amounts. Getting these business calculations right is why we see value in using Fable 5.2 for enterprise SQL generation.”
+Company
+Oracle
+Author
+Liyu Gong, Senior Manager of Machine Learning
+Quote
+“In a single session, Claude Fable 5.2 built a hypervisor, the software that walls off virtual computers sharing one machine. Its core is mathematically proven to keep them apart. More than 3,500 machine-checked proofs cover every case, not just the ones you test. It’s the first model I’ve seen break a problem this large into pieces it can prove, fit them together, and keep taking on more ambitious work. A very clear upgrade from Fable 5.1.”
+Company
+iGent
+Author
+Sean Ward, Co-Founder and CEO
+Quote
+“Claude Fable 5.2 is the strongest model we have measured on data-eng-bench, our open-source benchmark of 103 data-engineering tasks. It solved tasks consistently across repeated runs and passed every interactive coding task we gave it.”
+Company
+Snowflake
+Author
+Bala Kasiviswanathan, VP of AI and Developer Experience
+Quote
+“Claude Fable 5.2 says it doesn’t know things instead of hallucinating. At one point it told me its last estimate was wrong and that it wouldn’t give a number until it had measured the change. Very impressive!”
+Company
+Cognition
+Author
+Adhyyan Sekhsaria, Member of Technical Staff
+Cybersecurity
+Claude Mythos 5.2 is our most capable model for cybersecurity engineering. It catches more vulnerabilities than our previous models, and is better at reproducing and fixing them (note that Claude Fable 5.2’s safeguards will block most cybersecurity-related tasks). A security company found that one in six confirmed bugs found by Claude Mythos 5.2 were missed by all of the other frontier models they tested. On our internal evaluation, CVE Rediscovery,¹ Claude Mythos 5.2 found 10.2% more vulnerabilities than Claude Opus 5.5 and 14.4% more than Claude Mythos 5.1. Claude Mythos 5.2 also shows better judgment and calibration—one tester found that previous models had overstated the seriousness of about 1 in 20 findings, whereas Claude Mythos 5.2 hadn’t overstated any.²
+CVE Rediscovery
+Accuracy vs. cost
+Mythos 5.2
+Opus 5.5
+Mythos 5.1
+55
+60
+65
+70
+75
+80
+85
+90
+95
+0
+Advisories found (%)
+0.10
+0.20
+0.50
+1
+2
+5
+10
+Cost per attempt (USD, log scale)
+Low
+Med
+High
+Xhigh
+Max
+CVE Rediscovery is an internal cybersecurity evaluation that assesses how many published CVEs (Common Vulnerabilities and Exposures) a model can independently find when given a snapshot of the project before a CVE was fixed. Our October 2026 run against 1,829 CVEs showed Claude Mythos 5.2 outperformed Claude Mythos 5.1 and Claude Opus 5.5 at every effort level.
+Claude Mythos 5.2’s cyber capabilities are accessible through our 
+Cyber Verification Program
+, which we’re continuing to expand and improve. Claude Enterprise customers (even if they aren’t members of the Cyber Verification Program) can access 
+Claude Security
+, which scans codebases for vulnerabilities using our most capable models—which now includes Claude Mythos 5.2. 
+A recent update to Claude Security
+ helps it watch repositories as code is updated, track any findings to ensure they’re fixed, learn from additional context, and connect to a user’s tools through an API and MCP.
+Rubrik
+Mozilla
+Rubrik
+Mozilla
+Quote
+“We have worked closely with Anthropic’s new model, Claude Mythos 5.2, to do a next round of high-fidelity threat discovery and elimination within our own systems for potential issues we did not uncover with earlier Mythos models. The output is more readable and empowered our team to spot-check faster and more easily. We built our Code Guardian harness with Mythos 5.1, and we’d switch to Mythos 5.2 to give our customers more powerful cyber capabilities.”
+Company
+Rubrik
+Author
+Arvind Nithrakashyap, Co-Founder and Chief Technology Officer
+Quote
+“Claude Mythos 5.2 is astonishingly good. We’ve worked closely with the Anthropic team all year to harden Firefox with successive generations of Claude models, and each round has left fewer, subtler bugs to find. Even so, Mythos 5.2 roughly doubled the vulnerability discovery metrics of Mythos 5.1 across respective scanning campaigns.”
+Company
+Mozilla
+Author
+Brian Grinstead, Distinguished Engineer
+Science and engineering
+Important tasks in science, engineering, and mathematics increasingly depend on coding: analyzing data, modeling molecules, designing parts, and controlling instruments are all done through software. Below, we discuss how Claude Fable 5.2 and Claude Mythos 5.2 have helped researchers make progress on difficult problems in these areas.
+Theoretical physics
+Claude Fable 5.2 solved two open problems in theoretical physics. Both concern black holes, and the effort to unite the two linchpin theories of modern physics, relativity, and quantum mechanics.
+Both of Claude’s results rely on holographic duality, the idea that certain universes containing gravity can be precisely described by a quantum theory containing no gravity at all. In the first problem, physicists in 1983 had shown that as these universes heat up, black holes form abruptly, like water boiling; but their method worked only in large universes that were big enough for relativity to apply. A calculation to determine whether the same was true in very small universes, where only the quantum description can be used, was laid out in 2003 but was too laborious to complete. Fable 5.2, working largely autonomously, completed it and found the transition is abrupt there, too. In the second problem, Fable 5.2 found the exact limit of a technique physicists have used for more than 15 years to rule out candidate theories of quantum gravity in a simplified universe. Read more about these results in their respective preprints, 
+here
+ and 
+here
+.
+Protein folding
+Adeno-associated viruses are small, harmless viruses whose protein shell, the 
+capsid
+, can be used to deliver gene therapies. The protein structure of the capsid is important—for example, it affects whether the therapy will be blocked by a patient’s immune system—but it’s also highly complex. Existing protein-folding models like AlphaFold can predict individual proteins, but a capsid is built from dozens of them. Building on two open-source protein-folding models, Claude Mythos 5.2 found a novel way to accurately predict a whole capsid’s structure. It wrote code that ran these models on overlapping groups of protein chains, and used the information on the known symmetries of the capsid to merge them together.
+Claude’s method worked across several capsids, both natural and engineered (in our tests, it accurately modeled 28 of the 34 it attempted).³ Three computational biologists shared the following reflections on how Claude’s skills could be used to speed up their research into gene therapies:
+Dyno Therapeutics
+Columbia University
+Biohub
+Dyno Therapeutics
+Columbia University
+Biohub
+Quote
+“This acceleration could save meaningful time and cost from our capsid folding pipeline, enabling us to deploy compute more efficiently across many capsid properties that are needed for a genetic medicine. We are excited to help Anthropic push the reasoning capabilities further to reduce the cost of designing capsids overall.”
+Company
+Dyno Therapeutics
+Author
+Sam Sinai, Cofounder and Head of AI
+Quote
+“Large protein assemblies, including capsids, remain an open problem for protein modeling, due to the complexity of accurately predicting and positioning the structures of dozens of individual macromolecules, not to mention the inordinately high computational costs involved. Claude’s approach cleverly tackles this problem for symmetric assemblies, making it possible for individual scientists to model systems on personal workstations that would otherwise require dedicated clusters.”
+Company
+Columbia University
+Author
+Mohammed AlQuraishi, Assistant Professor of Systems Biology and Computer Science
+Quote
+“Biohub’s g
+
+===== https://hooly.jp/arts-and-crafts/2026-11-11-claude-electronics-design/
+(status 200)
+目次
+一枚の基板から、筐体とファームウェアと部品表まで（イメージ）
+2026年11月9日、AnthropicがClaudeに電子機器を一から設計させた研究を公開しました。基板の設計と製造を手がけるDiode Computersとの共同研究です。Claude Fable 5.2は短い指示を受け取り、スピーカーフォン、音声アシスタントのハブ、携帯型のバーチャルペットの3台を設計しました。仕様から回路図、基板の部品配置と配線、筐体のCAD、ファームウェア、部品表までをClaudeが作っています。
+結果として、3枚の基板はどれも設計ファイルのまま製造でき、試作機は回路を直さずに動きました。一方で、製品として売るための検証（電気的な検証、アンテナの調整、熱の試験、認証）はまだしていません。人が何を渡し、Claudeが何をどう判断し、どこから先が未検証なのかを順に見ていきます。
+（Diode ComputersはAnthropicと商業上の関係がある会社で、2025年から基板設計で協業しているとAnthropicは書いています。）
+人が渡したのは短い指示だけ
+最初の指示は、機器の説明と主なハードウェア要件だけでした。スピーカーフォンの場合は「USB-Cでつなぐ円盤型で、マイクとスピーカー、基板上のアンテナでBluetoothを持つもの」という内容です。
+その後のやり取りも短く、Diodeの担当者が送ったのはほとんどが「回路図を整理して」「続けて」のような指示でした。数少ない例外が、バーチャルペットについての「電池がなくても動く？」という質問です。
+Claudeが作ったもの
+Claudeが受け持った工程は次のとおりです。
+仕様を書く
+回路図を描く
+基板上の部品の位置を決める
+部品の間の銅の配線を引く
+3Dプリントできる筐体を設計し、基板が筐体に当たらないかを確かめるコードを書く
+ファームウェアを書く
+販売店の在庫を確かめながら部品表を作る
+製造できる設計か（DFM）と、部品が調達できるかを自分で検査する
+人が担ったのは組み立てと動作確認です。Diodeの技術者がClaudeの指示に従って基板を組み、ファームウェアを動かしました。Claudeは測定器にも、製造や組み立ての機械にもつながっていません。
+図1: 人が渡したのは短い指示で、組み立てと動作確認は人が担った
+3台の機器と、細部の判断
+Anthropicの報告で読み応えがあるのは、それぞれの機器でClaudeが下した細かい判断です。
+スピーカーフォン
+USB-Cの円盤型で、マイク、スピーカー、Bluetooth、タッチホイール、LEDのリングを持ちます。基板は銅の層が4枚です。
+タッチホイールの下の配線を交差させずに1つの層に収めるため、Claudeは2つのチップで信号を別のピンに割り当て直しました。Bluetoothのアンテナの周りは、すべての層で銅も穴も置かない領域にしています。ファームウェアは音が大きくなるほどLEDのリングを暗くします。基板に設計した電流の上限を超えないようにするためです。
+組み立てでは、ミュートのスイッチが筐体の奥の壁に当たり、基板をまっすぐ下ろせませんでした。Claudeは約25度傾けて入れれば収まると見つけ、その手順を組み立て手順書に書き足しています。この機器は数週間使ったあとも動いているそうです。
+音声アシスタントのハブ
+100ピンのコネクタ、USB、Ethernet、マイクを持つ家庭用の機器です。こちらも銅の層は4枚です。
+USBとEthernetの信号は2本1組で送るため、Claudeは1組ずつ配線し、2本の長さをそろえ、ジグザグの配線で長さを調整しました。配線が込み入ったときは、つないだ配線を消して引き直す作業を何十回も繰り返したといいます。
+筐体のマイク穴の判断が具体的です。Claudeは、長さ25mmの穴だと約3.4kHzで共振すると計算しました。ちょうど人の声に使う周波数の帯域の中です。Claudeの言葉では「理想的ではないが、音声アシスタントの用途ならまだ使える」程度の問題でした。そこで筐体をくさび形にして穴を約10mmと半分以下に縮め、共振を約8.9kHzまで上げています。声に使う帯域の端にあたる高さです。
+図2: Claudeは筐体をくさび形にしてマイク穴を短くした
+携帯型のバーチャルペット
+電池で動く小さな機器です。Diodeの担当者に「電池がなくても動く？」と聞かれたClaudeは、USBの電源で動くと答え、ただし充電ランプがちらつくだろうと予想しました。電池の代わりにつながる小さなコンデンサを、充電回路が充電し続けるからです。
+3台とも、記事の公開時点で正常に動いていると書かれています。
+配線の道具を30分で自作した
+配線の工程では、Diodeが用意した設計ソフトを通して、広く使われている基板設計ソフトKiCadの配線機能を使っていました。これは指定した2点の間に1本ずつ配線を引くものです。Claudeはこれとは別に、格子の上で経路を探す自前の配線ツールを書きました。
+訳: 30分ほどで、Claudeは長い配線を1本あたり約1秒で引ける配線ツールを作りました。
+"Within about half an hour, Claude had a router that could lay each long track in roughly a second."
+— Anthropic（2026年11月9日）
+Claudeはこのツールを調整して、雑音に弱い配線の周りに余裕を多く取るようにもしています。高速の信号、大きな電流が流れる線、雑音に弱い線から先に引く、という順番も守っています。
+製造前の検査も自分で直した
+ハブの基板を発注する前の検査では、はんだマスク（基板の表面を覆う保護膜）に、製造できないほど細い部分が6か所見つかりました。Claudeは部品を動かさずに開口部を広げて直しています。自動検査が出したグラウンド同士の接続のエラーは、意図した接続なので無視しました。
+Diodeは3枚の基板を、Claudeの設計ファイルから調整のやり取りなしで製造しました。Anthropicによると、Diodeのチームはこのやり取りが要らなかったことに驚いたそうです。
+訳: Diodeは3枚の基板すべてを、調整のやり取りを一切せずに、Claudeの設計ファイルから直接製造しました。
+"Diode manufactured all three boards directly from Claude's design files, without any back-and-forth over adjustments."
+— Anthropic（2026年11月9日）
+ベンチマークの数字
+Anthropicは2つの評価の結果も載せています。
+PCB Gym
+（Diodeの社内ベンチマーク）: 部品配置と配線を消した基板の設計を渡し、部品を置き直して配線を引き直させる評価です。Claude Fable 5.2は69%で、Claude Fable 5の25%から大きく伸びました
+BenchCAD 2.1
+（公開ベンチマーク）: 図面や画像から3Dの部品や基板を作り直させる評価です。Claude Fable 5.2は83.5%で、前のClaude Fable 5.1のほぼ2倍でした
+Anthropicによると、1年ほど前のモデルは基板の配置を安定してこなせず、組み合わさる部品の設計にも苦労していました。
+まだやっていないこと
+Anthropicは限界をはっきり書いています。
+訳: 3台とも、まだ試作品です。電気的な検証、アンテナの調整、熱の試験、認証はしていません。
+"All three of these devices are still prototypes: they haven't been through electrical validation, antenna tuning, thermal testing, or certification…"
+— Anthropic（2026年11月9日）
+量産を前提にした設計でもなく、使い続けたときの耐久性や、商用の認証に通るかどうかも分からないとしています。動く試作機から売れる製品までの間には、ここに挙がった工程がまるごと残っています。
+次の段階としてAnthropicは、より密で速く複雑な基板を設計させること、設計をシミュレーションで確かめること、完成した機器の測定結果から学ばせることを挙げています。
+ソフトウェアのエージェントは、テストを走らせて結果を見ながら直せます。今回のClaudeは測定器につながらず、基板を組んで動かしたのはDiodeの技術者でした。Claudeは設計段階の計算と検査で設計を詰めています。完成した機器の測定結果から学べるようになれば、「作って測って直す」繰り返しがハードウェアでも回り始めるかもしれません。
+♡
+–
+シェア
+ほかの記事
+2026年11月9日
+libghostty-vt 1.0とは何か: Ghosttyの端末エミュレーションを部品にしたCライブラリと、ABIを壊さない作法
+2026年11月8日
+Anthropicがエージェントの記憶を4層に整理: 強いモデルには「どう覚えるか」を指示しないほうが伸びた
+2026年11月7日
+Go 1.27のencoding/json/v2を読む: 移行は任意だが、encoding/jsonの中身はもうv2になっている
+
+===== https://www.aignal.net/news/claude-electronics-design-diode.html
+(status 200)
+Anthropicは2026年11月9日、公式ブログ「Claude designs and prototypes electronics」で、回路基板の設計・製造会社Diode Computers社と共同で、ClaudeにUSBスピーカーフォン、音声アシスタント用ハブ、携帯型のバーチャルペットという3台の電子機器を設計させたと発表しました。Claudeが担当したのは仕様策定、回路図、部品配置、基板の配線、筐体のCADモデリング、ファームウェア、部品リストの作成までで、Diode社がそれを基板製造・組み立て・動作確認しました。AnthropicとDiode社には商業的な提携関係があることも記事内で明記されています。なお記事では使用モデルを「Claude Fable 5.2」としています。
+Anthropicが具体例として挙げる技術的な工夫には、高速・大電流の配線を優先的に通してから残りを配線する手順、配線がピン同士で交差した際にチップのピン割り当てをやり直して基板をゼロから再配線する自己修正、データシートを読んで設計判断に反映する動作、標準搭載のKiCadルーターが長い配線の処理に不向きだったため独自のグリッドベースのルーターを新たに書いた点、設計ミスのチェックで本物の問題と誤検知(false flag)を仕分けた点、筐体内での3Dフィット確認(スピーカーフォンの基板は組み立て時に約25度傾けて設置する必要があると調整)、ハブのマイク用ポートの共振周波数をくさび形の筐体設計によって約3.4kHzから約8.9kHzへ移動させた音響計算が含まれます。
+性能の数値としては、Diode社内の非公開ベンチマーク「PCB Gym」でClaude Fable 5.2が69%、旧モデルのClaude Fable 5が25%という結果を記録したとAnthropicは説明していますが、これはDiode社内のベンチマークであり外部に公開されていないため、第三者による再現・検証はできません。公開ベンチマーク「BenchCAD 2.1」では、Claude Fable 5.2が83.5%を記録し、これは旧モデルClaude Fable 5.1のほぼ2倍の数値だとAnthropicは述べていますが、Fable 5.1自身の具体的なスコアは記事中に記載されていないため、「ほぼ2倍」という比較の精度は確認できません。3台の試作機はいずれも数週間使用した後も動作しているとDiode社が報告していますが、これも社内の観察であり、第三者による検証データではありません。
+一方でAnthropic自身も明確な限界を示しています。3台の試作機はいずれも電気的なバリデーション、アンテナ調整、熱試験、量産に向けた認証を経ておらず、量産を前提とした設計でもありません。Claude自身はテスト機器や製造機械には一切アクセスできず、組み立てや動作確認はDiode社のエンジニアが手作業で行いました。つまりこれはあくまで研究目的のデモンストレーションであり、この設計ワークフローが製品として一般提供されるかどうかについては記事内で言及されていません。
+AIGNALの見解としては、Claudeが単純な自動配線だけでなく、既存ツールの限界に直面した際に独自のグリッドベースルーターを新たに書いたり、配線の交差を発見して基板全体を再設計したりといった柔軟な問題解決を行えた点は、ハードウェア設計プロセスの一部を担う可能性を示す事例として注目に値します。ただし、示されたベンチマークの一つは第三者検証ができない社内基準であり、もう一つは比較対象となる旧モデルの具体的な数値が示されていないため、性能向上の実態を外部から正確に評価することはできません。また実証されたのはいずれも小ロット・単発の試作品であり、電気的検証や量産性という実用化に不可欠な工程は未確認のままです。業務での具体的な活用判断をするにはまだ材料が不足している段階と言えます。
+出典: 
+Anthropic
+Xでシェア
+
+===== https://jobirun.com/claude-fable-electronics-design/
+(status 200)
+［ニュース解説］Claudeが電子機器を一から設計、試作機3台が回路の修正なしで動作
+2026
+11/10
+				AIニュース			
+2026-11-10
+目次
+はじめに
+　Anthropicは2026年11月9日、電子機器の設計に関する研究結果を公開しました。Claude Fable 5.2が、電子機器を設計し、試作まで導けたという内容です。基板の配置や配線、ケース、ファームウェアまでClaudeが担い、試作機3台が回路の修正なしで動きました。仕組みと結果、限界を順に解説します。
+参考記事
+タイトル: Testing Claude on real-world electronics design
+発行元: Anthropic
+発行日: 2026年11月9日
+URL: 
+https://www.anthropic.com/research/claude-electronics-design
+要点
+AnthropicとDiode Computersは、Claude Fable 5.2に電子機器3種を設計させる実験を行った。
+Claudeは仕様書から回路図、基板レイアウト、ケース、ファームウェア、部品表までを作成した。
+試作機3台は回路の修正なしで動作し、Diodeは設計ファイルから調整なしで基板を製造した。
+基板設計ベンチマーク「PCB Gym」で、Fable 5.2は69%を記録した（Fable 5は25%）。
+3台は試作段階であり、電気的検証や熱試験、認証は行われていない。
+詳細解説
+何をしたのか：短い指示から3つの機器を設計
+　電子機器の設計では、回路だけでなく部品の物理的な配置も考えます。ケースやファームウェア（機器を動かすソフト）の作成も必要です。部品の入手性や、工場で作れるかへの配慮も欠かせません。
+　AnthropicとDiode Computers（以下Diode）は、2025年から基板設計で協力してきました。ただ以前のモデルは、プリント基板（PCB）のレイアウトを安定してこなせませんでした。配置の誤りに気づいても、やり直すことはまれでした。その結果、95%まで完成しながら使えない基板が数多く生まれたといいます。
+　今回はClaude Fable 5.2に、次の3つの機器を設計させました。
+USB-Cでパソコンにつなぐスピーカーフォン
+家庭向けの音声アシスタント用ハブ
+電池で動く携帯型のバーチャルペット
+　各機器は、種類と主な要件を書いた簡単なプロンプトから始めました。スピーカーフォンの指示は次のとおりです。
+> a puck that plugs into a computer over USB-C and includes microphones and a speaker, supporting Bluetooth with a PCB antenna
+　パソコンとUSB-Cでつなぐパック型の機器です。マイクとスピーカーを備え、基板上のアンテナでBluetoothに対応します。ここからClaudeは、仕様書と回路図、部品の配置と配線を手がけました。さらに3Dプリント用のケース、ファームウェア、部品表も作っています。
+　基板の組み立てとファームウェアの実行は、Claudeの指示のもとでDiodeが行いました。Diode側の指示は「回路図を整理して」「続けて」といった短いものが中心です。Claudeが設計ソフトを操作し、結果を見て次の手を決める「エージェント」型の使い方です。なお、AnthropicはDiodeとの商業的な関係を開示しています。
+どんな結果が出たのか：3台が修正なしで動作
+　3機種とも試作機まで完成し、回路の修正なしで動きました。スピーカーフォンは数週間使った後も動作しています。Diodeは設計ファイルから3枚の基板を直接製造しました。調整をめぐるやり取りは一度も必要ありませんでした。製造上の変更を重ねるのが普通なだけに、Diodeのチームは意外に感じたと話しています。
+　最大の進歩は、部品の置き場所と配線の通し方という幾何学的な問題を考える力です。Fable 5.2は、以前より小さくまとまった実用的なレイアウトを作りました。高速信号や大電流、ノイズに弱い配線から先に引いた点も特徴です。
+　音声アシスタントハブでは、USBとEthernetの差動ペアを1組ずつ配線しました。差動ペアは、2本1組で信号を送るノイズに強い配線です。Claudeは各組の長さと間隔をそろえ、小さなジグザグで到着時刻も合わせました。スピーカーフォンでは、電波が弱まらないようアンテナの周りを全層で空けています。
+　社内ベンチマーク「PCB Gym」では、Fable 5.2が69%、Fable 5が25%でした。レイアウトを取り除いた基板に対し、配置と配線の引き直しの出来を採点するテストです。公開ベンチマーク「BenchCAD 2.1」でも、Fable 5.2は83.5%でした。前のモデルであるClaude Fable 5.1の、ほぼ2倍の得点です。いずれも特定の課題での得点で、あらゆる基板設計の成功率ではありません。
+まだ分からないこと・限界
+　3機種はいずれも試作機で、次の工程は行われていません。
+電気的な検証
+アンテナの調整
+熱試験
+認証（製品として販売するための試験や審査）
+　量産を前提とした設計でもありません。使い続けてどこまで持つか、商用の認証に通るかはまだ分かりません。Claudeは測定機器や製造機械につながっていませんでした。組み立てと試験は、Diodeの技術者が担っています。
+　今後は、より高密度で高速、複雑な基板を設計できるかを調べる予定です。シミュレーションでの検証や、完成品の測定結果から学ぶことにも取り組みます。他社も前進しており、OpenAIも自社モデルで携帯型デバイスを設計した事例を公表しました。
+仕事や生活にどう関わるか
+　電子機器の試作には、回路、基板、ケース、ソフトと複数の専門知識が要ります。今回はその設計の大半を、短い指示のもとでAIが担いました。小規模なメーカーや試作を外部に頼む事業者には、最初の試作までの手間が減っていくとみられます。
+　ただし量産や販売には、検証や認証の工程が別に必要です。日本では、Bluetoothなどの無線機器を使うには、原則として電波法にもとづく認証が必要です。いわゆる技適マークがその目印です。今回の試作機は、そのまま製品にできるものではありません。
+　ハードウェアを作らない人にも、Claudeの振る舞いは参考になります。
+行き詰まったら、途中の成果を捨ててやり直す
+判断の前に、データシートなどの一次資料を確かめる
+既存の道具が合わなければ、作業用のプログラムを自作する
+自動チェックの警告を、本当の問題と誤検知に分ける
+　いずれも、AIに長めの作業を任せる場面全般で役立つ振る舞いです。なお、今回の設計環境を一般の利用者が同じように使えるかは公表されていません。
+行き詰まると自分で設計をやり直す
+　Claudeは設計がうまくいかないと、指示がなくても方針を変えました。4層のスピーカーフォン基板では、2つのチップのピン割り当てを入れ替えました。タッチホイール下の配線を1層に収め、電極を穴が貫くのを避けるためです。裏面が混み合うと、基板の一角をまるごと配置し直しました。経路を足すその場しのぎは取っていません。
+　音声アシスタントハブでは、配線が「目で追うには絡まりすぎてきた」と気づきました。そして「これらの配線をはがして、一からやり直すべきだ」と判断しています。うまくいく配置が見つかるまで、削除と引き直しを何十回も繰り返しました。
+　マイク周りでも、間隔の規則は満たしていても危うい配線を見直しました。同じ形の2つのマイクの配線を、どちらもきれいに引き直しています。以前のモデルが止まっていた段階を、自発的な作り直しで越えたと言えます。
+資料を読み、足りない道具は自分で作る
+　Claudeは、部品の細かな仕様が判断を左右する場面でデータシートをよく確認しました。バーチャルペットが電池なしで動くかを問われた際は、充電用チップのデータシートを読みました。USB給電で動くと答えつつ、充電ランプはちらつくと予測しています。
+　ハブには、100ピンのコネクタから延びる長い配線がありました。KiCadの内蔵ルーターは、2点間に1本ずつ配線を引く仕組みです。これでは段階的な指示が多くなりすぎると、Claudeは判断しました。
+　そこでClaudeは、基板を格子状に区切って空いた経路を探すルーターを自作しました。約30分で完成させ、長い配線1本をおよそ1秒で引けるようになりました。音声用クロックの配線がEthernetに近すぎることにも気づきました。そこで、ノイズに敏感な配線の周りは間隔を広く取るよう調整しています。
+影響を追い、工場で作れる設計に仕上げる
+　Claudeは、一つの決定が別の部分に及ぼす影響も追いました。基板の3Dモデルがケースに収まるかを確かめるコードを書いています。スピーカーフォンでは、基板をまっすぐ下ろすとミュートスイッチが壁に当たると分かりました。約25度傾けて入れてから倒せば収まると割り出し、組立手順書に加えています。
+　ハブでは、長さ25mmの音孔が3.4kHz付近で共振すると計算しました。「まさに声の帯域」で、使えるが理想的ではないという判断です。くさび形のケースにすると音孔は約10mmに縮み、共振は約8.9kHzまで上がりました。会話に使う音域のちょうど端にあたります。スピーカーフォンでは、音が大きいほどLEDリングを暗くし、電流の上限を守る処理も入れました。
+　製造面では、DFMチェック（製造性の確認）と部品の調達チェックを自ら実行しました。結果は「直すべき問題」と「無視してよい警告」に分けています。細すぎるソルダーマスク（基板表面の保護膜）6か所は、開口部を広げて解決しました。2つのグラウンドを結ぶ意図的な接続のエラーは、性能に影響しないと判断して無視しています。
+まとめ
+　Claude Fable 5.2は、短い指示から3種類の電子機器を設計し、回路の修正なしで動く試作機につなげました。配置と配線の推論や、自発的なやり直しが主な進歩です。一方で認証や量産向けの検証はこれからで、組み立てと試験は人が担いました。AIに設計を任せる場面は、試作の初期段階から広がっていきそうです。
+				AIニュース			
+				Anthropic			
+				Claude			
+				Fable			
+				電子工作			
+			この記事が気に入ったら
+ フォローしてね！		
+Follow @JOBIRUN_LLC
+URLをコピーしました！
+URLをコピーしました！
+［開発者向け］137BのコーディングAIを手元のPCで——Microsoftが語るMAI-Code-1.1-Flashの低ビット化と高速化
+［ニュース解説］OpenAIの「Control Room」とは？研究中のAIを35秒以内に止める仕組み
+関連記事
+［ニュース解説］Claude Fable 5.2とMythos 5.2が登場、性能・料金・使い分けを整理
+2026-11-10
+［ニュース解説］OpenAIの「Control Room」とは？研究中のAIを35秒以内に止める仕組み
+2026-11-10
+［開発者向け］137BのコーディングAIを手元のPCで——Microsoftが語るMAI-Code-1.1-Flashの低ビット化と高速化
+2026-11-09
+[ニュース解説] AIは実験室の「生データ」を読めるか——OpenAIがウェットラボ評価「BioBasicsBench」を公開
+2026-11-08
+［ビジネスマン向け］ Claude Enterpriseのセキュリティ機能強化を解説、設定点検からEDR連携まで
+2026-11-08
+［ニュース解説］研究者はClaudeを何に使う？20万件の分析とAIによる研究加速の試算
+2026-11-08
+［ニュース解説］AIエージェントは何を覚え、どう見直すか：Anthropicの記憶研究と「ドリーミング」
+2026-11-07
+［ニュース解説］OpenAIがAIで「ものづくり」の設計を加速、Astraの実験とマツダとの協力
+2026-11-07

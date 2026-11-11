@@ -1,0 +1,128 @@
+===== https://www.watch.impress.co.jp/docs/news/2155510.html
+(status 200)
+ニュース
+ロボットがリボンを結び、トングで盛り付け Google新AI
+清宮信志
+2026年11月11日 14:02
+ Google DeepMindは、ロボット向けAIモデル「Gemini Robotics 2.5」を発表した。道具の使用や柔らかい物体の操作などに対応し、作業の成功率と速度、安全性を向上。ロボット開発パートナーへの提供を開始している。 
+ 画像と言語の情報をもとにロボットの動作を制御するVLA(Vision-Language-Action)モデル。トングで料理を取り分ける、ギフトボックスのリボンを結ぶ、ピペットで液体を扱うといった200以上の作業で性能を検証した。従来の比較基準に対し、作業の種類に応じて成功率が30～100%向上し、所要時間は20～30%短縮したという。 
+ 複数のロボットに対応し、Apptronikのヒューマノイド「Apollo 2」や、2本指のグリッパーを備えた双腕ロボット「Franka Duo」などで利用できる。Apollo 2は、22自由度の5本指ハンド「SharpaWave」を搭載する。 
+ 実環境での検証では、Mercedes-Benzのハンガリー・ケチケメート工場とドイツ・ジンデルフィンゲン工場の稼働中の生産ラインにApollo 2を投入。部品箱から金属製ブラケットを取り出し、車両ごとに必要な順序でトレーに並べる作業で、96%の成功率を達成した。 
+ 作業工程の管理には推論モデル「Gemini Robotics ER」を、手や腕の制御にはGemini Robotics 2.5を使用。単調で身体的負担の大きい部品準備をロボットに任せ、作業員が複雑な組み立てに集中できる環境を目指す。 
+ 安全面では、推論時に動作を誘導し、周囲の危険をリアルタイムに回避する機能を強化した。同社の評価では、安全に作業を完了できる割合が、障害物のある環境で33%、人が近くにいる環境で43%向上したという。 
+ 開発には「Gemini 4 Argon」も活用。実際のカメラ映像をもとに多様なシミュレーションやデジタルツインを生成し、実機での学習データと組み合わせることで、新しい環境や物体への対応を効率化した。
+
+===== https://arstechnica.com/google/2026/11/deepmind-reveals-gemini-robotics-2-5-and-open-safety-benchmark-asimov-jailbreak/
+(status 200)
+Text
+        settings
+Story text
+Size
+Small
+Standard
+Large
+Width
+*
+Standard
+Wide
+Links
+Standard
+Orange
+* Subscribers only
+Learn more
+            Minimize to nav
+Google DeepMind has 
+revealed a new generation
+ of the AI-powered Gemini Robotics platform. In the 2.5 release, Google says its robotic AI is getting tantalizingly close to completing real-world tasks as well as humans do. In fact, some Gemini robots were able to get actual work done in Mercedes-Benz factories, and the team is preparing for a day when robots operate alongside humans with an open source safety benchmark.
+DeepMind’s 
+physical AI
+ platform has several computational layers between user input and robotic action. There’s the vision-language model piece, which is Gemini Embodied Reasoning. Essentially, it takes your instructions and uses live video to plan how the robot can accomplish the task. The other main component is the vision-language-action (VLA) that actually generates robot actions, like moving an actuator—that’s Gemini Robotics, which has been bumped to version 2.5.
+DeepMind says that Gemini Robotics 2.5 is much better at tasks that require a high degree of dexterity. The model was evaluated across more than 200 activities, including serving food with tongs and using a pipette, as you would see in a laboratory. Google also showed that Apptronik’s Apollo 2 humanoid robot with Gemini Robotics 2.5 can now tie a bow with its five-fingered hands, a notable feat, because deformable objects (like ribbon) are notoriously difficult for robots to manipulate.
+              Deformable objects are tough for robots, but Gemini is making progress.
+                  Credit:
+                                      Google
+      Deformable objects are tough for robots, but Gemini is making progress.
+          Credit:
+          Google
+Overall, Gemini Robotics 2.5 manages a 30 to 100 percent higher success rate compared to 
+the last version
+. It’s also 20 to 30 percent faster. But that’s based on laboratory testing. Google partnered with Apptronik and Mercedes-Benz to see how capable this AI is when faced with the uncertainty of the world outside robotics labs. The Gemini-powered Apollo 2 robots kitted automotive parts in a few European factories, reaching a 96 percent success rate.
+That’s an impressive showing compared to previous robotic AI systems, but it’s still probably not enough for a company like Mercedes-Benz. A human doing that sort of repetitive task will get it right virtually every time, and DeepMind director Kanishka Rao notes that closing that last 4 percent gap will be a “steep road.”
+You could manually program a robot to do a handful of tasks in a factory without issue—this type of automation has been common for decades. Gemini Robotics is not trying to just do a few things, though. These are intended to be general robots that can handle almost anything, but there are trade-offs to that approach.
+“We can be very good at a particular application at the cost of generalization,” said DeepMind Robotics head Carolina Parada. “Or we can just push on the generalization axis and maybe not get to 99.9 in every application.”
+Argon assistance
+Training data is essential for training all generative AI models. Most text-based chatbots in existence were fed basically the entirety of the open Internet, but there isn’t as much “physical data” for robotic AI. The best kind of training data for robots comes from teleoperation, but the team says Gemini 4 Argon has helped create a “simulation engine” that greatly accelerated development of Gemini Robotics 2.5.
+The team used Argon to generate thousands of variations on practice runs based on real-world camera data. These “digital twins” apparently allowed Gemini Robotics 2.5 to more quickly generalize new tasks and settings. There’s still a role for the real thing, though. DeepMind combined this synthetic data with traditional training demonstrations to ground the model.
+Argon was also used for analyzing failures and suggesting ways to improve in both simulations and real robots. However, this isn’t something that works in real time. Frontier models like Gemini take time to churn through their tokens, but robots need to be able to operate without long pauses. The new VLA isn’t lightning quick, either. While Google has experimented with some embedded robotics models, the current 2.5 release is still running on cloud-based servers. So those gains in accuracy and speed still don’t come without latency. The video above is sped up by 2x to make the robot look more human-like.
+DeepMind is also working to ensure the failures don’t put any nearby humans at risk. The team notes that Gemini Robotics 2.5 uses inference-time reasoning to avoid hazards. So if something gets in the way, the robot will stop completely or wait until it’s safe to continue. This is essential if you’re going to have a robot operating outside of the lab, for example, in a Mercedes factory. DeepMind says this feature allowed Gemini robots to safely complete tasks 33 percent more often when obstacles were present. The success rate went up 43 percent when people were in the way.
+There is no agreed-upon way to test physical AI for safety, but DeepMind hopes to move the industry in that direction with ASIMOV-Jailbreak. This is an open source database that contains 1,500 prompts designed to trick a robotic AI into doing something unsafe. For example, a prompt might ask the robot to place items in a bag and close it with a fastener too fiddly for the robot to operate. The AI should decline to do that, but attempting to proceed and incorrectly closing the container would be the “unsafe” outcome.
+DeepMind says that placing Argon in the loop results in a 98.8 percent jailbreak safety level. With just Gemini Robotics ER 2, the system scores 73.5 percent in Google’s safety benchmark.
+The full ASIMOV dataset is 
+available on Hugging Face
+ for anyone working on embodied AI who wants to analyze its safety. Gemini Robotics 2.5 is not generally available, but it’s now in the hands of Google’s robotics partners, including Agile Robots, Apptronik, and Boston Dynamics.
+                  Ryan Whitwam
+Senior Technology Reporter
+                  Ryan Whitwam
+Senior Technology Reporter
+      Ryan Whitwam is a senior technology reporter at Ars Technica, covering the ways Google, AI, and mobile technology continue to change the world. Over his 20-year career, he's written for Android Police, ExtremeTech, Wirecutter, NY Times, and more. He has reviewed more phones than most people will ever own. You can 
+follow him on Bluesky
+, where you will see photos of his dozens of mechanical keyboards.
+    43 Comments
+
+===== https://bytefwd.com/gemini-robotics-2-5-rolls-out-to-partners-not-a-public-api/
+(status 200)
+Listen to this article
+Google DeepMind announced 
+Gemini Robotics 2.5
+ on November 10, 2026, and says the model is rolling out to robotics partners. This is a vision language action model for controlling robots, not a general chat model.
+The access boundary matters. The 
+official model page
+ offers an early access waitlist, rather than an open endpoint. A partner rollout should not be mistaken for public API availability or downloadable weights.
+What Google says improved
+In its 
+launch announcement
+, Google reports evaluation across more than 200 tasks. It claims task success gains of 30 to 100 percent, depending on task type, and execution that is 20 to 30 percent faster than its previous baselines. These are vendor results, not ByteForward measurements.
+Google also describes an automotive kitting proof of concept using Apptronik Apollo 2 at Mercedes Benz facilities in Hungary and Germany, with 96 percent success. The example separates workflow monitoring by an embodied reasoning model from the action model controlling the robot. It does not establish universal factory reliability.
+Three names, different jobs
+System
+Role
+Access distinction
+Gemini Robotics 2.5
+Robot action and control
+Partner rollout; early access waitlist
+Gemini Robotics ER 2
+Embodied reasoning and orchestration
+Separate developer offering
+Apollo 2
+Apptronik robot hardware
+Not a Gemini API or model download
+Google’s 
+robotics overview
+ links separately to ER 2. Our 
+ER 2 access guide
+ explains its developer endpoints and streaming distinction. An ER 2 integration does not by itself grant access to the new action model.
+The 2.5 product page describes control spanning arms, hands and whole body movement, including stepping, bending and squatting. For an integrator, the useful question is which robot, sensor configuration and task the partner deployment supports. Broad capability language is not a compatibility list for an arbitrary machine.
+The robot still needs its own safety system
+Apptronik’s Apollo 2 product page
+ describes bipedal and wheeled configurations, swappable batteries and fleet management. Its Artemis architecture coordinates perception, planning, control and safety. The hardware also has an impact zone that pauses movement and a configurable perimeter zone. Those systems sit alongside the model; a higher model score does not replace them.
+Before planning a deployment, ask for the supported hardware configuration, task acceptance criteria, intervention rate, recovery behavior and pricing. None of the launch results tells you the cost of completing your own workflow. A successful pick is also not the same as a full shift without human intervention.
+Watch the official examples
+Google’s 
+announcement includes task demonstrations and factory footage
+. Treat them as selected vendor examples, not an independent endurance test. The practical news is a new partner action model with reported improvements, while general developer access remains a separate question.
+Featured image: official Gemini Robotics 2.5 announcement artwork, Google DeepMind. Used for editorial reporting; no endorsement is implied.
+Share your love
+Share on Facebook
+Share on X (Twitter)
+Share on LinkedIn
+Share on WhatsApp
+Share on Email
+ Jordan Reid 
+Jordan Reid is focused on AI tools, agents, developer products, and the way technology changes everyday work. Jordan approaches a launch from the user’s side of the screen. What can it actually help someone finish? The voice is practical, conversational, and skeptical of products that turn a simple job into five new settings. Coverage follows coding assistants, creative software, browser agents, and the workflows around them, with attention to pricing, permissions, setup, and the human work that remains.
+ Related Posts 
+AlphaProof Code verifies Signal code, not every security claim
+November 10, 2026
+Seedream 5.5 adds native transparency, with a staged rollout
+November 10, 2026
+Google Maps comes to AI Studio with free daily demo quotas
+November 9, 2026

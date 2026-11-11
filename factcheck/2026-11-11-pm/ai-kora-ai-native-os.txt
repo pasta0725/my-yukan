@@ -1,0 +1,387 @@
+===== https://pc.watch.impress.co.jp/docs/news/2155269.html
+(status 200)
+ニュース
+Windowsに挑むAIネイティブOS「KORA」、元Cyanogen創業者らが発表
+劉 尭
+2026年11月10日 23:00
+ 　CyanogenやAndroidに携わったメンバーが、今度はデスクトップOSでWindowsに挑む。米KORA Systemsは11月10日(米国時間)、AIモデルとエージェントをOSの一部として組み込んだLinuxベースのデスクトップOS「KORA」を発表した。2027年にPC向けに提供する予定で、Qualcomm TechnologiesとSnapdragon搭載PCでの協業も明らかにした。価格やビジネスモデルは、提供開始が近づいた時点で発表する。 
+ 　KORAは、カーネルからシェルまでを自社で構築したLinuxベースの完全なデスクトップOS。AIをブラウザのタブやアプリの中に閉じ込めるのではなく、OS自体に組み込むことで、ファイルやアプリ、ハードウェアまでをAIが扱えるようにするのが狙い。まずは開発者やクリエイターを対象とする。ローカルで動くモデルを標準としつつ、作業に応じてクラウドのフロンティアモデルを組み合わせられる。 
+ 　OSの中心となるのが、ハイブリッド推論エンジン「Cortex」。Cortexではマシン内のCPU、GPU、NPUに加え、ローカルネットワーク上のほかのマシンにもAIの処理を割り振り、全体を1台のマシンのように扱う。なお、Cortex自体は独自技術でオープンソースではない。一方でモデル層はオープンで、ローカル/クラウドを問わずユーザーが自由にモデルを選べるとしている。 
+2033年にAIへ料金を支払う人の数(KORA Systemsによる推計)
+ 　AIでの利用を想定し、「ニューラルワークスペース」と「ニューラルファイルシステム」を採用しているのも特徴だ。 
+ 　ニューラルワークスペースは、仕事やプロジェクト、クライアントごとにアプリやエージェント、情報を切り分けるサンドボックスのこと。AIが参照できるのは作業中のワークスペースのみとなり、環境全体を見ることはできない。その内側のアクセス制限は「AppArmor」によって強制されており、ハードウェア、ファイル、AIツール、連携サービスにわたり、アプリとエージェントごとのきめ細かな権限が設定される。 
+ 　一方、ニューラルファイルシステムは、ワークスペース内のファイルを名前や保存場所だけでなく、意味でも索引化して内容から検索できるようにする。さらに、ファイルのバージョン履歴をOSレベルで自動管理するようになっている。 
+ 　連絡先やメール、カレンダーなどをローカルモデルで分析して「記憶」を構築する機能も備え、分析結果はユーザーのPC上に保持される。 
+ 　また、同じチャットの中で、KORA自身のエージェントからCodexやClaude Codeといった外部のツールへコンテキストを引き継いだまま切り替えられる設計も採用。エクスポートや再インポートをせずに利用できるという。 
+ 　なお、プロジェクト、記憶、コンテキスト、セマンティック検索、メールなどの機能は、KORA SDKを通じてサードパーティにも開放するとしている。 
+ 　このほか、同社の前身であるPlaytronが開発したゲーミング向けLinux OS「GameOS」を、プレイモード「GameFrame」として統合。ワンクリックでデスクトップをゲーム機のような画面に切り替え、PC向けゲームを楽しめる。Snapdragon上では、独自の互換/変換技術によって、選定されたWindows x86-64アプリを動作させられる。 
+ 　Qualcommとは約1年にわたって共同で開発を進めてきたという。その結果、Snapdragon X2 Elite搭載PC上で完全なLinuxデスクトップを動作させ、AIの推論処理をCPU、GPU、NPUにまたがって割り振れるようになった。パラメータ数26B(260億)の言語モデルを、音声認識モデルや埋め込みモデルと合わせて完全にローカルで実行できるという。また、QualcommはSnapdragon X2 EliteのサポートをメインラインのLinuxカーネルにアップストリームし続けている。 
+Qualcommと協業し、CPU/GPU/NPUで推論
+ 　ちなみにKORA Systemsは、Cyanogen(AndroidベースのオープンソースOS「CyanogenMod」を商業化した企業) を共同創業したカート・マクマスター氏がCEOを務める。GoogleでAndroidの事業開発を率いたジョン・ラーゲリン氏がCBO、GameOSを開発したフランク・デ・ジロラミ氏がCTOに就く。出資者にはSamsung、スクウェア・エニックス、Polychain、VanEck、Circle、Alumni Venturesが名を連ねる。 
+ 　リリースの中でデ・ジロラミ氏は、「OSは、かつては巨大企業にしか作れないものでした。その時代は、いま終わりました。超人的な力を持つ50人のエンジニアがいれば、Windowsに挑めると私たちは考えています」などと述べ、Windowsに対して挑戦的な姿勢をアピール。KORAの元となったGameOSを、2023年1月に始めた採用の成果として挙げた。そして今は同じエンジニアたちがAIと協働して、一人ひとりがかつてのチーム全体に相当する成果を出しており、実際にKORA自身もKORAの中で作られているとした。 
+「スマートフォン」関連アイテム
+Amazonで購入
+
+===== https://press.kora.fun/
+(status 200)
+THE OPERATING SYSTEM FOR INTELLIGENCE
+The desktop OS was once something only a 
+giant
+ could build.
+That era 
+just 
+ended
+.
+We believe 
+50
+ superpowered engineers can take on the Windows dynasty.
+We are doing it by building an 
+open intelligence ecosystem
+, from the kernel up.
+The desktop OS was once something only a
+giant
+could build.
+That era just
+ended
+.
+We believe
+0
+superpowered engineers can take on the Windows dynasty.
+We are doing it by building an
+open
+intelligence
+ecosystem
+,
+from the kernel up.
+Franck De Girolami, Chief Technology Officer, KORA Systems Inc.
+The Operating System for Intelligence
+Film
+hello, 
+world.
+Play the film
+37 seconds · 1920 × 1080 · with sound
+Download the film (MP4)
+The product
+The desktop
+operating
+ system is
+ the
+ultimate harness.
+Models. Memory. Context. Apps. Silicon. The operating system is the only layer that can make them one.
+One intelligence layer across work, creation, and play. Local by default, frontier when it matters, yours all the time.
+“Anthropic defines its individual customers as ‘prosumers’: people who subscribe to AI tools to do knowledge work... executing 
+multi-step
+ workflows on a user’s desktop.”
+Anthropic · Form S-1 · 
+October 26, 2026
+The Operating System for Intelligence
+1
+Press release · For immediate release November 10, 2026, 6:00 a.m. PT
+KORA
+The 
+announcement.
+PDF
+Word
+Plain text
+The Team That Shipped Cyanogen, Android and Playtron Unveils KORA: A New Desktop OS for the Age of Intelligence, Open to Every Model and Agent
+Built on Linux from the kernel up, KORA gives local models, frontier models and agentic services the system-level integration closed platforms cannot offer, and opens the entire operating system to every model, AI service and agent.
+PALO ALTO, Calif., Nov. 10, 2026
+KORA Systems Inc. today unveiled KORA, The Operating System for Intelligence: a new desktop operating system, built on Linux, in which models and agents are part of the OS itself. KORA is a pure-play company building a truly native desktop operating system for intelligence, and it comes from a team that has already shipped three operating systems, Cyanogen, Android and GameOS, to more than a billion devices.
+Every desktop operating system in use today was finished before intelligence arrived. On macOS and Windows, AI lives in a browser tab or an app sandbox. It cannot see the machine it runs on, schedule the silicon beneath it, or reach the files, memory and applications around it. Both platforms are closed, so that is where the integration ends. Linux is the only operating system that can be completely transformed by intelligence. KORA is that transformation.
+KORA is built from the kernel to the shell around one idea: intelligence belongs inside the operating system. KORA's Cortex is the nervous system of the OS, a hybrid inference engine optimized for local models that turns every chip in the machine, CPU, GPU and NPU, and every machine on the network into one computer. Local models run on the user's own silicon by default, and frontier models join when the work calls for them. Neural workspaces and file systems replace the folders-and-apps desktop with one organized around intent, context and memory. Each workspace is a secure sandbox for its applications and agents, with permissions the user manages, and memory and context stay on the user’s own computer. The KORA SDK lets third parties integrate with KORA’s primitives, including projects, memory, context, semantic search and email.
+“The desktop operating system is the ultimate harness. Roughly 45 million people, about half a percent of the world, account for 80 percent of the spend on intelligence. They are the AI-native prosumers who run agents and coding tools all day, and almost all of that work happens on a desktop running an operating system built 40 years ago. By 2033 that is more than 150 million of them spending over $400 billion a year. Nobody has built an operating system for them. KORA is the first.”
+Kirt McMaster, Chief Executive Officer of KORA Systems Inc
+Openness is the point. KORA's goal is an open intelligence ecosystem: an operating system open to every model, every AI service and every agent, where partners integrate at the system level. The capabilities behind KORA’s own applications, including memory, neural workspaces and file systems, will be available to third-party developers under the same user-managed permissions. A local model can become the default mind of the machine. An agentic service can run as part of the OS, with the identity, memory, permissions and compute the OS provides. That has been KORA's thesis from the first day of the project, and it is the one thing no incumbent can copy. Their platforms are closed by design, and their intelligence answers to their business models. KORA answers to the person at the keyboard.
+“I joined Android when it had a hundred thousand users and left when it had a billion. It got there because it was open to everyone who wanted to build on it. Intelligence is the next platform shift, and it needs the same thing: an operating system where every model, every service and every agent is a first-class citizen. KORA opens that door on day one. The ecosystem that walks through it will decide the next decade of computing.”
+John Lagerling, Chief Business Officer of KORA Systems Inc
+KORA grew out of Playtron, the company McMaster founded to break Windows' hold on the gaming PC. Playtron built GameOS, a complete Linux operating system from the kernel to the compositor, and shipped it on devices in record time on a record budget. That work produced the one thing every intelligent operating system needs and no application can supply: a full OS the team controls end to end. KORA has been in development on that foundation since November 2025, built by the same engineers who shipped GameOS. GameOS lives on inside KORA as GameFrame, its play mode: one click turns a KORA desktop into a game console running the PC catalog. Work, Create and Play, on one machine.
+“An operating system was once something only a giant could build. That era just ended. We believe 50 superpowered engineers can take on Windows. In January 2023 we started hiring for this, from the kernel up, and the result was GameOS, a full Linux operating system running on shipping hardware. Now the same engineers work side by side with frontier and local models and agents, and each of them ships what a team used to ship. The acceleration is astonishing. Our own product is the evidence: KORA is built inside KORA.”
+Franck De Girolami, Chief Technology Officer of KORA Systems Inc
+KORA is built first for developers and creators: the people who already pay for intelligence, run models on their own silicon and buy the hardware to do it. KORA’s own applications connect communication, organization and creation in one environment, so people move between ideas, tools and agents without rebuilding context. On KORA, a single workflow can span a local model, a frontier model and a dozen agentic services, scheduled across the whole machine, with the results landing in a workspace that remembers.
+KORA is coming to PCs in 2027, including Snapdragon-powered machines through KORA's collaboration with Qualcomm Technologies. HUMAIN OS, the enterprise operating system KORA is co-developing with HUMAIN, was announced separately and is planned for 2027. Updates and the full story are at kora.fun.
+The desktop
+The Money Is in the 
+Desktop.
+Who pays for AI, 2026 and 2033 (people)
+Group
+2026
+2033 (estimate)
+Not using AI
+6.3B
+4.0B
+Use free AI
+1.9B
+4.5B
+Pay for AI
+55M
+250M
+AI natives, standard plans
+30M
+75M
+Heavy payers
+15M
+75M
+Spend a year
+$40B
+$500B+
+Pay for AI · 400M
+Replay
+2026
+2033
+Each dot is 3.3 million people in 2026 and 3.6 million in 2033 · 2,500 dots = the world
+2033
+Today
+Estimate
+44.9%
+Not using AI
+4.0B
+50.6%
+Use free AI
+4.5B
+Pay for AI · 
+4.5%
+2.8%
+Regular payers
+chat, images, writing
+250M
+AI natives · 
+1.7%
+0.84%
+Standard plans
+$20–60 a month
+75M
+0.84%
+Heavy payers
+$100+ a month
+75M
+400M
+4×
+Pay for AI
+People who pay for at least one AI product.
+$500B+
+12.5×
+Spend a year
+Consumer AI spend. The 2026 figure is Menlo Ventures.
+150M
+3.3×
+AI natives
+Four fifths of the spend.
+Sources: UN World Population Prospects · Menlo Ventures, State of Consumer AI 2026 · Microsoft AI Diffusion Report 2026 · Anthropic Form 
+S-1
+, Oct 26, 2026 · Company disclosures (OpenAI, Microsoft, xAI, Cursor) · People who pay for AI today, the tier split, and every 2033 figure are KORA Systems Inc. estimates · Users = people who used AI in the past month
+Download the chart (PNG)
+2026
+2033
+About KORA
+KORA Systems Inc. is building the operating system for intelligence: KORA, a ground-up reimagining of the desktop for the age of intelligent PCs. KORA's Cortex is the nervous system of the OS, a hybrid inference engine optimized for local models that turns every chip in the machine and every machine on the network into one computer, and neural workspaces and file systems are its new user experience. The team has deep roots in operating-system engineering and platform-ecosystem building, with three operating systems, Cyanogen, Android and GameOS, shipped to more than a billion devices. KORA Systems Inc. is backed by Samsung, Square Enix, Polychain, VanEck, Circle and Alumni Ventures. For further details about KORA, please visit kora.fun.
+Media Contact
+pr@kora.inc
+###
+2
+Joint release · KORA Systems Inc. and Qualcomm Technologies, Inc.
+Building what comes 
+next,
+ on Snapdragon.
+Next-gen desktop
+Whole-chip inference
+Large models on-device
+For immediate release November 10, 2026, 6:00 a.m. PT.
+PDF
+Word
+Plain text
+KORA Advances Linux-Based Operating Systems for Intelligence on Snapdragon
+Close to a year of engineering brings a full Linux desktop, system on a chip inference and large AI models on-device to Snapdragon X2 Elite; HUMAIN OS for the enterprise and KORA, The Operating System for Intelligence for developers and creators, arrive on PCs powered by Snapdragon in 2027
+PALO ALTO and SAN DIEGO, Calif., Nov. 10, 2026
+KORA Systems Inc. is working with Qualcomm Technologies, Inc. to advance Linux-based operating systems for intelligence on PCs with Snapdragon® X Series platforms. Close to a year of engineering by the two companies has brought a complete Linux desktop operating system to PCs with Snapdragon X2 Elite, with large AI models running entirely on the device and inference scheduled across the platform's CPU, GPU and NPU.
+The work is the foundation for two operating systems arriving on PCs powered by Snapdragon in 2027: HUMAIN OS, the enterprise-grade, AI-native operating system KORA is developing with HUMAIN first unveiled at LEAP 2026 in Riyadh; and KORA, The Operating System for Intelligence, a new desktop operating system built for developers and creators.
+Operating systems in use today were designed before computers could run intelligence of their own. KORA takes a fundamentally new approach, building on Linux as an open foundation engineered around intelligence from the kernel up, and Snapdragon X2 Elite supplies the silicon: the Qualcomm Oryon™ CPU, Qualcomm® Adreno™ GPU and an 80 TOPS Qualcomm® Hexagon™ NPU on one platform, with the efficiency to run large models on a laptop.
+Engineers from Qualcomm Technologies worked alongside KORA throughout, from bringing up the Linux desktop on Snapdragon X2 Elite to tuning inference across the CPU, GPU and NPU. Qualcomm Technologies continues to upstream Snapdragon X2 Elite support into the mainline Linux kernel, work that benefits both operating systems and the wider Linux ecosystem.
+What KORA built for PCs with Snapdragon
+A complete Linux desktop on Snapdragon X2 Elite.
+ KORA's Linux platform runs on Snapdragon X2 Elite from the kernel up, including a new desktop environment designed and built by KORA for intelligent PCs. The first OEM PCs in the world to ship with a Linux desktop operating system on a PC with Snapdragon X2 Elite will run HUMAIN OS in 2027.
+Inference across the whole processor.
+ KORA's Cortex, the hybrid inference engine at the core of both operating systems, schedules AI workloads across the CPU, GPU and NPU of Snapdragon X2 Elite, so the entire chip works on the task at hand. Cortex extends the same scheduling to other machines on the local network.
+Large models entirely on-device.
+ The ability to run a 26-billion-parameter language model locally on PCs with Snapdragon X2 Elite, alongside automatic speech recognition and embedding models. Responses stay fast, dependence on the cloud goes down, and sensitive information can stay on the device.
+Agents built into the operating system.
+ Agents are part of the OS architecture and can work with authorized system capabilities, applications, files and services, so AI can complete real work across the desktop. A neural file system indexes files by meaning, so people and agents can find information by what it contains as well as by name or folder.
+Windows software for Snapdragon.
+ Compatibility and translation technologies developed by KORA run selected Windows x86-64 applications inside the Linux environment on Snapdragon, so people keep access to the software they rely on as they move to a new platform.
+Two operating systems. One foundation.
+HUMAIN OS is the enterprise-grade, AI-native operating system KORA is developing in collaboration with HUMAIN. It is organized around intent, intelligence and action: users express what they want to accomplish, and the operating system assembles the relevant context, selects the appropriate local or cloud intelligence, and coordinates agents and applications to complete the work. HUMAIN OS integrates enterprise email, calendars and chat to provide a unified view of workplace information, alongside a suite of AI-native office applications. First demonstrated at LEAP 2026, HUMAIN OS is expected to become commercially available in 2027.
+KORA is The Operating System for Intelligence: a new desktop operating system built for developers and creators, and a ground-up reimagining of the desktop for the age of intelligent PCs. KORA shares the foundation developed with Qualcomm Technologies, including Cortex, neural workspaces and file systems, and it is open at the model layer: any model, from any lab, local or cloud, the user's choice. KORA comes to Snapdragon-powered PCs in 2027.
+“Every operating system in use today was designed before the computer had a mind. For close to a year, we have been building what comes after it with Qualcomm Technologies, on Snapdragon platforms: a full Linux desktop, large models running on the device, and the CPU, GPU and NPU working on the task as one machine. HUMAIN OS is the first operating system to ship on that foundation. KORA, The Operating System for Intelligence, follows on Snapdragon in 2027, built for the developers and creators who want the whole computer working for them.”
+Kirt McMaster, Chief Executive Officer of KORA Systems Inc
+“Snapdragon X2 Elite was designed to run advanced AI on the device, across the CPU, GPU and NPU. KORA's work brings a complete Linux desktop operating system built around that capability to Snapdragon, and we look forward to HUMAIN OS and KORA arriving on PCs powered by Snapdragon in 2027”
+Kedar Kondap, SVP & GM, Compute and Gaming, Qualcomm Technologies, Inc
+“HUMAIN OS is redefining the enterprise computing experience by putting intelligence at the core of how people work. By bringing together enterprise applications, contextual intelligence and AI agents in one unified operating system, we are enabling people to move seamlessly from intent to action. Together with KORA and Qualcomm Technologies, we are bringing this next generation of AI-native computing to market, delivering powerful on-device intelligence, greater productivity and a fundamentally smarter way to work”
+Tareq Amin, Chief Executive Officer, HUMAIN
+Availability
+HUMAIN OS will be commercially available in 2027, debuting on the world's first OEM PCs to combine a Linux-based desktop operating system with the Snapdragon X2 Elite platform. KORA will follow later in 2027, expanding availability to Snapdragon-powered PCs.
+About KORA
+KORA Systems Inc. is building KORA, The Operating System for Intelligence: a ground-up reimagining of the desktop for the age of intelligent PCs. At its core is Cortex, the nervous system of the OS, a hybrid inference engine optimized for local models that turns every chip in the machine and every machine on the network into one computer. Neural workspaces and file systems form the new user experience. The KORA team has deep roots in operating-system engineering and platform-ecosystem building, having shipped three operating systems, Cyanogen, Android and GameOS, to more than a billion devices. KORA's investors include Samsung, Square Enix, Polychain, VanEck, Circle and Alumni Ventures. For further details about KORA, please visit kora.fun.
+Media Contacts
+KORA: 
+pr@kora.inc
+HUMAIN: 
+pr@humain.com
+Snapdragon and Qualcomm branded products are products of Qualcomm Technologies, Inc. and/or its subsidiaries. Qualcomm, Snapdragon, Hexagon and Adreno are trademarks or registered trademarks of Qualcomm Incorporated.
+###
+Film
+Watch the film
+KORA × QUALCOMM · 2:26 · 1920 × 1080 · with sound
+Download the film (MP4)
+The Operating System for Intelligence
+Announced at LEAP 2026 · Riyadh
+A 
+sovereign
+ enterprise OS for intelligence.
+HUMAIN OS is the enterprise-grade, AI-native operating system KORA is developing in collaboration with HUMAIN, the PIF-backed AI company in Saudi Arabia. The partnership was announced at LEAP 2026 in Riyadh, where HUMAIN OS was demonstrated for the first time in an early form.
+HUMAIN OS is built on KORA's Linux and agentic platform. It is organized around intent, intelligence and action: users express what they want to accomplish, and the operating system assembles the relevant context, selects the appropriate local or cloud intelligence, and coordinates agents and applications to complete the work. It integrates enterprise email, calendars and chat to provide a unified view of workplace information, alongside a suite of AI-native office applications.
+HUMAIN OS is expected to become commercially available in 2027, debuting on the world's first OEM PCs to combine a Linux-based desktop operating system with the Snapdragon X2 Elite platform. HUMAIN has said it is targeting a 26-billion-parameter model running locally on the Qualcomm NPU.
+HUMAIN OS and KORA are two operating systems on one foundation: the Linux desktop, Cortex, neural workspaces and file systems that KORA built with Qualcomm Technologies on Snapdragon. HUMAIN OS serves the enterprise. KORA, The Operating System for Intelligence, serves developers and creators, and comes to Snapdragon-powered PCs in 2027.
+Joint release: "HUMAIN and KORA Partner to Build Operating System at LEAP 2026" (PR Newswire): https://www.prnewswire.com/news-releases/humain-and-kora-partner-to-build-operating-system-at-leap-2026-302865087.html
+HUMAIN media contact: pr@humain.com
+Film
+Watch the film
+KORA × HUMAIN · 3:07 · 1920 × 1080 · with sound
+Download the film (MP4)
+Fact sheet
+KORA in 
+one page.
+Company
+KORA Systems Inc., Palo Alto, Calif. The company was founded as Playtron in 2022 and built GameOS, a complete Linux operating system that shipped on devices. KORA has been in development on that foundation since November 2025.
+Product
+KORA, The Operating System for Intelligence: a new desktop operating system, built on Linux, in which models and agents are part of the OS itself.
+Announced
+November 10, 2026.
+Who it is for
+Built first for developers and creators: the people who already pay for intelligence, run models on their own silicon and buy the hardware to do it.
+Three modes
+Work, Create and Play, on one machine.
+Cortex
+The nervous system of the OS: a hybrid inference engine optimized for local models that turns every chip in the machine (CPU, GPU and NPU) and every machine on the network into one computer. L
+
+===== https://techcrunch.com/2026/11/10/after-challenging-googles-android-with-cyanogen-its-co-founder-takes-aim-at-windows-for-ai-era/
+(status 200)
+Almost a decade after Cyanogen 
+shut down its Android operating-system business
+ following a years-long, unsuccessful effort to loosen Google’s dominance, its co-founder, Kirt McMaster, is now targeting Microsoft’s Windows with a new operating system designed for people who rely heavily on artificial intelligence in their everyday work.
+McMaster’s company, 
+Kora Systems
+, on Tuesday unveiled a Linux-based desktop operating system that integrates AI models and autonomous agents directly into the computing experience, allowing them to work across applications, access files, and retain context between tasks. The software is expected to launch in 2027 as a free-to-use desktop operating system, with support for existing Intel- and AMD-powered PCs as well as machines running Qualcomm’s Snapdragon chips.
+Kora is developing the eponymous operating system with a team of about 50 engineers, relying on AI coding tools, including OpenAI’s Codex and Anthropic’s Claude. McMaster told TechCrunch that these tools have accelerated development by at least fivefold, with most of the gains coming over the past six months.
+Microsoft has long dominated the PC operating-system market, making it hard for newer players to establish a foothold. Windows 
+held about 77%
+ of the worldwide desktop operating-system market in October, compared with nearly 10% for Apple’s OS X, according to Statcounter’s web traffic data.
+However, McMaster believes Kora does not need to compete for Windows’ entire user base. Rather, he is targeting people who use AI extensively and are willing to pay for access to powerful models and services.
+“Microsoft can keep its billion users,” McMaster said, estimating that 45 million to 50 million people currently account for much of AI usage and revenue. He expects that market to exceed 200 million users by 2033.
+McMaster told TechCrunch that his experience at Cyanogen, where he 
+spent over five years
+, taught him the dangers of relying on the very company he was trying to challenge. Cyanogen remained heavily dependent on Google Mobile Services despite offering features beyond Google’s version of Android. That ultimately restricted its ability to build an independent ecosystem.
+“If you are trying to compete with an incumbent but are still reliant on them, you have no chance,” he said.
+Kora, McMaster said, builds on an idea he pursued toward the end of his time at Cyanogen, when he began exploring ways to integrate third-party services directly into the operating system. With Kora, he wants AI models and agents to work across applications and access files without being confined to individual apps.
+Kora’s Chord chat interface with access to local and frontier models.
+Image Credits:
+Kora Systems
+Previously known as 
+Playtron
+, a 
+gaming operating-system company
+ led by McMaster, the Palo Alto-based company rebranded as Kora in July 2025 as it shifted its focus to AI. The decision came as early companies, including Perplexity and OpenAI, were moving into AI-powered web browsers, McMaster said. He believed browsers would not give AI agents enough access to a computer to carry out more complex tasks, making an operating system a better starting point.
+The shift also allowed Kora to build on nearly three years of work developing Playtron’s Linux-based gaming operating system, called GameOS, instead of starting from scratch.
+Kora is designed to let users work with different AI models and agents across applications, while keeping track of conversations, documents, and other information. It also allows AI agents to operate in separate workspaces with restricted access to files and other resources.
+While McMaster has drawn on his experience at Cyanogen, none of Kora’s engineers worked there. Instead, the company recruited heavily from the Linux gaming community, he told TechCrunch.
+Kora’s software is built on Linux and uses Nix. It replaces the Fedora Silverblue foundation of Playtron’s earlier GameOS.
+While Linux and Nix are open source, McMaster said Kora’s own technology, including its Cortex AI engine and desktop interface, remains proprietary. The company, he said, intends to support AI models and services from different providers, although it has not committed to making its own software open source.
+Gaming also remains part of Kora’s plans. McMaster said the company intends to introduce AI-powered tools that would allow developers to create, publish, and play games directly within the operating system. He added that support for Android apps is also on its roadmap.
+Kora’s GameFrame to bring a Game console-like experience.
+Image Credits:
+Kora Systems
+McMaster told TechCrunch that Kora’s team has worked closely with Qualcomm’s engineers for nearly a year to optimize the operating system specifically for Snapdragon-powered PCs. The collaboration includes support for Qualcomm’s Snapdragon X2 Elite chips.
+Alongside Qualcomm, Kora is working with Saudi Arabia’s AI company Humain on an enterprise version of the operating system, called Humain OS, which is expected to run on Snapdragon-powered laptops in 2027. Kora also plans to announce partnerships with PC manufacturers at a later date, though McMaster did not identify any companies or provide a specific timeline.
+Kora plans to generate revenue through subscriptions that bundle access to AI models and agentic services. Moreover, its Cortex engine is designed to run AI tasks locally when possible and use cloud-based models for work requiring more computing power.
+Kora’s investors include Samsung Next, Square Enix, Alumni Ventures, Polychain, VanEck, and Circle, all of which previously backed Playtron. The company, McMaster said, has raised additional funding since shifting its focus to AI. However, he declined to disclose the total amount raised or its valuation. Kora has enough funding to operate for several years, he said.
+Topics
+AI
+, 
+AI agents
+, 
+Cyanogen
+, 
+Kora
+, 
+Startups
+, 
+United States
+When you purchase through links in our articles, 
+we may earn a small commission
+. This doesn’t affect our editorial independence.
+			Jagmeet Singh	
+Reporter
+Jagmeet covers startups, tech policy-related updates, and all other major tech-centric developments from India for TechCrunch. He previously worked as a principal correspondent at NDTV. 
+You can contact or verify outreach from Jagmeet by emailing 
+[email protected]
+.	
+View Bio 
+2027
+San Francisco
+Get an Early Peek at the Next TechCrunch Disrupt
+Disrupt, Startup Battlefield, and more will return next year, and you can be at the front of the line.
+Sign up for our waitlist
+Register Now
+Most Popular
+Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks
+Aisha Malik
+Jensen Huang’s alleged honeypot scandal has inspired some top-notch memes
+Dominic-Madori Davis
+Lucas Ropek
+Waymo robotaxis kept illegally passing school buses after software fix, feds say
+Kirsten Korosec
+Musk says Tesla will refund some Cybertruck deposits, defends decision to end production
+Kirsten Korosec
+Tesla will stop making the Cybertruck in 2027
+Sean O'Kane
+Claude can now analyze your spending with its new Personal Finance tool
+Aisha Malik
+Harbinger raises $240M after expanding into defense
+Sean O'Kane
+
+===== https://hwbusters.com/news/kora-desktop-os-linux-ai-snapdragon-x2-elite-2027/
+(status 200)
+News
+KORA Desktop OS Builds AI Into Linux, Heads to Snapdragon X2 Elite PCs in 2027
+November 10, 2026
+crmaris
+KORA Systems, led by Cyanogen co-founder Kirt McMaster, has unveiled KORA, a Linux-based desktop OS that makes AI models and agents part of the operating system. Its enterprise sibling, HUMAIN OS, ships first on Snapdragon X2 Elite PCs in 2027, and KORA follows later that year.
+The embargo is up on the KORA desktop OS, which its maker bills as “The Operating System for Intelligence.” KORA Systems Inc. built it on Linux from the kernel up, and the pitch is easy to follow: on Windows and macOS, AI lives in a browser tab or an app sandbox and sees very little of the machine it runs on. On KORA, the models and agents are part of the OS itself.
+The company is small and makes a point of it. “We believe 50 superpowered engineers can take on Windows,” says CTO Franck De Girolami. The team came out of Playtron, the startup McMaster founded to build GameOS, a Linux operating system for gaming PCs, and it counts Cyanogen, Android and GameOS among the operating systems its people have shipped. Chief Business Officer John Lagerling says he joined Android when it had a hundred thousand users and left when it had a billion. KORA has been in development since November 2025, and its backers include Samsung, Square Enix, Polychain, VanEck, Circle and Alumni Ventures.
+Image: KORA Systems press kit
+Cortex, neural workspaces and local models first
+At the center sits Cortex, which KORA calls the nervous system of the OS. It is a hybrid inference engine tuned for local models, and it schedules AI work across the CPU, GPU and NPU, and even across other machines on your local network. Local models run on your own hardware by default, cloud frontier models step in when a job needs them, and the platform is open at the model layer: any model, from any lab, local or cloud.
+The folders-and-apps desktop gives way to neural workspaces and a neural file system that indexes files by what they contain, not only by name or folder. Each workspace is a sandbox with permissions the user controls, and memory and context stay on the local machine. Agents can work with the system capabilities, apps, files and services you authorize, and the KORA SDK gives third-party developers access to projects, memory, context, semantic search and email. Gamers get something too: GameOS lives on inside KORA as GameFrame, a play mode that turns the desktop into a console for the PC game catalog.
+Built with Qualcomm on Snapdragon X2 Elite
+In a joint release, KORA and Qualcomm say close to a year of engineering has produced a complete Linux desktop on Snapdragon X2 Elite, with inference spread across the Oryon CPU, the Adreno GPU and the 80 TOPS Hexagon NPU. KORA says the platform can run a 26-billion-parameter language model entirely on the device, next to speech recognition and embedding models. It has also built a compatibility and translation layer that runs selected Windows x86-64 applications inside the Linux environment on Snapdragon. Qualcomm engineers worked alongside KORA throughout, and Qualcomm continues to upstream Snapdragon X2 Elite support into the mainline Linux kernel, the effort we 
+covered in September
+.
+“Snapdragon X2 Elite was designed to run advanced AI on the device, across the CPU, GPU and NPU,” said Kedar Kondap, SVP and GM of Compute and Gaming at Qualcomm Technologies.
+HUMAIN OS goes first
+The first operating system on this foundation does not carry the KORA name. HUMAIN OS is an enterprise OS that KORA is co-developing with 
+Saudi AI company HUMAIN
+, first shown at LEAP 2026 in Riyadh. Users state what they want done, and the OS gathers the context, picks a local or cloud model and coordinates the agents and apps, with enterprise email, calendars, chat and AI-native office apps built in. It is due in 2027 on what the companies call the first OEM PCs to pair a Linux desktop OS with Snapdragon X2 Elite. KORA follows later in 2027, aimed first at developers and creators.
+What to watch for
+This is an announcement, not a release: there is no download yet, no named KORA laptop, and no pricing or system requirements. The main release says KORA is coming “to PCs in 2027, including Snapdragon-powered machines,” so other platforms look likely, but Snapdragon is the only one named so far. The Windows layer covers “selected” applications, and how far that list reaches will matter to anyone thinking of leaving Windows. We also want to see speed and memory figures for that 26B model on a real laptop. McMaster’s market figures, roughly 45 million AI “prosumers” today and more than 150 million by 2033, are the company’s own estimates.
+Even so, an OS that schedules local models across every block of the chip suits the NPU-heavy laptops coming next year, and Linux on Arm PCs has needed a backer this committed. Both releases, the launch film and the images are in the 
+KORA press kit
+, and updates will appear at 
+kora.fun
+.
+Related Posts
+News
+                                            Steam Store Pages Now Show Real Steam Deck Frame Rates, Histograms Included                                        
+November 10, 2026
+crmaris
+News
+                                            AMD Posts GFX13 Kernel Patches, the First Linux Driver Code for RDNA 5 Graphics                                        
+November 10, 2026
+crmaris

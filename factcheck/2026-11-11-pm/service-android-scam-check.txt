@@ -1,0 +1,127 @@
+===== https://jetstream.blog/2026/11/11/android-cross-device-services-scam-check-app-teardown/
+(status 200)
+カテゴリー
+Android情報 (7701)
+新機能情報 (2305)
+アプリ解析 (1022)
+MNO情報 (839)
+セール情報 (351)
+キャンペーン (311)
+レポート (287)
+発売情報 (251)
+噂・流出情報 (201)
+新製品発表 (188)
+アクタジ先生 (150)
+予約情報 (135)
+Amazon (80)
+MVNO情報 (77)
+Androidアプリ (54)
+レビュー (36)
+PR (28)
+楽天市場 (19)
+コラム (17)
+お知らせ (10)
+ビックカメラ (10)
+iOSアプリ (4)
+How-to (1)
+Yahoo!ショッピング (1)
+2026/11/11
+詐欺包囲網。Android「複数デバイス間サービス」詐欺通知共有展開へ【アプリ解析】
+AI 要約
+超時短要約
+＼この記事が参考になったなら／
+最新ニュースを逃さないよう、Google 優先ソースに「Jetstream」を登録してください
+詳しくは
+こちら
+📝
+この記事のポイント
+Android デバイスの「複数デバイス間サービス（Cross-Device Services）」に、同じ Google アカウントを登録している Android デバイス間で詐欺師からの電話を通知で共有し、詐欺電話に対して包括的に対策する新機能が展開される模様。
+Android 用「複数デバイス間サービス」アプリの最新バージョン v1.0.1387.1016999334 を解析した結果、詐欺対策新機能「Scam Check」に関連するリソースコードが新たに確認。
+「複数デバイス間サービス」の詐欺対策新機能「Scam Check」は、Android デバイスに知らない番号から着信があったとき、同じ Google アカウントを登録している別の Android デバイスに「Unknown caller on your xxx」という通知を表示する機能。
+Android デバイスの「複数デバイス間サービス（Cross-Device Services）」に、同じ Google アカウントを登録している Android デバイス間で詐欺師からの電話を通知で共有し、詐欺電話に対して包括的に対策する新機能が展開される模様です。
+当サイト「Jetstream」オリジナルのアプリファイル解析報告コンテンツ「アプリ解析」にて、その内容をお送りします。
+「アプリ解析」
+当サイトの
+「アプリ解析」カテゴリ
+で公開している記事では、最新 Android アプリを逆コンパイルして独自に解析し、今後実装される可能性のある新機能や変更点などをお届けします。正式リリース前の新機能や変更となるため開発段階の未確定な情報も含まれますが、Android アプリの今後のアップデート動向をいち早くキャッチできる、ほかにはない当サイトオリジナルコンテンツです。
+当サイトオリジナルの「アプリ解析」コンテンツを見逃さないよう、ぜひ Google の
+「優先ソース」に当サイト「Jetstream 」を登録
+してください。
+最新ニュースを逃さないよう、Google 優先ソースに「Jetstream」を登録してください
+詳しくは
+こちら
+2026 年 11 月 10 日（火）に配信された、Android 用「複数デバイス間サービス」アプリの最新バージョン v1.0.1387.1016999334 を解析した結果、詐欺対策新機能「Scam Check」に関連するリソースコードが新たに確認されました。「複数デバイス間サービス」の詐欺対策新機能「Scam Check」は、Android デバイスに知らない番号から着信があったとき、同じ Google アカウントを登録している別の Android デバイスに「Unknown caller on your xxx」という通知を表示する機能です。
+xxx の部分には、着信した Android デバイスの名前が入ります。名前が取得できない場合は「Unknown caller on your phone」と表示されます。ただし、「Scam Check」の実際の展開は、まだ未確認です。
+scam_check を拡大表示
+「Scam Check」UI イメージ
+<string name="scam_check_notification_channel_name">Scam Check Alerts</string>
+<string name="scam_check_notification_title">Unknown caller on your %1$s</string>
+<string name="scam_check_notification_title_no_device_name">Unknown caller on your phone</string>
+<string name="scam_check_notification_content">If you're unsure about this call, follow the tips for staying secure.</string>
+<string name="scam_check_notification_action_tips">Tips for staying secure</string>
+<string name="scam_check_notification_action_dismiss">Dismiss</string>
+「複数デバイス間サービス」にて「Scam Check」が展開されれば、たとえば、離れた場所で充電中の Android デバイスに不審な着信があっても、手元で使っている別の Android デバイスで気付けます。なお、着信の詐欺判定は、「Google Play 開発者サービス」側の機能が担う作りです。
+「複数デバイス間サービス」アプリリンク
+＼この記事が参考になったなら／
+最新ニュースを逃さないよう、Google 優先ソースに「Jetstream」を登録してください
+詳しくは
+こちら
+この記事をシェア
+AI 要約をシェアに含める
+X
+Bluesky
+Threads
+はてブ
+Pinterest
+Facebook
+LINE
+タイトルと URL をコピー
+記事を丸ごとコピー
+投稿タグ
+Android
+, 
+Cross-Device Services
+, 
+Google
+, 
+Scam Check
+, 
+アプリ解析
+, 
+複数デバイス間サービス
+, 
+詐欺対策
+ハッシュタグ
+#Android
+#CrossDeviceServices
+#Google
+#ScamCheck
+#アプリ解析
+#複数デバイス間サービス
+#詐欺対策
+著者情報
+石井 順
+月間最高 245 万 PV を誇る、運営歴 10 年以上の当サイト「Jetstream（旧 
+Jetstream BLOG
+）」の
+管理人：石井 順
+です。海外ガジェットの個人輸入や EC サイト運営、Google 公式認定プログラム「Google ヘルプヒーロー」での活動を経て、国内外ガジェット情報や Google 系アプリ / サービスの新機能情報など、当サイトを通して幅広く発信しています。
+Jetstream をフォロー
+カレンダー壁紙プレゼント
+2026 年 11 月「
+紅葉
+」
+最新記事
+Google ストア「Fitbit Edge」Olive/Canyon 店頭受け取り不可に
+2026/11/11
+10個！日本向け2026年11月版「Pixel Drop」発表
+2026/11/11
+Google ストアなど。「Google Pixel Tag」2026年11月12日（木）日本発売
+2026/11/11
+Google ストア「Fitbit Air」Lavender販売再開
+2026/11/11
+詐欺包囲網。Android「複数デバイス間サービス」詐欺通知共有展開へ【アプリ解析】
+2026/11/11
+コメント
+コメントを残す 
+コメントをキャンセル
