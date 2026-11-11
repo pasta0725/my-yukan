@@ -1,0 +1,103 @@
+{
+ "wav_dir": "/tmp/claude-0/-home-claude/0af991d2-2b1f-514d-b255-157946716558/scratchpad/moji/wav",
+ "speed": 1.15,
+ "gap": 0.03,
+ "period_pause": 0.04,
+ "comma_max": 0.3,
+ "tail_logo": 2.0,
+ "sfx_dir": "/tmp/claude-0/-home-claude/0af991d2-2b1f-514d-b255-157946716558/scratchpad/moji/snd",
+ "lipsync": "python3",
+ "lines": [
+  {
+   "scene": "hook",
+   "say": "AIが苦手と言われる、文字数え。3つのAIに、同じ問題を出しました。",
+   "show": "AIが苦手と言われる、文字数え。3つのAIに、同じ問題を出しました。",
+   "puppet": true,
+   "se": "don"
+  },
+  {
+   "scene": "who",
+   "say": "出題したのは、クロード、チャットジーピーティー、ジェミニの3つです。",
+   "show": "出題したのは、Claude、ChatGPT、Geminiの3つです。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "rule",
+   "say": "検索や道具は使わせず、1回だけ聞きました。",
+   "show": "検索や道具は使わせず、1回だけ聞きました。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "q1",
+   "say": "1問目。すもももももももものうち、の、もは、何個？",
+   "show": "1問目。「すもももももももものうち」の「も」は何個？",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "q1ans",
+   "say": "正解は、はっこ。3つとも正解です。",
+   "show": "正解は8個。3つとも正解です。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "q2",
+   "say": "2問目。きゅうてんいちいちと、きゅうてんきゅう、大きいのはどっち？",
+   "show": "2問目。9.11と9.9、大きいのはどっち？",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "q2trap",
+   "say": "小数点の後ろを、じゅういちと、きゅうで比べると、間違えます。",
+   "show": "小数点の後ろを、11と9で比べると、間違えます。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "q2ans",
+   "say": "正解は、きゅうてんきゅう。ここも3つとも正解。",
+   "show": "正解は9.9。ここも3つとも正解。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "q3",
+   "say": "3問目。とうきょうとっきょきょかきょくを、ひらがなで書くと、何文字？",
+   "show": "3問目。「東京特許許可局」をひらがなで書くと、何文字？",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "q3hint",
+   "say": "小さい、よ、や、つ、も、1文字に数えます。",
+   "show": "小さい「ょ」や「っ」も、1文字に数えます。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "q3ans",
+   "say": "正解は、じゅうごもじ。またも3つとも正解です。",
+   "show": "正解は15文字。またも3つとも正解です。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "twist",
+   "say": "ただし、1回ずつ聞いた結果なので、いつも同じとは限りません。",
+   "show": "ただし、1回ずつ聞いた結果なので、いつも同じとは限りません。",
+   "puppet": true,
+   "se": "heavy"
+  },
+  {
+   "scene": "verdict",
+   "say": "苦手と言われた文字数え、今回は、3つとも満点でした。",
+   "show": "苦手と言われた文字数え、今回は、3つとも満点でした。",
+   "puppet": true,
+   "se": "ding"
+  }
+ ]
+}

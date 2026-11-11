@@ -1,0 +1,217 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script><script src="ask.js"></script><script src="pal.js"></script>
+<script src="../../channel/rina_puppet/index.js"></script><script src="../_template/puppet.js"></script>
+<script>
+// Design rules: iPhone shows x~98-982 (sides cropped), Shorts tabs end y~330, right buttons x>=885 from y~970,
+// channel/title text from y~1480. Diagrams live in y400-1080 centred on x540, captions in their own band below, mini presenter under that.
+// palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
+let W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
+  line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
+  glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+const CX=540, MAXW=680, CAP_Y=1168;
+let BASE=null,MEASURE=false;function abs(fn){if(MEASURE)return;g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+const CT={s:1.12,y0:360,y1:375};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
+let CUR=null;
+function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
+  if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]);await document.fonts.ready;measureFits();})();
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
+// ---------- helpers ----------
+function bg(u){abs(()=>bg0(u));}
+function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+function rrect(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+// small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
+let CURI=0,CURT=0;const mouthNow=()=>{const L=P.lines[CURI];return L&&L.puppet?Puppet.mouthAt(P.voices[CURI],CURT-L.start):null;};
+function mini(u){abs(()=>glow(220,1375,240,C.brand,0.22));const a=Puppet.assets.small_sticker,s=0.56;abs(()=>Puppet.chibi(g,62,1280,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker'));}  // whole body side inside YouTube's ~50px side crop  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
+function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
+function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
+function sampleTag(x,y){abs(()=>{});rrect(x,y-22,170,44,22,'rgba(11,18,34,0.78)');text('画面は見本',x+85,y,24,'#FFFFFF','center',800);}
+function credit(t='出典：Anthropic'){abs(()=>text(t,950,362,26,C.sub,'right',700));}
+// ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
+function marks(s,warn){const m=new Array(s.length).fill(C.capText);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum); if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
+  if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
+function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
+  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
+  const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
+  g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
+  let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
+    const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
+    // two passes: every edge first, then every letter, so a letter's edge never covers its neighbour
+    const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='round';g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;
+    for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
+  g.restore();}
+
+// ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
+const BX=400,BY=1300,BW=515,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+150);g.lineTo(BX-40,BY+122);g.lineTo(BX,BY+94);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
+function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
+  bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
+// line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
+const FIXW={"19日に再入荷の予定です": ["19日に", "再入荷の予定です"], "見ながら直せて": ["見ながら", "直せて"], "11月10日の時点で品切れで": ["11月10日の", "時点で", "品切れで"], "作りたいゲームを文章で頼んで": ["作りたい", "ゲームを", "文章で頼んで"], "セーブも消えることがあります": ["セーブも", "消えることが", "あります"], "書き込めば本体だけで遊べます": ["書き込めば", "本体だけで", "遊べます"], "ボタン操作も自動で試せます": ["ボタン操作も", "自動で", "試せます"], "参加者に配られた限定品が": ["参加者に", "配られた", "限定品が"], "Game Boy系の": ["Game Boy系の"]};
+function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
+  const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
+    // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
+  cuts.push(s.length);
+  const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  let best=null;const inB=j=>{const h=s.slice(0,j);return (h.split('「').length-h.split('」').length)>0;};  // never break inside 「…」
+  const c0=[...new Set(cuts)].sort((a,b)=>a-b).filter(x=>x>0&&x<s.length&&keep(x));const c1=c0.filter(x=>!inB(x));const c=c1.length?c1:c0;
+  const PEN=a=>(s.slice(a,a+2)==='いう'&&s[a-1]==='と')?size*0.6:('をにはがでとのもへやかよね、。てばし'.includes(s[a-1])?0:size*0.9);  // prefer breaking right after a particle
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));const sc=m+PEN(a);if(m<=maxw*1.2&&(!best||sc<best.sc))best={L,m,sc};}if(!best)for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));if(!best||m<best.m)best={L,m,sc:m};}
+  if(best&&best.m<=maxw)return best.L;
+  let b3=null;for(const a of c)for(const b of c)if(b-a>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const m=Math.max(...L.map(W));if(!b3||m<b3.m)b3={L,m};}
+  return (b3&&(!best||best.m>maxw*1.2))?b3.L:(best?best.L:[s]);}  // 2 slightly smaller lines beat 3 (zelda, 2026-11-09)
+function bubbleText(s,k,warn){abs(()=>{let size=74;let lines=wrapJa(s,size,BMAXW);
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>BMAXW)size=Math.floor(size*BMAXW/w);}
+  if(lines.length===3)size=Math.min(size,64);
+  const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
+  const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:m[off+i];g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+// ---------- helpers for the 「比べてみた」 short (2026-11-12): three AIs, the same questions, their real answers ----------
+function card(x,y,w,h,r=30,fill){rrect(x,y,w,h,r,fill||C.card);}
+function stamp(s,x,y,k,col,size=60,rot=-0.06){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.rotate(rot);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w=g.measureText(s).width+size*0.9;
+  rrect(-w/2,-size*0.8,w,size*1.6,size*0.35,col);text(s,0,2,size,'#FFFFFF');g.restore();}
+function check(x,y,s,ok){g.save();g.translate(x,y);g.beginPath();g.arc(0,0,s,0,7);g.fillStyle=ok?'#1F9D6A':C.warn;g.fill();g.strokeStyle='#FFFFFF';g.lineWidth=s*0.22;g.lineCap='round';g.lineJoin='round';g.beginPath();
+  if(ok){g.moveTo(-s*0.45,0);g.lineTo(-s*0.1,s*0.35);g.lineTo(s*0.5,-s*0.35);}else{g.moveTo(-s*0.38,-s*0.38);g.lineTo(s*0.38,s*0.38);g.moveTo(s*0.38,-s*0.38);g.lineTo(-s*0.38,s*0.38);}g.stroke();g.restore();}
+function pill(s,x,y,size,fill,ink){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(s).width+size*1.1;rrect(x-w/2,y-size*0.85,w,size*1.7,size*0.85,fill);text(s,x,y+2,size,ink||'#FFFFFF');return w;}
+function bigNum(s,unit,x,y,k,col,size=150){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w1=g.measureText(s).width;g.font=`900 ${size*0.4}px ${FONT}`;const w2=g.measureText(unit).width;
+  const x0=-(w1+w2+8)/2;text(s,x0,0,size,col||C.acc,'left');text(unit,x0+w1+8,size*0.18,size*0.4,C.text,'left');g.restore();}
+const AIS=window.ASK.ais;   // filled from the real answers (ask/<name>/*.json)
+function badge(i,x,y,s){const a=AIS[i];rrect(x-s/2,y-s/2,s,s,s*0.26,a.col);g.font=`900 100px ${FONT}`;const f=Math.min(s*0.5,100*s*0.74/g.measureText(a.mark).width);text(a.mark,x,y+2,f,'#FFFFFF');}
+function aiCard(i,x,y,w,h,k,sub){withEnter(k,()=>{const a=AIS[i];card(x,y,w,h);badge(i,x+70,y+h/2,96);text(a.name,x+140,y+h/2-(sub?22:0),52,C.text,'left');if(sub)text(a.model,x+140,y+h/2+38,32,C.sub,'left',800);},24);}
+// one row per AI: name, its answer word for word, right/wrong
+function answers(q,u,t0){AIS.forEach((a,i)=>withEnter(enter(u,t0+0.18*i),()=>{const y=450+i*175;card(150,y,780,155);badge(i,215,y+77,84);text(a.name,280,y+48,34,C.sub,'left',800);
+  const s=a.ans[q];g.font=`900 44px ${FONT}`;let t=s;while(g.measureText(t).width>520&&t.length>2)t=t.slice(0,-1);if(t!==s)t=t.slice(0,-1)+'…';text('「'+t+'」',272,y+104,44,C.text,'left');
+  check(870,y+77,34,a.ok[q]);},20));}
+function quoteNote(){text('※ 各AIの実際の答え（11月12日）',915,1000,24,C.sub,'right',700);}
+const S={
+ // hook: AIs are said to be bad at counting letters; we asked three of them
+ hook(u,d,L){bg(u);mini(u);
+   mixLine([['AIが苦手な',C.text],['「文字数え」',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,300,30,C.card2);text('すもももももも',CX,560,74,'#FFFFFF');text('もものうち',CX,660,74,'#FFFFFF');});
+   [0,1,2].forEach(i=>withEnter(enter(u,0.25+0.12*i),()=>{const x=150+i*270;card(x,780,240,240);badge(i,x+120,870,110);text(AIS[i].name,x+120,975,34,C.text);},20));
+   withEnter(enter(u,0.7),()=>{rrect(150,1050,780,100,30,C.buyFill);text('3つのAIに同じ問題を出した',CX,1100,44,C.buyInk);},10);},
+ // who: Claude, ChatGPT, Gemini (model names as answered)
+ who(u,d,L){bg(u);mini(u);
+   mixLine([['出題した',C.text],['AI',C.brand]],CX,385,64);
+   [0,1,2].forEach(i=>aiCard(i,150,450+i*240,780,210,enter(u,telHas(L,AIS[i].name)||0.15*i),true));},
+ // rule: no search, no tools, asked once
+ rule(u,d,L){bg(u);mini(u);
+   mixLine([['ルール',C.acc]],CX,385,64);
+   const R=[['検索なし','ネットで調べない'],['道具なし','計算の道具を使わない'],['1回だけ','聞き直さない']];
+   R.forEach((r,i)=>withEnter(enter(u,0.1+0.2*i),()=>{const y=450+i*240;card(150,y,780,210);check(240,y+105,46,true);text(r[0],320,y+75,58,C.text,'left');text(r[1],320,y+148,36,C.sub,'left',800);},24));},
+ // q1: how many も
+ q1(u,d,L){bg(u);mini(u);
+   mixLine([['1問目',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,420,30,C.card2);text('すもももももも',CX,590,82,'#FFFFFF');text('もものうち',CX,720,82,'#FFFFFF');});
+   withEnter(enter(u,Math.max(0.3,telHas(L,'何個'))),()=>{pill('「も」は何個？',CX,990,64,C.buyFill,C.buyInk);},10);},
+ q1ans(u,d,L){bg(u);mini(u);
+   mixLine([['答え',C.text],['：8個',C.acc]],CX,385,64);answers(0,u,0);quoteNote();
+   withEnter(enter(u,0.75),()=>{card(150,1030,780,130,30,C.card2);const s='すもももももももものうち';g.font=`900 52px ${FONT}`;let x=CX-g.measureText(s).width/2;let n=0;
+     for(const ch of s){const w=g.measureText(ch).width;const on=ch==='も'&&u>0.9+0.08*n;if(ch==='も')n++;text(ch,x,1095,52,on?C.acc:'#FFFFFF','left');x+=w;}},10);},
+ // q2: 9.11 or 9.9
+ q2(u,d,L){bg(u);mini(u);
+   mixLine([['2問目',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,360,360);text('9.11',330,630,110,C.text);});
+   withEnter(enter(u,0.15),()=>{text('と',CX,630,50,C.sub);card(570,450,360,360);text('9.9',750,630,110,C.text);});
+   withEnter(enter(u,Math.max(0.3,telHas(L,'大きい'))),()=>{pill('大きいのはどっち？',CX,940,60,C.buyFill,C.buyInk);},10);},
+ // the usual mistake: comparing the part after the point as 11 and 9
+ q2trap(u,d,L){bg(u);mini(u);
+   mixLine([['よくある',C.text],['間違い',C.warn]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,300,30,C.card2);text('小数点の後ろを「11」と「9」で比べる',CX,530,36,'#CDD8EC','center',800);text('11 ＞ 9 だから 9.11？',CX,640,64,'#FFFFFF');});
+   withEnter(enter(u,0.45),()=>{card(150,780,780,380);text('本当は',CX,850,40,C.sub,'center',800);text('9.11 ＜ 9.90',CX,980,96,C.acc);text('（9.9 ＝ 9.90）',CX,1095,40,C.sub,'center',800);});},
+ q2ans(u,d,L){bg(u);mini(u);
+   mixLine([['答え',C.text],['：9.9',C.acc]],CX,385,64);answers(1,u,0);quoteNote();},
+ // q3: 東京特許許可局 in hiragana
+ q3(u,d,L){bg(u);mini(u);
+   mixLine([['3問目',C.acc]],CX,385,64);
+   withEnter(enter(u,0),()=>{card(150,450,780,420,30,C.card2);text('東京特許許可局',CX,600,96,'#FFFFFF');text('とうきょうとっきょきょかきょく',CX,740,44,'#CDD8EC','center',800);});
+   withEnter(enter(u,Math.max(0.3,telHas(L,'何文字'))),()=>{pill('ひらがなで何文字？',CX,990,60,C.buyFill,C.buyInk);},10);},
+ // the small ょ and っ count as one letter each
+ q3hint(u,d,L){bg(u);mini(u);
+   mixLine([['小さい字も',C.text],['1文字',C.acc]],CX,385,64);
+   const s='とうきょうとっきょきょかきょく';[...s].forEach((ch,i)=>{const col=i%5,row=Math.floor(i/5);withEnter(enter(u,0.05*i,0.2),()=>{const x=150+col*160,y=450+row*190;const small='ょっ'.includes(ch);
+     card(x,y,140,170,26,small?C.buyFill:C.card);text(ch,x+70,y+78,74,small?C.buyInk:C.text);text(String(i+1),x+70,y+146,28,small?C.buyInk:C.sub,'center',800);},12);});},
+ q3ans(u,d,L){bg(u);mini(u);
+   mixLine([['答え',C.text],['：15文字',C.acc]],CX,385,64);answers(2,u,0);quoteNote();},
+ // twist: one try each, so it may not always come out the same
+ twist(u,d,L){bg(u);mini(u);
+   const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
+   withEnter(enter(u,0.2),()=>{card(150,500,780,300);text('どのAIも',CX,585,44,C.sub,'center',800);text('1回ずつ聞いた結果',CX,690,64,C.text);});
+   withEnter(enter(u,Math.max(0.45,telHas(L,'いつも'))),()=>{card(150,830,780,330,30,C.warn);text('聞くたびに',CX,935,52,'#FFFFFF');text('答えが変わることも',CX,1045,60,'#FFFFFF');});},
+ // verdict: this time all three got everything right
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,18,560,1044,1856));else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,window.ASK.verdict2);
+   const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
+   if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+     text('3問 × 3つのAI',0,-55,34,'#CDD8EC','center',800);text('文字数え',0,30,62,'#FFFFFF');g.restore();}
+   if(u>t2){g.save();g.translate(747,400);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+     text('今回の結果',0,-55,36,C.buyInk,'center',800);text(window.ASK.result,0,30,66,C.buyInk);g.restore();}},
+ logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
+   if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
+   text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
+};
+const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
+const VF={};function vidImg(sc,k){const key=sc+k;if(key in VF)return Promise.resolve(VF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{VF[key]=i;r(i)};i.onerror=()=>{VF[key]=null;r(null)};i.src='vid/'+sc+'/'+String(k+1).padStart(4,'0')+'.jpg';});}
+const VIDN={};let VIDF=null;
+let BIGF=null;const VERDICT_CLIP=true;  // true once big/verdict holds the talking ending clip
+// each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
+// measured once from the scene's finished state (user 2026-11-09: no wasted space)
+const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
+function measureFits(){const oc=document.createElement('canvas');oc.width=W;oc.height=H;const g0=g;g=oc.getContext('2d');MEASURE=true;const seen=new Set();
+  for(let i=0;i<P.lines.length;i++){const L=P.lines[i];if(['intro','verdict'].includes(L.scene)||seen.has(L.scene))continue;seen.add(L.scene);
+    const d=(P.lines[i+1]?P.lines[i+1].start:P.voice_end)-L.start;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);CURI=i;CURT=L.start+d-0.02;BASE=g.getTransform();
+    g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);try{S[L.scene](d-0.02,d,L);}catch(e){}g.restore();
+    const a=g.getImageData(0,0,W,H).data;let x0=W,x1=0,y0=H,y1=0;
+    for(let y=0;y<H;y+=2)for(let x=0;x<W;x+=2){if(a[(y*W+x)*4+3]>10){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;}}
+    if(x1<=x0)continue;const k=Math.min(1.5,(FX1-FX0)/(x1-x0),(FY1-FY0)/(y1-y0));
+    FIT[L.scene]={k,tx:(FX0+FX1)/2-k*(x0+x1)/2,ty:(FY0+FY1)/2-k*(y0+y1)/2,box:[x0,y0,x1,y1]};}
+  MEASURE=false;g=g0;window.FIT=FIT;}
+window.render=async function(t){
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
+  CURI=cur;CURT=t;
+  if(['intro','verdict'].includes(P.lines[cur].scene)){let k=Math.floor(Math.max(0,t-P.lines[cur].start)*30);const bd=P.lines[cur].scene;let im=await bigImg(bd,k);while(!im&&k>0){k--;im=await bigImg(bd,k);}BIGF=im;}
+  if(VIDN[P.lines[cur].scene]){const n=VIDN[P.lines[cur].scene];const k=Math.min(n-1,Math.floor(Math.max(0,t-P.lines[cur].start)*30));VIDF=await vidImg(P.lines[cur].scene,k);}
+  const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
+  BASE=g.getTransform();g.save();const F=FIT[L.scene];if(F){g.translate(F.tx,F.ty);g.scale(F.k,F.k);}g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
+  S[L.scene](u,d,L);g.restore();g.restore();
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
+  const BIG=['intro','verdict'];
+  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
+  else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),L.scene==='twist');}
+};
+</script></body></html>
