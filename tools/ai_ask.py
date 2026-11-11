@@ -23,7 +23,7 @@ def picks(names):
     for kind in ("pro", "flash"):
         c = sorted([n for n in ok if kind in n], key=lambda n: (ver(n), "preview" not in n), reverse=True)
         if c: out.append(c[0])
-    return out or ["gemini-flash-latest"]
+    return (out or []) + ["gemini-flash-latest"]
 
 
 def pick(names):
@@ -37,19 +37,28 @@ def pick(names):
 
 
 def ask(model, prompt):
+    """streamed (server-sent events), so a long think does not look like a dead connection; prints how long it took"""
     body = {"contents": [{"parts": [{"text": prompt}]}]}
-    req = urllib.request.Request(f"{API}/models/{model}:generateContent", data=json.dumps(body).encode(),
+    req = urllib.request.Request(f"{API}/models/{model}:streamGenerateContent?alt=sse", data=json.dumps(body).encode(),
                                  headers={"x-goog-api-key": KEY, "Content-Type": "application/json"})
     for a in range(3):
+        t0 = time.time(); txt = []
         try:
-            r = json.load(urllib.request.urlopen(req, timeout=600)); break
+            with urllib.request.urlopen(req, timeout=180) as r:
+                for raw in r:
+                    line = raw.decode("utf-8", "replace").strip()
+                    if not line.startswith("data:"): continue
+                    d = json.loads(line[5:])
+                    for c in d.get("candidates", []):
+                        txt += [p.get("text", "") for p in c.get("content", {}).get("parts", []) if not p.get("thought")]
+            print(" ", model, f"{time.time() - t0:.0f}s", flush=True)
+            return "".join(txt)
         except urllib.error.HTTPError as e:
             if e.code not in (429, 500, 503) or a == 2: raise
             time.sleep(20 * (a + 1))
-        except (TimeoutError, urllib.error.URLError):   # a thinking model can take long; try again
+        except (TimeoutError, urllib.error.URLError):
+            print(" ", model, "timeout", f"{time.time() - t0:.0f}s", flush=True)
             if a == 2: raise
-            time.sleep(10)
-    return "".join(p.get("text", "") for p in r["candidates"][0]["content"]["parts"] if not p.get("thought"))
 
 
 if __name__ == "__main__":
