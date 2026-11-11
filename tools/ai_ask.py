@@ -42,10 +42,13 @@ def ask(model, prompt):
                                  headers={"x-goog-api-key": KEY, "Content-Type": "application/json"})
     for a in range(3):
         try:
-            r = json.load(urllib.request.urlopen(req, timeout=300)); break
+            r = json.load(urllib.request.urlopen(req, timeout=600)); break
         except urllib.error.HTTPError as e:
             if e.code not in (429, 500, 503) or a == 2: raise
             time.sleep(20 * (a + 1))
+        except (TimeoutError, urllib.error.URLError):   # a thinking model can take long; try again
+            if a == 2: raise
+            time.sleep(10)
     return "".join(p.get("text", "") for p in r["candidates"][0]["content"]["parts"] if not p.get("thought"))
 
 
@@ -58,7 +61,7 @@ if __name__ == "__main__":
                 out["answers"].append({"id": x["id"], "asked_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
                                        "answer": ask(m, x["prompt"]).strip()})
             break
-        except urllib.error.HTTPError as e:
-            print("model", m, "failed", e.code, "- trying the next one")
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
+            print("model", m, "failed", getattr(e, "code", type(e).__name__), "- trying the next one")
     json.dump(out, open(sys.argv[3], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("gemini", m, len(out["answers"]))
