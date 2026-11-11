@@ -79,7 +79,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-const FIXW={};
+const FIXW={"Gemini 4 Carbonの":["Gemini 4","Carbonの"],"月1万4500円の":["月1万4500円の"],"11月30日までは":["11月30日","までは"],"12月1日からは":["12月1日","からは"]};
 function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
   const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
@@ -220,7 +220,7 @@ const S={
    const rows=[['Gemini 4 Carbon',true],['ほかのモデル',false],['ほかのモデル',false]];
    rows.forEach(([lab,hi],i)=>withEnter(enter(u,0.15+0.1*i),()=>{const y=615+i*140;card(150,y,780,120,26,hi?C.buyFill:C.card);text((i+1)+'',210,y+60,52,hi?C.buyInk:C.sub);text(lab,270,y+60,46,hi?C.buyInk:C.sub,'left');}));
    if(u>t1)stamp('1位',840,675,(u-t1)/0.35,C.brand,52,0.08);
-   withEnter(enter(u,0.3),()=>{text('※Googleの発表',915,1050,30,C.sub,'right',700);});},
+   withEnter(enter(u,0.3),()=>{text('※Googleの発表',170,1050,30,C.sub,'left',700);});},
  // app: consumers get it in the Gemini app and AI Mode in Search, rolling out
  app(u,d,L){bg(u);mini(u);const t2=telHas(L,'検索'),t3=telHas(L,'順次');
    mixLine([['一般の人は',C.text]],CX,385,64);
@@ -248,7 +248,7 @@ const S={
  twist(u,d,L){bg(u);mini(u);
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-170,-52,340,104,20,C.warn);text('ところが',0,0,66,'#FFFFFF');g.restore();
    withEnter(enter(u,0.2),()=>{card(150,490,780,130,30,C.card2);text('12月1日から',CX,555,56,'#FFFFFF');});
-   const row=(y,lab,a,b,t0)=>withEnter(enter(u,t0),()=>{card(150,y,780,190,30,C.card);text(lab,250,y+95,44,C.sub,'center',800);text(a,450,y+95,64,C.sub);arrowR(540,640,y+95,(u-t0-0.15)/0.3,C.warn);text(b,780,y+95,80,C.acc);});
+   const row=(y,lab,a,b,t0)=>withEnter(enter(u,t0),()=>{card(150,y,780,190,30,C.card);text(lab,250,y+95,44,C.sub,'center',800);text(a,425,y+95,60,C.sub);arrowR(565,655,y+95,(u-t0-0.15)/0.3,C.warn);text(b,800,y+95,72,C.acc);});
    row(645,'入力','2ドル','4ドル',0.35);row(855,'出力','10ドル','20ドル',0.5);
    const t2=telHas(L,'2倍');if(u>t2)stamp('2倍',CX,1110,(u-t2)/0.35,C.warn,64,-0.04);},
  // tokens: Carbon uses more tokens than Argon by design (picture, not data)
@@ -256,7 +256,7 @@ const S={
    mixLine([['使うトークンが',C.text],['多い',C.acc]],CX,385,62);
    const bar=(y,lab,w,hi,t0)=>withEnter(enter(u,t0),()=>{card(150,y,780,300,30,hi?C.card2:C.card);text(lab,190,y+70,50,hi?'#FFFFFF':C.text,'left');rrect(190,y+150,(700)*w*ease((u-t0)/0.6),90,24,hi?C.acc:C.bar);});
    bar(450,'Argon',0.42,false,0);bar(780,'Carbon',1.0,true,0.3);
-   withEnter(enter(u,0.6),()=>{text('※イメージ',915,1120,30,C.sub,'right',700);});},
+   withEnter(enter(u,0.6),()=>{text('※イメージ',170,1120,30,C.sub,'left',700);});},
  // google: Google itself says Argon suits most development and knowledge work
  google(u,d,L){bg(u);mini(u);const t2=telHas(L,'Argon');
    mixLine([['Google',C.brand],['の説明',C.text]],CX,385,64);
