@@ -1,0 +1,6466 @@
+{
+ "date": "2026-11-12-am",
+ "label": "11月12日（木）の朝刊",
+ "updatedAt": "2026-11-12T04:29:46+09:00",
+ "articles": [
+  {
+   "id": "ai-gemini-notebook-api",
+   "category": "ai",
+   "title": "Gemini Notebookに公式API、AIからも操作可",
+   "summary": "資料の取り込みを自動化できます。ただし今は個人アカウントのみで、削除や質問には未対応です。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/ait/articles/2611/11/cover_news011.jpg",
+    "kind": "ogp",
+    "credit": "＠IT",
+    "page": "https://atmarkit.itmedia.co.jp/ait/articles/2611/11/news011.html"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "公式API"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Gemini Notebook（旧NotebookLM）を操作する公式APIを、Googleが公開プレビューで提供",
+      "Webページ・YouTube動画・テキストを自動で取り込める。使えるのは個人のGoogleアカウントだけ",
+      "ファイルのアップロード、削除、質問や要約の取得はまだできない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Googleが、Gemini Notebook（旧NotebookLM）を外部のソフトから動かせる公式APIとMCPサーバを、公開プレビューで出しました。"
+    },
+    {
+     "type": "h",
+     "text": "何ができるようになったか"
+    },
+    {
+     "type": "p",
+     "text": "これまで、資料をNotebookに入れる作業は手作業でした。プログラムから使うには、企業向けの有料APIか非公式ツールが必要でした。"
+    },
+    {
+     "type": "p",
+     "text": "API（ほかのソフトから機能を呼び出す入り口）は、＠ITによると10月末から11月初めにかけて公式ドキュメントが公開されています。"
+    },
+    {
+     "type": "p",
+     "text": "ノートブックの作成・一覧・取得・名前の変更と、資料（ソース）の追加ができます。追加できる資料は、WebページのURL、YouTube動画のURL、プレーンテキスト、Markdown形式のテキストの4種類です。取り込みは裏で進み、状態が「処理中」「完了」「失敗」のどれかで返ってきます。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/ait/articles/2611/11/di-gemini-notebook-api.png",
+     "kind": "ogp",
+     "credit": "＠IT",
+     "caption": "資料の取り込みが手作業からAPIやAIエージェント経由の自動化へ変わる。要約や解説の生成は、これまでどおりブラウザで行う",
+     "page": "https://atmarkit.itmedia.co.jp/ait/articles/2611/11/news011.html"
+    },
+    {
+     "type": "h",
+     "text": "AIエージェントから使うMCP"
+    },
+    {
+     "type": "p",
+     "text": "MCP（AIが外部のサービスとやり取りするための共通の決まり）のサーバも用意されました。ノートブックや資料の作成・取得など、7つの操作をAIエージェントから呼べます。公式ドキュメントには、コーディング用のAIに渡せるセットアップ用の指示文も載っています。"
+    },
+    {
+     "type": "h",
+     "text": "まだできないこと"
+    },
+    {
+     "type": "p",
+     "text": "仕事用のGoogle Workspaceアカウントでは、今は使えません。PDFなどのファイルのアップロード、ノートブックと資料の削除、GoogleドライブやGoogleドキュメントのURLの追加にも未対応です。ノートブックへの質問や要約の取得、音声解説などの生成もできません。"
+    },
+    {
+     "type": "p",
+     "text": "これらは「今後の対応予定」としてロードマップに載っていますが、時期は書かれていません。公開プレビューのため、サポートは限られ、後から互換性のない変更が入る可能性があります。"
+    },
+    {
+     "type": "h",
+     "text": "使い始めるのに必要なもの"
+    },
+    {
+     "type": "p",
+     "text": "個人のGoogleアカウントで、あらかじめGemini Notebookのサイトにサインインしておく必要があります。Google Cloudのプロジェクトとgcloud CLIも要ります。認証は専用の権限が付いたOAuth 2.0で、アクセストークンは1時間で切れます。"
+    },
+    {
+     "type": "p",
+     "text": "料金や日本語対応、日本での提供状況は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "筆者が試した結果"
+    },
+    {
+     "type": "p",
+     "text": "＠ITの筆者は、YouTube動画3本をMCP経由で追加しました。各4〜6秒で使える状態になり、Webページは約9秒、Markdownのテキストは約6秒でした。追加した動画のノートブックから音声解説も作れ、完成まで約8分半だったとしています。時間は筆者側の環境で測った値です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4種類",
+       "label": "取り込める資料の形式"
+      },
+      {
+       "value": "7つ",
+       "label": "MCPで呼べる操作"
+      },
+      {
+       "value": "1時間",
+       "label": "アクセストークンの有効期限"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "個人のGoogleアカウントでGemini Notebookを使う開発者は、資料の取り込みを自動化できる",
+      "仕事用のGoogle Workspaceアカウントでは今は使えない",
+      "公開プレビューなので、仕事の本番で使うときは仕様変更に備える",
+      "プログラムを書かない人は、今までどおりブラウザで使えばよく、特にすることはない"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "資料集めの手間が減る話なので、最初に恩恵を受けるのは開発者です。ふつうの利用者は今までどおりブラウザで使えば十分です。質問や要約の取得はまだ未対応なので、ロードマップの更新が次の見どころです。"
+    }
+   ],
+   "source_name": "＠IT",
+   "source_url": "https://atmarkit.itmedia.co.jp/ait/articles/2611/11/news011.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "＠IT",
+     "url": "https://atmarkit.itmedia.co.jp/ait/articles/2611/11/news011.html"
+    },
+    {
+     "name": "Google Developers（公式）",
+     "url": "https://developers.google.com/notebook/docs"
+    }
+   ]
+  },
+  {
+   "id": "mobile-pixel-tag-launch",
+   "category": "mobile",
+   "title": "Google「Pixel Tag」発売、1個5010円で電池1年超",
+   "summary": "財布に入る薄型の紛失防止タグ。近づくと画面に方向と距離が出る。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/ktw/docs/2155/464/Tag_Lifestyle_Keys_l.jpg",
+    "kind": "ogp",
+    "credit": "ケータイ Watch",
+    "page": "https://k-tai.watch.impress.co.jp/docs/news/2155464.html"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "紛失防止タグ"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Googleが紛失防止タグ「Pixel Tag」を発売。財布に入る薄さ",
+      "1個5010円、4個セットは1万6940円。電池は1年以上もつ",
+      "店頭は11日から、オンラインは12日から買える"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Googleは紛失防止タグ「Pixel Tag」を11日に発売しました。1個5010円で、Google Store表参道で買えます。オンラインは12日からです。"
+    },
+    {
+     "type": "h",
+     "text": "価格と買える場所"
+    },
+    {
+     "type": "p",
+     "text": "価格は、1個が5010円、4個セットが1万6940円です。4個セットは1個あたり4235円になります。"
+    },
+    {
+     "type": "p",
+     "text": "店頭での販売は11日にGoogle Store表参道で始まり、オンライン販売は12日からです。同じ11日には、Pixelスマホ向けの11月のPixel Drop（機能追加の更新）も配信が始まりました。"
+    },
+    {
+     "type": "h",
+     "text": "どんなタグか"
+    },
+    {
+     "type": "p",
+     "text": "財布にも入る薄さで、電池は1年以上使えるとされています。位置は、近くのスマホやAndroid端末とつながって確かめます。"
+    },
+    {
+     "type": "h",
+     "text": "遠くでも近くでも探せる"
+    },
+    {
+     "type": "p",
+     "text": "Androidの「Find Hub」という探索網につながります。世界で10億台を超えるAndroid端末の網なので、遠く離れた場所に置き忘れても位置を調べられます。"
+    },
+    {
+     "type": "p",
+     "text": "UWB（超広帯域無線。近距離で位置を細かく測る技術）にも対応します。近くまで行くと、スマホの画面にタグの方向と距離が出ます。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/ktw/docs/2155/464/header_l.png",
+     "kind": "ogp",
+     "credit": "ケータイ Watch",
+     "caption": "Pixel Tagと11月のPixel Drop",
+     "page": "https://k-tai.watch.impress.co.jp/docs/news/2155464.html"
+    },
+    {
+     "type": "h",
+     "text": "買う前に確かめたいこと"
+    },
+    {
+     "type": "p",
+     "text": "色や大きさの詳しい数字は、ケータイ Watchの記事には載っていません。対応するスマホの条件も、Googleの案内で確かめる必要があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "5010円",
+       "label": "1個の価格"
+      },
+      {
+       "value": "1万6940円",
+       "label": "4個セットの価格"
+      },
+      {
+       "value": "10億台超",
+       "label": "探索に使うAndroid端末"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "置き忘れが心配な持ち物がある人は、1個5010円から試せる",
+      "店で見たい人は、11日から表参道のGoogle Storeで売られている",
+      "ネットで買う人は、12日からのオンライン販売を待つ",
+      "使うスマホが対応するか、買う前にGoogleの案内で確かめる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "Androidスマホを使う人が、置き忘れ対策を安く始められます。4個セットは1個あたり4235円です。対応するスマホの条件はまだ確認が必要なので、買う前にGoogleの案内で確かめてください。"
+    }
+   ],
+   "source_name": "ケータイ Watch",
+   "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2155464.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ケータイ Watch",
+     "url": "https://k-tai.watch.impress.co.jp/docs/news/2155464.html"
+    }
+   ]
+  },
+  {
+   "id": "gadget-casio-classic-premium-a1000sp",
+   "category": "gadget",
+   "title": "カシオ、サファイアガラスのフルメタル時計 2万7500円",
+   "summary": "光の角度で見え方が変わる金属製デジタル時計。電池は約3年もちます。",
+   "image": {
+    "src": "https://news.mynavi.jp/photo/article/20261111-5269797/images/001l.jpg",
+    "kind": "ogp",
+    "credit": "マイナビニュース",
+    "page": "https://news.mynavi.jp/article/20261111-5269797/"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "金属デジタル"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "カシオが、金属製のデジタル腕時計「CASIO CLASSIC」PREMIUMの新作を出す",
+      "価格は2万7500円で、サファイアガラスとステンレスを使う",
+      "発売は11月。日にちと売り場は、まだ示されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "カシオ計算機は、ケースもバンドもステンレスのデジタル時計を「CASIO CLASSIC」PREMIUMに加え、11月に出します。価格は2万7500円です。"
+    },
+    {
+     "type": "h",
+     "text": "光で表情が変わる文字盤"
+    },
+    {
+     "type": "p",
+     "text": "ガラスにはサファイアガラスを使い、裏側にストライプ状の蒸着（金属の膜をつける加工）を施しました。文字盤は旭仕上げの真ちゅう製で、サファイアガラスを重ねることで奥行きを出しています。見る角度や光の当たり方で、表情が変わると、マイナビニュースは紹介しています。"
+    },
+    {
+     "type": "h",
+     "text": "ケースとバンドの作り"
+    },
+    {
+     "type": "p",
+     "text": "ケースもバンドもステンレス製です。バンドはヘアライン（細い筋目）仕上げと鏡面仕上げを組み合わせました。ケースの大きさは幅38.0mm、厚さ7.3mm、高さ39.6mmで、重さは101gです。腕まわりは150〜205mmに対応します。特別な包装も付きます。"
+    },
+    {
+     "type": "img",
+     "src": "https://news.mynavi.jp/photo/article/20261111-5269797/images/002l.jpg",
+     "kind": "ogp",
+     "credit": "マイナビニュース",
+     "caption": "腕に着けたところ",
+     "page": "https://news.mynavi.jp/article/20261111-5269797/"
+    },
+    {
+     "type": "h",
+     "text": "機能と電池の持ち"
+    },
+    {
+     "type": "p",
+     "text": "機能は、1/100秒まで測れるストップウオッチ（計測は60分まで）、時刻のアラームと毎正時の時報、オートカレンダー（2月を28日までとする方式）、12時間と24時間の表示切り替えです。暗い場所では、白色LEDのバックライト「スーパーイルミネーター」が光ります。"
+    },
+    {
+     "type": "p",
+     "text": "電池寿命は約3年で、防水は日常生活用です。"
+    },
+    {
+     "type": "h",
+     "text": "CASIO CLASSICの安い時計との違い"
+    },
+    {
+     "type": "p",
+     "text": "同じCASIO CLASSICには、11月10日に伝えられたLF-40Wがあります。こちらは樹脂ケースで重さ23g、価格は4400円です。電池寿命は同じ約3年ですが、今回の新作はケースもバンドも金属で、101gと重く、価格は約6倍です。"
+    },
+    {
+     "type": "h",
+     "text": "価格と売り場"
+    },
+    {
+     "type": "p",
+     "text": "価格は2万7500円で、税込みかどうかはマイナビニュースの記事に書かれていません。発売は「11月」とだけ伝えられ、具体的な日にちと売り場は、まだ明らかになっていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2万7500円",
+       "label": "新作の価格"
+      },
+      {
+       "value": "約3年",
+       "label": "電池寿命"
+      },
+      {
+       "value": "101g",
+       "label": "重さ（金属製）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "金属の質感がある時計がほしい人は、11月の発売日と売り場を公式サイトで確かめる",
+      "価格が税込みかどうかは、買う前に公式ページで確認する",
+      "軽さや安さを重視するなら、CASIO CLASSICの樹脂製LF-40W（4400円、23g）も選べる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "サファイアガラスとステンレスを使い、4400円のLF-40Wとは素材が大きく違います。電池は同じ約3年なので、差は質感に価値を感じるかどうかです。101gの重さは、店で着けて確かめたいところです。"
+    }
+   ],
+   "source_name": "マイナビニュース",
+   "source_url": "https://news.mynavi.jp/article/20261111-5269797/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "マイナビニュース（CASIO CLASSIC PREMIUM）",
+     "url": "https://news.mynavi.jp/article/20261111-5269797/"
+    },
+    {
+     "name": "マイナビニュース（LF-40W）",
+     "url": "https://news.mynavi.jp/article/20261110-5270139/"
+    }
+   ]
+  },
+  {
+   "id": "service-gmail-gemini-workspace-expand",
+   "category": "service",
+   "title": "GmailのAI要約と下書き、仕事・学校用にも拡大",
+   "summary": "長いメールの要点まとめと下書き作成が、仕事・学校用のGmailでも標準でオンになります。",
+   "visual": {
+    "icon": "spark",
+    "kicker": "Gmail"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "GmailのGeminiの2機能（スレッド要約・文章作成）が、仕事・学校用アカウントなどにも広がる",
+      "対象は18歳以上。11月10日から順次始まり、表示までに最長15日かかる",
+      "標準でオン。個人でも管理者でも、オフにできる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Googleは11月10日、GmailのGeminiによる要約と文章作成を、より多くのアカウントで使えるようにすると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "広がる2つの機能"
+    },
+    {
+     "type": "p",
+     "text": "1つは、長いメールのやり取りの上に要点と返信をまとめる「AI概要（AI Overview）」です。もう1つは、短い指示から下書きを作ったり、書いた文章を整えたりする「文章作成（Help me write）」です。Googleは、個人用アカウントの情報を使わない通常版だと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "使える場面の例"
+    },
+    {
+     "type": "p",
+     "text": "たとえば「面接のお礼と、丁寧なフォローアップを書いて」と頼むと、メールの下書きができます。何十通も続いたやり取りでは、先頭のカードで要点を先に読めます。"
+    },
+    {
+     "type": "h",
+     "text": "対象になる人"
+    },
+    {
+     "type": "p",
+     "text": "対象は、18歳以上で仕事用か学校用のGoogleアカウントを使う人です。Workspace Individualの契約者と、個人のGoogleアカウントも対象に入ります。いずれも、Gmailの「スマート機能」がオンになっていることが条件です。"
+    },
+    {
+     "type": "h",
+     "text": "いつから・オフにする方法"
+    },
+    {
+     "type": "p",
+     "text": "11月10日から順次始まり、画面に出るまで最長15日かかります。更新を早く受ける設定の組織でも、通常の設定の組織でも同じです。機能は初めからオンです。"
+    },
+    {
+     "type": "p",
+     "text": "個人で止めるには、Gmailの設定でスマート機能をオフにします。ただし、文章作成の補助など、ほかのAI機能も止まります。要約のカードだけ消したいときは、カード上部の「最小化」を使います。会社や学校の管理者は、管理画面でGeminiの機能そのものをオフにできます。"
+    },
+    {
+     "type": "h",
+     "text": "まだわからないこと"
+    },
+    {
+     "type": "p",
+     "text": "日本語で使えるかどうかは、今回の発表に書かれていません。Googleのヘルプは、使える言語を一部としています。Googleは1月に、同じ要約と文章作成を米国で英語から無料で始めると説明していました。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2機能",
+       "label": "今回広がる範囲"
+      },
+      {
+       "value": "18歳以上",
+       "label": "仕事・学校用の対象年齢"
+      },
+      {
+       "value": "最長15日",
+       "label": "画面に出るまで"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "仕事用・学校用のGmailを使う人は、11月25日ごろまでに要約や下書きのボタンが出ないか確かめる",
+      "AIの要約や下書きが不要な人は、Gmailの設定でスマート機能をオフにする（ほかのAI補助も止まります）",
+      "会社や学校の管理者は、管理画面でGeminiの機能を止めるかどうかを決める",
+      "日本語での利用可否はまだわからないので、試して確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "仕事や学校のGmailで、数日のうちに要約と下書きのボタンが出るかもしれません。長いやり取りの把握には役立ちますが、送る前に自分の目で読み直すのが安全です。"
+    }
+   ],
+   "source_name": "Google Workspace Updates",
+   "source_url": "https://workspaceupdates.googleblog.com/2026/11/expanding-gemini-in-gmail-to-more-Google-Workspace-users.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "Google Workspace Updates",
+     "url": "https://workspaceupdates.googleblog.com/2026/11/expanding-gemini-in-gmail-to-more-Google-Workspace-users.html"
+    },
+    {
+     "name": "Google ブログ（Gmail）",
+     "url": "https://blog.google/products-and-platforms/products/gmail/gmail-is-entering-the-gemini-era/"
+    },
+    {
+     "name": "Gmail ヘルプ",
+     "url": "https://support.google.com/mail/answer/16561387?hl=en&co=GENIE.Platform%3DAndroid#"
+    }
+   ]
+  },
+  {
+   "id": "game-ps5-100m",
+   "category": "game",
+   "title": "PS5の世界累計販売が1億台を突破、発売から約6年",
+   "summary": "PlayStation機で1億台を超えたのは、初代PS・PS2・PS4に続く4機種目です。",
+   "image": {
+    "src": "https://cimg.kgl-systems.io/camion/files/93740/thumbnail_foul.jpg?x=1280",
+    "kind": "ogp",
+    "credit": "ファミ通.com",
+    "page": "https://www.famitsu.com/article/202611/93740"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "PS5 1億台"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "SIEが、PS5の世界累計販売台数が1億台を超えたと公表",
+      "11月10日時点の数字で、2020年11月の発売から約6年",
+      "遊んでいる人がすることはなく、価格や機能の変更は含まれない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ソニー・インタラクティブエンタテインメント（SIE）は、11月10日時点でPS5の世界累計販売台数が1億台を超えたと、公式サイトで公表しました。"
+    },
+    {
+     "type": "h",
+     "text": "4機種目の1億台超え"
+    },
+    {
+     "type": "p",
+     "text": "1億台を超えたPlayStationのハードは、初代PS、PS2、PS4に続いて4機種目です。ファミ通.comによると、PS5は2020年11月12日の発売から約6年での到達です。最も売れたPS2は、2012年3月末時点で1億6000万台を超えていました。"
+    },
+    {
+     "type": "h",
+     "text": "PS4も約6年で大台に乗った"
+    },
+    {
+     "type": "p",
+     "text": "PS4は2020年1月7日に、世界累計販売が1億600万台に達したと公式に発表しています。海外発売の2013年11月15日から数えると、こちらも約6年です。PS4の日本発売は2014年2月22日でした。"
+    },
+    {
+     "type": "h",
+     "text": "年度ごとの出荷台数"
+    },
+    {
+     "type": "p",
+     "text": "SIEの公開データは、販売店への出荷ベースです。PS5は2022年度に1910万台、2023年度に2080万台、2024年度に1850万台、2025年度に1600万台でした。2026年度は、4〜6月が160万台、7〜9月が260万台です。日本だけの台数は、今回の公表に含まれていません。"
+    },
+    {
+     "type": "h",
+     "text": "遊ぶ人とソフトの数"
+    },
+    {
+     "type": "p",
+     "text": "SIEによると、PlayStationの月間アクティブアカウントは、2026年9月30日時点で1億2700万以上です（SIEの推計）。PS4とPS5を合わせたソフトの累計販売も、同じ日の時点で17億9500万本以上です。ダウンロード版なども含みます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1億台",
+       "label": "PS5の世界累計販売"
+      },
+      {
+       "value": "約6年",
+       "label": "2020年11月の発売から"
+      },
+      {
+       "value": "4機種目",
+       "label": "1億台超えのPS機"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "PS5を持っている人は、今回の公表を受けて何かする必要はありません。",
+      "これから買う人は、価格や在庫を販売店で確かめます。今回の公表に価格の話はありません。",
+      "日本国内の販売台数は公表されていません。国内の広がりは、別の発表を待ちます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "1億台は、遊べるソフトや仲間が多い機種という目安になります。ただ日本だけの台数は公表されておらず、国内の広がりは読めません。買うかどうかは、遊びたいソフトがあるかで決めるのが無難です。"
+    }
+   ],
+   "source_name": "ファミ通.com",
+   "source_url": "https://www.famitsu.com/article/202611/93740",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ファミ通.com",
+     "url": "https://www.famitsu.com/article/202611/93740"
+    },
+    {
+     "name": "SIE 事業データ",
+     "url": "https://sonyinteractive.com/jp/our-company/business-data-sales/"
+    }
+   ]
+  },
+  {
+   "id": "ec-dg-stablecoin-arc",
+   "category": "ec",
+   "title": "デジタルガレージ、USDC決済基盤をJCBに先行提供",
+   "summary": "ステーブルコインで払える仕組みが、決済会社向けに動き出した。買い物客が使える時期は未発表。",
+   "image": {
+    "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17021-1.png",
+    "kind": "ogp",
+    "credit": "ネットショップ担当者フォーラム",
+    "page": "https://netshop.impress.co.jp/n/2026/11/11/17021"
+   },
+   "visual": {
+    "icon": "yen",
+    "kicker": "決済基盤"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "デジタルガレージの決済基盤が、Circle社のブロックチェーン「Arc」に対応",
+      "決済会社は追加開発なしでUSDC決済を扱え、まずJCBに提供を開始",
+      "手数料や、買い物客が使える時期は、まだわかっていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "デジタルガレージは11月10日、決済基盤「DG SPS」が米Circle社の「Arc」に対応したと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が発表されたか"
+    },
+    {
+     "type": "p",
+     "text": "USDCは、米ドルと同じ価値になるよう設計された「ステーブルコイン」（価格が安定するよう作られたデジタル通貨）です。DG SPSを使う決済会社は、追加のシステム開発なしで、Arc上のUSDC決済を提供できます。あわせて、米Circle Internet Groupの関連会社と、日本で普及させるための基本合意書を結びました。"
+    },
+    {
+     "type": "h",
+     "text": "Arcはどんな仕組みか"
+    },
+    {
+     "type": "p",
+     "text": "Arcは、決済や外国為替向けに作られたブロックチェーン（取引の記録を分けて持つ仕組み）です。取引は1秒未満で確定します。ネットワークの利用料（ガス代）もUSDCで払うので、手数料の変動を抑えやすいといいます。必要な場面だけ関係者に情報を見せられる、選択式のプライバシー機能もあります。"
+    },
+    {
+     "type": "h",
+     "text": "いつ、誰が使えるか"
+    },
+    {
+     "type": "p",
+     "text": "最初の提供先はJCBです。自社の決済子会社のDGフィナンシャルテクノロジーにも順次入れます。そのあと、ほかの決済会社やパートナー企業へ広げる方針です。対象は決済会社と加盟店で、実店舗の対面決済も視野に入れています。具体的な手数料率や導入件数は、まだわかっていません。"
+    },
+    {
+     "type": "h",
+     "text": "ここまでの流れ"
+    },
+    {
+     "type": "p",
+     "text": "デジタルガレージは2026年1月にJCBやりそなホールディングスと協業を始め、実店舗で実証実験を行いました。2026年8月には、DG SPSの商用展開を始めています。国内では、ローソンがレジでの実証実験を行いました。電算システムは、JPYCを使った決済の検討を2025年9月に発表しています。"
+    },
+    {
+     "type": "h",
+     "text": "買い物客や店への影響"
+    },
+    {
+     "type": "p",
+     "text": "今回の発表は、日本の店でUSDCがすぐ使えるようになったという話ではありません。個人が使えるようになる時期は、発表されていません。決済会社が導入した先から、順に対応する店が出てくるかもしれません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1秒未満",
+       "label": "Arcの取引確定の時間"
+      },
+      {
+       "value": "2026年8月",
+       "label": "DG SPSの商用展開開始"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ふつうの買い物客は、今のところ特にすることはありません。",
+      "ネットショップや店を運営する人は、使っている決済会社が対応を案内したら、手数料と対応時期を確かめる。",
+      "JCBやDGフィナンシャルテクノロジーの案内で、対応時期が出ていないか見ておく。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "個人の買い物にすぐ関係する話ではなく、まず決済会社が使う土台の整備です。見るべきは、JCBなどの導入が実際の店頭でいつ始まるかと、手数料がどうなるか。小さな店なら、自分が使う決済会社の案内を待てばよいでしょう。"
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/11/17021",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/11/17021"
+    }
+   ]
+  },
+  {
+   "id": "future-hera-didymos",
+   "category": "future",
+   "title": "ESA探査機ヘラ、小惑星ディディモスの接近撮影に成功",
+   "summary": "NASAが衝突実験をした小惑星の連星を、探査機が60km先から初めて近くで撮りました。",
+   "image": {
+    "src": "https://media.esa.int/global/public/common/misc/2026/11/402358/image-thumb__402358__fit_large/af1-sci-261031t001400-0-2x.7889fdc2.webp",
+    "kind": "press",
+    "credit": "ESA",
+    "page": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-s-first-close-up-view-of-didymos-asteroids"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "小惑星探査"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ESAの探査機ヘラが、小惑星ディディモスを初めて接近撮影",
+      "距離は約60km。本体は直径約780m、衛星は約151m",
+      "詳しい画像は11月25日に公開予定。暮らしへの影響は直接ありません"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "欧州宇宙機関（ESA）は11月5日、探査機ヘラが小惑星ディディモスを約60km先から撮った、初の接近画像を公開しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が初めてなのか"
+    },
+    {
+     "type": "p",
+     "text": "ヘラが連星の小惑星（2つの天体が互いに回り合うペア）を、自分のカメラで近くから撮ったのは初めてです。大きな本体ディディモスは直径約780mで、そのまわりを直径約151mのディモルフォスが回っています。画像ではディモルフォスが左下にあり、ほとんど影に入っています。"
+    },
+    {
+     "type": "h",
+     "text": "ぶつけた小惑星はどうなったか"
+    },
+    {
+     "type": "p",
+     "text": "NASAの探査機DARTは2022年9月、重さ580kgの機体を秒速6.1kmでディモルフォスにぶつけました。ESAによると、ディモルフォスがディディモスを回る周期は約33分短くなり、予想より大きな変化でした。人類が太陽系の天体の軌道を、測れる形で変えたのは初めてです。"
+    },
+    {
+     "type": "h",
+     "text": "ヘラが調べること"
+    },
+    {
+     "type": "p",
+     "text": "ヘラはこれからディモルフォスに近づき、衝突のあとに残った様子を調べます。衝突で小惑星の進路を変える方法を、地球を守る手段として確かめるのが目的です。ヘラは到着までに約2年かかり、ESAによると現在は地球から約1億9680万km離れています。"
+    },
+    {
+     "type": "img",
+     "src": "https://media.esa.int/legacy/web/images/esa_multimedia/images/2018/06/hera_spacecraft/15357816-8-eng-GB/174524/image-thumb__174524__fit_medium/Hera_spacecraft.d7e51130.webp",
+     "kind": "press",
+     "credit": "ESA",
+     "caption": "探査機ヘラ",
+     "page": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-s-first-close-up-view-of-didymos-asteroids"
+    },
+    {
+     "type": "h",
+     "text": "画像から見えてきたこと"
+    },
+    {
+     "type": "p",
+     "text": "今回の画像は、DARTが近づいたときには見えなかった側のディディモスです。赤道に沿った尾根は前と同じように写ります。大きな岩、クレーター、尾根や溝のような地形も見えます。ESAのヘラ計画の科学者は、衝突で飛び散った物質が約1km離れたディディモスに届いた可能性を挙げています。地形にも影響したかもしれないと説明しています。"
+    },
+    {
+     "type": "img",
+     "src": "https://media.esa.int/legacy/web/images/esa_multimedia/images/2024/02/hera_approaches_dimorphos/25470208-3-eng-GB/273425/image-thumb__273425__fit_medium/Hera_approaches_Dimorphos.25d87bbb.webp",
+     "kind": "press",
+     "credit": "ESA",
+     "caption": "ヘラがディモルフォスに近づくようす",
+     "page": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-s-first-close-up-view-of-didymos-asteroids"
+    },
+    {
+     "type": "h",
+     "text": "暮らしに届くのはいつごろか"
+    },
+    {
+     "type": "p",
+     "text": "この計画は地球を守るための研究で、スマホや家電のように買えるものにはなりません。小惑星の進路を変える技術が実際に使われる時期は、発表されていません。まず11月25日に、ESAがディディモスとディモルフォスのより詳しい画像を公開する予定です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約780m",
+       "label": "ディディモスの直径"
+      },
+      {
+       "value": "約151m",
+       "label": "ディモルフォスの直径"
+      },
+      {
+       "value": "約33分",
+       "label": "衝突で短くなった周期"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "宇宙や天文が好きな人は、11月25日にESAが公開する詳しい画像を見る",
+      "小惑星から地球を守る研究に関心がある人は、ヘラが調べる衝突後のようすに注目する",
+      "今のところ、暮らしの中で必要な手続きや準備はありません"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ヘラの本番はこれからで、最初の見どころは11月25日の詳しい画像です。衝突の跡を調べる計画なので、DARTの結果と合わせて、ぶつけて進路を変える方法がどこまで確かめられるかを見るとよいでしょう。"
+    }
+   ],
+   "source_name": "sorae",
+   "source_url": "https://sorae.info/space/20261111-didymos-hera.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "sorae",
+     "url": "https://sorae.info/space/20261111-didymos-hera.html"
+    },
+    {
+     "name": "ESA",
+     "url": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-s-first-close-up-view-of-didymos-asteroids"
+    }
+   ]
+  },
+  {
+   "id": "other-docomo-5gsa-outage-1111",
+   "category": "other",
+   "title": "ドコモ5G SAでまた全国障害　大半は復旧、原因は調査中",
+   "summary": "5日に続き2回目の全国障害です。4G固定と再起動で改善することがあります。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/image/2611/11/2000003116/10011904/728",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS",
+    "page": "https://www.itmedia.co.jp/news/article/2611/11/2000003116/"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "ドコモ障害"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ドコモで11日午前10時34分ごろから、5G SA契約者の通話・データ・SMSが全国で不調に",
+      "午後4時30分時点で大半は復旧、完全には戻らず。原因は調査中で、不正アクセスの形跡なし",
+      "5G SAでない人、MVNO、緊急通報は影響なし。4G固定と再起動で改善することも"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "NTTドコモは11日午前10時34分ごろから、5G SAの契約者に全国で通信障害が出たと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が起きたか"
+    },
+    {
+     "type": "p",
+     "text": "障害が出たのは、5G専用の設備だけで通信する「5G SA」のプランを使う人です。音声通話、データ通信、SMSが使いにくくなりました。範囲は全国です。"
+    },
+    {
+     "type": "p",
+     "text": "発表の初めは影響範囲を確認中としていましたが、午後4時30分の更新で、5G SAでない契約の5G・4G、ドコモ回線を借りるMVNO、緊急通報は影響なしと説明しました。"
+    },
+    {
+     "type": "h",
+     "text": "復旧の状況と原因"
+    },
+    {
+     "type": "p",
+     "text": "午後4時30分時点で、一部の契約者を除いて復旧しました。ただ完全には戻っておらず、復旧の見込みは改めて知らせるとしています。原因は調査中です。障害の前後とも、不正アクセスやサイバー攻撃をうかがわせる事象は確認されていないと、ドコモは説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "5日の障害との関係"
+    },
+    {
+     "type": "p",
+     "text": "5G SAの全国障害は11月5日にも起きました。復旧まで約14時間かかり、6日午前1時20分ごろに戻っています。ITmedia NEWSは、5G SAの通信をさばく交換機に通信が集中し、処理が追いつかなくなったためと伝えています。最大約158.7万人に影響したと、ケータイ Watchが伝えています。"
+    },
+    {
+     "type": "p",
+     "text": "11日の障害が5日と同じ原因かどうかは、発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "つながらないときの対処"
+    },
+    {
+     "type": "p",
+     "text": "ドコモは、端末のネットワーク設定で「4G」を選び、端末を再起動するか、機内モードを一度オンにしてオフに戻す方法を案内しています。問い合わせは、ドコモの携帯電話から113、ほかの電話から0120-800-000です。24時間・年中無休です。補償については、まだ発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "10時34分",
+       "label": "11日の障害の始まり"
+      },
+      {
+       "value": "約14時間",
+       "label": "5日の障害の復旧時間"
+      },
+      {
+       "value": "約158.7万人",
+       "label": "5日の影響人数（最大）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "5G SAのプランの人は、つながらないとき、設定で4Gを選んで再起動か機内モードの切り替えを試す",
+      "5G SAでない契約の人、MVNOでドコモ回線を使う人、緊急通報は、今回の影響なしとドコモは説明している",
+      "復旧の見込みと原因は、ドコモの「重要なお知らせ（通信障害等）」ページで確認する",
+      "補償は発表されていない。続報が出たら確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "5G SAの全国障害は、5日に続いて今月2回目です。11日の原因が5日と同じかどうかが次の確認点です。つながらないときは、4G固定が当面の回避策になります。"
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/11/2000003116/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/11/2000003116/"
+    },
+    {
+     "name": "NTTドコモ（11日16時30分更新）",
+     "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_06_m.html"
+    },
+    {
+     "name": "NTTドコモ（11日発表）",
+     "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261111_00_m.html"
+    },
+    {
+     "name": "ケータイ Watch",
+     "url": "https://k-tai.watch.impress.co.jp/docs/news/2155413.html"
+    },
+    {
+     "name": "ITmedia NEWS（第1報）",
+     "url": "https://www.itmedia.co.jp/news/article/2611/11/2000003095/"
+    }
+   ]
+  },
+  {
+   "id": "ai-openai-japan-residency",
+   "category": "ai",
+   "title": "OpenAI、APIの処理・推論を日本国内で可能に",
+   "summary": "金融や官公庁など国内で扱いたい企業向け。ChatGPTアプリは対象外です。",
+   "image": {
+    "src": "https://www.watch.impress.co.jp/img/ipw/list/2155/544/01.jpg",
+    "kind": "ogp",
+    "credit": "Impress Watch",
+    "page": "https://www.watch.impress.co.jp/docs/news/2155544.html"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "国内で処理"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIが11月11日、APIの処理と推論を日本国内で行える機能を一般提供した。",
+      "対象はGPT-6 Luna。文字と画像を入れて文字で答える使い方で、ChatGPTアプリは対象外。",
+      "使うには事前の承認と設定が必要。企業や開発者向けで、一般の利用者の画面は変わらない。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月11日、API経由で使うGPT-6 Lunaについて、処理と推論を日本国内で行える機能の一般提供を始めました。"
+    },
+    {
+     "type": "h",
+     "text": "データの保存から処理まで国内に"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは2025年5月、日本を含むアジアで、対象の顧客データを国内に保存できる仕組みを発表していました。今回はそこから進み、AIに質問を送って答えを作る処理（推論）まで国内で行えます。入力は文字と画像、出力は文字です。"
+    },
+    {
+     "type": "h",
+     "text": "使うための条件"
+    },
+    {
+     "type": "p",
+     "text": "・Responses APIかChat Completions APIを使う\n・送ったデータをOpenAI側に残さない「ゼロデータ保持」を、OpenAIの事前承認を受けて有効にする\n・データの保存場所と処理場所を日本にした新しいAPIプロジェクトを作り、日本向けの接続先を使う\n・料金プランは従量課金の「Standard」のみ"
+    },
+    {
+     "type": "h",
+     "text": "対象外になるもの"
+    },
+    {
+     "type": "p",
+     "text": "ChatGPTとCodexのアプリ、GPT-6 Luna以外のモデル、音声、画像生成、OpenAIが用意するツールは対象外です。アカウント情報や利用量、請求のデータも含まれません。"
+    },
+    {
+     "type": "p",
+     "text": "国内で保存・処理されるのは、指定した顧客の内容だけです。Impress Watchは、すべての処理が国内で完結することを保証するものではないと伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "想定される使い道"
+    },
+    {
+     "type": "p",
+     "text": "金融、通信、医療、官公庁など、データを国内で扱う必要がある分野が想定されています。使い道は文書の要約、返信文の下書き、情報の分析などです。OpenAIは日本のほか、オーストラリアとインドでも同様の機能を出しています。"
+    },
+    {
+     "type": "p",
+     "text": "日本語への対応や追加料金の有無は、今回の発表では示されていません。GPT-6 Lunaは9月23日に、上位モデルのGPT-6 Solとともに公開されたモデルです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2025年5月",
+       "label": "国内保存の対応を発表"
+      },
+      {
+       "value": "3か国",
+       "label": "同様の機能の提供先"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "企業でAPIを使う担当者は、ゼロデータ保持の事前承認と、日本向けプロジェクトの作成が必要です。",
+      "ChatGPTアプリやCodexを使う人は、今回の対象外で、何も変わりません。",
+      "「すべて国内で完結する」とは限らないため、社内ルールに合うかをOpenAIの条件で確かめてください。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "国内でのデータ処理を求められる会社にとっては、APIを使う壁が1つ下がる話です。ふだんChatGPTアプリを使う人の画面や料金は変わりません。導入を考えるなら、対象外の項目とゼロデータ保持の条件を先に見ておくと安心です。"
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2155544.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2155544.html"
+    }
+   ]
+  },
+  {
+   "id": "mobile-xiaomi-18-pro-japan-launch",
+   "category": "mobile",
+   "title": "Xiaomi 18 Pro、27日発売へ　20日に体験会",
+   "summary": "背面にも画面を持つシャオミの新型が日本に来る。価格は17日の発表待ち。",
+   "image": {
+    "src": "https://i02.appmifile.com/668_operator_jp/05/11/2026/5983f0fc884accbe7c6f1bd662ea934e.png?thumb=1&q=85",
+    "kind": "press",
+    "credit": "Xiaomi",
+    "page": "https://www.mi.com/jp/launch/xiaomi-launch-november-2026"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "シャオミ新型"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "シャオミが背面にも画面がある「Xiaomi 18 Pro」シリーズを日本で売る",
+      "17日夜に発表、27日発売の見込み。早期購入で最大1万2000円引き",
+      "20〜23日に表参道で無料の体験イベント。価格はまだ未発表"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "シャオミは背面画面つきの「Xiaomi 18 Pro」と「Pro Max」を日本で出します。17日に発表し、27日発売の見込みです。"
+    },
+    {
+     "type": "img",
+     "src": "https://i02.appmifile.com/50_operator_jp/05/11/2026/4a33cd3ecb9e564fbd35c12f5b8c453b.jpg?thumb=1&q=100",
+     "kind": "press",
+     "credit": "Xiaomi",
+     "caption": "白いモデルの背面（シャオミ公式ページ）",
+     "page": "https://www.mi.com/jp/launch/xiaomi-launch-november-2026"
+    },
+    {
+     "type": "h",
+     "text": "発売までの日程"
+    },
+    {
+     "type": "p",
+     "text": "事前登録は9日から17日まで。登録すると200 Miポイントがもらえます。発表イベントはパリで17日22時（日本時間）に開かれます。"
+    },
+    {
+     "type": "p",
+     "text": "シャオミの特設ページでは、17日から26日が早期販売、27日から2027年1月3日までが発売記念の期間です。S-MAXは27日発売と伝えています。税込み価格は発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "背面の画面とおサイフケータイ"
+    },
+    {
+     "type": "p",
+     "text": "シャオミは、背面画面を日本のスマホで初めてとしています。おサイフケータイ（FeliCa）にも対応し、同社のフラッグシップ（最上位）機では初です。色は赤・紫・白の3色が示されています。"
+    },
+    {
+     "type": "p",
+     "text": "中国で9月に出たモデルは、背面に約2.7型の画面を持ちます。Leica（ライカ）と作ったカメラと、横から画面をのぞかれにくい機能もあります。日本向けの仕様は、17日の発表で確かめることになります。"
+    },
+    {
+     "type": "img",
+     "src": "https://i02.appmifile.com/366_operator_jp/05/11/2026/a63d8e27c56c338ee7ae73be8da19570.jpg?thumb=1&q=100",
+     "kind": "press",
+     "credit": "Xiaomi",
+     "caption": "赤いモデルの背面（シャオミ公式ページ）",
+     "page": "https://www.mi.com/jp/launch/xiaomi-launch-november-2026"
+    },
+    {
+     "type": "h",
+     "text": "ProとPro Maxの違い"
+    },
+    {
+     "type": "p",
+     "text": "S-MAXが載せた仕様では、Proは6.4型の画面と7000mAhの電池、背面画面は約2.7型です。Pro Maxは6.9型、8500mAh、背面画面は約2.9型です。"
+    },
+    {
+     "type": "p",
+     "text": "どちらも2億画素のメインカメラと、2億画素で3.2倍の望遠、5000万画素の超広角を持ちます。有線は100W、ワイヤレスは50Wで充電でき、防水防塵はIP68です。"
+    },
+    {
+     "type": "img",
+     "src": "https://i02.appmifile.com/616_operator_jp/05/11/2026/e1cd7d8d26d45e7dcbf173847254e436.jpg?thumb=1&q=100",
+     "kind": "press",
+     "credit": "Xiaomi",
+     "caption": "紫のモデルの背面（シャオミ公式ページ）",
+     "page": "https://www.mi.com/jp/launch/xiaomi-launch-november-2026"
+    },
+    {
+     "type": "h",
+     "text": "購入特典と事前予約"
+    },
+    {
+     "type": "p",
+     "text": "シャオミの特設ページに載る主な特典です。内容は予告なく変わることがあります。\n・早期購入で最大1万2000円引き\n・下取りで3000円のキャッシュバック\n・最大36回の分割払いが手数料なし\n・ケースとスタンドを全員にプレゼント\n・保証サービス「Xiaomi Care」が2年分を1年分の価格で"
+    },
+    {
+     "type": "p",
+     "text": "学生はさらに2000円引きです。毎週の抽選もあります。対象者には、Spotify Premium（最長4カ月）、YouTube Premium（最長3カ月）、Google AI Pro（最長3カ月）も付きます。"
+    },
+    {
+     "type": "h",
+     "text": "表参道で体験イベント"
+    },
+    {
+     "type": "p",
+     "text": "発売記念イベントは、東京・OMOTESANDO MUSEUMで20日から23日まで開かれます。時間は11時から19時で、20日だけ14時から20時です。入場は無料です。"
+    },
+    {
+     "type": "p",
+     "text": "発売前に実機を試せます。スタンプラリーの景品として「Xiaomi 18 Pro Max」が当たる抽選もあります。シャオミストアでは、中身を伏せた予約が9日から始まっています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "11月27日",
+       "label": "発売の見込み"
+      },
+      {
+       "value": "最大1万2000円",
+       "label": "早期購入の割引"
+      },
+      {
+       "value": "4日間",
+       "label": "表参道の体験イベント"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買う気がある人は、17日22時の発表で価格と日本向けの仕様を確かめる",
+      "事前登録は17日まで。登録すると200 Miポイントがもらえる",
+      "実機を触りたい人は、20〜23日の表参道イベントへ（入場無料）",
+      "特典は期間と条件があるので、買う前に特設ページで確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "背面画面とおサイフケータイの両方が付くかどうかが、日本で選ぶ決め手になりそうです。価格は未発表なので、17日の発表を見てから決めても遅くありません。体験会で背面画面の使い心地を試せます。"
+    }
+   ],
+   "source_name": "ITmedia Mobile",
+   "source_url": "https://www.itmedia.co.jp/mobile/articles/2611/10/news051.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "ITmedia Mobile",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/10/news051.html"
+    },
+    {
+     "name": "S-MAX",
+     "url": "https://s-max.jp/archives/1801010.html"
+    },
+    {
+     "name": "Xiaomi Japan",
+     "url": "https://www.mi.com/jp/launch/xiaomi-launch-november-2026"
+    }
+   ]
+  },
+  {
+   "id": "gadget-ring-robotics",
+   "category": "gadget",
+   "title": "Amazon傘下Ring、飛ぶ防犯カメラと巡回ロボ発表",
+   "summary": "異常のあった場所へ自分で向かうカメラです。発売は米国のみで、日本は未定です。",
+   "image": {
+    "src": "https://assets.aboutamazon.com/dims4/default/648060e/2147483647/strip/true/crop/2000x1125+0+0/resize/1320x743!/quality/90/?url=https%3A%2F%2Fassets.aboutamazon.com%2F2c%2Fca%2Fdd0c6bb84c3896a7165e4503c268%2Famazon-ring-drone-camera-amazonnews-cdlt-11092026.jpeg",
+    "kind": "press",
+    "credit": "Amazon（Ring）",
+    "page": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot"
+   },
+   "visual": {
+    "icon": "camera",
+    "kicker": "Ring新製品"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Amazon傘下のRingが、室内を飛ぶカメラ「Drone Cam」と巡回ロボ「Rover Cam」を発表",
+      "Drone Camは249.99ドルで2027年1月27日、Rover Camは999.99ドルで2026年12月16日に米国で出荷",
+      "日本での発売予定は明らかにされていない。一部機能は有料プランが必要"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "米Amazon傘下のRingが11月10日（現地時間）に発表しました。家の中を飛ぶ防犯カメラと、店舗向けの巡回ロボを米国で売ります。"
+    },
+    {
+     "type": "h",
+     "text": "家の中を飛ぶ「Drone Cam」"
+    },
+    {
+     "type": "p",
+     "text": "Ring Drone Camは、室内用の飛ぶカメラです。決めたルートと時間に沿って飛び、アプリから好きなときに飛ばすこともできます。Ringのカメラやセンサー、警報器が異常を見つけると、その場所へ撮影に向かいます。"
+    },
+    {
+     "type": "p",
+     "text": "画角は148度で、本体は360度回ります。映像は2Kで、暗い場所では内蔵のLEDライト2灯がつきます。価格は249.99ドル、出荷は2027年1月27日です。ただしアメリカの連邦通信委員会（FCC）の認証をまだ取っておらず、取るまでは売れません。"
+    },
+    {
+     "type": "h",
+     "text": "店舗向けの巡回ロボ「Rover Cam」"
+    },
+    {
+     "type": "p",
+     "text": "Ring Rover Camは、オフィスや店舗の見回り用の走行ロボットです。指定した部屋や巡回地点へ行き、着いたら360度を見渡します。高さを変えられるカメラで、カウンターや棚の上も確認できます。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.aboutamazon.com/dims4/default/2cddfda/2147483647/strip/true/crop/2000x1125+0+0/resize/1320x743!/quality/90/?url=https%3A%2F%2Fassets.aboutamazon.com%2F7b%2F9d%2Fa5e9a5ee4e77a798f59cc0718716%2Famazon-ring-rover-camera-amazonnews-cdlt-11092026.jpeg",
+     "kind": "press",
+     "credit": "Amazon（Ring）",
+     "caption": "事業者向けの巡回ロボット「Ring Rover Cam」",
+     "page": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot"
+    },
+    {
+     "type": "p",
+     "text": "移動中は最大4Kで撮影し、サイレンとライトでの威嚇や、双方向の音声通話もできます。待機中も人の動きを見つけると通知し、録画します。価格は999.99ドル、出荷は2026年12月16日で、予約を受け付けています。"
+    },
+    {
+     "type": "h",
+     "text": "共通のAIと映像の守り方"
+    },
+    {
+     "type": "p",
+     "text": "2機種とも、Ring独自のAI「AI Pilot」を積んでいます。部屋の間取り図を作り、巡回する地点を提案し、家具などをよけて進みます。映像には、Ringの暗号化技術「Throw Away the Key（TAKE）」を使います。"
+    },
+    {
+     "type": "p",
+     "text": "プライバシーの面では、Drone Camはドックで待機中はカメラを切り、飛び始めてから録画します。Rover Camは、ワンタップでカメラをしまい、マイクを切るスリープモードがあります。録画中はどちらも、LEDなどで知らせます。"
+    },
+    {
+     "type": "h",
+     "text": "日本での発売と有料プラン"
+    },
+    {
+     "type": "p",
+     "text": "日本での発売予定は、明らかにされていません。決まった時間の巡回や、Rover Camの録画映像の確認などの機能には、Ring Protectプランへの加入が必要です。プランの料金は、今回の発表では示されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "249.99ドル",
+       "label": "Drone Camの米国価格"
+      },
+      {
+       "value": "999.99ドル",
+       "label": "Rover Camの米国価格"
+      },
+      {
+       "value": "12月16日",
+       "label": "Rover Camの出荷開始"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "日本での発売は未発表なので、今すぐ買えるわけではない",
+      "Drone Camは、FCC認証を取るまで売れない。出荷の時期は変わるかもしれない",
+      "決まった時間の巡回など一部機能は、Ring Protectプランの加入が前提になる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "日本で買えるかが未発表なので、今は様子見で十分です。固定カメラとの違いは、異常のあった場所へ自分で向かう点にあります。録画のしかたや有料プランの条件は、日本向けの発表が出てから確かめましょう。"
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2155467.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2155467.html"
+    },
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/11/2000003111/"
+    },
+    {
+     "name": "Amazon公式発表",
+     "url": "https://www.aboutamazon.com/news/devices/ring-drone-cam-rover-cam-security-robot"
+    }
+   ]
+  },
+  {
+   "id": "service-drive-auto-label-accept",
+   "category": "service",
+   "title": "Googleドライブ、自動ラベルを1クリックで承認",
+   "summary": "会社や学校のドライブで、自動ラベルの確認が「承認」ボタン1つで済みます。",
+   "image": {
+    "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhkhhyphenhyphenxIdltMIfKYeR_EA9zgUNIOb0BlZQDPB4P_wHwIWi-nLM2k8kaavmw8P9dZeE-SzAo2qopZ0uci-foZlgz3Zd68KHsb24V6rNWo0buQSDLxBHEYRXn8xQpr41d-yNOUY5FR6AFqURCN1BGMAeNSm3bfaYnMd9yKMQWlHKGBuYamdNX-55C5KgWAE/s1600/Quickly%20confirm%20system-applied%20classification%20labels%20in%20Google%20Drive,%20Docs,%20Sheets,%20and%20Slides%20-%207374.png",
+    "kind": "press",
+    "credit": "Google Workspace Updates",
+    "page": "https://workspaceupdates.googleblog.com/2026/11/quickly-confirm-system-applied-classification-labels-in-Google-Drive-Docs-Sheets-and-Slides.html"
+   },
+   "visual": {
+    "icon": "doc",
+    "kicker": "ドライブ"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ドライブ・ドキュメント・スプレッドシート・スライドで、自動でついた分類ラベルをバナーから1クリックで承認できる",
+      "ラベルを変える権限がある人が対象。11月9日から順次始まり、表示までに最長15日かかる",
+      "新しい設定はなく、対象の組織では初めからオン"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Googleは11月9日、自動でついた分類ラベルを、ファイル上部のバナーからすぐ承認できるようにすると発表しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhkhhyphenhyphenxIdltMIfKYeR_EA9zgUNIOb0BlZQDPB4P_wHwIWi-nLM2k8kaavmw8P9dZeE-SzAo2qopZ0uci-foZlgz3Zd68KHsb24V6rNWo0buQSDLxBHEYRXn8xQpr41d-yNOUY5FR6AFqURCN1BGMAeNSm3bfaYnMd9yKMQWlHKGBuYamdNX-55C5KgWAE/s1999/Quickly%20confirm%20system-applied%20classification%20labels%20in%20Google%20Drive,%20Docs,%20Sheets,%20and%20Slides%20-%207374.png",
+     "kind": "press",
+     "credit": "Google Workspace Updates",
+     "caption": "ファイル上部のバナーに承認と編集のボタンが出る画面",
+     "page": "https://workspaceupdates.googleblog.com/2026/11/quickly-confirm-system-applied-classification-labels-in-Google-Drive-Docs-Sheets-and-Slides.html"
+    },
+    {
+     "type": "h",
+     "text": "何が変わるのか"
+    },
+    {
+     "type": "p",
+     "text": "分類ラベルは、ファイルを分類するために付ける印です。AIによる分類や、あらかじめ決めたルールで、自動でつくことがあります。これまでバナーには「確認（Review）」ボタンしかありませんでした。"
+    },
+    {
+     "type": "p",
+     "text": "今後は、ラベルが1つだけ自動でついたとき、バナーに「承認（Accept）」と「編集（Edit）」が出ます。承認を押せばその場で確定し、編集を押すと側面のラベルパネルが開いて値を変えられます。パネルにも「ラベルを承認」ボタンが加わります。"
+    },
+    {
+     "type": "h",
+     "text": "ラベルが複数ついたとき"
+    },
+    {
+     "type": "p",
+     "text": "自動でついたラベルが複数あるときは、これまでどおりバナーに「確認」が出ます。押すとパネルが開き、1つずつ確かめます。"
+    },
+    {
+     "type": "h",
+     "text": "対象のプランと権限"
+    },
+    {
+     "type": "p",
+     "text": "使えるのは、そのファイルのラベルを変更できる人です。既定の分類ルールは、Business StandardとPlus、Enterprise Starter・Standard・Plus、Education StandardとPlus、Frontline、Enterprise Essentials、非営利団体向けで使えます。個人の無料アカウントは、対象として挙がっていません。"
+    },
+    {
+     "type": "p",
+     "text": "AIによる分類には、Enterprise Plus、Frontline Plus、AI Securityアドオン、Google AI Pro for Educationアドオンのいずれかが必要です。"
+    },
+    {
+     "type": "h",
+     "text": "いつから・設定は"
+    },
+    {
+     "type": "p",
+     "text": "11月9日から順次始まり、画面に出るまで最長15日かかります。ユーザー側の設定はなく、管理者向けの新しい管理設定もありません。既定の分類やAI分類でドライブのラベルを使っている組織では、初めからオンです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1クリック",
+       "label": "ラベルの承認に必要な操作"
+      },
+      {
+       "value": "11月9日",
+       "label": "提供開始日"
+      },
+      {
+       "value": "最長15日",
+       "label": "画面に出るまで"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "会社や学校のドライブで、自動ラベルのバナーに「承認」「編集」が出たら、ラベルが合っているか見てから選ぶ",
+      "ラベルが違うときは「編集」で側面パネルを開いて直す",
+      "ラベルが複数ついた場合は、従来どおり「確認」からパネルで1つずつ見る",
+      "管理者は新しい設定がないので、ヘルプのラベル管理の説明を確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "自動でついたラベルが合っているかを確かめる手間が、1クリックで済むようになります。個人のGoogleアカウントは対象に挙がっていないため、会社や学校でドライブを使う人向けの変更です。"
+    }
+   ],
+   "source_name": "Google Workspace Updates",
+   "source_url": "https://workspaceupdates.googleblog.com/2026/11/quickly-confirm-system-applied-classification-labels-in-Google-Drive-Docs-Sheets-and-Slides.html",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "Google Workspace Updates",
+     "url": "https://workspaceupdates.googleblog.com/2026/11/quickly-confirm-system-applied-classification-labels-in-Google-Drive-Docs-Sheets-and-Slides.html"
+    }
+   ]
+  },
+  {
+   "id": "game-zelda-ocarina-5-2m",
+   "category": "game",
+   "title": "『時のオカリナ』Switch 2版、4日で520万本",
+   "summary": "Switch 2用ソフトの発売後4日間の世界累計販売で、過去最高だと任天堂は説明しています。",
+   "image": {
+    "src": "https://www.nintendo.co.jp/corporate/release/2026/img_261111/package.webp",
+    "kind": "press",
+    "credit": "任天堂",
+    "page": "https://www.nintendo.co.jp/corporate/release/2026/261111.html"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "520万本"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "任天堂が、Switch 2版『時のオカリナ』は4日で520万本超と発表",
+      "日本は81万本。Switch 2ソフトの4日間の販売で過去最高と説明",
+      "遊べるのはSwitch 2のみ。ダウンロード版7980円、パッケージ版8980円"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "任天堂は11月11日、Switch 2用『ゼルダの伝説 時のオカリナ』の世界累計販売が、11月5日の発売から4日間で520万本を超えたと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "520万本の中身と記録"
+    },
+    {
+     "type": "p",
+     "text": "520万本には、パッケージ版とダウンロード版の両方が入っています。日本での販売は81万本で、世界累計に含まれます。任天堂の社内調べでは、Switch 2のソフトとして、発売後4日間の世界累計販売が過去最高です。比べた他のソフトの本数は、公表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "どんなゲームか"
+    },
+    {
+     "type": "p",
+     "text": "1998年にニンテンドー64で出た作品を、Switch 2向けに作り直したゼルダです。画面を新しくしつつ、元の遊び心地を残して遊びやすくしたと、任天堂は説明しています。"
+    },
+    {
+     "type": "p",
+     "text": "主人公のリンクが「子ども時代」と「大人時代」を行き来し、時代ごとに使える技や道具が変わります。オカリナで時間や道を動かし、剣と盾で戦いながら、仕掛けを解いて進みます。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.nintendo.com/jp/games/switch2/aa9ja/assets/img/top/age_chara.webp",
+     "kind": "press",
+     "credit": "任天堂",
+     "caption": "公式サイトの「2つの時代」の紹介画像",
+     "page": "https://www.nintendo.com/jp/games/switch2/aa9ja/index.html"
+    },
+    {
+     "type": "h",
+     "text": "発売日・価格・対応機種"
+    },
+    {
+     "type": "p",
+     "text": "発売日は2026年11月5日で、世界同時発売です。任天堂の公式サイトによると、希望小売価格（税込み）はダウンロード版が7980円、パッケージ版が8980円です。対応機種はNintendo Switch 2のみです。CERO Bの12歳以上向けで、amiiboにも対応します。"
+    },
+    {
+     "type": "h",
+     "text": "店頭より安い表示も"
+    },
+    {
+     "type": "p",
+     "text": "ファミ通.comのページでは、11月12日未明のAmazon.co.jpの表示として、パッケージ版が7755円、ダウンロード用コード版が7182円と紹介されています。同ページのランキング欄では、パッケージ版が1位でした。価格は販売店ごとに違うため、買う前に確かめます。"
+    },
+    {
+     "type": "h",
+     "text": "補助機能「ZELDA NOTES」"
+    },
+    {
+     "type": "p",
+     "text": "Nintendo Switchアプリの中に、遊びを助ける「ZELDA NOTES」があります。有料のNintendo Switch Onlineに入っていなくても使えます。アプリの利用には、無料のニンテンドーアカウントが必要です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "520万本",
+       "label": "発売4日間の世界累計"
+      },
+      {
+       "value": "81万本",
+       "label": "うち日本の販売"
+      },
+      {
+       "value": "7980円",
+       "label": "DL版の希望小売価格"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Switch 2を持っている人は、ダウンロード版7980円、パッケージ版8980円（希望小売価格・税込み）で遊べます。",
+      "初代Switchでは遊べません。対応機種はSwitch 2だけです。",
+      "攻略に迷ったときは、無料のNintendo Switchアプリの「ZELDA NOTES」を使えます。",
+      "買う前に、販売店ごとの価格を比べます。11月12日未明のAmazon.co.jpでは、希望小売価格より安く表示されていました。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "元の体験を残した作り直しなので、初代を遊んだ人は思い出と比べやすい一本です。520万本は任天堂の社内調べで、ほかのソフトの本数は出ていません。買うなら、店ごとの価格を比べてからがおすすめです。"
+    }
+   ],
+   "source_name": "任天堂",
+   "source_url": "https://www.nintendo.co.jp/corporate/release/2026/261111.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "任天堂 ニュースリリース",
+     "url": "https://www.nintendo.co.jp/corporate/release/2026/261111.html"
+    },
+    {
+     "name": "ファミ通.com",
+     "url": "https://famitsu.com/article/202611/93721"
+    },
+    {
+     "name": "任天堂 ゼルダの伝説 時のオカリナ",
+     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/index.html"
+    }
+   ]
+  },
+  {
+   "id": "ec-paypay-balance-link",
+   "category": "ec",
+   "title": "PayPay、不足分だけ1円単位で自動チャージ",
+   "summary": "残高が足りない分だけ銀行口座から入り、使い残しは毎日口座へ戻せます。",
+   "image": {
+    "src": "https://about.paypay.ne.jp/uploads/2026/11/158447-01-img01-kv.png",
+    "kind": "press",
+    "credit": "PayPay",
+    "page": "https://about.paypay.ne.jp/pr/20261111/01/"
+   },
+   "visual": {
+    "icon": "yen",
+    "kicker": "PayPay"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "PayPayが、足りない分だけ銀行口座から補う「PayPay残高連携」を11月11日に発表",
+      "チャージは1円単位。使い残しは毎日24時以降に口座へ戻せて、出金手数料は無料",
+      "11月中旬をめどに全員へ提供。PayPay銀行の普通預金口座が必要"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "PayPayは11月11日、残高が足りない分だけ銀行口座から自動で入れる「PayPay残高連携」を発表しました。順次始まり、11月中旬をめどに全員が使えます。"
+    },
+    {
+     "type": "h",
+     "text": "不足分だけを1円単位で補う"
+    },
+    {
+     "type": "p",
+     "text": "連携先はPayPay銀行の円普通預金口座です。支払いや個人間送金でPayPay残高が足りないとき、足りない金額だけが自動でチャージされます。たとえば100円の支払いなら、入るのも100円です。"
+    },
+    {
+     "type": "p",
+     "text": "従来のオートチャージは、あらかじめ決めた金額（5000円以上）をまとめて入れる方式でした。新機能は使う分だけ入るので、残高を多めに置いておく必要がありません。口座の残高が足りないと、支払いはエラーになります。その場合は口座に入金するか、別の支払い方法を使います。"
+    },
+    {
+     "type": "img",
+     "src": "https://about.paypay.ne.jp/uploads/2026/11/158447-01-img04.png",
+     "kind": "press",
+     "credit": "PayPay",
+     "caption": "オートチャージと「PayPay残高連携」の自動チャージの違い",
+     "page": "https://about.paypay.ne.jp/pr/20261111/01/"
+    },
+    {
+     "type": "h",
+     "text": "使い残しは毎日自動で出金"
+    },
+    {
+     "type": "p",
+     "text": "自動出金を設定すると、使わずに残ったPayPayマネーが毎日1回、24時以降に順次PayPay銀行の口座へ戻ります。出金手数料は無料です。個人間送金で受け取った分や、他の銀行口座・ATMからチャージした分のうち、その日に使わなかった分が対象です。"
+    },
+    {
+     "type": "p",
+     "text": "給与のPayPayマネーと、PayPayマネーライトは対象外です。自動出金を設定していない人の残高は動きません。"
+    },
+    {
+     "type": "h",
+     "text": "ポイントと金利の条件"
+    },
+    {
+     "type": "p",
+     "text": "残高連携での支払いは「PayPayステップ」の対象で、PayPayポイントが0.5%付きます。自動出金したお金は、PayPay銀行の「ステップアップ円預金」の対象です。普通預金金利は最大年0.7%、ポイントは年0.1%で、合わせて最大年0.8%相当（税引き前）です。"
+    },
+    {
+     "type": "p",
+     "text": "特別金利が付くのは預金1000万円までで、超えた分は年0.50%です。ポイントは残高500万円までが対象です。利息とポイントには20.315%の税金がかかり、ポイントの受け取りには設定が必要です。金利は変わることがあります。"
+    },
+    {
+     "type": "h",
+     "text": "設定の手間とまだ不明な点"
+    },
+    {
+     "type": "p",
+     "text": "設定には事前準備が必要です。済んでいれば6タップで終わると、PayPayは案内しています。画面の流れは公式発表の図で見られます。"
+    },
+    {
+     "type": "img",
+     "src": "https://about.paypay.ne.jp/uploads/2026/11/158447-01-img03.png",
+     "kind": "press",
+     "credit": "PayPay",
+     "caption": "設定手順（6タップ）を示した図",
+     "page": "https://about.paypay.ne.jp/pr/20261111/01/"
+    },
+    {
+     "type": "p",
+     "text": "自動チャージの1回や1日の上限額、チャージの手数料の有無は、発表に書かれていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1円",
+       "label": "チャージの最小単位"
+      },
+      {
+       "value": "0.5%",
+       "label": "残高連携の決済で付くポイント"
+      },
+      {
+       "value": "年0.8%",
+       "label": "自動出金分の最大金利（税引き前）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "PayPay銀行の口座があり、残高をこまめにチャージしている人は、11月中旬以降にアプリで設定を探す",
+      "使い残しを銀行へ戻したい人は、自動出金を別に設定する（設定しないと動かない）",
+      "連携する口座の残高が足りないと支払いがエラーになるので、口座に余裕を残す",
+      "チャージの上限や手数料は未発表なので、設定前に公式の案内を読む"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "PayPay銀行の口座をすでに使っている人は、残高の置きすぎを防げるので向いています。口座にあまりお金を置かない人は、支払いがエラーになりやすい点に注意しましょう。上限額などの未発表の点は、設定前に公式の案内で確認してください。"
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2155523.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2155523.html"
+    },
+    {
+     "name": "PayPay公式発表",
+     "url": "https://about.paypay.ne.jp/pr/20261111/01/"
+    }
+   ]
+  },
+  {
+   "id": "future-nihonbashi-space-week",
+   "category": "future",
+   "title": "宇宙ビジネスの祭典、日本橋で12月1日から4日間",
+   "summary": "参加は約200団体と過去最多で、事前登録をすれば無料で見られます。",
+   "image": {
+    "src": "https://www.crossu.org/spaceweek/wp-content/uploads/2026/09/day1-768x521.webp",
+    "kind": "press",
+    "credit": "クロスユー / 三井不動産",
+    "page": "https://www.crossu.org/spaceweek/"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "宇宙イベント"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "「NIHONBASHI SPACE WEEK 2026」が12月1〜4日に東京・日本橋で開催",
+      "参加は約200団体で、前年の約100団体から倍増し過去最多",
+      "事前登録で無料。一部の連携イベントは有料"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "一般社団法人クロスユーと三井不動産が開く宇宙ビジネスの催しが、12月1日から4日まで東京・日本橋で行われます。"
+    },
+    {
+     "type": "img",
+     "src": "https://sorae.info/wp-content/uploads/2026/11/20261111-nihonbashi-space-week-2026_mv.jpg",
+     "kind": "ogp",
+     "credit": "三井不動産 / sorae",
+     "caption": "NIHONBASHI SPACE WEEK 2026のメインビジュアル",
+     "page": "https://sorae.info/event/20261111-nihonbashi-space-week-2026.html"
+    },
+    {
+     "type": "h",
+     "text": "どれだけの団体が集まるか"
+    },
+    {
+     "type": "p",
+     "text": "主催側は11月9日に概要を発表しました。soraeによると、参加は約200の企業・団体で、前年の約100から倍になりました。宇宙関連のイベントは50件以上で、前年の約30件から増えます。海外からは約50団体が加わり、内訳は欧州が約30、オーストラリアが18です。"
+    },
+    {
+     "type": "p",
+     "text": "通信、旅行、製造など、宇宙以外の業界の出展も過去最多になる見込みです。"
+    },
+    {
+     "type": "h",
+     "text": "会場とプログラム"
+    },
+    {
+     "type": "p",
+     "text": "展示は12月1〜3日に日本橋三井ホールで行います。ほかに、講演や、海外団体による8件の発表があります。50以上の企業・団体が登壇するピッチ（短い発表）や、企業どうしのマッチングも行われます。展示の団体数は、soraeが130以上、公式サイトの現時点の表記は80以上です。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.crossu.org/spaceweek/wp-content/uploads/2026/09/day2-768x521.webp",
+     "kind": "press",
+     "credit": "クロスユー / 三井不動産",
+     "caption": "公式サイトが紹介する講演（カンファレンス）の場",
+     "page": "https://www.crossu.org/spaceweek/"
+    },
+    {
+     "type": "h",
+     "text": "見どころの例"
+    },
+    {
+     "type": "p",
+     "text": "soraeが紹介した例は次のとおりです。\n・富士通：衛星データで災害対応を早める\n・JTBと岩谷技研：気球で行く「宇宙観光フライト」\n・アストロスケール：デブリ（宇宙ごみ）観測衛星「ISSA-J1」（2027年打ち上げ予定）\n・ペールブルー：超小型の軌道間輸送機"
+    },
+    {
+     "type": "h",
+     "text": "参加のしかた"
+    },
+    {
+     "type": "p",
+     "text": "来場には事前の登録が必要で、無料です。一部の連携イベントは有料です。会場は日本橋三井ホール、室町三井ホール&カンファレンスなど日本橋エリアに分かれ、最寄りは東京メトロ銀座線・半蔵門線の三越前駅です。内容は変わる場合があるため、公式サイトで最新を確認できます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約200団体",
+       "label": "参加する企業・団体"
+      },
+      {
+       "value": "50件以上",
+       "label": "宇宙関連のイベント数"
+      },
+      {
+       "value": "約50団体",
+       "label": "海外からの参加"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "宇宙ビジネスに関心がある人は、公式サイトで無料の来場登録をする（開催は12月1〜4日）",
+      "展示を見たい人は、12月1〜3日に日本橋三井ホールへ行く。最寄りは三越前駅",
+      "有料の連携イベントもあるので、申し込む前に各主催者のページで料金を確かめる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "衛星データの防災利用や気球の宇宙観光など、暮らしに近い宇宙の使い道が並びます。実際に使える時期は各社の発表次第なので、登壇企業が時期や料金に触れるかを見るとよいでしょう。"
+    }
+   ],
+   "source_name": "sorae",
+   "source_url": "https://sorae.info/event/20261111-nihonbashi-space-week-2026.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "sorae",
+     "url": "https://sorae.info/event/20261111-nihonbashi-space-week-2026.html"
+    },
+    {
+     "name": "NIHONBASHI SPACE WEEK 2026 公式サイト",
+     "url": "https://www.crossu.org/spaceweek/"
+    }
+   ]
+  },
+  {
+   "id": "other-ymir-link-leak-47m",
+   "category": "other",
+   "title": "ユミルリンク、漏えいは延べ4786万件に　JR東海なども影響",
+   "summary": "メール配信システムへの不正アクセスで、氏名や生年月日なども漏れました。届くメールに注意が必要です。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/image/2611/11/2000003114/10011900/728",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS（ユミルリンクのプレスリリースより）",
+    "page": "https://www.itmedia.co.jp/news/article/2611/11/2000003114/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "情報漏えい"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "メール配信のユミルリンクが、不正アクセスの漏えいを延べ4786万4147件に修正（11日）",
+      "メールアドレスのほか、氏名・生年月日・電話番号、ハッシュ化したパスワードなども対象",
+      "JR東海などの新幹線予約会員、アイスタイル（@cosme）の利用者らが影響。不審なメールに注意"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "メール配信会社のユミルリンクは11日、不正アクセスによる漏えいが延べ4786万4147件だったと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "漏れた情報"
+    },
+    {
+     "type": "p",
+     "text": "対象は配信システム「Cuenote FC」です。メールアドレスは4786万4147件、会員IDは3050万167件、氏名は666万5055件、生年月日は94万9217件、電話番号は41万2794件でした。件数はいずれも延べです。"
+    },
+    {
+     "type": "p",
+     "text": "このほか、性別、郵便番号、都道府県や住所、会社名・学校名、ハッシュ化されたパスワード、顧客が運営するサービスの認証情報も漏れました。顧客管理システム「Cuenote BASE」では、契約企業名・氏名・電話番号・メールアドレス190件が外部から見られる状態でした。"
+    },
+    {
+     "type": "h",
+     "text": "手口と今の状況"
+    },
+    {
+     "type": "p",
+     "text": "ユミルリンクによると、攻撃者はシステムの弱点を突いてサーバーに不正プログラムを仕込み、データベースに入りました。ログイン中の利用者の情報を盗んで本人になりすまし、管理画面からデータを取り出したことも明らかにしています。"
+    },
+    {
+     "type": "p",
+     "text": "弱点は修正し、不正プログラムも削除済みです。ただ、一部のCuenote FCとCuenote BASEは停止が続いています。外部の専門家による調査の最終結果は、後日公表されます。"
+    },
+    {
+     "type": "h",
+     "text": "影響が出ている企業"
+    },
+    {
+     "type": "p",
+     "text": "ユミルリンクは10月16日に不正アクセスを検知し、19日に公表しました。26日には最大約5162万件が漏れた可能性があると説明しており、今回はその数字を修正した形です。"
+    },
+    {
+     "type": "p",
+     "text": "JR東海・JR西日本・JR九州は、「スマートEX」「エクスプレス予約」会員の約17万件が漏れたと発表しています。アイスタイル（@cosme）は9日、メールアドレス約280万人分の漏えいを公表しました。バンダイナムコでも、ガンダム関連グッズ店のポイント会員約34万件のメールアドレスが漏れたと、ITmedia NEWSが伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "連絡とカード情報"
+    },
+    {
+     "type": "p",
+     "text": "アイスタイルは、対象者に登録済みの連絡先へ個別に知らせ、11月中の完了を目指すとしています。JRの3社も、会員へメールなどで連絡する方針です。カード情報について、アイスタイルは「システムに保存も送信もしていない」、JRは「決済情報は含まれない」と説明しています。"
+    },
+    {
+     "type": "p",
+     "text": "アイスタイルは、パスワードやカード番号をメールで尋ねることはないと呼びかけています。消費者向けの問い合わせ先は、security-support@cosme.net（平日10〜18時）です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4786万件",
+       "label": "メールアドレスの延べ件数"
+      },
+      {
+       "value": "3050万件",
+       "label": "会員IDの延べ件数"
+      },
+      {
+       "value": "約280万人",
+       "label": "アイスタイルの対象者"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "JRの新幹線予約会員、@cosmeの会員、バンダイナムコのグッズ店の会員だった人は、各社からの連絡を待つ",
+      "IDやパスワードの入力を求めるメールのリンクは開かず、公式アプリや公式サイトから確かめる",
+      "アイスタイルはパスワードやカード番号をメールで尋ねない。同社のメールが迷惑メールに入っていないかも見る",
+      "@cosmeの問い合わせ（消費者向け）は security-support@cosme.net、平日10〜18時"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "漏れたのは、メールアドレスに氏名や生年月日が組み合わさったデータで、なりすましメールが巧妙になりやすい情報です。連絡を待つあいだも、届いたメールのリンクは開かず、公式サイトから確かめるのが安全です。"
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/11/2000003114/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/11/2000003114/"
+    },
+    {
+     "name": "アイスタイル（第2報）",
+     "url": "https://www.istyle.co.jp/news/info/2026/11/1109-2.html"
+    },
+    {
+     "name": "ITmedia NEWS（JR・スマートEX）",
+     "url": "https://www.itmedia.co.jp/news/article/2610/27/2000002615/"
+    }
+   ]
+  },
+  {
+   "id": "ai-chatgpt-business-hub",
+   "category": "ai",
+   "title": "OpenAI、ChatGPT内に企業の紹介ページ　ベータ版で開始",
+   "summary": "ChatGPTで店や会社を調べる使い方に、企業側が情報を整える窓口ができました。",
+   "image": {
+    "src": "https://techcrunch.com/wp-content/uploads/2026/11/Screenshot-2026-11-10-at-8.46.19-AM.png",
+    "kind": "ogp",
+    "credit": "OpenAI（TechCrunch掲載）",
+    "page": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "ChatGPT"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIが11月10日、企業がChatGPT内に紹介ページを作れる「Business Hub」をベータ版で始めました。",
+      "確認を受けた企業は、商品の質問に答える専用エージェントも作れます。",
+      "国や料金、日本での提供や日本語対応は発表されていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月10日、企業が自社の情報をChatGPTに載せて管理できる窓口を試験公開しました。Googleのビジネスプロフィールに近い仕組みです。"
+    },
+    {
+     "type": "h",
+     "text": "企業が作れる紹介ページ"
+    },
+    {
+     "type": "p",
+     "text": "Business Hubは、企業が自社の商品やサービスの情報を確かめて更新できる管理画面です。作った紹介ページは、ChatGPTで調べものをする人に向けた会社案内になります。現在はベータ版（試験提供）で、OpenAIは「企業をChatGPTにもっと深く取り込む最初の一歩」と位置づけています。"
+    },
+    {
+     "type": "h",
+     "text": "商品に答える専用エージェント"
+    },
+    {
+     "type": "p",
+     "text": "対象になった企業は、自社専用の「ビジネスエージェント」を作って公開できます。ChatGPTの利用者は、その会社や商品について、チャットで質問できます。対象になる企業の条件は発表されていません。"
+    },
+    {
+     "type": "img",
+     "src": "https://techcrunch.com/wp-content/uploads/2026/11/Screenshot-2026-11-10-at-9.25.01-AM.png",
+     "kind": "ogp",
+     "credit": "OpenAI（TechCrunch掲載）",
+     "caption": "OpenAIが公開した、企業向け機能の画面",
+     "page": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/"
+    },
+    {
+     "type": "h",
+     "text": "企業が見られる3つの数字"
+    },
+    {
+     "type": "p",
+     "text": "Business Hubでは、ChatGPTの利用者が企業とどう関わったかを、限られた範囲で見られます。見られるのは、紹介ページの閲覧数、ChatGPTの回答での社名の登場回数、サイトへのクリック数の3つです。米TechCrunchは、Googleアナリティクスに近い機能だと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "確認方法と過去の失敗"
+    },
+    {
+     "type": "p",
+     "text": "企業は正式な確認手続きを受けないと、紹介ページを使えません。OpenAIのベンジー・ショメア氏（収益化担当の副社長）は、業種や市場ごとに複数の確認方法を使うと話しました。詳しい手順は公表されていません。"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは以前、ChatGPT内で直接買い物ができ、手数料を受け取る仕組みを試しました。しかし広がらず、3月に「購入カート」を含めて終了しています。TechCrunchは、今回の方向が成功するかはまだわからないとみています。"
+    },
+    {
+     "type": "h",
+     "text": "日本での提供はまだ不明"
+    },
+    {
+     "type": "p",
+     "text": "対象の国や地域、料金、対象企業の条件は明らかにされていません。日本での提供や日本語対応も発表されていません。日本のお店や会社が使えるかは、今後のOpenAIの案内を待つことになります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "ベータ版",
+       "label": "現在の提供段階"
+      },
+      {
+       "value": "3種類",
+       "label": "企業が見られる数字"
+      },
+      {
+       "value": "3月",
+       "label": "前の買い物機能を終了"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ChatGPTでお店や会社を調べる人：今後、企業が確認を受けた情報や専用エージェントに質問できる場面が増えるかもしれません。",
+      "日本のお店や会社の人：日本での提供は発表されていないため、今はOpenAIの案内を待つ段階です。",
+      "営業時間や価格など大事な情報は、ChatGPTの答えだけでなく、会社の公式サイトでも確かめる。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ChatGPTで店や会社を調べる人にとっては、最新情報が見つけやすくなる方向の動きです。ただ日本での提供は未発表で、買い物機能は3月に終わっています。まず日本で始まるかを見たいところです。"
+    }
+   ],
+   "source_name": "TechCrunch",
+   "source_url": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "TechCrunch",
+     "url": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/"
+    }
+   ]
+  },
+  {
+   "id": "mobile-ict-price-overseas-1026",
+   "category": "mobile",
+   "title": "日本のスマホ価格、G20平均よりiPhoneは約25%安い",
+   "summary": "ICT総研の調べ。Androidは12〜27%安く、タブレットは機種ごとの差が大きい。",
+   "image": {
+    "src": "https://ictr.co.jp/wp-content/uploads/2026/11/11b3b03689d2416617593eb3e2a468f4.png",
+    "kind": "press",
+    "credit": "ICT総研",
+    "page": "https://ictr.co.jp/report/20261104.html/"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "価格の比較"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ICT総研が日本と海外のスマホ・タブレット価格を比べた（2026年10月時点）",
+      "iPhoneとiPadはG20平均より約22〜25%安い。Androidスマホは12〜27%安い",
+      "日本は割安だが、Androidタブレットは海外と同水準の機種もある"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ICT総研は4日、日本のスマホとタブレットの価格をG20の19カ国と比べた結果を発表しました。iPhoneはG20平均より約25%安くなっています。"
+    },
+    {
+     "type": "h",
+     "text": "調べ方と比べた相手"
+    },
+    {
+     "type": "p",
+     "text": "対象は日本、米国、中国、インドなどG20の19カ国です。価格はメーカー直販で、調査期間は2026年9月10日から10月9日です。"
+    },
+    {
+     "type": "p",
+     "text": "国ごとの物価や所得の差をならすため、購買力平価（同じ物を買うのに必要な額から出す為替の目安）で日本円に直しています。ふだんの為替で換算した価格とは違います。"
+    },
+    {
+     "type": "h",
+     "text": "iPhoneとAndroidのスマホ"
+    },
+    {
+     "type": "p",
+     "text": "日本価格とG20平均との差です。\n・iPhone 18 Pro：21万9800円で25.3%安\n・iPhone 17：15万9800円で23.5%安\n・iPhone 17e：12万4800円で22.2%安\niPhoneは全体で22〜25%安い結果でした。"
+    },
+    {
+     "type": "p",
+     "text": "Androidの例です。\n・Pixel 11：13万6800円で12.7%安\n・Galaxy S26 Ultra：21万8900円で26.5%安\n・Redmi Note 15 Pro 5G：5万7980円で26.9%安\n機種で差の幅がiPhoneより広くなりました。"
+    },
+    {
+     "type": "h",
+     "text": "タブレットは機種で差が大きい"
+    },
+    {
+     "type": "p",
+     "text": "iPadの価格差です。\n・iPad：7万4800円で25.2%安\n・iPad Pro：20万9800円で23.1%安\n・iPad Air：12万9800円で22.6%安\nスマホと同じくらい安い結果でした。"
+    },
+    {
+     "type": "p",
+     "text": "Androidタブレットはばらつきが大きくなりました。\n・OPPO Pad SE：2万3220円で45.1%安\n・Galaxy Tab S11：19万3380円で0.4%安\n・Lenovo Yoga Tab：7万4800円で0.1%高\n6月の調査後に値上げした機種があり、その時期の違いが差に出た可能性があるとICT総研は説明しています。"
+    },
+    {
+     "type": "img",
+     "src": "https://ictr.co.jp/wp-content/uploads/2026/11/f42612c21d4c70b3c319cb69702aecd5.png",
+     "kind": "press",
+     "credit": "ICT総研",
+     "caption": "タブレット価格の比較（ICT総研）",
+     "page": "https://ictr.co.jp/report/20261104.html/"
+    },
+    {
+     "type": "h",
+     "text": "折りたたみiPhoneの場合"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia Mobileによると、「iPhone Duo」の日本価格は36万4800円で、G20平均は49万5652円でした。"
+    },
+    {
+     "type": "p",
+     "text": "報告書は、物価高や円安の流れが当面大きく変わらないとみています。輸送費などがさらに上がる可能性にも触れています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約22〜25%安",
+       "label": "iPhoneとiPadの差"
+      },
+      {
+       "value": "12〜27%安",
+       "label": "Androidスマホの差"
+      },
+      {
+       "value": "19カ国",
+       "label": "比べたG20の国"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "海外より安いのは、物価の差をならした比較。日本円で見て値下がりしたわけではない",
+      "買い替えを考える人は、物価高や円安が続くと報告書が見ている点を頭に入れておく",
+      "Androidタブレットは機種ごとに差が大きいので、お得かどうかは機種ごとに調べる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "iPhoneとiPadは日本が割安とわかったので、急いで海外で買う理由は薄そうです。一方でAndroidタブレットには海外と変わらない機種もあります。迷ったときは、値上げ前に買えるか店頭で確かめるのが現実的です。"
+    }
+   ],
+   "source_name": "ITmedia Mobile",
+   "source_url": "https://www.itmedia.co.jp/mobile/articles/2611/09/news080.html",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "ITmedia Mobile",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/09/news080.html"
+    },
+    {
+     "name": "ICT総研",
+     "url": "https://ictr.co.jp/report/20261104.html/"
+    }
+   ]
+  },
+  {
+   "id": "gadget-jackery-explorer-100d",
+   "category": "gadget",
+   "title": "Jackery、96Whの小型電源を1万7900円で発売",
+   "summary": "約855gで3台同時に充電。公式ストアは11月30日まで1万2530円",
+   "image": {
+    "src": "https://www.jackery.jp/cdn/shop/files/1_1_0648220a-49da-4555-a6fe-2128ba3fb3a3.webp?v=1792562165&width=1000",
+    "kind": "press",
+    "credit": "Jackery Japan 公式",
+    "page": "https://www.jackery.jp/products/jackery-explorer-100-d"
+   },
+   "visual": {
+    "icon": "box",
+    "kicker": "小型電源"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Jackeryが容量96Whの小型ポータブル電源「Explorer 100D」を11月5日に発売",
+      "価格は1万7900円。公式ストアには11月30日まで1万2530円のセール表示",
+      "ACコンセントの出口はなく、スマホやノートPCなどUSB機器の充電向け"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Jackeryは11月5日、持ち手付きの小型ポータブル電源「Explorer 100D」を1万7900円で発売しました。公式ストアなどで買えます。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.jackery.jp/cdn/shop/files/2_1_10571fad-aa3a-4836-9ee7-a985f9155dcc.webp?v=1792562165&width=1000",
+     "kind": "press",
+     "credit": "Jackery Japan 公式",
+     "caption": "Jackery Explorer 100D（公式ページの製品写真）",
+     "page": "https://www.jackery.jp/products/jackery-explorer-100-d"
+    },
+    {
+     "type": "h",
+     "text": "何が発売されたのか"
+    },
+    {
+     "type": "p",
+     "text": "容量は96Whで、電池にはリン酸鉄リチウムイオン電池を使います。大きさは約118.7×82.6×85.7mm、重さは約855gで、ハンドルが付いています。色はサンドゴールドが先に出て、ブラックが順次続きます。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2154/687/02_l.png",
+     "kind": "ogp",
+     "credit": "家電 Watch",
+     "caption": "追って発売されるブラック",
+     "page": "https://kaden.watch.impress.co.jp/docs/news/2154687.html"
+    },
+    {
+     "type": "h",
+     "text": "充電できる機器と出力"
+    },
+    {
+     "type": "p",
+     "text": "出口はUSB-Cが2つ、USB-Aが1つで、3台を同時に充電できます。家電Watchによると、合計の最大出力は128Wから158Wに上がりました。USB-C1つなら最大140Wを出せるので、ノートPCの充電にも使えます。"
+    },
+    {
+     "type": "p",
+     "text": "本体を充電するときは最大140Wで受けられ、約2時間で満タンになります。公式ストアは、車のシガーソケットでも100Wのソーラーパネルでも約2.2時間と案内しています。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.jackery.jp/cdn/shop/files/3_1_d34e8951-c6eb-4cd7-bbd0-bc0e644288ca.webp?v=1792562165&width=1000",
+     "kind": "press",
+     "credit": "Jackery Japan 公式",
+     "caption": "Jackery Explorer 100D（公式ページの製品写真）",
+     "page": "https://www.jackery.jp/products/jackery-explorer-100-d"
+    },
+    {
+     "type": "h",
+     "text": "電池の長持ちと安全面"
+    },
+    {
+     "type": "p",
+     "text": "約3000回充放電しても、容量は最初の80%以上を保つと説明されています。電池の保護機能は6種類で、耐火性があり、UL規格をもとにした衝撃試験に合格したそうです。保証は購入から2年です。"
+    },
+    {
+     "type": "h",
+     "text": "価格と買える場所"
+    },
+    {
+     "type": "p",
+     "text": "価格は1万7900円です。税込みか税別かは示されていません。公式ストアのページには、11月5日〜30日のセール価格として1万2530円（5370円引き）と出ています。"
+    },
+    {
+     "type": "p",
+     "text": "ただし公式ストアは売り切れ表示で、再入荷の通知を受け付けています。楽天市場とAmazonにも商品ページがあります。"
+    },
+    {
+     "type": "h",
+     "text": "使える回数の目安と注意点"
+    },
+    {
+     "type": "p",
+     "text": "公式ページの目安では、スマホ（45W）は約3.7回、30Wのノートパソコンは約1.3回、ゲーム機（18W）は約3.5回充電できます。"
+    },
+    {
+     "type": "p",
+     "text": "一方で、家庭用コンセントの出口はありません。防じん・防水にも対応していません。96Whなので飛行機に持ち込めますが、機内で使うことと、頭上の棚に入れることはできないと公式ページは案内しています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "96Wh",
+       "label": "電池の容量"
+      },
+      {
+       "value": "158W",
+       "label": "合計の最大出力"
+      },
+      {
+       "value": "約855g",
+       "label": "本体の重さ"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "スマホやノートPCを外で充電したい人向け。コンセントで使う家電は動かせない",
+      "セールを狙うなら、公式ストアの1万2530円（11月30日まで）を確認する。いまは売り切れ表示",
+      "飛行機に持ち込むときは、機内で使えない点を覚えておく"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "スマホとノートPCの充電が中心なら、約855gで持ち歩ける小型電源です。コンセントの家電も動かしたい人にはAC出力がないので向きません。公式ストアのセールは11月30日までです。"
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2154687.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2154687.html"
+    },
+    {
+     "name": "Jackery Japan 公式（Explorer 100D）",
+     "url": "https://www.jackery.jp/products/jackery-explorer-100-d"
+    }
+   ]
+  },
+  {
+   "id": "game-nintendo-account-easy-login-end",
+   "category": "game",
+   "title": "ニンテンドーアカウント、Google/Apple連携を1月終了",
+   "summary": "対象の人は、終了前にパスワードかパスキーでログインできる状態にしておく必要があります。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2155/256/1_l.png",
+    "kind": "ogp",
+    "credit": "GAME Watch",
+    "page": "https://game.watch.impress.co.jp/docs/news/2155256.html"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "ログイン変更"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "任天堂が、ニンテンドーアカウントの「かんたんログイン」（Google・Apple連携）の終了を発表",
+      "終了は2027年1月26日の午後4時。この方法での新規登録も止まる",
+      "対象の人は、メールアドレスとパスワード、またはパスキーでのログインに切り替える"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "任天堂は11月10日、ニンテンドーアカウントにGoogleやAppleのアカウントでログインできる「かんたんログイン」を、2027年1月26日午後4時に終了すると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が終わるのか"
+    },
+    {
+     "type": "p",
+     "text": "終わるのは、GoogleまたはAppleのアカウントでニンテンドーアカウントにログインする機能です。この方法で新しくアカウントを作ることもできなくなります。マイニンテンドー ポイントのプログラムのうち、Googleアカウントと連携するミッションも終わります。"
+    },
+    {
+     "type": "p",
+     "text": "終了の時刻は、システム作業の都合で遅くなることがあると任天堂は案内しています。理由は明らかにされていません。"
+    },
+    {
+     "type": "h",
+     "text": "終了後のログイン方法"
+    },
+    {
+     "type": "p",
+     "text": "切り替え先は2つです。1つ目は、ニンテンドーアカウントに登録したメールアドレス（またはログインID）とパスワードです。GoogleやAppleのパスワードではありません。"
+    },
+    {
+     "type": "p",
+     "text": "2つ目はパスキーで、スマホの指紋や顔認証でログインできます。任天堂は、パスキーのほうが簡単で安全だと案内しています。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/57buhi670p02/2ll3A3Qvau64DgI2dUlpkn/854a997a878fb7c539e39d71bc97c293/img_passkey.png?fm=avif",
+     "kind": "press",
+     "credit": "任天堂",
+     "caption": "任天堂のサポートページにあるパスキーの図",
+     "page": "https://support.nintendo.com/jp/information/2026/1110/index.html"
+    },
+    {
+     "type": "h",
+     "text": "パスワードを忘れたとき"
+    },
+    {
+     "type": "p",
+     "text": "パスワードを設定していない人や、覚えていない人は、ログイン画面の「パスワードを忘れた場合」を選び、画面の指示に進みます。再設定のメールが届くまで時間がかかることがあります。"
+    },
+    {
+     "type": "p",
+     "text": "登録したメールアドレスが使えなくなった人（スマホの機種変更後など）は、自分でメールアドレスを変えられません。任天堂サポートの案内ページにある手順で進めます。問い合わせは、任天堂サポートのオンライン窓口で受け付けています。"
+    },
+    {
+     "type": "h",
+     "text": "すでにログイン中の機器は"
+    },
+    {
+     "type": "p",
+     "text": "今ログインしている機器は、終了後もそのままログインした状態でいられる場合があります。ただし、ログイン画面が出たときは、GoogleやAppleのパスワードでは入れません。"
+    },
+    {
+     "type": "p",
+     "text": "かんたんログインは、以前はFacebookとTwitter（現在のX）にも対応していましたが、2022年10月に終わっています。今回でGoogleとAppleも終わり、対応するサービスはなくなります。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2155/256/2_l.png",
+     "kind": "ogp",
+     "credit": "GAME Watch",
+     "caption": "ニンテンドーアカウントで使える「かんたんログイン」の画面",
+     "page": "https://game.watch.impress.co.jp/docs/news/2155256.html"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1月26日",
+       "label": "終了日（午後4時）"
+      },
+      {
+       "value": "2つ",
+       "label": "切り替え先の方法"
+      },
+      {
+       "value": "2022年10月",
+       "label": "Facebook等の終了時期"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "GoogleまたはAppleでログインしている人は、2027年1月26日までに切り替えを済ませる",
+      "パスワードを覚えていない人は、「パスワードを忘れた場合」から先に再設定しておく",
+      "登録メールアドレスが使えない人は、任天堂サポートの案内ページで手順を確認する",
+      "パスキーを設定すると、指紋や顔認証でログインできる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "まず確かめたいのは、今のログイン方法がGoogleかAppleか、登録したメールアドレスがまだ使えるかの2点です。メールが使えないと自分では変更できないので、期限まで2か月以上あるうちに確認しておくと安心です。"
+    }
+   ],
+   "source_name": "GAME Watch",
+   "source_url": "https://game.watch.impress.co.jp/docs/news/2155256.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "GAME Watch",
+     "url": "https://game.watch.impress.co.jp/docs/news/2155256.html"
+    },
+    {
+     "name": "任天堂サポート",
+     "url": "https://support.nintendo.com/jp/information/2026/1110/index.html"
+    }
+   ]
+  },
+  {
+   "id": "ec-azonet-closing",
+   "category": "ec",
+   "title": "アゾンの自社通販AZONETが閉鎖へ、会員制度も終了",
+   "summary": "人形のアゾンは、今後のネット通販を楽天市場店に一本化します。ポイントは13日から使えません。",
+   "image": {
+    "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17013-1.png",
+    "kind": "ogp",
+    "credit": "ネットショップ担当者フォーラム（編集部キャプチャ）",
+    "page": "https://netshop.impress.co.jp/n/2026/11/10/17013"
+   },
+   "visual": {
+    "icon": "cart",
+    "kicker": "通販閉鎖"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "アゾンインターナショナルが、自社通販「AZONET」を閉じると発表しました",
+      "ファンクラブのポイントは、11月13日から使えず、たまりません",
+      "今後の通販は、楽天市場の「アゾンレーベルショップ」を使います"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ドールを作るアゾンインターナショナルは、自社の通販サイトAZONETを閉鎖し、会員制度も終えると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何がいつ変わるのか"
+    },
+    {
+     "type": "p",
+     "text": "AZONETは10月26日17時から、安全対策のために止まっています。新しい注文は受け付けておらず、問い合わせフォームも止まったままです。すでに受けた注文を発送し終えた時点で、サイトを閉じます。"
+    },
+    {
+     "type": "p",
+     "text": "無料会員は、未発送の注文がなければ11月12日に退会になります。未発送の注文がある人は、すべて発送された後に退会となり、会員情報が消されます。"
+    },
+    {
+     "type": "h",
+     "text": "ファンクラブのポイントの扱い"
+    },
+    {
+     "type": "p",
+     "text": "有料のファンクラブは、ポイントを11月13日から使うことも、ためることもできません。11月12日時点の残りポイントは、金券の送付か、個人情報を持たない新しい仕組みへの移行で補償されます。補償を受けると、退会となり、顧客データも消されます。"
+    },
+    {
+     "type": "p",
+     "text": "10月27日時点で有効だった会員には、一律でポイント500点分の補償があります。くわしい手続きは、あとで会員へメールで知らせます。"
+    },
+    {
+     "type": "h",
+     "text": "閉鎖の理由と今後の買い方"
+    },
+    {
+     "type": "p",
+     "text": "アゾンは理由として、サイバー攻撃の危険が高まっていることを挙げ、お客様の個人情報を守ることを最優先にしたと説明しています。今後は、社内のシステムに個人情報をなるべく置かない方針です。AZONETで情報漏えいがあったかどうかは、発表されていません。"
+    },
+    {
+     "type": "p",
+     "text": "これからのネット購入は、楽天市場の「アゾンレーベルショップ楽天市場店」で行います。この店は2020年から営業しています。ネットショップ担当者フォーラムによると、アゾンは湘南、東京、名古屋、大阪に実店舗も5つ持っています。"
+    },
+    {
+     "type": "h",
+     "text": "困ったときの問い合わせ先"
+    },
+    {
+     "type": "p",
+     "text": "注文や在庫の質問は、公式のお知らせにあるサポート用メールアドレスに送ります。お名前とAZONETの注文番号を書いてください。注文番号は、注文確認メールに載っています。番号がわからないときは、予約した商品名を書きます。返信には時間がかかる場合があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "11月13日",
+       "label": "ポイントの利用停止日"
+      },
+      {
+       "value": "500点分",
+       "label": "対象会員への一律補償"
+      },
+      {
+       "value": "10月26日",
+       "label": "AZONETの停止日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "AZONETで予約や注文をした人は、発送が終わるまで注文確認メールを消さず、注文番号を手元に残す",
+      "ファンクラブ会員は、11月12日時点の残りポイントが補償の基準。金券などの案内メールを待つ",
+      "今後の買い物は、楽天市場のアゾンレーベルショップ楽天市場店を使う",
+      "注文の質問は、公式のお知らせにあるサポート用メールアドレスへ。名前と注文番号を書く"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AZONETで予約中の商品がある人は、発送までサイトが閉じないので、注文確認メールを残しておけば安心です。ポイントが残っている人は、11月12日の残高が補償の基準です。案内メールが届くので、迷惑メールも確認して見落とさないでください。"
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/10/17013",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/10/17013"
+    },
+    {
+     "name": "アゾンインターナショナル（弊社からの重要なおしらせ）",
+     "url": "https://news.azone-int.co.jp/archives/71941"
+    }
+   ]
+  },
+  {
+   "id": "future-riken-reimei-56qubit",
+   "category": "future",
+   "title": "理研の量子コンピューター「黎明」、56量子ビットに増強",
+   "summary": "20量子ビットから56量子ビットになり、AI連携やデータセンター検討も動き出しました。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2155/393/1_l.jpg",
+    "kind": "ogp",
+    "credit": "PC Watch",
+    "page": "https://pc.watch.impress.co.jp/docs/news/2155393.html"
+   },
+   "visual": {
+    "icon": "chip",
+    "kicker": "量子計算"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "理研の量子コンピューター「黎明」が20量子ビットから56量子ビットに",
+      "11月10日に記念式典。理研、米Quantinuum、ソフトバンクが連携の覚書",
+      "今は運用開始前の試用期間。一般の人が使える時期は未発表"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "理化学研究所（理研）は11月10日、埼玉県和光市にある量子コンピューター「黎明」を56量子ビットに増強したと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何がどう変わったか"
+    },
+    {
+     "type": "p",
+     "text": "量子ビットは、量子コンピューターの計算の基本単位です。黎明は米Quantinuum製で、イオントラップ式（電気を帯びた原子を並べて使う方式）です。PC Watchによると、2025年2月から動いてきました。今回「System Model H2」にアップグレードし、20量子ビットから56量子ビットになりました。"
+    },
+    {
+     "type": "p",
+     "text": "PC Watchによると、Quantinuumは新システムが11月2日に動き始めたとしています。理研の発表では、現在は運用開始前の試用期間です。"
+    },
+    {
+     "type": "h",
+     "text": "これまでの実績"
+    },
+    {
+     "type": "p",
+     "text": "黎明はNEDOが支援するJHPC-quantumプロジェクトで、スーパーコンピューター「富岳」などと組み合わせて使われてきました。稼働率は95%で、500人以上が見学し、過去14か月で17本以上の論文が出ています（PC Watch）。Quantinuumは、検証が予定より8週間早く終わり、改造には約6か月かかったと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "AIと組み合わせる研究"
+    },
+    {
+     "type": "p",
+     "text": "試用期間中の研究は2つあります。1つは、黎明で作った量子データでAIを学習させる、材料の磁性のシミュレーションです。初期結果では、従来の計算データだけで学習したAIより正確でした。量子コンピューター単体より高精度になる可能性もあるとされています。"
+    },
+    {
+     "type": "p",
+     "text": "もう1つは、黎明、富岳、GPUスーパーコンピューター「ROQUO」を使った生体分子のシミュレーションです。生体分子の光への反応を知ることが、高効率な太陽電池の設計に役立つ可能性があるとしています。"
+    },
+    {
+     "type": "h",
+     "text": "ソフトバンクとの検討"
+    },
+    {
+     "type": "p",
+     "text": "誤り耐性量子コンピューター（計算の間違いを自分で直せるタイプ）の共同開発で、理研とQuantinuumが覚書を結びました。日本の大学や研究機関、部品メーカーも参加します。"
+    },
+    {
+     "type": "p",
+     "text": "理研、Quantinuum、ソフトバンクの3者は、国内のAIデータセンターに量子コンピューターをつなぐ検討も始めます。PC Watchは2029年の実用化を目標と伝えていますが、理研の発表には開始時期の記載がありません。"
+    },
+    {
+     "type": "h",
+     "text": "一般の人が使える時期"
+    },
+    {
+     "type": "p",
+     "text": "黎明は研究者向けの設備で、スマホのように買ったり、アプリのように使ったりするものではありません。商用の量子・AI計算サービスの開始時期は、理研の発表では示されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "56量子ビット",
+       "label": "増強後の規模"
+      },
+      {
+       "value": "95%",
+       "label": "黎明の稼働率"
+      },
+      {
+       "value": "2029年",
+       "label": "実用化の目標（PC Watch）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "一般の人は、今のところ特にすることはありません",
+      "量子計算を仕事で使いたい人は、理研 計算科学研究推進部アウトリーチグループ（r-ccs-koho@ml.riken.jp）に問い合わせる",
+      "量子とAIを組み合わせた商用サービスの時期は未発表なので、続報を待つ"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "黎明は研究者向けの設備で、今回は56量子ビットになって計算できる問題が広がった段階です。次に見るのは、ソフトバンクとの検討で、使える人や時期が示されるかどうかです。"
+    }
+   ],
+   "source_name": "PC Watch",
+   "source_url": "https://pc.watch.impress.co.jp/docs/news/2155393.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2155393.html"
+    },
+    {
+     "name": "理化学研究所",
+     "url": "https://www.riken.jp/pr/news/2026/20261110_1/index.html"
+    }
+   ]
+  },
+  {
+   "id": "other-edion-card-leak",
+   "category": "other",
+   "title": "エディオン通販で、カードのセキュリティコードも漏えいか",
+   "summary": "4日夜からPC決済画面に不正プログラム。通販サイトとアプリは停止中です。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/image/2611/11/2000003091/10011827/728",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS（エディオンの9日付の適時開示より）",
+    "page": "https://www.itmedia.co.jp/news/article/2611/11/2000003091/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "カード漏えい"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "エディオンが9日、通販サイトでカード番号とセキュリティコードが漏れた可能性を新たに公表",
+      "PC決済画面の不正プログラムで最大556件。エラーログ経由でも最大5件",
+      "通販サイトとアプリは7日夜から停止中で再開日は未定。パスワード変更の案内メールが順次届く"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "家電量販店のエディオンは9日、通販サイトの不正アクセスで、クレジットカード情報が漏れた可能性を新たに公表しました。"
+    },
+    {
+     "type": "h",
+     "text": "新たに分かったこと"
+    },
+    {
+     "type": "p",
+     "text": "11月6日の第1報では、カード番号とログインパスワードの漏えいは確認されていませんでした。その後の調査で、PCの決済情報入力画面に不正プログラムが仕込まれ、11月4日午後7時ごろから動いていたことが分かりました。"
+    },
+    {
+     "type": "p",
+     "text": "このプログラムを通じ、PCの決済画面で新しく入力されたカード情報が最大556件、漏れた可能性があります。内容は、カード番号、有効期限、名義人、セキュリティコードです。スマホでの操作や決済入力は影響を受けていません。"
+    },
+    {
+     "type": "h",
+     "text": "エラーログ経由の漏えい"
+    },
+    {
+     "type": "p",
+     "text": "注文画面でエラーが起きたとき、カード情報が一時的にシステムのログ（動作の記録）へ書き込まれた例が、最大5件ありました。内容は同じく、カード番号・有効期限・名義人・セキュリティコードです。エディオンのシステムは、カード情報をサーバーに保存しない設計でした。"
+    },
+    {
+     "type": "h",
+     "text": "それ以外に漏れた恐れ"
+    },
+    {
+     "type": "p",
+     "text": "6日の第1報の分も合わせると、個人情報は最大4131人、注文情報は最大9554件です。ログインIDとパスワードは最大1141人分でした。エディオンのギフトカードは5360枚分で、カード番号、暗証番号、利用履歴が対象です。内訳の全体は、エディオンの発表を参照してください。"
+    },
+    {
+     "type": "h",
+     "text": "停止中のサービスと連絡"
+    },
+    {
+     "type": "p",
+     "text": "エディオンは7日午後10時に、通販サイト、公式アプリ、エディオンスマートアプリを緊急停止しました。再開日は決まっていません。パスワードが漏れた可能性のある人には、変更を求めるメールを順次送ります。"
+    },
+    {
+     "type": "p",
+     "text": "ギフトカードの扱いは検討中です。カード情報が漏れた可能性のある人への個別の連絡方法は、明らかにされていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "最大556件",
+       "label": "PC決済画面で漏れた恐れ"
+      },
+      {
+       "value": "最大5件",
+       "label": "エラーログ経由で漏れた恐れ"
+      },
+      {
+       "value": "5360枚",
+       "label": "対象のギフトカード"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "11月4日午後7時以降に、エディオン通販へPCでカード情報を入力した人は、カードの利用明細を確認し、不審な請求があればカード会社に連絡する",
+      "エディオンの通販IDを使っている人は、届く案内メールに沿ってパスワードを変える。同じパスワードを使い回している他のサービスも変える",
+      "ギフトカードを持っている人は、エディオンの続報を待つ",
+      "通販サイトとアプリは停止中で、再開日は未定"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "11月4日以降にPCでカード情報を入力した覚えがあれば、まず利用明細を確認してください。第1報で「確認されていない」とされた情報が後から広がった経緯も、続報で見たい点です。"
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/11/2000003091/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/11/2000003091/"
+    }
+   ]
+  },
+  {
+   "id": "ai-alphaproof-code-signal",
+   "category": "ai",
+   "title": "GoogleのAI、Signalの暗号を約4週間で数学的に検証",
+   "summary": "人なら数年かかる安全性の証明を、AIが人と分担して短期間で終えました。",
+   "image": {
+    "src": "https://lh3.googleusercontent.com/kF75VKGl2JdnK6eQJxqPLwQNsMq0CumACxUSMF5WoUME3lAw2-PBaQWpsOxaD1bTaXYhJd46zDMrx9s3kPW_oL9rg2rKh_HoCzYxN8Xd5XRIPQ2Vsg=w1440-h810-n-nu",
+    "kind": "press",
+    "credit": "Google DeepMind",
+    "page": "https://deepmind.google/blog/introducing-alphaproof-code/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "AI検証"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Google DeepMindが11月10日、通信アプリSignalの暗号プログラムの安全性をAIで証明したと発表しました。",
+      "作業は約4週間。ふつうは専門家チームが年単位でかける仕事だといいます。",
+      "研究の発表で、日本での提供や日本語対応といった話はありません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Google DeepMindは11月10日、Signalなどが使う暗号プログラムが狙いどおり安全に動くことを、AIで数学的に証明したと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "調べたのは動くプログラム"
+    },
+    {
+     "type": "p",
+     "text": "対象は、SignalやGoogleメッセージの会話を守る暗号プログラムです。これまでの検証は、多くが設計図の段階で止まっていました。今回は、実際に動くプログラムが「端末が一時的に乗っ取られる前後でも会話を守る」といった安全条件を満たすことまで確かめています。"
+    },
+    {
+     "type": "p",
+     "text": "DeepMindは、弱点が設計と実際のプログラムのすき間に隠れやすいと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "人とAIの分担"
+    },
+    {
+     "type": "p",
+     "text": "「AlphaProof Code」と呼ぶこの仕組みでは、人の専門家が「何を証明するか」を決め、AIが証明を書きます。まず複数のAIが、Signalの安全目標を数学の形に直し、人が1件ずつ確認しました。"
+    },
+    {
+     "type": "p",
+     "text": "次に、GoogleのAI「Gemini Carbon」で動く複数のAIが、Lean（プログラムの正しさを機械で確かめる言語）で証明を書きました。最後に、約1%の部分だけ人が見直し、残りはLeanが自動で確かめました。"
+    },
+    {
+     "type": "img",
+     "src": "https://lh3.googleusercontent.com/MDMzvVe-rCqQEhYj9cz5RtbJpBztll4a_s7rILP4PLBsa1nX2LIajuGae8FL0vMj8IUS3U4zSVytl1wXenGanSp2Qmp5Igbp5-6NS25wN8hsKw5a6A=w1440-h810-n-nu",
+     "kind": "press",
+     "credit": "Google DeepMind",
+     "caption": "証明を書くチームと、結果を確かめる審査役に分けた作業の流れの図",
+     "page": "https://deepmind.google/blog/introducing-alphaproof-code/"
+    },
+    {
+     "type": "h",
+     "text": "時間と確かさの目安"
+    },
+    {
+     "type": "p",
+     "text": "検証にかかったのは約4週間です。DeepMindは、これまでは専門家チームが数年かける作業だったと説明しています。証明の量は、DeepMindの説明で本文が600万行超、要約文が300万行超と、数字が分かれています。"
+    },
+    {
+     "type": "p",
+     "text": "確かさの確認として、直し済みの2件のバグを隔離したコピーに戻してみました。どちらも、安全でないことを機械が確かめられる証明が出たといいます。"
+    },
+    {
+     "type": "h",
+     "text": "公開されたものと今後"
+    },
+    {
+     "type": "p",
+     "text": "DeepMindは、広く使われる暗号をこの深さで検証したのは初めてで、そのプログラム自体を検証したのも初めてだと説明しています。Signalの最高技術責任者は、大きな突破口だと評価しました。"
+    },
+    {
+     "type": "p",
+     "text": "検証の成果物は、研究者向けに無料で公開されています。ただ、AlphaProof Code自体を誰でも使えるかは書かれていません。次は医療機器の制御ソフトや電力網のソフトへの応用を挙げています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約4週間",
+       "label": "今回の検証にかかった期間"
+      },
+      {
+       "value": "約1%",
+       "label": "人が見直した部分の割合"
+      },
+      {
+       "value": "2件",
+       "label": "戻して検出できたバグ"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Signalを使っている人：今回は検証の報告で、新しい機能や設定変更の案内は出ていません。",
+      "Googleメッセージを使っている人：会話を守る暗号プログラムが検証の対象だったと、DeepMindは説明しています。",
+      "開発者・研究者：公開された検証データは、DeepMindの公開ページから入手できます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "Signalの暗号に対する安心材料が増えた話で、使い方は変わりません。AIで正しさを証明する手法が、医療機器や電力網にも広がるかが次の見どころです。"
+    }
+   ],
+   "source_name": "Google DeepMind",
+   "source_url": "https://deepmind.google/blog/introducing-alphaproof-code/",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "Google DeepMind",
+     "url": "https://deepmind.google/blog/introducing-alphaproof-code/"
+    }
+   ]
+  },
+  {
+   "id": "mobile-ipad-mini-carrier-compare",
+   "category": "mobile",
+   "title": "iPad mini、3社の2年実質は楽天が最安8万3160円",
+   "summary": "返却が前提。楽天8万3160円、ソフトバンク8万3760円、au8万7800円（128GB）。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/mobile/articles/2610/26/st52693_ipm-01.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia Mobile",
+    "page": "https://www.itmedia.co.jp/mobile/articles/2610/26/news082.html"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "iPad mini"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "6日発売のiPad mini（128GB）を、楽天・ソフトバンク・auが返却前提で値引き",
+      "2年の実質は楽天8万3160円、ソフトバンク8万3760円、au8万7800円",
+      "25カ月目の返却が条件。返却時の費用や、特典の期間は各社で違う"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Appleの新型「iPad mini」を、楽天モバイル、ソフトバンク、auが2年返却つきで値引きしています。128GBは楽天が最安です。"
+    },
+    {
+     "type": "h",
+     "text": "3社の実質価格を並べる"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia Mobileが伝えた128GBモデルの価格です。\n・楽天モバイル：定価16万6300円が8万3160円（月3465円×24回）\n・ソフトバンク：定価18万720円が8万3760円（月3490円×24回）\n・au：定価16万8800円が8万7800円（月額は記事に記載なし）"
+    },
+    {
+     "type": "p",
+     "text": "ソフトバンクの記事は、Wi-Fi＋セルラーの128GBモデルを対象にしています。楽天とauは、容量以外のモデルの違いが記事に書かれていません。"
+    },
+    {
+     "type": "h",
+     "text": "返却の条件と費用"
+    },
+    {
+     "type": "p",
+     "text": "3社とも、25カ月目に端末を返すことが条件です。返せば、24回払いのあとの残りの支払いがなくなります。"
+    },
+    {
+     "type": "p",
+     "text": "返却時の費用は、楽天が3300円です。ソフトバンクは特典料1万1000円、auは特典利用料2万2000円がかかります。ソフトバンクとauは、同じ会社で機種変更すれば無料になります。"
+    },
+    {
+     "type": "h",
+     "text": "買うときの注意"
+    },
+    {
+     "type": "p",
+     "text": "実質価格は、2年後に端末を返す前提の金額です。返さずに使い続けると、残りの支払いが必要になります。楽天は新規・乗り換え・端末のみの購入が同じ価格で、ソフトバンクとauは新規か機種変更が対象です。"
+    },
+    {
+     "type": "p",
+     "text": "どの会社も、値引きの期間は未定としています。ほかの容量の価格は、記事には載っていません。"
+    },
+    {
+     "type": "h",
+     "text": "新しいiPad miniの中身"
+    },
+    {
+     "type": "p",
+     "text": "Appleは10月26日に発表しました。画面は8.5型の有機EL（自分で光る方式）で、明るさは最大1200ニト（明るさの単位）です。チップは2ナノの「A20 Pro」で、IP67の防水防塵に初めて対応しました。"
+    },
+    {
+     "type": "p",
+     "text": "厚さは5.4mmで、重さはWi-Fi版が255g、セルラー版が263gです。前のモデルは厚さ6.3mm、重さ293g（Wi-Fi版）でした。顔認証はなく、指紋認証のTouch IDです。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/mobile/articles/2610/26/st52693_ipm-03.jpg",
+     "kind": "ogp",
+     "credit": "ITmedia Mobile",
+     "caption": "IP67の防水防塵に対応したiPad mini",
+     "page": "https://www.itmedia.co.jp/mobile/articles/2610/26/news082.html"
+    },
+    {
+     "type": "h",
+     "text": "Apple直販の価格"
+    },
+    {
+     "type": "p",
+     "text": "Appleの直販価格は、Wi-Fi版の128GBが11万9800円、セルラー版の128GBが14万4800円です。256GBはWi-Fi版が13万6800円です。ソフトバンクの定価18万720円は、同じ128GBのセルラー版より3万円以上高くなります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "8万3160円",
+       "label": "楽天の2年実質価格"
+      },
+      {
+       "value": "8万3760円",
+       "label": "ソフトバンクの2年実質"
+      },
+      {
+       "value": "8万7800円",
+       "label": "auの2年実質価格"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買う前に、2年後に端末を返せるか、各社のページで条件を確かめる",
+      "ソフトバンクとauは、返却時の費用が同じ会社の機種変更なら無料になる",
+      "返さず使い続けたい人は、Apple直販の11万9800円（Wi-Fi版128GB）と総額を比べる",
+      "値引きの期間は未定なので、買うなら早めに各社の公式ページを見る"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "2年ごとに買い替える人なら、返却前提の実質価格は安く見えます。長く使うつもりなら、Apple直販の方が総額は小さくなる場合があります。まず自分が何年使うかを決めると選びやすいです。"
+    }
+   ],
+   "source_name": "ITmedia Mobile",
+   "source_url": "https://www.itmedia.co.jp/mobile/articles/2611/09/news072.html",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "ITmedia Mobile（楽天モバイル）",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/09/news072.html"
+    },
+    {
+     "name": "ITmedia Mobile（au）",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/06/news074.html"
+    },
+    {
+     "name": "ITmedia Mobile（ソフトバンク）",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/05/news072.html"
+    },
+    {
+     "name": "ITmedia Mobile（Apple発表）",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2610/26/news082.html"
+    }
+   ]
+  },
+  {
+   "id": "gadget-koizumi-klc0630",
+   "category": "gadget",
+   "title": "小泉成器、USB-C充電のボディシェーバー4180円",
+   "summary": "重さ約65gで浴室でも使える。約60分の充電で約60分動く",
+   "image": {
+    "src": "https://kzonline.itembox.cloud/product/023/000000002366/000000002366-01.jpg?size=l&w=ODAw&t=20261020114602",
+    "kind": "press",
+    "credit": "小泉成器 公式オンラインショップ",
+    "page": "https://www.koizumi-onlineshop.jp/c/beauty/beautyproducts/klc0630"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "ボディシェーバー"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "小泉成器がUSB-C充電のボディシェーバー「KLC-0630」を11月5日に発売",
+      "家電Watchによる直販価格は4180円。重さ約65gで、約60分充電すると約60分使える",
+      "防水で浴室でも使える。ただし浴室でUSBケーブルをつなぐのは避ける"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "小泉成器は11月5日、手のひらサイズのボディシェーバー「KLC-0630」を発売しました。家電Watchは直販価格を4180円と伝えています。"
+    },
+    {
+     "type": "img",
+     "src": "https://kzonline.itembox.cloud/item/beauty/facebodycare/klc0630-compact.jpg",
+     "kind": "press",
+     "credit": "小泉成器 公式オンラインショップ",
+     "caption": "コンパクトなサイズ（公式ショップの写真）",
+     "page": "https://www.koizumi-onlineshop.jp/c/beauty/beautyproducts/klc0630"
+    },
+    {
+     "type": "h",
+     "text": "どんな商品か"
+    },
+    {
+     "type": "p",
+     "text": "本体は約49×21×58mmで、重さは約65gです。シェル形のシリコンカバーを付けると、幅は約7.5cmになります。色はピンクとブルーの2色で、付属品はカバー、掃除用ブラシ、USBケーブルです。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2154/853/A01_l.jpg",
+     "kind": "ogp",
+     "credit": "家電 Watch",
+     "caption": "幅約7.5cmの手のひらサイズ",
+     "page": "https://kaden.watch.impress.co.jp/docs/news/2154853.html"
+    },
+    {
+     "type": "h",
+     "text": "2種類の刃と速さ"
+    },
+    {
+     "type": "p",
+     "text": "長い毛はトリマー刃で切り、仕上げはネット刃（網目の下で毛を切る刃）で整えます。速さは2段階で切り替えられます。"
+    },
+    {
+     "type": "img",
+     "src": "https://kzonline.itembox.cloud/item/beauty/facebodycare/klc0630-blade.jpg",
+     "kind": "press",
+     "credit": "小泉成器 公式オンラインショップ",
+     "caption": "トリマー刃とネット刃（公式ショップの写真）",
+     "page": "https://www.koizumi-onlineshop.jp/c/beauty/beautyproducts/klc0630"
+    },
+    {
+     "type": "h",
+     "text": "防水と充電のしかた"
+    },
+    {
+     "type": "p",
+     "text": "お風呂での使用と、本体の水洗いに対応しています。石けんを付けて剃ることもできます。公式ショップのページには、防水性能はIPX7相当と書かれています。"
+    },
+    {
+     "type": "img",
+     "src": "https://kzonline.itembox.cloud/item/beauty/facebodycare/klc0630-wash.jpg",
+     "kind": "press",
+     "credit": "小泉成器 公式オンラインショップ",
+     "caption": "お風呂でも使える防水設計（公式ショップの写真）",
+     "page": "https://www.koizumi-onlineshop.jp/c/beauty/beautyproducts/klc0630"
+    },
+    {
+     "type": "p",
+     "text": "充電口はUSB-Cです。ケーブルや市販のUSB-ACアダプターをつないだまま使えます。約60分の充電で約60分動き、約10分で自動停止します。"
+    },
+    {
+     "type": "p",
+     "text": "ただし公式ショップのページは、浴室ではUSBケーブルをつないで使ったり充電したりしないよう注意しています。USB PDの急速充電には非対応で、5Vのアダプターを使う必要があります。"
+    },
+    {
+     "type": "h",
+     "text": "価格と買える場所"
+    },
+    {
+     "type": "p",
+     "text": "家電Watchは直販価格を4180円と伝えています。一方、小泉成器の公式オンラインショップの商品ページには、4640円（税込み）と出ています。差の理由は示されていません。"
+    },
+    {
+     "type": "p",
+     "text": "楽天市場の店舗でも取り扱いがあります。保証は1年です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約65g",
+       "label": "本体の重さ"
+      },
+      {
+       "value": "約60分",
+       "label": "充電時間と連続使用"
+      },
+      {
+       "value": "4180円",
+       "label": "家電Watchの直販価格"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "お風呂でムダ毛のケアをしたい人が対象",
+      "買う前に、公式ショップと販売店で価格（4180円か4640円か）を確かめる",
+      "浴室ではUSBケーブルをつないだまま使わない",
+      "充電には5Vのアダプターを使う。急速充電のUSB PDには対応しない"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "約65gと軽く、荷物に入れやすい大きさです。ただし価格は4180円と4640円の表示が分かれているので、買う前に確認してください。浴室ではUSBケーブルをつないだまま使わないよう案内されています。"
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2154853.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2154853.html"
+    },
+    {
+     "name": "小泉成器 公式オンラインショップ（KLC-0630）",
+     "url": "https://www.koizumi-onlineshop.jp/c/beauty/beautyproducts/klc0630"
+    }
+   ]
+  },
+  {
+   "id": "game-square-enix-h1-fy2027",
+   "category": "game",
+   "title": "スクエニHD、上期の営業益388億円で通期予想も上方修正",
+   "summary": "ゲーム事業が好調で、通期の営業益予想を490億円から590億円に引き上げました。",
+   "image": {
+    "src": "https://www.4gamer.net/games/002/G100260/20261111033/SS/007.jpg",
+    "kind": "ogp",
+    "credit": "4Gamer.net",
+    "page": "https://www.4gamer.net/games/002/G100260/20261111033/"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "決算"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "スクウェア・エニックス・ホールディングスの2026年4〜9月は、売上1632億円、営業益388億円",
+      "営業益は前年同期より115億円増え、通期の営業益予想は490億円から590億円に上方修正",
+      "ゲーム事業が稼ぎ頭で、過去作の販売も1259万本に増えた"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "スクウェア・エニックス・ホールディングスは11月11日、2026年4〜9月期の決算を発表し、営業益が388億円と前年同期より42.2%増えました。"
+    },
+    {
+     "type": "h",
+     "text": "上期の決算の中身"
+    },
+    {
+     "type": "p",
+     "text": "売上高は1632億円で、前年同期より293億円（21.9%）増えました。営業益は388億円、経常益は403億円です。最終的な利益は286億円で、前年同期から185億円増えました。"
+    },
+    {
+     "type": "p",
+     "text": "前年は約98億円の構造改革費用を特別損失に計上していました。4Gamer.netは、その反動も最終益の大幅な伸びに効いているとみています。"
+    },
+    {
+     "type": "h",
+     "text": "ゲーム事業が好調"
+    },
+    {
+     "type": "p",
+     "text": "中心のデジタルエンタテインメント事業は、売上が976億円、営業益が328億円でした。営業益は前年同期より128億円増え、利益率は27.5%から33.6%に上がっています。家庭用ゲーム、オンラインゲーム、スマホ・ブラウザゲームの3分野が、売上も利益も伸びました。"
+    },
+    {
+     "type": "p",
+     "text": "発売から時間のたった過去作の販売は、1259万本でした。前年同期の848万本から411万本増えています。会社は、計画的な販売促進の成果と説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "数字を押し上げた作品"
+    },
+    {
+     "type": "p",
+     "text": "家庭用ゲームでは、「ファイナルファンタジーVII リバース」が堅調で、新作「冒険家エリオットの千年物語」も売上に加わりました。「ファイナルファンタジーXIV」は、拡張パック8.0「白銀のワンダラー」の発表でプレイヤーの動きが活発になりました。"
+    },
+    {
+     "type": "p",
+     "text": "スマホ・ブラウザゲームでは、「ディシディア デュエルム ファイナルファンタジー」と「ドラゴンクエスト スマッシュグロウ」が売上に貢献しています。"
+    },
+    {
+     "type": "h",
+     "text": "通期の見通しと今後"
+    },
+    {
+     "type": "p",
+     "text": "2027年3月期の通期予想は、売上高が2980億円から3100億円、営業益が490億円から590億円、最終益が310億円から370億円に引き上げられました。上期の最終益286億円は、通期予想の約8割にあたります。"
+    },
+    {
+     "type": "p",
+     "text": "同時に出した中期計画の進捗報告では、複数の機種への展開と、過去作の販売を伸ばす方針を示しています。「ファイナルファンタジーXIV」の拡張8.0は2027年2月23日の予定です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "388億円",
+       "label": "上期の営業益"
+      },
+      {
+       "value": "590億円",
+       "label": "通期の営業益予想"
+      },
+      {
+       "value": "1259万本",
+       "label": "上期の過去作販売"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "「ファイナルファンタジーXIV」の拡張8.0「白銀のワンダラー」は、2027年2月23日の予定",
+      "会社は、複数の機種で過去作の販売を伸ばす方針を示している",
+      "詳しい内訳は、同社が公開した決算資料と中期計画の進捗報告で確認できる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "遊ぶ側にとっては、過去作が複数の機種で出る流れが続くかが見どころです。会社は営業益予想を590億円に引き上げており、FFXIVの拡張が出る2027年2月23日以降の数字が次の確認点になります。"
+    }
+   ],
+   "source_name": "4Gamer.net",
+   "source_url": "https://www.4gamer.net/games/002/G100260/20261111033/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "4Gamer.net",
+     "url": "https://www.4gamer.net/games/002/G100260/20261111033/"
+    },
+    {
+     "name": "スクウェア・エニックス・ホールディングス（決算説明資料）",
+     "url": "https://www.hd.square-enix.com/jpn/ir/pdf/27q2slidesJPN.pdf"
+    },
+    {
+     "name": "スクウェア・エニックス・ホールディングス（中期計画の進捗報告）",
+     "url": "https://www.hd.square-enix.com/jpn/ir/pdf/20261111_01.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ec-cyber-office-web-security",
+   "category": "ec",
+   "title": "国家サイバー統括室、サイト運営者に7つの不正アクセス対策",
+   "summary": "ネットショップを含む個人情報を扱う事業者が対象。ソフトの更新管理から委託先の点検まで。",
+   "image": {
+    "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17016-1.png",
+    "kind": "ogp",
+    "credit": "ネットショップ担当者フォーラム（AI生成のイメージ画像）",
+    "page": "https://netshop.impress.co.jp/n/2026/11/10/17016"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "不正アクセス"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "内閣官房の国家サイバー統括室が、不正アクセスへの基本対策を呼びかけました",
+      "ウェブサイトやアプリで個人情報を扱う事業者が対象で、規模は問いません",
+      "守る項目は7つ。ネットショップ運営者が見直す点も多く含まれます"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "国家サイバー統括室は11月5日、個人情報の漏えいにつながる不正アクセスへの対策を事業者に呼びかけました。ウェブサイトやスマホアプリが対象で、7つの基本対策を示しています。"
+    },
+    {
+     "type": "h",
+     "text": "呼びかけの背景と対象"
+    },
+    {
+     "type": "p",
+     "text": "最近の漏えいには、アプリ開発での安全対策の不足、サイトの設定ミス、更新が止まったソフトの使い続けが関係していました。攻撃者は公開されているサイトを調べて入口を探します。国家サイバー統括室は、AIが使われる場合もあり、小さな弱点が重なって侵入の道になると述べています。"
+    },
+    {
+     "type": "p",
+     "text": "対象は、ウェブサイトやアプリで個人情報を扱う事業者です。規模は問われません。経営層が先頭に立って取り組むよう求めています。"
+    },
+    {
+     "type": "h",
+     "text": "ソフトとサイトの点検"
+    },
+    {
+     "type": "p",
+     "text": "まず、使っているソフトの種類、版、使っている場所を把握します。OS、ミドルウェア（土台になるソフト）、部品も含みます。弱点の情報を集めて影響を調べ、危険度や悪用の有無に応じて期限を決めて更新します。すぐ直せないときは、機能を止めるなどの暫定対策をとります。"
+    },
+    {
+     "type": "p",
+     "text": "外から見える機器やサービスの洗い出しも求めています。管理画面、テスト用の環境、データベースの管理ツールで不要なものは止めるか制限します。クラウドの共有設定、ファイアウォール（通信の関所）の設定、ファイルの権限は、直した後に確認します。公開前と運用中は弱点の診断を続けます。AI診断を使う場合も、人が結果を確かめて最終判断します。"
+    },
+    {
+     "type": "h",
+     "text": "ログ監視と最初からの安全設計"
+    },
+    {
+     "type": "p",
+     "text": "サーバー、API、認証、クラウドのログ（利用記録）を集めて見張り、侵入が疑われたときは範囲と影響を早く調べられる手順を用意します。設計の段階から認証、権限、暗号化、記録、アクセス制限を決める「セキュリティ・バイ・デザイン」も求めています。管理機能は、必要なければ外に公開しません。"
+    },
+    {
+     "type": "p",
+     "text": "APIの鍵やアクセス用の文字列を、プログラムの中に書き込まないことも挙げています。認証機能への過度な要求を制限し、怪しいアクセスを見つける仕組みも必要です。"
+    },
+    {
+     "type": "h",
+     "text": "委託先まで含めた管理"
+    },
+    {
+     "type": "p",
+     "text": "委託先がつなぐ回線は、多要素認証（複数の確認方法を重ねるログイン）を使います。難しいときは、接続元の制限、作業時間だけの許可、記録の保管で補います。不要になった委託先のアカウントと管理権限は見直して止めます。"
+    },
+    {
+     "type": "p",
+     "text": "契約には、再委託の手順、事故の連絡義務、契約終了時のデータ削除を入れます。費用と責任は、一方的に押しつけず話し合って決めるよう求めています。開発を任せるときは、使う部品の一覧（SBOM）を求め、納品時と納品後に弱点を確認します。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "11月5日",
+       "label": "国家サイバー統括室の発表日"
+      },
+      {
+       "value": "7項目",
+       "label": "呼びかけた基本対策"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ネットショップや会員サイト、アプリの運営者は、使っているソフトの一覧と更新状況を確認する",
+      "使っていない管理画面、テスト用ページ、古いアカウントがないか調べ、あれば止める",
+      "制作や配信、決済などを任せている会社に、接続の認証方法と事故時の連絡ルールを確かめる",
+      "個人情報の漏えいが疑われたときに、誰が何を調べるかの手順を、あらかじめ決めておく"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ビックカメラやアゾンのように、委託先やサイトの弱点が原因で通販に影響が出た例が続いています。小さなお店でも、まずは使っているソフトの一覧づくりと、不要な管理画面を止めることから始められます。この呼びかけには、守る期限は決められていません。"
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/10/17016",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/10/17016"
+    }
+   ]
+  },
+  {
+   "id": "future-serve-physical-ai",
+   "category": "future",
+   "title": "米Serve、他社ロボット向けにAI支援事業を開始",
+   "summary": "歩道配達ロボットの米Serveが、ロボットを作る会社向けの裏方事業に乗り出します。",
+   "image": {
+    "src": "https://techcrunch.com/wp-content/uploads/2023/08/Serve_robot_05.jpg?w=1024",
+    "kind": "ogp",
+    "credit": "Serve Robotics / TechCrunch",
+    "page": "https://techcrunch.com/2026/11/05/serve-robotics-launches-new-business-to-become-the-aws-for-robots/"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "配達ロボット"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "配達ロボットの米Serveが新事業「Physical AI Services」を発表",
+      "通信、データ整理、学習用データの3つを他社に提供",
+      "日本での提供は未発表。街の配達ロボットに変化はありません"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "歩道配達ロボットの米Serve Roboticsが11月5日、他社のロボット開発を支える新事業を発表しました。第3四半期の決算と同時の発表です。"
+    },
+    {
+     "type": "h",
+     "text": "新事業で何を売るのか"
+    },
+    {
+     "type": "p",
+     "text": "新事業の名前は「Physical AI Services」（現実の世界で動くロボット向けのAIサービス）です。Serveが自社ロボットで磨いてきた通信やデータの道具を、ほかのロボットを作る会社に提供します。"
+    },
+    {
+     "type": "p",
+     "text": "すでに建設機械の自動運転を開発するBedrock Roboticsが顧客です。T-Mobileとも、AIの計算をロボットの近くで行う取り組みを進めています。"
+    },
+    {
+     "type": "h",
+     "text": "3つの商品の中身"
+    },
+    {
+     "type": "p",
+     "text": "商品は次の3つです。\n・Serve Link：現場のロボットとデータセンターのAIをつなぐ通信\n・データ整理ツール：まれな場面を見つけて学習に回す\n・データカタログ：歩道ロボットが集めた、人の多い場所のデータ"
+    },
+    {
+     "type": "p",
+     "text": "Serve Linkを使うと、ロボット自身に大きな計算機を載せなくても、高性能なAIを使えます。同社のアリ・カシャニCEOは、電波が不安定な場所でも使える高速な通信を強みに挙げています。"
+    },
+    {
+     "type": "h",
+     "text": "配達事業は続けるのか"
+    },
+    {
+     "type": "p",
+     "text": "Serveは2024年に上場した会社です。持つロボットは、歩道配達ロボットと、買収したDiligent Roboticsの病院向けロボットの2種類です。カシャニCEOは、どちらの事業も続けると話しています。配達ではUberへの依存を減らし、DoorDashやWonderなどの提携先が増えています。"
+    },
+    {
+     "type": "p",
+     "text": "カシャニCEOは今回の動きを、アマゾンのクラウド事業AWSになぞらえています。まず自社で使える形を作り、需要が育ってから土台を他社に開く、という手順です。狙う先は、農場や倉庫など人の動きが読みにくい現場です。"
+    },
+    {
+     "type": "h",
+     "text": "日本の利用者への影響"
+    },
+    {
+     "type": "p",
+     "text": "日本での提供や料金は発表されていません。商品は、ロボットを作る会社が使う道具で、ふつうの人が直接買ったり使ったりするものではありません。街で見かける配達ロボットの動きが、すぐに変わるわけでもありません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "3つ",
+       "label": "新事業の商品数"
+      },
+      {
+       "value": "2種類",
+       "label": "Serveの自社ロボット"
+      },
+      {
+       "value": "2024年",
+       "label": "Serveの上場年"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "配達ロボットを利用する人は、今のところ特にすることはありません",
+      "ロボット開発や自動運転に関わる人は、通信やデータ整理を外部サービスで補う動きとして見ておく",
+      "日本での提供地域や料金は未発表なので、続報を待つ"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "配達ロボットの会社が、ロボットを作る会社向けの道具屋にも広がる動きです。次に見るのは、Bedrock Robotics以外の顧客が増えるかと、日本での提供が発表されるかです。"
+    }
+   ],
+   "source_name": "TechCrunch",
+   "source_url": "https://techcrunch.com/2026/11/05/serve-robotics-launches-new-business-to-become-the-aws-for-robots/",
+   "published": "2026-11-05",
+   "refs": [
+    {
+     "name": "TechCrunch",
+     "url": "https://techcrunch.com/2026/11/05/serve-robotics-launches-new-business-to-become-the-aws-for-robots/"
+    }
+   ]
+  },
+  {
+   "id": "other-maezawa-meta-fake-ads-ruling",
+   "category": "other",
+   "title": "前澤友作氏のMeta訴訟、東京地裁が請求を棄却　控訴を検討",
+   "summary": "なりすまし偽広告の差し止めなどを求めた訴えが退けられました。前澤氏は控訴を検討しています。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/image/2611/11/2000003108/10011870/728",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS（前澤氏のX投稿より）",
+    "page": "https://www.itmedia.co.jp/news/article/2611/11/2000003108/"
+   },
+   "visual": {
+    "icon": "doc",
+    "kicker": "偽広告判決"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "東京地裁は10日、前澤友作氏がMetaに偽広告の差し止めなどを求めた訴えを棄却",
+      "偽広告は前澤氏の権利を侵害と認めたが、Metaは投稿に直接関わらず、大半は2日以内に止めたと判断",
+      "前澤氏はXで控訴を検討と表明。Metaの反応は伝えられていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "東京地裁は10日、起業家の前澤友作氏が米Metaを訴えていた裁判で、請求を退ける判決を言い渡しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が争われたか"
+    },
+    {
+     "type": "p",
+     "text": "前澤氏は、自分の名前と写真を使った投資話の偽広告がFacebookやInstagramに出続けたとして、広告の差し止めと賠償金1円を求めていました。1円にしたのは、SNS運営会社の責任の範囲をはっきりさせるためです。"
+    },
+    {
+     "type": "p",
+     "text": "偽広告は2023年6月ごろから現れ、2023年8月に前澤氏側がMetaへ削除を求めました。広告はその後も続き、2024年5月に提訴しています。"
+    },
+    {
+     "type": "h",
+     "text": "裁判所の判断"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia NEWSによると、裁判所は、偽広告が有名人の名前や姿の商業的な価値を守る「パブリシティー権」を侵害すると認めました。一方で、Metaは場を提供する運営会社で、投稿に直接関わっていないとしました。"
+    },
+    {
+     "type": "p",
+     "text": "差し止めについては、Metaが偽広告の大半を投稿から2日以内に止めていたため、必要はないと判断しています。国内メディアは、有名人の権利に触れた偽広告についての判決は国内で初めてと伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "前澤氏の反応と今後"
+    },
+    {
+     "type": "p",
+     "text": "前澤氏は10日、Xで控訴を検討していると明らかにしました。判決は「Meta側に、詐欺広告を発見・削除する義務はない」という内容だと受け止め、「野放しでもいいのか」と疑問を投げかけています。控訴するかどうかは、まだ伝えられていません。"
+    },
+    {
+     "type": "h",
+     "text": "広がる偽広告と国の動き"
+    },
+    {
+     "type": "p",
+     "text": "警察庁によると、2025年のSNS型投資詐欺の被害額は約1288億円で、前の年より5割近く増えました。きっかけで最も多かったのはバナー広告で、3785件です。"
+    },
+    {
+     "type": "p",
+     "text": "デジタル庁など7府省庁は8月7日、Google、LINEヤフー、Meta、TikTok Japan、Xの5社に、なりすまし詐欺広告への対策を強めるよう文書で要請しています。10月には横浜地裁が、詐欺被害者によるMeta日米法人への請求を退けました。同様の訴えが、ほかの6地裁で続いています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1円",
+       "label": "前澤氏が求めた賠償額"
+      },
+      {
+       "value": "2日以内",
+       "label": "Metaが偽広告の大半を止めた期間"
+      },
+      {
+       "value": "約1288億円",
+       "label": "2025年のSNS型投資詐欺の被害額"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "SNS広告の「有名人の投資話」は、本人の名前や写真があっても偽物の場合がある。広告から投資の申し込みに進まない",
+      "広告に偽物を見つけたら、SNSの通報機能で報告する",
+      "前澤氏が控訴するかどうかは、今後の報道で確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "今回の判決は、有名人の権利の侵害は認めつつ、運営会社の責任は問わない内容でした。控訴の有無と、ほかの6地裁で続く同様の訴えの判断が、次に見る点です。"
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/11/2000003108/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/11/2000003108/"
+    },
+    {
+     "name": "デジタル庁",
+     "url": "https://www.digital.go.jp/news/b96e34b8-0af0-4fe3-b6b5-2191726c8cc5"
+    }
+   ]
+  },
+  {
+   "id": "ai-workspace-skills-rollout",
+   "category": "ai",
+   "title": "Workspace、Geminiに社内ルールを教えるスキル",
+   "summary": "英語の指示のみ対応。Gmailやドキュメントで@を付けて呼び出せます。",
+   "image": {
+    "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPl0GgtFg_SLbQbkDAqj4S7N0j9wJbDgJf02cI59AyWF2Odzb3mFdqB1ghJxS7GSiFiu5WKVBKMqdbhEbVmwBmSJ0UFAMz4qdqSRgQQMCJQwI4G2mgkVKGvuyD_Gcc3jjVrE4TxJmbpPqyy3LKvQXSNSr7UEKtrMliTj2iWRD1gmQXw3GMSdo3ou8tA-Q/s1600/Scale%20customized%20AI%20across%20your%20team%20with%20skills%20in%20Google%20Workspace%20and%20Workspace%20Studio%20-%201.gif",
+    "kind": "press",
+    "credit": "Google Workspace Updates",
+    "page": "https://workspaceupdates.googleblog.com/2026/11/skills-in-workspace.html"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "仕事のAI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Google Workspaceで、組織のルールをGeminiに覚えさせる「スキル」が11月9日から順次始まった",
+      "使えるのは18歳以上で、英語の指示のみ。Business・Enterpriseなどの有料版が対象",
+      "Gmail・ドキュメント・ドライブなどで、@を付けて呼び出せる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Googleは、Workspace内のGeminiに組織のルールを教える「スキル」を、11月9日から順次提供しています。"
+    },
+    {
+     "type": "h",
+     "text": "スキルとは何か"
+    },
+    {
+     "type": "p",
+     "text": "スキルは、繰り返し使える指示のひな形です。チームのルールやテンプレート、参考にするファイルに沿って、Geminiが動くようになります。作り方にはMarkdownで書くSKILL.mdという公開された形式を使うため、ほかの場所で作ったスキルも持ち込めます。"
+    },
+    {
+     "type": "h",
+     "text": "作り方と呼び出し方"
+    },
+    {
+     "type": "p",
+     "text": "作る場所は、ワークフロー作成ツールのWorkspace Studioです。一から作る方法と、ひな形から始める方法があり、有効にする前にテストできます。ドキュメントの「Skill Builder」や、Gmail・ドキュメント・スライド・ドライブ・チャットでGeminiに頼んで作ることもできます。"
+    },
+    {
+     "type": "p",
+     "text": "呼び出しは2通りです。関係がありそうなときにGeminiが自動で使うか、@で名前を指定します。複数のスキルを1回の依頼に重ねることもできます。例として、文体の統一、契約書や請求書を基準に沿って確認する作業、会議メモからの定例報告が挙げられています。"
+    },
+    {
+     "type": "h",
+     "text": "対象と条件"
+    },
+    {
+     "type": "p",
+     "text": "使えるのは18歳以上で、スキルの作成も指示も英語のみです。対象は、Business・Enterpriseの各プラン、Google AI Pro for Educationアドオン、AI Expanded Accessアドオンです。スプレッドシートとMeetではまだ使えません。個人向けのGeminiアプリにも別のスキル機能があり、Workspace側とは同期しません。"
+    },
+    {
+     "type": "h",
+     "text": "いつから・管理者の設定"
+    },
+    {
+     "type": "p",
+     "text": "更新を早く受ける設定の組織は11月9日から、通常の設定の組織は11月30日から順次始まります。どちらも画面に出るまで最長15日かかります。初めからオンで、管理者は組織全体や部署、グループ単位でオフにできます。"
+    },
+    {
+     "type": "h",
+     "text": "Gemsはどうなる"
+    },
+    {
+     "type": "p",
+     "text": "今後、Workspace Studioの流れに新しく「Gemに質問」の手順は足せません。2027年には、残ったGemsがGeminiアプリの中で下書きのスキルに自動で移されます。移行はGeminiアプリのみで、Workspace StudioやWorkspaceのアプリには入りません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "18歳以上",
+       "label": "利用できる年齢"
+      },
+      {
+       "value": "11月9日",
+       "label": "早く受ける組織の開始日"
+      },
+      {
+       "value": "11月30日",
+       "label": "通常設定の組織の開始日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "仕事でWorkspaceを使う人は、自分のプランが対象か管理者に聞く",
+      "日本語の指示ではまだ使えないので、試すなら英語で書く",
+      "管理者は、初めからオンになっているため、止めたい場合は管理コンソールで設定する",
+      "Gemsを使っている組織は、公式の移行ガイドを確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "毎回同じ指示を打つ手間を減らせる機能です。ただ、今は英語の指示のみなので、日本語中心の職場では本格的に使えるのはまだ先かもしれません。"
+    }
+   ],
+   "source_name": "Google Workspace Updates",
+   "source_url": "https://workspaceupdates.googleblog.com/2026/11/skills-in-workspace.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "Google Workspace Updates",
+     "url": "https://workspaceupdates.googleblog.com/2026/11/skills-in-workspace.html"
+    },
+    {
+     "name": "Google Workspace Updates（9月の発表）",
+     "url": "https://workspaceupdates.googleblog.com/2026/09/skills-gemini-app-workspace.html"
+    }
+   ]
+  },
+  {
+   "id": "mobile-firefox-160",
+   "category": "mobile",
+   "title": "Firefox 160公開、倍速再生を追加し弱点99件を修正",
+   "summary": "小窓の動画を0.25〜2倍速にでき、弱点99件も直りました。無料で更新できます。",
+   "image": {
+    "src": "https://www.firefox.com/media/img/firefox/releasenotes/note-images/160_miniwindows.png",
+    "kind": "press",
+    "credit": "Mozilla",
+    "page": "https://www.firefox.com/en-US/firefox/160.0/releasenotes/"
+   },
+   "visual": {
+    "icon": "pc",
+    "kicker": "ブラウザー"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Mozillaがパソコン用ブラウザー「Firefox 160」を公開。小窓の動画を倍速にできる",
+      "脆弱性（悪用されうる弱点）99件を修正。最も深刻な「重大」はなく、次の「高」が57件",
+      "対象はWindows・Mac・Linux。無料で、早めの更新が勧められている"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Mozillaは11月10日（米国時間）、パソコン用ブラウザー「Firefox 160」を公開しました。動画の倍速再生などが加わり、99件の弱点も直しています。"
+    },
+    {
+     "type": "h",
+     "text": "動画の小窓で再生速度を変更"
+    },
+    {
+     "type": "p",
+     "text": "ピクチャーインピクチャー（動画を小さな窓に出して、ほかの作業と並べて見る機能）で、再生速度を変えられるようになりました。幅は0.25倍から2倍までです。操作部分は、小窓が中くらいの大きさ以上のときだけ表示されます。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.firefox.com/media/img/firefox/releasenotes/note-images/160_pip_playback_speed.png",
+     "kind": "press",
+     "credit": "Mozilla",
+     "caption": "小窓の動画プレーヤーに加わった再生速度の設定",
+     "page": "https://www.firefox.com/en-US/firefox/160.0/releasenotes/"
+    },
+    {
+     "type": "h",
+     "text": "試験中のミニウィンドウ"
+    },
+    {
+     "type": "p",
+     "text": "タブやページの一部を、ほかのウィンドウの手前に出し続ける小さな窓へ切り出す機能が、試験的に入りました。タブを右クリックし、「タブを移動」のメニューからミニウィンドウへの移動を選びます。Mozillaは使い心地の感想を募っています。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/wf/docs/2155/410/image3_l.png",
+     "kind": "ogp",
+     "credit": "窓の杜",
+     "caption": "タブの右クリックメニューからミニウィンドウに移す操作",
+     "page": "https://forest.watch.impress.co.jp/docs/news/2155410.html"
+    },
+    {
+     "type": "h",
+     "text": "使い勝手の細かな変更"
+    },
+    {
+     "type": "p",
+     "text": "サイドバーの履歴をタブバーへドラッグすると、新しいタブで開けます。コピーしたのが検索語のときは、アドレスバーの右クリックメニューが「貼り付けて検索」に変わります。"
+    },
+    {
+     "type": "p",
+     "text": "メール用リンク（mailto:）などを何度も開こうとするサイトは、新しい「許可しない」ボタンで止められます。FLAC・MP3・PCM音声のMKV動画も再生できます。Macでは、描画にAppleのMetalを使うようになりました。"
+    },
+    {
+     "type": "h",
+     "text": "弱点99件を修正、古いOSは対象外"
+    },
+    {
+     "type": "p",
+     "text": "窓の杜によると、直した弱点は99件です。Mozillaの4段階の評価で「重大」はなく、「高」が57件、「中」が24件、「低」が18件でした。同じ日に、長期サポート版（ESR）の153.7と115.45も弱点を直しています。"
+    },
+    {
+     "type": "p",
+     "text": "Mozillaによると、Windows 8.1以前とmacOS 10.14以前は160から対象外です。該当するパソコンの人は、ESRを案内されます。Windows 10と11、Mac、Linuxでは、公式サイトや窓の杜のライブラリから入手できます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "99件",
+       "label": "修正した脆弱性"
+      },
+      {
+       "value": "57件",
+       "label": "うち深刻度「高」"
+      },
+      {
+       "value": "0.25〜2倍",
+       "label": "動画の再生速度"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Firefoxを使っている人は、最新の160へ更新する。",
+      "Windows 8.1以前やmacOS 10.14以前のパソコンは160の対象外なので、ESRに切り替える。",
+      "倍速で動画を見たい人は、小窓にした動画の再生速度を試す。",
+      "ミニウィンドウは試験段階。仕事の中心にする前に、少し試す。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ブラウザーの更新は、弱点を直すことが一番の価値です。「高」が57件と多いので、新機能に興味がなくても更新だけは済ませたいところです。倍速再生は、解説動画をよく見る人にすぐ役立ちます。"
+    }
+   ],
+   "source_name": "窓の杜",
+   "source_url": "https://forest.watch.impress.co.jp/docs/news/2155410.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "窓の杜",
+     "url": "https://forest.watch.impress.co.jp/docs/news/2155410.html"
+    },
+    {
+     "name": "Firefox 160 リリースノート",
+     "url": "https://www.firefox.com/en-US/firefox/160.0/releasenotes/"
+    }
+   ]
+  },
+  {
+   "id": "gadget-macaful-mkm-2c",
+   "category": "gadget",
+   "title": "macaful、氷を砕く600mlミキサー 想定5478円",
+   "summary": "幅約13cmのスリム型で、ジュースもスムージーも作れる",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2155/044/002_l.jpg",
+    "kind": "ogp",
+    "credit": "家電 Watch",
+    "page": "https://kaden.watch.impress.co.jp/docs/news/2155044.html"
+   },
+   "visual": {
+    "icon": "appliance",
+    "kicker": "小型ミキサー"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "電響社のmacaful（マカフル）が小型ミキサー「MKM-2C」を11月下旬に発売",
+      "オープン価格で、想定価格は5478円。容量は600ml、消費電力は200W",
+      "氷や冷凍フルーツも砕け、フィルターでさらさらのジュースも作れる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "電響社の自社ブランド「macaful」は11月下旬、小型の「デイリーブレンドミキサー MKM-2C」を発売します。想定価格は5478円です。"
+    },
+    {
+     "type": "h",
+     "text": "どんなミキサーか"
+    },
+    {
+     "type": "p",
+     "text": "容量600mlのスリムな卓上ミキサーです。本体は約129×127×312mm、重さは約1.2kgで、電源コード（約1.2m）は本体の底に収められます。色はミルクベージュとビターグレーの2色です。"
+    },
+    {
+     "type": "h",
+     "text": "氷も砕ける刃"
+    },
+    {
+     "type": "p",
+     "text": "チタンコートの刃が4枚あります。下向きの刃は約45度に傾けてあり、材料を引き込みやすい形です。氷や冷凍フルーツを砕いて、フラッペや砕いた氷のドリンクを作れます。回転は弱と強の2段階です。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/kdw/docs/2155/044/004_l.jpg",
+     "kind": "ogp",
+     "credit": "家電 Watch",
+     "caption": "フラッペなどの冷たいドリンクも作れる",
+     "page": "https://kaden.watch.impress.co.jp/docs/news/2155044.html"
+    },
+    {
+     "type": "h",
+     "text": "さらさらジュースにする工夫"
+    },
+    {
+     "type": "p",
+     "text": "付属のフィルターを使うと、果物の繊維や果肉を取り除けて、なめらかなジュースになります。計量キャップには10mlと15mlの目盛りがあり、シロップや調味料をはかるのに使えます。"
+    },
+    {
+     "type": "h",
+     "text": "手入れのしやすさ"
+    },
+    {
+     "type": "p",
+     "text": "計量キャップ、フタ、ボトル、フィルター、刃のベースが外せて、洗えます。このうち、刃のベースを除く4つは食器洗い乾燥機に対応しています。"
+    },
+    {
+     "type": "h",
+     "text": "価格と発売時期"
+    },
+    {
+     "type": "p",
+     "text": "発売は11月下旬で、くわしい日付はまだ発表されていません。オープン価格で、想定価格は5478円です。販売店も発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "600ml",
+       "label": "ボトルの容量"
+      },
+      {
+       "value": "4枚",
+       "label": "チタンコートの刃"
+      },
+      {
+       "value": "5478円",
+       "label": "想定価格"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "朝のスムージーや冷たいドリンクを手軽に作りたい人が対象",
+      "発売日は11月下旬としか出ていない。買う前に電響社の案内を確かめる",
+      "食洗機に対応するのはキャップ、フタ、ボトル、フィルター。刃のベースは対象に入っていない"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "5000円台の想定価格で、氷も砕ける小型ミキサーです。ただし一度に作れるのは最大600mlなので、家族分をまとめて作る使い方には小さめです。置き場所の幅が約13cmで済む点は選ぶ理由になります。"
+    }
+   ],
+   "source_name": "家電 Watch",
+   "source_url": "https://kaden.watch.impress.co.jp/docs/news/2155044.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "家電 Watch",
+     "url": "https://kaden.watch.impress.co.jp/docs/news/2155044.html"
+    }
+   ]
+  },
+  {
+   "id": "game-mario-party-jamboree-share",
+   "category": "game",
+   "title": "『マリオパーティ ジャンボリー』更新、1本で4人遊べる",
+   "summary": "ソフトを持たない友だちを招いて、オンラインですごろくを遊べるようになりました。",
+   "image": {
+    "src": "https://assets.topics.apps-jp.nintendo.com/image/2026/11/04021806729851/1280/26d245804c6e49cc96a2e47c03416236.jpg",
+    "kind": "press",
+    "credit": "任天堂",
+    "page": "https://www.nintendo.com/jp/topics/article/1f0dba7a-c553-4ae7-bb75-a6586db1d824"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "無料更新"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "任天堂が11月10日、Switch 2版『マリオパーティ ジャンボリー』を無料で更新",
+      "ソフト1本で最大4人。全7ボードと60種類以上のミニゲームが選べる",
+      "ゲームチャットを使うには、有料のNintendo Switch Onlineが必要"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "任天堂は11月10日、Switch 2用『スーパー マリオパーティ ジャンボリー』の無料アップデートを配信しました。ソフトを持たない友だちも、おすそわけ通信ですごろくに参加できます。"
+    },
+    {
+     "type": "h",
+     "text": "更新で何が変わったか"
+    },
+    {
+     "type": "p",
+     "text": "対象は、Switch 2用の『スーパー マリオパーティ ジャンボリー Nintendo Switch 2 Edition ＋ ジャンボリーTV』です。更新データは無料で、インターネットにつないだSwitch 2でダウンロードします。"
+    },
+    {
+     "type": "h",
+     "text": "遊べるボードとルール"
+    },
+    {
+     "type": "p",
+     "text": "おすそわけ通信では、全7つのボードと60種類以上のミニゲームを選べます。ただし、ミニゲームだけを選んで遊ぶことはできません。ルールもターン数を含めてすべて選べます。これまでは「パーティルール10ターン」しか選べませんでした。"
+    },
+    {
+     "type": "h",
+     "text": "ゲームチャットでの始め方"
+    },
+    {
+     "type": "p",
+     "text": "手順は3つです。まず、Cボタンで友だちとゲームチャットを始めます。次に、ソフトを持つ人が、チャットの相手へおすそわけ通信の招待を送ります。最後に、受け取る側が「受け取る」を選ぶと、ソフトがなくても遊べます。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.topics.apps-jp.nintendo.com/image/2026/11/04021545573795/1200/43318f39aaad46beb95d389e52cfa966.jpg",
+     "kind": "press",
+     "credit": "任天堂",
+     "caption": "任天堂のページの、オンラインのゲームチャットを説明する画像",
+     "page": "https://www.nintendo.com/jp/topics/article/1f0dba7a-c553-4ae7-bb75-a6586db1d824"
+    },
+    {
+     "type": "h",
+     "text": "本体が近くにある場合"
+    },
+    {
+     "type": "p",
+     "text": "同じ部屋で遊ぶときは、Switch 2本体1台とソフト1本があれば、Nintendo SwitchやSwitch Liteでもおすそわけ通信を受け取れます。Switch 2が2台ある場合は、1台で2人ずつ遊ぶ形もあり、合わせて4人になります。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.topics.apps-jp.nintendo.com/image/2026/11/04021523792769/1200/0229e3ef915b43e28d3b17eb1258fc20.jpg",
+     "kind": "press",
+     "credit": "任天堂",
+     "caption": "任天堂のページの、ローカルでのおすそわけ通信を説明する画像",
+     "page": "https://www.nintendo.com/jp/topics/article/1f0dba7a-c553-4ae7-bb75-a6586db1d824"
+    },
+    {
+     "type": "h",
+     "text": "必要なものと制限"
+    },
+    {
+     "type": "p",
+     "text": "ゲームチャットを使うには、インターネット接続と、有料のNintendo Switch Onlineへの加入が必要です。通信が安定しないと、遊べないことがあります。招待を受け取った人が遊べるのは、その回の間だけです。終わると、ソフトを持たない人は遊べなくなります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4人",
+       "label": "ソフト1本で遊べる人数"
+      },
+      {
+       "value": "全7つ",
+       "label": "選べるボードの数"
+      },
+      {
+       "value": "60種類以上",
+       "label": "選べるミニゲーム"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ソフトを持っている人は、アップデートを無料でダウンロードすると、友だちを招待できるようになります。",
+      "オンラインで招待するときは、ゲームチャット用に有料のNintendo Switch Onlineに入っているか確かめます。",
+      "ソフトを持たない人が遊べるのは、招待を受けたその1回だけです。続けて遊ぶには、ソフトが必要です。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ソフトを買わずに友だちを混ぜられるので、集まりでの試しに向いています。ただ、ゲームチャットには有料のオンライン加入が要り、受け取った側が遊べるのは1回だけです。"
+    }
+   ],
+   "source_name": "任天堂",
+   "source_url": "https://www.nintendo.com/jp/topics/article/1f0dba7a-c553-4ae7-bb75-a6586db1d824",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "任天堂 トピックス",
+     "url": "https://www.nintendo.com/jp/topics/article/1f0dba7a-c553-4ae7-bb75-a6586db1d824"
+    }
+   ]
+  },
+  {
+   "id": "ec-amazon-ads-agent-japan",
+   "category": "ec",
+   "title": "Amazon広告にAI会話機能、11月6日から試験提供",
+   "summary": "広告の計画から分析までふだんの言葉で進められます。機能は無料で、11月末に本格提供の予定です。",
+   "image": {
+    "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17002-2.png",
+    "kind": "ogp",
+    "credit": "ネットショップ担当者フォーラム（Amazon Ads公式サイトのキャプチャ）",
+    "page": "https://netshop.impress.co.jp/n/2026/11/09/17002"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "広告AI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Amazon広告が、AIと会話しながら広告を作り、成果を調べる機能を日本で始めます",
+      "会話型の機能は11月6日から試験提供、11月末ごろに本格提供の予定です",
+      "機能の利用料は無料。広告を出す会社や代理店が対象です"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Amazon Adsは11月4日、東京のイベントで、AIが広告の計画や分析を手伝う新機能を日本の広告主に提供すると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "会話で広告の設定ができる"
+    },
+    {
+     "type": "p",
+     "text": "新しい名前は「Amazon Ads Agent」です。広告の目標や悩みをふだんの言葉で伝えると、AIが計画を提案します。会話の内容をもとに、設定の変更まで実行します。"
+    },
+    {
+     "type": "p",
+     "text": "広告を見る人の規模、届く人数の予測、予算の配分も示します。AIが提案した理由と作業の履歴は確認でき、最終的な操作は広告主が握ります。"
+    },
+    {
+     "type": "h",
+     "text": "成果の分析も言葉で頼める"
+    },
+    {
+     "type": "p",
+     "text": "広告のデータを、文章で質問して調べられます。広告どうしの比較、月ごとの推移、グラフの作成が対象です。約1000項目の指標を使い、購入前にどの広告の組み合わせを見たかを示すレポートも使えます。"
+    },
+    {
+     "type": "p",
+     "text": "広告を見てから12か月間の売り上げを追うレポートもあります。広告の画像や動画ごとの成果も見られますが、直し方の具体的な提案はまだ出せません。"
+    },
+    {
+     "type": "h",
+     "text": "画面・動画・音声の広告をまとめて管理"
+    },
+    {
+     "type": "p",
+     "text": "「DVA+」は、画面の広告、動画、音声の広告を、ひとつの流れで管理する機能です。目的を売り上げ、商品ページへの訪問、ブランドの認知から選び、商品、広告素材、予算、期間を決めると、チャットで案内を受けられます。媒体ごとの素材の規格も自動で合わせます。"
+    },
+    {
+     "type": "p",
+     "text": "詳しい設定ができる上級者向けの版もあり、会話型の機能と同じく11月6日から試験提供です。DVA+の本体は、今後数か月かけて日本の広告主に順次広げます。"
+    },
+    {
+     "type": "h",
+     "text": "地域ごとの広がりを地図で見る"
+    },
+    {
+     "type": "p",
+     "text": "「GIA」は、Amazonが持つ情報と広告主の地域データを合わせ、地域ごとのブランドの浸透度を地図に示します。同じ分野の平均より弱い地域を見つけ、選んだ地域だけ入札額を自動で調整できます。Amazonで商品を売っていない広告主も使えます。"
+    },
+    {
+     "type": "p",
+     "text": "数字の例は、すべて米国の事例です。ネスレ ピュリナは低浸透の地域に絞り、動画1回の視聴あたりの費用を86%減らしました。新ブランドの商品ページを見る割合は313%増えたといいます。"
+    },
+    {
+     "type": "img",
+     "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17002-4.jpeg",
+     "kind": "ogp",
+     "credit": "ネットショップ担当者フォーラム（Amazon Ads公式サイトのキャプチャ）",
+     "caption": "地域ごとの浸透度を地図で示すGIAの画面イメージ",
+     "page": "https://netshop.impress.co.jp/n/2026/11/09/17002"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "11月6日",
+       "label": "試験提供の開始日"
+      },
+      {
+       "value": "11月末ごろ",
+       "label": "本格提供の予定"
+      },
+      {
+       "value": "約1000項目",
+       "label": "分析に使う指標の数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Amazonで広告を出している人や代理店は、広告管理画面で11月6日からの試験提供を使えるか確認する",
+      "機能の利用料は無料とされています。広告を出す費用の扱いは、管理画面で確かめる",
+      "AIの提案は理由を確認できるので、予算を決める前に提案の根拠を見る",
+      "米国の数字は日本での結果を約束するものではない。同じ成果が出るとは限らない"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "広告の設定が難しくて手が止まっていた人には、会話で始められるのは入口になります。ただし本格提供は11月末の予定なので、いま焦って使う必要はありません。米国の成果は日本の保証ではないので、小さい予算で試すのが無難です。"
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/09/17002",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/09/17002"
+    }
+   ]
+  },
+  {
+   "id": "other-fake-base-station-referral",
+   "category": "other",
+   "title": "総務省、偽基地局の疑いで31歳の中国籍の人物を告発",
+   "summary": "車載の違法な無線機で詐欺SMSを送る狙いとされます。告発の段階で、起訴は未発表です。",
+   "image": {
+    "src": "https://www.soumu.go.jp/main_content/000372150.jpg",
+    "kind": "press",
+    "credit": "総務省関東総合通信局",
+    "page": "https://www.soumu.go.jp/soutsu/kanto/press/2026/1109k2.html"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "偽基地局"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "総務省関東総合通信局が7日、偽基地局の疑いで31歳の中国籍の人物を電波法違反で告発（9日発表）",
+      "車に積んだ免許のない無線機で、近くのスマホの通信を妨害し、詐欺のSMSを送る狙いとされる",
+      "告発の段階で、起訴などの今後の動きは発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "総務省関東総合通信局は9日、偽の携帯基地局を車で動かした疑いで、31歳の中国籍の人物を告発したと発表しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.soumu.go.jp/main_content/000374046.jpg",
+     "kind": "press",
+     "credit": "総務省関東総合通信局",
+     "caption": "総務省の発表資料に載る画像",
+     "page": "https://www.soumu.go.jp/soutsu/kanto/press/2026/1109k2.html"
+    },
+    {
+     "type": "h",
+     "text": "何をした疑いか"
+    },
+    {
+     "type": "p",
+     "text": "関東総合通信局と警視庁は11月7日、東京都中央区で違法な無線局の取り締まりを合同で行いました。免許のない無線局を車に設け、運転しながら使っていた疑いです。人物は東京都北区に住んでいます。"
+    },
+    {
+     "type": "p",
+     "text": "偽基地局は、本物の携帯基地局になりすまして近くのスマホに電波を送ります。今回の機器は、フィッシング詐欺のSMSを送る目的だったとされます。"
+    },
+    {
+     "type": "h",
+     "text": "容疑と告発の意味"
+    },
+    {
+     "type": "p",
+     "text": "容疑は電波法4条と108条の2の違反です。免許なしで無線局を開き、通信設備を妨害した疑いにあたります。告発とは、役所が捜査機関に、処罰を求めて訴える手続きです。起訴や裁判の予定は、発表されていません。"
+    },
+    {
+     "type": "h",
+     "text": "放っておけない理由"
+    },
+    {
+     "type": "p",
+     "text": "総務省は、違法な無線局が消防や救急の無線といった大切な通信を妨げるおそれがあると説明しています。テレビやラジオの受信、ほかの電子機器にも影響が出る場合があります。"
+    },
+    {
+     "type": "h",
+     "text": "背景と問い合わせ先"
+    },
+    {
+     "type": "p",
+     "text": "2025年には東京や大阪などで、携帯電話の通信の乱れや不審なSMSの報告が相次ぎ、偽基地局が原因とみられていました。総務省と携帯各社は当時、注意を呼びかけています。"
+    },
+    {
+     "type": "p",
+     "text": "総務省は今後も、捜査機関と連携して違法な無線局の取り締まりを続ける方針です。問い合わせ先は、関東総合通信局の電波監視部監視第二課（03-6238-1820）です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1人",
+       "label": "告発された人数"
+      },
+      {
+       "value": "31歳",
+       "label": "告発された人物の年齢"
+      },
+      {
+       "value": "11月7日",
+       "label": "取り締まりを行った日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "不審なSMSのリンクは開かず、本物かどうかは公式アプリや公式サイトで確かめる",
+      "今回の発表では、利用者が設定を変える必要があるとは示されていない",
+      "起訴など今後の動きは、総務省の発表や報道で確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "偽基地局は、本物の基地局になりすまして詐欺SMSを送る手口とされます。今回は告発の段階なので、起訴されるか、同じ種類の機器がほかにも見つかるかが次の確認点です。"
+    }
+   ],
+   "source_name": "ケータイ Watch",
+   "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2154809.html",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "ケータイ Watch",
+     "url": "https://k-tai.watch.impress.co.jp/docs/news/2154809.html"
+    },
+    {
+     "name": "総務省 関東総合通信局",
+     "url": "https://www.soumu.go.jp/soutsu/kanto/press/2026/1109k2.html"
+    }
+   ]
+  },
+  {
+   "id": "ai-qwen4-preview",
+   "category": "ai",
+   "title": "Alibaba、新AI「Qwen4」発表、Max版を提供",
+   "summary": "性能向上をうたう新世代。価格や日本での使い方はまだ発表されていません。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/aiplus/article/ogp/2611/11/2000003098/10011843/2048",
+    "kind": "ogp",
+    "credit": "ITmedia AI＋",
+    "page": "https://www.itmedia.co.jp/aiplus/article/2611/11/2000003098/"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "中国AI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "中国のAlibaba Cloudが、新しいAIモデル「Qwen4」を発表",
+      "まず「Qwen4-Max」のプレビュー版を、同社のサブスク「Token Plan」で提供",
+      "価格・一般提供の時期・日本語対応・日本での利用可否は発表されていません"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "中国のAlibaba Cloudが、新しいAIモデル「Qwen4」を発表しました。「Qwen4-Max」のプレビュー版の提供が始まっています。"
+    },
+    {
+     "type": "h",
+     "text": "発表された内容"
+    },
+    {
+     "type": "p",
+     "text": "発表は、Qwenシリーズの公式X（@Alibaba_Qwen）で行われました。Alibabaは、知識や現実世界への理解、コード作成の力、自分でタスクを進める力が上がったとしています。"
+    },
+    {
+     "type": "p",
+     "text": "複雑なコード作成、知識を使う仕事、画面（フロントエンド）づくり、専門的なソフトの作業など、実際の仕事に合わせて設計したと説明しています。モデルの細かい中身は明らかにされていません。"
+    },
+    {
+     "type": "h",
+     "text": "プレビュー版を使える場所"
+    },
+    {
+     "type": "p",
+     "text": "Qwen4-Maxのプレビュー版は、Alibaba Cloudの定額サービス「Token Plan」で提供されます。早期アクセスは、QwenWork、Qoder、Qwen APP、QwenStudioの4つのサービスでも受けられるとしています。"
+    },
+    {
+     "type": "h",
+     "text": "まだわからないこと"
+    },
+    {
+     "type": "p",
+     "text": "価格、一般提供（誰でも使える正式版）の時期、日本語への対応、日本から使えるかどうかは、発表されていません。性能を示す数字は、ITmedia AI＋の報道では触れられていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4サービス",
+       "label": "早期アクセスできるサービスの数"
+      },
+      {
+       "value": "未発表",
+       "label": "価格と一般提供の時期"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Alibaba Cloudの「Token Plan」を契約している人は、Qwen4-Maxのプレビュー版を試せる",
+      "「Qwen APP」などでも早期アクセスの対象になっているが、日本で使えるかは発表されていない",
+      "価格や正式版の時期が出るまで、仕事で使う判断は待つ"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "中身がまだ見えない発表なので、いま急いで乗り換える理由はありません。次に見るのは、価格と正式版の時期、そして日本語での性能です。"
+    }
+   ],
+   "source_name": "ITmedia AI＋",
+   "source_url": "https://www.itmedia.co.jp/aiplus/article/2611/11/2000003098/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "ITmedia AI＋",
+     "url": "https://www.itmedia.co.jp/aiplus/article/2611/11/2000003098/"
+    }
+   ]
+  },
+  {
+   "id": "mobile-thunderbird-160",
+   "category": "mobile",
+   "title": "Thunderbird 160公開、脆弱性103件を修正",
+   "summary": "古いメールを消す設定の不具合も直りました。メールソフトの人は更新を。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/wf/docs/2155/542/image1_l.png",
+    "kind": "ogp",
+    "credit": "窓の杜",
+    "page": "https://forest.watch.impress.co.jp/docs/news/2155542.html"
+   },
+   "visual": {
+    "icon": "pc",
+    "kicker": "メールソフト"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "無料のメールソフト「Thunderbird」v160.0が公開。弱点103件を修正",
+      "深刻度は「高」が59件、「中」が27件、「低」が17件。IMAPの保存期間設定の不具合も直った",
+      "メールの閲覧では直接の攻撃を受けにくい設計だが、窓の杜は更新を勧めている"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Mozillaは11月10日、無料のメールソフト「Thunderbird」のv160.0を公開しました。弱点103件に加え、メールを誤って消す不具合も直しています。"
+    },
+    {
+     "type": "h",
+     "text": "メールを誤って消す不具合を修正"
+    },
+    {
+     "type": "p",
+     "text": "IMAP（サーバー上にメールを置いて使う方式）には、保存期間を決めて古いメールを消す設定があります。この設定で、古いメールではなく新しいメールが消えてしまう不具合が直りました。窓の杜は、この不具合を重大なものと伝えています。"
+    },
+    {
+     "type": "p",
+     "text": "メールを削除したあと、元に戻す操作ができないままになる不具合も直っています。LF形式の改行を使うPOP3やニュースグループのメッセージを、正しく読めなかった問題も解消しました。"
+    },
+    {
+     "type": "h",
+     "text": "設定画面などの小さな変更"
+    },
+    {
+     "type": "p",
+     "text": "「メッセージフィルター」の画面で、Ctrl+Aを押すとフィルターをすべて選べます。OAuth（パスワードを渡さずにログインする仕組み）の画面には、Cookieを止めているとログインできない場合があるという説明が加わりました。"
+    },
+    {
+     "type": "p",
+     "text": "Office 365のアカウントを設定するとき、EWSという接続方法を自動で提案する動きはなくなりました。IMAPの保存期間のほかにも、Exchangeとの接続や強制終了の問題など、多くの不具合が直っています。"
+    },
+    {
+     "type": "h",
+     "text": "弱点103件を修正"
+    },
+    {
+     "type": "p",
+     "text": "窓の杜によると、直した弱点は103件です。Mozillaの評価は、「高」が59件、「中」が27件、「低」が17件でした。"
+    },
+    {
+     "type": "p",
+     "text": "Thunderbirdはメールを開くときにスクリプトを止めるため、メールだけで直接攻撃される危険は抑えられています。ただ、ブラウザーに近い機能は残るため、窓の杜は更新を勧めています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "103件",
+       "label": "修正した脆弱性"
+      },
+      {
+       "value": "59件",
+       "label": "うち深刻度「高」"
+      },
+      {
+       "value": "11月10日",
+       "label": "v160.0の公開日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Thunderbirdを使っている人は、v160.0へ更新する。",
+      "IMAPで保存期間の設定を使っている人は、更新後に残すメールの範囲を確かめる。",
+      "更新の入手先は、Thunderbirdの公式サイトか窓の杜のライブラリ。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "メールを自動で消す設定は、不具合に気づきにくいのが怖いところです。IMAPで保存期間を決めている人は、更新したうえで、新しいメールが残っているかを一度見ておくと安心です。"
+    }
+   ],
+   "source_name": "窓の杜",
+   "source_url": "https://forest.watch.impress.co.jp/docs/news/2155542.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "窓の杜",
+     "url": "https://forest.watch.impress.co.jp/docs/news/2155542.html"
+    },
+    {
+     "name": "Thunderbird 160.0 リリースノート",
+     "url": "https://www.thunderbird.net/en-US/thunderbird/160.0/releasenotes/"
+    }
+   ]
+  },
+  {
+   "id": "gadget-kef-ls-luxe-osaka-audio-show",
+   "category": "gadget",
+   "title": "KEFのLS LUXE、大阪の音響展で13日から試聴",
+   "summary": "71万5000円のスピーカーを、大阪で3日間、実際の音で試せます。",
+   "image": {
+    "src": "https://av.watch.impress.co.jp/img/avw/list/2127/672/DSC04064.jpg",
+    "kind": "ogp",
+    "credit": "AV Watch",
+    "page": "https://av.watch.impress.co.jp/docs/news/2127672.html"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "試聴イベント"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "大阪ハイエンドオーディオショウが13日から3日間開かれる",
+      "KEFは新型スピーカーLS LUXE（ペア71万5000円）などを試聴できる",
+      "14日にはLS LUXEの講演会、LINE登録で先着50人にプレゼント"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "高級オーディオ展「大阪ハイエンドオーディオショウ」が11月13〜15日に開かれ、英KEFが71万5000円の新型スピーカーを聴かせます。"
+    },
+    {
+     "type": "h",
+     "text": "KEFが持ち込むスピーカー"
+    },
+    {
+     "type": "p",
+     "text": "会場は大阪のハートンホテル心斎橋の別館です。KEFは本棚に置くタイプを中心に、5機種を出展します。最上位クラスの「REFERENCE 1 Meta」、新製品の「LS LUXE」、定番の「LSX II」、サブウーファー（重低音用のスピーカー）KC62と組む「LS50 Meta」、入門向けの「Coda W」で、Coda Wはレコード再生で聴かせます。"
+    },
+    {
+     "type": "h",
+     "text": "LS LUXEはどんな製品か"
+    },
+    {
+     "type": "p",
+     "text": "LS LUXEは、アンプを内蔵し、無線でも音楽を流せる本棚用スピーカーです。KEFは8月25日に発売し、価格は2台1組で71万5000円です（税込みかどうかは記事に記載なし）。専用スタンドは別売りで14万3000円です。"
+    },
+    {
+     "type": "p",
+     "text": "音を出す部分には、高音と中低音を同じ軸にまとめた6.5インチのUni-Q（ユニキュー）を使います。低音用は280W、高音用は100Wのアンプで、動きを検知するセンサーで音のずれを補正します。入力はHDMI eARC、アナログ、光・同軸デジタルがあり、AirPlayやGoogle Castで無線再生もできます。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/avw/docs/2127/672/DSC04056_s.jpg",
+     "kind": "ogp",
+     "credit": "AV Watch",
+     "caption": "LS LUXEの3色（左からミネラルホワイト、ダスクチタニウム、エクリプスブラック）",
+     "page": "https://av.watch.impress.co.jp/docs/news/2127672.html"
+    },
+    {
+     "type": "h",
+     "text": "KEFの中での位置づけ"
+    },
+    {
+     "type": "p",
+     "text": "KEFの無線スピーカーでは、LS50 Wireless II（2台で36万3000円）と、床に置くLS60W（88万円）の中間に当たります。発表時のAV Watchの試聴記は、音の広がりと低音の締まりを評価する一方、本棚用としては高い価格だと書いていました。"
+    },
+    {
+     "type": "h",
+     "text": "行く人向けの日程と特典"
+    },
+    {
+     "type": "p",
+     "text": "KEFの試聴は1回約50分で、LS LUXEは3日間とも複数回あります。13日の14時10分からは新製品の紹介があり、14日の15時10分からは評論家の山之内正氏による講演会（別館2階の松の間）があります。"
+    },
+    {
+     "type": "p",
+     "text": "ブースでKEFの公式LINEを友だち登録すると、先着50人にKEFオリジナルのレコードバッグがもらえます。入場料は記事に書かれておらず、詳しくは公式サイトで確認が必要です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "71万5000円",
+       "label": "LS LUXEの価格（2台1組）"
+      },
+      {
+       "value": "3日間",
+       "label": "11月13〜15日の会期"
+      },
+      {
+       "value": "先着50人",
+       "label": "LINE登録のプレゼント"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "大阪周辺で高級オーディオに興味がある人は、13日から15日の間にハートンホテル心斎橋の別館へ",
+      "LS LUXEの講演を聞くなら、14日の15時10分に別館2階の松の間へ",
+      "入場料や混雑は記事に載っていないので、行く前に公式サイトを確認する"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "71万5000円のスピーカーは気軽に買えませんが、展示会なら同じ部屋で音を聴き比べられます。LS50 Meta、LSX II、LS LUXEと価格帯の違う機種が並ぶので、予算に合う音の差をつかむ機会になります。"
+    }
+   ],
+   "source_name": "AV Watch",
+   "source_url": "https://av.watch.impress.co.jp/docs/news/2155186.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "AV Watch（大阪ハイエンドオーディオショウ）",
+     "url": "https://av.watch.impress.co.jp/docs/news/2155186.html"
+    },
+    {
+     "name": "AV Watch（KEF LS LUXE発表）",
+     "url": "https://av.watch.impress.co.jp/docs/news/2127672.html"
+    }
+   ]
+  },
+  {
+   "id": "game-hyogoslavia-rpg",
+   "category": "game",
+   "title": "ヒョーゴスラビアRPG、11月20日に100円で発売",
+   "summary": "兵庫県を5つの国に見立てたRPGで、会話は神戸弁にも切り替えられます。",
+   "image": {
+    "src": "https://cimg.kgl-systems.io/camion/files/93628/thumbnail_kkeg.png?x=1280",
+    "kind": "ogp",
+    "credit": "ファミ通.com",
+    "page": "https://famitsu.com/article/202611/93628"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "兵庫RPG"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "個人制作のRPG『ヒョーゴスラビア興亡記』が、11月20日にスマホで発売",
+      "iPhone・Androidは100円、Steam版は12月10日発売予定で600円（税込み）",
+      "Android版は、買う前に1時間無料で遊べる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "個人サークルの「こゆるぎ工房」は、兵庫県が舞台のRPG『ヒョーゴスラビア興亡記』を、11月20日にiPhoneとAndroid向けに発売します。"
+    },
+    {
+     "type": "h",
+     "text": "どんなゲームか"
+    },
+    {
+     "type": "p",
+     "text": "ネットミーム「ヒョーゴスラビア」をもとにした、中世ファンタジー風のRPGです。兵庫県が、セッツ・ハリマ・タンバ・タジマ・アワジの5つの国の連邦になっています。"
+    },
+    {
+     "type": "p",
+     "text": "主人公は、セッツ王国の優柔不断な第二王子タモンです。淡路、丹波、但馬の若者たちと旅をして、5つの国の思わくと、古代竜アカシドンの謎を追います。"
+    },
+    {
+     "type": "h",
+     "text": "神戸弁に切り替えられる"
+    },
+    {
+     "type": "p",
+     "text": "設定画面で、すべての会話を神戸弁に切り替えられる「セッツ語モード」があります。神戸出身の作者が、セリフをすべて自分で書き換えました。言語は、日本語、セッツ語、英語です。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/famitsu/93628/ac527bd768ffc7431e68ca411725e3203.jpg?x=767",
+     "kind": "ogp",
+     "credit": "ファミ通.com",
+     "caption": "ファミ通.comの記事に載ったゲーム画面（セッツ語モードの紹介部分）",
+     "page": "https://famitsu.com/article/202611/93628"
+    },
+    {
+     "type": "h",
+     "text": "兵庫らしさのある作り"
+    },
+    {
+     "type": "p",
+     "text": "世界地図は兵庫県の形をしていて、町やアイテムの名前に、実在の兵庫の地名が使われています。回復アイテムは、イカナゴのくぎ煮、そばめし、淡路のたまねぎスープなど、地元の食べ物です。"
+    },
+    {
+     "type": "h",
+     "text": "発売日と価格"
+    },
+    {
+     "type": "p",
+     "text": "iPhoneとAndroidは11月20日発売で、価格は100円（税込み）です。Steam版は12月10日発売予定で、600円（税込み）です。Android版は購入前に1時間、無料で遊べます。ほかの機種の体験版や予約特典は、伝えられていません。"
+    },
+    {
+     "type": "h",
+     "text": "試遊できるイベント"
+    },
+    {
+     "type": "p",
+     "text": "11月21日に神戸電子専門学校で開かれる「神戸ゲームラビリンス2026」のD-2ブースで、試遊できます。作者の前作は、千葉が舞台の『魔界都市 CHI-BA』で、SHIBA GAME AWARD 2026 SUMMERのストリーマー賞を受けています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "100円",
+       "label": "iPhone・Android版の価格"
+      },
+      {
+       "value": "600円",
+       "label": "Steam版の価格"
+      },
+      {
+       "value": "1時間",
+       "label": "Android版の無料体験"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "iPhoneやAndroidで遊ぶ人は、11月20日の発売後にストアで探します。",
+      "Androidの人は、買う前に1時間の無料プレイで、合うかどうか確かめられます。",
+      "パソコンのSteamで遊ぶ人は、12月10日の発売予定を待ちます。",
+      "神戸の近くにいる人は、11月21日の「神戸ゲームラビリンス2026」で試遊できます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "100円で、兵庫の地名や食べ物のネタを楽しめる一本です。神戸弁モードは好みが分かれそうですが、Androidなら1時間の無料体験で確かめられます。"
+    }
+   ],
+   "source_name": "ファミ通.com",
+   "source_url": "https://famitsu.com/article/202611/93628",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "ファミ通.com",
+     "url": "https://famitsu.com/article/202611/93628"
+    }
+   ]
+  },
+  {
+   "id": "ec-biccamera-mail-leak",
+   "category": "ec",
+   "title": "ビックカメラ系3社、顧客情報1520万件が委託先から漏えい",
+   "summary": "会員の氏名や生年月日などが漏れた。カード情報とログインパスワードは無事です。",
+   "image": {
+    "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17000-1.png",
+    "kind": "ogp",
+    "credit": "ネットショップ担当者フォーラム（編集部キャプチャ）",
+    "page": "https://netshop.impress.co.jp/n/2026/11/09/17000"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "情報漏えい"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ビックカメラ・コジマ・ソフマップの顧客情報が、メール配信の委託先から漏れました",
+      "件数は3社の合計で約1520万件。同じ人も社ごとに数えています",
+      "カード情報とパスワードは無事。偽メールのリンクは開かないでください"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ビックカメラグループは11月6日、メール配信の委託先アララへの不正アクセスで、3社の顧客情報約1520万件が漏れたと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "漏れた情報と漏れなかった情報"
+    },
+    {
+     "type": "p",
+     "text": "ビックカメラの会員は、メールアドレス、氏名、性別、都道府県コード、生年月日、ポイントカード番号、会員登録日が漏れました。コジマとソフマップは、大半がメールアドレスだけです。"
+    },
+    {
+     "type": "p",
+     "text": "注文番号・注文金額・商品名まで漏れた人もいます。ビックカメラで183件、ソフマップで41件です。漏れていないのは、クレジットカード情報、セキュリティコード、電話番号、住所、ECサイトのログインパスワードです。配信システムに預けていませんでした。"
+    },
+    {
+     "type": "h",
+     "text": "3社の件数と対象になる人"
+    },
+    {
+     "type": "p",
+     "text": "件数はビックカメラが約1422万件、コジマが約96万件、ソフマップが約2万5000件です。同じ人が複数の会社に登録していると社ごとに数えるため、実際の人数とは一致しません。"
+    },
+    {
+     "type": "p",
+     "text": "ビックカメラの対象は、ビックカメラ.comやアプリの会員（退会した人を含む）と、過去にメルマガを登録した人です。今は配信を止めていても入ります。楽天ビックやJRE MALLでは、7月1日以降にメールを受け取った人の一部が対象です。"
+    },
+    {
+     "type": "h",
+     "text": "事件の経緯と今後の調査"
+    },
+    {
+     "type": "p",
+     "text": "アララは10月28日に不正アクセスを確認し、10月31日にサービスを全面停止しました。ビックカメラグループがアララから連絡を受け、おわびを出したのは11月2日です。侵入された原因と経路は、アララが調べています。"
+    },
+    {
+     "type": "p",
+     "text": "ネットショップ担当者フォーラムによると、アララは別のクラウド環境からも漏れを確認しました。重複を除いて約8133万件のメールアドレスが盗まれたとしています。カカクコム、モスフードサービス、ワークマンなど、ほかの会社にも影響が出ています。"
+    },
+    {
+     "type": "h",
+     "text": "連絡の方法と問い合わせ先"
+    },
+    {
+     "type": "p",
+     "text": "各社が対象の人へ順次連絡します。退会した人や、メルマガをやめた人にも届きます。開始日は各社のサイトに載ります。この件による被害は、11月6日の時点で確認されていません。"
+    },
+    {
+     "type": "p",
+     "text": "各社の窓口は次のとおりです。ビックカメラは0120-615-777（10〜19時）、コジマは0120-39-0007（10〜18時）、ソフマップは0077-78-8686（10〜19時）。ビックカメラグループは、委託先の安全監査を強め、預けるデータの範囲と保管期間も絞るとしています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約1520万件",
+       "label": "3社合計の件数"
+      },
+      {
+       "value": "約1422万件",
+       "label": "ビックカメラ分"
+      },
+      {
+       "value": "約8133万件",
+       "label": "アララ全体の流出数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ビックカメラ・コジマ・ソフマップの会員やメルマガ登録の経験がある人は、各社からの連絡と、公式サイトのお知らせで対象かどうかを確かめる",
+      "各社やアララを名乗るメールが届いても、リンクや添付は開かず、公式アプリや公式サイトから確認する",
+      "カード番号やログインパスワードを聞くメールは、この件では送られません。入力を求められたら偽物と考える",
+      "不安なときは窓口へ。ビックカメラは0120-615-777（10〜19時）"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "まず思い出したいのは、昔メルマガや会員に登録したかどうかです。退会済みでも対象になります。氏名と生年月日が漏れているので、本物らしい偽メールには用心してください。"
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/09/17000",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/09/17000"
+    },
+    {
+     "name": "ビックカメラ（お詫びとお知らせ 第2報）",
+     "url": "https://www.biccamera.com/bc/c/info/report/sorry_20261106.jsp"
+    }
+   ]
+  },
+  {
+   "id": "other-infineon-300mm-sic",
+   "category": "other",
+   "title": "Infineon、300mm SiCで素子製造　世界初と発表",
+   "summary": "EVやデータセンターの電源部品が、将来安くなる可能性。ただ量産時期は未発表です。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/ee/articles/2611/09/jn20261109sic001.jpg",
+    "kind": "ogp",
+    "credit": "EE Times Japan",
+    "page": "https://eetimes.itmedia.co.jp/ee/articles/2611/09/news079.html"
+   },
+   "visual": {
+    "icon": "chip",
+    "kicker": "半導体"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "独Infineonが、直径300mmのSiCウエハーでパワー半導体の製造に成功",
+      "200mmより1枚から取れるチップが2.3倍。量産の時期は未発表",
+      "日本ではResonacなど素材メーカーも300mmを開発中だが、実用化はまだ先"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "独半導体大手のInfineon Technologiesは11月9日、直径300mmのSiC（炭化ケイ素）ウエハーで、パワー半導体を試作したと発表しました。同社は、本格的な半導体工場での製造は世界初としています。"
+    },
+    {
+     "type": "h",
+     "text": "SiCのパワー半導体とは"
+    },
+    {
+     "type": "p",
+     "text": "パワー半導体は、電気を使う場所に合わせて電圧や電流を切り替える部品です。SiCを使うと、シリコン製より電気のむだが少なく、高い電圧や熱にも耐えます。使い道は、電気自動車（EV）のモーター制御、充電器、大型蓄電池、工場のモーター、AI用データセンターの電源などです。"
+    },
+    {
+     "type": "h",
+     "text": "大きなウエハーで何が変わる"
+    },
+    {
+     "type": "p",
+     "text": "ウエハーは、半導体を切り出す元になる円盤です。皿が大きいほど、1枚から多くのクッキーが取れるのと同じ考え方で、300mmは200mmの2.3倍のチップが取れます。"
+    },
+    {
+     "type": "p",
+     "text": "Infineonは、オーストリアのフィラッハ工場で、既存のシリコン向け製造装置を使って作りました。ドイツのドレスデン拠点では、結晶から薄い円盤を割って切り出す独自技術「Cold Split」も300mmで実証しています。同社は、材料のむだと加工時間が大きく減るとしています。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/ee/articles/2611/09/jn20261109sic002.jpg",
+     "kind": "ogp",
+     "credit": "EE Times Japan",
+     "caption": "Infineonの300mmウエハー製造技術（Si、GaN、SiC）の図",
+     "page": "https://eetimes.itmedia.co.jp/ee/articles/2611/09/news079.html"
+    },
+    {
+     "type": "h",
+     "text": "量産はまだ先"
+    },
+    {
+     "type": "p",
+     "text": "300mmのSiCパワー半導体の量産開始時期は、発表されていません。Infineonは、顧客や提携先と開発計画を決めるとしています。今の200mm向けの計画も並行して続けます。実物のウエハーは、11月10〜13日にドイツ・ミュンヘンで開く展示会「electronica 2026」で見せます。"
+    },
+    {
+     "type": "p",
+     "text": "Infineonは10月27日には、約11億ユーロでフィラッハに300mmのGaNパワー半導体の量産施設を新設する計画も出しています。"
+    },
+    {
+     "type": "h",
+     "text": "日本の素材メーカーの見方"
+    },
+    {
+     "type": "p",
+     "text": "日本では、Resonacが9月に300mmのSiC結晶と基板づくりに成功したと発表しています。EE Times Japanによると、同社の狙いは、量産中の150mm品と出荷を始めた200mm品の品質向上です。300mmの販売計画はありません。"
+    },
+    {
+     "type": "p",
+     "text": "Resonacは、200mmが主流になるのは2030年ごろで、300mmはその後と見ています。中国のSICCや米Wolfspeedも300mmの成果を発表していますが、Resonacは技術力を示す発表が中心とみています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2.3倍",
+       "label": "200mm比のチップ数"
+      },
+      {
+       "value": "約11億ユーロ",
+       "label": "300mm GaN新施設の投資額"
+      },
+      {
+       "value": "2030年ごろ",
+       "label": "200mmが主流になる時期"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "EVやデータセンターの電源が安く小さくなる効果は、量産が決まってから。すぐに製品価格が変わる話ではない",
+      "日本での提供や、日本の取引先への供給計画は発表されていない",
+      "ウエハーの実物は、11月13日までミュンヘンの展示会で公開される",
+      "Infineonが量産時期を決めるかが、次に見る点"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "今回は、300mmでSiCの素子が作れると示した段階です。量産の時期も、日本企業への影響も、まだ発表されていません。次は、Infineonが量産の日程を出すかと、200mmがいつ主流になるかが見どころです。"
+    }
+   ],
+   "source_name": "EE Times Japan",
+   "source_url": "https://eetimes.itmedia.co.jp/ee/articles/2611/09/news079.html",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "EE Times Japan",
+     "url": "https://eetimes.itmedia.co.jp/ee/articles/2611/09/news079.html"
+    },
+    {
+     "name": "EE Times Japan（Resonac）",
+     "url": "https://eetimes.itmedia.co.jp/ee/articles/2611/04/news055.html"
+    }
+   ]
+  },
+  {
+   "id": "ai-ntt-physical-ai-world-model",
+   "category": "ai",
+   "title": "NTT、失敗を先読みするロボットAI 成功率92.3%",
+   "summary": "荷物の崩れや落下を動く前に読む技術。まず空港の手荷物の積み下ろしを狙います。",
+   "image": {
+    "src": "https://www.watch.impress.co.jp/img/ipw/list/2155/271/01.jpg",
+    "kind": "ogp",
+    "credit": "Impress Watch",
+    "page": "https://www.watch.impress.co.jp/docs/news/2155271.html"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "ロボットAI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "NTTが11月11日、ロボットが動く前に失敗を予測して行動を選ぶ技術を発表した。",
+      "積み上げ実験で、成功率が73.1%から92.3%に上がったと説明している。",
+      "最初の用途は空港の手荷物の積み下ろし。一般向けの時期や価格は発表されていない。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "NTTは11月11日、荷物が崩れたり落ちたりする危険を、ロボットが動く前に予測するAI技術を発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "動く前に結果を試す仕組み"
+    },
+    {
+     "type": "p",
+     "text": "土台は「NTTワールドモデル」です。ロボットが動いたら周りがどう変わるかを予測する仕組みで、物の動きを物理法則に沿って読みます。ロボットが取れる動きの候補ごとに結果の映像を予測し、成功しそうな度合いを点数にします。ロボットはその点数を見比べてから動けます。"
+    },
+    {
+     "type": "p",
+     "text": "今あるロボットの制御ソフトと組み合わせて使えます。動きの候補は、AIや動作計画ソフトが出したものをそのまま評価できます。"
+    },
+    {
+     "type": "h",
+     "text": "これまでの弱点"
+    },
+    {
+     "type": "p",
+     "text": "主流のワールドモデルは、大量の映像から学びます。見たことのない場面では、物理法則に合わない予測を出すことがあります。空港の手荷物のように形も重さも並び方もばらばらな荷物は、全部の場合の学習データを集めるのが現実的ではありません。"
+    },
+    {
+     "type": "h",
+     "text": "物理の式を組み合わせた"
+    },
+    {
+     "type": "p",
+     "text": "NTTは映像を作るAIに、独自の「物理制御アダプタ」を組み合わせました。アダプタは物の位置、向き、速度、重さを推定し、運動の式で変化を予測します。ぶつかる場面も再現できます。"
+    },
+    {
+     "type": "p",
+     "text": "物が消えたり形が崩れたりする不自然な出力を抑えられ、見慣れない場面でも物理的な整合性を保てるとNTTは説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "実験結果と今後の予定"
+    },
+    {
+     "type": "p",
+     "text": "小型ロボットで、形がふぞろいな物を棚に積む実験を行いました。公開AIモデルのπ0.5に組み合わせたところ、成功率は73.1%から92.3%に上がりました。物の衝突を含む公開の評価でも、比べた他の手法を上回ったとしています。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/10_s.jpg",
+     "kind": "ogp",
+     "credit": "Impress Watch",
+     "caption": "実験・評価の結果を示す記事内の図",
+     "page": "https://www.watch.impress.co.jp/docs/news/2155271.html"
+    },
+    {
+     "type": "p",
+     "text": "最初に狙うのは、空港での手荷物の積み下ろしです。ロボット企業のMujinと実証を行う予定で、その後は物流や倉庫、製造、建設、小売への広がりを見込んでいます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "73.1%",
+       "label": "組み合わせる前の成功率"
+      },
+      {
+       "value": "92.3%",
+       "label": "組み合わせた後の成功率"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "空港や物流の現場に関わる人は、最初の実証が手荷物の積み下ろしで始まる点を押さえてください。",
+      "一般の人が使える製品やサービスの発売時期、価格は発表されていません。",
+      "今のところ、利用者が特にすることはありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ロボットが「やってから失敗に気づく」のではなく、動く前に結果を試せる点が特徴です。実験は小型ロボットの段階なので、暮らしの場で目にするのは実証が進んでからになりそうです。次に見るのは、Mujinとの実証の結果です。"
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2155271.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2155271.html"
+    }
+   ]
+  },
+  {
+   "id": "mobile-firefox-accelerated-launch",
+   "category": "mobile",
+   "title": "Firefoxも対応へ、Windows 11の起動高速化機能",
+   "summary": "リンクがFirefoxに届く時間が約70ミリ秒から約3ミリ秒に。製品版の時期は未定です。",
+   "image": {
+    "src": "https://winblogs.thesourcemediaassets.com/sites/33/2026/10/Download-the-accelerated-launch-diagram.png",
+    "kind": "press",
+    "credit": "Microsoft Edge Blog",
+    "page": "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/"
+   },
+   "visual": {
+    "icon": "pc",
+    "kicker": "Windows 11"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "MozillaがFirefoxを、Windows 11の起動高速化機能に対応させる作業を開始",
+      "試作版では、リンクがFirefoxに届く時間が約70ミリ秒から約3ミリ秒に縮んだ",
+      "今は初期設定で無効の試作段階。製品版に入る時期は発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Mozillaは、Windows 11の起動を速める機能にFirefoxを対応させる作業を始めました。窓の杜が11月11日に伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "起動を速める仕組み"
+    },
+    {
+     "type": "p",
+     "text": "すでに開いているアプリへリンクなどを渡すとき、Windowsはこれまで、仲介役のプロセス（小さな中継プログラム）をいったん起動していました。Microsoftによると、新しい仕組みでは、アプリが起動時にWindowsへ登録し、あとの起動要求はそのアプリへ直接届きます。"
+    },
+    {
+     "type": "p",
+     "text": "対象は、スタートメニュー、タスクバー、標準ブラウザーで開くリンクです。Microsoftは10月29日、Edgeが最初の対応ブラウザーになったと発表しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://winblogs.thesourcemediaassets.com/sites/33/2026/10/Download-the-extra-process-diagram.png",
+     "kind": "press",
+     "credit": "Microsoft Edge Blog",
+     "caption": "仲介のプロセスをはさむ従来の起動のしくみを示した図",
+     "page": "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/"
+    },
+    {
+     "type": "h",
+     "text": "Firefoxの試作版の結果"
+    },
+    {
+     "type": "p",
+     "text": "Mozillaのバグ管理サイトには、10月29日（米国時間）に、この機能への対応を提案する票が作られました。状態は「担当者あり」です。"
+    },
+    {
+     "type": "p",
+     "text": "開発者が自分のパソコンで作った試作版では、リンクが動作中のFirefoxに届くまでの時間が約70ミリ秒から約3ミリ秒に縮みました。スタートメニューからの起動も、動いているFirefoxへ直接渡されました。"
+    },
+    {
+     "type": "h",
+     "text": "Firefox対応の課題と制限"
+    },
+    {
+     "type": "p",
+     "text": "この機能は「限定アクセス機能」で、使いたい開発者はMicrosoftに申請する必要があります。開発者によると、タスクバー固定用の既存の解除コードで、この機能も使えました。"
+    },
+    {
+     "type": "p",
+     "text": "複数のプロファイルが動いているとき、どれに起動要求を渡すかは決まっていません。Microsoftへの事前連絡が必要かどうかも未確認です。作業中のパッチは公開されていますが、初期設定では無効で、公開時期の発表はありません。"
+    },
+    {
+     "type": "h",
+     "text": "Edgeでの効果と使える条件"
+    },
+    {
+     "type": "p",
+     "text": "Microsoftによると、Edgeでは多くの人で起動が約15%速くなり、たくさんの作業を同時に動かしている場面では最大33%速くなります。条件は、Edge 150以上と、Windows 11のバージョン25H2・26H1・26H2です。2026年10月の非セキュリティ更新（KB5127936など）以降も必要です。"
+    },
+    {
+     "type": "p",
+     "text": "MicrosoftはEdgeの土台のChromiumにもこの作業を提供する予定です。Google Chromeなど、ほかのChromium系ブラウザーも将来、使えるようになるかもしれません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約70→3ms",
+       "label": "Firefox試作版の受け渡し"
+      },
+      {
+       "value": "約15%",
+       "label": "Edgeの起動の高速化"
+      },
+      {
+       "value": "最大33%",
+       "label": "同時作業が多いとき"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Firefoxを使っている人は、今のところすることはない。製品版の時期は発表されていない。",
+      "Edgeで試したい人は、Edge 150以上とWindows 11の10月の更新（KB5127936など）以降を入れる。",
+      "Windows 11のバージョンが25H2・26H1・26H2のどれかかを確かめる。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "開くのが数十ミリ秒速くなる話で、体感できるかは使い方しだいです。いま効果を試せるのはEdgeだけなので、Windows 11の更新が条件に届いているかを見るのが先です。Firefoxは、製品版に入る時期の発表が次の見どころです。"
+    }
+   ],
+   "source_name": "窓の杜",
+   "source_url": "https://forest.watch.impress.co.jp/docs/news/2155331.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "窓の杜",
+     "url": "https://forest.watch.impress.co.jp/docs/news/2155331.html"
+    },
+    {
+     "name": "Microsoft Edge Blog",
+     "url": "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/"
+    }
+   ]
+  },
+  {
+   "id": "gadget-casio-lf40w-bar-display",
+   "category": "gadget",
+   "title": "カシオ、秒がバーで見える時計LF-40W 4400円",
+   "summary": "秒の進みを3列のバーで表示する角型の時計。電池は約3年もちます。",
+   "image": {
+    "src": "https://www.casio.com/content/casio/locales/jp/ja/products/watches/casio/casio-collection/products/standard/lf-40w/_jcr_content/root/responsivegrid/container_1479889198/container_2106131580/image_copy.casiocoreimg.jpeg/1793338203813/kv-pc.jpeg",
+    "kind": "press",
+    "credit": "カシオ計算機",
+    "page": "https://www.casio.com/jp/watches/casio/casio-collection/products/standard/lf-40w/"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "バー表示時計"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "カシオが、秒の経過をバーで見せるデジタル腕時計LF-40Wを出す",
+      "価格は3種類とも4400円で、バンドは再生可能な原料のプラスチック",
+      "発売は11月。日にちと売り場は、まだ示されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "カシオ計算機は、「CASIO CLASSIC」シリーズの新しいデジタル腕時計「LF-40W」を11月に発売します。価格は3種類とも4400円です。"
+    },
+    {
+     "type": "h",
+     "text": "秒が動くバー表示"
+    },
+    {
+     "type": "p",
+     "text": "縦長の液晶の上側に時刻、下側に3列のバー型の表示窓を並べています。真ん中と下の列は秒と連動し、10秒単位と1秒単位で時間の経過がバーで見えます。"
+    },
+    {
+     "type": "p",
+     "text": "一番上の列は、モードによって中身が変わります。アラーム、時報、操作音、サマータイム設定のオンとオフを表示します。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.casio.com/content/experience-fragments/casio/ja/feature/timepiece/watch/casio-classic/lf_40w/feature/master/_jcr_content/root/container_732060492_/container/container_copy_58497/container_1103097843_981156500/container_1210371067/container_1582083586/image.casiocoreimg.jpeg/1787275524320/feature-1.jpeg",
+     "kind": "press",
+     "credit": "カシオ計算機",
+     "caption": "液晶のグラフィック表示のイメージ",
+     "page": "https://www.casio.com/jp/watches/casio/casio-collection/products/standard/lf-40w/"
+    },
+    {
+     "type": "h",
+     "text": "時計としての機能"
+    },
+    {
+     "type": "p",
+     "text": "4都市を登録して切り替えるマルチタイムと、世界48都市のワールドタイムを使えます。1/100秒のストップウオッチ、タイマー、5本のアラーム、時報、フルオートカレンダー、12時間と24時間の切り替えも備えます。"
+    },
+    {
+     "type": "p",
+     "text": "電池寿命は約3年、月差は平均±30秒、防水は日常生活用です。バックライトはアンバー色（橙色）のLEDで、点灯後に残る光は1.5秒と3秒から選べます。"
+    },
+    {
+     "type": "h",
+     "text": "サイズと素材"
+    },
+    {
+     "type": "p",
+     "text": "ケースは樹脂製の角型で、大きさは幅33.7mm、厚さ8.6mm、高さ37.8mmです。重さは23gで、男女どちらでも使えるサイズとされています。バンドは125〜200mmの腕まわりに対応します。"
+    },
+    {
+     "type": "p",
+     "text": "バンドにはバイオマスプラスチック（再生できる有機資源から作る原料）を使っています。色違いが3種類あります。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.casio.com/content/experience-fragments/casio/ja/feature/timepiece/watch/casio-classic/lf_40w/feature/master/_jcr_content/root/container_732060492_/container_1583994998/container/container_1767268465_747750474/container/container_copy_copy__63052701/image.casiocoreimg.jpeg/1787275524264/feature-3.jpeg",
+     "kind": "press",
+     "credit": "カシオ計算機",
+     "caption": "バイオマスプラスチックのバンドの説明図（イメージ）",
+     "page": "https://www.casio.com/jp/watches/casio/casio-collection/products/standard/lf-40w/"
+    },
+    {
+     "type": "h",
+     "text": "価格と発売時期"
+    },
+    {
+     "type": "p",
+     "text": "マイナビニュースによると、価格は3種類とも4400円です。税込みかどうかは記事に書かれていません。カシオの公式ページにも価格と発売日は載っておらず、11月発売という以外の日にちと売り場は、まだ明らかになっていません。"
+    },
+    {
+     "type": "p",
+     "text": "同じCASIO CLASSICの上位シリーズPREMIUMには、サファイアガラスとステンレスを使った2万7500円の新作があります。LF-40Wは樹脂ケースで23gと軽く、価格は約6分の1です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "4400円",
+       "label": "3種類とも同じ価格"
+      },
+      {
+       "value": "約3年",
+       "label": "電池寿命"
+      },
+      {
+       "value": "23g",
+       "label": "本体の重さ"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "安く買えるデジタル時計を探している人は、11月の発売日と売り場を公式サイトで確かめる",
+      "価格が税込みかどうかは、買う前に公式ページで確認する",
+      "秒の進みを目で追いたい人や、軽い時計がよい人に向く"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "秒の経過を数字ではなくバーで見られる点が、普通のデジタル時計との一番の違いです。23gと軽く、電池は約3年もつので、手軽に使う1本を探す人に向きます。買う前に、税込み価格だけは確認したいところです。"
+    }
+   ],
+   "source_name": "マイナビニュース",
+   "source_url": "https://news.mynavi.jp/article/20261110-5270139/",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "マイナビニュース（LF-40W）",
+     "url": "https://news.mynavi.jp/article/20261110-5270139/"
+    },
+    {
+     "name": "カシオ計算機（LF-40W）",
+     "url": "https://www.casio.com/jp/watches/casio/casio-collection/products/standard/lf-40w/"
+    },
+    {
+     "name": "マイナビニュース（CASIO CLASSIC PREMIUM）",
+     "url": "https://news.mynavi.jp/article/20261111-5269797/"
+    }
+   ]
+  },
+  {
+   "id": "ec-rakuten-mujin-2nd",
+   "category": "ec",
+   "title": "楽天無人配送が2周年、有明・東雲に拡大　配送料100円",
+   "summary": "ロボットが食べ物や日用品を届け、配送料は税込み100円。11月6日に有明と東雲が加わった。",
+   "image": {
+    "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node16999-1.jpeg",
+    "kind": "ogp",
+    "credit": "ネットショップ担当者フォーラム",
+    "page": "https://netshop.impress.co.jp/n/2026/11/09/16999"
+   },
+   "visual": {
+    "icon": "box",
+    "kicker": "ロボ配送"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "楽天の自動配送ロボットサービスが11月6日に2周年。有明と東雲に拡大",
+      "10月の月間配送数は2024年11月の6.4倍、累計は1万件を超えた",
+      "配送料は税込み100円。2周年企画のクーポンは12月3日まで"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "楽天グループは、自動配送ロボットで商品を届ける「楽天無人配送」が、11月6日に2周年を迎えたと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "使い方と料金"
+    },
+    {
+     "type": "p",
+     "text": "店の温かい食事、冷たい飲み物、日用品などを、ロボットが届けるサービスです。配送は10〜21時で、年末年始と悪天候の日を除いて毎日行っています。注文は30分前から6日前まで、15分刻みで時間を選べます。配送料は税込み100円で、支払いはクレジットカード、楽天ポイント、楽天キャッシュが使えます。"
+    },
+    {
+     "type": "h",
+     "text": "2年間の実績"
+    },
+    {
+     "type": "p",
+     "text": "2026年10月の月間配送数は、サービスを始めた2024年11月の6.4倍になりました。累計の配送は1万件を超え、利用者の半数以上はリピーターです。2026年9月には、95%以上の配送が、利用者の選んだ15分の枠内に届いたといいます。"
+    },
+    {
+     "type": "h",
+     "text": "広がるエリアとロボット"
+    },
+    {
+     "type": "p",
+     "text": "11月6日時点の配送ポイントは269か所、参加店舗は49店です。エリアは、晴海・月島・勝どき・佃の全域、豊洲（一部を除く）、有明・東雲（一部）です。有明と東雲は11月6日に加わりました。店は、食品、カフェ・スイーツ、雑貨・日用品が中心です。"
+    },
+    {
+     "type": "p",
+     "text": "ロボットまわりでは、Avride社のロボットの遠隔監視を、1人の監視者あたり最大10台まで増やしました。LOMBYのロボット2台も、11月に期間限定で試します。"
+    },
+    {
+     "type": "h",
+     "text": "2周年キャンペーン"
+    },
+    {
+     "type": "p",
+     "text": "11月6日から12月3日まで、「2周年大感謝祭」を開いています。4週連続で、先着のクーポンが出ます。期間中にエントリーして使った人には、オリジナルのトートバッグが当たる抽選もあります。割引額や配布日の詳細は、楽天の案内で確かめられます。"
+    },
+    {
+     "type": "img",
+     "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node16999-2.jpeg",
+     "kind": "ogp",
+     "credit": "ネットショップ担当者フォーラム",
+     "caption": "2周年キャンペーンのビジュアル",
+     "page": "https://netshop.impress.co.jp/n/2026/11/09/16999"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "6.4倍",
+       "label": "配送数（2024年11月比）"
+      },
+      {
+       "value": "95%超",
+       "label": "希望の15分枠に届いた率"
+      },
+      {
+       "value": "100円",
+       "label": "配送料（税込み）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "対象エリアに住む人は、10〜21時のあいだなら、30分前から注文できる。",
+      "配送料は税込み100円。支払いには楽天ポイントや楽天キャッシュも使える。",
+      "2周年大感謝祭は12月3日まで。クーポンは4週連続の先着配布なので、早めに確認する。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "使える地域は限られますが、配送料100円で15分刻みの時間指定ができる点が使いやすさの目安です。対象エリアに住んでいるなら、2周年のクーポンが出る12月3日までに一度試して、得かどうかを確かめられます。"
+    }
+   ],
+   "source_name": "ネットショップ担当者フォーラム",
+   "source_url": "https://netshop.impress.co.jp/n/2026/11/09/16999",
+   "published": "2026-11-09",
+   "refs": [
+    {
+     "name": "ネットショップ担当者フォーラム",
+     "url": "https://netshop.impress.co.jp/n/2026/11/09/16999"
+    }
+   ]
+  },
+  {
+   "id": "ai-yahoo-shopping-delivery-info",
+   "category": "ai",
+   "title": "Yahoo!ショッピング、届く時期をAIが説明する新機能",
+   "summary": "注文履歴の画面で、届く見込みや遅れの理由を文章で教えてくれます。",
+   "image": {
+    "src": "https://www.watch.impress.co.jp/img/ipw/list/2155/588/ly00.jpg",
+    "kind": "ogp",
+    "credit": "Impress Watch",
+    "page": "https://www.watch.impress.co.jp/docs/news/2155588.html"
+   },
+   "visual": {
+    "icon": "cart",
+    "kicker": "AIお届け情報"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Yahoo!ショッピングが、届く時期をAIが説明する「AIお届け情報」を始めた。",
+      "表示場所は注文履歴の詳細画面。お届け予定日や発送状況、店の休業日などをもとに説明する。",
+      "発送予定日を過ぎても未発送なら、理由と見通しを示し、必要なら店の連絡先も出る。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Yahoo!ショッピングは、買った商品がいつ届くかをAIが説明する「AIお届け情報」を始めました。"
+    },
+    {
+     "type": "h",
+     "text": "どこで何がわかるか"
+    },
+    {
+     "type": "p",
+     "text": "注文履歴の詳細画面にある「お届け情報カード」に表示されます。AIは、お届け予定日、発送状況、店の休業日、予約や取り寄せといった商品の情報を使います。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/ipw/docs/2155/588/ly01_s.jpg",
+     "kind": "ogp",
+     "credit": "Impress Watch",
+     "caption": "AIお届け情報の紹介画像（記事内）",
+     "page": "https://www.watch.impress.co.jp/docs/news/2155588.html"
+    },
+    {
+     "type": "p",
+     "text": "取れる情報に応じて、店からのお知らせや支払い状況など、届く時期に影響しそうな要因も示します。"
+    },
+    {
+     "type": "h",
+     "text": "遅れているとき"
+    },
+    {
+     "type": "p",
+     "text": "発送予定日までに商品が出荷されていない場合、AIが理由と今後の見通しを説明します。必要なときは、店の連絡先も表示します。"
+    },
+    {
+     "type": "h",
+     "text": "始めた理由"
+    },
+    {
+     "type": "p",
+     "text": "これまでも、お届け予定日や「発送済み」「配達中」といった状態は見られました。ただ、発送前の情報は少ない状態でした。Yahoo!ショッピングの3月の集計では、注文後の問い合わせの約26%が、発送や到着日の確認など配送の進み具合に関するものでした。"
+    },
+    {
+     "type": "p",
+     "text": "買う人の不安を減らし、店への問い合わせの負担を軽くするねらいです。"
+    },
+    {
+     "type": "h",
+     "text": "これまでのAI機能"
+    },
+    {
+     "type": "p",
+     "text": "同社は2月から、商品選びや比較を相談できるAIエージェントを提供しています。今回は、買った後の配送の場面にAIを広げた形です。利用できる人の条件や料金は、今回の発表では示されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約26%",
+       "label": "配送の進み具合の問い合わせ"
+      },
+      {
+       "value": "2月",
+       "label": "AIエージェントの提供開始"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Yahoo!ショッピングで買い物をする人は、注文履歴の詳細画面の「お届け情報カード」で確かめられます。",
+      "発送予定日を過ぎても届かないときは、表示された説明と店の連絡先を先に見てください。",
+      "対象となる人の条件と料金は、発表されていません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "「いつ届く？」を店に聞く前に、まず注文履歴を見る使い方になりそうです。ただ、届く日を早めてくれる機能ではなく、状況を説明してくれる機能です。遅れているときに、店へ連絡する前の判断材料として使えます。"
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2155588.html",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2155588.html"
+    }
+   ]
+  },
+  {
+   "id": "ai-fortience-ai-governance",
+   "category": "ai",
+   "title": "NTTデータ系のフォーティエンス、AIガバナンス診断を開始",
+   "summary": "会社のAIの使い方を6分野・5段階で点検。最短1営業日で結果が出ます。",
+   "image": {
+    "src": "https://www.fortience.com/wp-content/uploads/2026/11/20261111_fig1-1024x221.jpg",
+    "kind": "press",
+    "credit": "フォーティエンスコンサルティング",
+    "page": "https://www.fortience.com/company/newsroom/20261111/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "AIの管理"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "NTTデータ系のフォーティエンスがAIの管理体制の診断を開始",
+      "6分野を5段階で評価。クイック診断は最短1営業日",
+      "費用は個別見積もり。企業向けのサービス"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "NTTデータグループのフォーティエンスコンサルティングは11月11日、企業のAI管理体制を点検する「AIガバナンス診断サービス」を始めました。"
+    },
+    {
+     "type": "h",
+     "text": "どんな診断か"
+    },
+    {
+     "type": "p",
+     "text": "AIガバナンスとは、AIを安全に使うための社内の決まりと体制のことです。診断は、総務省と経済産業省の「AI事業者ガイドライン」（第1.2版、2026年3月）を踏まえた独自の枠組みで行います。6つの分野を5段階の成熟度で評価し、分野ごとの点をレーダーチャートで示します。必要な対策は優先度をつけて整理します。"
+    },
+    {
+     "type": "p",
+     "text": "6つの分野は、組織・体制、方針・ルール、人材育成、リスク管理、データ・セキュリティ、透明性・モニタリングです。"
+    },
+    {
+     "type": "h",
+     "text": "進め方と期間"
+    },
+    {
+     "type": "p",
+     "text": "最初は、質問票とヒアリングで行う「クイック診断」です。結果は最短1営業日で出ます。結果を見て、詳しい「本診断」が必要か決めます。本診断は4週間から、方針と体制づくりは2か月から、社内規程やガイドラインの整備などは3か月からです。期間は診断結果で変わります。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.fortience.com/wp-content/uploads/2026/11/20261111_fig2-1024x390.jpg",
+     "kind": "press",
+     "credit": "フォーティエンスコンサルティング",
+     "caption": "診断で受け取る成果物のイメージ",
+     "page": "https://www.fortience.com/company/newsroom/20261111/"
+    },
+    {
+     "type": "h",
+     "text": "なぜ今こうした診断か"
+    },
+    {
+     "type": "p",
+     "text": "生成AIが広がり、情報漏えいや著作権の侵害、「シャドーAI」（会社が把握していない社員のAI利用）といったリスクが高まっている、と同社は説明しています。診断をしても実行計画が立てられず、運用につながらない例があるため、診断から定着まで同じチームが支えるとしています。"
+    },
+    {
+     "type": "h",
+     "text": "費用とオプション"
+    },
+    {
+     "type": "p",
+     "text": "費用は診断の範囲に応じた個別見積もりで、金額は発表されていません。希望すれば、AIマネジメントの国際規格「ISO/IEC 42001」の認証取得の支援も受けられます。対象は製造、流通、金融、公益サービス、政府、自治体など幅広い業界です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "6分野",
+       "label": "診断で見る範囲"
+      },
+      {
+       "value": "5段階",
+       "label": "成熟度の評価の段階"
+      },
+      {
+       "value": "1営業日",
+       "label": "クイック診断の最短日数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "会社でAIの使い方を決める立場の人は、クイック診断（最短1営業日）で現状を確かめられる。",
+      "一般の社員は、会社が許可していないAIに仕事の情報を入れないようにする。",
+      "費用は個別見積もり。問い合わせはフォーティエンス公式サイトの問い合わせフォームから。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "診断を受けるか迷う会社は、最短1営業日のクイック診断で、自社の弱い分野を見るのが入り口になりそうです。個人向けではないので、勤め先がAIをどう管理しているかを知るきっかけとして見るとよいでしょう。"
+    }
+   ],
+   "source_name": "フォーティエンスコンサルティング",
+   "source_url": "https://www.fortience.com/company/newsroom/20261111/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "フォーティエンスコンサルティング（ニュース）",
+     "url": "https://www.fortience.com/company/newsroom/20261111/"
+    },
+    {
+     "name": "NTTデータグループ（ニュース）",
+     "url": "https://www.nttdata.com/global/ja/news/group/2026/111100"
+    },
+    {
+     "name": "フォーティエンス（AIガバナンス整備支援）",
+     "url": "https://www.fortience.com/solutions/dx/ai-governance-support/"
+    }
+   ]
+  },
+  {
+   "id": "ai-knit-gexel-agent",
+   "category": "ai",
+   "title": "KNiT、画像解析に会話AIを足す「GeXeL Agent」発表",
+   "summary": "工場や研究室の画像解析を、AIとの会話で進める新サービス。価格は未発表です。",
+   "visual": {
+    "icon": "camera",
+    "kicker": "製造のAI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "KNiTが画像解析と対話AIを組み合わせた新サービスを発表",
+      "11月11〜13日の展示会「N+Plus 2026」で初公開",
+      "価格と正式な提供日は発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "KNiTは11月10日、製造業向けの画像解析サービス「GeXeL」に、AIと会話しながら分析を進める「GeXeL Agent」を加えると発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "会話で何ができるのか"
+    },
+    {
+     "type": "p",
+     "text": "GeXeL Agentでは、AIとやり取りしながら、製品の仕様の確認、過去のデータとの比較、次に行う実験の提案ができます。DXマガジンは、画像データから製品の品質を判定する使い方として紹介しています。"
+    },
+    {
+     "type": "h",
+     "text": "土台のGeXeLとは"
+    },
+    {
+     "type": "p",
+     "text": "GeXeLは、画像から粒子の大きさや形など94項目を測る既存のサービスで、800以上の解析モデルがあります。画像は、AIサービスを通さずにGeXeLへ直接アップロードする仕組みです。"
+    },
+    {
+     "type": "h",
+     "text": "つなぎ方と提供時期"
+    },
+    {
+     "type": "p",
+     "text": "生成AIの道具をつなぐ共通規格「MCP」に対応しています。初公開の場は、東京ビッグサイトで11月11日から13日まで開かれる展示会「N+Plus 2026」です。早期導入の問い合わせは受け付けています。価格と正式な提供日は、発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "800以上",
+       "label": "GeXeLの解析モデル数"
+      },
+      {
+       "value": "94項目",
+       "label": "測れる粒子の特徴"
+      },
+      {
+       "value": "3日間",
+       "label": "展示会の会期"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "製造業で画像検査や実験をしている人は、展示会が終わる11月13日までに実機を見られる。",
+      "導入は問い合わせ制で、価格は発表されていないため、見積もりを取って確かめる。",
+      "一般の消費者がすぐ使えるサービスではないので、今のところ特にすることはありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "会話で解析を進めたい工場や研究室向けのサービスです。一般の人が使うものではなく、次に見るのは価格と提供開始日の発表です。"
+    }
+   ],
+   "source_name": "DXマガジン",
+   "source_url": "https://dxmagazine.jp/news/ytoda2649-15/",
+   "published": "2026-11-11",
+   "refs": [
+    {
+     "name": "DXマガジン",
+     "url": "https://dxmagazine.jp/news/ytoda2649-15/"
+    }
+   ]
+  },
+  {
+   "id": "ai-softbank-grab-petros-sarawak",
+   "category": "ai",
+   "title": "ソフトバンクG、マレーシアのAI基盤に初期10億ドル",
+   "summary": "Grabなどと組み、長期で5GW規模のAI計算基盤づくりを目指します。",
+   "image": {
+    "src": "https://www.watch.impress.co.jp/img/ipw/list/2155/165/01.jpg",
+    "kind": "ogp",
+    "credit": "Impress Watch",
+    "page": "https://www.watch.impress.co.jp/docs/news/2155165.html"
+   },
+   "visual": {
+    "icon": "chip",
+    "kicker": "AI基盤"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ソフトバンクグループが、Grabなどとマレーシア・サラワク州でAIインフラを作る契約を結んだ。",
+      "初期投資は計10億ドル。ソフトバンクGが8億ドルを出し、GrabとPETROSは各1億ドル。",
+      "長期の目標は5GW分のAI計算能力。日本の利用者への影響は発表されていない。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ソフトバンクグループは11月9日、GrabおよびサラワクのPETROSと、AIインフラの共同開発契約を結んだと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "どんな契約か"
+    },
+    {
+     "type": "p",
+     "text": "3社は10月8日に、マレーシアのクチンで基本合意書を結んでいました。拘束力のない合意で、今回はその後に共同開発契約を結びました。プロジェクトはソフトバンクGが主導し、過半数の持分を持ちます。"
+    },
+    {
+     "type": "h",
+     "text": "お金の出し方"
+    },
+    {
+     "type": "p",
+     "text": "初期の出資は合計10億ドルです。内訳はソフトバンクGが8億ドル、GrabとPETROSが1億ドルずつです。お金は一度に出さず、開発や顧客との契約が節目に達し、必要な条件がそろった段階で順に出します。"
+    },
+    {
+     "type": "h",
+     "text": "3社の役割"
+    },
+    {
+     "type": "p",
+     "text": "Grabは東南アジアのスーパーアプリ（1つのアプリで多くのサービスが使える形）の会社で、デジタルとAIの知見を担います。2012年の設立で、8カ国・900を超える都市でサービスを出しています。"
+    },
+    {
+     "type": "p",
+     "text": "PETROSは、サラワク州が持つ総合エネルギー企業です。2017年の設立で、本社はクチンにあります。エネルギーとインフラ開発の知見を担います。"
+    },
+    {
+     "type": "h",
+     "text": "目指す規模と今後"
+    },
+    {
+     "type": "p",
+     "text": "長期の目標は、5GW分のAI計算能力です。全面稼働すればアジア最大級のAIインフラになると、ソフトバンクGは期待しています。計算設備のほか、サービス、先端技術、ロボット、人材育成、地域開発も視野に入れます。"
+    },
+    {
+     "type": "p",
+     "text": "今後は、追加の出資者や、大手クラウド事業者の顧客を探します。マレーシアの国家AI行動計画に沿った事業です。完成や稼働の時期は、発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "10億ドル",
+       "label": "初期投資の合計"
+      },
+      {
+       "value": "8億ドル",
+       "label": "ソフトバンクGの出資"
+      },
+      {
+       "value": "5GW",
+       "label": "長期のAI計算能力の目標"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ソフトバンクグループの株主は、資金が節目ごとに段階的に出る点を押さえてください。",
+      "完成や稼働の時期、追加の出資者はまだ決まっていません。",
+      "日本の個人の利用者が、今すぐすることはありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AI向けの設備を、エネルギー会社と組んで作る点が今回の特徴です。資金は条件を満たすごとに段階的に出るため、次は追加の出資者や大手クラウド事業者の顧客が決まるかが見どころです。"
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2155165.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2155165.html"
+    },
+    {
+     "name": "ソフトバンクグループ",
+     "url": "https://group.softbank/news/press/20261109"
+    }
+   ]
+  },
+  {
+   "id": "ai-sakumiru-shiire-ai",
+   "category": "ai",
+   "title": "建設向け「サクミル」に仕入AI、請求書を読んで自動入力",
+   "summary": "手で打ち込んでいた請求書の入力を、AIが肩代わりします。追加料金はありません。",
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/48655/54/48655-54-48f83810d438659e131eeb1b168f4e2e-1672x941.png",
+    "kind": "press",
+    "credit": "株式会社プレックス",
+    "page": "https://prtimes.jp/main/html/rd/p/000000054.000048655.html"
+   },
+   "visual": {
+    "icon": "doc",
+    "kicker": "建設のAI"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "建設業向け「サクミル」に請求書を読み取る仕入AIが登場",
+      "追加料金なし。基本料金は月9800円（税別）から",
+      "毎月の請求書入力の手間を減らす。AIの利用量には上限あり"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "プレックスは11月10日、建設会社向けサービス「サクミル」に「仕入AI」を加えました。請求書の写真やPDFから、入力欄を自動で埋めます。"
+    },
+    {
+     "type": "h",
+     "text": "請求書を渡すと自動入力"
+    },
+    {
+     "type": "p",
+     "text": "AIアシスタントに請求書のPDFか写真をつけると、仕入先名、仕入日、支払期日、支払金額を読み取り、入力欄に入れます。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/48655/54/48655-54-01d7d69d62041f3a428b8f8118541239-1630x992.png",
+     "kind": "press",
+     "credit": "株式会社プレックス",
+     "caption": "請求書をAIアシスタントに添付して入力欄を埋める画面",
+     "page": "https://prtimes.jp/main/html/rd/p/000000054.000048655.html"
+    },
+    {
+     "type": "h",
+     "text": "複数の現場も費用の区分も"
+    },
+    {
+     "type": "p",
+     "text": "1枚の請求書に複数の現場の分が入っているときは、明細を1行ずつ分け、それぞれの案件に結びつけます。費用の区分も提案します。たとえば下請けへの支払いは外注費、配管の部品は材料費という具合です。単位や税率の候補も出します。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/48655/54/48655-54-80bba463e849005ae00bce8cac111bde-1630x992.png",
+     "kind": "press",
+     "credit": "株式会社プレックス",
+     "caption": "まとめ請求書の明細を案件ごとに割り振る画面",
+     "page": "https://prtimes.jp/main/html/rd/p/000000054.000048655.html"
+    },
+    {
+     "type": "h",
+     "text": "間違いはチャットで直す"
+    },
+    {
+     "type": "p",
+     "text": "読み取り結果は、画面右側のAIアシスタントに話しかけて直せます。数量や費用の区分を変えたり、明細を足したりできます。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/48655/54/48655-54-9ad2c61149e0a5be83882d9267898bb3-1630x992.png",
+     "kind": "press",
+     "credit": "株式会社プレックス",
+     "caption": "チャットで明細を修正するAIアシスタントの画面",
+     "page": "https://prtimes.jp/main/html/rd/p/000000054.000048655.html"
+    },
+    {
+     "type": "h",
+     "text": "料金と無料で試す方法"
+    },
+    {
+     "type": "p",
+     "text": "仕入AIに追加料金はなく、今の契約プランのまま使えます。ただし基本料金の範囲でのAI利用には、一定量の上限があります。上限の数字は発表されていません。"
+    },
+    {
+     "type": "p",
+     "text": "サクミルは月額9800円（税別）から、20人まで使えます。21人目からは1人あたり月1000円（税別）で、初期費用は0円です。建設会社は2か月無料で試せ、期間が終わっても自動で課金されることはありません。"
+    },
+    {
+     "type": "h",
+     "text": "なぜ作ったのか"
+    },
+    {
+     "type": "p",
+     "text": "建設会社では、下請けの請求書を毎月まとめて手で打ち込む作業が多くなります。複数の現場にまたがる請求書の割り振りに時間がかかる、費用の区分を間違えるといった声が、利用者から出ていたとプレックスは説明しています。仕入AIは、見積AIに続く2つ目のAI機能です。サクミルは約3年半前に始まり、契約は4000社です（無料や協力会社のアカウントを除く）。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "9800円",
+       "label": "月額・税別・20人まで"
+      },
+      {
+       "value": "4000社",
+       "label": "サクミルの契約社数"
+      },
+      {
+       "value": "2か月",
+       "label": "無料で試せる期間"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "建設会社で経理や現場管理をしている人は、2か月の無料お試しで仕入AIを確かめられる。",
+      "追加料金はないがAIの利用量に上限があるため、毎月の請求書の枚数で足りるかを試す。",
+      "提案された費用の区分や税率は画面で確認でき、チャットで直せる。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "請求書の入力は毎月たまる地味な作業なので、読み取りと仕分けまでAIが受け持つ点は実用的です。見たいのは、利用量の上限が自社の請求書の枚数で足りるかどうかです。2か月の無料期間は、そこを確かめる時間になります。"
+    }
+   ],
+   "source_name": "PR TIMES（プレックス）",
+   "source_url": "https://prtimes.jp/main/html/rd/p/000000054.000048655.html",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "PR TIMES（プレックス）",
+     "url": "https://prtimes.jp/main/html/rd/p/000000054.000048655.html"
+    },
+    {
+     "name": "サクミル公式サイト",
+     "url": "https://sakumiru.jp/"
+    },
+    {
+     "name": "DXマガジン",
+     "url": "https://dxmagazine.jp/news/ytoda2649-14/"
+    }
+   ]
+  },
+  {
+   "id": "ai-ny-raise-act-portal",
+   "category": "ai",
+   "title": "NY州のAI安全法、大手は2027年1月1日までに登録",
+   "summary": "大手AI企業は事故報告や安全方針の公開を求められ、違反には罰則があります。",
+   "visual": {
+    "icon": "doc",
+    "kicker": "AI規制"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "米ニューヨーク州が11月10日、AI安全法「RAISE法」の登録窓口を開きました。",
+      "年間売上が5億ドルを超える大手開発企業は、2027年1月1日までに登録が必要です。",
+      "違反の罰則は最大100万ドル。日本の利用者への直接の影響は発表されていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ニューヨーク州は11月10日、最先端AIを作る大手企業の登録窓口を開きました。TechCrunchはOpenAIとAnthropicを対象の例に挙げています。"
+    },
+    {
+     "type": "h",
+     "text": "対象になる会社"
+    },
+    {
+     "type": "p",
+     "text": "RAISE法が対象にするのは「大規模フロンティア開発企業」です。ここでは、年間売上が5億ドルを超える最先端AIの開発企業を指します。法律は2027年初めに始まり、対象企業は2027年1月1日までに登録しなければなりません。"
+    },
+    {
+     "type": "h",
+     "text": "企業に求められる3つのこと"
+    },
+    {
+     "type": "p",
+     "text": "対象企業には、次の3つが義務になります。\n・安全対策の枠組みを自社サイトで公開する\n・重大な安全上の事故を72時間以内に報告する\n・モデルについての透明性報告書を公開する"
+    },
+    {
+     "type": "h",
+     "text": "監督する役所と罰則"
+    },
+    {
+     "type": "p",
+     "text": "運用は州の「デジタル革新・統治・誠実・信頼室（DIGIT）」が担当し、大手AI企業を監督します。罰則は1件の違反で最大100万ドル、2回目以降は最大300万ドルです。登録しない企業への対応の詳細は、州の広報担当者が説明を避けています。"
+    },
+    {
+     "type": "h",
+     "text": "同じ日に始まった動き"
+    },
+    {
+     "type": "p",
+     "text": "同じ11月10日、ニューヨーク州立大ビンガムトン校に「AI責任・研究センター」が発足しました。先端AIの安全性を独立して評価し、DIGITと協力して企業の安全方針を点検します。ホークル知事は1月、寄付と資本あわせて5500万ドルで設立すると発表していました。"
+    },
+    {
+     "type": "p",
+     "text": "AIを話し相手にするサービスの規制は、すでに昨年から有効です。利用者にAIだと定期的に伝えることや、自殺や自傷の兆しを見つける努力が求められます。子ども向けのチャットボット規制は10月に署名され、2027年6月1日に始まります。"
+    },
+    {
+     "type": "h",
+     "text": "他州の法律と日本への影響"
+    },
+    {
+     "type": "p",
+     "text": "TechCrunchによると、カリフォルニア州の同様の法律（SB 53）は今年1月に始まり、重大事故の報告期限は15日です。イリノイ州の法律（SB 315）は2027年初めに始まり、外部の安全監査も求めます。日本の利用者への影響や、日本企業が対象になるかは、まだわかっていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "5億ドル",
+       "label": "対象企業の年間売上の目安"
+      },
+      {
+       "value": "72時間",
+       "label": "重大事故の報告期限"
+      },
+      {
+       "value": "100万ドル",
+       "label": "1件の違反の罰則上限"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ChatGPTやClaudeを使う人：今回の登録は企業側の義務で、利用者が手続きをする必要はありません。",
+      "AIの開発や提供に関わる日本の企業：自社が対象かどうかは、年間売上などの条件で確認する。",
+      "登録の期限は2027年1月1日、法律の開始は2027年初め。登録企業の一覧や公開される安全方針が、次の確認点です。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "法律への賛否には触れず、注目点だけ挙げます。登録後にOpenAIやAnthropicがどんな安全方針を公開し、事故報告がどう扱われるかが見どころです。カリフォルニア州との違いも比べやすくなります。"
+    }
+   ],
+   "source_name": "TechCrunch",
+   "source_url": "https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "TechCrunch",
+     "url": "https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/"
+    }
+   ]
+  },
+  {
+   "id": "ai-microsoft-lazarus-backdoor",
+   "category": "ai",
+   "title": "MicrosoftがAIに隠し命令を仕込む手口を公表",
+   "summary": "AIの内部を少し書き換えるだけで、合図が来るまで普通に動く悪意あるAIが作れます。",
+   "image": {
+    "src": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/11/MSR-BLG_LAZ_HERO.png",
+    "kind": "press",
+    "credit": "Microsoft Research",
+    "page": "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "AI安全"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Microsoftの研究者が11月10日、AIを少し書き換えて悪事を仕込む手口「Lazarus」を公表しました。",
+      "書き換えるのは10個未満の神経細胞（ニューロン）で、再学習は要りません。",
+      "企業向けの対策が中心で、一般の利用者や日本向けの案内は出ていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Microsoftの研究者は11月10日、AIの内部を数か所書き換え、合図で悪い命令を出させる手口を公開しました。"
+    },
+    {
+     "type": "h",
+     "text": "眠っている回路を使う仕組み"
+    },
+    {
+     "type": "p",
+     "text": "これは研究の報告で、製品の発表ではありません。大きなAIには、めったに働かない神経細胞（計算の小さな部品）が多数あります。研究者はこれを、合図を見つける検知器に作り替えました。約50個の例があれば、合図の有無を見分けられるといいます。再学習はせず、AIの数値を直接書き換えるだけです。"
+    },
+    {
+     "type": "h",
+     "text": "合図が来るまでは普通に動く"
+    },
+    {
+     "type": "p",
+     "text": "書き換えたAIは、ふつうの安全テストを通過し、合図が来るまで正常に動きます。例として、日付が2027年に変わる午前0時を合図にして、攻撃者のプログラムをダウンロードして実行させる命令を出させる方法が示されました。実行できるのは、AIに与えられた権限の範囲です。"
+    },
+    {
+     "type": "h",
+     "text": "狙われやすいAIの使い方"
+    },
+    {
+     "type": "p",
+     "text": "危険が大きいのは、パソコンの操作や命令の実行を任されるAIエージェントです。攻撃に必要なのは、AIのデータが置かれた場所に書き込める権限だけです。外部のモデルだけでなく、自社で作ったモデルも同じ危険にさらされるとMicrosoftは説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "Microsoftが示した対策"
+    },
+    {
+     "type": "p",
+     "text": "Microsoftは自社のAI基盤「Foundry」で、モデルの出どころの確認や、独自の容器内での実行を行っています。書き換えを見つけるAI検査や、改ざんを防ぐ電子署名も開発中です。ただ、どんな検査でも安全の証明にはならず、確実な検出には元のデータとの比較が要るとしています。"
+    },
+    {
+     "type": "p",
+     "text": "利用者向けの助言は、モデルの出どころを知る、AIの権限を絞る、動きを監視する、影響の大きい操作は実行前に人が確かめる、検査結果は保証でなく証拠として扱う、の5点です。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/11/Fig1_Laz.png",
+     "kind": "press",
+     "credit": "Microsoft Research",
+     "caption": "Microsoftがまとめた、企業とモデル提供側向けの対策の図",
+     "page": "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/"
+    },
+    {
+     "type": "h",
+     "text": "きっかけはAIへの依頼"
+    },
+    {
+     "type": "p",
+     "text": "研究は3月、研究者がAIコーディングツールのClaude Code（Opus 4.5を使用）に、モデルを書き換える実験を頼んだことから始まりました。実験は成功し、手口の大半はこのAI自身が見つけたとMicrosoftは書いています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "10個未満",
+       "label": "書き換える神経細胞の数"
+      },
+      {
+       "value": "約50件",
+       "label": "合図を見分ける例の数"
+      },
+      {
+       "value": "2027年",
+       "label": "例に使われた合図の日付"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "会社でAIエージェントを導入・管理する人：使うモデルの出どころと、AIに許す操作の範囲を確認する。",
+      "ネットで配られているAIモデルを自分で動かす人：出どころがはっきりした配布元のものを選ぶ。",
+      "ふつうにチャットAIを使うだけの人向けの行動の呼びかけは、今のところ出ていません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "チャットで質問に答えるAIより、仕事で自動実行を任せるAIに関わる話です。出どころ不明のモデルを使わない、AIに渡す権限を絞るといった基本が、そのまま防御になります。"
+    }
+   ],
+   "source_name": "Microsoft Research Blog",
+   "source_url": "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/",
+   "published": "2026-11-10",
+   "refs": [
+    {
+     "name": "Microsoft Research Blog",
+     "url": "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/"
+    }
+   ]
+  }
+ ]
+}
