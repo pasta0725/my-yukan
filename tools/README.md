@@ -108,3 +108,4 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 - 履歴は消えないので、増え続けるものは main に入れない：ショートの音声・画像・動画はブランチ work（tools/work_branch.py）、完成動画は upload-tmp。どちらも公開後に drive-store.yml がドライブへ移してブランチごと消す。
 - news・factcheck・research のブランチは、毎週月曜 3:07 に cleanup-branches.yml が消す（次の号のときに自動で作り直される）。
 - 公開サイト（Cloudflare Pages の無料プラン）の上限：1サイト2万ファイル（11月12日で約1,000、1日約100増える）と、月500回のビルド。ファイル数は週1回の見直しで見張る。
+- ビルドを減らす設定（2026-11-12、Cloudflare の rina-tech-news → Settings → Build）：Build watch paths は data/*・site/*・tools/build_site.py だけ（ほかの変更では作り直さない）、Preview branch は None（main 以外のブランチでは作らない）。それまでは全部の push で作り直していて、11月12日までに約420回使っていた。
