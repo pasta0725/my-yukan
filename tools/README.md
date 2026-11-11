@@ -103,3 +103,8 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 - 完成動画と素材は GitHub の drive-store.yml が Google ドライブ（pastachannel0725）の「星餓りな 保管（自動）」へ移す。道具は tools/drive_store.py。鍵は GitHub の DRIVE_CLIENT_ID・DRIVE_CLIENT_SECRET・DRIVE_REFRESH_TOKEN（中身は表示しない）。
 - 最初の1回だけ（ユーザーの作業）：Google Cloud のプロジェクト rina-youtube で Google Drive API を有効にし、OAuth クライアントを「テレビと入力が限られたデバイス」の種類で作り、その ID とシークレットを GitHub の DRIVE_CLIENT_ID・DRIVE_CLIENT_SECRET に登録する。GitHub の細かい権限のトークン（このリポジトリだけ・Secrets の読み書き）を GH_SECRETS_TOKEN に登録する。そのあと drive-login.yml を動かし、実行の要約に出るコードを https://www.google.com/device で入れて pastachannel0725 で許可する。
 - ドライブへ上げられなくなったら（鍵の期限切れなど）、drive-login.yml をもう一度動かす。
+
+## GitHub の容量を増やし続けないために（2026-11-12）
+- 履歴は消えないので、増え続けるものは main に入れない：ショートの音声・画像・動画はブランチ work（tools/work_branch.py）、完成動画は upload-tmp。どちらも公開後に drive-store.yml がドライブへ移してブランチごと消す。
+- news・factcheck・research のブランチは、毎週月曜 3:07 に cleanup-branches.yml が消す（次の号のときに自動で作り直される）。
+- 公開サイト（Cloudflare Pages の無料プラン）の上限：1サイト2万ファイル（11月12日で約1,000、1日約100増える）と、月500回のビルド。ファイル数は週1回の見直しで見張る。
