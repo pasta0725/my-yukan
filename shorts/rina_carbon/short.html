@@ -210,7 +210,7 @@ const S={
  what(u,d,L){bg(u);mini(u);const t1=telHas(L,'長く'),t2=telHas(L,'サイバー');
    mixLine([['Google',C.brand],['で最も高性能',C.text]],CX,385,62);
    withEnter(enter(u,0),()=>{const z=1.0+0.05*u/d;pic('carbon_sq',150,450,500,500,z);creditAt(CRG,640,925);});
-   withEnter(enter(u,0.15),()=>{card(670,450,260,500,30,C.card2);text('得意',800,530,46,'#CDD8EC','center',800);text('Gemini',800,780,36,C.sub,'center',800);text('4 Carbon',800,830,40,'#FFFFFF');});
+   withEnter(enter(u,0.15),()=>{card(670,450,260,500,30,C.card2);text('得意',800,530,46,'#CDD8EC','center',800);text('Gemini 4',800,700,40,'#FFFFFF');text('Carbon',800,760,48,C.acc);text('の強み',800,840,36,'#CDD8EC','center',800);});
    withEnter(enter(u,Math.max(0.3,t1)),()=>{card(150,975,380,185,30,C.buyFill);text('長く複雑な',340,1035,40,C.buyInk);text('作業',340,1105,56,C.buyInk);});
    withEnter(enter(u,Math.max(0.45,t2)),()=>{card(550,975,380,185,30,C.buyFill);shield(615,1068,42,C.card2);text('サイバー',770,1035,40,C.buyInk);text('対策',770,1105,56,C.buyInk);});},
  // bench: according to Google, 1st among compared models in a coding test
@@ -219,7 +219,7 @@ const S={
    withEnter(enter(u,0),()=>{card(150,450,780,140,30,C.card2);text('CursorBench 4.0',CX,520,52,'#FFFFFF');});
    const rows=[['Gemini 4 Carbon',true],['ほかのモデル',false],['ほかのモデル',false]];
    rows.forEach(([lab,hi],i)=>withEnter(enter(u,0.15+0.1*i),()=>{const y=615+i*140;card(150,y,780,120,26,hi?C.buyFill:C.card);text((i+1)+'',210,y+60,52,hi?C.buyInk:C.sub);text(lab,270,y+60,46,hi?C.buyInk:C.sub,'left');}));
-   if(u>t1){crown(850,670,44,C.card2);stamp('1位',820,620,(u-t1)/0.35,C.warn===null?C.brand:C.brand,52,0.08);}
+   if(u>t1)stamp('1位',840,675,(u-t1)/0.35,C.brand,52,0.08);
    withEnter(enter(u,0.3),()=>{text('※Googleの発表',915,1050,30,C.sub,'right',700);});},
  // app: consumers get it in the Gemini app and AI Mode in Search, rolling out
  app(u,d,L){bg(u);mini(u);const t2=telHas(L,'検索'),t3=telHas(L,'順次');
