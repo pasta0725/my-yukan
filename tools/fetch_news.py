@@ -67,7 +67,7 @@ def from_page(u, html):
         p = urlparse(h)
         if p.netloc != host or h in seen or len(t) < 12 or len(p.path) < 8 or h.rstrip("/") == u.rstrip("/"): continue
         if not re.search(r"\d{4,}|/20\d\d|/news/|/article|/press|/blog/|/topics/", p.path): continue
-        seen.add(h); out.append({"title": t[:120], "url": h, "date": when(t)})
+        seen.add(h); out.append({"title": t[:120], "url": h, "date": None})   # a date in a title is often a release date, not the publish date
     return out[:40], "page"
 
 
@@ -110,7 +110,7 @@ def page(u):
             src = im.get("data-src") or im.get("data-original") or im.get("src") or ""
             if not src or src.startswith("data:"): continue
             src = urljoin(u, src)
-            if src in seen or re.search(r"logo|icon|avatar|banner|sprite|blank|pixel|ads?[/_.]", src, re.I): continue
+            if src in seen or re.search(r"logo|icon|avatar|banner|sprite|blank|pixel|ads?[/_.]|media-amazon|_SL\d+_", src, re.I): continue
             seen.add(src); imgs.append(f"{src} | {(im.get('alt') or '').strip()[:80]}")
         text = re.sub(r"\n{3,}", "\n\n", body.get_text("\n", strip=True))
         return {"ok": True, "pub": pub, "og": og, "imgs": imgs[:15], "text": text[:15000]}

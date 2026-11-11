@@ -9,7 +9,8 @@
    | 6:41 ／ 17:04 | Xの声の取り込み1回目（Grok が push できなかったときのメールから） |
    | 6:56 ／ 17:19 | Xの声の取り込み2回目と完成報告 |
 1. `git pull` して最新にする。作業フォルダ WORKDIR を作り、data/index.json の号の「source_url（タブ）見出し」を1行ずつ `WORKDIR/used.txt` に書き出す。spec.md の {EDITION} は「朝刊」か「夕刊」に置き換える。
-2. サブエージェントへの指示にサイトのURLを書かない（許可確認が出るため）。サイト名だけ伝え、URLは検索結果から辿らせる。`tools/spec.md` の {TODAY} と {WORKDIR} を置き換えた指示で、Sonnet のサブエージェント16本を並列に動かす（本数は下の表のとおり。カテゴリの範囲は spec.md の Categories）。2026-11-07 にユーザーの希望で8カテゴリに変更。
+1-2. ニュース一覧と記事本文を GitHub 側で先に取る（2026-11-12〜、Issue #7。担当が自分でページを開くと許可確認が出るため）：`gh api -X POST repos/pasta0725/my-yukan/actions/workflows/fetch-news.yml/dispatches -f ref=main -f 'inputs[edition]=ED'` で動かし（1〜2分）、終わったら `git fetch origin news && git archive origin/news news/ED | tar -x -C WORKDIR` で取り出す。担当ごとに WORKDIR/news/ED/<担当名>/index.md（候補の一覧）と <id>.txt（本文・公開日時・画像URL）ができる。取得の結果は report.md。どのサイトから取るかは tools/news_sites.json（URLを直すときはここ）。spec.md の {NEWS} を WORKDIR/news/ED に置き換える。4:30／14:40 になっても取れなければ、{NEWS} のフォルダなしで進める（担当は自分の WebSearch の結果だけ開く）。
+2. サブエージェントへの指示にサイトのURLを書かない（許可確認が出るため）。担当は自分のニュースフォルダのファイルを読み、WebFetch は自分の WebSearch の結果のURLだけに使う（spec.md の How to reach pages）。`tools/spec.md` の {TODAY}・{WORKDIR}・{NEWS} を置き換えた指示で、Sonnet のサブエージェント16本を並列に動かす（本数は下の表のとおり。カテゴリの範囲は spec.md の Categories）。2026-11-07 にユーザーの希望で8カテゴリに変更。
    | 担当 | カテゴリ | 担当サイト | 本数 |
    |---|---|---|---|
    | ai_A | AI | ITmedia AI+・ITmedia NEWS | 4 |
