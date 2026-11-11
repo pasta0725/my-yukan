@@ -115,7 +115,7 @@ function aiCard(i,x,y,w,h,k,sub){withEnter(k,()=>{const a=AIS[i];card(x,y,w,h);b
 function answers(q,u,t0){AIS.forEach((a,i)=>withEnter(enter(u,t0+0.18*i),()=>{const y=450+i*175;card(150,y,780,155);badge(i,215,y+77,84);text(a.name,280,y+48,34,C.sub,'left',800);
   const t='「'+a.ans[q]+'」';g.font=`900 44px ${FONT}`;const fs=Math.min(44,44*500/g.measureText(t).width);text(t,272,y+104,fs,C.text,'left');
   check(870,y+77,34,a.ok[q]);},20));}
-function quoteNote(){text('※ 各AIの実際の答え（11月12日）',915,1000,24,C.sub,'right',700);}
+function quoteNote(){text('※ 各AIの実際の答え（11月12日）',925,1003,32,C.text,'right',800);}
 const S={
  // hook: AIs are said to be bad at counting letters; we asked three of them
  hook(u,d,L){bg(u);mini(u);
@@ -174,9 +174,9 @@ const S={
  // verdict: this time all three got everything right
  verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,18,560,1044,1856));else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,window.ASK.verdict2);
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
-   if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+   if(u>0.1){g.save();g.translate(333,425);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
      text('3問 × 3つのAI',0,-55,34,'#CDD8EC','center',800);text('文字数え',0,30,62,'#FFFFFF');g.restore();}
-   if(u>t2){g.save();g.translate(747,400);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+   if(u>t2){g.save();g.translate(747,425);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
      text('今回の結果',0,-55,36,C.buyInk,'center',800);text(window.ASK.result,0,30,66,C.buyInk);g.restore();}},
  logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
    if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
