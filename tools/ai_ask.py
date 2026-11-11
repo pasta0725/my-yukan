@@ -23,7 +23,8 @@ def picks(names):
     for kind in ("pro", "flash"):
         c = sorted([n for n in ok if kind in n], key=lambda n: (ver(n), "preview" not in n), reverse=True)
         if c: out.append(c[0])
-    return (out or []) + ["gemini-flash-latest"]
+    rest = sorted([n for n in ok if n not in out and ("pro" in n or "flash" in n)], key=lambda n: (ver(n), "pro" in n, "preview" not in n), reverse=True)
+    return out + ["gemini-flash-latest"] + rest   # when the newest ones are busy, older general models still answer
 
 
 def pick(names):
@@ -58,12 +59,13 @@ def ask(model, prompt):
             time.sleep(20 * (a + 1))
         except (TimeoutError, urllib.error.URLError):
             print(" ", model, "timeout", f"{time.time() - t0:.0f}s", flush=True)
-            if a == 2: raise
+            if a >= 1: raise   # one retry, then the next model
 
 
 if __name__ == "__main__":
     q = json.load(open(sys.argv[2], encoding="utf-8"))
-    for m in picks(models()):
+    names = models(); print("models:", " ".join(n for n in names if n.startswith("gemini-")), flush=True)
+    for m in picks(names)[:8]:
         try:
             out = {"ai": "Gemini", "model": m, "answers": []}
             for x in q["questions"]:
