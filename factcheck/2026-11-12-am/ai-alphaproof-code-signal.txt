@@ -1,0 +1,243 @@
+===== https://deepmind.google/blog/introducing-alphaproof-code/
+(status 200)
+Introducing CodeMender: an AI agent for code security
+October 2025
+Responsibility & Safety
+Learn more
+
+===== https://www.theregister.com/ai-and-ml/2026/11/10/google-deepmind-melds-humans-and-ai-agents-to-vet-signals-secure-messaging-techniques/5308625?source=newscura
+(status 200)
+ai and ml
+    Google DeepMind melds humans and AI agents to vet Signal's secure messaging techniques
+        Post-quantum handshake and Triple Ratchet get a formal security check
+Thomas Claburn
+Thomas
+Claburn
+AI AND SOFTWARE REPORTER
+Published
+tue 10 Nov 2026 // 12:00 UTC
+Make us preferred on Google
+READ MORE
+Shipping giant Maersk probes 'IT security incident,' data theft
+6 hours ago
+OpenAI builds a kill switch for its research models
+13 hours ago
+Anthropic tiptoes into MS Office territory
+18 hours ago
+November Patch Tuesday boasts over 1,000 bugs but only one zero-day so far
+20 hours ago
+Ring robots ready to patrol paranoids’ pads
+20 hours ago
+Google DeepMind researchers have completed a formal verification of Signal's messaging security, marking what they claim is the first time AI has helped devise a proof that links protocol-level security guarantees to a widely used cryptographic implementation.
+They did so using AlphaProof Code, a multi-agent framework for formal software specification and verification. AlphaProof Code relies on a human-guided agent that writes a 
+Lean
+ specification, assesses machine code semantics, and crafts an agent-authored proof that the Lean kernel checks against the specification.
+In this instance, AlphaProof Code verified 
+Signal’s post-quantum PQXDH handshake and Triple Ratchet
+, thereby validating the design of 
+libsignal
+'s forward secrecy, authentication, post-compromise security, and handshake secrecy. 
+REG AD
+In so doing, the Google/DeepMind team – Swarat Chaudhuri, Andrew Ferraiuolo, Anton Kovsharov, Tej Chajed, Sam Schlesinger, Karn Seth, Jonathan Katz, Charles Sutton, and Pushmeet Kohli – has taken a step toward 
+a challenge
+ the Beneficial AI Foundation issued in April to formally verify the Signal protocol and Signal app with Lean.
+REG AD
+The AlphaProof Code process involves working with various models to turn Signal's security goals into a human-reviewed mathematical specification. Based on this spec, the researchers assigned Gemini Carbon agents to generate 
+Lean code
+ proving the correctness of the 
+libsignal
+ implementation. After the agents generated 6.5 million lines of Lean code, they undertook an auditing pass and flagged bits that required human review.
+The result is theoretical in that it assumes perfect cryptography and doesn't guarantee the computational secrecy of bytes. But it's still a meaningful assertion of correctness.
+"It's a system that is fundamentally built for human AI collaboration," said Swarat Chaudhuri, research scientist at Google DeepMind and a professor at the University of Texas at Austin, in an interview with 
+The Register
+. 
+Traditionally, said Chaudhuri, you start proving theorems with well-defined problems formulated by a mathematician that get submitted to an AI agent for proof. In this case, the researchers had to figure out what to prove.
+"In formal methods, we always had this belief that verification is the hard bit," he said. "There's thirty or forty years of work on how to scale up verification. Now we are able to do that. So now the question is what are we verifying? … That process is fundamentally human-in-the-loop, but we devised a process of trying to scale it up to the extent possible with AI."
+As Chaudhuri and his colleagues note in their research paper, "AlphaProof Code: Verifying Signal’s Security at the Machine-Code Level," formal verification used to require heroic efforts. Formally verifying the seL4 microkernel took 20 person-years, while developing the verified CompCert C compiler took six years.
+AlphaProof Code, they believe, can drastically reduce the cost of formal verification, though their Signal work still took four weeks for a team of five people and "quite a few tokens."
+"The dream is definitely to scale this up," said Chaudhuri. "So you know there's been this rise in offensive AI capabilities, right? There are a lot of insecure systems around the world, and they're going to be exploited.
+REG AD
+"So what we really need to do is to apply this kind of technology to code at large all over the world and figure out what is it that you want to guard against? How do you write those properties, how do we specify those properties? That's going to be super important, but we have to figure that out."
+Pointing to a related DeepMind project, 
+AlphaProof Nexus
+, which is focused on mathematics, Chaudhuri said the next step is to apply this technology during the software design process – not just to cryptographic protocols but code in general.
+"We really believe that the next frontier is not going to be proof but specification in this kind of research," he said. "And so that's why we took on this domain where that was actually a hard problem. And I think that we have some really good insights now about how to go about this, although not the last word by any means." ®
+cryptography
+artificial intelligence
+google deepmind
+security
+privacy
+ai and ml
+Make us preferred on Google
+
+===== https://hwbusters.com/news/google-deepminds-alphaproof-code-verifies-signals-encryption-all-the-way-down-to-arm-machine-code/
+(status 200)
+News
+Google DeepMind’s AlphaProof Code Verifies Signal’s Encryption All the Way Down to Arm Machine Code
+November 11, 2026
+crmaris
+Google DeepMind says its AlphaProof Code agents have machine-checked the core of Signal’s encryption, PQXDH and the Triple Ratchet, against the compiled 64-bit Arm binary rather than the source. A team of five did it in four weeks, a job that classically eats years.
+Formal verification has always had a reputation problem. Everyone agrees that a mathematical proof beats a test suite, and almost nobody does it, because the proofs are brutally expensive to write. The seL4 microkernel, the field’s poster child, took around 20 person-years. The CompCert verified C compiler took six years. Google DeepMind now claims it can cut that kind of effort down to weeks, and it picked a high-profile target to make the point: Signal.
+On November 10 the company 
+introduced AlphaProof Code
+, a multi-agent system that writes proofs in the Lean theorem prover. Its first big job covered libsignal, the open-source library at the heart of Signal, and specifically two pieces: PQXDH, the post-quantum key agreement used when two people first start talking, and the Triple Ratchet, the newer scheme that keeps rotating keys as a conversation goes on. According to 
+The Register
+, the proofs establish forward secrecy, authentication, post-compromise security and handshake secrecy for that code.
+Why the machine code matters
+The headline detail is what was actually checked. As 
+CyberInsider
+ reports, the target was not Rust source but a 64-bit Arm executable compiled from libsignal 0.105.4. Lean was used to model how those Arm instructions behave, and the security properties were proven against that model. That closes a gap that source-level proofs leave open: a compiler that optimises something in an unexpected way, or a toolchain bug, can quietly break a guarantee you thought you had proven. Here, the thing that was verified is much closer to the thing that actually runs on a phone.
+The scale is the other eye-opener. The agents, which run on what DeepMind calls Gemini Carbon, produced roughly 6.5 million lines of Lean. No human reads that, and nobody has to: Lean’s small trusted kernel checks every step. People still wrote and reviewed the specifications, which is where most of the judgement lives, and an auditing pass flagged parts of the work that needed a human look. DeepMind research scientist Swarat Chaudhuri described it to The Register as “a system that is fundamentally built for human AI collaboration.”
+To show the proofs have teeth, the team also put two previously fixed libsignal bugs back into isolated copies of the code. In both cases the framework produced a machine-checked proof that the modified build violated a security property. That is the right test. A verifier that happily “proves” broken code is worse than no verifier at all.
+What it does not cover
+The usual caveats apply, and they are not small. The proofs assume the underlying cryptographic primitives are perfect. Side channels such as timing and power analysis are out of scope, and so is everything in the Signal app outside these protocol paths, from the UI to the backup code. No new vulnerabilities were reported either, which is good news for Signal users but also means this is a demonstration, not a bug hunt. Signal CTO Ehren Kret said the work expands the scope of earlier verification efforts, and the Lean artifacts are 
+published on GitHub
+ for anyone who wants to check them.
+The bigger story is economics. If proving properties of compiled binaries really drops from years to a month for a five-person team, verification stops being something reserved for kernels and aircraft software. Crypto libraries, firmware and hypervisors are the obvious next candidates. The catch is that the specification still has to be right, and that part remains stubbornly human.
+Related Posts
+News
+                                            AMD EPYC Venice Ships on SP7, but Most of the Zen 6 Server Lineup Waits Until 2027                                        
+November 11, 2026
+crmaris
+News
+                                            Windows 11’s November Update Finally Fixes the Right-Click Menu, and Quietly Turns On Memory Integrity                                        
+November 11, 2026
+crmaris
+
+===== https://xenospectrum.com/en/deepmind-alphaproof-code-signal-verification/
+(status 200)
+Translated from the Japanese original
+Read the Japanese original
+How far must you verify a cryptographic protocol before you can call it secure? Security researchers have traditionally modeled a protocol's design specification mathematically and proved its security. In real software, however, even a correct design can acquire vulnerabilities when it is implemented as code. A large gap remains between proving that a design is secure and guaranteeing that a running program is secure.
+On November 10, 2026, a Google DeepMind research team announced AlphaProof Code, a new formal verification system meant to close that gap. By coordinating multiple AI agents, the team says it mechanically verified that security properties hold under specific conditions for a cryptographic communication library used in messaging apps such as Signal, working on the compiled machine code. Verifying a practical-scale cryptographic implementation down to machine code has traditionally required years of work by teams of experts. DeepMind says it completed this verification in just four weeks.
+The result does not mean, however, that the security of the entire Signal app has been mathematically guaranteed. What was verified is a single Linux binary built by combining a specific library with a verification harness, and the proofs rest on cryptographic assumptions and strict preconditions about the execution environment. What did the AI prove, and which parts still depend on human judgment and verification? Based on the published technical documentation, we sort out the achievements and the limits.
+AD
+Ten security properties proved over roughly 140,000 machine instructions
+DeepMind chose as its main target the foundational library of the widely used Signal protocol. Specifically, it used version 0.105.4 of 
+libsignal-protocol
+, written in Rust, and version 1.6.0 of SPQR, an extension related to post-quantum cryptography. The team made no changes to these existing crates and built them into 
+libsignal-cli
+, a test harness it developed for verification. It then used the official Rust compiler 
+rustc
+ 1.98.1 to produce a statically linked executable for the AArch64 architecture on Linux.
+The finished executable is about 
+560 KB
+, equivalent to roughly 140,000 instructions. The scope of verification is limited to session establishment via PQXDH in one-to-one communication and the behavior of the Triple Ratchet protocol, which handles sending and receiving messages. Importantly, what AlphaProof Code verified directly was not the Rust source code but the compiled machine code. The team mathematically described how the binary's instructions execute and proved theorems about that behavior.
+This approach has advantages over conventional formal verification that targets source code. Even if correctness is proved at the source level, compiler bugs or optimizations can cause the generated machine code to behave differently from what was intended. Verifying the compiled binary itself removes the need to assume that the compiler produces correct code. In this study, the dependency on the compiler was removed from the trusted base.
+Under a symbolic model, the team proved a total of 10 security properties. These include Forward Secrecy, which protects past communications even if long-term keys are later leaked, and Post-Compromise Security, which restores a secure communication state after a temporary device compromise. Handshake authentication, resistance to key compromise impersonation (KCI) attacks, and confidentiality of the handshake itself were also verified. Each of these properties holds only under a defined attacker model and set of environmental conditions.
+DeepMind positions this as the first mechanical formal verification of a widely used cryptographic protocol implementation at this level, with or without AI. This is, however, the claim of the announcing party, not a determination made by a third party after comprehensively comparing prior research. In assessing the result, it is necessary to check not only the scale of the proofs but also which behaviors are guaranteed and what is excluded from verification.
+The AI generated 6.5 million lines of proof; humans audit a 26,000-line trusted base
+A distinguishing feature of AlphaProof Code is how it divides work among human experts, AI agents, and a mathematical proof checker. The verification process falls broadly into three stages, "defining the specification," "constructing the proof," and "checking the proof," each assigned different roles. While the AI generates the proofs, humans remain involved in drawing up the specification of what should be proved and in judging whether that specification is valid.
+In the first stage, human experts worked with a specification-writing agent to express the security properties required of the Signal protocol as definitions and theorems in the interactive theorem prover Lean. The research team built about 18,000 lines of specification-dependent definitions and about 8,000 lines of AArch64 instruction-set semantics. Together, these roughly 26,000 lines form the main Trusted Computing Base (TCB) for this verification. A review agent and human cryptography experts checked whether the specification corresponds to the actual security requirements.
+Once the specification was fixed, an autonomous proof agent built on the reasoning model Gemini 4 Carbon searched for the logical steps needed to establish the theorems. The result was about 6.5 million lines of Lean proof code, and including related material the full codebase approached 7 million lines. Normally it would not be realistic for humans to check such a vast proof line by line. AlphaProof Code therefore pairs the proof generation with a mechanism that checks the generated proofs mechanically.
+Proofs written by the AI are first sent to a checking mechanism called the "gatekeeper." It confirms, among other things, that a proof matches the human-approved definitions and dependencies and that it uses only Lean's standard axioms. Lean's proof-checking kernel then verifies that the conclusion follows logically from the given premises. A proof that fails kernel verification is not accepted, so there is no need to trust the AI-generated arguments unconditionally.
+However, Lean's ability to confirm the logical correctness of a proof is a separate matter from whether the specification being proved adequately represents real-world security requirements. If an important attack path were missing from the specification's definitions, then even a completely correct proof against that specification would not necessarily guarantee the security of the actual software. What the proof checker can confirm is only mathematical consistency based on the given definitions and assumptions, not whether the threats that should be considered in the real world have been defined without excess or omission.
+Moreover, it is not enough to trust only the roughly 26,000 lines of specification definitions and instruction-set semantics. The proofs also depend on the correctness of Lean's verification kernel itself, the semantics of Linux processes, the contracts of hook functions representing interaction with external systems, assumptions about cryptographic primitives, and the behavior of the tool that extracts code from the binary. On the other hand, verifying the compiled machine code directly made it possible to remove the Rust compiler itself from the trusted base, which is a significant achievement.
+The study suggests that the human role in formal verification may change. If AI agents can build proofs of some 6.5 million lines, the burden on experts of assembling vast proof steps by hand will drop sharply. At the same time, the importance of judging whether the specification and trusted base underlying the proof are correct will rise. In other words, the more proof generation is automated, the more the practical challenge may shift from the ability to produce proofs to quality control of the specification: what to prove and under what assumptions. If it can later be shown that specification drafting and trusted-base review can also be automated without adding unaudited assumptions, this picture could change.
+AD
+Symbolic and computational proofs guarantee different kinds of security
+To understand the result correctly, it is necessary to distinguish the two proof approaches the team used: "Symbolic Proof" and "Computational Proof." Both treat the security of cryptographic protocols mathematically, but they differ in the assumptions they make about attacker capabilities and cryptographic primitives. Even if one proof holds, the same guarantee does not necessarily extend to the threats covered by the other.
+Symbolic proofs treat cryptographic keys and ciphertexts as abstract symbols and assume that the cryptographic algorithms themselves work ideally. For example, they use a model in which an attacker cannot obtain information about plaintext from ciphertext unless they hold the decryption key. Within this framework, one can verify whether protocol state transitions, key-exchange procedures, and authentication of communication partners work correctly. In this study, the team linked the execution behavior of the compiled binary to this symbolic model and proved 10 security properties.
+Real cryptographic algorithms, however, are not mathematically perfect black boxes. Attackers can compute on the bit strings of ciphertexts and try to guess keys or plaintext or to forge signatures. Evaluating such attacks requires considering the computational-complexity security of the cryptography. The team therefore built, separately from the symbolic proof, a proof based on a computational attacker model.
+Item
+Symbolic Proof
+Computational Proof
+Attacker model
+Dolev-Yao model with idealized cryptographic primitives
+Attacker running in probabilistic polynomial time (PPT)
+Main guarantees
+10 properties, including forward secrecy, post-compromise security, handshake authentication, and KCI resistance
+Computational confidentiality and authenticity for key exchange and message communication
+Main assumptions
+Idealized cryptographic primitives; independent generation of secret randomness
+Gap-DH assumption, unforgeability of XEdDSA, collision resistance of Kyber1024, security of PRFs and PRGs
+Main exclusions from verification
+Side-channel attacks, memory corruption, malicious OS kernel behavior, multi-device synchronization, group communication among three or more parties, SPQR's post-quantum state recovery
+Side-channel attacks, memory corruption, random number generator flaws, attackers using quantum computers, adversarial first messages before session promotion
+The computational proof depends on several cryptographic assumptions, including the Gap-Diffie-Hellman (Gap-DH) assumption, the unforgeability of XEdDSA signatures, the collision resistance of the post-quantum scheme Kyber1024, and the security of pseudorandom generators (PRGs) and pseudorandom functions (PRFs). It evaluates the protocol's confidentiality and authenticity on the premise that these assumptions hold. A proof therefore does not mean that each cryptographic algorithm is unconditionally secure; if an underlying assumption is broken, the guarantees derived from it must be reconsidered.
+Particularly important is that this computational proof does not cover attackers who use quantum computers. The assumptions used in the computational security evaluation presuppose classical computers, and no guarantee is given against attacks by quantum computers. The symbolic proof also handles an abstract model of post-quantum key exchange, but that alone does not amount to verifying against the full range of threats from quantum algorithms breaking cryptography. SPQR's post-quantum state-recovery mechanism is also excluded from the scope of the proof.
+The verification environment also has constraints that differ from a real application. First, the verification harness does not itself run key generation; it assumes that the public and private keys of the communicating parties are correctly supplied at setup. Second, in the binary-level verification the peer's identity key is fixed in advance, and the dynamic confirmation procedure of "Trust On First Use" (TOFU), in which the other party's key is trusted at first contact, is out of scope. This means that security has not been proved for the key-confirmation path that arises when the real Signal app communicates with a new contact.
+The computational proof also carries mathematical constraints that depend on the volume of traffic and the number of ratchet updates. According to the technical documentation, under extreme conditions in which large numbers of messages are exchanged within a single session and a new epoch is generated each time, the margin in the inequality used to evaluate security is lost. If ratchet updates occur so frequently that a session exceeds roughly 25,000 messages, the computational guarantee reaches its limit. This, however, shows a limit of the bound used in the proof and does not mean the actual cryptography breaks the moment that message count is exceeded.
+The verification target is also the 
+libsignal-cli
+ binary running in a Linux environment built by the researchers, not Signal's official smartphone app or the entire runtime environment of Google Messages, which uses the Signal protocol. Threats that can matter in real usage environments, such as inconsistent synchronization state among multiple devices, OS memory corruption, and hardware side-channel attacks, are outside the scope of verification. The result should therefore be assessed as a rigorous guarantee for a specific implementation, not as a comprehensive proof of the security of every product that uses Signal.
+Formal verification in four weeks, but computational cost is unknown
+Another result DeepMind stresses is how short the verification took. According to the company, AlphaProof Code completed in four weeks work of a scale that previously required years from expert teams. This figure cannot, however, be treated as a general productivity metric implying that any software can be formally verified in a month. According to the paper, five researchers worked on the experiment full time, running AI agents around the clock on their own workstations while carrying out specification drafting and proof search in parallel.
+What the AI agents mainly handled autonomously was the proof search needed to establish predefined theorems. Experts in formal verification and cryptography were continuously involved in design decisions such as what to prove and what assumptions to adopt. The team explains that it kept the portion needing focused human review to about 
+1%
+ of the entire codebase. But that limited portion includes the specification and trusted base that determine the validity of the proofs, so the small amount of work does not make it any less important.
+chart
+コピー
+{
+  "type": "bar",
+  "title": "Scale of the verification target and proof artifacts",
+  "unit": "Lines / instructions",
+  "categories": [
+    "Binary instructions (AArch64)",
+    "Trusted base (TCB)",
+    "AI-generated proof code"
+  ],
+  "series": [
+    {
+      "name": "Scale",
+      "values": [140000, 26000, 6500000]
+    }
+  ],
+  "caption": "The target binary has about 140,000 instructions, the main trusted base is about 26,000 lines, and the AI-generated Lean proof code is about 6.5 million lines. Instruction counts and lines of code are different metrics and are not a direct comparison of workload.",
+  "source": "Google DeepMind technical documentation"
+}
+For roughly 140,000 machine instructions, about 6.5 million lines of Lean proof code were generated. Being able to build a proof of this size automatically is an important achievement, but details of the total computing resources invested, the number of tokens the model consumed, and the monetary cost have not been disclosed. Because the target code, the verification scope, and the maturity of the automation tools differ between traditional manual verification and this experiment, it is hard to judge the degree of productivity improvement from a simple comparison of elapsed time.
+Given that five experts worked full time while running agents continuously, that the verification target was confined to a specific binary of about 140,000 instructions, and that no rigorous measured figures for manual verification as a point of comparison have been published, the four-week record does not show that an ordinary company could obtain the same result in the same period. It is more appropriate to regard it as an experimental result showing that AI-agent-based formal verification may make it possible to take on work that previously required enormous human resources. If it can later be shown that other codebases can be verified in a similar period and at practical cost, it will become possible to judge more concretely whether the approach can be introduced into general development processes.
+The research team also ran experiments to confirm that AlphaProof Code does not unconditionally prove a faulty program secure. Specifically, it reintroduced two vulnerabilities that Cheval and colleagues had previously found in libsignal and that had already been fixed, by reverting them to their pre-fix state. This is mutation testing: using programs into which known flaws have been deliberately added, it checks whether the verification system can detect the problems.
+The first is the "Weak-state" mutant binary, which reverts the fix in commit 
+cd36118
+, where there was a problem in session-state update handling. The second is the "Small-subgroup" mutant binary, which reverts the fix in commit 
+5293caa
+, where inputs belonging to a small subgroup were not properly rejected in elliptic-curve cryptography operations. Both were changes made to reproduce actual flaws confirmed in the past.
+When the team recompiled these mutant binaries and fed them to AlphaProof Code, the system did not produce a false proof that security held. Instead, it constructed concrete inputs that contradict the symbolic security theorems and, according to the team, mechanically proved in Lean that the target binaries do not satisfy the security conditions. This means that, at least for the two known flaws selected here, AlphaProof Code was able to detect the security violations.
+This result cannot, however, be interpreted as proof of an ability to find every unknown vulnerability. What was tested was the ability to detect two specific flaws, and it has not been shown that the system can comprehensively find attack methods or vulnerabilities outside its scope. The range that formal verification can guarantee is determined solely by the defined specification and attacker model. This point is also important for distinguishing AlphaProof Code from a general vulnerability scanner.
+AD
+The research output is public, but this is not a verification service for general use
+To coincide with the announcement, DeepMind released the formal verification artifacts as open source in the 
+google-deepmind/code-verification
+ repository on GitHub. The published materials include the machine-code model extracted from the compiled binary, the roughly 26,000-line trusted base, and a set of theorem files that can be mechanically checked in Lean. This allows outside security researchers and formal verification experts to independently examine the published proofs and their preconditions. Publishing the artifacts is nonetheless a separate matter from third parties having reproduced the same verification results, which makes future independent verification important.
+This release should also not be confused with general availability of AlphaProof Code itself. According to a report by Axios in the US, AlphaProof Code is currently positioned as a cutting-edge research project rather than a cybersecurity product intended for commercial rollout. What has been 
+
+===== https://modelcurrent.com/article/deepmind-alphaproof-code-signal-compiled-encryption
+(status 200)
+Editorial illustration created for Model Current.
+A proof about code, not just a design
+Google DeepMind published a paper on November 10 describing how its AlphaProof Code system helped verify parts of libsignal, the reference software for the Signal messaging protocol. The authors report that a compiled build met specific security requirements for starting an encrypted session and for updating encryption keys as messages are exchanged.
+A protocol tells programmers how the exchange should work. The implementation is the code that actually does it. A mathematical argument about the design can miss a mistake in the code. The researchers checked instructions compiled from unmodified library source for 64-bit Arm Linux, using a small command-line program to run the library.
+What the AI did and what Lean checked
+Researchers and AI agents turned security goals into precise statements. People reviewed those statements. Other agents wrote proofs, which Lean, a proof-checking system, checked against the agreed statements. An agent’s confidence in its answer was not the test.
+The team also put two previously fixed bugs back into isolated builds. It reports that the verification showed those builds violated the security requirements. That is a check that the specifications can catch real mistakes of those kinds, not a search that rules out every other bug.
+Where the assurance ends
+The claims depend on how the researchers modelled the processor, the assumed security of underlying cryptographic tools and the behaviour specified for some routines. They concern the parts of the library that were checked. They do not establish that the whole app, every platform build or every device using it is secure.
+DeepMind has made the proof materials available for scrutiny. The next questions are whether others can reproduce the work and how easily it can be kept current as the library changes.
+Sources
+Google DeepMind: Introducing AlphaProof Code
+November 10 announcement and developer account of workflow, scope and historical bug checks.
+Chaudhuri et al.: AlphaProof Code technical paper and artifacts
+Paper and artifacts. Sections 4–6 specify the AArch64 Linux binary, assumptions, proved properties and historical bug exercises.
+Keep reading
+Related reporting
+View all stories →
+Research
+10 November 2026
+3
+ min
+OpenAI details how Control Room stops AI research jobs from getting model output
+The internal system can revoke a job’s permission to get new output. OpenAI says that can take up to 35 seconds after a stop instruction reaches it.
+Research
+8 November 2026
+3
+ min
+OpenAI introduces BioBasicsBench for interpreting lab data
+The November 6 benchmark tests analysis of raw experimental evidence. Its reported scores award partial credit and do not establish that an agent can run a laboratory.
+Research
+7 November 2026
+3
+ min
+CheMeleon shows why molecular AI needs more than a win rate
+MIT’s latest account highlights a model that learns from calculated molecular features before adapting to smaller datasets. Its benchmark wins include statistical ties, not guaranteed predictions.

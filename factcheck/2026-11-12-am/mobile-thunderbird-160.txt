@@ -1,0 +1,1002 @@
+===== https://forest.watch.impress.co.jp/docs/news/2155542.html
+(status 200)
+ニュース
+無料のメールソフト「Thunderbird」v160.0が公開 ～103件の脆弱性を修正
+ ［メッセージフィルター］ダイアログで［Ctrl］＋［A］キーによる全選択が可能に 
+長谷川 正太郎
+2026年11月11日 18:22
+「Thunderbird」v160.0
+ 　Mozillaは11月10日、メールソフト「Thunderbird」の最新版v160.0を公開した。本リリースでは、利便性を向上させる新機能や仕様変更に加え、多数のバグ修正および重要なセキュリティアップデートが行われている。 
+ 　新機能として、［メッセージフィルター］ダイアログで［Ctrl］＋［A］キーを押すとすべてのフィルターを選択できるようになった。また、OAuthによるサインイン画面において、ブロックされたCookieがログインを妨げる可能性がある場合に、その旨を説明する表示が追加。さらに、「Office 365」のアカウント設定時に、EWS構成の自動提示が廃止されている。 
+ 　不具合の修正は多岐にわたる。特定の操作でソフトウェアがクラッシュする問題が修正されたほか、メールの管理においては、IMAPの保持設定において、古いメッセージではなく新しいメッセージが誤って削除されてしまう重大な問題が修正された。また、メッセージを削除したあとに［元に戻す］機能が無効化されて復元できなくなる問題や、LFの改行コードを持つPOP3およびニュースメッセージが正しく解析されない不具合などが解消されている。 
+ 　セキュリティ面では、103件もの脆弱性が修正された。内訳は、深刻度がMozillaの基準で4段階中2番目に高いHighとされたものが59件、3番目に高いModerateとされたものが27件、最も低いLowとされたものが17件となっている。Thunderbirdではメール閲覧時のスクリプトが無効化されているため、メールを通じた直接的な悪用は防がれているものの、Webブラウザーに似た機能の中でリスクとなる可能性があるため、最新版へのアップデートが推奨される。 
+Amazonで購入
+「メール」関連商品
+Amazonで購入
+
+===== https://www.thunderbird.net/en-US/thunderbird/160.0/releasenotes/
+(status 200)
+Thunderbird 
+Desktop
+Version 160.0 | Released November 10, 2026
+        Check out the notes below for this version of Thunderbird. As always, you’re encouraged to
+tell us what you think
+,
+ask for help
+, or
+file a bug in Bugzilla
+.
+System Requirements:
+Details
+        What’s New
+              new
+Ctrl+A selects all filters in the Message Filters dialog
+        What’s Changed
+              changed
+OAuth sign-in windows now explain when blocked cookies may prevent sign-in
+              changed
+Office 365 account setup no longer automatically offers EWS configuration
+        What’s Fixed
+              fixed
+The macOS Dock badge could omit unread counts with multiple accounts
+              fixed
+Opening a window could cause Thunderbird to crash
+              fixed
+Undo remained disabled after deleting messages, preventing their restoration
+              fixed
+POP3 and news messages with LF line endings could be parsed incorrectly
+              fixed
+The option to create a mailing list was missing from File > New
+              fixed
+Restoring toolbar defaults unexpectedly closed the customization dialog
+              fixed
+Thunderbird did not warn before repairing folders with offline message storage
+              fixed
+Dragging multiple selected folders moved only one folder
+              fixed
+Renaming or moving folders could remove them from saved searches
+              fixed
+Replies to saved messages could be blocked despite a valid Reply-To address
+              fixed
+The spelling dictionary menu was empty in the Subject field
+              fixed
+Tabbing from Subject field focused the header divider instead of message body
+              fixed
+Edit as New Message did not work for some news messages
+              fixed
+Address book setup returned to mail setup when no mail account existed
+              fixed
+Exchange autodiscovery failed when redirected to another email address
+              fixed
+Empty message filter conditions could cause incorrect matches
+              fixed
+Address book filter conditions failed to match messages with missing addresses
+              fixed
+Address book website fields incorrectly prefixed non-HTTP links with HTTPS
+              fixed
+Some CardDAV contacts with multiline street addresses appeared empty
+              fixed
+CardDAV contacts were saved in a format unsupported by some servers
+              fixed
+Photos saved in vCard 3.0 contacts could fail to appear in other clients
+              fixed
+Windows system tray icon failed to update when new mail arrived
+              fixed
+Processing some sender addresses could freeze new mail notifications
+              fixed
+IMAP retention settings could delete newer messages instead of older ones
+              fixed
+Message database updates could cause Thunderbird to crash
+              fixed
+IMAP namespace root folders could be missing or have incorrect permissions
+              fixed
+Graph account setup failed for tenants without a SharePoint license
+              fixed
+Various News Reader improvements
+              fixed
+IMAP folders could disappear after restart on servers using compression
+              fixed
+Various Feed Reader improvements
+              fixed
+Delete Event remained enabled for read-only calendars in the Today Pane
+              fixed
+Attendance options were missing for some recurring event series
+              fixed
+The task list stopped updating after toolbar customization
+              fixed
+CalDAV reminders could not be dismissed or snoozed
+              fixed
+Some webcal calendar subscriptions were incorrectly blocked
+              fixed
+Invalid ICS calendar files could be overwritten when events were changed
+              fixed
+Visual and UX improvements
+              fixed
+Security fixes
+See All Releases
+Learn What’s 
+Next
+        Thunderbird keeps getting better. Subscribe to our newsletter and follow us on social media to stay informed.
+Visit Our Blog
+
+===== https://www.mozilla.org/en-US/security/advisories/mfsa2026-128/
+(status 200)
+Security Vulnerabilities fixed in Thunderbird 160
+Announced
+November 10, 2026
+Impact
+high
+Products
+Thunderbird
+Fixed in
+Thunderbird 160
+Many of these flaws cannot be exploited through email in the Thunderbird product because scripting is disabled when reading mail, however they may pose risks in browser or browser-like contexts.
+Note
+: We have changed how we publish advisories. We no longer roll all internally identified memory safety vulnerabilities into a single CVE and are now issuing an advisory for every individual bug.
+#
+CVE-2026-126132: Attachments could be replaced with local file content when forwarding
+Reporter
+Christopher Bohn (Protectstar Inc.)
+Impact
+high
+Description
+When a message was forwarded inline, edited as new, or had an attachment dragged into a compose window, a specially crafted link attachment (a .desktop file on Linux, or a .url or .lnk file on Windows) was replaced with the content of the file or URL it pointed to when the message was saved or sent. This could disclose local files, or content from the user's network, to the message recipients or to the mail provider.
+This bug only affects Thunderbird on Linux and Windows. Other operating systems are unaffected.
+References
+Bug 2081919
+#
+CVE-2026-126133: Calendar server credentials could be sent to an HTTP proxy
+Reporter
+Christopher Bohn (Protectstar Inc.)
+Impact
+moderate
+Description
+When a CalDAV or ICS calendar was accessed through an HTTP proxy that requested authentication, Thunderbird could answer the proxy with the calendar server's username and password. This affected both setting up a new calendar and syncing existing calendars, where a saved password could be sent without any user interaction. A malicious or compromised proxy could use this to obtain the calendar credentials, even for calendars served over HTTPS.
+References
+Bug 2083485
+#
+CVE-2026-126134: Feed subscriptions could leak NTLM credentials on Windows
+Reporter
+Magnus Melin
+Impact
+moderate
+Description
+Thunderbird allowed feed subscriptions to file: URLs that point to a network share. If a user was tricked into subscribing to such a URL, Thunderbird connected to the attacker's server when fetching the feed. Windows then sent the user's NTLM credentials to that server.
+This bug only affects Thunderbird on Windows. Other operating systems are unaffected.
+References
+Bug 2083584
+#
+CVE-2026-126135: SMTP and POP3 response injection when using STARTTLS
+Reporter
+Ibrahim Alghamdi
+Impact
+moderate
+Description
+If an attacker was able to perform a man-in-the-middle attack on an SMTP or POP3 server connection using STARTTLS, the attacker could inject server responses before the TLS handshake completed. Thunderbird would process these responses after the handshake, as if they had been received from the server over the encrypted connection. This could be used to make Thunderbird report a different outcome for sending or fetching mail, and to show attacker-controlled text in error messages. The encrypted connection itself was not compromised, and credentials were not exposed. Connections using SSL/TLS instead of STARTTLS were not affected.
+References
+Bug 2085343
+#
+CVE-2026-126136: OAuth2 access token could be sent over an unencrypted connection with Exchange accounts
+Reporter
+Álvaro Chico Martínez
+Impact
+moderate
+Description
+For Exchange accounts using EWS or Microsoft Graph with OAuth2 authentication, Thunderbird sent the OAuth2 access token to the server even when the configured server URL used unencrypted HTTP. An attacker able to observe network traffic could obtain the token and use it to access the user's mailbox until the token expired. An attacker positioned on the network during account setup could cause such a URL to be configured.
+References
+Bug 2085865
+#
+CVE-2026-120572: Incorrect boundary conditions in the Layout: Block and Inline component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079035
+#
+CVE-2026-124852: Incorrect boundary conditions in the Graphics: CanvasWebGL component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2001244
+#
+CVE-2026-124853: Sandbox escape due to incorrect boundary conditions in the Graphics: Text component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2058035
+#
+CVE-2026-124854: Privilege escalation in the DOM: Navigation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2060230
+#
+CVE-2026-124855: Sandbox escape in the DOM: Navigation component
+Reporter
+Tran Quac
+Impact
+high
+References
+Bug 2072096
+#
+CVE-2026-124856: Incorrect boundary conditions in the Networking: HTTP component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2072437
+#
+CVE-2026-124857: Use-after-free in the Graphics: Canvas2D component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2073695
+#
+CVE-2026-124858: Use-after-free in the DOM: HTML Parser component
+Reporter
+Amy Burnett of OpenAI
+Impact
+high
+References
+Bug 2074172
+#
+CVE-2026-124859: Sandbox escape due to incorrect boundary conditions in the Storage: Cache API component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074179
+#
+CVE-2026-124860: Use-after-free in the Audio/Video component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074194
+#
+CVE-2026-124861: Sandbox escape due to use-after-free in the Audio/Video: cubeb component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074210
+#
+CVE-2026-124862: Use-after-free in the DOM: Core & HTML component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074220
+#
+CVE-2026-124863: Use-after-free in the DOM: HTML Parser component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2075975
+#
+CVE-2026-124864: Sandbox escape due to use-after-free in the DOM: Service Workers component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2075976
+#
+CVE-2026-124865: Use-after-free in the Audio/Video component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2076414
+#
+CVE-2026-124866: Use-after-free in the Layout component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2078993
+#
+CVE-2026-124867: Use-after-free in the DOM: Editor component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079050
+#
+CVE-2026-124868: Incorrect boundary conditions in the DOM: Core & HTML component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079169
+#
+CVE-2026-124869: Use-after-free in the DOM: Core & HTML component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079170
+#
+CVE-2026-124870: Incorrect boundary conditions in the JavaScript: GC component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079466
+#
+CVE-2026-124871: Use-after-free in the DOM: HTML Parser component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079678
+#
+CVE-2026-124872: Use-after-free in the Cycle Collector component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2079689
+#
+CVE-2026-124873: Invalid pointer in the DOM: Editor component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079937
+#
+CVE-2026-124874: Same-origin policy bypass in the Networking: HTTP component
+Reporter
+Minseong Kim
+Impact
+high
+References
+Bug 2080420
+#
+CVE-2026-124875: Incorrect boundary conditions in the DOM: CSS Object Model component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2081380
+#
+CVE-2026-124876: Use-after-free in the CSS Parsing and Computation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2081550
+#
+CVE-2026-124877: Use-after-free in the Layout: Positioned component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081939
+#
+CVE-2026-124878: Use-after-free in the Layout: Positioned component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081940
+#
+CVE-2026-124879: Invalid pointer in the Networking: Cache component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081949
+#
+CVE-2026-124880: Use-after-free in the DOM: Core & HTML component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081966
+#
+CVE-2026-124881: Use-after-free in the CSS Parsing and Computation component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081980
+#
+CVE-2026-124882: Use-after-free in the CSS Parsing and Computation component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081982
+#
+CVE-2026-124883: Use-after-free in the DOM: Core & HTML component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081991
+#
+CVE-2026-124884: Use-after-free in the JavaScript: GC component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081994
+#
+CVE-2026-124885: Use-after-free in the Graphics: Text component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082006
+#
+CVE-2026-124886: Invalid pointer in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082021
+#
+CVE-2026-124887: Incorrect boundary conditions in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082024
+#
+CVE-2026-124888: Incorrect boundary conditions in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082025
+#
+CVE-2026-124889: Use-after-free in the CSS Parsing and Computation component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082033
+#
+CVE-2026-124890: Use-after-free in the DOM: Core & HTML component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082039
+#
+CVE-2026-124891: Incorrect boundary conditions in the DOM: Selection component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082075
+#
+CVE-2026-124892: Use-after-free in the JavaScript: GC component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082083
+#
+CVE-2026-124893: Use-after-free in the DOM: Workers component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082097
+#
+CVE-2026-124894: Use-after-free in the Networking: Cookies component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082101
+#
+CVE-2026-124895: Use-after-free in the Storage: localStorage & sessionStorage component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082109
+#
+CVE-2026-124896: Invalid pointer in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082181
+#
+CVE-2026-124897: Use-after-free in the JavaScript: GC component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082186
+#
+CVE-2026-124898: Use-after-free in the DOM: Editor component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082205
+#
+CVE-2026-124899: Use-after-free in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082451
+#
+CVE-2026-124900: Sandbox escape due to use-after-free in the DOM: Service Workers component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2083116
+#
+CVE-2026-124901: Other issue in the Networking: JAR component
+Reporter
+dodoh4t
+Impact
+high
+References
+Bug 2083626
+#
+CVE-2026-124902: Same-origin policy bypass due to race condition in the Audio/Video component
+Reporter
+dodoh4t
+Impact
+high
+References
+Bug 2083629
+#
+CVE-2026-124903: Sandbox escape due to use-after-free in the IPC component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2084673
+#
+CVE-2026-124904: Use-after-free in the SVG component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2086062
+#
+CVE-2026-124905: Sandbox escape in the DOM: Navigation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2086254
+#
+CVE-2026-124906: Use-after-free in the Graphics: WebRender component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2086296
+#
+CVE-2026-124907: Privilege escalation, sandbox escape due to use-after-free in the Graphics: CanvasWebGL component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2087324
+#
+CVE-2026-124908: Use-after-free in the CSS Parsing and Computation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2088651
+#
+CVE-2026-124909: Information disclosure in the Private Browsing component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 1730261
+#
+CVE-2026-124910: Mitigation bypass in the WebExtensions component
+Reporter
+Armin Ebert
+Impact
+moderate
+References
+Bug 1792485
+#
+CVE-2026-124912: Spoofing issue in the DOM: Security component
+Reporter
+LatticeBased
+Impact
+moderate
+References
+Bug 2025197
+#
+CVE-2026-124913: Site isolation issue in the Networking component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2045704
+#
+CVE-2026-124914: Site isolation issue in the DOM: Navigation component
+Reporter
+thegoldmandm
+Impact
+moderate
+References
+Bug 2056107
+#
+CVE-2026-124915: Incorrect boundary conditions in the Graphics: WebGPU component
+Reporter
+5up3rh3i
+Impact
+moderate
+References
+Bug 2056172
+#
+CVE-2026-124917: Sandbox escape due to use-after-free in the Widget: Gtk component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2058648
+#
+CVE-2026-124918: Privilege escalation due to incorrect boundary conditions in the Graphics: WebRender component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2058993
+#
+CVE-2026-124919: Privilege escalation due to use-after-free in the WebRTC: Networking component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2061331
+#
+CVE-2026-124920: Uninitialized memory in the Graphics: WebGPU component
+Reporter
+Samuel Erwin
+Impact
+moderate
+References
+Bug 2062097
+#
+CVE-2026-124921: Sandbox escape in the Graphics: WebGPU component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2073651
+#
+CVE-2026-124922: Use-after-free in the CSS Transitions and Animations component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2074190
+#
+CVE-2026-124923: Sandbox escape in the Agent component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2074806
+#
+CVE-2026-124924: Incorrect boundary conditions in the Graphics: WebRender component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2076710
+#
+CVE-2026-124925: Information disclosure in the Layout component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2077035
+#
+CVE-2026-124926: Incorrect boundary conditions in the WebRTC component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2077727
+#
+CVE-2026-124927: Site isolation issue in the Graphics: WebRender component
+Reporter
+fakegiraffe
+Impact
+moderate
+References
+Bug 2078669
+#
+CVE-2026-124928: Mitigation bypass in the SVG component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2080652
+#
+CVE-2026-124929: Information disclosure in the Layout: Form Controls component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2080889
+#
+CVE-2026-124930: Information disclosure in the Address Bar component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2082172
+#
+CVE-2026-124931: Same-origin policy bypass in the DOM: Core & HTML component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2083990
+#
+CVE-2026-124932: Use-after-free in the Graphics component
+Reporter
+Nguyen Tuan Hung
+Impact
+moderate
+References
+Bug 2084555
+#
+CVE-2026-124933: Sandbox escape in the Console component
+Reporter
+r0keb
+Impact
+moderate
+References
+Bug 2085424
+#
+CVE-2026-124934: Spoofing issue in the Security component
+Reporter
+Umar Farooq
+Impact
+low
+References
+Bug 1847625
+#
+CVE-2026-124935: Undefined behavior in the WebRTC: Networking component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2061793
+#
+CVE-2026-124936: Spoofing issue in the Address Bar component
+Reporter
+Zinnsoldat
+Impact
+low
+References
+Bug 2072573
+#
+CVE-2026-124938: Mitigation bypass in the Add-ons Manager component
+Reporter
+Nguyen Tuan Hung
+Impact
+low
+References
+Bug 2075948
+#
+CVE-2026-124939: JIT miscompilation in the JavaScript Engine: JIT component
+Reporter
+SecBuddyN, Tencent KeenLab (CodeBuddy Security)
+Impact
+low
+References
+Bug 2076663
+#
+CVE-2026-124940: Mitigation bypass in the File Handling component
+Reporter
+Takashi Suzuki
+Impact
+low
+References
+Bug 2076948
+#
+CVE-2026-124941: Information disclosure in the Security: RLBox component
+Reporter
+Shravan Narayan
+Impact
+low
+References
+Bug 2077405
+#
+CVE-2026-124942: Invalid pointer in the DOM: Streams component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2077728
+#
+CVE-2026-124943: Use-after-free in the Layout component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2078990
+#
+CVE-2026-124944: Information disclosure in the Marionette component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2079176
+#
+CVE-2026-124945: Invalid pointer in the Layout: Text and Fonts component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2080119
+#
+CVE-2026-124946: Invalid pointer in the JavaScript Engine: JIT component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2080789
+#
+CVE-2026-124947: Incorrect boundary conditions in the Graphics component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2081249
+#
+CVE-2026-124948: Incorrect boundary conditions, use-after-free in the Graphics component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2081960
+#
+CVE-2026-124949: Other issue in the SVG component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2082327
+#
+CVE-2026-124950: Same-origin policy bypass in the CSS Parsing and Computation component
+Reporter
+Takashi Suzuki
+Impact
+low
+References
+Bug 2083733
+#
+CVE-2026-124951: Privilege escalation in the Nimbus Desktop Client component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2085124
+
+===== https://linuxiac.com/mozilla-thunderbird-160-fixes-imap-email-deletion-and-exchange-issues/
+(status 200)
+The Thunderbird team has just released Thunderbird 160, the latest version of their open-source email client. This version includes fixes for several issues, including IMAP message deletion, disappearing folders, Exchange account configuration, and calendar problems.
+One of the key fixes addresses a bug in the IMAP retention settings that could have caused Thunderbird to delete newer messages rather than older ones. The update also fixes an issue where IMAP folders could disappear after an app restart when connecting to servers that use compression.
+Message management gets a number of fixes. The Undo command was previously unable to be used after emails had been deleted. Thunderbird 160 addresses that issue and also fixes a problem whereby folders would disappear from saved searches if they’d been renamed or moved. Plus, dragging multiple selected folders now moves all of them rather than just one.
+Mozilla Thunderbird 160
+The release also improves Microsoft Exchange and Microsoft 365 account configuration. Exchange autodiscovery now correctly deals with redirects to different email addresses, and Microsoft Graph account setup no longer fails for tenants that don’t have a SharePoint license.
+Additionally, Office 365 account setup no longer automatically includes the option to configure Exchange Web Services. The OAuth sign-in windows have also been updated to explain that blocked cookies may be the reason why you’re unable to authenticate.
+For CardDAV users, there were compatibility issues in Thunderbird 160 which resulted in contacts being saved in a format which some servers didn’t support. Contacts with multiline street addresses no longer appear blank, and photos in vCard 3.0 contacts should now display correctly in other applications.
+Message filtering also gets the nod. Previously, empty filter conditions could result in incorrect matches, and address book filters would occasionally fail to match a message where the address was missing. Both of those have now been fixed. The only new feature explicitly mentioned is the 
+Ctrl+A
+ shortcut for selecting all the filters in the Message Filters dialog.
+Calendar users will find fixes for CalDAV reminders that couldn’t be dismissed or snoozed, missing attendance options for some recurring events, and WebCal subscriptions that were incorrectly blocked. Thunderbird also fixes an issue where changing events could result in invalid ICS calendar files being overwritten.
+Finally fixes the crashes that would occur when opening a window or when updating a message database. Fixes incorrect parsing of certain POP3 and newsgroup messages and the freezes that would occur in new mail notification when certain sender addresses were involved. There are a number of news reader, feed reader, and interface enhancements, as well as a number of security fixes.
+For more details, 
+see the release notes
+. Thunderbird 160 is available for Linux, Windows, and macOS from the project website.
+Tell others:
+Share on X (Twitter)
+Share on Reddit
+Share on Facebook
+Share on Threads
+Share on Bluesky
+Share on Telegram
+Share on LinkedIn
+Share on Hacker News
+				Bobby Borisov			
+Bobby, an editor-in-chief at Linuxiac, is a Linux professional with over 20 years of experience. With a strong focus on Linux and open-source software, he has worked as a Senior Linux System Administrator, Software Developer, and DevOps Engineer for small and large multinational companies.
+Leave a Reply
+Cancel Reply

@@ -1,0 +1,1068 @@
+===== https://forest.watch.impress.co.jp/docs/news/2155410.html
+(status 200)
+ニュース
+Mozilla、「Firefox 160」を正式リリース ～便利な「ミニウィンドウ」をテスト投入
+ 99件の脆弱性を修正。ピクチャーインピクチャーで再生速度を変更、MKVの対応形式も拡充 
+樽井 秀人
+2026年11月11日 17:10
+「Firefox」v160.0
+窓の杜から
+ダウンロード
+ 　Mozillaは11月10日（米国時間）、デスクトップ向け「Firefox」の最新版v160.0をリリースチャネルで公開した。
+「Firefox 159」
+に続くメジャーバージョンアップとなる。 
+ 　本バージョンでは、ピクチャーインピクチャー（PiP）のプレーヤーに再生速度の設定が追加された。0.25倍から2.0倍の範囲で選べる。 
+ピクチャーインピクチャーのプレーヤーに再生速度の設定が追加された
+ 　ただし、設定が表示されるのはプレーヤーのウィンドウが中サイズ以上の場合のみ。 
+ 　また、タブやページの一部を、小さなウィンドウに切り離して常に最前面に表示できる「ミニウィンドウ」（Mini Window）がベータ版として導入された。Mozillaは「Mozilla Connect」でのフィードバックを求めている。 
+タブの右クリックメニューから［タブを移動］－［ミニウィンドウへ移動］を選択
+ページをミニウィンドウへ切り離し、ほかのウィンドウより手前に表示できる
+ 　そのほかの新機能・変更点は以下のとおり。多くの不具合修正も含まれている。 
+サイドバーの履歴項目をタブバーへドラッグして、新しいタブで開けるように
+コピーしたテキストがWebアドレスではなく検索語の場合、アドレスバーのコンテキストメニューに“Paste and Go”ではなく“Paste and Search”を表示
+PDFとして保存したページで、数式（MathML）がスクリーンリーダーなどの支援技術から利用できるように
+メール（mailto:）などのリンクの処理を繰り返し求めてくるWebサイトを、新しい“Never allow”ボタンでブロックできるように。ブロックしたサイトは設定画面で管理できる
+音声がFLAC、MP3、PCMのMatroska（MKV）ファイルを再生できるように
+macOSのWebGLコンテンツを、Appleのグラフィックス API「Metal」で描画するように。一部のサイトでパフォーマンスが向上する可能性がある
+「Smart Window」のタブ整理機能（Organize Tabs）がフランス語に対応（段階的に展開）
+ 　開発者向けの要素としては、「Web Speech API」の「SpeechRecognition」インターフェイスがサポートされた。40言語に対応した、デバイス上でのリアルタイム音声認識が可能。また、古い「::-webkit-input-placeholder」疑似要素が、「::placeholder」の別名としてサポートされた。 
+ セキュリティ関連の修正は、CVE番号ベースで99件 
+ 。深刻度の内訳はMozillaの基準で、4段階中2番目の「High」が57件、3番目の「Moderate」が24件、最低の「Low」が18件となっている。深刻度「Critical」の脆弱性修正は含まれていないが、できるだけ早いアップデートが望ましい。 
+ 　なお、同日付けで企業向けの延長サポート版「Firefox ESR」（153.7/115.45）でもセキュリティ修正が行われている。利用中の場合は更新を怠らないようにしたい。 
+ 　デスクトップ版「Firefox」はWindows/Mac/Linuxなどに対応する寄付歓迎のフリーソフトで、現在MozillaのWebサイトからダウンロード可能。Windows版はWindows 10/11に対応しており、窓の杜ライブラリからもダウンロードできる。 
+Amazonで購入
+「Firefox」関連商品
+Amazonで購入
+
+===== https://www.firefox.com/en-US/firefox/160.0/releasenotes/
+(status 200)
+160.0
+Firefox Release
+November 10, 2026
+Version 160.0, first offered to Release channel users on November 10, 2026
+                            New
+The 
+Picture-in-Picture
+ player now has a playback speed setting, with options ranging from 0.25x to 2.0x speed. The setting appears only when the player window is medium-sized or larger.
+Mini Window moves a tab or a selected part of a page into an always-on-top window while browsing. We’d appreciate feedback on 
+Mozilla Connect
+ as we develop and improve this early version of the feature.
+History entries can now be dragged from the sidebar to the tab strip to open them in new tabs.
+The address bar context menu now shows "Paste and Search" instead of "Paste and Go" when the copied text is a search term rather than a web address.
+Pages saved as PDF now make mathematical content (MathML) accessible to assistive technology such as screen readers.
+Websites that repeatedly ask to handle email (mailto:) and other links can now be blocked with a new “Never allow” button, and blocked sites can be managed in Settings.
+Firefox now plays Matroska (MKV) files with FLAC, MP3, or PCM audio.
+WebGL content on macOS is now rendered using Apple's Metal graphics API, which can improve performance on some sites.
+In 
+Smart Window
+, Organize Tabs is now available in French. Firefox can suggest groups of related open tabs and name each group in French.
+This feature is part of a progressive roll out.
+What is a progressive roll out?
+Certain new Firefox features are released gradually. This means some users will see the feature before everyone does. This approach helps to get early feedback to catch bugs and improve behavior quickly, meaning more Firefox users overall have a better experience.
+                            Fixed
+Fixed the first character typed into the address bar or search bar sometimes being lost when typing quickly right after clicking into it.
+Increased the contrast between the domain name and the rest of the address in the address bar, making it easier to see which website is open.
+Fixed Firefox freezing for several seconds when signing in to intranet sites that use NTLM or Kerberos (Negotiate) authentication.
+Fixed double-tapping or long-pressing a word to select it, and tapping to place the cursor, not working near the cursor in text fields.
+Fixed links opened in the background from other apps on macOS, such as RSS readers, bringing Firefox to the foreground.
+Fixed downloaded files on macOS sometimes opening in the wrong application instead of the default one set in Finder.
+Fixed simultaneous downloads on macOS never finishing when Firefox is set to ask where to save files. Only the first file showed a save dialog.
+Restored meaningful filenames and the usual save workflow for PDFs opened in Preview from the macOS print dialog.
+Various 
+security fixes
+.
+                            Enterprise
+For Firefox Enterprise updates and fixes, see the 
+Firefox Enterprise Release Notes
+. For policy changes, see the 
+Firefox admin docs changelog
+.
+                            Developer
+Developer Information
+                            Web Platform
+The 
+SpeechRecognition
+ interface of the 
+Web Speech API
+ is now supported, providing on-device, real-time speech-to-text in 40 languages.
+Firefox now supports the legacy 
+::-webkit-input-placeholder
+ pseudo-element as an alias of 
+::placeholder
+, to improve compatibility with websites that use it to style placeholder text.
+                            Community Contributions
+With the release of Firefox 160, we are pleased to welcome the developers who contributed their first code change to Firefox in this release, 22 of whom were brand new volunteers! Please join us in thanking each of these diligent and enthusiastic individuals, and take a look at their contributions:
+Ahmed ElGendy: 
+1327787
+, 
+2076777
+, 
+2076779
+Airat Makhmutov: 
+1321685
+Anton Bershanskyi: 
+2080310
+Austin Privatt: 
+2062135
+David Tamas: 
+1583480
+Davis Zeller-Pies: 
+2080307
+Felix Strüwe: 
+2081010
+Jack Boykin: 
+2083549
+James Bohan: 
+2071321
+kiasalehzadeh: 
+2077681
+Masanari Mizuno [:mznms]: 
+1662461
+Michał Fox: 
+1996443
+Mirko Kerezovic: 
+1297305
+, 
+2002578
+, 
+2078165
+, 
+2078343
+Mohd Kamran Tahir: 
+2078679
+, 
+2078719
+mozbugzilla.mushily885: 
+2082173
+python273 [:python273]: 
+1613369
+Rich Waters: 
+2052604
+Roberto Vidal [:_rvidal]: 
+1918990
+Seungmin Kim: 
+2083702
+Tin La: 
+2071323
+, 
+2071324
+Willem Kaufmann: 
+2079806
+Yohei Yamasaki: 
+2079286
+  Get the most recent version
+        Download Firefox
+        — English (US)
+Windows 64-bit
+Windows 64-bit MSI
+Windows ARM64/AArch64
+Windows 32-bit
+Windows 32-bit MSI
+macOS
+Linux 64-bit
+Linux ARM64/AArch64
+Android
+iOS
+Your system may not meet the requirements for Firefox, but you can try one of these versions:
+        Download Firefox
+        — English (US)
+Windows 64-bit
+Windows 64-bit MSI
+Windows ARM64/AArch64
+Windows 32-bit
+Windows 32-bit MSI
+macOS
+Linux 64-bit
+Linux ARM64/AArch64
+Android
+iOS
+Firefox is 
+no longer supported
+ on Windows 8.1 and below.
+Please download Firefox ESR (Extended Support Release) to use Firefox.
+        Download Firefox ESR 64-bit
+        Download Firefox ESR 32-bit
+        Download a different build
+Firefox is 
+no longer supported
+ on macOS 10.14 and below.
+Please download Firefox ESR (Extended Support Release) to use Firefox.
+      Download Firefox ESR
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                Download for Linux 64-bit
+                Download for Linux ARM64
+Firefox
+ for Android
+Firefox
+ for iOS
+      Firefox Privacy Notice
+
+===== https://news.mynavi.jp/article/20261111-5302018/
+(status 200)
+米Mozillaは11月10日(現地時間）、Firefoxの新バージョンとなる「Firefox 160」をリリースした。Firefox 160は、Firefox 159から2週間でのバージョンアップとなった。Firefox 159では、2026年11月3日にマイナーバージョンアップの159.0.1がリリースされている。主な修正点は変更とセキュリティアップデートである。
+今回は、159.0.1からのアップデートとなる。
+Firefox 160のインストール
+すでに自動アップデートが可能な状況になっているが、ここでは手動でアップデートする方法を説明したい。Firefoxメニューの［ヘルプと報告］→［Firefoxについて］を開くと更新が自動的に開始される。［再起動してFirefoxを更新］をクリックする（図1）。
+図1 Firefox 160へのアップデート
+アップデート後のFirefox 160は、図2のようになる。
+図2 バージョン160にアップデート直後のFirefox
+新規に、Firefox 160をインストールする場合、
+FirefoxのWebページ
+からインストーラをダウンロードする（図3）。
+図3 Firefoxのダウンロードページ
+［Firefoxをダウンロード］をクリックし、保存したファイルをダブルクリックして、インストールを開始する（図4）。
+図4 Firefox 160のインストール
+画面の指示に従い、インストールを進めてほしい。以下では、新機能のいくつかを具体的に見ていこう。
+Firefox 160の新機能
+では、Firefox 160の新機能を見ていこう。
+ピクチャーインピクチャーのプレーヤーに再生速度設定が追加され、0.25倍から2.0倍までの速度を選択できるように。
+この設定は、プレーヤーウィンドウが中サイズ以上の場合にのみ表示される
+図5 ピクチャーインピクチャーで再生速度設定が可能に
+この設定は、プレーヤーウィンドウが中サイズ以上の場合にのみ表示される。表示されない場合は、プレーヤーウィンドウを大きくしてみてほしい。
+ブラウジング中にタブやページ内の選択範囲を、常に最前面に表示されるウィンドウへと移動させることができる「ミニウィンドウ」機能。現在、この機能は初期バージョンであり、今後開発・改善を進めていく予定とのこと。実際に使うには、複数タブを表示した状態で、［タブを移動］→［ミニウィンドウへ移動］を選択する。
+図6 ［タブを移動］→［ミニウィンドウへ移動］
+選択したタブがミニウィンドウ化される。
+図7 ミニウィンドウ
+履歴項目をサイドバーからタブバーへドラッグして、新しいタブで開けるように
+アドレスバーのコンテキストメニューにおいて、コピーしたテキストがWebアドレスではなく検索キーワードである場合、「貼り付けて移動」の代わりに「貼り付けて検索」が表示されるように
+PDF形式で保存されたページでは、数式コンテンツ（MathML）が、スクリーンリーダーなどの支援技術から利用可能に
+メール（mailto:）やその他のリンクの処理を繰り返し求めてくるWebサイトを、新たに用意された「許可しない」ボタンでブロックできるようになりました。ブロックしたサイトは、「設定」から管理できます。
+FLAC、MP3、またはPCM形式の音声を含むMatroska（MKV）ファイルを再生可能に
+macOS：WebGLコンテンツは、AppleのグラフィックスAPI「Metal」を使用してレンダリングされるように。これにより、一部のサイトでパフォーマンスの向上が期待できる
+「スマートウィンドウ」機能の「タブを整理」が、フランス語に対応（段階的リリース：利用できない環境もある）
+続いて、修正点である。
+アドレスバーや検索バーをクリックした直後に入力し始めると、最初の一文字が消えてしまうことがある問題を修正
+アドレスバーにおいて、ドメイン名とアドレスのその他の部分とのコントラストを高め、現在どのWebサイトが開かれているのかを見分けやすく
+NTLMまたはKerberos（Negotiate）認証を使用するイントラネットサイトにサインインする際、Firefoxが数秒間フリーズしてしまう問題を修正
+テキスト入力欄において、カーソルの近くで単語をダブルタップまたは長押しして選択したり、タップしてカーソルを配置したりできない不具合を修正
+macOS：RSSリーダーなど、他のアプリからバックグラウンドで開かれたリンクが、Firefoxをフォアグラウンドに呼び出してしまう問題を修正
+macOS：ダウンロードしたファイルが、Finderで設定されたデフォルトのアプリケーションではなく、別のアプリケーションで開いてしまうことがある問題を修正
+macOS：Firefoxでファイルの保存先を毎回尋ねる設定にしている場合、複数のファイルを同時にダウンロードしようとするとダウンロードが完了しないままになる問題を修正
+macOSの：プリントダイアログから「プレビュー」で開いたPDFについて、意味のあるファイル名が付けられるようにし、通常の保存ワークフローが利用できるように戻した。
+セキュリティアップデート
+同時に行われたセキュリティアップデートであるが、4段階で上から2番目の「High」から4段階で上から3番目の「low」まで、100以上の修正が行われている。最近、セキュリティ問題が話題になることが多い。それに引きずられてか、Firefoxのセキュリティアップデートも非常に多い。すみやかにアップデートすべきであろう。
+
+===== https://www.mozilla.org/en-US/security/advisories/mfsa2026-125/
+(status 200)
+Security Vulnerabilities fixed in Firefox 160
+Announced
+November 10, 2026
+Impact
+high
+Products
+Firefox
+Fixed in
+Firefox 160
+#
+CVE-2026-124852: Incorrect boundary conditions in the Graphics: CanvasWebGL component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2001244
+#
+CVE-2026-124853: Sandbox escape due to incorrect boundary conditions in the Graphics: Text component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2058035
+#
+CVE-2026-124854: Privilege escalation in the DOM: Navigation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2060230
+#
+CVE-2026-124855: Sandbox escape in the DOM: Navigation component
+Reporter
+Tran Quac
+Impact
+high
+References
+Bug 2072096
+#
+CVE-2026-124856: Incorrect boundary conditions in the Networking: HTTP component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2072437
+#
+CVE-2026-124857: Use-after-free in the Graphics: Canvas2D component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2073695
+#
+CVE-2026-124858: Use-after-free in the DOM: HTML Parser component
+Reporter
+Amy Burnett of OpenAI
+Impact
+high
+References
+Bug 2074172
+#
+CVE-2026-124859: Sandbox escape due to incorrect boundary conditions in the Storage: Cache API component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074179
+#
+CVE-2026-124860: Use-after-free in the Audio/Video component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074194
+#
+CVE-2026-124861: Sandbox escape due to use-after-free in the Audio/Video: cubeb component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074210
+#
+CVE-2026-124862: Use-after-free in the DOM: Core & HTML component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2074220
+#
+CVE-2026-124863: Use-after-free in the DOM: HTML Parser component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2075975
+#
+CVE-2026-124864: Sandbox escape due to use-after-free in the DOM: Service Workers component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2075976
+#
+CVE-2026-124865: Use-after-free in the Audio/Video component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2076414
+#
+CVE-2026-124866: Use-after-free in the Layout component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2078993
+#
+CVE-2026-124867: Use-after-free in the DOM: Editor component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079050
+#
+CVE-2026-124868: Incorrect boundary conditions in the DOM: Core & HTML component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079169
+#
+CVE-2026-124869: Use-after-free in the DOM: Core & HTML component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079170
+#
+CVE-2026-124870: Incorrect boundary conditions in the JavaScript: GC component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079466
+#
+CVE-2026-124871: Use-after-free in the DOM: HTML Parser component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079678
+#
+CVE-2026-124872: Use-after-free in the Cycle Collector component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2079689
+#
+CVE-2026-124873: Invalid pointer in the DOM: Editor component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2079937
+#
+CVE-2026-124874: Same-origin policy bypass in the Networking: HTTP component
+Reporter
+Minseong Kim
+Impact
+high
+References
+Bug 2080420
+#
+CVE-2026-124875: Incorrect boundary conditions in the DOM: CSS Object Model component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2081380
+#
+CVE-2026-124876: Use-after-free in the CSS Parsing and Computation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2081550
+#
+CVE-2026-124877: Use-after-free in the Layout: Positioned component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081939
+#
+CVE-2026-124878: Use-after-free in the Layout: Positioned component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081940
+#
+CVE-2026-124879: Invalid pointer in the Networking: Cache component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081949
+#
+CVE-2026-124880: Use-after-free in the DOM: Core & HTML component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081966
+#
+CVE-2026-124881: Use-after-free in the CSS Parsing and Computation component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081980
+#
+CVE-2026-124882: Use-after-free in the CSS Parsing and Computation component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081982
+#
+CVE-2026-124883: Use-after-free in the DOM: Core & HTML component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081991
+#
+CVE-2026-124884: Use-after-free in the JavaScript: GC component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2081994
+#
+CVE-2026-124885: Use-after-free in the Graphics: Text component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082006
+#
+CVE-2026-124886: Invalid pointer in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082021
+#
+CVE-2026-124887: Incorrect boundary conditions in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082024
+#
+CVE-2026-124888: Incorrect boundary conditions in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082025
+#
+CVE-2026-124889: Use-after-free in the CSS Parsing and Computation component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082033
+#
+CVE-2026-124890: Use-after-free in the DOM: Core & HTML component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082039
+#
+CVE-2026-124891: Incorrect boundary conditions in the DOM: Selection component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082075
+#
+CVE-2026-124892: Use-after-free in the JavaScript: GC component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082083
+#
+CVE-2026-124893: Use-after-free in the DOM: Workers component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082097
+#
+CVE-2026-124894: Use-after-free in the Networking: Cookies component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082101
+#
+CVE-2026-124895: Use-after-free in the Storage: localStorage & sessionStorage component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082109
+#
+CVE-2026-124896: Invalid pointer in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082181
+#
+CVE-2026-124897: Use-after-free in the JavaScript: GC component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082186
+#
+CVE-2026-124898: Use-after-free in the DOM: Editor component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082205
+#
+CVE-2026-124899: Use-after-free in the Layout: Text and Fonts component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2082451
+#
+CVE-2026-124900: Sandbox escape due to use-after-free in the DOM: Service Workers component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2083116
+#
+CVE-2026-124901: Other issue in the Networking: JAR component
+Reporter
+dodoh4t
+Impact
+high
+References
+Bug 2083626
+#
+CVE-2026-124902: Same-origin policy bypass due to race condition in the Audio/Video component
+Reporter
+dodoh4t
+Impact
+high
+References
+Bug 2083629
+#
+CVE-2026-124903: Sandbox escape due to use-after-free in the IPC component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2084673
+#
+CVE-2026-124904: Use-after-free in the SVG component
+Reporter
+OpenAI Codex Security (kylebot)
+Impact
+high
+References
+Bug 2086062
+#
+CVE-2026-124905: Sandbox escape in the DOM: Navigation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2086254
+#
+CVE-2026-124906: Use-after-free in the Graphics: WebRender component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2086296
+#
+CVE-2026-124907: Privilege escalation, sandbox escape due to use-after-free in the Graphics: CanvasWebGL component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2087324
+#
+CVE-2026-124908: Use-after-free in the CSS Parsing and Computation component
+Reporter
+Mozilla
+Impact
+high
+References
+Bug 2088651
+#
+CVE-2026-124909: Information disclosure in the Private Browsing component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 1730261
+#
+CVE-2026-124910: Mitigation bypass in the WebExtensions component
+Reporter
+Armin Ebert
+Impact
+moderate
+References
+Bug 1792485
+#
+CVE-2026-124911: Clickjacking issue in the Autofill component in Firefox for Android
+Reporter
+Riccardo Lamarca
+Impact
+moderate
+References
+Bug 1991276
+#
+CVE-2026-124912: Spoofing issue in the DOM: Security component
+Reporter
+LatticeBased
+Impact
+moderate
+References
+Bug 2025197
+#
+CVE-2026-124913: Site isolation issue in the Networking component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2045704
+#
+CVE-2026-124914: Site isolation issue in the DOM: Navigation component
+Reporter
+thegoldmandm
+Impact
+moderate
+References
+Bug 2056107
+#
+CVE-2026-124915: Incorrect boundary conditions in the Graphics: WebGPU component
+Reporter
+5up3rh3i
+Impact
+moderate
+References
+Bug 2056172
+#
+CVE-2026-124917: Sandbox escape due to use-after-free in the Widget: Gtk component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2058648
+#
+CVE-2026-124918: Privilege escalation due to incorrect boundary conditions in the Graphics: WebRender component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2058993
+#
+CVE-2026-124919: Privilege escalation due to use-after-free in the WebRTC: Networking component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2061331
+#
+CVE-2026-124920: Uninitialized memory in the Graphics: WebGPU component
+Reporter
+Samuel Erwin
+Impact
+moderate
+References
+Bug 2062097
+#
+CVE-2026-124921: Sandbox escape in the Graphics: WebGPU component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2073651
+#
+CVE-2026-124922: Use-after-free in the CSS Transitions and Animations component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2074190
+#
+CVE-2026-124923: Sandbox escape in the Agent component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2074806
+#
+CVE-2026-124924: Incorrect boundary conditions in the Graphics: WebRender component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2076710
+#
+CVE-2026-124925: Information disclosure in the Layout component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2077035
+#
+CVE-2026-124926: Incorrect boundary conditions in the WebRTC component
+Reporter
+Mozilla
+Impact
+moderate
+References
+Bug 2077727
+#
+CVE-2026-124927: Site isolation issue in the Graphics: WebRender component
+Reporter
+fakegiraffe
+Impact
+moderate
+References
+Bug 2078669
+#
+CVE-2026-124928: Mitigation bypass in the SVG component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2080652
+#
+CVE-2026-124929: Information disclosure in the Layout: Form Controls component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2080889
+#
+CVE-2026-124930: Information disclosure in the Address Bar component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2082172
+#
+CVE-2026-124931: Same-origin policy bypass in the DOM: Core & HTML component
+Reporter
+Takashi Suzuki
+Impact
+moderate
+References
+Bug 2083990
+#
+CVE-2026-124932: Use-after-free in the Graphics component
+Reporter
+Nguyen Tuan Hung
+Impact
+moderate
+References
+Bug 2084555
+#
+CVE-2026-124933: Sandbox escape in the Console component
+Reporter
+r0keb
+Impact
+moderate
+References
+Bug 2085424
+#
+CVE-2026-124934: Spoofing issue in the Security component
+Reporter
+Umar Farooq
+Impact
+low
+References
+Bug 1847625
+#
+CVE-2026-124935: Undefined behavior in the WebRTC: Networking component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2061793
+#
+CVE-2026-124936: Spoofing issue in the Address Bar component
+Reporter
+Zinnsoldat
+Impact
+low
+References
+Bug 2072573
+#
+CVE-2026-124937: Other issue in the Media component in Firefox for Android
+Reporter
+atrlkwqr
+Impact
+low
+References
+Bug 2074123
+#
+CVE-2026-124938: Mitigation bypass in the Add-ons Manager component
+Reporter
+Nguyen Tuan Hung
+Impact
+low
+References
+Bug 2075948
+#
+CVE-2026-124939: JIT miscompilation in the JavaScript Engine: JIT component
+Reporter
+SecBuddyN, Tencent KeenLab (CodeBuddy Security)
+Impact
+low
+References
+Bug 2076663
+#
+CVE-2026-124940: Mitigation bypass in the File Handling component
+Reporter
+Takashi Suzuki
+Impact
+low
+References
+Bug 2076948
+#
+CVE-2026-124941: Information disclosure in the Security: RLBox component
+Reporter
+Shravan Narayan
+Impact
+low
+References
+Bug 2077405
+#
+CVE-2026-124942: Invalid pointer in the DOM: Streams component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2077728
+#
+CVE-2026-124943: Use-after-free in the Layout component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2078990
+#
+CVE-2026-124944: Information disclosure in the Marionette component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2079176
+#
+CVE-2026-124945: Invalid pointer in the Layout: Text and Fonts component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2080119
+#
+CVE-2026-124946: Invalid pointer in the JavaScript Engine: JIT component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2080789
+#
+CVE-2026-124947: Incorrect boundary conditions in the Graphics component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2081249
+#
+CVE-2026-124948: Incorrect boundary conditions, use-after-free in the Graphics component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2081960
+#
+CVE-2026-124949: Other issue in the SVG component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2082327
+#
+CVE-2026-124950: Same-origin policy bypass in the CSS Parsing and Computation component
+Reporter
+Takashi Suzuki
+Impact
+low
+References
+Bug 2083733
+#
+CVE-2026-124951: Privilege escalation in the Nimbus Desktop Client component
+Reporter
+Mozilla
+Impact
+low
+References
+Bug 2085124
+
+===== https://lwn.net/Articles/1106542/
+(status 200)
+Version
+160
+ of the Firefox web browser has been released. Notable features in this
+release include the ability to block sites from asking to handle
+"
+mailto:
+" links, ability to play Matroska files with FLAC, MP3, or PCM
+audio, playback speed controls in the 
+picture-in-picture
+video player, and a new 
+Mini
+Window feature
+ that is in early development.

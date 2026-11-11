@@ -1,0 +1,693 @@
+===== https://atmarkit.itmedia.co.jp/ait/articles/2611/11/news011.html
+(status 200)
+メディア
+連載一覧
+連載まとめ読み＠IT eBook
+記事ランキング
+＠IT Special
+セミナー
+ホワイトペーパー
+クラウド
+AI IoT
+アジャイル/DevOps
+セキュリティ
+キャリア&スキル
+Windows
+初・中級者向けAI
+その他
+Server & Storage
+HTML5 + UX
+Smart & Social
+Coding Edge
+Java Agile
+Database Expert
+Linux ＆ OSS
+Master of IP Network
+Security & Trust
+Test & Tools
+Insider.NET
+ブログ
+AIを作り動かし守り生かす
+ローコード/ノーコード
+クラウドネイティブ
+Microsoft&Windows
+その他の特集
+＠IT
+AI IoT
+Deep Insider
+NotebookLMに公式APIが登場　WebページやYouTube動画の取り込みを自動化でき、MCPでAIエージェントからも使える
+：
+Deep Insider Brief ― 技術の“今”にひと言コメント
+NotebookLM（現Gemini Notebook）に、個人アカウントで使える公式のREST APIとMCPサーバが公開プレビューとして登場した。今できること、まだできないこと、使う前の条件を整理し、筆者が手元で試した結果も添える。
+»
+2026年11月11日 05時00分 公開
+[
+一色政彦
+，
+デジタルアドバンテージ
+]
+この記事は会員限定です。
+会員登録（無料）
+すると全てご覧いただけます。
+連載目次
+　Gemini Notebook（2026年7月に「NotebookLM」から改名）は、資料や動画を放り込んで、要約や音声解説、動画解説を作らせる道具として広まった。ただ、個人向けの公式APIはなく、資料の取り込みは手作業だった。プログラムから使うには、Enterprise向けの有料APIか、Webブラウザを裏で操作する非公式ツールなどを利用する必要があった。
+　その状況が変わった。Googleは2026年10月末から11月初めにかけて、「Gemini Notebook API」の公式ドキュメントを公開した。このAPIは、個人向けのGemini Notebookをプログラムから操作するための公式のREST APIで、AIエージェントから呼び出すためのMCP（Model Context Protocol：AIが外部ツールを呼び出すための共通規格）サーバも併せて提供される。いずれも公開プレビュー（pre-GA：正式提供前の段階）で、今後の予定を示すロードマップも公開されている。
+Gemini Notebookへの資料の取り込みが、手作業からAPIやAIエージェント経由の自動化へ。要約や解説の生成は、これまで通りブラウザで行う（本記事オリジナル）
+　今できることは、ノートブックの作成、一覧、名前の変更と、ソース（資料）の追加だ。追加できるソースは、Webページ、YouTube動画、プレーンテキスト、Markdownテキストの4種類。取り込みは非同期で、追加を依頼した時点では完了しない。処理が終わって利用可能な状態（
+PROCESSING
+→
+ACTIVE
+）になったかどうかを、プログラム側から問い合わせて確認する。
+　一方、まだできないことも多い。ノートブックに質問して回答を得たり、要約を取り出したりすることはできない。音声解説や動画解説の生成、ノートブックやソースの削除、ファイルのアップロードも未対応で、Google Workspaceアカウントでは使えない。これらはいずれも、Googleのロードマップに「今後の対応予定」として挙げられている。
+　要するに、今のAPIで自動化できるのは「ソースを追加する」工程だけだ。追加したソースについて質問して回答を得る工程や、音声解説や動画解説などを作らせる工程は、従来通りブラウザから手動で行う必要がある。それでも、ソースの投入がプログラムから行えるようになったことで、Gemini Notebookを何らかのシステムの一部として組み込みやすくなった。実際にはどこまで使えるのか、筆者も手元で試してみた。
+――ここからは『Deep Insider Brief』恒例の“ひと言コメント”として筆者が試した結果と感想を述べた上で、Gemini Notebook APIでできること、できないこと、使う前の条件を整理していく。
+　Deep Insider編集長の一色です。こんにちは。
+　私はほぼ毎日、YouTube動画や議事録音声の内容を整理するのにGemini Notebookを使っています。今回は、個人で公開しているYouTube動画3本を、手元のコーディングエージェントからMCP経由でノートブックに追加してみました。
+　セットアップには、公式ドキュメント（本稿末尾の情報元を参照）にある「コーディングエージェントに渡すプロンプト」を使いました。これをCodexに渡すと、Google Cloudプロジェクトの選択、APIの有効化、個人アカウントでの認証、MCPサーバの登録まで進めてくれました。特に詰まることもなく、新しいチャットを開くと、7つのツールが使える状態になっていました。
+　取り込みは速く、YouTube動画3本は、それぞれ4〜6秒で利用可能な状態（
+ACTIVE
+）になりました。Webページは約9秒、Markdownのテキストは約6秒です。ブラウザで確認すると、動画にはタイトル、サムネイル、文字起こしが付き、手動で追加したときと同じように表示されていました。そのノートブックから音声解説も通常通り作れました（完成まで8分半ほど）。
+　できないことも試しました。ソースとノートブックの削除は「
+501 UNIMPLEMENTED
+（未実装）」で拒否され、GoogleドライブのURLを渡すと「DriveとDocsのURLはソースとして対応していない」というエラーになりました。ノートブックに質問して回答を得る機能や、要約を取り出す機能は、ツール一覧にもREST APIにもありません。なお、削除はブラウザからなら通常通り行えます。
+　今回のAPIは、Gemini Notebookを業務システムやAIシステムの一部として使いたいときに、特に役立つと感じました。例えば、会議の音声を自動で録音し、Gemini Notebookで詳しい議事録にまとめ、その内容を社内Wikiに登録したり、別のAIに渡して次の作業に使ったりする流れです。
+　こうした流れは、ブラウザを操作するAIエージェント（ブラウザユースやコンピュータユース）を使えば、現状でも実現できると思います。ただ、画面上の操作をAIに任せる方法では、画面の構成やAIの判断によって、処理がうまく進まないことがあります。APIなら、あらかじめ決めた操作を直接呼び出せるため、処理の効率や確実性を高めやすくなります。AIに任せる操作の範囲も絞りやすくなるので、安全性の向上も期待できます。
+　今回、まずは資料を取り込む部分をAPIで実行できるようになりました。内容をまとめ直したり、解説を生成したり、その結果を取り出したりする操作には、まだ対応していません。こうした生成や結果の取得までAPIでつなげられれば、一連の作業をより安定して自動化できるはずです。そこまでAPIの対応範囲が広がることを期待しています。
+　それでは、Gemini Notebook APIの中身を順に整理していく。
+できること
+ノートブック：
+ 作成、一覧、取得、名前の変更
+ソースの追加：
+ Webページ（URL）、YouTube動画（URL）、プレーンテキスト、Markdownテキストの4種類
+取り込みの確認：
+ ソースの状態は
+PROCESSING
+、
+ACTIVE
+、
+FAILED
+の3つ。追加後にポーリング（繰り返し問い合わせ）して完了を待つ
+認証：
+ OAuth 2.0を使う。アクセス権限の範囲を示す「スコープ」として、このAPI専用の
+https://www.googleapis.com/auth/notebook
+を指定してログインする必要がある。
+gcloud
+で普通にログインして得たトークンにはこのスコープが含まれないため、そのままでは呼び出せない
+サンプル：
+ PythonとJavaScriptのコード例に加え、
+curl
+コマンドでREST APIを直接呼び出す例が公式ドキュメントにある
+　細かい点として、YouTubeの短縮URL（youtu.be）で渡しても、APIが返す元URLは
+www.youtube.com/watch?v=
+の形式に正規化されていた。
+MCPサーバ： AIエージェントから直接使える
+エンドポイント：
+https://notebook.googleapis.com/mcp
+。Streamable HTTP（JSON-RPC 2.0）
+ツール：
+ REST APIの各メソッドに対応する7つ（
+create_notebook
+、
+get_notebook
+、
+list_notebooks
+、
+update_notebook
+、
+create_source
+、
+get_source
+、
+list_sources
+）
+認証：
+ HTTPヘッダーで2つの値を送る。
+Authorization
+ヘッダーにOAuth 2.0のアクセストークンを「
+Bearer <トークン>
+」の形で付け、
+x-goog-user-project
+ヘッダーにGoogle CloudプロジェクトのIDを付ける。トークンは1時間で失効するので、再発行して設定し直す必要がある
+セットアップ：
+ 公式ドキュメントに「コーディングエージェントに渡すプロンプト」がある。渡すと、プロジェクトの選択、APIの有効化、スコープ付きの認証、MCPサーバの登録、接続確認まで代行する
+　MCPに対応したコーディングエージェントやIDEなら、「このURLをあのノートブックに入れて」と頼むだけで済む。
+まだできないこと、使うための条件
+　公開プレビューの現時点では、次のことはできない。いずれもGoogleのロードマップに今後の対応予定として挙げられている。
+Google Workspaceアカウントでの利用（現在はHTTPステータス
+403 Forbidden
+、つまり「権限なし」として拒否される）。そのため、会社のアカウントで管理している業務のノートブックには今は使えず、個人のGoogleアカウントで試す形になる
+バイナリファイル（PDFなど）のアップロード
+ノートブックとソースの削除（現在はHTTPステータス
+501 Not Implemented
+、つまり「未実装」として拒否される）。削除はブラウザからは普通にできる
+GoogleドライブとGoogleドキュメントのURLをソースとして追加（現在は「対応していない」というエラーになる）
+ノートブックからの情報取得（質問、要約）
+成果物の生成（音声解説、動画解説など）
+　ロードマップは、この6項目を箇条書きにしただけの短いもので、対応の順番や時期は書かれていない。Googleは末尾に「このロードマップは情報提供を目的としたもので、変更される可能性がある」と注記しており、約束ではなく予定として読む必要がある。
+　使うための条件も幾つかある。使うアカウントで事前に一度「notebook.google.com」にサインインしておくこと（未サインインだとHTTPステータス
+404 Not Found
+になる）、Google Cloudプロジェクトとgcloud CLIを用意すること、レート制限とソース当たりの語数制限があること。また公開プレビュー（pre-GA）なので、サポートは限定的で、互換性のない変更があり得る。
+読むときの注意点
+正式な発表記事は見当たらず、ドキュメントの公開で判明した。公開日はドキュメントの更新日（10月29日〜11月2日）からの推定
+Enterprise向けの「Gemini Notebook Enterprise API」とは別物。そちらは有料ライセンスが前提で、音声解説の生成にも対応している
+非公式のMCPサーバやCLIは、ブラウザを裏で操作する方式で、利用規約上の位置づけが不明確だった。公式APIが出たことで、使い分けも変わる
+筆者の計測時間はクライアント側の観測値で、ツール呼び出しの間隔や通信時間を含む
+まとめ
+　Gemini Notebookは、資料を入れてから、それをもとに質問したり解説を作らせたりする道具だ。今回のAPIで、その「入れる」部分をプログラムから行えるようになった。取り出しと生成までAPIに加われば、Gemini Notebookは人がブラウザで開く道具から、他のシステムやAIエージェントが組み込んで使う部品へと変わる。今回の公開は、そのための最初のステップと言える。
+情報元
+Gemini Notebook API公式ドキュメント：概要
+Gemini Notebook API公式ドキュメント：クイックスタート
+Gemini Notebook API公式ドキュメント：Model Context Protocol（MCP）
+Gemini Notebook API公式ドキュメント：ロードマップ
+Gemini Notebook API公式ドキュメント：REST APIリファレンス
+「
+Deep Insider Brief ― 技術の“今”にひと言コメント
+」
+AIで、仕事をもっと楽にしよう
+導入する・自動化する・分析する・作る ― AI活用を始めよう
+　＠ITのDeep Insiderで
+Copyright© Digital Advantage Corp. All Rights Reserved.
+Special
+PR
+アイティメディアからのお知らせ
+キャリア採用の応募を受け付けています
+スポンサーからのお知らせ
+PR
+Special
+PR
+＠IT eBook
+AIに「絶対するな」は通じない、Anthropicが明かすClaude Code使いこなし術まとめ
+ 5大コーディングエージェントを検証　バイブコーディング時代のリスクと対策
+ “応用情報が消える”って本当？　「生成AIパスポート」って何？　IT資格の今を読む
+「光ファイバーはもう古い」「2035年宇宙の旅」　実運用へ向かうデータセンター新技術
+» 
+一覧ページへ
+注目のテーマ
+システム開発ノウハウ 【発注ナビ】
+PR
+編集部からのお知らせ
+ロケスタ長谷川秀樹氏登壇！【視聴無料／視聴条件を満たした方にAmazonギフト券進呈!】
+“AIで揺らぐ統制”への対処法を知る【登録無料／視聴条件を満たした方にAmazonギフト券進呈】
+あなたにおすすめの記事
+PR
+@ITについて
+お問い合わせ
+広告について
+採用広告について
+利用規約
+著作権・リンク・免責事項
+サイトマップ
+RSSについて
+＠ITのRSS一覧
+アイティメディアIDについて
+アイティメディアIDとは
+メールマガジン登録
+＠ITのメールマガジンは、 もちろん、すべて無料です。ぜひメールマガジンをご購読ください。
+申し込みページへ
+ITmediaはアイティメディア株式会社の登録商標です。
+メディア一覧
+ | 
+公式SNS
+ | 
+広告案内
+ | 
+お問い合わせ
+ | 
+プライバシーポリシー
+ | 
+RSS
+ | 
+運営会社
+ | 
+採用情報
+ | 
+推奨環境
+
+===== https://developers.google.com/notebook/docs
+(status 200)
+Public Preview:
+ The Gemini Notebook API is in Public Preview (pre-GA). Pre-GA products and features might have limited support, and changes to pre-GA products and features might not be compatible with other pre-GA versions. Feedback is welcome. Please 
+file an issue in the Issue Tracker
+.
+          Home
+          Products
+          Gemini Notebook API
+    Send feedback
+      Gemini Notebook API
+      Stay organized with collections
+      Save and categorize content based on your preferences.
+The Gemini Notebook API is a REST interface for programmatically creating and
+managing notebooks and sources in Gemini Notebook. Ingest web pages, YouTube
+videos, plain text, and Markdown into persistent notebooks.
+    Start building
+Just want to get started? Go to the
+Quickstart
+, copy the setup prompt,
+    and give it to your coding agent.
+Python
+import
+requests
+API
+=
+"https://notebook.googleapis.com/v1"
+headers
+=
+{
+"Authorization"
+:
+f
+"Bearer 
+{
+ACCESS_TOKEN
+}
+"
+,
+"x-goog-user-project"
+:
+PROJECT_ID
+,
+"Content-Type"
+:
+"application/json"
+,
+}
+# 1. Create a notebook
+nb
+=
+requests
+.
+post
+(
+f
+"
+{
+API
+}
+/notebooks"
+,
+headers
+=
+headers
+,
+json
+=
+{
+"display_name"
+:
+"My Research"
+})
+.
+json
+()
+# 2. Add a source
+requests
+.
+post
+(
+f
+"
+{
+API
+}
+/
+{
+nb
+[
+'name'
+]
+}
+/sources"
+,
+headers
+=
+headers
+,
+json
+=
+{
+"display_name"
+:
+"Gemini API Guide"
+,
+"web_content"
+:
+{
+"url"
+:
+"https://ai.google.dev/gemini-api/docs"
+}
+})
+JavaScript
+const
+API
+=
+"https://notebook.googleapis.com/v1"
+;
+const
+headers
+=
+{
+"Authorization"
+:
+`Bearer 
+${
+ACCESS_TOKEN
+}
+`
+,
+"x-goog-user-project"
+:
+PROJECT_ID
+,
+"Content-Type"
+:
+"application/json"
+};
+// 1. Create a notebook
+const
+nb
+=
+await
+(
+await
+fetch
+(
+`
+${
+API
+}
+/notebooks`
+,
+{
+method
+:
+"POST"
+,
+headers
+,
+body
+:
+JSON
+.
+stringify
+({
+display_name
+:
+"My Research"
+})
+})).
+json
+();
+// 2. Add a source
+await
+fetch
+(
+`
+${
+API
+}
+/
+${
+nb
+.
+name
+}
+/sources`
+,
+{
+method
+:
+"POST"
+,
+headers
+,
+body
+:
+JSON
+.
+stringify
+({
+display_name
+:
+"Gemini API Guide"
+,
+web_content
+:
+{
+url
+:
+"https://ai.google.dev/gemini-api/docs"
+}
+})
+});
+REST
+# 1. Create a notebook
+NOTEBOOK
+=
+$(
+curl
+-s
+-X
+POST
+"https://notebook.googleapis.com/v1/notebooks"
+\
+-H
+"Authorization: Bearer 
+$ACCESS_TOKEN
+"
+\
+-H
+"x-goog-user-project: 
+$PROJECT_ID
+"
+\
+-H
+"Content-Type: application/json"
+\
+-d
+'{"display_name": "My Research"}'
+)
+NOTEBOOK_NAME
+=
+$(
+echo
+"
+$NOTEBOOK
+"
+|
+python3
+-c
+"import sys, json; print(json.load(sys.stdin)['name'])"
+)
+# 2. Add a source
+curl
+-s
+-X
+POST
+"https://notebook.googleapis.com/v1/
+${
+NOTEBOOK_NAME
+}
+/sources"
+\
+-H
+"Authorization: Bearer 
+$ACCESS_TOKEN
+"
+\
+-H
+"x-goog-user-project: 
+$PROJECT_ID
+"
+\
+-H
+"Content-Type: application/json"
+\
+-d
+'{
+    "display_name": "Gemini API Guide",
+    "web_content": {"url": "https://ai.google.dev/gemini-api/docs"}
+  }'
+Guides and resources
+REST API reference
+inventory_2
+      Notebooks
+Create, list, and update notebooks.
+web
+      Sources
+Add web pages, YouTube videos, plain text, or Markdown to a notebook.
+hub
+      Model Context Protocol (MCP)
+Connect AI coding agents and IDEs to the remote Gemini Notebook MCP server.
+key
+      Authentication
+Configure OAuth 2.0 access tokens and scopes for API requests.
+speed
+      Rate limits and quotas
+Review request rate limits, per-source word limits, and tier capacity.
+map
+      Roadmap
+See items on the Gemini Notebook API roadmap.
+Feedback
+We'd love to hear what you want the Gemini Notebook API and
+MCP server
+ to do. See our
+roadmap
+ for upcoming capabilities, and
+file feature requests or bug reports in our Issue Tracker
+.
+
+===== https://aiagent-navi.com/news/gemini-notebook-api-mcp-release/
+(status 200)
+画像：AIエージェントナビ編集部
+資料を読み込ませて調べものをするGoogleのAIツール「Gemini Notebook」（7月にNotebookLMから改称）を、AIエージェントから直接使いたいという声は多くありました。Googleは、Gemini Notebookをプログラムから操作できるAPIと、AIエージェントをつなぐ公式のMCPサーバーを、正式提供前の試験版（Public Preview）として開発者向けに公開しました。
+本記事では、今の試験版でできること・まだできないこと、使うための条件を解説します。
+Gemini Notebook APIでできること
+Gemini Notebook APIは、ノートブック（資料をまとめる単位）と、そこに入れる資料（ソース）をプログラムから作成・管理するための仕組みです。資料として追加できるのは、公開されているWebページ、YouTube動画、貼り付けたテキスト、Markdown形式の文章の4種類です。
+APIとMCPサーバーで使える操作は、次の7つです。
+ノートブックの作成・取得・一覧表示・名前などの更新
+資料（ソース）の追加・取得・一覧表示
+資料の取り込みは時間差で進むため、追加したあとに状態を確かめ、「ACTIVE（使える状態）」になるのを待つ流れになります。
+公式MCPサーバーでAIエージェントから操作
+MCP（Model Context Protocol）は、AIエージェントと外部のツールをつなぐための共通の決まりごとです。Googleは公式のMCPサーバーを用意しており、Claude CodeやCursorなどのAIエージェントに登録すると、会話の中からノートブックを作ったり資料を追加したりできます。
+設定の指示文も公式に用意
+Googleの説明ページには、Claude CodeやCursorに貼り付けると、Google Cloudの準備からログイン、MCPサーバーの登録までを進めさせる指示文が載っています。Claude Codeの場合は、コマンド1行でMCPサーバーを登録する方法も示されています。ただし、ログインで発行される鍵（アクセストークン）は1時間で切れるため、切れたら取り直す必要があります。
+まだできないことと利用の条件
+今の試験版では、ノートブックに質問して答えを受け取ることはできません。AIエージェントからGemini Notebookの要約や回答を引き出す使い方はまだできず、資料をそろえる作業までが対象です。
+質問やPDFの追加は「今後の予定」
+Googleが公開している予定表（ロードマップ）には、ノートブックからの情報の取り出し、成果物の生成、PDFなどのファイルのアップロード、ノートブックや資料の削除、Googleドライブの資料の追加、Google Workspaceアカウントへの対応が並んでいます。予定表は変わる可能性があると明記されており、時期も示されていません。
+個人のGoogleアカウントだけが対象
+試験期間中に使えるのは個人のGoogleアカウントだけで、Google Workspaceのアカウントでは使えません。また、使う前にそのアカウントでGemini Notebookに一度ログインしておく必要があり、Google Cloudのプロジェクトも必要です。説明ページによると、Workspaceのアカウントで呼び出すと「403」の拒否エラー、一度もログインしていないアカウントではノートブックの作成が「404」エラーで失敗します。
+まとめ
+GoogleがGemini Notebook（旧NotebookLM）のAPIとMCPサーバーを試験版として公開。
+ノートブックの作成・管理と、Webページ・YouTube動画・テキスト・Markdownの資料追加ができる。
+ノートブックへの質問、PDFの追加、削除はまだできず、予定表に載っている段階。
+使えるのは個人のGoogleアカウントだけで、Google Workspaceのアカウントは対象外。
+💡 編集部の見解
+当メディアが1月に紹介したNotebookLMとAIエージェントをつなぐ方法は、非公式の道具が頼りでした。今回はGoogle公式の接続口ができましたが、できるのは資料を集める作業までで、ノートへの質問はまだできません。
+非公式の道具との違い
+：1月の記事で紹介した非公式の道具は、ブラウザのログイン情報を使い、2〜4週間ごとに切れるものでした。公式版はGoogle Cloudの正式なログインで動き、Googleの説明ページに設定手順も載っています。
+会社のアカウントでは拒否される
+：試験期間中は、会社や学校で配られるGoogleアカウントで呼び出すと「403」の拒否エラーが返ります。普段は会社のアカウントで使っている人は、個人のアカウントで試すことになります。
+関連記事：
+NotebookLMのMCPサーバー設定｜非公式CLIの導入と注意点
+出典：
+Google（2026年11月）
+／
+Google（2026年11月）
+／
+Google（2026年11月）
+ニュースカテゴリー
+海外ニュース
+
+===== https://data-litmus.com/articles/ai/2026-11-11-gemini-notebook-api-mcp/
+(status 200)
+この記事には Amazon アソシエイトのリンクを含みます。
+気になったWebページやYouTube動画を見つけるたびに、ブラウザでGemini Notebookを開いてURLを貼り付ける。この作業を、ふだん使っているAIエージェントに任せられたらと思ったことがあるなら、答えが出た。Googleが、Gemini Notebookを外部から操作するための公式APIとMCPサーバーを公開した。Claude CodeやCursorのようなコーディングエージェントから、ノートブックの作成やWebページ・YouTube動画の取り込みを直接呼び出せるようになる。どこまで自動化でき、何が必要になるのか。公式ドキュメントを順に確かめた。
+公式APIとMCPサーバーが登場
+Gemini Notebookは2026年7月、NotebookLMから名前を変えたAIノートサービスだ(
+Impress Watch
+)。手元の資料を読み込ませて質問できるこのサービスに、外部のプログラムやAIエージェントから直接アクセスできる窓口が加わった。
+この窓口は、REST APIという形と、AIエージェントが外部のサービスを呼び出すときに使う共通の規格でも提供されている。後者はMCP(Model Context Protocol)と呼ばれる。Claude CodeやCursorが外部のアプリを操作するときの橋渡し役になる(
+developers.google.com/notebook/docs
+)。どちらも「early access Public Preview」、つまり正式提供前の早期プレビュー段階にある。
+できることは、ノートブックの作成・一覧表示・名前の変更と、そこへの資料(ソース)の追加だ。追加できるソースは、WebページのURL、YouTube動画のURL、貼り付けたテキスト、Markdownの4種類になる(
+クイックスタート
+)。追加したソースは裏側で非同期に処理され、状態は「処理中(PROCESSING)」から「利用可能(ACTIVE)」、または「失敗(FAILED)」に変わる。
+個人アカウントでの認証が必要
+試しに、ふだんの
+gcloud auth print-access-token
+で取れるアクセストークンをそのままAPIに渡すと、エラーで弾かれる。公式ドキュメントが前提条件として挙げる手順を踏んでいないと、こうなる。
+Gemini Notebook APIを呼ぶには、通常のGoogleログインとは別の手続きが要る。OAuth 2.0で
+cloud-platform
+と
+notebook
+という2つのスコープを指定し、あらためてログインし直す必要がある(
+クイックスタート
+)。さらに、使うアカウントで一度はブラウザから
+notebook.google.com
+へサインインしておく必要もある。これを済ませていないと、ノートブックの作成が「アカウントが見つからない」という404エラーになる。
+この2段階さえ踏めば、有効期間1時間のアクセストークンでAPIを呼び出せるようになる。てっきりAPIキーを1つ発行するだけで済むと思っていたが、実際に必要だったのはOAuthのスコープ指定とブラウザでの事前サインインという二重の手続きだった。
+この記事が当てはまるのは個人のGoogleアカウントの利用者だ。Google Workspaceアカウントは、現時点のプレビューでは
+403 PERMISSION_DENIED
+で拒否され、使えない(
+クイックスタート
+)。あわせて、Google Cloudのプロジェクトで
+notebook.googleapis.com
+を有効にしておく必要もある。
+AIエージェントから呼び出す
+ここまでの手順を踏めば、Claude CodeやCursorのようなMCP対応のコーディングエージェントから、Gemini Notebookを直接操作できる。MCPサーバーのエンドポイントは
+https://notebook.googleapis.com/mcp
+で、用意されているツールは7つだ(
+MCPのページ
+)。
+ツール
+できること
+create_notebook
+ノートブックを新規作成する
+get_notebook
+ / 
+list_notebooks
+ノートブックの情報を取得・一覧表示する
+update_notebook
+ノートブックの表示名を変える
+create_source
+Webページ・YouTube動画・テキスト・Markdownを取り込む
+get_source
+ / 
+list_sources
+ソースの処理状態を確認する
+この表が示すのは、ノートブックの出し入れを一通りエージェントに任せられる範囲の広さだ。Claude Codeの場合、設定はコマンド1行で済む。
+claude
+ mcp
+ add
+ gemini-notebook-api
+ \
+  --transport
+ http
+ https://notebook.googleapis.com/mcp
+ \
+  --header
+ "Authorization: Bearer 
+$ACCESS_TOKEN
+"
+ \
+  --header
+ "x-goog-user-project: 
+$PROJECT_ID
+"
+これを一度実行すれば、以後は「このページをGemini Notebookに追加して」と指示するだけでよい。URLの貼り付けから取り込み状況の確認まで、エージェントが代わりにこなす。Cursorも、設定ファイル
+.cursor/mcp.json
+に同じURLとヘッダーを書くだけで同様に使える(
+MCPのページ
+)。
+まだ質問には答えられない
+今の時点でできないことも、はっきりしている。ノートブックに追加した資料について、質問して回答を得る機能はAPIにまだない。できるのは資料を投入するところまでで、実際に読んで答えさせる作業は、今のところGemini Notebookの画面を開いて自分で行うことになる。
+ほかにも、次はいずれもロードマップに挙がっているだけで、具体的な対応時期は示されていない(
+ロードマップ
+)。
+ソース・ノートブックの削除
+PDFなどバイナリファイルのアップロード
+Google DriveやGoogleドキュメントのURLをソースにすること
+音声概要などの生成物の作成
+早期プレビューという位置づけどおり、できることはこれから広がっていく段階にある。
+まとめ
+Googleは、Gemini Notebook(旧NotebookLM)を外部から操作できる公式API・MCPサーバーを公開した。対象は、今のところ個人のGoogleアカウントに限られる。
+Claude CodeやCursorなどのAIエージェントから、ノートブックの作成を直接呼び出せるようになった。Webページ・YouTube動画・テキストの取り込みも同様だ。これで、資料集めの手作業を減らせる。
+使うにはOAuthの2つのスコープとブラウザでの事前サインインが必要で、対象は今のところ個人アカウントに限られる。ノートブックへの質問応答や削除までは対応していないが、取り込みの自動化という最初の窓口はもう使える。
+この記事を共有
+Xで共有
+リンクをコピー
+MCPサーバーの仕組みをもっと学べる本
+本文で扱った、AIエージェントが外部サービスを操作する共通の仕組み(Model Context Protocol)についてさらに追いたい読者向け
+Amazonで探す
+特定の本を勧めるものではありません。検索結果から、いまの版と目次を確かめて選んでください。
+コメント
+気づきや感想をどうぞ
+記事への補足や、読んで考えたことをお寄せください。個人情報や、他の人を傷つける内容の投稿はお控えください。
+投稿にはGoogleログインが必要です。
+Googleでログイン
+投稿にはGoogleアカウントの表示名が公開されます。メールアドレスは取得・公開しません。
+コメントを読み込んでいます…
+もう一度読み込む
+以前のコメントを表示
