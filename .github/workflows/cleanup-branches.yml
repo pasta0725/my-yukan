@@ -1,0 +1,21 @@
+name: cleanup-branches
+# Deletes work branches that were used up (user's rule: work branches are removed after their contents are taken out;
+# the workflows make them again when needed). Never touches main, metrics, upload-tmp or the data branches in "keep".
+on:
+  workflow_dispatch:
+    inputs:
+      branches: {description: "branches to delete, space separated", default: "generated fetched"}
+permissions:
+  contents: write
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env: { B: "${{ inputs.branches }}" }
+        run: |
+          keep=" main metrics upload-tmp "
+          for b in $B; do
+            case "$keep" in *" $b "*) echo "keep $b"; continue;; esac
+            if git ls-remote --exit-code --heads origin "$b" >/dev/null; then git push -q origin --delete "$b" && echo "deleted $b"; else echo "no $b"; fi
+          done

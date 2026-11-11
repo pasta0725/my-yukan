@@ -63,3 +63,5 @@ jobs:
             for i in 1 2 3 4 5; do git push -q origin upload-tmp && break; sleep $((i*10)); git pull --rebase -q origin upload-tmp; done
           fi
           echo "done: video=${VIDEO_OK:-0} assets=${ASSETS_OK:-0}" | tee -a "$GITHUB_STEP_SUMMARY"
+          # the day's talking clips and fetched pages are used up once the video is published (user 2026-11-12: remove them)
+          if [ "$VIDEO_OK" = 1 ]; then for b in generated fetched; do git push -q origin --delete "$b" 2>/dev/null && echo "deleted branch $b"; done; fi
