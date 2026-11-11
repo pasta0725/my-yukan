@@ -217,8 +217,8 @@ const S={
  bench(u,d,L){bg(u);mini(u);const t1=telHas(L,'1位');
    mixLine([['コーディング',C.text],['のテスト',C.text]],CX,385,62);
    withEnter(enter(u,0),()=>{card(150,450,780,140,30,C.card2);text('CursorBench 4.0',CX,520,52,'#FFFFFF');});
-   const rows=[['Gemini 4 Carbon',true],['ほかのモデル',false],['ほかのモデル',false]];
-   rows.forEach(([lab,hi],i)=>withEnter(enter(u,0.15+0.1*i),()=>{const y=615+i*140;card(150,y,780,120,26,hi?C.buyFill:C.card);text((i+1)+'',210,y+60,52,hi?C.buyInk:C.sub);text(lab,270,y+60,46,hi?C.buyInk:C.sub,'left');}));
+   const rows=[['1','Gemini 4 Carbon',true],['','比較したモデル',false]];
+   rows.forEach(([n,lab,hi],i)=>withEnter(enter(u,0.15+0.1*i),()=>{const y=615+i*170;card(150,y,780,150,26,hi?C.buyFill:C.card);if(n)text(n,210,y+75,56,C.buyInk);text(lab,270,y+75,48,hi?C.buyInk:C.sub,'left');}));
    if(u>t1)stamp('1位',840,675,(u-t1)/0.35,C.brand,52,0.08);
    withEnter(enter(u,0.3),()=>{text('※Googleの発表',170,1050,30,C.sub,'left',700);});},
  // app: consumers get it in the Gemini app and AI Mode in Search, rolling out
@@ -236,12 +236,12 @@ const S={
  pro(u,d,L){bg(u);mini(u);
    mixLine([['対象外',C.warn]],CX,385,64);
    withEnter(enter(u,0),()=>{pic('upgrade',150,450,780,470,1.0,0.5,0.3);creditAt(CRI,915,895);});
-   const box=(x,lab,ok,t0)=>withEnter(enter(u,t0),()=>{card(x,945,250,215,30,ok?C.buyFill:C.card);check(x+125,1005,36,ok);text(lab,x+125,1105,44,ok?C.buyInk:C.text);});
-   box(150,'Ultra',true,0.15);box(415,'Pro',false,0.3);box(680,'無料版',false,0.45);},
+   const box=(x,lab,ok,t0)=>withEnter(enter(u,t0),()=>{card(x,945,250,215,30,ok?C.buyFill:C.card);check(x+125,1005,36,ok);text(lab,x+125,1105,lab.length>4?38:44,ok?C.buyInk:C.text);});
+   box(150,'Ultra',true,0.15);box(415,'Pro・Plus',false,0.3);box(680,'無料版',false,0.45);},
  // api: developer API until Nov 30: $2 input / $10 output per 1M tokens
  api(u,d,L){bg(u);mini(u);
    mixLine([['開発者向けAPI',C.brand]],CX,385,62);
-   withEnter(enter(u,0),()=>{card(150,450,780,200,30,C.card2);text('11月30日まで',CX,515,52,C.acc);text('100万トークンあたり',CX,590,40,'#CDD8EC','center',800);});
+   withEnter(enter(u,0),()=>{card(150,450,780,200,30,C.card2);text('11月30日まで（導入価格）',CX,515,48,C.acc);text('100万トークンあたり',CX,590,40,'#CDD8EC','center',800);});
    priceCard(150,675,380,485,'入力','2ドル',C.card,C.sub,enter(u,0.25));
    priceCard(550,675,380,485,'出力','10ドル',C.card,C.sub,enter(u,0.45));},
  // twist: from Dec 1 it doubles to $4 / $20
@@ -262,7 +262,7 @@ const S={
    mixLine([['Google',C.brand],['の説明',C.text]],CX,385,64);
    withEnter(enter(u,0),()=>{card(150,450,780,340,30,C.card);text('開発や知的作業の',CX,540,50,C.text);text('大半は',CX,620,50,C.text);});
    withEnter(enter(u,Math.max(0.2,t2)),()=>{text('Argon向き',CX,715,76,C.acc);});
-   withEnter(enter(u,Math.max(0.5,t2+0.3)),()=>{card(150,815,780,345,30,C.card2);text('Carbonは',CX,900,48,'#CDD8EC','center',800);text('限界に挑む',CX,990,62,'#FFFFFF');text('重い作業向け',CX,1075,62,'#FFFFFF');});},
+   withEnter(enter(u,Math.max(0.5,t2+0.3)),()=>{card(150,815,780,345,30,C.card2);text('Carbonは',CX,900,48,'#CDD8EC','center',800);text('限界を試す',CX,990,62,'#FFFFFF');text('重い作業向け',CX,1075,62,'#FFFFFF');});},
  // verdict: the strongest AI is a trump card for heavy work rather than an everyday partner
  verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF&&VERDICT_CLIP)abs(()=>g.drawImage(BIGF,18,560,1044,1856));else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'重い');
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
