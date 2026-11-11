@@ -1,0 +1,29 @@
+name: fetch-news
+# Edition step 2b (2026-11-12, Issue #7): fetch every worker's news listings and the article pages (tools/fetch_news.py),
+# push them to the branch "news" as news/<edition>/<worker>/... The workers read those files and open no web page themselves,
+# so the session never asks the user for permission.
+on:
+  workflow_dispatch:
+    inputs:
+      edition: {description: "edition id, e.g. 2026-11-12-pm", required: true}
+      per_site: {description: "stories per site at most", default: "12"}
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q requests beautifulsoup4 feedparser
+      - run: python3 tools/fetch_news.py "${{ inputs.edition }}" "/tmp/news/${{ inputs.edition }}" "${{ inputs.per_site }}"
+      - name: push to branch news
+        run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          git fetch origin news || true
+          if git rev-parse -q --verify origin/news; then git checkout -q -B news origin/news; else git checkout -q --orphan news; git rm -rfq .; fi
+          mkdir -p news; rm -rf "news/${{ inputs.edition }}"; cp -r "/tmp/news/${{ inputs.edition }}" news/
+          # keep the last 6 editions only
+          ls -d news/*/ 2>/dev/null | sort | head -n -6 | xargs -r git rm -rfq
+          git add news; git commit -qm "news listings ${{ inputs.edition }}" || true
+          for i in 1 2 3 4 5; do git push -q origin news && break; sleep $((i*5)); git fetch -q origin news; git rebase -q origin/news; done

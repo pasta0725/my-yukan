@@ -1,0 +1,83 @@
+{
+ "_note": "Sites each edition worker reads (tools/README.md 担当表). fetch_news.py tries each url in order: an RSS/Atom feed, or a page whose feed it finds itself, or a page whose article links it lists. period_h = how new the stories must be (spec.md Period). Edit freely: a wrong url only shows up in report.md.",
+ "ai_A": {"period_h": 72, "sites": [
+  {"name": "ITmedia AI+", "urls": ["https://rss.itmedia.co.jp/rss/2.0/aiplus.xml", "https://www.itmedia.co.jp/aiplus/"]},
+  {"name": "ITmedia NEWS", "urls": ["https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml", "https://www.itmedia.co.jp/news/"]}]},
+ "ai_B": {"period_h": 72, "sites": [
+  {"name": "Impress Watch", "urls": ["https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf", "https://www.watch.impress.co.jp/"]},
+  {"name": "Publickey", "urls": ["https://www.publickey1.jp/atom.xml", "https://www.publickey1.jp/"]},
+  {"name": "日経クロステック", "urls": ["https://xtech.nikkei.com/rss/index.rdf", "https://xtech.nikkei.com/top/it/"]}]},
+ "ai_C": {"period_h": 72, "sites": [
+  {"name": "Google Japan Blog", "urls": ["https://blog.google/intl/ja-jp/rss/", "https://blog.google/intl/ja-jp/"]},
+  {"name": "Microsoft 日本のニュース", "urls": ["https://news.microsoft.com/ja-jp/feed/", "https://news.microsoft.com/ja-jp/"]},
+  {"name": "PR TIMES（テクノロジー）", "urls": ["https://prtimes.jp/technology/", "https://prtimes.jp/index.rdf"]},
+  {"name": "OpenAI", "urls": ["https://openai.com/news/rss.xml"]}]},
+ "ai_D": {"period_h": 72, "sites": [
+  {"name": "TechCrunch AI", "urls": ["https://techcrunch.com/category/artificial-intelligence/feed/", "https://techcrunch.com/feed/"]},
+  {"name": "The Verge AI", "urls": ["https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", "https://www.theverge.com/rss/index.xml"]},
+  {"name": "Ars Technica AI", "urls": ["https://arstechnica.com/ai/feed/", "https://feeds.arstechnica.com/arstechnica/index"]},
+  {"name": "VentureBeat AI", "urls": ["https://venturebeat.com/category/ai/feed/", "https://venturebeat.com/feed/"]},
+  {"name": "OpenAI", "urls": ["https://openai.com/news/rss.xml", "https://openai.com/news/"]},
+  {"name": "Anthropic", "urls": ["https://www.anthropic.com/news"]},
+  {"name": "Google AI blog", "urls": ["https://blog.google/technology/ai/rss/", "https://blog.google/rss/"]},
+  {"name": "Meta AI", "urls": ["https://about.fb.com/news/category/technology-and-innovation/feed/", "https://about.fb.com/feed/"]},
+  {"name": "Microsoft", "urls": ["https://blogs.microsoft.com/feed/"]},
+  {"name": "NVIDIA", "urls": ["https://blogs.nvidia.com/feed/"]}]},
+ "mobile_A": {"period_h": 72, "sites": [
+  {"name": "ケータイ Watch", "urls": ["https://k-tai.watch.impress.co.jp/data/rss/1.0/ktw/feed.rdf", "https://k-tai.watch.impress.co.jp/"]},
+  {"name": "ITmedia Mobile", "urls": ["https://rss.itmedia.co.jp/rss/2.0/mobile.xml", "https://www.itmedia.co.jp/mobile/"]},
+  {"name": "Apple Newsroom（日本）", "urls": ["https://www.apple.com/jp/newsroom/rss-feed.rss", "https://www.apple.com/jp/newsroom/"]}]},
+ "mobile_B": {"period_h": 72, "sites": [
+  {"name": "PC Watch", "urls": ["https://pc.watch.impress.co.jp/data/rss/1.0/pcw/feed.rdf", "https://pc.watch.impress.co.jp/"]},
+  {"name": "ITmedia PC USER", "urls": ["https://rss.itmedia.co.jp/rss/2.0/pcuser.xml", "https://www.itmedia.co.jp/pcuser/"]},
+  {"name": "窓の杜", "urls": ["https://forest.watch.impress.co.jp/data/rss/1.0/wf/feed.rdf", "https://forest.watch.impress.co.jp/"]}]},
+ "gadget_A": {"period_h": 72, "sites": [
+  {"name": "家電 Watch", "urls": ["https://kaden.watch.impress.co.jp/data/rss/1.0/kdw/feed.rdf", "https://kaden.watch.impress.co.jp/"]},
+  {"name": "PR TIMES（家電）", "urls": ["https://prtimes.jp/kaden/", "https://prtimes.jp/"]}]},
+ "gadget_B": {"period_h": 72, "sites": [
+  {"name": "AV Watch", "urls": ["https://av.watch.impress.co.jp/data/rss/1.0/avw/feed.rdf", "https://av.watch.impress.co.jp/"]},
+  {"name": "GIZMODO JAPAN", "urls": ["https://www.gizmodo.jp/index.xml", "https://www.gizmodo.jp/"]},
+  {"name": "マイナビニュース", "urls": ["https://news.mynavi.jp/rss/digital", "https://news.mynavi.jp/digital/"]}]},
+ "service_A": {"period_h": 72, "sites": [
+  {"name": "ITmedia NEWS", "urls": ["https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml", "https://www.itmedia.co.jp/news/"]},
+  {"name": "Impress Watch", "urls": ["https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf", "https://www.watch.impress.co.jp/"]},
+  {"name": "CNET Japan", "urls": ["https://japan.cnet.com/rss/index.rdf", "https://japan.cnet.com/"]}]},
+ "service_B": {"period_h": 72, "sites": [
+  {"name": "YouTube 公式ブログ", "urls": ["https://blog.youtube/rss/", "https://blog.youtube/"]},
+  {"name": "Google Japan Blog", "urls": ["https://blog.google/intl/ja-jp/rss/", "https://blog.google/intl/ja-jp/"]},
+  {"name": "LINEヤフー", "urls": ["https://www.lycorp.co.jp/ja/news/"]},
+  {"name": "Instagram", "urls": ["https://about.instagram.com/blog"]},
+  {"name": "Netflix", "urls": ["https://about.netflix.com/ja/newsroom"]}]},
+ "game_A": {"period_h": 72, "sites": [
+  {"name": "4Gamer.net", "urls": ["https://www.4gamer.net/rss/index.xml", "https://www.4gamer.net/"]},
+  {"name": "GAME Watch", "urls": ["https://game.watch.impress.co.jp/data/rss/1.0/gmw/feed.rdf", "https://game.watch.impress.co.jp/"]}]},
+ "game_B": {"period_h": 72, "sites": [
+  {"name": "ファミ通", "urls": ["https://www.famitsu.com/rss/famitsu_news.rdf", "https://www.famitsu.com/"]},
+  {"name": "電撃オンライン", "urls": ["https://dengekionline.com/rss/news.rss", "https://dengekionline.com/"]},
+  {"name": "任天堂", "urls": ["https://www.nintendo.com/jp/topics/c/api/json_list?key=newtopics", "https://www.nintendo.com/jp/topics/"]},
+  {"name": "PlayStation Blog", "urls": ["https://blog.ja.playstation.com/feed/", "https://blog.ja.playstation.com/"]}]},
+ "ec_A": {"period_h": 168, "sites": [
+  {"name": "ネットショップ担当者フォーラム", "urls": ["https://netshop.impress.co.jp/rss.xml", "https://netshop.impress.co.jp/"]},
+  {"name": "ECのミカタ", "urls": ["https://ecnomikata.com/feed/", "https://ecnomikata.com/"]},
+  {"name": "消費者庁", "urls": ["https://www.caa.go.jp/news.rss", "https://www.caa.go.jp/"]}]},
+ "ec_B": {"period_h": 168, "sites": [
+  {"name": "メルカリ", "urls": ["https://about.mercari.com/press/news/"]},
+  {"name": "PayPay", "urls": ["https://about.paypay.ne.jp/pr/"]},
+  {"name": "楽天", "urls": ["https://corp.rakuten.co.jp/news/press/"]},
+  {"name": "Amazon（日本）", "urls": ["https://www.aboutamazon.jp/news"]},
+  {"name": "BASE", "urls": ["https://binc.jp/press-room/news"]}]},
+ "future_A": {"period_h": 168, "sites": [
+  {"name": "sorae", "urls": ["https://sorae.info/feed", "https://sorae.info/"]},
+  {"name": "MIT Technology Review", "urls": ["https://www.technologyreview.jp/feed/", "https://www.technologyreview.com/feed/"]},
+  {"name": "TechCrunch（交通・宇宙）", "urls": ["https://techcrunch.com/category/transportation/feed/", "https://techcrunch.com/category/space/feed/"]}]},
+ "other_A": {"period_h": 168, "sites": [
+  {"name": "ケータイ Watch", "urls": ["https://k-tai.watch.impress.co.jp/data/rss/1.0/ktw/feed.rdf"]},
+  {"name": "ITmedia NEWS", "urls": ["https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml"]},
+  {"name": "Security NEXT", "urls": ["https://www.security-next.com/feed", "https://www.security-next.com/"]},
+  {"name": "総務省", "urls": ["https://www.soumu.go.jp/news.rdf", "https://www.soumu.go.jp/menu_kyotsuu/whatsnew/index.html"]},
+  {"name": "デジタル庁", "urls": ["https://www.digital.go.jp/rss/news.xml", "https://www.digital.go.jp/news"]}]},
+ "other_B": {"period_h": 168, "sites": [
+  {"name": "EE Times Japan", "urls": ["https://rss.itmedia.co.jp/rss/2.0/eetimes.xml", "https://eetimes.itmedia.co.jp/"]},
+  {"name": "日経クロステック", "urls": ["https://xtech.nikkei.com/rss/index.rdf", "https://xtech.nikkei.com/"]},
+  {"name": "ITmedia ビジネスオンライン", "urls": ["https://rss.itmedia.co.jp/rss/2.0/business.xml"]}]}
+}
