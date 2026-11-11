@@ -37,8 +37,15 @@ for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
     except Exception as e: print("BAD", f, e); continue
     for a in items:
         cat = a.get("category")
-        if cat not in CATS or not ok(a.get("source_url")): continue
-        if a.get("id") in DROP or a["id"] in seen_ids or a["source_url"] in seen_urls or a["source_url"] in used: continue
+        u = a.get("source_url")
+        if isinstance(u, str) and u.startswith("http://"): a["source_url"] = u = "https://" + u[7:]   # Issue #12: http links were dropped silently
+        for r in a.get("refs", []) if isinstance(a.get("refs"), list) else []:
+            if isinstance(r, dict) and str(r.get("url", "")).startswith("http://"): r["url"] = "https://" + r["url"][7:]
+        why = ("category " + str(cat)) if cat not in CATS else ("no https source_url" if not ok(u) else
+              "dropped by id" if a.get("id") in DROP else "same id" if a["id"] in seen_ids else
+              "same source_url in this edition" if u in seen_urls else "already published (used.txt)" if u in used else "")
+        if why:
+            print("SKIP", os.path.basename(f), a.get("id"), "-", why, "-", str(a.get("title", ""))[:40]); continue
         # sanitize images: https only, no dup, news-site photos <= 2
         seen_src, ogp = set(), [0]
         def keep(x):

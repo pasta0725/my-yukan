@@ -21,6 +21,6 @@ jobs:
           F="$M"; case "$M" in upload-tmp:*) git fetch -q origin upload-tmp; git show "origin/upload-tmp:${M#upload-tmp:}" > /tmp/v.mp4; F=/tmp/v.mp4;; esac
           set +e; python3 tools/check_voice.py "$F" "$S" --out voice_report.json; code=$?; set -e
           echo "exit $code"; cat voice_report.json | head -c 4000
-          { echo '```'; python3 -c "import json;r=json.load(open('voice_report.json'));print('similarity',r['similarity']);[print(x['line'],x['kind'],x['expected'],'->',x['heard']) for x in r['issues']]"; echo '```'; } >> $GITHUB_STEP_SUMMARY
+          { echo '```'; python3 -c "import json;r=json.load(open('voice_report.json'));print('similarity',r['similarity'],'adjusted',r.get('similarity_adjusted'));[print(x['line'],x['kind'],x['expected'],'->',x['heard']) for x in r['issues']+r.get('notation',[])]"; echo '```'; } >> $GITHUB_STEP_SUMMARY
       - uses: actions/upload-artifact@v4
         with: { name: voice-report, path: voice_report.json }

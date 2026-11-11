@@ -5,7 +5,7 @@ name: site-stats
 on:
   workflow_dispatch:
   schedule:
-    - cron: "41 21 * * *"   # 06:41 Japan time
+    - cron: "23 20 * * *"   # 05:23 Japan time (moved from 06:41: GitHub often runs it late and the 07:05 dashboard update missed it. Issue #13)
 permissions:
   contents: read
 jobs:

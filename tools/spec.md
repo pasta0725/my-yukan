@@ -29,6 +29,8 @@ Since 2026-11-10 there are two editions a day: 朝刊 (ready 7:00) and 夕刊 (r
   - A story whose main point is a new AI model or a feature of an AI service (ChatGPT, Claude, Gemini, Copilot, Grok...) is ai, never service or mobile. Among the ai workers: an English-only announcement is ai_D; a Japanese official announcement with no news coverage yet is ai_C; ai_A writes stories found on ITmedia, ai_B those found on Impress/Publickey/日経クロステック. If the same story is on both, ai_A takes it.
   - A phone/PC update (Pixel Drop, iOS, Windows) is mobile even if it includes AI features, unless the AI feature is the whole point.
   - service_A writes stories found on news sites; service_B only stories that exist as the service's own announcement and have little news coverage.
+  - game_A writes stories found on 4Gamer/GAME Watch; game_B those found on ファミ通/電撃 and the makers' own announcements. Big platform numbers (console sales, total units sold, company results) belong to game_A only (2026-11-12, Issue #12: both wrote the same two stories).
+  - A story that continues something in used.txt from another angle (a new outlet or detail on the same event) is the same story: skip it unless there is a real new development.
 
 ## Personal-interest topics (the user's request, 2026-11-09 — cover these actively)
 The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chrome, Gmail), Xiaomi, Anker (Soundcore, eufy, Nebula), Dreame, 任天堂 (Nintendo, Switch), SONY (PlayStation, Xperia, audio, cameras), GeForce NOW, ChatGPT (OpenAI), Claude (Anthropic), Grok (xAI), Muse (Meta's AI app).
@@ -101,5 +103,6 @@ Always: easy Japanese for a non-engineer, YOUR OWN WORDS only (never copy senten
          {"type":"rina","text":"りなの見方：2〜3文・120字以内（tools/style.md 9-2）"}],
  "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD",
  "refs":[{"name":"サイト名","url":"https://..."}]}   ← every article you read for this story (max 5, source_url first), URLs exactly as fetched
+Write source_url and refs with https:// (if a page gives http://, change it to https://).
 Blocks: one keys, a lead p, 3–5 h each followed by 1–2 p, one stat, one point, one rina at the very end (see tools/style.md). No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
 Validate with python3 json.load. Final reply: count, titles, image counts (press/ogp), problems.
