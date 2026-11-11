@@ -1,0 +1,298 @@
+===== https://techtouch-th.com/en/community/google-workspace-skills-gemini-studio-rollout
+(status 200)
+Google reported on November 10, 2026 that Workspace Skills were rolling out to Gemini in Workspace and Workspace Studio. Skills let teams reuse instructions and reference material. A meeting summary draft is a small first task that exposes how a skill handles missing facts and inaccessible files.
+The key points
+Rapid Release began November 9, with Scheduled Release beginning November 30
+Sharing creates a copy and Drive permissions are managed separately
+Test on fictional inputs before connecting a flow
+A skill stores instructions for repeatable work
+Google describes creating and testing skills in Studio and drafting collaboratively in Docs. Once enabled, a skill can be selected by Gemini or invoked with @. The rollout covers invocation on the web in Gmail, Docs, Slides, Drive, Chat and Studio, plus mobile Google Chat. Sheets and Meet are outside the launch scope. Prompts and skill instructions currently support English.
+Availability depends on edition and release track
+The November 10 announcement gives November 9 for Rapid Release and November 30, 2026 for Scheduled Release, each with up to 15 days of gradual visibility. Listed editions include Business and Enterprise Starter, Standard and Plus, Google AI Pro for Education and AI Expanded Access for users aged 18 or older. Administrators can disable access at domain, organizational-unit or group level. Check the existing account’s track and policy before planning a team rollout.
+Test the instructions with fictional meeting notes
+For a TechTouch example, create a skill called Meeting actions to draft a task list. Put these instructions in the Studio editor and use the test flow with the fictional inputs in the table below.
+From the supplied meeting notes, draft a table with Action, Owner, Due date and Evidence. Copy names and dates only when stated. Mark missing fields as Unspecified. If a referenced file is unavailable, say which evidence is missing. Return a draft for human review.
+Read the Evidence column first. If a name or deadline has no support in the note, revise the instruction or return the draft for review. Save failed examples as well as successful ones so the team can repeat the same checks after editing the skill.
+The worksheet below contains five fictional English notes. Run the same instruction on each note separately and record the actual output, any errors, and the skill version. Two additional cases check that an unaccepted proposal stays out of the action list and one task’s due date does not carry over to another task. Mark a case as passed when the actions, owners, dates and evidence match the fixture. For an inaccessible file, the draft should identify the file and leave dependent conclusions open.
+Check copies and permissions from a recipient account
+Studio shares an independent copy that the recipient can inspect, edit and enable. Updates to the original do not propagate to copies already saved. Drive references require their own access grants. Record the version, date and owner on distributed instructions. Test once as a typical recipient and once with an account that cannot open a referenced file, then compare the output against your expected behavior.
+Check each flow when moving from Gems
+Google’s administrator guide treats Workspace, the Gemini app and Gemini Enterprise as separate skill environments. The planned 2027 automatic Gem migration creates drafts in the Gemini app. For Studio, review the configuration and reference files on that platform. If a flow uses Ask a Gem, consult Google’s transition guidance and capture a known output for comparison. For this meeting example, start with a manual run, produce a draft, and require human review before adding a message delivery or scheduled step.
+Details and limitations
+Case
+Fictional input
+Expected result
+Complete facts
+Nok will deliver the report draft on November 20
+A row with the stated owner, action and date
+Missing facts
+The team will deliver the report soon
+Owner and date marked Unspecified
+Reference unavailable
+The recipient cannot open the reference file
+Identify the missing evidence and omit conclusions that require it
+Things to know and check
+Confirm edition, release track and administrator policy
+Run the worksheet cases and record failures.
+Label distributed copies and test reference permissions
+Review the draft before adding delivery or a schedule
+Sources used for verification
+Vendor facts are separated from TechTouch guidance. Features, pricing, and commercial terms may change, so check dates and conditions at the original source.
+Google Workspace Updates · 10 November 2026
+Google Workspace Admin Help · updated 9 November 2026
+Google Workspace pricing · checked 11 November 2026
+Our editorial approach
+Frequently asked questions
+Can the skill instructions be in Thai?
+The launch guidance lists English for prompts and instructions. Check updated availability before planning Thai-language use.
+Does editing the original update the recipient’s skill?
+Recipients keep independent copies. Share the new version and test the copy they use.
+Related articles
+Agent Skills format and portability
+Gemini analyzes Google Forms responses
+
+===== https://www.backofficebeat.com/briefs/2026-11-10
+(status 200)
+Google Workspace turns on Gemini 'skills' by default from Nov. 9; Sheets not included
+If your office runs on Gmail and Docs, you can now save your house rules once and have Gemini apply them to every estimate email and proposal.
+By 
+Carter Josephson
+ · 
+Nov 10, 2026
+ · 
+Share this item
+What happened
+Google's Workspace Updates blog says skills, which are reusable custom instructions that tell Gemini to apply a team's rules, templates and reference files, are rolling out in Workspace Studio, Gmail, Docs, Slides, Drive and Chat, on by default for Business Starter, Standard and Plus and Enterprise editions. Rapid Release domains get it gradually from Nov. 9, 2026 and Scheduled Release domains from Nov. 30, 2026, each over up to 15 days, and skills do not yet work in Sheets or Meet or with non-English prompts.
+What it means for a 10-to-50-person business
+If you run Google Workspace on a Business plan, you can now write your house rules once and have Gemini apply them to every draft. Take an 18-person plumbing company where the office manager sends about 25 estimate follow-up emails a week. Assume each takes 6 minutes to write from scratch. A skill could hold the company's tone, warranty wording and follow-up template, and point at a price-list file in Drive. If that cuts each email to 2 minutes, it saves about 100 minutes a week. That is roughly 7 hours a month, or about $210 at $30 an hour. There are limits. Skills don't work in Sheets, so estimates kept in a spreadsheet get no help. Anyone using a shared skill also needs access to the Drive files it references. Shared copies don't update when you edit the original, so give each skill one owner. If you have Studio flows built on 'Ask a Gem', you can no longer add new Gem steps to them. Microsoft 365 shops can ignore this.
+What to do
+✓
+Try it
+This month, have whoever writes your most repetitive emails build one skill for estimate follow-ups or invoice reminders, test it on 10 real drafts, and check in the Admin console that skills are on only for the groups you want.
+What it costs
+What it costs
+Add-on fee
+$0; the post lists skills in Business Starter, Standard and Plus and names no add-on
+Build and test first skill, office manager
+1–2 hrs (≈ $30–$60 at $30/hr)
+Admin check of default-on setting and Drive file sharing
+30 min (≈ $25 at $50/hr)
+Time saved, assume 25 follow-up emails/wk × 4 min saved
+≈ 7 hrs/mo (≈ $210 at $30/hr)
+Doing nothing
+$0; skills switch on by default anyway, and you forgo the assumed ~7 hrs/mo
+Sources
+workspaceupdates.googleblog.com
+ (primary)
+ · 
+Google Workspace Blog: Teach Gemini your team's know-hows with skills in Google Workspace
+ · 
+Google Workspace Admin Help: Prepare for the transition to skills
+ · 
+Google Workspace Admin Help: Turn skills on or off
+
+===== https://aiworldhq.com/article/what-skills-in-google-workspace-are-and-who-they-help
+(status 200)
+💼 Business
+AI
+What Skills in Google Workspace Are and Who They Help
+Google is rolling out reusable instructions for Gemini across Gmail, Docs, Slides, Drive, and Chat, so teams can share the same way of working.
+3 min read
+·
+November 10, 2026
+AI
+ This article was written by AI. It passed automated fact and quality checks, and our editor spot-checks published articles every day.
+See AI World HQ first on Google
+Add us as a preferred source and our stories show up higher in Google’s Top Stories.
+Add on Google
+Have you ever explained the same email style or report format to an AI tool for the fifth time this month? Skills are Google's answer to that repetition. They let you write your preferred way of working once, then reuse it.
+What a skill actually is
+A 
+skill
+ is a saved set of instructions. Think of it like a laminated checklist you hand to a new coworker: it says how things are done here, and the coworker follows it every time. In Google's announcement, a skill tells Gemini (Google's AI assistant) to follow your rules, use your templates, and check your reference files.
+Skills are written in a format called 
+SKILL.md
+, which is a plain text file with Markdown formatting. Markdown is just a light way of marking headings and lists with simple symbols. You don't need to know it to use skills, but it is useful to know that the format is open, so instructions can be copied between tools.
+Where you can use them
+Google says you can create, test, and share skills in 
+Workspace Studio
+ (the place to build automated workflows) and 
+Google Docs
+. You can also 
+prompt
+ Gemini directly in Gmail, Docs, Slides, Drive, and Chat to create and refine skills without leaving the app you are working in.
+Once a skill is turned on, Gemini can recognize when it fits your request. You can also call one or more skills yourself by typing an @ followed by the skill's name. Skills can also start Workspace Studio flows set to "Start manually" or "On a schedule."
+Some limits to know now: according to Google, skills are not yet available in Google Sheets or Google Meet, and they currently support English prompts and instructions only. Skills are also limited to users age 18 and older.
+Wrap-up
+Skills turn your team's habits into reusable instructions that Gemini can apply across Workspace. Google's announcement says rollout is gradual, so your feature may appear up to 15 days after your release date. Your next step is simple: check the Help Center articles Google links to, then write down one instruction you repeat every week and turn it into a skill.
+#google-workspace
+#gemini
+#team-productivity
+#skills
+#ai-tools
+Keep reading
+📰
+Gemini Is Spreading Across Google Workspace — What That Means for You
+Google's AI now reaches into Sheets on Android and can coordinate tasks across Chat, Drive, Docs, Slides, and Gmail. Here's what changes in practice.
+📰
+How to Set Up Custom Instructions for Gemini in Workspace
+A small setting that makes Gemini in Gmail, Drive, Docs, and Sheets answer the way YOU want — every time.
+📰
+Practical Ways to Automate Routine Tasks Across Google Workspace
+A plain-language look at the real tools that connect Gmail, Drive, and Chat — so you stop doing the same clicks every morning
+📰
+Ask Gemini in Google Chat: What Google's New Workspace Helper Does
+A plain-language look at the new AI assistant built into Google Chat, and what it can do for your daily work
+📰
+What Gemini Intelligence Adds to New Phones, Gmail, and Google Chat
+Google's latest Gemini updates reach more Android phones, and help with email and meeting scheduling are rolling out to Workspace users.
+📘
+Using Gemini in Gmail and Docs to save time
+Learn how to let Google’s Gemini AI quickly summarize email threads, draft replies, and polish documents – all from the tools you already use.
+📬 The week’s AI, in your inbox
+One friendly email every Sunday — the 5 stories that mattered, in plain English. No spam, unsubscribe anytime.
+Was this helpful?
+👍
+👎
+✦ Generated by AI in AI World HQ's automated newsroom, from official sources. Checked by automated fact and quality gates, and our editor spot-checks published articles every day. Spot a mistake? Use the buttons above.
+← Back to all stories
+
+===== https://workspaceupdates.googleblog.com/2026/11/skills-in-workspace.html?m=1
+(status 200)
+arrow_back
+          Back
+November 10, 2026
+Scale customized AI across your team with skills in Google Workspace and Workspace Studio 
+Google Workspace
+Rapid Release
+Workspace Studio
+Following our 
+initial announcement
+ and 
+recent rollout update
+, 
+skills in Google Workspace
+ — reusable, custom instructions that guide Gemini to apply your team’s rules, templates, and reference files — are now rolling out across Google Workspace Studio and Workspace apps. Here’s how to get started:
+Create, test, and share skills in Google Workspace Studio and Google Docs: 
+Build skills from scratch, start from new turnkey templates, or edit Markdown-native (
+SKILL.md
+) files directly in 
+Google Workspace Studio
+, and test how they generate email drafts, documents, or presentations before turning them on. You can also draft and collaborate on skills in 
+Google Docs
+, and share copies of your skills from Workspace Studio so teammates can customize and enable them for their own workflows.
+Create and edit skills in context across Workspace apps: 
+You can prompt Gemini directly in Gmail, Google Docs, Google Slides, Google Drive, and Google Chat to create, refine, and test skills without leaving the app you’re working in.
+Use skills automatically or with an @, and connect them to Studio flows:
+ Once you turn on a skill, Gemini in Gmail, Google Docs, Google Slides, Google Drive, and Google Chat can automatically recognize when that skill is relevant and apply it to your prompt, or you can invoke one or more skills explicitly at any time with an @mention (including combining multiple skills in a single request). Skills can also trigger 
+Workspace Studio flows
+ configured with a “Start manually” or “On a schedule” starter step.
+These capabilities unlock powerful ways to standardize everyday work across your team. For example:
+A marketing or sales team can maintain approved brand voice, tone, and structure across email drafts in Gmail, proposals in Docs, and pitch decks in Slides.
+A finance or legal specialist can standardize recurring contract, proposal, or invoice reviews against reference guidelines stored in Google Drive.
+A project lead can generate recurring status updates grounded in living meeting notes, Chat conversations, and Drive files without re-typing formatting instructions each week.
+Create, test, and invoke skills across Google Workspace Studio and Workspace apps
+A few things to know for end users:
+Supported surfaces, mobile access, and language: 
+Creating, editing, testing, and sharing skills are available on the web. Invoking skills is supported on the web in Workspace Studio, Gmail, Google Docs, Google Slides, Google Drive, and Google Chat, as well as in the Google Chat mobile app on Android and iOS. Skills in Workspace are not yet available in Google Sheets or Google Meet, and currently support English prompts and instructions only.
+How skill sharing and Drive file permissions work in Workspace Studio:
+ Sharing a skill from Workspace Studio gives recipients an independent copy that they can review, customize, and turn on in their own skills library (subsequent edits you make to your skill won’t overwrite copies others have already saved). If your skill references Google Drive files, you’ll also need to share access to those files with recipients.
+Skills in Workspace are separate from skills and Gems in the Gemini app:
+ Skills created in Workspace do not sync automatically with skills or Gems in the 
+Gemini app
+, and the upcoming automated migration of remaining Gems in 2027 will convert Gems to draft skills exclusively in the Gemini app — not in Workspace Studio or Workspace apps. Because both environments use the open 
+SKILL.md
+ format, you can manually copy instructions between the Gemini app and Workspace if you want to use a skill in both places. 
+Impact on automated Workspace Studio flows and transitioning off “Ask a Gem”:
+ As 
+previously announced
+, you can no longer add new Ask a Gem steps to flows in Workspace Studio. Visit the Help Center to 
+learn more about replacing Gems with skills in Workspace Studio flows
+.
+Getting started
+Admins:
+Skills in Workspace Studio and Gemini in Workspace are 
+ON
+ by default for eligible Google Workspace editions and can be disabled at the domain, organizational unit (OU), or group level in the Admin console. Visit the Help Center to 
+learn more about allowing people to use skills in Studio and Gemini in Workspace
+. 
+External sharing of skills from Workspace Studio follows your organization’s Studio sharing controls in the Admin console. Visit the Help Center to 
+learn more about allowing people to share skills externally
+.
+New with general availability, admins can monitor and audit skill activity in the Admin console using 
+Workspace Studio log events
+.
+Review the Help Center guide on 
+preparing your organization for the transition from Gems to skills
+.
+End users:
+Skills in Workspace are available by default (unless disabled by your admin). Create and manage skills in 
+Google Workspace Studio
+, using Skill Builder in 
+Google Docs
+, or by prompting Gemini directly in Gmail, Google Docs, Google Slides, Google Drive, and Google Chat.
+Visit the Help Center to 
+learn more about how skills work in Google Workspace Studio
+, using skills in 
+Gmail
+, 
+Docs
+, 
+Slides
+, 
+Drive
+, and 
+Chat
+, and 
+how the transition from Gems to skills impacts Workspace Studio flows
+.
+Rollout pace
+Rapid Release domains:
+ Gradual rollout (up to 15 days for feature visibility) starting on November 9, 2026 
+Scheduled Release domains:
+ Gradual rollout (up to 15 days for feature visibility) starting on November 30, 2026
+Availability
+Business: 
+Business Starter, Standard, and Plus
+Enterprise:
+ Enterprise Starter, Standard, and Plus
+Education Add-ons:
+ Google AI Pro for Education
+Other Add-ons:
+ AI Expanded Access
+Note that skills in Google Workspace are available only to users age 18 and older.
+Resources
+Google Workspace Admin Help: 
+Allow people to use skills in Studio and Gemini in Workspace
+Google Workspace Admin Help: 
+Allow people to share skills externally
+Google Workspace Admin Help: 
+Workspace Studio log events
+Google Workspace Admin Help: 
+About the transition from Gems to skills
+Google Workspace Admin Help: 
+Prepare for the transition to skills
+Workspace Studio Help: 
+Learn how skills work in Google Workspace Studio
+Workspace Studio Help: 
+How the Gems transition to skills impacts Workspace Studio flows
+Google Help: Using skills in 
+Gmail
+, 
+Google Docs
+, 
+Google Slides
+, 
+Google Drive
+, and 
+Google Chat
+Google Workspace Updates Blog: 
+Introducing skills in the Gemini app and Workspace, plus what’s next for Gems
+Google Workspace Updates Blog: 
+An update on the launch of skills in the Gemini app and Workspace 
+Google Workspace Blog: 
+Teach Gemini your team’s know-hows with skills in Google Workspace
+AI skills 101: 
+Customizing AI from Google for your role
+Education Guide: 
+Gemini Gems and Skills Transition

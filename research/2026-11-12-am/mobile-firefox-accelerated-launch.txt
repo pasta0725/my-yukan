@@ -1,0 +1,538 @@
+===== https://www.windowslatest.com/2026/11/10/every-time-you-click-a-link-windows-11-quietly-launches-a-second-copy-of-your-browser-just-to-pass-it-along-and-firefox-is-now-testing-microsofts-fix/
+(status 200)
+Home
+Windows 11
+Windows 11
+Windows 11 accelerated app launches let Edge, and soon Firefox, open links without starting an extra process. Credit: Windows Latest
+If Firefox is your browser of choice on your Windows 11 PC, you’ll be glad to know that it may soon open faster. Mozilla is working on a Firefox change that lets Windows 11 hand links and Start menu launches straight to an already-open Firefox window, and in an early test, a link reached the browser in about 
+3ms instead of 70ms
+.
+Microsoft built the feature first for Windows 11’s often-despised default Edge browser, and 
+we tested it in October
+ when it was still limited to Release Preview Insiders. Edge has had the feature enabled on regular PCs since the optional KB5127936 update in late October, and it works pretty much as advertised.
+Installing Firefox on a Windows 11 PC. Image: Windows Latest
+Firefox is testing a way to open links without starting another firefox.exe
+In the present state, if Firefox is already running on your PC and you click a link in another app, or open Firefox from the Start menu or taskbar, Windows starts a brand new firefox.exe. The new process, including the launcher, finds the running Firefox, passes on your request, and exits. It’s an extra step!
+David Rubino, 
+who works as the Senior Staff Product Manager for Firefox, points out in 
+Bug 2087194
+, filed in late October, that it’s 
+“the normal case for anyone who keeps Firefox open, and launch on login makes it more common.”
+Windows 11 now skips an unnecessary process when opening Edge, and Firefox wants it too
+Interestingly, Rubino worked at Microsoft for more than 16 years, starting with Windows Explorer, moving to Internet Explorer, and then more than 8 years as the Senior Product Manager of the Microsoft Edge Team.
+Anyway, the fix uses 
+Microsoft’s accelerated app launch API,
+ which is a Limited Access Feature, so developers need an unlock code from Microsoft to use it. Funnily enough, Firefox didn’t need a new one, as the code it already uses for pinning itself to the taskbar unlocks this too.
+The 3ms figure comes from the developer’s quick test with a local build, where Start menu launches also went straight to opening Firefox. To be clear, 3ms is how long Windows takes to hand over the request, so don’t expect Firefox to load pages 23 times faster.
+Sadly, you can’t try it yet. The work-in-progress patch is hidden behind 
+widget.windows.accelerated_launch.enabled
+, which is off by default and controlled by Mozilla’s Nimbus experiments system. The developer is also yet to figure out which Firefox should take a launch when several profiles are open, and whether Microsoft wants a heads-up before Mozilla uses the feature.
+Edge already opens faster on Windows 11 because there’s no middleman
+Microsoft calls the feature 
+“accelerated warm launches”
+ in its 
+developer documentation
+. When a single-instance app like a browser starts, it registers its running window with Windows, and from then on, Windows notifies that window when you open the app from the Start menu or taskbar, or click a link the app is the default handler for.
+Before:
+https://www.windowslatest.com/wp-content/uploads/2026/10/Edge-before-enabling-accelerated-app-launches-with-new-Release-Preview-Update-for-Insiders.mp4
+After:
+https://www.windowslatest.com/wp-content/uploads/2026/10/Edge-after-enabling-accelerated-app-launches-with-new-Release-Preview-Update-for-Insiders.mp4
+According to Microsoft, skipping the temporary process 
+“reduces overall latency.
+” But the API 
+“doesn’t cover every kind of launch, from every source application, on every version of Windows,” 
+so apps still need their old single-instance code as a fallback.
+Edge 150 and later uses it on Windows 11 25H2, 26H1 and 26H2 with the October 2026 non-security update or later, and the 
+Edge team says
+ most users will see launches about 
+15% faster
+, and up to 
+33% faster
+ under heavy multitasking. Those aren’t small numbers, so to check the claims, we tested it.
+https://www.windowslatest.com/wp-content/uploads/2026/10/Before-and-After-accelerated-app-launch-for-Edge-in-Windows-11.mp4
+In our October tests on a virtual machine with a mere 4GB of RAM, opening Edge from the taskbar while Microsoft Store and Paint were open went from sluggish to surprisingly snappy after the update. The first launch after a restart was no faster, because there’s no running Edge for Windows to hand the request to.
+Of course, 
+Startup Boost
+ keeps Edge running in the background anyway, and with way too many tabs open all day on my laptop, practically every link I click is a warm launch.
+Interestingly, the final 
+KB5127936 release notes
+ list the Edge change under 
+Normal rollout
+, which Microsoft describes as a release to all eligible devices at once, after a gradual rollout in Release Preview. Clearly, Microsoft is confident about this one.
+Since the update was optional, you had to install it yourself. But as you would know, the features and changes from last month’s optional update will reach all PCs in this month’s mandatory security update, and accelerated app launches for Edge are coming to your PC with the 
+November 10 Patch Tuesday
+ update. Once your PC installs the security update, Edge should open faster with no extra input needed from you.
+Chrome, Brave and other Windows apps could be next
+Yes, Edge has been ridiculed by social media users for several reasons, including the fact that it’s based on Google’s Chromium. But Microsoft has been among the top contributors to the open-source platform, and accelerated app launches is also on the list.
+So, Chrome, Brave, Vivaldi and other Chromium browsers could get the improvement, but none of them has announced support yet. This is fairly new, though. Firefox, being built on Mozilla’s own Gecko engine, needs its own implementation.
+Firefox in Windows 11. Image: Windows Latest
+Of course, the API isn’t limited to browsers. Messaging apps, music players and email clients that run as a single instance could use it once they get Microsoft’s unlock code, although no one has confirmed plans. The Edge team says it’s also working with Windows on other scenarios, like opening PDF files.
+For years, Microsoft’s answer to slow launches was to keep more things loaded in the background, from the likes of Startup Boost for Edge and 
+Word
+ to 
+preloading File Explorer
+. Accelerated launches just remove the redundant work Windows didn’t need to do, and I’m all for it.
+The question now is how many Windows developers besides Mozilla will ask Microsoft for that unlock code.
+About The Author
+Abhijith M B
+Abhijith is a contributing editor for Windows Latest. At Windows Latest, he has written on numerous topics, ranging from Windows to Microsoft Edge. Abhijith holds a degree in Bachelor's of Technology, with a strong focus on Electronics and Communications Engineering. His passion for Windows is evident in his journalism journey, including his articles that decoded complex PowerShell scripts.
+RELATED ARTICLES
+MORE FROM AUTHOR
+Microsoft investigates Windows 11 KB5132061 issues, 0x800f0993, 0x80070306, and 0x800f0989 installation errors
+Windows 11 is now force-enabling Memory Integrity, a feature Microsoft admitted can hurt gaming performance, and here’s how to turn it off
+I tested Windows 11 November 2026 update, here’s what’s new, improved, and fixed
+Windows 11 KB5132061 is out with new features, direct download links for offline installer (.msu)
+Windows 11 still loses your Android phone after sleep, but Microsoft now wants you to shut down your PC from it
+Microsoft is killing Windows 11’s ancient dialog boxes, and here are 25 you can still open today
+Windows 11
+Microsoft investigates Windows 11 KB5132061 issues, 0x800f0993, 0x80070306, and 0x800f0989 installation errors
+Mayank Parmar
+-
+November 11, 2026
+0
+Windows 11 is now force-enabling Memory Integrity, a feature Microsoft admitted can hurt gaming performance, and here’s how to turn it off
+November 11, 2026
+I tested Windows 11 November 2026 update, here’s what’s new, improved, and fixed
+November 10, 2026
+Windows 11 KB5132061 is out with new features, direct download links for offline installer (.msu)
+November 10, 2026
+Windows 11 still loses your Android phone after sleep, but Microsoft now wants you to shut down your PC from it
+November 10, 2026
+Windows 10
+Hate Windows 11 changes? Windows 10 has 11 months left, and Microsoft is now offering the faster update that barely changes anything
+Mayank Parmar
+-
+November 3, 2026
+0
+Microsoft killed Windows 10 to push Windows 11, but Windows sales crashed 27% as holdouts still refuse to switch
+October 29, 2026
+Microsoft extended Windows 10, but Nvidia just made the extension meaningless for gamers
+September 1, 2026
+Microsoft is limiting Microsoft 365 & OneDrive on Windows 10 to push holdouts to Windows 11
+August 13, 2026
+Windows 10 KB5120249 keeps the OS protected, direct download links for offline installer (.msu)
+August 12, 2026
+
+===== https://www.neowin.net/news/firefox-could-soon-get-the-same-windows-11-speed-boost-as-edge/
+(status 403)
+
+
+===== https://xenospectrum.com/en/firefox-windows-accelerated-launch/
+(status 200)
+Translated from the Japanese original
+Read the Japanese original
+A Mozilla developer is prototyping a new mechanism on Windows that delivers link launch requests directly to a Firefox instance that is already running. According to the public development issue "Bug 2087194," a quick test with a local build cut the time it takes for a link launch request to reach the running Firefox from about 70 milliseconds to about 3 milliseconds. Currently, Firefox starts a separate process and relays the request to the existing browser. The new approach uses a Windows feature to skip that step. However, the measurement does not reflect the time it takes to load or display a web page. It covers only the delivery of the launch request.
+Development is still at the prototype stage, and the new feature is disabled by default. The Firefox version in which it will officially ship, and the timing, have not been disclosed. Challenges also remain, such as deciding which instance should receive a request when several Firefox profiles, for example work and personal ones, are in use at the same time.
+AD
+A new way to deliver links straight to a running Firefox
+The improvement targets "warm launches," in which an application that is already running is reused. For example, when you click a web link in another application such as email or chat and Firefox is already running, that instance is used to open the page. Until now, Firefox has briefly started a new 
+firefox.exe
+ process, relayed the request to the existing instance, and then exited. The same relay is also used when Firefox is launched from the Start menu or taskbar.
+What is being tested in 
+Mozilla's development issue "Bug 2087194"
+ is a way to eliminate this relay process by using Windows' "Accelerated App Launches." According to Microsoft's developer documentation, Accelerated App Launches lets an application register in advance a window that receives launch requests. Requests to open a URI are delivered with the Windows message 
+WM_COPYDATA
+, while launches from the Start menu or taskbar use a different window message. In Mozilla's prototype, the developer reportedly confirmed that Firefox could directly receive not only web links but also launch requests from the Start menu.
+Because this approach removes the need to start a new process and relay the request, the time needed to deliver a launch request to the running Firefox can be shortened. However, what improves is only the path for handing a request to an existing browser, which is different from a cold start from a state where Firefox is not running. Nor do tasks such as fetching web page data, running JavaScript, and rendering get faster by the same proportion. How much this change affects the speed users perceive would need to be measured from the click on a link to the moment the page actually appears.
+From about 70 ms to 3 ms, though Edge's speedup was measured differently
+Mozilla's development issue reports that delivering a link request, which took about 70 milliseconds with the old method, was completed in about 3 milliseconds with the new one. A simple calculation puts the reduction in delivery time at about 
+96%
+, but this comes from a quick test with a local build. The specifications of the PC used, the Windows build number, the number of measurements, the variance in results, and a precise definition of the starting point of the measurement are not given. The figure of about 3 milliseconds therefore cannot be treated as performance reproducible on a typical Windows environment.
+Separately, Microsoft announced on October 29, 2026 that Edge had become the first browser to support Accelerated App Launches. According to 
+Microsoft's official blog
+, comparing Edge with and without the acceleration feature while Edge was already running showed a 
+15%
+ improvement in warm launch speed, and up to 
+33%
+ in heavy multitasking scenarios. However, what Microsoft showed is the improvement rate for warm launches as a whole, which differs in scope from the request delivery time Mozilla measured.
+The two companies' announcements and measurement conditions can be summarized as follows.
+Reporter / target
+Published result
+What was measured / conditions
+Information not disclosed
+Mozilla: Firefox
+About 70 ms before, about 3 ms with the prototype
+Quick test with a local build. Time for a link request to reach the running Firefox
+Test machine, Windows build, number of measurements, variance, precise measurement starting point
+Microsoft: Edge
+Warm launch improved 
+15%
+, up to 
+33%
+ in heavy multitasking
+Comparison with and without the acceleration feature while Edge was already running
+Absolute times, detailed test conditions
+Firefox's reduction from about 70 ms to about 3 ms is a measurement limited to request delivery. By contrast, Edge's 
+15%
+ and up to 
+33%
+ figures are the warm launch improvement rates Microsoft reported. Because the measurement scopes differ, these numbers cannot be compared directly to rank Firefox and Edge by speed. And even if Firefox's delivery time dropped by about 
+96%
+, the user's overall wait time would not necessarily shrink by the same proportion.
+AD
+Multiple profiles and Windows-side requirements remain challenges
+One issue remains before the new method can be officially adopted: deciding which Firefox instance should receive a launch request. Mozilla's development issue lists as an unresolved matter which instance should receive a request when several profiles are running at once. Firefox profiles are a mechanism for keeping browsing history, settings, extensions, and the like separate by purpose. For example, if work and personal profiles are open at the same time, the user's environment differs depending on which one opens a link clicked in an external application.
+Even when the traditional relay is skipped, this routing has to be handled properly. However, what Mozilla's issue points out is a design question about how to decide the destination, not a report that the prototype actually delivered a link to the wrong profile. Whether behavior equivalent to the current one can be maintained with multiple profiles in mind will be a challenge for official adoption.
+Windows also has conditions for using Accelerated App Launches. According to Microsoft's specification, launch requests using a URI scheme can be accelerated only when the application is registered as the default handler for that scheme. A URI scheme is the identifying part at the start of a URI, such as 
+https:
+, and the default handler is the standard application that opens that type of URI. In other words, even if an application has registered a URI scheme for acceleration, if a different app is the default handler, that URI request is not eligible. However, this is a condition for URI-based launches, and the same condition does not necessarily apply to every launch path, such as the Start menu or taskbar.
+In addition, the Accelerated App Launches API is a restricted-access feature. Mozilla's developer explains that Firefox being an unpackaged application was not a barrier, and that the unlock code already used for the taskbar pinning feature made this API available as well. On the other hand, whether Mozilla needs to contact Microsoft before using it officially is left as an open question. The test results alone do not show that this API is unconditionally open to all applications.
+Maintaining the traditional launch path is also necessary. Microsoft's developer documentation recommends keeping the existing mechanism of relaying requests to an existing instance, because Accelerated App Launches does not support every Windows version or launch method. Even if Firefox adopts the new method, it will therefore still need to deliver requests through the traditional relay process in environments where the new method is unavailable. In addition to supporting the new method, a mechanism will be needed to determine when it can be used and fall back to the old method when necessary.
+Official adoption undecided; perceived speedup needs further testing
+At the time of checking, Mozilla's development issue was marked "ASSIGNED," indicating that work is continuing. The prototype feature is controlled by the setting 
+widget.windows.accelerated_launch.enabled
+ and is disabled by default. It also supports control through Mozilla's feature management system "Nimbus," but it cannot be confirmed whether the feature is being rolled out to general users. The Firefox version that will officially support it and the release timing have not been announced at this stage.
+Alongside introducing Accelerated App Launches in Edge, Microsoft has said it will contribute the work back to the Chromium project and extend acceleration to opening PDF files. Mozilla's effort, by contrast, is an independent implementation for Firefox to use the Windows API directly. A Windows update alone therefore will not automatically add the same mechanism to existing Firefox. Firefox itself must complete the necessary development and testing and incorporate it into an official release.
+The focus going forward will be how to decide the destination when multiple profiles are running, how to determine environments where Accelerated App Launches can be used, and how to implement the fallback to the traditional method. In addition, measuring actual operation time, from the click on a link through window display to page load, would make it possible to evaluate how much of this speedup is reflected in users' wait time. The prototype result of cutting request delivery from about 70 ms to about 3 ms is promising, but how noticeable the effect will be in everyday browsing depends on future testing.
+Sources
+Primary sources
+Mozilla Bugzilla — Bug 2087194
+Microsoft Learn — Accelerated App Launches
+Microsoft Edge Blog — Edge is faster on Windows with Accelerated App Launches
+Checked on 2026-11-09
+AD
+
+===== https://piunikaweb.com/2026/11/11/firefox-open-links-faster-soon-skip-windows-processes/
+(status 200)
+About Us
+Meet Our Team
+Work With Us
+Contact
+About Us
+Meet Our Team
+Work With Us
+Contact
+Google Chrome
+Microsoft Edge
+Mozilla Firefox
+Brave
+Artificial Intelligence
+All browsers
+Others
+Web Browser
+Apple Safari
+Atlassian Arc
+Atlassian Dia
+Astian Midori
+Brave
+DuckDuckGo
+Google Chrome
+Helium
+Microsoft Edge
+Mozilla Firefox
+Mullvad Browser
+OpenAI ChatGPT Atlas
+Opera
+Perplexity Comet
+Vivaldi
+Accessories
+Android
+Oreo
+Pie
+Q
+Android Auto
+Apple
+iOS
+macOS
+Apps
+Asus
+AT&T
+Bugs and Issues
+Daily Dose
+Essential
+Facebook
+Gaming
+Google
+Fi
+Gmail
+Google Drive
+Google Photos
+Wear OS
+YouTube
+How-tos
+HTC
+Huawei
+Honor
+Instagram
+Intel
+Internet Culture
+Jio
+Lenovo
+LG
+Microsoft
+Windows
+Windows 10
+Motorola
+New and Interesting
+New features
+News
+Nokia
+OnePlus
+Oppo
+Realme
+Other OS
+Outage
+PewDiePie
+Rumors
+Samsung
+ShowBox
+Smart Home
+Smart Speakers
+Smart TV
+Smart Wearables
+smartwatches
+Sony
+Sponsored Post
+Sprint
+T-Mobile
+Technology
+Tiktok
+Tumblr
+Updates
+Verizon
+Virtual Assistant
+Virtual Reality
+vivo
+Vodafone
+Xiaomi
+Poco
+Redmi
+Yahoo
+ZTE
+Home
+            Firefox could soon open links faster by skipping extra Windows processes
+Mozilla Firefox
+New features
+News
+web browser
+Firefox could soon open links faster by skipping extra Windows processes
+Sudhanshu K
+Nov 11, 2026 
+2 Min Read
+Firefox is working on a fix for an unnecessary process launch in Windows 11. Once this gets fixed, it could make opening links faster. It could also speed up the process of returning to a browser that is already running.
+Basically, it uses Microsoft’s accelerated app launch technology. Edge already supports it, and it eliminates an extra step when Windows sends launch requests to an existing browser window.
+This issue was originally highlighted in a 
+Bugzilla
+ entry (2087194), filed in late October, and was initially spotted by the folks at 
+Windows Latest
+. It describes how Firefox currently starts a new “firefox.exe” process whenever users click external links or launch the browser from the Start menu/taskbar… even when the browser is already running. This temporary process creates unnecessary overhead.
+To address such behavior, Microsoft has developed accelerated app launch. Instead of starting another pointless intermediate process, Windows can directly notify an application that’s already running whenever a launch request arrives. It reduces latency; Microsoft has officially published a blog detailing this 
+here
+.
+In Mozilla’s early testing, the time to open a Firefox instance dropped from 70ms to approximately 3ms. However, this measures the launch handoff and not the exact time needed to load a webpage. The actual speed that a website loads might not change by much, but the launch itself should feel snappier.
+If you’re someone who keeps Firefox open consistently, or someone who sets it to launch automatically during startup, this fix should result in theoretical speed improvements.
+Microsoft Edge already benefits from accelerated app launches (as 
+detailed
+ by an official Windows blog), and Microsoft is also working to bring the same technology to Chromium. This could potentially benefit Chrome, Brave, and Vivaldi in the future.
+For now, the implementation on Firefox is still in really early/experimental stages. It’ll take a while for Mozilla to enable it for all users. It’s unclear whether the new behavior is available in the Nightly channel at the time of writing.
+In other Firefox news, Mozilla is temporarily removing the data restrictions for the built-in VPN. More on that 
+here
+.
+✦
+PiunikaWeb’s Take
+Launching an entirely new Firefox process just to share a link to a browser that’s already running in the background was completely pointless memory overhead, especially at a time when memory efficiency and RAM usage concerns are at a peak.
+Users expect clicking a link to be practically instantaneous, and there’s a stereotype of Gecko browsers being inferior in performance too. Using the accelerated launch API from Microsoft is an excellent solution to this problem. However, we still need a hands-on test to check whether the differences are actually significant in real-world use.
+                  	We stand out from the tech-media crowd because we break news stories; we mainly bring you stuff that you won’t find anywhere in the mainstream tech media. Our stories have been picked up by some of the world’s most popular websites and media outlets—more info is 
+available here.
+×
+Sudhanshu K
+ 375 Posts
+I have been a consumer technology enthusiast for over 5 years. Thanks to my experience in software beta testing and product reviews, I've understood and learnt a lot about what bugs and issues bother people, and I spend time trying to simplify their solutions. I cover smartphones, software, social media, apps, AI, and most consumer tech gadgets. Actively pursuing a Computer Science bachelor’s degree. I'm mostly active on Twitter/X (@TechWhirlUlt), drop a DM or tag me if you want to share info or connect!
+
+===== https://bugzilla.mozilla.org/show_bug.cgi?id=2087194
+(status 200)
+Copy Summary
+▾
+Markdown
+Markdown (bug number)
+Plain Text
+HTML
+View ▾
+Reset Sections
+Expand All Sections
+Collapse All Sections
+History
+JSON
+XML
+Open
+Bug 2087194
+Opened 
+13 days ago
+Updated 
+23 hours ago
+Use Windows accelerated app launches so links and Start menu launches reach an already-running Firefox faster
+*
+Summary:
+            Use Windows accelerated app launches so links and Start menu launches reach an already-running Firefox faster
+Product:
+Toolkit
+▾
+Component:
+Startup and Profile System
+▾
+Version:
+            unspecified
+Platform:
+            All
+            Windows
+Type:
+enhancement
+Priority:
+Not set
+Severity:
+            --
+      Points:
+            ---
+Status:
+ASSIGNED
+Status:
+            ASSIGNED
+        ---
+          Mark as Assigned
+Milestone:
+            ---
+      Iteration:
+            ---
+Project Flags:
+a11y-review
+---
+Accessibility Severity
+---
+Performance Impact
+---
+Webcompat Priority
+---
+Webcompat Score
+---
+Tracking Flags:
+Tracking
+Status
+relnote-firefox
+---
+thunderbird_esr115
+---
+---
+thunderbird_esr153
+---
+---
+firefox-esr115
+---
+---
+firefox-esr153
+---
+---
+firefox160
+---
+---
+firefox161
+---
+---
+firefox162
+---
+---
+Assignee:
+drubino
+Assignee:
+Reset Assignee to default
+Mentors:
+---
+QA Contact:
+Reset QA Contact to default
+Reporter:
+drubino
+Triage Owner:
+mossop
+CC:
+4 people
+Depends on:
+        ---
+Blocks:
+        ---
+Regressions:
+        ---
+Regressed by:
+        ---
+URL:
+See Also:
+        ---
+Alias:
+        ---
+Keywords:
+---
+Whiteboard:
+---
+      QA Whiteboard:
+        ---
+      Has STR:
+            ---
+      Change Request:
+            ---
+Votes:
+1
+      Bug Flags:
+behind-pref
+firefox-backlog
+sec-bounty
+?
+sec-bounty-hof
+in-qa-testsuite
+in-testsuite
+qe-verify
+      Signature:
+None
+    This bug is publicly visible.
+ WIP: Bug 2087194 - Use Windows accelerated app launches in the Windows remote server.
+13 days ago
+drubino@mozilla.com
+48 bytes,
+          text/x-phabricator-request        
+Details
+  |
+Review
+Bottom ↓
+Tags ▾
+Reset
+Timeline ▾
+Reset
+Collapse All
+Expand All
+Comments Only
+drubino@mozilla.com
+Assignee
+Description
+          •
+13 days ago
+Windows 11 now lets a running app ask Windows to deliver its launches directly, instead of Windows starting a new process that finds the running instance, forwards the request and exits. Microsoft calls these accelerated app launches. They cover launches from the Start menu and taskbar, plus links for schemes the app is the default handler for. Developer docs: 
+https://learn.microsoft.com/windows/apps/develop/launch/accelerated-launch
+Edge is the first app using it, on Windows 11 25H2, 26H1 and 26H2 with the October 2026 non-security update (KB5127936) or later: 
+https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/
+ Microsoft says most users see launches about 15% faster, and up to 33% faster when the machine is busy. They're also upstreaming the work to Chromium, so Chrome and the other Chromium browsers will presumably follow, and they're working on extending it to opening PDF files.
+Firefox takes the slow path today. When Firefox is already running, every link click and every Start menu or taskbar launch starts a new 
+firefox.exe
+ (launcher process included) that hands the request to the running instance and exits. That's the normal case for anyone who keeps Firefox open, and launch on login makes it more common.
+The API is a Limited Access Feature (
+com.microsoft.windows.acceleratedlaunch.1
+), but being unpackaged doesn't block us: the unlock code we already use for taskbar pinning unlocks it too. In a quick test with a local build, a link reached an already-running Firefox in about 3 ms instead of about 70 ms, and Start menu launches were delivered directly as well.
+Open questions I can see:
+Which instance should take launches when several profiles are running.
+Whether Microsoft wants a heads-up before we use the feature, as our Limited Access Feature docs suggest.
+drubino@mozilla.com
+Assignee
+Comment 1
+          •
+13 days ago
+        Attached file
+WIP: Bug 2087194 - Use Windows accelerated app launches in the Windows remote server.
+        — 
+Details
+Lets Windows deliver Start menu and link launches straight to the running instance instead of starting a new process to forward them. Behind widget.windows.accelerated_launch.enabled, which is off by default and controlled by the windowsAcceleratedLaunch Nimbus feature.
+Phabricator Automation
+Updated
+          •
+12 days ago
+Assignee: nobody → drubino
+Status: NEW → ASSIGNED
+          You need to 
+log in
+          before you can comment on or make changes to this bug.
+Top ↑
