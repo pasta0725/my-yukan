@@ -15,3 +15,16 @@ cmp_*.mp4
 shorts/*/vid/
 shorts/*/*.mp4
 shorts/*/parts.txt
+# Short materials live on the throwaway branch "work" (tools/work_branch.py), not on main: main's history keeps
+# everything forever and grew ~18MB a day (user's decision 2026-11-12). Files already tracked are not affected.
+narration/*/*.wav
+narration/*/tts_log.txt
+media/*/*
+!media/*/urls.txt
+shorts/rina_*/**/*.wav
+shorts/rina_*/**/*.mp3
+shorts/rina_*/**/*.png
+shorts/rina_*/**/*.jpg
+shorts/rina_*/**/*.jpeg
+shorts/rina_*/**/*.webp
+channel/thumbs/*.jpg

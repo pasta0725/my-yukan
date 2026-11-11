@@ -32,6 +32,7 @@
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
 - 読み上げは1本4〜6回まで（Gemini の無料枠は1モデル1日10回）。1本の中でモデルを混ぜない。読み間違えやすい数字はひらがな。
 - 締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal）。
+- **素材の置き場（2026-11-12〜、ユーザー決定）**：音声・画像・動画は main に入れず、使い捨てのブランチ work に置く（main の履歴は消えずに1日約18MBずつ増えていたため）。読み上げ（tts.yml）と公式画像（fetch-media.yml）の結果は自動で work に入る。手元に取るのは `python3 tools/work_branch.py get narration/<名前> media/<名前>`、自分で作った音声・画像（longcat の入力、サムネなど）を置くのは `python3 tools/work_branch.py put <ファイルやフォルダ>`。longcat-colab.yml と youtube-upload.yml は work からも読む。main の .gitignore がこれらを main に入れないようにしている。台本・spec.json・short.html・lines.json・urls.txt など文字のファイルは今までどおり main。
 - サムネは codex-images.yml、項目は metadata_rules.md、字幕SRTと英訳も作る。
 
 ## 3. 人の代わりの確認（全部通ったときだけ投稿）
@@ -46,7 +47,7 @@
 - 通知（PushNotification と SendUserMessage の両方、日本語）：
   「今日の自動ショート：<タイトル>（<選んだ理由1行>）。21:00に公開されます。https://youtube.com/shorts/<ID>　止めたいときは Claude に『動画止めて <ID>』と言うか、YouTube Studio アプリで非公開にしてください。」
 - 止める：youtube-upload.yml の video=stop:<ID>。すぐ出す：video=go:<ID>。状態：video=status:<ID>。
-- channel/shorts_log.csv に1行足す。公開の30分後以降に drive-store.yml（name=<名前>、extra=media/<素材の名前>）を動かし、完成動画と素材をドライブへ移す（metadata_rules.md「完成動画の保管」）。予約公開の前に動かすとサムネの入れ直しで使う動画が消えるので、必ず公開後。
+- channel/shorts_log.csv に1行足す。完成動画と素材のドライブへの移動は、youtube-upload.yml が公開を確かめたあと drive-store.yml を自動で動かす（動いていなければ name=<名前> で手で動かす。media の名前が rina_ を外した名前と違うときは extra=media/<名前>）。
 
 ## 5. うまくいかないとき
 - 号ができていない／候補が選べない／確認が20:30までに通らない → 投稿しない。理由を通知する。

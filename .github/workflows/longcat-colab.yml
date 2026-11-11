@@ -21,6 +21,8 @@ jobs:
     timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
+      - name: inputs kept on the branch work (sounds and pictures are not on main since 2026-11-12)
+        run: python3 tools/work_branch.py get "${{ inputs.dir }}" || true
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q google-colab-cli && colab version

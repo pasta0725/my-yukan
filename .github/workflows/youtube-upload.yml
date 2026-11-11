@@ -17,6 +17,7 @@ jobs:
     outputs: { video_id: "${{ steps.up.outputs.video_id }}" }
     steps:
       - uses: actions/checkout@v4
+      - run: python3 tools/work_branch.py get channel/thumbs || true   # thumbnails live on the branch work since 2026-11-12
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q google-api-python-client google-auth
@@ -47,10 +48,12 @@ jobs:
     # so the thumbnail is set once more right after it goes public.
     needs: upload
     if: inputs.publish_at != '' && needs.upload.outputs.video_id != ''
+    permissions: { contents: read, actions: write }
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
+      - run: python3 tools/work_branch.py get channel/thumbs || true   # thumbnails live on the branch work since 2026-11-12
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -q google-api-python-client google-auth
@@ -71,8 +74,13 @@ jobs:
             if [ "$s" = public ]; then
               python3 tools/youtube_upload.py "$N" "thumb:$ID" || echo "thumbnail again failed (set it with video=thumb:$ID)"
               [ -n "$C" ] && python3 tools/youtube_upload.py "$N" "comment:$ID" --comment "$C"
+              echo "PUBLIC=1" >> "$GITHUB_ENV"
               exit 0
             fi
             [ "$s" = private ] && [ $i -ge 20 ] && { echo "still private (stopped?) - no comment"; exit 0; }
             sleep 30
           done
+      - name: move the video and its materials to Google Drive (drive-store.yml), now that it is public (2026-11-12)
+        if: env.PUBLIC == '1'
+        env: { GH_TOKEN: "${{ github.token }}", N: "${{ inputs.name }}" }
+        run: gh workflow run drive-store.yml --repo "${{ github.repository }}" -f name="$N" || echo "start drive-store.yml by hand (name=$N)"

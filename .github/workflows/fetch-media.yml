@@ -1,5 +1,6 @@
 name: fetch-media
-# Downloads public media files (official press images/videos) listed in media/<name>/urls.txt into the same folder.
+# Downloads public media files (official press images/videos) listed in media/<name>/urls.txt into the same folder
+# on the branch "work" (get them with: python3 tools/work_branch.py get media/<name>).
 on:
   workflow_dispatch:
   push:
@@ -15,6 +16,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: download
         run: |
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          python3 tools/work_branch.py get media || true   # files fetched before (on the branch work) are not fetched again
           for f in media/*/urls.txt; do
             d=$(dirname "$f")
             while read -r name url; do
@@ -24,8 +27,5 @@ jobs:
             done < "$f"
           done
           ls -la media/*
-          git config user.name pasta0725
-          git config user.email pasta0725@users.noreply.github.com
-          git add media
-          git commit -m "公式の画像・動画を取得" || true
-          for i in 1 2 3 4 5; do git pull --rebase -q && git push && break; echo "push failed ($i), retrying"; sleep $((i*10)); done   # other pushes often land at the same time (Issue #10)
+          # pictures and videos go to the throwaway branch "work", not main (user 2026-11-12)
+          python3 tools/work_branch.py put media

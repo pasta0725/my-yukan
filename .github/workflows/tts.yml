@@ -1,5 +1,6 @@
 name: narration
-# Makes narration audio with Gemini TTS when a script file is pushed.
+# Makes narration audio with Gemini TTS when a script file is pushed. The audio is saved on the branch "work"
+# (get it with: python3 tools/work_branch.py get narration/<name>).
 # The API key lives in the repository secret GEMINI_API_KEY (never in the code).
 on:
   workflow_dispatch:
@@ -19,20 +20,15 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           set -e
-          made=0
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          git fetch -q origin "+work:refs/remotes/origin/work" || true
           for f in $(find narration -name lines.json | sort); do
             d=$(dirname "$f")
-            if [ ! -e "$d/s1.wav" ]; then
-              # one failing script must not stop the others
-              python3 -I tools/tts_gemini.py "$f" "$d" > "$d/tts_log.txt" 2>&1 || true
-              cat "$d/tts_log.txt"
-              made=1
-            fi
+            # audio already made (on main from before 2026-11-12, or on the branch work)?
+            if [ -e "$d/s1.wav" ] || git cat-file -e "origin/work:$d/s1.wav" 2>/dev/null; then continue; fi
+            # one failing script must not stop the others
+            python3 -I tools/tts_gemini.py "$f" "$d" > "$d/tts_log.txt" 2>&1 || true
+            cat "$d/tts_log.txt"
+            # sounds go to the throwaway branch "work", not main (user 2026-11-12: main's history keeps them forever)
+            python3 tools/work_branch.py put "$d"
           done
-          if [ "$made" = 1 ]; then
-            git config user.name pasta0725
-            git config user.email pasta0725@users.noreply.github.com
-            git add narration
-            git commit -m "読み上げ音声を作成（Gemini TTS）"
-            for i in 1 2 3 4 5; do git pull --rebase -q && git push && break; echo "push failed ($i), retrying"; sleep $((i*10)); done   # other pushes often land at the same time (Issue #4)
-          fi

@@ -1,7 +1,8 @@
 name: drive-store
 # Moves a published Short out of GitHub into Google Drive (tools/drive_store.py, Issue #11, 2026-11-12):
 #   video  = <name>.mp4 on the branch upload-tmp      -> Drive 「星餓りな 保管（自動）/ショート動画」, then removed from upload-tmp
-#   assets = the pictures, sounds and videos in paths  -> one zip in 「星餓りな 保管（自動）/素材と試作」, then removed from main
+#   assets = the pictures, sounds and videos in paths (on main or the branch work) -> one zip in 「星餓りな 保管（自動）/素材と試作」,
+#            then removed from main; the branches work, generated and fetched are deleted
 #            (text files - scripts, pages, json, md - stay in git). To make the video again, take the zip back from Drive.
 # Nothing is removed unless Drive has every file with the same size.
 on:
@@ -9,7 +10,7 @@ on:
     inputs:
       name: {description: "the short's name, e.g. rina_carbon", required: true}
       video: {description: "move <name>.mp4 from upload-tmp (yes/no)", default: "yes"}
-      paths: {description: "material folders/files to zip and remove (space separated). Empty = shorts/<name> narration/<name>* channel/thumbs/<name>.jpg", default: ""}
+      paths: {description: "material folders/files to zip and remove (space separated). Empty = shorts/<name> narration/<name>* channel/thumbs/<name>.jpg media/<name without rina_>", default: ""}
       extra: {description: "more paths to add, e.g. media/carbon", default: ""}
 permissions:
   contents: write
@@ -38,13 +39,16 @@ jobs:
       - name: materials zip
         env: { P: "${{ inputs.paths }}", X: "${{ inputs.extra }}" }
         run: |
-          [ -z "$P" ] && P="shorts/$N narration/$N* channel/thumbs/$N.jpg"
+          [ -z "$P" ] && P="shorts/$N narration/$N* channel/thumbs/$N.jpg media/${N#rina_}"
+          # materials on the branch work (since 2026-11-12) come into the folder too
+          python3 tools/work_branch.py get shorts/$N narration media channel/thumbs || true
           # binary files only: pictures, sounds, videos, zips (text stays in git)
           git ls-files -- $P $X | grep -Ei '\.(png|jpe?g|webp|gif|wav|mp3|m4a|ogg|mp4|mov|webm|zip)$' > /tmp/bin.txt || true
-          wc -l < /tmp/bin.txt
-          if [ -s /tmp/bin.txt ]; then
+          { cat /tmp/bin.txt; find $P $X -type f 2>/dev/null | grep -Ei '\.(png|jpe?g|webp|gif|wav|mp3|m4a|ogg|mp4|mov|webm|zip)$'; } | sort -u > /tmp/all.txt
+          wc -l < /tmp/all.txt
+          if [ -s /tmp/all.txt ]; then
             Z="/tmp/${N}_素材_$(TZ=Asia/Tokyo date +%Y%m%d).zip"
-            zip -q "$Z" -@ < /tmp/bin.txt
+            zip -q "$Z" -@ < /tmp/all.txt
             ls -la "$Z"
             python3 tools/drive_store.py put assets "$Z"
             echo "ASSETS_OK=1" >> "$GITHUB_ENV"
@@ -52,7 +56,7 @@ jobs:
       - name: remove from GitHub (only what is now in Drive)
         run: |
           git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
-          if [ "$ASSETS_OK" = 1 ]; then
+          if [ "$ASSETS_OK" = 1 ] && [ -s /tmp/bin.txt ]; then
             xargs -d '\n' git rm -q < /tmp/bin.txt
             git commit -qm "素材をドライブへ移した：$N（zip は 星餓りな 保管（自動）/素材と試作）"
             for i in 1 2 3 4 5; do git pull --rebase -q && git push -q && break; sleep $((i*10)); done
@@ -69,4 +73,4 @@ jobs:
           fi
           echo "done: video=${VIDEO_OK:-0} assets=${ASSETS_OK:-0}" | tee -a "$GITHUB_STEP_SUMMARY"
           # the day's talking clips and fetched pages are used up once the video is published (user 2026-11-12: remove them)
-          if [ "$VIDEO_OK" = 1 ]; then for b in generated fetched; do git push -q origin --delete "$b" 2>/dev/null && echo "deleted branch $b"; done; fi
+          if [ "$VIDEO_OK" = 1 ] && [ "$ASSETS_OK" = 1 ]; then for b in generated fetched work; do git push -q origin --delete "$b" 2>/dev/null && echo "deleted branch $b"; done; fi
