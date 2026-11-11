@@ -21,6 +21,8 @@ jobs:
       N: "${{ inputs.name }}"
       DRIVE_CLIENT_ID: "${{ secrets.DRIVE_CLIENT_ID }}"
       DRIVE_CLIENT_SECRET: "${{ secrets.DRIVE_CLIENT_SECRET }}"
+      YT_CLIENT_ID: "${{ secrets.YT_CLIENT_ID }}"
+      YT_CLIENT_SECRET: "${{ secrets.YT_CLIENT_SECRET }}"
       DRIVE_REFRESH_TOKEN: "${{ secrets.DRIVE_REFRESH_TOKEN }}"
     steps:
       - uses: actions/checkout@v4

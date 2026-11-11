@@ -19,7 +19,9 @@ import json, os, sys, time, urllib.parse, urllib.request, urllib.error
 SCOPE = "https://www.googleapis.com/auth/drive.file"
 ROOT = "星餓りな 保管（自動）"
 SUB = {"video": "ショート動画", "assets": "素材と試作"}
-CID, CSEC = os.environ.get("DRIVE_CLIENT_ID", ""), os.environ.get("DRIVE_CLIENT_SECRET", "")
+# a client made for Drive if there is one, else the YouTube one (works only if that client allows the device sign-in)
+CID = os.environ.get("DRIVE_CLIENT_ID") or os.environ.get("YT_CLIENT_ID", "")
+CSEC = os.environ.get("DRIVE_CLIENT_SECRET") or os.environ.get("YT_CLIENT_SECRET", "")
 
 
 def post(url, data):
@@ -33,7 +35,8 @@ def post(url, data):
 def login(out):
     d = post("https://oauth2.googleapis.com/device/code", {"client_id": CID, "scope": SCOPE})
     if "user_code" not in d:
-        print("could not start the sign-in:", d.get("error"), d.get("error_description", "")); sys.exit(1)
+        print("could not start the sign-in:", d.get("error"), d.get("error_description", ""),
+              "- if the client is not of the type 'TVs and Limited Input devices', make one and register DRIVE_CLIENT_ID / DRIVE_CLIENT_SECRET"); sys.exit(1)
     msg = (f"## Googleドライブの許可\n\n1. スマホかパソコンで {d['verification_url']} を開く\n"
            f"2. コード **{d['user_code']}** を入れる\n3. pastachannel0725 で入り、「許可」を押す\n\n"
            f"（{d['expires_in'] // 60}分以内に。この画面は待っていれば自動で進みます）\n")
@@ -104,6 +107,10 @@ def put(kind, files):
 
 
 if __name__ == "__main__":
+    if sys.argv[1] == "check":   # can this client start the device sign-in? (no sign-in is made)
+        d = post("https://oauth2.googleapis.com/device/code", {"client_id": CID, "scope": SCOPE})
+        print("client:", "Drive" if os.environ.get("DRIVE_CLIENT_ID") else "YouTube", "| device sign-in:", "ok" if "user_code" in d else d.get("error"))
+        sys.exit(0 if "user_code" in d else 1)
     if sys.argv[1] == "login": login(sys.argv[2])
     elif sys.argv[1] == "put": put(sys.argv[2], sys.argv[3:])
     else: print(__doc__); sys.exit(2)
