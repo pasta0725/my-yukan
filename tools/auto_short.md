@@ -46,7 +46,7 @@
 - 通知（PushNotification と SendUserMessage の両方、日本語）：
   「今日の自動ショート：<タイトル>（<選んだ理由1行>）。21:00に公開されます。https://youtube.com/shorts/<ID>　止めたいときは Claude に『動画止めて <ID>』と言うか、YouTube Studio アプリで非公開にしてください。」
 - 止める：youtube-upload.yml の video=stop:<ID>。すぐ出す：video=go:<ID>。状態：video=status:<ID>。
-- channel/shorts_log.csv に1行足す。素材のzip保管と upload-tmp の掃除は metadata_rules.md「完成動画の保管」どおり。
+- channel/shorts_log.csv に1行足す。公開の30分後以降に drive-store.yml（name=<名前>、extra=media/<素材の名前>）を動かし、完成動画と素材をドライブへ移す（metadata_rules.md「完成動画の保管」）。予約公開の前に動かすとサムネの入れ直しで使う動画が消えるので、必ず公開後。
 
 ## 5. うまくいかないとき
 - 号ができていない／候補が選べない／確認が20:30までに通らない → 投稿しない。理由を通知する。

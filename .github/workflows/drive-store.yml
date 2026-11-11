@@ -1,0 +1,63 @@
+name: drive-store
+# Moves a published Short out of GitHub into Google Drive (tools/drive_store.py, Issue #11, 2026-11-12):
+#   video  = <name>.mp4 on the branch upload-tmp      -> Drive 「星餓りな 保管（自動）/ショート動画」, then removed from upload-tmp
+#   assets = the pictures, sounds and videos in paths  -> one zip in 「星餓りな 保管（自動）/素材と試作」, then removed from main
+#            (text files - scripts, pages, json, md - stay in git). To make the video again, take the zip back from Drive.
+# Nothing is removed unless Drive has every file with the same size.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "the short's name, e.g. rina_carbon", required: true}
+      video: {description: "move <name>.mp4 from upload-tmp (yes/no)", default: "yes"}
+      paths: {description: "material folders/files to zip and remove (space separated). Empty = shorts/<name> narration/<name>* channel/thumbs/<name>.jpg", default: ""}
+      extra: {description: "more paths to add, e.g. media/carbon", default: ""}
+permissions:
+  contents: write
+jobs:
+  store:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      N: "${{ inputs.name }}"
+      DRIVE_CLIENT_ID: "${{ secrets.DRIVE_CLIENT_ID }}"
+      DRIVE_CLIENT_SECRET: "${{ secrets.DRIVE_CLIENT_SECRET }}"
+      DRIVE_REFRESH_TOKEN: "${{ secrets.DRIVE_REFRESH_TOKEN }}"
+    steps:
+      - uses: actions/checkout@v4
+      - name: finished video
+        if: inputs.video == 'yes'
+        run: |
+          mkdir -p /tmp/v; git fetch -q origin upload-tmp
+          if git cat-file -e "origin/upload-tmp:$N.mp4" 2>/dev/null; then
+            git show "origin/upload-tmp:$N.mp4" > "/tmp/v/$N.mp4"
+            python3 tools/drive_store.py put video "/tmp/v/$N.mp4"
+            echo "VIDEO_OK=1" >> "$GITHUB_ENV"
+          else echo "no $N.mp4 on upload-tmp"; fi
+      - name: materials zip
+        env: { P: "${{ inputs.paths }}", X: "${{ inputs.extra }}" }
+        run: |
+          [ -z "$P" ] && P="shorts/$N narration/$N* channel/thumbs/$N.jpg"
+          # binary files only: pictures, sounds, videos, zips (text stays in git)
+          git ls-files -- $P $X | grep -Ei '\.(png|jpe?g|webp|gif|wav|mp3|m4a|ogg|mp4|mov|webm|zip)$' > /tmp/bin.txt || true
+          wc -l < /tmp/bin.txt
+          if [ -s /tmp/bin.txt ]; then
+            Z="/tmp/${N}_素材_$(TZ=Asia/Tokyo date +%Y%m%d).zip"
+            zip -q "$Z" -@ < /tmp/bin.txt
+            ls -la "$Z"
+            python3 tools/drive_store.py put assets "$Z"
+            echo "ASSETS_OK=1" >> "$GITHUB_ENV"
+          fi
+      - name: remove from GitHub (only what is now in Drive)
+        run: |
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          if [ "$ASSETS_OK" = 1 ]; then
+            xargs -d '\n' git rm -q < /tmp/bin.txt
+            git commit -qm "素材をドライブへ移した：$N（zip は 星餓りな 保管（自動）/素材と試作）"
+            for i in 1 2 3 4 5; do git pull --rebase -q && git push -q && break; sleep $((i*10)); done
+          fi
+          if [ "$VIDEO_OK" = 1 ]; then
+            git fetch -q origin upload-tmp; git checkout -q -B upload-tmp origin/upload-tmp
+            git rm -q "$N.mp4"; git commit -qm "ドライブへ移した：$N.mp4"
+            for i in 1 2 3 4 5; do git push -q origin upload-tmp && break; sleep $((i*10)); git pull --rebase -q origin upload-tmp; done
+          fi
+          echo "done: video=${VIDEO_OK:-0} assets=${ASSETS_OK:-0}" | tee -a "$GITHUB_STEP_SUMMARY"

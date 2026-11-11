@@ -98,3 +98,8 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 - 号が push されると indexnow.yml が新しい記事のURLを Bing などに知らせる（鍵は site/config.json の indexnow_key、公開してよい種類のもの）。
 - 記事には「年月日・時刻」と「文：星餓りなのテックニュース編集部」を表示。運営者名と連絡先は未掲載（ユーザーが決める）。
 - 調査の結論（2026-11-11）：他社記事の言い換えを大量に出す形は Google のスパムポリシーの例に近い。検索に出す記事を絞るかは保留中。個人では大手ニュースアプリの媒体登録はほぼ不可。
+
+## ドライブへの保管（2026-11-12〜、Issue #11）
+- 完成動画と素材は GitHub の drive-store.yml が Google ドライブ（pastachannel0725）の「星餓りな 保管（自動）」へ移す。道具は tools/drive_store.py。鍵は GitHub の DRIVE_CLIENT_ID・DRIVE_CLIENT_SECRET・DRIVE_REFRESH_TOKEN（中身は表示しない）。
+- 最初の1回だけ（ユーザーの作業）：Google Cloud のプロジェクト rina-youtube で Google Drive API を有効にし、OAuth クライアントを「テレビと入力が限られたデバイス」の種類で作り、その ID とシークレットを GitHub の DRIVE_CLIENT_ID・DRIVE_CLIENT_SECRET に登録する。GitHub の細かい権限のトークン（このリポジトリだけ・Secrets の読み書き）を GH_SECRETS_TOKEN に登録する。そのあと drive-login.yml を動かし、実行の要約に出るコードを https://www.google.com/device で入れて pastachannel0725 で許可する。
+- ドライブへ上げられなくなったら（鍵の期限切れなど）、drive-login.yml をもう一度動かす。
