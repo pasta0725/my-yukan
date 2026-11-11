@@ -1,4 +1,4 @@
-# ニュース一覧の取得 test-1112（11-12 04:21）
+# ニュース一覧の取得 test-1112（11-12 04:23）
 
 - ai_A ITmedia AI+: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/aiplus.xml
 - ai_A ITmedia NEWS: 12本（全50） feed https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
@@ -32,18 +32,15 @@
   - 失敗 https://prtimes.jp/kaden/: HTTPError 404 Client Error: Not Found for url: https://prtimes.jp/kaden/
 - gadget_B AV Watch: 12本（全20） feed https://av.watch.impress.co.jp/data/rss/1.0/avw/feed.rdf
 - gadget_B GIZMODO JAPAN: 12本（全20） feed https://www.gizmodo.jp/index.xml
-- gadget_B マイナビニュース: 0本（全0） 
-  - 失敗 https://news.mynavi.jp/rss/digital: HTTPError 404 Client Error: Not Found for url: https://news.mynavi.jp/rss/digital
-  - 失敗 https://news.mynavi.jp/digital/: HTTPError 404 Client Error: Not Found for url: https://news.mynavi.jp/digital/
+- gadget_B マイナビニュース: 12本（全50） feed https://news.mynavi.jp/rss/index
 - service_A ITmedia NEWS: 12本（全50） feed https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
 - service_A Impress Watch: 12本（全20） feed https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf
 - service_A CNET Japan: 12本（全30） feed:http://feed.japan.cnet.com/rss/index.rdf https://japan.cnet.com/
   - 失敗 https://japan.cnet.com/rss/index.rdf: HTTPError 404 Client Error: Not Found for url: https://japan.cnet.com/rss/index.rdf
 - service_B YouTube 公式ブログ: 3本（全20） feed https://blog.youtube/rss/
 - service_B Google Japan Blog: 2本（全20） feed https://blog.google/intl/ja-jp/rss/
-- service_B LINEヤフー: 3本（全40） page https://www.lycorp.co.jp/ja/news/
-- service_B Instagram: 0本（全0） 
-  - 失敗 https://about.instagram.com/blog: HTTPError 400 Client Error: Bad Request for url: https://about.instagram.com/blog
+- service_B LINEヤフー: 12本（全40） page https://www.lycorp.co.jp/ja/news/
+- service_B Meta（日本）: 12本（全12） page https://about.fb.com/ja/news/
 - service_B Netflix: 4本（全15） feed:https://about.netflix.com/en/feed.xml https://about.netflix.com/ja/newsroom
 - game_A 4Gamer.net: 12本（全100） feed https://www.4gamer.net/rss/index.xml
 - game_A GAME Watch: 12本（全29） feed https://game.watch.impress.co.jp/data/rss/1.0/gmw/feed.rdf
@@ -51,7 +48,7 @@
   - 失敗 https://www.famitsu.com/rss/famitsu_news.rdf: HTTPError 404 Client Error: Not Found for url: https://www.famitsu.com/rss/famitsu_news.rd
 - game_B 電撃オンライン: 12本（全40） page https://dengekionline.com/
   - 失敗 https://dengekionline.com/rss/news.rss: HTTPError 404 Client Error: Not Found for url: https://dengekionline.com/rss/news.rss
-- game_B 任天堂: 12本（全20） json https://www.nintendo.com/jp/topics/c/api/json_list?key=newtopics
+- game_B 任天堂: 5本（全10） feed:https://www.nintendo.com/jp/topics/c/feed/rss/ https://www.nintendo.com/jp/topics/
 - game_B PlayStation Blog: 4本（全10） feed https://blog.ja.playstation.com/feed/
 - ec_A ネットショップ担当者フォーラム: 12本（全30） feed https://netshop.impress.co.jp/rss.xml
 - ec_A ECのミカタ: 12本（全20） feed:https://ecnomikata.com/rss/ https://ecnomikata.com/
@@ -75,4 +72,4 @@
 - other_B 日経クロステック: 12本（全100） feed https://xtech.nikkei.com/rss/index.rdf
 - other_B ITmedia ビジネスオンライン: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/business.xml
 
-記事ページ 424/452 本の本文を取得。45秒
+記事ページ 465/489 本の本文を取得。44秒
