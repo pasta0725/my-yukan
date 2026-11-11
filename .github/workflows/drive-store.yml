@@ -60,7 +60,12 @@ jobs:
           if [ "$VIDEO_OK" = 1 ]; then
             git fetch -q origin upload-tmp; git checkout -q -B upload-tmp origin/upload-tmp
             git rm -q "$N.mp4"; git commit -qm "ドライブへ移した：$N.mp4"
-            for i in 1 2 3 4 5; do git push -q origin upload-tmp && break; sleep $((i*10)); git pull --rebase -q origin upload-tmp; done
+            if [ -z "$(git ls-files)" ]; then
+              # nothing else waits there: delete the whole branch, so the old videos leave GitHub's history too (user 2026-11-12)
+              git push -q origin --delete upload-tmp && echo "deleted branch upload-tmp (empty)"
+            else
+              for i in 1 2 3 4 5; do git push -q origin upload-tmp && break; sleep $((i*10)); git pull --rebase -q origin upload-tmp; done
+            fi
           fi
           echo "done: video=${VIDEO_OK:-0} assets=${ASSETS_OK:-0}" | tee -a "$GITHUB_STEP_SUMMARY"
           # the day's talking clips and fetched pages are used up once the video is published (user 2026-11-12: remove them)
