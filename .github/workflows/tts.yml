@@ -4,6 +4,8 @@ name: narration
 # The API key lives in the repository secret GEMINI_API_KEY (never in the code).
 on:
   workflow_dispatch:
+    inputs:
+      scripts: {description: "lines.json files to read aloud (space separated), e.g. narration/rina_x/lines.json", required: true}
   push:
     branches: [main]
     paths: ["narration/**/lines.json"]
@@ -22,7 +24,13 @@ jobs:
           set -e
           git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
           git fetch -q origin "+work:refs/remotes/origin/work" || true
-          for f in $(find narration -name lines.json | sort); do
+          # only the scripts this push added or changed (2026-11-12: looking at every folder re-made the audio of videos
+          # already moved to Drive and used up the day's free quota)
+          if [ -n "${{ inputs.scripts }}" ]; then L="${{ inputs.scripts }}"
+          else L=$(jq -r '[.commits[] | (.added + .modified)[]] | unique | .[] | select(endswith("lines.json"))' "$GITHUB_EVENT_PATH"); fi
+          echo "scripts: $L"
+          for f in $L; do
+            [ -e "$f" ] || continue
             d=$(dirname "$f")
             # audio already made (on main from before 2026-11-12, or on the branch work)?
             if [ -e "$d/s1.wav" ] || git cat-file -e "origin/work:$d/s1.wav" 2>/dev/null; then continue; fi
