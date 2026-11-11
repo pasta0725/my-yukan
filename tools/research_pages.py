@@ -102,11 +102,27 @@ elif sys.argv[1] == "import":
 
 elif sys.argv[1] == "imgjobs":
     src, out = sys.argv[2], sys.argv[3]
-    jobs = {}
+    # Codex sometimes gives a news site, a stock site or a blog as the "official" page (2026-11-11 Issue #9).
+    # Those are dropped here; the image picker still checks the rest by credit/page.
+    from urllib.parse import urlparse
+    NOT_OFFICIAL = {"seroundtable.com", "cbsnews.com", "kabutan.jp", "smartscope.blog", "newsweekjapan.jp", "muse.ai", "itmedia.co.jp",
+                    "impress.co.jp", "gizmodo.jp", "gizmodo.com", "techcrunch.com", "theverge.com", "engadget.com", "cnet.com", "zdnet.com",
+                    "mynavi.jp", "nikkei.com", "reuters.com", "bloomberg.com", "bloomberg.co.jp", "news.yahoo.co.jp", "finance.yahoo.co.jp",
+                    "livedoor.com", "4gamer.net", "famitsu.com", "dengekionline.com", "gamespark.jp", "gigazine.net", "gori.me", "sorae.info",
+                    "minkabu.jp", "kabuyoho.jp", "traders.co.jp", "note.com", "hatenablog.com", "hatenablog.jp", "medium.com", "wikipedia.org",
+                    "reddit.com", "9to5mac.com", "9to5google.com", "macrumors.com", "androidauthority.com", "wccftech.com", "tomshardware.com",
+                    "phileweb.com", "ascii.jp", "businessinsider.com", "businessinsider.jp", "forbes.com", "forbesjapan.com", "cnbc.com", "bbc.com",
+                    "nhk.or.jp", "asahi.com", "yomiuri.co.jp", "mainichi.jp", "sankei.com", "jiji.com", "kyodo.co.jp"}
+    def not_official(host): return any(host == d or host.endswith("." + d) for d in NOT_OFFICIAL)
+    jobs, dropped = {}, []
     for f in sorted(os.listdir(src)):
         if not f.endswith(".json"): continue
         u = str((json.load(open(f"{src}/{f}")).get("official") or {}).get("url", ""))
-        if u.startswith("http"): jobs[f[:-5]] = [u]
+        host = urlparse(u).netloc.lower()
+        if not u.startswith("http"): continue
+        if not_official(host): dropped.append(f"{f[:-5]} {host}"); continue
+        jobs[f[:-5]] = [u]
+    if dropped: print("not official (dropped):", *dropped, sep="\n  ")
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
     json.dump(jobs, open(out, "w"), ensure_ascii=False, indent=1)
     print("official pages:", len(jobs))

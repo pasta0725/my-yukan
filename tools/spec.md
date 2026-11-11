@@ -12,6 +12,7 @@ Since 2026-11-10 there are two editions a day: 朝刊 (ready 7:00) and 夕刊 (r
 - To open a site's listing page: first WebSearch for it (e.g. "家電 Watch 最新ニュース", "ITmedia AI+ 新着", "メルカリ ニュースルーム"), then WebFetch the URL exactly as the search result gives it.
 - To find a company's official announcement/product page: WebSearch for it (company + product + "ニュースリリース" / "製品"), then fetch the result URL. Or follow a link the news article itself contains.
 - If WebFetch returns PROVENANCE_REQUIRED or any permission error, do not retry that URL; find it via WebSearch instead, or skip it.
+- Links inside an article, official pages and RSS feeds are often refused (PROVENANCE_REQUIRED) when opened directly (2026-11-11 Issue #7). When that happens, WebSearch the page's title or the company + product name and open the URL from the search result; that usually works. If it still fails, write from the pages you could open and leave the rest to the Codex research step.
 
 ## Categories (since 2026-11-07; your assignment names one of them)
 - ai = AI: generative AI, new models, AI features and services, AI rules. If a phone/app/service story is mainly about a new AI feature, it is ai.
@@ -25,6 +26,10 @@ Since 2026-11-10 there are two editions a day: 朝刊 (ready 7:00) and 夕刊 (r
   "Notable" (lowered on 2026-11-08 at the user's request — they want more of these) = at least one of: covered by 2 or more news sites; about a company or service many people in Japan know or use (e.g. NTT docomo, KDDI/au, SoftBank, Rakuten Mobile, LINEヤフー, Google, Apple, Microsoft, Amazon, Sony, Nintendo, NVIDIA, TSMC); affects people in Japan (any leak or outage at a well-known company or service, any carrier price/plan change, a new rule or guideline); a deal of about 10 billion yen or more; quarterly results of a major tech company with a clear headline (record high/low, big rise/fall, new outlook); a CEO/top change or layoffs at a well-known company; a new chip factory, big investment or export rule.
   Skip only: thin press releases, small companies' routine personnel or partnership news, rumors without a reliable source. Aim for 4 stories per worker.
 - One story goes to exactly one category. Pick the category of its main point.
+- Who writes what (2026-11-11 Issue #8: Claude/Gemini/ChatGPT stories were written by 3-4 workers at once). Several workers read the same sites, so before writing a story check that it belongs to YOUR worker:
+  - A story whose main point is a new AI model or a feature of an AI service (ChatGPT, Claude, Gemini, Copilot, Grok...) is ai, never service or mobile. Among the ai workers: an English-only announcement is ai_D; a Japanese official announcement with no news coverage yet is ai_C; ai_A writes stories found on ITmedia, ai_B those found on Impress/Publickey/日経クロステック. If the same story is on both, ai_A takes it.
+  - A phone/PC update (Pixel Drop, iOS, Windows) is mobile even if it includes AI features, unless the AI feature is the whole point.
+  - service_A writes stories found on news sites; service_B only stories that exist as the service's own announcement and have little news coverage.
 
 ## Personal-interest topics (the user's request, 2026-11-09 — cover these actively)
 The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chrome, Gmail), Xiaomi, Anker (Soundcore, eufy, Nebula), Dreame, 任天堂 (Nintendo, Switch), SONY (PlayStation, Xperia, audio, cameras), GeForce NOW, ChatGPT (OpenAI), Claude (Anthropic), Grok (xAI), Muse (Meta's AI app).
