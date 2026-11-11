@@ -1,0 +1,203 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2155377.html
+TITLE: 2カ月連続で脆弱性1,000件超え ～Microsoftが2026年11月「Windows Update」を実施／「緊急」は64件、悪用確認は「Outlook」の1件。企業・教育向け「Windows 11 23H2」は今回が最後
+SITE: 窓の杜
+PUBLISHED: 2026-11-11 11:01 (page: 2026-11-11T11:01:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2155/377/microsoft.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/377/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2154/654/list.jpg | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/377/image11_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/377/image12_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/377/video1_l.gif | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/377/image14_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/377/image15_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/377/image16_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2154/831/list.jpg | 
+- https://asset.watch.impress.co.jp/img/wf/list/2154/988/list.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B000R5IZ8W.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+2カ月連続で脆弱性1,000件超え ～Microsoftが2026年11月「Windows Update」を実施
+「緊急」は64件、悪用確認は「Outlook」の1件。企業・教育向け「Windows 11 23H2」は今回が最後
+樽井 秀人
+2026年11月11日 11:01
+Microsoft、2026年11月の「Windows Update」「Microsoft Update」を実施
+米Microsoftは11月10日（現地時間）、すべてのサポート中バージョンのWindowsに対し月例のセキュリティ更新プログラムをリリースした（パッチチューズデー）。現在、「Windows Update」や「Microsoft Update カタログ」などから入手可能。
+リリースノート
+の概要によると、今月のMicrosoft製品のCVEは1,094件。初めて4桁に達した
+先月の1,474件
+（公開時点では1,413件）からは減ったものの、2カ月連続で1,000件を超えた。
+すでに悪用が確認されている脆弱性は、以下の1件
+。
+CVE-2026-124194
+：Microsoft Outlook のなりすましの脆弱性（警告）
+深刻度は「Moderate」（警告）にとどまるが、細工されたメッセージファイルを開くと、「Outlook」が通常の外部コンテンツの警告を表示せずに攻撃者の管理するネットワーク上の場所へ接続してしまい、ユーザーのNTLMv2ハッシュが漏洩するおそれがある。攻撃者はこれを使ってそのユーザーとして認証できてしまう。プレビューウィンドウは攻撃経路にならないが、できるだけ早い対処が望ましい。
+なお、事前に詳細が公開されていた脆弱性はなかった。
+深刻度が最高の
+「Critical」（緊急）と評価された脆弱性は64件
+。影響範囲はWindows本体や「Office」とその構成要素のほか、「Exchange Server」、「Azure」、「Microsoft Defender」などに及ぶ。
+また、Microsoftでは、これに先立つ11月5日、修正の公開から攻撃までの時間がAIで短くなっていることをうけ、更新プログラムを早めに適用するよう、呼びかけている。
+関連記事
+システム・ファイル
+システム
+Windows
+Microsoft、更新プログラムの“すぐに適用”を呼び掛け ～AIで「パッチギャップ」のリスクが増大
+Windows 10/11およびWindows Server 2016/2019/2022/2025
+Windows関連の脆弱性は726件。最大深刻度は「緊急」（リモートでコードが実行される）。
+Windows 11 バージョン 26H2：
+KB5132061
+（OSビルド 26300.9974）
+Windows 11 バージョン 26H1：
+KB5132059
+（OSビルド 28000.3501）
+Windows 11 バージョン 25H2：
+KB5132061
+（OSビルド 26200.9974）
+Windows 11 バージョン 24H2（Enterprise/Education）：
+KB5132061
+（OSビルド 26100.9974）
+Windows 11 バージョン 23H2（Enterprise/Education）：
+KB5131087
+（OSビルド 22631.7711）
+Windows 10 バージョン 22H2（ESU）：
+KB5131096
+（OSビルド 19045.7846）
+Windows Server 2025：
+KB5131080
+（OSビルド 26100.33822）
+Windows Server 2022：
+KB5131090
+（OSビルド 20348.5870）
+Windows Server 2019：
+KB5131085
+（OSビルド 17763.9487）
+Windows Server 2016：
+KB5131291
+（OSビルド 14393.9688）
+「Windows 11 バージョン 26H2/25H2」向けの更新プログラム（KB5132061）には、2026年10月の定例外更新（KB5134133）と
+Windows非セキュリティプレビュー更新プログラム（KB5127936）
+の内容が含まれる。おもな新機能は以下の通り（段階的に展開）。
+エクスプローラーのコンテキストメニューを刷新。
+表示するコマンドやレイアウトをカスタマイズ可能に
+自動再生のダイアログを刷新
+。ダークモードに対応
+エクスプローラーの検索結果の表示を改善。アドレスバーでユーザープロファイルフォルダーを示す
+「~」（チルダ）が使えるように
+「XBOX モード」の「ゲーミング タスク ビュー」
+に、ナビゲーションバーを追加
+「拡大鏡」が
+ディスプレイごとのズーム
+に対応
+Windowsを起動できない場合などに、Windows Updateからダウンロードしたイメージで再インストールする
+「クラウド リビルド」（Cloud rebuild）
+「エクスプローラー」の右クリックメニュー。下部に［メニューのカスタマイズ］が追加された
+刷新された「自動再生」のダイアログ。ダークモードにも対応
+アドレスバーに「~」と入力すると、ユーザープロファイルフォルダーへ移動できる
+「XBOX モード」の「ゲーミング タスク ビュー」。下部のナビゲーションバーから、デスクトップへの切り替えや電源操作にアクセスできる
+「拡大鏡」がディスプレイごとに異なるズームレベルに対応
+「設定」アプリの［システム］＞［回復］画面に追加された「Rebuild this PC」
+そのほかにも、以下の変更・不具合修正が含まれているとのこと。
+一部の「USB Audio 1.0」デバイスが起動しない問題を修正
+：
+最近のセキュリティ更新プログラムの適用後
+、デバイスマネージャーでエラーコード10が表示され、デバイスが起動しないことがあった
+プリンターを追加できない問題を修正
+：「Active Directory」で公開されたプリンターを［設定］アプリから追加しようとすると、エラー87で失敗することがあった。2026年10月の更新で発生
+リモートデスクトップで接続できない問題を修正
+：2026年10月の非セキュリティプレビュー更新の適用後、証明書の不一致でRDP接続が失敗することがあった
+NTLMメッセージ署名を既定で提示
+：匿名でない接続で、クライアントがNTLMメッセージ署名を既定で提示するようになった。NTLMリレー攻撃のリスクを抑える
+PowerShellスクリプトの署名検証を強化
+：エンコーディングの検証が厳格になり、不正なUTF-8を含むスクリプトは署名検証に失敗することがある
+なお、「Windows 11 バージョン 24H2」は
+Home/Proエディションのサポートがすでに終了
+しており、今月の更新はEnterprise/Educationエディションのみが対象。「Windows 11 バージョン 23H2」のEnterprise/Educationエディションは、今回の更新をもって
+サービスが終了
+した。今後は月例のセキュリティ更新プログラムを受け取れなくなるため、後継バージョンのWindows 11へのアップグレードが推奨されている。
+関連記事
+システム・ファイル
+システム
+Windows
+Windows 11 23H2 Enterprise/Education、.NET 8/9、PowerShell 7.4/7.5などがサービス終了
+「Windows 10 バージョン 22H2」はすでに一般向けのサポートが終了している。「拡張セキュリティ更新プログラム」（Extended Security Updates：ESU）に登録しないとセキュリティパッチを受け取れない点には注意。個人向けは
+2027年10月まで無償で延長
+可能だ。
+Microsoft Office関連のソフトウェア
+「Microsoft Office」関連のセキュリティ修正に関しては、以下のドキュメントを参照のこと。
+Release notes for Microsoft Office security updates - Office release notes
+「Office」製品に関連する脆弱性は174件。うち22件が深刻度「緊急」と評価されており、すべてリモートでコードが実行される脆弱性だ。内訳は「Excel」が12件、「Word」が4件、「Outlook」が3件、「Office」が2件、「PowerPoint」が1件。
+Microsoft SQL Server
+「Microsoft SQL Server」関連では、59件の脆弱性が修正された。最大深刻度は「重要」。
+なかでも
+「CVE-2026-116945」
+（重要：リモートでコードが実行される）はCVSS基本値が「9.8」と高い。攻撃者が、統合パッケージの接続先となるネットワーク上のエンドポイントを制御していれば、細工した応答を返すことで、統合サービスのコンテキストでコードを実行できるおそれがある。SQL Serverの資格情報は不要で、パッケージが自動実行される場合はユーザーの操作も必要ない。
+Microsoft SharePoint
+「Microsoft SharePoint」関連では、27件の脆弱性が修正された。最大深刻度は「重要」で、内訳はなりすましが10件、特権の昇格が8件、リモートでコードが実行される脆弱性が6件、情報漏洩が3件。
+Microsoft Exchange Server
+「Microsoft Exchange Server」関連では、9件の脆弱性が修正された。最大深刻度は「緊急」。
+CVE-2026-118207
+（緊急：リモートでコードが実行される）
+CVE-2026-118149
+（重要：リモートでコードが実行される）
+CVE-2026-118150
+（重要：特権の昇格）
+CVE-2026-118151
+（重要：特権の昇格）
+CVE-2026-118154
+（重要：特権の昇格）
+CVE-2026-118157
+（重要：特権の昇格）
+CVE-2026-118152
+（重要：なりすまし）
+CVE-2026-118208
+（重要：なりすまし）
+CVE-2026-118153
+（重要：サービス拒否）
+Microsoftによると、「Windows Search」の脆弱性
+CVE-2026-116928
+（緊急：リモートでコードが実行される、CVSS基本値「9.8」）は「Exchange Server」を経由して悪用可能だという。細工した添付ファイル付きのメールを送るだけで、サーバーが自動でインデックスを作成する際にコードが実行されるおそれがある。受信者がメールを開く必要はない。
+Microsoft Visual Studio/Visual Studio Code
+「Visual Studio」関連では、5件の脆弱性が修正された。最大深刻度は「重要」で、いずれもリモートでコードが実行される脆弱性。
+CVE-2026-114151
+（重要：リモートでコードが実行される）
+CVE-2026-114152
+（重要：リモートでコードが実行される）
+CVE-2026-114158
+（重要：リモートでコードが実行される）
+CVE-2026-114159
+（重要：リモートでコードが実行される）
+CVE-2026-118745
+（重要：リモートでコードが実行される）
+「Visual Studio Code」関連の修正は、計19件。最大深刻度は「重要」で、内訳はセキュリティ機能のバイパスが9件、リモートでコードが実行される脆弱性が7件、情報漏洩が2件、特権の昇格が1件となっている。
+Microsoft Dynamics 365
+「Microsoft Dynamics 365（on-premises）」で、情報漏洩の脆弱性が1件修正された。深刻度は「重要」。
+Microsoft .NET/ASP.NET Core
+「.NET」「ASP.NET Core」では、20件の脆弱性が修正された。最大深刻度は「重要」。内訳はサービス拒否が10件、特権の昇格が6件など。
+詳細は
+公式ブログのアナウンス
+を参照のこと。
+Microsoft Edge
+「Microsoft Edge」は、「パッチチューズデー」とは関係なくアップデートされている。デスクトップ向け安定版の最新セキュリティアップデートは、米国時間11月5日リリースのv157.0.4341.42。「Chromium」のセキュリティアップデートを随時取り込んでいるので、常に最新版を適用するように心掛けたい。
+なお、「Chromium」ではゼロデイ脆弱性「CVE-2026-125350」が確認されている。Microsoftも実際に悪用されている脆弱性を把握しており、現在修正に取り組んでいるとのこと。
+関連記事
+セキュリティ
+脆弱性
+Windows
+「Google Chrome 157」にゼロデイ脆弱性、セキュリティアップデートが公開
+そのほかの製品
+そのほかにも、以下の製品に対しセキュリティアップデートが提供中だ。括弧内は最大深刻度。
+Azure関連：20件（緊急）
+画像・動画の拡張機能（HEIF、HEVC、Raw Image Extensionなど）：6件（緊急）
+Microsoft Entra関連：2件（緊急）
+Microsoft Defender：1件（緊急）
+PowerShell：4件（重要）
+Aspire：4件（重要）
+Microsoft Teams関連：3件（重要）
+Windows App（リモートデスクトップクライアント）：2件（重要）
+Microsoft Authentication Library（MSAL）：2件（重要）
+Microsoft 365 Agents SDK、MCP Gateway、Microsoft Graph、Windows Sandbox、Configuration Manager、HPC Pack、Windows Admin Center、Xbox（GDK）、GitHub Copilot（JetBrains IDE向けプラグイン）：各1件（重要）
+Microsoft Edge：1件（警告）
+Amazonで購入
+「Windows」関連商品
+Amazonで購入

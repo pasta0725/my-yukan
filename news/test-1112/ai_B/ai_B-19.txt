@@ -1,0 +1,164 @@
+URL: https://www.publickey1.jp/blog/26/googlekubernetes10aiagent_sustrategvisorcncf.html
+TITLE: Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+SITE: Publickey
+PUBLISHED: 2026-11-10 00:25 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/agent-substrate10-cncf.png
+IMAGES:
+- https://www.publickey1.jp/2026/agent-substrate10-cncf.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+2026年11月10日
+Googleは、Kubernetes上にAIエージェントのための高効率な基盤を構築するためのオープンソースソフトウェア「Agent Substrate」と「gVisor」を、Linux Foundation傘下の
+Cloud Native Computing Foundation（CNCF）に寄贈したことを発表しました
+。
+Why did Google donate Agent Substrate and gVisor to the @CloudNativeFdn? 
+
+AI agents spend 90%–95% of their time idle waiting for models, yet need sub-second wakeups.
+
+Learn how Substrate runs on GKE:
+Link in first reply https://t.co/gEKdpqF0LD
+— Google Open Source (@GoogleOSS)
+November 5, 2026
+AIエージェント基盤にKubernetesが非効率な理由
+Kubernetesは分散コンピューティングの基盤として事実上の標準となっており、多くのAIやAIエージェントがKubernetes上で開発、実行されています。
+しかしGoogleは、KubernetesそのままではAIエージェントの実行基盤として問題を抱えていると指摘します。
+その背景としてGoogleは、AIエージェントの実行中はAIモデルによる推論の結果待ちや外部APIからの反応待ち、人間によるレビューと承認待ちによる待ち時間が全体の90％から95％を占めていると説明。
+Kubernetes上で1つのPodごとに1つのAIエージェントを実行している場合、それらのPodはコンピューティングリソースを保持したままアイドル状態になっているという、非常に非効率なことになります。
+一方でこれを解消しようとサーバレスの仕組みを用いてアイドル状態のPodを停止させてコンピューティングリソースを解放させた場合、AIエージェントが作業を再開する際には時間がかかるPodのコールドスタートとなり、AIエージェントのインタラクティブな体験が失われてしまうことになります。
+つまり多数のAIエージェントを稼働させる基盤に求められるのは、アイドル状態ではコンピューティングリソースを消費しない仕組みを備えつつ、再開時には瞬時にメモリとストレージなどの状態を復帰できる、という仕組みです。
+Agent Substrateは10倍の密度でAIエージェントを実行
+この仕組みを実現するのが、今回GoogleがオープンソースとしてCNCFに寄贈したAgent Substrateです。
+Agent SubstrateはKubernetes上にアクターのコントロールプレーンとデータプレーンを構築します。
+アクターはAIエージェントのセッションや作業状態やメモリなどを保持します。
+コントロールプレーンはこのアクターを、データプレーンであるワーカープール内のスロットに割り当てます。
+AIエージェントはこのワーカープール内のスロットで実行されています。
+ワーカープールには高速な階層ストレージが接続されており、アイドル状態になったAIエージェントのアクターはここにスナップショットとして保存されます。
+そしてアイドル状態からの復帰時には、スナップショットが高速にワーカープール内のスロットにロードされるため、コールドスタートの時間をかけることなく、すぐ実行状態となることができます。
+Googleはこれにより従来より
+10倍もの密度でAIエージェントを実行できるとしています
+。
+また、AIエージェントがKubernetes上でコードを実行するための環境として、通常のコンテナよりも安全なgVisorが用いられます。
+GoogleはなぜAgent SubstrateとgVisorを寄贈したのか
+GoogleはなぜAgent SubstrateとgVisorのCNCFへの寄贈を行ったのでしょうか。
+その理由として、各社が個別にKubernetes上に効率的なAIエージェントの実行環境をばらばらに構築することを避けるためだったと以下のように説明しています。
+Donating Agent Substrate and gVisor to the CNCF gives the cloud-native community a neutral, vendor-independent foundation that works across any conformant Kubernetes cluster.
+Agent SubstrateとgVisorをCNCFに寄贈することで、クラウドネイティブコミュニティに対してKubernetes標準に準拠したベンダーニュートラルなAIエージェント基盤が提供されるのです。
+一方でGoogle CloudはGoogle Kubernetes Engine（GKE）上でのAgent Substrateの提供も正式サービスとして開始しました。
+Agent SubstrateとgVisorのCNCFへの寄贈は、これらが業界標準になることでGoogle Cloudのサービスとの親和性が高くなり、同社のサービス利用促進につながる可能性があることも同社は見据えていると考えられます。
+あわせて読みたい
+Google Cloud
+Kubernetes
+クラウド
+クラウドネイティブ
+コンテナ型仮想化
+機械学習・AI
+Google
+≫次の記事
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+≪前の記事
+マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから
+Excelで帳票レイアウトを作成、CSVデータから簡単に単票や明細付きの帳票を生成できる「AS-DataReport」が新登場［PR］
+MCP仕様を完全にサポートしたMCP公式のRuby SDKが登場。「MCP SDK Tier 1」に到達と
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

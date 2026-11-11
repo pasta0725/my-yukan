@@ -1,0 +1,142 @@
+URL: https://www.publickey1.jp/blog/26/awsaiec2vmaws_nitro_sandboxes.html
+TITLE: AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+SITE: Publickey
+PUBLISHED: 2026-11-12 00:04 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/aws-nitrosandboxes-la.png
+IMAGES:
+- https://www.publickey1.jp/2026/aws-nitrosandboxes-la.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+2026年11月12日
+Amazon Web Services（AWS）は、Amazon EC2インスタンス上でほぼネイティブのEC2性能で動作しつつ、Nitroシステムハードウェアレベルのきわめて強力な隔離環境を備えた軽量な仮想マシン「
+AWS Nitro Sandbox
+」の
+提供開始を発表しました
+。
+AIエージェントを用いたコーディングの普及により、コンテナなどの軽量な仮想環境でAIが生成した信頼できないコードを実行する機会が増加しています。
+しかし一般的なコンテナ型仮想化はカーネルを共有しているなど、十分に安全な分離環境とはいえない場合があり、万が一悪意のあるコードが実行された場合には同一マシン上の別のコンテナやサービスに影響が及ぶ可能性があります。
+そのため、強力な隔離機能を備えつつコンテナのように軽量な仮想環境が求められていました。
+AWSが提供を開始した「AWS Nitro Sandboxes」は、これに対応した軽量VMを実現します。
+ハードウェアレベルの強力な隔離を持つ軽量VM
+AWS Nitro Sandboxesの基盤となっているAWS Nitro Systemは、AWSの基盤としてハードウェアレベルで強力なセキュリティと分離環境などを実現しており、Amazon EC2やAWSのネットワークはこのAWS Nitro Systemの上に構築されています。
+そして今回のAWS Nitro Sandboxesは、その名前の通りAWS Nitroのハードウェアレベルの強力な隔離機能を備えつつ、Amazon EC2とほぼ同様のネイティブな実行速度を実現。
+Amazon EKSのPodとして利用可能
+AWS Nitro SandboxesはAmazon EC2上のサンドボックスやAmazon ECSのPod、Amazon EKSのPodなどとして利用可能です。
+AWS Nitro Sandboxesで構成されたサンドボックスでは、ホストとも他のサンドボックスやコンテナとも完全に独立したOSが提供され、サンドボックス内の処理によるシステムコールはサンドボックス内のゲストカーネル以外に到達することはできません。
+Amazon EKSのオートモードでは、AWS Nitro Sandboxesを有効にすることでPodを簡単にAWS Nitro Sandboxesの軽量VMに変更できます。
+変更後も従来のコンテナイメージ、デプロイメントパイプライン、ヘルムチャートなどはそのまま変更せずに利用できると説明されています。
+あわせて読みたい
+AWS
+Kubernetes
+クラウド
+コンテナ型仮想化
+機械学習・AI
+≫次の記事
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+≪前の記事
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから
+Excelで帳票レイアウトを作成、CSVデータから簡単に単票や明細付きの帳票を生成できる「AS-DataReport」が新登場［PR］
+MCP仕様を完全にサポートしたMCP公式のRuby SDKが登場。「MCP SDK Tier 1」に到達と
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

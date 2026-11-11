@@ -1,0 +1,35 @@
+URL: https://www.watch.impress.co.jp/docs/news/2155271.html
+TITLE: NTT、“未来を予測する”フィジカルAI ロボットの失敗を回避
+SITE: Impress Watch
+PUBLISHED: 2026-11-11 15:00 (page: 2026-11-11T15:00:00+09:00)
+OG_IMAGE: https://www.watch.impress.co.jp/img/ipw/list/2155/271/01.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/01_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/02_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/03_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/04_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/05_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/06_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/00_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/07_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/08_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/09_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/10_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/11_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/12_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/271/13_s.jpg | 
+
+TEXT:
+ニュース
+NTT、“未来を予測する”フィジカルAI　ロボットの失敗を回避
+浅井 淳志
+2026年11月11日 15:00
+NTTは11日、ロボットが行動する前に、荷崩れや落下などのリスクを予測し、成功率の高い行動を選択できるフィジカルAI技術を発表した。物理法則に基づいて物体の動きなどを予測する「NTTワールドモデル」を活用し、複数の行動候補を事前に評価することで、ロボットの作業精度を高める。
+ワールドモデルは、外界の状態や変化を把握し、自身の行動によって生じる未来の状態変化を予測するモデル。フィジカルAIに未来を予測する仕組みを持たせることで、ロボットが行動する前に、その結果を予測できるようになる。
+従来のワールドモデルは、大量の映像データから経験的に未来の変化を学習する方式が主流で、学習していない状況では物理法則に反する予測結果を生成する場合があった。特に、空港の手荷物や宅配便の荷物など、形状・重量・配置が異なる物品を扱う現場では、あらゆる状況を想定した学習データの収集が難しいという課題がある。
+NTTワールドモデルは、映像生成モデルに独自開発の「物理制御アダプタ」を組み合わせた技術。物体の位置や姿勢、速度、質量などを推定し、運動方程式に基づいて状態の変化を予測することで、物体同士の接触や衝突など、複雑な動きを再現する。
+経験に基づく映像生成モデルと、物理法則に基づく制御アダプタを統合することで、物体の消失や変形などの不自然な予測を抑制。学習していない状況でも、物理的な整合性を保ちながら将来の動きを予測できるという。
+既存のロボット制御ソフトウェアとの連携にも対応する。VLA(Vision-Language-Action)モデルやモーションプランナーが生成した複数の行動候補について、実行後の状況を映像で予測するとともに、各行動の成否をスコアとして出力する。これにより、ロボットが実際に動く前に行動候補を比較し、適切な動作を選択できる。
+小型ロボットを使った不定形物の棚積み実験では、オープンソースのVLAモデル「π0.5」にNTTワールドモデルを組み合わせることで、タスクの成功率が73.1%から92.3%に向上した。
+また、複数の物体の衝突を含む公開ベンチマーク「OBJ3D」での評価では、人間の知覚に近い感覚で正解映像と予測映像の類似度を測定する指標「LPIPS」において7.81を記録。既存手法の「OCK」(7.92)や「NVIDIA Cosmos Predict 2.5」(21.90)を上回る予測精度を確認したという。
+NTTは、同技術の最初の適用先として、形状や重量が異なる空港手荷物の積み込み・積み下ろし作業を想定する。今後はMujinと連携して実証を進めるほか、物流・倉庫、製造、建設、小売などへの展開を目指す。

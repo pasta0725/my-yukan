@@ -1,0 +1,26 @@
+# gadget_B の候補（test-1112、GitHub で取得済み。ページを開かずにこのフォルダのファイルを読む）
+id | 公開 | サイト | 見出し | URL
+gadget_B-01 | 2026-11-11 19:00 | AV Watch | Amazonで初代ゴジラ4Kリマスターが低価格。「ゴジラ-1.0」も | https://av.watch.impress.co.jp/docs/news/2155592.html
+gadget_B-02 | 2026-11-11 18:30 | AV Watch | サイバーエージェント、「呪術廻戦」「チェンソーマン」手掛けるMAPPAと業務提携 | https://av.watch.impress.co.jp/docs/news/2155628.html | （本文なし）
+gadget_B-03 | 2026-11-11 18:00 | AV Watch | Fire TV Stickを車内で使える多機能アダプタが最大12% OFF。AmazonスマイルSale | https://av.watch.impress.co.jp/docs/news/2155580.html
+gadget_B-04 | 2026-11-11 17:29 | AV Watch | ケンウッド、USB PD対応でスマホを急速充電できるディスプレイオーディオ。ワイヤレスCarPlay対応約6万円 | https://av.watch.impress.co.jp/docs/news/2155568.html
+gadget_B-05 | 2026-11-11 17:00 | AV Watch | ソニーINZONE、今夜までタイムセール。完全ワイヤレス「INZONE Buds」が17% OFF【今日みつけたお買い得品】 | https://av.watch.impress.co.jp/docs/news/todayssales/2155582.html | （本文なし）
+gadget_B-06 | 2026-11-11 16:30 | AV Watch | ディズニープラス、Meta Questで3D作品が視聴可能に | https://av.watch.impress.co.jp/docs/news/2155492.html | （本文なし）
+gadget_B-07 | 2026-11-11 16:00 | AV Watch | ベッドを“個室シアター”にするスクリーンスタンド。画面の傾斜を4段階調整 | https://av.watch.impress.co.jp/docs/news/2155532.html
+gadget_B-08 | 2026-11-11 15:11 | AV Watch | 4BA/6BA搭載、Lark Studioの「Light」シリーズ。カスタムIEMが34300円から | https://av.watch.impress.co.jp/docs/news/2155476.html
+gadget_B-09 | 2026-11-11 12:20 | AV Watch | ソニー“小型空間再現ディスプレイ”向けSDK公開 | https://av.watch.impress.co.jp/docs/news/2155452.html
+gadget_B-10 | 2026-11-11 11:48 | AV Watch | グランドシネマサンシャイン池袋、IMAXをシングルレーザー上映に変更。冷却装置の不具合で | https://av.watch.impress.co.jp/docs/news/2155423.html | （本文なし）
+gadget_B-11 | 2026-11-11 11:31 | AV Watch | ソニー「MDR-3R」の供給に遅れ。予想を大幅に上回る注文で | https://av.watch.impress.co.jp/docs/news/2155418.html
+gadget_B-12 | 2026-11-11 10:00 | AV Watch | Marshall、11基のドライバーを搭載したサウンドバー「Heston 120」に新色Cream | https://av.watch.impress.co.jp/docs/news/2155194.html
+gadget_B-13 | 2026-11-11 23:00 | GIZMODO JAPAN | 可愛いからと送ったニコニコ絵文字。Andoridユーザーには、煽り倒しているように映っていた | https://www.gizmodo.jp/article/emoji-difference-btw-iphone-android-smile/
+gadget_B-14 | 2026-11-11 22:00 | GIZMODO JAPAN | 日本海溝の深海生物に「謎のカプセル」が付着。“未知の生物”の産卵かも | https://www.gizmodo.jp/article/japan_trench_sea_spider_capsule/
+gadget_B-15 | 2026-11-11 21:45 | GIZMODO JAPAN | AdobeアプリをChatGPTやClaudeから動かせることが意味するもの | https://www.gizmodo.jp/article/adobe-mcp-integration-chatgpt-claude/
+gadget_B-16 | 2026-11-11 21:30 | GIZMODO JAPAN | 爆発したのに何度も復活。113日ごとに超新星のように光る星、いったい何が起きている？ | https://www.gizmodo.jp/article/2611-at-2016blu-supernova-impostor/
+gadget_B-17 | 2026-11-11 21:00 | GIZMODO JAPAN | AIエージェント、手首にも登場。Metaの「Muse」がApple Watchに対応です | https://www.gizmodo.jp/article/2611-muse-apple-watch-support/
+gadget_B-18 | 2026-11-11 20:00 | GIZMODO JAPAN | データセンターのための送電網、費用の6割超は住民負担でした | https://www.gizmodo.jp/article/data-center_grid_cost_residents/
+gadget_B-19 | 2026-11-11 19:35 | GIZMODO JAPAN | おまたせAndroidユーザー。「Google Pixel Tag」が日本でも発売 | https://www.gizmodo.jp/article/google-pixel-tag-release-japan/
+gadget_B-20 | 2026-11-11 19:30 | GIZMODO JAPAN | ついにAIがあなたのフォトショを直接いじる。Adobe、主要アプリのMCP対応を予告 | https://www.gizmodo.jp/article/2611-adobe-max-2026-mcp-ai-agent/
+gadget_B-21 | 2026-11-11 19:00 | GIZMODO JAPAN | Google Chromeを開きっぱなしの人は要注意。またもやセキュリティパッチが配信されました | https://www.gizmodo.jp/article/chrome-security-patch-nov-2026/
+gadget_B-22 | 2026-11-11 18:00 | GIZMODO JAPAN | 乾燥が気になる冬に。デロンギのオイルヒーターが15％オフ【Amazonセール】 | https://www.gizmodo.jp/article/2611-delonghi-oil-heater-amazon-sale/
+gadget_B-23 | 2026-11-11 17:00 | GIZMODO JAPAN | スマホの裏に貼れちゃう。カードサイズの電子書籍リーダー「BOOX Picco」日本発売 | https://www.gizmodo.jp/article/boox-picco/
+gadget_B-24 | 2026-11-11 15:35 | GIZMODO JAPAN | Windows 11の「ペイント」に脆弱性。まずはアップデートの確認を | https://www.gizmodo.jp/article/2611-windows11-paint-vulnerability/

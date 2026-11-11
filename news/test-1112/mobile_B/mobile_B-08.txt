@@ -1,0 +1,24 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2155445.html
+TITLE: “AIっぽさ”を抑えた1,600万画素出力、画像生成AI「MiniMax-H3-Image」が重みを公開
+SITE: PC Watch
+PUBLISHED: 2026-11-11 12:24 (page: 2026-11-11T12:24:39+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2155/445/1.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2155/445/1_l.jpg | 
+- https://asset.watch.impress.co.jp/img/pcw/docs/2155/445/2_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0BPM2LR7C.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+“AIっぽさ”を抑えた1,600万画素出力、画像生成AI「MiniMax-H3-Image」が重みを公開
+劉 尭
+2026年11月11日 12:24
+1,600万画素クラスの画像を、アップスケーラーを通さずに直接生成できる画像生成AIが登場した。MiniMaxは11月11日、画像生成/編集モデル「MiniMax-H3-Image」をオープンウェイト(モデルの重み)として公開した。Hugging Faceからダウンロードでき、ライセンスは独自の「MiniMax-H3-Image Community License Agreement」。
+MiniMax-H3-Imageは、同社の動画生成モデル「MiniMax H3」から派生した画像生成モデル。テキストから画像を生成する機能と、参照画像を基に画像を編集する機能を1つのモデルに統合した。約1,600万画素の画像を、アスペクト比1:1の4,096×4,096ドットから21:9の6,272×2,688ドットまでアップスケーラーなしで出力できる。また参照画像は最大16枚まで入力できる。
+構造としては、MiniMax H3から音声関連の層を取り除いた拡散Transformer(DiT)をベースとしている。DiT部はパラメータ数33.1B(331億)のDense型で、テキストエンコーダにはMiniMax H3のもの(Qwen3-VLベース)をそのまま使用する。蒸留によってサンプリングを6ステップに抑え、CFG(Classifier-Free Guidance)も不要としたことで、1,600万画素の生成でも計算コストを実用的な範囲に収めたという。
+作例
+特徴として、“AIっぽさ”を抑えた緻密なディテール、実物そっくりなリアリズムのほか、オープンなモデルの中で最も高いとする指示追従性能を挙げている。ただし、ほかのモデルとの比較ベンチマークの数値は掲載されていない。
+モデル本体のファイルサイズはBF16で68.65GB。これに加えて、MiniMax H3のリポジトリからテキストエンコーダ(66.7GB)を別途ダウンロードする必要がある。ローカルでの推論は「SGLang」、「vLLM-Omni」、「diffusers」、「ComfyUI」のフレームワークに対応する。GPUは米NVIDIAの「H200」や「RTX PRO 6000 Blackwell」、米AMDの「Instinct MI350X」などをサポートする。
+MiniMax-H3-Image Community License Agreementでは、日本を含む許諾地域(EU、英国、韓国、米国を除く全世界)での利用が無償で認められ、商用利用も原則可能。ただし、利用者と関連会社の年換算売上高が100万ドル(約1億5,900万円、1ドル=約159円換算)を超える場合は、事前にMiniMaxから書面による許諾を得る必要がある。第三者にAPIやWeb経由でモデルの機能を提供するホステッドサービスを運営する場合も同様だ。また、商用の製品やサービスでは、UI上に「MiniMax-H3-Image」と表示する必要がある。生成した画像などの出力を、ほかのAIモデルの改善に利用することは、商用か否かを問わず禁じられている。
+「GPU」関連アイテム
+Amazonで購入

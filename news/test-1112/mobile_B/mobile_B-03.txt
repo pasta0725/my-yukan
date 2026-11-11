@@ -1,0 +1,28 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2155596.html
+TITLE: 人手修正はそのまま、更新分だけ英訳！PLaMo 3で動くゲーム翻訳ツール
+SITE: PC Watch
+PUBLISHED: 2026-11-11 17:19 (page: 2026-11-11T17:19:15+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2155/596/001.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2155/596/001_l.jpg | 
+- https://asset.watch.impress.co.jp/img/pcw/list/2153/784/list.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0H6W864Z6.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+人手修正はそのまま、更新分だけ英訳！PLaMo 3で動くゲーム翻訳ツール
+稲津 定晃
+2026年11月11日 17:19
+Preferred Networks(PFN)の翻訳特化LLM「PLaMo 3 Translate」を活用し、ゲームのテキストをローカル環境で翻訳できるツールが登場した。開発者のTom氏が、翻訳API「local-jp-translate」と、ゲーム向け差分翻訳ツール「game-l10n-updater」を公開している。
+関連記事
+市場
+AI
+その他
+PFN、スマホで動く翻訳LLM「PLaMo 3 Translate」公開
+game-l10n-updaterは、ゲームの追加・変更されたテキストだけを翻訳するコマンドラインツール。日本語のメニューや説明文を追加した際などに、更新分の英訳を作れる。原文と各言語の訳文をJSONファイルで管理し、前回から変更のない文章は再翻訳しない仕組みだ。
+使う際は、まずPLaMo 3 Translateを手元のPCで動かすlocal-jp-translateを起動する。game-l10n-updaterで更新計画を確認した後、同期コマンドを実行すると、必要な文章がAPIに送られて翻訳される。モデルと実行環境の取得後は、原文や訳文を外部サービスに送らずに処理できる。
+手動で修正した訳や承認済みの訳は、次の更新時にAIで上書きされずに保持され、原文が変わった場合は要確認として報告される。また、翻訳前後で名前を埋め込む変数やタグを検査し、欠けた訳文は適用しない。
+翻訳されたテキストがゲーム画面のUI枠に収まるかも重要な要素だ。Godot向けアドオンを使えば、指定したUI部品について実際のフォントと表示領域で文字あふれを検出できる。
+翻訳モデルには最小の0.8B(8億)版を採用し、ツールのソースコードはMITライセンスで公開。モデルの利用には別途「PLaMo Community License」が適用される。
+「ローカルLLM」関連アイテム
+Amazonで購入
