@@ -1,0 +1,105 @@
+===== https://techcommunity.microsoft.com/blog/sysinternals-blog/autoruns-for-linux-procexp-for-macos-macos-tools-linux-tools-proexp-procmon-psto/4570783?WT.mc_id=AZ-MVP-4021785
+(status 200)
+Sysinternals Blog 
+2 MIN READ
+Autoruns for Linux, ProcExp for macOS, macOS tools, Linux tools, ProExp, ProcMon, PsTools, and more
+Alex_Mihaiuc
+Microsoft
+Nov 05, 2026
+Learn about the latest update to Autoruns for Linux, Process Explorer for macOS, jcd, Listent, ProcDump for Linux, Procmon for Linux, Sysmon for Linux, SysinternalsEBPF, Du, Junction, Process Explorer, Process Monitor, PsExec, PsGetSid, PsShutdown, PsSuspend, RDCMan, ZoomIt, ZoomIt for macOS
+Autoruns 1.0 for Linux
+Autoruns, a utility for viewing and managing boot and login auto start configuration, now has a Linux version.
+Process Explorer 1.0 for macOS
+Process Explorer, an advanced process diagnostic and management utility, now has a MacOS port.
+jcd 1.1
+This update to jcd, a command-line tool for quick directory navigation with substring matching and smart selection on Linux and macOS, adds bug fixes.
+Listent 1.1
+This update to listent, a macOS command-line tool for discovering and listing code signing entitlements for executable binaries, adds bug fixes.
+ProcDump 3.6 for Linux
+This update to ProcDump for Linux, a command-line utility for generating memory dumps from running processes, adds bug fixes.
+Procmon 2.3 for Linux
+This update to Procmon for Linux, a utility for observing real-time file system, Registry, and process or thread activity, adds bug fixes.
+Sysmon 1.6 for Linux
+This update to Sysmon for Linux, an advanced host security monitoring tool, adds bug fixes.
+SysinternalsEBPF 2.3
+This update to SysinternalsEBPF, a library of eBPF code for Linux, adds bug fixes.
+Du v1.63
+This update to Du, a tool for viewing disk usage information, adds bug fixes.
+Junction v1.08
+This update to Junction, a utility for creating NTFS symbolic links, adds bug fixes.
+Process Explorer v17.21
+This update to Process Explorer, an advanced process, DLL, and handle viewing utility, improves startup speed and adds CSV export to the search dialog.
+Process Monitor v4.13
+This update to Process Monitor, a utility for observing real-time file system, Registry, and process or thread activity, adds bug fixes.
+PsExec v2.44
+This update to PsExec, a light-weight telnet/ssh alternative for launching processes on Windows, adds bug fixes.
+PsGetSid v1.48
+This update to PsGetSid, a utility for displaying the SID of a computer or user, adds bug fixes.
+PsShutdown v2.64
+This update to PsShutdown, a command-line utility for managing local or remote shut down, reboot, logoff, or lock for Windows computers, adds bug fixes.
+PsSuspend v1.1
+This update to PsSuspend, a utility for suspending and resuming processes, adds bug fixes.
+RDCMan v3.23
+This update to RDCMan, a tool for managing and connecting to Remote Desktop sessions, switches to Credentials UI for authentication and adds security fixes.
+ZoomIt v12.31
+This update to ZoomIt, a screen magnification and annotation tool, adds bug fixes.
+ZoomIt 12.3.2 for macOS
+This update to ZoomIt for macOS, a screen magnification and annotation tool, adds dictation support for captions on screen snips.
+Published 
+Nov 05, 2026
+Version 1.0
+Like
+Like
+0
+Comment
+Comment
+Alex_Mihaiuc
+Microsoft
+Joined 
+August 30, 2020
+Send Message
+View Profile
+Sysinternals Blog 
+Follow this blog board to get notified when there's new activity
+
+===== https://deniz.in/microsoft-ports-sysinternals-process-explorer-to-macos-with-process-trees-handle
+(status 200)
+November 10, 2026
+ · 
+via
+Hacker News – Front Page (native)
+Microsoft ports Sysinternals Process Explorer to macOS with process trees, handle inspection and GPU graphs
+Microsoft has published Procexp-Mac, a native SwiftUI and AppKit port of Sysinternals Process Explorer for macOS, featuring process trees, handle and DLL inspection, code-signing checks and system performance graphs.
+Microsoft has published a native macOS port of Sysinternals Process Explorer, the long-standing Windows utility for inspecting running processes, their loaded modules and their open handles. The project lives on GitHub under Microsoft's own organization as Procexp-Mac and reached the Hacker News front page on 10 November 2026. According to the repository's README, it recreates the core Process Explorer workflow as a real Mac application rather than a cross-platform imitation.
+A familiar tree, rebuilt in AppKit
+The centerpiece is a live process tree that mirrors the Windows original, using color coding to distinguish services, your own processes, newly created and recently deleted processes, suspended processes, sandboxed processes and packed images. The process-name column stays frozen while metric columns scroll sideways, and column widths, ordering and the selected column set persist between sessions. There is type-to-select in every list, tooltips for truncated cells and process paths, and a spacebar shortcut to pause and resume the refresh. A native menu bar and toolbar expose refresh, save, process properties, kill, lower-pane mode, find handle/DLL, a target-window picker and the System Information graphs.
+Lower pane, properties and process actions
+Below the tree, a lower pane switches between DLLs/images, handles/file descriptors and threads, highlighting rows that appear or disappear between updates. Each process opens a properties window with tabs for Image, Performance, a performance graph, Threads, TCP/IP, Security, Environment and Strings; the TCP/IP tab lists local and remote addresses, resolves remote names with asynchronous reverse-DNS lookups and shows TCP connection state. Process actions cover kill, kill tree, suspend and resume, priority and nice settings, restart, bring to front, sampling the process, an online search and a VirusTotal check.
+System graphs and Apple Silicon
+A System Information window adds Summary, CPU, Memory, I/O, Network and GPU pages, with graphs for CPU, memory, swap, disk I/O, network I/O, GPU and per-core CPU usage. On Apple Silicon machines, performance and efficiency cores are labeled and colored separately. The app also reports hardware details such as CPU topology and cache, memory and page information, storage, network interfaces and GPU device capabilities, and it can place a CPU history graph in the menu bar.
+Code-signing inspection
+Security inspection gets particular attention. For any process or module, the app can show the signer, publisher, certificate chain, Team ID, notarization status, platform or ad-hoc status, the reason a signature failed validation and the SHA-256 hash, with VirusTotal lookups available for individual images as well as whole processes.
+How it is built
+The application is written in Swift on top of SwiftUI and AppKit, and it gathers data exclusively through public macOS APIs, among them libproc, sysctl, Mach host statistics, Security.framework, IOKit and Metal. Operations that need elevation, such as a full cross-user process list with threads, modules and environment variables, go through an optional privileged helper: a launchd daemon contacted over XPC and registered with SMAppService. The README notes that macOS gates that registration on the app's code signature and a one-time user approval in System Settings, so the helper requires a stable, non-ad-hoc signing identity, meaning a Developer ID certificate for distribution or a self-signed one for local development.
+Availability
+For now, the README describes building from source. The GUI requires macOS 14 or later, Xcode 26.6 or later is recommended for the current project configuration, the Swift 5.9 toolchain or newer is needed, and the Xcode project is generated with xcodegen. Development builds use a separate .dev bundle identifier so they cannot overwrite an installed official copy, while the official identities are reserved for a Developer ID build or the Azure release pipeline. Scripts for DMG creation, signing and notarization are included, which suggests a packaged release will come through that pipeline.
+Why it matters
+Process Explorer has been a fixture of Windows troubleshooting for years, while the Mac has never had a true equivalent: Activity Monitor offers a flat process list with limited per-process detail, and deeper digging usually means command-line tools such as lsof, ps and top. A native port, from Microsoft of all vendors, gives developers and administrators who work across both platforms the same tree-based process, handle and DLL inspection they already know. It is also a technically credible effort rather than a superficial one, built on public macOS APIs, respecting the Mac's code-signing and notarization model, and even distinguishing performance from efficiency cores on Apple Silicon. The main caveat is that, as documented, you currently have to build it yourself.
+#
+sysinternals
+#
+macos
+#
+process-management
+#
+microsoft
+#
+open-source
+Related posts
+LiteDRAM manual explains why DDR3 and DDR4 interfaces must be tuned at every boot
+Developer guide walks through SSH keys stored in the macOS Secure Enclave
+siftwise v0.3 adds risk-based test ordering and time budgets for CI
+
+===== https://www.say-tech.co.jp/contents/blog/yamanxworld/2026news084
+(status 200)
+vol.249　棚卸から資産管理へ ― VM一覧の作成（1）｜Hyper-V 健康診断

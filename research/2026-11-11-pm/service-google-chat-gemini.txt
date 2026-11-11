@@ -1,0 +1,216 @@
+===== https://workspaceupdates.googleblog.com/2026/11/schedule-meetings-in-single-click-from-conversations-in-Google-Chat.html
+(status 429)
+About this page
+Our systems have detected unusual traffic from your computer network.  This page checks to see if it's really you sending the requests, and not a robot.  
+Why did this happen?
+This page appears when Google automatically detects requests coming from your computer network which appear to be in violation of the 
+Terms of Service
+. The block will expire shortly after those requests stop.  In the meantime, solving the above CAPTCHA will let you continue to use our services.
+This traffic may have been sent by malicious software, a browser plug-in, or a script that sends automated requests.  If you share your network connection, ask your administrator for help — a different computer using the same IP address may be responsible.  
+Learn more
+Sometimes you may be asked to solve the CAPTCHA if you are using advanced terms that robots are known to use, or sending requests very quickly.
+IP address: 172.206.102.80
+Time: 2026-11-11T05:41:53Z
+URL: https://workspaceupdates.googleblog.com/2026/11/schedule-meetings-in-single-click-from-conversations-in-Google-Chat.html
+
+===== https://menext.jp/news/google-chat-gemini-one-click-meeting-scheduling
+(status 200)
+Gemini
+新機能
+2026年11月10日
+Google Chatの日程調整がGeminiで1クリックに──対象プラン・英語のみの条件と日本での現状
+提供元の発表ページ
+（出典：
+Google Workspace Updates
+）
+Googleは2026年11月10日（米国時間）、Google Chatの会話から1クリックで会議を設定できる機能を発表しました。「来週どこかで打ち合わせしませんか」のようなメッセージにGeminiが反応し、カレンダーの空きを踏まえた候補日時を出してくれます。ただし提供開始時点では英語のみで、対象プランや会話の人数にも条件があります。日本の中小企業で今どこまで使えるのかを整理します。
+何が変わったか
+Google Chatで会議の日程を決めようとするメッセージが届くと、Geminiがその部分に下線を引きます。下線にカーソルを合わせると、会議を作るためのカードが表示される仕組みです。
+●
+候補日時を最大3つ表示（自分のカレンダーの空き状況と、予定の重なりも表示）
+●
+参加者は会話の参加者から自動で入る
+●
+会議のタイトルはその場で編集できる
+●
+時間を選んで「Schedule」を押すと会議が作られ、会話内に確認のメッセージが出る
+●
+細かく設定したいときは「Open in Calendar」でGoogleカレンダー側に移って仕上げる
+Googleは、邪魔にならないよう
+新しい会議を明確に頼んでいるメッセージにだけ
+下線を引くとしています。雑談の中で日付が出ただけでは反応しない設計です。
+対象は Business Standard・Business Plus、Enterprise Standard・Enterprise Plus、Frontline Plus と、AI Ultra Access アドオンです。中小企業でよく使われる Business Starter は対象エディションの一覧に入っていません。また、利用者側で「スマート機能とパーソナライズ」がオンになっていることが条件です。
+日本での提供状況について、発表文に対象国の記載はありません。一方で
+提供開始時点では英語のみ
+と明記されており、日本語の会話で提案が出るかどうかは書かれていません。使える場所はWeb版（chat.google.com と Gmail内のChat）で、1対1のメッセージと最大5人までの小さなグループ会話が対象です。
+提供は2026年11月9日から、Rapid Release と Scheduled Release の両方のドメインで段階的に始まっています。Googleは表示されるまで15日以上かかる場合があるとしています。管理者向けの専用設定は無く、対象ユーザーには最初からオンの状態で配られます。
+業務での使いどころ
+向いているのは、Chatで「打ち合わせしましょう」→「いつ空いてますか」→カレンダーを開いて空きを探す→招待を作る、という往復が多い仕事です。たとえば次のような場面です。
+●
+社内の少人数（5人まで）での打ち合わせ設定
+●
+上司・同僚との1対1のすり合わせ
+●
+英語でやり取りしている海外の取引先・グループ会社とのChatでの日程決め
+反対に、6人以上のスペースでの全体会議、日本語だけでやり取りしている社内チャット、スマホアプリでのやり取りは、発表された条件の外です。日本語中心の職場では、当面は「Chatの会話を整理してから自分でカレンダーに入れる」流れのほうが確実です。その整理はGeminiやChatGPTに任せられます。
+1
+日程に関するChatのやり取りをコピーする（社外秘の内容が混ざっていないか先に確認）
+2
+下のプロンプトと一緒に、社内で使ってよいAI（GeminiやChatGPTなど）に貼る
+3
+出てきた「目的・参加者・所要時間・候補日時」を見ながら、Googleカレンダーで空きを確かめて招待を作る
+チャットのやり取りから会議の設定内容を整理するプロンプト
+以下はチャットでの会議の日程に関するやり取りです。会議の招待を作るために、次の項目に整理してください。
+1. 会議の目的（1行）
+2. 参加者（名前のみ。やり取りに出てこない人は足さない）
+3. 所要時間（書かれていなければ［未定］）
+4. 出ている候補日時と、それぞれ誰が「参加できる／できない」と言っているか
+5. 会議のタイトル案（20字以内で3つ）
+6. まだ決まっていないこと・相手に確認が必要なこと
+・やり取りに書かれていない日時や参加者を推測で補わないでください
+・「来週」「明日」など相対的な表現は、そのまま書き写し、日付に変換しないでください
+--- やり取りここから ---
+（ここに貼り付け）
+最後の2行が大事です。「来週の火曜」を勝手に日付へ直させると、送信日を取り違えて1週ずれることがあります。日付の確定は、カレンダーを見ながら人がやるのが安全です。
+試すときに気をつけること
+画面に出ないのは、設定ミスとは限りません
+この機能は
+英語のみ・Web版のみ・最大5人の会話
+という条件つきで、さらに段階提供のため表示まで15日以上かかることがあります。Business Starter は対象エディションに含まれていません。日本語のやり取りで下線が出なくても、自分や管理者の設定が悪いとは限りません。なお、ミーネクストでは日本語の会話で提案が出るかを実際の画面ではまだ確認できていません。
+●
+候補日時は「自分のカレンダーの空き」をもとにした提案です。相手の都合はGoogleカレンダーの招待画面などで人が確かめる
+●
+参加者は会話から自動で入るため、外すべき人・足すべき人がいないかを「Schedule」を押す前に見る
+●
+会議室・Web会議のリンク・資料の添付など細かい設定が要るときは「Open in Calendar」でカレンダー側で仕上げる
+●
+提案が不要な場合、ヘルプページではChatの設定からスマートアクションをオフにできると案内されています
+出典
+Google Workspace Updates「Schedule meetings in a single click from conversations in Google Chat」
+（
+2026年11月10日
+）
+Google Chat ヘルプ「Use smart actions in Google Chat」
+この記事に関連するレシピ
+「
+新機能
+」の業務を生成AIで進める手順を、動画で確認できます。
+▶
+無料
+0
+:
+31
+Geminiスキルの使い方・作り方｜メールの型を保存してスラッシュで呼び出す
+108
+回視聴
+· 
+1か月前
+▶
+無料
+1
+:
+05
+ChatGPTで日程調整を自動化｜Googleカレンダー連携で空き時間を検索
+302
+回視聴
+· 
+1年前
+▶
+0
+:
+59
+ツール導入検討会議の日程調整メール｜ChatGPTで前向きな文面に
+225
+回視聴
+· 
+1年前
+▶
+無料
+0
+:
+59
+日程調整メールを作る｜ChatGPTでカレンダー画像から候補日を抽出
+359
+回視聴
+· 
+1年前
+▶
+無料
+0
+:
+27
+打合せの日程調整メールを作る｜ChatGPTに候補日を伝えて丁寧な文面に
+285
+回視聴
+· 
+1年前
+社内で使えるようにしたい方へ
+記事の内容を自社の業務に合わせて落とし込む、生成AIの研修も実施しています。 業種・職種に合わせた内容でご相談いただけます。
+研修について相談する
+他のAIニュース
+Gemini
+運用
+2026年11月10日
+Workspace Studioの「Wait until」で待ち時間つき自動化──商談後のフォローメールと新人リマインドの組み方
+Google Workspace Studioのフローに、指定日時まで・最大14日まで止めておける「Wait until」ステップが追加。数日後のフォローメールや新人向けリマインドを1本のフローで組む手順と、待っている間に状況が変わった時に人が確かめる線引き、対象プランを整理しました。
+Gemini
+運用
+2026年11月10日
+Workspaceのスキルが既定オンで展開──英語のみ・スプレッドシート未対応と管理者が先に決めること
+Google Workspace のスキルが一般提供に入り、Business・Enterprise では既定でオンになります。指示は英語のみ、スプレッドシートとMeetは未対応。オフにする単位、社外共有、共有先で別コピーになる点、参照するドライブのファイル権限など、管理者が先に決めることを整理しました。
+Gemini
+新機能
+2026年11月10日
+Gemini 4 CarbonがUltraとAPIで使えるように──画面に出ない時の確認点と12月からのAPI料金
+Gemini 4 Carbonの提供が始まりました。GeminiアプリはGoogle AI Ultra契約者のみ、APIは有料枠のみです。Gemini 4 Carbon 料金は11月30日までの導入価格で、12月から倍に。Proのままでよいか、Argonで足りるかの判断材料を整理しました。
+Claude
+新機能
+2026年11月10日
+Claude Sheets・Whiteboardsとは──有料プランのベータ版でできること、Excelとの使い分けと管理者の確認点
+Claudeの中で表計算とホワイトボードが使えるベータ版「Sheets」「Whiteboards」が登場。DashboardsはClaude Dataに名称変更。対象プラン、Excelとの使い分け、Enterprise管理者が11月19日までに確認したい設定を整理しました。
+Gemini
+のニュースをまとめて見る
+AIニュース一覧を見る
+
+===== https://adaptd.ai/updates/google-chat-one-click-meetings/
+(status 200)
+AI news
+ · 
+Google
+Google Chat can now book the meeting straight from the message, so "let's find a time" stops being a three-day saga
+By
+Brett Gavaghan
+, Founder of Adaptd · 
+11 November 2026
+When someone in Google Chat suggests meeting, Gemini now offers up to three free times from your calendar and books the meeting in one click. It started rolling out on 9 November.
+The short version
+Gemini in Google Chat spots messages like "are you free tomorrow?" and offers up to three meeting times from Google Calendar.
+It's rolling out from 9 November 2026 on Business Standard, Business Plus and Enterprise plans, on the web and in English.
+Check that smart features and personalisation are switched on if your team wants to use it.
+Every small team knows the dance. Someone says "let's catch up", three people reply "sure", and the meeting never happens.
+What changed in Google Chat?
+Google Chat now lets Gemini book a meeting directly from a conversation. When someone writes something like "Let's grab 15 minutes to discuss this", Gemini underlines it. Hover over the underline and a card shows up to three times based on everyone's Google Calendar, with any clashes flagged.
+The card fills in the guests from the chat, including people mentioned by name, and suggests a title you can edit. Pick a time, click Schedule, and a confirmation appears in the chat so everyone knows it's booked. For anything fancier, Open in Calendar takes you to the full booking screen.
+Who can use it, and when?
+One-click scheduling in Google Chat is rolling out from 9 November 2026 on Business Standard, Business Plus, Enterprise Standard and Enterprise Plus, plus Frontline Plus and AI Ultra Access. Google says the rollout may take longer than 15 days.
+At launch it works on the web (chat.google.com and Chat in Gmail), in English, in direct messages and group chats of up to five people. It's on by default, but users need smart features and personalisation turned on. Business Starter isn't on the list.
+Should your business use it?
+Your business should use it if your team already lives in Google Chat and Calendar, because there's nothing to set up. Google says Gemini only underlines clear requests to meet, so it shouldn't pounce on every "we should grab a coffee sometime".
+My take: it fixes the smallest, most annoying part of teamwork. The catch is that it's only as good as your calendars. If half the team doesn't block out their client work, Gemini will cheerfully book you into a time that only looks free.
+So the real upgrade might be getting everyone to keep their calendar honest. Software, eh?
+Sources
+Google Workspace Updates - Schedule meetings in a single click from conversations in Google Chat
+All updates
+Wondering what this means
+for your business?
+That's exactly what the discovery call is for.
+Request a discovery call
+
+===== https://wpnews.pro/news/schedule-meetings-in-a-single-click-from-conversations-in-google-chat
+(status 200)
+restless.run
+·
+11 Nov
+·
+#generative-ai
+Show HN: A company running in an AI harness
