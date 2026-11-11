@@ -20,15 +20,15 @@ ai_B-17 | 2026-11-11 02:51 | Publickey | 「.NET MAUI 11」がついにXamarin�
 ai_B-18 | 2026-11-11 02:45 | Publickey | .NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨 | https://www.publickey1.jp/blog/26/net_8net_9net_10.html
 ai_B-19 | 2026-11-10 00:25 | Publickey | Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表 | https://www.publickey1.jp/blog/26/googlekubernetes10aiagent_sustrategvisorcncf.html
 ai_B-20 | 2026-11-10 00:22 | Publickey | マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから | https://www.publickey1.jp/blog/26/150uiblazorinfragisticssyncfusion.html
-ai_B-21 | 2026-11-12 02:08 | 日経クロステック | 26年完成のオフィスビルは共用部充実 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200008/
-ai_B-22 | 2026-11-12 02:07 | 日経クロステック | 再開発オフィスビルが受け皿に、パーソルとコクヨの体験型本社 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200007/
-ai_B-23 | 2026-11-12 02:06 | 日経クロステック | パナの新研究所は変幻自在、再構築できる「緩やかオフィス」 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200006/
-ai_B-24 | 2026-11-12 02:05 | 日経クロステック | タマディック名物オフィスサウナ、技術者は健康維持で学び続ける | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200005/
-ai_B-25 | 2026-11-12 02:04 | 日経クロステック | ハウスバリアシート「折畳ダブルタイプ」 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00014/110401020/
-ai_B-26 | 2026-11-12 02:04 | 日経クロステック | グッドデザイン賞に多数の建築、学会賞の動物園も | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00006/110200751/
-ai_B-27 | 2026-11-12 02:04 | 日経クロステック | NTTファシの独自指標「NEBs」、建物の生産性効果を定量評価 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200004/
-ai_B-28 | 2026-11-12 02:03 | 日経クロステック | セキスイ耐火ボンド | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00014/110401019/
-ai_B-29 | 2026-11-12 02:03 | 日経クロステック | マンション修繕談合で検討会、発注者支援を議論 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00006/110200750/
-ai_B-30 | 2026-11-12 02:03 | 日経クロステック | 「能力発揮度」の高い座席を分析、イトーキは協働スペースを拡充 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200003/
-ai_B-31 | 2026-11-12 02:02 | 日経クロステック | ARMS Spiral（アームズスパイラル） | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00014/110401018/
-ai_B-32 | 2026-11-12 02:02 | 日経クロステック | 「日経ニューオフィス賞」は“出会い”に注目 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200002/
+ai_B-21 | 2026-11-12 05:00 | 日経クロステック | 1位は「半月で基礎断熱がカビだらけに」 | https://xtech.nikkei.com/atcl/nxt/column/18/00241/102000440/
+ai_B-22 | 2026-11-12 05:00 | 日経クロステック | 米陸軍で痛感、民間利用にボトルネック 北大発ハイブリッドロケットLetara | https://xtech.nikkei.com/atcl/nxt/column/18/03181/103000041/
+ai_B-23 | 2026-11-12 05:00 | 日経クロステック | インド半導体、3倍速でまずは後工程シェア10％ インテルの技術移転も | https://xtech.nikkei.com/atcl/nxt/column/18/03789/110200005/
+ai_B-24 | 2026-11-12 05:00 | 日経クロステック | 英・蓄電池デベロッパーが日本進出、九州で運転開始 | https://xtech.nikkei.com/atcl/nxt/column/18/02443/110600185/
+ai_B-25 | 2026-11-12 05:00 | 日経クロステック | 欧州EVシェアが30％超え、ガソリン価格急騰で 26年9月新車販売 | https://xtech.nikkei.com/atcl/nxt/column/18/03214/102800131/
+ai_B-26 | 2026-11-12 05:00 | 日経クロステック | レゾルバーとエンコーダーをどう使い分ける？ モーター制御Q＆A基礎編 | https://xtech.nikkei.com/atcl/nxt/column/18/03394/110400014/
+ai_B-27 | 2026-11-12 05:00 | 日経クロステック | 建設技術者の2現場兼務、専任特例の活用広まらず 受注者は賛否両論 | https://xtech.nikkei.com/atcl/nxt/column/18/00142/02819/
+ai_B-28 | 2026-11-12 05:00 | 日経クロステック | 2位は「印旛沼の破堤、原因は異例の『パイピング』か 千葉県は調査委員会を未設置」部課長層の注目トップ10 | https://xtech.nikkei.com/atcl/nxt/column/18/02156/110200422/
+ai_B-29 | 2026-11-12 05:00 | 日経クロステック | 住友ゴム、理想のゴムから売れるタイヤ 数字に出ない違和感に挑む | https://xtech.nikkei.com/atcl/nxt/column/18/03444/111000047/
+ai_B-30 | 2026-11-12 05:00 | 日経クロステック | 朝のラジオ体操は「昭和の無駄」なのか、仕事開始5分の重要性を見直そう | https://xtech.nikkei.com/atcl/nxt/column/18/01775/111100293/
+ai_B-31 | 2026-11-12 05:00 | 日経クロステック | 羽田D滑走路の破損、タイヤバーストと因果特定できず 部材交換で再発防止 | https://xtech.nikkei.com/atcl/nxt/column/18/00142/02820/
+ai_B-32 | 2026-11-12 05:00 | 日経クロステック | ソフトバンク、5G利用率で連続首位 低周波数帯の活用など奏功 | https://xtech.nikkei.com/atcl/nxt/column/18/02928/110400121/

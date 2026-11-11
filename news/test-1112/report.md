@@ -1,4 +1,4 @@
-# ニュース一覧の取得 test-1112（11-12 04:23）
+# ニュース一覧の取得 test-1112（11-12 05:57）
 
 - ai_A ITmedia AI+: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/aiplus.xml
 - ai_A ITmedia NEWS: 12本（全50） feed https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
@@ -61,7 +61,7 @@
 - ec_B Amazon（日本）: 1本（全10） feed:https://www.aboutamazon.jp/rss/feed.rss https://www.aboutamazon.jp/news
 - ec_B BASE: 2本（全10） feed:https://binc.jp/feed https://binc.jp/press-room/news
 - future_A sorae: 12本（全24） feed https://sorae.info/feed
-- future_A MIT Technology Review: 8本（全10） feed https://www.technologyreview.jp/feed/
+- future_A MIT Technology Review: 9本（全10） feed https://www.technologyreview.jp/feed/
 - future_A TechCrunch（交通・宇宙）: 11本（全20） feed https://techcrunch.com/category/transportation/feed/
 - other_A ケータイ Watch: 12本（全30） feed https://k-tai.watch.impress.co.jp/data/rss/1.0/ktw/feed.rdf
 - other_A ITmedia NEWS: 12本（全50） feed https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
@@ -72,4 +72,4 @@
 - other_B 日経クロステック: 12本（全100） feed https://xtech.nikkei.com/rss/index.rdf
 - other_B ITmedia ビジネスオンライン: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/business.xml
 
-記事ページ 465/489 本の本文を取得。44秒
+記事ページ 467/491 本の本文を取得。48秒

@@ -12,18 +12,18 @@ ec_A-09 | 2026-11-10 09:30 | ネットショップ担当者フォーラム | 海
 ec_A-10 | 2026-11-10 09:30 | ネットショップ担当者フォーラム | AIを活用した購買行動率は25%、期待効果は「自分に似合うものの提案」が5割、求める役割は「検索ツール」が53% | https://netshop.impress.co.jp/n/2026/11/10/17009
 ec_A-11 | 2026-11-10 09:00 | ネットショップ担当者フォーラム | フィジカルAI搭載ロボット導入のイオン物流構造改革の次世代自動化モデルセンター「イオン川口東XD」の特長は | https://netshop.impress.co.jp/n/2026/11/10/17014
 ec_A-12 | 2026-11-10 08:30 | ネットショップ担当者フォーラム | 高市政権「サイバーセキュリティ緊急対策パッケージ」を策定、予備費から100億円 | https://netshop.impress.co.jp/n/2026/11/10/17015
-ec_A-13 | 2026-11-11 16:00 | ECのミカタ | 直近1年以内に応募したキャンペーン、「食品・飲料」ジャンルが最多 DIGITALIO、エクスクリエ調査 | https://ecnomikata.com/ecnews/52121/
-ec_A-14 | 2026-11-11 15:00 | ECのミカタ | 経産省、2025年度「電子商取引に関する市場調査」公表 国内BtoC-EC市場規模は成長 | https://ecnomikata.com/ecnews/52119/
-ec_A-15 | 2026-11-11 14:00 | ECのミカタ | 日本化成、ECサイト「日本化成 仕上材ショップ」開設 プラットフォームにメルカートを採用 | https://ecnomikata.com/ecnews/52118/
-ec_A-16 | 2026-11-11 12:00 | ECのミカタ | アイスタイル、「@cosme BEAUTY DAY」開催 参加ブランド数は過去最多 | https://ecnomikata.com/ecnews/52115/
-ec_A-17 | 2026-11-11 11:00 | ECのミカタ | アスクル、ChatGPTのプラグイン機能に対応 BtoB購買業務の効率化を推進 | https://ecnomikata.com/ecnews/52108/
-ec_A-18 | 2026-11-10 16:00 | ECのミカタ | 2026年10月「睡眠環境」「秋のレジャー」関連商品が伸長 Shopify調査 | https://ecnomikata.com/ecnews/52106/
-ec_A-19 | 2026-11-10 15:00 | ECのミカタ | AIに求める役割「検索ツール」が半数以上を占め最多 楽天インサイト調査 | https://ecnomikata.com/ecnews/52105/
-ec_A-20 | 2026-11-10 14:00 | ECのミカタ | 日本直販、米国向けオンラインストア「Favorite Spot」リリース | https://ecnomikata.com/ecnews/52101/
-ec_A-21 | 2026-11-10 12:00 | ECのミカタ | ジャパネット、法人向け「ジャパネットギフトカード」の本格提供を開始 | https://ecnomikata.com/ecnews/52100/
-ec_A-22 | 2026-11-10 11:00 | ECのミカタ | 2026年「置き配」利用、2年前から8pt上昇 クロス・マーケティング調査 | https://ecnomikata.com/ecnews/52098/
-ec_A-23 | 2026-11-09 16:00 | ECのミカタ | Twitch、新機能やコミュニティ向けの取り組みを発表 ライブ配信体験をさらに充実 | https://ecnomikata.com/ecnews/52097/
-ec_A-24 | 2026-11-09 15:00 | ECのミカタ | 2027年の注目は「セルフ消費」、ヒット予測1位は「チタン製フライパン」 マイベスト調査 | https://ecnomikata.com/ecnews/52096/
+ec_A-13 | 2026-11-12 05:00 | ECのミカタ | 「人間にしかできない仕事」を今、決めなくてもいい。NE 比護氏が語る、EC運営を楽にするAI活用の第一歩 | https://ecnomikata.com/column/52054/
+ec_A-14 | 2026-11-11 16:00 | ECのミカタ | 直近1年以内に応募したキャンペーン、「食品・飲料」ジャンルが最多 DIGITALIO、エクスクリエ調査 | https://ecnomikata.com/ecnews/52121/
+ec_A-15 | 2026-11-11 15:00 | ECのミカタ | 経産省、2025年度「電子商取引に関する市場調査」公表 国内BtoC-EC市場規模は成長 | https://ecnomikata.com/ecnews/52119/
+ec_A-16 | 2026-11-11 14:00 | ECのミカタ | 日本化成、ECサイト「日本化成 仕上材ショップ」開設 プラットフォームにメルカートを採用 | https://ecnomikata.com/ecnews/52118/
+ec_A-17 | 2026-11-11 12:00 | ECのミカタ | アイスタイル、「@cosme BEAUTY DAY」開催 参加ブランド数は過去最多 | https://ecnomikata.com/ecnews/52115/
+ec_A-18 | 2026-11-11 11:00 | ECのミカタ | アスクル、ChatGPTのプラグイン機能に対応 BtoB購買業務の効率化を推進 | https://ecnomikata.com/ecnews/52108/
+ec_A-19 | 2026-11-10 16:00 | ECのミカタ | 2026年10月「睡眠環境」「秋のレジャー」関連商品が伸長 Shopify調査 | https://ecnomikata.com/ecnews/52106/
+ec_A-20 | 2026-11-10 15:00 | ECのミカタ | AIに求める役割「検索ツール」が半数以上を占め最多 楽天インサイト調査 | https://ecnomikata.com/ecnews/52105/
+ec_A-21 | 2026-11-10 14:00 | ECのミカタ | 日本直販、米国向けオンラインストア「Favorite Spot」リリース | https://ecnomikata.com/ecnews/52101/
+ec_A-22 | 2026-11-10 12:00 | ECのミカタ | ジャパネット、法人向け「ジャパネットギフトカード」の本格提供を開始 | https://ecnomikata.com/ecnews/52100/
+ec_A-23 | 2026-11-10 11:00 | ECのミカタ | 2026年「置き配」利用、2年前から8pt上昇 クロス・マーケティング調査 | https://ecnomikata.com/ecnews/52098/
+ec_A-24 | 2026-11-09 16:00 | ECのミカタ | Twitch、新機能やコミュニティ向けの取り組みを発表 ライブ配信体験をさらに充実 | https://ecnomikata.com/ecnews/52097/
 ec_A-25 | 2026-11-11 16:58 | 消費者庁 | 葉梨大臣の徳島県内の視察の様子を掲載しました。 | https://www.caa.go.jp/notice/entry/048125/
 ec_A-26 | 2026-11-11 15:00 | 消費者庁 | 機能性表示食品制度届出データベース届出情報の更新 (11月11日) | https://www.caa.go.jp/notice/entry/048101/
 ec_A-27 | 2026-11-11 14:00 | 消費者庁 | 令和8年度第3回食品衛生基準審議会の開催について | https://www.caa.go.jp/notice/entry/048090/

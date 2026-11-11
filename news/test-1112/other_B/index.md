@@ -12,18 +12,18 @@ other_B-09 | 2026-11-10 12:30 | EE Times Japan | 魚も電気も育てる？ 台
 other_B-10 | 2026-11-10 11:00 | EE Times Japan | 三井化学が1.8兆円でJSR買収 半導体材料の中核企業へ | https://eetimes.itmedia.co.jp/ee/articles/2611/10/news037.html
 other_B-11 | 2026-11-10 10:30 | EE Times Japan | スタンレー電気米子会社、100mmAlN基板を製品化 | https://eetimes.itmedia.co.jp/ee/articles/2611/10/news018.html
 other_B-12 | 2026-11-10 09:30 | EE Times Japan | 2026年Q3のDRAM売上高が2000億ドルに迫る | https://eetimes.itmedia.co.jp/ee/articles/2611/10/news019.html
-other_B-13 | 2026-11-12 02:08 | 日経クロステック | 26年完成のオフィスビルは共用部充実 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200008/
-other_B-14 | 2026-11-12 02:07 | 日経クロステック | 再開発オフィスビルが受け皿に、パーソルとコクヨの体験型本社 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200007/
-other_B-15 | 2026-11-12 02:06 | 日経クロステック | パナの新研究所は変幻自在、再構築できる「緩やかオフィス」 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200006/
-other_B-16 | 2026-11-12 02:05 | 日経クロステック | タマディック名物オフィスサウナ、技術者は健康維持で学び続ける | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200005/
-other_B-17 | 2026-11-12 02:04 | 日経クロステック | ハウスバリアシート「折畳ダブルタイプ」 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00014/110401020/
-other_B-18 | 2026-11-12 02:04 | 日経クロステック | グッドデザイン賞に多数の建築、学会賞の動物園も | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00006/110200751/
-other_B-19 | 2026-11-12 02:04 | 日経クロステック | NTTファシの独自指標「NEBs」、建物の生産性効果を定量評価 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200004/
-other_B-20 | 2026-11-12 02:03 | 日経クロステック | セキスイ耐火ボンド | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00014/110401019/
-other_B-21 | 2026-11-12 02:03 | 日経クロステック | マンション修繕談合で検討会、発注者支援を議論 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00006/110200750/
-other_B-22 | 2026-11-12 02:03 | 日経クロステック | 「能力発揮度」の高い座席を分析、イトーキは協働スペースを拡充 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200003/
-other_B-23 | 2026-11-12 02:02 | 日経クロステック | ARMS Spiral（アームズスパイラル） | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00014/110401018/
-other_B-24 | 2026-11-12 02:02 | 日経クロステック | 「日経ニューオフィス賞」は“出会い”に注目 | https://xtech.nikkei.com/atcl/nxt/mag/na/18/00332/110200002/
+other_B-13 | 2026-11-12 05:00 | 日経クロステック | 1位は「半月で基礎断熱がカビだらけに」 | https://xtech.nikkei.com/atcl/nxt/column/18/00241/102000440/
+other_B-14 | 2026-11-12 05:00 | 日経クロステック | インド半導体、3倍速でまずは後工程シェア10％ インテルの技術移転も | https://xtech.nikkei.com/atcl/nxt/column/18/03789/110200005/
+other_B-15 | 2026-11-12 05:00 | 日経クロステック | 英・蓄電池デベロッパーが日本進出、九州で運転開始 | https://xtech.nikkei.com/atcl/nxt/column/18/02443/110600185/
+other_B-16 | 2026-11-12 05:00 | 日経クロステック | レゾルバーとエンコーダーをどう使い分ける？ モーター制御Q＆A基礎編 | https://xtech.nikkei.com/atcl/nxt/column/18/03394/110400014/
+other_B-17 | 2026-11-12 05:00 | 日経クロステック | 欧州EVシェアが30％超え、ガソリン価格急騰で 26年9月新車販売 | https://xtech.nikkei.com/atcl/nxt/column/18/03214/102800131/
+other_B-18 | 2026-11-12 05:00 | 日経クロステック | 米陸軍で痛感、民間利用にボトルネック 北大発ハイブリッドロケットLetara | https://xtech.nikkei.com/atcl/nxt/column/18/03181/103000041/
+other_B-19 | 2026-11-12 05:00 | 日経クロステック | 2位は「印旛沼の破堤、原因は異例の『パイピング』か 千葉県は調査委員会を未設置」部課長層の注目トップ10 | https://xtech.nikkei.com/atcl/nxt/column/18/02156/110200422/
+other_B-20 | 2026-11-12 05:00 | 日経クロステック | 羽田D滑走路の破損、タイヤバーストと因果特定できず 部材交換で再発防止 | https://xtech.nikkei.com/atcl/nxt/column/18/00142/02820/
+other_B-21 | 2026-11-12 05:00 | 日経クロステック | 建設技術者の2現場兼務、専任特例の活用広まらず 受注者は賛否両論 | https://xtech.nikkei.com/atcl/nxt/column/18/00142/02819/
+other_B-22 | 2026-11-12 05:00 | 日経クロステック | ソフトバンク、5G利用率で連続首位 低周波数帯の活用など奏功 | https://xtech.nikkei.com/atcl/nxt/column/18/02928/110400121/
+other_B-23 | 2026-11-12 05:00 | 日経クロステック | 朝のラジオ体操は「昭和の無駄」なのか、仕事開始5分の重要性を見直そう | https://xtech.nikkei.com/atcl/nxt/column/18/01775/111100293/
+other_B-24 | 2026-11-12 05:00 | 日経クロステック | 住友ゴム、理想のゴムから売れるタイヤ 数字に出ない違和感に挑む | https://xtech.nikkei.com/atcl/nxt/column/18/03444/111000047/
 other_B-25 | 2026-11-11 07:00 | ITmedia ビジネスオンライン | 通信大手3社こぞって「フィジカルAI」に参入、なぜ？ ロボットが動くともうかるワケ | https://www.itmedia.co.jp/business/articles/2611/11/news038.html
 other_B-26 | 2026-11-11 07:00 | ITmedia ビジネスオンライン | キリン「晴れ風」、好調なのになぜリニューアル？ 前年比150％の出荷を生んだAI「フジワラ」とは | https://www.itmedia.co.jp/business/articles/2611/11/news008.html
 other_B-27 | 2026-11-11 07:00 | ITmedia ビジネスオンライン | なぜAgodaは“異常に”安いのか？ 商務責任者が明かす「自腹値引き」と社内競争の正体 | https://www.itmedia.co.jp/business/articles/2611/11/news028.html

@@ -12,15 +12,15 @@ gadget_A-09 | 2026-11-10 13:04 | 家電 Watch | 小泉成器、手のひらサ�
 gadget_A-10 | 2026-11-10 12:04 | 家電 Watch | ミニサイズで容量96WhのJackeryポータブル電源 ハンドルで持ちやすい | https://kaden.watch.impress.co.jp/docs/news/2154687.html
 gadget_A-11 | 2026-11-10 11:04 | 家電 Watch | 横浜花博の開幕前にトゥンクトゥンクと最新技術を楽しく学ぶ RFIDを体験してきた | https://kaden.watch.impress.co.jp/docs/news/2154356.html
 gadget_A-12 | 2026-11-10 10:04 | 家電 Watch | レトロなカセットテープ型のメジャー テクノ風など第2弾 | https://kaden.watch.impress.co.jp/docs/news/2154891.html
-gadget_A-13 | 2026-11-12 04:10 | PR TIMES（家電） | 地上波討論トークバラエティ番組【アブナイニッポン】岸谷蘭丸が“オールド教育”に警鐘！「給与が上がらないのは教育のせい？」 高校生が労働交渉を学ぶための法案を提案 | https://prtimes.jp/main/html/rd/p/000002879.000020945.html
-gadget_A-14 | 2026-11-12 04:10 | PR TIMES（家電） | 「最初の2時間」で企業の信用は決まる。危機管理広報と平時の広報PRを一体で学ぶセミナーを12月7日（月）に東京・京橋で開催 | https://prtimes.jp/main/html/rd/p/000000001.000194518.html
-gadget_A-15 | 2026-11-12 04:10 | PR TIMES（家電） | 【教育機関の方限定】累計15,000人が参加した教育情報共有会。第143回を開催「大学附属施設の可能性～開館20周年を迎える学校法人別府大学が運営する『大分香りの博物館』～」 | https://prtimes.jp/main/html/rd/p/000000264.000038409.html
-gadget_A-16 | 2026-11-12 04:10 | PR TIMES（家電） | MESON、「フィジカルAI 来期テーマ策定プログラム」を提供開始 年度末予算を、来期の一手に。年内実施・最短1日から | https://prtimes.jp/main/html/rd/p/000000088.000032228.html
-gadget_A-17 | 2026-11-12 04:10 | PR TIMES（家電） | モニタスとココペリが連携、「BIG ADVANCE GLOBAL」会員向けに「millme」を提供 | https://prtimes.jp/main/html/rd/p/000000077.000008679.html
-gadget_A-18 | 2026-11-12 04:10 | PR TIMES（家電） | インテレクトの親会社NAXTとBLD Power Stationsが「Rearth Energy Development」を設立 | https://prtimes.jp/main/html/rd/p/000000019.000179313.html
-gadget_A-19 | 2026-11-12 04:10 | PR TIMES（家電） | ウェビナーの勝ちパターンをAIが自動で分析。BtoBマーケ支援のScalacy、AIウェビナー分析ツール「ウェビナイズ」を提供開始 | https://prtimes.jp/main/html/rd/p/000000004.000190375.html
-gadget_A-20 | 2026-11-12 04:10 | PR TIMES（家電） | 「人気トレカゲットナビ」と「トレカナビ」が業務提携 | https://prtimes.jp/main/html/rd/p/000000002.000104711.html
-gadget_A-21 | 2026-11-12 04:10 | PR TIMES（家電） | 『さらばの合法オークション』 11月11日（水）夜11時より初回放送 矢口真里、実家に眠っていたモーニング娘。時代のお宝 年内引退を発表したセクシー女優・MINAMO、愛用の私物をオークションへ | https://prtimes.jp/main/html/rd/p/000004227.000064643.html
-gadget_A-22 | 2026-11-12 04:10 | PR TIMES（家電） | 中小企業大学校東京校「第48期経営後継者研修」の募集を開始 | https://prtimes.jp/main/html/rd/p/000002009.000021609.html
-gadget_A-23 | 2026-11-12 04:10 | PR TIMES（家電） | ガーナ共和国 マハムド・バウミア前副大統領が千葉大学を訪問 ―環境調和型技術と次世代ワクチン開発技術の両面から地球規模課題の解決を目指して― | https://prtimes.jp/main/html/rd/p/000001272.000015177.html
-gadget_A-24 | 2026-11-12 04:10 | PR TIMES（家電） | 二刀流と3連覇を期待されたが失速した2026年の大谷翔平。番記者が見た真実とは。『大谷の岐路』ニューズウィーク日本版11/17号は好評発売中！ | https://prtimes.jp/main/html/rd/p/000001121.000011369.html
+gadget_A-13 | 2026-11-12 05:40 | PR TIMES（家電） | 岐阜県商工会連合会、西濃地区5事業者の合同プレスリリースを開催「地域の取組を地元メディアへ」、販路開拓を後押し | https://prtimes.jp/main/html/rd/p/000000007.000166522.html
+gadget_A-14 | 2026-11-12 05:40 | PR TIMES（家電） | 日本製鉄発のベンチャーKAMAMESHIらが解説。「壊れてから」では遅い設備保全と輸送トラブルを、データで未然に防ぐ3講演、「すぐマネできる！事例紹介セミナー」第4弾＜12/9・10・参加無料＞ | https://prtimes.jp/main/html/rd/p/000000233.000001332.html
+gadget_A-15 | 2026-11-12 05:40 | PR TIMES（家電） | 【男女240人に聞いた】知り合ってから付き合うまで「3か月以内」が70%！あなたの恋のペースは？ | https://prtimes.jp/main/html/rd/p/000000051.000044869.html
+gadget_A-16 | 2026-11-12 05:40 | PR TIMES（家電） | 一般市民が“記者”としてミャンマー難民を現地取材 NPOメディアganasが27年2月にタイで実施 | https://prtimes.jp/main/html/rd/p/000000248.000052517.html
+gadget_A-17 | 2026-11-12 05:40 | PR TIMES（家電） | 『トラックカーナビ』ドライバーとの自然な対話で知見の蓄積や安全運転を支援する「AI音声ナビ」提供開始 | https://prtimes.jp/main/html/rd/p/000000626.000026884.html
+gadget_A-18 | 2026-11-12 05:40 | PR TIMES（家電） | ”AIに選ばれる条件””ヒットの秘訣”が分かる！EC事業者向けリアルイベント「Commerce NEXT トレンド」開催【12/7＜参加無料＞】 | https://prtimes.jp/main/html/rd/p/000000065.000043885.html
+gadget_A-19 | 2026-11-12 05:40 | PR TIMES（家電） | 【TAC公認会計士】TACで学習した合格者の話が聞けるオンラインセミナー「合格者に聞くハウツーTAC」11/14(土)18時から開催します！ | https://prtimes.jp/main/html/rd/p/000003196.000021078.html
+gadget_A-20 | 2026-11-12 05:40 | PR TIMES（家電） | 「話すだけ」から「反応する」AIキャラクターへ。Vtkool、会話連動の表情・動作制御を提供開始 | https://prtimes.jp/main/html/rd/p/000000004.000187483.html
+gadget_A-21 | 2026-11-12 05:40 | PR TIMES（家電） | 学生旅行・卒業旅行に「価格だけではない満足」を。ダナン＆世界遺産プレミアムコースを旅行会社向けに販売開始サブタイトル～ | https://prtimes.jp/main/html/rd/p/000000017.000152847.html
+gadget_A-22 | 2026-11-12 05:40 | PR TIMES（家電） | ＜コピーライターの日記念＞1,111円でキャッチコピーを書きます（1社限定） | https://prtimes.jp/main/html/rd/p/000000015.000017375.html
+gadget_A-23 | 2026-11-12 05:40 | PR TIMES（家電） | 3分で読める！その蓄電所、故障したら修理できる？JC-STARと５年後のリスク【全3回 2026年10月関係省庁独自調査２.】 | https://prtimes.jp/main/html/rd/p/000000024.000183612.html
+gadget_A-24 | 2026-11-12 05:10 | PR TIMES（家電） | 二回目の味わいまで、妥協しない。1本のスティックを2回使用できる新デバイス「Fasoul GO」登場 | https://prtimes.jp/main/html/rd/p/000000013.000147873.html

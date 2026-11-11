@@ -1,54 +1,48 @@
-URL: https://techcrunch.com/2026/11/10/oura-to-acquire-ai-native-primary-care-startup-counsel-health-for-625m/
-TITLE: Oura to acquire AI-native primary care startup Counsel Health for $625M
+URL: https://techcrunch.com/2026/11/11/plurai-wants-to-help-ai-agents-work-better-using-the-same-approach-that-helped-get-self-driving-cars-to-roads/
+TITLE: Plurai wants to help AI agents work better using the same approach that helped get self-driving cars to roads
 SITE: TechCrunch AI
-PUBLISHED: 2026-11-11 04:23 (page: 2026-11-10T19:23:34+00:00)
-OG_IMAGE: https://techcrunch.com/wp-content/uploads/2026/11/GettyImages-2296609700.jpg?resize=1200,799
+PUBLISHED: 2026-11-11 23:00 (page: 2026-11-11T14:00:00+00:00)
+OG_IMAGE: https://techcrunch.com/wp-content/uploads/2026/11/Plurai-team-photo.-Credit-Guy-Hamoy.jpg?resize=1200,800
 IMAGES:
 
 TEXT:
-Oura
-announced
-on Tuesday that it’s acquiring AI-native primary care company Counsel Health for $625 million. The deal comes a few weeks after Oura
-postponed
-its
-up to $2.2 billion IPO
-indefinitely, citing “uncertainty in the IPO market.”
-Counsel Health is an AI-powered healthcare platform that combines a chat-based medical experience with access to licensed physicians. Its service was integrated into the Oura app in June.
-Users can connect with Counsel’s medical AI to get personalized medical advice, and chat with a physician when needed, all within the Oura app. Now, the companies plan to expand on their existing partnership to build across preventative care, acute care, and specialty and chronic care.
-While Oura has largely dominated the smart ring market for years, rivals like RingConn and Ultrahuman are emerging to dethrone it, putting pressure on the company to keep innovating. By acquiring Counsel Health, Oura is looking to expand its business and help users access medical care.
-“Oura helps members understand their physiology and, with Counsel, they can take action on their health across a range of needs, from quick questions and prescriptions to lab results, chronic care, and referrals,” said Oura CEO Tom Hale in a
-press release
-.
-Counsel Health raised
-a $25 million Series A
-a year ago, led by Andreessen Horowitz (a16z) and GV. PitchBook estimates it had raised a total of $36 million.
-Following the acquisition, Oura says Counsel will continue serving existing and new enterprise partners, with the goal of expanding its AI-native care model to more people beyond Oura’s membership.
-Counsel CEO Muthu Alagappan will join Oura as chief clinical AI officer, alongside the company’s 70 employees,
-Bloomberg
-reports.
-“At Counsel, we’ve built medical AI around trust, safety and responsibility, keeping physicians in the loop for clinical decisions,” Alagappan said in the press release. “Oura’s data gives clinicians objective context, trended biometrics, and member engagement to deliver more informed care. From the start, our teams bonded over a joint vision, shared culture, and mission, further solidifying as we negotiated our deal over the past few months.”
-The deal is expected to close before the end of 2027.
-Oura also announced that its revenue grew 153% year-over-year to $533 million for the quarter ended on September 30. For its fiscal year 2026, Oura generated revenue of approximately $1.75 billion, marking 92% year-over-year growth.
-The company reached an
-$11 billion valuation
-following a $900 million late-stage funding round in October 2025.
+AI agents are all the rage, but they’re not quite as capable as their purveyors would have you believe.
+Efforts to benchmark agents doing complex tasks show that they aren’t typically reliable enough to function without close supervision. LiveBench 2.0
+shows
+Claude Fable 5.2 and ChatGPT-6 Astra succeeding on 82.9 and 75.6 out of 100 tasks, respectively, and
+an effort
+by the AI infrastructure company EON to test agents in a simulated corporate environment found the most successful model tested, Claude Opus 4.8, performed tasks at 76.8% accuracy.
+Now, a startup known as Plurai wants to boost those numbers with the same techniques that put self-driving cars on the street: Simulations using synthetic data based on a company’s own digital systems, meant to prepare models to tackle difficult edge cases.
+Co-founders Ilan Kadar and Elad Levi previously worked for Nexar, which develops autonomous driving technology. Kadar worked with Waymo to simulate and evaluate its end-to-end deep learning driving software.
+“The moment that we saw the wave of AI agents, we saw the same pattern: That it is very easy to build a demo, but [hard] to get something that will be reliable and cost effective,” Kadar told TechCrunch. “Since we saw the same pattern, the same pitch was that we want to build this simulation layer.”
+On Wednesday, the startup said it had raised $13 million in seed funding to make that happen. The round was led by Team8, with participation from U&I, Velocity, and Mercer.
+Like the end-to-end models trained to drive cars, AI agents are probabilistic systems operating in unpredictable environments. When pressed by customers, agents tasked with booking travel can ignore spending policies. Or, when tasked with querying one database, agents can reliably provide an answer, but combining information from multiple datasets tends to gum up the works. A long conversation with a customer service bot can overwhelm an agent with too much context and lead to wrong turns.
+To fix that, Plurai creates a digital twin of the company’s electronic systems, including the knowledge base and tools that an agent will have access to in production. It then maps all the possible flows of the agents and uses that graph to prepare the model with evaluations and fixes for possible edge cases. The platform works alongside existing agentic tools like Claude Code, Codex, Copilot, and Cursor.
+However, Kadar says the company’s real promise is using the data it gathers to post-train small, open-weight models tailored to individual customer needs. Tests performed in cooperation with Nvidia and Nebius
+showed
+the company’s models outperforming midtier frontier models at lower costs.
+“We can take a large language model, we can take the task, decompose it into a smaller task using the simulation, train [an open-weight] model, and using the simulation, verify that the quality is higher or comparable to the frontier model, and an order or two orders of magnitude cost reduction,” he said.
+Reah Miyara, a Google DeepMind researcher who backed Plurai as an angel investor, said the company’s edge comes from understanding failure modes in production, and generating synthetic data to tune models. As businesses try to optimize their AI expense, Plurai’s approach could prove a real advantage, since IT leaders are seeing that “frontier-capable models are out of distribution with my specific data, and the cost of these things isn’t sustainable in the long term,” Miyara said.
+Plurai hopes analogies between AI agents in physical and digital environments can prove predictive: While powerful general AI models are imbuing robots with fascinating capabilities, they aren’t yet reliable enough to be deployed widely. Meanwhile, robots powered by AI models built for specific tasks are in the field right now, working for customers and gathering valuable real-world data.
+“My view is that no matter how smart OpenAI and Anthropic model will be — and they will be much smarter — they will not know your business and your policy,” Kadar said.
 Topics
 AI
 ,
-Hardware
+AI agents
 ,
-Mergers and Acquisitions
-,
-oura
+Exclusive
 When you purchase through links in our articles,
 we may earn a small commission
 . This doesn’t affect our editorial independence.
-Aisha Malik
-Consumer News Reporter
-Aisha is a consumer news reporter at TechCrunch. Prior to joining the publication in 2021, she was a telecom reporter at MobileSyrup. Aisha holds an honours bachelor’s degree from University of Toronto and a master’s degree in journalism from Western University.
-You can contact or verify outreach from Aisha by emailing
+Tim Fernholz
+Senior Reporter
+Tim Fernholz is a journalist who writes about technology, finance and public policy. He has closely covered the rise of the private space industry and is the author of
+Rocket Billionaires: Elon Musk, Jeff Bezos and the New Space Race.
+Formerly, he was a senior reporter at Quartz, the global business news site, for more than a decade, and began his career as a political reporter in Washington, D.C. 
+
+You can contact or verify outreach from Tim by emailing
 [email protected]
-or via encrypted message at aisha_malik.01 on Signal.
+or via an encrypted message to tim_fernholz.21 on Signal.
 View Bio
 2027
 San Francisco
