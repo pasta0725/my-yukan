@@ -44,7 +44,7 @@
 6. サムネの文字の誤字と、幅168pxに縮めても読めるか。
 
 ## 4. 投稿と通知
-- 完成版を upload-tmp に置き、youtube-upload.yml を name・video・comment・publish_at（例 2026-11-10T21:00:00+09:00）で動かす。予約公開の動画は非公開で上がり、21:00 に YouTube が公開する。公開の数分後に、サムネの入れ直しと固定コメントが自動で行われる。21:15ごろにチャンネルのショート一覧でサムネを確かめる（動画の1コマのままなら thumb:<ID>）。
+- 完成版を upload-tmp に置き、youtube-upload.yml を name・video・comment・publish_at（例 2026-11-10T21:00:00+09:00）で動かす。予約公開の動画は非公開で上がり、21:00 に YouTube が公開する。公開の数分後に、サムネの入れ直しと固定コメントが自動で行われる。21:15ごろにチャンネルのショート一覧でサムネを確かめる（動画の1コマのままなら thumb:<ID>）。コメントの固定は、毎日21:23の予定作業「星餓りな 固定コメントの固定」が内蔵ブラウザで行う（手順は tools/pin_comment.md）。
 - 通知（PushNotification と SendUserMessage の両方、日本語）：
   「今日の自動ショート：<タイトル>（<選んだ理由1行>）。21:00に公開されます。https://youtube.com/shorts/<ID>　止めたいときは Claude に『動画止めて <ID>』と言うか、YouTube Studio アプリで非公開にしてください。」
 - 止める：youtube-upload.yml の video=stop:<ID>。すぐ出す：video=go:<ID>。状態：video=status:<ID>。
