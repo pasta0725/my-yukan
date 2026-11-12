@@ -27,7 +27,14 @@ jobs:
           # only the scripts this push added or changed (2026-11-12: looking at every folder re-made the audio of videos
           # already moved to Drive and used up the day's free quota)
           if [ -n "${{ inputs.scripts }}" ]; then L="${{ inputs.scripts }}"
-          else L=$(jq -r '[.commits[] | (.added + .modified)[]] | unique | .[] | select(endswith("lines.json"))' "$GITHUB_EVENT_PATH"); fi
+          else
+            # some pushes come with no file list in the event (2026-11-12: jq stopped on null), so fall back to git diff
+            L=$(jq -r '[.commits[]? | ((.added // []) + (.modified // []))[]] | unique | .[] | select(endswith("lines.json"))' "$GITHUB_EVENT_PATH" || true)
+            if [ -z "$L" ]; then
+              git fetch -q --deepen=50 origin main || true
+              L=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" 2>/dev/null | grep 'lines\.json$' || true)
+            fi
+          fi
           echo "scripts: $L"
           for f in $L; do
             [ -e "$f" ] || continue
