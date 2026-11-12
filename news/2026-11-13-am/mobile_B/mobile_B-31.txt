@@ -1,0 +1,44 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2155556.html
+TITLE: Microsoft、「.NET 11」を正式リリース ～共用体型を導入した「C# 15」も／2年間サポートのSTSリリース、「.NET MAUI」の既定ランタイムは「CoreCLR」に
+SITE: 窓の杜
+PUBLISHED: 2026-11-12 14:20 (page: 2026-11-12T14:20:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2155/556/dotnet.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/556/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B09HRLZ9GC.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+Microsoft、「.NET 11」を正式リリース ～共用体型を導入した「C# 15」も
+2年間サポートのSTSリリース、「.NET MAUI」の既定ランタイムは「CoreCLR」に
+樽井 秀人
+2026年11月12日 14:20
+「.NET 11」が正式リリース
+米Microsoftは11月10日（現地時間）、開発プラットフォーム「.NET」の最新版「.NET 11」を正式リリースした。
+「.NET 10」
+に続く年次アップデートで、2年間のサポートが保証された「Standard Term Support」（STS）リリースとなる。
+「.NET 11」のおもな特徴は、以下の通り。
+C# 15
+：「.NET 11」をターゲットとするC#プロジェクトで既定となる言語バージョン。共用体型（union types）やクローズドな継承階層（Closed Hierarchies）、コレクション式引数といった言語機能の強化が図られた
+F# 11
+：「FSharp.Core」のコレクション操作で割り当てを削減するなど、コンパイラーのメモリ使用量を改善
+SDK
+：「Native AOT」でビルドされたCLIホストを既定で有効化。常駐する「MSBuild」サーバーにより、日常的なコマンドのオーバーヘッドを削減
+Web
+：「ASP.NET Core」で非同期検証や「OpenAPI 3.2」に対応。「Blazor」や「SignalR」向けにも新機能
+AI
+：「Microsoft.Extensions.AI」「MCP」「Microsoft Agent Framework」でAIエージェントアプリの構築を支援。SDKに「MCP」サーバーのテンプレートを同梱
+.NET MAUI
+：デスクトップとモバイルの両方をカバーするアプリケーションUIフレームワーク
+「.NET MAUI」
+で、既定ランタイムが「CoreCLR」に。「Mono」ランタイムからの移行を果たす
+ライブラリ
+：「Zstandard」圧縮を標準搭載。プロセス実行の簡素化や「JSON」サポートの強化も
+パフォーマンス面では、JITコンパイラーによる冗長な境界チェックや分岐の削減、仮想呼び出しの解消（devirtualization）の改善など、数百にのぼるランタイムの最適化が施された。また、非同期処理の中断・再開をランタイムで扱う「Runtime Async」も導入されているが、こちらは引き続きプレビュー扱いとなっている。
+そのほかにも、「Entity Framework Core 11」などの関連ライブラリ・ツールも併せてリリースされた。「Windows Forms」には、アプリやコントロール単位で有効化できるモダンなビジュアルスタイルが追加されている。「.NET SDK」やランタイムをユーザーアカウントにインストール・更新できるツールチェーンマネージャー「dotnetup」もパブリックプレビューとして公開されている。
+なお、同日をもって
+「.NET 8」および「.NET 9」はサポート終了（EOS）
+を迎えたため、セキュリティ更新などは受け取れなくなった。「.NET 10」は3年間の長期サポート（LTS）リリースとして引き続きサポートされる。「.NET 10」「.NET 11」のサポート終了日は、いずれも2028年11月14日。
+Amazonで購入
+「.NET」関連商品
+Amazonで購入

@@ -1,0 +1,171 @@
+URL: https://www.publickey1.jp/blog/26/net_11cjitaot.html
+TITLE: マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+SITE: Publickey
+PUBLISHED: 2026-11-11 02:58 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/yQPO4eAf.jpg
+IMAGES:
+- https://www.publickey1.jp/2026/dotnet11ga01.png | fig
+- https://www.publickey1.jp/2026/dotnet11ga02.png | fig
+- https://www.publickey1.jp/2026/dotnet11ga03.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+2026年11月11日
+マイクロソフトは日本時間の11月13日未明からオンラインイベント「.NET Conf 2026」を開催し、同社の包括的なアプリケーションフレームワークの最新版となる「.NET 11」正式版のリリースを発表しました。
+Announcing .NET 11!
+
+This release brings C# 15 union types, faster developer tools, hundreds of performance improvements, and new capabilities for web, mobile, desktop, and AI apps.
+
+See what’s new and get started: https://t.co/GEpvJqG3Vd
+— .NET (@dotnet)
+November 10, 2026
+.NETは、デスクトップからモバイル、クラウド、ゲーム、IoT、そしてWindows、Linux、macOSなど、あらゆるプラットフォームに対応したアプリケーションの開発を包括的にカバーするフレームワークです。
+.NETの大きな枠組みの中に、プログラミング言語のC#やコンパイラ、ランタイム、そしてクロスプラットフォーム対応のUIフレームワーク.NET MAUIやWebアプリケーションフレームワークのBlazor、分散アプリケーションで監視機能を実装するためのAspireなどが含まれています。
+.NET 11は2年でサポート終了
+.NETは1年ごとにメジャーバージョンアップが行われ、2年ごとに登場する偶数バージョンがLTS（Long Term Support：長期サポート）版となります。
+.NET 11は奇数バージョンのためLTSではなくSTS（Standard Term Suport）版のため 、2年後にサポートが終了します。
+参考：
+マイクロソフト、.NET STS版のサポート期間を2年に延長、バージョン間の移行がスムーズに
+そのため、企業などがこれからシステム開発に取り組む場合などは、現時点で最新のLTS版である.NET 10を選択すべきでしょう。
+.NET 11の主な新機能
+ハードウェア要件の更新
+.NETランタイムの最小ハードウェア要件が更新されました。Pentium 4/Pentium DやAthlon 64などの古いCPUでは動作しなくなります。
+プロセッサ数上限の撤廃
+これまで.NETランタイムは1024個を超える論理プロセッサでの初期化に失敗していました。.NET 11ではランタイムがCPUセットを動的に割り当てるようになるため、プロセッサ数の上限がなくなりました。
+.NETランタイムの非同期処理の効率化
+.NET 11ランタイムではランタイムがネイティブに非同期処理をそのまま実行できるようになりました。
+これまで.NETランタイムでは（大枠として）非同期処理を実行する際に、コンパイラがタスクやライブラリに分解した上でランタイムが非同期処理を実行していました。.NET 11ではランタイムが非同期処理をネイティブに実行できるようになったためコンパイラなどによる前処理がなくなり、よりオーバーヘッドが小さく高速かつ効率的に非同期処理が実行できるようになりました。
+JITの強化による高速化など
+JIT（Just In Timeコンパイラ）がより賢くなり、配列などの最初と最後のデータの境界などをチェックする境界チェックが除去され、演算時にオーバーフローしていないかどうかをチェックする処理も効率的に除去されるなど、これまでコード実行時の安全を確認するために行っていたさまざまな冗長処理のいくつかがなくなりました。また小さなSwitch文が分岐無しに展開されるなどの最適化が加わり、コードの実行速度向上が期待できます。
+AOTコンパイラの高速化
+コードを事前コンパイル（Ahead-of-Timeコンパイル）することでネイティブなバイナリを生成するAOTコンパイラが、コード内の複数のInterface呼び出しをコンパイルするときに共有ディスパッチによって効率化されたことなどにより、ネイティブバイナリの実行速度の向上とファイルサイズの縮小を実現します。
+C#に共用体型（Union Types）導入
+.NET 11ではC# 15で共用体型が導入されます。共用体型の変数は、あらかじめ決められた複数の型のうち、いずれか1つだけの型を保持します。共用体型を用いることで、Switch式やSwitch文での網羅性をコンパイラが確認してくれます。
+その他にもC# 15では多くの改善が行われました。
+コマンドラインツールの強化
+.NETの各種コマンドラインツールやC#コンパイラ、ビルドエンジン、ランタイムなどを含む.NETのツールチェーンをまとめてインストールし、バージョン管理などができるツールチェーンマネージャ「dotnetup」を含む各種コマンドが強化されています。
+.NETにおけるWebAssembly対応の進化
+.NET 11の開発過程においてはWebAssembly対応の進捗も報告されていました。
+.NETにおけるWebAssembly対応には2つの側面があります。
+1つは.NETそのものをWebAssemblyで実装することにより、WebAssembly環境上で.NETアプリケーションを実行可能にするというものです。
+これは現時点で、WebAssembly上で実験的に実装されている.NETランタイムのコアであるWebAssembly用CoreCLRで、マイクロソフトのライブラリテストが最初から最後まで動作するようになったことが報告されています。
+これにより、WebAssembly版CoreCLRの実用性が十分に高まってきたことが伺えます。
+Blazor WebAssemblyでは、現時点でWebAssemblyで実装された.NETランタイムはMonoベースです。おそらく次の.NET 12では、このWebAssembly版.NETランタイムがCoreCLRになると予想されます。
+もう1つの.NETにおけるWebAssembly対応は、.NETランタイムがWebAssemblyランタイムの機能を備える、という側面です。
+これにより.NET環境上でWebAssemblyアプリケーションが実行できるようになることが期待されますが、このWebAssembly対応も現在開発が進んでいます。
+参考：
+マイクロソフト、.NETランタイムでWebAssemblyの実行をサポートへ、CoreCLRに実装を開始
+この.NETランタイムのWebAssemblyサポートも、次のバージョンとなる.NET 12でおそらく何らかの発表が行われると予想されます。
+あわせて読みたい
+.NET
+WebAssembly
+プログラミング言語
+Microsoft
+≫次の記事
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+≪前の記事
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+AWSをローカルマシン上でエミュレートする、AWS公式の「AWSエミューレタ」正式リリース
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

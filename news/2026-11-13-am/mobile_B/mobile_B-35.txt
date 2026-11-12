@@ -1,0 +1,61 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2155706.html
+TITLE: 「Node.js」にセキュリティ更新 ～16件の脆弱性を修正、HTTP/2関連が多数／v22.23.5、v24.22.3、v26.13.1が公開
+SITE: 窓の杜
+PUBLISHED: 2026-11-12 09:25 (page: 2026-11-12T09:25:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2155/706/nodejs.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/706/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/4814401671.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「Node.js」にセキュリティ更新 ～16件の脆弱性を修正、HTTP/2関連が多数
+v22.23.5、v24.22.3、v26.13.1が公開
+樽井 秀人
+2026年11月12日 09:25
+「Node.js」のセキュリティアップデート
+「Node.js」のセキュリティアップデートが11月11日（協定世界時）に実施された。今回リリースされたバージョンは、以下の通り。できるだけ早い更新が望ましい。
+Node.js 22.23.5 (LTS)
+Node.js 24.22.3 (LTS)
+Node.js 26.13.1 (LTS)
+セキュリティ告知に掲載された脆弱性は16件。同告知の影響範囲によると、v26系とv24系が16件、v22系が11件となる。深刻度の内訳は「High」が7件、「Medium」が6件、「Low」が3件。
+CVE-2026-123863
+：HTTP/2: remote abort, CHECK_EQ(current_nghttp2_memory_, 0) in ~Http2Session()（High）※v26/v24のみ
+CVE-2026-123864
+：HTTPS: a zero-length TLS write re-enters llhttp_execute(), and the server copies its own heap into the request body（High）
+CVE-2026-123865
+：HTTP/2 sessions never clean up if a protocol error is triggered during connection shutdown（High）
+CVE-2026-123866
+：HTTP/2 stream teardown can send freed response memory to the peer（High）
+CVE-2026-126051
+：Node.js is vulnerable to a remotely triggerable uncaught exception in TLS servers via deferred handshake callbacks（High）※v26/v24のみ
+CVE-2026-123872
+：TLS 1.2 renegotiation allows clients to change servername unilaterally to bypass client certificate authentication（High）
+CVE-2026-123874
+：HTTP/2: use-after-free of Http2Stream when a respondWithFile() stream is reset during a pending write（High）※v26/v24のみ
+CVE-2026-123828
+：Remote unauthenticated HTTP/2 heap-buffer-overflow in session.altsvc() with a long origin（Medium）※v26/v24のみ
+CVE-2026-123867
+：CA-only SNI client-CA overrides fail open to the default CA, bypassing per-host mTLS authorization（Medium）
+CVE-2026-123868
+：HTTP/2 inbound data queued on an undrained stream is charged to no session budget, so maxSessionMemory neither bounds it nor refuses new streams（Medium）※v26/v24のみ
+CVE-2026-123871
+：Proxy credentials disclosed in ERR_PROXY_INVALID_CONFIG error messages（Medium）
+CVE-2026-123877
+：Certificate validation bypass in Node.js https.Agent via cross-policy TLS session reuse（Medium）
+CVE-2026-123875
+：HTTP/2: cancelling one respondWithFile() download crashes the server (NULL dereference in StreamPipe)（Medium）
+CVE-2026-123829
+：Permission Model Bypass in recursive fs.watch Leaks Names of Denied Descendants（Low）
+CVE-2026-123862
+：zlib: a pending params() plus destroy() throws an uncatchable ERR_INTERNAL_ASSERTION（Low）
+CVE-2026-106071
+：Permission Model filesystem over-grant via wildcard radix lookup（Low）
+また、依存ライブラリにも以下の更新が含まれる。
+llhttp（9.4.4）：v26/v24/v22
+undici（8.12.4/7.30.2）：v26/v24
+SQLite（3.54.1）：v26/v24/v22
+Brotli（1.2.1）：v26/v24
+Amazonで購入
+「Node.js」関連商品
+Amazonで購入

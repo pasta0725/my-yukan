@@ -1,0 +1,38 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2155911.html
+TITLE: 2026年10月のWindows更新以降、「SQL Server」の接続に問題。数日中に緊急（OOB）修正へ／外部DBへの接続が閉じられず蓄積、パフォーマンスが低下するおそれ
+SITE: 窓の杜
+PUBLISHED: 2026-11-12 16:52 (page: 2026-11-12T16:52:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2155/911/sql_server_2025.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/911/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/4297108356.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+2026年10月のWindows更新以降、「SQL Server」の接続に問題。数日中に緊急（OOB）修正へ
+外部DBへの接続が閉じられず蓄積、パフォーマンスが低下するおそれ
+樽井 秀人
+2026年11月12日 16:52
+「Windows release health」における当該問題の記載
+米Microsoftは11月11日（現地時間）、「SQL Server」のリンクサーバークエリで作成された接続が、クエリの完了後も開いたままになることがある問題を明らかにした。
+2026年10月の月例セキュリティパッチ
+以降をサーバー環境に適用すると発生するという。
+この問題は、OLE DBプロバイダーを使って外部データベースに接続する「SQL Server」のリンクサーバークエリで発生する。影響が確認されているのは、「Oracle」や「PostgreSQL」への接続など。クエリを実行するたびに外部データベースへの接続が閉じられないまま積み重なり、長時間運用するとサーバーのパフォーマンスが低下することがある。影響を受ける環境では、関連するクエリが実行されていないにもかかわらず、外部データベースへの接続数が増え続けるという。
+アイドル状態の接続を特定して手動で閉じたり、SQLサービスを再起動したりすれば、一時的に負荷を軽減できる。ただし、実行中のクエリやトランザクションが中断されるおそれがあるほか、しばらく運用すると問題が再発する可能性もある。
+影響を受けるプラットフォームは、以下の通り（括弧内は起因となったパッチのKB番号）。執筆時現在、「Windows 11 バージョン 26H2」は影響範囲として記載されていない。
+Windows 11 バージョン 26H1（KB5127646）
+Windows 11 バージョン 25H2（KB5127648）
+Windows 11 バージョン 24H2（KB5127648）
+Windows 11 バージョン 23H2（KB5126653）
+Windows 10 バージョン 1809（KB5126651）
+Windows 10 Enterprise LTSC 2019（KB5126651）
+Windows Server 2025（KB5126646）
+Windows Server 2022（KB5126655）
+Windows Server バージョン 1809（KB5126651）
+Windows Server 2016（KB5126868）
+Windows Server 2012 R2（KB5126836）
+Windows Server 2012（KB5126835）
+同社は数日中に定例外（OOB）のアップデートで問題に対処する予定。それまでの間、影響を受ける法人向けデバイスには緩和策が用意されており、法人向けサポートへ問い合わせれば入手できる。
+Amazonで購入
+「SQL Server」関連商品
+Amazonで購入

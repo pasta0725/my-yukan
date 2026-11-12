@@ -1,0 +1,146 @@
+URL: https://www.publickey1.jp/blog/26/net_maui_11xamarinmonocoreclr.html
+TITLE: 「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+SITE: Publickey
+PUBLISHED: 2026-11-11 02:51 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/maui11coreclr.png
+IMAGES:
+- https://www.publickey1.jp/2026/maui11coreclr.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+2026年11月11日
+マイクロソフトは.NET 11と合わせてリリースしたUIフレームワーク「.NET MAUI 11」で、ついに内部ランタイムがMonoから脱却し、CoreCLRに統一されたことを明らかにしました。
+.NET MAUIはシングルコードでiOS、Android、Windows、macOSに対応するUIフレームワークです。
+.NET MAUIはもともとiOSとAndroidのネイティブなモバイルアプリケーションをC#などの.NETテクノロジーで開発可能にするXamarinをベースに、その後継として開発されました。
+Xamarin由来のMonoランタイムを使用
+Xamarinは
+2016年にマイクロソフトが買収
+したプロダクトであり、その内部では.NETがオープンソースとして開発される以前の.NET Framework互換環境をオープンソースとして実装した「Mono」がランタイムとして使われていました。
+それ以来、Xamarinをベースとしてきた.NET MAUIのiOSとAndroid、Mac Catalyst（iPadアプリをmacOSでも実行可能にするフレームワーク）のランタイムはMonoが使われてきたのです（.NET MAUIのWindows版とMac版では最初からランタイムとしてCoreCLRが使われていました）。
+.NET MAUI 11から全プラットフォームでCoreCLRを採用
+これが最新の.NET MAUI 11では、iOSとAndroid、Mac Catalystのランタイムも.NET標準のランタイムであるCoreCLRが使われるようになり、.NET MAUIのランタイムはMonoから脱却し、Windows、Linux、Mac、iOS、AndroidのすべてでCoreCLRが使われるように統一されました。
+CoreCLRに統一されるメリット
+.NET MAUIのランタイムがCoreCLRに統一されることで、以下のメリットがあると説明されています。
+バックエンドとフロントエンドのランタイムの統一
+.NET MAUIにおけるモバイルアプリケーションとサーバアプリケーションのランタイムがCoreCLRに統一されることで、これまでそれぞれ異なっていたJITやガベージコレクションのふるまい、ダイアグノスティック、バグの発現パターンなどが統一され、開発者にとって全体がより理解しやすくなる。
+より高性能なランタイムの基盤に
+CoreCLRが備える階層型JITコンパイルやReady To Run（R2R）プリコンパイル、プロファイルガイドによる最適化（Profile Guided Optimization：PGO）などが、iOSやAndroidのモバイルアプリケーションで利用可能になる。
+事前コンパイルへの対応
+iOSとMac Catalystで要求されるネイティブバイナリへのAOT（事前）コンパイルに対して、統一されたツールチェーンの提供が可能になり、AndroidでもAOTコンパイルへの対応が用意される。
+マイクロソフトによると、MonoからCoreCLLRへの移行により.NET MAUIで作られたアプリケーションのiOSとMac Catalystでの実行速度がおおむね向上。Androidでは起動時間やアプリケーションのサイズの変動は10％以下だと説明されています。
+開発者は念のため、.NET MAUI 11へ移行する際には互換性の確認などを慎重に行うことが求められるでしょう。
+あわせて読みたい
+.NET
+プログラミング言語
+Android
+iOS
+Microsoft
+モバイル
+≫次の記事
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+≪前の記事
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+AWSをローカルマシン上でエミュレートする、AWS公式の「AWSエミューレタ」正式リリース
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

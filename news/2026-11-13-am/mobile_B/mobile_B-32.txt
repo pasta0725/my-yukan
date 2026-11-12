@@ -1,0 +1,30 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2155719.html
+TITLE: 「Apache HTTP Server 2.4.71」が公開 ～深刻度「Critical」を含む3件の脆弱性を修正／「mod_http2」にリモートコード実行の欠陥、v2.4.55以降が影響
+SITE: 窓の杜
+PUBLISHED: 2026-11-12 13:05 (page: 2026-11-12T13:05:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2155/719/apache_httpd.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/719/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0HG9K11F8.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「Apache HTTP Server 2.4.71」が公開 ～深刻度「Critical」を含む3件の脆弱性を修正
+「mod_http2」にリモートコード実行の欠陥、v2.4.55以降が影響
+樽井 秀人
+2026年11月12日 13:05
+「Apache HTTP Server 2.4.71」で修正された脆弱性
+The Apache Software Foundation（ASF）は11月11日（協定世界時）、「Apache HTTP Server 2.4.71」を公開した。3件の脆弱性に対処したセキュリティアップデートとなっている。
+CVE-2026-119618
+：mod_http2: heap corruption and RCE in assign_headers（Critical）
+CVE-2026-106023
+：mod_md NULL pointer dereference leads to child process crash（Important）
+CVE-2026-109163
+：mod_vhost_alias 1 byte stack buffer overwrite (after CVE-2026-63292)（Low）
+なかでも注意したいのは、深刻度が4段階中もっとも高い「Critical」と評価された「CVE-2026-119618」だ。「mod_http2」の「assign_headers()」関数に、共有リソースの同期が不適切な競合状態の脆弱性が存在し、リモートからコードを実行されるおそれがあるという。
+影響を受けるのはv2.4.55からv2.4.70まで。「GitHub」で公開されているHTTP/2モジュール「mod_h2」も、v2.0.8からv2.0.42が影響を受ける。
+そのほかにも、「mod_deflate」や「mod_dav」、「mod_remoteip」などのモジュールにおける不具合修正、「mod_md」の機能改善も含まれているとのこと。
+「Apache HTTP Server」（Apache HTTPD）は、オープンソースの定番Webサーバー。ライセンスは「Apache License 2.0」で、現在「httpd.apache.org」から無償でダウンロードできる。
+Amazonで購入
+「Apache」関連商品
+Amazonで購入

@@ -1,0 +1,130 @@
+URL: https://www.itmedia.co.jp/news/article/2611/12/2000003139/
+TITLE: AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+SITE: ITmedia NEWS
+PUBLISHED: 2026-11-12 14:10 (page: 2026-11-12T14:10:47)
+OG_IMAGE: https://www.itmedia.co.jp/news/article/ogp/2611/12/2000003139/10011982/2048
+IMAGES:
+- https://www.itmedia.co.jp/news/article/image/2611/12/2000003139/10011980/728 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/11/2000003116/10011905/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/11/2000003108/10011876/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003138/10011979/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003125/10011937/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003160/10012038/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003158/10012034/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003149/10012015/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003148/10012013/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003144/10011987/232 | 
+
+TEXT:
+Share
+印刷する
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+公開
+2026年11月12日 14時10分
+著者
+新野淳一
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+この記事は新野淳一氏のブログ「Publickey」に掲載された「
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+」（2026年11月12日掲載）を、ITmedia NEWS編集部で一部編集し、転載したものです。
+米Amazon Web Services（AWS）は、Amazon EC2インスタンス上でほぼネイティブのEC2性能で動作しつつ、Nitroシステムハードウェアレベルのきわめて強力な隔離環境を備えた軽量な仮想マシン「
+AWS Nitro Sandbox
+」の提供開始を発表しました。
+AIエージェントを用いたコーディングの普及により、コンテナなどの軽量な仮想環境でAIが生成した信頼できないコードを実行する機会が増加しています。
+しかし一般的なコンテナ型仮想化はカーネルを共有しているなど、十分に安全な分離環境とはいえない場合があり、万が一悪意のあるコードが実行された場合には同一マシン上の別のコンテナやサービスに影響が及ぶ可能性があります。
+そのため、強力な隔離機能を備えつつコンテナのように軽量な仮想環境が求められていました。
+AWSが提供を開始した「AWS Nitro Sandboxes」は、これに対応した軽量VMを実現します。
+ハードウェアレベルの強力な隔離を持つ軽量VM
+AWS Nitro Sandboxesの基盤となっているAWS Nitro Systemは、AWSの基盤としてハードウェアレベルで強力なセキュリティと分離環境などを実現しており、Amazon EC2やAWSのネットワークはこのAWS Nitro Systemの上に構築されています。
+そして今回のAWS Nitro Sandboxesは、その名前の通りAWS Nitroのハードウェアレベルの強力な隔離機能を備えつつ、Amazon EC2とほぼ同様のネイティブな実行速度を実現。
+Amazon EKSのPodとして利用可能
+AWS Nitro SandboxesはAmazon EC2上のサンドボックスやAmazon ECSのPod、Amazon EKSのPodなどとして利用可能です。
+AWS Nitro Sandboxesで構成されたサンドボックスでは、ホストとも他のサンドボックスやコンテナとも完全に独立したOSが提供され、サンドボックス内の処理によるシステムコールはサンドボックス内のゲストカーネル以外に到達することはできません。
+Amazon EKSのオートモードでは、AWS Nitro Sandboxesを有効にすることでPodを簡単にAWS Nitro Sandboxesの軽量VMに変更できます。
+変更後も従来のコンテナイメージ、デプロイメントパイプライン、ヘルムチャートなどはそのまま変更せずに利用できると説明されています。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+Publickey
+コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは
+ログイン
+が必要です
+Special
+PR
+この記事の著者
+新野淳一
+関連記事
+続くドコモ通信障害　一部除き復旧も、完全解消には至らず　原因は調査中
+前澤友作氏、Metaの“なりすまし広告”訴訟で控訴検討　東京地裁の請求棄却に「野放しでもOK？」
+NVIDIA取締役会、フアンCEO解任の可否決定へ　2件の不倫報道で株価8％超下落
+ドコモ「5G SA」また障害、原因は5日と同じ「交換機の輻輳」　約9時間で復旧
+Special
+PR
+こんなメディアも見られています
+ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+メールマガジン最新号
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+「命の砂時計」連呼のGMO会見──熊谷代表の発言にXではツッコミ続出
+Special
+PR
+本日の新着記事
+NVIDIA、“革ジャンCEO”ことフアン氏が辞任　クレスCFOが暫定CEOに
+宝くじ公式サイト、会員の当落情報まで第三者が閲覧の可能性　リスト型攻撃か
+介護現場の人手不足を補う「ヒト型助手ロボット」　遠隔で利用者見守る最新テクノロジーも
+セキュリティの司令塔、韓国金融保安院がハッキング攻撃受け個人情報650件流出
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+アクセスランキング
+1
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+2
+宝くじ公式サイト、会員の当落情報まで第三者が閲覧の可能性　リスト型攻撃か
+3
+NVIDIA取締役会、フアンCEO解任の可否決定へ　2件の不倫報道で株価8％超下落
+4
+Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開　コードはすべてAIエージェントが記述
+5
+NVIDIA、“革ジャンCEO”ことフアン氏が辞任　クレスCFOが暫定CEOに
+6
+ドコモ「5G SA」また障害、原因は5日と同じ「交換機の輻輳」　約9時間で復旧
+7
+「盗撮」→「法律で規制」が話題のAI眼鏡　海外では大ヒットなのに、日本での普及は限定的　ビジネスでの活用事例を探る
+8
+農水省の“クソダサ”ポスター話題　「AIよりよっぽど良い」の声も　担当者に狙いを聞いた
+9
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+10
+セキュリティの司令塔、韓国金融保安院がハッキング攻撃受け個人情報650件流出
+もっと見る
+ITmedia NEWS SNS
+ITmedia News
+Tweets by itmedia_news
+@itmedia_newsをフォロー
+インフォメーション
+注目情報をチェック
+メールマガジン
+Specialインデックス
+お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR

@@ -1,0 +1,29 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2155856.html
+TITLE: Qwen3.8-27Bが12GBメモリで動く、Unslothが新量子化モデルを公開
+SITE: PC Watch
+PUBLISHED: 2026-11-12 13:35 (page: 2026-11-12T13:35:16+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2155/856/01.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2155/856/01_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0H9LRZ68J.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+Qwen3.8-27Bが12GBメモリで動く、Unslothが新量子化モデルを公開
+宇都宮 充
+2026年11月12日 13:35
+パラメータ数27B(270億)のAIモデルが、メモリ12GBのPCでも動作する。Unslothは11月12日、「Qwen3.8-27B」に新たな量子化手法「Dynamic v3.1」提供した量子化モデルを公開した。Hugging Faceにて、Apache License 2.0のもとGGUF形式で無償配布しており、同社の提供するUnsloth Desktopアプリのほか、llama.cpp、Ollamaなどで実行できる。
+本モデルは、Alibabaが公開しているオープンウェイトモデル「Qwen3.8-27B」をベースに、独自の量子化を施して軽量化を図ったもの。Unslothの開発した最新の量子化アルゴリズムである「Dynamic v3.1」を用いることで、同クラスのほかの量子化モデルと比べて、5～10%精度が向上したとする。
+複数の量子化モデルを用意しており、低ビット量子化では12GB未満のメモリ環境でも動作する。主要な量子化モデルと必要メモリ容量(メインメモリ+VRAM)の目安は以下の通り。
+1bit版: 7～8GB
+2bit版: 9～11GB
+3bit版: 12～14GB
+4bit版: 16～19GB
+6bit版: 23～26GB
+8bit版: 31GB
+Unslothではあわせて、このDynamic v3.1を適用した「Qwen3.8-Flash-Next」および「DeepSeek-V4.1-Flash-1017」の量子化モデルを提供中。加えて、Qwen4向けにより強力な手法も開発しているという。
+Today, we're releasing the highest accuracy Qwen3.8-27B GGUFs.  Our new Dynamic V3.1 GGUFs lead by 5–10% on average across Terminal Bench, DeepSWE &amp; more. We’re working on even better version for Qwen4  Run on 12GB RAM.  GGUF: https://t.co/xIdNwm7CLQ Blog: https://t.co/J2PwgMP6GZ https://t.co/kMy80CVixY
+— Unsloth AI (@UnslothAI)
+November 11, 2026
+「Qwen」関連書籍
+Amazonで購入
