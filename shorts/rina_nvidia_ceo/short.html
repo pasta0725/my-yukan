@@ -198,7 +198,7 @@ const S={
  // hook: NVIDIA's CEO Huang resigned
  hook(u,d,L){bg(u);mini(u);const t2=telHas(L,'辞任');
    mixLine([['NVIDIA',C.brand],['のCEOが',C.text]],CX,385,72);
-   withEnter(enter(u,0,0.3),()=>{card(150,450,780,560,30,C.card2);chipIcon(CX,690,165+8*u/d,'#76B900',u>t2);text('AI半導体の最大手',CX,950,44,'#CDD8EC','center',800);},40);
+   withEnter(enter(u,0,0.3),()=>{card(150,450,780,560,30,C.card2);chipIcon(CX,690,165+8*u/d,'#76B900',u>t2);text('AI半導体の大手',CX,950,44,'#CDD8EC','center',800);},40);
    if(u>t2)stamp('辞任',CX,1090,(u-t2)/0.3,C.warn,120,-0.05);},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},
  // when: Nov 12 announced; he left CEO and the board, effective immediately
@@ -211,7 +211,7 @@ const S={
  who(u,d,L){bg(u);mini(u);const t33=telHas(L,'33年');
    mixLine([['1993年',C.acc],['に共同創業',C.text]],CX,385,64);
    withEnter(enter(u,0),()=>{card(150,450,780,250);const k=ease((u-0.15)/0.8);rrect(220,560,640,22,11,C.bar);rrect(220,560,640*k,22,11,C.brand);
-     text('1993',220,630,40,C.sub,'left',800);text('2026',860,630,40,C.sub,'right',800);figure(220,530,40,'stand',C.brand);});
+     text('1993',220,630,40,C.sub,'left',800);text('2026',860,630,40,C.sub,'right',800);figure(220+640*k,530,40,'stand',C.brand);});
    withEnter(enter(u,Math.max(0.3,t33)),()=>{card(150,730,780,330);text('トップを務めて',CX,800,44,C.sub,'center',800);bigNum('33','年間',CX,930,(u-Math.max(0.3,t33))/0.35,C.acc,170);});},
  // rise: grew a gaming-chip company into the centre of AI, market value about 4 trillion dollars
  rise(u,d,L){bg(u);mini(u);const ta=telHas(L,'AI'),t4=telHas(L,'4兆');
@@ -230,7 +230,7 @@ const S={
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-130,-52,260,104,20,C.warn);text('ただ',0,0,66,'#FFFFFF');g.restore();
    withEnter(enter(u,0.2),()=>{card(150,490,780,240);paperIcon(285,610,110,C.text);text('新聞各紙が',600,570,50,C.text);text('不倫を報道',600,650,58,C.warn);});
    withEnter(enter(u,0.4),()=>{card(150,760,780,200,30,C.card2);text('相手は、米当局が',CX,825,44,'#CDD8EC','center',800);text('スパイと疑う女性',CX,900,54,'#FFFFFF');});
-   if(u>tc)withEnter(enter(u,tc),()=>{card(150,985,780,140);text('中国側は否定',CX,1055,52,C.text);});},
+   if(u>tc)withEnter(enter(u,tc),()=>{card(150,985,780,140);text('中国側はスパイの疑いを否定',CX,1055,48,C.text);});},
  // twist2: he admitted the affair and apologised; the NYT also reported a relationship with a direct report
  twist2(u,d,L){bg(u);mini(u);const tn=telHas(L,'部下');
    mixLine([['さらに',C.warn]],CX,385,70);
@@ -239,8 +239,8 @@ const S={
  // next: interim CEO is the finance chief Colette Kress; a permanent successor is sought inside and outside
  next(u,d,L){bg(u);mini(u);const ts=telHas(L,'後任');
    mixLine([['暫定CEO',C.acc],['は',C.text]],CX,385,66);
-   withEnter(enter(u,0),()=>{card(150,450,780,380);figure(300,640,90,'stand',C.brand);text('コレット・',600,580,58,C.text);text('クレス氏',600,665,72,C.text);text('財務のトップ（CFO）',600,755,40,C.sub,'center',800);});
-   withEnter(enter(u,Math.max(0.4,ts)),()=>{card(150,860,780,250,30,C.card2);text('正式な後任は',CX,935,44,'#CDD8EC','center',800);text('社内外から選ぶ',CX,1030,62,'#FFFFFF');});},
+   withEnter(enter(u,0),()=>{card(150,450,780,380);g.save();g.fillStyle=C.brand;g.beginPath();g.arc(300,560,52,0,7);g.fill();g.beginPath();g.roundRect(215,630,170,120,[80,80,20,20]);g.fill();g.restore();text('コレット・',600,580,58,C.text);text('クレス氏',600,665,72,C.text);text('財務のトップ（CFO）',600,755,40,C.sub,'center',800);});
+   withEnter(enter(u,Math.max(0.4,ts)),()=>{card(150,860,780,250,30,C.card2);text('正式な後任は',CX,935,44,'#CDD8EC','center',800);text('社内外から探す',CX,1030,62,'#FFFFFF');});},
  // stock: shares fell as much as 13% at one point; some AI stocks fell too
  stock(u,d,L){bg(u);mini(u);const ta=telHas(L,'AI');
    mixLine([['NVIDIA株',C.text]],CX,385,70);
