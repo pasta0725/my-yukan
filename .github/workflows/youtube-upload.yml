@@ -84,3 +84,29 @@ jobs:
         if: env.PUBLIC == '1'
         env: { GH_TOKEN: "${{ github.token }}", N: "${{ inputs.name }}" }
         run: gh workflow run drive-store.yml --repo "${{ github.repository }}" -f name="$N" || echo "start drive-store.yml by hand (name=$N)"
+  after_public:
+    # a video published at once (no publish_at): the Shorts grid kept the frame instead of the thumbnail (2026-11-13),
+    # so the thumbnail is set once more a few minutes later, then the video and materials go to Drive (drive-store.yml).
+    # (2026-11-13: setting it by hand failed because drive-store had already deleted the branch work with the thumbnail.)
+    needs: upload
+    if: inputs.publish_at == '' && inputs.privacy == 'public' && needs.upload.outputs.video_id != '' && !contains(inputs.video, ':')
+    permissions: { contents: read, actions: write }
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/work_branch.py get channel/thumbs || true
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q google-api-python-client google-auth
+      - name: set the thumbnail again after 3 minutes
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          N: ${{ inputs.name }}
+          ID: ${{ needs.upload.outputs.video_id }}
+        run: sleep 180; python3 tools/youtube_upload.py "$N" "thumb:$ID" || echo "thumbnail again failed (set it with video=thumb:$ID)"
+      - name: move the video and its materials to Google Drive
+        env: { GH_TOKEN: "${{ github.token }}", N: "${{ inputs.name }}" }
+        run: gh workflow run drive-store.yml --repo "${{ github.repository }}" -f name="$N" || echo "start drive-store.yml by hand (name=$N)"
