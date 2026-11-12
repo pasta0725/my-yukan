@@ -1,0 +1,1412 @@
+===== https://www.itmedia.co.jp/news/article/2611/12/2000003126/
+(status 200)
+Share
+印刷する
+Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開　コードはすべてAIエージェントが記述
+公開
+2026年11月12日 09時56分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+　米Amazon傘下のAmazon Web Services（AWS）は11月11日（現地時間）、AWSのAPIを手元のPCなどで再現するツール「AWS Emulator」を公開した。開発者はクラウドのリソースを用意しなくても、AWSを使うアプリをローカル環境で構築したりテストしたりできる。AWSアカウントは不要で、追加料金も発生しない。AWSによると、すべてのコードは自律型AIエージェントが記述したという。
+　AWS Emulatorは、AWS APIのエンドポイントとして動くローカルのプログラムで、GUIはない。AWS CLIやAWS SDKの接続先を環境変数でエミュレータに指定すれば、コードを書き換えずに使える。AWSのAPIモデル438件を基に作られ、数百のサービスのインタフェースに対応する。ただし、どこまで実装できているかはサービスや操作によって異なる。AWSとどれだけ同じように動くかを示す“忠実度”のスコアはリリースごとにGitHubで公開しており、検証に使うテスト群も別のリポジトリ「aws-emulator-evaluation-suite」で公開した。
+　想定する用途は、ローカルでのテストや、AWSアカウントもリソースも使わずにCI/CDパイプラインで統合テストを回すこと、AIコーディングエージェントを使ったAWS向けアプリの試作など。AIコーディングエージェント向けには、エミュレータのインストールから起動、接続までを担う「aws-emulator」スキルも用意した。
+　Linuxでは、x86_64版とaarch64版のRPMパッケージまたはDebianパッケージからインストールする。macOSとWindowsでは、プロジェクトのDockerfileでイメージをビルドしてDockerで動かす。ソースコードは
+GitHub
+でCC0ライセンスで公開している。
+修正をまとめて再検証し、すべてのチェックを通ったコードだけをリリースする。配布用のバイナリを作り、GitHubでも公開する（画像：AWS）
+　本番環境で使うことは想定していない。IAMポリシーやリソースベースのポリシーはAWSと同じようには評価されないので、セキュリティのテストには使わないよう呼び掛けている。リソースはすべてメモリ上に置かれ、エミュレータを止めると消える。
+　開発を率いたAWSのシニアプリンシパルエンジニア、マシュー・ゴールドバーグ氏によると、AWS Emulatorは週末の実験として始まった。きっかけは、米Anthropicの研究者が今年、
+AIエージェントだけでCコンパイラを作ってみせた
+ことだったという。同氏は
+AWSのAI開発環境「Kiro」
+に、AWS CLIを基にテストを書く、実際のAWS環境で成功するまでテストを修正する、そのテストにパスするインメモリ実装を作成する、という3段階の作業を指示した。最初の「Amazon SQS」は約15分で完成したという。
+　現在は、APIモデルからテストを作って実際のAWSで検証するチーム、そのテストをエミュレータで実行して不具合を報告するチーム、報告された不具合を直すチームという3種類のエージェントチームが並行して開発している。数百のエージェントが同時に動き、1日に数千件の問題を修正しているという。人間の開発チームはコードを一切書いておらず、レビューもしていない。エミュレータは1日に何度も更新されている。
+AWS Emulatorを開発する3つのエージェントチーム。テストの作成、不具合の発見、修正を分担する（画像：AWS）
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+公式ブログ
+AWS Emulator
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+関連記事
+AWS Transformが機能拡充　Azure Functions用のコードをAWS Lambda用に変換など、Azure→AWSへの移行に対応
+AWSのナレッジを生成AIで参照できる「AWS Knowledge MCP Server」正式版が登場　公式ドキュメントやAPIリファレンスなど情報源に
+AWSをゲームで学べる“AWSクエスト”にまさかの新バージョン　AIバーチャル顧客と対話可能に
+AWS、デプロイ速度が最大4倍になる「AWS CloudFormation Expressモード」を提供開始
+Special
+PR
+こんなメディアも見られています
+        ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+「命の砂時計」連呼のGMO会見──熊谷代表の発言にXではツッコミ続出
+Special
+PR
+本日の新着記事
+NVIDIA、“革ジャンCEO”ことフアン氏が辞任　クレスCFOが暫定CEOに
+宝くじ公式サイト、会員の当落情報まで第三者が閲覧の可能性　リスト型攻撃か
+介護現場の人手不足を補う「ヒト型助手ロボット」　遠隔で利用者見守る最新テクノロジーも
+セキュリティの司令塔、韓国金融保安院がハッキング攻撃受け個人情報650件流出
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+アクセスランキング
+1
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+2
+宝くじ公式サイト、会員の当落情報まで第三者が閲覧の可能性　リスト型攻撃か
+3
+NVIDIA取締役会、フアンCEO解任の可否決定へ　2件の不倫報道で株価8％超下落
+4
+Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開　コードはすべてAIエージェントが記述
+5
+NVIDIA、“革ジャンCEO”ことフアン氏が辞任　クレスCFOが暫定CEOに
+6
+ドコモ「5G SA」また障害、原因は5日と同じ「交換機の輻輳」　約9時間で復旧
+7
+「盗撮」→「法律で規制」が話題のAI眼鏡　海外では大ヒットなのに、日本での普及は限定的　ビジネスでの活用事例を探る
+8
+農水省の“クソダサ”ポスター話題　「AIよりよっぽど良い」の声も　担当者に狙いを聞いた
+9
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+10
+セキュリティの司令塔、韓国金融保安院がハッキング攻撃受け個人情報650件流出
+ もっと見る 
+    ITmedia NEWS SNS
+ITmedia News
+ Tweets by itmedia_news 
+        @itmedia_newsをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
+
+===== https://aws.amazon.com/blogs/aws/test-your-applications-against-aws-locally-with-aws-emulator/
+(status 200)
+Test your applications against AWS locally with AWS Emulator
+Today we’re announcing AWS Emulator, a local emulator for Amazon Web Services (AWS) that you run on your machine. The 
+AWS Command Line Interface (AWS CLI)
+, the 
+AWS SDKs
+, and your coding agents speak to it over a local HTTPS endpoint using the same AWS APIs they would use in the cloud, from your laptop. AWS Emulator has no additional service fee. You pay only for AWS resources when you deploy on AWS. Its source is on 
+GitHub
+. You install it from an RPM or Debian package on Linux, and on macOS and Windows you run it in Docker.
+How it works
+         You install the emulator, start it, and point your tools at the local endpoint. When AWS Emulator starts, it generates its own credentials, a config file, and a certificate, and writes them to 
+~/.aws/emulator/9297/
+. You set environment variables so the AWS SDK talks to your laptop instead of AWS, and your application code stays unchanged.
+From there, your existing tests, CLI scripts, and coding agents keep working the way they already do. A unit test that creates an 
+Amazon DynamoDB
+ table, writes an item, and reads it back is the same test, and it runs on your machine without a deployment. A coding agent can create resources, check the result, and iterate again without waiting on a deployment in a Region.
+The emulator is implemented in Rust so that it stays light on CPU and memory on a laptop. It supports the APIs of AWS services that have an API model in the AWS API models repository on GitHub, and because it’s built from those models, the same ones the AWS SDKs use, your requests and the errors you get back have the same shape as on AWS.
+If you are a developer, especially one working with coding agents such as Kiro or Claude Code, you can use that loop to test AWS interactions of real complexity locally.
+Let’s try it out
+         To get started, I installed the package on 
+Amazon Linux 2023
+. The package adds the 
+aws-emulator
+ command to 
+/usr/bin/
+, so it’s on the path.
+PKG=https://downloads.aws.com/aws-emulator/packages/aws-emulator/LTS/latest
+sudo dnf install -y $PKG/aws-emulator-x86_64.rpm
+aws-emulator -v
+On macOS and Windows, you build a Docker image from the short Dockerfile in the documentation and run the emulator in a container. We don’t publish a ready-made image.
+I started the emulator with 
+aws-emulator
+. It serves HTTPS on 
+127.0.0.1:9297
+, so only my own computer can reach it, and it writes its log as JSON lines that show the address, the config file, and the certificate file.
+aws-emulator
+In another terminal, I set the environment variables that point the AWS CLI at the emulator, and unset any variables that could supply real AWS credentials.
+export AWS_ENDPOINT_URL=https://127.0.0.1:9297
+export AWS_SHARED_CREDENTIALS_FILE=~/.aws/emulator/9297/emulator_credentials
+export AWS_CONFIG_FILE=~/.aws/emulator/9297/config
+export AWS_EC2_METADATA_DISABLED=true
+export AWS_DISABLE_HOST_PREFIX_INJECTION=true
+export AWS_REGION=us-east-1
+export AWS_DEFAULT_REGION=us-east-1
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_PROFILE
+The emulator generates new keys each time it starts. Its access key IDs start with 
+EMULATOR
+, so you can’t mistake them for real AWS keys, and it rejects requests signed with any other keys. To confirm that my shell was talking to the emulator, I checked the health endpoint and the caller identity. The emulator uses a single account, 
+000000000000
+.
+curl --cacert ~/.aws/emulator/9297/ca.pem https://127.0.0.1:9297/__admin/health
+aws sts get-caller-identity
+Then I created a bucket, copied in a small object, and listed it.
+$ aws s3 mb s3://local-getting-started
+make_bucket: local-getting-started
+$ echo "hello from the emulator" > hello.txt
+$ aws s3 cp hello.txt s3://local-getting-started/
+upload: ./hello.txt to s3://local-getting-started/hello.txt
+$ aws s3 ls s3://local-getting-started/
+With the AWS CLI pointed at my laptop, I had the same commands I already use and a local endpoint that answered them.
+Next I wanted to see it the way I actually work now, so with the emulator still running I opened 
+Kiro
+ and asked it to create an Amazon DynamoDB table, write an item, and read it back, all against AWS Emulator rather than my AWS account.
+kiro> Using the local AWS Emulator (the environment variables
+      are already set in this shell), create a DynamoDB table
+      "kiro-demo" with a string key "id", put an item
+      {id: "item-1", msg: "hello from kiro"}, then read it
+      back with get-item.
+$ aws dynamodb create-table --table-name kiro-demo \
+    --attribute-definitions AttributeName=id,AttributeType=S \
+    --key-schema AttributeName=id,KeyType=HASH \
+    --billing-mode PAY_PER_REQUEST
+$ aws dynamodb put-item --table-name kiro-demo \
+    --item '{"id": {"S": "item-1"}, "msg": {"S": "hello from kiro"}}'
+$ aws dynamodb get-item --table-name kiro-demo --key '{"id": {"S": "item-1"}}'
+To use the same setup with an existing test suite, I would start the emulator, set the same environment variables in the script that runs the tests, and run them as usual.
+Using the emulator in process
+         Running the emulator as a local process gives you an HTTPS endpoint that works with the AWS CLI and the AWS SDKs through environment variables. Some SDKs need an extra setting to trust the emulator certificate, for example a trust store for the 
+AWS SDK for Java
+. For tests, there is a second option. AWS Emulator ships an embedded mode that you instantiate directly inside your test process and wire into the SDK through its HTTP client, rather than talking to a separate server over the network. Each embedded instance keeps its own state, so tests do not share buckets, tables, or queues, and you can run many of them in parallel. Embedded mode is available for the 
+AWS SDK for Rust
+. You add the 
+aws-emulator-embedded
+ crate from GitHub to the 
+[dev-dependencies]
+ section of your 
+Cargo.toml
+ file. The following example creates an Amazon DynamoDB table, writes an item, and reads it back, entirely in process.
+use aws_emulator_embedded::{AwsEmulatorEmbedded, EmbeddedOptions};
+use aws_sdk_dynamodb::types::{
+    AttributeDefinition, AttributeValue, BillingMode, KeySchemaElement, KeyType,
+    ScalarAttributeType,
+};
+#[tokio::test]
+async fn put_then_get_returns_the_item() {
+    let emulator = AwsEmulatorEmbedded::new(EmbeddedOptions::default());
+    let config = aws_config::defaults(aws_config::BehaviorVersion::latest())
+        .http_client(emulator.http_client())
+        .region(aws_config::Region::new("us-east-1"))
+        .credentials_provider(emulator.aws_credentials_provider())
+        .load()
+        .await;
+    let ddb = aws_sdk_dynamodb::Client::new(&config);
+    ddb.create_table()
+        .table_name("emulator-demo-table")
+        .attribute_definitions(
+            AttributeDefinition::builder()
+                .attribute_name("id").attribute_type(ScalarAttributeType::S)
+                .build().unwrap())
+        .key_schema(
+            KeySchemaElement::builder()
+                .attribute_name("id").key_type(KeyType::Hash)
+                .build().unwrap())
+        .billing_mode(BillingMode::PayPerRequest)
+        .send().await.unwrap();
+    ddb.put_item()
+        .table_name("emulator-demo-table")
+        .item("id", AttributeValue::S("item-1".into()))
+        .item("msg", AttributeValue::S("hi".into()))
+        .send().await.unwrap();
+    let got = ddb.get_item()
+        .table_name("emulator-demo-table")
+        .key("id", AttributeValue::S("item-1".into()))
+        .send().await.unwrap();
+    assert_eq!(got.item().unwrap().get("msg").unwrap().as_s().unwrap(), "hi");
+}
+When it runs as a local process, the emulator requires every request to be signed with Signature Version 4 (SigV4), the same way AWS does, and it exposes a 
+/__admin/health
+ endpoint on the same port so a script or a container can wait until it is ready before running tests. By default it also sends anonymous usage and error data, and you can turn it off.
+How we measure fidelity
+         An emulator is only useful if a test that passes against it would also pass against AWS, so we measure that directly with fidelity tests. A fidelity test is a short program that uses an AWS SDK to run a workflow, such as storing an object and then reading and deleting it, and asserts how AWS behaves. We verify each fidelity test against real AWS. A fidelity test passes only if the emulator matches AWS on the response to every call, including the status code, the body, and the exact error code and message, and on the resources and data that the workflow creates.
+With each release, we publish how many fidelity tests pass for each service, as k of n. For example, 40 of 50 means that 40 of the service’s 50 fidelity tests pass. The set of fidelity tests is public in the aws-emulator-evaluation-suite repository on GitHub, including the ones that don’t pass yet, so you can see what we verified and run the fidelity tests yourself. Read a score as a snapshot of a product that’s improving. When we add fidelity tests, a score can go down even while the emulator gets better.
+If the emulator doesn’t implement an operation yet, it returns HTTP 501 (Not Implemented), so your tests fail right away. If the emulator acts differently from AWS, you can tell us by opening an issue in the AWS Emulator repository on GitHub.
+How the emulator is built
+         AWS Emulator is built and maintained by agents from the AWS API models using 
+Amazon Bedrock AgentCore
+ Runtime Instances, 
+AWS CodePipeline
+, and 
+AWS CodeCommit
+, so it stays current with AWS as those models change.
+One group of agents looks for gaps, both by comparing emulator responses against real AWS and by statically comparing the emulator’s code against the published Smithy models, and files an issue for each gap it finds. Another group picks up an issue, writes tests, implements the behavior, and reviews the change for correctness, performance, and security. When the change is ready, it is pushed to a source repository, and that push triggers an AWS CodePipeline run that runs the fidelity tests before the change is published to the public GitHub repository.
+How we keep it secure
+         Because the code is written by agents, an independent security agent reviews changes adversarially, both while the fix is being made and again in the release pipeline as a final check before anything ships.
+Security of your own use remains a shared responsibility. We build the emulator to run safely on your machine: it listens only on your own computer by default and rejects requests that aren’t signed with its own keys. You decide where it runs, what data you put in it, and how you test before production. Don’t use the emulator to test whether your application is secure. It doesn’t evaluate 
+AWS Identity and Access Management (IAM)
+ policies and resource-based policies the way AWS does, so a request that AWS denies might succeed in the emulator. Keep real credentials out of the environment of your test jobs, and test your security settings and your whole application on AWS before you go to production.
+Now available
+         AWS Emulator is generally available today. It has no additional service fee. You pay only for AWS resources when you deploy on AWS. You can install it from RPM or Debian packages on Linux, run it in Docker on macOS and Windows, or build from source, and it works with the AWS SDKs and the AWS CLI once you set environment variables. At launch, it has some limits. It doesn’t evaluate IAM policies the way AWS does, and each emulator acts as a single account, with no cross-account or cross-Region behavior. How closely it matches AWS varies by service and feature. To see how well the emulator covers the services that you use, check the fidelity scores in the AWS Emulator documentation.
+If you want to check regional availability, visit the 
+AWS Capabilities by Region
+ page in AWS Builder Center. If you want to call APIs, search documentation, find regional availability, and check troubleshooting about this new feature, try using the 
+AWS MCP Server
+ and 
+plugins
+ with your preferred AI tool.
+To get started, visit the 
+AWS Emulator repository on GitHub
+ and see the AWS Emulator documentation.
+Updated on November 12, 2026: Added links to the AWS Emulator repository on GitHub.
+
+===== https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator
+(status 200)
+Key takeaways
+AWS Emulator is a local emulator of AWS services, 100% written by autonomous AI agents.
+Thousands of autonomous agents write tests, find issues, and fix code without human review.
+The source code is available on 
+GitHub
+ under a CC0 license and is constantly being updated.
+I’m a terrible artist. I always have been. My parents sent me to kindergarten a year early. One day, the teacher sat the class down at one of those long tables. She stretched a giant roll of paper across it and asked us to draw a picture of what the Earth must have been like with dinosaurs. I began diligently working on my section of the scene. But, as one of the youngest in the class, my motor skills were not developed enough to hold a crayon correctly. A few minutes later, my classmates were screaming at me. I had done it all wrong.
+I thought about those classmates often this year. Just as they lost their temper with me, I’ve found myself swearing at my AI agents more times than I care to admit. But in neither case is the issue malintent. The agents aren’t trying to disobey me, just as I wasn’t trying to ruin my class’s dinosaur painting. It’s a lack of competence. Earlier this year, my partner bought a coloring book, and we spent hours doing one together. There was something comforting about being given a well-defined area to fill in, knowing that the larger piece of art would come together. I think agents also need coloring books.
+Today, we released AWS Emulator, a local emulator of AWS services that you can run on your machine to build and test your AWS applications. The emulator was written entirely by autonomous agents. Our team hasn’t written or reviewed any of the code. We could do this because the guardrails we’ve put in place gave the agents space to work independently and us the trust that they don’t color outside these lines.
+Inside the AWS lab that makes everything you do online feel effortless
+In a nondescript building in Cupertino, California, a team of engineers is quietly designing the networking technology that keeps the modern world connected—one wavelength of light at a time.
+AWS Emulator started as a weekend experiment
+Earlier this year, researchers at 
+Anthropic
+ demonstrated that AI agents could autonomously build a C compiler. This was a lightbulb moment: If given a well-defined spec and a reference implementation, agents can autonomously build a solution that faithfully implements the specification. AWS has both of those; the 
+AWS API Models
+ are our spec and the actual AWS cloud is our reference implementation. To test my hypothesis, I gave 
+Kiro
+ the simplest prompt that I could think of without any expectation that this would work:
+Write tests based on the AWS Command Line Interface (CLI)
+Iterate on those tests until they pass against real AWS
+Build an in-memory implementation that those same tests pass against
+Kiro came back after 15 minutes with a passable first version of an Amazon Simple Queue Service (Amazon SQS). I refined my prompt and had Kiro build me the rest of AWS over the weekend. And it did. It obviously had gaps, but it was compelling enough that my team started using it to test our software that Monday.
+Turning that into a robust product took more than a weekend. There’s a natural temptation these days to see results like those and believe that 
+AI can build anything
+. Maybe it will eventually. But building something that you feel confident putting in your customers’ hands still requires serious engineering effort. In the case of AWS Emulator, it required building guardrails that ensure the agents color within our lines.
+How AWS is helping companies build physical AI machines that think
+Amazon launched the Physical AI Toolchain on AWS, an open-source stack that helps manufacturers build machines that perceive, reason, and act in the real world.
+How three teams of AI agents build AWS Emulator
+AWS Emulator is fundamentally built by three teams of agents. One team manages a test suite; one team finds issues in the emulator; and one team fixes those issues. We divide agent responsibility into these teams because we’ve found they have more success on bounded tasks.
+A graphic showing how teams of AI agents work together to run tests and solve issues.
+The first team’s test suite measures fidelity against the real AWS cloud. Each test is a real-world AWS scenario. For example, a test for Amazon SQS might include creating a queue, sending a message, receiving it, acknowledging it, and deleting the queue. Agents devise these tests from publicly released AWS API Models and verify each one against real AWS before submitting. We have tens of thousands of fidelity tests across all of AWS, and that test suite constantly grows as our agents discover new things that they can do with AWS. These tests are one of our most fundamental guardrails in our system because they provide an unambiguous goal that the agents need to meet and can be rerun repeatedly without calling AWS again.
+The second team of agents replays the fidelity tests to find divergence in the emulator. When the system initially created the repository, it generated an empty web server that could handle requests for the 438 AWS API Models but did nothing. The agents swarm the repository to figure out what doesn’t work. To kickstart the process, the first issues simply say “build a first version of Amazon SQS.” Once the service is bootstrapped, the agents replay the fidelity tests and file issues for the failing tests. They’re told to reason about the failures and group failures that may share a root-cause.
+Each issue is given to an agent in the third team, whose job is to fix that single issue. They check out the code, root-cause the issue, and edit the code until it’s addressed. They must then pass their code change through a gate that ensures it meets our bar. This gate obviously blocks changes that don’t compile. But it also includes agents that review against coding standards, verify the code is secure, and ensure that the change did not regress fidelity. If any of those checks fail, the change is sent back to the agent for rework; if they all pass, it is merged to mainline. We’ve seen thousands of issues fixed every day as hundreds of agents concurrently work on the codebase. Without this merge gate, we wouldn’t trust what our agents are building. We focus a lot on optimizing it because it’s so critical to how quickly and reliably the agents build.
+AWS commits $100 million of AI and cloud technology to help organizations expand health services worldwide
+The AWS Health Impact Initiative gives health organizations access to AI and cloud technology to build solutions for underserved communities.
+How AWS Emulator ships to GitHub
+Once merged to mainline, the changes flow through a release pipeline built entirely on AWS Developer Tools, with AWS CodeCommit as the agents’ primary code repository. Commits typically stack up together and are built and retested before we merge them to a release branch. We then package up the emulator as a binary that you can download. Only at the end of the release process do we also publish the code to GitHub.
+Three teams of AI agents build AWS Emulator.
+We release the code to GitHub so that you can also see what the agents have done building this emulator over thousands of commits. Every issue filed is in the repository. The ones they’ve fixed are in the directory “issues/things-that-now-work”; the ones in their backlog are in “issues/things-that-do-not-work.” You’ll find fascinating stuff if you dig. We’ve had our agents build many versions of this emulator as we’ve refined the building machine. My personal favorite was from an earlier version, when they decided to build their own Python interpreter to support AWS Lambda functions. We’ve since given them guidance to reuse existing libraries, something that may seem obvious to someone who doesn’t need a coloring book. I’m looking forward to what other novel solutions the agents come up with in this version. But I trust the outcome because of our guardrails. The insights we’ve gained from this history were the main motivation in our decision to release this software as a public dedication under the Creative Commons CC0 license.
+What's next for AWS Emulator
+This is the first in a series of posts where I’ll dive deeper into topics such as how we architected our multi-agent workflow, how we measure fidelity, and how we ensure our quality and security bar. 
+The 
+source code
+ and 
+fidelity tests
+ are both available on GitHub.
+Trending news and stories
+Ring announces Ring Robotics, ushering in a new era of security
+Black Friday and Cyber Monday 2026: a first look at Amazon’s best deals
+Meet Alexa Home Map, an interactive 3D map that lets you see and control your home
+When is Amazon's Black Friday 2026 event? Here’s everything you need to know
+
+===== https://www.theregister.com/off-prem/2026/11/12/aws-distills-its-cloud-into-a-local-emulator-that-runs-on-your-pc/5309251
+(status 200)
+off-prem
+    AWS distills its cloud into a local emulator that runs on your PC
+        Hyperscale meets micro-computing by offering APIs to test your apps
+Simon Sharwood
+Simon
+Sharwood
+APAC Editor
+Published
+thu 12 Nov 2026 // 05:47 UTC
+Make us preferred on Google
+READ MORE
+Attackers backdoor trusted AWS integrations to steal secrets
+2 days ago
+Home Office cloud services contract may net AWS £1B
+6 days ago
+AWS installs an AI accelerator every 14 seconds and eyes $1 trillion annual revenue
+13 days ago
+Startup wants to make AI agents safe for DevOps duty
+13 days ago
+Amazon tells tokenmaxxing devs to slow their AI roll
+15 days ago
+AWS has released an emulator that kind-of-almost lets you use its cloud on a PC.
+As explained in the 
+GitHub repository
+ for the prosaically named “AWS Emulator,” the tool “is a local program that serves an AWS API endpoint.”
+The emulator doesn’t replicate the whole AWS cloud, instead offering its APIs.
+REG AD
+“You use it to test your software without calling AWS, on your own machine, on a development server, or in continuous integration (CI),” the repo explains. Because those tests never touch the AWS cloud, the tool is free to use.
+REG AD
+AWS wrote the emulator in Rust, a choice that senior specialist solutions architect Daniel Abib wrote helps to ensure the tool “stays light on CPU and memory on a laptop.”
+The emulator tool doesn’t replicate the entire AWS cloud. Abib said it supports the APIs of AWS services that have an API model in the 
+AWS API models repository on GitHub
+. 
+The Register
+ found over 1,300 items on that page.
+While the tool lets developers test APIs, it doesn’t replicate anywhere near all the features of the Amazonian cloud.
+“It doesn’t evaluate IAM [Identity and Access Management] policies the way AWS does, and each emulator acts as a single account, with no cross-account or cross-Region behavior,” Abib wrote, adding “How closely it matches AWS varies by service and feature.”
+AWS publishes “fidelity scores” that detail how closely the emulator works on different AWS services. Amazon tries to achieve full fidelity, so the emulator produces the same results as AWS for valid API calls, and the same errors for invalid ones.
+Coding agents can also drive the Emulator, an option 
+The Register
+ mentions because AWS 
+advises
+ the easiest way to check if a project will work with the tool is to use the 
+aws-emulator
+ skill for AI coding agents.
+“With the skill, your agent finds the AWS operations and resources that your project depends on. It checks them against the fidelity tests and fidelity scores for the emulator. It then tells you which parts of your project you can rely on the emulator for, and which ones might behave differently from AWS,” according to AWS documentation.
+AWS has made the emulator available as an RPM or Debian package. Mac and PC users will need to run Docker and an image of the Emulator.
+REG AD
+“You install the emulator, start it, and point your tools at the local endpoint,” Abib instructed. “When AWS Emulator starts, it generates its own credentials, a config file, and a certificate, and writes them to 
+~/.aws/emulator/9297/
+. You set environment variables so the AWS SDK talks to your laptop instead of AWS, and your application code stays unchanged.”
+“From there, your existing tests, CLI scripts, and coding agents keep working the way they already do. A unit test that creates an 
+Amazon DynamoDB
+ table, writes an item, and reads it back is the same test, and it runs on your machine without a deployment.”
+The cloud colossus’s intent appears, as ever, to encourage more use of its cloud – in this case by satisfying developers their code will run well when deployed there, and making it easy for them to test for that. ®
+aws
+off-prem
+software development
+Make us preferred on Google
+
+===== https://dev.classmethod.jp/en/articles/20261112-aws-emulator/
+(status 200)
+I'm Ishikawa from the Cloud Business Division. On November 11, 2026, AWS Emulator, a local emulator for AWS APIs, became generally available. I ran AWS Emulator on macOS and compared it with real AWS to check the claims about AWS Emulator in the contribution by Swami Sivasubramanian that was published on All Things Distributed the same day.
+https://www.allthingsdistributed.com/2026/11/aws-emulator-and-the-engineers-job-when-agents-write-the-code.html
+https://aws.amazon.com/about-aws/whats-new/2026/11/aws-emulator-now-available/
+Werner Vogels's blog All Things Distributed published a contribution by Swami Sivasubramanian, "AWS Emulator and the engineer's job when agents write the code". Its claims can be summarized in three points.
+Claim 1
+: A coding agent repeats a cycle: write code, run it, read the result, and decide the next change. If the services it calls behave like the real ones, the agent can verify its work as it writes, and the share of code that is correct the first time goes up. AWS Emulator provides that verification target on your own machine
+Claim 2
+: For AWS Emulator, agents fixed fidelity tests built from the public API models until they passed against real AWS, and then implemented the emulator until it passed those tests. One example given is that in Amazon SQS, a received message stays invisible to other consumers until the visibility timeout
+Claim 3
+: When agents write the code, the engineer's job is to let the agent work autonomously, and for that the engineer designs specifications, tests, and merge gates
+In this article I check claims 1 and 2 by asking "does it return the same results and errors as real AWS?", and claims 1 and 3 by asking "if you prepare the spec and tests first, can you repeat write, run, and read the result locally?".
+https://docs.aws.amazon.com/emulator/latest/userguide/what-is-service.html
+https://aws.amazon.com/blogs/aws/test-your-applications-against-aws-locally-with-aws-emulator/
+ What is AWS Emulator
+AWS Emulator is a program that serves AWS APIs on a local HTTPS endpoint. If you switch the request destination of the AWS CLI or AWS SDK to this endpoint with an environment variable, requests are not sent to AWS but are processed against resources in the emulator's memory. No AWS account is required and there is no additional service charge. The source code is published on GitHub under CC0 1.0 Universal.
+https://github.com/aws/aws-emulator
+The position of AWS Emulator as seen from the AWS CLI or AWS SDK is as follows.
+As a test target, the differences from real AWS are as follows.
+Real AWS
+AWS Emulator
+AWS account
+Required
+Not required
+Cost
+Charged for created resources
+No additional service charge
+Where resources are stored
+AWS
+Emulator memory (lost when stopped)
+IAM policy evaluation
+Evaluated
+Not evaluated the way AWS does
+Production workloads
+Usable
+Not usable (for building and testing)
+The main specifications are as follows.
+On Linux, install it with an RPM or Debian package. On macOS and Windows, build an image from the Dockerfile in the documentation and run it in a container (no prebuilt image is published)
+By default it serves HTTPS on 
+127.0.0.1:9297
+. At every startup it generates credentials, a config file, and a certificate under 
+~/.aws/emulator/<port>/
+, and requires requests to be SigV4-signed with that key
+One emulator acts as one account (
+000000000000
+) and keeps resources only in memory. Resources disappear when it stops
+Each service is generated from the same public API models as the AWS SDK. Supported operations return the same results and errors as AWS, and unsupported operations return 
+501 Not Implemented
+The degree of agreement with AWS (fidelity) is published with each release, using the number of passed fidelity tests as the fidelity score
+It does not evaluate IAM policies the way AWS does. It cannot be used for security testing or production workloads
+Sending anonymous usage data (telemetry) is enabled by default. You can disable it with 
+--telemetry off
+https://docs.aws.amazon.com/emulator/latest/userguide/fidelity.html
+ Trying it out
+ Prerequisites
+macOS 26.7.3 (arm64)
+Podman 5.6.0 (client) / 5.6.2 (Podman machine side, linux/arm64).
+In 
+my environment: [Tips] How to use Docker commands with Podman
+, the 
+docker
+ command is actually Podman.
+AWS CLI 2.40.1 (latest at the time of writing)
+AWS Emulator 1.0.322 (Release date 2026.11.10)
+Real AWS used for comparison: ap-northeast-1
+Agent verification loop: Claude Code, uv, boto3 1.43.126, pytest 9.2.0
+The verification environment is configured as follows. I separated the shell for the emulator from the shell for real AWS, and in the emulator shell I unset the real AWS credentials before running the AWS CLI.
+ Building the image
+I started the Podman machine on my PC and built the image with the Dockerfile from the documentation. Since this is an Apple silicon Mac, I changed the package name to 
+aws-emulator-aarch64.rpm
+ as the documentation instructs.
+%
+ podman
+ machine
+ start
+Starting
+ machine
+ "podman-machine-default"
+API
+ forwarding
+ listening
+ on:
+ /var/run/docker.sock
+Docker
+ API
+ clients
+ default
+ to
+ this
+ address.
+ You
+ do
+ not
+ need
+ to
+ set
+ DOCKER_HOST.
+Machine
+ "podman-machine-default"
+ started
+ successfully
+FROM
+ public.ecr.aws/amazonlinux/amazonlinux:2023-minimal
+ADD
+ https://downloads.aws.com/aws-emulator/packages/aws-emulator/LTS/latest/aws-emulator-aarch64.rpm /tmp/aws-emulator.rpm
+RUN
+ rpm -i /tmp/aws-emulator.rpm && rm /tmp/aws-emulator.rpm \
+    && mkdir -p /home/emulator && chown 1000 /home/emulator
+USER
+ 1000
+ENV
+ HOME=/home/emulator
+EXPOSE
+ 9297
+ENTRYPOINT
+ [
+"aws-emulator"
+, 
+"-b"
+, 
+"0.0.0.0"
+]
+%
+ time
+ docker
+ build
+ -t
+ aws-emulator
+ .
+STEP
+ 1/7:
+ FROM
+ public.ecr.aws/amazonlinux/amazonlinux:2023-minimal
+...
+STEP
+ 2/7:
+ ADD
+ https://downloads.aws.com/aws-emulator/packages/aws-emulator/LTS/latest/aws-emulator-aarch64.rpm
+ /tmp/aws-emulator.rpm
+--
+> 
+8805988b0a0c
+STEP
+ 3/7:
+ RUN
+ rpm
+ -i
+ /tmp/aws-emulator.rpm
+ && 
+rm
+ /tmp/aws-emulator.rpm
+     && 
+mkdir
+ -p
+ /home/emulator
+ && 
+chown
+ 1000
+ /home/emulator
+warning:
+ /tmp/aws-emulator.rpm:
+ Header
+ V4
+ RSA/SHA512
+ Signature,
+ key
+ ID
+ d940f624:
+ NOKEY
+--
+> 
+608eeecaa5be
+...
+STEP
+ 7/7:
+ ENTRYPOINT
+ [
+"aws-emulator"
+, 
+"-b",
+ "0.0.0.0"]
+COMMIT
+ aws-emulator
+--
+> 
+fceb8e9812bb
+Successfully
+ tagged
+ localhost/aws-emulator:latest
+fceb8e9812bbe0681b42c3b1803f583a1eafeea2268ea2a6fbe1964068da1e3b
+docker
+ build
+ -t
+ aws-emulator
+ .
+  0.01s
+ user
+ 0.01s
+ system
+ 0%
+ cpu
+ 26.930
+ total
+The 
+NOKEY
+ warning appears because the RPM signing key is not registered in the image, but the key ID 
+d940f624
+ matches the tail (
+D940 F624
+) of the public key fingerprint listed in the documentation.
+%
+ docker
+ run
+ --rm
+ aws-emulator
+ -v
+Version:
+ 1.0.322
+Release
+ date:
+ 2026.11.10
+Commit:
+ 7753983c6e495ec3612695b1336bf4936fc7b7fd
+%
+ docker
+ images
+ localhost/aws-emulator
+REPOSITORY
+              TAG
+         IMAGE
+ ID
+      CREATED
+         SIZE
+localhost/aws-emulator
+  latest
+      fceb8e9812bb
+  17
+ seconds
+ ago
+  1.16
+ GB
+ Starting the container
+I started it using the 
+docker run
+ from step 2 (Start the container) of the 
+documentation
+, with the following options added.
+Added option
+Purpose
+-d
+, 
+--name aws-emulator-$PORT
+Run in the background and use a name to check logs and stop it
+--user "$(id -u):$(id -g)"
+Let the container write to the mounted 
+~/.aws/emulator
+ in a Podman environment (see the note at the end of this section)
+--telemetry off
+Disable telemetry
+--idle-timeout 3600
+Stop automatically if there are no API calls for 1 hour
+The specification of each option is in the command reference.
+https://docs.aws.amazon.com/emulator/latest/userguide/cli-reference.html
+%
+ mkdir
+ -p
+ ~/.aws/emulator
+%
+ PORT=
+9297
+%
+ docker
+ run
+ -d
+ --rm
+ --name
+ aws-emulator-
+$PORT 
+\
+  --user
+ "$(
+id
+ -u
+):$(
+id
+ -g
+)"
+ \
+  --memory=2g
+ --memory-swap=2g
+ \
+  -p
+ 127.0.0.1:
+$PORT
+:
+$PORT 
+\
+  -e
+ HOME="
+$HOME
+"
+ -v
+ "
+$HOME
+/.aws/emulator:
+$HOME
+/.aws/emulator"
+ \
+  aws-emulator
+ -p
+ $PORT 
+--telemetry
+ off
+ --idle-timeout
+ 3600
+5e95e140a6ade96698a5db7a048e0d9c5179bdd85a0d64c275346fb8293e442d
+%
+ docker
+ ps
+ --filter
+ name=aws-emulator
+ --format
+ "{{.Names}}  {{.Status}}  {{.Ports}}"
+aws-emulator-9297
+  Up
+ 5
+ seconds
+  127.0.0.1:9297
+-
+>
+9297/tcp
+%
+ docker
+ logs
+ aws-emulator-9297
+{
+"timestamp"
+:
+"2026-11-11T23:49:07.133428Z"
+,
+"level"
+:
+"INFO"
+,
+"fields"
+:
+{
+"
+message
+":"
+aws-emulator
+ emulator
+ starting"},"target":"aws_emulator"}
+{"timestamp":"2026-11-11T23:49:07.160958Z","level":"INFO","fields":{"message":"request
+ authentication
+ enabled","credentials_file":"/Users/classmethod/.aws/emulator/9297/emulator_credentials"},"target":"aws_emulator_server"}
+{"timestamp":"2026-11-11T23:49:07.164124Z","level":"INFO","fields":{"message":"emulator
+ server
+ information","endpoint_url":"https://127.0.0.1:9297","health_check_url":"https://127.0.0.1:9297/__admin/health","config_file":"/Users/classmethod/.aws/emulator/9297/config","ca_file":"/Users/classmethod/.aws/emulator/9297/ca.pem","java_truststore_file":"/Users/classmethod/.aws/emulator/9297/truststore.p12"},"target":"aws_emulator_server"}
+{"timestamp":"2026-11-11T23:49:07.164139Z","level":"WARN","fields":{"message":"the
+ emulator
+ listens
+ on
+ 0.0.0.0,
+ not
+ loopback:
+ other
+ machines
+ that
+ can
+ reach
+ port
+ 9297
+ can
+ call
+ it
+; 
+bind
+ 127.0.0.1
+ (-b 
+127.0.0.1
+) unless that is intended
+","
+bind_address
+":"
+0.0.0.0
+"},"
+target
+":"
+aws_emulator_server
+"}
+This emulator collects usage and error telemetry: disabled (via the embedding configuration) — to turn it back on, remove every opt-out setting and restart
+% ls -l ~/.aws/emulator/9297
+total 32
+-rw-------@ 1 ishikawa.satoru  staff  566 Nov 12 08:49 ca.pem
+-rw-------@ 1 ishikawa.satoru  staff  160 Nov 12 08:49 config
+-rw-------@ 1 ishikawa.satoru  staff  116 Nov 12 08:49 emulator_credentials
+-rw-------@ 1 ishikawa.satoru  staff  551 Nov 12 08:49 truststore.p12
+The 
+emulator server information
+ line in the startup log shows the endpoint, the health check URL, and the paths of the config file and certificate. The WARN appears because the container listens on 
+-b 0.0.0.0
+, but on the host side the port is published only to my own machine with 
+-p 127.0.0.1:9297:9297
+.
+Note: With the documented command as is (without 
+--user
+), the container printed 
+emulator serve failed: server I/O error: Permission denied (os error 13)
+ and exited immediately. The container process runs as 
+USER 1000
+ from the Dockerfile, but inside the Podman machine the mount target appears to be owned by the macOS user (UID 501, GID 20), so it could not write. 
+--userns=keep-id
+ did not fix it, but running with the same UID and GID as the macOS user via 
+--user "$(id -u):$(id -g)"
+ started it. The documentation presents 
+--user
+ as a setting for Linux hosts. I only checked Podman 5.6 on macOS.
+ Connecting to the emulator
+I put the environment variables that switch the destination into 
+~/.aws/emulator/9297.env
+ with the following content. The last line unsets the environment variables that pass real AWS credentials.
+export
+ AWS_ENDPOINT_URL
+=
+https://127.0.0.1:9297
+export
+ AWS_SHARED_CREDENTIALS_FILE
+=
+$HOME/.aws/emulator/9297/emulator_credentials
+export
+ AWS_CONFIG_FILE
+=
+$HOME/.aws/emulator/9297/config
+export
+ AWS_CA_BUNDLE
+=
+$HOME/.aws/emulator/9297/ca.pem
+export
+ AWS_EC2_METADATA_DISABLED
+=
+true
+export
+ AWS_DISABLE_HOST_PREFIX_INJECTION
+=
+true
+export
+ AWS_REGION
+=
+us-east-1
+export
+ AWS_DEFAULT_REGION
+=
+us-east-1
+unset
+ AWS_ACCESS_KEY_ID
+ AWS_SECRET_ACCESS_KEY
+ AWS_SESSION_TOKEN
+ AWS_PROFILE
+The emulator commands below were all run in a shell with this file's variables set (
+source ~/.aws/emulator/9297.env
+). First I checked the health check and the account I was connected to.
+%
+ curl
+ --cacert
+ ~/.aws/emulator/9297/ca.pem
+ https://127.0.0.1:9297/__admin/health
+ok
+%
+ aws
+ sts
+ get-caller-identity
+{
+    "UserId"
+:
+ "AIDAH5I7GEMO7ADXNFAZU",
+    "Account"
+:
+ "000000000000",
+    "Arn"
+:
+ "arn:aws:iam::000000000000:user/emulator"
+}
+%
+ aws
+ configure
+ list
+NAME
+       :
+ VALUE
+                    :
+ TYPE
+             :
+ LOCATION
+profile
+    :
+ <
+not
+ se
+t
+>
+                :
+ None
+             :
+ None
+access_key
+ :
+ ****************
+9D85
+     :
+ shared-credentials-file
+ :
+secret_key
+ :
+ ****************
+A66C
+     :
+ shared-credentials-file
+ :
+region
+     :
+ us-east-1
+                :
+ env
+              :
+ [
+'AWS_REGION'
+, 
+'AWS_DEFAULT_REGION']
+Because 
+Account
+ is 
+000000000000
+, the request reached the emulator. The credentials are read from the file generated by the emulator (
+shared-credentials-file
+).
+ Claims 1 and 2: does it return the same results and errors as real AWS?
+ Putting an object in Amazon S3
+First I operated Amazon S3, as in the documentation's example.
+%
+ echo
+ "hello from the emulator"
+ >
+ hello.txt
+%
+ aws
+ s3
+ mb
+ s3://emu-demo-4dc2bf03
+make_bucket:
+ emu-demo-4dc2bf03
+%
+ aws
+ s3
+ cp
+ hello.txt
+ s3://emu-demo-4dc2bf03/
+upload:
+ ./hello.txt
+ to
+ s3://emu-demo-4dc2bf03/hello.txt
+%
+ aws
+ s3
+ ls
+ s3://emu-demo-4dc2bf03/
+2026-11-12
+ 08:49:42
+         24
+ hello.txt
+%
+ aws
+ s3api
+ list-buckets
+ --query
+ "Buckets[].Name"
+ --output
+ text
+emu-demo-4dc2bf03
+With the usual commands, I could create a bucket, upload, and list.
+ Comparing an Amazon DynamoDB validation error with real AWS
+An Amazon DynamoDB table name must be at least 3 characters long. I ran 
+create-table
+ with the 2-character table name 
+ab
+.
+%
+ aws
+ dynamodb
+ create-table
+ --table-name
+ ab
+ \
+    --attribute-definitions
+ AttributeName=id,AttributeType=S
+ \
+    --key-schema
+ AttributeName=id,KeyType=HASH
+ \
+    --billing-mode
+ PAY_PER_REQUEST
+aws:
+ [ERROR]: An error occurred (
+ValidationException
+) when calling the CreateTable operation: 1 validation error detected: Value 
+'ab'
+ at 
+'tableName'
+ failed to satisfy constraint: Member must have length greater than or equal to 3
+The format 
+An error occurred (ValidationException) when calling the CreateTable operation
+ shows that this error was returned by the emulator, not by the AWS CLI's input check.
+I ran the same command in ap-northeast-1 from the shell for real AWS. I added tags so that I could find the table for cleanup in case it was created.
+%
+ aws
+ sts
+ get-caller-identity
+ --query
+ "[Account,Arn]"
+ --output
+ text
+111122223333
+	arn:aws:sts::111122223333:assumed-role/
+<
+ロール
+名
+>
+/
+<
+セッション
+名
+>
+%
+ echo
+ "region: 
+$AWS_REGION
+ / endpoint override: ${
+AWS_ENDPOINT_URL
+:-
+(
+none
+)}"
+region:
+ ap-northeast-1
+ /
+ endpoint
+ override:
+ (none)
+%
+ aws
+ dynamodb
+ create-table
+ --table-name
+ ab
+ \
+    --attribute-definitions
+ AttributeName=id,AttributeType=S
+ \
+    --key-schema
+ AttributeName=id,KeyType=HASH
+ \
+    --billing-mode
+ PAY_PER_REQUEST
+ \
+    --tags
+ Key=run_id,Value=emu-20261112-4dc2bf03
+ Key=owner,Value=tried-it
+ Key=purpose,Value=blog-verification
+ Key=ttl,Value=20261112T0150Z
+aws:
+ [ERROR]: An error occurred (
+ValidationException
+) when calling the CreateTable operation: 1 validation error detected: Value 
+'ab'
+ at 
+'tableName'
+ failed to satisfy constraint: Member must have length greater than or equal to 3
+I saved the error output from the emulator and real AWS to files and compared them with 
+diff
+; there was no difference.
+Next I created a normal table and read and wrote an item.
+%
+ aws
+ dynamodb
+ create-table
+ --table-name
+ emu-demo-orders
+ \
+    --attribute-definitions
+ AttributeName=id,AttributeType=S
+ \
+    --key-schema
+ AttributeName=id,KeyType=HASH
+ \
+    --billing-mode
+ PAY_PER_REQUEST
+ \
+    --query
+ "TableDescription.[TableName,TableStatus]"
+ --output
+ text
+emu-demo-orders
+	CREATING
+%
+ aws
+ dynamodb
+ wait
+ table-exists
+ --table-name
+ emu-demo-orders
+%
+ aws
+ dynamodb
+ put-item
+ --table-name
+ emu-demo-orders
+ \
+    --item
+ '{"id": {"S": "order-1"}, "status": {"S": "NEW"}}'
+%
+ aws
+ dynamodb
+ get-item
+ --table-name
+ emu-demo-orders
+ --key
+ '{"id": {"S": "order-1"}}'
+{
+    "Item"
+:
+ {
+        "id"
+:
+ {
+            "S"
+:
+ "order-1"
+        },
+        "status"
+:
+ {
+            "S"
+:
+ "NEW"
+        }
+    }
+}
+Right after 
+create-table
+, 
+TableStatus
+ was 
+CREATING
+. In the emulator too, table creation proceeds asynchronously.
+I also tried writing to a table that is still being created.
+%
+ aws
+ dynamodb
+ create-table
+ --table-name
+ emu-not-yet-active
+ \
+    --attribute-definitions
+ AttributeName=id,AttributeType=S
+ \
+    --key-schema
+ AttributeName=id,KeyType=HASH
+ \
+    --billing-mode
+ PAY_PER_REQUEST
+ \
+    --query
+ "TableDescription.TableStatus"
+ --output
+ text
+CREATING
+%
+ aws
+ dynamodb
+ put-item
+ --table-name
+ emu-not-yet-active
+ --item
+ '{"id": {"S": "1"}}'
+aws:
+ [ERROR]: An error occurred (
+ResourceNotFoundException
+) when calling the PutItem operation: Requested resource not found
+%
+ echo
+ "exit=
+$?
+"
+exit
+=
+254
+%
+ aws
+ dynamodb
+ describe-table
+ --table-name
+ emu-not-yet-active
+ --query
+ "Table.TableStatus"
+ --output
+ text
+ACTIVE
+A 
+PutItem
+ while 
+CREATING
+ was rejected with 
+ResourceNotFoundException
+, and afterwards the table became 
+ACTIVE
+.
+ Comparing the Amazon SQS visibility timeout with real AWS
+I tried the Amazon SQS visibility timeout, the example given in the contribution. The following script sends one message, receives it with a 5-second visibility timeout, and then receives again immediately and after 6 seconds.
+#!/bin/zsh
+# Check that a received message stays invisible to other consumers until the visibility timeout
+# usage: sqs_visibility.sh <queue-name> [tags]
+set
+ -u
+QUEUE_NAME
+=
+$1
+TAGS
+=
+${2
+:-
+}
+if
+ [[ 
+-n
+ $TAGS ]]; 
+then
+  QURL
+=
+$(
+aws
+ sqs
+ create-queue
+ --queue-name
+ "
+$QUEUE_NAME
+"
+ --tags
+ "
+$TAGS
+"
+ --query
+ QueueUrl
+ --output
+ text
+)
+else
+  QURL
+=
+$(
+aws
+ sqs
+ create-queue
+ --queue-name
+ "
+$QUEUE_NAME
+"
+ --query
+ QueueUrl
+ --output
+ text
+)
+fi
+echo
+ "QueueUrl: 
+$QURL
+"
+aws
+ sqs
+ send-message
+ --queue-url
+ "
+$QURL
+"
+ --message-body
+ "job-1"
+ --query
+ MessageId
+ --output
+ text
+T0
+=
+$(
+date
+ +%s
+)
+elapsed
+() { 
+echo
+ "t=+$(( 
+$(date
+ +%s) - T0 ))s"
+; }
+receive
+() {
+  aws
+ sqs
+ receive-message
+ --queue-url
+ "
+$QURL
+"
+ \
+    --visibility-timeout
+ 5
+ --wait-time-seconds
+ 0
+ \
+    --message-system-attribute-names
+ ApproximateReceiveCount
+ \
+    --query
+ 'Messages[].[Body,Attributes.ApproximateReceiveCount]'
+ --output
+ text
+}
+echo
+ "[1回目の受信] $(
+elapsed
+)"
+; 
+receive
+echo
+ "[直後に再受信] $(
+elapsed
+)"
+; R
+=
+$(
+receive
+); 
+echo
+ "${
+R
+:-
+(メッセージなし)}"
+sleep
+ 6
+echo
+ "[6秒後に再受信] $(
+elapsed
+)"
+; 
+receive
+Here are the results on the emulator.
+%
+ ./scripts/sqs_visibility.sh
+ emu-visibility-4dc2bf03
+QueueUrl:
+ https://sqs.us-east-1.amazonaws.com/000000000000/emu-visibility-4dc2bf03
+b69d4d89-51ba-4f83-bc20-b169ea2bb467
+[1回目の受信] t
+=
++0s
+job-1
+	1
+[直後に再受信] t
+=
++0s
+None
+[6秒後に再受信] t
+=
++7s
+job-1
+	2
+On the first receive, 
+ApproximateReceiveCount
+ was 1; the immediate re-receive returned no message (
+--output text
+ displays 
+None
+); and the re-receive after 6 seconds returned the same message with 
+ApproximateReceiveCount
+ 2. The returned QueueUrl had the same format as AWS, 
+https://sqs.us-east-1.amazonaws.com/000000000000/...
+.
+On real AWS (ap-northeast-1), I created the queue with tags and ran it.
+%
+ ./scripts/sqs_visibility.sh
+ emu-visibility-4dc2bf03
+ run_id=emu-20261112-4dc2bf03,owner=tried-it,purpose=blog-verification,ttl=20261112T0150Z
+QueueUrl:
+ https://sqs.ap-northeast-1.amazonaws.com/111122223333/emu-visibility-4dc2bf03
+308f9c73-152c-48b1-9815-79a2f8cf753b
+[1回目の受信] t
+=
++0s
+job-1
+	1
+[直後に再受信] t
+=
++0s
+None
+[6秒後に再受信] t
+=
++7s
+job-1
+	2
+I compared the two outputs with 
+diff
+, excluding the QueueUrl and MessageId lines; there was no difference.
+ Confirming in the console that no resources were created in the real account
+I checked the real account side in the Management Console.
+Searching for 
+emu-demo
+ in the Amazon S3 bucket list (all AWS Regions) found no matching bucket. The bucket 
+emu-demo-4dc2bf03
+ created on the emulator does not exist in the real account.
+The emulator was running as us-east-1, but the real account had no DynamoDB tables in us-east-1. There were also no tables named 
+ab
+ or 
+emu-demo-orders
+ in ap-northeast-1.
+ Claims 1 and 3: pre

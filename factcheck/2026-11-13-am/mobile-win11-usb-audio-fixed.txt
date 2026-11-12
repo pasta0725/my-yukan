@@ -1,0 +1,816 @@
+===== https://forest.watch.impress.co.jp/docs/news/2155714.html
+(status 200)
+ニュース
+Windows 11の9月パッチで発生したUSBオーディオ機器の問題、ようやく全面解決
+ 2026年11月のセキュリティ更新プログラムの適用を 
+樽井 秀人
+2026年11月12日 15:50
+「Windows release health」における当該問題の記載
+2026年9月のセキュリティパッチを適用したWindows 11環境で、一部のUSBオーディオデバイスが起動しない、あるいは音が出なくなる問題
+は、
+2026年11月のセキュリティ更新プログラム
+で修正されたとのこと。米Microsoftが11月10日（現地時間、以下同）、「Windows release health」で明らかにした。当該問題のステータスは「Resolved」（解決済み）に変更されている。 
+ 　この問題は、9月8日に配信された月例パッチ
+ 「KB5124008」 
+ （バージョン 24H2/25H2）と
+ 「KB5124012」 
+ （バージョン 26H1）が原因。「USB Audio Class 1.0」準拠のデバイスに限り、以下の症状のいずれか、または複数が現れることがあった。影響範囲にはWindows 10やWindows Serverも含まれる。 
+デバイスマネージャーに「コード 10」のエラーが表示され、デバイスが起動しない
+音声が出力されない
+音量コントロールが反応しない、またはゼロのまま変わらない
+サウンド設定が反応しない、または利用できない
+通常のステレオ構成では動作するものの、8チャンネルや3Dオーディオといったマルチチャンネル機能を使うと失敗する
+ 　このうち、マルチチャンネル機能での不具合は、9月14日に公開された
+定例外（OOB）の更新プログラム
+ですでに解決されていたが、今回、残りの症状に関しても解決された。 
+ 　修正を含む更新プログラムは、Windows 11 バージョン 26H2/25H2/24H2向けが「KB5132061」、26H1向けが「KB5132059」となる。 
+ 　同社は、最新のセキュリティ更新プログラムをインストールするよう推奨している。ただし、Home/Proエディションの
+「Windows 11 バージョン 24H2」はサポートが終了
+しているため、更新プログラムが配信されない。後継バージョンへのアップグレードが必要になる点には注意したい。 
+Amazonで購入
+「Windows」関連商品
+Amazonで購入
+
+===== https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-usb-audio-issues-caused-by-september-security-updates/amp/
+(status 200)
+Microsoft fixes audio issues caused by September security updates
+By 
+Sergiu Gatlan
+November 11, 2026
+06:18 AM
+Microsoft says the November 2026 cumulative updates resolve USB audio issues plaguing Windows users who have installed security updates released since September.
+The company explained, when it 
+acknowledged this known issue
+ days after the September 2026 Patch Tuesday, that 
+USB Audio Class 1.0 devices
+ failed to start or produce audio on some systems after installing recent updates.
+Some affected users reported seeing no audio output, unresponsive volume controls and sound settings, and "This device cannot start (Code 10)." errors in Device Manager, while others said the impacted USB audio speakers fail only when using multichannel audio features, including 3D audio or 8-channel modes.
+These audio issues affect both server (Windows Server 2012 and later) and client (Windows 10 and Windows 11) systems.
+Microsoft 
+released out-of-band updates
+ on September 14 to fix the symptoms experienced on devices using 8-channel or 3D audio modes and has now addressed the remaining issues in security updates released as part of this month's Patch Tuesday.
+"The symptoms are resolved in the Windows security update released on November 10, 2026 (KB5132061) and later updates," 
+Microsoft said
+ in a Windows release health dashboard update.
+"We recommend you install the latest security update for your device as it contains important improvements and issue resolutions, including this one."
+While Microsoft has yet to provide an official workaround for those who can't immediately install the November 2026 security updates, some users have restored audio on affected Windows PCs by switching to 2-channel mode.
+Previous audio issues affecting Windows systems
+Two years ago, Microsoft also confirmed an issue that 
+caused game audio to unexpectedly increase to full volume
+ when using USB DAC sound systems and 
+blocked Windows 24H2 upgrades
+ on systems with incompatible Intel Smart Sound Technology (SST) audio drivers due to blue screen of death (BSOD) issues.
+In January 2025, Microsoft 
+addressed a similar issue
+ triggered by the KB5050094 optional preview cumulative update, which caused audio playback issues and Code 10 errors on Windows 11 24H2 systems with USB audio device drivers.
+More recently, in September 2025, it 
+lifted a safeguard hold
+ preventing Windows 11 24H2 upgrades on systems with Dirac audio improvement software because compatibility issues 
+caused Bluetooth speakers and headsets to malfunction
+.
+With the November 2026 cumulative updates, Microsoft 
+also resolved Outlook sign-in and mail delivery issues
+ on Exchange Server systems triggered by the October 2026 Windows Server security updates.
+Uncover email threats your existing defenses may miss. 
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Microsoft: September updates break audio on some Windows PCs
+Microsoft fixes bug behind ‘Defender Antivirus is turned off’ alerts
+Microsoft: September updates cause RDS failures on Windows Server
+Microsoft: Recent Windows updates cause SQL Server performance issues
+Microsoft fixes game, app crashes caused by recent Windows update
+Audio
+Known Issue
+Microsoft
+Sound
+USB
+Windows
+Windows 10
+Windows 11
+Windows Server
+View Comments
+Popular Stories
+Microsoft November 2026 Patch Tuesday fixes 1,235 flaws, Outlook zero-day
+N-able takes cloud platform offline after 30+ "zero-days" published
+Vanderbilt University hit in BYOD ransomware attack, data theft claimed
+
+===== https://learn.microsoft.com/en-us/windows/release-health/resolved-issues-windows-11-26H2
+(status 200)
+Table of contents 
+Exit editor mode
+Ask Learn
+Ask Learn
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+						Access to this page requires authorization. You can try 
+signing in
+ or 
+changing directories
+.
+						Access to this page requires authorization. You can try 
+changing directories
+.
+Resolved issues in Windows 11, version 26H2
+Feedback
+						Summarize this article for me
+Find information on recently resolved issues for Windows 11, version 26H2. To find a specific issue, use the search function on your browser (CTRL + F for Microsoft Edge). For immediate help with Windows update issues, 
+click here
+ if you are using a Windows device to open the Get Help app or go to 
+support.microsoft.com
+. Follow 
+@WindowsUpdate
+ on X for Windows release health updates. If you are an IT administrator and want to programmatically get information from this page, use the 
+Windows Updates API in Microsoft Graph
+. 
+Resolved issues
+Summary
+Originating update
+Status
+Date resolved
+USB audio devices might fail to start or produce no sound
+Some USB Audio Class 1.0 devices display Code 10 after installing Windows 11, version 26H2
+N/A 
+Resolved
+KB5132061
+2026-11-10 
+10:00 PT
+Remote Desktop connections might fail for non-admin users with error 0xC000000D
+This issue affects non-admin users connecting through Remote Desktop with Administrator protection enabled.
+OS Build 26300.9550
+KB5124010
+2026-09-22
+Resolved
+KB5127936
+2026-10-28 
+10:00 PT
+Devices might experience a black screen or desktop loading issues after sign-in
+Microsoft has received reports of this issue occurring in some virtual desktop environments.
+N/A 
+Resolved
+KB5127648
+2026-10-13 
+10:00 PT
+Applications which require AC-3 audio decoding might close unexpectedly
+This issue is more likely to occur in legacy applications, and unlikely for many modern applications.
+OS Build 26300.9550
+KB5124010
+2026-09-22
+Resolved
+KB5127648
+2026-10-13 
+10:00 PT
+Domain-joined devices might lose their secure trust relationship with the domain
+Some Credential Guard protected machine accounts might be unable to sign in interactively will valid domain credentials.
+N/A 
+Resolved
+KB5124010
+2026-09-22 
+10:00 PT
+Issue details
+November 2026
+USB audio devices might fail to start or produce no sound
+Status
+Originating update
+History
+Resolved 
+KB5132061
+N/A 
+Resolved: 2026-11-10, 10:00 PT
+Opened: 2026-11-03, 19:36 PT
+After installing Windows 11, version 26H2, some 
+USB Audio Class 1.0
+ devices might fail to start or produce audio. Affected devices might experience one or more of the following symptoms: 
+​The device displays an error in Device Manager: "This device cannot start (Code 10).” 
+​No audio output.
+​Volume controls are unresponsive or remain at zero. 
+​Sound settings are unresponsive or unavailable. 
+This issue is limited to USB Audio Class 1.0 devices.
+Resolution: 
+The symptoms are resolved in the Windows security update released on November 10, 2026 (
+KB5132061
+) and later updates. We recommend you install the latest security update for your device as it contains important improvements and issue resolutions, including this one. 
+If you are an IT administrator that contacted 
+Microsoft Support for Business
+ to obtain an immediate workaround, you do not need to use the 
+Known Issue Rollback (KIR)
+ or special group policy to resolve this issue.
+Affected platforms:
+​Client: Windows 11, version 26H2; Windows 11, version 26H1; Windows 11, version 25H2; Windows 11, version 24H2; Windows 11, version 23H2; Windows 10, version 22H2; Windows 10, version 21H2; Windows 10 Enterprise LTSC 2019; Windows 10 Enterprise LTSC 2016
+​Server: Windows Server 2025; Windows Server 2022; Windows Server 2019; Windows Server 2016; Windows Server 2012 R2; Windows Server 2012
+Back to top
+October 2026
+Remote Desktop connections might fail for non-admin users with error 0xC000000D
+Status
+Originating update
+History
+Resolved 
+KB5127936
+OS Build 26300.9550
+KB5124010
+2026-09-22
+Resolved: 2026-10-28, 10:00 PT
+Opened: 2026-10-13, 09:43 PT
+After installing the September 2026 non-security preview update (
+KB5124010
+), or later updates, non-admin users might be unable to establish Remote Desktop connections to remote devices that have 
+Administrator protection
+ enabled. Attempts to connect might fail with error 0xC000000D and display the message, “The token that was passed to the function is invalid.” This issue primarily affects enterprise-managed remote devices used as Remote Desktop hosts with Administrator protection enabled, regardless of 
+how the feature was enabled
+.
+Note
+: If your organization uses 
+Windows security baselines
+, published through the 
+Microsoft Security Compliance Toolkit,
+ Administrator protection is enabled by default in Windows 11, version 24H2, 25H2, and 26H2 security baselines, unless your organization has configured the policy differently. 
+Resolution: 
+This issue was resolved by Windows updates released October 28, 2026 (
+KB5127936
+), and later. We recommend you install the latest security update for your device as it contains important improvements and issue resolutions, including this one. 
+If you install an update released October 28, 2026 (
+KB5127936
+) or later, you do not need to use a workaround for this issue. If you are using an update released before this date, and have this issue, you have the option to apply the following workaround:
+IT administrators can mitigate this issue on devices affected by the Remote Desktop connection failure by using their existing policy management method to temporarily turn off Administrator protection. Reset the 
+User Account Control Type Of Admin Approval Mode
+ policy in Microsoft Intune or Group Policy. For more information, see 
+Administrator protection on Windows 11
+.
+Affected platforms:
+​Client: Windows 11, version 26H2; Windows 11, version 26H1; Windows 11, version 25H2; Windows 11, version 24H2
+​Server: None
+Back to top
+Devices might experience a black screen or desktop loading issues after sign-in
+Status
+Originating update
+History
+Resolved 
+KB5127648
+N/A 
+Resolved: 2026-10-13, 10:00 PT
+Opened: 2026-10-13, 09:50 PT
+After installing Windows 11, version 26H2, and subsequent updates, some devices might experience desktop loading issues. This issue has been primarily observed on Azure Virtual Desktop (AVD) hosts, using 
+FSLogix
+. This issue appears to occur more frequently with some existing user profiles.
+Symptoms might include:
+​A black screen appears after sign-in and the desktop session does not load automatically.
+​Users might be unable to access their desktop until the desktop session is started manually.
+​Application event logs might show Windows Explorer crashes.
+Resolution:
+ This issue was resolved by Windows updates released October 13, 2026 (
+KB5127648
+), and updates released after that date. We recommend you install the latest update for your device as it contains important improvements and issue resolutions, including this one. 
+If you install an update released October 13, 2026 (
+KB5127648
+), or later, you do not need to use a workaround for this issue. If you are using an update released before October 13, and have this issue, you have the option to apply the following workaround. 
+Workaround
+: Affected customers can apply one of the following workarounds to mitigate the issue:
+​
+Manually launch explorer.exe: 
+Users can temporarily mitigate this issue by opening Task Manager (Ctrl+Shift+Esc), selecting 
+Run new task
+, entering 
+explorer.exe
+, and selecting 
+OK
+.
+​
+Mitigate through Known Issue Rollback (KIR): 
+This issue is mitigated using 
+Known Issue Rollback (KIR)
+. 
+        For enterprise-managed devices where Windows updates are managed by IT departments, IT administrators can apply the KIR by installing and configuring the Group policy listed below. The special Group Policy can be found in 
+Computer Configuration > Administrative Templates > <Group Policy name listed below>
+Group Policy downloads with Group Policy name:
+​
+Download for Windows 11, version 26H1: 
+KB5124006 260924_20071 Known Issue Rollback
+​
+Download for Windows 11, version 26H2, Windows 11, version 25H2 and Windows 11, version 24H2: 
+KB5124010 260924_20021 Known Issue Rollback
+Important
+: You will need to 
+install 
+and 
+configure
+ the Group Policy for your version of Windows to resolve this issue. You will also need to restart your device(s) to apply the group policy setting. Note that this Group Policy will disable the change causing this issue until a resolution is released in a future Windows update.       
+        For information on deploying and configuring this special Group Policy, please see 
+How to use Group Policy to deploy a Known Issue Rollback
+ Affected platforms:
+​Client: Windows 11, version 26H2; Windows 11, version 26H1; Windows 11, version 25H2; Windows 11, version 24H2
+​Server: None
+Back to top
+Applications which require AC-3 audio decoding might close unexpectedly
+Status
+Originating update
+History
+Resolved 
+KB5127648
+OS Build 26300.9550
+KB5124010
+2026-09-22
+Resolved: 2026-10-13, 10:00 PT
+Opened: 2026-10-08, 16:29 PT
+Following installation of Windows updates released September 22, 2026 (
+KB5124010
+), and later, some applications which require the decoding of AC-3 (Dolby Digital) audio might close unexpectedly.
+Incidence of this issue depends on the activity that these applications perform. In some cases the application can fail to launch, or close without warning. In other cases the application will work normally until certain features are used, such as playing music. Affected applications may vary and can include games, media players, and certain productivity applications.
+Please note that many modern applications do not use Windows for this type of encoding and therefore will not encounter this issue. The code component involved in this issue is most commonly used in legacy applications that still rely on Windows built-in audio decoding. Many modern applications using this legacy codec frequently include their own audio decoding components.
+Resolution
+: This issue was resolved by Windows updates released October 13, 2026 (
+KB5127648
+), and later. We recommend you install the latest security update for your device as it contains important improvements and issue resolutions, including this one. 
+Affected platforms:
+​Client: Windows 11, version 26H2; Windows 11, version 25H2; Windows 11, version 24H2
+​Server: None
+Back to top
+September 2026
+Domain-joined devices might lose their secure trust relationship with the domain
+Status
+Originating update
+History
+Resolved 
+KB5124010
+N/A 
+Resolved: 2026-09-22, 10:00 PT
+Opened: 2026-09-16, 14:15 PT
+After installing Windows 11, version 26H2, some 
+Credential Guard protected machine accounts
+ might lose their secure channel with an on-premises Active Directory (AD) domain. Users might then be unable to sign in interactively with valid domain credentials and might receive a message stating that the trust relationship between the device and the domain failed. Offline sign-in using previously cached credentials might continue to work. AD replication and AD services on the domain controllers are not affected. 
+This issue occurs because Windows 11, version 26H2 enables the 
+Machine Identity Isolation
+ feature. While the update does not directly enable Machine Identity Isolation enforcement, it does cause Windows to begin honoring any existing or policy-provisioned settings that enabled Machine Identity Isolation enforcement. However, this feature is only supported for environments connected to domain controllers running at a Windows Server 2025 Domain Functional Level (DFL) and above. The feature should be disabled elsewhere. Any devices previously configured to use Machine Identity Isolation that are not connected to Windows Server 2025 domain controllers will experience this issue and will need to disable the feature. 
+Resolution:
+ This issue was resolved by Windows updates released September 22, 2026 (
+KB5124010
+), and updates released after that date. This update prevents Machine Identity Isolation (MII) enforcement by disabling it completely while improvements are made to the feature. MII enforcement will be prevented regardless of the MII configuration.
+If you install an update released September 22, 2026 (
+KB5124010
+) or later, you do not need to use a workaround for this issue. If you are using an update released before September 22, 2026, and have this issue, you have the option to apply one of the following workarounds. 
+Workaround #1: Known Issue Rollback
+IT administrators can resolve the issue using 
+Known Issue Rollback (KIR)
+ by installing and configuring the special Group Policy listed below.
+Group Policy downloads with Group Policy name: 
+​
+Download for Windows 11, version 24H2, 25H2, and 26H2
+ — KB5124008 260915_17123 Known Issue Rollback 
+The special Group Policy can be found in
+ Computer Configuration > Administrative Templates > KB5124008 260915_17123 Known Issue Rollback > Windows 11, version 24H2, 25H2. 
+After installing the Group Policy, configure the value for setting KB5124008 260915_17123 Known Issue Rollback to 
+Disabled
+ and restart your device(s) to apply the Group Policy setting. For information on deploying and configuring the special Group Policy, please see 
+How to use Group Policy to deploy a Known Issue Rollback
+.
+Workaround #2: Disable Machine Identity Isolation manually
+Important: This section contains information about modifying the registry. Before you modify the registry, back it up and make sure that you know how to restore it if a problem occurs. For more information, see 
+How to back up and restore the registry in Windows
+.
+To work around this issue, disable Machine Identity Isolation using the same management method that was used to enable it. Choose the applicable option below: 
+​If Machine Identity Isolation was enabled by Intune policy, 
+disable Machine Identity Isolation with Intune
+.  
+​If Machine Identity Isolation was enabled by group policy, 
+disable Machine Identity Isolation with group policy
+. 
+​If Machine Identity Isolation was enabled directly in the registry, use these steps to disable it:  
+​On the Windows 11, version 26H2 device, locate the following registry paths: 
+​HKLM\SYSTEM\CurrentControlSet\Control\Lsa\MachineIdentityIsolation 
+​HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\MachineIdentityIsolation 
+​For either of these registry keys, if the value for MachineIdentityIsolation = 2, then set 
+MachineIdentityIsolation = 0
+. 
+After you disable Machine Identity Isolation, restart the device. 
+Then reset the secure channel using the following command:
+	 'Test-ComputerSecureChannel -Repair -Credential (Get-Credential)' 
+Affected platforms:
+​Client: Windows 11, version 26H2; Windows 11, version 26H1; Windows 11, version 25H2; Windows 11, version 24H2
+​Server: None
+Back to top
+Report a problem with Windows updates
+To report an issue to Microsoft at any time, use the 
+Feedback Hub
+ app. To learn more, see 
+Send feedback to Microsoft with the Feedback Hub app
+. 
+Need help with Windows updates?
+Search, browse, or ask a question on the 
+Microsoft Support Community
+. If you are an IT pro supporting an organization, visit Windows release health on the 
+Microsoft 365 admin center
+ for additional details. 
+For direct help with your home PC, use the Get Help app in Windows or contact 
+Microsoft Support
+. Organizations can request immediate support through 
+Support for business
+. 
+View this site in your language
+This site is available in 
+11 languages
+: English, Chinese Traditional, Chinese Simplified, French (France), German, Italian, Japanese, Korean, Portuguese (Brazil), Russian, and Spanish (Spain). All text will appear in English if your browser default language is not one of the 11 supported languages. To manually change the display language, scroll down to the bottom of this page, click on the current language displayed on the bottom left of the page, and select one of the 11 supported languages from the list.
+				Additional resources
+Last updated on 
+		2026-11-12
+
+===== https://helpdeskgeek.com/microsoft-fixes-usb-audio-failures-september-security-updates/
+(status 200)
+If your USB headset, mic, or speaker went silent or showed “This device cannot start (Code 10)” after September’s Windows security updates, Microsoft’s November 10, 2026 Patch Tuesday updates resolve the remaining documented symptoms. The September 14 emergency patch only fixed part of the problem.
+What Happened: USB Audio Not Working After a Windows Update
+According to 
+BleepingComputer’s original report
+, Microsoft’s September 2026 security updates broke some USB audio devices. BleepingComputer named those updates as KB5124008 and KB5124012.
+Microsoft’s 
+Windows release health entry
+ traces the issue on most branches to the September 8 security update and lists a broad set of affected platforms. On Windows 11 version 26H2, Microsoft instead says the problem appeared after installing version 26H2 itself. That list covers Windows 11 versions 23H2 through 26H2, Windows 10 versions 21H2 and 22H2, Windows 10 Enterprise LTSC 2016 and 2019, and Windows Server 2012 through Windows Server 2025.
+Affected PCs showed three symptoms:
+A “This device cannot start (Code 10)” error in Device Manager
+No sound output at all
+Volume controls and sound settings that stopped responding
+The failing layer is narrow. Microsoft says the issue is limited to devices using the older USB Audio Class 1.0 standard. Budget USB headsets, mics, DACs, and older USB speakers commonly use this standard, though not every device in these categories is necessarily affected.
+Microsoft’s documented scope is USB Audio Class 1.0 devices only, and it doesn’t list USB Audio Class 2.0 devices as affected. That isn’t a guarantee for every other audio setup, and it doesn’t rule out unrelated audio problems.
+To check your own PC, open Device Manager from the Start menu search. Then expand 
+Sound, video and game controllers
+. A yellow warning icon on a USB audio entry, with Code 10 in its properties, matches this bug.
+How the Two-Stage Fix Stacks Up
+On the branches affected by the September 8 update, Microsoft fixed this in two passes. An out-of-band update on September 14 
+addressed only the multichannel failures
+, such as 8-channel and 3D audio modes. On Windows 11 that update was 
+KB5129195
+ for versions 24H2 and 25H2, and KB5129194 for version 26H1. On Windows 10 ESU and Enterprise LTSC 2021 PCs, it was 
+KB5129236
+. Microsoft’s notes for it say other audio symptoms were not resolved.
+The remaining symptoms were fixed on November 10. Microsoft’s 
+KB5132061 release notes
+ list the USB Audio 1.0 Code 10 fix for Windows 11 versions 24H2, 25H2, and 26H2. 
+BleepingComputer also reported the fix
+, citing Microsoft’s Release Health dashboard. Other branches ship separate packages, so KB5132061 is not the number every reader should expect.
+For Windows 11 23H2, Microsoft’s 
+23H2 release health page
+ lists 
+KB5131087
+ as the resolving update. For Windows 10 ESU PCs (versions 21H2 and 22H2) plus Enterprise and IoT Enterprise LTSC 2021, Microsoft lists 
+KB5131096
+. Consumer and commercial Windows 10 22H2 PCs receive it through the 
+Extended Security Update
+ program. Match your version against the table below, or check Microsoft’s 
+Release Health dashboard
+.
+Windows version
+Resolving November KB (per Microsoft)
+Windows 11, versions 24H2, 25H2, and 26H2
+KB5132061
+Windows 11, version 23H2
+KB5131087
+Windows 10 ESU (21H2, 22H2; enrollment required) and Enterprise / IoT Enterprise LTSC 2021
+KB5131096
+Windows 11, version 26H1
+KB5132059
+Windows Server 2025
+KB5131080
+Other branches (Windows 10 LTSC 2016/2019, Windows Server 2012 through 2022)
+Separate package per branch, listed on that branch’s Release Health page
+Option
+What it fixes
+Source
+September 14 out-of-band update (KB5129195 / KB5129194 on Windows 11; KB5129236 on Windows 10)
+Multichannel failures in 8-channel and 3D audio modes only
+Microsoft KB5129195 and KB5129236 release notes
+November 10 security update for your branch
+Remaining USB Audio Class 1.0 symptoms, including Code 10
+Microsoft Release Health and KB5132061 notes
+Switch device to 2-channel stereo
+Temporary relief for multichannel failures, based on customer reports
+Microsoft Release Health (customer reports)
+Use a USB Audio Class 2.0 device
+Outside the scope of this specific bug; not a guarantee against other audio faults
+Microsoft Release Health (scope note)
+The update ships through normal Windows Update on supported Windows 11 versions. On Windows 10, KB5131096 reaches version 21H2 and 22H2 PCs only if they’re enrolled in the ESU program, while Enterprise and IoT Enterprise LTSC 2021 get it through their own LTSC servicing. A Windows 10 22H2 PC that isn’t enrolled in ESU no longer receives security updates, so it won’t get this fix. Like any monthly security update, the package also carries other security and quality fixes; the USB audio repair is one item in it.
+The Reaction
+Community reaction is still forming. We haven’t seen verified reports of the November fix failing.
+What to Do Next
+Open 
+Settings
+ > 
+Windows Update
+, click 
+Check for updates
+, install the November security update for your Windows version, and restart.
+If audio still fails, go to 
+Settings
+ > 
+Windows Update
+ > 
+Update history
+. Make sure the November update for your specific branch shows as installed, not just any KB number you found online. If you use a multichannel device, check that the September 14 fix or a later update is there too.
+If Code 10 persists after both updates, the cause may lie elsewhere. Check the cable, the port, the device’s driver or firmware, and the device itself.
+Can’t update right now? Microsoft’s release health entry notes that some customers restored audio on multichannel devices by switching to 2-channel mode. Treat that as a stopgap. If you’re replacing a budget headset anyway, a USB Audio Class 2.0 headset or USB DAC falls outside this bug’s documented scope.
+Our Take
+Install the November update that matches your Windows version. Don’t keep pausing it. Holding back security patches to protect a headset is a bad trade.
+For most readers this is a contained problem. Microsoft limits the bug to USB Audio Class 1.0 devices and lists a resolving November update for the branches it documents, though persistent failures can still have another cause.
+The real trap is the timeline. If you installed the September 14 patch and still had silence, you may have thought your hardware died. That may not be the case.
+Wrapping Up
+The November 10 update that matches your Windows version is the fix that matters. After you install it, reboot, then unplug the USB device and plug it back in. Then check Device Manager. If the entry shows no warning icon and you hear sound, the fix stuck. If Code 10 follows the device to a different port or another updated PC, suspect the device, its driver, or its firmware rather than this bug.
+
+===== https://thetechhacker.com/2026/11/10/fix-windows-11-usb-audio-no-sound-code-10/
+(status 200)
+Photo by Petr Macháček on Unsplash
+Update (November 11, 2026):
+ Microsoft has now fixed this bug. The November 10 security update, KB5132061 for Windows 11 versions 24H2, 25H2 and 26H2 (KB5132059 on 26H1), fixes USB Audio 1.0 devices failing to start with Code 10, so installing it from Settings > Windows Update is now the first thing to do. More on that release in our 
+November 2026 Patch Tuesday guide
+.
+You plug in your USB headset for a call and Windows behaves as if it isn’t there at all, so there’s no sound, the volume slider sits stuck at zero, and Device Manager shows a yellow warning that says “This device cannot start (Code 10).” The headset worked fine last week, and the thing that changed in between is Windows itself.
+This is a known issue that Microsoft has confirmed, because since a Windows update in September 2026 some USB audio devices have 
+no sound on Windows 11
+, or they fail to start with 
+Code 10
+. Windows 11 version 26H2 is now rolling out to every eligible PC, which means more people are running into it, so below I’ll walk through what’s going on and the workarounds that can get your audio back.
+Short version:
+ The bug only hits USB Audio Class 1.0 devices, and that covers a lot of basic USB headsets, speakers and DACs. I’d start by setting the device to 2-channel stereo in the classic Sound control panel, since Microsoft says that restores audio for some people, and then install every available update, try a different USB port and reinstall the device in Device Manager. Microsoft has since fixed it in the November 10, 2026 update (KB5132061 on 24H2, 25H2 and 26H2), so if you can install that, do it before anything else.
+What Microsoft Says About the USB Audio Bug
+The issue appears on Microsoft’s 
+Windows 11 version 26H2 release health page
+ under the title “USB audio devices might fail to start or produce no sound,” and according to Microsoft, affected devices can show one or more of the following symptoms:
+Device Manager shows the message “This device cannot start (Code 10)” for the USB audio device.
+The device produces no audio output at all, even though it’s plugged in and selected.
+The volume controls don’t respond, or they stay stuck at zero no matter what you do.
+Sound settings become unresponsive or simply aren’t available.
+There are two details on that page that are easy to miss. The first is that Microsoft says the problem is limited to 
+USB Audio Class 1.0
+ devices, and the second is that it isn’t really a 26H2-only bug, because Microsoft ties it to the September 8, 2026 update and lists a long range of affected versions, from Windows 11 versions 23H2 through 26H2 to several Windows 10 releases and a fair number of Windows Server editions. That means skipping 26H2 won’t protect you, and holding back updates won’t fix a PC that’s already affected.
+Microsoft released an out-of-band update, 
+KB5129195
+, on September 14, 2026, and it fixed one part of the problem, where devices that worked in stereo failed in multichannel modes, but it left the Code 10 and no-sound symptoms open. The status was last updated on September 29, and Microsoft said at the time that a fix would come in a future Windows update, and that fix arrived on November 10, 2026, when the KB5132061 release notes listed it as resolved: USB Audio 1.0 devices “might fail to start and display error code 10 in Device Manager” is now fixed.
+Is Your Headset a USB Audio Class 1.0 Device?
+Most people have never heard of audio “classes,” and that’s perfectly reasonable, so rather than guessing you can check yours in Device Manager with the steps below.
+Right-click Start and open 
+Device Manager
+, which is where Windows keeps the details for each piece of hardware.
+Expand 
+Sound, video and game controllers
+ and double-click your USB headset or speaker to open its properties.
+Go to the 
+Details
+ tab and pick 
+Compatible Ids
+ from the drop-down so you can see how the device identifies itself.
+Look for a line starting with 
+USBClass_01
+, and if it ends in 
+Prot_00
+ you have a USB Audio Class 1.0 device, while 
+Prot_20
+ means it’s USB Audio Class 2.0.
+If yours turns out to be Class 2.0, this particular bug probably isn’t what’s causing your trouble, so you can skip ahead to the general fixes near the end of the article.
+How to Fix USB Audio No Sound and Code 10 on Windows 11
+Step 1: Switch the device to 2-channel stereo
+This is the workaround Microsoft itself mentions, and it’s the first thing I’d try, because some users got their audio back simply by switching the device over to 2-channel mode.
+Press 
+Win + R
+, type 
+mmsys.cpl
+ and press Enter, and the classic Sound window will open.
+On the 
+Playback
+ tab, select your USB device and click 
+Configure
+, then choose 
+Stereo
+ and work through the wizard until it finishes.
+Select the device again, click 
+Properties
+, open the 
+Advanced
+ tab, and set the Default Format to a 2-channel option such as 
+2 channel, 16 bit, 48000 Hz
+.
+Click 
+Apply
+, then unplug the device, wait a few seconds and plug it back in so Windows picks up the new setting.
+If the headset has a microphone, it’s worth checking the 
+Recording
+ tab as well and setting its format to a basic option like 1 channel or 2 channel, 16 bit, 48000 Hz.
+Step 2: Install every available update
+Open 
+Settings > Windows Update
+ and click 
+Check for updates
+, because the November 10, 2026 security update (KB5132061 on 24H2, 25H2 and 26H2) contains Microsoft’s fix for the Code 10 and no-sound problem. While you’re there, open 
+Advanced options > Optional updates
+ and look under driver updates too, since your PC maker may have posted an audio or USB controller driver in that section.
+Once you’ve updated, press 
+Win + R
+, type 
+winver
+ and make a note of your build number, which is handy to have if you end up contacting support later on.
+Step 3: Uninstall the device and let Windows reinstall it
+In Device Manager, right-click the USB audio device and choose 
+Uninstall device
+, but leave the box for deleting the driver unticked. Unplug the device, restart the PC and then plug it back in, so Windows loads a fresh copy of the USB audio driver, which sometimes clears a stuck Code 10.
+Step 4: Try a different USB port, and skip the hub
+Plug the device straight into the PC rather than into a hub, dock or the USB port on a monitor, and if you’re using a front-panel port, try one on the back of the motherboard instead. If the device is on a USB 3.x port and your PC still has a USB 2.0 port, give that a go as well, because although it sounds old-fashioned, older audio devices sometimes behave better there.
+Step 5: Install the maker’s own software or driver
+A lot of gaming and pro headsets ship with their own app and driver (the companion apps from Logitech, Razer, SteelSeries and similar companies are good examples), and using the maker’s driver instead of the generic Windows one can sidestep the bug entirely. I’d check the support page for your exact model to see what’s on offer.
+Step 6: Use a different connection for now
+If your headset also has a 3.5 mm jack or Bluetooth, I’d switch to that until the fix lands, since it isn’t the most elegant solution but it will get you through the week’s meetings.
+Step 7: Consider rolling back, carefully
+If you upgraded to 26H2 within the last 10 days, you can go back under 
+Settings > System > Recovery > Go back
+, though keep in mind that Microsoft says the bug also affects older versions, so rolling back may not help at all. I also wouldn’t uninstall security updates just to chase an audio bug, because that leaves the PC exposed and is unlikely to fix this particular problem anyway.
+If you’re running a business,
+ Microsoft says IT admins who need an immediate workaround for the remaining symptoms can get in touch with Microsoft Support for Business.
+Still No Sound? Rule Out the Usual Suspects
+If your device turned out to be USB Audio Class 2.0, or the steps above didn’t help, there’s a good chance you’re dealing with a different problem, so it’s worth running through a few quick checks.
+Click the speaker icon on the taskbar and make sure the right output device is selected, because Windows has a habit of switching to the monitor’s speakers after an update.
+Right-click the speaker icon, choose 
+Sound settings
+, and run 
+Troubleshoot common sound problems
+ to let Windows look for obvious faults.
+Try the headset on another PC, and if it’s silent there as well, the problem is with the hardware rather than Windows.
+If 26H2 has brought you other trouble, take a look at our guide to 
+fixing the Windows 11 26H2 black screen after sign-in
+. For USB drives that are acting up too, we also cover 
+how to fix an external drive not showing up on Windows 11
+, and if the Xbox app stopped opening after the same update, see 
+how to fix the Xbox app not opening on Windows 11
+.
+FAQs
+Why does my USB headset say Code 10 on Windows 11?
+Code 10 means Windows couldn’t start the device, and since the September 2026 update Microsoft has confirmed that some USB Audio Class 1.0 devices fail in exactly this way. Switching the device to 2-channel stereo and installing the latest updates are the first things I’d try.
+Has Microsoft fixed the Windows 11 USB audio bug?
+Yes. KB5129195 fixed the multichannel problem in September, and the November 10, 2026 update (KB5132061 on Windows 11 24H2, 25H2 and 26H2) fixes the Code 10 and no-sound symptoms.
+Does this only affect Windows 11 26H2?
+It doesn’t, since Microsoft lists Windows 11 versions 23H2 to 26H2, several Windows 10 releases and a number of Windows Server editions as affected.
+That covers everything for now, and the stereo trick is the one I’d try first, with the rest of the steps there to catch the cases it misses. Microsoft’s full fix is now out in KB5132061, so if you haven’t installed the November update yet, that’s the step to take first.
+Disclosure: TheTechHacker has no paid relationship with Microsoft or any company mentioned here.
+#
+Code 10
+#
+KB5129195
+#
+USB audio
+#
+Windows 11
+#
+Windows 11 26H2
+#
+Windows Update
+X
+Facebook
+LinkedIn
+WhatsApp
+Written by
+Anand Narayanaswamy
+Anand Narayanaswamy is a freelance technology writer based in Trivandrum. He had contributed several articles and reviews for various software based portals.
+More from 
+Anand
+ →
+Comments
+Up next
+November 2026 Patch Tuesday: Outlook Zero-Day Fixed, USB Audio Code 10 Bug Finally Solved
+×
+Keep reading
+You might 
+also like
+Windows
+November 2026 Patch Tuesday: Outlook Zero-Day Fixed, USB Audio Code 10 Bug Finally Solved
+Patch Tuesday landed on November 10 this month, and for once the Outlook part of the release matters more than the Windows part. Microsoft fixed a spoofing bug in Outlook (CVE-2026-124194) that it says was already being exploited before the patch was ready, and that fix doesn’t come through Windows Update at all, it comes…
+AN
+Anand Narayanaswamy
+·
+Nov 11
+·
+7
+ min
+Windows
+Windows 10 Sound Not Working? Use these Fixes
+Windows 10 is the latest Microsoft OS for the computers. Microsoft made a lot of changes to the recent Windows versions to craft a perfect OS like Windows 10. However, still, there are few issues reported by the users. The sound problem is one of them. Many users reported that they are not able to…
+MS
+Muhammed Swalih
+·
+Oct 4, 2017
+·
+4
+ min
+How-to
+How To Fix No Sound From Headphones In Windows 10
+When it comes to hardware, headphones are a common device that we use every day for various purposes, such as listening to music, participating in online meetings, or gaming. Typically, connecting headphones to your system’s audio jack is a straightforward process, and you should be able to hear audio without issue. However, in some cases,…
+RV
+Rahul Vithala
+·
+Mar 21, 2023
+·
+6
+ min
+The Thetechhacker letter
+The week in tech, 
+minus the noise.
+New reviews, fixes and the stories that matter — once a week, straight to your inbox.
+We only use your email to send the newsletter. Unsubscribe any time. See our 
+privacy policy
+.
+
+===== https://robo-japan.jp/archives/853
+(status 200)
+資料確認日：
+2026-11-12
+ · 対象条件と確認日をもとに判断してください
+01
+まず確認：既知問題の対象になりそうか
+次の条件に当てはまるほど、今回の既知問題に該当する可能性があります。機器名だけではUSB Audio Class 1.0か判断できないこともあるため、該当を断定せず、症状・発生時期・Windowsの更新履歴をあわせて確認してください。 
+[1]
+[2]
+[3]
+2026年9月の更新後からUSBオーディオ機器が起動しない、デバイスマネージャーに「このデバイスを開始できません（コード10）」と表示される、音が出ない、音量を操作できないといった症状が出た場合は、今回の問題と重なる可能性があります。対象は一部のUSB Audio Class 1.0機器であり、USB接続のオーディオ機器全般ではありません。 
+[1]
+[2]
+[3]
+02
+9月のOOB修正と11月のKB5132061は別の対応
+この不具合では、修正の時期と対象症状を混同しないことが大切です。8チャンネル・3D音声モードの問題は2026年9月14日の帯域外（OOB）更新で改善されました。一方、残っていた起動失敗やコード10などの症状について、Microsoftは11月10日の更新で修正したと発表しています。 
+[1]
+[3]
+11月の修正に該当する更新はKB5132061です。対象はWindows 11 26H2と25H2の全エディション、および24H2のEnterprise・Educationです。この範囲外のWindowsについて、KB5132061を共通の解決策として扱わないでください。 
+[2]
+「解決済み」という案内は修正プログラムが提供されたことを指し、個々のPCに適用済みという意味ではありません。特に24H2ではエディションも確認してください。今回の資料で対象として示されていないエディションやWindowsの版は、Windows UpdateやMicrosoftの対象情報で個別に確認しましょう。 
+[1]
+[2]
+[5]
+03
+KB5132061が入っているか確認する
+まずWindowsのバージョンとエディションを確認し、上記の対象に該当するか照合します。次にWindowsの更新履歴を開き、KB5132061がインストール済みか確認してください。更新履歴に見当たらない場合は、Windows Updateで更新を確認し、対象の更新が提示されるならインストールして再起動します。 
+[2]
+[5]
+再起動後は、問題が出ていたUSB機器を接続し、同じアプリ・同じ出力先で音声と音量操作を確認します。更新が表示されない、インストールできない、または対象版か判断できない場合は、機器やOSを無理に変更せず、Windows Updateの表示とMicrosoftの更新情報を確認してください。 
+[1]
+[2]
+[5]
+04
+更新後も直らない場合の切り分け
+更新が適用済みでも症状が続く場合、今回の既知問題だけが原因とは限りません。まずWindowsの音声出力先が問題のUSB機器になっているか、アプリ側で別の出力先やミュートが設定されていないかを確認します。 
+[1]
+[5]
+次に、デバイスマネージャーで機器の状態やドライバーの問題が表示されていないか確認します。可能であれば別のUSBポートでも試し、別ポートでも同じ症状かを見ます。これらは一般的な切り分けであり、特定製品のドライバー更新や修復方法を保証するものではありません。 
+[1]
+[5]
+出力先・アプリ設定・ドライバー・接続ポートを確認しても改善せず、別の機器やPCでも同様の症状が出る場合は、機器側の故障など別原因も考えられます。今回のMicrosoft資料が確認しているのは特定のUSB Audio Class 1.0の既知問題とその修正であり、個別環境の原因までは特定しません。 
+[1]
+[5]
+COMPARE
+条件を比較する
+条件の違いを確認してください。表は横にスクロールできます。
+Windows 11でUSBオーディオが無音・コード10になる問題｜11月の修正KBと確認手順：比較表
+Windows 11の版・エディション
+KB5132061の対象
+確認すること
+26H2
+全エディション
+更新履歴でKB5132061の適用を確認
+25H2
+全エディション
+更新履歴でKB5132061の適用を確認
+24H2
+Enterprise・Education
+エディションと更新履歴を確認
+24H2のその他のエディション、23H2・26H1、Windows 10
+この資料ではKB5132061の対象として確認できない
+KB5132061を共通の修正として扱わず、個別の更新情報を確認
+FAQ
+よくある疑問
+USB DACやヘッドセットなら、すべてKB5132061で直りますか？
+いいえ。今回の既知問題は一部のUSB Audio Class 1.0機器が対象です。USBオーディオ機器全般や、すべてのコード10・無音の原因に当てはまるとは限りません。
+9月14日の更新と11月10日の更新は同じ修正ですか？
+同じものとして扱わないでください。9月14日のOOB更新は8チャンネル・3D音声モードの問題に関する改善で、11月10日のKB5132061は残っていた起動失敗やコード10などの症状に対する修正です。
+KB5132061が更新履歴にあれば、必ず音が戻りますか？
+必ずとはいえません。対象機器・Windowsの版とエディションを確認したうえで、再起動後に出力先やアプリ設定も確認してください。個別の機器故障やドライバーなど、別の原因もありえます。
+図解を画像でも確認する
+確認した資料
+Microsoft: Resolved issues in Windows 11 version 26H2
+確認日：2026-11-12
+Microsoft KB5132061 2026年11月10日Windows更新
+確認日：2026-11-12
+Microsoft Windows 11 25H2 resolved issues
+確認日：2026-11-12
+競合実用記事：Windows 11 USB Audio Class 1.0 Code10修正済み
+確認日：2026-11-12
+Microsoft Windows の更新プログラムのインストール
+確認日：2026-11-12
+出典・確認した資料
+[1] Microsoft: Resolved issues in Windows 11 version 26H2
+確認：2026-11-12
+[2] Microsoft KB5132061 2026年11月10日Windows更新
+確認：2026-11-12
+[3] Microsoft Windows 11 25H2 resolved issues
+確認：2026-11-12
+[4] 競合実用記事：Windows 11 USB Audio Class 1.0 Code10修正済み
+確認：2026-11-12
+[5] Microsoft Windows の更新プログラムのインストール
+確認：2026-11-12
