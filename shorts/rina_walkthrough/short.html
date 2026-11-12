@@ -246,7 +246,7 @@ const S={
  // twist: but in the trial you use a lent Sharp AQUOS R10, not your own phone
  twist(u,d,L){bg(u);mini(u);const ta=telHas(L,'AQUOS');
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-150,-52,300,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
-   withEnter(enter(u,0.2),()=>{card(150,490,780,140,30,C.card);phoneIcon(240,560,0.55,C.bar);text('自分のスマホ',520,560,52,C.sub);check(860,560,36,false);});
+   withEnter(enter(u,0.2),()=>{card(150,490,780,140,30,C.card);phoneIcon(240,560,0.55,C.brand);text('モニターに貸し出し',560,560,52,C.text);});
    withEnter(enter(u,Math.max(0.35,ta)),()=>{picC('aquos',150,655,780,360,'#EDEDED');creditAt(CRA,915,990);});
    withEnter(enter(u,Math.max(0.45,ta+0.15)),()=>{card(150,1035,780,125,30,C.buyFill);text('貸し出しの AQUOS R10',CX,1098,56,C.buyInk);});},
  // full: full launch around spring 2028 at 40 stations including all Yamanote line stations
@@ -259,7 +259,7 @@ const S={
  all(u,d,L){bg(u);mini(u);
    mixLine([['2031年度末',C.acc],['までに',C.text]],CX,385,66);
    withEnter(enter(u,0),()=>{card(150,450,780,420);text('改札のある駅',CX,530,50,C.sub,'center',800);bigNum('約550','駅',CX,700,(u-0.15)/0.35,C.acc,170);});
-   withEnter(enter(u,0.4),()=>{card(150,895,780,265,30,C.card2);text('すべてに入れるのが',CX,985,50,'#FFFFFF');text('目標',CX,1075,72,C.acc);});},
+   withEnter(enter(u,0.4),()=>{card(150,895,780,265,30,C.card2);text('すべてに導入するのが',CX,985,50,'#FFFFFF');text('目標',CX,1075,72,C.acc);});},
  // verdict: those few seconds searching for your phone at the gate may disappear
  verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF&&VERDICT_CLIP)abs(()=>g.drawImage(BIGF,18,560,1044,1856));else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'なくなり');
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
