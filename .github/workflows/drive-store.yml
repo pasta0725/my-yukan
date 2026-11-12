@@ -62,7 +62,7 @@ jobs:
             for i in 1 2 3 4 5; do git pull --rebase -q && git push -q && break; sleep $((i*10)); done
           fi
           if [ "$VIDEO_OK" = 1 ]; then
-            git fetch -q origin upload-tmp; git checkout -q -B upload-tmp origin/upload-tmp
+            git fetch -q origin upload-tmp; git checkout -q -f -B upload-tmp origin/upload-tmp  # -f: files fetched from work into the tree may differ from main (2026-11-13)
             git rm -q "$N.mp4"; git commit -qm "ドライブへ移した：$N.mp4"
             if [ -z "$(git ls-files)" ]; then
               # nothing else waits there: delete the whole branch, so the old videos leave GitHub's history too (user 2026-11-12)
