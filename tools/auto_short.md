@@ -30,7 +30,7 @@
 - 順番（2026-11-10 Issue #4）：台本 → **事実確認のサブエージェント（下の「人の代わりの確認」3）を読み上げの前に通す** → 読み上げ → 画面。夕刊の言い回しや「りなの見方」をそのまま台本や締めに使わない（言い過ぎ・誤解が残りやすい）。つかみは25字前後まで（Leda の速さで約4秒）。
 - rina-shorts スキルの手順どおり（構成・吹き出し・声 Leda・息継ぎなし・{SEC}・登場の使い回し）。
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
-- 読み上げは1本4〜6回まで（Gemini の無料枠は1モデル1日10回）。1本の中でモデルを混ぜない。読み間違えやすい数字はひらがな。
+- 読み上げは台本全部を1回でまとめて作り（15文を超えるときだけ2回）、split_tts.py で分ける。読み直しを入れても1本3回まで（Gemini の無料枠は1モデル1日10回。2026-11-12 の試験で12文を1回で作って正しく分けられた）。モデルは gemini-3.8-flash-tts だけを使い、別のモデルに切り替えない（声の感じが変わるため。2026-11-12 ユーザー決定）。読み間違えやすい数字はひらがな。
 - 締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal）。
 - **素材の置き場（2026-11-12〜、ユーザー決定）**：音声・画像・動画は main に入れず、使い捨てのブランチ work に置く（main の履歴は消えずに1日約18MBずつ増えていたため）。読み上げ（tts.yml）と公式画像（fetch-media.yml）の結果は自動で work に入る。手元に取るのは `python3 tools/work_branch.py get narration/<名前> media/<名前>`、自分で作った音声・画像（longcat の入力、サムネなど）を置くのは `python3 tools/work_branch.py put <ファイルやフォルダ>`。longcat-colab.yml と youtube-upload.yml は work からも読む。main の .gitignore がこれらを main に入れないようにしている。台本・spec.json・short.html・lines.json・urls.txt など文字のファイルは今までどおり main。
 - サムネは codex-images.yml、項目は metadata_rules.md、字幕SRTと英訳も作る。
