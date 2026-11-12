@@ -1,0 +1,443 @@
+===== https://www.bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts/
+(status 200)
+Notion says Fireworks breach exposed customer AI chat transcripts
+                            By 
+Bill Toulas
+November 11, 2026
+03:54 PM
+0
+Notion, the digital workspace platform, disclosed that a security breach at its AI infrastructure provider, Fireworks AI, exposed Notion AI chat transcripts in a small number of workspaces.
+The disclosure comes shortly after 
+Fireworks AI confirmed
+ that an attacker accessed its development environment via a third-party cloud provider on October 23 and compromised resource metadata, billing information, model weights, and datasets for some customers.
+Fireworks AI experienced another breach in early October, when hackers accessed environment variables containing API keys and tokens stored as secrets for a limited number of accounts.
+Notion learned about the exposed chat transcripts after receiving an alert from Fireworks on November 2 about an exposed dataset that contained only synthetic test data.
+Notion responded by cutting off traffic to Fireworks, deleting all data from the vendor’s systems, and halting training runs by November 3.
+However, Fireworks confirmed on November 8 that customer data had been accessed, 
+including that of Notion users
+.
+Notion is a cloud-based workspace used for note-taking, document creation, internal wikis, project management, and task tracking. It includes an AI assistant that can answer questions, summarize content, and help draft text.
+Fireworks AI enables Notion to run some of the open-weight models available through Notion AI and analyze stored conversations for Insights, a feature that gives workspace administrators visibility into how their teams use AI.
+The exposed transcripts came from the Insights dataset specifically, which has now been disabled.
+“Upon analysis of the dataset Fireworks AI gave us on November 8, we discovered that it included Notion AI chat transcripts used for the Insights feature, which for the vast majority of impacted workspaces were unattributable,” 
+Notion stated in an update
+.
+"Unattributable means the chats weren't labeled with who wrote them or which workspace they came from, and the transcripts did not contain tool call results.”
+Notion has also 
+published a FAQ page
+ about the incident, highlighting that Fireworks had contractually committed to zero data retention for Notion data.
+According to the company, less than 1% of its users are impacted by the incident. Potentially affected workspace owners should review the data through Security incident review in Notion’s desktop web interface and share a link with members that lets them download their own transcripts.
+Notion advises affected users to rotate any passwords, API keys, or other credentials entered into affected chats.
+If neither a user nor their workspace owner has received a notice, Notion says no action is needed for now, and they are most likely not part of the impacted subset.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Baker Tilly notifies clients of data breach at third-party provider
+Fireworks AI discloses new breach after cloud provider hack
+SEGA newsletter data breach exposes 2.2 million email addresses
+WorkOS says attacker used ARTEX AI to breach internal sales app
+Japanese furniture giant Nitori says hackers stole 37.6M customer records
+
+===== https://ascii.jp/elem/000/004/450/4450547/
+(status 200)
+このページの本文へ
+ASCII.jp
+AI
+トップ
+推しガジェット
+お買い物情報局
+ニュース
+AI
+ビジネス
+TECH
+デジタル
+iPhone/Mac
+自動車
+ホビー
+自作PC
+AV
+アキバ
+スマホ
+ゲーム
+ASCII倶楽部
+アスキーキッズ
+格安SIM
+家電ASCII
+アスキーグルメ
+週刊アスキー
+TeamLeaders
+プログラミング+
+SDGs
+地方活性
+PUACL2026
+ChallengersJP
+IoT
+スタートアップ
+セール情報
+PC
+FMV
+mouse
+iiyamaPC
+Sycom
+パソコン
+SEVEN
+MSI
+ASUS
+HP
+ゲーミングPC
+STORM
+Digital
+ELECOM
+AMD
+ASUS ROG
+GIGABYTE
+ASRock
+HUAWEI
+Belkin
+Business
+JAWS
+Acrobat
+kintone
+Azure
+ソラコム
+Dropbox
+CData
+Backlog
+Fortinet
+ヤマハ
+Zoom
+ソフトバンクの
+IoT
+ソフクリ
+Special
+マカフィー
+キヤノンMJ
+JAPANNEXT
+ソフマップ
+brand
+new ME!
+pCloud
+Notion AI、チャット記録漏えいの可能性　委託先に不正アクセス
+2026年11月11日 13時15分更新
+文● G.Raymond　編集●ASCII
+シェア
+ツイートする
+一覧
+　Notionは11月9日、AI処理の委託先であるFireworks AIが不正アクセスを受け、「Notion AI」のチャット記録の一部が第三者に閲覧された可能性があると公表した。影響を受けたのはNotionのワークスペース（作業領域）の1％未満。
+　Notion AIの利用状況を把握する機能「Insights」に使われたチャット記録が対象になる。影響を受けたワークスペースの大半では、記録に誰がどのワークスペースで書いたかを示すラベルがなく、AIが呼び出したツールの実行結果も含まれていなかった。ただし、チャット本文に書かれた情報はそのまま含まれる。
+　Notionでは9日に対象の顧客へ連絡した。連絡を受けた顧客は、メールの案内に沿ってワークスペース内で対象の記録を確認できる。対象期間中にパスワードやAPIキーなどの認証情報をNotion AIに貼り付けた場合は、変更や再発行を勧めている。
+Made with AI
+■関連サイト
+Notionの公式告知（11月10日更新）
+Fireworks AIの公式続報
+ツイートする
+カテゴリートップへ
+本記事はアフィリエイトプログラムによる収益を得ている場合があります
+この記事の編集者は以下の記事をオススメしています
+トピックス
+登録者65万人のYouTuber「絶望ライン工」1ヵ月ぶりに復活　過去の炎上を振り返り、チャンネル名変更を報告
+トピックス
+渋谷のわんこそば店で生配信中に消防車が出動、迷惑通報で営業に影響　店側は「法的措置を検討」
+トピックス
+家族系YouTuber「しょうやん男三兄弟」収益化停止から復活　子どものプライバシーも見直しへ
+トピックス
+登録者122万人の大食いYouTuber「ぞうさんパクパク」活動休止　メンバー脱退、連絡取れず
+AIオススメ記事
+2026年10月26日
+AI
+無料の画像生成AI「Moss-Image」がすごい　日本語も漫画も生成、商用利用OKの実力を試した
+2026年11月09日
+AI
+無料の画像生成AI「P-H3-Image」がすごい　参照画像1枚で同じ人物を自在に再現
+2026年11月02日
+AI
+ChatGPT、チャットなら利用上限を気にせず使える時代が終了へ　“高度な推論”も利用量に応じた制限に
+2026年10月20日
+AI
+日本企業を狙ったAIサイバー攻撃の実態が判明　GMO調査
+2026年10月19日
+AI
+GPT-4o級モデルが自宅のPCで動いた！　ローカルAIの常識を変える「Strata」
+2026年10月15日
+AI
+「泣いた」「考えさせられる」　AIで作られた人生シミュレーションゲーム「80億分の1」が大バズり
+2026年10月12日
+AI
+AIに「法隆寺の五重塔」を作らせてみた　修正を重ねてたどり着いた驚きの完成度
+2026年10月21日
+AI
+わずか2週間でGitHubスター30万超　AIでリバースエンジニアリングする「REA」が話題
+2026年11月09日
+AI
+人形をリンゴに見せると、AIロボットは刃物で刺そうとする？　安全性の弱点が実験で明らかに
+2026年10月28日
+sponsored
+軽くて頑丈な1kgパソコンが誕生！　日本起点、世界基準で開発した新世代のノートパソコン「HP EliteBook 8 G2iW 14」とは？
+ピックアップ
+sponsored
+見える化でトラブル解決も迅速化　ネットワーク保守もセキュアに
+島根にいながら長野のネットワークトラブルを解決　ヤマハの「YNO」は情シスとエンジニアの働き方を変えた
+sponsored
+「kintoneを現場に開放するのが怖い」情シスの悩みに応えるATTAZoo Governanceの実力
+kintoneの市民開発にブレーキをかけない！ ＪＢＣＣが開発した「ガバナンスのシートベルト」
+sponsored
+5K/75HzとWQHD/300Hzを切り換えるデュアルモード搭載
+Retina級の精細感と300Hz駆動が合体。8万円台の27型MSIモニター「MAG 271KPD7」の実力を探る
+sponsored
+社内の壁と短納期のリクエストを乗り越えたユーザー企業とパートナーのタッグ
+導入が何度も見送られたkintone　明治とリコージャパンが2000人規模のシステムを半年足らずで刷新した舞台裏
+sponsored
+Win＋Qで何ができるか知っている？　Windows 11 Proを使いこなすなら絶対知っておくべき3大機能
+sponsored
+FPSで足音が聞きやすいゲームモードや通話ノイズキャンセリングにも注目！
+お手頃価格なのにガチでノイキャン強力過ぎ！ これは気になるイヤホン新製品、ファーウェイ「HUAWEI FreeBuds Neo」レビュー
+sponsored
+まるでステージ？ ショウケース？ パノラマビューがたまらない 魅せるPCケース「ROG Cronox ARGB」の魅力に迫る
+sponsored
+ノートPCの「ポート足りない」をケーブル1本で解決！　Thunderbolt 5対応製品を中心にベルキンの最新ドック＆ハブ5製品を選ぶ
+sponsored
+LiberNovo「LiberNovo Omni SE」
+テレワーク中心の生活にLiberNovo「Omni SE」をおすすめする理由
+sponsored
+弱点のインターフェースを拡張する必携の周辺機器だ
+MacBook Neoのカラバリに対応したシゴデキ周辺機器レビュー！ SatechiのUSB Type-Cハブ2機種＆静音モバイルマウス
+sponsored
+サードウェーブ「GALLERIA EPC7I-R57T-B」
+約19LのコンパクトさにハイエンドPC性能を凝縮「GALLERIA E series」の魅力
+sponsored
+JN-IPS27G200Q-HSPをレビュー
+200Hzの27インチWQHDゲーミングモニターが3万円切りで高コスパ！ヘッドセット置きにもなる昇降式多機能スタンドも秀逸だった
+sponsored
+これからのネットワーク運用管理が目指すべき方向性、HCNET・濱野氏に聞く
+「運用負荷を下げなければ、セキュリティは高まらない」 企業が直面するネットワーク運用の難題にどう向き合うか
+sponsored
+新設計のベルトが使いやすい！ バッテリー持ちの長さも継続！
+デザインも機能も大幅進化した定番スマートウォッチ！ ファーウェイ「HUAWEI WATCH GT 7 Pro」を詳細レビュー
+sponsored
+そこにはいつも インテル、はいってる
+軽くて頑丈な1kgパソコンが誕生！　日本起点、世界基準で開発した新世代のノートパソコン「HP EliteBook 8 G2iW 14」とは？
+sponsored
+1日1回送信だからこそ妥協できない「通信の確実さ」。マルチキャリア対応SIMで課題を解消
+電池交換なしで4年稼働！ YEデジタルのタンク残量見える化サービス「みるタンク」を支える1NCE
+sponsored
+【会場レポート】スポーツエンターテインメントの観戦体験をより楽しくする、アルバルク東京とZoom AIの取り組み
+「注目選手」も「観戦グルメ」もZoomのAIに聞こう！ Bリーグの試合にZoomが登場した理由
+sponsored
+JN-IPS27QY-HSPC6をレビュー
+「迷ったらこれ」な27型WQHDディスプレー、リフレッシュレート100Hz・USB Type-C給電・KVM・昇降式多機能スタンドで3万円切りはお買い得だもの
+sponsored
+これからのSOCが満たすべき「情報統合／AIによる調査支援／自動化」要件を実現するFortiSOC
+SOCのアラート対応が数時間遅れただけでランサム被害、業務が1カ月ストップ！ どうやったら防げた？
+sponsored
+FRONTIER POWERED BY MSIコラボモデル「FRMFPB850W/C」レビュー
+ゲーミングPCはパーツ単体で買うよりBTOが安いのは本当？　4Kゲームも快適プレーの裏配線ピラーレスPCでじっくり検証
+sponsored
+ブレにくい視界と黒の締まりに感動！ ASRockのQD-OLEDゲーミングディスプレー「PGO27QSA-W」でゲームがもっと楽しくなる
+sponsored
+「学生フォーミュラ日本大会2026」で総合3位の快挙！
+熱意のこもったメールがきっかけに。九州工業大学の学生フォーミュラチーム「KIT-FORMULA」を陰ながら支えたサイコムの高性能PC
+sponsored
+2027年には東名阪ルートの容量拡大と冗長化、大阪－福岡間の西日本ルートも完成へ
+国内バックボーンNWを大幅増強したColt　東京－大阪間の低遅延サービスも提供へ
+sponsored
+通話料削減／通話の自動スコアリング／FAQ自動応答――Zoom導入4社の課題解決ケーススタディ
+人件費高騰・SVの負荷増の悩みを打破する！  Zoomが拓く次世代のコンタクトセンターBPO
+TOP
+推しガジェット
+お買い物情報局
+ニュース
+AI
+IoT
+ビジネス
+TECH
+デジタル
+iPhone/Mac
+ホビー
+自作PC
+AV
+アキバ
+スマホ
+スタートアップ
+ゲーム
+ASCII倶楽部
+FMV
+mouse
+マカフィー
+ELECOM
+iiyama PC
+AMD
+Sycom
+ASUS ROG
+パソコンSEVEN
+HP
+STORM
+HUAWEI
+JAWS-UG
+kintone
+Acrobat
+キヤノンMJ
+Azure
+Belkin
+ヤマハ
+Zoom
+ソフトバンクのIoT
+ソフクリ
+MSI
+GIGABYTE
+ソフマップ
+brand new ME!
+pCloud
+ASRock
+ソラコム
+Dropbox
+CData
+Backlog
+Fortinet
+ASUS
+JAPANNEXT
+アスキーキッズ
+格安SIM
+家電ASCII
+アスキーグルメ
+Team Leaders
+プログラミング＋
+地方活性
+SDGs
+PUACL2026
+ChallengersJP
+今日の必読記事
+週刊アスキー
+デジタル用語辞典
+mobileASCII
+MITテクノロジーレビュー
+ラーメンWalker
+エリアLOVEWalker
+横浜LOVEWalker
+西新宿LOVEWalker
+夜景LOVEWalker
+九州LOVEWalker
+丸の内LOVEWalker
+戦国LOVEWalker
+サイトポリシー
+プライバシーポリシー
+運営会社
+お問い合わせ
+広告掲載
+© KADOKAWA ASCII Research Laboratories, Inc. 2026
+表示形式: PC ⁄ 
+スマホ
+お気に入り一覧
+マイページ
+
+===== https://www.lrm.jp/info/news/info_20261111/
+(status 200)
+お知らせ
+2026.11.11
+当社が業務で利用しているクラウドサービス「Notion」のAI機能「Notion AI」について、当社従業員が入力した情報の一部が、外部に流出した可能性があることが分かりました。
+本お知らせは、その第一報です。影響範囲は現在調査中であり、詳細は判明次第、改めてお知らせします。
+2026年11月10日、提供元のNotion Labs, Inc.(以下「Notion社」)より通知を受けました。
+Notion社がAI機能の処理を委託していたFireworks AI社(以下「Fireworks社」)の環境に、第三者が不正にアクセスしたとのことです。
+これにより、当社のワークスペースでNotion AIを利用した際のやり取りの記録の一部が、外部に流出した可能性があります。
+▼Notion社からの通知
+https://www.notion.com/ja/help/security-incident-involving-a-third-party-ai-vendor
+▼Fireworks社からの通知
+https://fireworks.ai/security/bulletins/october-2026-security-incident-update
+当社で確認した結果、この記録には、当社従業員が業務で入力した情報（お取引先様のご担当者名などを含む）が含まれていました。
+関係者の皆様にご心配とご迷惑をおかけしますことを、深くお詫び申し上げます。
+なお、本件はNotion社自身のシステムへの不正アクセスではありません。また、当社が提供するサービス（セキュリオ等）のシステムに対する不正アクセスでもありません。
+現時点で判明している内容は、以下のとおりです。
+1. 概要と経緯
+当社従業員がNotion AIに入力した文章とAIの応答文（やり取りの記録）の一部が、Notion社の委託先であるFireworks社に送信・保管されていました。
+Notion社によると、同社は2026年11月上旬にFireworks社から不正アクセスの連絡を受け、11月3日までにFireworks社との接続を遮断し、同社環境上のデータを削除しました。
+その後、11月8日にFireworks社から新たに確認されたデータの提供を受け、Notion AIのやり取りの記録が含まれていることを確認したとのことです。
+日付
+内容
+2026年11月3日
+Notion社がFireworks社との接続を遮断し、同社環境上のデータを削除（Notion社の告知による）
+2026年11月8日
+Fireworks社がNotion社に対し、新たに確認したデータを提供（Notion社の告知による）
+2026年11月10日
+Notion社より、当社ワークスペースが影響を受けた可能性がある旨の通知を受領
+2026年11月10日
+当社内でインシデント対応・調査を開始
+2. 流出した可能性のある情報
+対象：当社ワークスペースでNotion AIを利用した際のやり取りの記録のうち、Notion社のAI利用分析機能(Insights)の処理に使われていたもの
+期間：2026年10月5日から10月24日までの間に作成された記録の一部
+件数：現在調査中
+記録に含まれていた詳細情報：現在調査中
+Notion社によると、流出した記録には、誰が入力したか、どのワークスペースのものかを示す情報は付いていないとのことです。ただし、入力した文章そのものは含まれるため、当社は記録の内容ごとに影響を確認しています。
+Notionのページやデータベース、添付ファイルなど、ワークスペース内のその他のデータは本件の対象ではないと、Notion社から説明を受けています。
+3. 現在判明している影響
+第三者による取得の有無と範囲は、Notion社およびFireworks社で調査が続いており、
+現時点では確定していません。
+ただし、当社は、対象の記録が外部に流出したものとして想定し、対応を進めています。
+4. 当社の対応
+Notion社から提供された対象データを確認し、含まれる情報の特定を進めています。
+記録の中にシステムのパスワード等の認証情報は含まれておりませんでした。
+記録に情報が含まれていたお取引先様には、順次、当社ドメイン(@lrm.jp)のメールアドレスから個別にご連絡します。
+再発防止策は、Notion社およびFireworks社の調査結果も踏まえて取りまとめます。
+本お知らせは、公表時点で判明している情報に基づいています。
+新たにお知らせすべき事実が分かった判明した場合は、本サイトにて速やかにお知らせします。
+5. お願いとお問い合わせ窓口
+当社や、当社従業員またはNotion社を装った不審なメール・電話にご注意ください。
+心当たりのない連絡で、送金、認証情報の入力、URLや添付ファイルの開封等を求められた場合、または本件に関してご質問等がございましたら、下記フォームよりご相談ください。
+▼LRM株式会社 インシデント対応窓口
+https://www.lrm.jp/contact/
+※お問い合わせ種別は「当社からのお知らせについて」をお選びください
+View all
+
+===== https://faeger.company/news-security-incident-20261111/
+(status 200)
+2026.11.11				
+お知らせ
+				Notion AIに入力した情報の流出の可能性に関するお知らせ（第一報）			
+				2026年11月11日
+株式会社フェイガー
+当社が業務で利用しているクラウドサービス「Notion」のAI機能「Notion AI」について、当社従業員が入力した情報の一部が外部に流出した可能性があることが分かりました。
+本件は、Notionを提供するNotion Labs, Inc.（以下「Notion社」）がAI機能の処理を委託しているFireworks AI社（以下「Fireworks社」）への不正アクセスによるものです。Notion社のシステムや、当社のシステムへの不正アクセスではありません。
+お取引先様をはじめ関係者の皆様には、ご心配とご迷惑をおかけしますことを深くお詫び申し上げます。
+影響の範囲は現在調査中です。新たに分かったことは、改めてお知らせします。
+1. 経緯
+2026年11月10日、Notion社から、当社のワークスペースが本件の影響を受けた可能性があるとの通知を受けました。当社は11月11日から、対象となった従業員への確認を始めています。
+Notion社の公表によると、経緯は次のとおりです。
+●	2026年11月3日：Notion社がFireworks社との接続を遮断し、Fireworks社の環境にあるデータを削除
+●	2026年11月8日：Fireworks社から新たに確認されたデータの提供を受け、Notion AIのやり取りの記録が含まれていることを確認
+●	2026年11月9日：Notion社が影響を受けた可能性のある利用企業へ通知し、本件を公表
+2. 流出した可能性のある情報
+●	対象：当社従業員がNotion AIに入力した文章と、AIの回答（やり取りの記録）の一部
+●	期間：2026年10月5日から10月24日までの記録の一部
+●	件数：現在、調査中
+●	含まれていた情報：従業員が業務で入力した情報（お取引先様のご担当者のお名前などを含む）。詳細は確認を続けています。
+Notion社によると、流出した可能性のある記録には、誰が入力したか、どの会社のものかを示す情報は付いていないとのことです。ただし、入力した文章そのものは含まれるため、当社は記録の内容ごとに影響を確認しています。
+3. 現在分かっている影響
+第三者が実際に情報を取得したかどうかと、その範囲は、Notion社とFireworks社が調査を続けており、現時点では確定していません。当社は、対象の記録が外部に流出したものとして対応を進めています。
+現時点で、本件による二次被害は確認されていません。
+4. 当社の対応
+●	対象となった従業員に記録の内容を確認、含まれている情報を特定しています。
+●	記録に情報が含まれていたお取引先様には、当社から個別にご連絡します。
+●	再発防止策は、Notion社とFireworks社の調査結果と当社の確認結果を踏まえて検討し、改めてお知らせします。
+5. お客様・お取引先様へのお願い
+当社、当社従業員、またはNotion社を名乗る不審なメールや電話にご注意ください。心当たりのない連絡で、送金、IDやパスワードの入力、URLや添付ファイルを開くことを求められた場合は、応じずに下記の窓口までご連絡ください。
+6. お問い合わせ先
+株式会社フェイガー 本件お問い合わせ窓口
+お問い合わせ内容に「Notion AIの件」とご記入ください。
+参考
+●	Notion社のお知らせ
+●	Fireworks社のお知らせ
+本お知らせは、公表時点で分かっている情報にもとづいています。
+新たにお知らせすべき情報がありましたら、本サイトにてご案内いたします。
+PAGE SHARE
+一覧に戻る
+フェイガーへのお問い合わせはこちら
+お問い合わせ
+
+===== https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor
+(status 200)
+←
+All security advisories
+Updates
+Investigating
+On 11 November, we revoked exposed Notion API keys that were found in affected user messages during our investigation.
+11 November 2026

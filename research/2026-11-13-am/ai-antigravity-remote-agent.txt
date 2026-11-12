@@ -1,0 +1,848 @@
+===== https://9to5google.com/2026/11/06/google-antigravity-remote-agents-voice-mode/?extended-comments=1
+(status 200)
+Apps & Updates
+Antigravity
+Big Google Antigravity update brings Remote Agents, Voice Mode, and redesign
+Abner Li
+ | Nov 6 2026 - 7:01 am PT																
+								0 Comments							
+Google is rolling out a big update to Antigravity this week that features a new design, Voice Mode, and Remote Agents.
+Version 2.29 of Google’s agentic development platform for 
+Mac, Windows, and Linux
+ starts with a redesigned conversation page that moves the prompt box to the bottom of the screen, while there’s now a greeting at the top, like the Gemini app. The app also now has a default Google Sans font and Onyx theme.
+Additionally: “Single-repo projects combine branch and Git worktree selection into one menu, and the agent picker now lives inside the model menu.”
+Next to the existing microphone, there’s a new Voice Mode that’s powered by Gemini Live. This lets you “talk to Antigravity and hand requests to the agent by voice.” Google offers various options for Antigravity’s voice, while you can customize speed from 0.75x to 2x.
+Advertisement - scroll for more content
+The biggest update today is Remote Agents in the cloud that are rolling out to paid Google AI Pro and Ultra subscribers. You create a remote project in the cloud with a GitHub repo or Google Drive folder. The isolated cloud environment keeps working even when you close your laptop. You can control them from the existing antigravity.google.com/remote on your phone.
+We want Antigravity to be working for you all the time. We’ve been rolling out remote agents this week. Your tasks run in independent cloud virtual machines. Fire off a task, step away for coffee, unblock permissions from your phone, and come back to passed tests and a clean pull… 
+pic.twitter.com/4uHvjpUDd0
+— Google Antigravity (@antigravity) 
+November 6, 2026
+Other major updates with version 2.29 include:
+The Automations page now organizes automations into Scheduled, Always on, and Paused lists with Next run and Last run times, plain-menu schedule pickers, in-page details, and a full-page creation form.
+The built-in browser now saves downloads directly to your downloads folder without blocking prompts, shows progress in a toolbar downloads drawer, and lets you choose a default download folder under Settings > General.
+Typing in the built-in browser’s address bar now suggests matching pages from your browsing history, and you can clear saved history under Settings > General.
+The built-in browser has a redesigned address bar with clearer connection security indicators, a thin loading progress bar along the top of the page, and an in-page prompt dialog when a site asks for text input.
+You can now open a web address or search Google from the side panel’s New Tab page, drag links into the side panel to open them in the built-in browser, and close tabs to the left from a tab’s menu.
+You can now customize keyboard shortcuts in Settings > Shortcuts, and reset any of them to the default.
+Antigravity now launches faster on cold start, and opening or closing the sidebar and side panel animates smoothly without layout jumps.
+FTC: We use income earning auto affiliate links.
+More.
+You’re reading 9to5Google — experts who break news about Google and its surrounding ecosystem, day after day. Be sure to check out 
+our homepage
+ for all the latest news, and follow 9to5Google on 
+Twitter
+, 
+Facebook
+, and 
+LinkedIn
+ to stay in the loop. Don’t know where to start? Check out our 
+exclusive stories
+, 
+reviews
+, 
+how-tos
+, and 
+subscribe to our YouTube channel
+Check out 9to5Google on YouTube for more news:
+Comments
+Expand
+Close
+ comments
+Expand
+Close
+ comments
+Guides
+Antigravity
+Author
+			Abner Li		
+technacity			
+Editor-in-chief. Interested in the minutiae of Google and Alphabet. Tips/talk: abner@9to5g.com
+
+===== https://newruntime.com/posts/google-antigravity-rolls-out-remote-agents-on-cloud-e143c6/
+(status 200)
+In one minute
+Google
+ is gradually rolling out Antigravity Remote Agents, which run agent sessions and tools in an isolated, Google-managed remote environment. For builders, the practical change is that eligible tasks can continue after a laptop sleeps or a browser closes, without keeping a local machine online. Access is currently limited to personal Google AI Pro and Ultra accounts.
+What happened
+Google
+’s Antigravity documentation describes Remote Agents as a way to run agent sessions and tools in an isolated, Google-managed remote environment rather than on a local machine. The stated benefit is continuity: long-running tasks and command execution can continue when a user closes a browser, puts a laptop to sleep, or switches between desktop and mobile devices. The documentation presents this as a distinct execution mode, not simply a way to view or control a local session remotely.
+Remote Agents is being rolled out gradually to subscribers on 
+Google
+ AI Pro and Google AI Ultra who sign in with a personal Google Account. The documentation says it is not available on the free plan, Google AI Plus, or business accounts using Google Workspace or Google Cloud. It does not provide a price for Remote Agents as a separate product; the listed access condition is an eligible subscription. Users can launch and manage sessions from the Antigravity desktop app, the Antigravity CLI, or a browser at antigravity.google.com. In the browser, a user can start a standalone remote conversation or create a project and add resources.
+A remote project can include 
+GitHub
+ repositories, Google Drive files, and files uploaded from a computer. The app can create a project around an existing GitHub repository, and the CLI can run conversations remotely. The supplied documentation excerpt also says users can unblock permission requests from a phone. These options make the remote environment useful for repository tasks and background work, while allowing access from more than one device.
+Google distinguishes Remote Agents from Remote Control. Remote Agents execute in Google’s isolated remote environment and do not require a local machine to stay powered on. Remote Control connects to a user’s own desktop workstation or server, which must remain powered on and online. Remote Control is intended for work needing local hardware, local development servers, local toolchains, or uncommitted local checkouts. The distinction matters: a cloud session needs remote resources, while local work remains tied to the host machine.
+The supplied material identifies the relevant Antigravity CLI command as 
+agy --remote-agent
+ and says this requires CLI version 1.4.12 or later. It also notes that the same v2.29 wave refreshed the interface, voice mode, and Jupyter notebook viewer. Those items are mentioned alongside the rollout, but the documentation excerpt does not specify their detailed behavior or availability separately. The central change documented here is remote execution for eligible agent sessions, with a gradual rollout and account restrictions.
+What the archive adds
+A prior Field Note, 
+Cloud execution is coming to Antigravity soon Google will retire Jules on Dec.
+, described a local/cloud execution toggle and a dev-only Running Jobs section as signs of remote background workflows moving into Antigravity. This rollout is a new fact on that developing story: the docs now specify access, execution, and the distinction from Remote Control. Earlier coverage of 
+Antigravity custom agents
+ is related context, not the same event.
+Trend signal
+This weakly supports 
+harness architecture outlives model choice
+: the user-facing product boundary includes where an agent runs, which resources it can reach, and whether a local host must stay online. The documentation does not establish that the execution environment is model-independent or durable, so this is a limited operational signal rather than proof of the broader pattern.
+Why now
+The archive’s earlier Antigravity note had already identified a local/cloud execution toggle and running-jobs interface as signs of a coming remote workflow. The current documentation turns that signal into a described capability, while leaving rollout gradual and eligibility restricted. The source does not state a broader launch rationale or deadline.
+Connections to other events
+The earlier Antigravity coverage described custom agents as a way to package specialized work in the IDE and CLI. Remote Agents adds a different dimension: where those sessions execute and whether they depend on an active local host. It also resembles cloud-agent workflows described in the archive’s note on 
+Cursor
+’s cloud agents, but the supplied context does not establish feature parity between the products.
+Why it matters
+For a team that already uses Antigravity, the key operational choice is whether a task depends on the local development environment. Repository work that can use the remote resources listed in the docs may be able to continue without tying up a workstation. That can make overnight or mobile workflows more practical, and may reduce interruptions caused by a sleeping laptop or closed browser.
+But moving execution off the laptop is not a universal upgrade. A task that needs a local server, hardware, a local toolchain, or uncommitted files still points toward Remote Control, where the host must remain online. Teams also need to consider which repository and Drive resources they authorize for a managed remote environment. The documentation describes isolated execution, but does not provide enough detail here to evaluate its security controls or compare its operational guarantees with a team's existing setup. Treating the two modes as different deployment contexts, rather than interchangeable buttons, is the useful starting point.
+What happens next
+Remote Agents will become available to more eligible personal Pro and Ultra accounts
+ (3 months, 
+75%
+). Watch for: Google’s documentation changing the gradual-rollout language or listing additional availability.
+Limits and uncertainty
+The source establishes the rollout, account eligibility, supported entry points, resource types, and broad difference between Remote Agents and Remote Control. It does not state a rollout schedule, regional availability, separate usage limits, compute specifications, task-duration limits, or pricing beyond requiring an eligible subscription. It also does not detail the permission model, data retention, isolation guarantees, or how remote environments handle secrets. The claim that work continues while a laptop sleeps describes the intended mode, not a quantified reliability commitment. The excerpt mentions a v2.29 wave and CLI 1.4.12+, but does not give a release date.
+Skill to build now
+Classify a task before sending it to a remote agent: does it need only a repository or other listed remote resource, or does it depend on a local server, uncommitted checkout, hardware, or toolchain? Try one small repository task through Remote Agents and record any missing local dependency. That gives a concrete basis for choosing cloud execution or Remote Control for the next longer-running job.
+Reader takeaway
+Antigravity now documents cloud-hosted agent execution for eligible personal Pro and Ultra subscribers. Use it when a task can work from remote resources and should outlast your active session; use Remote Control when the work still depends on your local machine. The availability limits and missing operational details are reasons to test a small task first.
+Editor
+Andrey Reshetnikov
+, AI product and AI engineering
+Related notes
+Nov 12, 2026
+Pinecone integrated embedding now supports Google's Gemini Embedding 2
+google
+Nov 12, 2026
+The Definitive Fine-Tuning Guide for 3D Generation Models
+google
+Nov 12, 2026
+Anthropic revealed that Claude Mythos, its most powerful model, moved Claude onto AMD’s chips in three days.
+google
+Patterns this supports
+Harness architecture outlives model choice
+Evidence / sources
+1
+antigravity.google
+/docs/remote-agents
+All Field Notes
+
+===== https://opentools.ai/news/antigravity-remote-agents-control-host-files-permission-handoff/
+(status 200)
+Share this article
+Post
+Share
+Copy Link
+
+===== https://enjoy.dev/blog/antigravity-remote-agents-voice-mode/
+(status 200)
+To
+Everyone on Google Antigravity
+From
+Mo, Chief Executive
+Date
+November 5, 2026, 6:06 AM CST
+Re
+Antigravity’s remote agents and voice mode
+Antigravity adds cloud agents and voice mode. Who gets them, and how to start
+Antigravity’s remote agents, which run in Google’s cloud with your computer off, and voice mode began rolling out on November 3, 2026, and Google says both finished on November 9. Remote agents need Google AI Ultra or a paid Google AI Pro plan, and run commands without asking unless you change their preset. Voice mode is for everyone except business and enterprise accounts, and doesn’t work in cloud conversations.
+What Google shipped
+Antigravity’s 
+changelog
+ lists version 2.29.0 on November 3, 2026, and says two large features “are starting to roll out”:
+Remote agents.
+ “Conversations in a cloud project run in the cloud instead of on your computer, and you can also open them at antigravity.google.com/remote.”
+Voice mode,
+ “enabled by Gemini Live,” which “lets you talk to Antigravity and hand requests to the agent by voice.” Google 
+announced it
+ on its blog on November 6.
+The rollout took six days. Version 2.30.0, on November 9, says: “Voice mode and remote agents have also finished rolling out.” If you don’t see them, update the app first, because the changelog also says: “New versions roll out gradually and may take a few days to reach all users.”
+Google’s other pages haven’t caught up. On November 9, the 
+Remote Agents page
+ still said the feature “is rolling out gradually,” and the 
+voice mode page
+ still said it “might also not be available for your account yet.”
+Two more things came with it. Version 2.29.1, on November 7, fixed four voice mode problems, including a “Couldn’t connect” error that appeared when your sign-in needed an update. And 2.30.0’s main addition is a 
+Knowledge Work layout
+, “a simpler interface for research, writing, and everyday tasks,” which you choose in 
+Settings
+, then 
+General
+, then 
+Interface Layout
+, “except on business and enterprise accounts.”
+Who can use them
+Account
+Remote agents
+Voice mode
+Free
+No
+Yes
+Google AI Plus
+No
+Yes
+Google AI Pro, $19.99 a month
+Yes, “on a paid plan” and a personal account
+Yes
+Google AI Ultra, from $99.99 a month
+Yes, on a personal account
+Yes
+Business accounts (Google Workspace or Google Cloud)
+No
+No
+The 2.30.0 entry draws both lines. Voice mode “is now available to everyone except business and enterprise accounts.” Remote agents “have finished rolling out to Google AI Ultra subscribers and to Google AI Pro subscribers on a paid plan,” and the Remote Agents page adds that you sign in “with a personal Google Account” and that they aren’t “on the free plan, on Google AI Plus, or for business accounts (Google Workspace or Google Cloud).” The prices are from 
+Google’s plans page
+.
+An account that qualifies isn’t all voice mode needs. Its page says the button doesn’t appear when you’re signed out or have reached your usage limit.
+How to start a remote agent
+Pick whichever of these fits:
+In the app:
+ click 
++
+ next to 
+Projects
+ in the sidebar, choose 
+New Remote Project
+, attach what the agent needs, name the project, then send a prompt. Or open the project selector in the message box and choose 
+Remote
+, then 
+GitHub Repositories
+.
+In a browser, on a computer or a phone:
+ go to antigravity.google.com, sign in with an eligible personal account, and send a prompt.
+In the CLI:
+ run 
+agy update
+ to reach version 1.4.12 or later, then 
+agy --remote-agent
+. The status line shows 
+remote
+ and the project’s name. Add 
+--new-project
+ for a new project named after the current folder, or 
+-c
+ to continue your last remote conversation.
+A conversation started in one place can be continued from the CLI, the app or the web. Google says the agent “can’t read or change files on your machine,” so attach what it needs to the project: GitHub repositories, Google Drive files, or uploads.
+Change one setting first
+Check the permission preset before you give a remote agent a repository you care about. Google’s docs say: “Unless you change it, the permission preset is always-proceed (turbo), so remote agents run commands without asking for approval.”
+The three presets are 
+always-proceed (turbo)
+, which “runs all commands without restrictions,” 
+default
+, which “asks before sensitive operations,” and 
+request review
+, which “asks before every command.” In the CLI, open 
+/config
+ in a remote session and press Tab to reach the 
+Remote Agent
+ tab, and use 
+/permissions
+ for allow, deny and ask rules. These settings are separate from your local ones and apply to all your remote agent sessions.
+What remote agents can’t do yet
+Work on your local files.
+ Uncommitted changes and local dev servers are Remote Control’s job, as Google’s comparison table says.
+Use what’s installed on your computer.
+ The docs list “MCP servers, plugins, and agent skills installed on your machine” as unavailable. Plugins connected through the Marketplace are supported.
+Use several CLI features:
+--print
+, 
+/codesearch
+, 
+/diff
+, 
+/fork
+, 
+/rewind
+, 
+/btw
+, 
+/voice
+, 
+!
+ commands and 
+@
+ messages to subagents.
+Change execution mode.
+ Sessions “always use the default execution mode, so plan, accept-edits, and auto mode aren’t available.”
+Mix private repositories from different owners in one project.
+ All of a project’s private repositories must belong to the same GitHub user or organization.
+Take large uploads.
+ The limits are 8 MiB per file, 50 files and 100 MiB per project, and 2 GiB across your account.
+How voice mode works
+In the app, clear the message box and click 
+Start Voice mode
+. In the CLI, you need version 1.5.0 or later: run 
+/voice live
+ or press F6. You can give tasks, steer work as it runs, and answer permission prompts out loud.
+Destructive actions need a click.
+ “You can’t approve destructive actions by voice,” such as 
+rm
+, 
+sudo
+ or a force-push. You can still deny them by voice.
+It’s local only.
+ Voice mode isn’t available in Remote Control sessions or in conversations that run in the cloud.
+One at a time.
+ It can be on in only one conversation, and not in a subagent’s conversation or a side question.
+Your audio goes to Google.
+ Antigravity “streams your microphone’s audio to Google servers.” In the app, the transcript is saved on your computer.
+If the button is missing, Google’s troubleshooting says to clear the message box, including attachments, and check voice mode isn’t on in another conversation.
+Which to use, and what about Jules
+Use a remote agent for repository work you want to leave running. Use 
+Remote Control
+ when the work needs your own hardware, a local dev server or an uncommitted checkout, and your computer can stay on.
+Jules users have a deadline. Google 
+says
+ you can finish sessions until November 11, 2026, after which Jules is read-only until it winds down on December 31. Remote agents are the closest thing Google offers, but they aren’t the same: Jules’s 
+free tier
+ gave 15 tasks a day, and remote agents have no free tier. Their page also doesn’t mention pull requests or issue labels. Here is what runs in the cloud today, and the cheapest plan for each:
+Agent
+Where it runs
+Lowest individual plan
+Antigravity remote agents
+Google’s cloud
+Google AI Pro
+, $19.99 a month
+Codex
+OpenAI’s cloud
+ChatGPT Plus
+, $20 a month
+Claude Code cloud sessions
+Anthropic’s cloud
+Claude Pro
+, $20 a month
+Cursor cloud agents
+Cursor’s cloud
+Premium
+, $30 a month
+Our 
+memo on Jules
+ covers exporting your data.
+What Google hasn’t said
+How remote agents count against your quota.
+ The Remote Agents page doesn’t mention quota or credits, and Antigravity’s 
+plans page
+ doesn’t mention remote agents.
+What “on a paid plan” leaves out
+ for Google AI Pro, such as whether a trial counts.
+Which models remote agents run.
+ The page doesn’t name any.
+Whether business accounts will get them.
+Anything about remote agents in a launch post.
+ The 
+Antigravity blog
+ covered voice mode on November 6 and the Knowledge Work layout on November 9, and had no post on remote agents on November 9.
+One rumor is still open. TestingCatalog 
+reported on November 1
+, from a hidden build and a tip, that the voice mode belonged to an upcoming agent called “Chief of Staff.” Its report on voice was borne out, but the changelog through 2.30.0, the voice mode page and Google’s November 6 post don’t use that name, and TestingCatalog itself says the agent’s ability to coordinate other agents “has not been confirmed.” Treat it as unannounced.
+Antigravity in Enjoy
+Enjoy
+ runs Antigravity on your computer, on your Google account, through the server Google offers apps such as Zed and JetBrains IDEs. It doesn’t start or show remote agents, so use Google’s app, CLI or website for those. Its default there is permissive too: 
+Bypass permissions
+ “approves every action,” and you can switch to 
+Auto-approve edits
+ or 
+Ask first
+.
+10.
+Questions.
+Are Antigravity’s remote agents free?
+No. Google’s docs say they’re for Google AI Pro and Ultra subscribers on a personal Google Account, and they aren’t “on the free plan, on Google AI Plus, or for business accounts (Google Workspace or Google Cloud).” The November 9 changelog says they reached “Google AI Pro subscribers on a paid plan.” Google AI Pro is $19.99 a month.
+Why don’t I see remote agents or voice mode in Antigravity?
+Google says both finished rolling out on November 9, 2026, so check the rest. Update the app to 2.29.0 or later, or the CLI to 1.4.12 for remote agents and 1.5.0 for voice mode. Remote agents need Google AI Ultra, or Google AI Pro on a paid plan, on a personal account. Voice mode isn’t for business or enterprise accounts, and Start Voice mode appears only in an empty message box.
+Do Antigravity’s remote agents keep working with my laptop closed?
+Yes. They run in an “isolated, Google-managed remote environment,” and Google says they keep working when you close your browser, put your laptop to sleep or switch devices. Remote Control is different, because it needs your own computer on and online.
+Do remote agents ask before running commands?
+Not by default. Google’s docs say the preset is “always-proceed (turbo), so remote agents run commands without asking for approval.” You can change it to default or request review in your remote agent settings.
+Can I use voice mode with a remote agent?
+No. Voice mode works only in local conversations in the app, not in Remote Control sessions or conversations that run in the cloud, and the CLI doesn’t offer it in remote agent sessions.
+Do remote agents replace Jules?
+Partly. Like Jules, they run on your GitHub repositories in Google’s cloud, but they need a paid plan, where Jules had a free tier, and their docs don’t mention pull requests or issue labels. You can finish Jules sessions until November 11, 2026.
+
+===== https://antigravity.google/docs/remote-agents
+(status 200)
+Remote Agents
+2-0
+Antigravity App
+Features
+Remote Agents Antigravity App Features
+Antigravity App
+Antigravity CLI
+Markdown
+Copy Markdown
+View Markdown
+Available on:
+Antigravity App
+Antigravity CLI
+Remote Agents
+Section titled ‚ÄúRemote Agents‚Äù
+Antigravity Remote Agents run your agent sessions and tools in an isolated,
+Google-managed remote environment rather than on your local machine.
+Because execution happens remotely, Remote Agents continue working on
+long-running tasks and executing commands even when you close your browser, put
+your laptop to sleep, or switch between desktop and mobile devices.
+Remote Agents vs. Remote Control
+Section titled ‚ÄúRemote Agents vs. Remote Control‚Äù
+Antigravity provides two ways to work with agents remotely depending on where
+your code and tools live. Use the following table to compare 
+Remote Agents
+and 
+Remote Control
+:
+Feature
+Remote Agents
+Remote Control
+Execution environment
+Isolated, Google-managed remote environment
+Your own desktop workstation or server
+Host machine requirement
+Runs independently; no local machine needs to stay on
+Requires your host machine to remain powered on and online
+Workspace and files
+Remote 
+Resources
+ (GitHub repositories, Google Drive files, and uploaded files)
+Local filesystem folders, local toolchains, and Git worktrees
+Best for
+Repository tasks, mobile workflows, and background execution while away
+Tasks that require local hardware, local dev servers, or uncommitted local checkouts
+Getting started
+Section titled ‚ÄúGetting started‚Äù
+You can launch and manage Remote Agents from the 
+Antigravity App
+ on your
+desktop, from the 
+Antigravity CLI
+ in your terminal, or directly from any web
+browser at 
+antigravity.google.com
+.
+Antigravity App
+Antigravity CLI
+Antigravity App
+Section titled ‚ÄúAntigravity App‚Äù
+Start in the Antigravity App
+Section titled ‚ÄúStart in the Antigravity App‚Äù
+To create a remote project alongside your local projects in the Antigravity App,
+do the following:
+In the left sidebar, click 
++
+ next to 
+Projects
+ (or open the project
+selector in the message box) and select 
+New Remote Project
+.
+(Optional)
+ Click 
+Add Resource
+ to attach GitHub repositories, Google
+Drive files, or uploaded files from your computer, and then click 
+Next
+(or 
+Skip
+ if you do not add any resources yet).
+Enter a name in 
+Set Project Name
+ and click 
+Create
+.
+Select your remote project and send a prompt in the message box to start a
+remote conversation.
+You can also start a remote project directly from a GitHub repository in the
+message box:
+In the message box, click the project selector dropdown.
+Select 
+Remote
+ > 
+GitHub Repositories
+. If you have not connected your
+GitHub account yet, click 
+Connect GitHub
+ to authorize access.
+Choose a repository from the list. Antigravity automatically selects an
+existing remote project for that repository or creates a new one.
+Start on the web
+Section titled ‚ÄúStart on the web‚Äù
+To use Remote Agents from a desktop or mobile browser without installing a local
+application, do the following:
+Open your browser and navigate to
+antigravity.google.com
+.
+Sign in with a personal Google Account on an eligible plan (Google AI Pro or Google AI Ultra).
+Enter a prompt in the message box to start a standalone remote conversation,
+or click 
+Create Project
+ next to 
+Projects
+ in the left sidebar to
+configure a project with GitHub repositories, Google Drive files, or
+uploaded files.
+Switch between Remote Agents and Remote Control
+Section titled ‚ÄúSwitch between Remote Agents and Remote Control‚Äù
+If you also use 
+Remote Control
+ to connect to local
+Antigravity App or Antigravity CLI instances, use the instance switcher on
+antigravity.google.com
+ (in the left sidebar
+above 
+Settings
+ on desktop browsers, or in the top bar on mobile) to switch
+between 
+Remote Conversations
+ and any of your connected host machines.
+Antigravity CLI
+Section titled ‚ÄúAntigravity CLI‚Äù
+Start a remote agent session
+Section titled ‚ÄúStart a remote agent session‚Äù
+To run your Antigravity CLI conversations on Remote Agents, do the following:
+Make sure that you‚Äôre running Antigravity CLI 1.4.12 or later. To update the
+CLI, run 
+agy update
+.
+Sign in to the CLI with a personal Google Account on an eligible plan (see
+Availability
+). The CLI shows the signed-in account and its plan when it
+starts, and in 
+/help
+.
+Start the CLI with the 
+--remote-agent
+ flag:
+agy
+ --remote-agent
+Enter a prompt to start a remote conversation.
+Every conversation that you start in the session runs on a remote agent, and the
+status line shows 
+remote
+ and the name of the remote project. Because the agent
+runs remotely, it keeps working on a task even if your machine goes to sleep or
+loses its connection, and you can continue the conversation later from the CLI,
+the Antigravity App, or the web.
+Choose a remote project
+Section titled ‚ÄúChoose a remote project‚Äù
+The first time that you start a remote agent session on a machine, the CLI
+creates a remote project named 
+CLI Project (<hostname>)
+ for that machine and
+opens new conversations in it. Later remote agent sessions on the same machine
+and account reuse that project.
+To open conversations in a different remote project, such as one that you
+created in the Antigravity App or on the web, pass the project‚Äôs name or ID with
+--project
+:
+agy
+ --remote-agent
+ --project=
+"My remote project"
+If no remote project has that name or ID, the CLI shows a warning and uses the
+machine‚Äôs default remote project instead.
+To create a new remote project named after the current directory, pass
+--new-project
+:
+agy
+ --remote-agent
+ --new-project
+To switch projects during a session, run 
+/projects
+, select a project, press
+Enter
+, choose 
+Switch to project
+, and confirm. The CLI starts a new
+conversation in that project.
+Attach repositories and files
+Section titled ‚ÄúAttach repositories and files‚Äù
+Remote agents work with the resources attached to their remote project. To
+create a remote project with resources from the CLI, do the following:
+Run 
+/projects
+ and select 
++ New project‚Ä¶
+ at the top of the list.
+Enter a name for the project, and then press the right arrow key to choose
+its resources.
+Attach any of the following resources:
+GitHub
+: Select GitHub and press 
+Enter
+. If you haven‚Äôt connected GitHub
+yet, sign in to it in your browser. Then select the repositories to attach.
+Google Drive
+: Select Google Drive and press 
+Enter
+, signing in if you
+haven‚Äôt connected it yet. Then select 
++ Add a Drive file by link‚Ä¶
+ and
+paste a link to a Google Docs, Sheets, Slides, or Drive file.
+Uploaded files
+: Select 
+Upload Files
+, then
++ Add a local file‚Ä¶
+, and enter the path of a file on your machine.
+Press 
+Ctrl
+ + 
+S
+ to create the project.
+To change the resources of an existing remote project, run 
+/projects
+, select
+the project, press 
+Enter
+, and choose 
+Edit
+. These are the same resources
+that you can manage in the Antigravity App and on the web. For details, see
+Remote projects and resources
+.
+Resume remote conversations
+Section titled ‚ÄúResume remote conversations‚Äù
+Remote agent conversations are stored with your remote projects rather than on
+your machine. To continue your most recent remote agent conversation, run the
+following command:
+agy
+ --remote-agent
+ -c
+To resume a specific remote agent conversation, pass its ID:
+agy
+ --remote-agent
+ --conversation=
+<
+conversation_id
+>
+When you exit a remote agent session, the CLI prints the command that resumes
+your conversation. During a session, run 
+/resume
+ to choose from your remote
+agent conversations.
+Remote agent settings
+Section titled ‚ÄúRemote agent settings‚Äù
+Remote agent sessions use your 
+CLI settings
+ from
+settings.json
+, such as your color scheme, verbosity, and editor mode, except
+for permissions. For permissions, remote agents follow your remote agent
+settings, which apply to all of your remote agent sessions.
+In a remote agent session, 
+/config
+ splits your settings into two tabs. Press
+Tab
+ to switch between them:
+TUI
+: Your CLI settings. This tab hides the settings that your remote agent
+settings replace: 
+Agent Mode
+, 
+Tool Permission
+, 
+Artifact Review
+,
+Sandbox Mode
+, and 
+Non-Workspace Access
+.
+Remote Agent
+: Your remote agent settings:
+Permission Preset
+: Controls which actions the agent can take. 
+default
+asks before sensitive operations, 
+request review
+ asks before every
+command, and 
+always-proceed (turbo)
+ runs all commands without
+restrictions.
+Plan Review Policy
+: Controls whether the agent asks you to review its
+documents, such as implementation plans: 
+always ask
+ or 
+always proceed
+.
+To manage the allow, deny, and ask rules that remote agents follow, run
+/permissions
+. In a remote agent session, it shows your remote agent rules
+instead of your local rules.
+Unless you change it, the permission preset is 
+always-proceed (turbo)
+, so
+remote agents run commands without asking for approval. Remote agent sessions
+always use the default 
+execution mode
+, so plan,
+accept-edits, and auto mode aren‚Äôt available.
+Features not available in remote agent sessions
+Section titled ‚ÄúFeatures not available in remote agent sessions‚Äù
+The following CLI features aren‚Äôt available in remote agent sessions yet:
+Print mode (
+--print
+)
+Code search (
+/codesearch
+)
+/diff
+, 
+/fork
+, 
+/rewind
+, and 
+/btw
+Voice dictation (
+/voice
+)
+Running terminal commands yourself with 
+!
+Sending messages to subagents with 
+@
+MCP servers, plugins, and agent skills installed on your machine
+If you run a slash command that isn‚Äôt available, the CLI reports that it‚Äôs not
+available in remote agent sessions.
+CLI troubleshooting
+Section titled ‚ÄúCLI troubleshooting‚Äù
+Review the following solutions for common issues with remote agent sessions:
+Remote conversations don‚Äôt start
+: Make sure that you‚Äôre signed in to the
+CLI with a personal Google Account on an eligible plan (see 
+Availability
+).
+Run 
+/help
+ to see the signed-in account.
+Project Not Found
+ warning
+: No remote project has the name or ID that you
+passed with 
+--project
+, so the CLI uses this machine‚Äôs default remote project
+instead. Run 
+/projects
+ to see the names of your remote projects.
+is a local conversation
+ warning
+: The ID that you passed with
+--conversation
+ belongs to a local conversation. Start the CLI without
+--remote-agent
+ to resume it.
+@
+ suggests sending a message first
+: A remote agent‚Äôs environment starts
+with the conversation. After you send the first message, 
+@
+ suggests files
+from the remote agent‚Äôs environment.
+Not available in remote agent sessions.
+: The command isn‚Äôt supported in
+remote agent sessions yet. For the full list, see 
+Features not available in
+remote agent sessions
+.
+Remote projects and resources
+Section titled ‚ÄúRemote projects and resources‚Äù
+While local 
+projects
+ mount directories from your workstation
+under 
+Folders
+, remote projects attach external context under 
+Resources
+.
+You can attach or remove resources when creating a remote project, or at any
+time under 
+Project Settings
+ > 
+Resources
+ by clicking 
+Add Resource
+:
+GitHub
+: Authorize GitHub with OAuth and select one or more repositories to
+attach to the project. Conversations automatically clone and mount your
+connected repositories into the remote workspace for development. All private
+repositories within the same project must belong to the same GitHub user or
+organization owner; to work with private repositories from multiple owners,
+create a separate remote project for each owner.
+Google Drive
+: Select files or folders from your Google Drive (using the
+Google Drive Picker on the web interface or the Drive file list in the
+Antigravity App), such as Google Docs, Sheets, Slides, PDFs, or folders. The
+remote agent reads attached Drive files on demand during conversations.
+Uploaded files
+: Upload local files from your device (up to 8 MiB per file,
+50 files and 100 MiB per project, and 2 GiB total across your account),
+including source code, text and data files, images, PDFs, and 
+.zip
+ archives.
+Uploaded files persist across conversations in the project and are staged
+under 
+/home/antigravity/upload
+.
+In the Antigravity CLI, run 
+/projects
+ to attach and remove resources. For
+details, see 
+Attach repositories and files
+.
+Plugins and credentials
+Section titled ‚ÄúPlugins and credentials‚Äù
+Remote Agents support 
+plugins
+ that connect your agent to
+external tools and services:
+Open 
+Customizations
+ in the left sidebar and select the 
+Marketplace
+tab (under 
+Apps
+, or 
+Installed
+ once connected).
+Browse available plugins, such as 
+GitHub
+, 
+Google Drive
+,
+Google Docs
+, 
+Google Sheets
+, 
+Google Slides
+, and
+Google Calendar
+.
+Click 
+Connect
+ next to a plugin to authorize your account with OAuth.
+In a remote agent session in the Antigravity CLI, run 
+/plugin
+ to connect
+plugins from the 
+Discover
+ tab and manage them in the 
+Installed
+ tab.
+Your OAuth credentials are encrypted at rest and tokens are securely injected
+when the remote agent makes requests to authorized services.
+Next steps
+Section titled ‚ÄúNext steps‚Äù
+Explore related documentation and guides:
+Remote Control
+: Connect to and control local
+Antigravity App and CLI sessions running on your own machines.
+Projects
+: Learn how projects organize workspaces, scoped
+settings, and conversations.
+Plugins
+: Configure plugins and external integrations across
+Antigravity surfaces.
+Permissions and security
+: Configure permission presets
+and fine-grained tool access rules.

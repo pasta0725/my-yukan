@@ -1,0 +1,153 @@
+===== https://www.bleepingcomputer.com/news/microsoft/microsoft-recent-windows-updates-cause-sql-server-performance-issues/
+(status 200)
+Microsoft: Recent Windows updates cause SQL Server performance issues
+                            By 
+Sergiu Gatlan
+November 12, 2026
+07:11 AM
+1
+Microsoft has confirmed that Windows updates released since the October 2026 Patch Tuesday are causing SQL Server performance and stability issues.
+As detailed in a Windows release health dashboard update on Wednesday, this is caused by server queries that leave connections open after the queries complete. These connections accumulate instead of closing, degrading server performance over time.
+"This issue affects SQL Server linked server queries that use OLE DB providers to connect to external databases. Oracle and PostgreSQL connections are among those known to be affected," Microsoft explained.
+"In affected environments, administrators might observe an increasing number of open connections to external databases, even when the associated SQL Server linked server queries are no longer running."
+It also added that admins may be able to manually close connections left open due to this bug or restart the SQL service to temporarily address stability and performance issues, but this can also kill active queries and may not fully address the issue, as it will resurface again after some time.
+Microsoft says the issues impact both client (Windows 10 and Windows 11) and server (Windows Server 2012 and later) systems and will be fixed with an out-of-band Windows update to be released over the next few days.
+While it works to resolve the bug, Microsoft said IT administrators can reach out to 
+Microsoft Support for Business
+ for a mitigation that can address the issue until a fix is available.
+In September, Microsoft also 
+shared a temporary workaround
+ for SQL Server crashes on some Windows Server 2025 due to recent memory management changes.
+The bug affects SQL Server when the Lock Pages in Memory (LPIM) Windows policy is enabled and may cause SQL Server crash dumps, SQL Server services to stop or restart unexpectedly, failures during database maintenance operations, memory corruption errors, and access violation exceptions (with 0xC0000005 error codes).
+Yesterday, the company also confirmed reports that the 
+November 2026 security updates are failing to deploy
+ on Windows 11 systems where the October preview update has been installed, with affected users seeing 0x80070306, 0x800f0989, or 0x800f0993 error codes.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Microsoft fixes audio issues caused by September security updates
+Microsoft fixes bug behind ‘Defender Antivirus is turned off’ alerts
+Microsoft releases emergency Windows updates to fix RDS failures
+Microsoft: September updates cause RDS failures on Windows Server
+Microsoft confirms Windows security updates installation issues
+
+===== https://www.thankyouforpatching.com/posts/sql-linked-server-connections-windows-cu/
+(status 200)
+Home
+/
+November 2026 patch cycle
+/
+Windows CUs leave SQL Server linked server connections open
+Call: 
+Known issue
+Category: 
+Enterprise
+Issue from: 
+October 2026 Patch Tuesday: 1,413 fixes, one exploited zero-day, and an Exchange hangover
+Windows CUs leave SQL Server linked server connections open
+Part of 
+November 2026 patch cycle
+Vendor
+Microsoft
+Products
+Windows Server 2025, Windows Server 2022, Windows Server 2019, Windows Server 2016, Windows Server 2012 R2, Windows Server 2012, Windows 11 23H2 to 26H1, Windows 10 1809 and LTSC 2019, and SQL Server linked servers over OLE DB
+Published
+Nov 11, 2026
+Status
+Open
+Call: Known issue.
+ Microsoft has confirmed that Windows updates from October 13 onward can leave SQL Server linked server connections open after the query is done. They pile up and the server slows down. Microsoft says an out-of-band fix is coming “in the next few days.” November’s updates don’t fix it, since they include October’s changes. If your SQL Servers use linked servers to Oracle, PostgreSQL or anything else over OLE DB, start watching connection counts. It’s a slow leak, not an outage, so we wouldn’t pull a month of security fixes over it.
+What breaks:
+ In Microsoft’s words, “connections created by SQL Server linked server queries might remain open after the queries complete.” Each new query adds more, and “this can slow or degrade server performance after prolonged run time.” It affects linked server queries that use OLE DB providers. Oracle and PostgreSQL are the ones Microsoft names. The tell is a climbing count of open connections to the external database while no linked server queries are running.
+Who’s hit:
+ SQL Server boxes with OLE DB linked servers, after the October 13 update or anything later. Microsoft lists Server 2025, 2022, 2019 (and 1809), 2016, 2012 R2 and 2012, plus Windows 11 23H2 through 26H1 and Windows 10 1809 / LTSC 2019. The October KBs it names include KB5126646 (Server 2025), KB5126655 (Server 2022), KB5126651 (Server 2019) and KB5126836 (Server 2012 R2). Microsoft opened the issue on November 11. We haven’t seen admin reports outside Microsoft’s own entry yet.
+Workaround:
+Microsoft has a mitigation for business customers, but you have to get it through Microsoft Support for business. If this is hurting a production server, open the case now rather than when the OOB slips.
+For short-term relief, close the idle connections or restart the SQL Server service. Microsoft warns that both can interrupt running queries and transactions, and that the problem comes back.
+Graph connections from each SQL host to its linked targets, so you see the climb before your users do. Plan a service restart in a maintenance window if the count keeps climbing.
+Install the out-of-band update when it ships. We’ll update this post when it does.
+Sources: 
+Server 2022 release 
+health
+ (opens in a new tab)
+↗
+⁠
+, 
+Server 2025 release 
+health
+ (opens in a new tab)
+↗
+⁠
+, 
+Server 2019 release 
+health
+ (opens in a new tab)
+↗
+⁠
+, 
+Server 2012 R2 release 
+health
+ (opens in a new tab)
+↗
+⁠
+, 
+Windows 11 24H2 release 
+health
+ (opens in a new tab)
+↗
+⁠
+.
+Sources
+https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2022
+⁠↗
+ (opens in a new tab)
+https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025
+⁠↗
+ (opens in a new tab)
+https://learn.microsoft.com/en-us/windows/release-health/status-windows-10-1809-and-windows-server-2019
+⁠↗
+ (opens in a new tab)
+https://learn.microsoft.com/en-us/windows/release-health/status-windows-8.1-and-windows-server-2012-r2
+⁠↗
+ (opens in a new tab)
+https://learn.microsoft.com/en-us/windows/release-health/status-windows-11-24h2
+⁠↗
+ (opens in a new tab)
+
+===== https://cybernoz.com/microsoft-recent-windows-updates-cause-sql-server-performance-issues/
+(status 200)
+Share
+X / Twitter
+LinkedIn
+Reddit
+WhatsApp
+Email
+Copy Link
+Microsoft has confirmed that Windows updates released since the October 2026 Patch Tuesday are causing SQL Server performance and stability issues.
+As detailed in a Windows release health dashboard update on Wednesday, this is caused by server queries that leave connections open after the queries complete. These connections accumulate instead of closing, degrading server performance over time.
+“This issue affects SQL Server linked server queries that use OLE DB providers to connect to external databases. Oracle and PostgreSQL connections are among those known to be affected,” Microsoft explained.
+“In affected environments, administrators might observe an increasing number of open connections to external databases, even when the associated SQL Server linked server queries are no longer running.”
+It also added that admins may be able to manually close connections left open due to this bug or restart the SQL service to temporarily address stability and performance issues, but this can also kill active queries and may not fully address the issue, as it will resurface again after some time.
+Microsoft says the issues impact both client (Windows 10 and Windows 11) and server (Windows Server 2012 and later) systems and will be fixed with an out-of-band Windows update to be released over the next few days.
+While it works to resolve the bug, Microsoft said IT administrators can reach out to Microsoft Support for Business for a mitigation that can address the issue until a fix is available.
+In September, Microsoft also shared a temporary workaround for SQL Server crashes on some Windows Server 2025 due to recent memory management changes.
+The bug affects SQL Server when the Lock Pages in Memory (LPIM) Windows policy is enabled and may cause SQL Server crash dumps, SQL Server services to stop or restart unexpectedly, failures during database maintenance operations, memory corruption errors, and access violation exceptions (with 0xC0000005 error codes).
+Yesterday, the company also confirmed reports that the November 2026 security updates are failing to deploy on Windows 11 systems where the October preview update has been installed, with affected users seeing 0x80070306, 0x800f0989, or 0x800f0993 error codes.
+Adaptive Security’s AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what’s getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+        Start your free email security scan.
+Source link 
+Share
+X / Twitter
+LinkedIn
+Reddit
+WhatsApp
+Email
+Copy Link
+
+===== https://learn.microsoft.com/en-us/windows/release-health/status-windows-server-2025
+(status 200)
+What is new in Windows Server 2025
+Check its advanced features and innovations

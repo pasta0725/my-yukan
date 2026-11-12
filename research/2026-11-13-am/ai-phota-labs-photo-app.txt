@@ -1,0 +1,170 @@
+===== https://www.photalabs.com/
+(status 200)
+Phota for iOS · Available now 
+AI that keeps you
+looking like you.
+Powered by the image generation and understanding models for photography.
+ For everyone 
+Phota app
+  For creators 
+Phota Studio
+  For developers 
+Phota API
+An always‑on personal photo assistant that makes any photo you took worth sharing.
+ Visit phota.app 
+ Download 
+Before
+After
+Create with generative AI without compromising character consistency. One persistent identity across large campaigns and marketing content.
+ Try Phota Studio 
+@Mia
+graduation portraits with her cat, navy gown
+↑
+State-of-the-art identity for your own product. In side-by-side tests, users pick it over Nano Banana 2 or GPT Image 2 alone 9 times out of 10.
+ Read the API docs 
+POST
+ /v2/phota/edit
+{
+"prompt"
+: 
+"Turn [[abc123]] to the
+             camera with a big smile"
+,
+"images"
+: [
+"photo.jpg"
+],
+"profile_ids"
+: [
+"abc123"
+],
+"base_model"
+: 
+"gpt-image-2"
+}
+Works with
+ Nano Banana 2 
+ GPT Image 2 
+ Flux 2 
+ Seedream 5.0 
+Her photo
+GPT Image 2 alone
+GPT Image 2 + Phota
+Her real face
+Backed by
+a16z
+Figma Ventures
+Essence
+& more
+Supported base models
+OpenAI
+·
+Nano Banana
+·
+Qwen
+·
+Ideogram
+·
+FLUX 1.1
+ 01 
+Any scene, any edit
+Placed into any scene and edited without losing identity.
+ 02 
+Reusable everywhere
+One likeness carries across campaigns, avatars, and content.
+ 03 
+Built for production
+Large volumes, multi-subject scenes, the same person across contexts.
+Personal
+For everyday consumers — your own likeness, everywhere
+AI Headshots
+The same person, consistent across every style
+→
+Avatar Platforms
+The persistent-likeness layer avatar platforms build on
+→
+Photo Editing
+Edit anything without changing how people look
+→
+Commercial
+For studios, brands & platforms — reusable characters at scale
+Ads & Campaign Creative
+A marketplace of talent, composed onto your products
+→
+Storyboards
+Consistent characters across every frame
+→
+Video Keyframing
+Likeness-locked keyframes for AI video
+→
+Explore all solutions
+→
+When likeness finally 
+gets it right
+, people feel it.
+“
+ This is the first time I've had a good image of myself.   
+Photographer
+“
+ Good enough only works  
+until someone builds exactly right.
+Technology enthusiast
+“
+ Your subjects are much better than Nano Banana. How did you do it?   
+Researcher · Google DeepMind
+“
+ Busy mom here. I never have  
+good photos of myself
+ . This was a real boost to my self-esteem. 
+Mom
+“
+ Haven't seen a model capture  
+my dark skin tone
+  this accurately. 
+Creator
+“
+ No more excuses not to become an IG influencer.   
+Creator · Instagram
+Dimension
+Phota
+Foundation model alone
+e.g. Nano Banana, GPT-Image
+LoRA fine-tuning
+on a leading open-source model
+ 01 
+ Quality 
+Frontier-model quality + identity control
+Great quality, but identity drifts
+Open models only; quality and base capabilities can degrade
+ 02 
+ Multi-subject support 
+Compose any number of subjects with reliable identity
+Identity quality degrades further with multiple subjects
+No robust way to combine multiple LoRAs
+ 03 
+ Total cost 
+Train once per identity in ~1–3 minutes
+No per-base-model retraining
+No adapter serving
+No additional training cost
+Identity misses paid for in repeated generation
+Increases with subjects × base models
+Every adapter must be stored, deployed, and served
+ 04 
+ Persistence 
+One model per subject
+Stable across scenes, edits, and base models
+No persistent memory of the subject
+Identity is re-referenced on every request
+Persistent only within one model
+Model upgrades makes the identity obsolete
+ 05 
+ Flexibility 
+Trains from 5+ casual photos
+Reference images required for every request
+20–30+ curated, captioned images per subject
+Read the full comparison
+→
+Contact us
+info@photalabs.com
+→
