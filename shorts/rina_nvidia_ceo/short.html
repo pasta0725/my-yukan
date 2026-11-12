@@ -234,7 +234,7 @@ const S={
  // twist2: he admitted the affair and apologised; the NYT also reported a relationship with a direct report
  twist2(u,d,L){bg(u);mini(u);const tn=telHas(L,'部下');
    mixLine([['さらに',C.warn]],CX,385,70);
-   withEnter(enter(u,0),()=>{card(150,450,780,270);text('フアン氏',CX,520,44,C.sub,'center',800);text('不倫を認めて謝罪',CX,620,60,C.text);});
+   withEnter(enter(u,0),()=>{card(150,450,780,270);text('フアン氏',CX,520,44,C.sub,'center',800);text('この不倫を認めて謝罪',CX,620,58,C.text);});
    withEnter(enter(u,Math.max(0.3,tn)),()=>{card(150,750,780,370,30,C.card2);paperIcon(275,890,95,C.text);text('NYTが報道',620,840,46,'#CDD8EC','center',800);text('直属の部下とも',620,930,52,'#FFFFFF');text('関係があった',620,1010,52,'#FFFFFF');});},
  // next: interim CEO is the finance chief Colette Kress; a permanent successor is sought inside and outside
  next(u,d,L){bg(u);mini(u);const ts=telHas(L,'後任');
