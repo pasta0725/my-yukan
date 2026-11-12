@@ -1,0 +1,359 @@
+===== https://openai.com/index/chatgpt-enterprise-aws-marketplace/
+(status 403)
+
+
+===== https://ppc.land/aws-customers-can-now-buy-chatgpt-enterprise-against-cloud-commitments/
+(status 200)
+OpenAI today made ChatGPT Enterprise available through AWS Marketplace, allowing companies to buy the workplace version of ChatGPT through their existing Amazon Web Services accounts and to count eligible spending toward the cloud commitments they have already signed with Amazon. The listing is sold by OpenAI, billed by AWS and carries no public price. Buyers must request a private offer.
+In Short
+OpenAI's business version of ChatGPT can now be bought through Amazon's cloud store, with the charge landing on a company's AWS bill. That matters for organisations that have promised to spend a fixed sum with AWS, because eligible ChatGPT Enterprise spending can now count toward that promise. There is no published price, every deal is a private quote, and Anthropic's Claude Enterprise is already sold the same way on the same marketplace.
+What was announced
+The announcement on OpenAI's site, tagged under ChatGPT and Partnerships, is short: about a minute and twenty seconds in its audio version. Its central claim is that the AWS listing gives organisations "a simpler way to discover, buy, and manage ChatGPT Enterprise using their existing AWS purchasing and billing relationship and to apply eligible spend toward their AWS commitments."
+According to OpenAI, customers buying through AWS "get the same models, features, and functionality available directly from OpenAI, with new features released at the same time." The company also said eligible customers can access two vertical versions of the product, ChatGPT for Healthcare and ChatGPT for Financial Services, through the same marketplace. Eligibility is confirmed by an OpenAI or AWS account team. Neither the post nor the listing sets out what the criteria are.
+The post opens its case with scale. More than 1.2 billion people use ChatGPT each week, according to OpenAI. The figure is not new to this announcement: OpenAI used the same number on October 21, when it 
+extended ChatGPT advertising to 26 more countries, bringing the total to 89
+, and the enterprise post links back to that advertising announcement as its source. In February, 
+OpenAI put ChatGPT at 900 million weekly users and 9 million paying business users
+. No updated count of business users or Enterprise seats appears in today's material.
+The only quotation in the announcement comes from Amazon's side. Matt Yanchyshyn, Vice President, AWS Marketplace and Partner Services, said: "Enterprises want to put AI to work across their teams without adding new layers of procurement. With ChatGPT Enterprise in AWS Marketplace, customers can buy it through their AWS account, govern it alongside the rest of their software spend, and move from evaluation to rollout faster. Working with OpenAI, we're bringing one of the world's most widely used AI products to AWS customers."
+Four products in one listing
+The AWS Marketplace page describes ChatGPT Enterprise on AWS as bringing "together Chat, ChatGPT Work, Codex, and dots in one enterprise offering." It is listed under three categories - Software Development, Research and Generative AI - and delivered as 
+SaaS
+, meaning the software runs as a hosted service rather than inside the customer's own AWS environment. The page also carries AWS's "Deployed on AWS" label, set to yes.
+Chat
+ is the conversational product most people know. The listing describes it as a place to "explore ideas, ask questions, write, and work through problems in conversation."
+ChatGPT Work
+ is the newest of the four. According to the listing, it takes on "research, analysis, and projects that span multiple steps," drawing on connected apps and files to produce "documents, presentations, spreadsheets, and reports," while users review progress, steer the work and approve important actions. OpenAI introduced it on July 9, when 
+it began to sunset its standalone Atlas browser and folded those functions into the new ChatGPT Work agent
+. Enterprise customers were in the first rollout group, alongside Pro and Edu, and the Codex desktop app was merged into the same unified ChatGPT desktop application.
+Codex
+ is OpenAI's coding agent. The listing says it can "understand codebases, develop features, fix bugs, run tests, and review changes." Codex had 1.6 million weekly users in February, according to the same company update that produced the 900 million ChatGPT figure. By April 28, OpenAI was saying more than 4 million people used Codex every week, 
+according to its post on bringing its models to AWS
+.
+Dots
+ is the least familiar name. The listing describes dots as agents that are always on, learn a user's preferences and follow through on ongoing responsibilities. They can, according to the page, "track updates, keep documents and analyses current, and move projects forward between conversations," returning results and decisions that need a person's attention. The listing gives no limits on how many dots an organisation can run, what they cost, or how their activity is metered.
+How the money moves
+The financial mechanism is the substance of the announcement. The listing's highlights say purchasing and billing are managed through AWS Marketplace, with spending counted toward the customer's AWS EDP or PPA commitment. Further down, the wording is more careful: eligible consumption counts toward those commitments "subject to" the customer's agreement with AWS.
+Neither abbreviation is spelled out on the page. EDP refers to AWS's Enterprise Discount Program and PPA to a Private Pricing Agreement - contracts under which a company commits to a minimum level of AWS spending over several years in exchange for discounts. Large organisations sign these with the 
+hyperscaler
+ and then face a practical problem: the commitment has to be consumed. Marketplace purchases that count toward the commitment allow software bought from third parties to fill that quota. How much of any given commitment can be spent this way is set contract by contract, which is what "subject to" signals.
+Price is the gap. Under "Pricing," the listing shows only "Custom pricing options" and states that pricing depends on a buyer's requirements and eligibility. A private offer has to be requested to receive a quote. No per-seat price, minimum seat count, contract length or usage rate is published. The page also displays AWS's standard description of SaaS delivery, under which buyers "pay recurring monthly usage fees through" their AWS bill. That same generic text says AWS "handles deployment and infrastructure management," whereas the product description says buyers keep "the product experience managed by OpenAI." AWS's content disclaimer on the page states that vendors are responsible for their product descriptions and that AWS does not warrant them.
+How usage is measured inside ChatGPT Enterprise matters for how those monthly fees add up. On June 18, OpenAI introduced 
+usage analytics and updated spend controls for enterprises
+, bringing ChatGPT and Codex credit usage into a single admin view and letting administrators set default limits for a workspace, specific limits for groups and individual overrides, according to OpenAI. Today's materials do not explain how credit consumption inside ChatGPT Enterprise translates into the charges that appear on an AWS invoice.
+Neither company disclosed what share of each sale AWS retains. The structure is not new, though. Anthropic's IPO filing gave an outside view of how cloud marketplaces handle the money: 
+the marketplaces bill end customers, collect payment and pass the proceeds on net of platform and other fees
+, with Anthropic booking the marketplace fees as an expense rather than deducting them from revenue.
+Two other features on the page belong to AWS Marketplace rather than to OpenAI. A financing banner says the marketplace accepts line-of-credit payments through the PNC Vendor Finance program, available to select AWS customers in the US, excluding Nevada, North Carolina, North Dakota, Tennessee and Vermont. And the page offers AWS's "agent mode," an AI assistant that can evaluate the listing or help a buyer draft requirements. At the time of the announcement, the listing showed no customer ratings or reviews.
+Data, processors and administrative control
+The listing makes four specific security and privacy statements. Business data is encrypted at rest and in transit. It is not used to train OpenAI's models by default. Administrators can manage user access, permissions and connected tools. And users decide what agents can reach and which actions require their approval.
+On data protection roles, the listing casts OpenAI as the 
+data processor
+, the party that handles personal data on behalf of the customer, which remains the controller. "OpenAI is the data processor for ChatGPT Enterprise and engages subprocessors, including AWS, to support the service," the listing states. A subprocessor is a further company the processor engages. Naming AWS as a subprocessor, together with the "Deployed on AWS" label, indicates that AWS infrastructure is involved in running the service for these customers. The listing does not say whether all ChatGPT Enterprise data for AWS-billed customers stays on AWS, nor in which regions it is processed.
+The administrative controls echo earlier changes. When OpenAI added a batch of 12 third-party connectors to ChatGPT Enterprise on November 24, 2025, 
+connectors for enterprise workspaces were off by default and required an administrator to enable them
+. The AWS listing's language on connected tools and agent permissions follows the same model, with administrators deciding what the agents can touch.
+Healthcare is where the two AI listings on the page read differently. The ChatGPT Enterprise listing makes no statement about 
+HIPAA
+, the US health privacy law; OpenAI's post points healthcare buyers instead to ChatGPT for Healthcare, for eligible customers. Anthropic's Claude Enterprise, shown on the same page as a similar product, describes itself as HIPAA-eligible "with a BAA available," a reference to the business associate agreement US healthcare organisations sign with vendors that handle patient data.
+Bedrock for developers, Marketplace for staff
+OpenAI positions the listing as the second half of a two-part arrangement with Amazon. "These OpenAI products complement the OpenAI models available in Amazon Bedrock," the post says. "Developers can build AI applications and agents with OpenAI models in Amazon Bedrock, while teams across the business use ChatGPT Enterprise in their daily work."
+The Bedrock half has been built over six months. On April 28, OpenAI launched its models, Codex and Amazon Bedrock Managed Agents on AWS in limited preview. On June 1, 
+AWS made GPT-5.5, GPT-5.4 and Codex generally available on Bedrock
+, with pricing that matches OpenAI's first-party rates, according to AWS. On August 11, OpenAI made its Daybreak cybersecurity models available through Bedrock for enrolled customers. And when Amazon reported its third-quarter results on October 29, 
+its release named GPT-6 Astra, GPT-6 Sol, GPT-6 Luna and GPT-6.1 Sol among the OpenAI models on Bedrock
+, along with Bedrock Managed Agents "powered by OpenAI." The same results showed AWS revenue of $45.98 billion for the quarter, up 39.3%.
+The arrangement rests on changes to OpenAI's terms with Microsoft. The 
+October 2025 restructuring of the Microsoft-OpenAI partnership kept Azure API exclusivity but allowed OpenAI's non-API products to be served on any cloud provider
+, a category ChatGPT Enterprise falls into. The partners rewrote the arrangement again in April: 
+the amendment announced on April 27, 2026 lets OpenAI serve all of its products to customers on any cloud
+, while Azure remains the primary cloud partner and the place OpenAI products ship first, unless Microsoft cannot or chooses not to support the capability. OpenAI's post today compares the AWS version only with buying directly from OpenAI and does not address timing relative to Azure.
+Microsoft remains the larger financial counterparty. In its September quarter, Microsoft 
+recorded $10.0 billion of revenue from commercial arrangements with OpenAI and held an approximate 24% interest on an as-converted basis
+.
+Same shelf as Claude
+The listing's "Similar products" panel makes the competitive picture explicit. It shows three products: Perplexity Enterprise Pro, Perplexity's API platform, and Anthropic's Claude Enterprise. The Claude Enterprise description says it gives "every employee access to Claude Chat, Claude Code, and Cowork," lists Claude Security and Claude Design as recently added capabilities, and adds that for AWS customers, spend draws down directly from an EDP or PPA commitment. OpenAI's offer, on that comparison, arrives with the same commitment mechanism its main rival already uses.
+For Anthropic, the marketplaces are not a side channel. Its amended IPO filing put sales through the cloud marketplaces of Amazon, Google and Microsoft at 
+about 11% of revenue in 2023, 32% in 2024, 47% in 2025 and 44% in the nine months to September 30, 2026
+. For the first half of 2026, 
+the share was 48%
+. OpenAI has not disclosed what share of its business revenue comes through cloud marketplaces, and today's announcement does not say whether ChatGPT Enterprise is also listed on the marketplaces of Microsoft or Google.
+AWS's position is unusual. It now sells the workplace products of both leading model developers through the same storefront, while Amazon is also one of Anthropic's investors and compute suppliers. Each sale through the marketplace generates a fee for AWS regardless of which model wins the seat.
+Why it matters for marketing teams
+For marketing departments, agencies and publishers, the announcement is less about new capability than about who buys the tool and from which budget. ChatGPT Enterprise purchased through AWS sits on the same invoice as cloud hosting and is governed, in Yanchyshyn's words, "alongside the rest of their software spend." That ties the purchase to whoever manages the AWS relationship, rather than to the department that uses the seats.
+That shift intersects with a known problem. Telemetry from LayerX, covered in May, found that 
+nearly half of enterprise AI use runs through personal accounts
+, the pattern usually described as 
+shadow AI
+. AWS's pitch today is about removing layers of procurement. Neither OpenAI nor AWS offered evidence on whether marketplace availability changes adoption or moves usage off personal accounts.
+There is also an advertising angle, even though the product itself carries no ads. When OpenAI expanded ChatGPT advertising in October, 
+ads were shown only to users on the Free and Go tiers
+. Enterprise workspaces bought through AWS fall outside that audience. Yet the 1.2 billion weekly user figure OpenAI uses to sell enterprise seats is the same figure it used to announce its advertising expansion. The two businesses draw on the same headline reach while serving separate sets of users.
+The products in the bundle also map onto marketing work. OpenAI's own usage data, published in October, found that 
+decision-making and problem-solving accounted for 21.6% of US work-related ChatGPT requests
+. ChatGPT Work produces documents, presentations, spreadsheets and reports, Codex reaches the engineering teams that build tracking, feeds and internal tools, and dots are pitched at recurring monitoring work that continues between conversations. Whether those three products perform at enterprise scale is not something a marketplace listing can show, and the page currently carries no customer reviews.
+What the announcement does not say
+Several basic facts are missing from both documents. There is no price or pricing model, no disclosure of AWS's fee, and no information on which countries or AWS regions are eligible. Eligibility criteria for ChatGPT Enterprise, ChatGPT for Healthcare and ChatGPT for Financial Services are left to account teams. There is no customer count for ChatGPT Enterprise, no figure for how many AWS customers are expected to buy this way, and no explanation of how credit-based usage controls interact with monthly AWS billing.
+The data residency picture is partial. The listing names AWS as a subprocessor and marks the product as deployed on AWS, but does not say whether data for AWS-billed customers is processed differently from data for customers who buy directly from OpenAI. And the post's promise of features "released at the same time" covers the comparison with OpenAI's direct sales, not with Azure, where the amended Microsoft terms still give OpenAI products a first-to-ship position by default.
+Timeline
+October 28, 2025
+ - 
+Microsoft and OpenAI restructure their partnership, keeping Azure API exclusivity while allowing non-API products on any cloud
+November 24, 2025
+ - 
+OpenAI adds third-party connectors, including Semrush, to ChatGPT Enterprise, off by default for enterprise workspaces
+February 27, 2026
+ - 
+OpenAI reports 900 million weekly ChatGPT users, 9 million paying business users and 1.6 million weekly Codex users
+April 27, 2026
+ - 
+Microsoft and OpenAI amend their deal, letting OpenAI serve all products on any cloud provider
+April 28, 2026
+ - OpenAI models, Codex and Amazon Bedrock Managed Agents launch on AWS in limited preview; OpenAI cites more than 4 million weekly Codex users
+May 31, 2026
+ - 
+LayerX telemetry shows nearly half of enterprise AI use runs through personal accounts
+June 1, 2026
+ - GPT-5.5, GPT-5.4 and Codex become generally available on Amazon Bedrock at OpenAI's first-party rates
+June 18, 2026
+ - OpenAI introduces usage analytics and spend controls for ChatGPT Enterprise administrators
+July 9, 2026
+ - 
+OpenAI launches ChatGPT Work and begins to sunset the Atlas browser
+August 11, 2026
+ - OpenAI's Daybreak cybersecurity models become available through Amazon Bedrock
+October 21, 2026
+ - 
+ChatGPT ads reach 89 countries; OpenAI cites more than 1.2 billion weekly users
+October 26, 2026
+ - 
+Anthropic's IPO filing shows 48% of first-half revenue came through cloud marketplaces
+October 26, 2026
+ - 
+OpenAI data shows decision-making is 21.6% of US work-related ChatGPT requests
+October 28, 2026
+ - 
+Microsoft records $10.0 billion of quarterly revenue from OpenAI arrangements
+October 29, 2026
+ - 
+Amazon reports AWS revenue up 39.3% to $45.98 billion and names GPT-6 models on Bedrock
+November 2, 2026
+ - 
+Anthropic's amended filing puts marketplace sales at 44% of nine-month revenue
+November 9, 2026
+ - ChatGPT Enterprise becomes available through AWS Marketplace, with spend eligible to count toward AWS EDP or PPA commitments
+Related PPC Land coverage
+OpenAI kills Atlas browser, folds it into new ChatGPT Work agent
+ - The July launch of ChatGPT Work, now one of the four products in the AWS listing.
+Microsoft and OpenAI rewrite the deal: what actually changed
+ - The April 2026 amendment that lets OpenAI serve its products on any cloud.
+Microsoft and OpenAI restructure partnership with new governance framework
+ - The October 2025 terms that split API exclusivity from non-API products.
+Anthropic swings to $567m Q3 operating loss on $5bn of short-term compute
+ - Anthropic's amended filing, including its reliance on cloud marketplace sales.
+Amazon, Google and Microsoft hold $269bn of Anthropic compute contracts
+ - How the three cloud providers profit from Anthropic as investors, suppliers and distributors.
+Amazon ad revenue growth drops to 11% after Prime Day moves to June
+ - Amazon's third quarter, with AWS growth and OpenAI models on Bedrock.
+Microsoft's search and ad sales, now with LinkedIn, gain 10% to $6.6bn
+ - Microsoft's quarter, including revenue from OpenAI and its stake.
+Advertisers in 26 more countries gain ChatGPT ads, bringing the total to 89
+ - The ads expansion where OpenAI first cited 1.2 billion weekly users.
+OpenAI hits 900M users
+ - OpenAI's February figures for weekly users, paying business users and Codex.
+OpenAI adds Semrush to ChatGPT Enterprise connector lineup
+ - How 
+
+===== https://www.aiinsiders.net/article/chatgpt-enterprise-can-now-be-bought-on-an-aws-bill
+(status 200)
+Home
+/
+Wire
+/
+ChatGPT Enterprise can now be bought on an AWS b…
+WIRE
+ChatGPT Enterprise can now be bought on an AWS bill
+OpenAI listed ChatGPT Enterprise in AWS Marketplace, so companies with Amazon cloud contracts can pay for it through the account they already hold.
+AI Insiders Staff
+EDITED BY  
+ALESSANDRO BENIGNI
+PUBLISHED  
+ NOV 11, 2026 
+1 MIN READ
+Follow on Google
+16 HR AGO
+OpenAI has put ChatGPT Enterprise on AWS Marketplace, which means a company can buy it through its existing Amazon cloud account instead of signing a separate contract with OpenAI. In its announcement, OpenAI says eligible spend can count toward a customer’s AWS commitments, the minimum amounts big buyers have already agreed to pay Amazon.
+For a procurement team, the change is in the paperwork. The product stays the same: OpenAI says buyers on AWS receive identical models and features to those who go direct, with new releases landing together. Eligible customers can also add its healthcare and financial-services editions through the listing.
+The listing sits beside OpenAI’s models in Amazon Bedrock, which developers use to build their own applications and agents. Marketplace is the route for staff who just want ChatGPT at work. OpenAI does not say how much of the spend will count toward commitments, and it tells buyers to ask their account team at either company.
+Companies with unspent AWS commitments now have a way to move part of that budget into ChatGPT seats, if the account team agrees the purchase qualifies.
+Announced by OpenAI on its website; the source page carries no publication date.
+▣ The Newsletter
+The morning brief for people inside the AI industry.
+One email a day, Tuesday through Saturday. We read 400 papers, 60 cap-tables,
+        and every regulator's docket so you don't. The site you're on is the archive,
+        the newsletter is the product.
+  14,224 
+Subscribers
+21.1%
+Open rate
+Free
+Forever
+AI Insiders lives on LinkedIn. Open the newsletter and tap subscribe —
+        new issues land in your LinkedIn feed and inbox.
+Subscribe on LinkedIn →
+Subscribe on Substack →
+Free, forever
+Unsubscribe in one click
+14,224 already in
+Subscribe on LinkedIn, or get the same daily brief by email on Substack.
+More in Wire
+All Wire →
+Wire
+/
+6 days ago
+ChatGPT may soon make animated GIFs, if one account's sighting holds
+By 
+AI Insiders Staff
+Wire
+/
+Oct 15
+OpenAI's free teacher course now comes in Brazilian Portuguese
+By 
+AI Insiders Staff
+Wire
+/
+Jun 3
+OpenAI Cookbook shows how to run its models on Amazon Bedrock
+By 
+AI Insiders Staff
+Wire
+/
+Oct 14
+GPT 6.1 Sol can now hold 500k of context by default, up from 272k
+By 
+AI Insiders Staff
+Wire
+/
+Nov 3
+ChatGPT is dropping its separate Chat and Work tabs
+By 
+AI Insiders Staff
+Wire
+/
+Oct 22
+OpenAI engineer says he ran up a $10 million AI bill in one month
+By 
+AI Insiders Staff
+
+===== https://digintoai.com/en/articles/openai-chatgpt-enterprise-aws-marketplace
+(status 200)
+On this page
+According to 
+OpenAI’s official website news
+ (
+November 9, 2026
+), 
+ChatGPT Enterprise
+ is now available through 
+AWS Marketplace
+. The listing is live as 
+prodview-sscra4m7iracg
+ at 
+https://aws.amazon.com/marketplace/pp/prodview-sscra4m7iracg
+. OpenAI frames the move as a simpler path for organizations to 
+discover, buy, and manage
+ ChatGPT Enterprise using an 
+existing AWS purchasing and billing
+ relationship.
+Purchasing and commitments
+OpenAI’s news post says eligible spend can be applied toward 
+AWS commitments
+. The AWS Marketplace listing adds that purchasing and billing run through Marketplace, and spend can count toward an 
+AWS EDP or PPA
+ commitment. How any given account applies that depends on the 
+customer agreement
+—OpenAI and AWS do not publish a fixed discount percentage for this listing.
+What is in the package
+ChatGPT Enterprise on AWS brings together 
+Chat
+, 
+ChatGPT Work
+, 
+Codex
+, and 
+dots
+ in one enterprise offering. OpenAI says AWS customers get the 
+same models, features, and functionality
+ available when buying from OpenAI directly, with new features released at the same time.
+Relationship to Amazon Bedrock
+OpenAI’s news post states that these products 
+complement
+ the OpenAI models available in 
+Amazon Bedrock
+: developers can build applications and agents with OpenAI models on Bedrock, while business teams use ChatGPT Enterprise for day-to-day work. That 
+complement
+ wording is 
+OpenAI’s own framing
+—it is 
+not
+ a claim that Marketplace ChatGPT Enterprise replaces Bedrock or that Bedrock OpenAI models are being withdrawn.
+Healthcare and Financial Services
+OpenAI also notes that 
+eligible
+ customers can access 
+ChatGPT for Healthcare
+ and 
+ChatGPT for Financial Services
+ through AWS Marketplace. Eligibility has to be confirmed with OpenAI or AWS account teams; those vertical offerings are not automatically included for every Enterprise buyer.
+Data use and residency (listing language)
+The AWS listing states that customer business data is encrypted in transit and 
+is not used to train OpenAI models by default
+, and that administrators can manage access, permissions, and connected tools. The same listing is explicit that purchasing through AWS Marketplace 
+does not guarantee
+ that all customer data remains on AWS infrastructure or within the customer’s AWS environment. Data residency and inference residency controls apply only when enabled and are 
+not available in every region
+—noted here only as a listing boundary.
+Focus
+The focus is the 
+Marketplace listing and procurement path
+ for ChatGPT Enterprise—not a Bedrock model-launch story, and not a GovCloud / Daybreak security availability brief. No Marketplace order or logged-in purchase walkthrough is included.
+Related reading (different story)
+For an OpenAI×AWS neighbor that is about 
+Daybreak Red / GPT-5.6 Cyber
+ availability to approved customers on 
+AWS GovCloud
+ via 
+Bedrock
+—not this Enterprise×Marketplace purchase channel—see 
+OpenAI Daybreak Red Brings GPT-5.6 Cyber to AWS GovCloud US-East
+.
+Original sources
+OpenAI official website news — ChatGPT Enterprise now available in AWS Marketplace (November 9, 2026)
+ ↗
+AWS Marketplace — ChatGPT Enterprise (prodview-sscra4m7iracg)
+ ↗
+Recommended reading
+OpenAI
+2026-11-05
+OpenAI Daybreak Red Brings GPT-5.6 Cyber to AWS GovCloud US-East
+On November 4, 2026, OpenAI’s blog said Daybreak Red—access to GPT-5.6 Cyber—is available to approved customers in AWS GovCloud (US-East) on Amazon Bedrock. High-level uses: authorized vulnerability research, exploit validation, and security testing for government security teams in controlled settings. Access needs OpenAI Daybreak Red approval and AWS provisioning; approval does not auto-enable AWS access. Not a public API; not the Paths research pipeline. DigIntoAI hasn’t applied or tested it.
+Read more
+ ↗
+OpenAI
+2026-11-11
+OpenAI Introduces Businesses in ChatGPT in Beta
+OpenAI announced Businesses in ChatGPT in beta in the early hours of 11 November 2026 (Beijing time). Eligible businesses can claim profiles, update information, and view aggregated insights in Business Hub. Business Agents are currently available to eligible ecommerce and online service businesses in the United States. User conversations are not shared with businesses, and publishing an Agent does not authorize paid advertising.
+Read more
+ ↗
+OpenAI
+2026-11-11
+Codex CLI 0.167.1 Stable Version Is Published, and npm Latest Points to It
+OpenAI has published Codex CLI stable version 0.167.1 on GitHub (Release tag rust-v0.167.1, name 0.167.1). The GitHub Release published_at is 2026-11-10T21:32:01Z (2026-11-11 05:32:01 Asia/Shanghai). On the npm package @openai/codex, dist-tags.latest now points to 0.167.1, and time["0.167.1"] is 2026-11-10T21:39:51.990Z (2026-11-11 05:39:51.990 Asia/Shanghai). The official Release body has no itemized update list; under a Changelog heading it only points to https://github.com/openai/codex/compare/rust-v0.167.0...rust-v0.167.1.
+Read more
+ ↗
+OpenAI
+2026-11-11
+Odessia's Founder Announces Acquisition by OpenAI, Will Join to Focus on the Future of Travel
+Odessia's site says “OpenAI has acquired Odessia” and the service is no longer available; bookings: support@odessia.com. Founder Francis Davidson (@FDavidsonT) wrote in “OpenAI Acquires Odessia” on X (2026-11-10 18:00:11 UTC, 2026-11-11 02:00:11 Asia/Shanghai) that he will join the team to focus on the future of travel. LinkedIn: same opening, Published Nov 10, 2026 only. Greg Brockman (@gdb) replied (2026-11-10 20:48:04 UTC, 2026-11-11 04:48:04 Asia/Shanghai): “welcome to the team!” OpenAI's newsroom, @OpenAI and @OpenAIDevs have not posted. Terms, price, and ChatGPT plans are undisclosed.
+Read more
+ ↗

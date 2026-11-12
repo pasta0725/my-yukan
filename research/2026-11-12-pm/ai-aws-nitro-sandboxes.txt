@@ -1,0 +1,1513 @@
+===== https://aws.amazon.com/about-aws/whats-new/2026/11/nitro-sandboxes-eks-ecs-ec2/
+(status 200)
+Introducing AWS Nitro Sandboxes on Amazon EKS, ECS and EC2 for hardware isolated pods, tasks and VMs
+                 Posted on: 
+Nov 9, 2026
+AWS Nitro Sandboxes are now available as lightweight VMs managed by the Nitro Hypervisor. You can use Nitro Sandboxes for an Amazon EKS pod, or Amazon ECS task, or lightweight Virtual Machines (VMs), including AI agents running inside them, in their own hardware-isolated virtual machine powered by the 
+AWS Nitro System
+. Each workload gets the isolation boundary of a Nitro isolated virtual machine. This allows you to safely run untrusted, multi-tenant, or regulated workloads within the resources of a single instance.
+Nitro Sandboxes run on your EC2 instances with near-native EC2 performance and inherits Nitro-hypervisor isolation. You can also validate your workloads through cryptographic attestation, so that secrets are released only to Nitro Sandboxes that have proven their integrity. With Nitro Sandboxes, you can safely execute LLM-generated code in an isolated environment of its own all while improving utilization and lowering compute costs by securely sharing a single EC2 instance across multiple agentic workloads. You can easily enable EKS pods or ECS tasks to run on Nitro Sandboxes and each pod or task gets its own isolated environment. Enabling Nitro Sandboxes in EKS or ECS is a one-line change and each pod or task gets its own VM, with your workloads remaining fully native (Pod Identity, VPC CNI, EBS/EFS/S3 storage, and CloudWatch all work out of the box). If you want full control, run Nitro Sandboxes directly on EC2 with your own AMI, orchestration, and with virtual machine monitors (VMMs). Amazon Linux and Firecracker are natively supported, and patches for other options are available today.
+AWS Nitro Sandboxes are available today on most Nitro-based EC2 instances, in all commercial regions worldwide, at no additional charge.
+To learn more and get started, see the 
+EKS User Guide
+ or 
+ECS User Guide
+. For implementation details or to fully customize your Nitro Sandbox usage, see the 
+Nitro Sandboxes documentation
+ in the EC2 user guide.
+
+===== https://dev.classmethod.jp/en/articles/nitro-sandboxes-ec2-firecracker/
+(status 200)
+Introduction
+On November 9, 2026, Nitro Sandboxes was announced.
+https://aws.amazon.com/jp/about-aws/whats-new/2026/11/nitro-sandboxes-eks-ecs-ec2/
+With Nitro Sandboxes, you can run EKS Pods, ECS tasks, and VMs on EC2 as lightweight VMs that have the isolation boundary of the Nitro System.
+In this article, I introduce the results of trying Nitro Sandboxes with Firecracker, using an EC2 m9g.large as the parent instance.
+ Test Environment
+Item
+Details
+Region
+ap-northeast-1
+Network
+Default VPC, public IP assigned
+Parent
+m9g.large (arm64, 2 vCPU, 8192 MiB memory)
+AMI
+AL2023 kernel 6.18 arm64
+Parent kernel
+6.18.56-126.188.amzn2023.aarch64
+Firecracker
+v1.18.0
+Parent instance profile and IMDS
+ec2-ssm-core, HttpTokens is required, hop limit is 2
+ Starting the Parent and Guests
+ Preparing the Parent
+I launched the parent with 
+--enclave-options Enabled=true
+.
+aws
+ ec2
+ run-instances
+ \
+    --image-id
+ <
+AL2023
+ kernel
+ 6.18
+ arm64
+ の
+ AM
+I
+>
+ \
+    --instance-type
+ m9g.large
+ \
+    --subnet-id
+ <
+サブネット
+ I
+D
+>
+ \
+    --security-group-ids
+ <
+セキュリティグループ
+ I
+D
+>
+ \
+    --associate-public-ip-address
+ \
+    --iam-instance-profile
+ Name=
+<
+インスタンスプロファイル
+名
+>
+ \
+    --enclave-options
+ Enabled=
+true
+ \
+    --block-device-mappings
+ 'DeviceName=/dev/xvda,Ebs={VolumeSize=30,VolumeType=gp3}'
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-sandboxes-run-firecracker.html
+I added the kernel argument that reserves the memory pool, as described in the official procedure. I changed the size from 
+8G
+ to 
+4G
+.
+grubby
+ --update-kernel=ALL
+ --args=
+"nitro_enclaves.mempool=4G@0"
+After rebooting the parent instance, dmesg showed a log of the CMA pool being reserved, and the total was 4 GiB. Before starting a sandbox, in_use is 66 MiB.
+[    0.000000] nitro_enclaves: CMA pool: 4096 MiB reserved in 16 region(s), 4096 MiB requested
+mem_pool/free: 4225761280
+mem_pool/in_use: 69206016
+mem_pool/total: 4294967296
+cpu_pool/free: 1
+cpu_pool/in_use: 0
+cpu_pool/total: 1
+pcie_slots: 4
+pcie_slots_in_use: 0
+pcie_slots_total: 10
+I installed Firecracker following the official procedure, and installed socat and nftables with dnf.
+The two sandboxes started this time are called sandbox a and sandbox b. The 1 GiB additional EBS volume to be passed to sandbox a was created in the same AZ as the parent and attached in advance.
+Creating and attaching the additional EBS volume
+aws
+ ec2
+ create-volume
+ --availability-zone
+ <
+親と同じ
+ A
+Z
+>
+ --size
+ 1
+ --volume-type
+ gp3
+aws
+ ec2
+ attach-volume
+ --volume-id
+ <
+ボリューム
+ I
+D
+>
+ --instance-id
+ <
+親のインスタンス
+ I
+D
+>
+ --device
+ /dev/sdf
+The attached volume appeared as 
+/dev/nvme1n1
+ on the parent.
+ Guest Image
+I used the parent's kernel (vmlinuz) and an initrd built with dracut as the guest image. For the init script, I added processing to mount the data drive to the official one and called it sandbox-init.
+Guest image creation commands and sandbox-init
+Place the 
+sandbox-init
+ shown below in 
+/opt/sbx
+ and run the following script as root. Compared with the official dracut command, I added virtio_blk and ext4 to 
+--add-drivers
+, and the commands used in the guest to 
+--install
+.
+set
+ -e
+cd
+ /opt/sbx
+chmod
+ +x
+ sandbox-init
+cp
+ /boot/vmlinuz-
+$(
+uname
+ -r
+) 
+vmlinuz
+dracut
+ --force
+ --no-hostonly
+ --reproducible
+ --no-early-microcode
+ \
+    --modules
+ bash
+ \
+    --add-drivers
+ "virtio_pci virtio_net vmw_vsock_virtio_transport nsm virtio_blk ext4"
+ \
+    --install
+ "mount umount modprobe ip sleep mkdir socat cat ls uname dd grep head tail od curl ping ps dmesg awk sed free df wc sync date id lsblk rm cut tr hostname touch strings"
+ \
+    --include
+ "
+$PWD
+/sandbox-init"
+ /init
+ \
+    --kver
+ $(
+uname
+ -r
+) 
+initrd.img
+ls
+ -l
+ vmlinuz
+ initrd.img
+file
+ vmlinuz
+ 2>
+/dev/null
+ ||
+ true
+sandbox-init sets the per-sandbox IP and gateway from sbx_ip and sbx_gw on the kernel command line. Finally, it connects to the parent's CID 2, port 5000 over vsock and hands over bash.
+#!/bin/bash
+export
+ PATH
+=
+/usr/local/bin:/usr/sbin:/usr/bin
+mount
+ -t
+ proc
+ proc
+ /proc
+mount
+ -t
+ sysfs
+ sysfs
+ /sys
+mount
+ -t
+ devtmpfs
+ devtmpfs
+ /dev
+mkdir
+ -p
+ /tmp
+ /run
+ /data
+ /dev/shm
+mount
+ -t
+ tmpfs
+ tmpfs
+ /tmp
+mount
+ -t
+ tmpfs
+ tmpfs
+ /dev/shm
+modprobe
+ -a
+ virtio_pci
+ virtio_net
+ vmw_vsock_virtio_transport
+ nsm
+ virtio_blk
+ ext4
+# Read sbx_ip / sbx_gw from the kernel command line (to change the IP per sandbox)
+for
+ p 
+in
+ $(
+cat
+ /proc/cmdline
+); 
+do
+  case
+ $p 
+in
+ sbx_
+*
+=
+*
+)
+ export
+ "
+$p
+"
+;; 
+esac
+done
+# Wait for eth0 to appear
+for
+ i 
+in
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+; 
+do
+  [ 
+-e
+ /sys/class/net/eth0 ] && 
+break
+  sleep
+ 0.5
+done
+# Set a static address on eth0 and the parent instance's TAP as the default gateway
+ip
+ link
+ set
+ lo
+ up
+ip
+ addr
+ add
+ "
+$sbx_ip
+"
+ dev
+ eth0
+ip
+ link
+ set
+ eth0
+ up
+ip
+ route
+ add
+ default
+ via
+ "
+$sbx_gw
+"
+echo
+ "nameserver 169.254.169.253"
+ >
+ /etc/resolv.conf
+# Mount the drive if present
+if
+ [ 
+-b
+ /dev/vda ]; 
+then
+  mount
+ /dev/vda
+ /data
+fi
+# Connect back to the parent over vsock and hand over bash (CID 2 = parent, port 5000)
+while
+ true
+; 
+do
+  socat
+ VSOCK-CONNECT:2:5000
+ EXEC:/bin/bash,stderr
+  sleep
+ 1
+done
+ Starting the Sandboxes
+I completed creating the TAPs, configuring NAT, and creating ext4 on the drives before starting the two sandboxes.
+Preparing the parent's network and storage
+Before running this, confirm with 
+lsblk
+ that 
+/dev/nvme1n1
+ is the empty 1 GiB volume you attached. If it is a different volume, 
+mkfs.ext4
+ will erase its contents.
+set
+ -e
+# Two TAPs (for sandbox a / b)
+ip
+ tuntap
+ add
+ dev
+ tap0
+ mode
+ tap
+ip
+ addr
+ add
+ 192.0.2.1/24
+ dev
+ tap0
+ip
+ link
+ set
+ tap0
+ up
+ip
+ tuntap
+ add
+ dev
+ tap1
+ mode
+ tap
+ip
+ addr
+ add
+ 198.51.100.1/24
+ dev
+ tap1
+ip
+ link
+ set
+ tap1
+ up
+sysctl
+ -w
+ net.ipv4.ip_forward=
+1
+# NAT（この時点では IMDS の reject なし）
+IFACE
+=
+$(
+ip
+ route
+ show
+ default
+ |
+ awk
+ '{print $5; exit}'
+)
+nft
+ -f
+ -
+ <<
+NFT
+table ip sandbox {
+    chain postrouting {
+        type nat hook postrouting priority srcnat; policy accept;
+        iifname { "tap0", "tap1" } oifname "
+$IFACE
+" masquerade
+    }
+}
+NFT
+nft
+ list
+ ruleset
+# sandbox a: 追加 EBS（/dev/nvme1n1）に ext4 を作る。親ではマウントしない
+mkfs.ext4
+ -q
+ /dev/nvme1n1
+lsblk
+ -f
+ /dev/nvme1n1
+# sandbox b: 64 MiB の raw イメージファイル
+truncate
+ -s
+ 64M
+ /opt/sbx/b-data.img
+mkfs.ext4
+ -q
+ /opt/sbx/b-data.img
+ls
+ -l
+ /opt/sbx/b-data.img
+mkdir
+ -p
+ /run/sandbox
+ /run/sbx
+If you save the configuration for sandbox a as 
+sandbox-a.json
+, you can pass it to Firecracker with the following command.
+sudo
+ firecracker
+ --no-api
+ --config-file
+ sandbox-a.json
+{
+    "boot-source"
+: {
+        "kernel_image_path"
+: 
+"/opt/sbx/vmlinuz"
+,
+        "initrd_path"
+: 
+"/opt/sbx/initrd.img"
+,
+        "boot_args"
+: 
+"panic=1 initcall_blacklist=i8042_init sbx_ip=192.0.2.2/24 sbx_gw=192.0.2.1"
+    },
+    "machine-config"
+: {
+        "vcpu_count"
+: 
+2
+,
+        "mem_size_mib"
+: 
+1024
+    },
+    "drives"
+: [{
+"drive_id"
+:
+"data"
+,
+"path_on_host"
+:
+"/dev/nvme1n1"
+,
+"is_root_device"
+:
+false
+,
+"is_read_only"
+:
+false
+}],
+    "network-interfaces"
+: [
+        {
+            "iface_id"
+: 
+"eth0"
+,
+            "host_dev_name"
+: 
+"tap0"
+        }
+    ],
+    "vsock"
+: {
+        "guest_cid"
+: 
+3
+,
+        "uds_path"
+: 
+"/run/sandbox/a.sock"
+    },
+    "enclave"
+: {
+"cpu_overcommit"
+: 
+true
+}
+}
+Sandbox b differs from sandbox a in the drive (a 64 MiB raw image), the TAP (tap1), and the vsock UDS. The guest's IP is 198.51.100.2/24 and the gateway is 198.51.100.1. Everything else is the same.
+For the actual startup, I used 
+start-sandbox.sh
+ instead of this command. This script writes the JSON for each sandbox, starts a socat listener on the parent side that accepts connections from the guest, and runs Firecracker in the background. The mode (confidential or direct) is switched with an argument. To run commands in the guest, I used a self-made 
+gexec
+.
+start-sandbox.sh and gexec
+start-sandbox.sh
+#!/bin/bash
+# usage: start-sandbox.sh <name> <tap> <guest-ip/prefix> <gateway> <confidential|direct> <drive-path|none>
+set
+ -e
+N
+=
+$1
+; TAP
+=
+$2
+; IP
+=
+$3
+; GW
+=
+$4
+; MODE
+=
+$5
+; DRIVE
+=
+$6
+mkdir
+ -p
+ /run/sandbox
+ /run/sbx
+rm
+ -f
+ /run/sandbox/
+$N
+.sock
+*
+if
+ [ 
+"
+$MODE
+"
+ =
+ direct ]; 
+then
+  ENC
+=
+'{"cpu_overcommit": true, "direct_mode": true}'
+else
+  ENC
+=
+'{"cpu_overcommit": true}'
+fi
+if
+ [ 
+"
+$DRIVE
+"
+ =
+ none ]; 
+then
+  DR
+=
+'[]'
+else
+  DR
+=
+"[{
+\"
+drive_id
+\"
+:
+\"
+data
+\"
+,
+\"
+path_on_host
+\"
+:
+\"
+$DRIVE
+\"
+,
+\"
+is_root_device
+\"
+:false,
+\"
+is_read_only
+\"
+:false}]"
+fi
+cat
+ >
+ /opt/sbx/sandbox-
+$N
+.json
+ <<
+JSON
+{
+    "boot-source": {
+        "kernel_image_path": "/opt/sbx/vmlinuz",
+        "initrd_path": "/opt/sbx/initrd.img",
+        "boot_args": "panic=1 initcall_blacklist=i8042_init sbx_ip=
+$IP
+ sbx_gw=
+$GW
+"
+    },
+    "machine-config": {
+        "vcpu_count": 2,
+        "mem_size_mib": 1024
+    },
+    "drives": 
+$DR
+,
+    "network-interfaces": [
+        {
+            "iface_id": "eth0",
+            "host_dev_name": "
+$TAP
+"
+        }
+    ],
+    "vsock": {
+        "guest_cid": 3,
+        "uds_path": "/run/sandbox/
+$N
+.sock"
+    },
+    "enclave": 
+$ENC
+}
+JSON
+# ゲストが逆接続してくる vsock のリスナー（親側）。入力は .in に追記、出力は .out に溜まる
+:
+ >
+ /run/sbx/
+$N
+.in
+:
+ >
+ /run/sbx/
+$N
+.out
+setsid
+ nohup
+ bash
+ -c
+ "while true; do tail -n0 -f /run/sbx/
+$N
+.in | socat UNIX-LISTEN:/run/sandbox/
+$N
+.sock_5000,unlink-early STDIO >> /run/sbx/
+$N
+.out 2>>/run/sbx/
+$N
+.listener.err; sleep 1; done"
+ >
+/dev/null
+ 2>&1
+ &
+setsid
+ nohup
+ firecracker
+ --no-api
+ --config-file
+ /opt/sbx/sandbox-
+$N
+.json
+ >
+ /run/sbx/
+$N
+.fc.log
+ 2>&1
+ &
+echo
+ $!
+ >
+ /run/sbx/
+$N
+.pid
+sleep
+ 1
+echo
+ "started 
+$N
+ mode=
+$MODE
+ pid=$(
+cat
+ /run/sbx/
+$N
+.pid)"
+gexec is saved at 
+/opt/sbx/gexec
+; the guest name is passed as an argument and the script is passed via standard input. It writes the script to the listener's input file, waits until the end marker appears in the output, and returns the result.
+#!/bin/bash
+# usage: gexec <name> < script    ゲストの bash でスクリプトを実行し、出力を返す
+N
+=
+$1
+SCRIPT
+=
+$(
+cat
+)
+ID
+=
+$RANDOM$RANDOM
+START
+=
+$(
+stat
+ -c
+ %s
+ /run/sbx/
+$N
+.out
+)
+printf
+ '{\n%s\n} 2>&1\necho "__END_%s__ rc=$?"\n'
+ "
+$SCRIPT
+"
+ "
+$ID
+"
+ >>
+ /run/sbx/
+$N
+.in
+for
+ i 
+in
+ $(
+seq
+ 1
+ 240
+); 
+do
+  if
+ tail
+ -c
+ +
+$((
+START+1
+)) 
+/run/sbx/
+$N
+.out
+ |
+ grep
+ -q
+ "__END_${
+ID
+}__"
+; 
+then
+ break
+; 
+fi
+  sleep
+ 0.5
+done
+tail
+ -c
+ +
+$((
+START+1
+)) 
+/run/sbx/
+$N
+.out
+ |
+ sed
+ "s/^__END_${
+ID
+}__ rc=/[guest rc=/; /^\[guest rc=/s/
+\$
+/]/"
+This is the pool state when both sandbox a and b were started as confidential.
+Item
+Before start
+After a starts
+After b starts
+pcie_slots_in_use
+0
+1
+2
+mem_pool/free
+4225761280
+3099590656
+1973420032
+mem_pool/in_use
+69206016
+1195376640
+2321547264
+cpu_pool/free
+1
+1
+1
+Sandboxes a and b each consumed 1074 MiB of the mem_pool. The breakdown is the configured 1024 MiB, 2 MiB per sandbox, and 48 MiB for three devices. By specifying 
+cpu_overcommit: true
+, I was able to start two 2-vCPU sandboxes on a 2-vCPU parent.
+In this run, sandbox a started about 0.16 seconds after Firecracker launched, and all virtio devices became active at about 1.7 seconds.
+2026-11-11T11:40:56.780136795 [anonymous-instance:main] Running Firecracker v1.18.0
+2026-11-11T11:40:56.936840946 [anonymous-instance:main] Enclave started: slot=0x1a1ca693c533d6b cid=16
+2026-11-11T11:40:58.471322811 [anonymous-instance:main] DRIVER_OK detected for device uid=1, activating
+ Guest Memory Isolation
+The 
+official documentation
+ explains that with confidential the parent cannot read or write guest memory, whereas with direct it can. To verify this, I started sandbox a as confidential and sandbox b as direct, and read the guest memory from the parent. Direct is specified by adding direct_mode to enclave.
+    "enclave"
+: {
+"cpu_overcommit"
+: 
+true
+, 
+"direct_mode"
+: 
+true
+}
+Firecracker maps the guest memory into its own process and outputs that address in the CMA alloc log. As root on the parent, I read that range of the Firecracker process's 
+/proc/<pid>/mem
+ 1 MiB at a time and counted the following strings.
+Kernel banner and sbx_ip=: the contents of the kernel and initrd that are loaded into guest memory at boot
+Markers A and B: strings that the a and b guests wrote to /dev/shm after boot
+For b, reading stalled around 1010 MiB, so I limited it to the first 1000 MiB with 
+LIMIT_MIB=1000
+.
+Scan script and the commands to write markers in the guests
+Save it as 
+/opt/sbx/memscan.py
+ and run it with the name a or b as an argument.
+#!/usr/bin/env python3
+"""Firecracker プロセスにマップされたゲストメモリ領域（fc.log の "CMA alloc: ... host=0x... size=N MiB"）を
+/proc/<pid>/mem から読み、パターンを数える。
+usage: memscan.py <name>   (name = a|b。/run/sbx/<name>.pid と <name>.fc.log を使う)
+"""
+import
+ re, sys
+name 
+=
+ sys.argv[
+1
+]
+pid 
+=
+ int
+(
+open
+(
+f
+"/run/sbx/
+{
+name
+}
+.pid"
+).read())
+log 
+=
+ open
+(
+f
+"/run/sbx/
+{
+name
+}
+.fc.log"
+).read()
+m 
+=
+ re.search(
+r
+"
+CMA alloc: gpa=
+(
+0x
+[0-9a-f]
++
+)
+ host=
+(
+0x
+[0-9a-f]
++
+)
+ size=
+(\d
++
+)
+ MiB
+"
+, log)
+gpa, host, size_mib 
+=
+ int
+(m.group(
+1
+), 
+16
+), 
+int
+(m.group(
+2
+), 
+16
+), 
+int
+(m.group(
+3
+))
+size 
+=
+ size_mib 
+*
+ 1024
+ *
+ 1024
+import
+ os
+if
+ os.environ.get(
+"LIMIT_MIB"
+):
+    size 
+=
+ min
+(size, 
+int
+(os.environ[
+"LIMIT_MIB"
+]) 
+*
+ 1024
+ *
+ 1024
+)
+patterns 
+=
+ {
+    "kernel banner 'Linux version 6.18'"
+: 
+b
+"Linux version 6.18"
+,
+    "initrd marker 'sbx_ip='"
+: 
+b
+"sbx_ip="
+,
+    "guest tmpfs marker A"
+: 
+b
+"SBX-MEM-MARKER-A-c04e55"
+,
+    "guest tmpfs marker B"
+: 
+b
+"SBX-MEM-MARKER-B-91aa07"
+,
+}
+print
+(
+f
+"sandbox=
+{
+name
+}
+ pid=
+{
+pid
+}
+ region host=0x
+{
+host
+:x
+}
+ size=
+{
+size_mib
+}
+ MiB scanning=
+{
+size 
+//
+ (
+1024
+ *
+ 1024
+)
+}
+ MiB"
+)
+MAXLEN
+ =
+ max
+(
+len
+(p) 
+for
+ p 
+in
+ patterns.values())
+counts 
+=
+ {k: 
+0
+ for
+ k 
+in
+ patterns}
+ok 
+=
+ err 
+=
+ nonzero 
+=
+ 0
+CH
+ =
+ 1024
+ *
+ 1024
+posf 
+=
+ open
+(
+f
+"/run/sbx/
+{
+name
+}
+.scanpos"
+, 
+"w"
+, 
+buffering
+=
+1
+)
+tail 
+=
+ b
+""
+with
+ open
+(
+f
+"/proc/
+{
+pid
+}
+/mem"
+, 
+"rb"
+, 
+buffering
+=
+0
+) 
+as
+ f:
+    off 
+=
+ 0
+    while
+ off 
+<
+ size:
+        n 
+=
+ min
+(
+CH
+, size 
+-
+ off)
+        posf.seek(
+0
+); posf.truncate(); posf.write(
+f
+"about to read offset=
+{
+off 
+//
+ CH}
+ MiB of 
+{
+size_mib
+}
+ MiB
+\n
+"
+)
+        try
+:
+            f.seek(host 
++
+ off)
+            buf 
+=
+ f.read(n)
+        except
+ OSError
+ as
+ e:
+            err 
++=
+ n
+            off 
++=
+ n
+            tail 
+=
+ b
+""
+            first_err 
+=
+ getattr
+(sys.modules[
+__name__
+], 
+"first_err"
+, 
+None
+)
+            if
+ first_err 
+is
+ None
+:
+                first_err 
+=
+ str
+(e)
+                setattr
+(sys.modules[
+__name__
+], 
+"first_err"
+, first_err)
+            continue
+        if
+ not
+ buf:
+            err 
++=
+ n
+            off 
++=
+ n
+            continue
+        ok 
++=
+ len
+(buf)
+        nonzero 
++=
+ len
+(buf) 
+-
+ buf.count(
+0
+)
+        data 
+=
+ tail 
++
+ buf
+        for
+ k, p 
+in
+ patterns.items():
+            counts[k] 
++=
+ data.count(p)
+        tail 
+=
+ buf[
+-
+(
+MAXLEN
+ -
+ 1
+):]
+        off 
++=
+ n
+print
+(
+f
+"bytes read ok=
+{
+ok
+}
+ error=
+{
+err
+}
+ nonzero_bytes=
+{
+nonzero
+}
+"
+)
+if
+ err:
+    print
+(
+"first error:"
+, 
+getattr
+(sys.modules[
+__name__
+], 
+"first_err"
+, 
+""
+))
+for
+ k, v 
+in
+ counts.items():
+    print
+(
+f
+"  
+{
+k
+}
+: 
+{
+v
+}
+ hit(s)"
+)
+The commands to write the markers to the guest's 
+/dev/shm
+ were run with gexec.
+/opt/sbx/gexec
+ a
+ <<
+'G'
+echo "SBX-MEM-MARKER-A-c04e55-SBX-MEM-MARKER-A-c04e55" > /dev/shm/memmarker
+G
+/opt/sbx/gexec
+ b
+ <<
+'G'
+echo "SBX-MEM-MARKER-B-91aa07-SBX-MEM-MARKER-B-91aa07" > /dev/shm/memmarker
+cat /dev/shm/memmarker
+G
+For direct sandbox b, all 1000 MiB could be read. The kernel banner, sbx_ip=, and marker B were found, and marker A had 0 hits.
+sandbox=b pid=29053 region host=0xffff5fc00000 size=1024 MiB scanning=1000 MiB
+bytes read ok=1048576000 error=0 nonzero_bytes=116800950
+  kernel banner 'Linux version 6.18': 3 hit(s)
+  initrd marker 'sbx_ip=': 14 hit(s)
+  guest tmpfs marker A: 0 hit(s)
+  guest tmpfs marker B: 7 hit(s)
+For confidential sandbox a, reading did not progress past the first read while it was running. After I stopped a, the first 1 MiB was returned as all zeros and the rest returned errors. No strings were found.
+sandbox=a pid=28421 region host=0xffff62400000 size=1024 MiB scanning=1024 MiB
+bytes read ok=1048576 error=1072693248 nonzero_bytes=0
+  kernel banner 'Linux version 6.18': 0 hit(s)
+  initrd marker 'sbx_ip=': 0 hit(s)
+  guest tmpfs marker A: 0 hit(s)
+  guest tmpfs marker B: 0 hit(s)
+The official documentation says direct has the same trust model as a nested VM. With the same method, direct sandbox b could be read from the parent, while confidential sandbox a could not be read even by the parent's root.
+ Storage
+ Disks Visible from the Guest
+When I passed the additional EBS to sandbox a and the raw image file to sandbox b via drives, both appeared as vda in the guest. I was able to mount them at /data as ext4 and write to them. The output is from sandbox a.
+ 253        0    1048576 vda
+/dev/vda on /data type ext4 (rw,relatime)
+/dev/vda        974M   28K  907M   1% /data
+ Data Readable from the Parent
+After starting sandboxes a and b as confidential, writing to them, and stopping them, I read the EBS and the raw image from the parent and was able to confirm the content the guests had written.
+--- raw EBS device (/dev/nvme1n1): strings
+SBX-DISK-MARKER-A-7f3a91
+--- mount EBS read-only on the parent
+-rw-r--r--. 1 root root    25 Nov 11 11:42 marker.txt
+SBX-DISK-MARKER-A-7f3a91
+--- raw image file for b
+SBX-DISK-MARKER-B-2b8d10
+The official documentation also states that the parent can read block devices passed to a sandbox, including encrypted EBS. To protect data from the parent, it advises encrypting inside the guest with a key that AWS KMS provides only to sandboxes that have passed attestation.
+ Network
+I configured IP forwarding and NAT on the parent and created a TAP for each sandbox.
+ Guest IP and Outbound Traffic
+This is the IP address and routes confirmed in the guest of sandbox a.
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             192.0.2.2/24 fe80::f007:2cff:fea6:6591/64 
+default via 192.0.2.1 dev eth0 
+192.0.2.0/24 dev eth0 proto kernel scope link src 192.0.2.2 
+Ping to the parent succeeded, and when the guest connected to checkip.amazonaws.com via NAT, the parent's public IP was returned. The public IP has been replaced with an example value.
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+--- egress
+203.0.113.10
+ IMDS
+The parent's HttpTokens was required and the hop limit was 2. With this configuration, the guest was able to access the parent's IMDSv2 via NAT and obtain the instance ID and IAM role name. The instance ID is an example value.
+--- IMDS (no reject)
+token length: 56
+instance-id: i-0123456789abcdef0
+iam role name(s): ec2-ssm-core
+The official documentation also states that if the parent relays traffic via NAT or similar, a sandbox can read IAM role credentials from the parent's IMDS. IMDSv2 and a hop limit of 2 do not prevent this, and it advises rejecting traffic destined for 169.254.169.254 on the parent.
+As root on the parent, I created a forward chain and added a rule that rejects traffic from tap0 and tap1 destined for 169.254.169.254.
+nft
+ add
+ chain
+ ip
+ sandbox
+ forward
+ '{ type filter hook forward priority filter; policy accept; }'
+nft
+ add
+ rule
+ ip
+ sandbox
+ forward
+ iifname
+ '{ "tap0", "tap1" }'
+ ip
+ daddr
+ 169.254.169.254
+ reject
+After adding the rule, token retrieval failed immediately with curl exit 7. The DNS at 169.254.169.253 was still reachable.
+http_code=000 exit_reason=curl exit=7
+elapsed: 0.00 s
+--- DNS (169.254.169.253 still reachable?)
+http_code=200
+curl exit=0
+ Inter-VM Communication
+Before blocking traffic between tap0 and tap1 on the parent, ping from sandbox a to sandbox b succeeded.
+--- ping guest b (198.51.100.2)
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+I added rules to the forward chain that drop traffic between tap0 and tap1 in both directions.
+nft
+ add
+ rule
+ ip
+ sandbox
+ forward
+ iifname
+ "tap0"
+ oifname
+ "tap1"
+ drop
+nft
+ add
+ rule
+ ip
+ sandbox
+ forward
+ iifname
+ "tap1"
+ oifname
+ "tap0"
+ drop
+After adding the
+
+===== https://www.westloop.io/post/introducing-aws-nitro-sandboxes-on-amazon-eks-ecs-and-ec2-for-hardware-isolated-pods-tasks-and-vms
+(status 200)
+Follow our blog
+Get the latest insights and advice on AWS services from our experts.
+Thank you! Your submission has been received!
+Oops! Something went wrong while submitting the form.
+Related posts
+Check out other insights from the team at West Loop Strategy.
+View all
+Amazon EC2 C8i instances are now available in AWS Europe (London) region
+Starting today, Amazon Elastic Compute Cloud (Amazon EC2) C8i instances are available in the Europe (London) region
+Read more
+Amazon MSK Console now supports viewing Kafka topics with new public APIs
+Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports viewing topics directly through the Amazon MSK console, making it easier to inspect all your Kafka topics without setting up Kafka admin clients
+Read more
+Amazon SNS expands support for FIPS 140-3 endpoints
+Amazon Simple Notification Service (Amazon SNS) now supports additional endpoints that have been validated under the Federal Information Processing Standard (FIPS) 140-3 program in AWS Regions in the United States and Canada
+Read more
+View all
+
+===== https://dealroom.co/news/x-2119997752042201368-aws-launches-nitro-sandboxes-hardware-isolated-vms-for-running-ai-agents/
+(status 403)
+
+
+===== https://aws.amazon.com/blogs/compute/nitro-sandboxes-hardware-isolation-for-every-eks-pod-ecs-task-and-ec2-workload/
+(status 200)
+Nitro Sandboxes: Hardware isolation for every EKS pod, ECS task, and EC2 workload
+Security has been the foundation of AWS cloud computing since day one. When we built Amazon Elastic Compute Cloud (Amazon EC2), we designed it with strong isolation that keeps customer workloads and data separated from every other tenant on the same hardware. The AWS Nitro System took that further by moving virtualization, storage, and networking onto dedicated hardware, making zero operator access to customer data the default. Customers then asked us for more. They wanted tightly scoped, attestable environments for their most sensitive processing: the code and data that required protection even from their own administrators. That’s why we built Nitro Enclaves. Today, more of those sensitive workloads run in containers on Amazon Elastic Kubernetes Service (Amazon EKS), Amazon Elastic Container Service (Amazon ECS), and self-managed Kubernetes and container runtimes on Amazon EC2. Customers are asking for the same level of isolation and confidentiality for container environments.
+Container environments today host many independent workloads on a single EC2 instance by using Linux container technology. For a lot of customers, Linux containers have become the prevalent workload delivery vehicle because of their ease of deployment and the ability to have them share resources in one host through a shared kernel. This sharing has some downsides. Operators of a shared cluster have access to all the tasks running in it. A weakness in the shared kernel reachable by one container also exposes every other container on the host. With the current rate of Linux Common Vulnerabilities and Exposures (CVEs), containerized workloads need an architecture that isolates each workload from other workloads and from cluster operators.
+Introducing AWS Nitro Sandboxes
+This week we introduced AWS Nitro Sandboxes, a new Amazon EC2 building block that gives each container the boundary of a hardware-isolated virtual machine (VM). Each sandbox gets the security properties of the Nitro System (strong isolation, zero operator access to customer data, and attestation) while keeping the familiar container experience. And isolation is designed so that no one outside the Nitro Sandbox can read its contents: Neither the cluster administrator, the platform team, nor AWS can read EKS pod or ECS task memory.
+A Nitro Sandbox is a lightweight virtual machine that you launch and control from your EC2 instance. To your instance, it behaves like a child VM. Under the hood, it runs as a separate VM alongside your instance. The Nitro System enforces separation between the sandbox and its parent instance, between sandboxes, and between the sandbox and AWS operators. The parent instance contributes vCPU, memory, and I/O. Nitro keeps the workload isolated and, when you ask, proves what code it is running.
+Because a Nitro Sandbox is a first-level guest with no nested hypervisor, and the Nitro Hypervisor enforces its CPU and memory boundary in hardware, compute and memory run at near-native EC2 performance. Instead of needing a separate instance for every workload or customer that needs a hard boundary, you can consolidate many isolated workloads onto instances you already run. You can then improve utilization and lower cost without giving up the boundary that made separate instances attractive in the first place.
+Nitro Sandboxes share the same Nitro System isolation technology that we have operated for years as Nitro Enclaves. With Nitro Enclaves, we designed everything around the smallest possible surface: You dedicate full CPU cores and memory to a separate VM that you can only reach over a vsock channel. With Nitro Sandboxes, we built on the same foundation, but adjusted the experience to the needs of container workloads in three ways. First, a sandbox’s vCPUs can share cores with the parent instance through time slicing. Second, the parent can attach standard virtio network and block devices, not only a vsock channel, so the sandbox gets real networking and storage. Third, you can run the sandbox through a standard virtual machine monitor (VMM) such as Firecracker. The result is a general-purpose, hardware-isolated environment that behaves like a normal VM and runs almost anywhere EC2 runs.
+We then took Nitro Sandboxes and natively integrated them into Amazon EKS and Amazon ECS, providing a turnkey solution to Nitro-backed, confidential virtual-machine-based container isolation at scale. Nitro Sandboxes are broadly available with the following features:
+Instances:
+ Every EC2 instance type that supports Nitro Enclaves, across general purpose, compute optimized, memory optimized, storage optimized, and accelerated families, on AWS Graviton, Intel, and AMD processors, in commercial Regions worldwide, at no additional charge.
+Storage:
+ Sandboxes reach storage the same way an EC2 instance does: local instance store for scratch space, Amazon Elastic Block Store (Amazon EBS) for persistent volumes, and Amazon Simple Storage Service (Amazon S3) or Amazon Elastic File System (Amazon EFS) over the network. To keep data confidential from the parent, you can use attestation-gated AWS Key Management Service (AWS KMS) keys, the same model as Nitro Enclaves, now integrated into Nitro Sandboxes, EKS, and ECS.
+Networking:
+ Each sandbox runs its own kernel, and therefore its own network stack. The parent connects that stack to your Amazon Virtual Private Cloud (Amazon VPC) the same way it does for containers today. On EKS, pods keep their own VPC IP address through the Amazon VPC CNI. On ECS, each task gets its own elastic network interface in 
+awsvpc
+ mode. Network policies and security groups are enforced on the parent instance, outside the sandbox, so a compromised workload cannot turn them off.
+With Nitro Sandboxes, you can give every workload that needs a hard boundary its own VM, without giving it its own instance. AI agents that write and run their own code can run each session in a separate sandbox. Code that a prompt injection gets the agent to run stays inside one VM, which is deleted when the session ends. Software as a service (SaaS) providers can run many tenants on shared EKS nodes or ECS Managed Instances, each in its own sandbox, instead of giving each tenant a dedicated instance. Continuous integration and continuous delivery (CI/CD) pipelines can run privileged builds and untrusted pull request code inside a per-job VM rather than on dedicated build machines. And with confidential sandboxes, model providers can deploy closed-weight models in a customer’s account, knowing the weights are decrypted only inside an attested sandbox. Regulated industries can give auditors cryptographic proof of exactly what ran.
+Isolation by design
+Containers on a shared node all trust one Linux kernel. A single kernel issue can lead to data exposure across pods or tasks. With Nitro Sandboxes, each pod, task, or agent runs in its own VM with its own kernel. A kernel issue in one sandbox doesn’t affect its neighbors.
+The Nitro Hypervisor establishes strong, virtual-machine-based security isolation through its leading 
+security posture
+ and 
+built-in confidential computing
+ which we continuously extend. The hypervisor removes the parent’s access to the sandbox’s memory and CPU register state. Only I/O buffers that the sandbox explicitly shares stay visible to the parent.
+Nitro Sandboxes can therefore treat the parent instance as untrusted and attest to what runs inside. They use the Nitro-based Nitro Secure Module (NSM) to gain an attestation document in the same style as Nitro Enclaves. A workload can be configured to get its secrets only after it proves it is running the code you approved. The system is designed so that no one outside the sandbox can read its contents: Neither the cluster administrator, the platform team, nor AWS can read EKS pod or ECS task memory. You write AWS KMS key policies that require specific attestation measurements before AWS KMS releases a decryption key. This creates a verifiable link between who can decrypt and what code is actually running.
+Isolation modes in EKS and ECS
+On top of Nitro Sandboxes, EKS and ECS provide two isolation modes. With these modes, you can choose between faster launch times and cryptographic attestation:
+Confidential sandbox:
+ Sandboxes are fully attestable. Image loading and other runtime operations are gated by a Cedar policy, image contents are verified and extracted inside the sandbox, and the ephemeral layer is encrypted. AWS KMS releases your secrets only to workloads that prove they run the code you approved. Use this mode for anything that handles secrets, including when you want protection from your own operators. SaaS providers can show their customers that tenant data is protected through attestation. Regulated industries can give auditors cryptographic evidence in addition to documentation.
+Isolated sandbox:
+ Each pod (EKS) or task (ECS) runs in its own hardware-isolated VM with its own kernel, protecting the node and neighboring workloads from anything that happens inside the sandbox. The node and its operators are trusted, just as they are for pods and tasks today, and image validation works the same as it does without sandboxes. For workloads that also need protection from the node operator, use confidential sandbox.
+Getting started on Amazon EKS
+To get started on EKS, use EKS Auto Mode. Add 
+runtimeClassName
+ to your pod spec, and EKS handles instance selection, Nitro component setup, and scheduling. Use 
+confidential-sandbox
+ for a confidential sandbox or 
+isolated-sandbox
+ if you do not need protection from node operators. For self-managed EKS, you will need a compatible Amazon Machine Image (AMI) to support Nitro Sandboxes.
+To learn more about the EKS experience with Nitro Sandboxes, see the 
+Amazon EKS blog post
+.
+Getting started on Amazon ECS
+You can use Nitro Sandboxes on ECS with ECS Managed Instances. ECS launches compatible EC2 instances in your account, sets up a fully configured Bottlerocket image, and runs each task in its own Nitro Sandbox. ECS supports two isolation modes, 
+CONFIDENTIAL_SANDBOX
+ and 
+ISOLATED_SANDBOX
+.
+To get started, update the Nitro Sandboxes settings. First, enable 
+nitroEnclavesEnabled
+ to activate Nitro Sandboxes in your capacity provider. Next, set an isolation mode in your task definition, then add a 
+trustedExecutionConfiguration
+ block to your task definition and set 
+isolationMode
+ to 
+ISOLATED_SANDBOX
+ or 
+CONFIDENTIAL_SANDBOX
+. Isolated and confidential tasks use the 
+awsvpc
+ network mode, so each task gets its own elastic network interface.
+Each task reports its isolation mode in a read-only 
+trustedExecutionSummary
+ field when you describe it. Per-task security groups, VPC Flow Logs, Application Load Balancer, Network Load Balancer, and Amazon VPC Lattice work as before. To learn more about the ECS experience with Nitro Sandboxes, see the 
+Amazon ECS Developer Guide
+.
+Getting started on Amazon EC2
+If you manage your own instances, or build your own platform, you can launch Nitro Sandboxes directly on nearly any instance built on the AWS Nitro System. Amazon Linux and Firecracker support Nitro Sandboxes today. We have started to upstream support for Nitro Sandboxes in Linux and other virtual machine monitors. We also worked with operating system vendor partners to add support early, so you can keep the stack your workload already depends on.
+In addition to containers, Nitro Sandboxes serve as a building block for more in-instance virtualization use cases. Nitro Sandboxes support a special “Direct Mode” switch which disables attestation, but allows the parent to retain access to sandbox memory. We have seen early adopters use this mode to execute non-enlightened operating systems, including Windows or Android, in sandboxes. Other customers have used Nitro Sandboxes to create fully attested package build environments, where each built package receives a tamper-proof signature of its build inputs. See the 
+Amazon EC2 User Guide
+ for details.
+Pricing and availability
+Nitro Sandboxes, along with the EKS and ECS integrations, are available at no additional charge. You pay for the EC2 instances, plus the standard EKS Auto Mode or ECS Managed Instances management fee if you use those capabilities. Nitro Sandboxes run on nearly every EC2 instance, EKS cluster, and ECS cluster, so strong per-container, per-task, and in-instance isolation is available to everyone.
+For more information, see the Nitro Sandboxes documentation in the 
+Amazon EKS User Guide
+, the 
+Amazon ECS Developer Guide
+, or the 
+Amazon EC2 User Guide
+ for direct use on EC2 instances.
+About the authors

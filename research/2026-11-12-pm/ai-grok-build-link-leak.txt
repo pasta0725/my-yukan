@@ -1,0 +1,526 @@
+===== https://blog.claroc.io/ghostshares-grok-build-apps/
+(status 200)
+Share
+Grok’s Build mode, where people describe an app in the chat and Grok writes it.
+In short
+In the account we used, clicking Publish on an app Grok built proposed Anyone with the link as the access setting.
+In a team app Grok built for us, “Continue with Google” let any Google account read, edit and delete the records. We tested this only on our own app.
+We tried 43,551 Grok app addresses. 37,571 were still online, and 35,578 of those (94.7%) opened for anyone, with no sign-in.
+24 of the open apps were built by SpaceXSI and X staff, among them a confidential onboarding plan, a sales territory map of 594 accounts and advertising proposals.
+Besides SpaceXSI and X, the open apps held internal data from 30 organizations we could identify: 26 with more than 1,000 employees, six of them in the Fortune 500.
+SpaceXSI says its employees’ apps start out private. Its own staff still had 24 apps open to anyone, and SpaceXSI took them down after our report. It has not done the same for the apps other Grok users and organizations left open.
+On November 8, 2026, we were working through a long list of web addresses under grok.me, the domain where Grok, the AI assistant from SpaceXSI (the company formerly called xAI), publishes the apps people build with it. Nobody had sent us any of them. We opened the first page of each one once, from the public internet and signed in to nothing, the way anyone would in an incognito window.
+One address named a new hire and ended in “onboarding plan”. It was the onboarding plan for a new member of SpaceXSI’s own enterprise sales team, marked confidential: the systems to get access to in the first week, internal system addresses, the sales team’s tools, 19 of the company’s internal chat channels, the colleagues to meet and a 30-day plan. Nothing asked us to sign in.
+Figure 1. The top of SpaceXSI’s onboarding plan, names covered. Click any figure to see it larger.
+We were shocked. The company that makes Grok had its own internal material open to anyone holding the link, and we had never been given it.
+We call pages like this GhostShares: they open for people who were never given the link, and those people can find them on their own. Last month it was Meta’s Muse. This time it is the apps people make by describing them to Grok and publish from the same chat window.
+What else SpaceXSI and X had open
+We reported the onboarding plan to SpaceXSI that afternoon, along with an X advertising proposal from the same list. Then we went back through every first page we had saved, more than 30,000 of them, looking for anything else built by SpaceXSI and X staff. By the end of the full read we had 24 open apps:
+the onboarding plan above, and a staff contest page that lists employees by name;
+a sales territory map of 594 strategic accounts and their pipeline;
+eight X advertising proposals, media plans and decks for advertisers, with budget tiers, among them one to a U.S. federal agency marked confidential;
+four live advertiser account boards with campaign spend, one tracking progress toward a $1.6 million sales goal;
+seven campaign reports for advertisers in Brazil, Japan, Korea and Thailand, several marked confidential or for internal use;
+two copies of an X brand safety playbook labeled as an internal sales hub.
+One more, an archive of a streaming service’s ad measurement studies, asked for a password. It was the only SpaceXSI or X app we found that did.
+Figure 2. SpaceXSI’s sales territory map. Account names and cities are covered.
+Figure 3. The budget page and footer of the X proposal to a U.S. federal agency, marked Confidential. Agency details and amounts are covered.
+How a name in a DNS list becomes a working link
+On Grok the link is the hostname: every published app gets its own address, 
+<name>.grok.me
+. When someone opens one, their computer asks a DNS resolver where that name lives. Passive DNS services collect those lookups from the resolvers they run or buy data from, and anyone with an account can search them by pattern. So the first time the people a link was meant for use it, the name lands in a commercial index.
+Figure 4. Illustrative. Every hostname is made up.
+In Muse (
+GhostShares
+), each address carried the conversation’s title. Grok proposes four random words instead, and about half the names we saw were exactly that. Nobody would guess one, and nobody needs to, because the dataset lists them.
+ChatGPT also gives each app it publishes its own hostname, and it handles both steps differently. When we clicked Share on an app ChatGPT built, access was set to Only me until we changed it. Its addresses are two levels deep and carry the account’s username, in the form 
+<app-name>.<username>.chatgpt.site
+, so a name is much harder to guess than four random words under one shared domain. It is no harder to find: once someone opens the app, the name reaches passive DNS data the same way, and one pattern search lists it. That leaves the default to do the work. If a ChatGPT address does turn up in a DNS list, it leads to an app that only its owner can open.
+Shared chats work differently. Claude’s published artifacts live at 
+claude.ai/public/artifacts/<id>
+, ChatGPT’s shared conversations at 
+chatgpt.com/share/<id>
+ and Gemini’s at 
+gemini.google.com/share/<id>
+. The secret part of each link sits in the path, so DNS never sees it. Published apps are another matter: Grok, ChatGPT, Lovable, Replit, Base44, Google AI Studio and Meta’s Muse give each app its own hostname, and v0 and Bolt deploy to hostnames too. Every hostname gets its own DNS lookup, and that lookup is what makes the name findable.
+A path is not private either. In August 2025, 
+more than 370,000 shared Grok conversations
+ on 
+grok.com/share/
+ links turned up in Google search, because search engines could index the pages. Moving the secret into the path keeps it out of DNS, but search indexing and link scanners can still expose it.
+35,578 open apps, and what was in them
+Of the 37,571 Grok apps still online when we tried them, 35,578 (94.7%) opened for anyone. Only 1,993 (5.3%) answered with HTTP 401, the error an app set to Only you or Invited users returns.
+Most open apps were games, landing pages and calculators. About 1 in 10 held sensitive material, internal business data or personal data, and by our estimate roughly 2% held material serious enough to rate high or critical. Among the ones we confirmed by hand:
+a hospital group’s staff event app with a searchable roster of more than 3,500 employees;
+an intensive care briefing for a single patient, with labs, imaging and ventilator status;
+a cruise ship’s galley inspection checklist listing crew members by full name and employee ID;
+a fire department’s live shift board, with each firefighter’s name, badge number and the hours they are on duty;
+a trucking firm’s driver-recruiting list of more than a thousand people with their legal names and personal email addresses;
+a contractor’s staff timesheet whose code held every employee’s account with the password in plain text, admins included.
+Figure 5. The timesheet’s script file, which every visitor’s browser downloads: 18 accounts with plain-text passwords, every value covered.
+Besides SpaceXSI and X, 30 organizations had internal data in open apps that showed who they belonged to. We name none of them here.
+26 have more than 1,000 employees, and 6 are Fortune 500 companies.
+18 are based in the United States and 12 in 11 other countries.
+By sector: construction and real estate (7), energy and utilities (5), technology and IT (4), healthcare and medical devices (3), transport and automotive (3), travel, hospitality and food service (3), defense (2), manufacturing and advertising (2), auto finance (1).
+We built two apps to test Grok’s defaults
+From the outside we could only see that apps were open. Whether a visitor can also change their data takes changing it, and we were not going to do that to anyone else’s app. So we built two apps of our own, with made-up data, to see what security Grok builds in when nobody asks for it, and when a team does. Building works on Grok’s free plan; in our account, publishing needed a paid one. Nothing goes public until the builder clicks Publish. In our account, the panel that opens offered Anyone with the link, Invited users and Only you, with Anyone with the link already selected. We published both apps with whatever it proposed.
+The first was a contact list we asked Grok to save “so every visitor sees them”. It got a database and no sign-in. From an incognito window, signed in to nothing, we added a row that the next visitor saw.
+The second was a customer list “for my company’s sales team of 4 people”. Grok added sign-in on its own, it said “so names, phones, and emails aren’t left open”, through two buttons, “Continue with Google” and “Continue with X”. The code Grok wrote adds whoever signs in to the team before it checks whether they are on it, so the check always passes. A Google account that was not the owner’s and had never been invited signed in, saw every customer, changed one record and deleted another.
+Figure 6. Illustrative, simplified from the code Grok wrote for us.
+Grok has the right settings. Switched to Only you, our first app answered 401 to a stranger on both the page and its data function, and unpublishing the second took its address offline within seconds. They are not the default, and nothing prompts the builder to use them.
+What the two apps showed is that Grok leaves out basic controls: an app that stores data with no login lets any visitor change it, and a team login checks who you are but not whether you belong to the team. That is why the open apps we found may be worse than they look. For an app like that, opening the page can also mean being able to add, change or delete the data behind it. We proved this only on our own two apps, and did not sign in to, write to or test anyone else’s.
+What hardening would have added
+App
+What it held
+What hardening adds
+SpaceXSI territory map
+Sales pipeline
+Only company accounts can open it
+Team customer list (our test)
+Customer data
+A check of who is allowed in after sign-in
+Staff timesheet
+Plain-text passwords
+No passwords in code the browser downloads
+ICU briefing
+Patient data
+Health data never published to anyone with the link
+Why these apps go live without company sign-in
+An AI-built app is made in a chat window and published from the same window, often in minutes, by someone whose job is running a sales territory or a shift roster. The builder doesn’t file a request or install anything IT would see. A territory map and a lunch poll get the same publish button.
+The apps also drift. A builder adds a table, a sign-in or a share link with the next prompt, and an app that was harmless yesterday holds customer records today.
+“AI app builders turned publishing into a few clicks, and the default answer to who can see it is everyone,” says Asaf Aprozper of Claroc Research.
+If your people build apps with AI
+This works for one app on one builder. One enterprise we know counted 500 AI-built apps, and each one changes with the next prompt.
+Find out which AI app builders your people use.
+ Grok, Lovable, Replit, v0, Bolt, Base44 and Google AI Studio need no admin rollout and no company account.
+Search for your own apps.
+ If you have passive DNS, search it for the builders’ domains and open what you find in an incognito window.
+Check the access setting.
+ A Grok app holding anything internal should say Invited users or Only you, and a stranger should get an error page.
+Test sign-in from outside.
+ If an account from outside your company gets in, the app needs a list of who may use it.
+Check the script files and unpublish what nobody owns.
+ Search the scripts an app loads for names, emails and passwords; unpublishing takes a grok.me app offline at once.
+What Grok could change
+With our report we sent SpaceXSI four fixes: serve shared apps on a hard-to-guess path under one host, so the link never becomes a DNS name; add an “everyone in my organization” option limited to the company’s email domain; make Only you the default and show who can open the app before it goes live; and warn at publish when an app has a database and no sign-in, building an invite list instead when a request describes a team.
+What SpaceXSI says
+After our report, SpaceXSI answered questions from a reporter covering this research. It said Grok apps are private until their creator chooses to share one, and that publishing takes several steps: click Publish, pick an address and click Publish again, choose between Only you and Anyone with the link, then accept a legal disclaimer and click Publish a final time. It said employee accounts are set to Only you by default, so making one of their apps public also means switching it to Anyone with the link, and that this is more steps than builders such as Lovable ask for.
+We agree that nothing goes public before the builder clicks Publish, and we said so above. Our finding is about the access step that follows. In the paid account we used, that step offered Anyone with the link, Invited users and Only you, and Anyone with the link was already selected. Extra clicks on a path that ends with access already set to everyone do not protect the data: the people who published the 35,578 open apps went through every one of those steps.
+Only you as the default is the change we asked for, and SpaceXSI already uses it for employee accounts. It is not what ordinary users get, and on its own it did not keep SpaceXSI’s own data in: the 24 open apps described above were built by SpaceXSI and X staff.
+How we did this
+We found the app names with common subdomain discovery techniques, which listed 43,601 names under grok.me. We loaded the first page of each app once, from the public internet and signed in to nothing, and read the saved copies offline. 35,578 of them opened.
+An AI model flagged the pages that looked private, and we read the flagged apps by hand to confirm them. Checking the model against a random sample we read ourselves puts the total at roughly 650 to 800 apps with private data.
+We did not sign in, submit forms, call server functions or use any password or key we saw. Screenshots were made from the saved copies, with personal details covered. Every write and delete happened on our own two apps. We will delete the saved copies once we have finished notifying the affected organizations.
+What we told SpaceXSI, and what we left out
+November 8, 2026: we reported the issue to SpaceXSI at the address in its security.txt, with the counts, our two test apps and the four fixes above, and offered to share the full list of app addresses privately so it could reach the owners. We also told it about two of its own open apps, the onboarding plan and the advertising proposal to a U.S. federal agency.
+November 9: we reported the other 22 SpaceXSI and X staff apps, along with the exposures we had confirmed by hand.
+November 10: SpaceXSI answered a reporter’s questions about the research (see What SpaceXSI says); it had not replied to our report. Following our report, it took down the 24 apps its staff had built, but not the apps of other Grok users and organizations.
+From November 10: because SpaceXSI did not say it would reach the app owners, we began notifying the affected organizations ourselves. By publication we had emailed three of them, and more notices are going out.
+We published now, without the hostnames, because the default is a design choice SpaceXSI defended rather than a bug it said it would fix, and people building on Grok need to check their own apps. SpaceXSI holds the full list of app addresses and can reach every app’s owner, but its response did not say it would. So we are telling the affected organizations ourselves wherever we can find someone to tell: their security team where one publishes an address, and otherwise their security or privacy lead. This post leaves out every hostname, app title and link that could lead a reader to an app or a person, and describes personal material only by kind.
+Where Claroc fits
+The apps in this post did real work: sales pipelines, galley checklists, staff rosters, customer and order records. Had the same teams bought software for that work, it would have come with company sign-in, roles and an admin who can see who has access. Built with AI, they went live behind a link anyone could open.
+Claroc secures the apps people build with AI while they are built and after they go live:
+Find the apps your employees build on Grok, Lovable, Replit, ChatGPT, Claude, Gemini, Google AI Studio, v0, Bolt and Base44, and the data each one holds.
+Give each app the controls its data calls for, such as company sign-in, roles and private storage, while it is being built and before it goes live. Each fix comes as a prompt the builder pastes into the same AI tool.
+Flag a new prompt that would open up data or remove a protection, and check that each published app still asks for sign-in.
+Is your company’s data in one of these apps?
+In a 30-minute exposure check, we look for AI-built apps tied to your organization that anyone can open, and show you what they expose.
+Book a 30-minute exposure check
+Or email 
+sales@claroc.io
+.
+Open full size
+×
+Open full size
+×
+Open full size
+×
+Open full size
+×
+Open full size
+×
+Open full size
+×
+Open full size
+×
+
+===== https://labs.cloudsecurityalliance.org/research/csa-research-note-grok-build-apps-exposed-by-default-2026111/
+(status 200)
+Public by Default: Exposed Grok Apps and the AI App-Builder Leak Pattern
+Authors:
+ Cloud Security Alliance AI Safety Initiative
+Published:
+ 2026-11-11
+Categories:
+ AI Application Security
+Download PDF
+Download Markdown
+Public by Default: Exposed Grok Apps and the AI App-Builder Leak Pattern
+Key Takeaways
+Security firm Claroc tested 37,571 live apps built with Grok’s chat-based app builder and found that 35,578 of them (94.7%) opened for anyone without sign-in [1]. Claroc’s figures separate two categories of concern. About one in ten open apps, or roughly 3,500, held internal business or personal data, while a narrower set of about 2% held material the researchers rated high or critical, which Claroc extrapolates to 650 to 800 apps [1]. The exposed apps included 24 built by SpaceXSI (formerly xAI) and X staff, among them a confidential advertising proposal to a U.S. federal agency, along with data from 30 other identifiable organizations, including a hospital staff roster of more than 3,500 people and a timesheet app whose script held plaintext passwords [1]. All Grok-specific figures in this note come from Claroc’s research and have not been independently verified by CSA.
+The exposure did not require attackers to bypass any controls. It came from platform design choices, namely per-app 
+grok.me
+ subdomains that passive DNS services record and an access setting preselected to “Anyone with the link” when users published [1][2], and in some cases from flawed generated sign-in logic [1]. In one test app, a Grok-generated sign-in flow added every signed-in user to the team before checking membership, so any Google account could read, edit, and delete records [1]. The lesson for security teams is that generating authentication with AI does not guarantee that the authorization logic is correct.
+The incident fits a recurring pattern across AI app builders and AI share features, including Lovable, Base44, Meta Muse, and an earlier Grok issue in which shared chats were indexed by search engines [3][4][5][6]. The pattern is not universal, since at least one major builder already defaults new apps to private [1][2]. Even so, enterprises should treat AI app builders as an unmanaged publishing channel and govern them accordingly.
+Background
+AI app builders let users describe an application in natural language and receive a working, hosted web app, often with a database, sign-in, and a public address, within minutes. The people using them are often analysts, sales staff, clinicians, and operations managers rather than software engineers. As a result, applications that hold real organizational data can reach the internet without design review, threat modeling, or any record in the security team’s asset inventory. The speed is useful to the business. It also means that the platform’s defaults, rather than a security engineer, make the important decisions about who can reach the data.
+According to reporting by The Hacker News, the chat-based app builder in Grok, the AI assistant operated by SpaceXSI (the company formerly known as xAI), was opened to all Grok plans on August 19, 2026 [2]. The feature shares a name with Grok Build, SpaceXSI’s separate terminal-based coding agent, which was reported in July 2026 to upload users’ repositories [2]. This note concerns the hosted apps produced by the chat-based builder, which are commonly described as “Grok Build apps” in coverage of this incident; the coding agent is not the subject here. Each published app is served from its own hostname of the form 
+<name>.grok.me
+, and Grok proposes four random words as the default name [1].
+Claroc’s researchers discovered the issue on November 8, 2026, and published their findings on November 10 under the name “GhostShares 2” [1]. The name continues their October 2026 work on Meta’s Muse agent, in which more than 6,800 share hostnames were found in a commercial passive DNS dataset [4]; Meta paused sharing before reissuing shared items at new addresses [2]. In the Grok study, the researchers listed 43,601 
+grok.me
+ names using common subdomain discovery techniques. They then loaded the first page of each live app once, without signing in, and used an AI model followed by manual review of a random sample to identify pages holding private data [1]. They did not submit forms, call server functions, or use any credentials they observed, and all write and delete testing was limited to two apps the researchers built themselves [1].
+Readers should weigh these findings with their provenance in mind. All Grok-specific figures in this note are as reported by Claroc, a commercial security firm publishing a named research series. CSA has not independently verified them, and The Hacker News coverage [2] relies on Claroc’s findings rather than corroborating them independently. Because sensitivity was classified by an AI model and extrapolated from a manually reviewed sample, the data-exposure estimates should be read as approximate.
+Security Analysis
+Scale and Nature of the Exposure
+The headline numbers are large, but most exposed apps were harmless. The Hacker News notes that most open apps were games, landing pages, and calculators [2]. The risk sits in the minority that held internal data, and Claroc’s figures distinguish between two tiers within that minority. The broader tier, about one in ten open apps (roughly 3,500), held some internal business or personal data. The narrower tier, about 2% of open apps, held material rated high or critical, and Claroc extrapolates this to 650 to 800 apps by calibrating its AI classifier against a manually reviewed random sample [1]. The table below summarizes the measured figures.
+Measure
+Value
+Source
+grok.me
+ hostnames discovered
+43,601
+[1]
+Apps still online when tested
+37,571
+[1]
+Apps open without sign-in
+35,578 (94.7%)
+[1]
+Apps returning HTTP 401
+1,993 (5.3%)
+[1]
+Open apps with internal or personal data
+About 1 in 10 (roughly 3,500)
+[1]
+Open apps rated high or critical
+About 2%
+[1]
+Estimated apps with high/critical private data (extrapolated)
+650–800
+[1]
+SpaceXSI and X staff apps exposed
+24
+[1]
+Other identifiable organizations affected
+30, incl. 6 Fortune 500
+[1]
+The SpaceXSI and X staff apps show that the exposure reached the vendor’s own workforce. They included a confidential onboarding plan for the enterprise sales team, a territory map covering 594 strategic accounts, eight X advertising proposals (one to a U.S. federal agency and marked confidential), live advertiser account boards, and copies of an X brand safety playbook [1]. Among other organizations, the researchers found a hospital group’s staff roster of more than 3,500 employees and an ICU briefing with one patient’s labs, imaging, and ventilator status. They also found a fire department’s shift board with names and badge numbers, a trucking firm’s recruiting list of more than 1,000 people with personal email addresses, and a contractor’s timesheet app whose client-side script contained 18 accounts with plaintext passwords, administrator accounts included [1]. Claroc’s figures show that 26 of the 30 organizations have more than 1,000 employees, and 12 are based outside the United States [1]. Data of these kinds could plausibly bring regulatory obligations under health privacy, employment, and data protection law, depending on jurisdiction.
+Root Cause One: Hostnames Are Not Secrets
+The first cause concerns how apps are addressed. Many share features rely on an unguessable link: if only the recipient knows the URL, the content is treated as effectively private. That model holds up better when the secret part sits in the URL path, because DNS resolution never sees the path. Path-based links still leak through logs, referrers, link previews, and crawlers, as the 2025 Grok shared-chat indexing showed [3], so they reduce but do not eliminate discoverability. The model breaks down further when the secret is the hostname. Every visit to 
+<name>.grok.me
+ causes a DNS lookup, and passive DNS sensors operated by commercial and community services log those lookups in searchable databases [1]. Claroc notes that the four-random-word naming scheme makes names hard to guess, but guessing is unnecessary once the names appear in passive DNS datasets, many of which offer pattern queries to registered or paying users [1][4].
+This is the same mechanism Claroc documented a month earlier in Meta Muse, which suggests it is a class of design flaw rather than a single vendor’s mistake [2][4]. Claroc’s report notes that ChatGPT’s app builder also uses per-app subdomains (in a two-level 
+<app-name>.<username>.chatgpt.site
+ format), so those names can also appear in passive DNS. ChatGPT apps, however, default to “Only me,” which keeps a discovered hostname from becoming a data exposure [1][2]. In other words, a discoverable address is a problem only when the access control behind it is open. Security teams should therefore assume that any per-app subdomain on a builder platform is public, whatever the vendor says about link secrecy.
+Root Cause Two: The Default Access Setting
+The second cause is the access default, and the vendor’s response centers on it. SpaceXSI told reporters that Grok apps stay private until their creators share them, that publishing involves several steps ending in a legal disclaimer, and that employee accounts default to “Only you” [1][2]. According to Claroc, SpaceXSI also agreed that “Only you” should be the default for users, while saying that this change alone would not have protected the staff apps [1]. Claroc in turn agreed that nothing goes public before the user clicks Publish. However, it found that the access panel shown at that point offered “Anyone with the link,” “Invited users,” and “Only you,” with “Anyone with the link” preselected [1]. When the researchers changed the setting to “Only you,” strangers received a 401 error, and unpublishing took an app offline within seconds [1]. The controls existed and worked; they were simply not the default.
+The researchers argue that extra publishing steps do not protect data if the final step is preset to everyone [1]. That argument matches long-standing secure-by-default principles. A user building an internal team dashboard has no particular reason to understand passive DNS, and users tend to treat a preselected option as the platform’s recommendation, a well-documented default effect. The fact that 24 apps built by SpaceXSI’s own staff were exposed, despite the stated employee default, suggests that default settings alone did not prevent exposure even inside the vendor [1]. It is not clear, however, whether the employee default was in place when these apps were published, or whether staff used personal accounts.
+Root Cause Three: Generated Authorization Logic
+For security teams, the third cause is arguably the most consequential, because it affects apps whose owners believed they had added access control. In Claroc’s second test app, a customer list for a team, Grok automatically added “Continue with Google” and “Continue with X” sign-in buttons. The generated code added each signed-in user to the team before checking team membership, so the membership check always passed [1]. An uninvited outside Google account could therefore view, edit, and delete every record [1][2]. Claroc’s first test app, a contact list with a database and no sign-in at all, let an anonymous visitor add a row that later visitors could see [1].
+This failure mode has appeared before on other platforms. In 2025, CVE-2025-48757 described insufficient Row-Level Security policies in Lovable-generated applications that allowed unauthenticated remote attackers to read or write arbitrary database tables; the CVE record notes that Lovable disputes it, on the grounds that customers are responsible for protecting their apps’ data [6]. Researchers reported more than 170 affected applications [7]. Also in 2025, Wiz Research found that Base44 exposed registration and verification endpoints that let anyone join a supposedly private enterprise application using only its publicly visible app identifier, bypassing SSO; Wix fixed the flaw within 24 hours of disclosure [5]. In a broader passive scan of more than 5,600 publicly available vibe-coded applications, Escape reported more than 2,000 vulnerabilities, more than 400 exposed secrets, and 175 instances of personal data including medical records [8]. These studies used different methods and are not directly comparable. Still, the consistent finding is that the visible presence of a sign-in screen in an AI-built app says little about whether authorization is enforced.
+The Recurring Pattern
+The Grok incident is also the second major exposure tied to Grok’s sharing features. In August 2025, Fortune reported that more than 370,000 shared Grok conversations had been indexed by search engines after the share feature published unique URLs that were open to crawlers, apparently without users knowing [3]. The table below places the recent incidents side by side.
+Incident
+Exposure mechanism
+Reported scale
+Vendor response
+Grok shared chats (Aug 2025)
+Share URLs indexed by search engines
+370,000+ conversations [3]
+Not stated in cited source
+Lovable (2025)
+Missing or weak database RLS in generated apps
+170+ apps [7]
+Lovable disputed the CVE [6]
+Base44 (Jul 2025)
+Unrestricted registration endpoints bypassing SSO
+Platform-wide [5]
+Fixed within 24 hours [5]
+Meta Muse (Oct 2026)
+Share hostnames visible in passive DNS
+6,800+ hostnames [4]
+Sharing paused; new addresses issued [2]
+Grok apps (Nov 2026)
+Per-app subdomains in passive DNS plus open default access
+35,578 open apps [1]
+24 staff apps removed within ~2 days; third-party apps not yet addressed [1][2]
+In most of these cases, the platform made the publishing decision easy and fast, while the access decision was either preset to open or delegated to generated code that the app’s creator was unlikely to review. Base44 differs in that the flaw sat in the platform’s own endpoints rather than in a default or in generated code. Not every vendor follows this pattern either: ChatGPT’s builder defaults to “Only me” [1][2]. Where the pattern does hold, the affected data sits outside the organization’s identity provider, data loss prevention tooling, and asset inventory.
+The vendor response to the Grok findings should be read against a short disclosure window. Claroc reported the issue to SpaceXSI on November 8 and the additional staff-app findings on November 9, then published on November 10 [1]. Within that window, SpaceXSI removed the 24 staff apps but not other users’ apps, and its public statement did not address notifying those owners [1][2]. Removing customers’ content unilaterally is a non-trivial decision for any platform, and the vendor’s response may change after this note’s publication. Claroc had emailed three affected organizations directly and withheld all hostnames and app titles from its publication [1]. Until the vendor’s position becomes clearer, organizations whose employees use Grok’s app builder should not assume that anyone else will tell them about their own exposed apps.
+Recommendations
+Immediate Actions
+Security teams should first find out whether their organization has apps on 
+grok.me
+ and comparable builder domains. Claroc recommends searching passive DNS for builder domains and testing results from an incognito browser that is not signed in [1]. Because a pattern search on a builder domain returns every customer’s apps, teams should test only those results that can be attributed to their own organization, for example by app title, embedded corporate email domains, or internal survey responses, and should limit testing to an unauthenticated page load. Where a passive DNS service is unavailable, a short internal survey and a review of web proxy and DNS logs for builder domains can identify which staff are publishing.
+Any app found to hold internal data should be switched to “Invited users” or “Only you,” or unpublished, and teams should confirm the change by checking that an outside visitor receives an error page [1][2]. Security teams usually cannot unpublish an app they do not own. Apps with no identifiable owner should therefore be reported to the platform vendor for takedown, and, where an employee account can be identified, unpublished through that account. Teams should also inspect the scripts loaded by any exposed app for embedded names, email addresses, API keys, and passwords, since Claroc’s timesheet example shows that generated client-side code can contain credentials directly [1]. Any credential found this way should be treated as compromised and rotated, because it was readable by anyone while the app was public and may have been captured by crawlers or scanners.
+Short-Term Mitigations
+Within the next few weeks, organizations should identify which AI app builders employees use. Claroc’s checklist includes Grok, Lovable, Replit, v0, Bolt, Base44, and Google AI Studio [1][2]. With that inventory in hand, organizations should decide which builders are sanctioned for which data classes and configure sanctioned platforms, where tenant controls permit, so that the default share setting is restricted. Users should receive brief, specific guidance that per-app web addresses are discoverable and that “Anyone with the link” means anyone.
+Access testing deserves particular attention. For any app that implements sign-in, owners should test access with an outside account that is not on the invite list before relying on it, because generated membership checks may not do what they appear to do [1]. On the network side, proxy or secure web gateway rules can flag uploads of sensitive file types to builder domains, so that citizen-built apps holding regulated data surface for review.
+Strategic Considerations
+Over the longer term, AI app builders should be governed as a publishing channel and a SaaS dependency, not as a personal productivity tool. Vendor assessments for these platforms should ask about default access settings, organization-scoped sharing (limited to the company’s email domain), audit logs of published apps, and administrative takedown capability. Claroc’s four proposed fixes for Grok offer a useful baseline for buyers: serve shared apps on unguessable paths under a single host so links never become DNS names; add an organization-only sharing option; make “Only you” the default and show who can open an app before it goes live; and warn at publish time when an app has a database but no sign-in [1].
+Organizations should also bring citizen-built apps into existing asset management and identity governance, so that each published app has an accountable owner, a data classification, and a review date. AI providers that ship sharing features should carry secure-by-default responsibilities comparable to those that cloud storage providers eventually accepted for public buckets. The repetition of this pattern across vendors since 2025 suggests that market pressure alone has not yet produced consistent secure defaults across vendors, although some, such as ChatGPT’s builder, already default to private [1][3][4][5].
+CSA Resource Alignment
+CSA’s 
+AI Controls Matrix (AICM) v1.1
+ provides the control vocabulary for this incident [9]. Its Data Security and Privacy Lifecycle Management (DSP) domain covers data classification and the handling of sensitive data in AI-produced artifacts. Its Identity and Access Management (IAM) domain addresses the access-default and generated-authorization failures described above, while the Application and Interface Security (AIS) domain applies to the generated code, including the membership-check flaw. Organizations can use AICM to frame vendor questionnaires for AI app builders and to set internal requirements for when such tools may hold regulated data.
+CSA’s 
+SaaS Security Capability Framework (SSCF)
+ defines customer-facing security capabilities that SaaS providers should make configurable, across domains including 
+
+===== https://tbreak.com/grok-app-builder-apps-open-to-anyone/
+(status 200)
+Tech
+/
+AI
+/
+Apps
+/
+Security
+Grok app builder left 35,578 apps open to anyone with the link
+In Claroc’s paid test account, the publish step preselected “Anyone with the link”, and 24 of the open apps came from SpaceXSI and X staff.
+Tbreak Editor
+Nov 11, 2026
+Change language to
+English
+Español
+Русский
+中文
+العربية
+0:00
+Anyone with the link could open 35,578 apps built with the Grok app builder, and some held patient records and internal sales data.
+The firm found 37,571 of the apps still online, and 35,578 of those (94.7%) opened for anyone, with no sign-in, according to 
+Claroc’s report
+, published on 10 November. Anyone who builds an app by describing it to an AI tool makes the same final choice about who sees it.
+Claroc, which sells tools to find and secure AI-built apps, blames the publish step. In the paid account it used, clicking Publish offered “Anyone with the link”, “Invited users”, and “Only you”, and the first was already selected.
+Engadget
+, which reported the same research, says Grok puts the four random words to the left of the domain, not the right as Google’s Gemini does. According to 
+The Decoder
+, each app’s name then shows up in passive DNS databases, which can be searched by pattern.
+The most striking examples come from SpaceXSI, formerly xAI. Staff at SpaceXSI and X built 24 of the open apps, including a confidential onboarding plan, a sales territory map of 594 accounts, and eight X advertising proposals. Engadget reports that SpaceXSI took those 24 apps down within hours of Ars Technica’s questions.
+Claroc also identified 30 other organisations, 26 with more than 1,000 employees and six on the Fortune 500. It doesn’t name them. Examples include an ICU patient’s lab results, a hospital group’s staff list, and a timesheet app whose source code held 18 accounts with plaintext passwords.
+Most open apps were games, landing pages or calculators. Claroc estimates 650 to 800 held private data, and roughly 2% held material serious enough to rate high or critical.
+SpaceXSI has told reporters that apps stay private until their creator shares them, that publishing takes several steps including a legal notice, and employee accounts default to “Only you”. Claroc replies in its report:
+Extra clicks on a path that ends with access already set to everyone do not protect the data: the people who published the 35,578 open apps went through every one of those steps.
+Asaf Aprozper, Claroc Research
+AI coding tools have leaked data through settings before, such as 
+Claude Code’s “don’t ask again” button, leaking secrets to GitHub
+. Check the access setting before you click Publish on any app an AI builder makes. Claroc’s test found that “Only you” gave a stranger an error page, so also test your own app that way. NVIDIA App’s AI-agent server also appears enabled by default, and 
+you can turn it off
+.
+Claroc says the apps of other Grok users and organisations remain open, and it’s contacting their owners itself because SpaceXSI hasn’t committed to doing so. It’s unclear whether SpaceXSI will take them down.
+Subscribe to our Newsletters for more Tech Stories
+Found us on Google? 
+Add tbreak as a preferred source
+ to see more of our stories in Top Stories.
+You may also like
+GITEX Global 2026 moves to Expo City Dubai and brings in humanoids
+Nov 11, 2026
+Nvidia reportedly shelves 24GB RTX 5080 for China over memory costs
+Nov 11, 2026
+Kaspersky: ESXi and Proxmox ransomware needed no hypervisor flaw
+Nov 11, 2026
+Qatar’s 6G trials hit 12.23 Gbps, partly on temporary spectrum
+Nov 11, 2026
+Intel and Altera plan a sensor bridge for robots and medical kit
+Nov 11, 2026
+Seagate’s FireCuda Forge pairs a hard drive with an SSD you supply
+Nov 11, 2026
+Telegram widgets bring polls, games, and TON payments into chat
+Nov 11, 2026
+Apple Support Community is read-only now and shuts on 20 November
+Nov 11, 2026
+NZXT H7 and H5 cases get curved glass, plus new Kraken coolers
+Nov 11, 2026
+More in Tech
+Nvidia board reportedly preparing to oust Jensen Huang after second alleged affair
+Nov 12, 2026
+Home Assistant Connect AUX-2 brings old hi-fi and serial gear into the smart home
+Nov 12, 2026
+Saudi Arabia ranks third in the world for AI talent growth, says SDAIA
+Nov 11, 2026
+Airbnb’s AI travel agent will eventually book trips beyond Airbnb
+Nov 11, 2026
+ByteDance readies a Muse-like AI assistant within weeks
+Nov 11, 2026
+Tencent’s AI gaming companion watches your screen in China beta
+Nov 11, 2026
+Abu Dhabi GP app gets an update before the F1 season finale
+Nov 11, 2026
+Intel shows first real 256-core Diamond Rapids Xeon 7, due 2027
+Nov 11, 2026
+Huawei says its Kirin 9050 runs a 30B AI model on the phone
+Nov 11, 2026
+
+===== https://www.investus.kr/news/spcx-2026-11-12-grok-build-open-apps
+(status 200)
+Back to all news
+Analysis
+SpaceX
+35,578 Open Grok Build Apps: What Claroc Measured and What SpaceXSI Disputes
+Published
+2026.11.12
+ · 
+Updated
+2026-11-12
+ · 
+investus Research
+SpaceXSI's Grok Build: Claroc says 35,578 published apps opened with no sign-in. What was measured, what SpaceXSI disputes, and open questions.
+By investus Research · Published November 12, 2026 (KST) · Informational only, not investment advice
+A security research firm says it opened 35,578 apps built with Grok Build, SpaceXSI's chat-to-app feature, without signing in to anything. Among them were 24 apps made by SpaceXSI and X staff, including a confidential onboarding plan for a new enterprise sales hire and a sales territory map of 594 accounts. SpaceXSI took those 24 staff apps down after the report. As of the published research and the press coverage we reviewed, there was no public confirmation that the default sharing setting for ordinary users had changed.
+The report is "GhostShares 2," published by 
+Claroc
+ (Asaf Aprozper, 
+Claroc
+ Research) on November 10, 2026. 
+Ars Technica
+'s senior security editor Dan Goodin covered it the same day (4:12 p.m. PT, which is 09:12 KST on November 11). It quickly became one of the most-discussed Grok stories on X on November 11, appearing as an 
+X trending news
+ story ("Grok Build Privacy Flaw Exposes Thousands of Apps and Sensitive Data") and drawing replies from security accounts and from Grok's own account.
+Below we separate what 
+Claroc
+ measured, what SpaceXSI and Cursor said, and the open questions.
+What Grok Build is, in one paragraph
+Grok Build is the mode inside Grok where a user describes an app in the chat and Grok writes it. When the user publishes, the app gets its own web address in the form `<name>.grok.me`. Grok suggests a name made of random "dice words," which is meant to make the address hard to guess. SpaceXSI is the name of the merged SpaceX and xAI, as Ars describes it. Ars also describes Cursor as the AI coding service SpaceXSI recently acquired, and it was a Cursor representative who answered Ars's questions.
+What Claroc says it measured
+These are 
+Claroc
+'s own figures from its November 10 post:
+| Measure | Figure (
+Claroc
+) |
+|---|---|
+| App names listed under grok.me (methodology) | 43,601 |
+| App addresses tried (summary) | 43,551 |
+| Still online when tried | 37,571 |
+| Opened for anyone, no sign-in | 35,578 (94.7% of online apps) |
+| Returned HTTP 401 (set to Only you or Invited users) | 1,993 (5.3%) |
+| Open apps built by SpaceXSI and X staff | 24 |
+| Other organizations identifiable from open apps | 30 (26 with 1,000+ employees; 6 in the Fortune 500) |
+| Estimated apps holding private data | roughly 650 to 800 (
+Claroc
+ estimate from sampling) |
+Two notes on those numbers. First, 
+Claroc
+'s post uses 43,601 in its methodology section and 43,551 in its summary; we flag the 50-name gap and lean on the online/open pair, which is internally consistent. Second, the 650 to 800 figure is an estimate. 
+Claroc
+ says an AI model flagged pages that looked private, the team checked flagged apps by hand, and it compared the model against a random sample. That is a model-based estimate, not a hand count.
+Claroc
+ says most open apps were games, landing pages and calculators; it estimates about 1 in 10 held sensitive data and roughly 2% held high or critical material.
+How the links became findable
+On Grok Build, the secret part of the link is the hostname itself. The first time anyone opens `<random-words>.grok.me`, their computer performs a DNS lookup for that name. Passive DNS services record such lookups and let account holders search them by pattern. 
+Claroc
+ says it found the app names using common subdomain discovery techniques, and Ars reports Aprozper said a passive DNS search returned 43,601 links ending in grok.me.
+Ars contrasts this with link designs where the random part sits in the path after the domain (for example, Google Docs links). DNS never sees a path. 
+Claroc
+ lists Claude's published artifacts, ChatGPT's shared conversations and Gemini's shared chats as path-based.
+Claroc
+ does not claim Grok is alone here. It says Lovable, Replit, Base44, Google AI Studio, Meta's Muse and ChatGPT's published apps also give each app its own hostname, and v0 and Bolt deploy to hostnames too. Ars quotes Aprozper: those builders "also give each app its own web address, so the same DNS records expose them, too. However, Grok is where we found by far the most sensitive company data."
+The disputed point: what the default really is
+This is where the two sides diverge, and both versions deserve to be stated plainly.
+Claroc
+'s observation (its own test account). Building works on the free plan; in 
+Claroc
+'s account, publishing needed a paid plan. Nothing went public until the builder clicked Publish. When it did, the access panel offered "Anyone with the link," "Invited users" and "Only you," with "Anyone with the link" already selected.
+SpaceXSI / Cursor's statement. The Cursor representative told Ars that Grok Build "apps are private by default and nothing goes public unless the creator chooses to share it." Per 
+Claroc
+'s summary of SpaceXSI's answers to a reporter, publishing takes several steps (Publish, choose an address, Publish again, choose access, accept a legal disclaimer, Publish a final time), and employee accounts are set to "Only you" by default.
+Where they agree. Both say nothing is public before the builder clicks Publish. The disagreement is over the access step that follows. 
+Claroc
+'s argument is that extra clicks do not help if the path ends with "everyone" preselected, noting the people behind the 35,578 open apps went through every step. Ars says the representative did not answer follow-up questions, including about notifying other users.
+We treat the "Anyone with the link" preselection as 
+Claroc
+'s documented observation in its account, not as a confirmed universal setting for every account type. We treat "private by default" as SpaceXSI/Cursor's statement. Neither is our finding.
+What Claroc proved about writing and deleting data
+Claroc
+ built two apps of its own with made-up data. In one, a public contact list, Grok created a database with no sign-in, and an anonymous visitor could add a row the next visitor saw. In the other, a "team" customer list, Grok added Google and X sign-in, but according to 
+Claroc
+ the generated code added whoever signed in to the team before checking membership. An uninvited Google account read every record, changed one and deleted another.
+Claroc
+ is explicit that it proved write and delete only on its own two apps and did not sign in to, write to or test anyone else's. So the claim that some open third-party apps may also be editable is an inference from the test design, not a demonstrated fact about any specific app.
+Timeline (as reported)
+- November 8, 2026: 
+Claroc
+ reports the issue to SpaceXSI via its security.txt address and flags two SpaceXSI/X apps.
+- November 9: 
+Claroc
+ reports the other 22 staff apps.
+- November 10: SpaceXSI answers a reporter's questions; per 
+Claroc
+ it had not replied to 
+Claroc
+'s report. Ars reports SpaceXSI began removing the 24 links within hours of Ars's email, and they returned "app not found" by publication. 
+Claroc
+ publishes "GhostShares 2," without hostnames, and begins notifying affected organizations itself; by publication it had emailed three.
+- November 11 (KST): The story trends on X. In our check of public posts through about 18:00 KST, we found no SpaceXSI announcement of a platform-wide default change.
+- November 12 (KST): In a re-check before publication, 
+Claroc
+'s figures and the 
+Ars Technica
+ reporting were unchanged, and we found no SpaceXSI announcement of a default-setting change.
+Why this matters beyond one bug report
+For readers who track Musk's companies, the interest is not the leak alone. It is what the episode says about SpaceXSI's push into business software.
+Claroc
+'s list of four proposed fixes reads like an enterprise checklist: keep app secrets out of DNS, add an "everyone in my organization" option tied to the company's email domain, make "Only you" the default with a clear preview of who can open an app, and warn at publish when an app has a database and no sign-in. 
+Claroc
+ notes that SpaceXSI already uses "Only you" as the default for its own employees.
+As 
+Claroc
+ frames it, a sales territory map and a lunch poll get the same publish button, with no IT review. Whether SpaceXSI changes the default for ordinary users, and how fast, is a concrete test of how it balances that speed against the security expectations of the companies it wants as customers.
+Open questions to watch
+1. Does SpaceXSI publicly change the default access setting for non-employee accounts?
+2. Does it notify owners of the other open apps, or offer an organization-only sharing option?
+3. Does it move app links off per-app hostnames, as 
+Claroc
+ and Ars suggest?
+We will update this analysis only with verified statements or measurements.
+Sources
+1. 
+Claroc
+, "GhostShares 2: Grok Apps Exposed xAI's Business Secrets and People's Private Data," Asaf Aprozper, November 10, 2026. 
+https://blog.claroc.io/ghostshares-grok-build-apps/
+ (retrieved November 11, 2026)
+2. 
+Ars Technica
+, Dan Goodin, "Grok Build coding agent leaks oodles of confidential info, some belonging to SpaceXSI," November 10, 2026, 4:12 p.m. PT. 
+https://arstechnica.com/security/2026/11/grok-build-coding-agent-leaks-oodles-of-confidential-info-some-belonging-to-spacexsi/
+ (retrieved November 11, 2026)
+3. 
+X trending news
+ story, "Grok Build Privacy Flaw Exposes Thousands of Apps and Sensitive Data," updated November 11, 2026, 05:32 UTC. 
+https://x.com/i/trending/2120330231362031958
+ (retrieved November 11, 2026; an X summary of posts, used only as evidence of discussion, not as a fact source)
+This article is for information only. It is not investment advice and does not recommend buying or selling any security. investus Research does not hold the app addresses discussed and did not access any third-party app.
+Sources & further reading
+Claroc — GhostShares 2 (Nov. 10, 2026)
+ ↗
+Ars Technica — Dan Goodin (Nov. 10, 2026)
+ ↗
+X trending news — Grok Build Privacy Flaw (Nov. 11, 2026)
+ ↗
+SpaceX — Official site
+ ↗
+Related Guides
+📉
+Options Basics — Calls, Puts & Implied Volatility
+🇺🇸
+Complete Beginner's Guide to US Stocks
+🇰🇷
+Introduction to Korean Stocks
+Related articles
+Analysis
+SpaceX
+2026-11-11
+Starship Flight 15 Explained: SpaceX's First Attempt to Catch Both Stages, What Is Confirmed and What Investors Should Watch
+SpaceX says Starship Flight 15 is preparing to launch as soon as Friday, November 13, 2026, pending regulatory approval, on the first plan to catch both Super Heavy and the Starship upper stage. The 75-minute window opens at 4:45 p.m. CT. This note separates confirmed facts, company plans, secondary reports, and open questions. It is not a buy, a sell, or a share-price call.
+Breaking
+SpaceX
+2026-11-10
+Terafab — 1M Wafers/Month Goal, Tesla 38.1% / SpaceX 61.9% JV, $45B Funding Target
+Terafab's joint-venture structure emerged: Tesla holds 38.1%, SpaceX 61.9%, with a $45B targeted funding pool and a goal of one million chip wafers per month by 2033. Phase 1 is a 25,000-chip complex in Grimes County, Texas. Tesla's procurement team visited Japanese semiconductor equipment makers in early November to begin Terafab sourcing.
+Analysis
+SpaceX
+2026-11-10
+Starlink's Dynamic Pricing Goes National: Residential Max Now $104–$156 and What SpaceX Investors Should Read
+Starlink's dynamic pricing has spread from a Midwest test to addresses across the United States, and Residential Max is now reported between $104 and $156 a month. PCMag (updated Nov. 8, 2026) and TechSpot (Nov. 8) describe 10% to 20% moves in both directions. This note separates confirmed reporting, SpaceX's own sentences, and open questions. It is not a buy, sell, or price-target piece.
+Disclaimer
+This article is editorial research for informational purposes only. It is not investment advice, a recommendation, or a solicitation to buy or sell any security, and does not guarantee any return. Markets carry risk of loss. Verify figures against the primary sources before making decisions.
