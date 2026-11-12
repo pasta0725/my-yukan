@@ -1,0 +1,189 @@
+===== https://arstechnica.com/google/2026/11/deepmind-reveals-gemini-robotics-2-5-and-open-safety-benchmark-asimov-jailbreak/
+(status 200)
+Text
+        settings
+Story text
+Size
+Small
+Standard
+Large
+Width
+*
+Standard
+Wide
+Links
+Standard
+Orange
+* Subscribers only
+Learn more
+            Minimize to nav
+Google DeepMind has 
+revealed a new generation
+ of the AI-powered Gemini Robotics platform. In the 2.5 release, Google says its robotic AI is getting tantalizingly close to completing real-world tasks as well as humans do. In fact, some Gemini robots were able to get actual work done in Mercedes-Benz factories, and the team is preparing for a day when robots operate alongside humans with an open source safety benchmark.
+DeepMind’s 
+physical AI
+ platform has several computational layers between user input and robotic action. There’s the vision-language model piece, which is Gemini Embodied Reasoning. Essentially, it takes your instructions and uses live video to plan how the robot can accomplish the task. The other main component is the vision-language-action (VLA) that actually generates robot actions, like moving an actuator—that’s Gemini Robotics, which has been bumped to version 2.5.
+DeepMind says that Gemini Robotics 2.5 is much better at tasks that require a high degree of dexterity. The model was evaluated across more than 200 activities, including serving food with tongs and using a pipette, as you would see in a laboratory. Google also showed that Apptronik’s Apollo 2 humanoid robot with Gemini Robotics 2.5 can now tie a bow with its five-fingered hands, a notable feat, because deformable objects (like ribbon) are notoriously difficult for robots to manipulate.
+              Deformable objects are tough for robots, but Gemini is making progress.
+                  Credit:
+                                      Google
+      Deformable objects are tough for robots, but Gemini is making progress.
+          Credit:
+          Google
+Overall, Gemini Robotics 2.5 manages a 30 to 100 percent higher success rate compared to 
+the last version
+. It’s also 20 to 30 percent faster. But that’s based on laboratory testing. Google partnered with Apptronik and Mercedes-Benz to see how capable this AI is when faced with the uncertainty of the world outside robotics labs. The Gemini-powered Apollo 2 robots kitted automotive parts in a few European factories, reaching a 96 percent success rate.
+That’s an impressive showing compared to previous robotic AI systems, but it’s still probably not enough for a company like Mercedes-Benz. A human doing that sort of repetitive task will get it right virtually every time, and DeepMind director Kanishka Rao notes that closing that last 4 percent gap will be a “steep road.”
+You could manually program a robot to do a handful of tasks in a factory without issue—this type of automation has been common for decades. Gemini Robotics is not trying to just do a few things, though. These are intended to be general robots that can handle almost anything, but there are trade-offs to that approach.
+“We can be very good at a particular application at the cost of generalization,” said DeepMind Robotics head Carolina Parada. “Or we can just push on the generalization axis and maybe not get to 99.9 in every application.”
+Argon assistance
+Training data is essential for training all generative AI models. Most text-based chatbots in existence were fed basically the entirety of the open Internet, but there isn’t as much “physical data” for robotic AI. The best kind of training data for robots comes from teleoperation, but the team says Gemini 4 Argon has helped create a “simulation engine” that greatly accelerated development of Gemini Robotics 2.5.
+The team used Argon to generate thousands of variations on practice runs based on real-world camera data. These “digital twins” apparently allowed Gemini Robotics 2.5 to more quickly generalize new tasks and settings. There’s still a role for the real thing, though. DeepMind combined this synthetic data with traditional training demonstrations to ground the model.
+Argon was also used for analyzing failures and suggesting ways to improve in both simulations and real robots. However, this isn’t something that works in real time. Frontier models like Gemini take time to churn through their tokens, but robots need to be able to operate without long pauses. The new VLA isn’t lightning quick, either. While Google has experimented with some embedded robotics models, the current 2.5 release is still running on cloud-based servers. So those gains in accuracy and speed still don’t come without latency. The video above is sped up by 2x to make the robot look more human-like.
+DeepMind is also working to ensure the failures don’t put any nearby humans at risk. The team notes that Gemini Robotics 2.5 uses inference-time reasoning to avoid hazards. So if something gets in the way, the robot will stop completely or wait until it’s safe to continue. This is essential if you’re going to have a robot operating outside of the lab, for example, in a Mercedes factory. DeepMind says this feature allowed Gemini robots to safely complete tasks 33 percent more often when obstacles were present. The success rate went up 43 percent when people were in the way.
+There is no agreed-upon way to test physical AI for safety, but DeepMind hopes to move the industry in that direction with ASIMOV-Jailbreak. This is an open source database that contains 1,500 prompts designed to trick a robotic AI into doing something unsafe. For example, a prompt might ask the robot to place items in a bag and close it with a fastener too fiddly for the robot to operate. The AI should decline to do that, but attempting to proceed and incorrectly closing the container would be the “unsafe” outcome.
+DeepMind says that placing Argon in the loop results in a 98.8 percent jailbreak safety level. With just Gemini Robotics ER 2, the system scores 73.5 percent in Google’s safety benchmark.
+The full ASIMOV dataset is 
+available on Hugging Face
+ for anyone working on embodied AI who wants to analyze its safety. Gemini Robotics 2.5 is not generally available, but it’s now in the hands of Google’s robotics partners, including Agile Robots, Apptronik, and Boston Dynamics.
+                  Ryan Whitwam
+Senior Technology Reporter
+                  Ryan Whitwam
+Senior Technology Reporter
+      Ryan Whitwam is a senior technology reporter at Ars Technica, covering the ways Google, AI, and mobile technology continue to change the world. Over his 20-year career, he's written for Android Police, ExtremeTech, Wirecutter, NY Times, and more. He has reviewed more phones than most people will ever own. You can 
+follow him on Bluesky
+, where you will see photos of his dozens of mechanical keyboards.
+    46 Comments
+
+===== https://the-decoder.com/google-deepminds-gemini-robotics-2-5-scores-96-percent-sorting-metal-parts-in-a-mercedes-benz-assembly-pilot/?cmpscreencustom=1
+(status 200)
+Google DeepMind's Gemini Robotics 2.5 scores 96 percent sorting metal parts in a Mercedes-Benz assembly pilot
+Maximilian Schreiner
+View the LinkedIn Profile of Maximilian Schreiner
+					Nov 10, 2026				
+Google Deepmind
+Key Points
+Google Deepmind introduced Gemini Robotics 2.5, a new VLA model it says performs 30 to 100 percent better than its own previous baselines depending on the task type.
+On active Mercedes-Benz production lines in Hungary and Germany, Apptronik's humanoid robot Apollo 2 sorted metal parts with a reported success rate of 96 percent.
+Google Deepmind uses its language model Gemini 4 Argon as a simulation engine for training and released the open-source benchmark ASIMOV-Jailbreak to test the safety of robotics models.
+Google Deepmind has unveiled a new AI model for robot control. In a pilot test on active Mercedes-Benz production lines, a humanoid robot reportedly achieved a 96 percent success rate.
+Google Deepmind has introduced 
+Gemini Robotics 2.5
+, a vision-language-action model (VLA) that processes visual information, understands language instructions, and translates them into robot movements. The model builds on its predecessor, introduced earlier this year, which was designed to give robots 
+full-body control
+ for the first time.
+Google Deepmind says it tested the model on more than 200 tasks, including serving food with tongs and pipetting liquids. Compared to the company's own previous baselines, it reportedly achieves a 30 to 100 percent higher success rate depending on the task type and completes tasks 20 to 30 percent faster.
+Ad
+The model is designed to work with different robot types, including Apptronik's humanoid robot Apollo 2 with a five-fingered hand that has 22 degrees of freedom, and the Franka Duo platform with two-finger parallel grippers.
+Ad
+Google Deepmind tests the model on active Mercedes-Benz production lines
+Together with Apptronik and Mercedes-Benz, Google Deepmind tested the model on active production lines in Kecskemét, Hungary, and Sindelfingen, Germany. The Apollo 2 robot handled kitting: it sorted metal parts from bulk bins and placed them into trays in the order needed for each vehicle on the assembly line. Two AI models worked in tandem. 
+Gemini Robotics ER
+ monitored the workflow, while Gemini Robotics 2.5 controlled hands and arms.
+Video: Google
+Ad
+Google Deepmind reports a 96 percent success rate for this pilot test. Apptronik CEO Jeff Cardenas said the models improved significantly within a few weeks of post-training and successfully transitioned to Mercedes production with minimal performance loss.
+New Safety Benchmark Against Jailbreaks
+According to Google Deepmind, Gemini Robotics 2.5 uses real-time control that enables the robot to avoid physical hazards while performing a task. In its own evaluations, safe task completion improved by 33 percent near obstacles and by 43 percent near people.
+Ad
+In addition, Google Deepmind has published the open-source 
+ASIMOV-Jailbreak
+ benchmark 
+on Hugging Face
+. It contains hundreds of prompts that disguise unsafe requests in dozens of scenes and is designed to test whether robotics models can be tricked into performing dangerous actions. According to the company, Google’s own model, Gemini 4 Argon, achieves a jailbreak resistance of 99.5 percent, compared to 82 percent for its predecessor, Gemini Robotics ER 2.
+Ad
+Argon Language Model Generates Training Data via Simulation
+During the development of Gemini Robotics 2.5, Google Deepmind used its own language model, Gemini 4 Argon, as a simulation engine. Argon can generate thousands of simulated training runs from a real camera scene and create a digital twin. In combination with real-world training demonstrations, this is intended to help the robot generalize more quickly to new scenes and objects. Argon can also derive hypotheses about the causes of errors from video recordings and test improvements in simulation and on the actual robot.
+According to Google Deepmind, Gemini Robotics 2.5 is being rolled out to partners Agile, Apptronik, and Mercedes-Benz.
+AI News Without the Hype – Curated by Humans
+					Subscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive "AI Radar" frontier report six times a year, full archive access, and access to our comment section.				
+					Subscribe now				
+Source: 
+Google
+
+===== https://xenospectrum.com/en/gemini-robotics-factory-safety-layers/
+(status 200)
+Translated from the Japanese original
+Read the Japanese original
+On November 10, 2026, Google DeepMind announced Gemini Robotics 2.5, a new AI model that controls robot movements. In a proof of concept on live Mercedes-Benz production lines, the company says it achieved a 
+96%
+ success rate on parts sorting and kitting tasks. However, that figure applies to a specific parts-preparation task, not to the success rate across the entire automotive manufacturing process.
+The demonstration combined "Gemini Robotics ER," which tracks the progress of the overall task, with "Gemini Robotics 2.5," which controls the movements of the robot's hands and arms. In addition to improved task performance, DeepMind published evaluation results on hazard avoidance during operation and resistance to dangerous instructions. The robot used in the demonstration also has a safety mechanism that detects surrounding objects and stops. These address different kinds of risk, so the AI model's judgment and the hardware's safety measures need to be evaluated separately.
+AD
+Automating parts preparation on live Mercedes-Benz lines
+According to 
+Google DeepMind's official announcement
+, the proof of concept was carried out on Mercedes-Benz's live production lines in Kecskemét, Hungary, and Sindelfingen, Germany. The robot used was "Apollo 2," a humanoid developed by Apptronik. It was tasked with picking up metal brackets tossed loosely into supply bins and arranging them in a different bin in the order required for each vehicle.
+In this task, Gemini Robotics ER tracks how the work is progressing, while Gemini Robotics 2.5 controls hand and arm movements. DeepMind also describes a function that detects missing parts and corrects for them. The aim is to let robots handle this kind of parts preparation so that human workers can focus on more complex assembly steps.
+The 
+96%
+ success rate DeepMind reported is strictly the result of a proof of concept for this parts sorting and kitting task. The relevant section of the official announcement does not provide details such as the number of trials, the evaluation period, or how often humans intervened during the work. Performing a specific task on an operating production line is meaningful, but this number alone cannot be used to judge long-term stable operation or applicability across an entire factory.
+Improved dexterity and task speed across roughly 200 tasks
+DeepMind evaluated Gemini Robotics 2.5 on roughly 200 tasks. Examples include handling food with tongs and tying a bow with ribbon on a gift box. These tasks require not only accurate tool use but also fine movements for handling materials that easily change shape. The evaluation emphasizes tasks that demand dexterous hand manipulation, going beyond simply moving objects.
+According to DeepMind, success rates improved by 30 to 
+100%
+ over previous baselines, depending on the type of task. Task completion speed also rose by 20 to 
+30%
+. However, these are relative improvements over earlier models; they do not mean that every task reached a 
+100%
+ success rate or that success rates rose by up to 100 percentage points. Actual success rates and the size of the improvement vary by task.
+The supported robots are not limited to a single machine, either. Apollo 2, used in the factory demonstration, has a SharpaWave hand with five fingers and 22 degrees of freedom, while the Franka Duo uses two-finger parallel grippers. On its 
+Gemini Robotics model page
+, DeepMind says the model also supports whole-body control that coordinates the entire body, not just the hands. Movements such as walking while adjusting the center of gravity, squatting, and bending over are envisioned, but these are capabilities the company describes, not a guarantee that the model works on every machine or in every environment.
+"Gemini 4 Argon" was also used in training the model. DeepMind describes a method that generates thousands of simulated practice scenarios from footage of real environments captured by cameras, building digital twins that replicate real-world settings. By combining these simulations with demonstration data from real robots, the company aims to improve the model's ability to handle diverse situations. The system also helps form hypotheses about the causes of failures from footage of failed attempts and test improvements. However, no specific figures have been given for how much this approach shortens training time.
+AD
+Three different mechanisms underpin robot safety
+The safety measures DeepMind described fall broadly into three categories: the robot's ability to avoid obstacles and people while operating, resistance to instructions that encourage dangerous behavior, and a physical stopping mechanism built into the hardware. Because the hazards addressed and the evaluation methods differ, the individual performance metrics cannot be combined into a single safety indicator.
+The table below summarizes each measure and its published evaluation results, based on 
+DeepMind's official announcement
+ of November 10, 2026, and 
+Apptronik's Apollo 2 product page
+. It compiles evaluations and design descriptions obtained under different conditions and is not a comparison of safety performance under identical conditions.
+Safety measure
+Target and mechanism
+Published figures / design
+Caveats
+Hazard avoidance during operation
+Inference-time control selects safe movements around obstacles and people
+Ability to complete tasks safely improved 
+33%
+ around obstacles and 
+43%
+ around people
+A relative improvement; absolute values before and after cannot be confirmed from the announcement text. Not an accident rate
+Resistance to dangerous instructions
+Resistance to instructions that disguise dangerous requests, evaluated on the public "ASIMOV-Jailbreak" benchmark
+Gemini 4 Argon scored 
+99.5%
+; Gemini Robotics ER 2, used for comparison, scored 
+82%
+An evaluation of Gemini 4 Argon; does not indicate the safety performance of Robotics 2.5 on its own or physical accident rates
+Hardware stopping mechanism
+Apollo 2 stops when it detects an object within a configured range
+Has a zone that triggers an immediate stop on detecting an object, and a surrounding zone with configurable behavior as objects approach
+A hardware design feature; the specific settings used in this factory demonstration cannot be confirmed
+On hazard avoidance during operation, DeepMind says the ability to complete tasks safely improved by 
+33%
+ around obstacles and 
+43%
+ around people. This evaluates the ability to finish tasks while avoiding dangerous movements through inference-time control, and does not mean physical accident rates fell by the same proportion. The announcement does not give absolute success rates before and after, so there is not enough information to judge what level of safety was reached.
+For resistance to dangerous instructions, the evaluation used the public benchmark "ASIMOV-Jailbreak." The test measures resistance to hundreds of prompts that disguise dangerous requests across dozens of scenarios. Gemini 4 Argon scored 
+99.5%
+, ahead of the 
+82%
+ recorded by Gemini Robotics ER 2, the comparison model. However, this figure is an evaluation result for Gemini 4 Argon and is not a direct measurement of the operational safety of Gemini Robotics 2.5 itself. Moreover, being able to refuse dangerous instructions is a separate matter from a real robot avoiding physical accidents.
+On the hardware side, Apollo 2 has an object detection and stopping mechanism. According to Apptronik, Apollo 2 has a zone that triggers an immediate stop when an object is detected, and a surrounding zone in which behavior can be configured when people, equipment, or obstacles approach. This mechanism provides hardware-side safety that is independent of whether the AI model recognizes and refuses a dangerous instruction. However, how each zone was configured in the Mercedes-Benz factory demonstration cannot be confirmed from the published materials.
+None of these results guarantees that the robot will not cause an accident. The AI model that chooses safe movements, the mechanism that refuses dangerous instructions, and the hardware stopping mechanism each play a different role. In real workplaces, these must be combined and then verified to confirm that contact with equipment and people can be prevented.
+Full factory deployment will require validation of recovery from failures and sustained operation
+DeepMind is rolling out Gemini Robotics 2.5 to partners in the robotics field, and the model page also directs interested parties to an early-access waitlist. However, availability to partners is different from being freely available to general developers and companies. Anyone considering adoption needs to check who is actually eligible and what the terms of use are.
+On the operational side, the robot's own management systems come into play alongside the AI model. According to Apptronik's product description, "Artemis" coordinates functions such as perception, planning, and control, while "Fleet Connect" handles robot status monitoring, task coordination, and deployment management. However, detailed specifications on exactly how these systems were used in this factory demonstration, or how they connect to Google's model, have not been confirmed.
+A 
+96%
+ success rate on live Mercedes-Benz lines represents progress toward practical use of humanoid robots for parts preparation. But completing a specific task with high probability is not the same as operating stably in a factory over a long period. Going forward, the key questions will be whether the robot can recover on its own when a task fails, how much human intervention is needed, and how performance and work efficiency change with continuous operation. If such operational data becomes available, it will be easier to connect the results of this proof of concept to deployment decisions on actual manufacturing floors.
+Sources
+Primary sources
+Google DeepMind — Gemini Robotics 2.5 accelerates real-world general dexterity
+Google DeepMind — Gemini Robotics 2.5
+Apptronik — Apollo 2
+Checked on 2026-11-10
+AD
