@@ -32,9 +32,18 @@ function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0
 }
 function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
 function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
-function rrect(x,y,w,h,r,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+// ---- overflow check (2026-11-13: "11/17" ran out of its calendar icon and nobody noticed) ----
+// every filled rrect is remembered in screen pixels; text() warns when its text sticks out of the smallest box it sits in.
+// check_fit.js renders the whole video and lists these warnings. text(s,...,maxw) also shrinks the font to fit maxw.
+let BOXES=[];window.FIT_WARN=window.FIT_WARN||[];
+function devBox(x,y,w,h){const m=g.getTransform();const xs=[x,x+w].map((a,i)=>m.a*a+m.c*(i?y+h:y)+m.e),ys=[y,y+h].map((b,i)=>m.b*(i?x+w:x)+m.d*b+m.f);return [Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)];}
+function noteBox(x,y,w,h){if(!MEASURE)BOXES.push(devBox(x,y,w,h));}
+function checkText(s,x,y,size,align){if(MEASURE)return;const tw=g.measureText(s).width;const x0=align==='left'?x:align==='right'?x-tw:x-tw/2;const b=devBox(x0,y-size*0.5,tw,size);
+  const cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2;let best=null;for(const r of BOXES){if(cx>r[0]&&cx<r[2]&&cy>r[1]&&cy<r[3]&&(!best||(r[2]-r[0])*(r[3]-r[1])<(best[2]-best[0])*(best[3]-best[1])))best=r;}
+  if(best&&(b[0]<best[0]-3||b[2]>best[2]+3||b[1]<best[1]-3||b[3]>best[3]+3))window.FIT_WARN.push({t:+CURT.toFixed(2),scene:P.lines[CURI]?P.lines[CURI].scene:'',text:s,over:Math.round(Math.max(best[0]-b[0],b[2]-best[2],best[1]-b[1],b[3]-best[3]))});}
+function rrect(x,y,w,h,r,fill,stroke){if(fill)noteBox(x,y,w,h);g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
 function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
-function text(s,x,y,size,col,align='center',weight=900){g.font=`${weight} ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function text(s,x,y,size,col,align='center',weight=900,maxw){g.font=`${weight} ${size}px ${FONT}`;if(maxw){const w0=g.measureText(s).width;if(w0>maxw){size=Math.floor(size*maxw/w0);g.font=`${weight} ${size}px ${FONT}`;}}checkText(s,x,y,size,align);g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
 function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
   g.save();g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
 function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
@@ -151,7 +160,7 @@ const S={
    if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
    text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
 };
-window.render=async function(t){
+window.render=async function(t){BOXES=[];
   CUR=await charImg(Math.round(origT(t)*P.fps));
   g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
   let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
