@@ -57,8 +57,9 @@ function marks(s,warn){const m=new Array(s.length).fill(C.capText);
 function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
   if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
   const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
+const FIXC={'そのうちなくなりそうです':['そのうち','なくなりそうです']};
 function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
-  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
+  if(g.measureText(s).width>MAXW){lines=FIXC[s]||splitLine(s);}
   for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
   const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
   g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
@@ -217,7 +218,7 @@ const S={
    box(150,'ポケット',Math.max(0.3,tp));box(550,'バッグ',Math.max(0.45,tp+0.2));},
  // uwb: UWB radio, finds position to the centimetre
  uwb(u,d,L){bg(u);mini(u);const tc=telHas(L,'センチ');
-   mixLine([['UWB',C.brand],['という電波',C.text]],CX,385,66);
+   mixLine([['UWB',C.brand],['っていう電波',C.text]],CX,385,66);
    withEnter(enter(u,0),()=>{card(150,450,780,520,30,C.card2);gateIcon(330,760,1.1,'#CDD8EC',C.acc);
      for(let i=0;i<4;i++){const r=60+((u*140+i*70)%280);g.save();g.globalAlpha*=clamp(1-r/340);g.strokeStyle=C.acc;g.lineWidth=8;g.beginPath();g.arc(470,700,r,-0.9,0.9);g.stroke();g.restore();}
      phoneIcon(800,700,0.9,'#FFFFFF');text('超広帯域無線',CX,920,40,'#CDD8EC','center',800);});
@@ -251,7 +252,7 @@ const S={
  // full: full launch around spring 2028 at 40 stations including all Yamanote line stations
  full(u,d,L){bg(u);mini(u);const t40=telHas(L,'40駅');
    mixLine([['本格導入',C.brand],['は',C.text],['2028年春ごろ',C.acc]],CX,385,60);
-   withEnter(enter(u,0),()=>{card(150,450,780,270);bigNum('40','駅',CX,585,(u-Math.max(0.2,t40))/0.35,C.acc,170);});
+   withEnter(enter(u,0),()=>{card(150,450,780,270);text('導入する駅',CX,505,40,C.sub,'center',800);bigNum('40','駅',CX,610,(u-0.15)/0.35,C.acc,160);});
    const rows=[['体験の14駅'],['山手線の全駅'],['成田空港の2駅'],['東京モノレールの4駅']];
    rows.forEach(([s],i)=>withEnter(enter(u,0.15+0.12*i),()=>{const y=745+i*105;card(150,y,780,90,26,i===1?C.buyFill:C.card);text(s,CX,y+46,44,i===1?C.buyInk:C.text);}));},
  // all: by the end of FY2031, all ~550 stations with gates
