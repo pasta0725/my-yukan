@@ -80,7 +80,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-const FIXW={};
+const FIXW={'改札のある約550駅すべてが':['改札のある','約550駅すべてが'],'参加できるのは':['参加','できるのは'],'AQUOS R10を使います':['AQUOS R10を','使います'],'貸し出されるシャープの':['貸し出される','シャープの']};
 function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
   const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
@@ -236,7 +236,7 @@ const S={
    withEnter(enter(u,0),()=>{card(150,450,780,170,30,C.card2);text('2027年4月10日から',CX,535,62,C.acc);});
    const st=['東京','上野','新宿','渋谷','池袋','赤羽','北千住','中野','大崎','品川','浜松町','田町','高輪ゲートウェイ','大井町'];
    st.forEach((s,i)=>{const col=i%2,row=Math.floor(i/2);const x=150+col*395,y=645+row*62;withEnter(enter(u,0.15+i*0.04),()=>{rrect(x,y,385,52,26,(s==='東京'||s==='新宿')?C.buyFill:C.card);text(s,x+192,y+27,s.length>5?28:32,(s==='東京'||s==='新宿')?C.buyInk:C.text);},10);});
-   if(u>t14)stamp('14駅',800,640,(u-t14)/0.35,C.brand,60,0.08);},
+   if(u>t14)stamp('14駅',CX,1125,(u-t14)/0.35,C.brand,60,-0.04);},
  // monitor: about 400 monitors with commuter passes between the stations
  monitor(u,d,L){bg(u);mini(u);const tp=telHas(L,'定期券');
    mixLine([['参加できるのは',C.text]],CX,385,66);
@@ -247,7 +247,7 @@ const S={
  twist(u,d,L){bg(u);mini(u);const ta=telHas(L,'AQUOS');
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-150,-52,300,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
    withEnter(enter(u,0.2),()=>{card(150,490,780,140,30,C.card);phoneIcon(240,560,0.55,C.brand);text('モニターに貸し出し',560,560,52,C.text);});
-   withEnter(enter(u,Math.max(0.35,ta)),()=>{picC('aquos',150,655,780,360,'#EDEDED');creditAt(CRA,915,990);});
+   withEnter(enter(u,0.35),()=>{picC('aquos',150,655,780,360,'#EDEDED');creditAt(CRA,915,990);});
    withEnter(enter(u,Math.max(0.45,ta+0.15)),()=>{card(150,1035,780,125,30,C.buyFill);text('貸し出しの AQUOS R10',CX,1098,56,C.buyInk);});},
  // full: full launch around spring 2028 at 40 stations including all Yamanote line stations
  full(u,d,L){bg(u);mini(u);const t40=telHas(L,'40駅');
