@@ -30,6 +30,10 @@ Since 2026-11-10 there are two editions a day: 朝刊 (ready 7:00) and 夕刊 (r
   - A phone/PC update (Pixel Drop, iOS, Windows) is mobile even if it includes AI features, unless the AI feature is the whole point.
   - service_A writes stories found on news sites; service_B only stories that exist as the service's own announcement and have little news coverage.
   - game_A writes stories found on 4Gamer/GAME Watch; game_B those found on ファミ通/電撃 and the makers' own announcements. Big platform numbers (console sales, total units sold, company results) belong to game_A only (2026-11-12, Issue #12: both wrote the same two stories).
+  - Rules or bans about AI made by a non-AI company (an airline, a bank, a school banning AI agents or AI use) are ai, not service or other. If the main source is English, ai_D takes it; otherwise ai_A (2026-11-12, Issue #14: ai_D, service_A and other_A all wrote the same airline story).
+  - A new phone, tablet or PC model (e.g. a new iPad mini) is mobile_A's if it is on ITmedia Mobile/ケータイ Watch/Apple Newsroom, otherwise mobile_B's. mobile_B never writes a model that mobile_A's sites also cover; hands-on reviews of the same model are part of that one story.
+  - A change to a service or app (a support forum closing, a feature ending) is service, never other. other is only for results, leadership, lawsuits, regulation and leaks.
+  - The same AI feature or API from one company is ONE story even if ITmedia, Impress and the official blog all cover it: ai_A takes it if ITmedia has it, else ai_B, and ai_C only when no news site covers it yet.
   - A story that continues something in used.txt from another angle (a new outlet or detail on the same event) is the same story: skip it unless there is a real new development.
 
 ## Personal-interest topics (the user's request, 2026-11-09 — cover these actively)
@@ -48,7 +52,7 @@ The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chr
 
 ## Read up to 5 articles per story (user's request: more information)
 - (2026-11-10) Do NOT WebSearch for other outlets' coverage of your story. After the edition is built, Codex (ChatGPT) on GitHub finds up to 4 other outlets and the official page for every story, and rewrite workers add those facts (tools/README.md 「Codexの調査」). This keeps the shared search limit for finding stories.
-- Still read every related page you can reach without searching (links inside the article, the official page or another outlet's article linked from it), up to 5 in total, from different sites.
+- Read only what is in your news folder and pages that appear in your own WebSearch results. Do not open links inside articles, official pages or other outlets' pages (that asks the user for permission; Codex adds those later). (2026-11-12, Issue #7)
 - Combine the facts from all of them: what happened, concrete details (prices, dates, specs, numbers, who is affected), background / why it matters, what each outlet added that the others did not, and what happens next.
 - If outlets disagree, say so plainly ("〇〇は△△と伝えています").
 - Write it all in YOUR OWN WORDS as one new explanation. Never copy sentences, never follow one article's paragraph order closely, never quote more than a few words.
