@@ -1,0 +1,75 @@
+# ニュース一覧の取得 2026-11-12-pm（11-12 14:23）
+
+- ai_A ITmedia AI+: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/aiplus.xml
+- ai_A ITmedia NEWS: 12本（全50） feed https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
+- ai_B Impress Watch: 12本（全20） feed https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf
+- ai_B Publickey: 8本（全15） feed https://www.publickey1.jp/atom.xml
+- ai_B 日経クロステック: 12本（全100） feed https://xtech.nikkei.com/rss/index.rdf
+- ai_C Google Japan Blog: 2本（全20） feed https://blog.google/intl/ja-jp/rss/
+- ai_C Microsoft 日本のニュース: 0本（全10） feed https://news.microsoft.com/ja-jp/feed/
+- ai_C PR TIMES（テクノロジー）: 12本（全200） feed:https://prtimes.jp/index.rdf https://prtimes.jp/technology/
+- ai_C OpenAI: 12本（全1381） feed https://openai.com/news/rss.xml
+- ai_D TechCrunch AI: 12本（全20） feed https://techcrunch.com/category/artificial-intelligence/feed/
+- ai_D The Verge AI: 10本（全10） feed https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+- ai_D Ars Technica AI: 10本（全20） feed https://arstechnica.com/ai/feed/
+- ai_D VentureBeat AI: 0本（全0） 
+  - 失敗 https://venturebeat.com/category/ai/feed/: HTTPError 429 Client Error: Too Many Requests for url: https://venturebeat.com/category/ai
+  - 失敗 https://venturebeat.com/feed/: HTTPError 429 Client Error: Too Many Requests for url: https://venturebeat.com/feed/
+- ai_D OpenAI: 12本（全1381） feed https://openai.com/news/rss.xml
+- ai_D Anthropic: 12本（全22） page https://www.anthropic.com/news
+- ai_D Google AI blog: 6本（全20） feed https://blog.google/technology/ai/rss/
+- ai_D Meta AI: 0本（全10） feed https://about.fb.com/news/category/technology-and-innovation/feed/
+- ai_D Microsoft: 0本（全10） feed https://blogs.microsoft.com/feed/
+- ai_D NVIDIA: 4本（全18） feed https://blogs.nvidia.com/feed/
+- mobile_A ケータイ Watch: 12本（全30） feed https://k-tai.watch.impress.co.jp/data/rss/1.0/ktw/feed.rdf
+- mobile_A ITmedia Mobile: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/mobile.xml
+- mobile_A Apple Newsroom（日本）: 2本（全20） feed https://www.apple.com/jp/newsroom/rss-feed.rss
+- mobile_B PC Watch: 12本（全20） feed https://pc.watch.impress.co.jp/data/rss/1.0/pcw/feed.rdf
+- mobile_B ITmedia PC USER: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/pcuser.xml
+- mobile_B 窓の杜: 12本（全60） feed https://forest.watch.impress.co.jp/data/rss/1.0/wf/feed.rdf
+- gadget_A 家電 Watch: 12本（全15） feed https://kaden.watch.impress.co.jp/data/rss/1.0/kdw/feed.rdf
+- gadget_A PR TIMES（家電）: 12本（全200） feed:https://prtimes.jp/index.rdf https://prtimes.jp/
+  - 失敗 https://prtimes.jp/kaden/: HTTPError 404 Client Error: Not Found for url: https://prtimes.jp/kaden/
+- gadget_B AV Watch: 12本（全20） feed https://av.watch.impress.co.jp/data/rss/1.0/avw/feed.rdf
+- gadget_B GIZMODO JAPAN: 12本（全20） feed https://www.gizmodo.jp/index.xml
+- gadget_B マイナビニュース: 12本（全50） feed https://news.mynavi.jp/rss/index
+- service_A ITmedia NEWS: 12本（全50） feed https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
+- service_A Impress Watch: 12本（全20） feed https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf
+- service_A CNET Japan: 12本（全30） feed:http://feed.japan.cnet.com/rss/index.rdf https://japan.cnet.com/
+  - 失敗 https://japan.cnet.com/rss/index.rdf: HTTPError 404 Client Error: Not Found for url: https://japan.cnet.com/rss/index.rdf
+- service_B YouTube 公式ブログ: 3本（全20） feed https://blog.youtube/rss/
+- service_B Google Japan Blog: 2本（全20） feed https://blog.google/intl/ja-jp/rss/
+- service_B LINEヤフー: 12本（全40） page https://www.lycorp.co.jp/ja/news/
+- service_B Meta（日本）: 12本（全12） page https://about.fb.com/ja/news/
+- service_B Netflix: 4本（全15） feed:https://about.netflix.com/en/feed.xml https://about.netflix.com/ja/newsroom
+- game_A 4Gamer.net: 12本（全100） feed https://www.4gamer.net/rss/index.xml
+- game_A GAME Watch: 12本（全29） feed https://game.watch.impress.co.jp/data/rss/1.0/gmw/feed.rdf
+- game_B ファミ通: 12本（全40） page https://www.famitsu.com/
+  - 失敗 https://www.famitsu.com/rss/famitsu_news.rdf: HTTPError 404 Client Error: Not Found for url: https://www.famitsu.com/rss/famitsu_news.rd
+- game_B 電撃オンライン: 12本（全40） page https://dengekionline.com/
+  - 失敗 https://dengekionline.com/rss/news.rss: HTTPError 404 Client Error: Not Found for url: https://dengekionline.com/rss/news.rss
+- game_B 任天堂: 10本（全10） feed:https://www.nintendo.com/jp/topics/c/feed/rss/ https://www.nintendo.com/jp/topics/
+- game_B PlayStation Blog: 3本（全10） feed https://blog.ja.playstation.com/feed/
+- ec_A ネットショップ担当者フォーラム: 12本（全30） feed https://netshop.impress.co.jp/rss.xml
+- ec_A ECのミカタ: 12本（全20） feed:https://ecnomikata.com/rss/ https://ecnomikata.com/
+  - 失敗 https://ecnomikata.com/feed/: HTTPError 404 Client Error: Not Found for url: https://ecnomikata.com/feed/
+- ec_A 消費者庁: 12本（全20） feed https://www.caa.go.jp/news.rss
+- ec_B メルカリ: 0本（全0） 
+  - 失敗 https://about.mercari.com/press/news/: HTTPError 403 Client Error: Forbidden for url: https://about.mercari.com/press/news/
+- ec_B PayPay: 2本（全10） feed:https://about.paypay.ne.jp/feed/ https://about.paypay.ne.jp/pr/
+- ec_B 楽天: 12本（全40） page https://corp.rakuten.co.jp/news/press/
+- ec_B Amazon（日本）: 3本（全10） feed:https://www.aboutamazon.jp/rss/feed.rss https://www.aboutamazon.jp/news
+- ec_B BASE: 2本（全10） feed:https://binc.jp/feed https://binc.jp/press-room/news
+- future_A sorae: 12本（全24） feed https://sorae.info/feed
+- future_A MIT Technology Review: 10本（全10） feed https://www.technologyreview.jp/feed/
+- future_A TechCrunch（交通・宇宙）: 10本（全20） feed https://techcrunch.com/category/transportation/feed/
+- other_A ケータイ Watch: 12本（全30） feed https://k-tai.watch.impress.co.jp/data/rss/1.0/ktw/feed.rdf
+- other_A ITmedia NEWS: 12本（全50） feed https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml
+- other_A Security NEXT: 12本（全20） feed https://www.security-next.com/feed
+- other_A 総務省: 12本（全20） feed https://www.soumu.go.jp/news.rdf
+- other_A デジタル庁: 12本（全29） feed https://www.digital.go.jp/rss/news.xml
+- other_B EE Times Japan: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/eetimes.xml
+- other_B 日経クロステック: 12本（全100） feed https://xtech.nikkei.com/rss/index.rdf
+- other_B ITmedia ビジネスオンライン: 12本（全20） feed https://rss.itmedia.co.jp/rss/2.0/business.xml
+
+記事ページ 468/492 本の本文を取得。45秒

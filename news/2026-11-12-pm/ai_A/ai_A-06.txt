@@ -1,0 +1,126 @@
+URL: https://www.itmedia.co.jp/news/article/2611/12/2000003126/
+TITLE: Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開 コードはすべてAIエージェントが記述
+SITE: ITmedia AI+
+PUBLISHED: 2026-11-12 09:56 (page: 2026-11-12T09:56:17)
+OG_IMAGE: https://www.itmedia.co.jp/news/article/ogp/2611/12/2000003126/10011943/2048
+IMAGES:
+- https://www.itmedia.co.jp/news/article/image/2611/12/2000003126/10011939/728 | 
+- https://www.itmedia.co.jp/news/article/image/2611/12/2000003126/10011940/728 | 
+- https://www.itmedia.co.jp/news/article/image/2611/12/2000003126/10011941/728 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2610/20/2000002414/10009891/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2510/03/1251003078/805193/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2609/03/2000001124/10005080/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2607/22/1260722094/851019/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003139/10011981/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003138/10011979/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003132/10011964/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003127/10011946/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/12/2000003126/10011942/232 | 
+
+TEXT:
+Share
+印刷する
+Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開　コードはすべてAIエージェントが記述
+公開
+2026年11月12日 09時56分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+米Amazon傘下のAmazon Web Services（AWS）は11月11日（現地時間）、AWSのAPIを手元のPCなどで再現するツール「AWS Emulator」を公開した。開発者はクラウドのリソースを用意しなくても、AWSを使うアプリをローカル環境で構築したりテストしたりできる。AWSアカウントは不要で、追加料金も発生しない。AWSによると、すべてのコードは自律型AIエージェントが記述したという。
+AWS Emulatorは、AWS APIのエンドポイントとして動くローカルのプログラムで、GUIはない。AWS CLIやAWS SDKの接続先を環境変数でエミュレータに指定すれば、コードを書き換えずに使える。AWSのAPIモデル438件を基に作られ、数百のサービスのインタフェースに対応する。ただし、どこまで実装できているかはサービスや操作によって異なる。AWSとどれだけ同じように動くかを示す“忠実度”のスコアはリリースごとにGitHubで公開しており、検証に使うテスト群も別のリポジトリ「aws-emulator-evaluation-suite」で公開した。
+想定する用途は、ローカルでのテストや、AWSアカウントもリソースも使わずにCI/CDパイプラインで統合テストを回すこと、AIコーディングエージェントを使ったAWS向けアプリの試作など。AIコーディングエージェント向けには、エミュレータのインストールから起動、接続までを担う「aws-emulator」スキルも用意した。
+Linuxでは、x86_64版とaarch64版のRPMパッケージまたはDebianパッケージからインストールする。macOSとWindowsでは、プロジェクトのDockerfileでイメージをビルドしてDockerで動かす。ソースコードは
+GitHub
+でCC0ライセンスで公開している。
+修正をまとめて再検証し、すべてのチェックを通ったコードだけをリリースする。配布用のバイナリを作り、GitHubでも公開する（画像：AWS）
+本番環境で使うことは想定していない。IAMポリシーやリソースベースのポリシーはAWSと同じようには評価されないので、セキュリティのテストには使わないよう呼び掛けている。リソースはすべてメモリ上に置かれ、エミュレータを止めると消える。
+開発を率いたAWSのシニアプリンシパルエンジニア、マシュー・ゴールドバーグ氏によると、AWS Emulatorは週末の実験として始まった。きっかけは、米Anthropicの研究者が今年、
+AIエージェントだけでCコンパイラを作ってみせた
+ことだったという。同氏は
+AWSのAI開発環境「Kiro」
+に、AWS CLIを基にテストを書く、実際のAWS環境で成功するまでテストを修正する、そのテストにパスするインメモリ実装を作成する、という3段階の作業を指示した。最初の「Amazon SQS」は約15分で完成したという。
+現在は、APIモデルからテストを作って実際のAWSで検証するチーム、そのテストをエミュレータで実行して不具合を報告するチーム、報告された不具合を直すチームという3種類のエージェントチームが並行して開発している。数百のエージェントが同時に動き、1日に数千件の問題を修正しているという。人間の開発チームはコードを一切書いておらず、レビューもしていない。エミュレータは1日に何度も更新されている。
+AWS Emulatorを開発する3つのエージェントチーム。テストの作成、不具合の発見、修正を分担する（画像：AWS）
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+公式ブログ
+AWS Emulator
+コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは
+ログイン
+が必要です
+Special
+PR
+関連記事
+AWS Transformが機能拡充　Azure Functions用のコードをAWS Lambda用に変換など、Azure→AWSへの移行に対応
+AWSのナレッジを生成AIで参照できる「AWS Knowledge MCP Server」正式版が登場　公式ドキュメントやAPIリファレンスなど情報源に
+AWSをゲームで学べる“AWSクエスト”にまさかの新バージョン　AIバーチャル顧客と対話可能に
+AWS、デプロイ速度が最大4倍になる「AWS CloudFormation Expressモード」を提供開始
+Special
+PR
+こんなメディアも見られています
+ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+メールマガジン最新号
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+「命の砂時計」連呼のGMO会見──熊谷代表の発言にXではツッコミ続出
+Special
+PR
+本日の新着記事
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+NVIDIA取締役会、フアンCEO解任の可否決定へ　2件の不倫報道で株価8％超下落
+Google DeepMind、「AlphaGenome 2」発表　細胞の種類ごとにDNA変異の影響を予測するAI
+ユナイテッド航空、外部のAIアシスタントによる航空券の予約などを禁止へ　「チェックインには人間の確認が必要」
+Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開　コードはすべてAIエージェントが記述
+アクセスランキング
+1
+靖国神社に不正アクセス　約1万4500件の個人情報漏えい、パスワードが特定されるおそれも
+2
+「盗撮」→「法律で規制」が話題のAI眼鏡　海外では大ヒットなのに、日本での普及は限定的　ビジネスでの活用事例を探る
+3
+Appleサポートコミュニティ、11月20日に閉鎖へ　新規投稿は既に終了
+4
+ドコモ不正アクセスで「本人確認書類の番号」も流出　見舞金検討
+5
+メモリ8GBでも快適？　Windows 11最新アプデと「AIカスタム」した日本語入力環境で、旧型PCを蘇らせる
+6
+続くドコモ通信障害　一部除き復旧も、完全解消には至らず　原因は調査中
+7
+メール配信のユミルリンク、不正アクセスで約4786万件漏えい　JR東海やアイスタイルに影響
+8
+相次ぐ個人情報流出対策に、パスワードは紙に書いてアナログ管理　一部「伏せ文字」で
+9
+NTTデータ、住友生命から受託したシステムに不正アクセス　「Vitality」利用者約8万人の情報漏えい
+10
+“同じWi-Fiにいる誰か”に通信をのぞかれる？　「クライアント分離」を2秒で突破する攻撃　米大学が検証
+もっと見る
+ITmedia NEWS SNS
+ITmedia News
+Tweets by itmedia_news
+@itmedia_newsをフォロー
+インフォメーション
+注目情報をチェック
+メールマガジン
+Specialインデックス
+お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR

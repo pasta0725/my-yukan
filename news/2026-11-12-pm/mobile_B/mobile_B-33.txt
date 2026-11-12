@@ -1,0 +1,43 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2155703.html
+TITLE: Google、判断に特化した高速・低コストモデル「Gemini Decision 1」を発表／出力トークンは課金なし
+SITE: 窓の杜
+PUBLISHED: 2026-11-12 08:11 (page: 2026-11-12T08:11:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2155/703/image1.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/703/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/703/image2_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/703/image3_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B000R5IZ8W.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+Google、判断に特化した高速・低コストモデル「Gemini Decision 1」を発表
+出力トークンは課金なし
+樽井 秀人
+2026年11月12日 08:11
+「Gemini Decision 1」による判断の例。こぼれの有無、取るべき対処、深刻度を一度に判定
+米Googleは11月11日（現地時間）、「Gemini Decisions API」を発表した。決められた選択肢のなかから答えを選ぶ、判断に特化した新しいモデル「Gemini Decision 1」（gemini-decision-1）を利用可能で、「Google AI Studio」の「Gemini API」で提供される。
+従来の「Gemini」モデルは“文章を生成”するが、「Gemini Decision 1」は“決定・分類・ルーティング”に特化しているのが特徴。ツールの選択やポリシーチェック、モデルのルーティング、コンテキストの採点といった“答えの範囲が限られた判断”ならば高速かつ低コストになるのが魅力だ。
+Googleによると、16Kトークンまでのコンテキストで、モデルの計算時間の中央値は50～100ミリ秒、通信などを含む処理全体では150～250ミリ秒。1リクエストあたりの質問を1件から100件に増やしても、遅延はほぼ一定だったという。
+「Gemini Decisions API」にはテキスト、画像、音声、動画、PDFからなる最大256Kトークンの入力に対し、最大1,000件の独立した質問をまとめて投げられる。質問は、以下の3つの形式を1つのリクエストに混在させられる。
+noul：「はい」か「いいえ」で答える条件が成り立つ確率を推定
+choice：2～255個の選択肢から1つを選び、すべての候補の確率を返す
+score：0から始まる順序付きの評価基準で採点し、加重スコアと各段階の確率を返す
+回答は文章ではなく、確率と確信度（0～1）で行われる。そのため、確信度が低いケースだけを人のレビューに回すといった使い方も可能。Google社内でも、「Gemini Notebook」で問い合わせを最適なモデルへ振り分けるルーターとして使われているほか、
+「Stitch」
+やGoogle Labsの
+「CC」
+、「Google 検索」のMCPツール向け安全レイヤーなどで採用されているという。
+「Gemini Decisions API」の仕組み
+最近はこのような判断型モデルがいくつかリリースされているが、「Gemini Decision 1」はそれらと比べても遜色のない性能を誇る。同社によると、エージェントのルーティングや推論、ランキング、マルチモーダル理解にまたがるベンチマークで総合的に優位に立ち、キャリブレーション誤差ももっとも小さかったとのこと。
+ベンチマークの結果
+料金は入力100万トークンあたり0.10ドルで、出力トークンは課金されない。共有の入力は、質問の数にかかわらず1リクエストにつき1回だけ課金される仕組みだ。共通のベンチマーク群では、「Gemini 3.5 Flash-Lite」を「Interactions API」で使う場合に比べ、5分の1近いコストで済むという。「Google AI Studio」では、プロトタイピングに使える無償枠も用意されている。
+なお、「OpenRouter」や「LangChain」、「Vercel」、「LiteLLM」などとの連携も順次展開中。「Google Cloud」の「Gemini」でも近くサポートされる予定だ。
+We're introducing the Gemini Decisions API in @GoogleAIStudio, powered by our new Gemini Decision 1 model.
+Instead of generating a text response token by token, Gemini Decision 1 evaluates your input (across text, images, audio, video, and PDFs) against up to 1,000 questions to make fast, confident decisions in a single pass, with zero output tokens billed.
+Here's a look at how it works 🧵
+— Google (@Google)
+November 11, 2026
+Amazonで購入
+「Windows」関連商品
+Amazonで購入

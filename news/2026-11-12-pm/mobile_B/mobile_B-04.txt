@@ -1,0 +1,26 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2155749.html
+TITLE: GoogleもJev型の“判断だけAI”をAPIで提供。PDFや画像も対応
+SITE: PC Watch
+PUBLISHED: 2026-11-12 10:54 (page: 2026-11-12T10:54:28+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2155/749/3.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2155/749/3_l.jpg | 
+- https://asset.watch.impress.co.jp/img/pcw/docs/2155/749/1_l.jpg | 
+- https://asset.watch.impress.co.jp/img/pcw/docs/2155/749/2_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/4296210815.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+GoogleもJev型の“判断だけAI”をAPIで提供。PDFや画像も対応
+劉 尭
+2026年11月12日 10:54
+TypeSafe AIの「Jev」で注目を集めた、文章を生成せず“判断だけ”を返すモデルの分野に、Googleも参入した。Googleは11月11日(米国時間)、判定処理に特化したAPI「Gemini Decisions API」を発表した。新モデル「Gemini Decision 1」を使用するもので、Google AI StudioのGemini API経由で同日から利用できる。料金は入力100万トークンあたり0.1ドル(約16円、1ドル=約160円換算)で、出力トークンは課金されない。
+Gemini Decisions APIは、ツールの選択、ポリシーチェック、モデルのルーティング、コンテキストの評価など、答えの候補が限定されている問答を高速に処理するためのAPI。回答テキストを1トークンずつ生成するのではなく、候補となる選択肢を1回のフォワードパスでスコアリングし、確率と0～1の信頼度を返す。
+質問の形式は3種類ある。Yes/Noを判定する「noul」、2～255択から選ぶ「choice」、順序付きの基準で採点する「score」で、型の名前から選択肢の上限まで、9月に登場したJevとほぼ同じ。エンドツーエンドの遅延は150～250ms(モデル計算の遅延の中央値は50～100ms)で、質問数を1問から100問に増やしてもほぼ一定だとしている。
+Gemini Decisions APIのアーキテクチャ
+ほかの意思決定AIと比較して高性能をうたう
+入力は最大256Kトークンで、1つの入力に対して最大1,000個の独立した質問をまとめて評価できる。3種類の質問は1リクエスト内で混在でき、共有の入力は質問数にかかわらず1リクエストにつき1回だけ課金される。信頼度の低い回答だけを人間の確認に回すといった使い方を想定している。
+Google社内でも、Gemini NotebookやGoogle検索などで活用が進んでいるという。Google AI Studioではプロトタイピング向けの無償枠を用意する。OpenRouter、LangChain、Vercelなどとの連携も順次進めており、Google CloudのGeminiでも近く対応する予定。
+なお、入力料金はJevの0.042ドル(約7円)と比べてやや割高だ。一方で、Jevが画像入力を実験的機能にとどめているのに対し、Gemini Decisions APIはテキスト、画像、音声、動画、PDFを標準で扱えるのがアドバンテージだ。
+「Gemini」関連アイテム
+Amazonで購入

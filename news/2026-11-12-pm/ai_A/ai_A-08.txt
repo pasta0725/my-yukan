@@ -1,0 +1,110 @@
+URL: https://www.itmedia.co.jp/aiplus/article/2611/12/2000003123/
+TITLE: Google、選択肢から答えを選ぶことに特化した「Gemini Decisions API」発表 回答を生成せず確率で返す
+SITE: ITmedia AI+
+PUBLISHED: 2026-11-12 07:03 (page: 2026-11-12T07:03:58)
+OG_IMAGE: https://www.itmedia.co.jp/aiplus/article/ogp/2611/12/2000003123/10011928/2048
+IMAGES:
+- https://www.itmedia.co.jp/aiplus/article/image/2611/12/2000003123/10011924/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/12/2000003123/10011925/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/12/2000003123/10011926/728 | 
+- https://www.itmedia.co.jp/aiplus/article/thumbnail/2610/12/2000002194/10009084/280 | 
+- https://www.itmedia.co.jp/aiplus/article/thumbnail/2609/30/2000001866/10007932/280 | 
+- https://www.itmedia.co.jp/aiplus/article/thumbnail/2609/20/2000001664/10007169/280 | 
+- https://www.itmedia.co.jp/aiplus/article/thumbnail/2611/11/2000003093/10011833/280 | 
+
+TEXT:
+Share
+印刷する
+Google、選択肢から答えを選ぶことに特化した「Gemini Decisions API」発表　回答を生成せず確率で返す
+公開
+2026年11月12日 07時03分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+米Googleは11月11日（現地時間）、ツールの選択やモデルの振り分け、ポリシー違反のチェックなど、あらかじめ用意した選択肢から答えを選ぶ用途に特化したAPI「Gemini Decisions API」を発表した。専用モデル「Gemini Decision 1」を使い、Google AI StudioのGemini APIを通じて利用できる。
+（画像：Google）
+通常の生成AIは、回答をトークン単位で順に生成する。Gemini Decision 1は、候補となる複数の選択肢を1回の推論でまとめて評価し、選択肢ごとの確率と信頼度スコアを返す。信頼度は0～1の数値で示されるため、判断があいまいなケースを別の処理や人間の確認に回すというような制御をプログラム側で組み込める。
+「Gemini Decision 1」による判定の例（出典：Google）
+質問の形式は3種類。条件に当てはまるかを判定する「はい／いいえ（noul）」型、2～255個の選択肢から1つを選ぶ多肢選択（choice）型、段階的な評価基準に沿って採点するスコア（score）型で、1回のリクエストに最大1000問を混ぜて送ることができる。入力はテキスト、画像、音声、動画、PDFに対応し、最大25万6000トークンまで扱える。通話の録音とアカウント情報、スキャンしたPDFと損傷部分の写真のように、異なる形式のデータを組み合わせて判断させることもできる。
+Gemini Decisions APIの仕組み。マルチモーダルな入力と複数の質問を受け取り、質問ごとに確信度付きの回答を返す（出典：Google）
+Googleによると、リクエストを送ってから結果が返るまでの時間は150～250ミリ秒で、1リクエスト当たりの質問数を1問から100問に増やしてもほとんど変わらないという。料金は入力100万トークン当たり0.1ドルで、出力トークンには課金しない。複数の質問で共通する入力は、1リクエストにつき1回分だけ課金される（各質問の指示や条件のトークンは別途加算される）。Googleは、共通のベンチマークで比べると、Interactions API経由で「Gemini 3.5 Flash-Lite」を使う場合の約5分の1のコストで済むとしている。Google AI Studioには、試作向けの無料枠もある。
+Googleは社内で既にこのAPIを使っている。「Gemini Notebook」では、問い合わせ内容に応じて適切なモデルや思考レベルに振り分ける用途に使い、日常的な問い合わせの応答時間を最大40％短くしたという。Google検索では、MCPツールに潜む悪意ある挙動やコンテンツを検出する安全対策に使っている。OpenRouter、LangChain、Vercel、LiteLLMなどのサービスやフレームワークでも、順次使えるようになる。Google Cloudでの提供は「近日中」としている。
+判断に特化したAIは、米新興企業のTypeSafe AIが9月15日に公開した「Jev」が先駆けとなり、大手が相次いで追随している。Jevは文章を生成せず、ユーザーが定めた質問への判断を確率と確信度付きで返すモデルで、料金は入力100万トークン当たり0.042ドル、出力は実質無料としている。米OpenAIは9月29日に「Decisions API」を発表し、10月6日にパブリックβ版としてすべての開発者に公開した。米Microsoftも10月9日に、中国Alibabaの「Qwen3.5-9B」をベースにした判断特化モデル「Microsoft-Decision-1」を、Microsoft FoundryとOpenRouterで公開した。料金はJevと同じ水準に設定している。なお、米Anthropicは現時点で同様の製品を発表していない。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+公式ブログ
+コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia AI＋メールマガジン」の登録、もしくは
+ログイン
+が必要です
+Special
+PR
+関連記事
+Microsoftも“判断特化”AIモデル「Microsoft-Decision-1」、Qwenベースで「Jev」と同価格
+OpenAIが「Jev」に追従、「Decisions API」　Lunaで“リアルタイムに意思決定”
+「Jev」とは　“文章を書かないAI”がなぜ話題に？　元OpenAI研究者が開発、「“スマートなif文”と考えてみて」
+Googleの「最強」モデル「Gemini 4 Carbon」一般提供開始　Antigravityでのマルチエージェントチーム編成機能も
+Special
+PR
+こんなメディアも見られています
+ITmedia AI＋に関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+メールマガジン最新号
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+ChatGPTの「Chat」と「Work」統合へ　利用制限はCodexと共通化
+Special
+PR
+よく見られているカテゴリー
+意思決定支援
+研究動向
+アクセスランキング
+1
+「AIとのチャット記録」が漏えいか、Notion　委託先に不正アクセス
+2
+会社員の仕事に「Claude Fable 5.2」は必要か？　調査、要約、資料作成でOpus／Sonnetと比較してみた
+3
+NotebookLMに公式APIが登場　WebページやYouTube動画の取り込みを自動化でき、MCPでAIエージェントからも使える
+4
+なぜAgodaは“異常に”安いのか？　商務責任者が明かす「自腹値引き」と社内競争の正体
+5
+通信大手3社こぞって「フィジカルAI」に参入、なぜ？　ロボットが動くともうかるワケ
+6
+日本製紙ら「たった半年で」釧路にデータセンター新設　なぜスピード稼働できたのか？
+7
+富士フイルム、Q2過去最高益　「instaxチェキ」ヒットに並ぶ“もう一つの稼ぎ頭”とは？
+8
+中国AI「Qwen4」ついに登場　プレビュー版を提供開始、AlibabaのAIサービスで
+9
+なぜ、三井化学は1.8兆円で「半導体材料メーカー」を買ったのか　JSR買収の狙い、市村社長が語る
+10
+Google、選択肢から答えを選ぶことに特化した「Gemini Decisions API」発表　回答を生成せず確率で返す
+もっと見る
+Special
+PR
+ITmedia AI＋ SNS
+@itm_aiplusをフォロー
+インフォメーション
+注目情報をチェック
+メールマガジン
+Specialインデックス
+お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+ITmedia AI＋をフォロー
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR

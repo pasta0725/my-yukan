@@ -1,0 +1,26 @@
+URL: https://www.watch.impress.co.jp/docs/news/2155831.html
+TITLE: Google、判定特化の高速API「Gemini Decisions」
+SITE: Impress Watch
+PUBLISHED: 2026-11-12 12:48 (page: 2026-11-12T12:48:53+09:00)
+OG_IMAGE: https://www.watch.impress.co.jp/img/ipw/list/2155/831/01.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/831/01_s.jpg | 
+- https://asset.watch.impress.co.jp/img/ipw/docs/2155/831/02_s.jpg | 
+
+TEXT:
+ニュース
+Google、判定特化の高速API「Gemini Decisions」
+関根慎一
+2026年11月12日 12:48
+入力画像に対する質問と確信度
+Googleは11日(米国時間)、判定特化型API「Gemini Decisions API」を発表した。AIモデルは「Gemini Decision 1」。料金は入力100万トークンあたり0.1ドル、出力は無料。Google AI StudioでAPIキーを取得できる。
+選択肢の中から回答を選ぶ、判定特化のAPI。入力したソースに関する質問に対してテキストを生成せずに、「Yes/No」「選択肢」「スコア」とそれぞれの確率(確信度)の数値だけを返すことで、処理コストを節約しつつ高速な返答が可能になっている。返答遅延の目安は、計算時間のみで50～100ミリ秒、処理全体で150～200ミリ秒。
+マルチモーダル入力に対応しており、テキストのほか画像、音声、動画、PDFなどを単一の入力として最大256,000トークンまで入力できる。この入力に対して最大1,000個までの質問が可能。1つの入力に対する質問には、Yes/Noで返答する「noul」、選択肢を選ぶ「choice」、0から任意の段階まで評価段階を設定してスコア化する「score」の3種類を設定でき、それぞれの回答については0～1の範囲で確率もしくは確信度をつけて返答する。確信度の低い返答を抽出して人間のオペレーターや別の推論モデルに渡すことも可能。
+入力に関する質問として「noul」「choice」「score」の3種類を混在させられる
+Googleでは用途として入力のルーティング(自動振り分け)、コンテンツモデレーション(フィルタリング)、RAG(検索拡張生成)における関連度評価、大量のテキストや動画のコンプライアンスチェックなどを挙げている。
+Jevの「TypeSafe」やMicrosoftの「Decision-1」、OpenAIの「Decisions API」など他社でも同様の試みはあるが、Gemini Decisions APIでは1つの入力に複数の材料を含められるマルチモーダル性能や大量のチェック項目の処理が比較的低コストで行なえる点が特徴となっている。
+We're introducing the Gemini Decisions API in @GoogleAIStudio, powered by our new Gemini Decision 1 model.
+Instead of generating a text response token by token, Gemini Decision 1 evaluates your input (across text, images, audio, video, and PDFs) against up to 1,000 questions to make fast, confident decisions in a single pass, with zero output tokens billed.
+Here's a look at how it works 🧵
+— Google (@Google)
+November 11, 2026
