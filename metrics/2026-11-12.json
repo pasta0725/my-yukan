@@ -1,9 +1,9 @@
 {
  "date": "2026-11-12",
- "collected": "2026-11-12T10:50+09:00",
+ "collected": "2026-11-12T16:02+09:00",
  "youtube": {
   "subscribers": 11,
-  "channel_views": 6072,
+  "channel_views": 6523,
   "videos": {
    "ZT61ks9aN74": {
     "title": "Claudeが銀行口座を読む｜家計を丸ごと分析",
@@ -57,7 +57,7 @@
     "title": "時のオカリナ、ユーザー評価で歴代1位｜批評家も96点",
     "published": "2026-11-09T20:19:04Z",
     "privacy": "public",
-    "views": 1240,
+    "views": 1242,
     "likes": 6,
     "comments": 1,
     "log": {
@@ -105,7 +105,7 @@
     "title": "OpenAIがゲーム機発売｜200ドルで自作ゲームが動く",
     "published": "2026-11-10T12:00:01Z",
     "privacy": "public",
-    "views": 772,
+    "views": 811,
     "likes": 15,
     "comments": 1,
     "log": {
@@ -120,7 +120,7 @@
     "title": "Gemini 4 Carbon公開｜一般向けは月1万4500円",
     "published": "2026-11-11T12:00:04Z",
     "privacy": "public",
-    "views": 181,
+    "views": 230,
     "likes": 3,
     "comments": 1,
     "log": {
@@ -275,25 +275,6 @@
   ]
  },
  "editions": [
-  {
-   "edition": "2026-11-02",
-   "articles": 35,
-   "by_category": {
-    "ai": 10,
-    "kaden": 13,
-    "fukugyo": 12
-   },
-   "refs_avg": 0.0,
-   "single_ref": 35,
-   "images_by_kind": {
-    "ogp": 11,
-    "?": 27,
-    "press": 10
-   },
-   "no_image": 15,
-   "diagrams": 0,
-   "x_items": 0
-  },
   {
    "edition": "2026-11-03",
    "articles": 42,
@@ -583,10 +564,37 @@
    "no_image": 16,
    "diagrams": 18,
    "x_items": 0
+  },
+  {
+   "edition": "2026-11-12-pm",
+   "articles": 57,
+   "by_category": {
+    "ai": 12,
+    "mobile": 7,
+    "gadget": 7,
+    "service": 6,
+    "game": 7,
+    "ec": 7,
+    "future": 4,
+    "other": 7
+   },
+   "refs_avg": 3.46,
+   "single_ref": 4,
+   "images_by_kind": {
+    "ogp": 20,
+    "press": 7
+   },
+   "no_image": 32,
+   "diagrams": 0,
+   "x_items": 0
   }
  ],
  "quality": {
   "reports_open": [
+   {
+    "n": 14,
+    "title": "[号づくり 11/12夕刊] 本文の取れないサイト・検索の空振り・同じ出来事の重複・書き足しの混線"
+   },
    {
     "n": 7,
     "title": "[号づくり 11/11夕刊] 記事内リンク・公式ページ・RSS が権限確認で開けない"
@@ -595,20 +603,34 @@
   "reports_closed_7d": 12,
   "workflow_runs_7d": {
    "metrics": {
-    "in_progress": 1
+    "in_progress": 1,
+    "success": 1
    },
    "pages build and deployment": {
-    "success": 47,
-    "cancelled": 4,
+    "success": 45,
+    "cancelled": 2,
+    "startup_failure": 1
+   },
+   "indexnow": {
+    "success": 7,
+    "cancelled": 1
+   },
+   "factcheck-pages": {
+    "success": 2
+   },
+   "codex-research": {
+    "success": 2
+   },
+   "fetch-news": {
+    "success": 4,
     "startup_failure": 1
    },
    "narration": {
     "failure": 1,
-    "success": 4
+    "success": 3
    },
    "fetch-media": {
-    "success": 3,
-    "failure": 1
+    "success": 2
    },
    "cleanup-branches": {
     "success": 2
@@ -624,25 +646,12 @@
    "site-stats": {
     "success": 1
    },
-   "indexnow": {
-    "success": 4
-   },
    "official-images": {
     "success": 1
    },
    "voice-check": {
     "success": 4,
     "startup_failure": 3
-   },
-   "fetch-news": {
-    "success": 3,
-    "startup_failure": 1
-   },
-   "factcheck-pages": {
-    "success": 1
-   },
-   "codex-research": {
-    "success": 1
    },
    "longcat-colab": {
     "success": 2
@@ -653,9 +662,6 @@
    },
    "youtube-upload": {
     "success": 1
-   },
-   "codex-images": {
-    "success": 1
    }
   }
  },
@@ -663,9 +669,9 @@
   "modal_usd_this_month": 5.88,
   "colab_units_left": 289.13,
   "runs_7d": {
-   "narration": 5,
-   "codex-research": 1,
-   "codex-images": 1,
+   "narration": 4,
+   "codex-research": 2,
+   "codex-images": 0,
    "longcat-colab": 2,
    "modal-avatar": 0,
    "voice-check": 7
