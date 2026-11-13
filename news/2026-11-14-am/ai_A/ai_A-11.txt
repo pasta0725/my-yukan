@@ -1,0 +1,233 @@
+URL: https://monoist.itmedia.co.jp/mn/articles/2611/13/news055.html
+TITLE: NVIDIAのAIモデル「Nemotron」が日本語合成データセットを素早く投入できる理由
+SITE: ITmedia AI+
+PUBLISHED: 2026-11-13 06:45 (page: )
+OG_IMAGE: https://image.itmedia.co.jp/mn/articles/2611/13/cover_news055.jpg
+IMAGES:
+- https://image.itmedia.co.jp/mn/subtop/features/ai/articleheader.png | AIが起こす製造プロセス変革
+- https://image.itmedia.co.jp/mn/articles/2611/13/spac_261113nvidia_01.jpg | 「Nemotron」の進化の歴史
+- https://image.itmedia.co.jp/mn/articles/2611/13/spac_261113nvidia_02.jpg | NVIDIAの藤田充矩氏
+- https://image.itmedia.co.jp/mn/articles/2611/13/spac_261113nvidia_03.jpg | 「Nemotron-Personas-Finance-Japan」の概要
+- https://image.itmedia.co.jp/mn/articles/2611/13/spac_261113nvidia_04.jpg | 「Nemotron-PII-Japan」の概要
+- https://image.itmedia.co.jp/mn/articles/2601/15/news081.jpg | AIエージェントアプリケーションの構築を支援するオープンモデルを発表
+- https://image.itmedia.co.jp/mn/articles/2610/09/news066.jpg | NVIDIAが「DGX Spark」に64GBモデルを追加、価格は4999ドルから
+- https://image.itmedia.co.jp/mn/articles/2609/15/news057.jpg | NVIDIAがMediaTekとAI基盤構築で協業強化、35億ドルの出資も
+- https://image.itmedia.co.jp/mn/articles/2608/26/news048.jpg | 「Jetson Orin Nano 2」は推論性能が2倍、エッジ生成AIもリアルタイム処理可能
+- https://image.itmedia.co.jp/mn/articles/2606/02/news058.jpg | NVIDIAの“狐”は工場自律管理AIエージェント、台湾メーカーが導入効果を確認
+- https://image.itmedia.co.jp/mn/articles/2603/19/news046.jpg | 手のひらサイズAIスパコン「DGX Spark」が4台連結可能に、OpenClawもサクサク動く
+- https://image.itmedia.co.jp/mn/images/title_forum_small_embedded.gif | 組み込み開発
+- https://image.itmedia.co.jp/mn/articles/2611/12/news014.jpg | 
+- https://image.itmedia.co.jp/mn/articles/2611/10/news008.jpg | 
+- https://image.itmedia.co.jp/mn/articles/2611/09/news057.jpg | 
+
+TEXT:
+メディア
+工程別：
+組み込み開発
+メカ設計
+FA
+製造マネジメント
+物流
+R＆D
+キャリア
+産業別：
+モビリティ
+素材／化学
+医療機器
+ロボット
+電機
+産業機械
+食品・薬品・衣料品
+中小製造業
+脱炭素
+サステナ設計
+IoT
+つながる技術
+つながる工場
+つながるサービス
+AI
+AI×技術伝承
+AI×設備保全
+Physical AI
+エッジ逆襲
+品質
+展示会
+CEATEC
+JIMTOF
+組込み/エッジ コンピューティング展＆IoT/5Gソリューション展
+IIFES
+国際ロボット展
+ジャパンモビリティショー
+TECHNO-FRONTIER
+人テク展
+スマート工場EXPO
+EdgeTech+
+日本ものづくりワールド
+AUTOMOTIVE WORLD
+産業オープンネット展
+特集
+読者調査まとめ
+つながるクルマ
+5G
+VR／AR
+フィールドサービス
+FPGA
+組み込み画像技術
+組み込みモデリング
+Windows Embedded
+車載ソフト開発
+ISO26262
+無償設計ツール
+3Dプリンタ
+デジタルツインとCAE
+S＆OP
+インダストリー4.0
+イノベーション
+製造業ビッグデータ
+メイドインジャパン
+植物工場
+知財マネジメント
+海外生産
+グローバル設計・開発
+制御セキュリティ
+新型コロナへの対応
+ebook
+組み込み開発
+メカ設計
+製造マネジメント
+FA
+モビリティ
+素材／化学
+メルマガ
+編集後記
+告知
+Special
+MONOist
+>
+組み込み開発
+>
+NVIDIAのAIモデル「Nemotron」が日本語合成データセットを素早く投入できる理由
+：
+人工知能ニュース
+NVIDIAは、東京都内で開催したAIエージェントの技術イベント「NVIDIA Agentic AI Day Japan 2026」において、日本語AIの開発を支援する2つの合成データセット「Nemotron-Personas-Finance-Japan」と「Nemotron-PII-Japan」について説明した。
+»
+2026年11月13日 06時45分 公開
+[
+朴尚洙
+，
+MONOist
+]
+NVIDIAは2026年11月10日、東京都内で開催したAIエージェントの技術イベント「NVIDIA Agentic AI Day Japan 2026」において、日本語AI（人工知能）の開発を支援する2つの合成データセット「Nemotron-Personas-Finance-Japan」と「Nemotron-PII-Japan」について説明した。
+Nemotronは、AIエージェントを用いて構築するシステム向けにNVIDIAが開発した、オープンなマルチモーダルAIモデルである。AIモデルだけでなく、データセットやツール、ライブラリ、さらにはBlueprintsと呼ぶレファレンスなども用意されている。
+2024年にオープンソースのLLM（大規模言語モデル）であるLlamaをベースにリーズニング能力を追加して発表された「Nemotron 1」は、その後2025年にフルスクラッチで最初から独自に学習した「Nemotron 2」となり、2026年には高効率にAIエージェントを処理できることを特徴とする「Nemotron 3」へと進化を遂げてきた。
+「Nemotron」の進化の歴史［クリックで拡大］ 出所：NVIDIA
+NVIDIAの藤田充矩氏
+このNemotronについて、日本語での活用に向けた開発プロジェクトに携わってきたのがNVIDIA シニアAIソリューションアーキテクトの藤田充矩氏である。これまでに、日本の人口統計、地理的分布、文化的特性に沿ったペルソナを含む初のオープン合成データセットである「Nemotron-Personas-Japan」や、NemotronのSLM（小規模言語モデル）である「Nemotron-Nano-9B-v2」に高度な日本語理解とAIエージェント機能を持たせた「Nemotron-Nano-9B-v2-Japanese」の開発に貢献している。
+その藤田氏が今回新たに発表したのが、Nemotron-Personas-Finance-JapanとNemotron-PII-Japanだ。
+まず、Nemotron-Personas-Finance-Japanは、Nemotron-Personas-Japanの金融ドメイン拡張版の位置付けとなる。個人収入や世帯構成／資産、属性形態、車保有などの属性に加え、お金に対する態度、資金計画、金銭面での心配事といったコンテキストも備えており、金融領域のAI開発やユーザーシミュレーションに役立つ属性とペルソナがNemotron-Personas-Japanに追加された。
+「Nemotron-Personas-Finance-Japan」の概要［クリックで拡大］ 出所：NVIDIA
+データセット数はNemotron-Personas-Japanと共通の日本語で記述された100万件を基盤としており、ペルソナ数は600万件から900万件に拡大している。
+また、今回のNemotron-Personas-Finance-Japanの開発は、東京大学 松尾研究所発のAIスタートアップであるElithと共同で行った。金融ユースケースでの実用性を高めるために、損害保険ジャパン、東京海上ホールディングス、福岡銀行、みずほフィナンシャルグループ、明治安田生命保険、金融データ活用推進協会などの協力も得ているという。
+一方、Nemotron-PII-Japanは、PII（個人識別用情報）を含む日本語文書を想定して生成した10万件規模の合成データセットである。医療、金融、行政、雇用、教育、法律、IT／セキュリティ、Eコマースの8分野を対象とし、診断書、ローン審査書類、住所変更届、申請書など43種類の文書タイプ、56のPIIラベルに対応している。
+「Nemotron-PII-Japan」の概要［クリックで拡大］ 出所：NVIDIA
+Nemotron-PII-Japanは、日本語向けPIIモデルの開発と評価に最適な公開データセットである。各文書には、氏名、住所、メールアドレス、各種識別番号などのPIIが文中のどこにあり、どのカテゴリーに該当するかを示すアノテーションが付与されている。実在する個人情報を一切使用せず、文書と正解ラベルをセットで提供するため、PIIの検出およびマスキングを行うモデルの追加学習、評価、改善に活用できる。
+なお、
+Nemotron-Personas-Finance-Japan
+と
+Nemotron-PII-Japan
+は、それぞれHugging Faceで公開されている。
+これら2つの合成データセットの開発は、米国を中心に行われているNemotronの開発と並行して進められている。藤田氏は「何らかの解決すべき課題が出てきた場合も、Nemotronの開発陣に相談して糸口を見いだすなどNVIDIA社内でしっかり連携が取れているので、Nemotronの日本語活用に向けた今回の合成データセット開発も遅滞なく行えている。日本と米国で組織が分かれていて距離も離れているが、この風通しの良さがNVIDIAの強みだろう」と述べている。
+⇒その他の「人工知能ニュース」の記事はこちら
+関連記事
+AIエージェントアプリケーションの構築を支援するオープンモデルを発表
+NVIDIAは、AIオープンモデルの新世代となる「Nemotron 3」ファミリーを発表した。複雑なタスクを処理するAIエージェントの開発に最適化されており、通信や推論のコストなど従来のAI活用における課題を解決する。
+NVIDIAが「DGX Spark」に64GBモデルを追加、価格は4999ドルから
+NVIDIAは、パーソナルAIスーパーコンピュータ「DGX Spark」の64GBモデルを2026年10月23日に発売する。パートナー企業のブランドの下で販売し、価格は4999米ドルから。最大1000億パラメーターモデルに対応する。
+NVIDIAがMediaTekとAI基盤構築で協業強化、35億ドルの出資も
+NVIDIAとMediaTekは、エッジからクラウドに至るAIプラットフォーム構築に向けた長年にわたるパートナーシップの強化を発表した。NVIDIAはMediaTekの転換社債に35億米ドルを投資する。
+「Jetson Orin Nano 2」は推論性能が2倍、エッジ生成AIもリアルタイム処理可能
+NVIDIAは、組み込み機器向けAIモジュール「Jetson Orin」の新たなラインアップとなる「Jetson Orin Nano 2」を発表した。現行の「Jetson Orin Nano」のメモリ容量8GBモデルと比べて推論性能が2倍に向上した一方で、同じ推論性能であれば消費電力を40％削減できるという。
+NVIDIAの“狐”は工場自律管理AIエージェント、台湾メーカーが導入効果を確認
+NVIDIAは、工場を自律的に管理するAIエージェントのレファレンスデザイン「NVIDIA Factory Operations Blueprint（FOX）」を発表した。FOXを用いれば、工場内のさまざまなデータをリアルタイムに監視／分析し、複数のAIエージェントと機器を連携させることで問題を迅速に解決するAIアプリケーションを容易に構築できるという。
+手のひらサイズAIスパコン「DGX Spark」が4台連結可能に、OpenClawもサクサク動く
+NVIDIAは「GTC 2026」の開催に併せて、超小型デスクトップAIスーパーコンピュータ「DGX Spark」の次期ソフトウェアアップデートについて発表した。これまで2台連結によるスケールアウトが可能だったが、今後は4台連結まで可能になるという。
+関連リンク
+NVIDIA（ブログ）
+Copyright © ITmedia, Inc. All Rights Reserved.
+Special Contents
+PR
+特別協賛
+PR
+スポンサーからのお知らせ
+PR
+Special Contents
+PR
+Pickup Contents
+PR
+組み込み開発の記事ランキング
+東京駅という「先天的安全システム」の“奇跡”のようなメカニズム
+アクリルパイプに満たした水道水が無線通信アンテナに、三菱電機とKDDIが実証
+高周波トランジスタにおけるGaN on GaN技術の優位性、三菱電機が実証
+全製品を28nmプロセスに移行し黄金期の絶頂を極めるAltera、その先に待つ運命は
+三菱電機が「インナーソース」でロボット開発を効率化、開発期間30％短縮
+SDV推進に向けSDxプラットフォーム委員会が発足、日産ホンダマツダなどが参画
+JDIのRGBW構成の液晶ディスプレイが次世代に進化、最大輝度2倍でDCI-P3に対応
+東北大とアイシンがSTT-MRAM搭載AIチップを開発、16nmプロセスでは世界初
+日本の車載ソフト開発者の意識はグローバル水準に到達、後は実行力あるのみ
+世界初「STT-MRAMを搭載した16nm AI SoC」が誕生　SDV推進に向けた動きも加速
+Special Site
+PR
+コーナーリンク
+ロボットフォーラム
+エッジコンピューティングの逆襲
+よく読まれている編集記者コラム
+笑いあり、涙あり!?　製造業の“あるある”が詰まった46作品
+「探す」という呪縛から設計者が解放される日
+夢を追ったニデック、上場廃止は免れないのか
+≫
+編集後記一覧
+あなたにおすすめの記事
+PR
+RSSフィード
+MONOist
+組み込み開発
+モビリティ
+メカ設計
+製造マネジメント
+実装設計
+中小製造業
+キャリア
+FA
+MONOistについて
+メディアガイド
+Media Guide (English)
+よくあるお問い合わせ
+お問い合わせ
+広告について
+MONOist Specialへ
+利用規約
+サイトマップ
+会員メニュー
+新規読者登録（電子版登録）
+登録内容変更
+公式SNS
+Facebook
+X
+ITmediaはアイティメディア株式会社の登録商標です。
+メディア一覧
+|
+公式SNS
+|
+広告案内
+|
+お問い合わせ
+|
+プライバシーポリシー
+|
+RSS
+|
+運営会社
+|
+採用情報
+|
+推奨環境
