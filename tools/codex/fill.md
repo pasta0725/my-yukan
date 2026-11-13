@@ -24,6 +24,8 @@ Rules (all must be kept):
 4. NO behind-the-scenes text (style.md section 8): never write 「見つけられず」「今回読んだ」「参照した」「私は」, never mention
    pages, files, sources being missing, or how the facts were collected. Write missing facts from the reader's side
    (「価格はまだ発表されていません」).
+4-2. Do not repeat the same attribution (「〇〇によると」) or the same caveat in several paragraphs; once is enough
+   (style.md 3, 7, 10). Name an outlet only for a fact that only it reports.
 5. Put each new fact into the existing h section it belongs to, or add a new h + p section. Keep 3–5 h sections in total.
    Keep everything that is already correct; do not drop necessary information. Update "keys", the lead, "stat" (only
    numbers that the body explains) and "point" only when the new facts change them; keep "summary" ≤ 50 characters and
