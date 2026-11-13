@@ -93,15 +93,16 @@ def prep(video, wd, script=None, plan=None, thumb=None):
     crops = []
     for i, (t, _) in enumerate(tel):
         f = os.path.join(wd, "frames", f"c_{i:03d}.png")
-        if t < T and grab(video, t, f): crops.append((t, Image.open(f).crop((40, 1230, 1040, 1680))))
+        if t < T and grab(video, t, f): crops.append((i, t, Image.open(f).crop((40, 1230, 1040, 1680))))
     for k in range(0, len(crops), 8):
-        grid([label(im.copy(), mmss(t), 28) for t, im in crops[k:k + 8]], 2, 1000, 450, os.path.join(wd, "sheets", f"tel_{k // 8 + 1:02d}.png"))
+        grid([label(im.copy(), f"#{i} {mmss(t)}", 28) for i, t, im in crops[k:k + 8]], 2, 1000, 450, os.path.join(wd, "sheets", f"tel_{k // 8 + 1:02d}.png"))
+    json.dump([{"n": i, "t": t, "text": tel[i][1]} for i, t, _ in crops], open(os.path.join(wd, "captions.json"), "w", encoding="utf-8"), ensure_ascii=False)
     if thumb and os.path.exists(thumb):
         im = Image.open(thumb).convert("RGB"); small = im.resize((168, round(im.height * 168 / im.width)))
         big = im.resize((900, round(im.height * 900 / im.width)))
         sheet = Image.new("RGB", (900 + 40 + 168, max(big.height, small.height)), (255, 255, 255))
         sheet.paste(big, (0, 0)); sheet.paste(small, (940, 0)); sheet.save(os.path.join(wd, "sheets", "thumb.png"))
-    tel_list = "\n".join(f"- {mmss(t)} {s}" for t, s in tel if s)
+    tel_list = "\n".join(f"- #{i} {mmss(t)} {s}" for i, (t, s) in enumerate(tel) if s)
     prompt = PROMPT.format(T=f"{T:.1f}", script=script_text(script) or "（台本なし）", tel=tel_list or "（予定の字幕一覧なし）",
                            thumb="あり（thumb.png：左が原寸に近い大きさ、右が幅168pxに縮めたもの）" if thumb and os.path.exists(thumb) else "なし")
     open(os.path.join(wd, "prompt.txt"), "w", encoding="utf-8").write(prompt)
@@ -112,7 +113,7 @@ def prep(video, wd, script=None, plan=None, thumb=None):
 PROMPT = """あなたは YouTube ショート動画（縦 1080x1920、長さ {T} 秒、日本語）の最終の画面チェック係です。作った人とは別の目で、投稿前に見落としを探してください。
 添付画像:
 - all_XX.png：1秒ごとの全画面（左上の黄色い字が動画の時刻 分:秒）。ピンクの帯は YouTube の画面で隠れる所（左右の端 50px、上の y180〜280 は検索の虫眼鏡）。帯そのものは動画にはありません。
-- tel_XX.png：右下の吹き出し・字幕の部分を原寸で切り出したもの（字幕の切り替えごとに1枚、左上が時刻）。誤字・改行はこちらで細かく見る。
+- tel_XX.png：右下の吹き出し・字幕の部分を原寸で切り出したもの（字幕の切り替えごとに1枚、左上が #番号 と時刻）。誤字・改行はこちらで細かく見る。
 - thumb.png：サムネイル（{thumb}）。
 同じフォルダの frames/ に原寸のコマ（t_秒.png、c_番号.png）があります。怪しい所は画像を開く道具で拡大して確かめてよい。ファイルは変更しないこと。
 
@@ -131,14 +132,45 @@ PROMPT = """あなたは YouTube ショート動画（縦 1080x1920、長さ {T}
 予定の字幕（時刻と文字。吹き出しに出るはずのもの）:
 {tel}
 
-答えは指定の JSON だけ。result は問題が1つもなければ "OK"、1つでもあれば "LOOK"。items は問題ごとに1つ：time は "0:24" のような時刻（サムネは "thumb"）、what は「空の吹き出し」「改行」「はみ出し」「UIと重なり」「誤字」「サムネ」のどれか、where は画面のどこか（例：右下の吹き出し、上のカレンダーのカード）、detail は何がどうおかしいかを日本語で短く（見えた文字をそのまま引用）。checked は見た画像の枚数。thumbnail はサムネの判定を1行（無ければ「なし」）。"""
+答えは指定の JSON だけ。captions には tel_XX.png の全部の切り出しについて、#番号（n）と、吹き出し（または字幕）に見える文字を見たままの改行で1行ずつ（lines）書く。予定の字幕に合わせて直さず、見えたとおりに写す（空なら lines は空の配列）。result は問題が1つもなければ "OK"、1つでもあれば "LOOK"。items は問題ごとに1つ：time は "0:24" のような時刻（サムネは "thumb"）、what は「空の吹き出し」「改行」「はみ出し」「UIと重なり」「誤字」「サムネ」のどれか、where は画面のどこか（例：右下の吹き出し、上のカレンダーのカード）、detail は何がどうおかしいかを日本語で短く（見えた文字をそのまま引用）。checked は見た画像の枚数。thumbnail はサムネの判定を1行（無ければ「なし」）。"""
 
 SCHEMA = {"type": "object", "additionalProperties": False, "required": ["result", "items", "thumbnail", "checked"],
           "properties": {"result": {"type": "string", "enum": ["OK", "LOOK"]},
                          "items": {"type": "array", "items": {"type": "object", "additionalProperties": False,
                                                               "required": ["time", "what", "where", "detail"],
                                                               "properties": {k: {"type": "string"} for k in ["time", "what", "where", "detail"]}}},
-                         "thumbnail": {"type": "string"}, "checked": {"type": "integer"}}}
+                         "thumbnail": {"type": "string"}, "checked": {"type": "integer"},
+                         "captions": {"type": "array", "items": {"type": "object", "additionalProperties": False, "required": ["n", "lines"],
+                                                                 "properties": {"n": {"type": "integer"}, "lines": {"type": "array", "items": {"type": "string"}}}}}}}
+SCHEMA["required"].append("captions")
+
+HEAD = set("はがをにでとものへやただゃゅょっぁぃぅぇぉャュョッァィゥェォー、。，．」』）)!！?？")  # a line must not start with these
+NOPUNCT = re.compile(r"[\s、。，．,.!！?？「」『』（）()・…ー〜~]")
+
+
+def rule_items(wd, d):
+    """Checks the rules on Codex's transcription of every caption chunk, so they do not depend on Codex noticing them."""
+    try: plan = {x["n"]: x for x in json.load(open(os.path.join(wd, "captions.json"), encoding="utf-8"))}
+    except Exception: return []
+    out = []
+    for c in d.get("captions", []):
+        x = plan.get(c.get("n"))
+        if not x: continue
+        L = [l.strip() for l in c.get("lines", []) if l.strip()]; tm = mmss(x["t"])
+        if not L:
+            out.append({"time": tm, "what": "空の吹き出し", "where": "吹き出し・字幕", "detail": f"文字が見えない（予定「{x['text']}」）"}); continue
+        for l in L[1:]:
+            if l[0] in HEAD: out.append({"time": tm, "what": "改行", "where": "吹き出し・字幕", "detail": f"行が「{l[0]}」で始まる：{' / '.join(L)}"})
+        if len(L) > 1 and any(len(NOPUNCT.sub("", l)) < 3 for l in L):
+            out.append({"time": tm, "what": "改行", "where": "吹き出し・字幕", "detail": f"3文字未満の行がある：{' / '.join(L)}"})
+        if x["text"] and NOPUNCT.sub("", "".join(L)) != NOPUNCT.sub("", x["text"]):
+            out.append({"time": tm, "what": "誤字", "where": "吹き出し・字幕", "detail": f"見えた文字「{''.join(L)}」・予定「{x['text']}」"})
+    return out
+
+
+def secs(s):
+    m = re.match(r"\s*(\d+):(\d+(?:\.\d+)?)", str(s))
+    return int(m.group(1)) * 60 + float(m.group(2)) if m else 9999
 
 
 def report(wd, name, out):
@@ -151,7 +183,11 @@ def report(wd, name, out):
                 "この動画は従来どおり、作った本人ではない Claude Sonnet のサブエージェントに1秒ごとのコマ一覧を見せて確認する"
                 "（tools/auto_short.md「人の代わりの確認」2）。\n")
         open(out, "w", encoding="utf-8").write(body); print(body); return 2
-    lines = [f"- LOOK {x['time']}｜{x['what']}｜{x['where']}｜{x['detail']}" for x in d["items"]]
+    items = list(d["items"])
+    for r in rule_items(wd, d):   # add the rule hits Codex did not already list (same kind within 1.5 s)
+        if not any(r["what"] == x["what"] and abs(secs(r["time"]) - secs(x["time"])) <= 1.5 for x in items): items.append(r)
+    items.sort(key=lambda x: secs(x["time"]))
+    lines = [f"- LOOK {x['time']}｜{x['what']}｜{x['where']}｜{x['detail']}" for x in items]
     res = "LOOK" if lines else "OK"   # an item always means LOOK, whatever "result" says
     body = f"RESULT: {res}\n\n" + head + ("\n".join(lines) + "\n\n" if lines else "問題は見つかりませんでした。\n\n") + \
         f"サムネ：{d.get('thumbnail', '')}\n\n見た画像：{d.get('checked', '')}枚\n"
