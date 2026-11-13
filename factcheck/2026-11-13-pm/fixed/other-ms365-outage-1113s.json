@@ -1,0 +1,140 @@
+{
+ "id": "other-ms365-outage-1113s",
+ "category": "other",
+ "title": "MS365の大規模障害、佐川や政府業務にも影響",
+ "summary": "13日未明に始まった障害は午後も続き、メールの遅れや手続きの停止が出ています。",
+ "image": {
+  "src": "https://japan.cnet.com/storage/2026/11/13/c5a7ffacb8b2691bc1e4eb227601df80/outlook-large.jpg",
+  "kind": "ogp",
+  "credit": "CNET Japan",
+  "page": "https://japan.cnet.com/article/35254809/"
+ },
+ "visual": {
+  "icon": "globe",
+  "kicker": "サービス障害"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Microsoft 365で13日未明から障害。Outlookのメールなどに接続しづらい状態が続く",
+    "Outlookの障害報告は13万件超。Microsoftはサーバーを順に復旧させている",
+    "佐川急便の手荷物サービスの申し込みや、政府の業務基盤にも影響が出た"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Outlookなどが使えるMicrosoft 365で、日本時間11月13日未明から接続障害が続いています。Microsoftが案内しました。"
+  },
+  {
+   "type": "h",
+   "text": "何が起きているか"
+  },
+  {
+   "type": "p",
+   "text": "Impress Watchによると、Microsoftは13日午前2時54分に南北アメリカでのメール基盤「Exchange Online」の問題を公表しました。その後、全地域の利用者に影響する可能性があると発表しています。発生時刻は、CNET Japanが午前3時ごろ、ITmedia NEWSが午前3時26分と伝えています。"
+  },
+  {
+   "type": "p",
+   "text": "Web版やデスクトップ版のOutlookでメールボックスを開けない場合があり、メールの配送も遅れる可能性があります。Copilot Chatの読み込みや、管理者向けの画面の一部にも影響が出ています。"
+  },
+  {
+   "type": "p",
+   "text": "Teamsは、予定表の表示や会議の設定・招待など、メールの基盤に頼る機能で不具合が出る可能性があります。通話や会議への参加、グループチャットは影響を受けていません。"
+  },
+  {
+   "type": "h",
+   "text": "原因と復旧の状況"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftによると、複数のサーバーが突然使えなくなり、残りの設備に負荷が集中しました。CNET Japanは当初、通信量の増加も調査中と報じました。Impress Watchは、通信量自体の増加ではないという同社の説明を掲載しています。更新の配信停止や通信の分散、再起動を試しましたが、復帰したサーバーが再び応答しなくなる例もありました。"
+  },
+  {
+   "type": "p",
+   "text": "CNET Japanによると、Microsoftは午前8時ごろに一部のサーバーを復旧させました。現在は、以前のソフトウェア構成でサーバーを作り直す方法を試しています。障害監視サイトDowndetectorへのOutlookの報告は、午前3時15分までに13万件を超えました。午前9時55分時点では約3万件です。"
+  },
+  {
+   "type": "img",
+   "src": "https://www.watch.impress.co.jp/img/ipw/list/2156/244/ms00.jpg",
+   "kind": "ogp",
+   "credit": "Impress Watch",
+   "caption": "Impress Watchが伝えたMicrosoft 365の障害",
+   "page": "https://www.watch.impress.co.jp/docs/news/2156244.html"
+  },
+  {
+   "type": "h",
+   "text": "日本の暮らしや政府への影響"
+  },
+  {
+   "type": "p",
+   "text": "佐川急便は、メールが届かない不具合のため、「SAGAWA手ぶらサービス」の一部Web申し込みを完了できないと発表しました。このサービスは駅や空港、ホテルなどで手荷物を預かり、配送もします。2026年11月時点で全国65店舗で使えますが、復旧予定の時刻は示されていません。"
+  },
+  {
+   "type": "p",
+   "text": "古川俊治デジタル大臣は13日午前の記者会見で、政府共通の業務基盤「GSS」にも支障が出ていると明らかにしました。GSSは、デジタル庁によると2026年2月時点で18機関の約5万3000人が使っています。各府省庁は電話やチャット、ショートメッセージで連絡を続けていて、主要な業務に支障が出ないようにしているといいます。"
+  },
+  {
+   "type": "h",
+   "text": "AWS障害との関係は？"
+  },
+  {
+   "type": "p",
+   "text": "一部の海外メディアは、今回の障害をAWSの障害と結びつけて報じました。これに対しAWSは、自社のサービスは正常に動いており、不正確な報道が出ていると公式Xで述べています。AWSの東京リージョン（東京にある設備）では11日夜から障害がありましたが、12日午前5時31分までに復旧済みです。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "13万件超",
+     "label": "Outlookの障害報告(3時15分)"
+    },
+    {
+     "value": "約3万件",
+     "label": "同じ報告数(9時55分)"
+    },
+    {
+     "value": "約5万3000人",
+     "label": "GSSの利用者(2026年2月)"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "Outlookでメールを開けない人は、端末ではなくMicrosoft側の障害の可能性がある。大事な連絡は電話なども使う",
+    "佐川急便の手荷物預かりを予約したい人は、サービスが復旧するまで申し込みを待つ",
+    "仕事でMicrosoft 365を使う人は、Microsoftのサービス稼働状況ページや公式Xで最新情報を確認する"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "メールの配送にも遅れが出る可能性があります。急ぎの連絡があるときは、送信操作だけで安心せず、相手に届いたか確認したいところです。"
+  }
+ ],
+ "source_name": "CNET Japan",
+ "source_url": "https://japan.cnet.com/article/35254809/",
+ "published": "2026-11-13",
+ "refs": [
+  {
+   "name": "CNET Japan",
+   "url": "https://japan.cnet.com/article/35254809/"
+  },
+  {
+   "name": "Impress Watch",
+   "url": "https://www.watch.impress.co.jp/docs/news/2156244.html"
+  },
+  {
+   "name": "CNET Japan",
+   "url": "https://japan.cnet.com/article/35254835/"
+  },
+  {
+   "name": "CNET Japan",
+   "url": "https://japan.cnet.com/article/35254836/"
+  },
+  {
+   "name": "ITmedia NEWS",
+   "url": "https://www.itmedia.co.jp/news/article/2611/13/2000003185/"
+  }
+ ]
+}

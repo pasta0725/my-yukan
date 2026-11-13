@@ -1,0 +1,161 @@
+{
+ "id": "ai-notion-zdr-leak-update",
+ "category": "ai",
+ "title": "Notion AI漏えいの恐れ、ZDR利用法人も対象",
+ "summary": "Notionは、ゼロデータ保持を利用する法人でもAIチャットが漏れた可能性を認めました。",
+ "image": {
+  "src": "https://www.itmedia.co.jp/aiplus/article/ogp/2611/13/2000003172/10012075/2048",
+  "kind": "ogp",
+  "credit": "ITmedia",
+  "page": "https://www.itmedia.co.jp/aiplus/article/2611/13/2000003172/"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "情報漏えい"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Notion AIのチャット記録が、委託先Fireworks.aiへの不正アクセスで漏れた恐れがあります。",
+    "Notionによると、影響はワークスペースの1%未満です。ZDR利用法人も漏えいの恐れがあります。",
+    "本人にもオーナーにも連絡がなければ、今は対応不要です。影響を受けたチャットに貼ったパスワードは変更します。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Notion Labsは11月12日（日本時間）までに、ゼロデータ保持を使う法人ユーザーでもAIチャット記録が漏れた恐れがあると、ヘルプページで公表しました。"
+  },
+  {
+   "type": "h",
+   "text": "何が漏れた恐れがあるか"
+  },
+  {
+   "type": "p",
+   "text": "Notion運営の米Notion Labsは11月9日（現地時間）、AI処理の一部を任せている米Fireworks.aiが不正アクセスを受けたと発表しました。Notion AIの利用状況を分析する管理者向け機能「Insights」のチャット記録が、漏れた恐れがあります。国内企業も影響を報告していると伝えられています。"
+  },
+  {
+   "type": "p",
+   "text": "漏れた恐れがあるのは、チャットに書いた質問や貼った文と、AIが返した答えや要約です。パスワードやAPIキー（外部サービスに入るための鍵）を貼っていれば、それも含まれます。Notionは、このデータを漏れたものとして扱うよう勧めています。"
+  },
+  {
+   "type": "p",
+   "text": "影響を受けた大半のワークスペースでは、誰が書いたか、どのワークスペースのものかを示す印は付いていませんでした。これらの記録には、AIがほかのツールを動かした結果も含まれていません。AI議事録の音声・文字起こし・要約は、チャットの入力に使っていなければ対象外です。"
+  },
+  {
+   "type": "h",
+   "text": "対象の人と連絡"
+  },
+  {
+   "type": "p",
+   "text": "Notionによると、影響を受けたのはワークスペースの1%未満です。一方、BleepingComputerはユーザーの1%未満と報じています。チャットの総件数は、XenoSpectrumによると公表されていません。Notionは、影響を受けた顧客にすでに連絡したとしています。"
+  },
+  {
+   "type": "p",
+   "text": "本人にもワークスペースのオーナーにも連絡が来ていなければ、対象とは確認されておらず、今のところ対応は不要です。調査は続いていて、対象と分かれば直接連絡が来ます。"
+  },
+  {
+   "type": "h",
+   "text": "漏れるまでの流れ"
+  },
+  {
+   "type": "p",
+   "text": "BleepingComputerは、Fireworks AIの開発環境への侵入日は10月23日と報じています。一方、XenoSpectrumは、外部のクラウド事業者で10月23日に事件が起き、翌24日に開発環境へ侵入されたと説明しています。BleepingComputerによると、10月初めにも別の不正アクセスがあり、一部の顧客のAPIキーなどが見られていました。"
+  },
+  {
+   "type": "p",
+   "text": "Notionが警告を受けたのは11月2日で、当初はテスト用の合成データだけという説明でした。Notionは11月3日までに接続を止め、Fireworks側のデータをすべて消し、学習の作業も止めました。11月8日にFireworksが新たなデータセットを示し、調べるとInsights用のチャット記録が入っていました。"
+  },
+  {
+   "type": "p",
+   "text": "NotionはFireworksを、Insightsの分析と、公開されているAIモデルを動かす用途に使っていました。Insightsは調査のため止め、Fireworks経由でのモデル提供もやめています。"
+  },
+  {
+   "type": "h",
+   "text": "ゼロデータ保持の適用範囲"
+  },
+  {
+   "type": "p",
+   "text": "ZDR（ゼロデータ保持）とは、ユーザーがAIに入力した内容や答えを、サービス側が保存しない取り決めです。Notion Labsによると、チャット履歴やInsightsのように、質問と回答を保存する必要がある機能は、法人向けプランのZDRの対象外でした。それでもZDR契約の法人のデータが漏れた可能性があると、Notionは明らかにしました。"
+  },
+  {
+   "type": "p",
+   "text": "InsightsではNotion AIの質問と回答を保存し、分析をFireworksに任せていました。Fireworksはデータを保持しない契約でしたが、Notionは接続先にデータが残っていたと説明しています。一方、XenoSpectrumは保存の有無は未確定と報じています。Notionは、AI処理の委託先がZDRを含めてデータの保持を最小限にしているか点検を進めています。"
+  },
+  {
+   "type": "p",
+   "text": "Fireworksは、初期設定でZDRを使う自社サービスへの影響は確認できていないとしています。XenoSpectrumによると、一括処理やデータセットを使う学習向けに、利用者が自分で扱うデータセットのアップロードとダウンロードを止めています。Notionが使っていた接続先との関係は、ITmediaによると明らかにしていません。"
+  },
+  {
+   "type": "h",
+   "text": "オーナーと利用者がやること"
+  },
+  {
+   "type": "p",
+   "text": "影響を受けたワークスペースのオーナーは、サイドバーの「?」から「Security incident review」を開くと、影響を受けたデータを確認できます。Notionは、パソコンのブラウザーで最新版を使うよう案内しています。XenoSpectrumはデスクトップアプリも利用できると説明しています。スマホでは見られません。"
+  },
+  {
+   "type": "p",
+   "text": "影響を受けたメンバーの名前・メールアドレス・メンバー資格の状態（有効か無効か）・ユーザーID・影響を受けた行数は、CSVで出せます。リンクを作ってメンバーに渡すと、各自が自分のデータだけを見られます。ワークスペース全体のチャット本文のCSVを入手できるのは、ドメインの認証を済ませたワークスペースのオーナーだけです。"
+  },
+  {
+   "type": "p",
+   "text": "Notionは、影響を受けたチャットにパスワードやAPIキーなどを貼った人に、すぐ変えるよう勧めています。CryptoSlateによると、Notionは11月11日、影響を受けたメッセージから見つかった自社のAPIキーを無効にしました。同サイトは、この無効化したキーの悪用について告知に報告はないと説明しています。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "1%未満",
+     "label": "影響を受けたワークスペースの割合"
+    },
+    {
+     "value": "11月3日まで",
+     "label": "Notionが接続を止めた時期"
+    },
+    {
+     "value": "11月9日",
+     "label": "最初の発表（現地時間）"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "職場でNotion AIを使っている人は、本人とオーナーの両方にNotionからの連絡の有無を確認し、どちらにも連絡がなければ今は対応不要です。",
+    "影響を受けたワークスペースのオーナーは、サイドバーの「?」から「Security incident review」を開き、対象メンバーに確認用リンクを共有します。",
+    "影響を受けたチャットにパスワードやAPIキーを貼った人は、すぐ変更するか無効にします。",
+    "続報は、NotionのヘルプページとFireworks.aiの調査報告で確かめます。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "Insightsは、Notionの法人向けZDRの対象外でしたが、Fireworksとはデータを保持しない契約がありました。仕事でAIを使うときは、機能ごとの保存範囲と委託先での扱いを確かめておきたいです。"
+  }
+ ],
+ "source_name": "ITmedia AI+",
+ "source_url": "https://www.itmedia.co.jp/aiplus/article/2611/13/2000003172/",
+ "published": "2026-11-13",
+ "refs": [
+  {
+   "name": "ITmedia AI+",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2611/13/2000003172/"
+  },
+  {
+   "name": "Notion ヘルプ",
+   "url": "https://www.notion.com/en-gb/help/security-incident-involving-a-third-party-ai-vendor"
+  },
+  {
+   "name": "BleepingComputer",
+   "url": "https://www.bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts/"
+  },
+  {
+   "name": "CryptoSlate",
+   "url": "https://cryptoslate.com/notion-users-put-access-keys-in-ai-chats-a-supplier-breach-exposed-them/"
+  },
+  {
+   "name": "XenoSpectrum",
+   "url": "https://xenospectrum.com/en/notion-fireworks-ai-chat-leak/"
+  }
+ ]
+}

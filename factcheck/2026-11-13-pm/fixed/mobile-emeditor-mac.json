@@ -1,0 +1,165 @@
+{
+ "id": "mobile-emeditor-mac",
+ "category": "mobile",
+ "title": "「EmEditor」のMac版が登場、2027年1月末まで無料",
+ "summary": "Windowsの定番エディターがMacでも動きます。試用版は2027年1月31日まで無料です。",
+ "image": {
+  "src": "https://forest.watch.impress.co.jp/img/wf/list/2155/970/emeditor.jpg",
+  "kind": "ogp",
+  "credit": "窓の杜",
+  "page": "https://forest.watch.impress.co.jp/docs/news/2155970.html"
+ },
+ "visual": {
+  "icon": "pc",
+  "kicker": "Mac版が登場"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Windowsの定番エディター「EmEditor」のMac版が試用版で登場しました。",
+    "試用版は2027年1月31日まで無料。正式版は2027年1月の予定です。",
+    "対象はmacOS 26以降で、M1以降のチップを積んだMacです。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "米Emurasoftは11月12日（日本時間）、「EmEditor for Mac」の試用版を公開しました。2027年1月31日まで無料です。"
+  },
+  {
+   "type": "h",
+   "text": "どんなソフトか"
+  },
+  {
+   "type": "p",
+   "text": "EmEditorは、1997年からWindows向けに開発が続く高機能なテキストエディター（文字を書き込む専用ソフト）です。開発当初からMac版を望む声が多く、同社は以前に一度挑戦しました。今回はAIを活用した開発が進み、ようやく実現できたと説明しています。"
+  },
+  {
+   "type": "p",
+   "text": "Windows版をそのまま移したのではありません。Windowsに頼っていた部分を、複数のOSで共通に使える土台へ移しました。画面だけをOSごとに作る方式です。同社は、その過程で見つかった不具合がWindows版でも直ったとしています。"
+  },
+  {
+   "type": "p",
+   "text": "AIで開発を速めた一方、変更は少しずつ行いました。コミット（変更の保存）のたびに全テストの合格を確かめ、変更の前後で速度とサイズも比べたそうです。今後はMac版とWindows版を並べて開発する予定です。"
+  },
+  {
+   "type": "img",
+   "src": "https://asset.watch.impress.co.jp/img/wf/docs/2155/970/image1_l.png",
+   "kind": "ogp",
+   "credit": "窓の杜",
+   "caption": "「EmEditor for Mac」プレビュー 1（v0.0.1）の画面",
+   "page": "https://forest.watch.impress.co.jp/docs/news/2155970.html"
+  },
+  {
+   "type": "h",
+   "text": "Windows版とほぼ同じ機能"
+  },
+  {
+   "type": "p",
+   "text": "数GBある巨大なファイルも開いて編集できます。大きなファイルはディスク上に置いたまま編集するモードがあり、開始位置と終了位置を決めて必要な部分だけ開くこともできます。CSVやTSVは、並べ替えやフィルター、ピボットテーブルの作成が可能です。"
+  },
+  {
+   "type": "p",
+   "text": "正規表現での検索と置換、2つのファイルの並べて比較、Markdownのプレビューも使えます。文字コードはWindows版と同じ幅で対応し、自動判別もできます。スペルチェックはmacOS内蔵の辞書を使い、表示言語は12種類です。次回の起動時に、保存前の文字や元に戻す履歴まで復元できます。"
+  },
+  {
+   "type": "p",
+   "text": "Windows版向けに書いたJavaScriptのマクロも、多くはそのまま動きます。Mac版のマクロはmacOS内蔵のJavaScriptエンジンで動きます。Windows版から来た人が戸惑わないよう、設定画面やショートカットの並びは意図的に近づけてあります。"
+  },
+  {
+   "type": "h",
+   "text": "速さと、まだ使えない機能"
+  },
+  {
+   "type": "p",
+   "text": "同社は、4.72GB・約5000万行のランダムな文字列のファイルで、Mac版（v0.0.1）とWindows版（v26.4.2）の速さを測りました。Macは MacBook Pro（Apple M5 Pro、メモリ24GB）、Windowsは Core i7-13700（メモリ80GB）です。機械が違うため、直接の比較にはなりません。"
+  },
+  {
+   "type": "p",
+   "text": "結果は次のとおりです。Mac版は起動だけが遅く、ほかは速い数字でした。\n・起動：Mac 0.140秒、Windows 0.072秒\n・高速ビューで開く：0.723秒、1.503秒\n・「abc」を検索して数える（4万5400個）：0.095秒、0.296秒\n・「abc」を「###」に置換：0.065秒、0.210秒\n・「abc」を含む行を取り出す：0.307秒、0.828秒"
+  },
+  {
+   "type": "p",
+   "text": "試用版では、AIやGit、スニペットなどのプラグインが使えません。言語サーバープロトコル（LSP）、外部ツール、パソコン間の設定の同期も未対応です。Windows版の設定を取り込む機能、内蔵のWebブラウザー、VBScriptなどJavaScript以外のマクロも使えません。.editorconfigは、フォルダーごとに許可した後だけ有効です。macOSの保護の仕組みによるものです。"
+  },
+  {
+   "type": "h",
+   "text": "料金と正式版の予定"
+  },
+  {
+   "type": "p",
+   "text": "試用版は2027年1月31日を過ぎると、メッセージを出して起動しなくなります。ファイルや設定には影響がなく、そのまま正式版で使えます。正式版は2027年1月に出る予定で、それまで不具合の修正を加えた試用版が順次出ます。新しい試用版は、メニューの［EmEditor］－［更新のチェック…］から入れられます。"
+  },
+  {
+   "type": "p",
+   "text": "正式版の後は、「EmEditor Professional」の定期契約で、Mac版もWindows版も使える見込みです。Macも1台に数えます。家庭や学校での個人利用向けの無料版「EmEditor Free」も、Mac版が用意されます。過去に買った永久ライセンスは、Mac版には使えません。"
+  },
+  {
+   "type": "p",
+   "text": "リリース日やライセンス条件を含め、今後の予定は変わる場合があると同社は断っています。"
+  },
+  {
+   "type": "h",
+   "text": "入れる前に確かめること"
+  },
+  {
+   "type": "p",
+   "text": "動作環境はmacOS 26以降で、Apple シリコン（M1以降）のMacです。同社が十分に試せる環境だけを対象にしており、古いmacOSやIntel搭載のMacで使いたい人は、問い合わせフォームで知らせてほしいとしています。要望は今後の対応範囲の検討に使うそうです。"
+  },
+  {
+   "type": "p",
+   "text": "ダウンロードは、必ず同社のサイトから行います。DMGファイルとアプリには、Emurasoftの開発者ID（Developer ID）による署名があり、Appleの公証（悪質なソフトが含まれていないかの確認）も受けています。"
+  },
+  {
+   "type": "p",
+   "text": "署名はmacOSが自動で調べますが、ターミナルで「spctl」コマンドを使えば自分でも確かめられます。結果の「accepted」と「source=Notarized Developer ID」を確認します。名前とIDは「Emurasoft, Inc. (UBZU3KXM6S)」です。"
+  },
+  {
+   "type": "p",
+   "text": "試用版のため、不具合や足りない機能があるかもしれません。不具合を報告するときは、macOSのバージョン、Macの機種、再現の手順を書き添えます。クラッシュ（強制終了）したときは、次の起動時にレポートを送れます。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "0.723秒",
+     "label": "Mac版の高速ビューで4.72GBを開く時間"
+    },
+    {
+     "value": "1.503秒",
+     "label": "Windows版の高速ビュー（別のPC）"
+    },
+    {
+     "value": "1月31日",
+     "label": "試用版の無料期限"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "Macで巨大なCSVやログを扱う人は、2027年1月31日までに試用版を入れて使い勝手を確かめられます。",
+    "対象はmacOS 26以降のApple シリコン搭載Macです。お使いのMacが当てはまるか、先に確認してください。",
+    "Windows版の永久ライセンスを持つ人も、正式版では定期契約か家庭・学校での個人利用向け無料版を選ぶ見込みです。",
+    "プラグインや設定の取り込みは未対応です。仕事の主力にするなら、2027年1月の正式版まで待つ手もあります。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "Windowsで使い慣れた人が、Macでも近い操作で使えるのは助かります。巨大なCSVを触らないなら、無料の間に試して、正式版の料金を見てから決めれば十分です。永久ライセンス持ちの人は、Mac版が別扱いな点に気をつけてください。"
+  }
+ ],
+ "source_name": "窓の杜",
+ "source_url": "https://forest.watch.impress.co.jp/docs/news/2155970.html",
+ "published": "2026-11-13",
+ "refs": [
+  {
+   "name": "窓の杜",
+   "url": "https://forest.watch.impress.co.jp/docs/news/2155970.html"
+  },
+  {
+   "name": "EmEditor（Emurasoft・公式ブログ）",
+   "url": "https://jp.emeditor.com/emeditor-mac/emeditor-for-mac-preview-1-released/"
+  }
+ ]
+}

@@ -1,0 +1,161 @@
+{
+ "id": "ai-claude-meetings",
+ "category": "ai",
+ "title": "ClaudeがGoogle Meetで議事録と作業を代行",
+ "summary": "会議の記録と下書き作りをAIに任せられますが、使えるのは法人プランだけです。",
+ "image": {
+  "src": "https://techcrunch.com/wp-content/uploads/2026/11/Claude-Meetings.png?resize=1200,675",
+  "kind": "ogp",
+  "credit": "TechCrunch",
+  "page": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/"
+ },
+ "visual": {
+  "icon": "ai",
+  "kicker": "Claude会議"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "AnthropicがビデオのWeb会議にClaudeを参加させる新機能をβ版で始めた",
+    "対象はTeamとEnterpriseの法人向けプランで、最初に使える会議サービスはGoogle Meetだけ",
+    "日本での提供や日本語対応は発表されていない"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "TechCrunchによると、Anthropicは11月10日、議事録や資料づくりを手伝う「Claude Meetings」のβ版を発表しました。"
+  },
+  {
+   "type": "h",
+   "text": "会議で何をしてくれるか"
+  },
+  {
+   "type": "p",
+   "text": "Claudeは参加者の1人として会議に入り、話の流れを追います。話し合っている計画の下書きを作る、ホワイトボードに日程を書き出す、会議のチャットで質問に答える、といった作業をその場で行います。つないである仕事用アプリから情報を引き出すこともできます。呼びかけは声でもチャットでも可能で、返事は文字が基本です。"
+  },
+  {
+   "type": "p",
+   "text": "会議が終わると、議事録や次にやることの一覧がclaude.aiに残ります。保存されるのは音声ではなく、文字起こしと要約、画面の説明です。会議ごとに専用のページができ、招待された同じ組織の人が見て、Claudeの作ったものを直せます。同じ組織の人には、そのページから共有もできます。"
+  },
+  {
+   "type": "p",
+   "text": "あとからそのページでClaudeに会議の内容を聞くこともできます。次の会議には、claude.aiのカレンダーから追加します。"
+  },
+  {
+   "type": "h",
+   "text": "使える人と料金"
+  },
+  {
+   "type": "p",
+   "text": "Unite.AIは提供開始を11月12日と報じています。β版の対象はTeamとEnterpriseの2プランです。Teamでは招待が初めからオンで、管理者がオフにできます。Enterpriseでは管理者が有効にする必要があります。Anthropicによると、β期間中は議事録・文字起こし・会議中の回答が無料です。"
+  },
+  {
+   "type": "p",
+   "text": "会議中に作った資料やホワイトボードも、2027年2月10日まで無料です。連携アプリを使った回答は、プランの利用量に数えられます。その先の料金は発表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "社外の人がいる会議は"
+  },
+  {
+   "type": "p",
+   "text": "Claudeは入室するとき、会議のチャットで参加を知らせます。社外のゲストがいる会議には、管理者が許可しない限り入りません。標準設定では、会議の途中で社外のゲストが加わると自動で退出します。"
+  },
+  {
+   "type": "p",
+   "text": "連携アプリは、依頼した本人の権限の範囲で動きます。初めて使うときに許可を聞かれ、「はい」と答えれば次からも有効です。声で頼んだときは、誰が話しているかを確かめるため、いまは毎回聞かれます。会議のチャットに出した答えは、全員に見えます。"
+  },
+  {
+   "type": "p",
+   "text": "管理者が社外ゲストの会議を許可した場合、Claudeは参加を会議のチャットで知らせますが、そこでは返事をしません。ゲストの発言は、議事録と文字起こしに入ります。Anthropicは、Claudeを加えたり自動参加をオンにしたりする前に、参加者全員が文字起こしに同意しているかを確かめるよう呼びかけています。"
+  },
+  {
+   "type": "p",
+   "text": "データを残さない設定、医療情報向けのHIPAA対応設定、利用者が暗号鍵を管理する設定の組織では、β版は使えません。"
+  },
+  {
+   "type": "h",
+   "text": "同時に出た新機能"
+  },
+  {
+   "type": "p",
+   "text": "あわせてAnthropicは、有料プランのβ機能として「Claude Whiteboards」と「Claude Sheets」も出しました。Whiteboardsは計画を日程つきの図にして、資料やスライドに書き出せます。Sheetsは表計算を作って編集します。「Claude Dashboards」は「Claude Data」と名前を変え、一般提供になりました。"
+  },
+  {
+   "type": "p",
+   "text": "TechRadarによると、同じ日に「インタラクティブコネクタ」も出ました。Adobe、Atlassian、HubSpot、Salesforce、NetSuite、Workdayといった仕事用アプリの画面をClaudeの中で開き、本人の承認を得てClaudeが操作できます。Claude Dataは、会社のデータから画面や動画つきの報告を作ります。"
+  },
+  {
+   "type": "p",
+   "text": "議事録を使う他社サービスとの連携も予定されています。Anthropicは、Gong、Otter、Fireflies.aiなどと組み、会議の文字起こしを送れるようにすると説明しています。"
+  },
+  {
+   "type": "img",
+   "src": "https://techcrunch.com/wp-content/uploads/2026/11/Claude-Whiteboards-1.png?w=680",
+   "kind": "ogp",
+   "credit": "TechCrunch",
+   "caption": "計画を日程つきの図にするClaude Whiteboardsの画面",
+   "page": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/"
+  },
+  {
+   "type": "h",
+   "text": "日本での提供はどうなるか"
+  },
+  {
+   "type": "p",
+   "text": "最初の対応サービスはGoogle Meetだけです。ほかの会議サービスは「近日対応」とされ、ZoomやTeamsへの対応は触れられていません。日本での提供や日本語対応は発表されていません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "Google Meet",
+     "label": "最初の対応サービス"
+    },
+    {
+     "value": "2月10日",
+     "label": "資料などが無料の期限"
+    },
+    {
+     "value": "2プラン",
+     "label": "Team／Enterprise"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "TeamかEnterpriseを使う職場の管理者は、会議への招待設定がオンかオフかを確かめる。",
+    "社外の人が出る会議では、管理者が許可しないとClaudeは参加しない。",
+    "個人プランではまだ使えない。使える会議サービスもGoogle Meetだけ。",
+    "日本語に対応するかは未発表。使えるようになったら、まず小さな会議で試す。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "会議の記録係と下書き係をAIに任せる機能です。ただ、最初はGoogle Meetだけで日本語対応も未発表なので、日本の職場で使えるかは続報待ちです。個人で使っている人は、今は様子見で大丈夫です。"
+  }
+ ],
+ "source_name": "TechCrunch",
+ "source_url": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/",
+ "published": "2026-11-11",
+ "refs": [
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/"
+  },
+  {
+   "name": "Anthropic（公式ページ）",
+   "url": "https://claude.com/resources/articles/claude-meetings"
+  },
+  {
+   "name": "Unite.AI",
+   "url": "https://www.unite.ai/anthropic-launches-claude-meetings-beta-for-live-video-calls/"
+  },
+  {
+   "name": "TechRadar",
+   "url": "https://www.techradar.com/pro/claude-can-now-join-your-weekly-meeting-to-take-notes-and-even-start-work-for-you-and-thats-not-all-with-new-spreadsheet-whiteboard-tools-and-more-helping-conquer-the-world-of-frontier-work"
+  }
+ ]
+}
