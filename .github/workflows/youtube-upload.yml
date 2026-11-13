@@ -72,6 +72,7 @@ jobs:
             s=$(python3 tools/youtube_upload.py "$N" "status:$ID" | grep -oE 'privacy: [a-z]+' | cut -d' ' -f2)
             echo "privacy: $s"
             if [ "$s" = public ]; then
+              python3 tools/work_branch.py get channel/thumbs || true   # fetch again: the thumbnail may have been replaced while waiting (2026-11-13)
               python3 tools/youtube_upload.py "$N" "thumb:$ID" || echo "thumbnail again failed (set it with video=thumb:$ID)"
               [ -n "$C" ] && python3 tools/youtube_upload.py "$N" "comment:$ID" --comment "$C"
               echo "PUBLIC=1" >> "$GITHUB_ENV"
