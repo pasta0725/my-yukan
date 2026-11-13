@@ -1,0 +1,160 @@
+===== https://journal.omoshigo.link/trend/workai/20261112-20576/
+(status 200)
+おはようございます！木曜日の朝、いかがお過ごしですか？今日は11本のニュースをお届けします。AIエージェントに任せる範囲を段階的に広げるIT運用の事例や、製品開発の上流をAIで進める仕組み、AIモデルに裏口を仕込む攻撃の研究など、AIとの付き合い方を考えるヒントがそろいました！
+コンテンツ
+Toggle
+退役軍人ら2万人超、ChatGPT Plusの無料1年を受け取る
+OpenAI（ChatGPTを開発するAI企業）によると、退役軍人と、民間の仕事へ移る準備をしている現役の軍人をあわせて2万人以上が、有料版「ChatGPT Plus」を1年間無料で使える特典を申し込み、受け取ったそうです！同社は、彼らが民間でのキャリアに備えるためにChatGPTをどのように使っているかを紹介しています。
+これまでと違う分野へ移るときは、自分の経験を新しい職場に伝わる言葉で説明し直す場面が出てきます。転職や異動を考えているなら、自分の経歴をAIに見せて「別の業界の人にはどう伝わるか」を一緒に考えてもらうと、準備の入り口になりそうです！
+出典：OpenAI
+https://openai.com/index/chatgpt-plus-for-veterans
+DXC、Amazon Bedrock上でIT運用のAI基盤を構築
+AWS（Amazonのクラウドサービス）の公式ブログで、銀行や病院など規制の厳しい組織のIT運用を担うDXC Technologyが、IT運用向けのAI基盤「DXC OASIS」を紹介しました！AIモデルの呼び出しはAmazon Bedrock（複数のAIモデルを使えるAWSのサービス）に任せ、エージェント（自分で作業を進めるAI）の統制は自社の層が担う2層構造です。エージェントの権限は「見る」「提案する」「承認を得て実行」「決めた範囲で実行」の4段階で、どの役割も見るだけから始めます。2026年3月の一般提供開始以降、測定した56の用途で、解決までの時間が平均95％短くなったそうです。
+AIに仕事を任せるときも、新しく入った人と同じように、最初は見るだけ、次は提案まで、と段階を踏むと安心です。自分がAIに任せている作業について、どこまでなら確認なしで進めてよいかを一度書き出してみませんか？
+出典：AWS Machine Learning Blog
+https://aws.amazon.com/blogs/machine-learning/how-dxc-technology-built-a-multi-model-ai-substrate-on-amazon-bedrock/
+Google、家族や友人との調整を助ける実験的AI「Tabletop」
+The Vergeによると、Googleが、家族や友人との調整を手助けする共有スペースを作る、実験的なAIツール「Tabletop」を開発しました！見た目はAsanaやMonday（どちらも仕事の管理アプリ）と似た点もありますが、作りたいものを言葉で説明して、貯金の記録表や家事の当番表、イベントの計画といった自分たち専用の道具を作れるのが特徴です。リンクやファイル、アイデアを入れてTabletopに頼むか、ひな形を選ぶと、旅行の日程表や夕食の投票、費用の割り勘表なども作れるそうです。今は試験版で、アメリカの18歳以上を対象に、順番待ちリストを通じて利用が広がっているところです。
+仕事でも、ちょっとした集計表や当番表のために、毎回まっさらな表計算ソフトから作り始めていませんか？身近な小さな管理ごとを一つ選んで、AIに言葉で説明して作ってもらうと、道具を自分で用意する感覚がつかめそうです！
+出典：The Verge
+https://www.theverge.com/tech/1031526/google-tabletop-ai-experiment-waitlist-availability
+AWS Nitro Sandboxes、AIエージェントの実行環境を隔離
+Publickeyによると、AWSが、AIエージェント向けの軽量な仮想マシン（コンピューターの中に作る仮想のコンピューター）「AWS Nitro Sandboxes」の提供を始めました！AWSの仮想サーバー「Amazon EC2」の上で、ほぼ本来の性能で動きながら、Nitroシステムのハードウェアの段階でとても強く隔離された環境を用意できます。背景には、AIエージェントによるコーディングが広がり、AIが生成した信頼できないコードをコンテナ（アプリを動かす軽い仕切り）などで動かす機会が増える一方、一般的なコンテナはカーネル（OSの中心部分）を共有している、という事情があるそうです。
+AIが書いたコードや作った資料は、便利でも中身を確かめるまでは「まだ信頼できないもの」として扱うのが安心です。AIに作業を任せるときは、本番のデータや大事なファイルから切り離した場所で、まず試してみる習慣をつけておくとよさそうです！
+出典：Publickey
+https://www.publickey1.jp/blog/26/awsaiec2vmaws_nitro_sandboxes.html
+AWS Quickで製品開発の上流を進めるAIエージェント
+AWSが公式ブログで、AIサービス「AWS Quick」の上に作った6つのAIエージェントで製品開発を速める枠組み「AI-PDLC」を紹介しました！全8段階のうち、課題の発見、優先順位の決定、設計、試作の最初の4段階が対象です。SlackやJira（作業管理ツール）などに散らばった顧客の声を集めて課題を点数づけし、優先順位を決め、仕様書と画面の試作まで作ります。どの段階も人の承認がないと先へ進まず、仕様書はKiroやClaude Codeといったコーディング用のAIに引き渡せます。課題の複雑さによっては、数週間かかっていた試作が数日、場合によっては数時間になりうるそうです。
+AIで作業が速くなるほど、「そもそも何を作るか」を決める話し合いの重みが増しそうです。次に企画や改善案を考えるときは、決めた理由と根拠になった顧客の声を一緒に書き残しておくと、AIにも同僚にも引き継ぎやすくなります！
+出典：AWS Machine Learning Blog
+https://aws.amazon.com/blogs/machine-learning/accelerating-product-development-with-ai-driven-lifecycle-management-ai-pdlc-in-aws-quick/
+NVIDIA Snapshot、GPUのAI処理を秒単位で起動・復旧
+NVIDIAが技術ブログで、AIの計算基盤「NVIDIA DSX AI Factory Platform」に加わる新しいオープンソースの部品「NVIDIA Snapshot」を発表しました！大規模言語モデルなどを動かす前の準備（初期化）は「コールドスタート」と呼ばれ、数分かかることがあります。そのため、利用の急増時や、処理を受け持つ複製（レプリカ）の故障時に、空いているGPU（AIの計算を担う半導体）があってもすぐにはサービスに使えない課題がありました。NVIDIA Snapshotは、準備済みの処理をレプリカの間で使い回せるようにして、数分かかっていた起動や復旧を秒単位に縮めるそうです。
+仕事でも、毎回ゼロから準備するのに時間がかかる作業は意外と多いものです。よく使う資料のひな形や作業の設定を「すぐ使える状態」で保存しておくだけで、急な依頼が来ても、あわてずに動き出しやすくなりそうです！
+出典：NVIDIA Technical Blog
+https://developer.nvidia.com/blog/start-and-restore-gpu-workloads-in-seconds-with-nvidia-snapshot/
+Meta、広告配信の計算資源をAIで配分する仕組み
+Meta（FacebookやInstagramを運営する企業）が技術ブログで、広告を選んで表示する仕組みのどこに計算資源（コンピューターの処理能力）を割り振るかを、機械学習で決めるシステム「Intelligent Delivery」を紹介しました！同じ量の計算でも、広告のリクエストやモデル、チップによって効果が違うため、全体で最も効果が出るように配分します。2017年から2026年上半期にかけて、モデルや仕組みの改良に上乗せする形で、広告の順位づけの性能を約10％高めたそうです。2026年上半期には改善の約20％にAIエージェントが関わり、最終的な変更はエンジニアが確認して承認しています。
+限られた時間や人手も、どこに注ぐかで仕事の成果が大きく変わります。今週の自分の仕事を一覧にして、少し時間を足すと大きく良くなりそうなものと、そうでもないものを分けてみると、力の入れどころが見えてきそうです！
+出典：Engineering at Meta
+https://engineering.fb.com/2026/11/11/ml-applications/intelligent-delivery-serve-better-ads/
+心を残す6つのアイデアとオープンなAIモデルの議論
+MIT Technology Reviewのニュースレター「The Download」が、脳を液体窒素で凍らせる方法から記憶をクラウドに移す構想まで、心を残し続けるための6つのアイデアとその実現性を紹介しました！また、Anthropic（AI企業）が、中国のZ.aiが公開した強力な新モデルについて、誰でもダウンロードして改変できる点からサイバー攻撃の大きなリスクになると報告した件を受け、オープンなAIモデルの利点とリスクを考える記事も音声で届けています。ほかに、AIエージェントはどんな犠牲を払ってでも作業を終えるよう訓練されているために暴走する、という研究も紹介しました。
+AIに仕事を頼むとき、「終わらせること」だけを求めていませんか？守ってほしい条件や、やってはいけないことも一緒に伝え、途中の経過も確かめるようにすると、思わぬやり方で結果を出されるのを防ぎやすくなりそうです！
+出典：MIT Technology Review
+https://www.technologyreview.com/2026/11/11/1148424/the-download-preserving-minds-open-ai-risks/
+Microsoft、AIエージェントに裏口を仕込む攻撃手法を発見
+Microsoftの研究ブログによると、研究者がAIモデル内でほとんど働かない「休眠ニューロン」を10個未満書き換えるだけで、AIエージェントに裏口（バックドア）を仕込める攻撃手法「Lazarus」を見つけました！再学習は不要で、細工されたモデルは通常の安全性評価を通過します。ところが日付が2027年に変わるといった合図をきっかけに、攻撃者のコードを取ってきて動かす命令を出し、エージェントは与えられた権限のまま実行してしまうそうです。同社のAI開発基盤Microsoft Foundryはモデルの出どころを確かめるなどの対策をとり、AIによる重みのスキャンやモデルへの署名などの防御も開発中です。
+AIエージェントに大きな権限を渡すほど、何かあったときの影響も大きくなります。業務でAIツールを使うときは、どこが提供しているものかを確かめ、ファイルの削除や外部への送信といった大事な操作の前には、人が確認する手順を残しておくと安心です！
+出典：Microsoft Research Blog
+https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/
+TSMC、OpenAIとAnthropicに最大10億ドルを投資へ
+Ars Technicaによると、台湾の半導体受託製造の最大手TSMCが、OpenAIとAnthropic（どちらもAI開発企業）に計最大10億ドルを投資する計画です！ロイターによると取締役会が、OpenAIの大口投資家向け優先株に最大5億ドル、Anthropicの普通株を上場時の想定価格で5億ドル分買う案を承認しました。AIデータセンターの建設ブームで潤うTSMCが、AI大手の株を直接持つことになりそうです。ウォール・ストリート・ジャーナルは、市場の安心材料になりうるとする一方、投資家と供給元、顧客の間の資金の循環で、AI関連の本当の需要が見えにくいとのアナリストの警告も伝えています。
+業界の数字が大きく伸びていても、お金がどこから来てどこへ流れているかで、見え方は変わります。取引先や業界の勢いを判断するときは、売上や投資額の大きさだけでなく、その出どころもあわせて確かめるくせをつけておきたいですね！
+出典：Ars Technica
+https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/
+CoreWeave、成長資金のため前払いや短期契約を活用
+TechCrunchによると、AI向けの計算基盤を提供するCoreWeaveの第3四半期決算から、同社がAIの成長を支える資金をどう確保しているかが見えてきました！顧客に料金の前払いを求めるケースを増やし、特定の契約を担保にした資金調達も行っているそうです。さらに、価格の上昇につながる可能性のある短期の契約にも目を向けているということです。売上高は前年同期比168％増の36.6億ドルだった一方、7.09億ドルの純損失も出しました。TechCrunchは、こうした戦略は今の需要と価格の強さが続く場合にしか成り立たないとも指摘しています。
+大きな計画を進めるときは、いつ・どうやってお金や人手を確保するかも計画の一部です。新しい取り組みを提案するときは、内容だけでなく、必要な予算や人の手当てをどう進めるかまで一緒に考えておくと、話が前に進みやすくなりそうです！
+出典：TechCrunch
+https://techcrunch.com/2026/11/11/coreweave-turns-to-customer-prepayments-shorter-contracts-to-fund-ai-growth/
+今日のまとめ ~ AIに任せる範囲を、段階を踏んで決める
+今日のニュースから見えてくるのは、AIに仕事を任せる場面が広がるなかで、どこまで任せて、どこで人が確かめるかを決めておくことが大切になりそうだということです。エージェントの権限を段階的に広げるIT運用の事例や、人の承認を挟みながら製品開発を進める仕組みに加えて、AIモデルに裏口を仕込む攻撃の研究や、AIが生成したコードを隔離して動かす環境の話題も届きました。
+これからの時代、大切なのは、
+任せる範囲を段階的に広げる
+最初は確認つきで任せ、うまくいくことを確かめてから、任せる範囲を広げましょう。
+決めた理由を残す
+何をなぜ決めたかを書き留めておくと、AIにも人にも引き継ぎやすくなります。
+出どころと中身を確かめる
+AIツールやAIが作ったものは、どこから来たのかと中身を確かめてから使いましょう。
+今日は、AIに任せている作業を一つ選んで、どこで自分が確かめているかを見直してみましょう！
+
+===== https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/
+(status 200)
+Try Tabletop: Customizable, collaborative spaces for groups to plan, play and do more together.
+Roman Nurik
+Design & Engineering Lead, Google Labs
+Nov 11, 2026
+Whether you’re planning a family trip, running a rec league or hosting a potluck, coordinating as a group is easier when everyone can pitch in, build and decide together in one place.
+Today, we’re introducing 
+Tabletop
+, a new Google Labs experiment built for real-time collaboration.
+Just add in your links, files, and ideas, then prompt @tabletop — or pick a starter template — to generate custom interactive trip itineraries, dinner polls, expense splitters, and tournament brackets. Once your space is ready, drop the invite link in your group chat to let everyone jump in and use it at the same time, like in a Google Doc.
+Tabletop is rolling out in the U.S. (18+) via waitlist. Pull up a chair and sign up at 
+labs.google/tabletop
+.
+
+===== https://k-tai.watch.impress.co.jp/docs/news/2155878.html
+(status 200)
+ニュース
+Google、複数人で使うコラボレーションツール「TableTop」　投票やゲームをAIで作成・共有可能
+中東 蒼太朗
+2026年11月12日 14:12
+ 　米グーグル（Google）は、AIを使った実験的なコラボレーションツール「TableTop」を、Google Labsに追加した。米国在住の18歳以上のユーザーを対象に、順次提供される。 
+ 　「TableTop」は、複数人が同時に操作できるコラボレーションツール。TableTopのチャット画面で「@tabletop」と入力して指示を出すか、テンプレートを選ぶことで、参加者が操作可能なツールを作成できる。 
+ 　たとえば、夕食の投票や役割の分担表、トーナメント図、簡単なゲームなどをTableTop上で作れる。完成したスペースは、招待リンクを用いて共有でき、Googleドキュメントと同様に参加者全員がリアルタイムに操作できる。 
+ 　同機能は、Google Labsに追加された実験的機能。利用にはウェイトリストへの登録が必要で、米国在住の18歳以上のユーザーが対象となる。
+
+===== https://www.androidauthority.com/google-labs-tabletop-3734236/
+(status 200)
+Affiliate links on Android Authority may earn us a commission. 
+Learn more.
+General technology
+Google's new Tabletop experiment wants to fix the worst part of making plans with friends
+Your group chat's biggest problem might finally have a solution.
+By 
+Shimul Sood
+•
+Nov 12, 2026
+ — 3:52 AM ET
+•
+•
+Shimul Sood / Android Authority
+Add Android Authority on Google: 
+Preferred Source
+Google Discover
+TL;DR
+Google Labs has introduced Tabletop, a new AI-powered tool that makes planning and organizing activities with others more interactive.
+Tabletop lets users create polls, vote, react, and collaborate in real time, whether they’re planning trips, organizing events, or creating activities.
+Google Tabletop is currently available through a waitlist for US users aged 18 and older, with no word on a wider rollout.
+Making plans with friends isn’t always as easy as it sounds. Say you’re planning a weekend trip and soon, your group chat is filled with so many messages that keeping track of everything becomes a task in itself.
+Google
+ has introduced a new experiment called 
+Tabletop
+ that could make situations like this much easier to manage. Developed by Google Labs, Tabletop lets you bring links, files, and ideas into one shared space where everyone can plan things together. But unlike a regular document or spreadsheet, it makes the whole experience more interactive.
+For instance, you can create polls, vote on ideas, react to suggestions, and make changes together in real time. An 
+AI assistant
+ can also help you create activities and organize information, so you don’t have to set everything up yourself.
+You could also use it to organize a potluck dinner, put together an itinerary, create a chore chart for your family, or even put on a scavenger hunt to keep your kids entertained on a rainy afternoon. Google also suggests using it for things like fantasy league drafts and award show watch parties.
+What makes Tabletop interesting is that it brings a little fun to things that usually feel like work. For now, 
+Google Tabletop
+ is available through a waitlist for users aged 18 and older in the US. To request access, you’ll need to provide a personal Gmail address. There’s no word yet on when it might expand to other countries.
+News
+Google
+Google Gemini
++
+Conversation
+Read what readers said or add your take.
+Open conversation
+
+===== https://thenextweb.com/news/google-labs-tabletop-ai-group-planning-spaces
+(status 200)
+Credit: Mitchell Luo on Unsplash
+Google Labs has launched Tabletop, an experiment that builds custom tools such as trip itineraries, dinner polls and expense splitters from a prompt. Groups share one space and edit it together in real time. It is open to US adults via a waitlist.
+Google has launched Tabletop, an experiment from its Google Labs team that lets groups build their own planning tools with AI. Google 
+announced
+ the tool on Wednesday.
+Users add links, files and ideas to a shared space, then ask @tabletop to build something. It can make trip itineraries, dinner polls, expense splitters and tournament brackets. There are also starter templates.
+The creator shares an invite link in a group chat, and everyone can then use the space at the same time. Google compares it to working together in a Google Doc. Group members can vote, plan and track progress in one place.
+The tools can also change as plans do. Members can ask @tabletop to change a rule or add something new without starting over. In one example on Google’s product page, a Pong game becomes Pickle Pong, with a bouncing pickle and a live scoreboard.
+Google suggests uses such as road trips, sports leagues, weddings, weekly meal plans and school pickups. A chore tracker can even become a game with points and a shared reward.
+Tabletop is rolling out in the US to adults aged 18 and over through a waitlist, with new users let in each week. Google has not said which AI model powers it.
+Google Labs experiments sometimes become full products. NotebookLM started there and was 
+renamed Gemini Notebook
+ this year. Google has also opened its Play Store to 
+AI-built apps
+, while Slack now lets teams 
+build with AI agents
+ inside its chat app.
+Get the TNW newsletter
+Get the most important tech news in your inbox each week.
