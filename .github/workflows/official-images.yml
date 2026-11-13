@@ -1,6 +1,9 @@
 name: official-images
 # Finds official pictures for stories with few of them (see tools/find_official_images.py).
 # Result: artifact "official-images" (candidates.json, report.json, sheet_NN.jpg). Nothing is committed.
+# 2026-11-14: with codex_pick=yes, Codex also looks at the candidates and chooses (tools/codex/pick.md, tools/codex_pick.py):
+# artifact "codex-picks" = picks_codex.json (for tools/pick_official_images.py), report.md, story_<id>.jpg. If that job fails,
+# the candidates are still in "official-images" and Claude chooses the old way.
 on:
   workflow_dispatch:
     inputs:
@@ -8,6 +11,9 @@ on:
       extra: {description: "optional json in the repo: {story id: [official page urls]}", required: false, default: ""}
       max_press: {description: "stories with at most this many official pictures", required: false, default: "1"}
       only_extra: {description: "only stories listed in extra (yes/no)", required: false, default: "no"}
+      codex_pick: {description: "yes = Codex chooses the pictures too (2026-11-14)", required: false, default: "no"}
+      model: {description: "Codex model for choosing", required: false, default: "gpt-6-astra"}
+      effort: {description: "reasoning effort for choosing", required: false, default: "medium"}
 jobs:
   find:
     runs-on: ubuntu-latest
@@ -23,3 +29,26 @@ jobs:
           python3 tools/find_official_images.py $args
       - uses: actions/upload-artifact@v4
         with: {name: official-images, path: out, retention-days: 7}
+  codex-pick:
+    needs: find
+    if: inputs.codex_pick == 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q requests pillow
+      - uses: actions/download-artifact@v4
+        with: { name: official-images, path: /tmp/oi }
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: choose with codex
+        run: |
+          test -f /tmp/oi/candidates.json || { echo "no candidates"; exit 0; }
+          python3 tools/codex_pick.py prep /tmp/oi /tmp/pj
+          python3 tools/codex_run.py tools/codex/pick.md /tmp/pj --image story.jpg --parallel 4 --timeout 420 \
+            --model "${{ inputs.model }}" --effort "${{ inputs.effort }}"
+          python3 tools/codex_pick.py collect /tmp/oi /tmp/pj /tmp/picks
+          for d in /tmp/pj/*/; do cp "$d/story.jpg" "/tmp/picks/story_$(basename "$d").jpg" 2>/dev/null || true; done
+          cat /tmp/picks/report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with: {name: codex-picks, path: /tmp/picks, retention-days: 7}
