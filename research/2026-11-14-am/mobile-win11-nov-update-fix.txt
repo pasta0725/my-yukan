@@ -1,0 +1,594 @@
+===== https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-kb5132061-installation-issues-0x80070306-0x800f0989-0x800f0993-errors/
+(status 200)
+Microsoft confirms Windows security updates installation issues
+                            By 
+Sergiu Gatlan
+November 12, 2026
+05:24 AM
+2
+Microsoft has confirmed reports that the November 2026 security updates are failing to install on Windows 11 systems with the October preview update.
+This follows widespread 
+reports
+ that the 
+KB5132061
+ update 
+fails to install
+, with affected users seeing the installation process lock midway and then trigger 0x800f0989 or 0x800f0993 errors.
+"When attempting to install the November 2026 Windows security update (the Originating KBs listed above), some devices might be unable to complete the installation. Affected devices might repeatedly attempt to install the update or display error code 0x80070306, 0x800f0989, or 0x800f0993," Microsoft said in a 
+service update
+ seen by BleepingComputer.
+"This issue affects a limited number of devices that installed the October 2026 non-security preview update (KB5127936). Devices that did not install the October 2026 non-security preview update are not affected."
+Microsoft also told IT administrators that the installation issues will resolve automatically for all affected customers by Friday morning and that end users do not need to take any action to receive the fix.
+"All affected devices should be repaired in 24 to 48 hours starting from November 11, 2026, 10am PT. Once your device receives the repair, it will automatically download and install the November 2026 security update via Windows Update," it added.
+The company also urged admins still receiving reports of installation issues after 48 hours to contact Microsoft Support.
+This is not the first time Microsoft has had to address Windows update installation issues since the start of the year. In March, it had to 
+pull a buggy Windows 11 non-security preview update
+ (KB5079391) because of 0x80073712 errors during installation.
+In May, it also fixed 
+installation failures
+ and 0x800f0922 errors when deploying the May 2026 Windows 11 security update (
+KB5089549
+).
+More recently, in June, Microsoft warned users that they 
+may encounter issues installing the latest monthly updates
+ and see 0x80073712 or 0x800f0993 errors on some Windows devices upgraded to Windows 11 24H2 or 25H2.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Microsoft: Recent Windows updates cause SQL Server performance issues
+Microsoft says November security updates cause printing issues
+Microsoft confirms Windows activation failures after November updates
+Microsoft fixes audio issues caused by September security updates
+Microsoft fixes Smart App Control broken by October Windows update
+
+===== https://assets.theregister.com/2026/11/11/202610/
+(status 200)
+OS Platforms
+30
+Microsoft's Patch Tuesday can't break stuff if it won't install
+30
+KB5132061 throws 0x800F0993 and 0x800F0989 errors, and Redmond is saying nothing
+Richard Speed                                
+Wed 11 Nov 2026                                    
+ // 
+14:55 UTC                                
+UPDATED
+ Users are having difficulty installing Microsoft's latest Windows patch.
+Patch Tuesday contained a 
+truckload of fixes for Microsoft products
+. However, for some users, installing the update, KB5132061, is proving challenging. In the hours after the patch was released, multiple complaints began to surface that the download and installation were failing, with some customers 
+reporting
+ a 
+0x800F0993
+ error code. Others say they received a 
+0x800F0989
+ error.
+Microsoft does not currently list any known issues with the 
+update
+ and is yet to make a statement or provide explanation for the glitch. 
+In addition to the security fixes, this patch resolves a number of known issues from previous updates, including a problem where USB Audio 1.0 devices might fail to start and display an error code 10 in Device Manager.
+In the absence of a statement from Microsoft, several users have taken to sleuthing. One, with the handle of Forceflow on the 
+ElevenForum
+ site, suggested  the bug might be related to Windows Sandbox, and said that after disabling the feature and rebooting, the patch installed successfully. 
+However, others reported problems regardless of Windows Sandbox status, and alternative solutions  included using DISM (Deployment Image Servicing and Management) to check the package or downloading the update manually. 
+It's an important patch to install, since it addresses 
+726 vulnerabilities
+ in Windows alone, and the difficulties affected users face are less than ideal. 
+Microsoft patches have lately displayed more gremlins than usual. Out-of-band releases are depressingly regular after updates break functionality. A September Out-of-band release, for example, was hurriedly pushed out after the September 2026 Windows security update caused trouble for Remote Desktop Services.
+The October Patch Tuesday  for Windows Server 
+sent Exchange Servers toppling
+, with a registry edit workaround suggested. There was no out-of-band update - Microsoft said the problem had been resolved in the November update.
+At least this latest release appears to be failing before users get a chance to see what is broken this time.   ®
+Updated to add on November 12:
+Microsoft has confirmed that there was indeed a problem with installing the update for some users, but the good news is that a fix is rolling out and no action is required on the part of customers (at least those connected to the internet and using Windows Update).
+The bad news is, alas, there appear to be a few issues with the update around printing and activation. Microsoft giveth, and Microsoft taketh away.
+Share
+More about
+Share
+30
+                    COMMENTS
+TIP US OFF
+Send us news
+
+===== https://senserva.com/blog/watch-2026-11-12-install-failures-sql-server
+(status 200)
+This is an early report.
+ Microsoft is still rolling out the repair for the first issue and has not yet released the fix for the second. We wanted to get the word out now, and we will update this page as Microsoft updates its guidance.
+What to do
+Windows 11 devices that installed the October preview update, 
+KB5127936
+, may fail to install the November update, 
+KB5132061
+.
+ Microsoft says devices connected to the internet and using Windows Update in Settings should be repaired automatically within 24 to 48 hours of November 11, 10am PT. That window ends Friday, November 13, at 10am PT; check for devices still failing after that.
+If you run SQL Server linked servers to Oracle, PostgreSQL or other databases through OLE DB, watch for open connections building up.
+ Microsoft says an out-of-band fix (an update released outside the monthly schedule) is coming in the next few days, and Microsoft Support for business has a mitigation now.
+1. The November update might fail to install on some Windows 11 devices
+Microsoft's 
+support article for KB5132061
+, the November 10 security update for Windows 11 versions 24H2, 25H2 and 26H2, now lists a known issue. Microsoft says some devices "might be unable to complete the installation. Affected devices might repeatedly attempt to install the update or display error code 0x80070306, 0x800f0989, or 0x800f0993."
+Which devices
+BleepingComputer reports
+ that Microsoft told administrators in a service update: "This issue affects a limited number of devices that installed the October 2026 non-security preview update (KB5127936). Devices that did not install the October 2026 non-security preview update are not affected." BleepingComputer says it saw that service update. The sentence does not appear in Microsoft's public support article, so BleepingComputer is our source for it.
+Microsoft's update history lists the October preview, KB5127936, for Windows 11 versions 25H2 and 26H2 (builds 26200.9818 and 26300.9818). Microsoft's article also lists the known issue in its section for Windows 11 version 24H2, which covers Enterprise and Education editions only. Microsoft's update history does not list KB5127936 for 24H2, and Microsoft has not said whether 24H2 devices are affected.
+What admins are seeing
+Windows Latest reports
+ that in its tests the update reached 99% before it failed, and that retrying made no progress. Its readers described the same error codes, including failures on four PCs and on two virtual machines. 
+BetaNews
+ also covered Microsoft's confirmation. Windows Latest also suggests a workaround of its own. Microsoft has not published one, so we do not repeat it here.
+The repair
+Microsoft says the repair runs automatically on affected devices connected to the internet and using Windows Update in Settings: "No manual action from end-users is required to receive the repair. All affected devices should be repaired in 24 to 48 hours starting from November 11, 2026, 10am PT. Once your device receives the repair, it will automatically download and install the November 2026 security update via Windows Update."
+Microsoft's article does not say how the repair reaches devices updated through WSUS or other managed deployment tools. For devices still failing after 48 hours, Microsoft says to "use Windows help and learning or contact Microsoft Support."
+Senserva tracking pages: 
+KB5132061
+ (the November update) and 
+KB5127936
+ (the October preview).
+2. SQL Server linked server connections might remain open
+Microsoft confirmed this issue on its 
+Windows release health dashboard
+ on November 11. Microsoft says that after the Windows updates released October 13, 2026, and later are installed on server devices, "connections created by SQL Server linked server queries might remain open after the queries complete."
+Microsoft says: "This issue affects SQL Server linked server queries that use OLE DB providers to connect to external databases. Oracle and PostgreSQL connections are among those known to be affected." Microsoft says the open connections can slow or degrade server performance over time, and that administrators might see a growing number of open connections to external databases after the linked server queries have finished.
+Affected platforms, per Microsoft
+Server:
+ Windows Server 2025, Windows Server 2022, Windows Server version 1809, Windows Server 2016, Windows Server 2012 R2 and Windows Server 2012.
+Client:
+ Windows 11 versions 26H2, 26H1, 25H2, 24H2 and 23H2, Windows 10 version 1809 and Windows 10 Enterprise LTSC 2019. Microsoft added version 26H2 on its 
+26H2 release health page
+ on November 12; its other release health pages had not been updated when we checked.
+Microsoft describes the issue on server devices and also lists these client versions. Microsoft says the issue applies to updates released October 13, 2026, "and later", and its status is still Confirmed. The November 10 updates are in that range.
+Workarounds and the fix, per Microsoft
+Closing idle connections, or restarting the SQL service, relieves the load for a while. Microsoft warns these steps "can also interrupt active queries or transactions, and the problem can resurface again after sufficient operation time."
+"A mitigation is available for affected enterprise devices. To apply this mitigation in your organization, contact Microsoft Support for business."
+"We will address this issue with an out-of-band update that will be released in the next few days."
+BleepingComputer
+ and 
+The Register
+ also reported the issue.
+Senserva tracking pages for the October 13 updates Microsoft names: 
+KB5126646
+ (Windows Server 2025), 
+KB5126655
+ (Windows Server 2022) and 
+KB5127648
+ (Windows 11 24H2, 25H2 and 26H2).
+Sources
+Microsoft: 
+KB5132061 support article
+, and Windows release health for 
+Windows Server 2025
+BleepingComputer: 
+installation issues
+ and 
+SQL Server performance issues
+Windows Latest: 
+KB5132061 installation errors
+BetaNews: 
+KB5132061 installation may fail
+The Register: 
+SQL Server linked server connections
+Senserva Watch tracks and shares this information; Microsoft is the source. Prepared with 
+Senserva Trustworthy AI
+, reviewed by a person, and checked against Microsoft's published data. Join 
+Senserva Watch
+ for alerts like this by email. The sources behind our trackers, and their terms, are on our 
+Data sources & thanks
+ page.
+
+===== https://www.secure.com/news/kb5132061-install-errors
+(status 200)
+Summary
+KB5132061 Won’t Install? Microsoft Says October’s Preview Update Is to Blame
+Who should care:
+ Windows 11 admins with devices stuck on KB5132061, especially anyone running an early or pilot update ring.
+What could go wrong:
+ November’s security fixes never reach your machines, while the dashboard shows “pending.”
+Do this:
+ Find every device that installed KB5127936 and watch its build number.
+Worth remembering:
+ Skipped the October preview? You’re not affected.
+Introduction
+Windows 11 admins spent Patch Tuesday watching the November security update fail, retry and fail again. Microsoft now says 
+the November update, KB5132061, breaks on machines that installed October’s optional preview
+, and a repair is already rolling out.
+What Happened With KB5132061?
+Microsoft released the update on 
+November 10
+ for Windows 11 24H2, 25H2, and 26H2. Within hours, forums filled up with reports of installs freezing partway through and rolling back. Some PCs got stuck in a loop. Others showed 0x80070306, 0x800f0989 or 0x800f0993.
+On November 11, Microsoft confirmed the bug. The trigger is 
+KB5127936
+, the optional preview update from October 28. Devices that skipped it aren’t affected. Microsoft started pushing an automatic repair at 10am PT that day and expects to fix every affected device 
+within 24 to 48 hours
+. After that, Windows Update installs the November patch automatically.
+This isn’t the first time this year that Windows patching stalled on Microsoft’s side. In July, 
+a WSUS sync failure left patches stuck
+ for a different reason.
+What’s the Impact?
+Until the repair lands, 
+affected PCs stay on October’s code and miss November’s security fixes
+. The gap hits the machines in your pilot ring and the eager users who updated first. It also burns helpdesk time: users report that resetting Windows Update components and installing manually from the catalog didn’t help.
+How to Avoid This
+Tag them:
+ Find every device that installed KB5127936 and track them as one group.
+Leave them online:
+ Keep them connected to Windows Update so the repair can arrive. Don’t wipe update caches over and over.
+Check builds:
+ After 48 hours, confirm 
+26100.9974
+ (24H2), 
+26200.9974
+ (25H2) or 
+26300.9974
+ (26H2).
+Ring fence previews:
+ Keep optional previews in a small test ring and out of production.
+Managed fleets:
+ If you patch through WSUS or Intune, check Microsoft’s release health page for how the repair reaches your devices.
+KB5132061 Indicators of Compromise (IOCs)
+This is a bug in how Windows installs updates. 
+No attacker is involved
+, so there are no hashes, IPs or domains to block. Look for the three error codes above, the same install retrying repeatedly, and “2026-11 Security Update (KB5132061)” marked as failed in update history. Users have also reported 0x800f0922 and 0x800f0915, but Microsoft’s note doesn’t mention them.
+One more warning: scammers love a broken patch, so 
+only get fixes from Windows Update or the Microsoft Update Catalog
+.
+“Approved” Isn’t the Same as Installed
+Your patch calendar says November is done. Some of your devices may still be on October’s code.
+Secure.com’s AI teammates close that gap, under rules your team sets:
+Track the real install state of each device, so a stuck install shows up as open exposure instead of “pending”
+Group machines by what they installed last month, so preview ring devices get flagged together
+Match November’s unpatched CVEs to the stuck machines and rank them by which ones an attacker can actually reach
+Draft follow-up tickets for your team to approve, so nobody burns a day on registry resets
+Recheck after the repair window and keep evidence that each device is patched
+Attack. Harden. Prove. Repeat.
+Conclusion
+These failures only hit devices that took October’s optional preview, and Microsoft is fixing them remotely. Leave those machines online, skip the manual resets, and 
+check the build number after 48 hours
+. Anything still behind after that needs escalation.
+FAQs
+What is KB5132061?
+KB5132061 is the November 10, 2026 security update for Windows 11 versions 24H2, 25H2, and 26H2. It fails to install on some devices.
+Why won’t KB5132061 install on my PC?
+Microsoft says the failure only hits devices that installed KB5127936, the optional preview update released on October 28. Devices that skipped that preview install the November update normally.
+What error codes show up when the update fails?
+Microsoft confirmed 0x80070306, 0x800f0989 and 0x800f0993. Some devices also retry the same installation repeatedly with no error shown. Users have also reported 0x800f0922 and 0x800f0915, but Microsoft has not listed them.
+How do I fix it?
+You don’t need to do anything manual. Keep the device online and connected to Windows Update. Microsoft is pushing an automatic repair and expects affected devices to be fixed within 24 to 48 hours, after which the November update installs automatically.
+How do I know the repair worked?
+Check the OS build. Patched devices show 26100.9974 on 24H2, 26200.9974 on 25H2, or 26300.9974 on 26H2. If a device is still on an older build after 48 hours, escalate it and check Microsoft’s release health page.
+Is this a security attack?
+No. It is a servicing bug, not an attack. The risk is that stuck devices miss November’s security fixes until the repair lands. Only get fixes from Windows Update or the Microsoft Update Catalog, never from third-party repair tools.
+
+===== https://support.microsoft.com/en-us/servicing/os/windows-11/2026/11/kb5132061-windows-11-24h2-25h2-26h2-security-update
+(status 200)
+November 10, 2026—KB5132061 (OS Builds 26300.9974, 26200.9974 and 26100.9974)
+Applies To
+Windows 11 version 26H2, all editions
+Windows 11 version 25H2, all editions
+Windows 11 Enterprise and Education, version 24H2
+ Want a quick overview?: Watch the 
+Windows 11 release note video
+ for this update.
+Announcements and messages
+This section provides key notifications related to this release, including announcements, change logs, and end-of-support notices.
+Important
+Because of minimal operations during the Western holidays and the upcoming new year, there will be no December 2026 non-security preview update in the second part of the month. Normal monthly servicing for both security and non-security preview updates will resume in January 2027.
+Windows Secure Boot certificate expiration
+Secure Boot certificate updates remain in progress as Microsoft transitions devices from certificates that began expiring in 2026 to newer certificates. Devices that have not yet received the newer certificates can continue to start and receive standard Windows updates. Microsoft will continue delivering the newer Secure Boot certificates to eligible devices through Windows Update.
+Improvements
+This update includes improvements from the following previously released updates:
+October 13, 2026—KB5127648 (OS Builds 26300.9711, 26200.9711 and 26100.9711)
+October 26, 2026—KB5134133 (OS Builds 26300.9725, 26200.9725 and 26100.9725) Out-of-band
+October 28, 2026 — KB5127936 (OS Builds 26300.9818 and 26200.9818) Preview
+Windows 11, versions 25H2 and 26H2
+Windows 11, version 24H2
+Applies to
+: Windows 11, versions 26H2 and 25H2, all editions
+This security update includes quality improvements. Key changes include:
+[Security updates]
+ This update provides security improvements. For more information about the security vulnerabilities resolved by this update, see the 
+Security Update Guide
+.
+[Secure Boot]
+ This update includes additional high confidence device targeting data, increasing coverage of devices eligible to automatically receive 
+new Secure Boot certificates
+. Certificate deployment via Windows updates continues across supported PCs and non-managed business devices in the coming months.
+[Audio (known issue)]
+ - Fixed: USB Audio 1.0 devices might fail to start and display error code 10 in Device Manager after installing a recent security update.
+[Printing]
+ Fixed: Adding a printer published in Active Directory through 
+Settings
+ > 
+Bluetooth & devices
+ > 
+Printers & scanners
+ > 
+Add device
+ might fail with error 87, “The parameter is incorrect.” This issue was introduced by the October 2026 update and does not generally affect existing printers or printing.
+[Security]
+ This update improves NTLM security by enabling clients to offer NTLM message signing by default for non-anonymous connections. This change helps reduce exposure to NTLM relay attacks and provides auditing to identify connections that are not using signing. To learn more, see 
+NTLM signing security improvements in Windows
+.
+[Date and Time]
+ This update adjusts daylight saving time (DST) rules for Cuba for the extended 2026-2027 DST period. Cuba remains on UTC-04:00 and doesn't observe the November 2026 and March 2027 transitions. It returns to UTC-05:00 in November 2027 and resumes its regular seasonal schedule in 2028.
+For the latest DST and time zone guidance, see the 
+Daylight Saving Time & Time Zone Blog
+.
+[Remote Desktop]
+ This update addresses an issue where Remote Desktop Protocol (RDP) connections might fail on the client due to a certificate mismatch after the October 2026 non-security preview update.
+[Windows PowerShell]
+ This update strengthens security for PowerShell script signing and signature verification by introducing stricter encoding validation. As a result, scripts containing invalid UTF-8 encoding might fail signature validation, even if they were previously accepted. To resolve this issue, review the affected scripts, save them using valid UTF-8 encoding with a byte order mark (BOM), and sign them again. For further guidance, see 
+Encoding Guidance for Signed PowerShell Scripts
+.
+Known issues in this update
+November security update might fail to install on some devices
+Symptoms
+When attempting to install the November 2026 Windows security update 
+KB5127936
+, some devices might be unable to complete the installation. Affected devices might repeatedly attempt to install the update or display error code 0x80070306, 0x800f0989, or 0x800f0993.
+Resolution
+The resolution for this issue is automatically running in affected devices connected to the internet and using Windows Update in Settings to install updates. No manual action from end-users is required to receive the repair. All affected devices should be repaired in 24 to 48 hours starting from November 11, 2026, 10am PT. Once your device receives the repair, it will automatically download and install the November 2026 security update via Windows Update. You can also install the update by 
+following these instructions
+. We will update this documentation once the resolution rollout is completed.
+If you still face installation issues after 48 hours, please use 
+Windows help and learning
+ or contact 
+Microsoft Support
+.
+Applies to
+: Windows 11, version 24H2, Enterprise and Education editions only.
+Note
+This update includes improvements and fixes from the November 2026 security update, along with those previously released for Windows 11, versions 25H2 and 26H2, in the October 2026 non-security preview update 
+(KB5127936)
+.
+This security update includes quality improvements. Key changes include:
+[Security updates]
+ This update provides security improvements. For more information about the security vulnerabilities resolved by this update, see the 
+Security Update Guide
+.
+[Secure Boot]
+ This update includes additional high confidence device targeting data, increasing coverage of devices eligible to automatically receive 
+new Secure Boot certificates
+. Certificate deployment via Windows updates continues across supported PCs and non-managed business devices in the coming months.
+[Audio (known issue)] Fixed
+USB Audio 1.0 devices might fail to start and display error code 10 in Device Manager after installing a recent security update.
+This update fixes an issue where HDMI and DisplayPort audio playback might fail on certain AMD graphics cards.
+[Printing]
+ Fixed: Adding a printer published in Active Directory through 
+Settings
+ > 
+Bluetooth & devices
+ > 
+Printers & scanners
+ > 
+Add device
+ might fail with error 87, “The parameter is incorrect.” This issue was introduced by the October 2026 update and does not generally affect existing printers or printing.
+[Security]
+ This update improves NTLM security by enabling clients to offer NTLM message signing by default for non-anonymous connections. This change helps reduce exposure to NTLM relay attacks and provides auditing to identify connections that are not using signing. To learn more, see 
+NTLM signing security improvements in Windows
+.
+[Date and Time]
+ This update adjusts daylight saving time (DST) rules for Cuba for the extended 2026-2027 DST period. Cuba remains on UTC-04:00 and doesn't observe the November 2026 and March 2027 transitions. It returns to UTC-05:00 in November 2027 and resumes its regular seasonal schedule in 2028.
+For the latest DST and time zone guidance, see the 
+Daylight Saving Time & Time Zone Blog
+.
+[Remote Desktop]
+ This update addresses an issue where Remote Desktop Protocol (RDP) connections might fail on the client due to a certificate mismatch after the October 2026 non-security preview update.
+[Windows PowerShell]
+ This update strengthens security for PowerShell script signing and signature verification by introducing stricter encoding validation. As a result, scripts containing invalid UTF-8 encoding might fail signature validation, even if they were previously accepted. To resolve this issue, review the affected scripts, save them using valid UTF-8 encoding with a byte order mark (BOM), and sign them again. For further guidance, see 
+Encoding Guidance for Signed PowerShell Scripts
+.
+Known issues in this update
+November security update might fail to install on some devices
+Symptoms
+When attempting to install the November 2026 Windows security update 
+KB5127936
+, some devices might be unable to complete the installation. Affected devices might repeatedly attempt to install the update or display error code 0x80070306, 0x800f0989, or 0x800f0993.
+Resolution
+The resolution for this issue is automatically running in affected devices connected to the internet and using Windows Update in Settings to install updates. No manual action from end-users is required to receive the repair. All affected devices should be repaired in 24 to 48 hours starting from November 11, 2026, 10am PT. Once your device receives the repair, it will automatically download and install the November 2026 security update via Windows Update. You can also install the update by 
+following these instructions
+. We will update this documentation once the resolution rollout is completed.
+If you still face installation issues after 48 hours, please use 
+Windows help and learning
+ or contact 
+Microsoft Support
+.
+Components updates
+AI components
+This release updates the following AI components to version 1.2610.1063.0: Image Search, Content Extraction, Semantic Analysis, and Settings Model.
+To learn more, see 
+Release information for AI components
+.
+Servicing stack update (SSU)
+Microsoft combines the latest servicing stack update (SSU) for your operating system with the latest cumulative update (LCU). This Windows update includes KB5132688 (Build 26100.9971), which improves the reliability of the Windows update installation process. To learn more about SSUs, see 
+Servicing stack updates
+.
+How to get this update
+Before you install this update
+Windows 11, version 26H2
+For Windows Update:
+ For Windows 11, version 26H2, you must have the Windows update released on or after September 22, 2026 (such as 
+KB5124010
+) installed before installing this update.
+For Windows Server Update Services (WSUS) deployment or when installing the standalone package from Microsoft Update Catalog:
+ For Windows 11, version 26H2, you must have the Windows update released on or after September 22, 2026 (such as 
+KB5124010
+) installed before installing this update.
+Servicing Stack Update (SSU):
+ You must have installed servicing stack update version 26100.9539 or later before installing this update. To determine the latest SSU installed on your device, run 
+DISM /Online /Get-Packages | findstr /i "ServicingStack"
+ from an elevated command prompt. The Package Identity line returned must be version 26100.9539 or later.
+Windows 11, version 24H2 and 25H2
+For Windows Update:
+ For Windows 11, version 24H2 and Windows 11, version 25H2, you must have the Windows update released on or after June 10, 2025 (such as 
+KB5060842
+) installed before installing this update.
+For Windows Server Update Services (WSUS) deployment or when installing the standalone package from Microsoft Update Catalog:
+ For Windows 11, version 24H2 and Windows 11, version 25H2, you must have the Windows update released on or after June 10, 2025 (such as 
+KB5060842
+) installed before installing this update.
+Servicing Stack Update (SSU):
+ You must have installed servicing stack update version 26100.4193 or later before installing this update. To determine the latest SSU installed on your device, run 
+DISM /Online /Get-Packages | findstr /i "ServicingStack"
+ from an elevated command prompt. The Package Identity line returned must be version 26100.4193 or later.
+Deployment
+If you deploy dynamic updates such as this update to an existing Windows image, ensure the 
+boot.stl
+ file is included as part of the installation media. Failure to include the file might prevent devices from successfully starting from the installation media and can result in error code 
+0xc0430001
+.
+Note
+The 
+boot.stl
+ file is used during Secure Boot validation and must match the Windows version and architecture of the image you are updating.
+To ensure the 
+boot.stl
+ file is included as part of the installation media, do one of the following:
+Use the 
+Update WinPE
+ script to update an existing Windows image. 
+(Recommended)
+Manually copy the 
+boot.stl
+ file from the device 
+Windows\Boot\EFI
+ folder to the corresponding folder on your installation media before deploying the update.
+For information about how to apply Dynamic Update packages to existing Windows images, see 
+Update Windows installation media with Dynamic Update
+.
+Install this update
+To install this update, use one of the following Windows and Microsoft release channels.
+Windows Update
+Business
+Catalog
+Windows Server Update Services
+Available
+Next Step
+Open 
+Start
+ > 
+Settings
+ > 
+Windows Update
+ > 
+Advanced options
+ > 
+Optional updates
+. In the 
+Optional updates available
+ area, you will find the link to download and install available updates.
+Check for optional updates
+Available
+Next Step
+These changes will appear in the next security update to Windows Update for Business.
+Available
+Next Step
+To install this update, download the standalone package(s) for this update from the 
+Microsoft Update Catalog
+. This update contains MSU files that require installation in a specific order. Follow the Arm64 installation instructions or x64 installation instructions, as appropriate.
+If you install additional Dynamic Update packages, use versions from the same release month as this update. If a Safe OS Dynamic Update or Setup Dynamic Update is not available for the same release month, use the most recently released version.
+Note
+ This latest cumulative update includes updates for AI components. AI components are applicable only to Copilot+ PCs and will not install on other Windows client PCs or Windows Server.
+Arm64 installation instructions
+Note
+ The Microsoft Update Catalog may include one or more required checkpoint cumulative updates and the target cumulative update. Install the checkpoint cumulative updates in order before installing the target cumulative update.
+Download all MSU files for update KB5132061 from the Microsoft Update Catalog and place them in the same folder (for example, C:\Packages). Ensure no other files are present in the folder.
+This update consists of the following update file(s).
+Item
+MSU file
+Required checkpoint cumulative update
+windows11.0-kb5043080-arm64_df540a05f9b118e339c5520f4090bb5d450f090b.msu
+Target cumulative update
+windows11.0-kb5132061-arm64_60ca6095fa14ce86f340e9b42b0d90a3ef48cde0.msu
+Method 1: Install each MSU file individually, in order
+Double-click each file in the following order to install that update (if there is more than one .msu file listed):
+windows11.0-kb5043080-arm64_df540a05f9b118e339c5520f4090bb5d450f090b.msu 
+windows11.0-kb5132061-arm64_60ca6095fa14ce86f340e9b42b0d90a3ef48cde0.msu
+Note
+ If a required checkpoint cumulative update is already present, a message will indicate that the update is already installed.  For guidance on using the Windows Update Standalone Installer (Wusa.exe), see 
+Description of the Windows Update Standalone Installer in Windows
+.
+Method 2: Install all MSU files together
+Use 
+Deployment Image Servicing and Management (DISM.exe)
+ to install the target cumulative update. DISM automatically scans the folder specified in the 
+PackagePath
+ folder and installs any required checkpoint cumulative updates.
+Updating a Windows PC
+To apply this update on a running Windows PC, run the following command from an elevated Command Prompt window:
+DISM /Online /Add-Package /PackagePath:c:\packages\windows11.0-KB5132061-arm64_60ca6095fa14ce86f340e9b42b0d90a3ef48cde0.msu
+Or, run the following command from an elevated PowerShell window:
+Add-WindowsPackage -Online -PackagePath "c:\\packages\\windows11.0-KB5132061-arm64_60ca6095fa14ce86f340e9b42b0d90a3ef48cde0.msu"
+Updating Windows installation media
+To apply this update to Windows installation media, see 
+Update Windows installation media with Dynamic Update
+.
+To add this update to a mounted image, run the following command from an elevated Command Prompt window:
+DISM /Image:mountdir /Add-Package /PackagePath:windows11.0-KB5132061-arm64_60ca6095fa14ce86f340e9b42b0d90a3ef48cde0.msu
+Or, run the following command from an elevated PowerShell window:
+Add-WindowsPackage -Path "c:\\offline" -PackagePath "windows11.0-KB5132061-arm64_60ca6095fa14ce86f340e9b42b0d90a3ef48cde0.msu" -PreventPending
+x64 installation instructions
+Note
+ The Microsoft Update Catalog may include one or more required checkpoint cumulative updates and the target cumulative update. Install the checkpoint cumulative updates in order before installing the target cumulative update.
+Download all MSU files for update KB5132061 from the Microsoft Update Catalog and place them in the same folder (for example, C:\Packages). Ensure no other files are present in the folder.
+This update consists of the following update file(s).
+Item
+MSU file
+Required checkpoint cumulative update
+windows11.0-kb5043080-x64_953449672073f8fb99badb4cc6d5d7849b9c83e8.msu
+Target cumulative update
+windows11.0-kb5132061-x64_aedc878e9e078df2ec7e2cfb98dd5b21831cdbcc.msu
+Method 1: Install each MSU file individually, in order
+Double-click each file in the following order to install that update (if there is more than one .msu file listed):
+windows11.0-kb5043080-x64_953449672073f8fb99badb4cc6d5d7849b9c83e8.msu
+windows11.0-kb5132061-x64_aedc878e9e078df2ec7e2cfb98dd5b21831cdbcc.msu
+Note
+ If a required checkpoint cumulative update is already present, a message will indicate that the update is already installed.  For guidance on using the Windows Update Standalone Installer (Wusa.exe), see 
+Description of the Windows Update Standalone Installer in Windows
+.
+Method 2: Install all MSU files together
+Use 
+Deployment Image Servicing and Management (DISM.exe)
+ to install the target cumulative update. DISM automatically scans the folder specified in the 
+PackagePath
+ folder and installs any required checkpoint cumulative updates.
+Updating a Windows PC
+To apply this update on a running Windows PC, run the following command from an elevated Command Prompt window:
+DISM /Online /Add-Package /PackagePath:c:\packages\windows11.0-KB5132061-x64_aedc878e9e078df2ec7e2cfb98dd5b21831cdbcc.msu
+Or, run the following command from an elevated PowerShell window:
+Add-WindowsPackage -Online -PackagePath "c:\\packages\\windows11.0-KB5132061-x64_aedc878e9e078df2ec7e2cfb98dd5b21831cdbcc.msu"
+Updating Windows installation media
+To apply this update to Windows installation media, see 
+Update Windows installation media with Dynamic Update
+.
+To add this update to a mounted image, run the following command from an elevated Command Prompt window:
+DISM /Image:mountdir /Add-Package /PackagePath:windows11.0-KB5132061-x64_aedc878e9e078df2ec7e2cfb98dd5b21831cdbcc.msu
+Or, run the following command from an elevated PowerShell window:
+Add-WindowsPackage -Path "c:\\offline" -PackagePath "windows11.0-KB5132061-x64_aedc878e9e078df2ec7e2cfb98dd5b21831cdbcc.msu" -PreventPending
+Available
+Next Step
+This update automatically syncs with Windows Server Update Services (WSUS) if you configure 
+Products
+ and 
+Classifications
+ as follows:
+Product
+: Windows 11
+Classification
+: Security Updates
+File information
+A list of the files that are included in this update are provided in a CSV (Comma delimited) (*.csv) file. The file can be opened in a text editor such as Notepad or in Microsoft Excel.
+Note
+ The English (United States) version of this software update might contain files for additional languages.
+ Download the file information for 
+cumulative update KB5132061
+.
+ Download the file information for 
+SSU (KB5132688 - version 26100.9971
+.
+Related topics
+Windows monthly updates explained
+Description of the standard terminology used for Microsoft software updates
+Microsoft Store for Business and Education with Configuration Manager
+Get updates for apps and games in Micro

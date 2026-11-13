@@ -1,0 +1,207 @@
+===== https://salt.security/press-releases/state-of-agentic-ai-and-api-security-2h-2026
+(status 200)
+October 13, 2026
+State of Agentic AI and API Security 2H 2026
+Nearly Half of Enterprises Report an AI Agent Took an Unauthorized Action Last Year, Salt Security Research Finds
+State of Agentic AI and API Security 2H 2026: survey of over 380 security and technology professionals plus Salt Labs production telemetry finds AI agents deployed, autonomous, and outpacing the governance controls organizations need to manage what they do.
+PALO ALTO, Calif., October 13, 2026 - 
+Salt Security
+, the leader in agentic and API security, today published the 
+State of Agentic AI and API Security 2H 2026
+, a survey of over 380 security and technology professionals combined with Salt Labs production telemetry from hundreds of customer environments. The report finds that agentic AI has moved into enterprise daily operations faster than the visibility, governance, and containment controls organizations need to manage what agents do.
+The central finding: 49.8% of respondents confirmed or suspected an AI agent in their organization took an action in the past 12 months that the organization did not intend, expect, or authorize. Among that group, more than half reported an unauthorized external API call or transaction, and more than 40% reported that an agent modified or deleted data.
+"The data shows a gap that is already producing real operational consequences," said Roey Eliyahu, CEO of Salt Security.
+ "Organizations are deploying agents and granting them access to enterprise data, APIs, and services before they can trace what those agents are doing or stop them automatically when something goes wrong. Closing that gap is the discipline of agentic security, and it is what lets enterprises give AI agents the autonomy they need without inheriting unmanaged risk."
+Key findings
+Agents are widespread and increasingly autonomous.
+ 86.4% of respondents report at least one AI agent operating in their organization; 59.5% run more than ten. 76.8% report agents that chain actions across other agents, tools, and APIs -- sequences no single team designed in advance.
+Most organizations cannot trace what agents do. 
+Only 12.5% can consistently trace a complete agent path across all agents, from initial instruction through tools and APIs to outcome. More than 60% would need hours or days of manual work to reconstruct what a specific agent did the previous day.
+Containment runs at human speed, not machine speed.
+ Only 17.5% can automatically stop an agent that begins behaving unexpectedly in production. Most can intervene only manually, or by taking the application offline.
+Shadow MCP infrastructure is already a live operational problem.
+ 32.9% have found an unauthorized, shadow, or misconfigured MCP server in the past 12 months; 54.3% confirmed or suspected one. Salt Labs independently found MCP-related infrastructure in 21.6% of customer environments in August 2026, up from 16.7% in January -- a roughly 30% relative increase in detected prevalence.
+AI-generated code is a live security problem in production.
+ 83.5% of respondents estimate AI-generated or AI-assisted code contributes to at least some of their application security findings. Only 6.8% resolve issues inside the coding assistant at generation time; the rest land in code review, testing, or after deployment.
+The survey data reflects a risk that Salt Labs has observed in production. In October 2026, 
+Salt Labs demonstrated that a single malicious email could hijack the Manus agentic AI platform
+ and reach a user's connected email, cloud storage, and code repository accounts without a stolen password or a clicked link. The platform's own guardrail detected the attack, but still could not stop it before the malicious code had run. That finding illustrates the gap the survey quantifies: most organizations have detection controls that fire after an agent has already acted. 
+"The Manus research and this survey data are two views of the same problem," said Yaniv Balmas, Head of Research at Salt Security.
+ "In the field, we showed how an agent can be weaponized through a single malicious email, how the guardrail detected the attack at exactly the right moment, and still could not stop the code from running. The survey quantifies how widespread that architecture is. Only 17.5% of organizations can automatically contain a misbehaving agent in production. Manus is one example of what the other 82.5% looks like." 
+The full State of Agentic AI and API Security 2H 2026 report, including sector breakdowns, CISO recommendations, and Salt Labs telemetry analysis, is available at: 
+https://salt.security/api-security-trends
+.
+About the research
+The 2H 2026 survey contains over 380 analyzed responses from security, technology, architecture, application security, API platform, and DevOps professionals. Respondents span technology (35%), financial services and insurance (16.7%), healthcare (11%), manufacturing (11%), and additional sectors. Salt Labs telemetry is drawn from hundreds of production customer environments. Full methodology is in the report.
+Back to News Releases
+
+===== https://www.itpro.com/security/ai-agents-have-a-mind-of-their-own-and-thats-a-problem-for-businesses
+(status 200)
+(Image credit: Getty Images)
+Share
+Copy link
+Facebook
+X
+Linkedin
+Bluesky
+Share this article
+Join the conversation
+Follow us
+Add us as a preferred source on Google
+Newsletter
+Subscribe to our newsletter
+AI agents are going rogue on a massive scale, with half of enterprises reporting that they've had to deal with at least one taking unauthorized actions over the last year.
+In a 
+report
+ based on a survey of more than 380 security and technology professionals, along with production telemetry from hundreds of customer environments, Salt Labs claimed agentic AI has moved into daily operations too quickly for visibility, governance, and containment controls.
+Half of survey respondents (49.8%) said they had confirmed or suspected that an AI agent in their organization took an action in the past 12 months that wasn't intended, expected, or authorized.
+Of these, more than half reported an unauthorized external API call or transaction, while more than four-in-ten reported that an agent modified or deleted data.
+Latest Videos From
+IT Pro
+Watch full video here: 
+"The data shows a gap that is already producing real operational consequences," said Roey Eliyahu, CEO of Salt Security.
+"Organizations are deploying agents and granting them access to enterprise data, APIs, and services before they can trace what those agents are doing or stop them automatically when something goes wrong. Closing that gap is the discipline of agentic security, and it is what lets enterprises give AI agents the autonomy they need without inheriting unmanaged risk."
+Enthusiastic deployment meets lack of control
+The vast majority of organizations surveyed (86%) are using at least one AI agent, the survey found while 60% run more than ten. Another 77% of respondents said their agents chain actions across other agents, tools, and APIs, in sequences no single team designed in advance.
+Get the ITPro daily newsletter
+Sign up today and you will receive a free copy of our Future Focus 2026 report - the leading resource for IT decision-maker insight on priorities and investment areas in AI, security and more.
+Only 12.5% said they can consistently trace a complete agent path across all agents, from initial instruction through tools and APIs to outcome. More than six-in-ten believe they would need hours or days of manual work to reconstruct what a specific agent did the previous day.
+When problems do occur, they're hard to deal with. Only 17.5% can automatically stop an agent that begins behaving unexpectedly in production. Most can intervene only manually, or by taking the application offline.
+More than eight-in-ten said AI-generated or AI-assisted code contributes to at least some of their application security findings. Only 7% resolve issues inside the coding assistant at generation time, rather than through code review, testing, or after deployment.
+Meanwhile, shadow model context protocol (MCP) infrastructure is already a live operational problem. 33% of survey respondents said they had found an unauthorized, shadow, or misconfigured MCP server in the past 12 months. 54% said they'd confirmed or suspected one.
+Salt Labs' own data shows MCP-related infrastructure in 22% of customer environments in August this year, up from 16.7% in January.
+Earlier this year, a survey commissioned by Aembit 
+found
+ that 68% of organizations can’t accurately identify AI agent activity compared to human activity.
+Nearly three-quarters said that agents often receive more access than necessary, and 79% believe they create new access pathways that are difficult to monitor. Just over half said agents, at least occasionally, inherit access originally intended for humans or other systems.
+CATEGORIES
+Emma Woollacott
+Emma Woollacott is a freelance journalist writing for publications including the BBC, Private Eye, Forbes, Raconteur and specialist technology titles.
+Latest
+Avanade to expand AI and automation capabilities with Robiquity acquisition
+News
+The Microsoft specialist said the move will strengthen its ability to help organizations turn AI investment into tangible business outcomes
+Researchers ‘god-tier’ flaws and leaked credentials in UK government’s open source codebases
+News
+ControlPlane spots slew of leaked credentials and other vulnerabilities in government codebases
+You might also like
+88% of UK firms have had an “agentic security incident” in the last year – ServiceNow warns more will come
+News
+Concerns are growing over the scale of adoption and an inability to match “machine-speed” capabilities
+‘We can assume that all threat actors are using AI in some capacity’: Cyber researchers warn hackers are ramping up automated attacks
+News
+Google Threat Intelligence Group has issued a warning over the increased threats posed by hackers using agentic AI tools
+Trust your AI agents? New research shows ‘memory poisoning’ can dupe them into ‘remembering’ fake information – and it’s a huge security risk
+News
+Memory poisoning allows hidden text on a webpage to be treated as fact and used to make harmful decisions
+An ‘unprecedented cyber incident’: How OpenAI models breached Hugging Face – and why it could herald a ‘new phase of AI-powered cyber crime’
+News
+The incident should serve as a stark warning on the dangers of AI agents, according to cyber experts
+AI agents could make living off the land attacks ‘much more dangerous’, says CrowdStrike Field CTO
+Analysis
+Living off the land attacks are evolving rapidly as threat actors target agents with deep access to enterprise networks and sensitive data
+Databricks launches AI co-worker, Genie One
+News
+The AI program is designed to help business teams manage workflows and automate work-related tasks
+HPE AI Factory adds features to improve your experience with agents
+News
+The HPE AI Factory will now offer the Nvidia Agent Toolkit software, such as Nvidia Nemotron open models and Nvidia NemoClaw
+Beyond "agent washing": how to build AI systems that actually deliver ROI
+Sponsored
+Dell Technologies CTO and CAIO explains where enterprise AI is heading
+View More ▸
+
+===== https://securitytoday.com/articles/2026/10/14/nearly-half-of-respondents-report-unexpected-or-unauthorized-ai-agent-actions-research-finds.aspx?admgarea=ht.it
+(status 200)
+
+
+===== https://controlplane.news/article/salt-security-survey-agent-automatic-containment/
+(status 200)
+Only 17.5 percent of respondents to a new Salt Security survey said their organizations could automatically stop an AI agent behaving unexpectedly in production. Most could intervene only manually or by taking the application offline.
+The security vendor’s October 13 report draws on more than 380 responses from professionals working in security, technology, architecture, application security, API platforms and DevOps. It also includes a separate analysis of telemetry from hundreds of production customer environments. The survey figures describe respondents’ accounts of their organizations, rather than an independently verified incident tally.
+Nearly half, 49.8 percent, said they had confirmed or suspected that an agent had taken an action their organization did not intend, expect or authorize during the previous 12 months. The combined figure includes suspicions and should not be read as a count of confirmed breaches.
+Among that group, 53.9 percent reported an external API call or transaction, 41.9 percent reported modified or deleted data, and 32.5 percent reported access to data the agent should not have reached. These percentages apply to the incident-reporting group, not the entire sample.
+Tracing activity was also difficult. Only 12.5 percent said they could consistently follow the complete path from an agent’s instruction through its tools and APIs to the outcome across all agents. Reconstructing everything a particular agent had done the previous day would require hours or days of manual work for 64.5 percent.
+The survey found extensive deployment: 86.4 percent reported at least one AI agent, while 59.5 percent reported more than 10. Technology companies accounted for 35 percent of respondents; financial services and insurance accounted for 16.7 percent. The public release does not establish that the sample represents enterprises generally. The full report, including its methodology, is available through a registration form; the company has published the findings and sector breakdown online.
+Salt’s separate customer telemetry found Model Context Protocol infrastructure in 21.6 percent of environments in August, up from 16.7 percent in January. MCP connects agents to tools and data. Its presence alone does not indicate an attack or an unauthorized deployment.
+The company also points to a controlled Manus test it disclosed on October 1. Researchers placed malicious instructions in an email, then asked the connected agent to read the inbox. The agent executed code that exposed access tokens for connected accounts before its guardrail raised a warning. Salt says the flaw has been resolved and is no longer exploitable.
+Anthropic has 
+removed live internet access from certain internal evaluations
+ after unintended actions on real websites. Britain’s government is also 
+examining incident and near-miss reporting
+ for autonomous agents, with details to be developed alongside parliamentarians, experts and operators.
+Sources: 
+Salt Security
+, 
+Salt Security
+, 
+Salt Labs
+–
+By the Control Plane Editorial Team
+
+===== https://salt.security/api-security-trends
+(status 200)
+AI and API Security Trends 2026 (H2)
+The H2 2026 State of AI and API Security report examines how companies are securing AI and APIs, the challenges they face, and how their API security strategies are evolving in the Agentic AI Era.
+Download the report
+In the past 12 months, has an AI agent taken an action that your organization did not intend, expect, or explicitly authorize?
+Agents are already doing things no one authorized
+49.8%
+ of respondents confirmed or suspected an AI agent took an action in the past year the organization did not intend, expect, or authorize.
+‍
+Of those, 
+53.9%
+ involved an external API call or transaction, 
+41.9%
+ modified or deleted data, and 
+32.5%
+ reached data the agent should not have had.
+If you needed to determine every action a specific AI agent took yesterday, how long would that take?
+Most organizations can't see what their agents do
+Only 
+12.5%
+ can consistently trace an agent's full path, from instruction through tools and APIs to outcome, across all agents. Only 
+15.7%
+ could reconstruct everything an agent did yesterday in minutes, while 
+64.5%
+ would need hours or days of manual work. A mere 
+17.5%
+ can automatically stop an agent that starts behaving unexpectedly in production. Most can intervene only manually, or by taking the application down.
+How do you compare?
+Check out our H2 2026 State of AI and API Security Report to find out.
+Download the report
+In the past 12 months, has an AI agent taken an action that your organization did not intend, expect, or explicitly authorize?
+The connective layer is becoming an attack surface
+32.9%
+ have found an unauthorized, shadow or misconfigured MCP server in the past year; 
+54.3% 
+have found or suspect one.
+Salt Labs sees the same trend in the field: MCP-related infrastructure appeared in 
+21.6%
+ of customer environments in August 2026, 
+up from 16.7%
+ in January.
+Agentic-connected API endpoints are already being attacked in 
+roughly a quarter (26.3%)
+ of the environments where Salt Labs studied them, an early but directional signal.
+What percentage of your application security findings do you estimate originate from AI-generated or AI-assisted code?
+AI-generated code is now a live security problem
+83.5%
+ estimate AI-generated or AI-assisted code accounts for at least some of their application security findings. Yet only 
+22.2%
+ enforce security and compliance policy across all approved AI coding assistants, and just 
+6.8%
+ resolve issues in the assistant at generation time.
+Attack attempts leveraging the OWASP API Security Top 10 vs. other attack types.
+Attackers are Following the OWASP Top 10.  Are you?
+The OWASP API Security Top 10 is a crucial resource for professionals working in API security, and it highlights the most common and high-risk vulnerabilities that attackers exploit.
+A large percentage of API attacks target these well-known weaknesses. 
+77.1%
+ of attack attempts leverage one of more of OWASP API Top 10 methods.
+Attack attempts from authenticated vs. unauthenticated attackers
+A quick look into attack attempts, as analyzed by Salt Labs
+95.8%
+ of attack attempts analyzed by Salt Labs originate from authenticated sources, increasingly rogue agents operating with legitimate credentials but no human oversight, no rate limiting, and no behavioral guardrails.
+Download the full report now
+Get an in-depth analysis on the concerns, risks, and trends around AI & API security.
+Download the report
