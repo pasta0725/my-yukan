@@ -3,9 +3,9 @@
 ```
 OK   game-vindictus-ps5
 OK   game-metaphor-switch2-launch
-OK   game-kao-luigi-peach-apps
-OK   game-slay-spire2-fool-update
+OK   game-sonic-pico-park
+OK   game-my-mario-face-mobile
 kept 4 of 4
 ```
 
-Codexの返事: 4本をgame_B.jsonに保存・JSON検証済み。メタファーの価格は資料に記載がないため未掲載です。
+Codexの返事: 4本を game_B.json に保存し、JSON検証済みです。一部の価格は資料に記載がないため掲載していません。
