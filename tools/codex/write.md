@@ -20,6 +20,11 @@ must follow every rule in it, with these differences that override the brief bec
   one line per candidate with 採用/不採用 and the reason.
 - Write your output to ./{WORKER}.json (a JSON array of 4 stories, the format in the brief's "Output" section). Put any
   scratch files in ./tmp/. Check it with `python3 -c "import json;json.load(open('{WORKER}.json'))"`.
+- Pictures: follow the brief's Images section — official images when an official page is in your folder, and up to 2
+  news-site photos (kind "ogp") from the story's OG_IMAGE / IMAGES lines (skip faces, logos, ads, Amazon product thumbnails).
+  A story should normally have a main "image".
+- Depth: the reader should not need another article. Besides the news itself, give the background the .txt files offer
+  (series history, the previous model or title, why it matters) and do not let keys, lead and body repeat the same sentence.
 - Name an outlet only for a fact that only it reports, and do not repeat the same attribution (「〇〇によると」) or the
   same caveat (e.g. 「税込みか税別かは明記されていません」) in several paragraphs: once per article is enough (style.md 3, 7, 10).
 - Before saving, do the brief's Self-check against the .txt files and style.md section 11 (出す前の確認): every paragraph
