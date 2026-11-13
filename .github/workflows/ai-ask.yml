@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - run: npm i -g @openai/codex >/dev/null 2>&1 && codex --version
+      - run: (npm i -g @openai/codex --include=optional >/dev/null 2>&1 && codex --version) || (npm i -g @openai/codex@0.167.2 --include=optional >/dev/null 2>&1 && codex --version)  # 2026-11-13: the newest version lacked its linux part (Issue #19); fall back to the last version that worked
       - name: ChatGPT (Codex, no tools, no web)
         env: { CODEX_AUTH: "${{ secrets.CODEX_AUTH }}", Q: "${{ inputs.questions }}" }
         run: |

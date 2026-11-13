@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: "22" }
-      - run: npm i -g @openai/codex >/dev/null 2>&1 && codex --version
+      - run: (npm i -g @openai/codex --include=optional >/dev/null 2>&1 && codex --version) || (npm i -g @openai/codex@0.167.2 --include=optional >/dev/null 2>&1 && codex --version)  # 2026-11-13: the newest version lacked its linux part (Issue #19); fall back to the last version that worked
       - name: auth
         env: { CODEX_AUTH: "${{ secrets.CODEX_AUTH }}" }
         run: |
