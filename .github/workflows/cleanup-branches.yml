@@ -3,7 +3,7 @@ name: cleanup-branches
 # the workflows make them again when needed). Never touches main, metrics, upload-tmp or the data branches in "keep".
 on:
   schedule:
-    - cron: "7 18 * * 0"   # Monday 03:07 Japan time: the news/factcheck/research branches (made again by the next edition) - user 2026-11-12
+    - cron: "7 18 * * 0"   # Monday 03:07 Japan time: the news/factcheck/research/codexwrite branches (made again by the next edition) - user 2026-11-12
   workflow_dispatch:
     inputs:
       branches: {description: "branches to delete, space separated", default: "generated fetched"}
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - env: { B: "${{ inputs.branches || 'news factcheck research' }}" }
+      - env: { B: "${{ inputs.branches || 'news factcheck research codexwrite' }}" }
         run: |
           keep=" main metrics "
           for b in $B; do
