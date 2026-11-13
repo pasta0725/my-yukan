@@ -1,0 +1,26 @@
+name: codex-setup
+description: Installs the Codex CLI and signs in with the ChatGPT plan (CODEX_AUTH), the same way as codex-research.yml (2026-11-14).
+inputs:
+  auth: {description: "secrets.CODEX_AUTH", required: true}
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with: { node-version: "22" }
+    - shell: bash
+      run: (npm i -g @openai/codex --include=optional >/dev/null 2>&1 && codex --version) || (npm i -g @openai/codex@0.167.2 --include=optional >/dev/null 2>&1 && codex --version)  # 2026-11-13: the newest version lacked its linux part (Issue #19); fall back to the last version that worked
+    - name: auth
+      shell: bash
+      env: { CODEX_AUTH: "${{ inputs.auth }}" }
+      run: |
+        test -n "$CODEX_AUTH" || { echo "CODEX_AUTH is empty"; exit 1; }
+        export CODEX_HOME="$RUNNER_TEMP/codexhome"; mkdir -p "$CODEX_HOME"
+        printf '%s' "$CODEX_AUTH" > "$CODEX_HOME/auth.json"; chmod 600 "$CODEX_HOME/auth.json"
+        printf 'cli_auth_credentials_store = "file"\n' > "$CODEX_HOME/config.toml"
+        echo "CODEX_HOME=$CODEX_HOME" >> "$GITHUB_ENV"
+    - name: list models
+      shell: bash
+      run: |
+        { echo "### Codex $(codex --version 2>/dev/null)"; echo "models offered to this account:"; echo '```'
+          codex debug models 2>/dev/null | python3 -c "import json,sys;[print(m['slug'],'-',m.get('visibility'),'-',','.join(e['effort'] for e in m.get('supported_reasoning_levels',[]))) for m in json.load(sys.stdin)['models']]" || echo "(could not list)"
+          echo '```'; } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,89 @@
+name: codex-write
+# 2026-11-14 (the user's request: save Claude usage by moving work to Codex, quality must not drop): trial — Codex writes the
+# stories of some edition workers (first game_A and game_B) instead of Claude. It gets the same brief as the Claude worker
+# (tools/make_briefs.py) plus a few lines for running without internet (tools/codex/write.md), and only the files that
+# fetch-news.yml saved on the branch "news" (news/<edition>/<worker>/). tools/codex_check.py drops stories that break the
+# rules (URL not in the news files, already published, too old, missing blocks, paragraph > 200 chars, backstage phrases ...).
+# Output on the branch "codexwrite": codexwrite/<edition>/<worker>.json (the same format as WORKDIR/<worker>.json) and
+# <worker>_report.md. If a worker file is missing or empty, the Claude session runs that worker the old way.
+on:
+  workflow_dispatch:
+    inputs:
+      edition: {description: "edition id, e.g. 2026-11-14-pm (news/<edition> must be on the branch news)", required: true}
+      workers: {description: "comma separated worker names", required: false, default: "game_A,game_B"}
+      model: {description: "Codex model", required: false, default: "gpt-6-astra"}
+      effort: {description: "reasoning effort", required: false, default: "high"}
+permissions:
+  contents: write
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    outputs: { workers: "${{ steps.w.outputs.workers }}" }
+    steps:
+      - id: w
+        env: { W: "${{ inputs.workers }}" }
+        run: echo "workers=$(python3 -c "import json,os;print(json.dumps([w.strip() for w in os.environ['W'].split(',') if w.strip()]))")" >> "$GITHUB_OUTPUT"
+  write:
+    needs: prep
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy: { fail-fast: false, matrix: { worker: "${{ fromJSON(needs.prep.outputs.workers) }}" } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: prepare the worker folder
+        env: { ED: "${{ inputs.edition }}", W: "${{ matrix.worker }}" }
+        run: |
+          J="/tmp/jobs/$W"; mkdir -p "$J/tmp" /tmp/out
+          git fetch -q --depth=1 origin news && git archive FETCH_HEAD "news/$ED/$W" | tar -x -C "$J"
+          ls "$J/news/$ED/$W" | wc -l
+          # used.txt: every story of the editions before this one (README 手順1)
+          python3 - "$ED" "$J/used.txt" <<'PY'
+          import json, sys
+          ed, out = sys.argv[1], sys.argv[2]
+          with open(out, "w", encoding="utf-8") as f:
+              for e in json.load(open("data/index.json"))["editions"]:
+                  if e >= ed: continue
+                  try:
+                      for a in json.load(open(f"data/{e}.json", encoding="utf-8"))["articles"]: f.write(f"{a['source_url']}\t{a['title']}\n")
+                  except Exception: pass
+          PY
+          SLOT=$([ "${ED:11}" = "am" ] && echo 朝刊 || echo 夕刊)
+          python3 -I tools/make_briefs.py /tmp/briefs "TODAY=${ED:0:10}" "WORKDIR=." "NEWS=./news/$ED" "EDITION=$SLOT"
+          cp "/tmp/briefs/brief_$W.md" "$J/brief.md"
+          sed -e "s/{WORKER}/$W/g" -e "s/{ED}/$ED/g" -e "s/{TODAY}/${ED:0:10}/g" -e "s/{EDITION}/$SLOT/g" tools/codex/write.md > /tmp/task_$W.md
+      - name: write with codex
+        env: { W: "${{ matrix.worker }}" }
+        run: |
+          python3 tools/codex_run.py "/tmp/task_$W.md" /tmp/jobs --parallel 1 --timeout 2100 \
+            --model "${{ inputs.model }}" --effort "${{ inputs.effort }}"
+      - name: check
+        if: always()
+        env: { ED: "${{ inputs.edition }}", W: "${{ matrix.worker }}" }
+        run: |
+          J="/tmp/jobs/$W"; mkdir -p /tmp/out
+          { echo "# $W（Codex、$ED）"; echo; echo '```'
+            python3 tools/codex_check.py writer "$J/$W.json" "$J/news/$ED/$W" "$J/used.txt" "$ED" "/tmp/out/$W.json" || true
+            echo '```'; echo; echo "Codexの返事: $(cat "$J/last.txt" 2>/dev/null)"; } > "/tmp/out/${W}_report.md"
+          cat "/tmp/out/${W}_report.md" >> "$GITHUB_STEP_SUMMARY"
+          cp "$J/codex.log" "/tmp/out/${W}_codex.log" 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "w-${{ matrix.worker }}", path: /tmp/out }
+  push:
+    needs: write
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: /tmp/all, pattern: "w-*", merge-multiple: true }
+      - env: { ED: "${{ inputs.edition }}" }
+        run: |
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin codexwrite; then git checkout -q -B codexwrite origin/codexwrite; else git checkout -q --orphan codexwrite; fi
+          D="codexwrite/$ED"; mkdir -p "$D"; cp /tmp/all/*.json /tmp/all/*_report.md "$D/" 2>/dev/null || true
+          git add codexwrite; git commit -q --allow-empty -m "codex write $ED"
+          for i in 1 2 3 4 5; do git push -q origin codexwrite && break; sleep $((i*3)); git pull -q --rebase origin codexwrite; done

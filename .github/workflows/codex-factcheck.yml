@@ -1,0 +1,77 @@
+name: codex-factcheck
+# 2026-11-14 (the user's request: save Claude usage by moving work to Codex, quality must not drop):
+# 事実の点検 by Codex. For every story, Codex checks numbers, dates, prices, names and "who / from when / for whom" against the
+# pages that factcheck-pages.yml saved (factcheck/<edition>/<id>.txt on the branch "factcheck"; no internet), following
+# tools/codex/factcheck.md + tools/style.md. Every result is checked by tools/codex_check.py; rejected ones are not used.
+# Output on the branch "factcheck": factcheck/<edition>/fixed/<id>.json (accepted, changed articles), fixed/report.md and
+# fixed/changes.md (Japanese list of every change). Use: python3 -I tools/research_pages.py import data/<edition>.json <fixed dir>
+# Runs after factcheck-pages.yml when that is started with check=yes, or alone.
+on:
+  workflow_call:
+    inputs:
+      edition: {type: string, required: true}
+      src_ref: {type: string, required: false, default: ""}
+      model: {type: string, required: false, default: "gpt-6-astra"}
+      effort: {type: string, required: false, default: "high"}
+  workflow_dispatch:
+    inputs:
+      edition: {description: "edition id, e.g. 2026-11-13-pm", required: true}
+      src_ref: {description: "optional commit to read data/<edition>.json from (default: main now)", required: false, default: ""}
+      model: {description: "Codex model", required: false, default: "gpt-6-astra"}
+      effort: {description: "reasoning effort", required: false, default: "high"}
+permissions:
+  contents: write
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - env: { ED: "${{ inputs.edition }}", SRC_REF: "${{ inputs.src_ref }}" }
+        run: |
+          mkdir -p /tmp/in
+          if [ -n "$SRC_REF" ]; then git fetch -q --depth=1 origin "$SRC_REF" && git show "FETCH_HEAD:data/$ED.json" > /tmp/in/ed.json; else cp "data/$ED.json" /tmp/in/ed.json; fi
+          git fetch -q --depth=1 origin factcheck
+          git archive FETCH_HEAD "factcheck/$ED" | tar -x -C /tmp/in
+          python3 tools/codex_check.py prep-fact /tmp/in/ed.json "/tmp/in/factcheck/$ED" /tmp/jobs 8
+      - uses: actions/upload-artifact@v4
+        with: { name: fact-jobs, path: /tmp/jobs }
+  check:
+    needs: prep
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy: { fail-fast: false, matrix: { k: [0, 1, 2, 3, 4, 5, 6, 7] } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: fact-jobs, path: /tmp/jobs }
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: check with codex
+        run: |
+          mkdir -p "/tmp/jobs/${{ matrix.k }}"
+          python3 tools/codex_run.py tools/codex/factcheck.md "/tmp/jobs/${{ matrix.k }}" --files tools/style.md \
+            --parallel 2 --timeout 900 --model "${{ inputs.model }}" --effort "${{ inputs.effort }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "fact${{ matrix.k }}", path: "/tmp/jobs/${{ matrix.k }}" }
+  push:
+    needs: [prep, check]
+    if: always() && needs.prep.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: /tmp/done, pattern: "fact*", merge-multiple: false }
+      - env: { ED: "${{ inputs.edition }}" }
+        run: |
+          rm -rf /tmp/done/fact-jobs
+          python3 tools/codex_check.py collect fact /tmp/done /tmp/arts
+          cat /tmp/arts/report.md /tmp/arts/changes.md >> "$GITHUB_STEP_SUMMARY"
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin factcheck; then git checkout -q -B factcheck origin/factcheck; else git checkout -q --orphan factcheck; fi
+          D="factcheck/$ED/fixed"; rm -rf "$D"; mkdir -p "$D"; cp /tmp/arts/* "$D/"; cp /tmp/arts/changes.md "factcheck/$ED/changes.md"
+          git add factcheck; git commit -q --allow-empty -m "codex factcheck $ED"
+          for i in 1 2 3 4 5; do git push -q origin factcheck && break; sleep $((i*3)); git pull -q --rebase origin factcheck; done

@@ -1,0 +1,77 @@
+name: codex-fill
+# 2026-11-14 (the user's request: save Claude usage by moving work to Codex, quality must not drop):
+# 書き足し by Codex. For every story that has research pages on the branch "research" (codex-research.yml), Codex adds the new
+# facts to the article following tools/codex/fill.md + tools/style.md (no internet: only the fetched pages). Every result is
+# checked by tools/codex_check.py; rejected ones are not used (the original stays, and Claude can fill those the old way).
+# Output on the branch "research": research/<edition>/arts/<id>.json (only accepted, changed articles) and arts/report.md.
+# Use: python3 -I tools/research_pages.py import data/<edition>.json <dir with arts>
+# Runs after codex-research.yml when that is started with fill=yes, or alone (e.g. on a past edition with src_ref).
+on:
+  workflow_call:
+    inputs:
+      edition: {type: string, required: true}
+      src_ref: {type: string, required: false, default: ""}
+      model: {type: string, required: false, default: "gpt-6-astra"}
+      effort: {type: string, required: false, default: "high"}
+  workflow_dispatch:
+    inputs:
+      edition: {description: "edition id, e.g. 2026-11-13-pm", required: true}
+      src_ref: {description: "optional commit to read data/<edition>.json from (default: main now)", required: false, default: ""}
+      model: {description: "Codex model", required: false, default: "gpt-6-astra"}
+      effort: {description: "reasoning effort", required: false, default: "high"}
+permissions:
+  contents: write
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - env: { ED: "${{ inputs.edition }}", SRC_REF: "${{ inputs.src_ref }}" }
+        run: |
+          mkdir -p /tmp/in
+          if [ -n "$SRC_REF" ]; then git fetch -q --depth=1 origin "$SRC_REF" && git show "FETCH_HEAD:data/$ED.json" > /tmp/in/ed.json; else cp "data/$ED.json" /tmp/in/ed.json; fi
+          git fetch -q --depth=1 origin research
+          git archive FETCH_HEAD "research/$ED" | tar -x -C /tmp/in
+          python3 tools/codex_check.py prep-fill /tmp/in/ed.json "/tmp/in/research/$ED" /tmp/jobs 8
+      - uses: actions/upload-artifact@v4
+        with: { name: fill-jobs, path: /tmp/jobs }
+  fill:
+    needs: prep
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy: { fail-fast: false, matrix: { k: [0, 1, 2, 3, 4, 5, 6, 7] } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: fill-jobs, path: /tmp/jobs }
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: fill with codex
+        run: |
+          mkdir -p "/tmp/jobs/${{ matrix.k }}"
+          python3 tools/codex_run.py tools/codex/fill.md "/tmp/jobs/${{ matrix.k }}" --files tools/style.md \
+            --parallel 2 --timeout 900 --model "${{ inputs.model }}" --effort "${{ inputs.effort }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "fill${{ matrix.k }}", path: "/tmp/jobs/${{ matrix.k }}" }
+  push:
+    needs: [prep, fill]
+    if: always() && needs.prep.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: /tmp/done, pattern: "fill*", merge-multiple: false }
+      - env: { ED: "${{ inputs.edition }}" }
+        run: |
+          rm -rf /tmp/done/fill-jobs
+          python3 tools/codex_check.py collect fill /tmp/done /tmp/arts
+          cat /tmp/arts/report.md >> "$GITHUB_STEP_SUMMARY"
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin research; then git checkout -q -B research origin/research; else git checkout -q --orphan research; fi
+          D="research/$ED/arts"; rm -rf "$D"; mkdir -p "$D"; cp /tmp/arts/* "$D/"
+          git add research; git commit -q --allow-empty -m "codex fill $ED"
+          for i in 1 2 3 4 5; do git push -q origin research && break; sleep $((i*3)); git pull -q --rebase origin research; done
