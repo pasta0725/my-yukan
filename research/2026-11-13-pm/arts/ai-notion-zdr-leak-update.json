@@ -1,0 +1,157 @@
+{
+ "id": "ai-notion-zdr-leak-update",
+ "category": "ai",
+ "title": "Notion AI流出、ゼロデータ保持の法人も対象の恐れ",
+ "summary": "Notionは、データを保存しない契約の法人でもAIチャットが漏れた可能性を認めました。",
+ "image": {
+  "src": "https://www.itmedia.co.jp/aiplus/article/ogp/2611/13/2000003172/10012075/2048",
+  "kind": "ogp",
+  "credit": "ITmedia",
+  "page": "https://www.itmedia.co.jp/aiplus/article/2611/13/2000003172/"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "情報漏えい"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Notion AIのチャット流出の恐れは、保存しない契約の法人にも及びます",
+    "公式発表の対象は全ワークスペースの1%未満で、確認済みの顧客には連絡済みです",
+    "対象者はパソコンで内容を確認し、入力したパスワードなどをすぐ変更してください"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Notion Labsは11月12日（日本時間）までに、AIチャット流出の恐れを追加公表しました。データを残さない契約の法人も対象の可能性があります。"
+  },
+  {
+   "type": "h",
+   "text": "流出した記録と対象の範囲"
+  },
+  {
+   "type": "p",
+   "text": "米Notion Labsは11月9日（現地時間）、委託先での不正アクセスを発表しました。AI処理の一部を任せる米Fireworks.aiが被害を受けました。対象は、AIの利用状況を分析する機能「Insights」のチャット記録です。ITmediaによると、国内企業も影響を相次いで報告しています。"
+  },
+  {
+   "type": "p",
+   "text": "Notionの公式説明では、対象は全ワークスペースの1%未満です。ワークスペースは、チームなどで使う共同の作業場所です。一方、BleepingComputerは利用者の1%未満と伝えています。"
+  },
+  {
+   "type": "p",
+   "text": "Notionによると、対象の記録はチャットに残った入力内容やAIの回答です。大半の対象ワークスペースでは、利用者や所属先を特定する情報を別に付けていません。ただし、会話の本文には個人情報などが含まれる可能性があります。各社の報道では、AIが外部の機能を呼び出して得た結果は含まれていません。"
+  },
+  {
+   "type": "p",
+   "text": "Notionは、AI議事録をチャットの入力に使っていなければ影響はないと説明しています。音声や文字起こしも、この扱いに含まれます。"
+  },
+  {
+   "type": "h",
+   "text": "保存しない契約の対象外"
+  },
+  {
+   "type": "p",
+   "text": "ZDR（ゼロデータ保持）は、AIへの入力や回答を委託先に保存させない取り決めです。Notionによると、法人向けEnterpriseプランのZDRは、回答を作る際の送信が対象です。チャット履歴やInsightsなど、保存が必要な機能は対象外です。このため、ZDRを契約する法人でも今回の影響を受けた可能性があります。"
+  },
+  {
+   "type": "h",
+   "text": "委託先での保存と発覚の経緯"
+  },
+  {
+   "type": "p",
+   "text": "Notionは、保存した質問と回答をInsightsの分析用にFireworks.aiへ送っていました。同社とはデータを保持しない契約を結んでいました。それでも、使っていた接続先にデータが残っていたとNotionは説明しています。"
+  },
+  {
+   "type": "p",
+   "text": "各社によると、Notionが最初の通知を受けたのは11月2日でした。委託先は当初、人工的に作ったテスト用データだけが対象だと説明しました。CryptoSlateは、11月6日に顧客データ流出の可能性が通知されたと報じました。11月8日に新たなデータ群が確認され、NotionがInsightsの記録を特定しました。"
+  },
+  {
+   "type": "h",
+   "text": "Notionと委託先の対応"
+  },
+  {
+   "type": "p",
+   "text": "Notionは11月3日までに、Fireworks.aiとの接続をすべて止めたと説明しています。委託先にあったデータをすべて削除し、AIの学習処理も停止しました。調査中はInsightsを無効にしています。Fireworks.ai経由の、学習済みの設定を公開したAIの提供もやめました。"
+  },
+  {
+   "type": "p",
+   "text": "Notionは、ほかのAI処理の委託先についても調査を進めています。ZDRを含め、データの保存を最小限に抑えているか確かめます。CryptoSlateによると、Notionのほかの機能には影響がありません。"
+  },
+  {
+   "type": "p",
+   "text": "CryptoSlateによると、Notionは11月11日に流出した自社のAPIキーを無効にしました。APIキーは、外部のソフトがデータにアクセスするための認証用の鍵です。Notionの告知では、この鍵の悪用は報告されていません。"
+  },
+  {
+   "type": "p",
+   "text": "Fireworks.aiは11月9日の調査報告で、初期設定でZDRを使うサービスには影響を確認していません。ただし、Notionが使っていた接続先との関係は明らかにしていません。"
+  },
+  {
+   "type": "h",
+   "text": "対象の連絡とデータの確認"
+  },
+  {
+   "type": "p",
+   "text": "Notionは、影響が確認された顧客に連絡済みです。本人にも作業場所の管理者（オーナー）にも連絡がなければ、現時点の対応は不要です。調査は続いており、新たに対象とわかれば直接連絡します。"
+  },
+  {
+   "type": "p",
+   "text": "対象のオーナーは、Notionのサイドバーで「?」を開きます。次に「Security incident review」を選びます。Notionは、最新版をパソコンのブラウザーで使うよう案内しています。スマホでは対象データを見られません。"
+  },
+  {
+   "type": "p",
+   "text": "オーナーは、影響を受けたメンバーの一覧をダウンロードできます。会社などのドメイン（ネット上の住所）の所有を確認済みなら、対象の内容も見られます。メンバーは、オーナーが共有するリンクから自分の対象データを確認できます。"
+  },
+  {
+   "type": "p",
+   "text": "Notionは、対象データを流出したものとして扱うよう勧めています。対象のチャットに入力したパスワードやAPIキーは、すぐに変更するよう案内しています。専用の問い合わせ窓口は公表されていません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "11月9日",
+     "label": "最初の発表（現地時間）"
+    },
+    {
+     "value": "11月12日",
+     "label": "追加の公表（日本時間まで）"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "職場の利用者は、まず自分やオーナーにNotionから連絡が来たか確認してください。",
+    "対象のオーナーは、パソコンの確認画面で対象者とデータを確認してください。",
+    "対象者は、流出したチャットに入力したパスワードやAPIキーをすぐ変更してください。",
+    "本人にもオーナーにも連絡がなければ、今のところ対応は不要です。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "流出した会話の内容を使う、なりすましの連絡には注意してください。相手が社内事情を知っていても、信用できる証拠にはなりません。"
+  }
+ ],
+ "source_name": "ITmedia AI+",
+ "source_url": "https://www.itmedia.co.jp/aiplus/article/2611/13/2000003172/",
+ "published": "2026-11-13",
+ "refs": [
+  {
+   "name": "ITmedia AI+",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2611/13/2000003172/"
+  },
+  {
+   "name": "Notion",
+   "url": "https://www.notion.com/en-gb/help/security-incident-involving-a-third-party-ai-vendor"
+  },
+  {
+   "name": "BleepingComputer",
+   "url": "https://www.bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts/"
+  },
+  {
+   "name": "CryptoSlate",
+   "url": "https://cryptoslate.com/notion-users-put-access-keys-in-ai-chats-a-supplier-breach-exposed-them/"
+  }
+ ]
+}
