@@ -9,7 +9,7 @@
    | 4:12 ／ 14:22 | 号づくり（Claude） |
    | 6:10 ／ 16:20 | Xの声を集める（Grok Bot、tools/grok.md） |
    | 6:12 ／ 16:31 | 公式画像の補充（Claude） |
-   | 6:41 ／ 17:04 | Xの声の取り込み1回目（Grok が push できなかったときのメールから） |
+   | （6:41 ／ 17:04） | Xの声の取り込み1回目：2026-11-14 から停止（2回目が同じことをするため。利用枠の節約） |
    | 6:56 ／ 17:19 | Xの声の取り込み2回目と完成報告 |
 1. `git pull` して最新にする。作業フォルダ WORKDIR を作り、data/index.json の号の「source_url（タブ）見出し」を1行ずつ `WORKDIR/used.txt` に書き出す。spec.md の {EDITION} は「朝刊」か「夕刊」に置き換える。
 1-2. ニュース一覧と記事本文を GitHub 側で先に取る（2026-11-12〜、Issue #7。担当が自分でページを開くと許可確認が出るため）：`gh api -X POST repos/pasta0725/my-yukan/actions/workflows/fetch-news.yml/dispatches -f ref=main -f 'inputs[edition]=ED'` で動かし（1〜2分）、終わったら `git fetch origin news && git archive origin/news news/ED | tar -x -C WORKDIR` で取り出す。担当ごとに WORKDIR/news/ED/<担当名>/index.md（候補の一覧）と <id>.txt（本文・公開日時・画像URL）ができる。取得の結果は report.md。どのサイトから取るかは tools/news_sites.json（URLを直すときはここ）。spec.md の {NEWS} を WORKDIR/news/ED に置き換える。4:30／14:40 になっても取れなければ、{NEWS} のフォルダなしで進める（担当は自分の WebSearch の結果だけ開く）。
@@ -47,7 +47,7 @@
   `gh api -X POST repos/pasta0725/my-yukan/issues -f title="[作業名] 一言の要約" -f body="何が起きたか／どう回避したか／影響／改善の提案" -f 'labels[]=AIからの報告'`
 - 先に `gh api -X GET repos/pasta0725/my-yukan/issues -f labels=AIからの報告 -f state=open`（ラベル名を URL に直接書くと失敗する。2026-11-10 Issue #2） で同じ話題を探し、あればコメントを足す（`.../issues/<番号>/comments -f body=...`）。
 - 仕組み（指示文・ワークフロー・ルール文書）は自分で変えず、報告だけにする。トークンや鍵の中身は書かない。日本語で書く。
-- 保守役の Claude が報告を読んで直し、直したら Issue を閉じる。
+- 保守役の Claude が報告を読んで直し、直したら Issue を閉じる。2026-11-14 からは予定作業「AI報告の確認と修正」（毎日 7:43・17:43、Sonnet、毎回新しい会話）が行う。開いているのが保留中（コメントに「保留」）だけなら、すぐ終わる。大きな変更やユーザーの判断が要るものは「保留：理由」とコメントして残す。
 
 ## Xの声（Grok Bot）
 - build_edition.py writes data/x-todo.json (today's story list) every run. Commit it with the edition.
