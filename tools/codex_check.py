@@ -20,7 +20,7 @@ Smaller things (summary > 50 chars, sentence > 60 chars, stat value not in the b
 import json, os, re, shutil, sys, datetime
 
 BACKSTAGE = ["見つけられず", "見つけられません", "今回読んだ", "参照した", "参照ページ", "私は", "私が", "私の", "読んだ記事",
-             "元の記事は", "他の記事には載って", "ほかの記事には載って", "検索した", "取得できな", "pages.txt", "article.json"]
+             "元の記事は", "他の記事には載って", "ほかの記事には載って", "取得できな", "pages.txt", "article.json"]
 # reprints / aggregators: never a ref (tools/README.md 「Codexの調査」: まとめサイト・転載は使わない)
 AGGREGATOR = ("news.yahoo.co.jp", "nordot.app", "news.livedoor.com", "msn.com", "excite.co.jp", "news.goo.ne.jp", "smartnews.com",
               "newspicks.com", "gunosy.com", "antenna.jp", "togetter.com", "matome", "2ch", "5ch", "news.google.", "infoseek.co.jp",

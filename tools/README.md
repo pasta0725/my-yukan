@@ -34,6 +34,7 @@
    | other_A | その他 | 通信・セキュリティ・法律/規制の注目ニュース（基準は spec.md、2026-11-08に引き下げ）：ケータイ Watch・ITmedia NEWS・Security NEXT・総務省/公正取引委員会/デジタル庁の発表、7日以内 | 4 |
    | other_B | その他 | 企業・業界と半導体の注目ニュース：日経クロステック・EE Times Japan・ITmedia NEWS・Reuters、7日以内 | 4 |
    - 出力は WORKDIR/<担当名>.json（例 mobile_A.json）。build_edition.py が1日の上限（AI14・その他8・宇宙4・ほか各7）で切る。
+   - 試験（2026-11-14〜）：game_A・game_B は Codex が書く（下の「Codexに任せる作業」の④）。ニュースが取れたらすぐ codex-write.yml を動かし、Claude の担当は14本にする。codexwrite/ED/<担当名>.json が無い・空・締め切りまでに出ないときだけ、その担当を Claude（Sonnet）で書く。
    - ユーザーが個人的に関心のある話題（Apple・Google・Xiaomi・Anker・Dreame・任天堂・SONY・GeForce NOW・ChatGPT・Claude・Grok・Muse）は積極的に記事にする（2026-11-09）。各担当が自分のカテゴリに合うものを検索で探し、build_edition.py はこれらを優先して残し、カテゴリごとに上限を2本まで超えてよい。詳しくは spec.md の Personal-interest topics。
 3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD-am（または -pm） [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。公式画像の補充（add_official_images.py）のあとに `python3 -I tools/place_images.py data/YYYY-MM-DD.json` で画像を本文の合間に配る（2026-11-08 ユーザーの希望）。
 4. 見出し一覧を見て、同じ出来事が別ジャンルにも入っていれば id を指定して作り直す。
@@ -68,6 +69,7 @@
    （tools/fetch_refs.py：各記事の source_url と refs を最大6本取得し、本文の文字だけを factcheck/<号のID>/<記事id>.txt にして、ブランチ factcheck に push。1〜2分）
    終わったら `git fetch origin factcheck && git archive origin/factcheck factcheck/<号のID> | tar -x -C <作業用フォルダ>` で取り出す。
 3. 点検役の Sonnet 4本（effort high）は、その .txt と記事を照らし合わせるだけ。WebFetch・WebSearch・curl は使わない。取得に失敗したページ（403 など）は、その記事の中だけで食い違いを点検し、確かめられない数字は出どころを付けるか削る。
+4. 2026-11-14〜：2. を `-f 'inputs[check]=yes'` 付きで動かすと、ページの取得のあと Codex が点検まで行う（codex-factcheck.yml、全記事を8組で同時に、合わせて5〜8分）。結果はブランチ factcheck の factcheck/ED/fixed/<記事id>.json（検査に通って直した記事だけ）と fixed/report.md、直した点の一覧 factcheck/ED/changes.md。Claude は `python3 -I tools/research_pages.py import data/ED.json WORKDIR/factcheck/ED/fixed` で取り込み、changes.md を読み、数件を .txt と照らして確かめる。report.md で「却下」「未処理」の記事と、時間内に結果が出なかったときは、3. のやり方（Sonnet）で点検する。
 
 ## Codexの調査（手順5-0、2026-11-10〜：検索の上限を避けるため）
 Claudeの検索回数には1回の作業あたりの上限（約200回）があり、同じ出来事を伝える別メディア探しで使い切っていた（11/10朝刊：54本中25本が参考記事1本）。そこで別メディアと公式ページ探しは GitHub 上の Codex（ChatGPT のプラン、CODEX_AUTH）に任せる。
@@ -76,6 +78,7 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 3. 終わったら `git fetch origin research && git archive origin/research research/ED | tar -x -C WORKDIR`。research/ED/<記事id>.txt に別メディアと公式ページの本文（`===== URL` と `(status 200)` の行で区切り）、<記事id>.json に見つけたURL・媒体名・公式画像のURL。
 4. `python3 -I tools/research_pages.py export data/ED.json WORKDIR/arts` で記事を1本ずつのファイルにし、Sonnet（effort high）8本に分けて書き足させる。各担当は WORKDIR/arts/<id>.json と research/ED/<id>.txt だけを読み、ウェブは開かない。同じ出来事を伝えているページ（status 200 で本文があるもの）から、新しい事実（数字・日付・価格・仕様・対象・背景・各社の反応・今後）を style.md どおり自分の言葉で足す。媒体どうしで食い違えば「〇〇は△△と伝えています」。使ったページだけを refs に {name,url} で足す（最大6本、source_url を先頭のまま）。別の出来事のページ・まとめサイト・転載は使わない。id・category・image は変えない。同じファイルに上書き保存。スクリプトや一時ファイルは自分の組のフォルダ WORKDIR/fill_<組番号>/ にだけ置き、共有のスクラッチパッドや他の組のファイルは使わない・実行しない（2026-11-12 Issue #14：別の組のスクリプトを実行して refs が重複した）。
 5. `python3 -I tools/research_pages.py import data/ED.json WORKDIR/arts` で戻す（x-todo.json の見出し・要約も合わせる）。そのあと手順5-1・5-2へ（事実の点検は新しい refs も取得する）。
+6. 2026-11-14〜：2. を `-f 'inputs[fill]=yes'` 付きで動かすと、調べたページを push したあと Codex が4. の書き足しまで行う（codex-fill.yml、8組で同時に、合わせて10〜15分）。結果はブランチ research の research/ED/arts/<記事id>.json（検査に通った記事だけ）と arts/report.md。Claude は `python3 -I tools/research_pages.py import data/ED.json WORKDIR/research/ED/arts` で取り込み、report.md で「却下」「未処理」の記事だけを4. のやり方（Sonnet）で書き足す。arts が無いときは4. のやり方で全部。
 - Codexが締め切り（5:15／15:25）までに終わらなければ待たずに次へ進む。
 - Codexが見つけた公式ページは、あとの「公式画像の補充」がそのまま使う（`python3 -I tools/research_pages.py imgjobs WORKDIR/research/ED imgjobs/ED.json` → official-images.yml の extra。補充の作業は自分では検索しない。2026-11-10）。
 
@@ -87,6 +90,20 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 2. `gh run download <実行ID> -n official-images` で取得。候補一覧を見て、記事に合う画像を選ぶ（顔が主役・ロゴだけ・無関係・ニュースサイトの画像は除く）。選んだ結果は {"記事id":[{"n":番号,"caption":"何が写っているか"}]}。
 3. 候補がなかった記事は、WebSearch だけで公式ページを探し（WebFetch は使わない）、{"記事id":["公式ページURL"]} を imgjobs/<号のID>.json に置いて push、`inputs[extra]=imgjobs/<号のID>.json`・`inputs[only_extra]=yes` でもう一度実行して選ぶ。
 4. `python3 -I tools/pick_official_images.py candidates.json picks*.json` で号に取り込み（add_official_images.py と place_images.py も自動で動く）、コミットして push。
+5. 2026-11-14〜：1. を `-f 'inputs[codex_pick]=yes'` 付きで動かすと、Codex が候補を1記事ずつ大きめの画像で見て選ぶ（1記事15秒ほど）。成果物 codex-picks に picks_codex.json（2. の形）、report.md（選んだ枚数・外した理由）、story_<記事id>.jpg。Claude は report.md を読み、選ばれた記事の story_<記事id>.jpg を数枚見て確かめ、`python3 -I tools/pick_official_images.py candidates.json picks_codex.json` で取り込む。codex-picks が無いときは 2. のやり方で選ぶ。
+
+## Codexに任せる作業（2026-11-14〜、ユーザーの依頼：品質はそのままに Claude の利用枠を節約）
+GitHub 上の Codex（ChatGPT のプラン、CODEX_AUTH）に、Claude のサブエージェントがしていた作業を任せる。Codex にはインターネットを使わせず、GitHub 側で取ったファイルだけを渡す。
+| | 作業 | 動かし方 | 結果（ブランチ／成果物） |
+|---|---|---|---|
+| ① | 書き足し（手順5-0） | codex-research.yml に fill=yes（単独なら codex-fill.yml） | research/ED/arts/ |
+| ② | 事実の点検（手順5-2） | factcheck-pages.yml に check=yes（単独なら codex-factcheck.yml） | factcheck/ED/fixed/、changes.md |
+| ③ | 公式画像の選択 | official-images.yml に codex_pick=yes | 成果物 codex-picks |
+| ④ | ゲーム記事（試験） | codex-write.yml（edition、workers=game_A,game_B） | codexwrite/ED/<担当名>.json |
+- 指示文は tools/codex/（fill.md・factcheck.md・pick.md・write.md）。①②④は tools/style.md も渡す。④は make_briefs.py の担当別の指示書に、ネットなしの差分（write.md）を足したもの。
+- 機械の検査 tools/codex_check.py：JSON が壊れている、id・category・image・source_url・published が変わった、画像が増減した、refs が6本を超える／取ったページ（status 200）以外のURL（点検では元の refs 以外）、必要な部品（keys・h 3〜5・stat・point・最後の rina）がない、200字を超える段落、120字を超える rina、舞台裏の言い回し、本文にURL、文字が減った（点検は2割以上）、点検で書き換えが多すぎる（6か所かつ4割を超える）ものは使わない（元のまま）。④は、ニュースフォルダにないURL・掲載済み・期間外の記事を落とす。
+- どれも失敗・時間切れ・却下のときは、その分だけ今までどおり Claude が行う（予備）。モデルは入力 model・effort で変えられる（既定 gpt-6-astra、①②④は high、③は medium）。実際に使ったモデルは各実行の要約（Summary）に出る。共通の準備は .github/actions/codex-setup、実行は tools/codex_run.py。
+- 2026-11-14 の試し（11/13夕刊）：①49本中46本採用（3本は追加なし）、②52本中38本を直した（直した点94か所）、③8本中1本に2枚、④8本とも検査に通った。
 
 ## 図解（2026-11-09〜、公式画像の補充のあと）
 公式画像がない記事には、記事の事実から作った図解を付ける（ユーザーの選択。画像生成AIの絵は使わない）。
