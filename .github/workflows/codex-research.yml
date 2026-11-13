@@ -8,6 +8,9 @@ on:
     inputs:
       edition: {description: "edition id, e.g. 2026-11-10-am (uses data/<edition>.json)", required: true}
       max_refs: {description: "only stories with at most this many refs (empty = all)", required: false, default: ""}
+      fill: {description: "yes = after the pages are pushed, Codex also writes the additions (codex-fill.yml, 2026-11-14)", required: false, default: "no"}
+      model: {description: "Codex model for the additions", required: false, default: "gpt-6-astra"}
+      effort: {description: "reasoning effort for the additions", required: false, default: "high"}
 permissions:
   contents: write
 jobs:
@@ -80,3 +83,11 @@ jobs:
           ls "$D" | wc -l
           git add research; git commit -q --allow-empty -m "research ${{ inputs.edition }}"
           for i in 1 2 3; do git push -q origin research && break; git pull -q --rebase origin research; done
+  # 2026-11-14: 書き足し by Codex (research/<edition>/arts/). The pages above are already pushed, so if this fails the
+  # Claude session still does the additions the old way.
+  fill:
+    needs: push
+    if: needs.push.result == 'success' && inputs.fill == 'yes'
+    uses: ./.github/workflows/codex-fill.yml
+    with: { edition: "${{ inputs.edition }}", model: "${{ inputs.model }}", effort: "${{ inputs.effort }}" }
+    secrets: inherit

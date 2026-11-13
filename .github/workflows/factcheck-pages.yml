@@ -6,6 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       edition: {description: "edition id, e.g. 2026-11-10-am", required: true}
+      check: {description: "yes = after the pages are pushed, Codex also checks and fixes the articles (codex-factcheck.yml, 2026-11-14)", required: false, default: "no"}
+      src_ref: {description: "optional commit to read data/<edition>.json from (default: main now; for tests on past editions)", required: false, default: ""}
+      model: {description: "Codex model for the check", required: false, default: "gpt-6-astra"}
+      effort: {description: "reasoning effort for the check", required: false, default: "high"}
 permissions:
   contents: write
 jobs:
@@ -15,7 +19,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install -q requests beautifulsoup4
-      - run: python3 tools/fetch_refs.py "${{ inputs.edition }}" "/tmp/fc/${{ inputs.edition }}"
+      - env: { ED: "${{ inputs.edition }}", SRC_REF: "${{ inputs.src_ref }}" }
+        run: |
+          if [ -n "$SRC_REF" ]; then git fetch -q --depth=1 origin "$SRC_REF" && git show "FETCH_HEAD:data/$ED.json" > /tmp/ed.json; else cp "data/$ED.json" /tmp/ed.json; fi
+          python3 tools/fetch_refs.py "$ED" "/tmp/fc/$ED" /tmp/ed.json
       - name: push to branch factcheck
         run: |
           git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
@@ -24,3 +31,11 @@ jobs:
           mkdir -p factcheck; rm -rf "factcheck/${{ inputs.edition }}"; cp -r "/tmp/fc/${{ inputs.edition }}" factcheck/
           git add factcheck; git commit -qm "factcheck pages ${{ inputs.edition }}" || true
           git push -q origin factcheck
+  # 2026-11-14: 事実の点検 by Codex (factcheck/<edition>/fixed/ and changes.md). The pages above are already pushed, so if this
+  # fails the Claude session still does the check the old way.
+  check:
+    needs: fetch
+    if: inputs.check == 'yes'
+    uses: ./.github/workflows/codex-factcheck.yml
+    with: { edition: "${{ inputs.edition }}", src_ref: "${{ inputs.src_ref }}", model: "${{ inputs.model }}", effort: "${{ inputs.effort }}" }
+    secrets: inherit

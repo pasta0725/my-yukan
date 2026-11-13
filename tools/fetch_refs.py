@@ -1,6 +1,6 @@
 """Download the reference pages of one edition and save their text, for the fact check (step 5-2).
 Runs on GitHub Actions (.github/workflows/factcheck-pages.yml), so the Claude session never opens a web page itself.
-usage: python3 tools/fetch_refs.py <edition id> <out dir>
+usage: python3 tools/fetch_refs.py <edition id> <out dir> [edition file (default data/<edition id>.json)]
 out: <out>/<story id>.txt  (each page: '===== url' line, then the page text, up to 20000 chars)
 """
 import json, sys, os, re, concurrent.futures as cf
@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 ED, OUT = sys.argv[1], sys.argv[2]
 os.makedirs(OUT, exist_ok=True)
-arts = json.load(open(f"data/{ED}.json"))["articles"]
+arts = json.load(open(sys.argv[3] if len(sys.argv) > 3 else f"data/{ED}.json"))["articles"]
 UA = {"User-Agent": "Mozilla/5.0 (compatible; my-yukan-factcheck)"}
 
 def urls_of(a):
