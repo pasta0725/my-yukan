@@ -1,0 +1,143 @@
+URL: https://www.itmedia.co.jp/news/article/2611/13/2000003110/
+TITLE: Googleの社内専用コーディングAI「GfG」、その全容 Geminiに社内データ1兆トークン学習させ開発 所要時間半減の業務も
+SITE: ITmedia NEWS
+PUBLISHED: 2026-11-13 12:00 (page: 2026-11-13T12:00:00)
+OG_IMAGE: https://www.itmedia.co.jp/news/article/ogp/2611/13/2000003110/10011881/2048
+IMAGES:
+- https://www.itmedia.co.jp/news/article/image/2611/13/2000003110/10001106/728 | 
+- https://www.itmedia.co.jp/news/article/image/2611/13/2000003110/10011873/728 | 
+- https://www.itmedia.co.jp/news/article/image/2611/13/2000003110/10011875/728 | 
+- https://www.itmedia.co.jp/news/article/image/2611/13/2000003110/10011874/728 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2605/20/1260520068/827801/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/11/2000003083/10011799/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/11/2000003089/10011819/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/11/2000003092/10011830/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/13/2000003186/10012101/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/13/2000003185/10012098/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/13/2000003184/10012096/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/13/2000003183/10012095/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/13/2000003182/10012093/232 | 
+
+TEXT:
+Share
+印刷する
+Innovative Tech
+Googleの社内専用コーディングAI「GfG」、その全容　Geminiに社内データ1兆トークン学習させ開発　所要時間半減の業務も
+公開
+2026年11月13日 12時00分
+著者
+山下（Seamless）
+[ITmedia]
+印刷する
+連載新着通知を受け取る
+Googleで優先するソースとして追加
+Innovative Tech：
+2019年にスタートした本連載「Innovative Tech」は、世界中の幅広い分野から最先端の研究論文を独自視点で厳選、解説する。執筆は研究論文メディア「
+Seamless
+」（シームレス）を主宰し、日課として数多くの論文に目を通す山下氏が担当。イラストや漫画は、同メディア所属のアーティスト・
+おね
+氏が手掛けている。X：
+＠shiropen2
+米Googleなどに所属する研究者らが10月に発表した論文「
+Customizing an LLM for Enterprise Software Engineering
+」は、AIに企業独自の膨大な開発データを学習させ、社内システム開発に特化したコーディングモデルを構築する手法とその実用効果をまとめた研究報告だ。
+Googleではすでにコードの75%以上がAIによって作成または下書きされている。しかし、公開データで学習した汎用LLMは、数十億行に及ぶ社内リポジトリに特有のライブラリや設計パターン、独自言語を学習しておらず、十分に対応できないという課題があった。
+そこでGoogleの研究チームは、基盤モデルのGeminiを社内環境に特化させた「Gemini for Google」（GfG）を開発し、その手法と成果を発表した。
+学習には、完成したコードだけでなく社内の開発プロセス全体から収集した1兆トークン規模のデータを使用した。具体的には、コードレビューでの指摘と修正前後の差分、社内ドキュメントやQ＆A、開発画面の履歴から抽出したビルドエラーが解消されるまでの変更、本番環境の改善履歴や操作ログなどが組み込まれた。
+GfGの学習プロセス
+Google社内Q＆Aツールにおける質問例。このような議論などによる良質な学習データで構築できる
+大量の社内データを学習させることでAIの基礎的な推論能力が低下する破滅的忘却を防ぐため、事前学習の完了直前に介入して社内データを注入する「中間学習介入」と、元の汎用データを混ぜて復習させる「データリプレイ」を併用し、汎用的な能力を維持したまま社内知識を定着させた。
+IDEでの自然言語によるコード修正指示のログ（上）から学習データ（下）を作る例
+社内開発者2万9000人を対象としたブラインドA／Bテストでは、Gemini 2.5 Proと比較して、タスク完了までのAIとのやり取り回数が23.1％減少し、応答時間も8.9%短縮された。さらに、AIが生成したコード行が14日後も修正されずにコードベースに残る割合（コード生存率）が16.8％向上した。
+実務においても、広告部門での32ビットIDから64ビット整数への移行では、手作業と比べて所要時間が推定50％削減され、提出された変更リストのコード変更の80%をAIが作成した。
+非効率なコードを自動検出して最適化するシステム「ECO」を通じて四半期ごとにCPU50万コア相当の計算資源を節約しているほか、コピーしたコードを貼り付け先の文脈に合わせて自動調整する「Smart Paste」がGoogleで新たに書かれるコード全体の1％以上を占めるなど、幅広く活用されているという。
+関連記事：
+Microsoft、社内エンジニア数万人を対象に「Claude Code」「Copilot CLI」導入の影響を分析　生産性どう変わる
+Aditya Kini, Satish Chandra, Milad Hashemi, Saksham Thakur, Aditya Pandey, Vincent Nguyen, Marc Brockschmidt, Franjo Ivančić, Danny Tarlow, Parthasarathy Ranganathan, Petros Maniatis, Ahmed Omran, Zaheer Abbas, Anita Gergely, Martin Sevenich, Gufeng Zhang, Amy Hua, and Alexander Frömmgen. 2026. Customizing an LLM for Enterprise Software Engineering. In Proceedings of the 41st IEEE/ACM International Conference on Automated Software Engineering (ASE ’26). Association for Computing Machinery, New York, NY, USA, 4199–4209. https://doi.org/10.1145/3832783.3834508
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは
+ログイン
+が必要です
+Special
+PR
+Innovative Tech
+2019年にスタートした本連載「Innovative Tech」は、世界中の幅広い分野から最先端の研究論文を独自視点で厳選、解説している。執筆は研究論文メディア「Seamless」（シームレス）を主宰し、日課として数多くの論文に目を通す山下氏が担当。イラストや漫画は、同メディア所属のアーティスト・おね氏が手掛けている。
+連載新着通知を受け取る
+この連載の記事をもっと見る
+この記事の著者
+山下（Seamless）
+2014年から幅広い分野の研究論文をピックアップして解説しているメディア「Seamless」（シームレス）を主宰している。
+関連記事
+Google、パーソナルAIエージェント「Gemini Spark」発表――デバイスを閉じても自律で働く
+Google、「Gemini 4 Carbon」一般提供開始　Geminiアプリでは最上位「AI Ultra」限定
+「Claude」に共同編集の「Sheets」「Whiteboards」　外部アプリもClaude内で開いて作業可能に
+相次ぐ個人情報流出対策に、パスワードは紙に書いてアナログ管理　一部「伏せ文字」で
+Special
+PR
+こんなメディアも見られています
+ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+メールマガジン最新号
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+「命の砂時計」連呼のGMO会見──熊谷代表の発言にXではツッコミ続出
+Special
+PR
+本日の新着記事
+「Qoo10」不正アクセス、個人情報漏えい　「住所の地理座標」や「身体的特徴」も対象の可能性
+AWS、Microsoft 365障害の影響を否定　正常稼働を強調
+パナHD、AIとロボ組み合わせた「フィジカルAI」研究開発強化　倉庫・物流へ展開視野
+MS障害、政府共通システムにも影響　デジタル相「朝、なんで使えないんだろうと思ったら」
+虎柄ロボットに「阪神君」と命名　首相、フィジカルAIを体験　関連企業と意見交換
+アクセスランキング
+1
+Microsoft 365で大規模障害　「Outlook」でメールにアクセスできず、「Teams」など複数サービスに影響
+2
+「Microsoft Teams」障害か　朝から「会議に入れない」【復旧】
+3
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+4
+「よりによって月末に」　サイボウズ「kintone」「Garoon」などで2時間にわたり障害
+5
+Google、高速で低価格の「Gemini 4 Hydrogen」発表　無料ユーザーも利用可能
+6
+宝くじ公式サイト、会員の当落情報まで第三者が閲覧の可能性　リスト型攻撃か
+7
+企業向け「Microsoft 365 Copilot」、DLP設定無視で機密メール内容を要約　修正プログラム展開中
+8
+NVIDIA、“革ジャンCEO”ことフアン氏が辞任　クレスCFOが暫定CEOに
+9
+サイバーセキュリティクラウド、GitHubから顧客情報流出か　「セキュリティ企業として重く受け止め」
+10
+Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開　コードはすべてAIエージェントが記述
+もっと見る
+ITmedia NEWS SNS
+ITmedia News
+Tweets by itmedia_news
+@itmedia_newsをフォロー
+インフォメーション
+注目情報をチェック
+メールマガジン
+Specialインデックス
+お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR

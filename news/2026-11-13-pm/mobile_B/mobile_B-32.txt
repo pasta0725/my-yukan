@@ -1,0 +1,49 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2155574.html
+TITLE: Microsoft、Linux版「Autoruns」を公開 ～自動起動するプログラムを洗い出せるSysinternalsツール／「Rust」言語で開発。「systemd」や「cron」、ブラウザー拡張機能などをカバー
+SITE: 窓の杜
+PUBLISHED: 2026-11-13 10:05 (page: 2026-11-13T10:05:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2155/574/image1.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/574/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2155/574/image2_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0BG8J5QJ1.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+Microsoft、Linux版「Autoruns」を公開 ～自動起動するプログラムを洗い出せるSysinternalsツール
+「Rust」言語で開発。「systemd」や「cron」、ブラウザー拡張機能などをカバー
+樽井 秀人
+2026年11月13日 10:05
+「Autoruns for Linux」v1.0.0
+米Microsoftは11月5日（現地時間）、「Autoruns 1.0 for Linux」を発表した。システムの起動時やログオン時などに自動で実行されるように構成されたプログラムを調べる「Sysinternals」ツール「Autoruns」のLinux版として新たに開発されたコマンドラインツールだ。
+Windows版の「Autoruns」
+Linux版「Autoruns」は、Windows版「Autoruns」とそのコマンドライン版「Autorunsc」に着想を得て、「Rust」言語で開発されたという。システムやユーザー、ブラウザー、デバイス、マウント、ネットワーク、アプリケーションのイベントで起動するように構成されたプログラムやモジュール、スクリプト、サービス、拡張機能などを洗い出せる。
+v1.0では、以下の項目の調査に対応しているとのこと。
+XDGデスクトップの自動起動と、システム/ユーザーごとのシェル起動ファイル
+「systemd」のシステム/ユーザーのサービス、タイマー、ソケット、パス、デバイス、マウント、自動マウント
+システム・ユーザーごとの「cron」「anacron」ジョブ
+モジュールの読み込み設定、ブートやSysVフック、ダイナミックローダーのプリロード設定、ネットワークフック
+「Chromium」系ブラウザーと「Firefox」の拡張機能、エンタープライズポリシー、ネイティブメッセージングホスト
+「udev」のアクションや「fstab」の設定、マウント済みメディアの自動実行設定
+「LibreOffice」/「OpenOffice」の拡張機能やマクロライブラリ
+標準ではログオン時の自動起動項目を調査する。対応するすべてのカテゴリを調べるには、「-a '*'」オプションを指定する。
+調査はファイルを静的に検査するだけで、見つかったコマンドを実行したり、ユニットを起動したり、拡張機能を読み込んだりすることはない。結果は表形式のほか、CSV、TSV、JSON、XMLで出力できる。「--root」オプションで別のルートディレクトリを指定すれば、マウントしたシステムやコンテナー、オフラインのイメージも調査可能。
+なお、Windows版にある
+「VirusTotal」での検査
+などのオプションには対応していない。
+Linux版「Autoruns」は「GitHub」でホストされているオープンソースプロジェクトで、ライセンスは「MIT」。現在、
+「GitHub」のリリースページ
+からDEB/RPMパッケージを無償でダウンロードできる。パッケージの検証環境は「Ubuntu 20.04」、「Rocky Linux 8」、「Azure Linux 3」で、いずれもAMD64とARM64に対応する。
+Amazonで購入
+「Linux」関連商品
+Amazonで購入
+ソフトウェア情報
+「Autoruns for Linux」
+【著作権者】
+Microsoft Corporation
+【対応OS】
+Linux
+【ソフト種別】
+フリーソフト
+【バージョン】
+1.0.0（26/11/07）

@@ -1,0 +1,139 @@
+URL: https://www.publickey1.jp/blog/26/awsawsaws_1.html
+TITLE: AWSをローカルマシン上でエミュレートする、AWS公式の「AWSエミュレータ」正式リリース
+SITE: Publickey
+PUBLISHED: 2026-11-13 00:09 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/5p5O7DMA.png
+IMAGES:
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+AWSをローカルマシン上でエミュレートする、AWS公式の「AWSエミュレータ」正式リリース
+2026年11月13日
+Amazon Web Servicesは、ローカルマシン上でAWSのAPIをエミュレートする「
+AWSエミュレータ
+」の
+正式リリースを発表しました
+。
+ダウンロードしてインストールすれば誰でも無料で利用でき、AWSアカウントも不要です。
+Today we're launching AWS Emulator, a free local emulator of AWS services for building and testing your apps offline. Every line of its code was written by autonomous AI agents running on Amazon Bedrock AgentCore. Hundreds of agents, organized into three teams, write the tests, find the issues, and fix the code, each change passing through an automated merge gate that checks compilation, security, coding standards, and fidelity to real AWS. https://t.co/ZwEQohqFVt
+— AWS Newsroom (@AWSNewsroom)
+November 11, 2026
+APIコールに対してAWSと同じ結果やエラーを返す
+AWSエミュレータは、本物のAWSと同じくAWS SDKとAWSのCLIによってリソースを作成し管理します。そして有効なAPI呼び出しではAWSと同じ結果を返し、無効な呼び出しでは同じエラーを返します。
+これによりAWSに対応するコードを、本物のAWSを使うことなくローカル環境でテストできるため、より高速で安価にAWS対応のアプリケーション開発が可能になります。
+特にAIエージェントによって高速にコードを生成しテストを繰り返す開発環境において非常に有効なテスト環境となります。
+AWSエミュレータのソースコードはGitHubで公開されています。ライセンスは
+CC0 1.0
+（クリエイティブコモンズゼロ 1.0）で、オープンソースではなくパブリックドメインとなっています。
+AWSは今後もAWS APIがアップデートに対してAWSエミュレータもつねに対応していくとしています。
+あわせて読みたい
+AWS
+クラウド
+開発ツール
+≫次の記事
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+≪前の記事
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+AWSをローカルマシン上でエミュレートする、AWS公式の「AWSエミュレータ」正式リリース
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

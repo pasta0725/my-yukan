@@ -1,0 +1,143 @@
+URL: https://www.publickey1.jp/blog/26/playwrightbun.html
+TITLE: テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+SITE: Publickey
+PUBLISHED: 2026-11-12 00:07 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/playwrightv1650-supports-bun.png
+IMAGES:
+- https://www.publickey1.jp/2026/playwrightv1650-supports-bun.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+2026年11月12日
+Webアプリケーションのテストフレームワーク「Playwright」が、最新バージョンのv1.65.0で、Bunでのテストランナー実行を
+正式にサポートしました
+。
+PlaywrightのテストランナーはこれまでNode.jsが用いられていました。今回、そのNode.jsに加えて、Bunでのテストランナーの実行を正式にサポートしました。
+BunがTypeScriptをトランスパイルしてくれる
+GitHub上のPlaywrightリポジトリにはv1.65.0について以下のように説明されています。
+The test runner now runs under Bun. Bun transpiles your TypeScript test files itself, so Playwright does not use Babel or its compilation cache.
+テストランナーはBun環境下で実行されます。BunがTypeScriptテストファイルをトランスパイルするため、PlaywrightはBabelやコンパイル関係のキャッシュを使いません。
+PlaywrightではTypeScriptを用いてテストケースを記述できます。これまではこのTypeScriptをトランスパイルし、その結果を保持するためにBabelやコンパイルキャッシュが用いられていました。
+しかし上記の説明にもあるように、テストランナーにBunを用いることでBunのトランスパイル機能を利用することができるため、Babelが不要となりシステムがシンプルになる利点が得られます。
+ただし、Watch Modeがない、UI Modeがファイル変更時に自動再実行しない、「--only-changed」の挙動に制限がある、「--tsconfig が効かない」など、Node.jsを用いた場合と比較していくつか非互換部分がある点には注意が必要です。
+BunはすでにPlaywrightを実行可能だったが……
+Bunは今年（2026年）8月にリリースしたBun 1.4において、Playwrightの実行が可能になったと説明していました。
+参考：
+Rustに移植された「Bun 1.4」正式リリース。Node.jsとの互換性向上でPlaywrightやvitestが動作、CPUとメモリの使用率が大幅改善、正規表現が高速化など
+これはあくまでもBunがNode.jsとの互換性を高めた結果、Playwrightの動作が可能になったということです。そのためこの時点ではあくまでも非公式にPlaywrightでBunを使うことが可能になった、ということでした。
+しかし今回、Playwrightが正式にBunのサポートを発表したことで、今後は安心してPlaywrightでBunを利用できるようになった、ということになります。
+あわせて読みたい
+JavaScript
+Web技術
+プログラミング言語
+Bun
+Microsoft
+TypeScript
+≫次の記事
+AWSをローカルマシン上でエミュレートする、AWS公式の「AWSエミュレータ」正式リリース
+≪前の記事
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+AWSをローカルマシン上でエミュレートする、AWS公式の「AWSエミュレータ」正式リリース
+テストフレームワーク「Playwright」がBunを正式サポート。テストランナーの実行を可能に
+AWS、AIエージェント向けに強力な隔離環境とネイティブなEC2性能を備えた軽量VM「AWS Nitro Sandboxes」提供開始
+ITエンジニアが選ぶ「ITエンジニア本大賞2027」投票スタート
+マイクロソフト、.NET 11正式リリース。C#に共用型を導入、JITやAOTコンパイラの高速化、コマンドラインツール強化など新機能
+「.NET MAUI 11」がついにXamarin由来のMonoランタイムから脱却、CoreCLRに統一
+.NET 8と.NET 9のサポートは昨日で終了。脆弱性が社会問題化している現在、.NET 10への移行を推奨
+Google、Kubernetesで10倍高密度にAIエージェントを実行可能にする「Agent Sustrate」と「gVisor」、オープンソースとしてCNCFに寄贈と発表
+マイクロソフト、150以上のオープンソースUIコンポーネントがBlazorに寄贈されたことを発表。InfragisticsとSyncfusionから
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて
