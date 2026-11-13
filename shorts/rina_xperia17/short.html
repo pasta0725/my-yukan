@@ -89,7 +89,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-const FIXW={'入れたまま通り抜けられます':['入れたまま','通り抜けられます'],'センチ単位で位置がわかります':['センチ単位で','位置がわかります'],'改札のある約550駅すべてが':['改札のある','約550駅すべてが'],'参加できるのは':['参加','できるのは'],'AQUOS R10を使います':['AQUOS R10を','使います'],'貸し出されるシャープの':['貸し出される','シャープの']};
+const FIXW={'電源キーを押し込んだときに':['電源キーを','押し込んだときに'],'Android 17の':['Android 17の'],'Quick Shareが':['Quick Shareが'],'Xperia 1 VIIIが':['Xperia 1 VIIIが'],'色味を登録するカスタムルックが':['色味を登録する','カスタムルックが'],'入れたまま通り抜けられます':['入れたまま','通り抜けられます'],'センチ単位で位置がわかります':['センチ単位で','位置がわかります'],'改札のある約550駅すべてが':['改札のある','約550駅すべてが'],'参加できるのは':['参加','できるのは'],'AQUOS R10を使います':['AQUOS R10を','使います'],'貸し出されるシャープの':['貸し出される','シャープの']};
 function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
   const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
@@ -216,23 +216,23 @@ const S={
    mixLine([['Xperia 1 VIII',C.brand]],CX,385,74);
    withEnter(enter(u,0,0.3),()=>{pic('hero',150,450,780,390,1.0,0.0,0.5);creditAt('出典：ソニー',915,815);},40);
    withEnter(enter(u,Math.max(0.3,t2)),()=>{card(150,870,780,330,30,C.card2);phoneShape(270,1000,80,null,'#8FA0BD',true);text('Xperia',270,1135,40,'#FFFFFF');photoIcon(540,970,100);arrowR(380,700,1060,(u-Math.max(0.3,t2))/0.5,C.acc);phoneShape(810,1000,80,null,'#8FA0BD',false);text('iPhone',810,1135,40,'#FFFFFF');});
-   if(u>t2+0.6)stamp('写真OK',CX,1230,(u-t2-0.6)/0.3,C.acc,64,-0.05);},
+   if(u>t2+0.6)stamp('写真が送れる',CX,1195,(u-t2-0.6)/0.3,C.acc,64,-0.05);},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},
  // when: Nov 10, Sony introduced the Android 17 update on its official note
  when(u,d,L){bg(u);mini(u);const ta=telHas(L,'Android');
    mixLine([['11月10日',C.acc],['、ソニーが紹介',C.text]],CX,385,64);
-   withEnter(enter(u,0),()=>{picC('note3c',150,450,780,411,'#2A1C6B');creditAt('出典：ソニー広報note',915,836);});
+   withEnter(enter(u,0),()=>{{const z=1+0.06*clamp(u/d);g.save();g.translate(540,655);g.scale(z,z);g.translate(-540,-655);picC('note3c',150,450,780,411,'#2A1C6B');g.restore();}creditAt('出典：ソニー広報note',915,836);});
    withEnter(enter(u,Math.max(0.3,ta)),()=>{card(150,890,780,180,30,C.card2);text('Android 17の更新内容',CX,980,58,'#FFFFFF','center',900,700);});},
  // three: three highlights
  three(u,d,L){bg(u);mini(u);const ts=[telHas(L,'写真'),telHas(L,'指紋'),telHas(L,'カメラ')];
    mixLine([['注目は',C.text],['3つ',C.acc]],CX,385,72);
-   const row=(i,lab,ic)=>withEnter(enter(u,Math.max(0.15*i,ts[i])),()=>{card(150,450+i*230,780,200);text(String(i+1),220,550+i*230,72,C.acc);ic(330,550+i*230);text(lab,420,550+i*230,58,C.text,'left',900,480);});
+   const row=(i,lab,ic)=>withEnter(enter(u,i===0?0.1:Math.max(0.15*i,ts[i])),()=>{card(150,450+i*230,780,200);text(String(i+1),220,550+i*230,72,C.acc);ic(330,550+i*230);text(lab,420,550+i*230,58,C.text,'left',900,480);});
    row(0,'写真の共有',(x,y)=>shareIcon(x,y,90));row(1,'指紋認証',(x,y)=>fingerIcon(x,y,95));row(2,'カメラの色',(x,y)=>camIcon(x,y,90));},
  // share: Quick Share can now send photos to an iPhone (not supported until now); Xperia 1 VIII only
  share(u,d,L){bg(u);mini(u);const tt=telHas(L,'対象');
    mixLine([['1つ目：',C.acc],['Quick Share',C.brand]],CX,385,64);
    const row=(y,lab,ok,k)=>withEnter(k,()=>{card(150,y,780,230);text(lab,200,y+50,40,C.sub,'left',800);phoneShape(300,y+130,45,null,C.bar,true);photoIcon(450,y+130,60);arrowR(510,640,y+130,1,ok?C.acc:C.bar);phoneShape(720,y+130,45,null,C.bar,false);text('iPhone',720,y+40,32,C.text);if(ok)check(860,y+130,42,true);else cross(860,y+130,42);});
-   row(450,'これまで',false,enter(u,0));row(710,'これから',true,enter(u,0.6));
+   row(450,'これまで',false,enter(u,0));row(710,'更新後',true,enter(u,0.6));
    withEnter(enter(u,Math.max(1.0,tt)),()=>{rrect(150,970,780,160,30,C.buyFill);text('対象はXperia 1 VIII',CX,1050,58,C.buyInk,'center',900,700);});},
  // finger: touch the power button to unlock
  finger(u,d,L){bg(u);mini(u);
@@ -250,12 +250,12 @@ const S={
  twist(u,d,L){bg(u);mini(u);
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
    withEnter(enter(u,0.2),()=>{card(150,490,780,260);text('復活を望む声が多かった',CX,570,42,C.sub,'center',800);text('押し込み式の指紋認証',CX,665,56,C.text,'center',900,700);});
-   withEnter(enter(u,0.6),()=>{card(150,780,780,240,30,C.card2);cross(270,900,60);text('戻ったわけでは',590,860,52,'#FFFFFF');text('ない',590,940,60,C.warn);});},
+   withEnter(enter(u,0.6),()=>{card(150,780,780,240,30,C.card2);cross(270,900,60);text('戻ったわけでは',590,860,52,'#FFFFFF');text('ない',590,940,60,'#FF7A7A');});},
  // look: custom looks for the colour of photos: from 1 to 3 (Xperia 1 VIII)
  look(u,d,L){bg(u);mini(u);const t3=telHas(L,'1つ');
    mixLine([['3つ目：',C.acc],['Xperia 1 VIII',C.brand]],CX,385,62);
    withEnter(enter(u,0),()=>{card(150,450,780,250);camIcon(280,575,110);text('カスタムルック',600,540,54,C.text);text('色味を登録',600,620,42,C.sub,'center',800);});
-   withEnter(enter(u,Math.max(0.4,t3)),()=>{card(150,730,780,420);text('登録できる数',CX,800,42,C.sub,'center',800);const k=(u-Math.max(0.4,t3));
+   withEnter(enter(u,Math.max(0.4,t3)),()=>{card(150,730,780,420);text('登録できる数（最大）',CX,800,42,C.sub,'center',800);const k=(u-Math.max(0.4,t3));
      bigNum('1','つ',320,960,k/0.35,C.sub,150);arrowR(430,620,960,(k-0.3)/0.4,C.acc);bigNum('3','つ',730,960,(k-0.6)/0.35,C.acc,170);
      const cols=['#E0643A','#F2B544','#5E86C9'];for(let i=0;i<3;i++){if(k>0.9+i*0.15)rrect(560+i*110,1060,90,50,14,cols[i]);}});},
  // look2: name them and switch by scene (scenery, food...)
@@ -278,9 +278,9 @@ const S={
  // verdict: with a 1 VIII, sending photos to iPhone family and friends gets easier
  verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF&&VERDICT_CLIP)abs(()=>g.drawImage(BIGF,18,560,1044,1856));else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'iPhone');
    const k1=back((u-0.1)/0.35),k2=back((u-t2)/0.35);
-   if(u>0.1){g.save();g.translate(333,400);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
+   if(u>0.1){g.save();g.translate(333,428);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
      text('Xperia',0,-55,38,'#CDD8EC','center',800);text('1 VIIIなら',0,30,58,'#FFFFFF');g.restore();}
-   if(u>t2){g.save();g.translate(747,400);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
+   if(u>t2){g.save();g.translate(747,428);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
      text('iPhoneへ',0,-55,38,C.buyInk,'center',800);text('写真が送りやすく',0,30,44,C.buyInk,'center',900,360);g.restore();}},
 
  logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
@@ -290,7 +290,7 @@ const S={
 const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
 const VF={};function vidImg(sc,k){const key=sc+k;if(key in VF)return Promise.resolve(VF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{VF[key]=i;r(i)};i.onerror=()=>{VF[key]=null;r(null)};i.src='vid/'+sc+'/'+String(k+1).padStart(4,'0')+'.jpg';});}
 const VIDN={};let VIDF=null;
-let BIGF=null;const VERDICT_CLIP=false;  // true once big/verdict holds the talking ending clip
+let BIGF=null;const VERDICT_CLIP=true;  // true once big/verdict holds the talking ending clip
 // each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
 // measured once from the scene's finished state (user 2026-11-09: no wasted space)
 const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
