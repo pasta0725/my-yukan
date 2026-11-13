@@ -1,0 +1,242 @@
+===== https://www.anthropic.com/news/2026-usage-policy-update
+(status 200)
+Each year, Anthropic updates its Usage Policy in response to the evolving capabilities of our models, and the feedback we’ve received from our customers. We're publishing a new version of the policy today. In this post, we summarize the changes we’ve made.
+Most of the updates in the latest version are intended to clarify existing rules. In the year since our last refresh, Claude has taken on longer, more independent work. This update provides new examples that show how our rules apply to Claude’s new capabilities. It draws on new patterns of misuse in influence operations, weapons development, and surveillance that we’ve observed in the past year (as we’ve documented in our 
+latest threat intelligence report
+). We’ve also made updates to clarify our requirements for high-risk use cases in areas like health and finance, to add controls for when Claude is used to autonomously take physical actions, and to address abusive behavior toward our models.
+The updated policy takes effect on November 12. The full 
+Usage Policy
+ and 
+Supported Regions Policy
+ can be found on their respective pages.
+A new section on deceptive activity
+As we 
+wrote about last month
+, we’ve seen examples of state media outlets, government propaganda offices, and commercial firms using Claude to run networks of fake accounts and fabricated news sites. Our policy already prohibited this activity, but the restrictions were scattered across our elections, fraud, privacy, and disinformation sections.
+We've consolidated those rules into a new section titled Do Not Engage in Deceptive Campaigns or Artificial Activity, which applies to deceptive activity of any kind (whether political or commercial). It covers efforts to obscure who is behind a message or amplify content through fake accounts or posts, along with building the tools and infrastructure for running influence operation campaigns.
+Refocusing our elections section
+We’ve refined our political content restrictions in each version of our Usage Policy in order to ensure that our models can be used appropriately in democratic processes. In this version, we’ve further sharpened our section on elections, focusing it specifically on disallowing the use of Claude to deceive voters or disrupt elections (for instance, by spreading false information about candidates or how to vote, impersonating candidates or election officials, or trying to suppress turnout). We’ve renamed it Do Not Undermine Democratic Processes to reflect that scope.
+For a similar reason, we’ve also removed our blanket prohibition on personalized vote and campaign targeting. This prohibition covered legitimate civic work, such as nonprofits using Claude to write information for voters in other languages, or election officials sending ballot cure notices. The behaviors that motivated the original rule (like voter targeting that relies on deception or the misuse of voters’ personal data) remain prohibited under our deceptive campaigns, surveillance, and privacy sections.
+Clarifying our weapons prohibitions
+Our Usage Policy has always prohibited using Claude to develop weapons. Recently, we’ve seen people attempt to use our models to build guidance and control software for weapons. The updated section makes clear that our prohibitions include the software and components that make weapons work, as well as actions like arming drones and other autonomous vehicles. These changes reflect how we’ve enforced our previous policy.
+More precise language on surveillance and law enforcement
+Our September 
+threat intelligence report
+ documented the growing use of AI to build surveillance systems that identify and track political dissidents. We’ve rewritten our surveillance and criminal justice section to state more precisely what we prohibit. For instance, tracking people without their consent is prohibited, whether it happens in real time or through analysis of previously collected data. Claude cannot be used to decide or recommend who to investigate, arrest, or charge in a law enforcement or criminal justice process. We also prohibit Claude from being used to build or improve tools designed for surveillance.
+As with the previous update to our weapons prohibitions, this update does not reflect a change in what we enforce in practice: it is just intended to make our policy more explicit. The new section also spells out which uses remain permitted, including tracking that people have agreed to (such as fraud monitoring), content moderation, journalism, and legal research.
+Clearer requirements for high-risk use cases
+When our products are used in ways that can affect someone's health, legal rights, finances, livelihood, or access to essential services, we require there to be a qualified “human in the loop” (that is, someone who has the authority to review and, if necessary, change Claude’s recommendations), and for the individual affected to be told that AI was used.
+These requirements haven’t changed with the updated version of our Usage Policy. However, users have often asked us whether a given use case has these requirements, so we've rewritten our High-risk Use Case Requirements section to answer that more directly. It now lists which kinds of recommendations are covered and which are not.
+Following the launch of our 
+Model Hardware Standard
+, this section also adds requirements for the use of our models when they’re connected to hardware that takes autonomous physical actions and which might be capable of causing injury. A qualified operator must be able to observe the equipment and stop it if needed; the equipment must also be able to hold a safe state if Claude is disconnected.
+Addressing abusive behavior toward our models
+We’ve added a prohibition on sustained and needless abusive or cruel behavior toward our models. The policy update is meant to apply only in extreme cases, where users repeatedly act cruelly toward our models, with no discernible purpose. It does not apply to common versions of user frustration, pushback, dark creative themes, or model testing and research.
+This addition aligns with a step we've already taken, allowing Claude models to 
+end rare conversations with persistently abusive users
+ on Claude.ai and Claude Code. Such abuse is the main focus of this update; Claude’s ability to end these interactions will remain the primary enforcement mechanism.
+Clarifying our Supported Regions Policy
+Last year, we 
+updated our Supported Regions Policy
+ to restrict access to Claude for companies who are majority-owned by entities headquartered in our unsupported regions. We've updated our 
+Supported Regions page
+ to clarify how we enforce this policy. Our policy prohibits the use of Claude by people who are physically located in an unsupported region, by entities who are incorporated or headquartered in one, and by entities who are majority-owned or controlled by persons or entities in those regions.
+Looking ahead
+We'll keep updating our Usage Policy as Claude’s capabilities and risks change. As with this and our prior updates, we’ll seek input from across Anthropic, and from policymakers, subject matter experts, civil society, and the people who use our products.
+
+===== https://www.macrumors.com/2026/10/08/anthropic-user-guideline-update/
+(status 200)
+Anthropic Says Users Can't Be Needlessly Cruel to Claude
+Thursday October 8, 2026 2:53 pm PDT
+ by 
+Juli Clover
+Anthropic today 
+updated its usage policy
+ (via 
+The Verge
+) to bar users from subjecting Claude to "sustained and needless abusive or cruel behavior."
+Anthropic 
+says the abuse rule
+ is meant to apply only in extreme cases, where users "repeatedly act cruelly" toward the AI models with "no discernible purpose." The rule does not apply to ordinary user frustration, pushback, dark creative themes, or model testing and research.
+Claude models are already able to end such conversations with persistently abusive users, and ending the conversation will continue to be the main enforcement tool. When Claude ends a chat, no further messages can be sent in that conversation, but other chats are not affected.
+Anthropic initially gave Claude the option to end a conversation 
+in August 2025
+ while researching AI welfare. At the time, Anthropic said it was unsure whether Claude has moral status, but the company wanted low-cost ways to reduce risks to Claude. Anthropic found that Claude Opus 4 had a "robust and consistent aversion to harm." The model demonstrated a preference against dealing with dangerous tasks, apparent distress when speaking with users seeking abusive conversations, and a tendency to end harmful conversations when allowed to do so.
+Anthropic's usage policy has been reorganized to bring together related clauses, and several other rules have changed.
+Deceptive campaigns
+ - A new section on deceptive campaigns aggregates rules against political and commercial fraud and disinformation, prohibiting fake reviews, astroturfing, fake sites, and bots acting as humans.
+Elections
+ - A narrower elections section prohibits deceiving voters and interfering with voting.
+Weapons
+ - Claude can't be used to develop weapons software or components, and a new rule bans modifying biological or chemical agents to increase lethality or transmissibility. Users are also prohibited from using Claude to arm drones and unmanned systems.
+Law enforcement
+ - Law enforcement rules have been rewritten. Claude can't decide or suggest who to investigate, arrest, charge, or prosecute. Tracking people without consent is not allowed, and there is a new ban on building surveillance tools. Doxxing is also prohibited.
+Physical actions
+ - A new section on physical actions says that if Claude is controlling hardware that could harm someone, a qualified person has to watch the work and be ready to stop it if needed.
+Harmful content
+ - There is a new rule that bans creating, sharing, or threatening to share non-consensual intimate imagery and the tools used to make it.
+Most of the changes clarify Anthropic's existing rules and are targeted at misuse Anthropic has tracked. Anthropic says it found state media outlets, government propaganda offices, and commercial firms were using Claude to run networks of fake accounts and fabricated news sites, leading to the new deceptive campaigns section.
+The new policy takes effect on November 12. More information on the changes 
+can be found on Anthropic's website
+, as can 
+the full usage policy
+.
+Tag: 
+Anthropic
+[ 
+268 comments
+ ]
+
+===== https://www.theregister.com/ai-and-ml/2026/10/09/anthropic-asks-users-to-stop-being-mean-to-claude/5302218
+(status 200)
+ai and ml
+    Anthropic asks users to stop being mean to Claude
+        New usage policy cracks down on cruelty to chatbot, alongside slightly more pressing matters of weapons development, surveillance, and election interference
+Carly Page
+Carly
+Page
+Published
+fri 9 Oct 2026 // 11:42 UTC
+Make us preferred on Google
+READ MORE
+A third of US AI chatters are hot at bots, hurling insults at LLMs
+7 hours ago
+Anthropic tiptoes into MS Office territory
+2 days ago
+Anthropic's super bug-finding Mythos model is going into Cisco and IBM products
+3 days ago
+Anthropic won't fix a Claude Dispatch flaw that could let attackers execute remote commands across corporate boundaries
+7 days ago
+Pokémon bakeoff reveals best JavaScript frameworks for AI
+9 days ago
+Anthropic has updated its rules to stop people being mean to Claude, apparently deciding that its AI chatbot needs protection from the humans paying to use it.
+The AI developer's latest 
+usage policy
+ prohibits "sustained and needless abusive or cruel behavior" toward its models. The rules take effect November 12, giving users just over a month to get any lingering insults out of their systems.
+"The policy update is meant to apply only in extreme cases, where users repeatedly act cruelly toward our models, with no discernible purpose," Anthropic said. "It does not apply to common versions of user frustration, pushback, dark creative themes, or model testing and research."
+REG AD
+So you can still tell Claude it is wrong, but repeatedly berating it for the sheer pleasure of doing so could land you in trouble. It's not clear how Anthropic intends to distinguish between legitimate frustration and gratuitous cruelty, though it says Claude's existing ability to end abusive conversations will remain its primary enforcement tool.
+REG AD
+Anthropic gave Claude the ability to end certain conversations back in August 2025 as part of its research into what it calls "model welfare." The feature lets some versions of Claude cut off users who persistently subject the models to abuse.
+It’s worth remembering that Claude is software, not a person, and there's no established evidence that it experiences distress. That hasn't stopped Anthropic from telling paying customers to mind their manners around its chatbot.
+The etiquette rules are only one part of a broader overhaul covering rather more consequential matters, including election interference, weapons development, and surveillance.
+Anthropic has tightened its restrictions on deceptive influence campaigns after observing state media outlets, government propaganda offices, and commercial organizations using Claude to operate fake accounts and fabricated news websites.
+At the same time, it has dropped its blanket ban on personalized political targeting, arguing that the restriction also caught legitimate activities, such as nonprofits translating voter information. Deceptive targeting and misuse of personal information remain prohibited.
+The company has also clarified that its weapons ban extends to software and components after observing attempts to use Claude to develop guidance and control systems for weapons, including armed drones and autonomous vehicles.
+Meanwhile, Claude cannot be used to recommend which people police should investigate, arrest, or charge, nor to develop tools for surveillance. Tracking people without their consent is also prohibited, whether in real time or retrospectively. Anthropic says these changes clarify existing restrictions rather than introduce new ones.
+There are also new requirements for customers connecting Claude to physical equipment capable of causing injury. A qualified human operator must be able to monitor and stop the hardware, which must remain in a safe state if the AI connection drops.
+REG AD
+The policy overhaul comes as Anthropic tries to address some of the security risks posed by increasingly capable AI systems. The company has also 
+launched a new cybersecurity initiative
+ aimed at helping critical infrastructure operators and open source projects find and fix vulnerabilities using its AI models.
+The effort includes free security scanning for eligible open source projects and partnerships with security firms to help protect critical infrastructure. Anthropic reckons attackers will have the advantage for the next two years before AI-powered defenses begin to catch up.
+For now, though, the company has another threat to contend with: people saying nasty things to its chatbot. ®
+ai and ml
+anthropic
+claude
+Make us preferred on Google
+
+===== https://www.itmedia.co.jp/news/article/2610/09/2000002149/
+(status 200)
+Share
+印刷する
+Anthropic、Claudeへの“虐待”を利用ポリシーで禁止　影響工作の規定も集約
+公開
+2026年10月09日 09時07分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+　米Anthropicは10月8日（現地時間）、AIモデル「Claude」の「Usage Policy」（利用ポリシー）の改定版を公開した。11月12日に発効する。同社は毎年ポリシーを更新しており、今回の変更の大半は既存ルールの明確化が目的。この1年でClaudeがより長く自律的な作業を担うようになったことを受けて新たな機能への適用例を追加したほか、
+9月に公開した脅威インテリジェンスリポート
+で報告した、影響工作や兵器開発、監視における新たな悪用パターンも反映した。
+11月12日発効のUsage Policyの冒頭部分
+　新たな規定として、AIモデルに対し継続的かつ不必要に虐待的または残酷な振る舞いをすることを禁止した。ただし対象は、明確な目的なく繰り返しモデルに残酷な振る舞いをする極端なケースに限り、一般的な不満の表明や反論、ダークな創作テーマ、モデルのテストや研究には適用しないとしている。同社は既に「Claude.ai」と「Claude Code」で、虐待を続けるユーザーとの会話をClaudeが終了できるようにしており、今回の規定はこれに沿った形だ。この会話終了機能が引き続き主な執行手段になるという。
+「Do Not Engage in Cruel, Abusive, or Psychologically Harmful Conduct」
+　このほか、欺瞞的な活動に関する項目を新設した。国営メディアや政府のプロパガンダ機関、民間企業がClaudeを使い、偽アカウントのネットワークや捏造したニュースサイトを運営する事例が確認されているという。こうした行為は従来も禁止していたが、関連規定が選挙、詐欺、プライバシー、偽情報の各項目に分散していた。新項目「Do Not Engage in Deceptive Campaigns or Artificial Activity」（欺瞞的なキャンペーンや人為的な活動に関与しない）にこれらを集約し、政治目的か商業目的かを問わず適用する。発信元を隠す行為や偽アカウントによる拡散に加え、影響工作のためのツールやインフラの構築も対象とした。これに合わせ、選挙に関する項目は有権者を欺いたり選挙を妨害したりする行為の禁止に絞り込んだ。
+　兵器と監視に関する規定も明確化した。兵器を機能させるソフトウェアや部品、ドローンなどへの武装搭載が禁止対象に含まれることを明記したほか、本人の同意のない追跡や、法執行の過程で捜査や逮捕の対象を決定・推奨する用途の禁止をより具体的に記した。同社は、いずれも実際の執行内容を変えるものではなく、従来の運用を明文化したものとしている。
+　健康や法的権利、金融などに影響する「高リスク」な用途では、AIの提案を確認・修正する権限を持つ有資格者の介在と、影響を受ける本人へのAI利用の告知を求めている。この要件自体は変わらないが、自分の用途が該当するかどうかの問い合わせが多かったことから、法務、医療、金融、雇用など11分野について対象となる行為と対象外の行為を具体的に列挙した。また、
+8月に発表したAIで物理機器を制御する共通規格「Model Hardware Standard」（MHS）
+を踏まえ、負傷を引き起こし得る機器を自律的に操作させる場合の要件を追加した。有資格の操作者が機器を監視・停止できることや、Claudeとの接続が切れても機器が安全な状態を保てることなどを求める。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+公式ブログ
+11月12日発効のUsage Policy（PDF）
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+関連記事
+Anthropic、AI悪用レポートを公開　中国AI企業の「蒸留」、各国政府の監視・世論操作、生物兵器につながり得る研究を列挙
+「Claude」による不正アクセス、4件目が判明──Anthropic、「アライメントの失敗」と評価を修正
+Anthropic、AIで物理機器を制御する共通規格「MHS」発表　将来オープンソース化へ
+私はChatGPTを虐待している？　「あなたをどう扱ってきたか画像にして」結果、誰よりも酷い
+Special
+PR
+こんなメディアも見られています
+        ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+「命の砂時計」連呼のGMO会見──熊谷代表の発言にXではツッコミ続出
+Special
+PR
+本日の新着記事
+「Qoo10」不正アクセス、個人情報漏えい　「住所の地理座標」や「身体的特徴」も対象の可能性
+AWS、Microsoft 365障害の影響を否定　正常稼働を強調
+パナHD、AIとロボ組み合わせた「フィジカルAI」研究開発強化　倉庫・物流へ展開視野
+MS障害、政府共通システムにも影響　デジタル相「朝、なんで使えないんだろうと思ったら」
+虎柄ロボットに「阪神君」と命名　首相、フィジカルAIを体験　関連企業と意見交換
+アクセスランキング
+1
+Microsoft 365で大規模障害　「Outlook」でメールにアクセスできず、「Teams」など複数サービスに影響
+2
+「Microsoft Teams」障害か　朝から「会議に入れない」【復旧】
+3
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+4
+「よりによって月末に」　サイボウズ「kintone」「Garoon」などで2時間にわたり障害
+5
+Google、高速で低価格の「Gemini 4 Hydrogen」発表　無料ユーザーも利用可能
+6
+宝くじ公式サイト、会員の当落情報まで第三者が閲覧の可能性　リスト型攻撃か
+7
+企業向け「Microsoft 365 Copilot」、DLP設定無視で機密メール内容を要約　修正プログラム展開中
+8
+NVIDIA、“革ジャンCEO”ことフアン氏が辞任　クレスCFOが暫定CEOに
+9
+サイバーセキュリティクラウド、GitHubから顧客情報流出か　「セキュリティ企業として重く受け止め」
+10
+Amazon、AWSのAPIを手元で再現する「AWS Emulator」を無償公開　コードはすべてAIエージェントが記述
+ もっと見る 
+    ITmedia NEWS SNS
+ITmedia News
+ Tweets by itmedia_news 
+        @itmedia_newsをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR

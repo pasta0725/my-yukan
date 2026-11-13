@@ -1,0 +1,603 @@
+===== https://www.bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts/
+(status 200)
+Notion says Fireworks breach exposed customer AI chat transcripts
+                            By 
+Bill Toulas
+November 11, 2026
+03:54 PM
+0
+Notion, the digital workspace platform, disclosed that a security breach at its AI infrastructure provider, Fireworks AI, exposed Notion AI chat transcripts in a small number of workspaces.
+The disclosure comes shortly after 
+Fireworks AI confirmed
+ that an attacker accessed its development environment via a third-party cloud provider on October 23 and compromised resource metadata, billing information, model weights, and datasets for some customers.
+Fireworks AI experienced another breach in early October, when hackers accessed environment variables containing API keys and tokens stored as secrets for a limited number of accounts.
+Notion learned about the exposed chat transcripts after receiving an alert from Fireworks on November 2 about an exposed dataset that contained only synthetic test data.
+Notion responded by cutting off traffic to Fireworks, deleting all data from the vendor’s systems, and halting training runs by November 3.
+However, Fireworks confirmed on November 8 that customer data had been accessed, 
+including that of Notion users
+.
+Notion is a cloud-based workspace used for note-taking, document creation, internal wikis, project management, and task tracking. It includes an AI assistant that can answer questions, summarize content, and help draft text.
+Fireworks AI enables Notion to run some of the open-weight models available through Notion AI and analyze stored conversations for Insights, a feature that gives workspace administrators visibility into how their teams use AI.
+The exposed transcripts came from the Insights dataset specifically, which has now been disabled.
+“Upon analysis of the dataset Fireworks AI gave us on November 8, we discovered that it included Notion AI chat transcripts used for the Insights feature, which for the vast majority of impacted workspaces were unattributable,” 
+Notion stated in an update
+.
+"Unattributable means the chats weren't labeled with who wrote them or which workspace they came from, and the transcripts did not contain tool call results.”
+Notion has also 
+published a FAQ page
+ about the incident, highlighting that Fireworks had contractually committed to zero data retention for Notion data.
+According to the company, less than 1% of its users are impacted by the incident. Potentially affected workspace owners should review the data through Security incident review in Notion’s desktop web interface and share a link with members that lets them download their own transcripts.
+Notion advises affected users to rotate any passwords, API keys, or other credentials entered into affected chats.
+If neither a user nor their workspace owner has received a notice, Notion says no action is needed for now, and they are most likely not part of the impacted subset.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Baker Tilly notifies clients of data breach at third-party provider
+Fireworks AI discloses new breach after cloud provider hack
+SEGA newsletter data breach exposes 2.2 million email addresses
+WorkOS says attacker used ARTEX AI to breach internal sales app
+Japanese furniture giant Nitori says hackers stole 37.6M customer records
+
+===== https://cryptoslate.com/notion-users-put-access-keys-in-ai-chats-a-supplier-breach-exposed-them/
+(status 200)
+Quick Take
+ 01 
+Notion revoked exposed API keys on November 11 after finding them in user messages affected by the Fireworks AI incident.
+ 02 
+Most impacted workspaces had chats without ownership labels, but message text could still contain identifying information or credentials.
+ 03 
+Notion urges affected customers to rotate pasted credentials, while its advisory does not report misuse of the revoked keys.
+Make
+CryptoSlate
+preferred on
+Share
+Share
+Notion disabled exposed API keys on Nov. 11 after finding them in AI chats affected by a breach at supplier Fireworks AI, according to its updated 
+security advisory
+. These keys let software access workspace data within the permissions their owners granted.
+Notion says the incident affected fewer than 1% of its workspaces. The exposed dataset included Notion AI chat transcripts used for its Insights feature.
+For the vast majority of affected workspaces, those transcripts lacked labels identifying who wrote the chats or which workspace they belonged to, and contained no tool-call results. Information inside the messages could still connect a conversation to a user, workspace or company, however. The API keys found in affected messages show why missing ownership labels still leave secrets in the text.
+No ownership label. Still a credential.
+Notion found API keys inside affected Insights messages and revoked exposed Notion keys on Nov. 11.
+Unlabeled transcript text can still contain API keys
+Author and workspace labels were absent for most affected workspaces, but keys remained inside message text. Notion revoked exposed Notion keys on November 11.
+AFFECTED INSIGHTS TRANSCRIPTS
+OWNERSHIP LABELS
+Author: not labeled
+Workspace: not labeled
+MESSAGE TEXT REMAINED
+Notion API key
+NOV. 11, 2026
+Keys revoked
+Notion's response to keys
+found in affected messages
+Labels were absent for the vast majority of impacted workspaces. Diagram is schematic.
+Unlabeled chat text can still contain Notion API keys
+Missing ownership labels did not remove credentials from message text. Notion revoked exposed Notion keys on November 11.
+AFFECTED INSIGHTS TRANSCRIPTS
+OWNERSHIP LABELS
+Author: not labeled
+Workspace: not labeled
+MESSAGE TEXT REMAINED
+Notion API key
+NOV. 11, 2026
+Notion revoked keys
+Labels were absent for the vast majority
+of impacted workspaces. Schematic diagram.
+Revocation addressed exposed keys inside messages.
+Schematic illustration. No real credential is shown, and key misuse is not established.
+Sources and evidence
+Sources
+Notion incident advisory
+Supporting facts
+Notion says it revoked exposed Notion API keys on November 11 after finding them in affected user messages during its investigation of the Fireworks AI incident. 
+[1]
+Notion says the affected dataset included Notion AI chat transcripts used for Insights; for the vast majority of impacted workspaces the chats were not labeled with their author or workspace and did not contain tool call results. 
+[1]
+Notion says there was no information linking those unattributable chats to users, workspaces or companies beyond what the chat transcripts themselves contained. 
+[1]
+Method
+Schematic transcript cross-section connects absent ownership labels to a credential retained in message text, then to the reported November 11 revocation. No real transcript or credential is reproduced.
+Scope
+Schematic illustration. No real credential is shown, and key misuse is not established.
+Infographic by
+CryptoSlate
+Notion's 
+API security guidance
+ says someone holding a token can make requests within its capabilities and content permissions, potentially exposing or changing workspace content. An internal connection's access is limited to pages shared with it and its assigned capabilities.
+Related Reading
+Railway urges credential resets as investigator alleges $371,000 crypto theft
+The key revocations came after Notion's initial disconnection from Fireworks. After a Nov. 2 notification appeared to involve synthetic testing data only, Notion says it disconnected its systems, deleted data held in the Fireworks system and stopped communications by the morning of Nov. 3.
+Fireworks then notified Notion of potential customer-data access on Nov. 6 and confirmed the new dataset on Nov. 8. Notion identified the Insights transcripts in that material.
+Notion has disabled Insights during its investigation and stopped serving open-weight models through Fireworks. It says no other Notion features were affected. Its advisory does not report misuse of the Notion keys covered by the Nov. 11 revocation.
+Related Reading
+Allium restores 18 major chains, but only specific platforms are safe
+In its 
+Nov. 9 incident update
+, Fireworks described impacts to resource metadata and billing information, as well as secrets, datasets and incomplete model weights for a limited set of accounts.
+Fireworks separately says it has detected no impact to Inference, Training SDK or Nexus, services that have zero data retention by default. Those findings remain provisional while its investigation continues.
+For affected Notion customers, the company's advice extends beyond the keys it revoked. It recommends reviewing the impacted data securely inside the workspace, treating that material as exposed and rotating passwords, API keys or other credentials pasted into Notion AI during the incident timeframe. Notion says it has contacted customers it identified as affected.
+Related Reading
+Cursor urges credential resets after malicious Claude Code marketplace update
+Featured
+Hacks
+AI
+Editorial credits
+ Liam 'Akiba' Wright 
+Editor-in-Chief
+•
+CryptoSlate
+Also known as "Akiba," Liam Wright is a reporter, podcast producer, and Editor-in-Chief at CryptoSlate. He believes that decentralized technology has the potential to make…
+X
+LinkedIn
+More from Liam
+AI
+ Anthropic’s new AI leads freelance benchmarks, yet fails 58% of the tasks
+2 min read
+8 hours ago
+More coverage
+Google’s new AI reveals hidden genetic clues in new immune-cell test
+Nov 12, 2026
+Bitcoin plunges to $71k as Jensen Huang abruptly resigns sending Nvidia into $2 trillion wipeout
+Nov 12, 2026
+ Bearish 
+‘Do not let Sauron have the ring’: Voorhees warns against a government veto on AI
+Nov 12, 2026
+ Bearish
+
+===== https://xenospectrum.com/en/notion-fireworks-ai-chat-leak/
+(status 200)
+Translated from the Japanese original
+Read the Japanese original
+In its official help documentation, Notion disclosed that a security incident at its vendor Fireworks AI may have exposed some Notion AI chat sessions. Fewer than 
+1%
+ of all workspaces may be affected, and according to Notion's English-language notice, in the vast majority of those workspaces the chats carried no labels identifying the speaker or the workspace they came from. Fireworks, for its part, said in an October 9 statement that its platform uses ZDR (zero data retention) and by default does not store prompts or generated output. So how could chat content leak from a service that is not supposed to store data? Setting the two companies' disclosures side by side suggests that the leak may have involved information stored as datasets, rather than ordinary inference processing.
+AD
+What Notion's notice reveals, and what it doesn't
+According to Notion's official help page, the company used Fireworks mainly for two purposes. One was data classification in "Insights," a feature that lets customers understand how they use AI. The other was an inference service that makes open-weight models available in Notion AI. In response to the incident, Notion disabled the Insights feature and stopped offering open-weight models through Fireworks.
+Notion's English-language notice says it learned of the situation on the night of November 2. Fireworks reported that a malicious third party had accessed a small amount of data, but initially said it was limited to synthetic Notion AI test data and contained no customer data. As a precaution, Notion disconnected from Fireworks by November 3 and deleted all data held in Fireworks' systems. On November 6, however, it was told that the third party may also have accessed information that appeared to be customer data. Then, on November 8, Fireworks said it had identified a new dataset. When Notion analyzed it, it found that it contained chat records used in the Insights feature.
+Notion says that in most of the affected workspaces, the records could not be used to identify the speaker or the workspace. It also says the records did not include tool-call results, and that nothing beyond the chat text could lead to the identification of a company or user. However, Notion has not disclosed the total number of chats that may have leaked, which specific Fireworks product it used for Insights classification, or which storage path the data was taken from. To think about the leak path, we need to keep these unknowns in mind and examine the incident details and data-retention mechanisms Fireworks has published.
+Is "ZDR inference" at odds with "datasets were affected"?
+In its initial findings, published October 9, Fireworks said it had confirmed that internal credentials were misused on October 6, and that environment variables from evaluation jobs run on a limited number of customer accounts had been obtained. It also said it had detected no evidence of unauthorized access, within its own control, to customers' models, datasets, training data, inference traffic, or personal information. In other words, at that point no damage to customer data itself had been confirmed.
+The scope of the damage later expanded, however. According to Fireworks' updates, account and billing information was affected, and for some accounts secrets, datasets, and in-training models were also impacted. On October 23, an incident also occurred at a third-party cloud provider hosting Fireworks' research and development machines. The next day, a malicious third party reportedly used that access to break into the development machines and run unauthorized workloads, affecting additional customer data. The update page carries no publication date, but because it refers to a Google and Mandiant blog post published on November 2, it appears to have been written or updated after that date.
+Fireworks' explanation of data retention matters here. Its data security documentation says that, when open models are used, prompts and generated data are neither logged nor stored unless the user explicitly opts in. That is the basic mechanism of ZDR. The same document also says that, in model training workflows, it may retain datasets, checkpoints, traces, trained models, and similar items. In other words, not every Fireworks feature is free of data storage; how data is handled depends on the purpose of the processing and the feature used.
+Indeed, Fireworks' incident update page says ZDR applies by default to three products — the inference service, the Training SDK, and Nexus — and that no impact from this incident has been detected on them. It also says it has suspended uploads and downloads for self-service datasets used in Batch Inference and dataset-based training. This implies that, separate from the ordinary inference service, there are features that presuppose storing customer data.
+Given that distinction, the accounts from Notion and Fireworks are reasonably consistent. Notion analyzed the new dataset that Fireworks notified it about and found chat records used in the Insights feature. Fireworks, meanwhile, acknowledges the impact on datasets while saying it has detected no impact on the ordinary inference service. Taken together, it is more consistent with what has been disclosed so far to think that the Notion AI chats did not leak directly from inference-time communications or logs, but from datasets that had been stored for some kind of processing.
+AD
+Alternative possibilities, and what would overturn this reading
+Still, important uncertainties remain in this reading. The biggest is that it is unclear what exactly the "new dataset" Notion mentioned refers to. It is impossible to tell from Notion's explanation alone whether it means a collection of input data that was stored in Fireworks' systems, or a set of data the attacker took out that was compiled in the course of the investigation. If it is the latter, the word "dataset" gives no basis for inferring where the data was originally stored, and the possibility that data was captured during inference processing remains.
+Fireworks also said in its initial investigation that it had detected no evidence of unauthorized access to customer data, but later expanded the scope of damage. The update page says the investigation is ongoing and additional information may be published. Therefore, Fireworks' statement that it uses ZDR alone cannot fully rule out the leakage of data tied to inference processing. The data-retention policy as designed and what actually happened in the incident need to be considered separately.
+Nevertheless, there are several pieces of circumstantial evidence for the view that the leak came from stored datasets. First, Fireworks itself acknowledges the impact on datasets while saying it has detected no impact on the inference service. Second, Notion says it analyzed the new dataset Fireworks notified it about and found records of chats used in the Insights feature. Third, Notion says that when it disconnected from Fireworks, it deleted the data in the company's systems and also stopped training processing. However, it is not clear exactly what data the deletion covered, and the halt of training processing cannot be treated as direct evidence of the leak's source.
+All that can be said at this point is that it is relatively likely that information stored as datasets was involved in the leak. It has not been established when or for what purpose the Notion chats were stored on the Fireworks side, or whether they were stored there at all. If Fireworks' final investigation report or a Notion follow-up shows that the source was inference logs, this reading would be overturned. Conversely, if it is confirmed that Insights classification used features that involve data storage, such as Batch Inference, that would support the hypothesis that the data leaked from stored datasets.
+What Notion AI users should do, and what to watch next
+For organizations in Japan that use Notion AI for work, there are steps to take without waiting for the leak path to be clarified. Notion asks users to treat the affected data as leaked, and, if they entered passwords or API keys into Notion AI chats during the relevant period, to change or reissue them immediately. Owners of affected workspaces can check the relevant data by opening "Security incident review" from the "?" in the sidebar. This review feature must be used from the desktop app or a web browser and is not available in the mobile app.
+Going forward, there are two points to watch: whether Fireworks identifies the product or feature that was the source of the leak, and whether Notion clarifies the data path it used for Insights classification. The case highlights that even when an AI service says it does not store data in ordinary inference processing, that alone does not let you judge the safety of every related data-processing and storage path. The lessons from this incident will differ greatly depending on whether the leak occurred in a feature involving storage or on a path tied to inference processing. In their future explanations, both companies will be expected to clarify not only the scope of the damage, but also how the chat data was handled and through which path a third party gained access to it.
+Sources
+Secondary sources
+notion.com
+Update on October 2026 security incident
+Fireworks October 2026 security incident
+Data security
+Security incident involving a third party AI vendor
+notion.com
+AD
+
+===== https://ainformation.jp/article/19051
+(status 200)
+この記事の要点
+Notion AIのチャット記録が、委託先のFireworks AIから流出した可能性があります。
+Notionから連絡が無ければ、いま対応は要りません。
+対象ならオーナーがCSVで影響を受けた人を確かめ、チャットに貼った鍵を変えます。
+AI導入コンサルタント
+            		藤井俊太（Shunta Fujii）  
+AIのスペシャリストとして、最新のAI情報を常にキャッチ、アップデートしている。自らもAI導入コンサルタントとして活動し、主に生成AIを駆使した業務効率化、生産性向上、新規事業開発を行なっている。
+AInformationは、AIツールの料金や求人、資格を自分で調べて数えているAIのデータメディアです。個人のAI選びにも、企業のAI導入にも使える数字を出しています。運営と記事の確認は藤井俊太が1人で行っています。
+藤井俊太のプロフィール
+...続きを読む
+...続きを読む
+この記事で分かること
+Notion AIの情報漏洩で自分が対象かを見分ける手順（連絡の有無とサイドバーの「?」）
+ワークスペースのオーナーと利用者がいま確かめる10項目のチェック表
+漏れたのはInsights用に保存されたチャットの入出力で、AI議事録は原則として対象外という線引き
+「データを保持しない」約束とEnterpriseのゼロデータ保持が効かなかった点
+10月6日から11月10日までの公式の時系列
+ClaudeとChatGPTに同じ質問をして、公式に近かったのはどちらか
+Notion AI
+のチャット記録が、委託先のFireworks AIへの不正アクセスで外に出た可能性があります。Notionは公式のヘルプで、影響はワークスペースの1%未満だと発表しました。
+この記事は2026年11月12日に、NotionとFireworksの公式ページを読んで書きました。同じ日の朝には、
+Claude
+とChatGPTに同じ質問をして答えを見比べています。
+先に結論です。Notionから連絡が無ければ、いま対応は要りません。連絡があった人は、チャットに貼ったパスワードとAPIキーを変えるのが先です。
+Notion AIの情報漏洩で自分が対象かどうかの確かめ方は？連絡が無ければ対応は要らない
+Notion AIの件で対応は要るか
+確かめ方はかんたんです。まず、自分とワークスペースのオーナーにNotionから連絡が来ているかを見ます。
+公式のヘルプには、連絡が無いときの扱いが書かれています。オーナーにも本人にも連絡が無い場合は、影響を受けたとは確認されていません。その場合、現時点で対応は要りません。
+Notionは11月9日に、対象の顧客へ連絡しました。ただ、連絡がメールなのかアプリの中に出るのかは公式に書かれていません。
+メールを見る
+：迷惑メールフォルダも含めて、Notionからの知らせを探します
+アプリを見る
+：Notionの画面に知らせが出ていないかを見ます
+オーナーに聞く
+：会社のワークスペースなら、管理している人に連絡が来たかを聞きます
+自分がオーナーかどうかを先に見る
+影響を受けたメンバーを確かめられるのは、ワークスペースのオーナーです。会社で使っている人の多くはメンバーなので、自分の画面では対象かどうか分かりません。
+その場合は、情報システムの担当者かワークスペースを作った人に聞いてください。個人で使っているワークスペースなら自分がオーナーなので、自分で確かめられます。
+Notion公式ヘルプ。影響はワークスペースの1%未満　出典：notion.com（2026年11月12日時点の画面）
+対象は1%未満で、件数や人数は出ていない
+公式が出している数字は「Notionワークスペースの1%未満」だけです。対象の人数やチャットの件数は書かれていません。
+対象になったチャットの期間や、どのプランが対象かも公式には書かれていません。無料プランなら安全で有料なら危ない、とは今のところ言えない状態です。
+Notion AIの情報漏洩でいま確かめる10項目は？オーナーと利用者で分ける
+確かめることを10項目の表にしました。公式のヘルプの手順と、Notionが「流出したものとして扱う」よう勧めた範囲をもとに並べています。
+Notion AIの情報漏洩でいま確かめる10項目
+確かめること
+誰が
+当てはまったら
+① 自分にNotionから連絡が来たか
+全員
+来ていなければ現時点で対応は不要
+② 自分がワークスペースのオーナーか
+全員
+オーナーでなければオーナーに確認を頼む
+③ サイドバーの「?」に「セキュリティインシデントの確認」があるか
+オーナー
+開いて影響を受けたメンバーを見る
+④ 影響を受けたメンバーのCSV（affected_content.csv）を落としたか
+オーナー
+見られる人を絞った場所に保存する
+⑤ CSVに載ったメンバーへ知らせたか
+オーナー
+記事の連絡文で本人へ伝える
+⑥ チャットにパスワードを貼ったか
+利用者
+そのサービスで変更する。使い回し先も変える
+⑦ チャットにAPIキーやトークンを貼ったか
+利用者
+発行元で失効させて新しいキーに替える
+⑧ チャットに取引先や顧客の情報を書いたか
+利用者
+社内の責任者へ共有して先方への連絡を決める
+⑨ AI議事録の中身をチャットで使ったか
+利用者
+使っていなければ対象外。使ったなら⑥〜⑧を見る
+⑩ Enterpriseのゼロデータ保持を頼りにしていたか
+オーナー
+チャット履歴とInsightsは対象外だったと社内に伝える
+データ：Notion公式ヘルプ（2026年11月12日に確認）をもとにAInformationが整理　／　制作：AInformation
+上から順に見てください。①と②で対象でないと分かれば、残りは急ぎではありません。
+ただし⑥から⑧は、今回の件とは関係なく一度見直しておく価値があります。AIのチャットに鍵や顧客の情報を貼る癖は、どのツールでも同じように危ないからです。
+表の「誰が」の見方
+全員
+：Notion AIを使ったことがある人なら、誰でも自分で確かめられます
+オーナー
+：ワークスペースを管理する人だけが開ける画面や設定です
+利用者
+：Notion AIのチャットを使った本人が、自分の記憶と記録で確かめます
+メンバーへ知らせる文はこれをコピーする
+オーナーは、CSVに載ったメンバーへ知らせる必要があります。下の文面はそのまま貼って使えます。【】の部分だけ自分の会社に合わせて直してください。
+【会社名】のNotionワークスペースの管理者です。
+Notion AIの委託先で起きた情報流出の件で、あなたのNotion AIのチャットが影響を受けた記録に含まれていました。
+Notionは、このデータを流出したものとして扱うよう勧めています。Notion AIのチャットにパスワードやAPIキーを貼ったことがあれば、今日中に変更か失効をお願いします。
+取引先や顧客の情報をチャットに書いた覚えがある場合は、【担当部署】までお知らせください。
+Notionから届いた案内は【共有先】に置いています。ファイルを社外へ送ったり、社内チャットに貼ったりはしないでください。
+連絡文にはCSVそのものを貼らないでください。ファイル名はaffected_content（影響を受けた内容）なので、内容そのものが入っている前提で扱うと安全です。
+オーナーがCSVをダウンロードする手順は？サイドバーの「?」から開く
+オーナーの手順は、公式のヘルプに書かれています。画面の表記は日本語版のヘルプに合わせました。
+Notionを開き、サイドバーの「?」を押します
+「セキュリティインシデントの確認」を選びます
+影響を受けたメンバーの一覧を確かめます
+CSV（affected_content.csv）をダウンロードします
+「セキュリティインシデントの確認」が出てこない場合は、そのワークスペースが対象として確認されていない可能性があります。ただ、表示される条件は公式に書かれておらず、今回の調べでは分かりませんでした。
+Claudeに同じことを聞くと、最新版のデスクトップから開く必要があると答えました。モバイルでは見られないとも言っています。ただ出典はまとめブログで、公式の文書では確かめられませんでした。
+画面が出ないときは、パソコンのNotionを最新版にしてから開き直してくださいね。それでも出なければ、対象として確認されていない前提で①に戻ってください。
+CSVの扱いで気をつけること
+社内チャットやメールにそのまま添付しないでください
+保存先は、見られる人を絞ったフォルダにします
+パソコンのダウンロードフォルダに置いたままにしないでください
+確認が済んだら、社内の決まりに合わせて削除します
+CSVは、漏れたかもしれない内容の写しです。オーナーの手元から新たに漏れることがないよう、扱いには気をつけてください。
+メンバーが多い会社なら、CSVを見る人を1人か2人に絞ってください。見た人の名前と日付を残しておくと、あとで社内に説明しやすくなります。
+Notion AIで漏れたのは何か？Insights用に残ったチャットの入出力
+対象は、Notion AIのチャットでやり取りした内容です。公式は「モデルへの全ての入力とアウトプット」と書いています。
+委託先にチャットが残った仕組み
+Insightsという機能のために保存されたリクエストとレスポンスが、委託先のFireworksに残っていました。そこへ不正アクセスがあった、というのが今回の流れです。
+公式はこのデータについて「流出したものとして扱うことをお勧めします」と書きました。漏れたと決まったわけではないものの、漏れた前提で動いてほしいという意味です。
+チャットに貼ったパスワードやAPIキーも入る
+入力には、チャットに貼った文がそのまま入ります。公式は、パスワードやAPIキーも含まれる可能性があると書いています。
+入力
+：チャットに打った質問や貼った文、頼んだ内容
+出力
+：Notion AIが返した答えや要約、下書き
+ページの中身
+：チャットでページを読ませたなら、モデルに渡った分は入力に当たると考えるのが安全です
+一方で、Notionのページそのものが丸ごと抜かれたとは公式のどこにも書かれていません。公式が対象としているのは、あくまでチャットの入出力です。
+ふだんNotionにメモを書くだけでAIのチャットを使っていない人は、今回の対象には入りません。気にするべきは、チャットに何を入れたかです。
+変える鍵はどれか？パスワードとAPIキーは貼った時点で流出扱いにする
+Notion AIにこれを貼っていない？
+対象だった人がいちばん先にやるのは、チャットに貼った鍵を変えることです。公式が流出したものとして扱うよう勧めているので、貼った鍵はすべて変える対象です。
+鍵の種類ごとの変え方
+パスワード
+：そのサービスで変更します。同じパスワードを使い回している所も全部変えます
+APIキー
+：発行元の管理画面で失効させ、新しいキーに差し替えます
+アクセストークンや秘密鍵
+：発行し直して、古いものを無効にします
+取引先から預かったIDやパスワード
+：先方に知らせて変えてもらいます
+履歴を消すより、失効させるのが先です。Notionのチャット履歴を手元で消しても、委託先に残っていた写しには手が届きません。
+Notionは11月3日にFireworksの中のデータを削除したと書いています。ただ、それより前に抜かれた分は削除しても取り戻せません。だから鍵そのものを使えなくするのが確実です。
+キーを変えたあとは、発行元の利用履歴も見てください。身に覚えのない呼び出しや請求が無いかが、使われたかどうかの手がかりになります。
+社外の情報を書いていた場合
+チャットに取引先の名前や顧客の情報を書いていたなら、急ぐのは社内への共有です。鍵と違い、書いた内容はあとから変えられません。
+社内の責任者へ、いつ何を書いたかを伝えます
+契約でAIツールへの入力の扱いが決まっている相手かを確かめます
+先方へ伝えるかどうかは自分1人で決めず、社内の責任者が決めます
+Notion AIのAI議事録は危ないか？チャットで使っていなければ対象外
+公式によると、AI議事録の音声や文字起こしはチャットで使っていない限り影響がありません。会議を録音して文字にしただけなら、今回の対象には入りません。
+気をつけるのは、議事録をチャットに渡した場合です。「この議事録を要約して」とチャットで頼んだなら、その議事録の内容はチャットの入力に当たります。
+対象外
+：会議を録音して文字起こしをしただけ
+対象になりうる
+：議事録の文をチャットに貼って要約や質問をした
+対象になりうる
+：チャットで議事録のページを読ませて答えさせた
+議事録AIはNotionだけではない
+AInformationのAIツールナビ509本のうち、紹介文に議事録という言葉が出るツールは6本ありました（2026年11月12日時点）。ツール名を1つずつ見て、どれも会議の記録に使うものだと確かめています。
+Notion AIの議事録だけが特に危ないわけではありません。どの議事録AIでも、録った内容をどこへ渡すかで扱いが変わります。チャットに渡す前に、鍵や個人名が入っていないかを見ておくと安心ですよ。
+「保持しない」はずのFireworksになぜ残ったか？Enterpriseのゼロデータ保持も効かなかった
+今回いちばん引っかかるのはここです。NotionはFireworksと、データを保持しない契約を結んでいました。
+公式ヘルプ。保持しない約束の委託先にデータが残っていた　出典：notion.com（2026年11月12日時点の画面）
+ところが、Notionが使っていたエンドポイント（つなぎ先の窓口）からデータが保持されていたと公式は書いています。公式の表現は「データが保持されていたことが判明」です。
+Enterpriseのゼロデータ保持はチャット履歴とInsightsに効かない
+Enterpriseプランには、AIの委託先にデータを残さない「ゼロデータ保持」があります。公式によると、これはチャット履歴とInsightsには適用されません。今回漏れたのは、そのInsights用に保存されたチャットでした。
+高いプランの約束でも、今回のチャットは守れなかったことになります。Enterpriseで契約している会社は、次の3つを契約書と設定画面で確かめてください。
+ゼロデータ保持の対象外になる機能はどれか
+委託先（サブプロセッサー）の一覧はどこに載っているか
+社内でチャットに入れてよい情報の線はどこか
+契約書で約束していても、実際の仕組みがそうなっているとは限りませんでした。利用者の側からは、委託先の中でどう動いているかは見えないからです。
+AIの答えも、この例外を見落とした
+Claudeに鍵を貼ったときの対応を聞くと、委託先のデータ保持はEnterpriseプランで0日と答えました。今回の件で効かなかった例外には触れていません。
+ChatGPT
+は、Enterpriseは「大半のモデルで保持ゼロ。一部例外あり」と答えました。例外がある点には触れましたが、それがチャット履歴とInsightsだとは言いませんでした。
+2つとも、Enterprise以外のプランは委託先に最大30日残ると答えています。この30日という数字は、今回のNotionの発表には出てきません。
+11月2日から11月10日までに何が起きたか？公式の時系列を表にした
+Notion AIの件の公式の時系列
+日付（2026年）
+誰が
+何が起きたか
+10月6日
+Fireworks
+内部の認証情報の不正利用を見つけた
+10月23日
+Fireworks
+クラウド事業者の侵害が起きた（Fireworksの公表）
+10月24日
+Fireworks
+開発用のマシンへ入られた
+11月2日
+Notion
+Fireworksから通知を受けた
+11月3日
+Notion
+Fireworksとの接続を切り、Fireworksの中のデータを削除した
+11月6日
+Notion
+顧客データが含まれる可能性の通知
+11月8日
+Notion
+対象を確定した
+11月9日
+Notion・Fireworks
+Notionが対象の顧客へ連絡。Fireworksも公表
+11月10日
+Notion
+公式のお知らせの更新版を出した
+11月12日
+AInformation
+2社の公式を読み、ClaudeとChatGPTに質問した
+データ：Notion公式のお知らせ・ヘルプとFireworks公式の公表（2026年11月12日に確認）をもとにAInformationが整理　／　制作：AInformation
+上の表は、NotionとFireworksの公式の発表を日付順に並べたものです。Notionの英語版のお知らせと、Fireworksが11月9日に発表した文を突き合わせました。
+侵入の始まりはFireworksの側です。Fireworksは10月6日に内部の認証情報の不正利用を見つけ、10月24日に開発用のマシンへ入られたと公表しました。
+入口は、10月23日に起きたクラウド事業者の侵害だったとしています。Notionが直接攻撃されたわけではありません。
+Notion公式のお知らせ。11月3日に接続を切りデータを削除　出典：notion.com（2026年11月12日時点の画面）
+Notionが動いたのは通知の翌日
+NotionがFireworksから通知を受けたのは11月2日です。翌日の11月3日に接続を切り、Fireworksの中のデータを削除しました。
+英語版のお知らせには「Notion disconnected its systems from Fireworks」とあります。そのあと11月8日に対象を確定させ、11月9日に対象の顧客へ連絡しました。
+Notionは11月10日に公式のお知らせを更新しました。AInformationは11月12日に2社の公式ページを読み直し、この記事の表を作りました。
+Fireworks公式の公表。影響を受けた顧客へ知らせている　出典：fireworks.ai（2026年11月12日時点の画面）
+Fireworksの公表には「We are notifying customers」とあります。影響を受けた顧客へ知らせている、という意味です。Fireworksの顧客はNotionだけではない、という前提で書かれています。
+ClaudeとChatGPTに聞くとどちらが正しかったか？Claudeが公式に近かった
+11月12日の朝、ClaudeとChatGPTに同じ2つの質問をしました。返ってきた答えを、Notionの公式のヘルプと見比べています。
+1問目
+：ニュースを見たが、自分が対象かどうかはどう確かめればいいか
+2問目
+：社外秘の資料やAPIキーを貼ってしまった。いま何をすればいいか、AI議事録も危ないか
+ClaudeとChatGPTの2問目の答え
+1問目はClaudeが公式の手順を答えた
+Claudeは57.2秒かけて、1,444字の答えを返しました。公式の手順とほぼ同じ答えで、間違っていた所は2つだけです。
+○ 連絡が無ければ対応は不要と答えました
+○ オーナーはサイドバーの「?」から確かめると答えました
+○ 影響を受けたメンバーのCSVをダウンロードできると答えました
+× 画面の名前を「セキュリティインシデントのレビュー」と間違えました（公式は「確認」）
+× 出典はまとめブログやニュースで、Notionの公式ページが入っていませんでした
+ChatGPTの1問目は、今回は答えを取れませんでした。ブラウザが別の処理で使われていて、画面を開けなかったためです。そのため、1問目は比べていません。
+2問目は2つとも今回の件に触れなかった
+2問目の答えは、Claudeが36.1秒で1,427字でした。ChatGPTは70.1秒で1,881字です。どちらもAPIキーをまず失効させるよう答えていて、ここは公式の勧めと合っています。
+Claude
+：貼った時点で「漏れたもの」として処理するのが原則と答えました
+ChatGPT
+：「そのまま外部に流出したというわけではありません」と答えました
+2つとも
+：Fireworksの件に触れず、AI議事録はチャットで使わなければ対象外という線引きも答えられませんでした
+はっきり言うと、2問目もClaudeのほうが公式に近い答えでした。公式は流出したものとして扱うよう勧めています。
+ChatGPTの「流出したわけではない」は、今回の件で困っている読者には逆の意味に読めてしまいます。AIの答えを使うなら、最後は公式のヘルプで確かめてくださいね。
+Notion AIはこれからも使えるか？公式が止めた4つと分からない5つ
+Notionは今回、Fireworksとのつながりを切りました。公式のヘルプには次の4つの対応が並んでいます。
+Fireworksへのデータの送信を止めました
+学習の処理を止めました
+Insights機能を無効にしました
+Fireworks経由のオープンウェイトモデルの提供をやめました
+逆に、公式に書かれていないことも5つあります。記事を書いた11月12日の時点で、この5つはどこにも出ていません。
+対象になったチャットの期間
+対象のプラン（無料・プラス・ビジネス・エンタープライズ）の別
+1%未満のほかの件数や人数
+連絡の手段（メールかアプリの中か）
+流出したチャットがNotionのモデルの学習に使われたか
+続けて使うなら入れない情報を先に決める
+AInformationのAIツールナビでは、Notion AIの月額は1,650円です（2026年11月12日時点）。日本円で払えて、業務のカテゴリに入るAIツール122本のうちの1本です。
+AI活用事例ナビ3,723件のうち、Notionという言葉が出てくる事例は60件ありました。HiBobは1,400人分の情報をNotionに集め、検索と議事録をAIでまとめています。
+会社の情報を集めるほど、AIに渡る内容も大事なものになります。続けて使うなら、チャットに入れない情報を先に決めておくのが現実的です。
+パスワードとAPIキー
+顧客や取引先の個人情報
+契約で外に出せないと決まっている資料
+この3つを貼らないだけでも、次に同じことが起きたときの被害は小さくなります。Notion AIを今すぐやめるべきかは、今回の調べでは判断できません。公式は、対象外の人に対応は要らないとしています。
+Copilotについては
+Copilotの情報漏洩の確認10項目
+で、鍵の残り方は
+Claude Codeのセキュリティの検証
+で確かめられます。ClaudeからNotionを動かす話は
+ClaudeでNotionを編集できる件
+にまとめています。
+見方
+導入の現場から考える
+※記事の事実とは分けて、筆者の考えを書いています。
+藤井俊太
+AI導入コンサルタント
+分析・考察
+今回の件で効いたのは、契約の約束と実際の動きがずれていたことです。「保持しない」と書いてあっても、Insightsのように別の目的で残す機能があれば話が変わります。
+会社で使うなら、AIに入れない情報を先に決めるのが現実的です。パスワード・APIキー・顧客の個人情報の3つです。ツールを替えても、この線を持っていれば被害は小さくできます。
+よくある質問
+Notion AIを使っていたら、全員が対象ですか？
+いいえ、全員ではありません。Notionの公式ヘルプによると、影響を受けたのはワークスペースの1%未満です。本人にもワークスペースのオーナーにもNotionから連絡が無ければ、影響を受けたと確認されていない扱いです。その場合は現時点で対応は要りません。
+無料プランなら関係ありませんか？
+この調べでは分かりません。公式は対象のプランの別を書いていないため、無料なら安全とは言えない状態です。プランではなく、Notionからの連絡の有無とオーナーの確認の画面で判断してください。
+Notionのページに書いた内容も漏れたのですか？
+公式が対象としているのは、Notion AIのチャットの入出力です。Insights機能のために保存されたリクエストとレスポンスが委託先に残っていました。ページそのものが丸ごと抜かれたとは書かれていません。ただし、チャットでページを読ませた場合はモデルに渡った分が入力に当たると考えるのが安全です。
+AI議事録を使っていました。対象ですか？
+チャットで使っていなければ対象外です。公式によると、AI議事録の音声や文字起こしはチャットで使っていない限り影響がありません。議事録の文をチャットに貼って要約や質問をした場合は、その中身がチャットの入力になります。
+一次情報
+Notion公式ヘルプ「サードパーティAIベンダーに関するセキュリティインシデント」
+Notion公式のセキュリティのお知らせ（英語）
+Fireworks AI公式のセキュリティ公表（英語）
+AInformation AIツールナビ
+AInformation AI活用事例ナビ
+次に読む記事
+あわせて読む
+Copilot（コパイロット）が使えない原因は？直し方13個を紹介！障害の日も記録した
+あわせて読む
+Google AI Studioの料金は？モデル10本を円で紹介！AI2つは値上げを外した
+あわせて読む
+画像読み取りAIを3つ比較！表とレシートを読むプロンプト3つ
+FOR BUSINESS
+自社でAIをどう使えばいいか相談したい方へ
+AInformationを運営している藤井俊太が、AIの導入・業務の自動化・社内研修のご相談を受けています。課題をうかがったうえで、どの業務にどのAIを使うかを一緒に決めます。実際に業務で使えるところまで構築します。
+2023年から生成AIの導入支援を本業にしています。実績と対応できる領域は
+運営者情報
+に出しています。
+AI導入・業務自動化について相談する
+AInformation調べ
+AIの危険性
+Fireworks AI
+Notion AI
+情報漏洩
+広告を載せており、そこから申し込みがあると紹介料を受け取ることがあります。
+
+===== https://www.notion.com/en-gb/help/security-incident-involving-a-third-party-ai-vendor
+(status 200)
+About the Fireworks AI security incident
+One of our vendors, Fireworks AI, notified us of a security incident affecting fewer than 1% of Notion workspaces. For the latest on the Fireworks AI incident, see their 
+official updates here
+.
+We’ll share updates as more information becomes available. Learn more about what happened and how we addressed it in our 
+Security Bulletin here
+ →
+Who was affected by the Fireworks AI incident
+We have contacted our customers who were affected by the Fireworks AI incident. 
+If neither you nor your workspace owner has heard from us, we haven’t identified your workspace as affected and no action is needed at this time.
+ Our investigation is ongoing. If we determine that your workspace was affected, we will contact you directly.
+Customers affected by the Fireworks AI incident can retrieve and review the affected data securely inside their workspace.
+What affected workspace owners should do
+For the workspaces affected by the Fireworks AI incident, workspace owners can view the affected data by going to their workspace sidebar → 
+?
+ → 
+Security incident review
+.
+To review and download your affected data, use a desktop browser and make sure that you’re using the latest version of Notion. This data is not accessible on mobile.
+For all workspace owners
+View affected members
+Click 
+Download affected members
+ to generate a CSV with the names, email addresses, membership status (active or not), user IDs and the count of how many rows of affected data are related to the user.
+Use 
+Copy link
+ to generate a link to share with affected members. This link gives members the ability to review their own affected data.
+For all workspace owners who have verified a domain for their workspace
+View affected content
+affected_content.csv: 
+Download this CSV to view the data in your workspace that was affected by the incident, exactly as it was accessed. Only workspace owners can see this data.
+Affected content CSVs for workspace owners contain:
+message_role
+: The role of the message author (
+user 
+or 
+assistant/system
+).
+text
+: The exposed text itself, including the message body or generated summary. This is the workspace’s content that was affected in the incident, exactly as it was accessed.
+affected_content_annotated.csv: 
+Download this CSV to view the same affected workspace data with additional metadata to help you understand and run your own analysis of the impact. Only workspace owners can see this data.
+Annotated CSVs for workspace owners contain:
+The same 
+message_role
+ and 
+text
+ fields. This is the workspace’s content that was exposed in the incident, exactly as it was accessed.
+__metadata
+: Metadata fields provide more information about affected data. These fields include:
+The chat transcript text itself. This is the content that was exposed in the incident, exactly as it was accessed.
+Added context to help you understand and run your own analysis of the impact. This data was not exposed in the incident. It includes the ID of the Notion record (row) the text came from, the ID of the workspace the content belongs to, the ID of the user the content is attributed to, the ID of the conversation thread and the date of the source content.
+__analysis
+: Flags potential sensitive information in each affected conversation so you can rotate affected credentials straight away.
+Note:
+ Affected content resources are only available if you have a verified domain for your workspace. Learn how to verify your domain 
+here
+.
+For other workspace roles
+Workspace owners can provide a link to members so members can see their own affected data.
+Once shared, the link will provide members with a CSV of only the member’s own data
+affected by the incident.
+Review the CSVs to understand what data was affected. 
+We recommend that you treat this data as if it were exposed. 
+If you or anyone on your team pasted sensitive information such as passwords, API keys or other credentials into Notion AI during this timeframe, we recommend rotating them straight away.
+What is Fireworks and how did Notion use Fireworks?
+Fireworks AI
+ is one of the most-used global AI infrastructure platforms powering tens of thousands of customers and used by hundreds of thousands of developers.
+As of 3 November, we have disconnected our systems from Fireworks, deleted all data in the Fireworks system, and stopped sending all data and traffic to Fireworks. We have also halted all training runs.
+We previously used Fireworks for classification jobs to help customers understand their own AI usage through a feature in Notion called 
+Insights
+, and as a general inference provider to serve open-weight models inside our product. The Insights feature has been disabled as we investigate this incident and we are no longer serving open-weight models through Fireworks.
+How did Notion use Fireworks with the Learning and Early Access Program (LEAP)? 
+Customers in the 
+Learning and Early Access Program
+ (LEAP) volunteer their data to help Notion test new AI technology. In the past, we used this volunteered data to experiment with training task-specific models on Fireworks.
+What do chat transcripts include? 
+Any input to or output from the model that was written to the chat is included in that chat transcript. We highly encourage you to look at and analyse the data yourself to understand the impact.
+Data from AI Meeting Notes, including audio, transcripts or summaries, was not affected unless it was used as an input in a chat transcript with Notion AI.
+Did the chat transcripts contain any additional metadata that can be attributed back to the user, workspace or company? 
+For the vast majority of affected workspaces, the chat transcripts sent to Fireworks AI contained only the input or output from the model that was written to the chat. Notion did not add any additional metadata that attributes the chat transcript back to your specific workspace, user or company.
+We recommend that you conduct a thorough review of the affected data, as the specific input or output from the model may contain sensitive data. If anyone on your team pasted sensitive information such as passwords, API keys or other credentials into Notion AI during this timeframe, we recommend rotating them straight away.
+Where can I learn more about Notion’s security practices?
+Visit our 
+Security page
+ for an overview of Notion’s security and privacy practices. For more information on security policies, security audit reports, penetration test results and additional resources, visit the 
+Notion Trust Center
+.
+I have ZDR as part of my Enterprise plan. What does it cover for Notion AI use?
+Zero data retention (ZDR) is our commitment for our enterprise customers. It applies to the API requests we send to third-party model vendors we use to generate responses to Notion AI requests. For those requests, we work with each third-party vendor to ensure their API endpoints are ZDR compliant, and therefore have an expectation that they don’t retain any of the request and response data associated with the API request.
+Notion also supports product features that require us to store the requests and responses made to those third-party models, including features such as chat history and 
+Insights
+. Insights is a workspace tool that gives administrators information about how their workspace members use AI. Our zero data retention commitments are not intended to cover these use cases where we are required to retain the data to deliver the feature.
+For the Insights feature, we sent the stored requests and responses from Notion AI use to a third-party model provider, Fireworks in this case, to run the analysis that we visualise for the administrator.
+We apply our general data minimisation practices when providing our services, including the analysis performed for Insights. As part of these data minimisation efforts, Fireworks provided us with a contractual commitment to zero data retention for our use of its platform. Unfortunately, during our investigation, we learnt that data was retained from the Fireworks endpoints that we used.
+Looking forward, we are doing an audit of critical vendors – such as inference providers and data processors – to verify that they abide by data minimisation practices, including zero data retention policies.
