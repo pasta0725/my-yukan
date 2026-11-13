@@ -67,7 +67,7 @@ def pics(a):
 
 
 def sentences(t):
-    return [x for x in re.split(r"(?<=[。！？])", t) if x.strip()]
+    return [x for x in re.split(r"(?<=[。！？])|\n", t) if x.strip()]
 
 
 def problems(a):
@@ -108,7 +108,8 @@ def problems(a):
             if w in x: hard.append(f"backstage phrase 「{w}」 in {where}: {x[:30]}")
         if re.search(r"https?://|www\.", x): hard.append(f"URL in text {where}: {x[:30]}")
     if len(a.get("summary", "")) > 50: soft.append(f"summary {len(a.get('summary', ''))} chars")
-    if len(a.get("title", "")) > 32: soft.append(f"title {len(a.get('title', ''))} chars")
+    if len(a.get("title", "")) > 40: hard.append(f"title {len(a.get('title', ''))} chars")
+    elif len(a.get("title", "")) > 32: soft.append(f"title {len(a.get('title', ''))} chars")
     refs = a.get("refs", [])
     if not isinstance(refs, list): hard.append("refs is not a list"); refs = []
     if len(refs) > 6: hard.append(f"refs: {len(refs)} (max 6)")
@@ -171,6 +172,9 @@ def compare(mode, old, new, allowed=()):
         for u in newrefs:
             if u not in oldrefs: bad.append(f"new ref in the fact check: {u}")
         if textlen(new) < 0.8 * textlen(old): bad.append(f"text cut by more than 20% ({textlen(old)} -> {textlen(new)})")
+        ot, nt = [x for w, x in texts(old)], [x for w, x in texts(new)]
+        changed = sum(1 for x in nt if x not in ot)
+        if changed > max(6, 0.4 * len(ot)): bad.append(f"too many changes for a fact check: {changed} of {len(ot)} texts rewritten")
     return bad, warn
 
 
@@ -222,7 +226,10 @@ def collect(mode, jobs, out):
         if new == old: rows.append((sid, "変更なし", "")); continue
         json.dump(new, open(f"{out}/{sid}.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         used += 1
-        rows.append((sid, "採用", ("注意: " + "; ".join(warn)) if warn else f"{textlen(old)}→{textlen(new)}字, refs {len(old.get('refs', []))}→{len(new.get('refs', []))}"))
+        info = f"{textlen(old)}→{textlen(new)}字, refs {len(old.get('refs', []))}→{len(new.get('refs', []))}"
+        if mode == "fact": info += f", 書き換え{sum(1 for w, x in texts(new) if x not in [y for v, y in texts(old)])}か所"
+        if warn: info += f"（注意{len(warn)}件: " + "; ".join(w.replace(chr(10), ' ')[:50] for w in warn[:2]) + "）"
+        rows.append((sid, "採用", info))
         if mode == "fact" and os.path.exists(f"{d}/changes.txt"):
             c = open(f"{d}/changes.txt", encoding="utf-8").read().strip()
             if c: changes.append(f"## {sid}\n{c}\n")

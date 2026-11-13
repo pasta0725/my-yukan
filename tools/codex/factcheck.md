@@ -16,6 +16,10 @@ Check, in title, summary, keys, every p and h, stat, point, img captions and the
 - every proper name (company, product, model, service, person, title/role, place);
 - "who / from when / for whom / where": who announced it, who is affected, start and end dates, countries/regions,
   whether it is free or paid, whether it is available in Japan / in Japanese.
+This is a CHECK, not an edit: change only what is wrong. Most articles need 0–3 changes; more than 6 changed texts is
+almost always too many (results with too many rewrites are thrown away). Do NOT reword correct sentences, do NOT change
+the style of keys/point (short bullet wording is fine there), do NOT add 「〇〇によると」 to facts that a readable page
+supports (refs already show the sources), do NOT add new facts, and do NOT "improve" precision of a correct statement.
 How to fix:
 1. A fact that a readable page contradicts: correct it to what the page says (if pages disagree with each other, write
    both with their source, e.g. 「〇〇は△△と伝えています」).
@@ -27,7 +31,7 @@ How to fix:
 4. stat: every number must appear in the body with its meaning; fix or remove stat items that do not.
 5. rina block: it may contain opinion, but every fact in it must be in the body and correct. Fix it if not.
    Keep it 2–3 sentences, ≤ 120 characters, no 「私」.
-6. Keep the article's structure, length and wording except where a fix is needed. Fixed text must follow style.md
+6. Keep the article's structure, length and wording except where a fix is needed; change only the words that are wrong. Fixed text must follow style.md
    (です・ます, paragraph ≤ 200 characters, numbers as in section 6, no behind-the-scenes phrases of section 8 such as
    「見つけられず」「今回読んだ」「参照した」「私は」, never mention pages or files).
 7. Never change "id", "category", "image", "source_url", "source_name", "published", "visual", "refs" (you may only

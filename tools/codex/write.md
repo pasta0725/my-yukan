@@ -10,8 +10,18 @@ must follow every rule in it, with these differences that override the brief bec
   index.md). refs = only articles from this folder that you actually used (source_url first; another .txt in the
   folder about the SAME event may be added). No official pages unless one is in your folder.
 - ./used.txt lists stories already published: skip those and the same events.
+- Choosing the 4 stories (do this before writing): read index.md completely and open every candidate that could be news.
+  Rank them by how much they matter to an ordinary person in Japan who plays games: big announcements and releases of
+  major series and companies (new titles, release dates, prices, hardware, online services, platform news such as
+  PlayStation, Nintendo, Xbox, big titles like GTA), then the personal-interest topics of the brief, then notable
+  updates, sales and price changes. Character goods and merchandise, food-chain collaborations, illuminations and
+  events, interviews, reviews, small in-game gift codes and small indie releases come last — use them only if nothing
+  better is left. Respect "Who writes what" in the brief (which worker takes which story). Write ./tmp/choice.md first:
+  one line per candidate with 採用/不採用 and the reason.
 - Write your output to ./{WORKER}.json (a JSON array of 4 stories, the format in the brief's "Output" section). Put any
   scratch files in ./tmp/. Check it with `python3 -c "import json;json.load(open('{WORKER}.json'))"`.
+- Name an outlet only for a fact that only it reports, and do not repeat the same attribution (「〇〇によると」) or the
+  same caveat (e.g. 「税込みか税別かは明記されていません」) in several paragraphs: once per article is enough (style.md 3, 7, 10).
 - Before saving, do the brief's Self-check against the .txt files and style.md section 11 (出す前の確認): every paragraph
   ≤ 200 characters, sentences under 60 characters, rina ≤ 120 characters, no behind-the-scenes phrases
   (「見つけられず」「今回読んだ」「参照した」「私は」), numbers written as in section 6.

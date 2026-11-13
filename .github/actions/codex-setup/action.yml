@@ -23,4 +23,4 @@ runs:
       run: |
         { echo "### Codex $(codex --version 2>/dev/null)"; echo "models offered to this account:"; echo '```'
           codex debug models 2>/dev/null | python3 -c "import json,sys;[print(m['slug'],'-',m.get('visibility'),'-',','.join(e['effort'] for e in m.get('supported_reasoning_levels',[]))) for m in json.load(sys.stdin)['models']]" || echo "(could not list)"
-          echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          echo '```'; } | tee -a "$GITHUB_STEP_SUMMARY"
