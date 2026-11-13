@@ -1,0 +1,92 @@
+name: codex-frame-check
+# Screen check of a finished Short by ChatGPT (Codex, CODEX_AUTH), instead of a Claude Sonnet sub-agent (2026-11-14, user:
+# save Claude's quota, same quality). shorts/_template/codex_frame_check.py makes the pictures (every second + every caption
+# chunk at full size + thumbnail) and Codex checks: empty bubble, bad line breaks, text outside its box, YouTube UI zones, typos,
+# thumbnail typos / 168 px. Report: branch "checks", checks/<name>/frames.md (also the job summary). Its first line is
+#   RESULT: OK | RESULT: LOOK (then "- LOOK <time>｜<what>｜<where>｜<detail>" lines) | RESULT: FAILED (Codex did not answer:
+#   use the old Claude Sonnet sub-agent check). The job is green only for OK.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "short name, e.g. rina_carbon (report: checks/<name>/frames.md)", required: true}
+      video: {description: "work:<path> | upload-tmp:<file> | path in the repo", required: true}
+      script: {description: "script/subtitles: spec.json, lines.json, .srt or .txt (empty = shorts/<name>/spec.json); plan.js next to it is used for caption times", default: ""}
+      thumb: {description: "thumbnail: work:<path> | path in the repo (empty = work:channel/thumbs/<name>.jpg if there; - = none)", default: ""}
+      model: {description: "Codex model (strongest first; if it is refused, the account's default model is used)", default: "gpt-6-astra"}
+      effort: {description: "reasoning effort", default: "high"}
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      N: "${{ inputs.name }}"
+      V: "${{ inputs.video }}"
+      S: "${{ inputs.script }}"
+      TH: "${{ inputs.thumb }}"
+      WD: /tmp/fc
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: (npm i -g @openai/codex --include=optional >/dev/null 2>&1 && codex --version) || (npm i -g @openai/codex@0.167.2 --include=optional >/dev/null 2>&1 && codex --version)  # 2026-11-13: the newest version lacked its linux part (Issue #19); fall back to the last version that worked
+      - name: auth
+        env: { CODEX_AUTH: "${{ secrets.CODEX_AUTH }}" }
+        run: |
+          test -n "$CODEX_AUTH" || { echo "CODEX_AUTH is empty"; exit 1; }
+          export CODEX_HOME="$RUNNER_TEMP/codexhome"; mkdir -p "$CODEX_HOME"
+          printf '%s' "$CODEX_AUTH" > "$CODEX_HOME/auth.json"; chmod 600 "$CODEX_HOME/auth.json"
+          printf 'cli_auth_credentials_store = "file"\n' > "$CODEX_HOME/config.toml"
+          echo "CODEX_HOME=$CODEX_HOME" >> "$GITHUB_ENV"
+      - name: pictures
+        run: |
+          which ffmpeg >/dev/null || sudo apt-get install -y -qq ffmpeg >/dev/null
+          python3 -c "import PIL" 2>/dev/null || pip install -q pillow
+          get() { case "$1" in
+              work:*) git fetch -q origin work && git show "origin/work:${1#work:}" > "$2";;
+              upload-tmp:*) git fetch -q origin upload-tmp && git show "origin/upload-tmp:${1#upload-tmp:}" > "$2";;
+              *) cp "$1" "$2";; esac; }
+          mkdir -p $WD; get "$V" /tmp/video.mp4; ls -la /tmp/video.mp4
+          [ -z "$S" ] && S="shorts/$N/spec.json"; P="$(dirname "$S")/plan.js"; [ -f "$P" ] || P="shorts/$N/plan.js"
+          T=""; [ -z "$TH" ] && TH="work:channel/thumbs/$N.jpg"
+          if [ "$TH" != "-" ] && get "$TH" /tmp/thumb.jpg 2>/dev/null && [ -s /tmp/thumb.jpg ]; then T=/tmp/thumb.jpg; fi
+          echo "script=$S plan=$P thumb=${T:-none}"
+          python3 shorts/_template/codex_frame_check.py prep /tmp/video.mp4 $WD --script "$S" --plan "$P" ${T:+--thumb "$T"}
+      - name: Codex looks at the pictures
+        env: { M: "${{ inputs.model }}", E: "${{ inputs.effort }}" }
+        run: |
+          cd $WD
+          codex exec --help > help.txt 2>&1 || true
+          grep -qE -- '-i, --image' help.txt || { echo "this codex has no image option:"; grep -iE 'image' help.txt; exit 0; }
+          echo "models this account can use:"; codex debug models 2>/dev/null | python3 -c "import json,sys;d=json.load(sys.stdin);print(' '.join(m['slug'] for m in d.get('models',d) if m.get('visibility')=='list'))" || true
+          run() {  # $1 = model ("" = the account's default)
+            rm -f last.json log.txt
+            timeout 1500 codex exec --skip-git-repo-check -s read-only ${1:+-m "$1"} -c model_reasoning_effort="\"$E\"" \
+              --output-schema schema.json -o last.json "$(cat prompt.txt)" -i sheets/*.png > log.txt 2>&1
+            echo "codex exit $?"; tail -5 log.txt
+            python3 -c "import json;assert json.load(open('last.json'))['result'] in ('OK','LOOK')" 2>/dev/null; }
+          run "$M" || run "" || true
+          used=$(grep -m1 -E '^model:' log.txt | sed 's/model: *//'); eff=$(grep -m1 -E '^reasoning effort:' log.txt | sed 's/reasoning effort: *//')
+          echo "MODEL=${used:-?} (effort ${eff:-$E}, asked $M)" >> "$GITHUB_ENV"
+      - name: report
+        if: always()
+        run: |
+          set +e; python3 shorts/_template/codex_frame_check.py report $WD "$N" $WD/frames.md; code=$?; set -e
+          cat $WD/frames.md >> $GITHUB_STEP_SUMMARY
+          echo "CODE=$code" >> "$GITHUB_ENV"
+      - name: push the report to branch checks
+        if: always()
+        run: |
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin checks; then git checkout -q -B checks origin/checks; else git checkout -q --orphan checks; fi
+          mkdir -p "checks/$N"; cp $WD/frames.md "checks/$N/frames.md"
+          git add checks; git commit -qm "frame check $N" || true
+          for i in 1 2 3; do git push -q origin checks && break; git pull -q --rebase origin checks; done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: frame-check-sheets, path: "/tmp/fc/sheets", if-no-files-found: ignore, retention-days: 7 }
+      - name: result
+        run: '[ "$CODE" = 0 ] || { echo "not OK (see checks/$N/frames.md)"; exit 1; }'
