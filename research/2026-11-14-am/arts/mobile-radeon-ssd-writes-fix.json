@@ -1,0 +1,164 @@
+{
+ "id": "mobile-radeon-ssd-writes-fix",
+ "category": "mobile",
+ "title": "RadeonドライバでSSDへの過剰書き込みを修正",
+ "summary": "AMDが26.11.1を公開。放置時とウィンドウ操作時の不具合を直しました。",
+ "image": {
+  "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2156/202/1_l.jpg",
+  "kind": "ogp",
+  "credit": "PC Watch",
+  "page": "https://pc.watch.impress.co.jp/docs/news/2156202.html"
+ },
+ "visual": {
+  "icon": "chip",
+  "kicker": "Radeon更新"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "AMDがRadeon用ソフト26.11.1を公開し、SSDへの過剰な書き込みを修正しました",
+    "放置時とウィンドウ操作時の2件を修正し、書き込み量は最大1.8GB毎時との報道があります",
+    "更新は公式サイトからできますが、ノートPCなどではメーカー提供版が推奨されています"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "AMDは11月12日（米国時間）、Radeonを動かすソフト26.11.1を公開しました。SSDへの過剰な書き込みを直す任意の更新です。"
+  },
+  {
+   "type": "h",
+   "text": "直った書き込みの不具合"
+  },
+  {
+   "type": "p",
+   "text": "AMDが修正したのは、保存先への過剰な書き込みが起きる2件の不具合です。1件は、パソコンを操作していない間に発生していました。対象はRadeon RX 7000シリーズ以降のGPU（映像処理の部品）です。書き込み先は、Windowsが入っている保存先です。"
+  },
+  {
+   "type": "p",
+   "text": "もう1件は、アプリのウィンドウを動かすときや、大きさを変えるときの不具合です。この操作中にも、同じ保存先に過剰な書き込みが起きる場合がありました。こちらの対象製品は、AMDが明示していません。"
+  },
+  {
+   "type": "h",
+   "text": "書き込み量と寿命への影響"
+  },
+  {
+   "type": "p",
+   "text": "SSD（データを保存する部品）は、書き込む量が増えるほど少しずつ寿命が縮みます。使っていないのに書き込みが続くと、消耗が早まる原因になります。"
+  },
+  {
+   "type": "p",
+   "text": "4Gamer.netは、Windowsへのログオン直後から書き込みが続く不具合を報じました。量は1秒に0.3〜0.5MB程度で、1時間では最大1.8GBです。使い方によって量は変わります。少なくとも26.10.1以降に、この不具合があったとされています。"
+  },
+  {
+   "type": "h",
+   "text": "更新できる機種と注意点"
+  },
+  {
+   "type": "p",
+   "text": "更新はRadeon RX 5000シリーズ以降の対応製品などが対象です。Radeon内蔵のRyzenも一部が対応します。AMDは、ノートPCや画面一体型PCにはメーカー提供の専用ソフトを勧めています。AMD版で不調が出た場合も、メーカー提供版を使うよう案内しています。"
+  },
+  {
+   "type": "p",
+   "text": "携帯型ゲーム機は、この更新用ソフトの対象外です。専用の更新については、機器のメーカーに確認する必要があります。"
+  },
+  {
+   "type": "p",
+   "text": "対応OSはWindows 11と64ビット版Windows 10です。どちらも21H2以降が必要ですが、使えるOSは製品によって異なります。"
+  },
+  {
+   "type": "h",
+   "text": "公式ソフトで更新する方法"
+  },
+  {
+   "type": "p",
+   "text": "更新用ソフトはAMDの公式サイトで入手できます。自分の製品に対応するものをダウンロードし、インストールします。"
+  },
+  {
+   "type": "p",
+   "text": "VideoCardzは、非公式の対策より今回の公式更新を勧めています。対策済みの人には、更新前に設定を元に戻す手順の確認を促しています。"
+  },
+  {
+   "type": "h",
+   "text": "残るゲームの不具合と対処"
+  },
+  {
+   "type": "p",
+   "text": "AMDは、一部のゲームで突然終了したり、映像処理が応答しなくなったりする問題も挙げています。RX 7000では「アサシン クリード ブラック フラッグ RE:シンクロ」が該当します。今回の更新後も残る不具合です。"
+  },
+  {
+   "type": "p",
+   "text": "RX 5000で「War Thunder」を遊ぶ際も、応答が止まる場合があります。この問題が出る人には、AMDは26.9.1の使用を勧めています。古い版に戻す際は、削除用の「AMD Cleanup Utility」の利用を推奨しています。"
+  },
+  {
+   "type": "p",
+   "text": "一部のRX 9000では「Cyberpunk 2077」でも突然終了する場合があります。条件には、別の画面での動画再生と、ゲーム内のフレーム生成の有効化があります。フレーム生成は、映像の間を補って動きを滑らかにする機能です。"
+  },
+  {
+   "type": "p",
+   "text": "同時に「FSR Upscaling」と「Radeon Anti-Lag」も有効な場合に起きます。それぞれ、画質を補う機能と操作の遅れを抑える機能です。該当する人には、ゲーム内のフレーム生成を切る対処が案内されています。"
+  },
+  {
+   "type": "p",
+   "text": "Windows 10では、更新後に「AMD Smart Access Memory」が無効になる場合もあります。これは、映像用メモリーへのアクセスを広げる機能です。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "2件",
+     "label": "直った書き込みの不具合"
+    },
+    {
+     "value": "最大1.8GB",
+     "label": "1時間の書き込み量（4Gamer.net報道）"
+    },
+    {
+     "value": "26.11.1",
+     "label": "修正版のバージョン"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "RX 7000シリーズ以降を使う人は、現在のソフトの版と26.11.1への更新を確認します。",
+    "ノートPCや画面一体型PCを使う人は、更新前にメーカー提供版を確認します。",
+    "非公式の対策をした人は、更新前に設定を元に戻す手順を確認します。",
+    "ゲームに不調がある人は、更新前に該当する既知の問題と対処を確認します。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "ゲームが安定していても、書き込みの不具合は別に考えたいところです。長時間使う人ほど、SSDの消耗を抑える修正として更新を検討する価値があります。"
+  }
+ ],
+ "source_name": "PC Watch",
+ "source_url": "https://pc.watch.impress.co.jp/docs/news/2156202.html",
+ "published": "2026-11-13",
+ "refs": [
+  {
+   "name": "PC Watch",
+   "url": "https://pc.watch.impress.co.jp/docs/news/2156202.html"
+  },
+  {
+   "name": "VideoCardz",
+   "url": "https://videocardz.com/newz/amd-releases-optional-driver-to-fix-excessive-system-drive-writes"
+  },
+  {
+   "name": "4Gamer.net",
+   "url": "https://www.4gamer.net/games/022/G002212/20261113036/"
+  },
+  {
+   "name": "AMD",
+   "url": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-11-1.html"
+  }
+ ],
+ "diagram": {
+  "src": "data/diagrams/2026-11-14-am/mobile-radeon-ssd-writes-fix.png",
+  "kind": "diagram",
+  "caption": "図解：数字で見る",
+  "credit": "星餓りなのテックニュース",
+  "type": "number"
+ }
+}
