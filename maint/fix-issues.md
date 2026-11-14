@@ -1,5 +1,4 @@
-RESULT: FIXED=0 HOLD=2 KEEP=0 NONE=0
-#14 保留：書き足し一覧の抜けを修正。本文取得と点検の問題は保留
-#19 保留：画像づくりと声の基準は修正済み。音声の切り分けとログインは保留
-実行：https://github.com/pasta0725/my-yukan/actions/runs/43577965030
-run_id: 43577965030
+RESULT: FIXED=1 PARTIAL=0 HOLD=0 KEEP=0 NONE=0 COMMIT=edb2258
+#22 直した：codex_run.py の説明に、抜けていた使用先３件を追記しました。
+実行：https://github.com/pasta0725/my-yukan/actions/runs/43578481671
+run_id: 43578481671
