@@ -12,8 +12,10 @@ A picture fits only if ALL of these are true:
    stock-photo site or social network. Check the page URL in info.md.
 2. It shows something of THIS article: the product, the screen or feature, the game, the service, a diagram or chart
    about it, the place or event. Not a different product or an older unrelated item.
+   Not a different announcement either: if the page URL in info.md is a different press release / page from the article's own
+   reference page, even from the same company, do not choose it (e.g. a store-opening release for an app article).
 3. It is not: a photo whose main subject is a person's face (a portrait, a speaker on stage, a headshot); a logo or
-   wordmark alone; an icon or app icon alone; an ad, banner, campaign or coupon graphic that is mainly text; a generic
+   wordmark alone; an icon or app icon alone; an ad, banner, campaign or coupon graphic that is mainly text (but a guide image that shows the article's own screen or feature may be chosen even if it has a lot of text); a generic
    site share image; a blurry, broken, mostly empty or "(could not load)" picture; a near-duplicate of a picture you
    already chose (then keep only the bigger one).
 When in doubt, leave it out.
