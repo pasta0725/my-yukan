@@ -89,7 +89,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-const FIXW={'11月10日には':['11月10日には'],'電源キーを押し込んだときに':['電源キーを','押し込んだときに'],'Android 17の':['Android 17の'],'Quick Shareが':['Quick Shareが'],'Xperia 1 VIIIが':['Xperia 1 VIIIが'],'色味を登録するカスタムルックが':['色味を登録する','カスタムルックが'],'入れたまま通り抜けられます':['入れたまま','通り抜けられます'],'センチ単位で位置がわかります':['センチ単位で','位置がわかります'],'改札のある約550駅すべてが':['改札のある','約550駅すべてが'],'参加できるのは':['参加','できるのは'],'AQUOS R10を使います':['AQUOS R10を','使います'],'貸し出されるシャープの':['貸し出される','シャープの']};
+const FIXW={'忘らるる都までを描きます':['忘らるる都までを','描きます'],'完結編の『リベレーション』は':['完結編の','『リベレーション』は'],'11月10日には':['11月10日には'],'電源キーを押し込んだときに':['電源キーを','押し込んだときに'],'Android 17の':['Android 17の'],'Quick Shareが':['Quick Shareが'],'Xperia 1 VIIIが':['Xperia 1 VIIIが'],'色味を登録するカスタムルックが':['色味を登録する','カスタムルックが'],'入れたまま通り抜けられます':['入れたまま','通り抜けられます'],'センチ単位で位置がわかります':['センチ単位で','位置がわかります'],'改札のある約550駅すべてが':['改札のある','約550駅すべてが'],'参加できるのは':['参加','できるのは'],'AQUOS R10を使います':['AQUOS R10を','使います'],'貸し出されるシャープの':['貸し出される','シャープの']};
 function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
   const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
@@ -257,7 +257,7 @@ const S={
    mixLine([['描かれる',C.text],['物語',C.acc]],CX,385,66);
    withEnter(enter(u,0),()=>{pic('remake_sp',150,450,370,340,1.0,0.5,0.4);card(150,800,370,250);text('1作目',335,860,40,C.acc);text('ミッドガル',335,935,50,C.text,'center',900,340);text('脱出まで',335,1000,46,C.text,'center',900,340);});
    arrowR(530,555,750,(u-Math.max(0.4,t2))/0.3,C.acc);
-   withEnter(enter(u,Math.max(0.5,t2)),()=>{pic('rebirth_sp',560,450,370,340,1.0,0.5,0.4);card(560,800,370,250);text('2作目',745,860,40,C.acc);text('忘らるる都',745,935,50,C.text,'center',900,340);text('まで',745,1000,46,C.text,'center',900,340);});
+   withEnter(enter(u,Math.max(0.5,t2)),()=>{pic('rebirth_sp',560,450,370,340,1.0,0.5,0.4);card(560,800,370,250);text('2作目',745,860,40,C.acc);text('忘らるる都',745,935,50,C.text,'center',900,340);text('までを描く',745,1000,46,C.text,'center',900,340);});
    withEnter(enter(u,0.3),()=>creditAt(SE_CREDIT,915,1085));},
  // easy: both got a mode where you start already strong
  easy(u,d,L){bg(u);mini(u);
