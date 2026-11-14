@@ -66,7 +66,7 @@ function marks(s,warn){const m=new Array(s.length).fill(C.capText);
 function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
   if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
   const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
-const FIXC={'そのうちなくなりそうです':['そのうち','なくなりそうです']};
+const FIXC={'そのうちなくなりそうです':['そのうち','なくなりそうです'],'まず試すならセールの2本':['まず試すなら','セールの2本']};
 function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
   if(g.measureText(s).width>MAXW){lines=FIXC[s]||splitLine(s);}
   for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
