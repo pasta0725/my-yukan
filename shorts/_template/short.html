@@ -59,7 +59,11 @@ function credit(t='出典：TechCrunch ほか'){abs(()=>text(t,950,362,26,C.sub,
 // ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
 function marks(s,warn){const m=new Array(s.length).fill(C.capText);
   const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
-  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum); if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum);
+  // numbers inside product names (PS5, Switch 2, iPhone 17, GPT-6, M5) stay plain: only values (price, date, count) are highlighted (2026-11-14 user decision)
+  const prod=/[A-Za-z][A-Za-z+]*[ -]?([0-9][0-9.]*)(?![0-9.,万円倍月日秒%年人台本件回時分])/g;let p;
+  while((p=prod.exec(s))){const st=p.index+p[0].length-p[1].length;for(let i=st;i<p.index+p[0].length;i++)m[i]=C.capText;}
+  if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
 function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
   if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
   const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
