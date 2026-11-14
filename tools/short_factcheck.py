@@ -5,7 +5,8 @@ Replaces the Claude Sonnet sub-agent of tools/auto_short.md 3-3. Used by .github
       writes <job dir>/video.txt (what the video says: script say+show, captions, title, description, tags),
       <job dir>/refs.txt (the reference texts) and copies the task. Paths may be "<branch>:<path>" (e.g. work:x/spec.json).
       refs: for every ED/id -> data/<ED>.json article (main), research/<ED>/<id>.txt (branch research),
-            factcheck/<ED>/<id>.txt (branch factcheck). extra: more texts, e.g. fetched:fetched/<x>/page.txt
+            factcheck/<ED>/<id>.txt (branch factcheck). extra: more texts, e.g. fetched:fetched/<x>/3.txt, or a folder
+            fetched:fetched/<x>/ (every .txt in it). Empty extra = fetched/<name>/ (or <name without rina_>) if it is there.
   python3 tools/short_factcheck.py report <job dir> <name> <out.md>
       reads <job dir>/result.json (written by Codex) and writes the Japanese report:
       first line 「RESULT: OK」|「RESULT: LOOK」|「RESULT: FAILED」, then 「- LOOK 場所｜何が｜正しい値｜出どころ」.
@@ -26,6 +27,16 @@ def read(spec):
         return r.stdout.decode("utf-8", "replace") if r.returncode == 0 else ""
     p = spec if os.path.isabs(spec) else os.path.join(ROOT, spec)
     return open(p, encoding="utf-8", errors="replace").read() if os.path.exists(p) else ""
+
+
+def ls(branch, d):
+    subprocess.run(["git", "fetch", "-q", "origin", f"+{branch}:refs/remotes/origin/{branch}"], cwd=ROOT, capture_output=True)
+    return git_ls(branch, d)
+
+
+def git_ls(branch, d):
+    r = subprocess.run(["git", "ls-tree", "-r", "--name-only", f"origin/{branch}", "--", d], cwd=ROOT, capture_output=True, text=True)
+    return [x for x in r.stdout.split("\n") if x]
 
 
 def flat(x):
@@ -84,7 +95,21 @@ def prep(a):
         for br in ("research", "factcheck"):
             t = read(f"{br}:{br}/{ed}/{aid}.txt")
             if t: refs.append((f"{br}/{ed}/{aid}.txt（元記事・参考記事のページ本文）", t))
-    for x in (a.extra or "").split():
+    extra = (a.extra or "").split()
+    if not extra:  # pages fetched for this short with fetch-to-branch.yml (folder <name> or <name without rina_>)
+        for f in (a.name, a.name.replace("rina_", "", 1)):
+            if ls("fetched", f"fetched/{f}/"): extra.append(f"fetched:fetched/{f}/"); break
+    for x in extra:
+        m = re.match(r"^([A-Za-z0-9_.-]+):(.+/)$", x)
+        if m:  # a folder on a branch: every .txt in it (fetch-to-branch.yml: <i>.txt + index.txt with the URLs)
+            b, d = m.groups(); idx = dict(l.split(" ", 1) for l in read(f"{b}:{d}index.txt").splitlines() if " " in l)
+            got = 0
+            for f in ls(b, d):
+                if f.endswith(".txt") and not f.endswith("index.txt"):
+                    t = read(f"{b}:{f}"); k = os.path.basename(f)[:-4]
+                    if t.strip(): refs.append((f"{f}（{idx.get(k, '').strip() or '取得したページ'}）", t)); got += 1
+            if not got: missing.append(x)
+            continue
         t = read(x)
         if t: refs.append((x, t))
         else: missing.append(x)

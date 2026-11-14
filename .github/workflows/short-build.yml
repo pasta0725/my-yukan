@@ -197,7 +197,7 @@ jobs:
           if [ $code = 0 ] && [ -s short.mp4 ]; then
             d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 short.mp4)
             { echo "RESULT: OK"; echo; echo "書き出し：${d}秒"; grep -m3 "PAGE ERROR" /tmp/render.log | sed 's/^/- LOOK 書き出し｜ページのエラー｜/;s/$/｜short.html/'; } > /tmp/rep/render.md
-            grep -q "PAGE ERROR" /tmp/render.log && sed -i '1s/OK/LOOK/' /tmp/rep/render.md
+            if grep -q "PAGE ERROR" /tmp/render.log; then sed -i '1s/OK/LOOK/' /tmp/rep/render.md; fi
           else printf 'RESULT: LOOK\n- LOOK 書き出し｜render_par.js が失敗（%s）｜Actions の画面｜-\n' "$code" > /tmp/rep/render.md; exit 1; fi
       - name: contact sheet and the video to the branch work
         run: |
