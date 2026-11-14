@@ -3,7 +3,7 @@ Codex to save Claude usage, quality must not drop). Runs on GitHub Actions. Neve
 
   python3 tools/maint_issues.py list <out dir> <state.json>
       open issues labeled AIからの報告 -> <out dir>/issues/<n>.md (body + comments, as data) and <out dir>/todo.json.
-      An issue is skipped when it is on hold (body or a comment says 保留 / ユーザー待ち) and nothing new came after the last
+      An issue is skipped when it is on hold (a comment or the body has a line starting 保留： or says ユーザー待ち) and nothing new came after the last
       hold mark (and after the last time this job looked at it, state.json). Prints todo=<n,n,...> (empty: nothing to do).
   python3 tools/maint_issues.py guard <repo copy> <base sha> <todo.json> <out dir>
       after Codex: builds the patch, applies the safety limits, re-runs the checks, and writes <out dir>/patch.diff and
@@ -18,7 +18,7 @@ import datetime, json, os, re, subprocess, sys
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "pasta0725/my-yukan")
 LABEL = "AIからの報告"
-HOLD = re.compile(r"保留|ユーザー待ち")
+HOLD = re.compile(r"(^|\n)\s*\**保留[：:]|ユーザー待ち")  # a hold comment starts with 保留：
 MAX_LINES, MAX_FILES = 200, 10
 # never changed by the automatic fix (secrets handling, the Codex setup, this job itself)
 FORBIDDEN = re.compile(r"^(\.github/actions/|\.github/workflows/codex-fix-issues\.yml$|tools/maint_issues\.py$|tools/codex/fix_issues\.md$|\.gitignore$)")
@@ -49,8 +49,9 @@ def cmd_list(out, state_path):
         upd = ts(it["updated_at"])
         last_hold = max(marks) if marks else None
         last_seen = ts(seen[str(n)]) if str(n) in seen else None
-        newer = [x for x in (last_hold, last_seen) if x]
-        if newer and upd <= max(newer) + datetime.timedelta(minutes=5):
+        # a label added right after the hold mark is not news (60 s); last_seen is taken after our own comment
+        newer = [x for x in (last_hold and last_hold + datetime.timedelta(seconds=60), last_seen) if x]
+        if newer and upd <= max(newer):
             print(f"skip #{n} (on hold / already seen, no update)"); continue
         new_after = max(newer) if newer else None
         lines = [f"# Issue #{n}: {it['title']}", f"作成 {it['created_at']} / 更新 {it['updated_at']}",
