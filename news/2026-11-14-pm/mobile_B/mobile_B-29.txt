@@ -1,0 +1,45 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2156192.html
+TITLE: 「PowerShell 7.7」が一般公開 ～.NET 11ベース、セキュリティ強化や新コマンドを追加／2年サポートの「標準期間サポート」（STS）リリース
+SITE: 窓の杜
+PUBLISHED: 2026-11-13 16:13 (page: 2026-11-13T16:13:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2156/192/powershell.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/192/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0HJ4Y74GD.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「PowerShell 7.7」が一般公開 ～.NET 11ベース、セキュリティ強化や新コマンドを追加
+2年サポートの「標準期間サポート」（STS）リリース
+樽井 秀人
+2026年11月13日 16:13
+「PowerShell 7.7」
+米Microsoftは11月10日（現地時間）、「PowerShell 7.7」を一般公開した。
+「.NET 11」
+をベースとした『標準期間サポート』（STS）リリースで、セキュリティの強化や新しいコマンドの追加、エンジンやリモート処理、対話型シェルの信頼性向上に重点が置かれている。
+おもな改善は、以下の通り。
+一時フォルダーに一意な名前のディレクトリを作成する［New-TemporaryDirectory］コマンドレットを追加
+［Join-Path］コマンドレットに［-Extension］パラメーターを追加
+［Format-Table］［Format-List］［Format-Custom］コマンドレットに［-ExcludeProperty］パラメーターを追加
+［Get-AuthenticodeSignature］コマンドレットが［SubjectAlternativeName］プロパティを返すように
+［WildcardPattern］クラスに［ToRegex()］メソッドを追加
+［New-Guid］コマンドレットが既定でバージョン 7（時刻順に並べられる）のUUIDを生成するように
+また、［Microsoft.PowerShell.PSResourceGet］［Microsoft.PowerShell.Archive］モジュールも更新された。
+セキュリティ面では、制約付き言語モード（Constrained Language Mode）の保護を強化したほか、リモート処理での引数・フレームの検証を厳格化。更新可能なヘルプの展開時の検証も厳しくなった。［Test-Json］は、明示的に指定しない限り外部のスキーマ参照を解決しなくなっている。
+そのほかにも、ユーザーごとの「powershell.config.json」が破損していたり、読み取れなかったりすると起動できなくなる問題が解決されたほか、タブ補完や［Resolve-Path］［Get-Command］コマンドレットなどの不具合が修正された。テレメトリはWindowsの［診断とフィードバック］の設定に従うようになった。
+なお、本バージョンにはいくつかの破壊的変更が含まれている。本番環境のスクリプトを更新する前に確認しておきたい。
+［New-Guid］が既定でバージョン 4ではなくバージョン 7のUUIDを生成。完全にランダムなGUIDが必要な場合は［[guid]::NewGuid()］メソッドを使う
+［Format-Table］［Format-List］［Format-Custom］コマンドレットの［-Property］パラメーターに、nullや空の値を指定できなくなった
+nullや空の引数の検証で［System.ArgumentException］例外がスローされるように
+［Where-Object］コマンドレットの演算子スイッチに明示的なfalse値（［-EQ:$false］など）を指定した場合の扱いを修正
+更新通知機能の削除、［Export-Csv］コマンドレットで［-Append］と［-NoHeader］パラメーターを同時に指定できなくなるなど、既存のスクリプトに影響しうる動作の変更もある。
+「PowerShell」は「GitHub」でホストされているオープンソースプロジェクトで、ライセンスは「MIT」。現在、プロジェクトの
+リリースページ
+から無償でダウンロードできる。「WinGet」にも登録済みで、以下のコマンドでインストールできる。
+winget install --id Microsoft.PowerShell --source winget
+なお、Windows版は本バージョンからMSIインストーラーの配布が終了し、MSIXが主要なインストール方式となった（
+参考記事
+）。MSIXでは全ユーザーやサービスアカウント向けのインストールなどに制限が残っており、Microsoftは該当する環境ではMSIを提供するv7.6の継続利用を案内している。
+Amazonで購入
+「PowerShell」関連商品
+Amazonで購入

@@ -1,0 +1,140 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2156215.html
+TITLE: 「PostgreSQL」でセキュリティアップデート、「PostgreSQL 14」は最後の更新に／52件の脆弱性と、ここ数カ月に報告された140件を超える不具合が修正
+SITE: 窓の杜
+PUBLISHED: 2026-11-13 17:42 (page: 2026-11-13T17:42:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2156/215/postgresql.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/215/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2153/596/list.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0HLQ85HWK.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「PostgreSQL」でセキュリティアップデート、「PostgreSQL 14」は最後の更新に
+52件の脆弱性と、ここ数カ月に報告された140件を超える不具合が修正
+樽井 秀人
+2026年11月13日 17:42
+「PostgreSQL」にセキュリティアップデート
+オープンソースのリレーショナルデータベース（RDB）システム「PostgreSQL」で11月12日、セキュリティアップデートが実施された。52件の脆弱性と、ここ数カ月に報告された140件を超える不具合が修正されている。
+各系列で提供された修正版は、以下の通り。旧バージョンの利用者には更新が推奨される。次期メジャーバージョン「PostgreSQL 19」でも、2つ目のリリース候補版（RC 2）がリリースされている。
+PostgreSQL 18.7
+PostgreSQL 17.12
+PostgreSQL 16.16
+PostgreSQL 15.20
+PostgreSQL 14.25
+本リリースで修正された脆弱性は、以下の52件（括弧内は「CVSS 3.1」の基本値）。最大深刻度は「8.8」で、うち32件がこれに該当する。最悪の場合は任意のコードが実行されるおそれがある。
+CVE-2026-6460
+：Type confusion after ALTER ... SET DATA TYPE executes arbitrary code（8.8）
+CVE-2026-6467
+：Extension script schema mishandling executes arbitrary SQL（7.2）
+CVE-2026-14661
+：dblink and subscriptions can append to arbitrary files（8.1）
+CVE-2026-16237
+：INSERT ... ON CONFLICT can read or modify rows despite auto-updatable view WHERE condition（5.4）
+CVE-2026-16240
+：pg_basebackup can use backup manifest content as a format string（3.7）
+CVE-2026-18447
+：Output parameter type confusion executes arbitrary code（8.8）
+CVE-2026-116303
+：Foreign key and JSON conversions bypass EXECUTE privilege on cast functions（3.1）
+CVE-2026-116304
+：Parallel RECORD typmod use-after-free executes arbitrary code（8.8）
+CVE-2026-116306
+：Composite-type change during field assignment executes arbitrary code（8.8）
+CVE-2026-116307
+：plperl prepared-query use-after-free executes arbitrary code（8.8）
+CVE-2026-116308
+：dict_int reads beyond zero-length tokens（4.3）
+CVE-2026-116309
+：plperl blessed-reference type confusion may execute arbitrary code（8.8）
+CVE-2026-116310
+：COPY error context uses freed field storage（4.3）
+CVE-2026-116311
+：DROP OWNED can remove restrictive row security policies from non-owned tables（5.4）
+CVE-2026-116312
+：MERGE can place the wrong row in a trigger transition table（5.4）
+CVE-2026-116313
+：vacuumdb --missing-stats-only lets a database owner execute code as the vacuumdb user（7.2）
+CVE-2026-116314
+：pg_restore executes arbitrary code due to missing non-plain archive validation（8.8）
+CVE-2026-116315
+：tsvector_delete() heap buffer overflow executes arbitrary code（8.8）
+CVE-2026-116316
+：Security-restricted operations can create types in pg_temp, which later queries of the session find（8.8）
+CVE-2026-116317
+：ts_rank_cd() heap buffer overflow may execute arbitrary code（8.8）
+CVE-2026-116318
+：pg_dump not-null constraint name allows SQL injection（8.8）
+CVE-2026-116319
+：plperl reentrant return_next() use-after-free executes arbitrary code（8.8）
+CVE-2026-116320
+：plperl array and hash conversion use-after-free executes arbitrary code（8.8）
+CVE-2026-116321
+：Unterminated name value discloses server memory（4.3）
+CVE-2026-116322
+：Pre-authentication cancel request can leak a spinlock（5.3）
+CVE-2026-116323
+：pltcl reentrant result conversion use-after-free executes arbitrary code（8.8）
+CVE-2026-116325
+：reindexdb index name quoting allows SQL injection（8）
+CVE-2026-116326
+：plperl tied-object exceptions follow stale sigjmp_buf（8.8）
+CVE-2026-116327
+：security_barrier analysis can expose hidden values through indirect expressions（4.3）
+CVE-2026-116328
+：Generation memory context integer wraparound executes arbitrary code（8.8）
+CVE-2026-116329
+：Statistics import type confusion executes arbitrary code（8.8）
+CVE-2026-116330
+：pg_dump tar restore.sql fails to block psql command injection（8.8）
+CVE-2026-116331
+：Min/max aggregate type confusion executes arbitrary code（8.8）
+CVE-2026-116332
+：Portal setup use-after-free executes arbitrary code（8.8）
+CVE-2026-116333
+：Parallel B-tree array scan reads beyond array bounds（6.5）
+CVE-2026-116335
+：Commutator or negator result-type confusion executes arbitrary code（8.8）
+CVE-2026-116336
+：REINDEX CONCURRENTLY does not block DROP INDEX during index functions（8.8）
+CVE-2026-120139
+：Tuple-size integer wraparound executes arbitrary code（8.8）
+CVE-2026-120141
+：Materialized set-returning function type confusion executes arbitrary code（8.8）
+CVE-2026-120142
+：Dropped-column type confusion executes arbitrary code（8.8）
+CVE-2026-120143
+：Transition-table cursor use-after-free executes arbitrary code（8.8）
+CVE-2026-120144
+：Type-cache invalidation gap executes arbitrary code（8.8）
+CVE-2026-120145
+：Logical replication can write to subscriber system catalogs, executing arbitrary code（8.8）
+CVE-2026-120146
+：REASSIGN OWNED bypasses role SET and CREATEDB checks（4.3）
+CVE-2026-120147
+：dblink reentrant disconnect use-after-free executes arbitrary code（8.8）
+CVE-2026-120148
+：Extended-statistics pseudo-type confusion executes arbitrary code（8.1）
+CVE-2026-120149
+：FDW batch-insert mismatch executes arbitrary code（8.8）
+CVE-2026-120150
+：Expanded-record domain-check use-after-free executes arbitrary code（8.8）
+CVE-2026-120151
+：plpgsql record-field type confusion executes arbitrary code（8.8）
+CVE-2026-120152
+：pg_show_all_settings() use-after-free discloses memory（4.3）
+CVE-2026-120153
+：Extension-script substitutions allow SQL injection through object names（7.2）
+CVE-2026-120154
+：INSERT ... ON CONFLICT can read rows despite row security policies（4.3）
+今回のマイナーアップデートは、データベースのダンプや再読み込み、［pg_upgrade］の実行は不要。基本的にサーバーを停止し、バイナリを更新することで適用できる。ただし、利用状況によっては、更新後にインデックスの再構築などが必要となる。増分バックアップを利用している場合は、新たに完全バックアップを取得し、以後の増分バックアップの基点にすることが推奨されている。詳しくはリリース告知やリリースノートを確認してほしい。
+なお、「PostgreSQL 14」は今回が最後のリリースとなり、サポートが終了した。今後はセキュリティ修正や不具合修正が提供されないため、本番環境で運用している場合は、サポート中の新しいバージョンへの移行を計画したい。
+次期バージョン「PostgreSQL 19」は例年よりリリースが遅れているが、追加のリリース候補版が必要になるような問題が見つからない限り、11月19日に正式リリースされるとのこと。
+関連記事
+生成AI
+業界動向
+“AI”のせいで「PostgreSQL 19」の公開が11月にずれ込み？【11月12日追記】
+「PostgreSQL」はWindows/macOS/Linux/BSD/Solarisなどに対応しており、現在、公式サイト「postgresql.org」から無償でダウンロード可能。Windows版インストーラーは64bit環境にのみ対応しており、EDBのWebサイトから入手できる。
+Amazonで購入
+「PostgreSQL」関連商品
+Amazonで購入
