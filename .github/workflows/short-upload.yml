@@ -70,7 +70,7 @@ jobs:
           done
           echo "upload job: $j"
           for k in 1 2 3 4 5 6; do   # the log is ready a little after the job ends
-            gh api "repos/$REPO/actions/jobs/$1/logs" > /tmp/ylog.txt 2>/tmp/ylog.err || true
+            curl -sSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/$REPO/actions/jobs/$1/logs" > /tmp/ylog.txt 2>/tmp/ylog.err || true
             grep -qE 'video: |check ok|Error|FAILED' /tmp/ylog.txt && break; echo "log not ready ($(head -c 200 /tmp/ylog.err))"; sleep 10
           done
           id=$(grep -oE 'video: [A-Za-z0-9_-]{11}' /tmp/ylog.txt | head -1 | cut -d' ' -f2)
