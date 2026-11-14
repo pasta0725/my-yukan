@@ -1,5 +1,6 @@
 """Run `codex exec` once per job folder, a few at a time (2026-11-14, the user's request: move work from Claude to Codex).
-Used by codex-fill.yml, codex-factcheck.yml, official-images.yml (codex_pick) and codex-write.yml. Runs on GitHub Actions.
+GitHub の自動作業で使用：codex-fill.yml、codex-factcheck.yml、official-images.yml（codex_pick）、
+codex-write.yml、codex-fix-issues.yml、codex-weekly-review.yml、codex-short-factcheck.yml。
 
 usage: python3 tools/codex_run.py <task.md> <jobs dir> [--files f1,f2] [--parallel 2] [--timeout 600]
                                   [--model gpt-6-astra] [--effort high] [--image story.jpg] [--search]
