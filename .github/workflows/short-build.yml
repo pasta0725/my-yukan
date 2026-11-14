@@ -39,8 +39,10 @@ jobs:
       script: "${{ steps.plan.outputs.script }}"
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5   # lipsync_ja.py runs with python3 -I (no user site): packages must be in the main site
+        with: { python-version: "3.12" }
       - uses: actions/cache@v4
-        with: { path: ~/.cache/pip, key: "pip-short-pyopenjtalk-0.4.1" }
+        with: { path: ~/.cache/pip, key: "pip-short-pyopenjtalk-0.4.1-py312" }
       - name: tools
         run: |
           sudo apt-get install -y -qq ffmpeg >/dev/null
