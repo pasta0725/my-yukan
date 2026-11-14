@@ -6,7 +6,7 @@ name: codex-fix-issues
 #          clear safe problems and proposes the issue comments. tools/maint_issues.py guard then limits the change (<=200 lines,
 #          <=10 files, no deleted files, nothing about secrets / .github/actions / this job) and re-runs the checks (Python
 #          compile, workflow YAML, JSON, Codex's own check commands). Any failure turns every fix into 保留 (no change pushed).
-# 3 apply: pushes the patch to main (fetch + rebase, never force), posts the comments, closes the fixed issues, and writes the
+# 3 apply: pushes the patch to main (fetch + rebase, never force), posts the comments, closes the fixed issues (partial ones stay open with 保留), and writes the
 #          Japanese report (RESULT line + one line per issue) to the job summary and to the branch "maint" (maint/fix-issues.md).
 on:
   workflow_dispatch:
@@ -88,13 +88,13 @@ jobs:
             git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
             BASE=$(cat /tmp/out/base.txt); git fetch -q --depth=1 origin "$BASE"; git checkout -q "$BASE"
             git apply --index /tmp/out/patch.diff   # made against the same commit, so it always applies; rebased below
-            NUMS=$(python3 -c "import json;print(' '.join('#%d'%d['number'] for d in json.load(open('$D'))['decisions'] if d['decision']=='fixed'))")
-            python3 -c "import json;print('AI報告の自動修正（Codex）：$NUMS');print();[print('#%d %s'%(d['number'],d['summary'])) for d in json.load(open('$D'))['decisions'] if d['decision']=='fixed']" > /tmp/msg.txt
+            NUMS=$(python3 -c "import json;print(' '.join('#%d'%d['number'] for d in json.load(open('$D'))['decisions'] if d['decision'] in ('fixed','partial')))")
+            python3 -c "import json;print('AI報告の自動修正（Codex）：$NUMS');print();[print('#%d %s'%(d['number'],d['summary'])) for d in json.load(open('$D'))['decisions'] if d['decision'] in ('fixed','partial')]" > /tmp/msg.txt
             git commit -q -F /tmp/msg.txt
             ok=""
             for i in 1 2 3 4 5; do git fetch -q origin main && git rebase -q origin/main && git push -q origin HEAD:main && { ok=1; break; }; git rebase --abort 2>/dev/null || true; sleep $((i*5)); done
             if [ -n "$ok" ]; then COMMIT=$(git rev-parse --short HEAD); else
-              python3 -c "import json;p='$D';d=json.load(open(p));[x.update(decision='none',summary='直したが main に push できなかった（次回もう一度）') for x in d['decisions'] if x['decision']=='fixed'];json.dump(d,open(p,'w'),ensure_ascii=False)"
+              python3 -c "import json;p='$D';d=json.load(open(p));[x.update(decision='none',summary='直したが main に push できなかった（次回もう一度）') for x in d['decisions'] if x['decision'] in ('fixed','partial')];json.dump(d,open(p,'w'),ensure_ascii=False)"
             fi
           fi
           if [ -f "$D" ]; then
@@ -104,7 +104,7 @@ jobs:
           repo = os.environ["REPO"]
           foot = "\n\n---\n_自動の保守（Codex・GitHub Actions）" + (f"　修正 {commit}" if commit != "-" else "") + f"　{os.environ['RUN']}_"
           for x in d["decisions"]:
-              if x["decision"] not in ("fixed", "hold") or not x["comment"]: continue
+              if x["decision"] not in ("fixed", "partial", "hold") or not x["comment"]: continue
               open("/tmp/c.txt", "w", encoding="utf-8").write(x["comment"] + foot)
               subprocess.run(["gh", "api", f"repos/{repo}/issues/{x['number']}/comments", "-F", "body=@/tmp/c.txt", "--silent"], check=False)
               if x["decision"] == "fixed":

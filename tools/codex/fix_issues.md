@@ -13,10 +13,11 @@ For each issue, choose ONE:
   not match what the code does). Make the change in this folder, keep it minimal (all fixes together under 200 changed
   lines, at most 10 files), and verify it: run the script you changed on a small real example or with its own check
   mode, `python3 -m py_compile` for Python, and for a workflow make sure the YAML still parses and the steps are right.
-  An issue that lists several points counts as "fixed" only if you fixed every point that needs a fix; otherwise
-  fix the safe points and choose "hold" with the reason for the rest (your comment says what you fixed).
+  An issue that lists several points counts as "fixed" only if you fixed every point that needs a fix.
   If the problem was already fixed in the repository (check the code), choose "fixed" and say where it is fixed.
-- "hold": everything else: a big change to how things work, anything that needs the user's decision (rules, style,
+- "partial": you changed files for some points (they will be pushed) and the other points must wait. The issue stays
+  open. Use this whenever you changed files for an issue that is not completely fixed.
+- "hold" (you changed NO file for this issue): everything else: a big change to how things work, anything that needs the user's decision (rules, style,
   money, schedules, new services, what to publish), an unclear cause, anything about passwords, keys, tokens,
   logins, payments or secrets, external sites that block access, or a fix you could not verify.
 - "keep": only for an issue already on hold (状態: 保留中) whose new comments (【新しい】) only add more examples of the
@@ -31,7 +32,7 @@ or changes files (site_dist/, data/, caches), restore them (`git checkout -- <pa
 Write _fix/result.json (and nothing else in _fix/):
 {
  "issues": [
-  {"number": 21, "decision": "fixed" | "hold" | "keep",
+  {"number": 21, "decision": "fixed" | "partial" | "hold" | "keep",
    "summary": "one short Japanese line for the user's report (what was done or why it waits)",
    "comment": "the Japanese comment to post on the issue"}
  ],
@@ -39,8 +40,9 @@ Write _fix/result.json (and nothing else in _fix/):
             must not leave changed files, e.g. \"python3 -m py_compile tools/x.py\" or \"python3 tools/x.py --selftest\""]
 }
 Comment style (Japanese, plain words, 2–6 lines):
-- fixed: 「直しました：」+ what was wrong, what you changed (file names), how you verified it. If some points stay open,
-  say which and why.
+- fixed: 「直しました：」+ what was wrong, what you changed (file names), how you verified it.
+- partial: must start with 「保留：」 + why the rest waits, then 「直したこと：」 + what you changed and how you verified it.
 - hold: must start with 「保留：」 + the reason in one line, then what would be needed (the user's decision, a bigger
   change, ...), and your suggested fix if you have one. Do not repeat a hold reason that the issue already has.
-Every issue in _fix/todo.json must appear exactly once in "issues".
+Every issue in _fix/todo.json must appear exactly once in "issues". Never say in a comment that something was changed
+unless the decision is "fixed" or "partial" (only those changes are pushed; with "hold" nothing is pushed).

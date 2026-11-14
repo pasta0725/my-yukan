@@ -51,7 +51,7 @@
 - 仕組み（指示文・ワークフロー・ルール文書）は自分で変えず、報告だけにする。トークンや鍵の中身は書かない。日本語で書く。
 - 報告は予定作業「AI報告の確認と修正」（毎日 7:43・17:43）が処理する。2026-11-14〜 本体は Codex（codex-fix-issues.yml、GPT-6.1 Sol・high）で、予定作業はこれを動かして待ち、ブランチ maint の maint/fix-issues.md（1行目 RESULT、1件1行）を伝えるだけ。
   - 直すのは原因がはっきりした小さく安全なもの（ワークフローやスクリプトの小さな誤り、ルール文書の食い違い）。大きな変更・ユーザーの判断が要るもの・原因不明・鍵やログインが関わるものは「保留：理由」とコメントして残す。保留中で新しいコメントが無いものは読まない（RESULT: NONE）。
-  - 安全の決まり（tools/maint_issues.py）：Codex にはネットも GitHub の鍵も渡さない。変更は200行・10ファイルまで、ファイルの削除・.github/actions・鍵の扱い・この仕組み自身は変えない。Python の確認・YAML・JSON と Codex の確かめのコマンドが全部通ったときだけ main に push し、だめなら全部「保留」にする。コメントと Issue を閉じるのはワークフローが行う。指示文は tools/codex/fix_issues.md。
+  - 安全の決まり（tools/maint_issues.py）：Codex にはネットも GitHub の鍵も渡さない。変更は200行・10ファイルまで、ファイルの削除・.github/actions・鍵の扱い・この仕組み自身は変えない。Python の確認・YAML・JSON と Codex の確かめのコマンドが全部通ったときだけ main に push し、だめなら全部「保留」にする。一部だけ直したもの（partial）は直した分を push し、残りは「保留：」で開けたまま。コメントと Issue を閉じるのはワークフローが行う。指示文は tools/codex/fix_issues.md。
 
 ## Xの声（Grok Bot）
 - build_edition.py writes data/x-todo.json (today's story list) every run. Commit it with the edition.

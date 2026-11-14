@@ -7,7 +7,8 @@ Codex to save Claude usage, quality must not drop). Runs on GitHub Actions. Neve
       hold mark (and after the last time this job looked at it, state.json). Prints todo=<n,n,...> (empty: nothing to do).
   python3 tools/maint_issues.py guard <repo copy> <base sha> <todo.json> <out dir>
       after Codex: builds the patch, applies the safety limits, re-runs the checks, and writes <out dir>/patch.diff and
-      <out dir>/decisions.json. If any limit or check fails, every "fixed" becomes "hold" and no patch is written.
+      <out dir>/decisions.json. If any limit or check fails, every "fixed"/"partial" becomes "hold" and no patch is written.
+      decisions: fixed (pushed, closed), partial (pushed, stays open with 保留), hold, keep (no comment), none.
   python3 tools/maint_issues.py report <decisions.json or -> <todo.json or -> <run url> <commit or -> <out.md>
       the Japanese report: first line RESULT: ..., then one line per issue.
   python3 tools/maint_issues.py seen <state.json> <decisions.json>
@@ -79,7 +80,7 @@ def cmd_guard(repo, base, todo_path, out):
         try: n = int(r.get("number"))
         except Exception: continue
         if n not in todo: continue
-        d = r.get("decision") if r.get("decision") in ("fixed", "hold", "keep") else "hold"
+        d = r.get("decision") if r.get("decision") in ("fixed", "partial", "hold", "keep") else "hold"
         if d == "keep" and not todo[n]["on_hold"]: d = "hold"
         dec[n] = {"number": n, "title": todo[n]["title"], "decision": d,
                   "comment": str(r.get("comment") or "").strip()[:3000], "summary": str(r.get("summary") or "").strip()[:200]}
@@ -107,7 +108,7 @@ def cmd_guard(repo, base, todo_path, out):
     if len(files) > MAX_FILES: problems.append(f"ファイルが多すぎる（{len(files)}個）")
     changed_lines = [l for l in patch.splitlines() if l[:1] in "+-" and not l.startswith(("+++", "---"))]
     if any(SECRETISH.search(l) for l in changed_lines): problems.append("鍵・トークンの扱いに関わる行の変更")
-    fixed = [d for d in dec.values() if d["decision"] == "fixed"]
+    fixed = [d for d in dec.values() if d["decision"] in ("fixed", "partial")]
     if files and not fixed: problems.append("直した件が無いのにファイルが変わっている")
     # checks: python compile, workflow YAML, JSON, and the commands Codex used to verify its fix
     log = []
@@ -138,11 +139,11 @@ def cmd_guard(repo, base, todo_path, out):
     if problems:
         for d in fixed:
             d["decision"] = "hold"
-            d["comment"] = ("保留：自動の安全確認で止めました（" + "／".join(problems[:3]) + "）。直し方の案：\n\n" + d["comment"])[:3000]
+            d["comment"] = ("保留：自動の安全確認で止めました（" + "／".join(problems[:3]) + "）。下の直し案は main に反映していません：\n\n" + d["comment"])[:3000]
             d["summary"] = "自動の安全確認で止めた：" + problems[0]
         patch = ""
-    for d in dec.values():  # a hold comment always starts with 保留： so the next run skips it
-        if d["decision"] == "hold" and not d["comment"].startswith("保留"): d["comment"] = "保留：" + d["comment"]
+    for d in dec.values():  # a hold / partial comment always starts with 保留： so the next run skips it
+        if d["decision"] in ("hold", "partial") and not d["comment"].startswith("保留"): d["comment"] = "保留：" + d["comment"]
     open(os.path.join(out, "patch.diff"), "w", encoding="utf-8").write(patch)
     json.dump({"decisions": sorted(dec.values(), key=lambda x: x["number"]), "problems": problems, "lines": total,
                "files": [p[-1] for _, *p in files], "checks": log, "codex_error": res.get("error", "")},
@@ -158,9 +159,9 @@ def cmd_report(dec_path, todo_path, url, commit, out):
         lines = ["RESULT: ERROR", "Codex の作業が途中で止まりました（何も変えていません）。"]
     else:
         D = json.load(open(dec_path))["decisions"]
-        c = {k: sum(1 for d in D if d["decision"] == k) for k in ("fixed", "hold", "keep", "none")}
-        lines = [f"RESULT: FIXED={c['fixed']} HOLD={c['hold']} KEEP={c['keep']} NONE={c['none']}" + (f" COMMIT={commit}" if commit != "-" else "")]
-        word = {"fixed": "直した", "hold": "保留", "keep": "保留のまま", "none": "未処理"}
+        c = {k: sum(1 for d in D if d["decision"] == k) for k in ("fixed", "partial", "hold", "keep", "none")}
+        lines = [f"RESULT: FIXED={c['fixed']} PARTIAL={c['partial']} HOLD={c['hold']} KEEP={c['keep']} NONE={c['none']}" + (f" COMMIT={commit}" if commit != "-" else "")]
+        word = {"fixed": "直した", "partial": "一部直した（残りは保留）", "hold": "保留", "keep": "保留のまま", "none": "未処理"}
         for d in D: lines.append(f"#{d['number']} {word[d['decision']]}：{d['summary'] or d['title']}")
     lines.append(f"実行：{url}")
     open(out, "w", encoding="utf-8").write("\n".join(lines) + "\n")
@@ -172,7 +173,7 @@ def cmd_seen(state_path, dec_path):
     state = json.load(open(state_path)) if os.path.exists(state_path) else {}
     seen = state.setdefault("seen", {})
     for d in json.load(open(dec_path))["decisions"]:
-        if d["decision"] in ("hold", "keep"):
+        if d["decision"] in ("hold", "keep", "partial"):
             seen[str(d["number"])] = gh(f"repos/{REPO}/issues/{d['number']}")["updated_at"]
     json.dump(state, open(state_path, "w"), ensure_ascii=False, indent=1)
 
