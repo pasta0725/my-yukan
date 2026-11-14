@@ -99,8 +99,9 @@ def prep(a):
 def report(job, name, out):
     meta = json.load(open(os.path.join(job, "inputs.json"), encoding="utf-8")) if os.path.exists(os.path.join(job, "inputs.json")) else {}
     log = open(os.path.join(job, "codex.log"), encoding="utf-8", errors="replace").read() if os.path.exists(os.path.join(job, "codex.log")) else ""
-    used = (re.findall(r"(?m)^model:\s*(\S+)", log) or ["?"])[-1]
-    eff = (re.findall(r"(?m)^reasoning effort:\s*(\S+)", log) or ["?"])[-1]
+    used = (re.findall(r"(?m)^model:\s*(\S+)", log) or re.findall(r"(?m)^--- attempt \d+ model=(\S+)", log) or ["?"])[-1]
+    if used == "None": used = "アカウントの既定のモデル（指定のモデルは断られた）"
+    eff = (re.findall(r"(?m)^reasoning effort:\s*(\S+)", log) or [os.environ.get("EFFORT", "?")])[-1]
     res, code = None, 2
     try:
         res = json.load(open(os.path.join(job, "result.json"), encoding="utf-8"))

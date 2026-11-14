@@ -13,6 +13,12 @@ on:
       gpu: {description: "GPUs to try in order (space separated, ':hm' = --high-mem). A100:hm is the 80GB A100", default: "A100:hm G4"}
       wait: {description: "minutes to keep retrying Colab before using Modal", default: "20"}
       fallback: {description: "use Modal when Colab gives no clip (yes/no)", default: "yes"}
+  workflow_call:   # 2026-11-14: also run as one step of short-build.yml (same inputs)
+    inputs:
+      dir: {type: string, required: true}
+      gpu: {type: string, default: "A100:hm G4"}
+      wait: {type: string, default: "20"}
+      fallback: {type: string, default: "yes"}
 permissions:
   contents: write
 jobs:

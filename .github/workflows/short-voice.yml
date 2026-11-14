@@ -1,0 +1,87 @@
+name: short-voice
+# Narration of a Short, with no AI (2026-11-14, user: replace the Sonnet executor A of tools/auto_short.md 2-2).
+# Waits for the audio of <lines.json> on the branch work (tts.yml makes it when lines.json is pushed to main; with tts=auto this
+# workflow starts tts.yml itself if nothing is making it), then splits it per line (tools/split_tts.py -> narration/<dir>/split/
+# on work) and transcribes every piece (tools/check_split.py). Never calls Gemini itself; tts.yml stays the only caller
+# (model gemini-3.8-flash-tts, one request per group of up to 15 lines). At most 3 requests per short per day: with tts=auto it
+# does not start tts.yml when today's count for this short would go over 3.
+# Report: branch "checks", checks/<name>/voice_<dir>.md and the job summary. First line RESULT: OK | LOOK
+# ("- LOOK s<k>｜何が｜台本｜聞こえた"). The job is green only for OK.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "short name, e.g. rina_ff7 (report: checks/<name>/voice_<dir>.md)", required: true}
+      lines: {description: "lines.json (empty = narration/<name>/lines.json), e.g. narration/<name>_fix1/lines.json", default: ""}
+      tts: {description: "auto = start tts.yml if no audio is being made (counts toward the daily 3) / no = only wait", default: "auto"}
+      wait: {description: "minutes to wait for the audio", default: "20"}
+permissions:
+  contents: write
+  actions: write
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      N: "${{ inputs.name }}"
+      GH_TOKEN: "${{ github.token }}"
+      REPO: "${{ github.repository }}"
+    steps:
+      - uses: actions/checkout@v4
+      - name: wait for the audio on the branch work
+        env: { L0: "${{ inputs.lines }}", TTS: "${{ inputs.tts }}", WAIT: "${{ inputs.wait }}" }
+        run: |
+          L="${L0:-narration/$N/lines.json}"; D=$(dirname "$L"); echo "L=$L" >> "$GITHUB_ENV"; echo "D=$D" >> "$GITHUB_ENV"
+          test -f "$L" || { printf 'RESULT: LOOK\n- LOOK 入力｜%s が main にない｜先に push する｜-\n' "$L" > /tmp/voice.md; echo "STOP=1" >> "$GITHUB_ENV"; exit 0; }
+          has() { git fetch -q origin "+work:refs/remotes/origin/work" 2>/dev/null; git cat-file -e "origin/work:$D/s1.wav" 2>/dev/null; }
+          busy() { gh api "repos/$REPO/actions/workflows/tts.yml/runs?per_page=10" --jq '[.workflow_runs[]|select(.status!="completed")]|length' 2>/dev/null || echo 0; }
+          end=$(( $(date +%s) + WAIT * 60 )); started=""; idle=0
+          until has; do
+            [ $(date +%s) -gt $end ] && break
+            if [ "$(busy)" = 0 ]; then idle=$((idle+1)); else idle=0; fi
+            # nothing made the audio within ~2 minutes: start tts.yml once (only if the daily limit allows)
+            if [ "$TTS" = auto ] && [ -z "$started" ] && [ $idle -ge 6 ]; then
+              c=$(python3 tools/short_auto.py tts-count "$N"); g=$(python3 -c "import json;print(len(json.load(open('$L'))['lines']))")
+              if [ $((c+g)) -gt 3 ]; then
+                printf 'RESULT: LOOK\n- LOOK 読み上げ回数｜今日この動画で %s 回済み、あと %s 回は上限3回を超える｜作り直す文を減らすか明日に｜-\n' "$c" "$g" > /tmp/voice.md; echo "STOP=1" >> "$GITHUB_ENV"; exit 0
+              fi
+              echo "no audio and tts.yml is not running: starting it ($c used today, +$g)"
+              gh workflow run tts.yml --repo "$REPO" --ref main -f scripts="$L"; started=1; idle=-30
+            fi
+            sleep 20
+          done
+          if ! has; then
+            log=$(git show "origin/work:$D/tts_log.txt" 2>/dev/null | tail -2 | tr '\n' ' ' | cut -c1-200)
+            printf 'RESULT: LOOK\n- LOOK 読み上げ｜%s 分待っても音声ができない｜tts.yml の結果を見る｜%s\n' "$WAIT" "${log:-tts_log.txt なし}" > /tmp/voice.md
+            echo "STOP=1" >> "$GITHUB_ENV"
+          fi
+      - name: split and transcribe
+        if: env.STOP != '1'
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          pip install -q numpy faster-whisper
+          python3 tools/work_branch.py get "$D"
+          set +e
+          python3 tools/split_tts.py "$L" "$D" "$D/split" > /tmp/split.log 2>&1; echo "split exit $?"; cat /tmp/split.log
+          python3 tools/check_split.py "$L" "$D/split" > /tmp/check.log 2>&1; echo "check exit $?"; cat /tmp/check.log
+          set -e
+          cp /tmp/check.log "$D/split/check.txt"; cp /tmp/split.log "$D/split/split.txt"
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          python3 tools/work_branch.py put "$D/split"
+          c=$(python3 tools/short_auto.py tts-count "$N")
+          python3 tools/short_auto.py voice-report "$N" "$L" /tmp/split.log /tmp/check.log "$c" /tmp/voice.md || true
+      - name: report
+        if: always()
+        run: |
+          [ -f /tmp/voice.md ] || printf 'RESULT: FAILED\n- LOOK 全体｜途中で止まった｜Actions の画面を見る｜-\n' > /tmp/voice.md
+          cat /tmp/voice.md >> "$GITHUB_STEP_SUMMARY"
+          B=$(basename "$D")
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            if git fetch -q origin checks; then git checkout -q -f -B checks origin/checks; else git checkout -q --orphan checks; fi
+            mkdir -p "checks/$N"; cp /tmp/voice.md "checks/$N/voice_$B.md"
+            git add checks; git commit -qm "voice $N $B" || true
+            git push -q origin HEAD:checks && break; sleep $((i*3))
+          done
+          head -1 /tmp/voice.md | grep -q 'RESULT: OK' || { echo "not OK (see checks/$N/voice_$B.md)"; exit 1; }

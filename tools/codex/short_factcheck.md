@@ -22,7 +22,8 @@ Report a problem (LOOK) when:
 3. two places in video.txt disagree with each other (script vs caption vs title vs description vs English);
 4. it overstates or changes the meaning (e.g. 「一時13%下落」 told as 「13%下落」, a report told as a confirmed fact).
 Do NOT report: the intro line 「このニュース、（秒数）でまとめます」, the channel text under 「▼星餓りなについて」, hashtags,
-URLs, 「※ショート動画では、概要欄のURLはタップできません」, kana spellings of the same value, small wording differences with
+URLs, the source list under 「▼出典」 / "Sources" (outlet names and dates there; report one only if a reference
+contradicts it), 「※ショート動画では、概要欄のURLはタップできません」, kana spellings of the same value, small wording differences with
 the same meaning, and opinions (りなの見方) — but DO check the facts inside an opinion. Do not judge style or Japanese.
 Be strict: when unsure, report it (the maker decides). One item per problem; the same wrong fact in several places = one
 item that names all the places.

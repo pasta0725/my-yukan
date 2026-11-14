@@ -58,6 +58,7 @@ jobs:
       - name: report
         id: rep
         if: always()
+        env: { EFFORT: "${{ inputs.effort }}" }
         run: |
           set +e; python3 tools/short_factcheck.py report /tmp/fj/facts "$N" /tmp/fj/facts.md; code=$?; set -e
           if [ "$NOREF" = 1 ]; then printf 'RESULT: LOOK\n- LOOK 入力｜参考記事の本文が1つも見つからない｜refs に <号>/<記事ID> を指定｜-\n' > /tmp/fj/facts.md; code=1; fi
