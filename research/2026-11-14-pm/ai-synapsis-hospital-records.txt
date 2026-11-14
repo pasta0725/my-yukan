@@ -1,0 +1,136 @@
+===== https://www.mobihealthnews.com/news/dyania-health-nvidia-partner-ai-analysis-patient-records
+(status 403)
+
+
+===== https://www.prnewswire.com/news-releases/dyania-health-brings-clinical-reasoning-ai-inside-the-hospital-firewall-to-advance-patient-care-with-nvidia-302939231.html
+(status 200)
+Dyania's Synapsis AI, which reasons through a patient's complete medical history, uses NVIDIA accelerated computing, so health systems can learn from their own records while keeping patient records within their walls.
+JERSEY CITY, N.J., 
+Nov. 13, 2026
+ /PRNewswire/ -- 
+Dyania Health
+ today announced a collaboration with 
+NVIDIA
+ to put AI clinical reasoning to work inside health systems, on their own infrastructure, at the scale of their entire patient population. Dyania's Synapsis AI reads a patient's full medical record, across years of notes, operative reports, imaging reports and lab results, and answers clinical questions with evidence from the chart. NVIDIA accelerated computing makes it possible to do that across large patient populations behind the hospital firewall, without transferring patient records outside the health system. Together, the companies aim to give health systems the ability to learn from the full histories of the patients they have treated and turn that experience into earlier identification of care needs, more informed treatment decisions and better care for the next patient, while keeping those records within their own systems.
+Continue Reading
+Dyania Patient Journey
+Turning clinical experience into better care
+Health systems hold decades of clinical experience in their medical records, but much of it is difficult to analyze at scale. Much of the information that matters is in narrative text rather than structured fields, and interpreting it often requires manual review. Registries, outcomes studies and predictive models can be limited by how many charts a team can read by hand. Extracting and interpreting the clinical information needed to build them remains a major bottleneck.
+Synapsis AI performs that reasoning. It is built to work the way a specialist works through a chart: longitudinally, across every document, resolving what a patient actually had, when, and with what evidence. Doing this for one patient is a reasoning problem. Doing it for an entire health system, continuously, inside the hospital's own environment, requires substantial computing capacity. Dyania brings the clinical reasoning engine and implementation experience; NVIDIA brings the accelerated computing platform and the software that lets it run securely and efficiently on premises.
+Synapsis AI is built on the NVIDIA AI Enterprise software stack end to end. Dyania trains its proprietary clinical models with the NVIDIA NeMo framework for model training and reinforcement learning. Inside the health system, Synapsis AI runs on NVIDIA TensorRT and TensorRT-LLM on the hospital's own NVIDIA accelerated computing infrastructure, so inference stays inside the hospital's private network.
+Under the collaboration, the companies will work to bring Synapsis AI on NVIDIA infrastructure to health systems in the U.S. and internationally, publish joint case studies, and integrate Synapsis AI with NVIDIA's healthcare software stack. Areas the companies are evaluating include NVIDIA Confidential Computing for training and inference, NVIDIA Dynamo for distributed inference serving, Multi-Instance GPU for partitioning GPUs across concurrent clinical workloads, and scaling to many NVIDIA Blackwell Ultra GPUs as deployments move from batch processing toward near-real-time clinical insight at the point of care.
+"The opportunity for AI in healthcare is to give care teams more time and insight to focus on patients," said Chelsea Sumner, Healthcare AI Startups Ecosystem Lead at NVIDIA. "Dyania Health brings deep clinical expertise to that opportunity, using NVIDIA's AI platform to support research, help identify gaps in care and build a more complete understanding of patients' needs."
+"This is a watershed moment for patient care. Every patient's story is spread across years of notes, reports and results, and for the first time we can reason across all of it at once, the way a specialist does, for every patient in a health system rather than one chart at a time," said Eirini Schlosser, founder and CEO of Dyania Health. "Synapsis AI reads the full record, draws the clinical conclusions and shows the evidence behind them, and NVIDIA gives us the computing power to do that inside the hospital, with every record staying where it belongs. What we have shown with Cleveland Clinic is that a health system can learn from the patients it has already treated to give the next patient the right care sooner."
+Predicting how long replacement heart valves will last
+The first work from the collaboration is a Cleveland Clinic study of 7,812 patients who received an aortic valve replacement between 2005 and 2021. The study addressed a central concern for patients: How long will the replacement valve last, and will another procedure be needed? To answer this, researchers reviewed up to 16 years of patient care, most of it in narrative notes and echocardiogram reports that can be challenging to capture in registries.
+Running on NVIDIA accelerated computing inside Cleveland Clinic's environment, Synapsis AI identified the patient population and answered 88 clinical questions for each patient, covering the valve and its characteristics, co-existing conditions, laboratory trends, medications, follow-up ultrasound measurements and later clinical events. The study produced a detailed clinical dataset in far less time than a manual review would take. Additionally, a predictive machine-learning model was trained that is capable of predicting valve failure and reintervention risk timelines for every patient.
+The model found that the type of valve implanted was the strongest determinant of how quickly it deteriorated, while age and other medical conditions shaped whether and when a second procedure was performed. The analysis also examined how follow-up information, such as heart ultrasounds following surgery, can substantially raise predictive accuracy around future interventions. The model estimates an individual patient's risk at three, five and 10 years and revises the outlook with each new ultrasound. The tool is used to help inform care but requires external validation from clinicians. 
+"Using technology to bring together and analyze information that can help us predict the duration of implanted heart valves is a promising step towards enhanced outcomes and more personalized care for patients," said Lars G. Svensson, MD, PhD, Chief, Heart, Vascular & Thoracic Institute at Cleveland Clinic.
+The heart valve study illustrates the broader potential of the collaboration. The same technology could help health systems learn from their own experience to understand which patients would benefit from certain therapies, which treatments hold up over time, and why outcomes differ between patients who look alike on paper. Looking ahead, Synapsis AI agents will continuously train predictive models of this kind, so that recommendations for the next recommended action in a patient's care keeps improving in accuracy as precision medicine advances.
+About Dyania Health
+Dyania Health
+ exists so that no patient is missed because the answer was buried in their chart. Its clinical reasoning engine, Synapsis AI, reads a patient's entire medical history, across years of notes, reports and results, and answers clinical questions with the evidence to back them, so care teams can see which patients need attention, which treatments are working and what should happen next. It does this for every patient in a health system, inside the hospital firewall, with no record ever leaving. Health systems use Synapsis AI to find patients who need care they have not yet received, strengthen registries and quality programs, and turn their own clinical experience into better outcomes for the next patient. Dyania Health is headquartered in Jersey City, New Jersey.
+For more details, please visit Dyania Health's website at 
+https://dyaniahealth.com/
+For Media Quiries: contact 
+[email protected]
+SOURCE Dyania Health
+×
+Modal title
+
+===== https://econotimes.com/NVIDIA-says-AI-supports-heart-valve-study-of-over-7-800-patients-1776409
+(status 200)
+Data centre cooling plant.
+An artificial intelligence system reviewed medical records for a Cleveland Clinic study of more than 7,800 heart valve replacement patients, completing work that would have taken clinicians years, NVIDIA said on Nov. 13.
+NVIDIA, whose computing technology powers the system, said the tool supports clinicians but still requires them to confirm its findings and make decisions. The company published the account in its Nov. 13 blog post, “How AI Is Helping Care Teams Get Patients the Right Care, Sooner.”
+The company said Cleveland Clinic used Synapsis AI, developed by New Jersey-based clinical AI company Dyania Health, to support research covering patients who underwent aortic valve replacement between 2005 and 2021. The system reviewed their medical records, including heart ultrasound scans added in the years after surgery.
+NVIDIA said the platform used that information to build a model predicting valve deterioration and the risk of needing another intervention three, five and 10 years after replacement. The company gave no numerical measure of the model’s accuracy or the time the automated review took.
+Dr. Lars Svensson is chief of Cleveland Clinic’s Heart, Vascular & Thoracic Institute. “Using technology to bring together and analyze information that can help us predict the duration of implanted heart valves is a promising step towards enhanced outcomes and more personalized care for patients,” he said.
+NVIDIA said Synapsis AI searches notes, reports and laboratory results, connecting findings that may be years apart to answer clinical questions. Its results identify patients who may need attention and link each finding to the underlying medical record, giving care teams evidence to review before they act.
+The company said hospitals hold decades of patient histories, much of them in written notes, surgical reports, imaging interpretations and discharge summaries. Reading a patient’s full history can therefore require reviewing years of charts, work the company said the system can take off clinical teams’ desks.
+NVIDIA said Synapsis AI processes records on a hospital’s own servers, behind its network security controls, so patient information stays onsite. Dyania uses NVIDIA software to build and train its clinical models, then uses other company tools to make them run faster on hospital computing equipment.
+The company said the approach could also help identify patients eligible for clinical trials, find gaps in cardiology and cancer care, and fill clinical registries, databases that collect information about patients and treatments. Those uses would still leave clinicians responsible for confirming the evidence and deciding what care patients receive.
+AI Revolution Series
+NVIDIA
+Cleveland Clinic
+Artificial intelligence
+Healthcare
+Dyania Health
+
+===== https://jbiznews.com/dyania-and-nvidia-team-up-to-run-medical-record-ai-inside-hospitals/
+(status 200)
+URL has been copied successfully!
+Network equipment at the University of Washington in a 2019 file photograph, not a Dyania, NVIDIA or Cleveland Clinic installation. Photo: 
+Taylor Vick / Unsplash
+.
+Dyania Health and NVIDIA are working together to run artificial intelligence that reviews medical records on hospitals’ own computing systems, rather than sending patient records outside their networks.
+The collaboration, announced Friday, centers on Dyania’s Synapsis AI. The companies say it reads years of clinical notes, test results, imaging reports and other records, then answers clinical questions with evidence from the patient’s chart.
+The arrangement is a technology collaboration, not a clinical trial showing that the system improves patient survival or makes better treatment decisions than doctors. Its use in predicting the durability of replacement heart valves still needs external validation, according to Dyania’s announcement.
+Hospitals keep large amounts of information as narrative notes rather than neatly organized database fields. Reviewing those records by hand can make research and patient registries slow to build. Dyania and NVIDIA are seeking to automate more of that work while keeping the computing within hospital networks.
+Dyania builds its models using NVIDIA’s NeMo tools. Its software runs on NVIDIA computing infrastructure inside the health system. The companies plan to bring the system to more health systems in the United States and internationally, publish case studies and work on further technical integration. These are plans, rather than completed deployments at every hospital.
+An initial Cleveland Clinic project used records from 7,812 patients who received an aortic valve replacement between 2005 and 2021. Dyania said its system answered 88 clinical questions for each patient, collecting information about the valve, other medical conditions, medicines, follow-up heart scans and later events.
+The researchers then trained a model to estimate the risk of valve failure or another procedure at three, five and 10 years. The analysis used follow-up information to revise those estimates. The companies describe that as a way to help clinicians understand how an implanted valve may perform over time.
+The announcement does not establish that these predictions will work equally well in other hospitals or patient populations. Dyania says the tool requires external validation from clinicians. A model developed from past records is not, by itself, proof that using it changes patient outcomes.
+Both 
+Dyania’s November 13 announcement
+ and 
+NVIDIA’s own account
+ describe the hospital-based work. Neither announcement provides a price for the system or a timetable for broad deployment.
+JBizNews Desk | New York
+© 
+JBizNews.com
+. All rights reserved. Unauthorized reproduction or redistribution is strictly prohibited.
+Share this story:
+2026-11-13
+
+===== https://blogs.nvidia.com/blog/how-ai-is-helping-care-teams/
+(status 200)
+From pediatric research to smart hospitals, AI is helping care teams spend less time on routine tasks and more time with patients. 
+Health systems and startups are putting it to work across healthcare, from matching patients to clinical trials to supporting radiologists, hospital teams and patients at home. Clinicians stay at the center, reviewing AI outputs and guiding decisions, while NVIDIA technologies provide the compute behind the applications.
+Read on to learn how healthcare teams are using AI to improve and speed patient care.
+Friday, Nov. 13, 5:00 a.m. PT 
+🔗
+Dyania Health Uses AI to Turn Decades of Patient Records Into Better Care 
+Hospitals hold decades of patient history, most of it written in free text,
+ as physicians’ notes, operative reports, imaging and pathology reads and discharge summaries. To understand one patient’s full story, a clinician would need to read through years of charts
+. 
+Dyania Health
+, a New Jersey-based clinical AI company, built Synapsis AI to do just that. Synapsis AI is a clinical reasoning engine: It works across every note, report and lab result in a patient’s record, connecting findings that may be years apart to answer clinical questions the way a specialist reviewing the chart would. 
+The output is a set of clinical signals, each traceable to its source in the record, that tells care teams which patients need attention and why. Clinicians review the evidence and make every decision. 
+Keeping Patient Data Inside the Hospital Walls
+Synapsis AI runs on NVIDIA-accelerated computing inside a health system’s own firewall.  The entire health system’s patient records can be processed onsite, so patient data is never shared and never leaves the hospital. 
+Processing records this way takes chart review off the desks of clinical teams and lets them spend that time with patients. 
+But Synapsis AI still requires clinician input — it’s an assistive tool that surfaces evidence from medical records that a clinician must still confirm and act on. 
+Dyania builds and trains its clinical models with 
+NVIDIA NeMo
+ open libraries, then uses NVIDIA TensorRT and TensorRT-LLM to optimize them to run faster and more efficiently on the hospital’s own GPU servers. 
+Synapsis AI in the Real World
+Cleveland Clinic
+ used Synapsis AI to support a study of more than 7,800 aortic valve replacement patients between 2005 and 2021. 
+Synapsis AI reasoned across each patient’s record, including every echocardiogram added in the years after surgery, and used this information to build a predictive model of valve deterioration and reintervention risk at the three-, five- and ten-year mark after a patient undergoes an aortic valve replacement procedure. The AI platform completed chart review across the full cohort that would have taken clinicians years to complete by hand. 
+“Using technology to bring together and analyze information that can help us predict the duration of implanted heart valves is a promising step towards enhanced outcomes and more personalized care for patients,” said 
+Dr. Lars Svensson
+, chief of the Heart, Vascular & Thoracic Institute at Cleveland Clinic.
+The same approach can be applied to any healthcare challenge where the answer sits inside the medical record, such as identifying patients eligible for clinical trials, closing care gaps in cardiology and oncology, and populating clinical registries.
+Learn more about 
+Dyania Health
+.
+Categories:
+AI
+Tags:
+AI for Good
+Healthcare and Life Sciences
+Inception
+Related News
+AI
+							How AI Helps Recyclers Turn Mixed Waste Into Reusable Material						
+						Nov 10, 2026					
+Robotics
+							Korea Advances Physical AI Across Industries With NVIDIA						
+						Nov 8, 2026					
+Robotics
+							Into the Omniverse: How Developers Turn Ideas Into Simulations With Frontier AI Agents						
+						Nov 5, 2026					
+Robotics
+							NVIDIA Isaac ROS 5.0 Advances Agentic, Open Source Robotics Development						
+						Sep 22, 2026

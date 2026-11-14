@@ -1,0 +1,2078 @@
+===== https://github.com/microsoft/playwright/releases/tag/v1.65.0
+(status 200)
+v1.65.0
+Compare
+        Choose a tag to compare
+Sorry, something went wrong.
+        Filter
+Loading
+Sorry, something went wrong.
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+No results found
+View all tags
+dgozman
+    released this
+        05 Nov 18:25
+          ·
+            13 commits
+          to release-1.65
+          since this release
+                v1.65.0
+a1f35e1
+                This commit was created on GitHub.com and signed with GitHub’s 
+verified signature
+.
+GPG key ID: 
+B5690EEEBB952194
+Verified
+Learn about vigilant mode
+.
+🥟 Run tests with Bun
+The test runner now runs under 
+Bun
+. Bun transpiles your TypeScript test files itself, so Playwright does not use Babel or its compilation cache. Pass the 
+--bun
+ flag, because without it 
+bunx playwright test
+ runs on Node.js:
+bunx --bun playwright 
+test
+Our CI runs the test runner tests under Bun 1.4.3 on Linux. Some features work differently under Bun:
+There is no watch mode. UI mode does not run tests again when files change, and 
+--only-changed
+ does not follow imports.
+Bun loads modules itself, so 
+--tsconfig
+ and the JSX options in 
+tsconfig.json
+ have no effect, and custom ESM loaders are not supported.
+Stack traces do not include async frames, and API names do not include the class name: 
+click
+ instead of 
+locator.click
+. This changes some step locations, step titles and error messages.
+Console output of a test does not get into the trace and UI mode.
+🚨 Reports with only failures
+New 
+failures
+ reporter prints failures and successful retries as they occur, followed by a summary, without progress output.
+New 
+onlyFailures
+ option of the HTML, JSON and JUnit reporters 
+keeps only
+ tests with unexpected outcomes, flaky tests and interrupted tests:
+// playwright.config.ts
+import
+{
+defineConfig
+}
+from
+'@playwright/test'
+;
+export
+default
+defineConfig
+(
+{
+reporter
+: 
+[
+[
+'failures'
+]
+,
+[
+'html'
+,
+{
+onlyFailures
+: 
+true
+}
+]
+,
+]
+,
+}
+)
+;
+🎯 Test runner
+New built-in 
+-exclusive-
+test lock
+ runs a test only when no other tests are running. All other tests continue to run in parallel with each other:
+test
+(
+'restart the server'
+,
+{
+lock
+: 
+'-exclusive-'
+}
+,
+async
+(
+)
+=>
+{
+// No other test runs while this one is running.
+}
+)
+;
+test.skip()
+, 
+test.fixme()
+, 
+test.fail()
+ and 
+test.slow()
+ now accept only a description. It is recorded in the test annotation:
+test
+(
+'upload a file'
+,
+async
+(
+{
+ page 
+}
+)
+=>
+{
+test
+.
+skip
+(
+'Not implemented yet'
+)
+;
+}
+)
+;
+New 
+PLAYWRIGHT_TRANSFORM_CACHE_DIR
+ environment variable sets the directory for transpiled test files, for example on a Linux machine shared with other users.
+New APIs
+New options 
+timeout
+ and 
+signal
+ in 
+cdpSession.send()
+.
+New 
+testRun.mode()
+ returns the execution mode of a suite during 
+reporter.preprocess()
+.
+Notable Changes 
+⚠️
+TypeScript class fields now follow 
+useDefineForClassFields
+ from your 
+tsconfig.json
+, the same as 
+tsc
+. It is enabled for 
+ES2022
+ and later targets, and when 
+target
+ is not specified. A field initializer that reads a constructor parameter property now fails, because the initializer runs first:
+class
+LoginPage
+{
+// TypeError: Cannot read properties of undefined (reading 'getByRole')
+readonly
+submit
+=
+this
+.
+page
+.
+getByRole
+(
+'button'
+,
+{
+name
+: 
+'Submit'
+}
+)
+;
+constructor
+(
+private
+readonly
+page
+: 
+Page
+)
+{
+}
+}
+Move the initialization to the constructor, or set 
+"useDefineForClassFields": false
+ in your 
+tsconfig.json
+.
+Actions such as 
+locator.click()
+, 
+locator.check()
+, 
+locator.tap()
+, 
+locator.fill()
+, 
+locator.clear()
+ and 
+locator.selectOption()
+ now wait for the element to be 
+not inert
+. An action on an element with the 
+inert
+ attribute, or inside such an element, now times out if the element stays inert.
+A sharded run now fails with "No tests found" when no tests match across all shards. Pass 
+--pass-with-no-tests
+ to allow this. An empty shard still passes when other shards have tests.
+Cookie matching now follows RFC 6265. With a URL, 
+browserContext.cookies()
+ and 
+apiRequestContext.cookies()
+ no longer return host-only cookies for subdomains or 
+Path=/api
+ cookies for 
+/apiv2
+, and a 
+Path=/foo/
+ cookie does not match 
+/foo
+. 
+APIRequestContext
+ sends a cookie without a name as 
+Cookie: x
+ instead of 
+Cookie: =x
+, and stores 
+Set-Cookie: token
+ as a cookie without a name.
+Proxy credentials are no longer sent to websites. The credentials in the 
+proxy
+ option now answer only proxy challenges. To authenticate on a website, use 
+httpCredentials
+.
+Text that the browser does not render, such as text that is not assigned to a slot or text directly inside a closed 
+<details>
+, is no longer part of accessible names and aria snapshots. This can change the results of 
+page.getByRole()
+ with a name, 
+locator.ariaSnapshot()
+ and 
+expect(locator).toMatchAriaSnapshot()
+.
+String and 
+URLSearchParams
+ values of the 
+params
+ option in 
+APIRequestContext
+ requests are now appended to the query that the URL already has, instead of replacing it.
+.css
+, 
+.less
+ and 
+.scss
+ imports in test files now load as empty modules instead of being removed, so the imported file must exist.
+The blob reporter again deletes the content of its output directory before it writes the report. Playwright 1.64 kept reports with other names.
+Test locations of imported calls such as 
+test(
+ in CommonJS output now point to the start of the callee, for example 
+a.spec.ts:3:7
+ instead of 
+a.spec.ts:3:11
+. This is the same as in ESM.
+Announcements
+⚠️
+ Playwright no longer tests on Node.js 20. Use Node.js 22, 24 or 26, as listed in the 
+system requirements
+.
+🐳 
+Docker images
+ now include Node.js 26 instead of Node.js 24, and the latest patch of Chromium on the same branch.
+Browser Versions
+Chromium 158.0.8127.18
+Mozilla Firefox 159.0
+WebKit 27.2
+This version was also tested against the following stable channels:
+Google Chrome 157
+Microsoft Edge 156
+Assets
+2
+Loading
+        Uh oh!
+There was an error while loading. 
+Please reload this page
+.
+28 people reacted
+
+===== https://currents.dev/posts/playwright-1-65-in-ci-breaking-changes-bun-and-reports
+(status 200)
+Back to blog
+Playwright 1.65 in CI: Breaking Changes, Bun and Reports
+Walter Galvão
+ |
+Nov 09, 2026
+ |
+TL;DR
+This article covers what changes for CI when you upgrade to Playwright 1.65: the new failures reporter and onlyFailures option, the built-in exclusive test lock, and running the test runner under Bun. It also covers the breaking changes that can turn a green suite red without a single test changing, such as class fields in page objects, sharded runs that match no tests, blob report directories and inert elements.
+Move CI's Node.js version to 22, 24 or 26 in the same pull request as the Playwright bump.
+Move locator initializers into page object constructors, and give each blob invocation its own directory.
+Add 
+--pass-with-no-tests
+ only where a filter can legitimately match nothing.
+Fix whatever still breaks, and only then turn on the 
+failures
+ reporter and 
+onlyFailures
+.
+Bump Playwright to 1.65 on a suite that was green, and it can go red without a single test changing. A page object throws as soon as a test builds it, because a field initializer that reads a constructor parameter property now runs before that property is set. Clicks and fills behind an open drawer now wait for the element to stop being inert, and time out if it stays inert. A filtered, sharded run that matches no tests in any shard fails with "No tests found". A pipeline that writes several blob reports into one directory is left with only the last one to merge.
+The fixes are a handful of config and pipeline lines you can change before the bump.
+What's new in Playwright 1.65
+TypeScript class fields now follow 
+useDefineForClassFields
+ from your 
+tsconfig.json
+, the same as 
+tsc
+, so a field initializer that reads a constructor parameter property now fails, because the initializer runs first.
+A sharded run now fails with "No tests found" when no tests match across all shards; pass 
+--pass-with-no-tests
+ to allow this.
+The blob reporter again deletes the content of its output directory before it writes the report.
+Actions such as 
+locator.click()
+ now wait for the element to be not inert, and text that the browser does not render is no longer part of accessible names and aria snapshots.
+Cookie matching now follows RFC 6265, and proxy credentials are no longer sent to websites: the credentials in the 
+proxy
+ option now answer only proxy challenges.
+String and 
+URLSearchParams
+ values of the 
+params
+ option in APIRequestContext requests are now appended to the query that the URL already has.
+.css
+, 
+.less
+ and 
+.scss
+ imports in test files now load as empty modules.
+Test locations of imported calls in CommonJS output now point to the start of the callee.
+Playwright no longer tests on Node.js 20 (use Node.js 22, 24 or 26), and Docker images now include Node.js 26 instead of Node.js 24.
+The test runner now runs under Bun when you pass the 
+--bun
+ flag, because without it 
+bunx playwright test
+ runs on Node.js.
+A new 
+failures
+ reporter prints failures and successful retries as they occur, followed by a summary, without progress output, and a new 
+onlyFailures
+ option of the HTML, JSON and JUnit reporters keeps only tests with unexpected outcomes, flaky tests and interrupted tests.
+A new built-in 
+-exclusive-
+ test lock runs a test only when no other tests are running.
+The full list of changes is in the 
+Playwright 1.65 release notes
+.
+Failure-only reports in CI
+Swap your CI reporter for the new 
+failures
+ reporter. Playwright's default reporter is 
+list
+ locally and 
+dot
+ on CI. The new 
+failures
+ reporter prints failures and successful retries as they occur, followed by a summary, without progress output. The reporter docs pair it with a complete HTML report. On a large suite, filter the HTML report and keep the JUnit file whole:
+import
+ { defineConfig } 
+from
+ '@playwright/test'
+;
+export
+ default
+ defineConfig
+({
+  reporter: process.env.
+CI
+    ?
+ [
+        [
+'failures'
+],
+        // onlyFailures is set per reporter, so only the HTML report is filtered
+        [
+'html'
+, { onlyFailures: 
+true
+ }],
+        // Full JUnit file: tools that count passes still see every test
+        [
+'junit'
+, { outputFile: 
+'test-results/junit.xml'
+ }],
+      ]
+    :
+ 'list'
+,
+});
+Copy
+Copied!
+onlyFailures
+ keeps tests with unexpected outcomes (unexpected passes included), flaky tests even when they pass on retry, and interrupted tests, with every attempt of each kept test. A test that passed on its first attempt is not in the report at all. That is the trade: smaller files, and no record in them of tests that passed on their first attempt.
+Turn it on for HTML when report artifacts have grown too big to be worth uploading. A smaller file fixes the upload, not the 
+other limits of the HTML reporter on large suites
+. The 
+PLAYWRIGHT_HTML_ONLY_FAILURES
+ environment variable sets it for the HTML reporter, so you can try it on one CI job without editing the config.
+Leave 
+onlyFailures
+ off the JUnit reporter when a CI tool reads pass counts from the JUnit file. With the option on, that tool sees only the tests 
+onlyFailures
+ kept, and on JUnit the option retains every attempt regardless of 
+includeRetries
+. Set it on JUnit only when nothing downstream counts passes. If you want the passes on record across runs anyway, 
+Currents Test History
+ shows how each test performed across runs and branches, and it treats results with the same spec file, project and title as one test, so renaming a test detaches its history.
+Anti-pattern
+Merging without the config
+You set 
+onlyFailures
+ on the HTML reporter in 
+playwright.config.ts
+, the shards write blob reports, and a later job merges them. The option is configured per reporter, and the merge step below never reads the config that sets it:
+# Anti-pattern: onlyFailures lives in playwright.config.ts, which this merge never reads
+npx
+ playwright
+ merge-reports
+ --reporter=html
+ ./blob-report
+Copy
+Copied!
+Fix
+Pass the config file to the merge step, which is how 
+onlyFailures
+ applies when you merge blob reports:
+npx
+ playwright
+ merge-reports
+ --config=playwright.config.ts
+ ./blob-report
+Copy
+Copied!
+The exclusive test lock
+Some tests need the whole environment to themselves: one flips a global setting, another resets data that parallel tests read. The new built-in 
+-exclusive-
+ lock runs a test only when no other tests are running, and all other tests continue to run in parallel with each other.
+Use it for exactly those tests, and sparingly. While an exclusive test runs, no other test does. Each one adds about its full duration to the run's wall-clock time. Tests that only clash with each other over one shared account can share a named lock instead: tests sharing a lock name never run at the same time, while all other tests continue to run in parallel. Our 1.64 guide covers 
+keeping shared-account tests apart with a lock
+.
+Anti-pattern
+Exclusive as a flake fix
+A group of flaky tests races over shared state, so someone marks them all exclusive. The failures go quiet. Each of those tests now stalls every other worker while it runs. The race is still in the code.
+Fix
+Give each test its own data so it can run in parallel, and keep the lock for tests that change something every other test depends on.
+Running tests under Bun
+The test runner now runs under Bun, but only with the 
+--bun
+ flag: without it, 
+bunx playwright test
+ runs on Node.js.
+Anti-pattern
+Calling bunx without the flag
+The step calls 
+bunx
+, so it looks switched over, and every run still goes through Node.js:
+# Anti-pattern: without --bun, bunx still starts the test runner on Node.js
+bunx
+ playwright
+ test
+Copy
+Copied!
+Fix
+Pass 
+--bun
+ so the test runner runs under Bun:
+bunx
+ --bun
+ playwright
+ test
+Copy
+Copied!
+What changes under Bun
+Bun transpiles your TypeScript test files itself, so Playwright uses neither Babel nor its compilation cache. The new 
+PLAYWRIGHT_TRANSFORM_CACHE_DIR
+ environment variable sets the directory for transpiled test files, for example on a Linux machine shared with other users.
+Playwright's own CI runs the test runner tests under Bun 1.4.3 on Linux. If you adopt Bun, pin that version and use Linux runners.
+Some features work differently under Bun, and these are the ones a pipeline feels:
+--tsconfig
+ and the JSX options in 
+tsconfig.json
+ have no effect, because Bun loads modules itself.
+Custom ESM loaders are not supported.
+Stack traces do not include async frames.
+API names drop the class name (
+click
+ instead of 
+locator.click
+), which changes some step locations, step titles and error messages.
+Console output of a test does not get into the trace or UI mode.
+Locally, there is no watch mode, and 
+--only-changed
+ does not follow imports.
+When to skip it
+Skip Bun if you 
+debug CI failures from traces
+ and need the test's console output in them, or if your setup depends on 
+--tsconfig
+ or a custom ESM loader. Also skip it if anything compares step titles or error messages across runs, since API names drop the class name under Bun, which changes some step titles and error messages. Otherwise, try it on one Linux job before moving the rest.
+Empty shards and blob reports
+The new "No tests found" failure is narrower than it sounds. An empty shard still passes when other shards have tests, and a sharded run fails with "No tests found" when no tests match across all shards.
+That happens when a filter matches nothing in the whole suite, such as a nightly 
+--grep
+ for a tag no test carries yet. Add 
+--pass-with-no-tests
+ to jobs whose filter can legitimately match nothing, and to no others. Everywhere else, a zero-test run means a broken filter, and CI should go red. For that nightly job, shard 1 of 3 runs:
+# The @experimental tag may be on no test yet, so this job allows an empty match
+npx
+ playwright
+ test
+ --grep
+ @experimental
+ --shard=1/3
+ --pass-with-no-tests
+Copy
+Copied!
+If this change has you rethinking how the suite is split in the first place, we compare 
+fixed shards, workers and orchestration
+ in a separate post.
+Blob reports in one directory
+The blob reporter again deletes the content of its output directory before it writes the report, where Playwright 1.64 kept reports with other names. That directory is the reporter's 
+outputDir
+: 
+PLAYWRIGHT_BLOB_OUTPUT_DIR
+ sets it, and it defaults to 
+blob-report
+.
+Blob files are named 
+report-<hash>.zip
+, or 
+report-<hash>-<shard_number>.zip
+ when sharding, with the hash computed from 
+--grep
+, 
+--grep-invert
+, 
+--project
+, tag and file filters passed on the command line. In 1.64, invocations with different filters left differently named files side by side. In 1.65, each invocation empties the directory first, so only the last report is left to merge.
+Anti-pattern
+Several runs, one blob directory
+One runner runs the suite once per project into the default directory, then merges:
+# Anti-pattern: the firefox run empties blob-report/ first, so the chromium report is gone before the merge
+npx
+ playwright
+ test
+ --project=chromium
+ --reporter=blob
+npx
+ playwright
+ test
+ --project=firefox
+ --reporter=blob
+npx
+ playwright
+ merge-reports
+ --reporter=html
+ ./blob-report
+Copy
+Copied!
+Fix
+Give each invocation its own 
+PLAYWRIGHT_BLOB_OUTPUT_DIR
+, then copy the reports into one folder for the merge. 
+--project
+ is one of the hash inputs, so the two files get different names:
+PLAYWRIGHT_BLOB_OUTPUT_DIR
+=
+blob-chromium
+ npx
+ playwright
+ test
+ --project=chromium
+ --reporter=blob
+PLAYWRIGHT_BLOB_OUTPUT_DIR
+=
+blob-firefox
+ npx
+ playwright
+ test
+ --project=firefox
+ --reporter=blob
+mkdir
+ -p
+ all-blob-reports
+cp
+ blob-chromium/
+*
+.zip
+ blob-firefox/
+*
+.zip
+ all-blob-reports/
+npx
+ playwright
+ merge-reports
+ --reporter=html
+ ./all-blob-reports
+Copy
+Copied!
+Page object class fields
+The class-field change is the one most likely to break a whole suite at once.
+TypeScript class fields now follow 
+useDefineForClassFields
+ from your 
+tsconfig.json
+, the same as 
+tsc
+. The setting is enabled for 
+ES2022
+ and later targets, and when 
+target
+ is not specified, so check your 
+target
+ first.
+Anti-pattern
+Locators as field initializers
+A page object builds its locator from 
+this.page
+ in a field initializer. A field initializer that reads a constructor parameter property now fails, because the initializer runs first:
+// Anti-pattern: under useDefineForClassFields, this initializer runs before this.page is assigned
+import
+ type
+ { Locator, Page } 
+from
+ '@playwright/test'
+;
+export
+ class
+ LoginPage
+ {
+  readonly
+ emailInput
+:
+ Locator
+ =
+ this
+.page.
+getByLabel
+(
+'Email'
+);
+  constructor
+(
+private
+ readonly
+ page
+:
+ Page
+) {}
+  async
+ goto
+() {
+    await
+ this
+.page.
+goto
+(
+'/login'
+);
+  }
+}
+Copy
+Copied!
+Fix
+Move the initialization into the constructor:
+import
+ type
+ { Locator, Page } 
+from
+ '@playwright/test'
+;
+export
+ class
+ LoginPage
+ {
+  readonly
+ emailInput
+:
+ Locator
+;
+  constructor
+(
+private
+ readonly
+ page
+:
+ Page
+) {
+    this
+.emailInput 
+=
+ page.
+getByLabel
+(
+'Email'
+);
+  }
+  async
+ goto
+() {
+    await
+ this
+.page.
+goto
+(
+'/login'
+);
+  }
+}
+Copy
+Copied!
+The tsconfig opt-out
+The release notes give a second fix: set 
+"useDefineForClassFields": false
+ in 
+tsconfig.json
+. Prefer the constructor fix. The tsconfig switch changes how every class field compiles only to rescue a few page objects, and it has a trap of its own. One user reported that a decorated class with a static field fails to load in 1.65 with useDefineForClassFields set to false (
+#43936
+). The issue was closed as completed on 2026-11-05, with no release named.
+Inert elements and accessible names
+Expect new timeouts in tests that act on the page while a modal or drawer is open. 
+locator.click()
+, 
+locator.check()
+, 
+locator.tap()
+, 
+locator.fill()
+, 
+locator.clear()
+ and 
+locator.selectOption()
+ now wait for the element to be not inert. An action on an element with the 
+inert
+ attribute, or inside such an element, now times out if the element stays inert.
+Anti-pattern
+Raising the timeout
+Clicks start timing out after the upgrade, so someone raises the action timeout. If the element stays inert, the action times out at any timeout, and the run only takes longer to fail.
+Fix
+Close the overlay in the test, or finish the step inside it, before acting on the page behind it.
+Accessible names
+The same release changes what role locators and aria snapshots see. Text that the browser does not render, such as text that is not assigned to a slot or text directly inside a closed 
+<details>
+, is no longer part of accessible names and aria snapshots. That can change the results of 
+page.getByRole()
+ with a name, 
+locator.ariaSnapshot()
+ and 
+expect(locator).toMatchAriaSnapshot()
+.
+Review those diffs one by one instead of bulk-updating snapshots. A role locator with a name that stopped matching after the upgrade may have matched text the browser does not render.
+Other breaking changes to check
+The rest are smaller, but each can fail a test far from the feature it changes.
+Node.js and browsers
+Playwright no longer tests on Node.js 20; use Node.js 22, 24 or 26, as listed in the system requirements. Move CI's Node.js version in the same pull request as the Playwright bump. Docker images now include Node.js 26 instead of Node.js 24, and the latest patch of Chromium on the same branch. The 1.65 browsers are Chromium 158.0.8127.18, Firefox 159.0 and WebKit 27.2.
+Cookies and requests
+Cookie matching now follows RFC 6265. With a URL, 
+browserContext.cookies()
+ and 
+apiRequestContext.cookies()
+ no longer return host-only cookies for subdomains or 
+Path=/api
+ cookies for 
+/apiv2
+, and a 
+Path=/foo/
+ cookie does not match 
+/foo
+. That breaks a test that passes a subdomain URL to those calls and expects a host-only cookie back, or passes 
+/apiv2
+ and expects a 
+Path=/api
+ cookie. APIRequestContext sends a cookie without a name as 
+Cookie: x
+ instead of 
+Cookie: =x
+.
+String and 
+URLSearchParams
+ values of the 
+params
+ option are now appended to the query that the URL already has, instead of replacing it. That hits an API test whose URL already holds a query string and also passes 
+params
+ as a string or 
+URLSearchParams
+: the request now carries both queries, so a test that counted on 
+params
+ to override a value in the URL sends both values.
+Check API tests that post string bodies with a JSON content type, too. A regression report against 1.65.0 says that string data that is not valid JSON, sent with an application/json;charset=UTF-8 header, is now JSON-encoded (
+#43937
+). In 1.64.1, the report says, only an exact application/json header did that. The issue was closed as completed on 2026-11-06.
+Proxy credentials
+Proxy credentials are no longer sent to websites: the credentials in the 
+proxy
+ option now answer only proxy challenges.
+Anti-pattern
+Site login through the proxy
+A config puts the site's login in the 
+proxy
+ option, so the site never receives it:
+// Anti-pattern: proxy credentials now answer only proxy challenges, so the site never gets them
+import
+ { defineConfig } 
+from
+ '@playwright/test'
+;
+export
+ default
+ defineConfig
+({
+  use: {
+    proxy: {
+      server: 
+'http://proxy.example.com:3128'
+,
+      username: process.env.
+SITE_USER
+,
+      password: process.env.
+SITE_PASSWORD
+,
+    },
+  },
+});
+Copy
+Copied!
+Fix
+To authenticate on a website, use 
+httpCredentials
+, and keep the 
+proxy
+ credentials for the proxy:
+import
+ { defineConfig } 
+from
+ '@playwright/test'
+;
+export
+ default
+ defineConfig
+({
+  use: {
+    proxy: {
+      server: 
+'http://proxy.example.com:3128'
+,
+      username: process.env.
+PROXY_USER
+,
+      password: process.env.
+PROXY_PASSWORD
+,
+    },
+    httpCredentials: {
+      username: process.env.
+SITE_USER
+!
+,
+      password: process.env.
+SITE_PASSWORD
+!
+,
+    },
+  },
+});
+Copy
+Copied!
+CSS imports
+.css
+, 
+.less
+ and 
+.scss
+ imports in test files now load as empty modules instead of being removed, so the imported file must exist. Make sure the CI job checks out or builds every stylesheet a test file imports.
+Upgrade order
+Do the bump on a branch with full reports, so you can compare test counts and passes against your last 1.64 run, not just the failures. On that branch, move CI's Node.js version, move locator initializers into page object constructors, give each blob invocation its own directory, and add 
+--pass-with-no-tests
+ only where a filter can legitimately match nothing. Fix whatever still breaks there. Only then turn on the 
+failures
+ reporter and 
+onlyFailures
+: a report without passed tests can't tell you whether the upgrade lost any.
+Frequently asked questions
+What are the breaking changes in Playwright 1.65?
+TypeScript class fields now follow 
+useDefineForClassFields
+ from your 
+tsconfig.json
+, and a sharded run now fails with "No tests found" when no tests match across all shards. The blob reporter again deletes the content of its output directory before it writes the report, and actions such as 
+locator.click()
+ now wait for the element to be not inert.
+Why does my page object fail after upgrading to Playwright 1.65?
+A field initializer that reads a constructor parameter property now fails, because the initializer runs first. TypeScript class fields now follow 
+useDefineForClassFields
+ from your 
+tsconfig.json
+, and the setting is enabled for 
+ES2022
+ and later targets, and when 
+target
+ is not specified. Move the initialization into the constructor, as 
+Page object class fields
+ shows.
+Why does my sharded Playwright run fail with No tests found?
+A sharded run fails with "No tests found" when no tests match across all shards, while an empty shard still passes when other shards have tests. Add 
+--pass-with-no-tests
+ to jobs whose filter can legitimately match nothing, and to no others, as 
+Empty shards and blob reports
+ explains.
+How do I run Playwright tests with Bun?
+Run 
+bunx --bun playwright test
+. Without the 
+--bun
+ flag, 
+bunx playwright test
+ runs on Node.js, as 
+Running tests under Bun
+ shows.
+What does the Playwright failures reporter do?
+The new 
+failures
+ reporter prints failures and successful retries as they occur, followed by a summary, w
+
+===== https://www.testmuai.com/blog/playwright-1-65-release/
+(status 200)
+Run Web Automation Tests at Scale with Agentic AI
+Generate tests with AI agents or automate test suites with Selenium, Playwright and other frameworks. Run tests in parallel on TestMu AI scalable cloud grid.
+Start automation testing free
+Book a Demo
+Playwright
+Automation
+Playwright 1.65: Bun Support, Failure-Only Reports and What to Check Before Upgrading
+Playwright 1.65.0 runs tests under Bun, adds onlyFailures reports and drops Node.js 20. The 10 breaking changes, known bugs, upgrade checklist and rollback.
+Ankit Mathur
+Author
+Sri Harsha
+Reviewer
+Published on: 
+November 6, 2026
+On This Page
+1.65 at a Glance
+Run Tests Under Bun
+Bun Limitations
+Failure-Only Reports
+onlyFailures and Totals
+Sharded Blob Reports
+Page Object Errors
+Other Breaking Changes
+Screenshot Baselines
+Node.js and Docker
+Known 1.65.0 Bugs
+Upgrade Checklist
+Upgrade a CI Suite
+1. Branch and Bump
+2. Static Checks
+3. Run in the CI Image
+4. Refresh Baselines
+Roll Back to 1.64.1
+GitHub Actions Workflow
+Real Browser Checks
+Should You Upgrade Now?
+Conclusion
+Playwright 1.65.0 (released 5th November 2026) can run the test runner under Bun via 
+bunx --bun playwright test
+. It has a new 
+failures
+ terminal reporter and an 
+onlyFailures
+ option for the HTML, JSON and JUnit reports. It no longer tests on Node.js 20, and there are 
+10 breaking changes
+.
+The one that's most likely to break your suite is that page objects with class fields that read 
+this.page
+ will now throw at runtime. Before you upgrade, run 
+tsc --noEmit
+, regenerate your screenshot baselines in the 1.65 Docker image, and ensure your dashboards aren't reading the pass counts from the report you want to filter on.
+If you're coming from 1.63, read the 
+Playwright 1.64 breaking changes
+ first, as the screen emulation, JSX compilation and 
+--update-snapshots=missing
+ changes from 1.64 are still in force.
+TL;DR
+Playwright 1.65.0
+ is the November 5, 2026 release of Microsoft's Playwright test framework. The Playwright 1.65 release runs the test runner under Bun, adds failure-only reports, stops testing on Node.js 20 and ships 10 breaking changes, so plan the Playwright 1.65 upgrade as a reviewed change with new baselines.
+Playwright Bun support
+: Opt in with bunx --bun playwright test. Playwright's CI covers Bun 1.4.3 on Linux, and watch mode, --tsconfig and custom ESM loaders do not work under Bun.
+Playwright failures reporter
+: The --reporter=failures option prints failures and successful retries as they happen, then a summary, with no progress output, so long CI logs get shorter.
+Playwright HTML report only failures
+: Set the Playwright onlyFailures option to true on the html, json or junit reporter. Passing tests also leave the report totals, so keep one unfiltered file for dashboards and quality gates.
+Playwright 1.65 breaking changes
+: Page objects that read this.page in a class field now throw, a result of the Playwright useDefineForClassFields change. Running tsc --noEmit lists each one as a TS2729 error.
+Playwright 1.65 Docker image
+: Use mcr.microsoft.com/playwright:v1.65.0-noble, which ships Node.js 26. Refresh baselines inside it and review each 
+Playwright screenshot comparison
+ diff in a separate commit.
+Upgrade triage
+: Sort each failure into class fields, inert actionability, baseline drift or empty shards, then re-run the rest on 1.64.1 to separate upgrade breakage from existing 
+Playwright flaky tests
+.
+Sharded reports
+: For 
+Playwright parallel testing
+ across shards, keep blob reports unfiltered and set onlyFailures in the merge-reports config instead.
+Cloud coverage
+: TestMu AI runs a Playwright 1.65 suite across 3,000+ browser and OS combinations, which covers the branded Chrome and Edge builds that a Linux container run skips.
+Playwright 1.65 at a Glance
+Change
+Command or option
+Who it affects
+Test runner runs under Bun
+bunx --bun playwright test
+Teams already on Bun; opt-in
+Failure-only terminal output
+--reporter=failures
+Anyone with long CI logs
+Failure-only report files
+onlyFailures: true
+ on html, json, junit; env 
+PLAYWRIGHT_HTML_ONLY_FAILURES
+ etc.
+Large suites, artifact storage
+Exclusive test lock
+{ lock: '-exclusive-' }
+Tests that must run alone (restarts, perf)
+Description-only skips
+test.skip('reason')
+, also 
+fixme
+, 
+fail
+, 
+slow
+Everyone (cosmetic)
+Transpile cache location
+PLAYWRIGHT_TRANSFORM_CACHE_DIR
+Shared Linux CI machines
+CDP timeouts
+cdpSession.send(method, params, { timeout, signal })
+CDP users
+Class fields follow 
+useDefineForClassFields
+tsconfig.json
+Page objects. Most likely breakage
+Actions wait for non-inert elements
+click
+, 
+check
+, 
+tap
+, 
+fill
+, 
+clear
+, 
+selectOption
+Modal and drawer tests
+Node.js 20 dropped from testing
+Use 22, 24 or 26
+CI images on Node 20
+Docker images ship Node.js 26
+mcr.microsoft.com/playwright:v1.65.0-noble
+Containerised CI
+Browsers
+Chromium 158.0.8127.18, Firefox 159.0, WebKit 27.2
+Visual baselines
+From 1.64.1, you go two Chromium majors (156 to 158) and two Firefox majors (157 to 159). WebKit is at 27.2. On macOS 14, Playwright installs an older, pinned WebKit build (revision 2251 rather than 2388 as per 
+browsers.json
+), so the WebKit results on macOS 14 and Linux can be different.
+How Do You Run Playwright Tests Under Bun?
+Run 
+bunx --bun playwright test
+. The 
+--bun
+ flag is required. If you omit it, then 
+bunx playwright test
+ will run the test runner on Node.js as it did before. We checked 
+process.versions
+ inside a test: with the 
+--bun
+ flag, it reported Bun 1.4.4, and without it, it reported Node 22.
+bun add -d @playwright/
+test
+@1.65.0
+bunx playwright install --with-deps chromium   
+# installer, runs on Node.js
+bunx --bun playwright 
+test
+# test runner, runs on Bun
+Under Bun, Bun transpiles your TypeScript test files itself. Playwright makes no use of Babel or its compilation cache. In Jest, that work usually falls to ts-jest, Babel or SWC, and the 
+Jest ESM TypeScript
+ guide compares the three for tests that run as ES modules.
+The Playwright CI that runs the test-runner tests does so under Bun 1.4.3 on Linux. The 
+release notes
+ provide no minimum Bun version and say absolutely nothing about macOS or Windows, so pin Bun 1.4.3 or later and treat the other platforms as untested.
+The notes also give no indication as to whether the 
+playwright install
+ should be run under Bun. Running it on Node as described above is the safe default.
+What Breaks When Playwright Runs on Bun?
+Watch mode, 
+--tsconfig
+, tsconfig JSX options, custom ESM loaders, async stack frames and console capture in traces all work differently. The following table lists what the 1.65 notes document, plus two things we've observed:
+Capability
+Node.js (
+npx playwright test
+)
+Bun (
+bunx --bun playwright test
+)
+TypeScript transpilation
+Playwright (Babel) + compilation cache
+Bun's transpiler, no Playwright cache
+UI mode re-run on file change / watch
+Yes
+No
+--only-changed
+Follows imports
+Changed files only, ignores imports
+--tsconfig
+, tsconfig JSX options
+Honoured
+No effect
+Custom ESM loaders
+Supported
+Not supported
+Async frames in stack traces
+Yes
+No
+API names in step titles and errors
+locator.click
+click
+Test console output in trace and UI mode
+Captured
+Not captured
+useDefineForClassFields
+Honoured
+Honoured (we tested: 
+false
+ in tsconfig fixed the page-object error under Bun too)
+Reported test location
+a.spec.ts:3:1
+a.spec.ts:3:2
+ in our run (column differs)
+What this means for CI:
+Step title dashboards have changed.
+ We saw a 
+TimeoutError: locator.click: ...
+ under Node become a 
+TimeoutError: click: ...
+ under Bun. Keep the Bun and Node results in separate trend lines. The other timeout errors and their fixes are listed in 
+Playwright timeouts
+.
+Debug on Node.
+ If you're debugging a flaky test, you'll be reaching for the UI mode re-runs, the async stack frames and the trace console output, and Bun gives you absolutely nothing in that respect.
+--only-changed
+ PR gates run fewer tests under Bun.
+ A change to a shared helper won't select the specs that import it.
+How Do You Get a Playwright Report With Just the Failed Tests?
+Use the new 
+failures
+ reporter for terminal output and 
+onlyFailures: true
+ for the HTML, JSON or JUnit file. There's no CLI flag for 
+onlyFailures
+ (a 
+--reporter-only-failures
+ flag was added during 1.65 dev and subsequently removed prior to release in 
+#43805
+). Set it in your config or via an environment variable.
+The 
+failures
+ reporter prints failures and successful retries as they happen, then a summary, and no progress output:
+npx playwright 
+test
+ --reporter=failures
+Options: 
+omitTags
+ (
+PLAYWRIGHT_FAILURES_OMIT_TAGS
+), plus 
+PLAYWRIGHT_FORCE_TTY
+, 
+FORCE_COLOR
+ and 
+NO_COLOR
+. Set 
+quiet
+ in the test config to suppress test stdout and stderr.
+onlyFailures
+ keeps the tests with unexpected results (including the ones with unexpected passes), the flaky tests and the tests that were interrupted. A flaky test is kept even if it passed on retry, along with all the attempts.
+// playwright.config.ts
+import
+ { defineConfig } 
+from
+'@playwright/test'
+;
+export
+default
+ defineConfig({
+retries
+: process.env.CI ? 
+2
+ : 
+0
+,
+reporter
+: process.env.CI
+    ? [
+        [
+'failures'
+],                                        
+// short CI log
+        [
+'html'
+, { 
+onlyFailures
+: 
+true
+, 
+open
+: 
+'never'
+ }],     
+// small artifact for humans
+        [
+'json'
+, { 
+outputFile
+: 
+'results/full.json'
+ }],       
+// full data for dashboards
+      ]
+    : [[
+'list'
+], [
+'html'
+]],
+});
+Env vars: 
+PLAYWRIGHT_HTML_ONLY_FAILURES
+, 
+PLAYWRIGHT_JSON_ONLY_FAILURES
+, 
+PLAYWRIGHT_JUNIT_ONLY_FAILURES
+. We've confirmed both 
+1
+ and 
+true
+ work. Multiple reporters can be specified on the command line as a comma-separated list (e.g., 
+--reporter=failures,blob
+).
+Does onlyFailures Change Your Test Totals?
+Yes, a filtered report doesn't just drop the passing tests; it drops them from the totals as well. We ran the same 24-test suite (21 passed, 2 failed, 1 flaky) both ways:
+Output
+Without 
+onlyFailures
+With 
+onlyFailures: true
+JSON 
+stats.expected
+21
+0
+JUnit 
+testsuites tests=
+24
+3
+JUnit retry elements (
+rerunFailure
+, 
+flakyFailure
+)
+0 (default 
+includeRetries
+)
+5 (kept regardless of 
+includeRetries
+)
+Anything that's going to work out a pass rate, a test count or 'tests added this week' from a filtered file is going to be complete and utter nonsense. The test management imports will think that 21 tests have disappeared. Have one unfiltered, machine-readable report (JSON or JUnit) for the dashboards and quality gates, and use 
+onlyFailures
+ for the HTML report that people actually look at.
+How Do You Use onlyFailures With Sharded Blob Reports?
+Don't put it on the blob reporter. Blob reporting has no 
+onlyFailures
+ option, and blobs should have the full run. Filter at merge time.
+merge-reports --config
+ will take a config which can be different from the one used to create the blobs:
+// merge.config.ts
+export
+default
+ {
+testDir
+: 
+'tests'
+,
+reporter
+: [
+    [
+'html'
+, { 
+onlyFailures
+: 
+true
+, 
+open
+: 
+'never'
+ }],
+    [
+'junit'
+, { 
+outputFile
+: 
+'results/junit.xml'
+ }], 
+// unfiltered, for your test-management import
+  ],
+};
+npx playwright merge-reports --config=merge.config.ts ./all-blob-reports
+Keep the blobs as a short retention artifact (1-3 days) and the failure-only HTML report for anything longer.
+Watch out for this 1.65 change:
+ the blob reporter is deleting the contents of its output directory again before it writes. We ran two invocations with different file filters into one 
+blob-report/
+ folder, and the second one wiped out the first. If one job is running Playwright more than once, then each run should have its own 
+outputDir
+ or 
+PLAYWRIGHT_BLOB_OUTPUT_FILE
+.
+How much storage does it save?
+ Playwright doesn't publish a figure for that, and we certainly won't. The HTML report has a fixed app shell (around 0.5MB in our run) regardless of whether you've filtered it or not.
+The savings are in the traces, videos and screenshots from the tests themselves. 
+onlyFailures
+ will only filter the report, and 
+test-results/
+ will still contain all of your traces, videos and screenshots as per your configuration.
+To get the savings, you need to pair it with 
+trace: 'retain-on-failure'
+ or 
+'on-first-retry'
+. Measure it on your own suite:
+PLAYWRIGHT_HTML_OPEN=never npx playwright 
+test
+ --reporter=html; du -sh playwright-report
+PLAYWRIGHT_HTML_OPEN=never PLAYWRIGHT_HTML_ONLY_FAILURES=1 npx playwright 
+test
+ --reporter=html; du -sh playwright-report
+Why Do Page Objects Throw 'Cannot Read Properties of Undefined' in Playwright 1.65?
+Playwright 1.65 now compiles TypeScript class fields in accordance with 
+useDefineForClassFields
+, just like 
+tsc
+ does. That setting is on for ES2022+ targets and 
+when the target is unset (which covers projects with no tsconfig.json at all; we've tested that)
+. Field initializers now run prior to the constructor assigning the parameter properties:
+class
+LoginPage
+{
+// 1.65: TypeError: Cannot read properties of undefined (reading 'getByRole')
+readonly
+ submit = 
+this
+.page.getByRole(
+'button'
+, { 
+name
+: 
+'Submit'
+ });
+constructor
+(
+private
+readonly
+ page: Page
+)
+ {}
+}
+Find every case with the compiler rather than grep.
+ With target ES2022 or unset, 
+tsc
+ reports these lines precisely as 
+TS2729: Property 'page' is used before its initialization
+:
+npx tsc --noEmit -p . 2>&1 | grep TS2729
+If you've got no tsconfig, then just run 
+npx tsc --noEmit --target es2022 --skipLibCheck <files>
+ or add a minimal tsconfig. If you're doing a grep, you need to cover the modifiers and the type annotations. A pattern that only matches 
+readonly x = this.page
+ will completely miss 
+private readonly x: Locator = this.page...
+rg -n --
+type
+ ts 
+'^\s*(?:(?:public|private|protected|readonly|static|override)\s+)*#?\w+\??!?\s*(?::[^=]+)?=\s*this\.'
+Fix: move the initializers into the constructor, or set 
+"useDefineForClassFields": false
+ in 
+tsconfig.json
+.
+If you're using 
+decorated classes with static fields
+, then 
+false
+ currently breaks loading. See 
+#43936
+ under known bugs.
+Which Other Playwright 1.65 Breaking Changes Got Picked Up by CI?
+Nine more, ordered by how often we expect them in a typical suite:
+Actions wait for elements to be non-inert.
+click
+, 
+check
+, 
+tap
+, 
+fill
+, 
+clear
+, and 
+selectOption
+ all time out on an element that has the 
+inert
+ attribute or is inside one. The call log will simply state that the element is inert, so grep the logs for that string. The usual culprit is a test that has clicked behind an open modal or drawer.
+An empty sharded run will fail with "No tests found".
+ If no tests match across all the shards, then the run will fail. A single empty shard will still pass if the other shards have tests. If you're deliberately running with an empty 
+--grep
+, then you should add 
+--pass-with-no-tests
+.
+Aria names skip unrendered text.
+ Text that isn't assigned to a slot, or which is directly within a closed 
+<details>
+, no longer counts. This will affect 
+getByRole({ name })
+, 
+ariaSnapshot()
+ and 
+toMatchAriaSnapshot()
+.
+Cookie matching is per RFC 6265.
+browserContext.cookies(url)
+ and 
+apiRequestContext.cookies(url)
+ no longer return host-only cookies for subdomains or 
+Path=/api
+ cookies for 
+/apiv2
+. A 
+Path=/foo/
+ cookie no longer matches 
+/foo
+. Nameless cookies are now sent as 
+Cookie: x
+ rather than 
+Cookie: =x
+.
+APIRequestContext params append.
+ String and 
+URLSearchParams
+ values are appended to the URL's existing query string rather than replacing it.
+Proxy credentials only deal with proxy challenges.
+ This is a security fix, as the 
+launch({ proxy })
+ username and password were being sent to any site that asked for authentication. For site logins, use 
+httpCredentials
+ on the context.
+.css
+, 
+.less
+ and 
+.scss
+ imports load as empty modules
+ rather than being stripped; the file must exist.
+The blob reporter clears out its output directory
+ (as per above).
+CommonJS test locations point to the callee start (e.g. 
+a.spec.ts:3:7
+ rather than 
+3:11
+), which is in keeping with ESM.
+ That's going to matter if you're using 
+file:line:col
+ as a key in your history.
+One thing is missing from the release notes. 
+APIRequestContext
+ now JSON-encodes string 
+data
+ for content types such as 
+application/json;charset=UTF-8
+ and 
+Application/JSON
+. Previously, only the exact string 
+application/json
+ was encoded. See 
+#43937
+.
+Will Playwright 1.65 Change Your Screenshot Baselines?
+Expect some drift in all three engines if you use 
+toHaveScreenshot()
+. The first public upgrade PRs show it:
+beaket/ui 1.64.1 to 1.65.0:
+ visual suite failed 37 of 288 screenshots at mobile, tablet and desktop widths (
+issue #1234
+). The author thinks it's down to Chromium 158 text rendering but hasn't verified this yet.
+vaadin/web-components:
+ the 1.65.0 upgrade PR required a follow-up commit, "fix Firefox and WebKit failures after Playwright 1.65 update" before it could be merged (
+PR #13362
+).
+primer/react
+ refreshed 162 baselines, but that PR goes from 1.60 to 1.65 (Chromium 148 to 158) and is still open, so it overstates the 1.64 to 1.65 upgrade (
+PR #8690
+).
+Regenerate the baselines within the Docker image for the same version (
+mcr.microsoft.com/playwright:v1.65.0-noble
+) in a separate commit and have a human have a look at the diff images. The baselines are regenerated in a separate commit so that you can revert the baselines without having to revert the code fixes.
+There's one plus for Firefox users. 1.64 Firefox couldn't move focus from an iframe back to the parent (issue 
+#43280
+, labeled v1.65 and closed 16th Oct). Some teams were actually still on 1.63 for that very reason (
+mittwald/flow#3607
+).
+Which Version of Node.js and Which Docker Image Does Playwright 1.65 Require?
+Node.js 22, 24, or 26 (latest patch of each). Playwright no longer tests on Node.js 20. The "engines" field in the 1.65.0 package still says 
+"node": ">=20"
+, so npm will install on Node 20 without a warning. You'll need to enforce this yourself.
+// package.json
+{ "engines": { "node": ">=22" } }
+# .npmrc
+engine-strict=true
+Docker images
+ now come with 
+Node.js 26
+ (was 24). If you have any native modules in your app that were built against Node 24, you'll need to re-build those. 1.65.0 tags:
+Tag
+Base
+mcr.microsoft.com/playwright:v1.65.0
+ and 
+:v1.65.0-noble
+Ubuntu 24.04
+mcr.microsoft.com/playwright:v1.65.0-jammy
+Ubuntu 22.04
+mcr.microsoft.com/playwright:v1.65.0-resolute
+Ubuntu 26.04
+The images contain Node.js, not Bun. The image tag must match your 
+@playwright/test
+ version; otherwise, Playwright won't be able to find its browsers. Supported hosts: Windows 11+, Server 2019+, WSL, macOS 14+, Debian 12/13, Ubuntu 22.04/24.04/26.04.
+Known Playwright 1.65.0 Bugs (as of November 6, 2026)
+No 1.65.1 has shipped yet. Three reports from the first day:
+Issue
+What breaks
+Status
+Workaround
+#43936
+Decorated class with a static field fails to load (
+_initClass is not a function
+, "0 tests in 0 files") with 
+useDefineForClassFields: false
+Closed Nov 5 via PR #43940; fix not yet in a release
+Stay on 1.64.1, or test 
+@playwright/test@beta
+#43937
+String 
+data
+ with 
+application/json;charset=...
+ is JSON-encoded. Breaks deliberately malformed-JSON tests and HMAC-signed bodies
+Open; PR #43945 is docs-only, so the behaviour stays
+Pass 
+data: Buffer.from(body)
+#43947
+clock.fastForward()
+ / 
+runFor()
+ never return while the page has a zero-delay 
+setInterval()
+Open; draft PR #43948
+Use 
+setInterval(fn, 1)
+ in test fixtures. Not confirmed as a 1.64 regression
+Playwright 1.65 Upgrade Checklist
+Paste this into the upgrade PR:
+Node.js:
+ CI and Dockerfiles on 22, 24 or 26; 
+engines
+ raised to 
+>=22
+.
+One Playwright version:
+npm ls @playwright/test playwright playwright-core
+ shows only 1.65.0 (monorepos will invariably have a spare copy somewhere).
+Browsers:
+npx playwright install --list
+ gives us chromium-1254, firefox-1572 and webkit-2388 (webkit-2251 on macOS 14).
+Browser cache:
+ if you do cache 
+~/.cache/ms-playwright
+ (the docs actually advise against this) then key it on the Playwright 
+
+===== https://testdino.com/blog/playwright-1-65-release
+(status 200)
+Playwright can now stay quiet about every test that passed and tell you only about the ones that broke. Playwright 1.65 arrived on November 5, 2026, just 29 days after the last version, and it also runs on Bun, an alternative to Node.js.
+It also lists 11 behaviour changes, and any of them can turn a healthy 
+test automation
+ suite red. One breaks a familiar way of writing page objects.
+This guide walks through every change on 1 real project, the TestDino demo store. You get the exact output we saw, the fix for each break, and a safe order to upgrade in.
+What's new in Playwright 1.65 at a glance
+Playwright 1.65
+ is the November 5, 2026 release of Microsoft's browser testing framework. It adds Bun support for the test runner, a failures reporter, an onlyFailures option for HTML, JSON and JUnit reports, a built-in exclusive test lock, and 11 breaking changes.
+The 
+official release notes
+ group the release into 5 areas. The table below maps each one to who should care.
+Area
+What changed
+Who it affects
+Bun
+The test runner runs under Bun with 
+bunx --bun playwright test
+Teams that already build or run their app with Bun
+Reports
+New 
+failures
+ reporter, plus 
+onlyFailures
+ for HTML, JSON and JUnit
+Anyone who scrolls CI logs or stores report artifacts
+Test runner
+Built-in 
+-exclusive-
+ lock, description-only 
+test.skip()
+, 
+PLAYWRIGHT_TRANSFORM_CACHE_DIR
+Suites with tests that cannot share the machine
+New APIs
+timeout
+ and 
+signal
+ on 
+cdpSession.send()
+, and 
+testRun.mode()
+CDP users and custom reporter authors
+Breaking changes
+11 behaviour changes, plus Node.js 20 is no longer tested
+Every team that upgrades
+Compared with 
+Playwright 1.64
+, this release adds fewer page-level APIs and spends most of its effort on the runner and on reports. It also carries almost 3 times as many breaking changes: 11 here against 4 last time.
+The new features are all opt-in, so you can ignore them for now. The breaking changes are different, because they apply as soon as you bump the version.
+When Playwright 1.65 shipped
+The npm registry records the publish time of every version, so the timeline is easy to check on the 
+playwright npm page
+.
+Version
+Published to npm (UTC)
+Days since previous minor
+1.63.0
+September 4, 2026
+42
+1.64.0
+October 7, 2026
+33
+1.64.1
+October 14, 2026
+Patch
+1.65.0
+November 5, 2026
+29
+On November 12, 2026, the 
+latest
+ tag on npm still points at 1.65.0. No 1.65.1 patch has been published yet.
+The gap between releases has shortened this year. Version 1.59 arrived 68 days after 1.58, while 1.65 took 29 days, so a team that skips upgrades now falls behind faster than it did in spring. For older versions, start from the 
+Playwright release guide
+.
+Source: npm registry publish dates for the playwright package, retrieved November 12, 2026.
+The demo suite used in this guide
+Every example below runs against the same project: a small suite for the 
+TestDino demo store
+, a public shop with a product list, search, a login form, and a cart drawer.
+We ran everything on Playwright 1.65.0 with Chromium 158, Node.js 22.16.0, and Bun 1.4.4 on Windows. All terminal output in this post comes from those runs on November 12, 2026.
+                        tests/store.spec.ts                    
+import { test, expect } from '@playwright/test';
+test('home page shows the hero title', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByTestId('hero-title')).toHaveText('Demo E-commerce Testing Store');
+});
+test('product list shows 14 products', async ({ page }) => {
+  await page.goto('/products');
+  await expect(page.getByText('Showing 14 products')).toBeVisible();
+});
+test('search narrows the product list', async ({ page }) => {
+  await page.goto('/products');
+  await page.getByPlaceholder('Search products...').fill('JBL');
+  await expect(page.getByRole('heading', { name: 'JBL Charge 4 Bluetooth Speaker' })).toBeVisible();
+});
+// Deliberately wrong: the store lists 14 products, not 15.
+test('product count matches the catalogue', async ({ page }) => {
+  await page.goto('/products');
+  await expect(page.getByText('Showing 15 products')).toBeVisible({ timeout: 3000 });
+});
+// Deliberately flaky: fails on the first attempt, passes on the retry.
+test('cart drawer opens from the header', async ({ page }, testInfo) => {
+  await page.goto('/');
+  await page.getByTestId('header-cart-icon').click();
+  expect(testInfo.retry, 'simulated first-attempt failure').toBeGreaterThan(0);
+  await expect(page.getByRole('heading', { name: 'Your Cart' })).toBeVisible();
+});
+The full file holds 8 tests, and a second file adds 2 more in a serial checkout group. Two of them are broken on purpose, 1 always fails and 1 passes only on retry, so the reporting features have something to show.
+If you are new to this style of suite, our 
+Playwright e2e testing
+ walkthrough covers the basics. With the project in place, the first feature to try is the one in the headline: running it all on Bun.
+1. Playwright Bun support: run the test runner with bunx --bun
+Bun is a JavaScript runtime that also acts as a package manager and bundler. Until now, Playwright's test runner assumed Node.js, even when the rest of a project ran on 
+Bun
+.
+The problem
+A team that builds and serves its app with Bun still had to keep Node.js around for 1 job: the end-to-end tests. That means 2 runtimes to install in CI, 2 lockfile habits, and 2 sets of version bumps.
+Running 
+bunx playwright test
+ did not help either. That command quietly starts Playwright on Node.js, so the tests never touched Bun at all.
+What Playwright 1.65 does
+The test runner now runs under Bun when you pass the 
+--bun
+ flag. The release notes state that Bun transpiles your TypeScript test files itself, so Playwright does not use Babel or its compilation cache.
+                        terminal                    
+bunx --bun playwright test
+To see which runtime really executes the tests, we added a 1-line check to the demo suite.
+                        tests/runtime.spec.ts                    
+import { test } from '@playwright/test';
+test('print the runtime', async () => {
+  console.log(`bun: ${process.versions.bun ?? 'not running under Bun'} | node: ${process.versions.node}`);
+});
+We ran it twice, once without the flag and once with it.
+                        terminal                    
+$ bunx playwright test runtime --reporter=list
+bun: not running under Bun | node: 22.16.0
+  ✓  1 [chromium] › tests\runtime.spec.ts:4:1 › print the runtime (2ms)
+$ bunx --bun playwright test runtime --reporter=list
+bun: 1.4.4 | node: 26.3.0
+  ✓  1 [chromium] › tests\runtime.spec.ts:4:2 › print the runtime (3ms)
+The first run is plain Node.js. The second is Bun 1.4.4, which reports a Node.js compatibility version of its own.
+Tip:
+ Add the runtime check above to your suite before you trust a Bun pipeline. Without 
+--bun
+, the job stays green and still runs on Node.js.
+What works differently under Bun
+Bun support comes with limits, and the release notes list them plainly. The table puts them next to the Node.js behaviour.
+Feature
+Node.js
+Bun
+Watch mode
+Available
+Not available
+UI mode reruns on file change
+--only-changed
+Follows imports
+Does not follow imports
+--tsconfig
+ and JSX options in 
+tsconfig.json
+Respected
+No effect
+Custom ESM loaders
+Supported
+Not supported
+Stack traces
+Include async frames
+No async frames
+API names in steps
+locator.click
+click
+Test console output in trace and UI mode
+Captured
+Not captured
+Two of these showed up in our own run. The test location moved by 1 column, from 
+runtime.spec.ts:4:1
+ to 
+runtime.spec.ts:4:2
+, and the stack frame in a failure read 
+at
+ where Node.js printed the file path alone.
+Those small shifts matter if anything parses your output. Step titles and locations feed reports, so a tool that matches on 
+locator.click
+ will not find it in a Bun run.
+The missing pieces also touch daily debugging. If you lean on 
+Playwright UI mode
+ to rerun on save, or read console output inside the 
+Playwright trace viewer
+, keep Node.js for local work.
+Should you switch to Bun?
+Playwright's own CI runs the test runner tests under Bun 1.4.3 on Linux, according to the release notes. That is the tested combination today.
+Our 10-test suite passed under Bun 1.4.4 on Windows with the same results as Node.js: 7 passed, 1 failed, 1 flaky, 1 skipped. That is 10 tests on 1 machine, which is enough to try Bun but too little to trust it.
+A sensible path looks like this:
+Already on Bun
+: add a side job with 
+bunx --bun playwright test
+ and compare results with the Node.js job for a week.
+Using JSX options or custom loaders
+: stay on Node.js, because Bun ignores those settings. This includes most 
+Playwright component testing
+ setups.
+Happy on Node.js
+: nothing changes for you. Bun support is opt-in.
+Bun is a choice you can put off. The reporting changes are harder to ignore, because every run ends in a report.
+2. Playwright failures reporter and onlyFailures: reports with only failures
+Every Playwright run ends in a report, and most of each report describes tests that passed. Version 1.65 adds 2 separate tools that cut that down: a terminal reporter and a report option.
+The problem
+The default list reporter prints a line for every test. On CI the default is the dot reporter, which prints a character per test. Both are fine for 50 tests and tiring for 5,000.
+Stored reports have the same shape. An HTML report for a large suite carries thousands of green rows around the 3 red ones you opened it for.
+What Playwright 1.65 does
+The new 
+failures reporter
+ prints failures and successful retries as they happen, followed by a summary. It prints no progress output at all.
+                        terminal                    
+npx playwright test --reporter=failures
+Here is what it printed for the demo store suite, trimmed to the key lines.
+                        terminal                    
+  1) [chromium] › tests\store.spec.ts:38:1 › cart drawer opens from the header
+    Error: simulated first-attempt failure
+    Expected: > 0
+    Received:   0
+  1) [chromium] › tests\store.spec.ts:38:1 › cart drawer opens from the header
+    Passed on retry #1 (1.2s).
+  2) [chromium] › tests\store.spec.ts:32:1 › product count matches the catalogue
+    Error: expect(locator).toBeVisible() failed
+    Locator: getByText('Showing 15 products')
+    Expected: visible
+    Timeout: 3000ms
+  1 failed
+    [chromium] › tests\store.spec.ts:32:1 › product count matches the catalogue
+  1 flaky
+    [chromium] › tests\store.spec.ts:38:1 › cart drawer opens from the header
+  1 skipped
+  7 passed (13.9s)
+Errors appear the moment a test fails, without waiting for the run to end. A test that recovers gets its own line, "Passed on retry #1", so a flaky pass cannot slip by unnoticed. The 7 passing tests share 1 line.
+The retry line is worth a second look. With 
+Playwright retries
+ turned on, a test that fails once and then passes still ends the run green, which is easy to miss in a long 
+Playwright test reporting
+ log.
+The reporter has 1 option of its own. Set 
+omitTags
+, or the 
+PLAYWRIGHT_FAILURES_OMIT_TAGS
+ variable, to drop test tags from titles. Pair it with the 
+quiet
+ config option if your tests print to stdout.
+The onlyFailures option
+The second tool works on files. The new 
+onlyFailures option
+ tells the HTML, JSON, or JUnit reporter to keep only the tests worth opening.
+According to the docs, that means:
+Tests with unexpected outcomes, including unexpected passes
+Flaky tests, even when they pass on retry
+Interrupted tests
+Every attempt of a kept test stays in the report, including the retry that passed.
+                        playwright.config.ts                    
+import { defineConfig, devices } from '@playwright/test';
+export default defineConfig({
+  testDir: './tests',
+  fullyParallel: true,
+  retries: 1,
+  reporter: [
+    ['failures'],
+    ['html', { onlyFailures: true, open: 'never' }],
+  ],
+  use: {
+    baseURL: 'https://storedemo.testdino.com',
+    trace: 'on-first-retry',
+  },
+  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+});
+There is no command-line flag for it. You set it in the config, or with an environment variable per reporter.
+Reporter
+Config option
+Environment variable
+HTML
+onlyFailures
+PLAYWRIGHT_HTML_ONLY_FAILURES
+JSON
+onlyFailures
+PLAYWRIGHT_JSON_ONLY_FAILURES
+JUnit
+onlyFailures
+PLAYWRIGHT_JUNIT_ONLY_FAILURES
+What onlyFailures does to your totals
+This is the part the release notes do not spell out, so we measured it. We wrote a full report and a failures-only report from the same run of 10 tests and compared them.
+Measure
+Full report
+With onlyFailures
+Tests in the JSON report
+10
+2
+JSON 
+stats.expected
+ (passed)
+7
+0
+JSON 
+stats.skipped
+1
+0
+JSON 
+stats.unexpected
+ and 
+stats.flaky
+1 and 1
+1 and 1
+JUnit 
+tests
+ attribute
+10
+2
+JSON file size
+32,820 bytes
+21,357 bytes
+The option removes more than rows. The totals shrink with them, so the failures-only JSON file claims 0 passed tests and the JUnit file claims 2 tests in total.
+Note:
+ Never calculate a pass rate from a failures-only file. A dashboard that reads this JUnit report would show 1 failure out of 2 tests, a 50% pass rate, for a run where 8 of 10 tests ended green.
+File size dropped by about 35% in this tiny suite, because failed tests carry the heavy error details. The saving should grow with the share of passing tests, so measure it on your own suite before you promise anyone a number.
+The 
+Playwright HTML reporter
+ output behaves the same way. Open the trimmed report and you land on the failed and flaky tests, with no filter to click first.
+onlyFailures with sharded blob reports
+Sharded suites write blob reports and merge them later. The blob holds everything, and the trimming happens at merge time through a config file.
+                        merge.config.ts                    
+import { defineConfig } from '@playwright/test';
+export default defineConfig({
+  reporter: [['html', { onlyFailures: true }]],
+});
+                        terminal                    
+npx playwright merge-reports --config=merge.config.ts ./blob-report
+This keeps the full data in the blobs while the published HTML stays small. Teams that already merge 
+Playwright CI reports
+ across 
+Playwright sharding
+ jobs only need the extra flag.
+Keeping full history with TestDino
+Trimmed reports are good for reading and bad for trends. A pass rate, a flaky rate, or a slowest-test list all need the tests that passed.
+The docs say to configure 
+onlyFailures
+ independently for each reporter, and that detail solves the problem. A reporter without the option still receives everything.
+We confirmed it with a small custom reporter beside the trimmed ones. It received all 12 results: 10 tests plus 2 retries.
+TestDino's reporter sits in that same slot. It streams results during the run, so you can trim the local files and still keep the complete record.
+                        playwright.config.ts                    
+import { defineConfig } from '@playwright/test';
+export default defineConfig({
+  reporter: [
+    ['failures'],
+    ['html', { onlyFailures: true, open: 'never' }],
+    ['@testdino/playwright', { token: process.env.TESTDINO_TOKEN }],
+  ],
+});
+With this setup the terminal shows only what broke, the HTML artifact stays small, and TestDino holds every pass, fail, and retry for 
+playwright test history
+. A test that passed on retry today is then easy to spot when it fails for real next week.
+We ran the demo suite this way to check it. The local HTML report held 2 tests, while the TestDino run listed all 10 tests in 2 suites: 7 passed, 1 failed, 1 flaky, and 1 skipped.
+From a flaky retry to a fix
+The failures reporter told us that the cart drawer test passed on retry. It did not tell us why, and that question is where the time usually goes.
+In TestDino, the same test carried an AI Insights tab. It labelled the test "Unstable" with medium confidence (59%) and noted 1 failed attempt and 1 passed retry.
+The suggested fix was exact. It pointed at line 41 of 
+store.spec.ts
+ and proposed deleting the simulated first-attempt assertion, which is the flake we planted on purpose.
+This was the first run of the project, so the "Seen before" field read "history unavailable". That field fills in as runs build up, which is the reason to keep the full record and not a trimmed one.
+The same screen has a "Debug with AI" button for cases that need more than a 1-line fix. It hands the failure, its attempts, and what changed since the test last passed to your coding agent.
+The flow has 3 steps: pick your AI IDE, connect the TestDino MCP server, and send a prepared prompt. The options shown were Cursor, Claude Code, VS Code Copilot, and the Codex app, in the same spirit as our 
+fixing Playwright tests with AI
+ workflow.
+The agent proposes a fix, and you review it and rerun to verify. The review step matters, because the panel itself labels its suggestions as AI-generated.
+So the 1.65 reporters told us which test was flaky, and the stored run is what explained why. With more runs recorded, 
+Playwright flaky test debugging
+ can start from the tests that fail most often.
+If you want a number for your own suite, the Flaky Cost Calculator on 
+TestDino's free tools
+ turns rerun counts and debug hours into a yearly figure.
+Everything so far happens after the tests finish. The next changes affect how they run, starting with tests that need the machine to themselves.
+3. Test runner: the -exclusive- lock, description-only skips, and a movable cache
+Three smaller runner changes ship in this release. The first replaces a familiar workaround, the separate single-worker job.
+The -exclusive- lock
+Playwright 1.63 introduced named test locks, so 2 tests that share a resource never overlap. Version 1.65 adds a built-in lock name, 
+-exclusive-
+, described in the 
+test locks docs
+.
+A test with this lock starts only when no other test is running, and no other test starts until it finishes. Everything else keeps running in parallel with each other.
+                        tests/performance.spec.ts                    
+import { test, expect } from '@playwright/test';
+test('measure product list load time', { lock: '-exclusive-' }, async ({ page }) => {
+  const started = Date.now();
+  await page.goto('/products');
+  await expect(page.getByText('Showing 14 products')).toBeVisible();
+  console.log(`product list ready in ${Date.now() - started}ms`);
+});
+We ran this test beside 6 ordinary browsing tests on 4 workers and logged every start and end.
+Time
+Event
+0.0s to 0.1s
+4 browsing tests start in parallel
+2.2s to 2.8s
+First 4 finish, the last 2 browsing tests start
+4.9s
+Last browsing test ends
+4.9s
+Exclusive test starts, alone
+5.7s
+Exclusive test ends after 781ms
+The exclusive test waited until the machine was idle, then ran with nothing beside it. No other test overlapped with it at any point.
+A second run of the same file, captured below, followed the same pattern. The last browsing test ended at 53.358 and the exclusive test started at 53.438.
+Without this lock, the options were a separate project or a second CI step with 
+--workers=1
+. Both add a slower path to protect 1 test, which works against 
+Playwright parallel execution
+.
+Good candidates are tests that measure timing, restart a shared service, or change a global setting. Anything in a 
+Playwright performance testing
+ setup is a natural fit, since a busy CPU skews the numbers.
+Note:
+ In the default and serial modes, all tests in a file run together in order, so a lock on any test is held for the whole file. Put exclusive tests in their own file, or enable 
+fullyParallel
+, to keep the lock short.
+Description-only skips
+Until now, giving a reason for a skip inside a test body meant passing a condition first, as in 
+test.skip(true, 'reason')
+. The condition was noise when the skip was unconditional.
+In 1.65, 
+test.skip()
+, 
+test.fixme()
+, 
+test.fail()
+, and 
+test.slow()
+ accept only a description.
+                    

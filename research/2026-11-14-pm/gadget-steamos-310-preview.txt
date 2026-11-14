@@ -1,0 +1,524 @@
+===== https://steamcommunity.com/app/1675200/allnews/?l=schinese
+(status 200)
+登录								
+				商店			
+						主页											
+						探索队列											
+						愿望单											
+						点数商店											
+						新闻											
+						排行榜											
+				社区			
+						主页											
+						讨论											
+						创意工坊											
+						市场											
+						实况直播											
+				关于			
+				客服			
+									更改语言								
+获取 Steam 手机应用
+										查看桌面版网站									
+								© Valve Corporation。保留所有权利。所有商标均为其在美国及其它国家/地区的各自持有者所有。								
+隐私政策
+									 |  
+法律信息
+									 |  
+无障碍
+									 |  
+Steam 订户协议
+									 |  
+退款
+									 |  
+Cookie
+				商店			
+						主页											
+						探索队列											
+						愿望单											
+						点数商店											
+						新闻											
+						排行榜											
+				社区			
+						主页											
+						讨论											
+						创意工坊											
+						市场											
+						实况直播											
+				关于			
+				客服			
+							安装 Steam						
+登录
+											 | 
+语言
+											繁體中文（繁体中文）																					
+											日本語（日语）																					
+											한국어（韩语）																					
+											ไทย（泰语）																					
+											Bahasa Indonesia（印度尼西亚语）																					
+											Bahasa Melayu（马来语）																							
+测试版
+											български（保加利亚语）																					
+											Čeština（捷克语）																					
+											Dansk（丹麦语）																					
+											Deutsch（德语）																					
+											English（英语）																					
+											Español-España（西班牙语 - 西班牙）																					
+											Español - Latinoamérica（西班牙语 - 拉丁美洲）																					
+											Ελληνικά（希腊语）																					
+											Français（法语）																					
+											Italiano（意大利语）																					
+											Magyar（匈牙利语）																					
+											Nederlands（荷兰语）																					
+											Norsk（挪威语）																					
+											Polski（波兰语）																					
+											Português（葡萄牙语 - 葡萄牙）																					
+											Português-Brasil（葡萄牙语 - 巴西）																					
+											Română（罗马尼亚语）																					
+											Русский（俄语）																					
+											Suomi（芬兰语）																					
+											Svenska（瑞典语）																					
+											Türkçe（土耳其语）																					
+											Tiếng Việt（越南语）																					
+											Українська（乌克兰语）																					
+报告翻译问题
+商店页面
+Steam Deck
+全部
+讨论
+艺术作品
+视频
+新闻
+指南
+评测
+								全部							
+								讨论							
+								艺术作品							
+								视频							
+								新闻							
+								指南							
+								评测							
+Steam Deck
+商店页面
+显示
+所有新闻
+所有新闻
+综合新闻
+官方公告
+SteamOS 3.10.0 Preview
+下午 6:04
+Note: This update is for the Steam Deck Preview channel, and includes new features that are still being tested. You can opt into this in Settings > System > System Update Channel.
+Note on Preview Releases
+This is an early Preview build of SteamOS 3.10, and may contain unexpected bugs or stability issues.  If you encounter problems, please consider filing a bug on the SteamOS issue tracker
+[github.com]
+.
+The following notes are an overview, and may not include all changes since the previous SteamOS 3.9 Stable Release.
+General
+Updated Arch Linux base
+Updated Desktop Mode from Plasma 6.7.3 to Plasma 6.8.2
+For more information, see
+https://kde.org/announcements/plasma/6/6.8.0/
+Many security and stability improvements
+Fixed an issue where the "Slow Charger" alert could erroneously appear
+Fixed Bluetooth audio disconnection when switching between desktop and game modes
+Update timezone data for Cuba, and Canada's Northwest Territories and Manitoba
+Game Mode
+Added support for VK_EXT_present_timing
+Added support for ASUS ROG Xbox Ally X20 HDR and brightness adjustment
+Improved frame timing when using the framerate limiter with VRR
+Improved screen flickering when VRR is enabled while navigating the Steam UI or leaving it idle
+Improved cursor movement under VRR. It should now match the game's framerate over 30FPS, and stop spiking the panel's refresh rate up to the maximum refresh rate
+Fixed scaling causing overexposure in certain HDR titles, such as Control
+Fixed an issue with certain games, such as UBOAT and The Fruit of Grisaia, where the image would flicker and present stale frames in Game Mode
+AMD Graphics
+Added support for HDMI 2.1 VRR, FRL, and ALLM
+Known issue: display may remain blank with the Dell G3223Q
+NVIDIA Graphics
+General stability and performance improvements
+Added support for Mesh Shaders on Turing and newer
+Fixes rendering corruption in Shadow of the Tomb Raider and The Surge 2
+Developer
+Linux kernel rebased on Linux 7.3
+Steam Deck
+46
+4
+SteamOS 3.9.6 Beta
+11 月 12 日
+This update is for the SteamOS Beta and Preview channels, and includes new features that are still being tested. You can opt into this in Settings > System > System Update Channel.
+These notes contain all changes since the current stable SteamOS 3.8 release, with the changes added since the previous 3.9 preview releases noted below
+New in SteamOS 3.9.6
+General
+Security and stability updates.
+Improved frame timing when using the framerate limiter with VRR.
+Improved frame timing when using the framerate limiter without VRR. A capped game whose framerate is a multiple of the limit no longer drops below it, e.g. a 30 FPS game with a 60 FPS limit at 120 Hz running at 24 FPS.
+Reduced missed frames on fixed refresh caused by slow wakeups from deep CPU idle states.
+Fixed a black screen in RPG Maker games using Fullscreen++, such as Waste Walkers.
+Fixed games running below the refresh rate on 240 Hz and higher displays.
+Fixed Steam Remote Play showing a green screen on NVIDIA GPUs.
+Fixed left click getting stuck after a two-finger tap on the touchscreen.
+Fixed SDR content looking oversaturated on HDR10 output on displays that are not wide gamut.
+Fixed gamemode and other LD_PRELOAD libraries breaking when launched through gamescope.
+Fixed several rare crashes and memory errors on shutdown and when clients exit.
+Desktop Mode
+Fixed a regression where scripts couldn't be added using "Add to Steam"
+SteamOS 3.9
+General
+Updated Arch Linux base
+Updated Desktop Mode from Plasma 6.4.3 to Plasma 6.7.3
+For more information, see
+https://kde.org/announcements/plasma/6/6.7.0/
+https://kde.org/announcements/plasma/6/6.6.0/
+https://kde.org/announcements/plasma/6/6.5.0/
+Improved support for Steam Frame wireless adapter
+Fixed a bug causing hidden WiFi networks to fail to connect on the first attempt
+Fixed Steam Remote Play not working on Steam Machine when booting with no external display connected
+Fixed "Disable Frame Limiter" toggle not working when VRR is enabled
+Fixed the frame limiter incorrectly applying to VR titles when streaming from Steam Machine to Steam Frame
+Fixed loss of input if a launcher window is accidentally dragged around in Game Mode
+Fixed an issue causing frame limits to result in lower than intended FPS on certain external displays
+Fixed issues with suspend/resume on systems with RDNA1 or RDNA2 based dedicated GPUs
+Fixed audio issues on hotplug of certain monitors in a multi-monitor setup
+Fixed an issue causing firmware updates to occasionally fail to apply on Steam Machine
+Fixed a system crash when launching Forza Horizon 6 on Legion Go 2
+Added preliminary support for Legion Go 2 brightness control
+Fixed an issue causing certain games (incl. ELDEN RING and DARK SOULS™ III) to fail to run on recent Panther Lake Intel CPUs
+Fixed performance issues in STAR WARS: Galactic Racer on resume from suspend on Steam Machine
+Fixed an issue that could lead to GPU errors in The Crew Motorfest
+Worked around a firmware issue on some ASUS devices causing excessive fan speed upon waking from sleep
+Fixed boot screen corruption on Intel PTL+ devices
+Fixed a bug wherein changing the timezone could prevent switching to Desktop Mode until a reboot
+Improved idle power consumption on Steam Deck when no audio is playing
+Security and stability updates
+Misc
+Updated the bootloader to improve compatibility with certain motherboards
+The Desktop Mode lockscreen is no longer prevented from being explicitly enabled in settings (but remains off by default)
+Fixed logging in to Desktop Mode via RDP with system users when enabled
+Developer
+Switched WiFi backend to wpa_supplicant by default, improving compatibility with various WiFi networks
+Enhanced wpa_supplicant to support fast WiFi reconnect on resume from sleep, previously only available in the iwd backend
+Linux kernel rebased on Linux 7.2
+Added preliminary support for hibernation, not yet exposed in Game Mode UI
+Enhanced Linux kernel hibernation support to enable interrupting hibernate requests and fixed various driver issues
+Not yet enabled on Steam Deck due to an outstanding driver bug
+Various scripts and packages have been renamed from `steamos-` to `holo-`, with aliases to the former names where appropriate
+Improved support for running SteamOS as a VM guest with accelerated graphics (virtio-gpu, venus)
+Updated included renderdoc version
+Reintroduced support for Android binder IPC
+Steam Deck
+118
+4
+ Steam 客户端更新：11 月 11 日
+11 月 11 日
+我们刚刚于稳定通道推出了 Steam 客户端更新。
+Steam 成就集合
+一种整理、跟踪和完成游戏成就的全新方式。 阅读公告了解更多详情。
+游戏现在可以对基础游戏和 DLC 内容的成就进行整理和分组。
+现在可以通过成就集合添加 DLC 成就，而不会影响游戏进度。
+已完成的成就集合在添加新成就集合时仍会保持已完成状态。
+如果成就和成就集合是季节性的或已无法再达成，则可以将其归档。
+更新了成就页面和成就概要的显示。
+通用
+现在，“硬件兼容性”对话框会显示用户在 Steam Deck 上玩某款游戏时的平均帧率。您可在
+此处了解关于此次更新的更多信息。
+好友的游戏邀请现在在聊天选项卡的文本输入框上方设有专属小部件，无需再前往聊天记录窗口查找具体消息。群组中好友发出的单独邀请也会直接显示在群聊窗口中，无需再切换到该好友的私聊选项卡去接受。
+更新了聊天选项卡的样式，以便更加清晰地呈现焦点状态。
+改进了群组聊天布局，并修复了手柄导航可能卡住的区域。
+好友的聊天消息通知现在将被合并显示，而不是每条消息都弹出一个 2 秒钟的通知。
+在大屏幕模式的好友上下文菜单中加入了单独调节好友语音聊天音量的功能。
+提升了快捷访问菜单的响应速度。
+为夏令时有变动的地区（如不列颠哥伦比亚省、阿尔伯塔省、曼尼托巴省等）添加了时区选择条目。
+启用高对比度模式后，主页将显示背景艺术作品。
+修复了导致各好友专属的通知设置被忽略的问题。
+更改了通知设置布局，使其在所有窗口尺寸下都更易于操作。
+各好友专属的通知设置现在在所有情况下都能正确覆盖全局通知设置。
+继正式版客户端发布上一轮 Steam 启动性能优化后，又推出了第二轮优化。
+语音聊天中好友的输出音量设置现在将在 Steam 会话之间保留，而不是在重启时重置。
+现在 Steam 桌面客户端也会显示提示，鼓励用户加入提供匿名帧率数据。
+多项常规稳定性改进，并修复了影响极少数用户的罕见崩溃问题。
+添加了一种变通方案，用于解决更新偶尔卡在 99% 的问题。
+修复了 Steam 服务错误对话框在您快速退出/重启 Steam 时会不正确地显示的几处情况。
+修复了可能导致游戏流式传输和控制器代码中出现内存泄漏的多个边缘情况。
+修复了不列颠哥伦比亚省用户日期显示错误的问题。
+修复了 Steam 云同步会在部分游戏（如 Monster Hunter World）中错误显示冲突的一个问题。
+修复了“卸载失败”对话框无法显示的问题。
+修复了在应用固件升级后，固件升级仍有几秒显示为可用的问题。
+修复了在启动时登录失败后，好友列表卡住，需要切换到离线模式再切回才可以重新加载的问题。
+修复了当有数个好友在 10 秒内加入游戏时，不显示“好友加入游戏”通知的问题。
+修复了导致“好友加入游戏时”和“好友上线时”的通知音效忽略“显示弹出通知…”和“在显示弹出通知时播放音效”设置的问题。
+修复了 Steam Frame 专属的原生内容在 Windows 上显示为可安装的问题。
+修复了语音聊天上下文菜单中音量滑块的布局问题。
+修复了 Steam 窗口可能会短暂闪烁黑屏的多种情况。
+库
+改进了动态推送通知的离线支持，并修复了之前可能会跳过加载某些活动的问题。
+商店
+更新了搜索建议和文本搜索的算法。
+远程畅玩
+新增了“显示样式”设置，允许在流式传输画面与客户端显示器的宽高比不同时进行拉伸和缩放。
+对 HDR 支持进行了大幅翻新：
+添加了 HDR 高级客户端设置，提供“自动”（在启用 HDR 内容时自动启用）、“开启”（始终开启，可提升 SDR 内容的亮度）及“关闭”的选项；
+向流式传输叠加界面中添加了亮度滑块；
+现在，除了支持在游戏中和 Windows 桌面上启用 HDR 外，在桌面版 Linux 上使用 PipeWire 以及从 macOS 进行流式传输时，也支持 HDR 捕获；
+在 Steam Deck OLED 上重新启用了 HDR；
+在运行 Android 15 及更高版本的 Android 手机上使用 Steam 流式应用测试版（https://play.google.com/apps/testing/com.valvesoftware.steamlink）时，会启用 HDR。
+连接到本地计算机时，流式传输启动速度更快。
+修复了 Steam Controller 上的 … 键未能传递到远程端的问题。
+Steam 输入
+添加了对 GameInput v4 的支持。
+修复了 EA SPORTS College Football 27 在游戏启动时未能应用游戏配置的问题。
+修复了“陀螺仪转摇杆视角”和“陀螺仪转摇杆偏移”模式中的“摇杆输出曲线”设置。之前未应用此设置。如果在过去更改过此设置，您可能会注意到控制器响应有所变化。如果有必要，请在进一步调试前先重置此设置。
+修复了“侦听绑定”模式可能将多个行为绑定至十字键输入的问题。
+Linux
+Steam 客户端现在是 64 位应用程序。
+Steam 客户端现在在 Steam 运行时容器内运行。
+这将有助于 Steam 客户端在多种发行版中提供更一致的体验。这与 Steam 游戏所使用的技术相同。
+重新设计了 Steam 更新程序的 UI 外观。
+修复了某些用户无法显示 Steam 更新程序 UI 的问题。
+修复了从挂起状态恢复时发生崩溃的问题。
+修复了一个在使用 ISteamNetworking 接口的游戏（如 Sons Of The Forest）中创建大厅时，会导致崩溃的问题。
+Steam Controller 固件
+修复了在控制器连接至传充头时将其关闭可能导致其重新开机的问题。
+降低了摇杆触碰的灵敏度，以减少过早检测到触碰的可能性。
+Steam Deck
+719
+27
+Steam 测试版客户端更新 - 11 月 3 日
+11 月 3 日
+我们刚刚于预览/测试通道推出了 Steam 客户端更新。
+通用
+修复了 Steam 窗口可能会短暂闪烁黑屏的多种情况。
+Steam 成就集合
+现在在库中将成就按完成百分比排序时，会显示已完成的成就集合。
+修复了成就总数未计入部分已解锁的成就的问题。
+修复了成就页面的稀有程度阈值问题。
+“开始游戏”栏中的成就按钮现在会打开成就面板。
+Steam Controller 固件
+降低了摇杆触碰的灵敏度，以减少过早检测到触碰的可能性。
+Steam Deck
+274
+10
+Steam 测试版客户端更新 - 10 月 28 日
+10 月 28 日
+我们刚刚于预览/测试通道推出了 Steam 客户端更新。
+通用
+修复了当有数个好友在 10 秒内加入游戏时，不显示“好友加入游戏”通知的问题。
+修复了导致“好友加入游戏时”和“好友上线时”的通知音效忽略“显示弹出通知…”和“在显示弹出通知时播放音效”设置的问题。
+各好友专属的通知设置现在在所有情况下都能正确覆盖全局通知设置。
+提升了快捷访问菜单的响应速度。
+修复了导致各好友专属的通知设置被忽略的问题。
+桌面模式
+重新设计了 Steam 更新程序的 UI 外观。
+Steam Deck
+337
+13
+Steam 测试版客户端更新 - 10 月 26 日
+10 月 26 日
+我们刚刚于预览/测试通道推出了 Steam 客户端更新。
+通用
+修复了从挂起状态恢复时发生崩溃的问题。
+添加了一种变通方案，用于解决更新偶尔卡在 99% 的问题。
+更新了聊天选项卡的样式，以便更加清晰地呈现焦点状态。
+好友的游戏邀请现在在聊天选项卡的文本输入框上方设有专属小部件，无需再前往聊天记录窗口查找具体消息。群组中好友发出的单独邀请也会直接显示在群聊窗口中，无需再切换到该好友的私聊选项卡去接受。
+改进了群组聊天布局，并修复了手柄导航可能卡住的区域。
+好友的聊天消息通知现在将被合并显示，而不是每条消息都弹出一个 2 秒钟的通知。
+在大屏幕模式的好友上下文菜单中加入了单独调节好友语音聊天音量的功能。
+远程畅玩
+连接到本地计算机时，流式传输启动速度更快。
+Steam Deck
+301
+9
+SteamOS 3.9
+10 月 23 日
+SteamOS 3.9.5 刚刚发布，为所有用户推出以下变更：
+以下的更新说明包含了自此前的 SteamOS 3.8 稳定版发布以来推出的所有变更。请见
+此处
+，查看继此前的 SteamOS 3.9.4 测试版发布后推出的变更。
+SteamOS 3.9
+通用
+更新了 Arch Linux base。
+将桌面模式从 Plasma 6.4.3 更新至 Plasma 6.7.3：
+更多信息请参见
+https://kde.org/announcements/plasma/6/6.7.0/
+https://kde.org/announcements/plasma/6/6.6.0/
+https://kde.org/announcements/plasma/6/6.5.0/
+改进了对 Steam Frame 无线适配器的支持。
+改进了 Steam Deck 在未播放音频时的空闲状态功耗。
+修复了导致隐藏 Wi-Fi 网络首次尝试连接时失败的问题。
+修复了在未连接外接显示器的情况下启动 Steam Machine 时，Steam 远程畅玩无法正常工作的问题。
+修复了启用 VRR 的情况下，“禁用帧率限制”开关失效的问题。
+修复了从 Steam Machine 流式传输至 Steam Frame 时，帧率限制器错误地应用至 VR 游戏的问题。
+修复了游戏模式下意外拖动启动器窗口时会丢失输入的问题。
+修复了在某些外接显示器上帧率限制导致实际 FPS 低于预期值的问题。
+修复了搭载 RDNA1 或 RDNA2 架构独立显卡的系统上的挂起/恢复问题。
+修复了多显示器设置下热插拔部分显示器时出现的音频问题。
+修复了导致固件更新在 Steam Machine 上偶尔无法应用的问题。
+修复了在 Legion Go 2 上启动《极限竞速：地平线 6》时发生的系统崩溃。
+添加了对 Legion Go 2 亮度控制的初步支持。
+修复了导致某些游戏（包括《艾尔登法环》和 DARK SOULS™ III）在近期的英特尔 Panther Lake CPU 上运行失败的问题。
+修复了《星球大战：银河赛车手™》在 Steam Machine 上从挂起状态恢复后，出现性能问题的情况。
+修复了《飙酷车神：轰鸣盛典》中可能导致 GPU 错误的问题。
+解决了部分华硕设备上导致从睡眠中唤醒时风扇速度过快的固件问题。
+修复了搭载英特尔 Panther Lake+ 架构的设备上出现的启动画面损坏的问题。
+修复了更改时区可能导致无法切换到桌面模式，直到重启后才能恢复的问题。
+安全和稳定性更新：
+已吊销不安全的 eMudhra CA 证书。
+杂项
+更新了 bootloader（引导加载程序）以改善与某些主板的兼容性。
+现已可以在设置中显式启用桌面模式锁屏（但仍默认为关闭）。
+修复了启用了远程桌面协议的情况下，系统用户通过远程桌面协议登录桌面模式时的问题。
+开发者
+默认将 Wi-Fi 后端切换为 wpa_supplicant，改善了与不同 Wi-Fi 网络的兼容性：
+增强了 wpa_supplicant，以支持从睡眠中恢复时的 Wi-Fi 高速重连，而此前只在 iwd 后端可用。
+Linux 内核现基于 Linux 7.2 构建。
+添加了对休眠的初步支持，但尚未在游戏模式 UI 中显示：
+增强了 Linux 内核休眠支持，以启用中断休眠请求，并修复了各种驱动程序问题；
+由于一个尚未解决的驱动程序错误，目前暂未在 Steam Deck 上启用。
+不同的脚本和程序包已从“steamos-”重命名为“holo-”，并在适当情况下使用别名以指向旧名称。
+改善了将 SteamOS 作为具有加速图形（virtio-gpu、venus）的虚拟客户机运行时的支持。
+更新了内置的 renderdoc 版本。
+重新加入了对 Android Binder IPC 的支持。
+Steam Deck
+2,208
+114
+SteamOS 3.9.5 测试版
+10 月 23 日
+此更新适用于 SteamOS 测试及预览通道，并包含仍在测试中的新功能。您可以在“设置”>“系统”>“系统更新通道”中选择加入。
+以下的更新说明包含了自当前的 SteamOS 3.8 稳定版发布以来推出的所有变更，其中自此前的 3.9 预览版以来新增的更改已标注如下。
+SteamOS 3.9.5 新增内容
+通用
+安全和稳定性更新。
+改进了 Steam Deck 在未播放音频时的空闲状态功耗。
+开发者
+ 这一次真正重新加入了对 Android Binder IPC 的支持。
+SteamOS 3.9
+通用
+更新了 Arch Linux base。
+将桌面模式从 Plasma 6.4.3 更新至 Plasma 6.7.3：
+更多信息请参见
+https://kde.org/announcements/plasma/6/6.7.0/
+https://kde.org/announcements/plasma/6/6.6.0/
+https://kde.org/announcements/plasma/6/6.5.0/
+改进了对 Steam Frame 无线适配器的支持。
+修复了导致隐藏 Wi-Fi 网络首次尝试连接时失败的问题。
+修复了在未连接外接显示器的情况下启动 Steam Machine 时，Steam 远程畅玩无法正常工作的问题。
+修复了启用 VRR 的情况下，“禁用帧率限制”开关失效的问题。
+修复了从 Steam Machine 流式传输至 Steam Frame 时，帧率限制器错误地应用至 VR 游戏的问题。
+修复了游戏模式下意外拖动启动器窗口时会丢失输入的问题。
+修复了在某些外接显示器上帧率限制导致实际 FPS 低于预期值的问题。
+修复了搭载 RDNA1 或 RDNA2 架构独立显卡的系统上的挂起/恢复问题。
+修复了多显示器设置下热插拔部分显示器时出现的音频问题。
+修复了导致固件更新在 Steam Machine 上偶尔无法应用的问题。
+修复了在 Legion Go 2 上启动《极限竞速：地平线 6》时发生的系统崩溃。
+添加了对 Legion Go 2 亮度控制的初步支持。
+修复了导致某些游戏（包括《艾尔登法环》和 DARK SOULS™ III）在近期的英特尔 Panther Lake CPU 上运行失败的问题。
+修复了《星球大战：银河赛车手™》在 Steam Machine 上从挂起状态恢复后，出现性能问题的情况。
+修复了《飙酷车神：轰鸣盛典》中可能导致 GPU 错误的问题。
+解决了部分华硕设备上导致从睡眠中唤醒时风扇速度过快的固件问题。
+修复了搭载英特尔 Panther Lake+ 架构的设备上出现的启动画面损坏的问题。
+修复了更改时区可能导致无法切换到桌面模式，直到重启后才能恢复的问题。
+安全和稳定性更新。
+杂项
+更新了 bootloader（引导加载程序）以改善与某些主板的兼容性。
+现已可以在设置中显式启用桌面模式锁屏（但仍默认为关闭）。
+修复了启用了远程桌面协议的情况下，系统用户通过远程桌面协议登录桌面模式时的问题。
+开发者
+默认将 Wi-Fi 后端切换为 wpa_supplicant，改善了与不同 Wi-Fi 网络的兼容性：
+增强了 wpa_supplicant，以支持从睡眠中恢复时的 Wi-Fi 高速重连，而此前只在 iwd 后端可用。
+Linux 内核现基于 Linux 7.2 构建。
+添加了对休眠的初步支持，但尚未在游戏模式 UI 中显示：
+增强了 Linux 内核休眠支持，以启用中断休眠请求，并修复了各种驱动程序问题；
+由于一个尚未解决的驱动程序错误，目前暂未在 Steam Deck 上启用。
+不同的脚本和程序包已从“steamos-”重命名为“holo-”，并在适当情况下使用别名以指向旧名称。
+改善了将 SteamOS 作为具有加速图形（virtio-gpu、venus）的虚拟客户机运行时的支持。
+更新了内置的 renderdoc 版本。
+重新加入了对 Android Binder IPC 的支持。
+Steam Deck
+285
+9
+Steam 测试版客户端更新 - 10 月 22 日
+10 月 22 日
+我们刚刚于预览/测试通道推出了 Steam 客户端更新。
+远程畅玩
+对 HDR 支持进行了大幅翻新：
+添加了 HDR 高级客户端设置，提供“自动”（在启用 HDR 内容时自动启用）、“开启”（始终开启，可提升 SDR 内容的亮度）及“关闭”的选项；
+现在，除了支持在游戏中和 Windows 桌面上启用 HDR 外，在桌面版 Linux 上使用 PipeWire 以及从 macOS 进行流式传输时，也支持 HDR 捕获；
+在 Steam Deck OLED 上重新启用了 HDR；
+在运行 Android 15 及更高版本的 Android 手机上使用 Steam 流式应用测试版（https://play.google.com/apps/testing/com.valvesoftware.steamlink）时，会启用 HDR。
+Steam Deck
+241
+12
+SteamOS 3.9.4 测试版
+10 月 21 日
+此更新适用于 SteamOS 测试及预览通道，并包含仍在测试中的新功能。您可以在“设置”>“系统”>“系统更新通道”中选择加入。
+以下的更新说明包含了自当前的 SteamOS 3.8 稳定版发布以来推出的所有变更，其中自此前的 3.9 预览版以来新增的更改已标注如下。
+SteamOS 3.9.4 新增内容
+通用
+修复了导致固件更新在 Steam Machine 上偶尔无法应用的问题。
+修复了更改时区可能导致无法切换到桌面模式，直到重启后才能恢复的问题。
+修复了之前 3.9 版本中出现的一个回归问题，该问题会导致部分应用（例如 A Plague Tale: Innocence）在 Steam 加载界面后方运行。
+修复了此前 3.9 版本中的一个回归问题：即使显示器分辨率和游戏分辨率高于 720p，截图仍会采取 720p 的分辨率。
+减少了通过 3.5mm 输出接口使用高灵敏度耳机/扬声器时出现尖锐杂音的情况。
+安全和稳定性更新：
+吊销了某些使用不安全私钥（例如“4”）的证书颁发机构（CA）的证书。
+开发者
+改进了休眠支持：
+由于一些尚未解决的驱动程序错误，暂时禁用了 Steam Deck 设备上的休眠功能。
+改进了实验性的 dirLock 磁盘加密支持。
+SteamOS 3.9
+通用
+更新了 Arch Linux base。
+将桌面模式从 Plasma 6.4.3 更新至 Plasma 6.7.3：
+更多信息请参见
+https://kde.org/announcements/plasma/6/6.7.0/
+https://kde.org/announcements/plasma/6/6.6.0/
+https://kde.org/announcements/plasma/6/6.5.0/
+改进了对 Steam Frame 无线适配器的支持。
+修复了导致隐藏 Wi-Fi 网络首次尝试连接时失败的问题。
+修复了在未连接外接显示器的情况下启动 Steam Machine 时，Steam 远程畅玩无法正常工作的问题。
+修复了启用 VRR 的情况下，“禁用帧率限制”开关失效的问题。
+修复了从 Steam Machine 流式传输至 Steam Frame 时，帧率限制器错误地应用至 VR 游戏的问题。
+修复了游戏模式下意外拖动启动器窗口时会丢失输入的问题。
+修复了在某些外接显示器上帧率限制导致实际 FPS 低于预期值的问题。
+修复了搭载 RDNA1 或 RDNA2 架构独立显卡的系统上的挂起/恢复问题。
+修复了多显示器设置下热插拔部分显示器时出现的音频问题。
+修复了在 Legion Go 2 上启动《极限竞速：地平线 6》时发生的系统崩溃。
+添加了对 Legion Go 2 亮度控制的初步支持。
+修复了导致某些游戏（包括《艾尔登法环》和 DARK SOULS™ III）在近期的英特尔 Panther Lake CPU 上运行失败的问题。
+修复了《星球大战：银河赛车手™》在 Steam Machine 上从挂起状态恢复后，出现性能问题的情况。
+修复了《飙酷车神：轰鸣盛典》中可能导致 GPU 错误的问题。
+解决了部分华硕设备上导致从睡眠中唤醒时风扇速度过快的固件问题。
+修复了搭载英特尔 Panther Lake+ 架构的设备上出现的启动画面损坏的问题。
+安全和稳定性更新。
+杂项
+更新了 bootloader（引导加载程序）以改善与某些主板的兼容性。
+现已可以在设置中显式启用桌面模式锁屏（但仍默认为关闭）。
+修复了启用了远程桌面协议的情况下，系统用户通过远程桌面协议登录桌面模式时的问题。
+开发者
+已将新安装对象的 Wi-Fi 后端切换为 wpa_supplicant，改善了与不同 Wi-Fi 网络的兼容性：
+增强了 wpa_supplicant，以支持从睡眠中恢复时的 Wi-Fi 高速重连，而此前只在 iwd 后端可用。
+已知问题：现有安装仍继续使用 iwd，除非在开发者设置中手动启用。
+Linux 内核现基于 Linux 7.2 构建。
+添加了对休眠的初步支持，但尚未在游戏模式 UI 中显示：
+增强了 Linux 内核休眠支持，以启用中断休眠请求，并修复了各种驱动程序问题；
+由于一个尚未解决的驱动程序错误，目前暂未在 Steam Deck 上启用。
+不同的脚本和程序包已从“steamos-”重命名为“holo-”，并在适当情况下使用别名以指向旧名称。
+改善了将 SteamOS 作为具有加速图形（virtio-gpu、venus）的虚拟客户机运行时的支持。
+更新了内置的 renderdoc 版本。
+重新加入了对 Android Binder IPC 的支持。
+Steam Deck
+229
+22
+查看更多内容
+载入中
+没有更多内容了。太伤感了。
+					您可以协助：
+分享截图，制作视频，或展开新的讨论！
+返回顶部
+					正在返回您最后在此页面上浏览的位置…				
+取消
+©
+隐私政策
+法律信息
+无障碍
+Cookie
+Steam 订户协议
+© Valve Corporation。
+查看移动版网站
