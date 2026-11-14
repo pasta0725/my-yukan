@@ -1,0 +1,33 @@
+name: short-restore
+# Takes a published Short's materials back from Google Drive (the zip drive-store.yml made) and puts them on the branch
+# "work" again (tools/drive_get.py, 2026-11-14). For making an old video again, or testing short-voice.yml / short-build.yml.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "short name, e.g. rina_nvidia_ceo", required: true}
+      only: {description: "put only these paths from the zip (space separated, empty = everything)", default: ""}
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      N: "${{ inputs.name }}"
+      O: "${{ inputs.only }}"
+      DRIVE_CLIENT_ID: "${{ secrets.DRIVE_CLIENT_ID }}"
+      DRIVE_CLIENT_SECRET: "${{ secrets.DRIVE_CLIENT_SECRET }}"
+      YT_CLIENT_ID: "${{ secrets.YT_CLIENT_ID }}"
+      YT_CLIENT_SECRET: "${{ secrets.YT_CLIENT_SECRET }}"
+      DRIVE_REFRESH_TOKEN: "${{ secrets.DRIVE_REFRESH_TOKEN }}"
+    steps:
+      - uses: actions/checkout@v4
+      - name: zip from Drive -> branch work
+        run: |
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          python3 tools/drive_get.py get "$N" /tmp/m.zip
+          mkdir -p /tmp/x && cd /tmp/x && unzip -q /tmp/m.zip && cd -
+          { echo "### $N の素材（ドライブから）"; echo '```'; (cd /tmp/x && find . -type f | sed 's|^\./||' | sort | awk -F/ '{d=$1"/"$2; c[d]++} END {for (k in c) print c[k], k}' | sort -k2); echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          cp -a /tmp/x/. .
+          P="$O"; [ -z "$P" ] && P=$(cd /tmp/x && find . -mindepth 2 -maxdepth 2 | sed 's|^\./||' | sort -u | tr '\n' ' ')
+          python3 tools/work_branch.py put $P
