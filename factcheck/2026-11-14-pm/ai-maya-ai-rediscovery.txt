@@ -1,0 +1,164 @@
+===== https://www.theverge.com/ai-artificial-intelligence/1032125/ai-agents-maya-site-archeology-discovery
+(failed: HTTPSConnectionPool(host='www.theverge.com', port=443): Read timed out. (read timeout=30))
+
+===== https://pietromiotti.com/latest/maya-site/
+(status 200)
+My AI Agents (Re)discovered a Maya Site in 72 Hours
+5 min read (Last edit: 11 Nov)
+Update (11 November): it turns out the site had already been mapped in 
+Estrada-Belli et al. 2025
+. The agents missed it while going through the literature, so they rediscovered it rather than discovered it (it just wasn't in the register of Mexico's National Institute of Anthropology and History, INAH, yet). Still work to do then! The rest of the story still holds.
+By analyzing NASA lidar data, my AI agents found a Maya site in Mexico that wasn't in the official register. (It turned out archaeologists had mapped it already, more on that at the end.) It took 
+less than 72 hours
+ to go from a random thought while traveling to an official reply from the Mexican government. This is by far the best time ever to be alive.
+Lidar: bare ground, 2013
+Satellite image today
+Drag the slider.
+ The same hilltop today from a satellite (just trees) and in lidar (no trees). Colours show height. Satellite © Esri, Maxar, Earthstar Geographics.
+Disclaimer: I'm not an archaeologist.
+I'm going to tell this story as a diary, because the timeline is probably the best part.
+18 October
+I was traveling in Peru, Gemini-ing about the history of the place, when I learned about 
+Hiram Bingham
+, the American explorer who "discovered" 
+Machu Picchu
+ in 1911. "What luck!" I thought. He was actually looking for a different city, 
+Vilcabamba
+, the last refuge of the Incas, when a local farmer in the valley below guided him to the ruins. "Imagine if Bingham had our tools," I thought. "What would he do?"
+Left:
+ Bingham at his tent, 1912. 
+Right:
+ Machu Picchu, photographed by Bingham the same year. Public domain, Wikimedia Commons (
+left
+, 
+right
+).
+I brainstormed a bit with a few agents (Gemini, ChatGPT, Claude and Grok), and they all said 
+lidar
+. From above, a ruin in the jungle is just a bunch of trees (like Machu Picchu before it was cleared), so satellite photos don't help much. Lidar, instead, fires laser pulses through the gaps in the canopy and maps the ground underneath.
+[1]
+So the agents went looking for lidar data. Peru isn't well covered, and hiring a company to do a survey meant permits, costs and bureaucracy, so I gave up on that. Then I thought: why not the 
+Maya
+? Their region is much better covered by public lidar.
+That night, I asked the agents to analyze it and went to bed.
+19 October
+I woke up and checked the agents' reports. 'DAMN!' They had found lots of villages and other regular shapes that looked like structures or houses.
+A few of the sites the agents flagged overnight. Keep an eye on the bottom-left one.
+So how did they do it?
+ They turned the lidar strips (about 1,200 km² of jungle) into images, and 48 agents went through them one by one like very patient archaeologists, looking for pyramids, platforms, and plazas while filtering out natural hills, sinkholes, and roads. There was no special model or classifier involved: the agents literally looked at the pictures, following a precise guide.
+Me:
+ That's awesome! Please check which of these villages haven't been discovered yet. Search both the literature and the archives.
+…a few hours later…
+Agent:
+ One major village doesn't seem to have been registered.
+This is the hilltop from the top of this post. It sits on the edge of a cliff, under the jungle, and it has straight edges and sharp corners. Nature doesn't really do straight lines.
+Zooming in, there's a levelled plaza, an oval pyramid at least 8–12 m tall, a raised courtyard attached to it and a flat-bottomed hollow that might have been a water reservoir.
+The hilltop with the trees removed (top), and a zoom into its civic centre (bottom).
+And this is what it looks like in 3D.
+The site in 3D, from the lidar. Heights exaggerated ~1.5×.
+Me:
+ OK, what should I do?
+Agent:
+ You should contact 
+INAH
+ (Mexico's National Institute of Anthropology and History), write a report on your discovery, and check whether the site is in their register. Sometimes they have unpublished results.
+Me:
+ OK, how do I contact INAH? How does the reporting process work?
+Agent:
+…instructions for the report… + email addresses
+Me:
+ OK, please do the report.
+And I went to bed.
+20 October
+I iterated on the report a bit, since a few things were off, and translated it into Spanish to improve the chances of getting a reply (at least, that's what Claude suggested). I don't speak Spanish, so I had to trust the agents on that one.
+The agents also checked the raw point cloud, to make sure the shapes were really on the ground and not created by the trees. Green dots are leaves, brown dots are the ground.
+Two slices through the raw lidar points. Under 10–17 m of forest, the ground (brown) traces the plaza, the pyramid and the courtyard.
+Then I sent the report to INAH.
+The top of my letter to INAH. The exact coordinates went in a confidential annex, not shown here.
+21 October
+INAH replied: they checked their records and found 
+no registered archaeological site at that location
+.
+INAH's reply. The highlighted part: 
+"…no registered archaeological site was identified at the location given in your report."
+At that point I thought nobody had put it on a map before. I was wrong (see below).
+So what was it?
+This part is speculation, from a long chat with the agents. It looks like a small Maya civic centre from the Classic period (roughly AD 250–900), basically the "downtown" of a local elite. The plaza is where people gathered, for ceremonies and maybe even a market. The pyramid was probably a temple, and the raised courtyard next to it might have been where the local ruler lived. The hollow could have been an 
+aguada
+, a rainwater reservoir: Maya towns needed them to get through the dry season. Or it's just a hole. The three platforms around were probably houses.
+I asked Gemini to imagine how it looked back then:
+How it might have looked around AD 700. Generated with Gemini from the lidar layout
+For similar studies, have a look at how NASA's G-LiHT instrument works (
+Cook et al. 2013
+) and how lidar collected for environmental research can be reused for archaeology (
+Golden et al. 2016
+). In 2024, archaeologists found a whole Maya city in Mexico this way (
+Auld-Thomas et al. 2024
+), others mapped settlements across the Maya lowlands, including this very site (
+Estrada-Belli et al. 2025
+), and another study found what may have been ancient Maya marketplaces (
+Šprajc 2026
+).
+What's next
+The site is now in the hands of the people who should have it: Mexico's National Institute of Anthropology and History (INAH) and the archaeologists who mapped it first. If anything comes out of it, I'll post an update.
+What I've learned
+You can just do things. I'm not an archaeologist, so I didn't know this was supposed to be hard. I just picked an old problem, tried the most obvious thing and threw some compute at it. Being a naive outsider might be a superpower now.
+And it turned out professional archaeologists had already mapped the same site. I guess that's a good sign: an outsider with agents ended up in a similar place to the experts.
+And I don't think this is really about archaeology. So far, most agentic AI stories have been about coding, math and physics, but it's much more general than that, and I hope this small example makes it a bit more obvious. We are on the brink of a revolution in all the sciences, and the only bottlenecks left will be curiosity and imagination (and compute).
+At this point, we should probably lidar the whole planet and let the agents discover the rest.
+If you don't know how lidar works, copy and paste this prompt into your favorite AI tool: "Build an HTML page that explains how lidar works, with beautiful visualizations." 
+↩
+
+===== https://futurism.com/artificial-intelligence/ai-found-ancient-maya-site-not
+(status 200)
+NASA G-LiHT			
+Google AI researcher Pietro Miotti let his AI agents loose on some NASA lidar data — where, according to him, they made a staggering discovery: an ancient Maya site lurking deep under the thick canopy of the jungles of Mexico.
+“By analyzing NASA lidar data, my AI agents discovered a Maya site in Mexico that, as far as anyone can tell, no one had reported before,” Miotti wrote in a 
+breathless blog post
+. “It took less than 72 hours to go from a random thought while traveling to an official reply from the Mexican government.”
+“This is by far the best time ever to be alive,” the researcher, who admitted that he’s “not an archeologist,” gushed.
+“I think we’re on the brink of a revolution across every science, not just coding, physics and math,” he 
+tweeted
+.
+The discovery blew up on social media, with users 
+lauding him
+ for “finding ancient mayan sites from your desk chair” and arguing that the discovery 
+justified AI data centers
+. (Naturally, they also 
+shared AI slop images
+ of what the site could look like once unearthed.)
+The news even caught the attention of media outlets, including 
+The Verge
+ and 
+TechRadar
+.
+But it didn’t take long for the scientific community to call foul. 
+“This story is going wild on X and elsewhere,” archeologist and award-winning author Sarah Parcak wrote in a 
+post on Bluesky
+. “The site was already published by Dr. Francisco Estrada-Belli of Tulane University ages ago.”
+In a 
+2025 paper
+, a team of researchers directed by Estrada-Belli examined lidar data colleceted by NASA’s Goddard Space Flight Center, covering 95,000 square kilometers of central America, finding that the ancient Maya population may have been significantly larger than previously estimated, 
+possibly upwards of 16 million people
+ at its peak.
+“This is why we have peer review,” Parcak added. “Mexican gov didn’t have it in their database, but that doesn’t mean it is unknown/unmapped.”
+Estrada-Belli 
+shared images of the site
+ with Parcak, adding credence to the revelation.
+To his credit, Miotti admitted defeat, conceding in an update that “it turns out the site had already been mapped.”
+“The agents missed it while going through the literature, so they rediscovered it rather than discovered it,” Miotti claimed. “Still work to do then!”
+Nonetheless, the incident highlights a trend of AI researchers being accused of taking credit for pre-existing scientific research. Perhaps the most notable is OpenAI, which released a flood of “proofs” for well-known, unsolved mathematical problems. But many of these solutions 
+appear to be ripping off the work of mathematicians
+, who were actively working on the puzzles.
+The incident 
+escalated into a crisis
+ earlier this year as mathematicians accused OpenAI of providing unverified proofs and relying on plagiarism. It underscored how the entire AI industry has built its foundations by effectively ripping off rights-protected content on the web and using it to train their models.
+While Miotti thankfully admitted that his AI agents had discovered a site that we already knew about for years, that doesn’t mean other researchers will make similar claims that may go by undisputed and taken for granted.
+Besides, ironically, machine learning and computer vision have long been a “core part of remote sensing for as long as it’s been around,” geoscience consultant Alex Janevski 
+wrote in a post on Bluesky
+.
+“I hate how this sort of hyperbolic misinformation both takes credit away from the actual experts and distorts how those experts are of course already using advanced digital tools of various kinds and have been for decades,” Roman historian Anise Strong 
+wrote
+. “Don’t reinvent the wheel, Random Internet Guy!”
+More on AI and science:
+Explosive Document Claims That AI Is Not What We Think
