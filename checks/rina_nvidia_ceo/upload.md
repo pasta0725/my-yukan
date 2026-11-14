@@ -1,2 +1,3 @@
-RESULT: FAILED
-- LOOK 投稿｜鍵の確認が通らない｜youtube-upload run 43579677680 を見る｜-
+RESULT: OK
+
+試しの実行（dry_run）：鍵の確認だけ。動画は上げていない（youtube-upload run 43579854947）
