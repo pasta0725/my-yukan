@@ -64,7 +64,7 @@ class ReportTests(unittest.TestCase):
                 self.assertEqual(set(results), {a["id"] for a in articles})
                 for article in articles[:5] if mode == "fill" else articles[:1]:
                     result, reason = results[article["id"]]
-                    self.assertEqual(result, "未処理")
+                    self.assertEqual(result, "対象外")
                     self.assertTrue(reason)
                 if mode == "fact":
                     self.assertEqual(results[articles[1]["id"]][0], "未処理")
@@ -86,7 +86,7 @@ class ReportTests(unittest.TestCase):
                 self.assertFalse([p for p in jobs.glob("*/*") if p.is_dir()])
                 self.run_check("collect", mode, jobs, out)
                 report = (out / "report.md").read_text(encoding="utf-8")
-                rows = [line for line in report.splitlines() if " | 未処理 | " in line]
+                rows = [line for line in report.splitlines() if " | 対象外 | " in line]
                 self.assertEqual({line.split("|")[1].strip() for line in rows}, ids)
                 self.assertEqual(len(rows), len(ids))
                 self.assertFalse(list(out.glob("*.json")))

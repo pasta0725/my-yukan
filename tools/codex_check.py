@@ -8,7 +8,7 @@ Standard library only.
   collect   fill|fact <jobs dir> <out dir>                   checks every <job>/out.json against <job>/article.json:
                                                               good ones -> <out>/<id>.json, plus <out>/report.md (and for
                                                               fact: <out>/changes.md made from each job's changes.txt)
-  対象外の記事は各組の skipped.json に理由を残し、collect の report.md に「未処理」として載せる。
+  対象外の記事は各組の skipped.json に理由を残し、collect の report.md に「対象外」として載せる（「未処理」「却下」と違い、Claude の予備の作業には回さない）。
   art       fill|fact <orig.json> <new.json> [allowed.txt]    check one article (prints problems; exit 1 if rejected)
   writer    <worker.json> <news/ED/worker dir> <used.txt> <edition> <out.json>
                                                               checks a new worker file (codex-write.yml): bad stories are
@@ -193,14 +193,14 @@ def prep(mode, ed, src, jobs, n):
     for a in arts:
         f = os.path.join(src, a["id"] + ".txt")
         if not os.path.exists(f):
-            skipped.append((a["id"], "未処理", "参考ページのファイルがありません"))
+            skipped.append((a["id"], "対象外", "参考ページのファイルがありません"))
             continue
         pages = pages_in(open(f, encoding="utf-8", errors="replace").read())
         have = {r.get("url") for r in a.get("refs", []) if isinstance(r, dict)}
         if mode == "fill":   # only usable new pages: status 200, real text, not a reprint, not already a ref
             pages = [p for p in pages if 200 <= p[1] < 300 and len(p[2].strip()) > 200 and not is_aggregator(p[0]) and p[0] not in have]
             if not pages:
-                skipped.append((a["id"], "未処理",
+                skipped.append((a["id"], "対象外",
                                 "書き足しに使える新しい本文がありません（取得失敗・本文不足・転載・既存の参考記事）"))
                 continue
         picked.append((a, pages))
