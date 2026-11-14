@@ -73,14 +73,16 @@ jobs:
           python3 tools/short_auto.py silence /tmp/b/spec.json "shorts/$NM/work" /tmp/rep/silence.md
           python3 tools/short_auto.py srt "shorts/$NM/plan.js" "channel/captions/${NM}_ja.srt"
           cp /tmp/b/spec.json "shorts/$NM/work/spec_ci.json"
-      - name: subtitles and plan.js to main
+      - name: subtitles and plan.js to main (not when a test spec is given)
         if: steps.plan.outputs.plan == 'ok'
+        env: { SP: "${{ inputs.spec }}" }
         run: |
           git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
           mkdir -p final; cp "channel/captions/${NM}_ja.srt" "final/${NM}_ja.srt"
           python3 tools/work_branch.py put "final/${NM}_ja.srt"
           git add "channel/captions/${NM}_ja.srt" "shorts/$NM/plan.js"
-          if ! git diff --cached --quiet; then
+          if [ -n "$SP" ]; then echo "test spec ($SP): main is not changed"; git diff --cached --stat; git reset -q
+          elif ! git diff --cached --quiet; then
             git commit -qm "ショート自動：$NM の plan.js と字幕"
             for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i*5)); done
           fi
@@ -117,7 +119,8 @@ jobs:
             git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
             python3 tools/work_branch.py put "shorts/$NM/longcat"
             git add "shorts/$NM/longcat/jobs.json"
-            if ! git diff --cached --quiet; then git commit -qm "ショート自動：$NM の longcat の区切り数を音声の長さに合わせた"; for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i*5)); done; fi
+            if [ -n "${{ inputs.spec }}" ]; then git reset -q
+            elif ! git diff --cached --quiet; then git commit -qm "ショート自動：$NM の longcat の区切り数を音声の長さに合わせた"; for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep $((i*5)); done; fi
             echo "longcat=yes" >> "$GITHUB_OUTPUT"
           else echo "longcat=no" >> "$GITHUB_OUTPUT"; fi
           tail -n +2 /tmp/b/lc.txt | grep -q LOOK && { echo "RESULT: LOOK"; tail -n +2 /tmp/b/lc.txt; } > /tmp/rep/longcat.md || true

@@ -1,0 +1,111 @@
+name: short-upload
+# Upload of a finished Short in one dispatch, with no AI (2026-11-14, user: replace the Sonnet executor C of tools/auto_short.md 2-2).
+# 1) the video (default: work:final/<name>.mp4 from short-build.yml) -> branch upload-tmp as <name>.mp4
+# 2) starts youtube-upload.yml (title, description, tags, thumbnail, subtitles, scheduled publish, comment, Drive as before)
+#    and waits for its upload job only, then reads the video ID
+# 3) adds the row to channel/shorts_log.csv ({ID} in the row becomes the video ID)
+# 4) starts short-thumb-check.yml, which looks at the Shorts thumbnail about 15 minutes after the publish time (sets it again if needed)
+# Report: job summary and branch checks, checks/<name>/upload.md. First line RESULT: OK (then "ID: <id>" and the URL) | FAILED.
+# dry_run=yes: nothing is uploaded or written; youtube-upload.yml only checks the keys (video "-").
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "short name (channel/meta/<name>.json)", required: true}
+      publish_at: {description: "scheduled publish time, e.g. 2026-11-14T21:00:00+09:00 (empty = public now)", default: ""}
+      comment: {description: "first comment (the question to pin)", default: ""}
+      privacy: {description: "public / private / unlisted", default: "public"}
+      video: {description: "work:<path> | upload-tmp:<file> (empty = work:final/<name>.mp4)", default: ""}
+      log: {description: "row for channel/shorts_log.csv ({ID} = the video ID; empty = no row)", default: ""}
+      dry_run: {description: "yes = check only (no upload, no row)", default: "no"}
+permissions:
+  contents: write
+  actions: write
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      NM: "${{ inputs.name }}"
+      GH_TOKEN: "${{ github.token }}"
+      REPO: "${{ github.repository }}"
+      DRY: "${{ inputs.dry_run }}"
+    steps:
+      - uses: actions/checkout@v4
+      - name: the video to the branch upload-tmp
+        env: { V0: "${{ inputs.video }}" }
+        run: |
+          V="${V0:-work:final/$NM.mp4}"
+          case "$V" in
+            work:*) git fetch -q origin "+work:refs/remotes/origin/work"; git show "origin/work:${V#work:}" > /tmp/v.mp4;;
+            upload-tmp:*) git fetch -q origin "+upload-tmp:refs/remotes/origin/upload-tmp"; git show "origin/upload-tmp:${V#upload-tmp:}" > /tmp/v.mp4;;
+            *) cp "$V" /tmp/v.mp4;; esac
+          test -s /tmp/v.mp4 || { printf 'RESULT: FAILED\n- LOOK 動画｜%s が見つからない｜short-build.yml の結果を見る｜-\n' "$V" > /tmp/up.md; exit 1; }
+          ls -la /tmp/v.mp4
+          [ "$DRY" = yes ] && { echo "dry run: not put on upload-tmp"; exit 0; }
+          git init -q /tmp/u && cd /tmp/u
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          for i in 1 2 3 4 5; do
+            if git fetch -q origin upload-tmp; then git checkout -q -f -B upload-tmp FETCH_HEAD; else git checkout -q --orphan upload-tmp; fi
+            cp /tmp/v.mp4 "$NM.mp4"; git add "$NM.mp4"; git commit -qm "投稿用：$NM.mp4" || true
+            git push -q origin HEAD:upload-tmp && break; sleep $((i*5))
+          done
+      - name: youtube-upload.yml (wait for the upload job)
+        env: { C: "${{ inputs.comment }}", P: "${{ inputs.privacy }}", T: "${{ inputs.publish_at }}" }
+        run: |
+          t0=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          if [ "$DRY" = yes ]; then gh workflow run youtube-upload.yml --repo "$REPO" --ref main -f name="$NM" -f video=-
+          else gh workflow run youtube-upload.yml --repo "$REPO" --ref main -f name="$NM" -f video="$NM.mp4" -f comment="$C" -f privacy="$P" -f publish_at="$T"; fi
+          run=""; for i in $(seq 1 30); do
+            sleep 10
+            run=$(gh api "repos/$REPO/actions/workflows/youtube-upload.yml/runs?event=workflow_dispatch&per_page=10" \
+              --jq "[.workflow_runs[]|select(.created_at>=\"$t0\" and .actor.login==\"github-actions[bot]\")]|sort_by(.created_at)|.[0].id // empty")
+            [ -n "$run" ] && break
+          done
+          test -n "$run" || { printf 'RESULT: FAILED\n- LOOK 投稿｜youtube-upload.yml が始まらない｜手で動かす｜-\n' > /tmp/up.md; exit 1; }
+          echo "youtube-upload run $run"; echo "RUN=$run" >> "$GITHUB_ENV"
+          for i in $(seq 1 120); do
+            j=$(gh api "repos/$REPO/actions/runs/$run/jobs" --jq '.jobs[]|select(.name=="upload")|"\(.id) \(.status) \(.conclusion)"')
+            set -- $j; [ "$2" = completed ] && break; sleep 15
+          done
+          echo "upload job: $j"
+          gh api "repos/$REPO/actions/jobs/$1/logs" > /tmp/ylog.txt 2>/dev/null || true
+          id=$(grep -oE 'video: [A-Za-z0-9_-]{11}' /tmp/ylog.txt | head -1 | cut -d' ' -f2)
+          grep -E 'video:|FAILED|ok:|check ok|uploading 100' /tmp/ylog.txt | sed 's/^[^ ]* //' | head -20
+          if [ "$DRY" = yes ]; then
+            grep -q 'check ok' /tmp/ylog.txt && printf 'RESULT: OK\n\n試しの実行（dry_run）：鍵の確認だけ。動画は上げていない（youtube-upload run %s）\n' "$run" > /tmp/up.md \
+              || printf 'RESULT: FAILED\n- LOOK 投稿｜鍵の確認が通らない｜youtube-upload run %s を見る｜-\n' "$run" > /tmp/up.md
+          elif [ "$3" = success ] && [ -n "$id" ]; then
+            fails=$(grep -oE 'FAILED: [^:]+' /tmp/ylog.txt | sed 's/FAILED: //' | tr '\n' ' ')
+            { echo "RESULT: OK"; [ -n "$fails" ] && echo "- LOOK 投稿｜一部が入らなかった：$fails｜youtube-upload.yml の thumb:/comment: などで入れ直す｜run $run"
+              echo "ID: $id"; echo "https://youtube.com/shorts/$id"; echo; echo "予約：${T:-すぐ公開}（youtube-upload run $run。公開後のサムネの入れ直し・コメント・ドライブへの移動はこの run が続けて行う）"; } > /tmp/up.md
+            echo "ID=$id" >> "$GITHUB_ENV"
+          else printf 'RESULT: FAILED\n- LOOK 投稿｜アップロードに失敗（%s）｜youtube-upload run %s を見る｜-\n' "$3" "$run" > /tmp/up.md; fi
+      - name: row in channel/shorts_log.csv
+        if: env.ID != '' && inputs.log != ''
+        env: { ROW: "${{ inputs.log }}" }
+        run: |
+          git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+          for i in 1 2 3 4 5; do
+            git pull -q --rebase origin main || true
+            grep -q "$ID" channel/shorts_log.csv || { printf '%s\n' "${ROW//\{ID\}/$ID}" >> channel/shorts_log.csv; git add channel/shorts_log.csv; git commit -qm "ショートの記録：$NM（$ID）"; }
+            git push -q origin HEAD:main && break; sleep $((i*5))
+          done
+      - name: thumbnail check after the publish time
+        if: env.ID != ''
+        env: { T: "${{ inputs.publish_at }}" }
+        run: gh workflow run short-thumb-check.yml --repo "$REPO" --ref main -f name="$NM" -f id="$ID" -f at="$T" || echo "- LOOK サムネの確認｜short-thumb-check.yml が始まらない｜手で動かす｜-" >> /tmp/up.md
+      - name: report
+        if: always()
+        run: |
+          [ -f /tmp/up.md ] || printf 'RESULT: FAILED\n- LOOK 全体｜途中で止まった｜Actions の画面を見る｜-\n' > /tmp/up.md
+          cat /tmp/up.md >> "$GITHUB_STEP_SUMMARY"
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            if git fetch -q origin checks; then git checkout -q -f -B checks FETCH_HEAD; else git checkout -q --orphan checks; fi
+            mkdir -p "checks/$NM"; cp /tmp/up.md "checks/$NM/upload.md"; git add checks; git commit -qm "upload $NM" || true
+            git push -q origin HEAD:checks && break; sleep $((i*3))
+          done
+          head -1 /tmp/up.md | grep -q 'RESULT: OK'

@@ -1,0 +1,71 @@
+name: short-thumb-check
+# Thumbnail check after a Short goes public, with no AI (2026-11-14; was the "21:15 thumbnail check" of tools/auto_short.md 4).
+# Started by short-upload.yml. Takes channel/thumbs/<name>.jpg from the branch work at the start (work is deleted after the video
+# is moved to Drive), waits until 15 minutes after the publish time, then compares the picture YouTube shows in the Shorts grid
+# (i.ytimg.com/vi/<id>/sardefault.jpg; a frame of the video means the thumbnail did not take) with that file.
+# Different -> sets it again (youtube_upload.py thumb:<id>) and looks once more 5 minutes later.
+# Report: branch checks, checks/<name>/thumb.md (RESULT: OK | LOOK) and the job summary.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "short name", required: true}
+      id: {description: "video ID", required: true}
+      at: {description: "publish time, e.g. 2026-11-14T21:00:00+09:00 (empty = now)", default: ""}
+      delay: {description: "minutes after the publish time", default: "15"}
+permissions:
+  contents: write
+jobs:
+  thumb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env: { NM: "${{ inputs.name }}", ID: "${{ inputs.id }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - name: the thumbnail we set
+        run: |
+          python3 tools/work_branch.py get "channel/thumbs/$NM.jpg" || true
+          test -s "channel/thumbs/$NM.jpg" && cp "channel/thumbs/$NM.jpg" /tmp/ours.jpg || echo "NOTHUMB=1" >> "$GITHUB_ENV"
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q pillow google-api-python-client google-auth
+      - name: wait, compare, set again if needed
+        if: env.NOTHUMB != '1'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          T: "${{ inputs.at }}"
+          DL: "${{ inputs.delay }}"
+        run: |
+          w=0; [ -n "$T" ] && w=$(( $(date -d "$T" +%s) - $(date +%s) ))
+          w=$(( w + DL * 60 )); [ $w -gt 0 ] && { echo "waiting $w s"; sleep $w; }
+          diff() { curl -s -o /tmp/yt.jpg "https://i.ytimg.com/vi/$ID/sardefault.jpg?t=$(date +%s)"; python3 -c "
+          from PIL import Image, ImageChops, ImageStat
+          v = lambda p: Image.open(p).convert('L').resize((36, 64))
+          try: print(round(ImageStat.Stat(ImageChops.difference(v('/tmp/ours.jpg'), v('/tmp/yt.jpg'))).mean[0], 1))
+          except Exception: print(999)"; }
+          d=$(diff); echo "difference $d (0-255; same picture < 12)"
+          if python3 -c "import sys;sys.exit(0 if float('$d') < 12 else 1)"; then
+            printf 'RESULT: OK\n\nショート一覧のサムネは入れた画像と同じ（差 %s）。動画 %s\n' "$d" "$ID" > /tmp/th.md
+          else
+            python3 tools/youtube_upload.py "$NM" "thumb:$ID" || true
+            sleep 300; d2=$(diff); echo "after setting again: $d2"
+            if python3 -c "import sys;sys.exit(0 if float('$d2') < 12 else 1)"; then
+              printf 'RESULT: OK\n\nサムネが入っていなかったので入れ直した（差 %s → %s）。動画 %s\n' "$d" "$d2" "$ID" > /tmp/th.md
+            else
+              printf 'RESULT: LOOK\n- LOOK サムネ｜ショート一覧の画像が入れた画像と違う（差 %s、入れ直し後 %s）｜youtube-upload.yml の video=thumb:%s で入れ直す｜https://i.ytimg.com/vi/%s/sardefault.jpg\n' "$d" "$d2" "$ID" "$ID" > /tmp/th.md
+            fi
+          fi
+      - name: report
+        if: always()
+        run: |
+          [ -f /tmp/th.md ] || printf 'RESULT: LOOK\n- LOOK サムネ｜確かめられなかった（ブランチ work に channel/thumbs/%s.jpg がない、または途中で停止）｜ショート一覧で目で見る｜-\n' "$NM" > /tmp/th.md
+          cat /tmp/th.md >> "$GITHUB_STEP_SUMMARY"
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            if git fetch -q origin checks; then git checkout -q -f -B checks FETCH_HEAD; else git checkout -q --orphan checks; fi
+            mkdir -p "checks/$NM"; cp /tmp/th.md "checks/$NM/thumb.md"; git add checks; git commit -qm "thumb $NM" || true
+            git push -q origin HEAD:checks && break; sleep $((i*3))
+          done
