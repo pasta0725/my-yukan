@@ -8,6 +8,7 @@ Standard library only.
   collect   fill|fact <jobs dir> <out dir>                   checks every <job>/out.json against <job>/article.json:
                                                               good ones -> <out>/<id>.json, plus <out>/report.md (and for
                                                               fact: <out>/changes.md made from each job's changes.txt)
+  対象外の記事は各組の skipped.json に理由を残し、collect の report.md に「未処理」として載せる。
   art       fill|fact <orig.json> <new.json> [allowed.txt]    check one article (prints problems; exit 1 if rejected)
   writer    <worker.json> <news/ED/worker dir> <used.txt> <edition> <out.json>
                                                               checks a new worker file (codex-write.yml): bad stories are
@@ -188,15 +189,20 @@ def load(p):
 def prep(mode, ed, src, jobs, n):
     arts = json.load(open(ed, encoding="utf-8"))["articles"]
     os.makedirs(jobs, exist_ok=True)
-    picked = []
+    picked, skipped = [], []
     for a in arts:
         f = os.path.join(src, a["id"] + ".txt")
-        if not os.path.exists(f): continue
+        if not os.path.exists(f):
+            skipped.append((a["id"], "未処理", "参考ページのファイルがありません"))
+            continue
         pages = pages_in(open(f, encoding="utf-8", errors="replace").read())
         have = {r.get("url") for r in a.get("refs", []) if isinstance(r, dict)}
         if mode == "fill":   # only usable new pages: status 200, real text, not a reprint, not already a ref
             pages = [p for p in pages if 200 <= p[1] < 300 and len(p[2].strip()) > 200 and not is_aggregator(p[0]) and p[0] not in have]
-            if not pages: continue
+            if not pages:
+                skipped.append((a["id"], "未処理",
+                                "書き足しに使える新しい本文がありません（取得失敗・本文不足・転載・既存の参考記事）"))
+                continue
         picked.append((a, pages))
     for i, (a, pages) in enumerate(picked):
         d = os.path.join(jobs, str(i % n), a["id"]); os.makedirs(d, exist_ok=True)
@@ -206,13 +212,21 @@ def prep(mode, ed, src, jobs, n):
                 fh.write(f"===== {u}\n(status {st})\n{t.strip()[:15000]}\n\n")
         if mode == "fill":
             open(f"{d}/refs_allowed.txt", "w").write("\n".join(u for u, st, t in pages) + "\n")
-    for k in range(n): os.makedirs(os.path.join(jobs, str(k)), exist_ok=True)
+    # 各組の直下に置けば、記事の作業には含めず成果物と一緒に集められる。
+    for k in range(n):
+        d = os.path.join(jobs, str(k)); os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "skipped.json"), "w", encoding="utf-8") as fh:
+            json.dump(skipped[k::n], fh, ensure_ascii=False, indent=1)
     print(mode, "jobs:", len(picked), "of", len(arts), "stories")
 
 
 def collect(mode, jobs, out):
     os.makedirs(out, exist_ok=True)
     rows, changes, used = [], [], 0
+    for root, ds, fs in os.walk(jobs):
+        if "skipped.json" in fs:
+            with open(os.path.join(root, "skipped.json"), encoding="utf-8") as fh:
+                rows.extend(json.load(fh))
     dirs = sorted(os.path.join(r, d) for r, ds, fs in os.walk(jobs) for d in ds if os.path.exists(os.path.join(r, d, "article.json")))
     for d in dirs:
         sid = os.path.basename(d)
