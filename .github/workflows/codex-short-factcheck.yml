@@ -1,0 +1,83 @@
+name: codex-short-factcheck
+# Fact check of a Short by ChatGPT (Codex), instead of a Claude Sonnet sub-agent (2026-11-14, user: save Claude's quota,
+# same quality; tools/auto_short.md 3-3). Codex compares the script (say + show), subtitles, title, description, tags and the
+# English text with the reference texts (data/<ED>.json article, research/<ED>/<id>.txt, factcheck/<ED>/<id>.txt, extra pages),
+# following tools/codex/short_factcheck.md. No internet. Report: branch "checks", checks/<name>/facts.md (and the job summary):
+#   RESULT: OK | RESULT: LOOK (then "- LOOK 場所｜何が｜正しい値｜出どころ") | RESULT: FAILED (Codex gave no answer:
+#   use the old Claude Sonnet sub-agent check). The job is green only for OK. Also called by short-build.yml.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "short name, e.g. rina_nvidia_ceo (report: checks/<name>/facts.md)", required: true}
+      refs: {description: "reference articles, space separated <edition>/<article id> (empty = shorts/<name>/refs.txt)", default: ""}
+      script: {description: "script: spec.json or lines.json (empty = shorts/<name>/spec.json). <branch>:<path> also works", default: ""}
+      meta: {description: "title/description json (empty = channel/meta/<name>.json)", default: ""}
+      srt: {description: "subtitles (empty = channel/captions/<name>_ja.srt)", default: ""}
+      extra: {description: "more reference texts, space separated <branch>:<path> or repo paths (e.g. fetched:fetched/x/page.txt)", default: ""}
+      text: {description: "other text to check (e.g. the thumbnail copy)", default: ""}
+      model: {description: "Codex model", default: "gpt-6.1-sol"}
+      effort: {description: "reasoning effort", default: "high"}
+  workflow_call:
+    inputs:
+      name: {type: string, required: true}
+      refs: {type: string, default: ""}
+      script: {type: string, default: ""}
+      meta: {type: string, default: ""}
+      srt: {type: string, default: ""}
+      extra: {type: string, default: ""}
+      text: {type: string, default: ""}
+      model: {type: string, default: "gpt-6.1-sol"}
+      effort: {type: string, default: "high"}
+    outputs:
+      result: {value: "${{ jobs.check.outputs.result }}"}
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    outputs: { result: "${{ steps.rep.outputs.result }}" }
+    env:
+      N: "${{ inputs.name }}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: collect the video's text and the references
+        env: { R: "${{ inputs.refs }}", S: "${{ inputs.script }}", M: "${{ inputs.meta }}", T: "${{ inputs.srt }}", X: "${{ inputs.extra }}", TX: "${{ inputs.text }}" }
+        run: |
+          [ -z "$R" ] && [ -f "shorts/$N/refs.txt" ] && R=$(grep -v '^#' "shorts/$N/refs.txt" | tr '\n' ' ')
+          mkdir -p /tmp/fj/facts
+          python3 tools/short_factcheck.py prep /tmp/fj/facts --name "$N" --script "$S" --meta "$M" --srt "$T" --refs "$R" --extra "$X" --text "$TX" || echo "NOREF=1" >> "$GITHUB_ENV"
+          wc -c /tmp/fj/facts/video.txt /tmp/fj/facts/refs.txt
+      - name: Codex checks the facts
+        if: env.NOREF != '1'
+        run: |
+          python3 tools/codex_run.py tools/codex/short_factcheck.md /tmp/fj --parallel 1 --timeout 1500 \
+            --model "${{ inputs.model }}" --effort "${{ inputs.effort }}" || true
+      - name: report
+        id: rep
+        if: always()
+        run: |
+          set +e; python3 tools/short_factcheck.py report /tmp/fj/facts "$N" /tmp/fj/facts.md; code=$?; set -e
+          if [ "$NOREF" = 1 ]; then printf 'RESULT: LOOK\n- LOOK 入力｜参考記事の本文が1つも見つからない｜refs に <号>/<記事ID> を指定｜-\n' > /tmp/fj/facts.md; code=1; fi
+          cat /tmp/fj/facts.md >> "$GITHUB_STEP_SUMMARY"
+          echo "result=$(head -1 /tmp/fj/facts.md | sed 's/RESULT: //')" >> "$GITHUB_OUTPUT"
+          echo "CODE=$code" >> "$GITHUB_ENV"
+      - name: push the report to branch checks
+        if: always()
+        run: |
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            if git fetch -q origin checks; then git checkout -q -f -B checks origin/checks; else git checkout -q --orphan checks; fi
+            mkdir -p "checks/$N"; cp /tmp/fj/facts.md "checks/$N/facts.md"
+            git add checks; git commit -qm "fact check $N" || true
+            git push -q origin HEAD:checks && break; sleep $((i*3))
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "facts-${{ inputs.name }}", path: /tmp/fj, if-no-files-found: ignore, retention-days: 7 }
+      - name: result
+        run: '[ "$CODE" = 0 ] || { echo "not OK (see checks/$N/facts.md)"; exit 1; }'
