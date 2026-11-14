@@ -1,0 +1,129 @@
+name: codex-fix-issues
+# 2026-11-14 (the user's request: save Claude usage without lowering quality): 「AI報告の確認と修正」 by Codex instead of Claude.
+# Started twice a day by the Claude scheduled task (it only starts this, waits, and tells the user the result).
+# 1 list : open issues labeled AIからの報告. On-hold ones (保留 / ユーザー待ち) with nothing new are skipped -> RESULT: NONE.
+# 2 fix  : Codex (tools/codex/fix_issues.md) works in a copy of the repo with no internet and no GitHub token, fixes the small
+#          clear safe problems and proposes the issue comments. tools/maint_issues.py guard then limits the change (<=200 lines,
+#          <=10 files, no deleted files, nothing about secrets / .github/actions / this job) and re-runs the checks (Python
+#          compile, workflow YAML, JSON, Codex's own check commands). Any failure turns every fix into 保留 (no change pushed).
+# 3 apply: pushes the patch to main (fetch + rebase, never force), posts the comments, closes the fixed issues, and writes the
+#          Japanese report (RESULT line + one line per issue) to the job summary and to the branch "maint" (maint/fix-issues.md).
+on:
+  workflow_dispatch:
+    inputs:
+      model: {description: "Codex model", required: false, default: "gpt-6.1-sol"}
+      effort: {description: "reasoning effort", required: false, default: "high"}
+concurrency: { group: codex-fix-issues, cancel-in-progress: false }
+permissions:
+  contents: read
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: { contents: read, issues: read }
+    outputs: { todo: "${{ steps.l.outputs.todo }}" }
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: false }
+      - id: l
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          mkdir -p /tmp/fix
+          gh api "repos/${{ github.repository }}/contents/maint/fix-issues-state.json?ref=maint" -H "Accept: application/vnd.github.raw" > /tmp/fix/state.json 2>/dev/null || echo '{}' > /tmp/fix/state.json
+          python3 tools/maint_issues.py list /tmp/fix /tmp/fix/state.json | tee /tmp/list.txt
+          grep '^todo=' /tmp/list.txt >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with: { name: fix-input, path: /tmp/fix }
+  fix:
+    needs: list
+    if: needs.list.outputs.todo != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions: { contents: read }
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: false }   # Codex never sees a GitHub token
+      - uses: actions/download-artifact@v4
+        with: { name: fix-input, path: /tmp/in }
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: fix with codex
+        run: |
+          mkdir -p /tmp/fx /tmp/out
+          cp -a "$GITHUB_WORKSPACE" /tmp/fx/repo
+          mkdir -p /tmp/fx/repo/_fix && cp -r /tmp/in/issues /tmp/in/todo.json /tmp/fx/repo/_fix/
+          git -C /tmp/fx/repo rev-parse HEAD > /tmp/out/base.txt
+          python3 tools/codex_run.py tools/codex/fix_issues.md /tmp/fx --parallel 1 --timeout 2400 \
+            --model "${{ inputs.model }}" --effort "${{ inputs.effort }}"
+          cp /tmp/fx/repo/codex.log /tmp/fx/repo/last.txt /tmp/out/ 2>/dev/null || true
+          cp /tmp/fx/repo/_fix/result.json /tmp/out/result.json 2>/dev/null || true
+      - name: safety limits and checks
+        run: |
+          python3 -c "import yaml" 2>/dev/null || pip install -q pyyaml
+          python3 tools/maint_issues.py guard /tmp/fx/repo "$(cat /tmp/out/base.txt)" /tmp/in/todo.json /tmp/out
+          { echo "### 安全確認"; echo '```'; python3 -c "import json;d=json.load(open('/tmp/out/decisions.json'));print('files',d['files'],'lines',d['lines']);print('problems',d['problems']);print(*d['checks'],sep='\n')"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: fix-output, path: /tmp/out }
+  apply:
+    needs: [list, fix]
+    if: always() && needs.list.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions: { contents: write, issues: write }
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 20 }
+      - uses: actions/download-artifact@v4
+        with: { name: fix-input, path: /tmp/in }
+      - uses: actions/download-artifact@v4
+        if: needs.list.outputs.todo != ''
+        continue-on-error: true
+        with: { name: fix-output, path: /tmp/out }
+      - name: push the fix, comment and close
+        env: { GH_TOKEN: "${{ github.token }}", REPO: "${{ github.repository }}", RUN: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }
+        run: |
+          D=/tmp/out/decisions.json; COMMIT=-
+          if [ -f "$D" ] && [ -s /tmp/out/patch.diff ]; then
+            git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+            BASE=$(cat /tmp/out/base.txt); git fetch -q --depth=1 origin "$BASE"; git checkout -q "$BASE"
+            git apply --index /tmp/out/patch.diff   # made against the same commit, so it always applies; rebased below
+            NUMS=$(python3 -c "import json;print(' '.join('#%d'%d['number'] for d in json.load(open('$D'))['decisions'] if d['decision']=='fixed'))")
+            python3 -c "import json;print('AI報告の自動修正（Codex）：$NUMS');print();[print('#%d %s'%(d['number'],d['summary'])) for d in json.load(open('$D'))['decisions'] if d['decision']=='fixed']" > /tmp/msg.txt
+            git commit -q -F /tmp/msg.txt
+            ok=""
+            for i in 1 2 3 4 5; do git fetch -q origin main && git rebase -q origin/main && git push -q origin HEAD:main && { ok=1; break; }; git rebase --abort 2>/dev/null || true; sleep $((i*5)); done
+            if [ -n "$ok" ]; then COMMIT=$(git rev-parse --short HEAD); else
+              python3 -c "import json;p='$D';d=json.load(open(p));[x.update(decision='none',summary='直したが main に push できなかった（次回もう一度）') for x in d['decisions'] if x['decision']=='fixed'];json.dump(d,open(p,'w'),ensure_ascii=False)"
+            fi
+          fi
+          if [ -f "$D" ]; then
+            python3 - "$D" "$COMMIT" <<'EOF'
+          import json, os, subprocess, sys
+          d, commit = json.load(open(sys.argv[1])), sys.argv[2]
+          repo = os.environ["REPO"]
+          foot = "\n\n---\n_自動の保守（Codex・GitHub Actions）" + (f"　修正 {commit}" if commit != "-" else "") + f"　{os.environ['RUN']}_"
+          for x in d["decisions"]:
+              if x["decision"] not in ("fixed", "hold") or not x["comment"]: continue
+              open("/tmp/c.txt", "w", encoding="utf-8").write(x["comment"] + foot)
+              subprocess.run(["gh", "api", f"repos/{repo}/issues/{x['number']}/comments", "-F", "body=@/tmp/c.txt", "--silent"], check=False)
+              if x["decision"] == "fixed":
+                  subprocess.run(["gh", "api", "-X", "PATCH", f"repos/{repo}/issues/{x['number']}", "-f", "state=closed", "-f", "state_reason=completed", "--silent"], check=False)
+          EOF
+            python3 tools/maint_issues.py seen /tmp/in/state.json "$D"
+          fi
+          [ -f "$D" ] && DD="$D" || DD=-
+          python3 tools/maint_issues.py report "$DD" /tmp/in/todo.json "$RUN" "$COMMIT" /tmp/report.md
+          { echo "## AI報告の確認と修正"; echo; sed 's/$/  /' /tmp/report.md; } >> "$GITHUB_STEP_SUMMARY"
+      - name: save the report on the branch maint
+        if: always()
+        run: |
+          test -f /tmp/report.md || printf 'RESULT: ERROR\n記録の途中で止まりました。\n' > /tmp/report.md
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin maint; then git checkout -q -B maint origin/maint; else git checkout -q --orphan maint; fi
+          mkdir -p maint; cp /tmp/report.md maint/fix-issues.md; cp /tmp/in/state.json maint/fix-issues-state.json
+          echo "run_id: ${{ github.run_id }}" >> maint/fix-issues.md
+          git add maint; git commit -q --allow-empty -m "fix-issues report ${{ github.run_id }}"
+          for i in 1 2 3 4 5; do git push -q origin maint && break; sleep $((i*3)); git pull -q --rebase origin maint; done

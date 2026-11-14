@@ -1,0 +1,119 @@
+name: codex-weekly-review
+# 2026-11-14 (the user's request: save Claude usage without lowering quality): 「週1回の見直し」 by Codex instead of Claude.
+# Started on Mondays by the Claude scheduled task (it only starts this, waits, and sends the phone notification).
+# The rules are tools/learning/README.md; the Codex instructions are tools/codex/weekly_review.md.
+# 1 check : today's metrics and this week's competitors on the branch metrics? If not, run metrics.yml / competitors.yml first.
+# 2 review: Codex (no internet, no GitHub token) reads 28 days of metrics, the competitors, shorts_log, params, changelog,
+#           past reports and the open issues; writes the report, the phone message and (only if the rules allow) new params.
+# 3 apply : tools/weekly_review.py check keeps a params change only if every value stays in min..max, moves at most step,
+#           and the category total is unchanged. Then (unless dry_run=yes) pushes tools/learning/reports/<年>-W<週>.md,
+#           params.json and changelog.md to main. Always writes maint/weekly-review.md (RESULT line + phone message) and
+#           maint/weekly-report.md (the full report) to the branch "maint", and the job summary.
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run: {description: "yes = do not push anything to main (test)", required: false, default: "no"}
+      model: {description: "Codex model", required: false, default: "gpt-6.1-sol"}
+      effort: {description: "reasoning effort", required: false, default: "high"}
+concurrency: { group: codex-weekly-review, cancel-in-progress: false }
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs: { metrics: "${{ steps.c.outputs.metrics }}", competitors: "${{ steps.c.outputs.competitors }}" }
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: false }
+      - id: c
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          T=$(TZ=Asia/Tokyo date +%F); W=$(TZ=Asia/Tokyo date -d '-6 days' +%F)
+          F=$(gh api "repos/${{ github.repository }}/git/trees/metrics?recursive=1" --jq '.tree[].path' || true)
+          echo "$F" | grep -q "^metrics/$T.json$" && echo "metrics=have" >> "$GITHUB_OUTPUT" || echo "metrics=run" >> "$GITHUB_OUTPUT"
+          L=$(echo "$F" | sed -n 's#^competitors/\([0-9-]*\)\.json$#\1#p' | sort | tail -1)
+          [ -n "$L" ] && [ "$L" \> "$W" -o "$L" = "$W" ] && echo "competitors=have" >> "$GITHUB_OUTPUT" || echo "competitors=run" >> "$GITHUB_OUTPUT"
+          echo "today $T, latest competitors ${L:-none}"
+  metrics:
+    needs: check
+    if: needs.check.outputs.metrics == 'run'
+    permissions: { contents: write, issues: read, actions: read }
+    uses: ./.github/workflows/metrics.yml
+    secrets: inherit
+  competitors:
+    needs: check
+    if: needs.check.outputs.competitors == 'run'
+    permissions: { contents: write }
+    uses: ./.github/workflows/competitors.yml
+    secrets: inherit
+  review:
+    needs: [check, metrics, competitors]
+    if: always() && needs.check.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions: { contents: read, issues: read }
+    outputs: { report: "${{ steps.p.outputs.report }}" }
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: false }   # Codex never sees a GitHub token
+      - id: p
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          mkdir -p /tmp/m && cd /tmp/m && git init -q && git fetch -q --depth=1 "https://github.com/${{ github.repository }}.git" metrics && git archive FETCH_HEAD | tar -x
+          cd "$GITHUB_WORKSPACE" && python3 tools/weekly_review.py prep /tmp/m /tmp/jobs/review
+          rm -rf /tmp/m
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: review with codex
+        run: |
+          python3 tools/codex_run.py tools/codex/weekly_review.md /tmp/jobs --parallel 1 --timeout 2400 \
+            --model "${{ inputs.model }}" --effort "${{ inputs.effort }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: weekly-review, path: /tmp/jobs/review }
+  apply:
+    needs: review
+    if: always() && needs.review.result != 'skipped'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 20 }
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with: { name: weekly-review, path: /tmp/job }
+      - name: check and push
+        env: { DRY: "${{ inputs.dry_run }}", R: "${{ needs.review.outputs.report }}", RUN: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" }
+        run: |
+          mkdir -p /tmp/out /tmp/job
+          python3 tools/weekly_review.py check /tmp/job /tmp/out
+          P=$(python3 -c "import json;print(json.load(open('/tmp/out/check.json'))['params'])")
+          OK=$(python3 -c "import json;print('yes' if json.load(open('/tmp/out/check.json'))['report'] else 'no')")
+          PUSHED=no
+          if [ "$OK" = yes ] && [ "$DRY" != yes ] && [ -n "$R" ]; then
+            git config user.name pasta0725; git config user.email pasta0725@users.noreply.github.com
+            mkdir -p tools/learning/reports; cp /tmp/job/report.md "tools/learning/reports/$R"
+            if [ "$P" = changed ]; then cp /tmp/out/params.json tools/learning/params.json; cat /tmp/out/changelog_add.md >> tools/learning/changelog.md; fi
+            git add tools/learning; git commit -q -m "週1回の見直し（Codex）：週報 ${R%.md}$([ "$P" = changed ] && echo '・params の調整')"
+            for i in 1 2 3 4 5; do git fetch -q origin main && git rebase -q origin/main && git push -q origin HEAD:main && { PUSHED=yes; break; }; git rebase --abort 2>/dev/null || true; sleep $((i*5)); done
+          fi
+          CH=$(python3 -c "import json;d=json.load(open('/tmp/out/check.json'));print('／'.join(d['changes']) or '-')")
+          PR=$(python3 -c "import json;d=json.load(open('/tmp/out/check.json'));print('／'.join(d['problems']) or '-')")
+          { [ "$OK" = yes ] && echo "RESULT: OK PARAMS=$P PUSHED=$PUSHED DRY_RUN=${DRY:-no}" || echo "RESULT: ERROR PARAMS=$P PUSHED=$PUSHED DRY_RUN=${DRY:-no}"
+            echo "自動の調整：$CH"; echo "問題：$PR"; echo "週報：tools/learning/reports/${R:-?}（全文はブランチ maint の maint/weekly-report.md）"; echo "実行：$RUN"; echo
+            cat /tmp/job/notify.md 2>/dev/null || echo "（通知文がありません）"; } > /tmp/out/weekly-review.md
+          if [ "$P" = changed ] && [ "$PUSHED" != yes ]; then sed -i '2s/^/（まだ反映していません）/' /tmp/out/weekly-review.md; fi
+          { echo "## 週1回の見直し"; sed 's/$/  /' /tmp/out/weekly-review.md; echo; cat /tmp/job/report.md 2>/dev/null; } >> "$GITHUB_STEP_SUMMARY"
+      - name: save on the branch maint
+        if: always()
+        run: |
+          test -f /tmp/out/weekly-review.md || printf 'RESULT: ERROR\n記録の途中で止まりました。\n' > /tmp/out/weekly-review.md
+          git init -q /tmp/r && cd /tmp/r
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          if git fetch -q origin maint; then git checkout -q -B maint origin/maint; else git checkout -q --orphan maint; fi
+          mkdir -p maint; cp /tmp/out/weekly-review.md maint/weekly-review.md; cp /tmp/job/report.md maint/weekly-report.md 2>/dev/null || true
+          echo "run_id: ${{ github.run_id }}" >> maint/weekly-review.md
+          git add maint; git commit -q --allow-empty -m "weekly review ${{ github.run_id }}"
+          for i in 1 2 3 4 5; do git push -q origin maint && break; sleep $((i*3)); git pull -q --rebase origin maint; done

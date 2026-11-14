@@ -42,13 +42,16 @@
 
 ## 自動で賢くなる仕組み（2026-11-10〜）
 - 毎日 metrics.yml が数字を集め（ブランチ metrics）、毎週月曜の「週1回の見直し」が tools/learning/README.md の手順で週報を書き、tools/learning/params.json（カテゴリ本数・記事選びの点数・公開時刻）を少しずつ自動で動かし、大きな変更はユーザーに提案する。
+- 2026-11-14〜：見直しの本体は Codex（codex-weekly-review.yml、GPT-6.1 Sol・high）。予定作業はこれを動かして待ち、ブランチ maint の maint/weekly-review.md（1行目 RESULT、その下が通知文）を読んで通知するだけ。params.json の変更は tools/weekly_review.py check が範囲・step・合計本数を確かめたときだけ push。試しは dry_run=yes（main に何も push しない）。バグは直さず提案に入れる（直すのは下の codex-fix-issues）。
 
 ## 不具合・改善点の報告（2026-11-10〜、ユーザーの依頼）
 - 毎日の自動作業のAIは、作業中に不具合（失敗・食い違い・回避した問題）や改善点を見つけたら、GitHub の Issue にラベル「AIからの報告」を付けて書く：
   `gh api -X POST repos/pasta0725/my-yukan/issues -f title="[作業名] 一言の要約" -f body="何が起きたか／どう回避したか／影響／改善の提案" -f 'labels[]=AIからの報告'`
 - 先に `gh api -X GET repos/pasta0725/my-yukan/issues -f labels=AIからの報告 -f state=open`（ラベル名を URL に直接書くと失敗する。2026-11-10 Issue #2） で同じ話題を探し、あればコメントを足す（`.../issues/<番号>/comments -f body=...`）。
 - 仕組み（指示文・ワークフロー・ルール文書）は自分で変えず、報告だけにする。トークンや鍵の中身は書かない。日本語で書く。
-- 保守役の Claude が報告を読んで直し、直したら Issue を閉じる。2026-11-14 からは予定作業「AI報告の確認と修正」（毎日 7:43・17:43、Sonnet、毎回新しい会話）が行う。開いているのが保留中（コメントに「保留」）だけなら、すぐ終わる。大きな変更やユーザーの判断が要るものは「保留：理由」とコメントして残す。
+- 報告は予定作業「AI報告の確認と修正」（毎日 7:43・17:43）が処理する。2026-11-14〜 本体は Codex（codex-fix-issues.yml、GPT-6.1 Sol・high）で、予定作業はこれを動かして待ち、ブランチ maint の maint/fix-issues.md（1行目 RESULT、1件1行）を伝えるだけ。
+  - 直すのは原因がはっきりした小さく安全なもの（ワークフローやスクリプトの小さな誤り、ルール文書の食い違い）。大きな変更・ユーザーの判断が要るもの・原因不明・鍵やログインが関わるものは「保留：理由」とコメントして残す。保留中で新しいコメントが無いものは読まない（RESULT: NONE）。
+  - 安全の決まり（tools/maint_issues.py）：Codex にはネットも GitHub の鍵も渡さない。変更は200行・10ファイルまで、ファイルの削除・.github/actions・鍵の扱い・この仕組み自身は変えない。Python の確認・YAML・JSON と Codex の確かめのコマンドが全部通ったときだけ main に push し、だめなら全部「保留」にする。コメントと Issue を閉じるのはワークフローが行う。指示文は tools/codex/fix_issues.md。
 
 ## Xの声（Grok Bot）
 - build_edition.py writes data/x-todo.json (today's story list) every run. Commit it with the edition.
@@ -100,6 +103,8 @@ GitHub 上の Codex（ChatGPT のプラン、CODEX_AUTH）に、Claude のサブ
 | ② | 事実の点検（手順5-2） | factcheck-pages.yml に check=yes（単独なら codex-factcheck.yml） | factcheck/ED/fixed/、changes.md |
 | ③ | 公式画像の選択 | official-images.yml に codex_pick=yes | 成果物 codex-picks |
 | ④ | 記事を書く（全担当、2026-11-15〜） | codex-write.yml（edition、workers=全担当、model=gpt-6.1-sol、effort=high） | codexwrite/ED/<担当名>.json |
+| ⑤ | AI報告の確認と修正（毎日2回） | codex-fix-issues.yml（gpt-6.1-sol・high） | main への修正、maint/fix-issues.md |
+| ⑥ | 週1回の見直し | codex-weekly-review.yml（dry_run=yes で試し） | tools/learning/reports/、maint/weekly-review.md |
 - 指示文は tools/codex/（fill.md・factcheck.md・pick.md・write.md）。①②④は tools/style.md も渡す。④は make_briefs.py の担当別の指示書に、ネットなしの差分（write.md）を足したもの。
 - 機械の検査 tools/codex_check.py：JSON が壊れている、id・category・image・source_url・published が変わった、画像が増減した、refs が6本を超える／取ったページ（status 200）以外のURL（点検では元の refs 以外）、必要な部品（keys・h 3〜5・stat・point・最後の rina）がない、200字を超える段落、120字を超える rina、舞台裏の言い回し、本文にURL、文字が減った（点検は2割以上）、点検で書き換えが多すぎる（6か所かつ4割を超える）ものは使わない（元のまま）。④は、ニュースフォルダにないURL・掲載済み・期間外の記事を落とす。
 - どれも失敗・時間切れ・却下のときは、その分だけ今までどおり Claude が行う（予備）。モデルは入力 model・effort で変えられる（既定 gpt-6-astra、①②④は high、③は medium。号づくりの④は gpt-6.1-sol・high を指定して動かす）。実際に使ったモデルは各実行の要約（Summary）に出る。共通の準備は .github/actions/codex-setup、実行は tools/codex_run.py。

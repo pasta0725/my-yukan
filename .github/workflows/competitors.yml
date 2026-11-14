@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "17 1 * * 1"   # Monday 10:17 Japan time (before the weekly review at 12:47)
   workflow_dispatch: {}
+  workflow_call: {}   # codex-weekly-review.yml runs this first when the file is missing
 permissions:
   contents: write
 jobs:
