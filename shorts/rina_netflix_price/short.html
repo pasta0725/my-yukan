@@ -243,7 +243,7 @@ const S={
      if(IMG.official)picC('official',150,450,780,600,'#FFFFFF');else{card(150,450,780,600);tvIcon(CX,740,300);}g.restore();rrect(150,450,780,600,30,null,C.bar);
      if(u>0.45)stamp('値上げ',720,520,(u-0.45)/0.25,C.warn,56,0.06);
      if(IMG.official)creditAt('出典：ITmedia Mobile',915,1025);
-   }else{card(150,450,780,600);tvIcon(CX,640,260);
+   }else{card(150,450,780,600);tvIcon(CX,620,190);
      const k2=clamp((u-1.9)/0.3);
      for(let j=0;j<3;j++){const x=170+j*250;withEnter(enter(u,1.0+j*0.25,0.2),()=>{rrect(x,820,240,190,26,j===2?'#FFF4EC':'#EEF1F6');text(PL[j][1],x+120,865,30,C.sub,'center',900,220);
        text(k2>0?'？':'…',x+120,950,86,C.acc,'center',900,200);if(k2>0)upArrow(x+205,850,26*back(k2),C.acc);},12);}
@@ -287,12 +287,12 @@ const S={
    withEnter(enter(u,Math.min(1.0,Math.max(0.6,t2))),()=>{card(560,480,370,560);text('中身',745,550,44,C.sub,'center',900,300);text('＝',745,720,180,C.brand,'center',900,300);text('そのまま',745,920,60,C.brand,'center',900,330);});},
  spec(u,d,L){bg(u);mini(u);const t2=telHas(L,'同時に');
    mixLine([['広告つき',C.text],['・',C.sub],['スタンダード',C.text]],CX,385,58);
-   withEnter(enter(u,0),()=>{card(150,450,780,300);tvIcon(330,600,170,'#2E3A55');text('画質',650,550,36,C.sub,'center',800,380);text('フルHD',650,630,80,C.brand,'center',900,380);});
+   withEnter(enter(u,0),()=>{card(150,450,780,300);tvIcon(290,600,140,'#2E3A55');text('画質',680,550,36,C.sub,'center',800,380);text('フルHD',680,630,80,C.brand,'center',900,380);});
    withEnter(enter(u,Math.min(1.0,Math.max(0.6,t2))),()=>{card(150,780,780,340);text('同時に見られる',CX,840,38,C.sub,'center',800,700);
      for(let j=0;j<2;j++)tvIcon(380+j*170,960,110,'#2E3A55');text('2台',780,960,96,C.acc,'center',900,260);});},
  premspec(u,d,L){bg(u);mini(u);const t2=telHas(L,'4台');
    mixLine([['プレミアム',C.acc],['だけ',C.text]],CX,385,64);
-   withEnter(enter(u,0),()=>{card(150,450,780,300);tvIcon(330,600,170,'#3B4F7A');text('画質',650,550,36,C.sub,'center',800,380);text('4K＋HDR',650,630,76,C.brand,'center',900,400);});
+   withEnter(enter(u,0),()=>{card(150,450,780,300);tvIcon(290,600,140,'#3B4F7A');text('画質',680,550,36,C.sub,'center',800,380);text('4K＋HDR',680,630,76,C.brand,'center',900,380);});
    withEnter(enter(u,Math.min(1.0,Math.max(0.6,t2))),()=>{card(150,780,780,340);text('同時に見られる',CX,840,38,C.sub,'center',800,700);
      for(let j=0;j<4;j++)tvIcon(250+j*125,960,90,'#3B4F7A');text('4台',815,960,90,C.acc,'center',900,200);});},
  basic(u,d,L){bg(u);mini(u);const t2=telHas(L,'ベーシック');
