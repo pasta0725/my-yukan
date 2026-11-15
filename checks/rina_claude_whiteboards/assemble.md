@@ -2,7 +2,7 @@ RESULT: OK
 
 
 使った音声：
-- s1: narration/rina_claude_whiteboards/split/s1.wav
+- s1: narration/rina_claude_whiteboards_cut/s1.wav
 - s2: narration/rina_claude_whiteboards/split/s2.wav
 - s3: narration/rina_claude_whiteboards/split/s3.wav
 - s4: narration/rina_claude_whiteboards/split/s4.wav
