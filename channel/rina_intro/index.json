@@ -1,3 +1,18 @@
-{"note": "登場「このニュース、◯◯でまとめます」の話す動画（秒数ごと、一度作ったら使い回す）。最初から最後まで1本の続いた動画（指のポーズのまま話す。途中でポーズを切り替えてつながない、2026-11-09 ユーザー）。tools/shorts_rules.md「りなの動かし方」",
+{
+ "note": "登場「このニュース、◯◯でまとめます」の話す動画（秒数ごと、一度作ったら使い回す）。最初から最後まで1本の続いた動画（指のポーズのまま話す。途中でポーズを切り替えてつながない、2026-11-09 ユーザー）。tools/shorts_rules.md「りなの動かし方」",
  "how": "spec の登場の行に \"fixed_wav\": \"channel/rina_intro/<秒>s.wav\" を書く。絵は python3 tools/big_clip.py <short>/big/intro channel/rina_intro/<秒>s.mp4",
- "60s": {"say": "このニュース、1分でまとめます。", "fingers": 1, "wav": "60s.wav", "clip": "60s.mp4", "made": "2026-11-09 rina_health（指1本の絵から LongCat）"}}
+ "60s": {
+  "say": "このニュース、1分でまとめます。",
+  "fingers": 1,
+  "wav": "60s.wav",
+  "clip": "60s.mp4",
+  "made": "2026-11-09 rina_health（指1本の絵から LongCat）"
+ },
+ "learn_60s": {
+  "say": "使い方と使い道、1分でまとめます。",
+  "fingers": 1,
+  "wav": "learn_60s.wav",
+  "clip": "learn_60s.mp4",
+  "made": "2026-11-15 rina_claude_whiteboards（学習ショート「AIについて学習するショート」の登場。指1本の絵から LongCat、Modal）"
+ }
+}
