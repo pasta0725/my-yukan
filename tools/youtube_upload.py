@@ -7,6 +7,7 @@ usage: python3 tools/youtube_upload.py <name> <video.mp4> [--comment TEXT] [--pr
   video can also be a command for an existing video:
     thumb:<id>   set the thumbnail again          stop:<id>    cancel a scheduled publish / make it private
     go:<id>      make it public now               comment:<id> post --comment as the first comment
+    playlist:<id> add it to its playlist again (meta "playlist", default 毎日1分AIニュース)
     status:<id>  print privacy and publish time   banner:<path> replace the channel banner (2560x1440 jpg in the repo)
 uses channel/meta/<name>.json (title, description, tags, title_en, description_en),
      channel/thumbs/<name>.jpg (if present), channel/captions/<name>_ja.srt (if present).
@@ -36,6 +37,22 @@ if me["id"] != "UCDIg0hL5OV6xB5V8GtV-g9A":
     sys.exit("not the 星餓りな channel - authorize again and pick 星餓りな")
 if a.video == "-":   # setup check only: the keys work and point at the right channel
     print("check ok"); sys.exit(0)
+def put_in_playlist(meta, vid):   # meta "playlist" picks another list (2026-11-15: learning Shorts); it is made (public) if it does not exist yet
+    import time
+    name = meta.get("playlist") or PLAYLIST
+    pls = yt.playlists().list(part="snippet", mine=True, maxResults=50).execute()["items"]
+    pl = next((p for p in pls if p["snippet"]["title"] == name), None)
+    if pl is None:
+        pl = yt.playlists().insert(part="snippet,status", body={"snippet": {"title": name, "description": meta.get("playlist_description", ""),
+             "defaultLanguage": "ja"}, "status": {"privacyStatus": "public"}}).execute(); print("ok: new playlist", name)
+    for i in range(4):   # adding right after the list was made failed once with 409 SERVICE_UNAVAILABLE (2026-11-15)
+        try:
+            yt.playlistItems().insert(part="snippet", body={"snippet": {"playlistId": pl["id"], "resourceId": {"kind": "youtube#video", "videoId": vid}}}).execute(); return
+        except Exception:
+            if i == 3: raise
+            time.sleep(15 * (i + 1))
+if a.video.startswith("playlist:"):   # playlist:<videoId> = only add the video to its playlist again
+    put_in_playlist(json.load(open(os.path.join(ROOT, "channel", "meta", f"{a.name}.json"), encoding="utf-8")), a.video[9:]); print("ok: playlist"); sys.exit(0)
 if a.video.startswith("thumb:"):   # thumb:<videoId> = only set the thumbnail again (it can hit "too many thumbnails recently", 2026-11-10)
     t = os.path.join(ROOT, "channel", "thumbs", f"{a.name}.jpg")
     yt.thumbnails().set(videoId=a.video[6:], media_body=MediaFileUpload(t, mimetype="image/jpeg")).execute(); print("ok: thumbnail"); sys.exit(0)
@@ -94,15 +111,7 @@ srt = os.path.join(ROOT, "channel", "captions", f"{a.name}_ja.srt")
 if os.path.exists(srt):
     step("captions ja", lambda: yt.captions().insert(part="snippet", body={"snippet": {"videoId": vid, "language": "ja", "name": "日本語", "isDraft": False}},
                                                       media_body=MediaFileUpload(srt, mimetype="application/octet-stream")).execute())
-def add_playlist():   # meta "playlist" picks another list (2026-11-15: learning Shorts); it is made (public) if it does not exist yet
-    name = meta.get("playlist") or PLAYLIST
-    pls = yt.playlists().list(part="snippet", mine=True, maxResults=50).execute()["items"]
-    pl = next((p for p in pls if p["snippet"]["title"] == name), None)
-    if pl is None:
-        pl = yt.playlists().insert(part="snippet,status", body={"snippet": {"title": name, "description": meta.get("playlist_description", ""),
-             "defaultLanguage": "ja"}, "status": {"privacyStatus": "public"}}).execute(); print("ok: new playlist", name)
-    yt.playlistItems().insert(part="snippet", body={"snippet": {"playlistId": pl["id"], "resourceId": {"kind": "youtube#video", "videoId": vid}}}).execute()
-step("playlist", add_playlist)
+step("playlist", lambda: put_in_playlist(meta, vid))
 if a.comment and not a.publish_at:   # a scheduled (private) video gets its comment after it goes public (workflow job "comment")
     step("comment", lambda: yt.commentThreads().insert(part="snippet", body={"snippet": {"videoId": vid, "topLevelComment": {"snippet": {"textOriginal": a.comment}}}}).execute())
 print(f"https://youtube.com/shorts/{vid}")
