@@ -1,0 +1,117 @@
+{
+ "lines": [
+  {
+   "scene": "hook",
+   "say": "クロードコードに出たこの天気マーク、何だと思います？",
+   "show": "Claude Codeに出たこの天気マーク、何だと思います？",
+   "puppet": true,
+   "se": "don"
+  },
+  {
+   "scene": "intro",
+   "say": "使い方と使い道、{SEC}でまとめます。",
+   "show": "使い方と使い道、{SEC}でまとめます。",
+   "puppet": true,
+   "fixed_wav": "channel/rina_intro/learn_60s.wav"
+  },
+  {
+   "scene": "what",
+   "say": "正体は、クロードコードの見た目や動きを作り替える改造、モッドです。",
+   "show": "正体は、Claude Codeの見た目や動きを作り替える改造、modです。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "when",
+   "say": "アンソロピックが10月ついたちに公開し、ターミナル版とデスクトップアプリで使えます。",
+   "show": "Anthropicが10月1日に公開し、ターミナル版とデスクトップアプリで使えます。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "version",
+   "say": "バージョン2.1.287以降なら、設定なしで使えます。",
+   "show": "バージョン2.1.287以降なら、設定なしで使えます。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "before",
+   "say": "これまでの仕組みと違い、画面に小窓やボタンまで足せます。",
+   "show": "これまでの仕組みと違い、画面に小窓やボタンまで足せます。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "make",
+   "say": "作り方は、クロードコードに欲しい改造を言葉で頼むだけ。",
+   "show": "作り方は、Claude Codeに欲しい改造を言葉で頼むだけ。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "auto",
+   "say": "クロードが短いプログラムを書いて、その場で読み込みます。",
+   "show": "Claudeが短いプログラムを書いて、その場で読み込みます。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "install",
+   "say": "人のモッドも、スラッシュプラグインで入れたり切ったりできます。",
+   "show": "人のmodも、/pluginで入れたり切ったりできます。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "use1",
+   "say": "おすすめ1、会話の容量の埋まり具合を、入力欄の上に天気で表示。",
+   "show": "おすすめ1、会話の容量の埋まり具合を、入力欄の上に天気で表示。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "use2",
+   "say": "その2、全部消すような危ない命令の前で止めて、消えるファイルを確認。",
+   "show": "その2、全部消すような危ない命令の前で止めて、消えるファイルを確認。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "use3",
+   "say": "その3、スラッシュリプレイで、直前の書き換えを小窓で振り返る。",
+   "show": "その3、/replayで、直前の書き換えを小窓で振り返る。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "twist",
+   "say": "ただし、モッドはあなたと同じ権限で動き、ファイルやAPIキーまで読めます。",
+   "show": "ただし、modはあなたと同じ権限で動き、ファイルやAPIキーまで読めます。",
+   "puppet": true,
+   "se": "heavy"
+  },
+  {
+   "scene": "trust",
+   "say": "入れるのは、信頼できる作者のものだけに。",
+   "show": "入れるのは、信頼できる作者のものだけに。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "verdict",
+   "say": "頼むだけで自分専用にできるのが新しいので、まずは天気の帯を頼んでみて。",
+   "show": "頼むだけで自分専用にできるのが新しいので、まずは天気の帯を頼んでみて。",
+   "puppet": true,
+   "se": "ding"
+  }
+ ],
+ "speed": 1.15,
+ "gap": 0.03,
+ "period_pause": 0.04,
+ "comma_max": 0.3,
+ "tail_logo": 2.0,
+ "sec": 60,
+ "lipsync": "python3",
+ "lead": 0.1
+}
