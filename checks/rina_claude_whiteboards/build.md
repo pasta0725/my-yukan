@@ -1,5 +1,6 @@
 RESULT: LOOK
-- LOOK [事実] タイトル（video.txt 29行目）｜「話すだけで図に」は、音声入力後に必要な送信操作を省き、話すだけで図が生成されると受け取れる。｜マイクで音声入力した後、送信ボタンを選択するかReturnキーを押してClaudeに送信する必要がある。｜refs.txt内 fetched/claude_whiteboards/4.txt「Claude Whiteboardsを始める」（3289行目）：「入力内容はボックスに残ります。送信ボタンを選択するか、Returnキーを押してClaudeに送信します。」
+- LOOK [事実] 英語概要欄（video.txt 58行目）｜「Available in beta on paid plans (Pro, Max, Ultra, Team, Enterprise)」は、Enterpriseでは設定で有効化する必要があるという条件を省いています。｜Enterpriseではデフォルトで無効で、Organization settings > Artifactsで有効にする必要があります。｜fetched/claude_whiteboards/4.txt（Claude Whiteboardsを始める）「Enterpriseプランでは、Organization settings > Artifactsで有効にするまでデフォルトで無効になっています。」
+- LOOK [事実] 英語概要欄（video.txt 58行目）｜「Available in beta on paid plans (Pro, Max, Ultra, Team, Enterprise)」は、HIPAA対応構成の組織では利用できないという例外を省いています。｜対象の有料プランでも、HIPAA対応構成を持つ組織ではClaude Whiteboardsを利用できません。｜fetched/claude_whiteboards/4.txt（Claude Whiteboardsを始める）「Claude Whiteboardsは、HIPAA対応構成を持つ組織では利用できません。」
 - LOOK [全体] 結果が届かなかった確認：声、画面｜Actions の画面で失敗した段を見る｜-｜-
 
 ショートの自動の書き出しと確認：rina_claude_whiteboards
