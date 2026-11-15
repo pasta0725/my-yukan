@@ -94,9 +94,13 @@ srt = os.path.join(ROOT, "channel", "captions", f"{a.name}_ja.srt")
 if os.path.exists(srt):
     step("captions ja", lambda: yt.captions().insert(part="snippet", body={"snippet": {"videoId": vid, "language": "ja", "name": "日本語", "isDraft": False}},
                                                       media_body=MediaFileUpload(srt, mimetype="application/octet-stream")).execute())
-def add_playlist():
+def add_playlist():   # meta "playlist" picks another list (2026-11-15: learning Shorts); it is made (public) if it does not exist yet
+    name = meta.get("playlist") or PLAYLIST
     pls = yt.playlists().list(part="snippet", mine=True, maxResults=50).execute()["items"]
-    pl = next(p for p in pls if p["snippet"]["title"] == PLAYLIST)
+    pl = next((p for p in pls if p["snippet"]["title"] == name), None)
+    if pl is None:
+        pl = yt.playlists().insert(part="snippet,status", body={"snippet": {"title": name, "description": meta.get("playlist_description", ""),
+             "defaultLanguage": "ja"}, "status": {"privacyStatus": "public"}}).execute(); print("ok: new playlist", name)
     yt.playlistItems().insert(part="snippet", body={"snippet": {"playlistId": pl["id"], "resourceId": {"kind": "youtube#video", "videoId": vid}}}).execute()
 step("playlist", add_playlist)
 if a.comment and not a.publish_at:   # a scheduled (private) video gets its comment after it goes public (workflow job "comment")
