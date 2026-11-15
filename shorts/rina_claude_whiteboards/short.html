@@ -23,7 +23,7 @@ const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);
 let CUR=null;
 function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
   if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
-window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]);await document.fonts.ready;measureFits();})();
+window.ready=(async()=>{await Promise.all([load('logo','img/logo.png'),load('official','img/official.jpg'),(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]);await document.fonts.ready;measureFits();})();
 const telAt=(txt)=>P.tel.find(x=>x.text===txt);
 const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
 // ---------- helpers ----------
@@ -253,14 +253,21 @@ const MESSY=[[-250,-170,-0.18],[180,-210,0.15],[-60,40,0.08],[230,120,-0.12],[-2
 const S={
  // hook (rule 2026-11-15): the board is centered from frame 0, a big question telop, something changes every 0.5 s, big change at 2 s
  hook(u,d,L){bg(u);mini(u);
+   if(u<1.0){  // 0-1 s: the official picture (Anthropic's launch video thumbnail), red circle on the Whiteboards tile
+     const z=1+0.08*ease(u/1.0);g.save();g.beginPath();g.roundRect(150,450,780,600,30);g.clip();g.translate(360,750);g.scale(z,z);g.translate(-360,-750);
+     pic('official',150,450,780,600,1.0,0,0.5);g.restore();rrect(150,450,780,600,30,null,C.bar);
+     g.save();g.strokeStyle=C.warn;g.lineWidth=12;g.lineCap='round';g.beginPath();g.ellipse(360,750,180,205,-0.05,0,Math.PI*2*clamp(u/0.35));g.stroke();g.restore();
+     if(u>0.45)stamp('新機能',640,520,(u-0.45)/0.25,C.warn,52,0.06);
+     creditAt('出典：Anthropic',915,1025);
+   }else{
    wboard(150,450,780,600);
-   const ks=clamp((u-2.0)/0.6);const words=['企画','準備','告知','発売'];const tidy=[[-200,-130],[200,-130],[200,110],[-200,110]];
+   const ks=clamp((u-1.9)/0.45);const words=['企画','準備','告知','発売'];const tidy=[[-200,-130],[200,-130],[200,110],[-200,110]];
    withEnter(clamp(1-ks*1.5),()=>{g.save();g.beginPath();g.arc(255,525,40,0,7);g.fillStyle=C.acc;g.fill();g.restore();micIcon(255,530,36,'#FFFFFF');wave(400,525,170,u);},0);
-   for(let i=0;i<4;i++){const m=MESSY[i];const k=i===0?1:enter(u,i*0.5,0.25);const p=[CX+m[0]+(tidy[i][0]-m[0])*ease(ks),770+m[1]+(tidy[i][1]-m[1])*ease(ks)];
+   for(let i=0;i<4;i++){const m=MESSY[i];const k=enter(u,1.0+i*0.25,0.2);const p=[CX+m[0]+(tidy[i][0]-m[0])*ease(ks),770+m[1]+(tidy[i][1]-m[1])*ease(ks)];
      if(ks<0.98)note(words[i],p[0],p[1],170,i,m[2]*(1-ks),k);else nodeBox(words[i],p[0],p[1],250,130,1);}
-   if(ks>=0.98){const ka=(u-2.6)/0.25;arrowTo(CX-60,640,CX+60,640,ka);arrowTo(CX+200,715,CX+200,815,ka-0.6);arrowTo(CX+60,880,CX-60,880,ka-1.2);}
-   aiChip(CX,1000,(u-1.5)/0.3);
-   imgTag(915,1065);
+   if(ks>=0.98){const ka=(u-2.4)/0.15;arrowTo(CX-60,640,CX+60,640,ka);arrowTo(CX+200,715,CX+200,815,ka-0.5);arrowTo(CX+60,880,CX-60,880,ka-1);}
+   aiChip(CX,1000,(u-1.2)/0.25);
+   imgTag(915,1065);}
    const z=1+0.05*Math.sin(Math.min(u,3)*Math.PI*2);g.save();g.translate(CX,1190);g.scale(z,z);g.translate(-CX,-1190);
    g.lineJoin='round';g.textAlign='center';g.textBaseline='middle';
    g.font=`900 72px ${FONT}`;g.lineWidth=18;g.strokeStyle='#FFFFFF';g.strokeText('Claudeに',CX,1130);g.fillStyle=C.brand;g.fillText('Claudeに',CX,1130);
