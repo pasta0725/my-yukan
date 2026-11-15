@@ -239,14 +239,15 @@ function priceScene(u,L,i){bg(u);mini(u);mixLine([['月額',C.text],['いくら�
   plus('+'+PL[i][4]+'円',800,450+i*215+10,(u-1.2)/0.3);}
 const S={
  hook(u,d,L){bg(u);mini(u);
-   if(u<1.0){const z=1+0.08*ease(u/1.0);g.save();g.beginPath();g.roundRect(150,450,780,600,30);g.clip();g.translate(CX,750);g.scale(z,z);g.translate(-CX,-750);
+   if(u<1.0){const z=1;g.save();g.beginPath();g.roundRect(150,450,780,600,30);g.clip();g.translate(CX,750);g.scale(z,z);g.translate(-CX,-750);
      if(IMG.official)picC('official',150,450,780,600,'#FFFFFF');else{card(150,450,780,600);tvIcon(CX,740,300);}g.restore();rrect(150,450,780,600,30,null,C.bar);
-     if(u>0.45)stamp('値上げ',720,520,(u-0.45)/0.25,C.warn,56,0.06);
+     if(IMG.official){g.save();g.strokeStyle=C.warn;g.lineWidth=10;g.lineCap='round';g.beginPath();g.ellipse(215,642,80,46,-0.05,0,Math.PI*2*clamp((u-0.15)/0.3));g.stroke();g.restore();}
+     if(u>0.45)stamp('値上げ',CX,880,(u-0.45)/0.25,C.warn,56,0.06);
      if(IMG.official)creditAt('出典：ITmedia Mobile',915,1025);
    }else{card(150,450,780,600);tvIcon(CX,620,190);
      const k2=clamp((u-1.9)/0.3);
      for(let j=0;j<3;j++){const x=170+j*250;withEnter(enter(u,1.0+j*0.25,0.2),()=>{rrect(x,820,240,190,26,j===2?'#FFF4EC':'#EEF1F6');text(PL[j][1],x+120,865,30,C.sub,'center',900,220);
-       text(k2>0?'？':'…',x+120,950,86,C.acc,'center',900,200);if(k2>0)upArrow(x+205,850,26*back(k2),C.acc);},12);}
+       text(k2>0?'？':'…',x+120,950,86,C.acc,'center',900,200);if(k2>0)upArrow(x+200,950,30*back(k2),C.acc);},12);}
    }
    const z=1+0.05*Math.sin(Math.min(u,3)*Math.PI*2);g.save();g.translate(CX,1190);g.scale(z,z);g.translate(-CX,-1190);
    g.lineJoin='round';g.textAlign='center';g.textBaseline='middle';
