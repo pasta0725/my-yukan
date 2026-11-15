@@ -1,7 +1,6 @@
-RESULT: LOOK
-- LOOK タイトル（video.txt 29行目）｜「話すだけで図に」は、音声入力後に必要な送信操作を省き、話すだけで図が生成されると受け取れる。｜マイクで音声入力した後、送信ボタンを選択するかReturnキーを押してClaudeに送信する必要がある。｜refs.txt内 fetched/claude_whiteboards/4.txt「Claude Whiteboardsを始める」（3289行目）：「入力内容はボックスに残ります。送信ボタンを選択するか、Returnキーを押してClaudeに送信します。」
+RESULT: OK
 
-確かめた事実の数：50　/　同じ内容の重複をまとめて照合。音声入力の操作条件について1件、要確認。
+確かめた事実の数：50　/　同一内容の重複をまとめて50項目を照合。指定の除外対象を除き、資料との矛盾、根拠のない事実、動画内の食い違いは見つかりませんでした。
 
 事実確認（Codex gpt-6.1-sol・effort high）　対象：rina_claude_whiteboards
 照らした資料：fetched/claude_whiteboards/1.txt（https://claude.com/blog/sheets-whiteboards-data）、fetched/claude_whiteboards/10.txt（https://sdtimes.com/?p=61743）、fetched/claude_whiteboards/11.txt（https://www.reworked.co/digital-workplace/anthropic-turns-claude-into-an-ai-office-suite/）、fetched/claude_whiteboards/12.txt（https://claude.com/pricing）、fetched/claude_whiteboards/2.txt（https://claude.com/ja/resources/articles/sheets-whiteboards-data）、fetched/claude_whiteboards/3.txt（https://support.claude.com/en/articles/18324319-get-started-with-claude-whiteboards）、fetched/claude_whiteboards/4.txt（https://support.claude.com/ja/articles/18324319）、fetched/claude_whiteboards/5.txt（https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors）、fetched/claude_whiteboards/6.txt（https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/）、fetched/claude_whiteboards/7.txt（https://www.tomsguide.com/ai/claude/claude-just-got-3-powerful-new-tools-and-they-could-replace-some-of-your-favorite-apps）、fetched/claude_whiteboards/8.txt（https://www.techradar.com/ai-platforms-assistants/claude/claude-ai-just-became-the-ultimate-work-companion-and-it-might-tempt-me-to-switch-from-chatgpt）、fetched/claude_whiteboards/9.txt（https://www.theregister.com/a/5308988）
