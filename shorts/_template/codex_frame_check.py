@@ -102,6 +102,14 @@ def prep(video, wd, script=None, plan=None, thumb=None):
         big = im.resize((900, round(im.height * 900 / im.width)))
         sheet = Image.new("RGB", (900 + 40 + 168, max(big.height, small.height)), (255, 255, 255))
         sheet.paste(big, (0, 0)); sheet.paste(small, (940, 0)); sheet.save(os.path.join(wd, "sheets", "thumb.png"))
+        # 2026-11-15: the channel's Shorts grid (phone) crops to about 2:3 (top/bottom ~7% cut). Show that view, and the text safe box on the full image.
+        W, H = im.size; ch = round(W * 3 / 2); top = max(0, (H - ch) // 2)
+        crop = im.crop((round(W * 0.03), top, W - round(W * 0.03), top + ch)).resize((600, round(ch * 600 / (W * 0.94))))
+        boxed = im.copy(); d = ImageDraw.Draw(boxed); sx, sy = W / 1080, H / 1920
+        d.rectangle([54 * sx, 230 * sy, 1026 * sx, 1690 * sy], outline=(255, 0, 160), width=max(4, round(6 * sx)))
+        boxed = boxed.resize((600, round(H * 600 / W)))
+        s2 = Image.new("RGB", (600 + 40 + 600, max(crop.height, boxed.height)), (255, 255, 255))
+        s2.paste(crop, (0, 0)); s2.paste(boxed, (640, 0)); s2.save(os.path.join(wd, "sheets", "thumb_crop.png"))
     tel_list = "\n".join(f"- #{i} {mmss(t)} {s}" for i, (t, s) in enumerate(tel) if s)
     prompt = PROMPT.format(T=f"{T:.1f}", script=script_text(script) or "（台本なし）", tel=tel_list or "（予定の字幕一覧なし）",
                            thumb="あり（thumb.png：左が原寸に近い大きさ、右が幅168pxに縮めたもの）" if thumb and os.path.exists(thumb) else "なし")
@@ -115,6 +123,7 @@ PROMPT = """あなたは YouTube ショート動画（縦 1080x1920、長さ {T}
 - all_XX.png：1秒ごとの全画面（左上の黄色い字が動画の時刻 分:秒）。ピンクの帯は YouTube の画面で隠れる所（左右の端 50px、上の y180〜280 は検索の虫眼鏡）。帯そのものは動画にはありません。
 - tel_XX.png：右下の吹き出し・字幕の部分を原寸で切り出したもの（字幕の切り替えごとに1枚、左上が #番号 と時刻）。誤字・改行はこちらで細かく見る。
 - thumb.png：サムネイル（{thumb}）。
+- thumb_crop.png（サムネがあるとき）：左＝チャンネルの一覧での見え方（上下と左右の端が切れた形）、右＝全体にピンクの枠（文字と顔を入れる安全域）。一覧の形で文字が1文字でも欠けている、または文字や顔がピンクの枠からはみ出していたら、what を「サムネ」にして LOOK にする。
 同じフォルダの frames/ に原寸のコマ（t_秒.png、c_番号.png）があります。怪しい所は画像を開く道具で拡大して確かめてよい。ファイルは変更しないこと。
 
 点検する項目（1つでも当てはまれば LOOK）:
