@@ -1,6 +1,6 @@
 RESULT: OK
 
-確かめた事実の数：44　/　重複をまとめて44項目を照合。指定の除外項目を除き、資料との矛盾、根拠のない事実、動画内の不一致は見当たりませんでした。
+確かめた事実の数：46　/　重複する内容はまとめて46項目を照合し、資料との矛盾、根拠のない事実、動画内の不一致は見つかりませんでした。
 
 事実確認（Codex gpt-6.1-sol・effort high）　対象：rina_claude_mods
 照らした資料：fetched/claude_mods/1.txt（https://code.claude.com/docs/en/plugins/mods/overview.md）、fetched/claude_mods/10.txt（https://github.com/anthropics/claude-code-playground/tree/main/claude-code/mods/token-weather）、fetched/claude_mods/11.txt（https://github.com/anthropics/claude-code-playground/tree/main/claude-code/mods/blast-radius）、fetched/claude_mods/12.txt（https://github.com/anthropics/claude-code-playground/tree/main/claude-code/mods/replay-theater）、fetched/claude_mods/2.txt（https://code.claude.com/docs/ja/plugins/mods/overview.md）、fetched/claude_mods/3.txt（https://code.claude.com/docs/en/plugins/mods/create.md）、fetched/claude_mods/4.txt（https://claude.com/blog/claude-code-mods）、fetched/claude_mods/5.txt（https://thenewstack.io/anthropic-claude-code-mods-plugins/）、fetched/claude_mods/6.txt（https://the-decoder.com/claude-codes-new-mods-system-lets-developers-rewrite-the-ai-coding-tool-from-the-inside/）、fetched/claude_mods/7.txt（https://gigazine.net/news/20261002-claude-code-customize-mod/）、fetched/claude_mods/8.txt（https://www.techno-edge.net/article/2026/10/02/5550.html）、fetched/claude_mods/9.txt（https://claude.dev/blog/getting-started-with-claude-code-mods/）
