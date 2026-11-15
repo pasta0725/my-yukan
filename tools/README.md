@@ -1,5 +1,7 @@
 # マイ夕刊の作り方（Claude用メモ）
 
+- 2026-11-16 ユーザー決定：マイ夕刊（GitHub Pages の画面）は停止し、公開サイト「星餓りなのテックニュース」に集中する。index.html は公開サイトへ移るだけのページ。号づくり・点検・画像・Xの声はこれまでどおり（同じ data/ から公開サイトが作られる）。GitHub Pages は privacy.html・terms.html・rina-upload.html（YouTube API の審査用）のために止めない。
+
 > 号づくりの担当（16本）には、`python3 -I tools/make_briefs.py WORKDIR/briefs TODAY=… WORKDIR=… NEWS=… EDITION=…` で作る担当別の指示書 brief_<担当名>.md を読ませる（spec.md と style.md から、他のカテゴリ向けの部分だけを外したもの。ルールは省かない。2026-11-14 利用枠の節約）。担当から親への返事は1行（書いた本数と問題だけ。中身はファイル）。
 > gh コマンドが使えない環境（ログインできない）では、GitHub の道具（ワークフローの実行・実行の一覧・成果物の取得）で同じことをしてよい（2026-11-13 Issue #17）。
 
