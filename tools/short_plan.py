@@ -82,7 +82,7 @@ for i, ln in enumerate(spec["lines"], 1):
     x = squeeze(x, ln["say"], period_pause, comma_max); writew(dst, x); segs.append(x)
 
 # 2) timeline
-t = 0.25; lines = []
+t = spec.get("lead", 0.25); lines = []  # voice start; the hook rule (tools/shorts_rules.md 構成1, 2026-11-15) wants <= 0.2 s
 for i, (ln, x) in enumerate(zip(spec["lines"], segs)):
     d = len(x) / SR; lines.append({**ln, "start": round(t, 3), "end": round(t + d, 3)}); t += d + gap
 voice_end = t - gap; T = voice_end + 0.35 + tail

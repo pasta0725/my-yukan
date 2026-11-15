@@ -251,18 +251,20 @@ function tile(label,x,y,w,h,hi){rrect(x,y,w,h,24,hi?C.acc:'#EEF1F6');if(hi){g.sa
   g.save();g.translate(x+w/2,y+h*0.42);const c=hi?'#FFFFFF':C.sub;g.strokeStyle=c;g.lineWidth=6;g.strokeRect(-46,-32,92,64);if(hi){g.fillStyle='#FFFFFF';g.fillRect(-34,-20,26,22);g.fillRect(6,-6,26,22);}g.restore();text(label,x+w/2,y+h*0.82,30,hi?'#FFFFFF':C.sub,'center',900,w-16);}
 const MESSY=[[-250,-170,-0.18],[180,-210,0.15],[-60,40,0.08],[230,120,-0.12],[-230,170,0.2],[40,-60,-0.1]];
 const S={
- // hook: talk -> Claude draws the board (messy notes snap into a flow)
+ // hook (rule 2026-11-15): the board is centered from frame 0, a big question telop, something changes every 0.5 s, big change at 2 s
  hook(u,d,L){bg(u);mini(u);
-   mixLine([['話すだけで',C.text],['図になる',C.acc]],CX,385,76);
-   wboard(150,450,780,640);
-   const ks=clamp((u-1.3)/0.9);const words=['企画','準備','告知','発売'];const tidy=[[-200,-140],[200,-140],[200,110],[-200,110]];
-   withEnter(clamp(1-ks*1.5),()=>{g.save();g.beginPath();g.arc(255,535,40,0,7);g.fillStyle=C.acc;g.fill();g.restore();micIcon(255,540,36,'#FFFFFF');wave(400,535,170,u);},0);
-   for(let i=0;i<4;i++){const m=MESSY[i];const k=enter(u,0.1+i*0.15,0.3);const p=[CX+m[0]+(tidy[i][0]-m[0])*ease(ks),790+m[1]+(tidy[i][1]-m[1])*ease(ks)];
+   wboard(150,450,780,600);
+   const ks=clamp((u-2.0)/0.6);const words=['企画','準備','告知','発売'];const tidy=[[-200,-130],[200,-130],[200,110],[-200,110]];
+   withEnter(clamp(1-ks*1.5),()=>{g.save();g.beginPath();g.arc(255,525,40,0,7);g.fillStyle=C.acc;g.fill();g.restore();micIcon(255,530,36,'#FFFFFF');wave(400,525,170,u);},0);
+   for(let i=0;i<4;i++){const m=MESSY[i];const k=i===0?1:enter(u,i*0.5,0.25);const p=[CX+m[0]+(tidy[i][0]-m[0])*ease(ks),770+m[1]+(tidy[i][1]-m[1])*ease(ks)];
      if(ks<0.98)note(words[i],p[0],p[1],170,i,m[2]*(1-ks),k);else nodeBox(words[i],p[0],p[1],250,130,1);}
-   if(ks>=0.98){const ka=(u-2.2)/0.3;arrowTo(CX-60,650,CX+60,650,ka);arrowTo(CX+200,725,CX+200,825,ka-0.5);arrowTo(CX+60,900,CX-60,900,ka-1);}
-   aiChip(CX,1035,(u-1.0)/0.3);
-   if(u>2.6)stamp('新機能',780,470,(u-2.6)/0.3,C.acc,46,0.08);
-   imgTag(915,1110);},
+   if(ks>=0.98){const ka=(u-2.6)/0.25;arrowTo(CX-60,640,CX+60,640,ka);arrowTo(CX+200,715,CX+200,815,ka-0.6);arrowTo(CX+60,880,CX-60,880,ka-1.2);}
+   aiChip(CX,1000,(u-1.5)/0.3);
+   imgTag(915,1065);
+   const z=1+0.05*Math.sin(Math.min(u,3)*Math.PI*2);g.save();g.translate(CX,1190);g.scale(z,z);g.translate(-CX,-1190);
+   g.lineJoin='round';g.textAlign='center';g.textBaseline='middle';
+   g.font=`900 72px ${FONT}`;g.lineWidth=18;g.strokeStyle='#FFFFFF';g.strokeText('Claudeに',CX,1130);g.fillStyle=C.brand;g.fillText('Claudeに',CX,1130);
+   g.font=`900 100px ${FONT}`;g.lineWidth=22;g.strokeText('ホワイトボード？',CX,1240);g.fillStyle=C.acc;g.fillText('ホワイトボード？',CX,1240);g.restore();},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},
  // what: when / who / what it is
  what(u,d,L){bg(u);mini(u);const t2=telHas(L,'チーム');
