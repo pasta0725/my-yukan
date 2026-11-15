@@ -9,10 +9,13 @@
    "title": "Cloudflare、AI専用ブラウザのコード公開",
    "summary": "人向けの機能を省き、複数のAIがウェブを操作する負担を抑える設計です。",
    "image": {
-    "src": "https://www.publickey1.jp/2026/Ys9MKQWA.png",
-    "kind": "ogp",
-    "credit": "Publickey",
-    "page": "https://www.publickey1.jp/blog/26/cloudflareaikitesurf.html"
+    "src": "https://kitesurf.dev/og.png",
+    "kind": "press",
+    "credit": "Kitesurf",
+    "page": "https://kitesurf.dev/",
+    "w": 1200,
+    "h": 630,
+    "caption": "KitesurfのURL入力画面"
    },
    "visual": {
     "icon": "ai",
@@ -44,6 +47,13 @@
      "text": "コードはGitHubで公開されています。開発者は内容を変更し、自分のCloudflareアカウントで動かせます。ページごとに処理を分けて動かすため、Workersの有料プランが必要です。"
     },
     {
+     "type": "img",
+     "src": "https://www.publickey1.jp/2026/Ys9MKQWA.png",
+     "kind": "ogp",
+     "credit": "Publickey",
+     "page": "https://www.publickey1.jp/blog/26/cloudflareaikitesurf.html"
+    },
+    {
      "type": "p",
      "text": "無料で使える範囲や具体的な実行料金は明らかにされていません。日本での利用条件や日本語への対応も未発表です。"
     },
@@ -56,8 +66,28 @@
      "text": "既存のブラウザ自動操作ツールと接続できる点も特徴です。Chrome DevTools Protocolという操作用の取り決めに対応します。これを通じて、Puppeteerなどのツールから操作できます。"
     },
     {
+     "type": "img",
+     "src": "https://kitesurf.dev/showcase/blog.jpg",
+     "kind": "press",
+     "credit": "Kitesurf",
+     "caption": "Kitesurfでのブログ表示例",
+     "page": "https://kitesurf.dev/",
+     "w": 1600,
+     "h": 1000
+    },
+    {
      "type": "p",
      "text": "内部には、ページの表示処理やページ内のプログラムを動かす機能があります。表示結果を画像として保存する機能も備えています。PDFも作れるため、ウェブを読むだけでなく文書の出力にも使えます。"
+    },
+    {
+     "type": "img",
+     "src": "https://kitesurf.dev/showcase/docs.jpg",
+     "kind": "press",
+     "credit": "Kitesurf",
+     "caption": "Kitesurfでの記事ページ表示例",
+     "page": "https://kitesurf.dev/",
+     "w": 1600,
+     "h": 1000
     },
     {
      "type": "h",
@@ -68,8 +98,28 @@
      "text": "Kitesurfは、操作用の画面を持たない「ヘッドレスブラウザ」です。指示に沿って作業するAIエージェントが使います。タブやブックマークなど、人が閲覧するための機能を省いています。"
     },
     {
+     "type": "img",
+     "src": "https://blog.cloudflare.com/_image?href=https%3A%2F%2Fblog.cloudflare.com%2F_emdash%2Fapi%2Fmedia%2Ffile%2F01M7B8M6W0SC3KNRPXW97BNF4P.png&w=1430&h=994&f=webp&fit=cover&position=center",
+     "kind": "press",
+     "credit": "Cloudflare Blog",
+     "caption": "Kitesurfの画面描画の処理図",
+     "page": "https://blog.cloudflare.com/kitesurf-open-source",
+     "w": 1430,
+     "h": 994
+    },
+    {
      "type": "p",
      "text": "狙いは、多数のAIが同時にウェブを操作するときの負担を減らすことです。2026年8月の発表後、9月には機能やウェブへの対応を改善しました。今回は中身を確認・変更できる形で公開しました。ライセンスは、コードの利用条件を定めるApache 2.0です。"
+    },
+    {
+     "type": "img",
+     "src": "https://kitesurf.dev/showcase/paperjs.jpg",
+     "kind": "press",
+     "credit": "Kitesurf",
+     "caption": "Kitesurfでの図形の表示例",
+     "page": "https://kitesurf.dev/",
+     "w": 1600,
+     "h": 1000
     },
     {
      "type": "h",
@@ -82,6 +132,16 @@
     {
      "type": "p",
      "text": "Kitesurfは、ブラウザの基盤として広く使われるChromiumを使いません。主にRustという開発言語で作られています。WebAssemblyという、プログラムを実行するための形式に変換して動かします。"
+    },
+    {
+     "type": "img",
+     "src": "https://blog.cloudflare.com/_image?href=https%3A%2F%2Fblog.cloudflare.com%2F_emdash%2Fapi%2Fmedia%2Ffile%2F01M7B8M53647Q1KNRABY8VM2G7.png&w=3336&h=1876&f=webp&fit=cover&position=center",
+     "kind": "press",
+     "credit": "Cloudflare Blog",
+     "caption": "Kitesurfを表すイラスト",
+     "page": "https://blog.cloudflare.com/kitesurf-open-source",
+     "w": 1668,
+     "h": 938
     },
     {
      "type": "h",
@@ -254,6 +314,13 @@
     "kind": "ogp",
     "credit": "ケータイ Watch",
     "page": "https://k-tai.watch.impress.co.jp/docs/column/stapa/2156436.html"
+   },
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/mobile-magex-m5-pro-monitor.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
    }
   },
   {
@@ -358,7 +425,14 @@
      "name": "GIZMODO JAPAN",
      "url": "https://www.gizmodo.jp/article/2611-apple-watch-app-switcher/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/gadget-apple-watch-app-switcher.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "service-x-post-images-20",
@@ -469,7 +543,14 @@
      "name": "電ファミニコゲーマー",
      "url": "https://news.denfaminicogamer.jp/news/261113h"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/service-x-post-images-20.png",
+    "kind": "diagram",
+    "caption": "図解：比べて見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "compare"
+   }
   },
   {
    "id": "game-ps5-create-button-guide",
@@ -477,10 +558,13 @@
    "title": "PS5の撮影設定、1回押しで画面を保存可能",
    "summary": "撮影メニューを開く手間を省け、逃した場面も直前の動画から残せます。",
    "image": {
-    "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2156/295/1_l.jpg",
-    "kind": "ogp",
-    "credit": "GAME Watch",
-    "page": "https://game.watch.impress.co.jp/docs/news/2156295.html"
+    "src": "https://gmedia.playstation.com/is/image/SIEPDC/ps5-create-menu-14mar22$en?$1600px$",
+    "kind": "press",
+    "credit": "playstation.com",
+    "page": "https://www.playstation.com/ja-jp/support/games/capture-ps5-gameplay-screenshots/",
+    "w": 1600,
+    "h": 900,
+    "caption": "PS5の撮影操作を選ぶクリエイトメニュー"
    },
    "visual": {
     "icon": "game",
@@ -510,6 +594,13 @@
     {
      "type": "p",
      "text": "「スクリーンショット向け」に切り替えると、1回押した瞬間に撮影できます。先にメニューを開く操作が不要になります。静止画をよく撮る人が、用途に合わせて選べる設定です。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2156/295/1_l.jpg",
+     "kind": "ogp",
+     "credit": "GAME Watch",
+     "page": "https://game.watch.impress.co.jp/docs/news/2156295.html"
     },
     {
      "type": "h",
@@ -748,7 +839,14 @@
      "name": "Gasgoo",
      "url": "https://autonews.gasgoo.com/articles/news/ecarx-may-mobility-select-volkswagen-id-buzz-for-10000-vehicle-robotaxi-plan-2121181120791748609"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/future-may-mobility-id-buzz.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "other-local-analog-rules-dashboard",
@@ -791,6 +889,16 @@
      "text": "背景には、人口減少と高齢化に伴う地域の人手不足があります。デジタル庁は、限られた職員でも住民向けの行政サービスを維持できるよう、自治体の取組を支援しています。"
     },
     {
+     "type": "img",
+     "src": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_images/488ec589-9c7c-4c19-99b4-9ade193c7f3c/fa411476/20261113_oizumi_digital%20news.jpg",
+     "kind": "press",
+     "credit": "デジタル庁",
+     "caption": "アナログ規制の見直しに向けた打ち合わせ",
+     "page": "https://www.digital.go.jp/policies/digital-extraordinary-administrative-research-committee/local-government",
+     "w": 880,
+     "h": 587
+    },
+    {
      "type": "h",
      "text": "1788団体の取組を確認"
     },
@@ -805,6 +913,16 @@
     {
      "type": "p",
      "text": "日本時事新聞によると、見直しを終えたか進めているのは615団体です。全1788団体の34％で、前年度の23％から増えました。一方、始める時期が未定の団体は908団体で、半数を超えています。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_images/488ec589-9c7c-4c19-99b4-9ade193c7f3c/c0374b84/4_%E7%9B%B8%E9%A6%AC%E5%B8%82.jpg",
+     "kind": "press",
+     "credit": "デジタル庁",
+     "caption": "農地での目視確認と地図を表示した画面",
+     "page": "https://www.digital.go.jp/policies/digital-extraordinary-administrative-research-committee/local-government",
+     "w": 566,
+     "h": 318
     },
     {
      "type": "p",
@@ -1050,7 +1168,14 @@
      "name": "窓の杜",
      "url": "https://forest.watch.impress.co.jp/docs/serial/yajiuma/2153596.html"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/ai-postgresql19-review-delay.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "mobile-nothing-phone-4b-autumn",
@@ -1193,7 +1318,16 @@
      "name": "Nothing",
      "url": "https://prtimes.jp/main/html/rd/p/000000071.000082566.html"
     }
-   ]
+   ],
+   "image": {
+    "src": "https://prcdn.freetls.fastly.net/release_image/82566/71/82566-71-772a6630527a8b32fe946c98f27ecec6-1920x1080.jpg?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
+    "kind": "press",
+    "credit": "Nothing Technology Japan株式会社",
+    "page": "https://prtimes.jp/main/html/rd/p/000000071.000082566.html",
+    "w": 1920,
+    "h": 1080,
+    "caption": "Phone (4b)のホワイト、ブラック、ブルー"
+   }
   },
   {
    "id": "gadget-first-love-synth-release",
@@ -1201,10 +1335,13 @@
    "title": "FIRST LOVE、699ドルの電子楽器が発売",
    "summary": "スピーカーや曲作りの機能を備え、1台で演奏できます。",
    "image": {
-    "src": "https://media.loom-app.com/loom/2026/11/10/d174bb2e-03a5-4dbe-9d74-f4cd9aacf75b/original.jpg?w=1200&h=630",
-    "kind": "ogp",
-    "credit": "GIZMODO JAPAN",
-    "page": "https://www.gizmodo.jp/article/first-love-fm-synth/"
+    "src": "https://cdn.assets.prezly.com/221a071f-f461-4db0-b4c6-79b17d689bab/-/resize/2400/FIRST_LOVE_PINK_FRONT_TRANSP.png",
+    "kind": "press",
+    "credit": "Hummingbird Media, Inc.",
+    "page": "https://news.hummingbirdmedia.com/love-synthesizers-launches-its-highly-anticipated-first-love-synthesizer-featuring-revolutionary-interface-and-integrated-feature-set",
+    "w": 2400,
+    "h": 1800,
+    "caption": "FIRST LOVEの画面と操作部"
    },
    "visual": {
     "icon": "audio",
@@ -1236,8 +1373,56 @@
      "text": "FIRST LOVEは、単体で動くシンセサイザーです。シンセサイザーは、電子的に音色を作る楽器を指します。スピーカーを内蔵し、本体だけで音を鳴らせます。"
     },
     {
+     "type": "gallery",
+     "title": "",
+     "items": [
+      {
+       "src": "https://cdn.assets.prezly.com/7aa58e2b-054d-454d-b545-eff6b934e804/-/resize/2400/FIRST_LOVE_PINK_DETAIL_1.jpg",
+       "kind": "press",
+       "credit": "Hummingbird Media, Inc.",
+       "caption": "FIRST LOVEのつまみとパッド",
+       "page": "https://news.hummingbirdmedia.com/love-synthesizers-launches-its-highly-anticipated-first-love-synthesizer-featuring-revolutionary-interface-and-integrated-feature-set",
+       "w": 2400,
+       "h": 1800
+      },
+      {
+       "src": "https://cdn.assets.prezly.com/38c0e756-187a-476e-9fc7-f10a0921f8ea/-/preview/500x500/-/resize/1200/FIRST_LOVE_WHITE_DETAIL_1.jpg",
+       "kind": "press",
+       "credit": "Hummingbird Media, Inc.",
+       "caption": "ホワイトのFIRST LOVEの操作部",
+       "page": "https://news.hummingbirdmedia.com/love-synthesizers-launches-its-highly-anticipated-first-love-synthesizer-featuring-revolutionary-interface-and-integrated-feature-set",
+       "w": 1200,
+       "h": 900
+      }
+     ]
+    },
+    {
      "type": "p",
      "text": "演奏を繰り返すルーパーと、音の並びを組むシーケンサーも備えます。パソコンなどを足さず、1台で曲作りができる構成です。曲作りの操作中も、演奏を止めずに使えます。別売りバッテリーを使えば、屋外での演奏にも対応します。"
+    },
+    {
+     "type": "gallery",
+     "title": "",
+     "items": [
+      {
+       "src": "https://cdn.assets.prezly.com/fbd79ba6-f538-431d-8790-18f28c2c035c/-/resize/2400/FirstLove-inthewild_RONJA.jpg",
+       "kind": "press",
+       "credit": "Hummingbird Media, Inc.",
+       "caption": "屋外でFIRST LOVEを演奏する様子",
+       "page": "https://news.hummingbirdmedia.com/love-synthesizers-launches-its-highly-anticipated-first-love-synthesizer-featuring-revolutionary-interface-and-integrated-feature-set",
+       "w": 2400,
+       "h": 1600
+      },
+      {
+       "src": "https://cdn.assets.prezly.com/d066e157-3727-47fb-be46-6198ca1c81a4/-/preview/500x500/-/resize/1200/FIRST_LOVE_WHITE_SIDE_TRANSP.png",
+       "kind": "press",
+       "credit": "Hummingbird Media, Inc.",
+       "caption": "横から見たホワイトのFIRST LOVE",
+       "page": "https://news.hummingbirdmedia.com/love-synthesizers-launches-its-highly-anticipated-first-love-synthesizer-featuring-revolutionary-interface-and-integrated-feature-set",
+       "w": 1200,
+       "h": 900
+      }
+     ]
     },
     {
      "type": "h",
@@ -1276,6 +1461,16 @@
      "text": "MIDI（楽器間で演奏情報を送る仕組み）やUSBで、ほかの機器につなげます。ほかの楽器と演奏のタイミングを合わせる接続にも対応しています。"
     },
     {
+     "type": "img",
+     "src": "https://www.lovesynthesizers.com/cdn/shop/files/Frame_2608758_2.png?v=1774452949&width=1800",
+     "kind": "press",
+     "credit": "LOVE Synthesizers",
+     "caption": "FIRST LOVEの背面の接続端子",
+     "page": "https://www.lovesynthesizers.com/",
+     "w": 1800,
+     "h": 793
+    },
+    {
      "type": "p",
      "text": "メーカーは、音色などを整理・共有する「LOVE Sharing Hub」を近く提供する予定です。本体をUSB-Cでつなぎ、ソフトの更新にも使う仕組みです。音の高さの組み合わせや、曲の構成のデータも扱えます。"
     },
@@ -1290,6 +1485,13 @@
     {
      "type": "p",
      "text": "公式サイトは、2026年10月に出荷したと案内しています。11月2日の発売発表では、米国と欧州連合（EU）で販売中です。英国でも販売しています。初回生産分は数が限られます。"
+    },
+    {
+     "type": "img",
+     "src": "https://media.loom-app.com/loom/2026/11/10/d174bb2e-03a5-4dbe-9d74-f4cd9aacf75b/original.jpg?w=1200&h=630",
+     "kind": "ogp",
+     "credit": "GIZMODO JAPAN",
+     "page": "https://www.gizmodo.jp/article/first-love-fm-synth/"
     },
     {
      "type": "p",
@@ -1353,10 +1555,13 @@
    "title": "Terraria+、月900円で探索と建築を遊ぶ",
    "summary": "Apple Arcadeで遊べる名作は、建築だけでなくボスとの戦いも軸になります。",
    "image": {
-    "src": "https://www.4gamer.net/games/057/G105716/20261113027/SS/002.jpg",
-    "kind": "ogp",
-    "credit": "4Gamer.net",
-    "page": "https://www.4gamer.net/games/057/G105716/20261113027/"
+    "src": "https://www.apple.com/jp/apple-arcade/images/overview/game_your_way__es2jffnch1oy_small_2x.jpg",
+    "kind": "press",
+    "credit": "Apple（日本）",
+    "page": "https://www.apple.com/jp/apple-arcade/",
+    "w": 520,
+    "h": 628,
+    "caption": "Apple Arcadeのゲーム紹介画面"
    },
    "visual": {
     "icon": "game",
@@ -1386,6 +1591,13 @@
     {
      "type": "p",
      "text": "始めはガイドと2人で、何もない場所に立ちます。夜に来るモンスターから身を守る拠点を作るのが、序盤の進め方の1つです。採掘で集めた鉱石を使えば、装備も強化できます。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.4gamer.net/games/057/G105716/20261113027/SS/002.jpg",
+     "kind": "ogp",
+     "credit": "4Gamer.net",
+     "page": "https://www.4gamer.net/games/057/G105716/20261113027/"
     },
     {
      "type": "h",
@@ -1579,7 +1791,14 @@
      "name": "福島テレビ",
      "url": "https://www.fukushima-tv.co.jp/localnews/2026/10/2026102700000006.html"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/other-tamura-support-scam.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "ai-china-model-training-chips",
@@ -1612,12 +1831,56 @@
      "text": "研究を行ったのは、元OpenAI研究者のWill DePue氏です。非営利の研究組織Unemployment Labsを率いています。同組織は11月12日に分析を公表しました。調べたのはAIの「重み」、つまり学習結果を表す数値データです。"
     },
     {
+     "type": "img",
+     "src": "https://unemploymentlabs.com/checkpoint-forensics/img/fig6.png",
+     "kind": "press",
+     "credit": "Unemployment Labs",
+     "caption": "チップの構成と重みの一致度を比べたグラフ",
+     "page": "https://unemploymentlabs.com/checkpoint-forensics",
+     "w": 2048,
+     "h": 878
+    },
+    {
      "type": "p",
      "text": "分析の手がかりは、学習前に用意する数値の並び方です。チップと数値を作る設定の組み合わせで、並び方が変わります。研究チームは、公開された重みに残る並び方の痕跡を調べました。約6兆通りの組み合わせを試し、一致するものを探しています。"
     },
     {
+     "type": "gallery",
+     "title": "",
+     "items": [
+      {
+       "src": "https://unemploymentlabs.com/checkpoint-forensics/img/fig2.png",
+       "kind": "press",
+       "credit": "Unemployment Labs",
+       "caption": "設定の違いによる重みの一致率の比較",
+       "page": "https://unemploymentlabs.com/checkpoint-forensics",
+       "w": 2048,
+       "h": 863
+      },
+      {
+       "src": "https://unemploymentlabs.com/checkpoint-forensics/img/fig3.png",
+       "kind": "press",
+       "credit": "Unemployment Labs",
+       "caption": "チップと数値を作る設定を変えた比較図",
+       "page": "https://unemploymentlabs.com/checkpoint-forensics",
+       "w": 1950,
+       "h": 2370
+      }
+     ]
+    },
+    {
      "type": "p",
      "text": "DeepSeek-V4-FlashとKimi K3では、実際のBlackwellでも検証しています。学習前のまま残っていた数値を再現できました。使用機器を開発元が明かした24モデルでも検証を行っています。すべてで分析結果と開発元の説明が一致しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://unemploymentlabs.com/checkpoint-forensics/img/fig4.png",
+     "kind": "press",
+     "credit": "Unemployment Labs",
+     "caption": "HopperとBlackwellで再現した数値の比較",
+     "page": "https://unemploymentlabs.com/checkpoint-forensics",
+     "w": 1860,
+     "h": 1680
     },
     {
      "type": "h",
@@ -1640,12 +1903,32 @@
      "text": "今回の分析が直接示すのは、学習前の数値を作った機器です。その後の学習を別の機器で行うこともできます。学習のすべてにNVIDIA製チップを使ったとは言えません。同じ世代の中で、細かな機種までは区別できない分析です。"
     },
     {
+     "type": "img",
+     "src": "https://unemploymentlabs.com/checkpoint-forensics/img/fig1.png",
+     "kind": "press",
+     "credit": "Unemployment Labs",
+     "caption": "数値を書き込む場所と重みの並び方の図",
+     "page": "https://unemploymentlabs.com/checkpoint-forensics",
+     "w": 2048,
+     "h": 1097
+    },
+    {
      "type": "p",
      "text": "特殊な設定のAMD製チップでも、似た並び方を作れる可能性があります。研究チームはDeepSeek-V4-Flashでは除外しました。残る5モデルでは可能性が低いと判断していますが、完全には除外していません。"
     },
     {
      "type": "p",
      "text": "チップの所在地や入手方法は、この分析ではわかりません。中国国外のデータセンターを使って学習した可能性があります。輸出規制に違反したかどうかも確定しません。"
+    },
+    {
+     "type": "img",
+     "src": "https://unemploymentlabs.com/checkpoint-forensics/img/fig5.png",
+     "kind": "press",
+     "credit": "Unemployment Labs",
+     "caption": "DeepSeek-V4-Flashの学習後の重みの分析",
+     "page": "https://unemploymentlabs.com/checkpoint-forensics",
+     "w": 2048,
+     "h": 768
     },
     {
      "type": "h",
@@ -1713,7 +1996,16 @@
      "name": "Unemployment Labs",
      "url": "https://unemploymentlabs.com/checkpoint-forensics"
     }
-   ]
+   ],
+   "image": {
+    "src": "https://unemploymentlabs.com/checkpoint-forensics-og.png?v=4",
+    "kind": "press",
+    "credit": "Unemployment Labs",
+    "page": "https://unemploymentlabs.com/checkpoint-forensics",
+    "w": 1200,
+    "h": 630,
+    "caption": "公開AIと重みの作成に使われたチップの一覧"
+   }
   },
   {
    "id": "mobile-iijmio-olive-card-number",
@@ -1849,6 +2141,13 @@
     "kind": "ogp",
     "credit": "ケータイ Watch",
     "page": "https://k-tai.watch.impress.co.jp/docs/column/minna/2156538.html"
+   },
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/mobile-iijmio-olive-card-number.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
    }
   },
   {
@@ -1857,10 +2156,13 @@
    "title": "サンコー、音楽も鳴る4L冷蔵庫が8980円",
    "summary": "ギターアンプ風の外観ですが、音楽は有線で再生します。",
    "image": {
-    "src": "https://media.loom-app.com/loom/2026/11/11/e247537a-5277-4a06-b300-e318cdc21db7/original.jpg?w=1200&h=630",
-    "kind": "ogp",
-    "credit": "GIZMODO JAPAN",
-    "page": "https://www.gizmodo.jp/article/thanko-guitar-amp-mini-fridge/"
+    "src": "https://makeshop-multi-images.akamaized.net/thankothanko/shopimages/80/45/1_000000004580.jpg?1733463830",
+    "kind": "press",
+    "credit": "THANKO｜【公式】サンコー通販サイト",
+    "page": "https://www.thanko.jp/view/item/000000004580",
+    "w": 1000,
+    "h": 1000,
+    "caption": "スピーカー内蔵ギターアンプ型冷蔵庫の外観"
    },
    "visual": {
     "icon": "appliance",
@@ -1896,8 +2198,28 @@
      "text": "本体は冷蔵庫と音楽用スピーカーを兼ねています。ギターアンプに似た外観ですが、楽器を鳴らすためのアンプではありません。"
     },
     {
+     "type": "img",
+     "src": "https://makeshop-multi-images.akamaized.net/thankothanko/shopimages/80/45/3_000000004580.jpg?1733463830",
+     "kind": "press",
+     "credit": "THANKO｜【公式】サンコー通販サイト",
+     "caption": "冷蔵庫とスピーカーの使い方",
+     "page": "https://www.thanko.jp/view/item/000000004580",
+     "w": 1000,
+     "h": 1000
+    },
+    {
      "type": "p",
      "text": "ギズモード・ジャパンは11月15日にこの製品を紹介しました。サンコーも11月11日に紹介していた製品です。予約開始日は明らかではありません。"
+    },
+    {
+     "type": "img",
+     "src": "https://makeshop-multi-images.akamaized.net/thankothanko/shopimages/80/45/6_000000004580.jpg?1733463830",
+     "kind": "press",
+     "credit": "THANKO｜【公式】サンコー通販サイト",
+     "caption": "机の上と寝室に冷蔵庫を置いた例",
+     "page": "https://www.thanko.jp/view/item/000000004580",
+     "w": 1000,
+     "h": 1000
     },
     {
      "type": "h",
@@ -1908,8 +2230,28 @@
      "text": "庫内には500ml缶なら2本、350ml缶なら6本を入れられます。容量は4Lで、入る本数は缶の形次第です。付属の仕切り板は取り外せます。飲料と一緒に軽い食べ物を保冷する使い方もできます。"
     },
     {
+     "type": "img",
+     "src": "https://makeshop-multi-images.akamaized.net/thankothanko/shopimages/80/45/5_000000004580.jpg?1733463830",
+     "kind": "press",
+     "credit": "THANKO｜【公式】サンコー通販サイト",
+     "caption": "容量4Lの庫内と缶飲料の収納例",
+     "page": "https://www.thanko.jp/view/item/000000004580",
+     "w": 1000,
+     "h": 1000
+    },
+    {
      "type": "p",
      "text": "本体の幅は225mm、奥行きは260mmです。高さは270mmあります。台所の冷蔵庫とは別に、自室へ置くための小型の製品です。設置場所は、この本体寸法に合わせて確かめられます。"
+    },
+    {
+     "type": "img",
+     "src": "https://makeshop-multi-images.akamaized.net/thankothanko/shopimages/80/45/2_000000004580.jpg?1733463830",
+     "kind": "press",
+     "credit": "THANKO｜【公式】サンコー通販サイト",
+     "caption": "ギターのある部屋に置いた冷蔵庫",
+     "page": "https://www.thanko.jp/view/item/000000004580",
+     "w": 1000,
+     "h": 1000
     },
     {
      "type": "h",
@@ -1920,12 +2262,32 @@
      "text": "音楽はケーブルでつないだ機器から再生します。本体には低音と高音を調整するつまみがあります。音量の上げ下げと電源はボタンで操作する作りです。"
     },
     {
+     "type": "img",
+     "src": "https://makeshop-multi-images.akamaized.net/thankothanko/shopimages/80/45/4_000000004580.jpg?1733463830",
+     "kind": "press",
+     "credit": "THANKO｜【公式】サンコー通販サイト",
+     "caption": "音量と音質の操作部と有線接続の例",
+     "page": "https://www.thanko.jp/view/item/000000004580",
+     "w": 1000,
+     "h": 1000
+    },
+    {
      "type": "p",
      "text": "音声ケーブルは付属せず、別途用意する必要があります。本体側には、直径3.5mmのステレオ音声プラグを差し込みます。再生する機器側は、イヤホンやヘッドホンの端子につなぐ方式です。"
     },
     {
      "type": "p",
      "text": "付属のACアダプターで家庭のコンセントにつなげます。車では付属のシガーケーブルで12Vの電源を使います。飲み物の保冷と音楽再生を1台にまとめた製品です。"
+    },
+    {
+     "type": "img",
+     "src": "https://makeshop-multi-images.akamaized.net/thankothanko/shopimages/80/45/7_000000004580.jpg?1733463830",
+     "kind": "press",
+     "credit": "THANKO｜【公式】サンコー通販サイト",
+     "caption": "付属のシガーケーブルと車内での設置例",
+     "page": "https://www.thanko.jp/view/item/000000004580",
+     "w": 1000,
+     "h": 1000
     },
     {
      "type": "h",
@@ -1938,6 +2300,13 @@
     {
      "type": "p",
      "text": "冷却の温度を変える機能もありません。音量や音質は調整できますが、庫内の温度を好みに合わせる操作はできない仕組みです。"
+    },
+    {
+     "type": "img",
+     "src": "https://media.loom-app.com/loom/2026/11/11/e247537a-5277-4a06-b300-e318cdc21db7/original.jpg?w=1200&h=630",
+     "kind": "ogp",
+     "credit": "GIZMODO JAPAN",
+     "page": "https://www.gizmodo.jp/article/thanko-guitar-amp-mini-fridge/"
     },
     {
      "type": "p",
@@ -2001,10 +2370,13 @@
    "title": "シージ大阪大会、FaZeが決勝3-0で優勝",
    "summary": "7年ぶりの日本開催はブラジル勢が制し、次の世界選手権へつながります。",
    "image": {
-    "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2156/533/taikai01_l.jpg",
-    "kind": "ogp",
-    "credit": "GAME Watch",
-    "page": "https://game.watch.impress.co.jp/docs/kikaku/2156533.html"
+    "src": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/4IZecJyhvcIUxxu0Rd1vjX/99fe1a724d46a4d9ca70c76c7a78496f/r6s-homepage-meta__1_.jpg",
+    "kind": "press",
+    "credit": "Rainbow Six Siege",
+    "page": "https://www.ubisoft.com/ja-jp/game/rainbow-six/siege",
+    "w": 1200,
+    "h": 627,
+    "caption": "レインボーシックス シージの登場人物"
    },
    "visual": {
     "icon": "game",
@@ -2036,6 +2408,13 @@
      "text": "Cyber選手が反撃の中心となり、味方も守備で支えました。最終ラウンドではCyber選手が先に倒されています。それでも残る4人が勝ち切り、最初のマップを確保しました。"
     },
     {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2156/533/taikai01_l.jpg",
+     "kind": "ogp",
+     "credit": "GAME Watch",
+     "page": "https://game.watch.impress.co.jp/docs/kikaku/2156533.html"
+    },
+    {
      "type": "h",
      "text": "王者同士の決勝を制する"
     },
@@ -2062,6 +2441,16 @@
     {
      "type": "p",
      "text": "Siege.GGによると、FaZeのMajor優勝は通算2回目です。2回の優勝はw7m esportsに続く2チーム目となりました。Six MajorとBLAST R6 Majorを1回ずつ制した初のチームでもあります。"
+    },
+    {
+     "type": "img",
+     "src": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/7hpMLu77gNylsaXoQ2frHg/c8aa83e8c48092e298e003b1c829d6d0/r6s-operator-doc.png",
+     "kind": "press",
+     "credit": "Rainbow Six Siege",
+     "caption": "武器を構えるシージのキャラクター",
+     "page": "https://www.ubisoft.com/ja-jp/game/rainbow-six/siege",
+     "w": 830,
+     "h": 710
     },
     {
      "type": "h",
@@ -2300,7 +2689,14 @@
      "name": "JPCERT/CC",
      "url": "https://www.jpcert.or.jp/ir_report_checklist_20261111.html"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/other-jpcert-incident-report-checklist.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "mobile-windows-activation-fix",
@@ -2452,6 +2848,13 @@
     "kind": "ogp",
     "credit": "窓の杜",
     "page": "https://forest.watch.impress.co.jp/docs/news/2156557.html"
+   },
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/mobile-windows-activation-fix.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
    }
   },
   {
@@ -2584,7 +2987,14 @@
      "name": "Drive Tesla",
      "url": "https://driveteslacanada.ca/news/tesla-holiday-collection-2026-shop/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/gadget-tesla-cybertruck-rc-racer.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "game-digimon-alysion-launch-details",
@@ -2592,10 +3002,13 @@
    "title": "デジモンアリシオン、初期カード600種以上を公開",
    "summary": "紙のカードゲームに近いルールで、物語を進めながら遊び方を学べます。",
    "image": {
-    "src": "https://cimg.kgl-systems.io/camion/files/94096/ogp_aSqX.jpg?x=1280",
-    "kind": "ogp",
-    "credit": "電撃オンライン",
-    "page": "https://dengekionline.com/article/202611/94096"
+    "src": "https://digimon-alysion.com/ogp.jpg",
+    "kind": "press",
+    "credit": "DIGIMON ALYSION",
+    "page": "https://digimon-alysion.com/jp/",
+    "w": 1200,
+    "h": 630,
+    "caption": "デジモンアリシオンの登場キャラクター"
    },
    "visual": {
     "icon": "game",
@@ -2625,6 +3038,13 @@
     {
      "type": "p",
      "text": "本作は紙の『デジモンカードゲーム』とほぼ同じルールで遊ぶオンラインカードゲームです。アプリ用に新しく開発したカードも加わります。デジモンを組み合わせたデッキ（対戦用のカードの組）で相手と戦います。電ファミニコゲーマーによると、画面表示とカードは日本語に対応します。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/94096/ogp_aSqX.jpg?x=1280",
+     "kind": "ogp",
+     "credit": "電撃オンライン",
+     "page": "https://dengekionline.com/article/202611/94096"
     },
     {
      "type": "h",
@@ -2846,7 +3266,14 @@
      "name": "エレコム",
      "url": "https://www.elecom.co.jp/products/GWVA300LMBK.html"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/mobile-elecom-arm-cover-sale.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "game-ufc6-pride-expansion",
@@ -2854,10 +3281,13 @@
    "title": "EA「UFC 6」にPRIDE拡張、17日に詳細公開",
    "summary": "アルティメット版の拡張パスで提供し、通常版から追加購入もできます。",
    "image": {
-    "src": "https://cimg.kgl-systems.io/camion/files/94085/ogp_Sxkd.jpg?x=1280",
-    "kind": "ogp",
-    "credit": "ファミ通",
-    "page": "https://www.famitsu.com/article/202611/94085"
+    "src": "https://drop-assets.ea.com/images/7yEzF7j1jUg8cRRP19YHhh/83ce695c312c09f7362b82875d6a0577/EA_UFC6_STD_KeyArt_RGB_16-9_7680x4320.jpg?im=AspectCrop=(16,9),xPosition=0.6942708333333333,yPosition=0.2724537037037037",
+    "kind": "press",
+    "credit": "ea.com",
+    "page": "https://www.ea.com/ja/games/ufc/ufc-6",
+    "w": 5000,
+    "h": 2813,
+    "caption": "UFC 6の選手がパンチを放つ場面"
    },
    "visual": {
     "icon": "game",
@@ -2889,12 +3319,29 @@
      "text": "海外向けの告知では、拡張の配信日は12月11日です。日本向けの配信日時や価格は明らかにされていません。次の発表はYouTubeの映像で行う予定です。"
     },
     {
+     "type": "img",
+     "src": "https://drop-assets.ea.com/images/1KQc6y2detyj2QUItP4RUN/42fb034e9b65b326826af43e2529c926/UFC6_DD_Modes_PereiraHoL_3840x2160.jpg?im=AspectCrop=(16,9),xPosition=0.7028645833333333,yPosition=0.48564814814814816",
+     "kind": "press",
+     "credit": "ea.com",
+     "caption": "UFC 6のホールに飾られた選手の像",
+     "page": "https://www.ea.com/ja/games/ufc/ufc-6",
+     "w": 3840,
+     "h": 2160
+    },
+    {
      "type": "h",
      "text": "購入済みソフトで入手するには"
     },
     {
      "type": "p",
      "text": "拡張はデジタル版として提供します。アルティメットエディションに含まれる拡張パスで入手できます。通常版の購入者向けには「アルティメット アドオンバンドル」を用意します。追加購入によってアップグレードする仕組みです。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/94085/ogp_Sxkd.jpg?x=1280",
+     "kind": "ogp",
+     "credit": "ファミ通",
+     "page": "https://www.famitsu.com/article/202611/94085"
     },
     {
      "type": "h",
@@ -2995,6 +3442,16 @@
      "text": "バッファローの説明では、左右のクリックだけでなく、ホイールや側面のボタンも静音設計です。青い光で机などの表面を読み取る「BlueLED」方式のセンサーを搭載しています。"
     },
     {
+     "type": "img",
+     "src": "https://www.buffalo.jp/webpim/product/image/B/BSMBW505M/BSMBW505MBK/BSMBW505MBK__0111.jpg",
+     "kind": "press",
+     "credit": "株式会社バッファロー",
+     "caption": "黒・白・赤の静音マウス",
+     "page": "https://www.buffalo.jp/product/detail/bsmbw505mbk.html",
+     "w": 800,
+     "h": 600
+    },
+    {
      "type": "h",
      "text": "つなぐ端子はUSB-Aが必要"
     },
@@ -3013,6 +3470,16 @@
     {
      "type": "p",
      "text": "Windows 11とWindows 10の64bit版では、無料ソフト「マウスカスタム+」を使えます。ボタンやホイールに好みの機能を割り当てるソフトです。パソコン全体の設定を変える「管理者権限」なしで動きます。ただし、その権限で動く別のソフトでは、機能の割り当てが無効になります。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.buffalo.jp/product/detail/parts/__icsFiles/afieldfile/2026/03/23/mousecustomplus_rev1.jpg",
+     "kind": "press",
+     "credit": "株式会社バッファロー",
+     "caption": "マウスカスタム+の設定画面",
+     "page": "https://www.buffalo.jp/product/detail/bsmbw505mbk.html",
+     "w": 500,
+     "h": 280
     },
     {
      "type": "h",
@@ -3070,7 +3537,16 @@
      "name": "バッファロー",
      "url": "https://www.buffalo.jp/product/detail/bsmbw505mbk.html"
     }
-   ]
+   ],
+   "image": {
+    "src": "https://www.buffalo.jp/webpim/product/image/B/BSMBW505M/BSMBW505MBK/BSMBW505MBK__0100.jpg?small_light(dw=1200,dh=630,cw=1200,ch=630,da=l,cc=ffffff,q=80)",
+    "kind": "press",
+    "credit": "株式会社バッファロー",
+    "page": "https://www.buffalo.jp/product/detail/bsmbw505mbk.html",
+    "w": 1200,
+    "h": 630,
+    "caption": "バッファローの静音マウス本体"
+   }
   },
   {
    "id": "game-phantom-parade-third-anniversary",
@@ -3078,10 +3554,13 @@
    "title": "ファンパレ3周年、初の共闘キャラを21日追加",
    "summary": "虎杖と伏黒が2人で1キャラクターとなり、専用ゲージで必殺技を強めます。",
    "image": {
-    "src": "https://cimg.kgl-systems.io/camion/files/94091/ogp_aQYB.jpg?x=1280",
-    "kind": "ogp",
-    "credit": "電撃オンライン",
-    "page": "https://dengekionline.com/article/202611/94091"
+    "src": "https://jujutsuphanpara.jp/kansyasai2026/assets/data/webp/top/fv.webp",
+    "kind": "press",
+    "credit": "【呪術廻戦 ファントムパレード】ファンパレ大感謝祭2026特設サイト",
+    "page": "https://jujutsuphanpara.jp/kansyasai2026/",
+    "w": 2880,
+    "h": 1620,
+    "caption": "虎杖悠仁たちが和装で集う周年イラスト"
    },
    "visual": {
     "icon": "game",
@@ -3111,6 +3590,13 @@
     {
      "type": "p",
      "text": "スキルを使うと共闘ゲージがたまり、それを消費して必殺スキルの効果を高めます。登場する第1弾ガチャは11月21日15時から2027年1月3日14時59分までです。SSR廻想残滓「3人寄れば腹が鳴る」も加わります。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/94091/ogp_aQYB.jpg?x=1280",
+     "kind": "ogp",
+     "credit": "電撃オンライン",
+     "page": "https://dengekionline.com/article/202611/94091"
     },
     {
      "type": "h",
@@ -3149,6 +3635,16 @@
      "text": "第3弾のSSR［最悪の呪詛師］夏油傑は、12月8日15時に登場します。こちらも終了は2027年1月11日14時59分です。新キャラクターを入手できる時期は、3回に分かれています。"
     },
     {
+     "type": "img",
+     "src": "https://jujutsuphanpara.jp/kansyasai2026/assets/img/top/chara_gojo.png",
+     "kind": "press",
+     "credit": "【呪術廻戦 ファントムパレード】ファンパレ大感謝祭2026特設サイト",
+     "caption": "和装姿の五条悟の全身イラスト",
+     "page": "https://jujutsuphanpara.jp/kansyasai2026/",
+     "w": 1963,
+     "h": 4374
+    },
+    {
      "type": "h",
      "text": "周年企画と告知を確認する"
     },
@@ -3159,6 +3655,16 @@
     {
      "type": "p",
      "text": "11月24日から30日には、渋谷の三千里跡地で「コガネバルーン」を無料配布する予定です。配布時間は平日15～20時、土日は11～20時です。詳しい注意事項は後日、公式Xで案内します。"
+    },
+    {
+     "type": "img",
+     "src": "https://jujutsuphanpara.jp/kansyasai2026/assets/data/webp/top/anniversary_thumb.webp",
+     "kind": "press",
+     "credit": "【呪術廻戦 ファントムパレード】ファンパレ大感謝祭2026特設サイト",
+     "caption": "3周年の公式放送を案内する画像",
+     "page": "https://jujutsuphanpara.jp/kansyasai2026/",
+     "w": 1920,
+     "h": 1080
     },
     {
      "type": "stat",
@@ -3343,6 +3849,13 @@
     "kind": "ogp",
     "credit": "ITmedia PC USER",
     "page": "https://www.itmedia.co.jp/pcuser/articles/2611/13/news023.html"
+   },
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/mobile-huion-note-pad-comparison.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
    }
   },
   {
@@ -3464,7 +3977,14 @@
      "name": "インサイド",
      "url": "https://s.inside-games.jp/article/2026/11/15/190996.html"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-16-am/game-umamusume-daring-tact.png",
+    "kind": "diagram",
+    "caption": "図解：時系列で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "timeline"
+   }
   }
  ]
 }
