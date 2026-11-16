@@ -62,8 +62,10 @@ for job in jobs:
     if not os.path.exists(f"/content/in/{name}.wav"): continue
     js = f"/content/in/{name}.json"
     json.dump({"prompt": (PROMPT + " " + extra).strip(), "cond_image": f"/content/in/{img}", "cond_audio": {"person1": f"/content/in/{name}.wav"}}, open(js, "w"))
-    sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
+    try: sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
        f"--context_parallel_size=1 --checkpoint_dir={W}/LongCat-Video-Avatar-1.5 --stage_1=ai2v --input_json={js} "
        f"--use_distill --model_type avatar-v1.5 {'--use_int8 ' if LOW else ''}--resolution {res} --num_segments {seg} --output_dir /content/out/{name} "
        f"2>&1 | grep -vE 'it/s\\]|s/it\\]' | tail -150")  # long tail: the real error of the child process sits above torchrun's own traceback
+    except subprocess.CalledProcessError as e:  # one failed clip must not stop the next one (2026-11-16: hook failed in segment 2, verdict never ran)
+        print(f"CLIP FAILED {name}: {e.returncode}", flush=True)
 sh("ls -laR /content/out")
