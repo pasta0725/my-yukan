@@ -1,0 +1,152 @@
+URL: https://www.itmedia.co.jp/aiplus/article/2611/16/2000003229/
+TITLE: 「Gemini 4 Hydrogen」とは 性能とユースケースまとめ Googleの「誰でも使える」最新モデル
+SITE: ITmedia AI+
+PUBLISHED: 2026-11-16 16:17 (page: 2026-11-16T16:17:48)
+OG_IMAGE: https://www.itmedia.co.jp/aiplus/article/ogp/2611/16/2000003229/10012237/2048
+IMAGES:
+- https://www.itmedia.co.jp/aiplus/article/image/2611/16/2000003229/10012224/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/16/2000003229/10012225/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/16/2000003229/10012226/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/16/2000003229/10012227/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/16/2000003229/10012228/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/16/2000003229/10012229/728 | 
+- https://www.itmedia.co.jp/aiplus/article/image/2611/16/2000003229/10012230/728 | 
+- https://www.itmedia.co.jp/aiplus/article/thumbnail/2611/11/2000003093/10011833/280 | 
+- https://www.itmedia.co.jp/aiplus/article/thumbnail/2610/02/2000001954/10008244/280 | 
+- https://www.itmedia.co.jp/aiplus/article/thumbnail/2610/27/2000002611/10010527/280 | 
+
+TEXT:
+Share
+印刷する
+「Gemini 4 Hydrogen」とは　性能とユースケースまとめ　Googleの「誰でも使える」最新モデル
+（1/2 ページ）
+公開
+2026年11月16日 16時17分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+1
+2
+米Googleは11月12日（現地時間）、新たなAIモデル「Gemini 4 Hydrogen」（以下、Hydrogen）を
+発表した
+。同社は「最先端モデルを誰にでも」とし、低コストで日々の作業をサポートするとしている。
+Xなどでも、第三者機関の総合指標で上位モデル
+「Gemini 4 Argon」
+（以下、Argon）を上回りながら、「Gemini」アプリの無料ユーザーやAPIの無料枠にも開放した点が注目されている。
+本稿では同モデルについて、公式資料などを基に、概要と性能、使い道、料金を整理する。
+Carbonを基にした効率・スピード重視モデル
+Googleが公開したモデルカードによると、Hydrogenは同社が最も高性能と位置付ける
+「Gemini 4 Carbon」
+（以下、Carbon）を基に、速度と効率を重視して調整したモデル。「Gemini 4」シリーズとしては、9月発表のArgon、10月発表のCarbonに続く3つ目に当たる。
+深い推論が必要なタスクはCarbonとArgonが担い、Hydrogenは単独での利用に加え、上位モデルの下で動くサブエージェントとしての利用も想定している。
+入力はテキストと画像、音声、動画に対応する。出力はテキストのみ。コンテキストウィンドウは最大100万トークンで、出力は標準で最大6万4000トークン、バックグラウンド処理を使えば最大100万トークン。知識のカットオフは2026年3月だ。
+推論の深さを決める「思考レベル」は「low」「medium」「high」「xhigh」の4段階から選べる。既定はhighで、xhighは今回新たに加わった。
+モデルカードは留意点として、応答の遅延やタイムアウトが時折起きること、特に高い思考レベルでは多くのトークンを消費する場合があることを挙げる。
+安全性については、前世代の高速モデル「Gemini 3.8 Flash」（以下、3.8 Flash）と比較した評価結果が示されている。画像を含む入力に対する安全性は改善した一方、不当な回答拒否も増加したという。拒否の増加は、特に画像などを含む入力で目立つという。
+安全性評価の結果｜Google
+性能は一部「Argon超え」　Sonnet 5.5に届かない項目も
+Googleがまず強調するのは、モデルの性能評価を手掛ける米Artificial Analysisの総合指標「Intelligence Index」のスコアだ。Hydrogen（high）で51ポイントとArgon（high）の50ポイントを上回り、xhighでは54ポイントに達したという。
+Artificial Analysisによる評価｜Artificial Analysis
+Googleは同クラスの他社モデルとして米Anthropicの「Claude Sonnet 5.5」（以下、Sonnet 5.5）と米OpenAIの「GPT-6.1 Terra」（以下、6.1 Terra）を挙げ、10項目で性能を比較した。Hydrogenはこのうち7項目で首位で、既存のコードを壊さずにバグを見つけて直す能力を測る「SWE-sweep」は13.5％（6.1 Terraは5.8％、Sonnet 5.5は3.1％）、高度な専門知識と推論能力を測る「HLE-Diamond」は58.8％（Sonnet 5.5は53.3％、6.1 Terraは47.3％）だった。
+一方、残る3項目はSonnet 5.5が上回った。ターミナル操作を伴うコーディング能力を測る「Terminal-Bench 4.1」は57.0％（Sonnet 5.5は63.9％）、コンピュータ操作能力を測る「OSWorld-2.1」は77.6％（同83.9％）。科学研究の作業をターミナル上で遂行する能力を測る「Terminal-Bench-Science 0.1」は51.4％で、Sonnet 5.5（59.9％）、6.1 Terra（58.3％）を下回った。ターミナルでのエージェンティックな作業は他モデルの方が有利な可能性がある。
+Googleが公表したベンチマークテスト結果｜Google
+なお、Artificial Analysisの集計では、Hydrogen（xhigh）の出力トークンはhighの約2倍で、出力トークン当たりのコストはSonnet 5.5（max）より安価なものの、GPT-6.1 Sol（max）よりは高価だった。「軽量モデル」とされてはいるが、思考量の設定によっては他モデルよりコストをかけて難解なタスクを任せることもできる。
+上位モデルの「実行役」にも　Googleが挙げる使い道
+Hydrogenの使い道としてGoogleがまず挙げるのは、複数のモデルを組み合わせた開発だ。設計上の判断や難しいバグの原因究明はCarbonやArgonに任せ、コードの記述やテストの実行、変更の検証をHydrogenが担う。
+開発者向けツール「Google Antigravity」（以下、Antigravity）には、1つのセッションの中で上位モデルとHydrogenを自動で切り替える新機能「Orchestrator」を追加した。Orchestratorは「Terminal-Bench 4.1」で、Carbon単体に近い成功率を保ちつつ、利用枠の消費を平均24％減らし、19％速くタスクを完了したとしている。
+Orchestratorを使う様子。通常のモデル選択メニューに追加されている｜Google
+単体での用途には、範囲を絞ったコーディングやデバッグに加えて、調査やデータ分析といった複数の手順を踏む作業などを挙げる。また、PDFや表計算ファイル、音声、動画を読み込み、出典付きの報告書にまとめるといった知識労働も得意とうたう。デモでは、YouTubeの講演動画とデザインテンプレートから「Google スライド」の資料を生成し、文字の重なりを自ら点検して直す様子を紹介している。
+Hydrogenが作成したスライドの例｜Googleの公式YouTube
+Hydrogenの利用によってGeminiアプリでのメールの下書きや学習ガイドの作成、製品の比較表づくりなども「さらに便利になる」としている。アップロードしたファイルや「Gmail」「Google ドライブ」などから必要な情報を集め、タスクを段階的に進められるという。
+同モデルはGoogle検索にも追加され、複数の要素を含む質問や誤字のある質問でも意図をくみ取りやすくなり、視覚的に整理した回答や、より幅広いリンクを示せるようになったとしている。
+無料でどこまで使える？
+Hydrogenは発表同日からGeminiアプリやGoogle検索、API、Antigravityなどで全ユーザーを対象に提供されている。
+Geminiアプリの無料ユーザーには、モデルの自動選択機能を通じて、プロンプトに適していると判断されたときに提供される。有料プラン「Google AI」の加入者はモデル選択メニューから明示的に選べるようになる他、Antigravityや「Google スプレッドシート」のGeminiでも利用できる。
+企業向けには「Google Workspace」や「Gemini for business」（旧Gemini Enterprise）などで提供する。
+筆者環境（Google Workspace）でも利用可能なことが確認できた｜筆者撮影
+開発者は「Google AI Studio」と「Gemini API」で、無料枠を含む全ての利用枠から利用できる。APIの料金は100万トークン当たり入力1.5ドル（キャッシュ済み入力は0.075ドル）、出力7.5ドル。デフォルトの料金は3.8 Flashと同額だが、12月31日まで3.8 Flashは半額（入力0.75ドル、出力3.75ドル）となっている。
+HydrogenのAPI料金｜Google
+無料枠では入出力とも料金がかからないが、処理した内容はGoogleの製品改善に使われ、Google検索の結果を回答に反映させる「グラウンディング」も利用できない。
+次ページへ
+Hydrogenの公式ユースケース動画まとめ
+1
+2
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+公式ブログ
+モデルカード
+API料金表
+コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia AI＋メールマガジン」の登録、もしくは
+ログイン
+が必要です
+Special
+PR
+関連記事
+Googleの「最強」モデル「Gemini 4 Carbon」一般提供開始　Antigravityでのマルチエージェントチーム編成機能も
+「Gemini 4 Argon」とは　性能評価にみるAstra／Fable／Opusとの違い　一般提供は年内？
+コスパ重視の「GPT-6.1 Terra」新登場　コスト10分の1で一部Astraと同等性能うたう
+Special
+PR
+こんなメディアも見られています
+ITmedia AI＋に関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+メールマガジン最新号
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+ChatGPTの「Chat」と「Work」統合へ　利用制限はCodexと共通化
+Special
+PR
+よく見られているカテゴリー
+意思決定支援
+研究動向
+アクセスランキング
+1
+総務省が新しい無料オンライン講座「統計解析プログラミング」を1月に開講　Pythonでのデータ分析が4週間で学べる
+2
+AIモデリングもできる無償3D CAD「SolidCraft」を試してみた！
+3
+Googleの“人気AI講座”、先着1万人に無料提供　リスキリング推進団体
+4
+メルカリ、アプリ開発「2日→数十分」へ　直面したAI時代の“意外な課題”とは？
+5
+AIが設計データの分析からCAD操作まで支援する「SOLIDWORKS 2027」
+6
+「Gemini 4 Hydrogen」とは　性能とユースケースまとめ　Googleの「誰でも使える」最新モデル
+7
+ガートナーが考えるフィジカルAI実装のロードマップと人の役割
+8
+【図解あり】マルチエージェント設計「15のパターン」　GitHub、Google、Siemensの知見を一気に整理
+9
+設計／製造から工場運用へ、オートデスクが描く工場全体の最適化戦略
+10
+AIエージェントを「追えない、止められない」　約半数が経験する“暴走”、浮上する3つの盲点
+もっと見る
+Special
+PR
+ITmedia AI＋ SNS
+@itm_aiplusをフォロー
+インフォメーション
+注目情報をチェック
+メールマガジン
+Specialインデックス
+お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+ITmedia AI＋をフォロー
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
