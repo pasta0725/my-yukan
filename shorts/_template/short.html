@@ -11,6 +11,8 @@ const FONT='"Noto Sans CJK JP",sans-serif';
 const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
   line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
   glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+// big captions: white letters + thin sharp black edge, no blur (2026-11-17 user chose B; the thick round white edge with a soft shadow looked blobby)
+Object.assign(C,{capText:'#FFFFFF',capEdge:'#000000',capNum:'#FFA51F'});
 const CX=540, MAXW=680, CAP_Y=1168;
 let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
 const CT={s:1.12,y0:360,y1:375};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
@@ -45,7 +47,7 @@ function rrect(x,y,w,h,r,fill,stroke){if(fill)noteBox(x,y,w,h);g.beginPath();g.r
 function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
 function text(s,x,y,size,col,align='center',weight=900,maxw){g.font=`${weight} ${size}px ${FONT}`;if(maxw){const w0=g.measureText(s).width;if(w0>maxw){size=Math.floor(size*maxw/w0);g.font=`${weight} ${size}px ${FONT}`;}}checkText(s,x,y,size,align);g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
 function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
-  g.save();g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+  g.save();g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
 function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
 function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
 function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
@@ -76,7 +78,7 @@ function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let line
     const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
     // two passes: every edge first, then every letter, so a letter's edge never covers its neighbour
     const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
-    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='round';g.shadowColor=C.capShadow;g.shadowBlur=14;g.shadowOffsetY=5;g.lineWidth=size*0.24;g.strokeStyle=C.capEdge;
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;
     for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
     g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
   g.restore();}
@@ -106,7 +108,14 @@ function bubbleText(s,k,warn){abs(()=>{let size=74;let lines=wrapJa(s,size,BMAXW
   if(lines.length===3)size=Math.min(size,64);
   const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
   const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
-    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:m[off+i];g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:(m[off+i]===C.capNum?'#D64D00':m[off+i]);g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+// giant caption over the 0 s picture (the first sentence, chunk by chunk, user 2026-11-17): white letters, thin sharp black edge, no blur (user chose style B), numbers orange
+function bigTelop(s,y){s=s.replace(/[、。]$/,'');let size=150;let lines=wrapJa(s,size,940);if(lines.length>2)lines=[s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>940)size=Math.floor(size*940/w);}
+  const lh=size*1.18,y0=y-(lines.length-1)*lh/2;const m=marks(s,false);let off=0;
+  lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i];g.fillText(L[i],xs[i],yy);}off+=L.length;});}
 // ---------- scenes (u = time in scene, d = scene length) ----------
 const S={
  // L0: conclusion-first hook over a generated picture of AI building AI
