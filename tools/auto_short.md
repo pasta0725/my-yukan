@@ -35,7 +35,7 @@
 - rina-shorts スキルの手順どおり（構成・吹き出し・声 Leda・息継ぎなし）。
 - **新しい作り方（2026-11-16 ユーザー決定、この日の次の自動ショートから）**：見本は shorts/rina_newfmt_trial（spec.json・short.html。公開しない試作）。
   - 流れは「掴みの強い事実の言い切り → 大きいりなの「1分で要約します」（短く、画面は止めない）→ 詳しい要約 → ネット上の声（data/x/ED.json のその記事の分から2〜3件を要約、名前は出さない。無ければ省く）→ 冒頭につながる締め」（2026-11-17 ユーザー決定。shorts_rules.md 構成）。{SEC}・指のポーズ・fixed_wav は使わない。
-  - 0秒は「冒頭でいちばん掴みが強い映像」（本物でも生成でもよい。画面いっぱい）＋特大テロップ（掴みの一言）の2つだけ。りなは0秒に出さなくてよい。2文目（「1分で要約します」）の行（場面 hook）に "big": true で大きいりなが話す（2026-11-17。数値と生成画像の注意は shorts_rules.md 構成1）。
+  - 0秒は「冒頭でいちばん掴みが強い映像」（本物を優先し、本物が無いときだけ生成。画面いっぱい。秒ごとの型は shorts_rules.md 構成の「秒ごとの型」）＋特大テロップ（掴みの一言）の2つだけ。りなは0秒に出さなくてよい。2文目（「1分で要約します」）の行（場面 hook）に "big": true で大きいりなが話す（2026-11-17。数値と生成画像の注意は shorts_rules.md 構成1）。
   - 最後は冒頭につながる一言で締め、spec に "tail_logo": 0（ロゴ画面なし、声が終わって0.15秒で終わる）。動画全体は55秒前後・最大60秒（超えると short_plan.py が終了コード4、"whole": true。台本を削る）。
   - longcat/jobs.json は hook と verdict の2つ（hook＝2文目は表情を変える言葉を入れる。例 "She leans slightly toward the camera with a curious, playful look, eyebrows raised, as if asking the viewer a riddle."）。
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
