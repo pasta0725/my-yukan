@@ -34,9 +34,9 @@
 - rina-shorts スキルの手順どおり（構成・吹き出し・声 Leda・息継ぎなし）。
 - **新しい作り方（2026-11-16 ユーザー決定、この日の次の自動ショートから）**：見本は shorts/rina_newfmt_trial（spec.json・short.html。公開しない試作）。
   - 「このニュース、{SEC}でまとめます」の行は書かない。その位置（つかみの次）に、続きを見る理由を具体的に言う一文（「答えは〜。しかも〜」「結論は〜」）。spec の sec・fixed_wav（channel/rina_intro/）も使わない。
-  - つかみの行（場面 hook）に "big": true。0秒は大きいりなの顔＋特大テロップ（問い）の2つだけ。本物の画像は0.5〜1秒後に画面いっぱいで（2026-11-17。数値は shorts_rules.md 構成1）。
+  - 0秒は「冒頭でいちばん掴みが強い映像」（本物でも生成でもよい。画面いっぱい）＋特大テロップ（問い）の2つだけ。りなは0秒に出さなくてよい。2文目（続きを見る理由）の行（場面 hook）に "big": true で大きいりなが話す（2026-11-17。数値と生成画像の注意は shorts_rules.md 構成1）。
   - 最後は冒頭につながる一言で締め、spec に "tail_logo": 0（ロゴ画面なし、声が終わって0.15秒で終わる）。動画全体は55秒前後・最大60秒（超えると short_plan.py が終了コード4、"whole": true。台本を削る）。
-  - longcat/jobs.json は hook と verdict の2つ（つかみは表情を変える言葉を入れる。例 "She leans slightly toward the camera with a curious, playful look, eyebrows raised, as if asking the viewer a riddle."）。
+  - longcat/jobs.json は hook と verdict の2つ（hook＝2文目は表情を変える言葉を入れる。例 "She leans slightly toward the camera with a curious, playful look, eyebrows raised, as if asking the viewer a riddle."）。
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
 - 読み上げは台本全部を1回でまとめて作り（15文を超えるときだけ2回）、split_tts.py で分け、check_split.py で1文ずつ文字起こしして切れ目を確かめる（short-voice.yml が自動で行う。2-2）。1文だけの作り直しは前後の文と一緒に頼む。読み直しを入れても1本3回まで（Gemini の無料枠は1モデル1日10回。2026-11-12 の試験で12文を1回で作って正しく分けられた）。モデルは gemini-3.8-flash-tts だけを使い、別のモデルに切り替えない（声の感じが変わるため。2026-11-12 ユーザー決定）。読み間違えやすい数字はひらがな。
 - つかみと締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal）。**必ず Colab から**（ユーザーの決まり、2026-11-16 再確認）：longcat_wait / wait は既定の20のまま動かし、0（Modal だけ）にしない。0にしてよいのは、同じ動画づくりの中で Colab の段が実際に止まった（30分以上進まない、Issue #23）ときの作り直しだけ。
