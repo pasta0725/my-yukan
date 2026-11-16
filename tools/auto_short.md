@@ -30,11 +30,16 @@
 - 選んだ理由（点数の内訳）を作業メモに残し、通知に1行で書く。
 
 ## 2. 作る
-- 順番（2026-11-10 Issue #4）：台本 → **事実確認（下の「人の代わりの確認」3、codex-short-factcheck.yml）を読み上げの前に通す** → 読み上げ → 画面。夕刊の言い回しや「りなの見方」をそのまま台本や締めに使わない（言い過ぎ・誤解が残りやすい）。つかみは25字前後まで（Leda の速さで約4秒）。つかみの作り方は shorts_rules.md の構成1（問いで始めて答えは3秒より後・0秒で物を見せる・声は0.2秒以内・1コマ目から特大テロップ）。
-- rina-shorts スキルの手順どおり（構成・吹き出し・声 Leda・息継ぎなし・{SEC}・登場の使い回し）。
+- 順番（2026-11-10 Issue #4）：台本 → **事実確認（下の「人の代わりの確認」3、codex-short-factcheck.yml）を読み上げの前に通す** → 読み上げ → 画面。夕刊の言い回しや「りなの見方」をそのまま台本や締めに使わない（言い過ぎ・誤解が残りやすい）。つかみは25字前後まで（Leda の速さで約4秒）。つかみの作り方は shorts_rules.md の構成1（問いで始めて答えは3秒より後・0秒は本物の画像＋大きいりなの顔＋特大テロップ・声は0.2秒以内）。
+- rina-shorts スキルの手順どおり（構成・吹き出し・声 Leda・息継ぎなし）。
+- **新しい作り方（2026-11-16 ユーザー決定、この日の次の自動ショートから）**：見本は shorts/rina_newfmt_trial（spec.json・short.html。公開しない試作）。
+  - 「このニュース、{SEC}でまとめます」の行は書かない。その位置（つかみの次）に、続きを見る理由を具体的に言う一文（「答えは〜。しかも〜」「結論は〜」）。spec の sec・fixed_wav（channel/rina_intro/）も使わない。
+  - つかみの行（場面 hook）に "big": true。0秒は本物の画像＋大きいりなの顔＋特大テロップ（数値は shorts_rules.md 構成1）。
+  - 最後は冒頭につながる一言で締め、spec に "tail_logo": 0（ロゴ画面なし、声が終わって0.15秒で終わる）。動画全体は55秒前後・最大60秒（超えると short_plan.py が終了コード4、"whole": true。台本を削る）。
+  - longcat/jobs.json は hook と verdict の2つ（つかみは表情を変える言葉を入れる。例 "She leans slightly toward the camera with a curious, playful look, eyebrows raised, as if asking the viewer a riddle."）。
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
 - 読み上げは台本全部を1回でまとめて作り（15文を超えるときだけ2回）、split_tts.py で分け、check_split.py で1文ずつ文字起こしして切れ目を確かめる（short-voice.yml が自動で行う。2-2）。1文だけの作り直しは前後の文と一緒に頼む。読み直しを入れても1本3回まで（Gemini の無料枠は1モデル1日10回。2026-11-12 の試験で12文を1回で作って正しく分けられた）。モデルは gemini-3.8-flash-tts だけを使い、別のモデルに切り替えない（声の感じが変わるため。2026-11-12 ユーザー決定）。読み間違えやすい数字はひらがな。
-- 締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal）。
+- つかみと締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal。Colab が止まるときは wait=0 で Modal だけ）。
 - **素材の置き場（2026-11-12〜、ユーザー決定）**：音声・画像・動画は main に入れず、使い捨てのブランチ work に置く（main の履歴は消えずに1日約18MBずつ増えていたため）。読み上げ（tts.yml）と公式画像（fetch-media.yml）の結果は自動で work に入る。手元に取るのは `python3 tools/work_branch.py get narration/<名前> media/<名前>`、自分で作った音声・画像（longcat の入力、サムネなど）を置くのは `python3 tools/work_branch.py put <ファイルやフォルダ>`。longcat-colab.yml と youtube-upload.yml は work からも読む。main の .gitignore がこれらを main に入れないようにしている。台本・spec.json・short.html・lines.json・urls.txt など文字のファイルは今までどおり main。
 - サムネは codex-images.yml、項目は metadata_rules.md、字幕SRTと英訳も作る。
 
@@ -44,7 +49,7 @@
 - 動かし方：`gh workflow run <ファイル> -R pasta0725/my-yukan --ref main -f name=<名前> …`（--ref main が要る）。実行IDは `gh run list -R pasta0725/my-yukan -w <ファイル> -L 1`。
   1. **事実**（台本ができたら、読み上げの前）：spec.json と channel/meta/<名前>.json（まだならタイトル・概要欄の案）を main に push → codex-short-factcheck.yml（refs=<号>/<記事ID> を空白区切りで（shorts/<名前>/refs.txt に書けば省ける）、extra=fetched:<パス>（fetch-to-branch.yml で取った元記事・公式ページ。資料に無い数字は LOOK になるので、使った元記事は必ず渡す））→ facts.md。
   2. **声**：narration/<名前>/lines.json を main に push（tts.yml が自動で読み上げる）→ short-voice.yml（lines=narration/<…>/lines.json）。音声を待ち、1文ずつに分けて文字起こしまで行う → voice_<フォルダ>.md（今日この動画で使った読み上げの回数も出る）。LOOK の文だけ、前後の文と一緒に narration/<名前>_fix<N>/lines.json で作り直す（1日3回まで。上限を超えるときは short-voice が tts.yml を動かさない）。どの音声を使うかは short-build が決める（台本の say と同じ文のうち新しいもの、check で LOOK でないものを優先。行に "wav": "<パス>" を書けば固定）。
-  3. **書き出しと確認**：spec.json・short.html・（締めのりながあれば）longcat/jobs.json・channel/meta を main に、画面の画像と channel/thumbs/<名前>.jpg を work に置いてから short-build.yml（refs、extra は 1 と同じ）。中で 音声のつなぎ → short_plan.py → 長さと無音 → 締めの話す動画（longcat-colab.yml。音声が変わったときだけ。Colab を最大20分、だめなら Modal）→ 大きいりなのコマ → check_fit.js → render_par.js → 声（check_voice.py）・画面（Codex）・事実（Codex）を行い、全部の LOOK を build.md にまとめる。plan.js と字幕（channel/captions/<名前>_ja.srt）は自動で main に入る。完成動画は work の final/<名前>.mp4、1秒ごとのコマ一覧は final/<名前>_sheets/。直したら short-build をもう一度。
+  3. **書き出しと確認**：spec.json・short.html・（つかみと締めの大きいりなの）longcat/jobs.json・channel/meta を main に、画面の画像と channel/thumbs/<名前>.jpg を work に置いてから short-build.yml（refs、extra は 1 と同じ）。中で 音声のつなぎ → short_plan.py → 長さと無音 → つかみと締めの話す動画（longcat-colab.yml。音声が変わったときだけ。Colab を最大20分、だめなら Modal）→ 大きいりなのコマ（場面 intro・verdict と "big": true の行） → check_fit.js → render_par.js → 声（check_voice.py）・画面（Codex）・事実（Codex）を行い、全部の LOOK を build.md にまとめる。plan.js と字幕（channel/captions/<名前>_ja.srt）は自動で main に入る。完成動画は work の final/<名前>.mp4、1秒ごとのコマ一覧は final/<名前>_sheets/。直したら short-build をもう一度。
   4. **投稿**：build.md が OK（LOOK は親が問題なしと判断したものだけ）なら short-upload.yml（publish_at、comment、log=shorts_log.csv の1行（動画IDの所は {ID}））。upload-tmp への配置・youtube-upload.yml・記録の追加までを1回で行い、upload.md の「ID:」の行が動画ID。公開15分後のサムネ確認（short-thumb-check.yml、違えば入れ直す → thumb.md）も自動で始まる。試すときは dry_run=yes（何も上げない）。
 - **予備（自動が動かない・FAILED のとき）**：従来どおり個別に動かす（tts.yml → split_tts.py・check_split.py → short_plan.py → longcat-colab.yml → check_fit.js → render_par.js → voice-check.yml・codex-frame-check.yml → upload-tmp・youtube-upload.yml）。そのときは決まった手順を Sonnet の実行役（effort high）に任せてよい（親への返事は OK か LOOK の1〜3行だけ、台本・場面は変えない）。画面・事実が FAILED（Codex が答えなかった）のときだけ、作った本人ではない Sonnet のサブエージェント（effort high）で同じ項目を確かめる。
 - 素材のブランチを試しに戻すとき（公開済みの動画）：short-restore.yml（name）でドライブの zip を work に戻せる。
@@ -54,7 +59,7 @@
 2. **画面**：short-build.yml の中で自動（単独なら codex-frame-check.yml。2026-11-14〜、Claude の利用枠の節約）。単独で動かすときは、完成動画を upload-tmp か work に置き、name・video（work:<パス> か upload-tmp:<ファイル>）・script（空なら shorts/<名前>/spec.json）・thumb（空なら work の channel/thumbs/<名前>.jpg）で動かす。ChatGPT（Codex、最も強いモデル（初期値 gpt-6-astra、断られたらアカウントの既定）・effort high。使ったモデルは結果に出る）が1秒ごとのコマと字幕の切り替えごとの原寸の切り出し・サムネを見て、吹き出しが空、改行、はみ出し、YouTube の画面との重なり、誤字、サムネの誤字と幅168pxでの読みやすさを点検する。字幕は Codex に書き写させ、改行・空・台本との字の違いは決まりどおり機械でも判定する。結果はブランチ checks の checks/<名前>/frames.md（1行目が RESULT: OK / LOOK / FAILED、LOOK は「- LOOK 時刻｜何が｜どこ｜内容」。ジョブが緑なのは OK のときだけ）。指摘は直して、もう一度動かす。FAILED（Codex が答えなかった）のときだけ、従来どおり1秒ごとのコマ一覧を作った本人ではない Sonnet のサブエージェント（effort high）に見せて、同じ項目で点検させる。
 3. **事実**：Codex（gpt-6.1-sol・effort high、2026-11-14〜。Claude Sonnet のサブエージェントの代わり）が、台本（say と show）・字幕・タイトル・概要欄・タグ・英語の項目の数字・日付・固有名詞・「誰が・いつから・誰に」・報道か発表かを、参考記事の本文（夕刊の記事、research/<号>/<id>.txt、factcheck/<号>/<id>.txt、extra の元記事）と照らす（codex-short-factcheck.yml、tools/codex/short_factcheck.md。short-build.yml の中でも動く）。資料と違う・資料に無い・場所によって食い違う・言い過ぎは LOOK。結果は checks/<名前>/facts.md（「- LOOK 場所｜何が｜正しい値｜出どころ」）。「資料に記載なし」は、元記事で確かめられれば問題なし（そのときは extra に渡して確かめ直すのがよい）。FAILED のときだけ従来の Sonnet。
 4. **文字のはみ出し**：short-build.yml が書き出しの前に自動で行う（手でなら、ショートのフォルダで `node ../_template/check_fit.js`）。カードやアイコンの枠から出た文字を OVERFLOW で全部出すので、0件になるまで直す（2026-11-13、「11/17」がカレンダーの絵からはみ出していたのを、コマの点検でも見逃した）。図形の中に置く文字は text(…, maxw) で幅の上限を渡し、自動で縮める。
-5. **長さと無音**：登場のあと話し終わりまで60秒以内、0.6秒以上の無音が台本の切れ目以外にない（short-build.yml が自動で確かめる。tools/short_auto.py silence）。
+5. **長さと無音**：動画全体が60秒以内（目安55秒前後。"tail_logo": 0 の spec。古い作り方の spec では登場のあと話し終わりまで60秒以内）、0.6秒以上の無音が台本の切れ目以外にない（short-build.yml が自動で確かめる。tools/short_auto.py silence）。
 6. サムネの文字の誤字と、幅168pxに縮めても読めるか（2 の codex-frame-check.yml で一緒に見る）。
 
 ## 4. 投稿と通知

@@ -7,7 +7,8 @@ name: short-build
 #             longcat/<scene>.wav from the finished line
 #   longcat : longcat-colab.yml (Colab, then Modal) only when that clip is missing or its audio changed
 #   facts   : codex-short-factcheck.yml (Codex gpt-6.1-sol, high) on script, subtitles, title and description
-#   render  : big presenter frames (tools/big_clip.py), check_fit.js, render_par.js -> work: final/<name>.mp4 (+ final/<name>_sheets/)
+#   render  : big presenter frames (tools/big_clip.py; scenes intro / verdict and every line with "big": true, e.g. the big hook
+#             of the new way 2026-11-16), check_fit.js, render_par.js -> work: final/<name>.mp4 (+ final/<name>_sheets/)
 #   voice   : tools/check_voice.py on the video        frames: Codex screen check (shorts/_template/codex_frame_check.py)
 #   report  : branch checks, checks/<name>/build.md (+ the parts) and the job summary. First line RESULT: OK | LOOK, then every
 #             LOOK line of every part ("- LOOK [part] …"). The run is green only for OK. Upload: short-upload.yml.
@@ -67,7 +68,8 @@ jobs:
           case $code in
             0) echo "RESULT: OK" > /tmp/rep/plan.md; echo "plan=ok" >> "$GITHUB_OUTPUT";;
             3) printf 'RESULT: LOOK\n- LOOK 登場の秒数｜音声の秒数（spec の sec）と合わない｜この1文を作り直す：%s｜short_plan.py\n' "$last" > /tmp/rep/plan.md;;
-            4) printf 'RESULT: LOOK\n- LOOK 長さ｜登場のあとが60秒を超える｜台本を削る：%s｜short_plan.py\n' "$last" > /tmp/rep/plan.md;;
+            4) case "$last" in *'"whole"'*) w="動画全体が60秒を超える（tail_logo 0 の作り方）";; *) w="登場のあとが60秒を超える";; esac
+               printf 'RESULT: LOOK\n- LOOK 長さ｜%s｜台本を削る：%s｜short_plan.py\n' "$w" "$last" > /tmp/rep/plan.md;;
             *) printf 'RESULT: LOOK\n- LOOK 台本の秒数｜short_plan.py が止まった（終了コード %s）｜%s｜Actions の画面\n' "$code" "$(tail -1 /tmp/b/plan.log | cut -c1-200)" > /tmp/rep/plan.md;;
           esac
           [ $code = 0 ] || exit 0
@@ -176,7 +178,7 @@ jobs:
         run: |
           git fetch -q origin "+generated:refs/remotes/origin/generated" 2>/dev/null || true
           S="shorts/$NM/work/spec_ci.json"; : > /tmp/rep/big.txt
-          for row in $(python3 -c "import json;[print(f\"{i}:{l['scene']}:{l.get('fixed_wav','')}\") for i,l in enumerate(json.load(open('$S'))['lines'],1) if l.get('scene') in ('intro','verdict')]"); do
+          for row in $(python3 -c "import json;[print(f\"{i}:{l['scene']}:{l.get('fixed_wav','')}\") for i,l in enumerate(json.load(open('$S'))['lines'],1) if l.get('scene') in ('intro','verdict') or l.get('big')]"); do
             sc=$(echo "$row" | cut -d: -f2); fw=$(echo "$row" | cut -d: -f3); clip=""
             if [ -n "$fw" ] && [ -f "${fw%.wav}.mp4" ]; then clip="${fw%.wav}.mp4"
             elif git show "origin/generated:generated/${NM}_longcat/$sc.mp4" > "/tmp/$sc.mp4" 2>/dev/null && [ -s "/tmp/$sc.mp4" ]; then clip="/tmp/$sc.mp4"; fi

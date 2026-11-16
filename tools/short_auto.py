@@ -11,7 +11,8 @@ parent (Opus) only dispatches, waits once and reads 「RESULT: OK|LOOK|FAILED」
       name its file with "wav": "<path>"), copies them to <out dir>/wav/s<i>.wav and writes <out dir>/spec.json for
       short_plan.py (wav_dir, sfx_dir=<out dir>/sfx, lipsync=python3). LOOK lines -> <out dir>/assemble.md
   python3 tools/short_auto.py silence <spec.json> <work dir> <out.md>
-      0.6 s or longer silence inside a line (after short_plan.py), and the talk after the intro over 60 s.
+      0.6 s or longer silence inside a line (after short_plan.py), and the talk after the intro over 60 s
+      (spec "tail_logo": 0, the new way of 2026-11-16: the whole video over max_total, default 60 s).
   python3 tools/short_auto.py srt <plan.js> <out.srt>
       Japanese subtitles from the captions of plan.js (the same as channel/captions/*.srt so far).
   python3 tools/short_auto.py voicecheck <voice_report.json> <out.md>
@@ -155,8 +156,13 @@ def silence(spec_path, W, out):
         s = open(pj, encoding="utf-8").read(); P = json.loads(s[s.index("=") + 1:].rstrip("; \n"))
         intro = [l for l in P["lines"] if l.get("scene") == "intro"]
         after = P["voice_end"] - (intro[0]["end"] if intro else 0)
-        if after > 60.05: looks.append(f"- LOOK 長さ｜登場のあと話し終わりまで {after:.1f}秒｜60秒以内｜plan.js")
-        extra = f"動画 {P['T']:.1f}秒・話し終わり {P['voice_end']:.1f}秒（登場のあと {after:.1f}秒）・字幕 {len(P['tel'])}回"
+        if spec.get("tail_logo", 2.0) == 0:   # new way (2026-11-16): no 「まとめます」, no logo. The whole video is <= 60 s (about 55 s)
+            mx = spec.get("max_total", 60)
+            if P["T"] > mx + 0.05: looks.append(f"- LOOK 長さ｜動画全体 {P['T']:.1f}秒｜{mx}秒以内（目安55秒前後）｜plan.js")
+            extra = f"動画 {P['T']:.1f}秒（最後のロゴなし）・話し終わり {P['voice_end']:.1f}秒・字幕 {len(P['tel'])}回"
+        else:
+            if after > 60.05: looks.append(f"- LOOK 長さ｜登場のあと話し終わりまで {after:.1f}秒｜60秒以内｜plan.js")
+            extra = f"動画 {P['T']:.1f}秒・話し終わり {P['voice_end']:.1f}秒（登場のあと {after:.1f}秒）・字幕 {len(P['tel'])}回"
     open(out, "w", encoding="utf-8").write(f"RESULT: {'OK' if not looks else 'LOOK'}\n" + "\n".join(looks) + f"\n\n長さと無音：{extra}\n")
     print("\n".join(looks) or "silence: ok", extra)
 

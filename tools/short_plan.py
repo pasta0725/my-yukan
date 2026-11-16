@@ -7,7 +7,12 @@ period_pause / comma_max: the pause at 「。」 inside a line is cut to period_
            gap is the silence between lines (each line ends with 「。」, so it is short too)
 writes <work_dir>/plan.js (window.PLAN) and <work_dir>/audio.wav
 intro line: if channel/rina_intro/<sec>s.wav exists, add "fixed_wav": "channel/rina_intro/<sec>s.wav" to that line (its talking clip
-            channel/rina_intro/<sec>s.mp4 is reused, no new Colab run). Otherwise write "say": "このニュース、{SEC}でまとめます。" ({SEC} becomes 「40秒」 or 「1分」, max 60) and put the number used for its TTS in spec "sec" (see step 2b)."""
+            channel/rina_intro/<sec>s.mp4 is reused, no new Colab run). Otherwise write "say": "このニュース、{SEC}でまとめます。" ({SEC} becomes 「40秒」 or 「1分」, max 60) and put the number used for its TTS in spec "sec" (see step 2b).
+new way (user's decision 2026-11-16, tools/shorts_rules.md): no 「{SEC}でまとめます」 line and no silent logo at the end.
+            spec "tail_logo": 0 -> the video ends end_pad (default 0.15) s after her last word, the music fades out by then,
+            and the WHOLE video must be <= max_total (default 60) s, else exit 4 ({"too_long": ..., "whole": true}).
+            A line with "big": true is a big talking presenter line (e.g. the hook at 0 s): short-build.yml makes its frames
+            from the LongCat clip of the same scene name. Specs without these keys come out exactly as before."""
 import json, os, re, subprocess, sys, wave
 import numpy as np
 
@@ -86,6 +91,11 @@ t = spec.get("lead", 0.25); lines = []  # voice start; the hook rule (tools/shor
 for i, (ln, x) in enumerate(zip(spec["lines"], segs)):
     d = len(x) / SR; lines.append({**ln, "start": round(t, 3), "end": round(t + d, 3)}); t += d + gap
 voice_end = t - gap; T = voice_end + 0.35 + tail
+NOLOGO = spec.get("tail_logo", 2.0) == 0   # new way (2026-11-16): she talks to the very end, no logo card, whole video <= 60 s
+if NOLOGO:
+    T = voice_end + spec.get("end_pad", 0.15)
+    if T > spec.get("max_total", 60) + 1e-6:
+        print(json.dumps({"too_long": round(T, 1), "max": spec.get("max_total", 60), "cut": round(T - spec.get("max_total", 60), 1), "whole": True}, ensure_ascii=False)); sys.exit(4)
 
 # 2b) 「このニュース、{SEC}でまとめます」: SEC = the talk AFTER that line (logo not counted), rounded UP to 10 s, at most 60.
 #     40 -> 「40秒」, 60 -> 「1分」 (user rule 2026-11-08). Over 60 s: exit 4, the script must be made shorter.
@@ -153,6 +163,7 @@ for ln in lines:
 bgm, _ = readw(os.path.join(spec["sfx_dir"], "bgm.wav"))
 music = np.zeros(n); m = min(len(bgm), n); music[:m] = bgm[:m] * 0.16
 stop = int((voice_end + 0.3) * SR); fade = int(0.25 * SR)
+if NOLOGO: stop = min(stop, n)   # the video ends right after her voice: the music fades out inside it
 music[stop - fade:stop] *= np.linspace(1, 0, fade); music[stop:] = 0
 # duck the music a little while she speaks
 envv = np.convolve(np.abs(nar), np.ones(2400) / 2400, mode="same"); music *= 1 - 0.35 * np.clip(envv * 12, 0, 1)
