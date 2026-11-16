@@ -237,18 +237,24 @@ function xLogo(x,y,s){rrect(x-s/2,y-s/2,s,s,s*0.22,'#000000');g.save();g.strokeS
 function grid(x,y,w,n,cols,k0,u,step){const gp=8,tw=(w-gp*(cols-1))/cols;for(let i=0;i<n;i++){const c=i%cols,r=Math.floor(i/cols);tile(x+c*(tw+gp),y+r*(tw+gp),tw,tw,i,enter(u,k0+i*(step||0.04),0.18));}return Math.ceil(n/cols)*(tw+gp)-gp;}
 function monitor(x,y,s){g.save();rrect(x-s,y-s*0.62,s*2,s*1.24,s*0.08,'#16213A');rrect(x-s*0.92,y-s*0.54,s*1.84,s*1.0,s*0.04,'#E6ECF5');g.fillStyle='#16213A';g.fillRect(x-s*0.12,y+s*0.62,s*0.24,s*0.18);g.fillRect(x-s*0.4,y+s*0.78,s*0.8,s*0.07);g.restore();}
 const S={
- hook(u,d,L){bg(u);mini(u);
-   if(u<1.1){card(150,450,780,600);if(IMG.official)picC('official',150,450,780,600,'#FFFFFF');else xLogo(CX,740,300);rrect(150,450,780,600,30,null,C.bar);
-     if(IMG.official){g.save();g.strokeStyle=C.warn;g.lineWidth=10;g.lineCap='round';g.beginPath();g.ellipse(CX,815,215,105,-0.03,0,Math.PI*2*clamp((u-0.15)/0.3));g.stroke();g.restore();creditAt('出典：X（Impress Watch掲載）',915,1025);}
-     if(u>0.5)stamp('上限は？',CX,560,(u-0.5)/0.25,C.warn,56,-0.05);
-   }else{card(150,450,780,600);xLogo(CX,560,130);
-     const n=Math.min(20,4+Math.floor(Math.max(0,u-1.6)*14));grid(250,660,580,4,4,1.1,u,0.08);
-     if(u>1.6){g.save();g.globalAlpha*=clamp((u-1.6)/0.3);rrect(250,800,580,190,24,'#EEF1F6');text('？',CX,895,120,C.acc,'center',900,300);g.restore();}
-   }
-   const z=1+0.05*Math.sin(Math.min(u,3)*Math.PI*2);g.save();g.translate(CX,1190);g.scale(z,z);g.translate(-CX,-1190);
-   g.lineJoin='round';g.textAlign='center';g.textBaseline='middle';
-   g.font=`900 72px ${FONT}`;g.lineWidth=18;g.strokeStyle='#FFFFFF';g.strokeText('10年続いたXの上限',CX,1130);g.fillStyle=C.text;g.fillText('10年続いたXの上限',CX,1130);
-   g.font=`900 110px ${FONT}`;g.lineWidth=22;g.strokeText('何枚になった？',CX,1240);g.fillStyle=C.acc;g.fillText('何枚になった？',CX,1240);g.restore();},
+ hook(u,d,L){bg(u);glow(CX,1000,700,C.brand,0.32);
+   if(BIGF)abs(()=>g.drawImage(BIGF,-332,366,1728,3072));else abs(()=>Puppet.big(g,'big_hq',-332,366,1728,3072,CURT,mouthNow()));
+   abs(()=>{g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;rrect(90,300,900,270,28,'#FFFFFF');g.restore();
+     if(IMG.official)pic('official',90,300,900,270,1,0.5,0.82);else{xLogo(CX,435,180);}
+     g.save();g.strokeStyle=C.warn;g.lineWidth=10;g.lineCap='round';g.beginPath();g.ellipse(CX,435,240,110,-0.03,0,Math.PI*2*clamp(0.35+u/0.5));g.stroke();g.restore();
+     rrect(760,318,210,70,35,C.warn);text('上限は？',865,353,38,'#FFFFFF','center',900,190);
+     if(IMG.official)creditAt('出典：X（Impress Watch掲載）',975,548);
+     const z=1+0.04*Math.sin(Math.min(u,4)*Math.PI*2);g.save();g.translate(CX,770);g.scale(z,z);g.translate(-CX,-770);
+     g.lineJoin='round';g.textAlign='center';g.textBaseline='middle';
+     g.font=`900 110px ${FONT}`;g.lineWidth=26;g.strokeStyle='#FFFFFF';g.strokeText('10年続いた上限',CX,700);g.fillStyle=C.text;g.fillText('10年続いた上限',CX,700);
+     g.font=`900 128px ${FONT}`;g.lineWidth=28;g.strokeText('何枚になった？',CX,845);g.fillStyle=C.acc;g.fillText('何枚になった？',CX,845);g.restore();});},
+ reason(u,d,L){bg(u);mini(u);const t2=telHas(L,'しかも');
+   mixLine([['答えは',C.text],['20枚',C.acc]],CX,385,70);
+   withEnter(enter(u,0),()=>{card(150,450,780,380);bigNum('20','枚',CX,600,(u)/0.35,C.acc,190);text('4枚の5倍',CX,760,48,C.sub,'center',900,600);});
+   const k2=Math.min(1.2,Math.max(0.6,t2));
+   withEnter(enter(u,k2),()=>{card(150,860,780,270,30,C.card2);text('しかも',290,995,44,'#CDD8EC','center',900,200);photoIcon(470,995,110);text('＋',580,995,60,'#FFFFFF','center',900);
+     g.save();g.translate(690,995);rrect(-60,-44,120,88,16,'#FFFFFF');g.fillStyle=C.card2;g.beginPath();g.moveTo(-16,-22);g.lineTo(22,0);g.lineTo(-16,22);g.closePath();g.fill();g.restore();
+     text('OK',840,995,64,C.acc,'center',900,140);});},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},
  what(u,d,L){bg(u);mini(u);const t2=telHas(L,'4枚から');
    mixLine([['X',C.brand],['の投稿の画像',C.text]],CX,385,64);
@@ -308,12 +314,17 @@ const S={
    withEnter(enter(u,0),()=>{card(150,450,370,500);text('無料',335,540,60,C.text,'center',900,320);text('？',335,740,180,C.sub,'center',900,320);});
    withEnter(enter(u,0.3),()=>{card(560,450,370,500);text('有料',745,540,60,C.text,'center',900,320);text('？',745,740,180,C.sub,'center',900,320);});
    withEnter(enter(u,Math.min(1.2,Math.max(0.7,t2))),()=>{rrect(150,980,780,140,30,C.card2);text('まだ明らかにされていない',CX,1050,48,'#FFFFFF','center',900,720);});},
- verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);if(BIGF&&VERDICT_CLIP)abs(()=>g.drawImage(BIGF,18,560,1044,1856));else abs(()=>Puppet.big(g,'big_hq',18,560,1044,1856,CURT,mouthNow()));const t2=telHas(L,'1つの投稿');
+ verdict(u,d,L){bg(u);glow(CX,1250,600,C.brand,0.32);const f=ease(clamp((u-(d-1.4))/1.0));
+   const R=[18+(-332-18)*f,560+(366-560)*f,1044+(1728-1044)*f,1856+(3072-1856)*f];
+   if(BIGF&&VERDICT_CLIP)abs(()=>g.drawImage(BIGF,...R));else abs(()=>Puppet.big(g,'big_hq',...R,CURT,mouthNow()));const t2=telHas(L,'次に');
    const k1=back((u-0.1)/0.35),k2=back((u-Math.max(0.8,t2))/0.35);
+   abs(()=>{g.save();g.globalAlpha*=1-f;
    if(u>0.1){g.save();g.translate(333,428);g.scale(k1,k1);rrect(-197,-115,394,230,32,C.card2,C.brand);
      text('旅行の写真も',0,-55,38,'#CDD8EC','center',800,360);text('分けずに',0,30,56,'#FFFFFF','center',900,360);g.restore();}
    if(u>Math.max(0.8,t2)){g.save();g.translate(747,428);g.scale(k2,k2);rrect(-197,-115,394,230,32,C.buyFill);
-     text('1つの投稿に',0,-55,38,C.buyInk,'center',800,360);text('20枚まで',0,30,56,C.buyInk,'center',900,360);g.restore();}},
+     text('次に聞かれたら',0,-55,36,C.buyInk,'center',800,360);text('答えは20枚',0,30,56,C.buyInk,'center',900,360);g.restore();}
+   g.restore();
+   if(f>0){g.save();g.globalAlpha*=f;rrect(90,300,900,270,28,'#FFFFFF');if(IMG.official)pic('official',90,300,900,270,1,0.5,0.82);g.restore();}});},
  logo(u){g.fillStyle=C.bg0;g.fillRect(0,0,W,H);const k=ease(u/0.25);g.globalAlpha=k;const i=IMG.logo;
    if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
    text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
@@ -324,7 +335,7 @@ let BIGF=null;const VERDICT_CLIP=true;  // true once big/verdict holds the talki
 // measured once from the scene's finished state (user 2026-11-09: no wasted space)
 const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;  // YouTube crops ~50px at each side; the search icon sits at y 180-280
 function measureFits(){const oc=document.createElement('canvas');oc.width=W;oc.height=H;const g0=g;g=oc.getContext('2d');MEASURE=true;const seen=new Set();
-  for(let i=0;i<P.lines.length;i++){const L=P.lines[i];if(['intro','verdict'].includes(L.scene)||seen.has(L.scene))continue;seen.add(L.scene);
+  for(let i=0;i<P.lines.length;i++){const L=P.lines[i];if(['intro','verdict','hook'].includes(L.scene)||seen.has(L.scene))continue;seen.add(L.scene);
     const d=(P.lines[i+1]?P.lines[i+1].start:P.voice_end)-L.start;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);CURI=i;CURT=L.start+d-0.02;BASE=g.getTransform();
     g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);try{S[L.scene](d-0.02,d,L);}catch(e){}g.restore();
     const a=g.getImageData(0,0,W,H).data;let x0=W,x1=0,y0=H,y1=0;
@@ -337,15 +348,15 @@ window.render=async function(t){BOXES=[];
   let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
   if(t>=P.voice_end+0.35){S.logo(t-P.voice_end-0.35);return;}
   CURI=cur;CURT=t;
-  if(['intro','verdict'].includes(P.lines[cur].scene)){let k=Math.floor(Math.max(0,t-P.lines[cur].start)*30);const bd=P.lines[cur].scene;let im=await bigImg(bd,k);while(!im&&k>0){k--;im=await bigImg(bd,k);}BIGF=im;}
+  if(['intro','verdict','hook'].includes(P.lines[cur].scene)){let k=Math.floor(Math.max(0,t-P.lines[cur].start)*30);const bd=P.lines[cur].scene;let im=await bigImg(bd,k);while(!im&&k>0){k--;im=await bigImg(bd,k);}BIGF=im;}
   if(VIDN[P.lines[cur].scene]){const n=VIDN[P.lines[cur].scene];const k=Math.min(n-1,Math.floor(Math.max(0,t-P.lines[cur].start)*30));VIDF=await vidImg(P.lines[cur].scene,k);}
   const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
   g.save();if(u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut
   BASE=g.getTransform();g.save();const F=FIT[L.scene];if(F){g.translate(F.tx,F.ty);g.scale(F.k,F.k);}g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
   S[L.scene](u,d,L);g.restore();g.restore();
   let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
-  const BIG=['intro','verdict'];
-  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,(t-last.start),false);}
+  const BIG=['intro','verdict','hook'];
+  if(BIG.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,L.scene==='hook'&&cur===0?1:(t-last.start),false);}
   else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),['twist'].includes(L.scene));}
 };
 </script></body></html>

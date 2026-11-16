@@ -6,14 +6,16 @@
    "show": "10年続いたXの画像の上限、何枚になったと思います？",
    "puppet": true,
    "se": "don",
-   "wav": "narration/rina_x20_fix1/split/s1.wav"
+   "wav": "narration/rina_x20_fix1/split/s1.wav",
+   "big": true
   },
   {
-   "scene": "intro",
-   "say": "このニュース、{SEC}でまとめます。",
-   "show": "このニュース、{SEC}でまとめます。",
+   "scene": "reason",
+   "say": "答えは、一気に5倍の20枚。しかも、動画も混ぜて選べます。",
+   "show": "答えは、一気に5倍の20枚。しかも、動画も混ぜて選べます。",
    "puppet": true,
-   "fixed_wav": "channel/rina_intro/60s.wav"
+   "se": "ding",
+   "wav": "narration/rina_x20_fix2/cut/reason.wav"
   },
   {
    "scene": "what",
@@ -22,13 +24,6 @@
    "puppet": true,
    "se": "pop",
    "wav": "narration/rina_x20/split/s2.wav"
-  },
-  {
-   "scene": "times",
-   "say": "一気に5倍です。写真と動画を合わせて、20件まで選べます。",
-   "show": "一気に5倍です。写真と動画を合わせて、20件まで選べます。",
-   "puppet": true,
-   "se": "ding"
   },
   {
    "scene": "history",
@@ -41,13 +36,6 @@
    "scene": "who",
    "say": "告知したのは、エックスでスマホアプリの開発をまとめる、ジョナ・カッツさんです。",
    "show": "告知したのは、Xでスマホアプリの開発をまとめる、ジョナ・カッツさんです。",
-   "puppet": true,
-   "se": "pop"
-  },
-  {
-   "scene": "official",
-   "say": "エックスのクリエイター向け公式アカウントも、最大20件と案内しています。",
-   "show": "Xのクリエイター向け公式アカウントも、最大20件と案内しています。",
    "puppet": true,
    "se": "pop"
   },
@@ -88,18 +76,18 @@
   },
   {
    "scene": "verdict",
-   "say": "旅行の写真も、何回にも分けずに、1つの投稿にまとめられますね。",
-   "show": "旅行の写真も、何回にも分けずに、1つの投稿にまとめられますね。",
+   "say": "旅行の写真も、もう分けなくていい。次に上限を聞かれても、20枚って答えられますね。",
+   "show": "旅行の写真も、もう分けなくていい。次に上限を聞かれても、20枚って答えられますね。",
    "puppet": true,
-   "se": "ding"
+   "se": "ding",
+   "wav": "narration/rina_x20_fix2/cut/verdict.wav"
   }
  ],
  "speed": 1.18,
  "gap": 0.03,
  "period_pause": 0.04,
  "comma_max": 0.3,
- "tail_logo": 2.0,
- "sec": 60,
+ "tail_logo": 0,
  "lipsync": "python3",
  "lead": 0.1
 }
