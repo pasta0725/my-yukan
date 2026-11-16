@@ -1,0 +1,54 @@
+# Codexの事実の点検：0本を採用（50本中）
+
+| 記事id | 結果 | 内容 |
+|---|---|---|
+| ai-autobacs-gemini | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-us-chip-export-rules | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-rakuten-kumamoto | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-casio-nameland-sunx | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-xbox-bootanim-25th | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-sb-smartphone-debut2 | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-passkey-103-sites-study | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-graveyard-shutdowns | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-amazon-thankdriver | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-keychron-vibe-coding-keypad | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-kyoufuaikou-free | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-docomo-5gsa-1116 | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-seibu-hd-shareholder-ai | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-aeon-pay-passkey | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-ntt-vuln-sovereign | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-matsuya-tiktokshop | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-xreal-aura-review | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-terminus-historia-ea | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-digital-agency-harunobu | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-suumo-flood-map | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-freelance-ai-disclosure | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-passlist-muji-booklive | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-portopia-cast3 | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-amd-security-2026-11 | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-hitachi-chiplet-ai | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-gwallet-smartlock-key | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-idc-ai-responsibility | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-uniqlo-gu-kanshasai | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-ztmyr01-record-player | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-ps-blackfriday-2026 | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-windows11-remote-lock-preview | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-fugaku-intrusion | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-adachi-gikai-ai | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-pepabo-holdings | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-toshiba-portable-bidet | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-clicky-islands-palworld | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-adobe-illustrator-arm-windows | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-paiza-leak | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-adobe-mcp-agent | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-apple-health-ai-study | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-greenhouse-twispa-soda | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-docomo-mini2-hikaku | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-google-adsense-eu | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-line-shopping-tab-bf | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-google-ai-cert-free | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-transcosmos-trans-ai-voice | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-edion-eangle-stove | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-rockman-do-cleanserman | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-ymobile-oyakowari | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-yahoo-travel-yahoopack-bf | 未処理 | Codex wrote no out.json (timeout or error) |
