@@ -70,7 +70,7 @@ function marks(s,warn){const m=new Array(s.length).fill(C.capText);
 function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
   if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
   const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
-const FIXC={'考えから手伝ってくれるのが':['考えから','手伝ってくれるのが']};
+const FIXC={'考えから手伝ってくれるのが':['考えから','手伝ってくれるのが'],'20枚って答えられますね':['20枚って','答えられますね'],'次に上限を聞かれても':['次に上限を','聞かれても'],'もう分けなくていい':['もう','分けなくていい']};
 function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
   if(g.measureText(s).width>MAXW){lines=FIXC[s]||splitLine(s);}
   for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
@@ -262,7 +262,7 @@ const S={
    withEnter(enter(u,Math.min(1.0,Math.max(0.5,t2))),()=>{card(150,730,780,400);
      text('これまで',300,790,38,C.sub,'center',800,260);grid(205,830,190,4,2,0,9);text('4枚',300,1070,72,C.sub,'center',900,240);
      arrowR(430,520,950,(u-Math.max(0.5,t2)-0.2)/0.3,C.acc);
-     text('これから',735,790,38,C.acc,'center',800,300);grid(560,830,350,20,5,Math.max(0.5,t2)+0.3,u,0.03);text('20枚',735,1080,80,C.acc,'center',900,300);});},
+     text('これから',735,790,38,C.acc,'center',800,300);grid(585,815,300,20,5,Math.max(0.5,t2)+0.3,u,0.03);text('20枚',735,1090,72,C.acc,'center',900,300);});},
  times(u,d,L){bg(u);mini(u);const t2=telHas(L,'写真と動画');
    mixLine([['一気に',C.text],['5倍',C.acc]],CX,385,70);
    withEnter(enter(u,0),()=>{card(150,450,780,330);text('4枚',300,615,90,C.sub,'center',900,260);text('×5',540,615,110,C.acc,'center',900,240);text('20枚',780,615,100,C.acc,'center',900,280);});
@@ -307,7 +307,7 @@ const S={
  web(u,d,L){bg(u);mini(u);const t2=telHas(L,'報じられ');
    mixLine([['ブラウザ版',C.brand],['は？',C.text]],CX,385,64);
    withEnter(enter(u,0),()=>{card(150,450,780,560);monitor(CX,680,240);xLogo(CX,660,110);
-     text('パソコンのブラウザ版',CX,900,44,C.text,'center',900,700);});
+     text('パソコンのブラウザ版',CX,955,44,C.text,'center',900,700);});
    withEnter(enter(u,Math.min(1.0,Math.max(0.4,t2*0.5))),()=>{card(150,1030,780,110);check(300,1085,34,true);text('もう使える',560,1085,56,C.acc,'center',900,400);text('報道',850,1085,30,C.sub,'center',800,120);});},
  unknown(u,d,L){bg(u);mini(u);const t2=telHas(L,'まだ');
    mixLine([['プランの違いは',C.text],['？',C.acc]],CX,385,64);
