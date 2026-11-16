@@ -39,7 +39,7 @@
   - longcat/jobs.json は hook と verdict の2つ（つかみは表情を変える言葉を入れる。例 "She leans slightly toward the camera with a curious, playful look, eyebrows raised, as if asking the viewer a riddle."）。
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
 - 読み上げは台本全部を1回でまとめて作り（15文を超えるときだけ2回）、split_tts.py で分け、check_split.py で1文ずつ文字起こしして切れ目を確かめる（short-voice.yml が自動で行う。2-2）。1文だけの作り直しは前後の文と一緒に頼む。読み直しを入れても1本3回まで（Gemini の無料枠は1モデル1日10回。2026-11-12 の試験で12文を1回で作って正しく分けられた）。モデルは gemini-3.8-flash-tts だけを使い、別のモデルに切り替えない（声の感じが変わるため。2026-11-12 ユーザー決定）。読み間違えやすい数字はひらがな。
-- つかみと締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal。Colab が止まるときは wait=0 で Modal だけ）。
+- つかみと締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal）。**必ず Colab から**（ユーザーの決まり、2026-11-16 再確認）：longcat_wait / wait は既定の20のまま動かし、0（Modal だけ）にしない。0にしてよいのは、同じ動画づくりの中で Colab の段が実際に止まった（30分以上進まない、Issue #23）ときの作り直しだけ。
 - **素材の置き場（2026-11-12〜、ユーザー決定）**：音声・画像・動画は main に入れず、使い捨てのブランチ work に置く（main の履歴は消えずに1日約18MBずつ増えていたため）。読み上げ（tts.yml）と公式画像（fetch-media.yml）の結果は自動で work に入る。手元に取るのは `python3 tools/work_branch.py get narration/<名前> media/<名前>`、自分で作った音声・画像（longcat の入力、サムネなど）を置くのは `python3 tools/work_branch.py put <ファイルやフォルダ>`。longcat-colab.yml と youtube-upload.yml は work からも読む。main の .gitignore がこれらを main に入れないようにしている。台本・spec.json・short.html・lines.json・urls.txt など文字のファイルは今までどおり main。
 - サムネは codex-images.yml、項目は metadata_rules.md、字幕SRTと英訳も作る。
 
@@ -61,7 +61,7 @@
 4. **文字のはみ出し**：short-build.yml が書き出しの前に自動で行う（手でなら、ショートのフォルダで `node ../_template/check_fit.js`）。カードやアイコンの枠から出た文字を OVERFLOW で全部出すので、0件になるまで直す（2026-11-13、「11/17」がカレンダーの絵からはみ出していたのを、コマの点検でも見逃した）。図形の中に置く文字は text(…, maxw) で幅の上限を渡し、自動で縮める。
 5. **長さと無音**：動画全体が60秒以内（目安55秒前後。"tail_logo": 0 の spec。古い作り方の spec では登場のあと話し終わりまで60秒以内）、0.6秒以上の無音が台本の切れ目以外にない（short-build.yml が自動で確かめる。tools/short_auto.py silence）。
 6. サムネの文字の誤字と、幅168pxに縮めても読めるか（2 の codex-frame-check.yml で一緒に見る）。
-7. **大きいりな（つかみ・締め）は必ず話す動画**（2026-11-16 ユーザー指示）：short-build.yml の「big presenter frames」に「大きいりなの話す動画がない」の LOOK が1つでも出たら投稿しない。その場面だけ longcat-colab.yml を wait=0（Modal だけ）で作り直し、short-build.yml をもう一度動かす（最大2回）。それでも作れなければ投稿せず、理由を通知する。立ち絵に口を描く代わりの方法で投稿しない。
+7. **大きいりな（つかみ・締め）は必ず話す動画**（2026-11-16 ユーザー指示）：short-build.yml の「big presenter frames」に「大きいりなの話す動画がない」の LOOK が1つでも出たら投稿しない。その場面だけ longcat-colab.yml を作り直し（待ち時間は既定の20分のまま＝まず Colab、だめなら自動で Modal）、short-build.yml をもう一度動かす（最大2回）。それでも作れなければ投稿せず、理由を通知する。立ち絵に口を描く代わりの方法で投稿しない。
 
 ## 4. 投稿と通知
 - short-upload.yml（2-2 の 4）を name・publish_at（例 2026-11-10T21:00:00+09:00）・comment・log で動かす（中で upload-tmp に置き、youtube-upload.yml を動かす）。予約公開の動画は非公開で上がり、21:00 に YouTube が公開する。公開の数分後に、サムネの入れ直しと固定コメントが自動で行われる。公開15分後に short-thumb-check.yml がショート一覧のサムネ（i.ytimg.com/vi/<ID>/sardefault.jpg）を入れた画像と比べ、違えば入れ直す（checks/<名前>/thumb.md が LOOK のときだけ thumb:<ID> で手で入れ直す）。コメントの固定は、毎日21:23の予定作業「星餓りな 固定コメントの固定」が内蔵ブラウザで行う（手順は tools/pin_comment.md）。

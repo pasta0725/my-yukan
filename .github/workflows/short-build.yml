@@ -183,7 +183,7 @@ jobs:
             if [ -n "$fw" ] && [ -f "${fw%.wav}.mp4" ]; then clip="${fw%.wav}.mp4"
             elif git show "origin/generated:generated/${NM}_longcat/$sc.mp4" > "/tmp/$sc.mp4" 2>/dev/null && [ -s "/tmp/$sc.mp4" ]; then clip="/tmp/$sc.mp4"; fi
             if [ -n "$clip" ]; then python3 tools/big_clip.py "shorts/$NM/big/$sc" "$clip"; echo "$sc: $clip" >> /tmp/rep/big.txt
-            else echo "- LOOK $sc｜大きいりなの話す動画がない（longcat: ${LCR:-なし}）。この動画のまま投稿しない｜longcat-colab.yml を wait=0 で作り直してから short-build をもう一度｜generated/${NM}_longcat/$sc.mp4" >> /tmp/rep/big.txt; fi
+            else echo "- LOOK $sc｜大きいりなの話す動画がない（longcat: ${LCR:-なし}）。この動画のまま投稿しない｜longcat-colab.yml を作り直して（まず Colab）から short-build をもう一度｜generated/${NM}_longcat/$sc.mp4" >> /tmp/rep/big.txt; fi
           done
           { grep -q LOOK /tmp/rep/big.txt && echo "RESULT: LOOK" || echo "RESULT: OK"; cat /tmp/rep/big.txt; } > /tmp/rep/big.md; cat /tmp/rep/big.md
       - name: text outside its box (check_fit.js)
