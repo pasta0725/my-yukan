@@ -302,7 +302,7 @@ const S={
      rrect(190,560,290,400,22,'#EEF1F6');grid(205,620,260,4,2,0,9);text('一覧で並ぶ',335,1040,36,C.text,'center',900,320);});},
  twist(u,d,L){bg(u);mini(u);const t2=telHas(L,'アプリの更新');
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
-   withEnter(enter(u,0.25),()=>{card(150,480,370,600);phoneShape(335,700,110,null,C.bar);text('4枚まで',335,700,46,C.warn,'center',900,100);text('しか選べない',335,900,40,C.text,'center',900,330);cross(335,1000,34);});
+   withEnter(enter(u,0.25),()=>{card(150,480,370,600);phoneShape(335,700,110,null,C.bar);text('4枚まで',335,700,40,C.warn,'center',900,72);text('しか選べない',335,900,40,C.text,'center',900,330);cross(335,1000,34);});
    withEnter(enter(u,Math.min(1.0,Math.max(0.6,t2))),()=>{card(560,480,370,600);upArrow(745,700,90,C.acc);text('アプリを',745,880,46,C.text,'center',900,330);text('更新',745,960,72,C.acc,'center',900,330);});},
  web(u,d,L){bg(u);mini(u);const t2=telHas(L,'報じられ');
    mixLine([['ブラウザ版',C.brand],['は？',C.text]],CX,385,64);
