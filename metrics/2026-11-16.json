@@ -1,9 +1,9 @@
 {
  "date": "2026-11-16",
- "collected": "2026-11-16T12:48+09:00",
+ "collected": "2026-11-16T15:15+09:00",
  "youtube": {
   "subscribers": 18,
-  "channel_views": 9841,
+  "channel_views": 11337,
   "videos": {
    "ZT61ks9aN74": {
     "title": "Claudeが銀行口座を読む｜家計を丸ごと分析",
@@ -105,7 +105,7 @@
     "title": "OpenAIがゲーム機発売｜200ドルで自作ゲームが動く",
     "published": "2026-11-10T12:00:01Z",
     "privacy": "public",
-    "views": 924,
+    "views": 926,
     "likes": 18,
     "comments": 1,
     "log": {
@@ -177,7 +177,7 @@
     "title": "NVIDIAフアンCEOが辞任｜暫定CEOはCFOのクレス氏",
     "published": "2026-11-12T19:12:05Z",
     "privacy": "public",
-    "views": 1033,
+    "views": 1030,
     "likes": 12,
     "comments": 3,
     "log": {
@@ -201,8 +201,8 @@
     "title": "Xperia 1 VIII、iPhoneへ写真共有に対応",
     "published": "2026-11-13T12:00:34Z",
     "privacy": "public",
-    "views": 561,
-    "likes": 3,
+    "views": 562,
+    "likes": 4,
     "comments": 1,
     "log": {
      "タイトルの型": "主役＋出来事",
@@ -225,7 +225,7 @@
     "title": "FF7リメイク2作が各986円｜11月20日まで",
     "published": "2026-11-14T12:00:25Z",
     "privacy": "public",
-    "views": 1084,
+    "views": 1088,
     "likes": 6,
     "comments": 2,
     "log": {
@@ -240,7 +240,7 @@
     "title": "Claude Whiteboardsの使い方｜案をClaudeが図に整理",
     "published": "2026-11-15T07:23:27Z",
     "privacy": "public",
-    "views": 552,
+    "views": 554,
     "likes": 4,
     "comments": 1,
     "log": {
@@ -270,7 +270,7 @@
     "title": "Claude Code modsとは｜使い方とおすすめ3つ",
     "published": "2026-11-15T21:30:12Z",
     "privacy": "public",
-    "views": 939,
+    "views": 953,
     "likes": 10,
     "comments": 1,
     "log": {
@@ -403,30 +403,6 @@
   ]
  },
  "editions": [
-  {
-   "edition": "2026-11-09-pm",
-   "articles": 51,
-   "by_category": {
-    "ai": 11,
-    "mobile": 7,
-    "gadget": 7,
-    "service": 4,
-    "game": 6,
-    "ec": 7,
-    "future": 4,
-    "other": 5
-   },
-   "refs_avg": 2.2,
-   "single_ref": 22,
-   "images_by_kind": {
-    "ogp": 42,
-    "?": 3,
-    "press": 18
-   },
-   "no_image": 15,
-   "diagrams": 35,
-   "x_items": 3
-  },
   {
    "edition": "2026-11-10-am",
    "articles": 54,
@@ -735,10 +711,36 @@
    "no_image": 11,
    "diagrams": 13,
    "x_items": 0
+  },
+  {
+   "edition": "2026-11-16-pm",
+   "articles": 50,
+   "by_category": {
+    "ai": 11,
+    "mobile": 7,
+    "gadget": 7,
+    "service": 6,
+    "game": 7,
+    "ec": 6,
+    "other": 6
+   },
+   "refs_avg": 1.16,
+   "single_ref": 45,
+   "images_by_kind": {
+    "ogp": 22,
+    "press": 1
+   },
+   "no_image": 27,
+   "diagrams": 0,
+   "x_items": 0
   }
  ],
  "quality": {
   "reports_open": [
+   {
+    "n": 27,
+    "title": "[号づくり 11/16夕刊] Codexのログインが切れていて、記事書きが全17担当で失敗（401・refresh token already used）"
+   },
    {
     "n": 26,
     "title": "[公式画像の補充 11/16朝刊] この環境では gh コマンドのログインが失敗し、指示文の gh api／gh run の手順が使えない"
@@ -766,8 +768,32 @@
   ],
   "reports_closed_7d": 20,
   "workflow_runs_7d": {
-   "codex-weekly-review": {
+   "metrics": {
     "in_progress": 1
+   },
+   "indexnow": {
+    "success": 6,
+    "cancelled": 1
+   },
+   "pages build and deployment": {
+    "success": 31,
+    "cancelled": 4
+   },
+   "factcheck-pages": {
+    "success": 2
+   },
+   "codex-research": {
+    "failure": 1,
+    "success": 1
+   },
+   "codex-write": {
+    "success": 2
+   },
+   "fetch-news": {
+    "success": 2
+   },
+   "codex-weekly-review": {
+    "success": 1
    },
    "site-stats": {
     "success": 2
@@ -778,21 +804,17 @@
    "codex-fix-issues": {
     "success": 2
    },
-   "pages build and deployment": {
-    "success": 32,
-    "cancelled": 4
-   },
    "drive-store": {
-    "success": 3
+    "success": 2
    },
    "short-thumb-check": {
-    "success": 3
+    "success": 2
    },
    "youtube-upload": {
-    "success": 4
+    "success": 2
    },
    "short-upload": {
-    "success": 3
+    "success": 2
    },
    "codex-frame-check": {
     "failure": 3,
@@ -803,10 +825,6 @@
    },
    "short-build": {
     "failure": 6
-   },
-   "indexnow": {
-    "success": 4,
-    "cancelled": 1
    },
    "official-images": {
     "success": 2
@@ -831,21 +849,6 @@
    },
    "fetch-media": {
     "success": 5
-   },
-   "factcheck-pages": {
-    "success": 1
-   },
-   "codex-research": {
-    "success": 1
-   },
-   "codex-write": {
-    "success": 1
-   },
-   "fetch-news": {
-    "success": 1
-   },
-   "metrics": {
-    "success": 1
    }
   }
  },
@@ -854,7 +857,7 @@
   "colab_units_left": 244.44,
   "runs_7d": {
    "narration": 2,
-   "codex-research": 1,
+   "codex-research": 2,
    "codex-images": 3,
    "longcat-colab": 1,
    "modal-avatar": 0,
