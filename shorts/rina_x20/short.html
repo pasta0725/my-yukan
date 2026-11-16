@@ -280,7 +280,7 @@ const S={
  who(u,d,L){bg(u);mini(u);const t2=telHas(L,'ジョナ');
    mixLine([['告知',C.text],['したのは？',C.acc]],CX,385,64);
    withEnter(enter(u,0),()=>{card(150,450,780,300);xLogo(290,600,150);text('Xで',640,545,40,C.sub,'center',800,440);text('スマホアプリの',640,610,48,C.text,'center',900,440);text('開発をまとめる人',640,675,48,C.text,'center',900,440);});
-   withEnter(enter(u,Math.min(1.0,Math.max(0.5,t2))),()=>{card(150,780,780,330,30,C.card2);figure(300,950,90,'stand','#FFFFFF');
+   withEnter(enter(u,Math.min(1.0,Math.max(0.5,t2))),()=>{card(150,780,780,330,30,C.card2);g.save();g.beginPath();g.arc(290,945,105,0,7);g.fillStyle='#2E3A55';g.fill();g.clip();g.fillStyle='#CDD8EC';g.beginPath();g.arc(290,915,42,0,7);g.fill();g.beginPath();g.ellipse(290,1030,80,62,0,0,7);g.fill();g.restore();
      text('ジョナ・カッツ',640,900,64,'#FFFFFF','center',900,480);text('モバイル開発リード',640,990,40,'#CDD8EC','center',800,480);});},
  official(u,d,L){bg(u);mini(u);const t2=telHas(L,'最大20件');
    mixLine([['X公式',C.brand],['も案内',C.text]],CX,385,64);
