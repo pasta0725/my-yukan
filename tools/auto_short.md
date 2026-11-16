@@ -61,6 +61,7 @@
 4. **文字のはみ出し**：short-build.yml が書き出しの前に自動で行う（手でなら、ショートのフォルダで `node ../_template/check_fit.js`）。カードやアイコンの枠から出た文字を OVERFLOW で全部出すので、0件になるまで直す（2026-11-13、「11/17」がカレンダーの絵からはみ出していたのを、コマの点検でも見逃した）。図形の中に置く文字は text(…, maxw) で幅の上限を渡し、自動で縮める。
 5. **長さと無音**：動画全体が60秒以内（目安55秒前後。"tail_logo": 0 の spec。古い作り方の spec では登場のあと話し終わりまで60秒以内）、0.6秒以上の無音が台本の切れ目以外にない（short-build.yml が自動で確かめる。tools/short_auto.py silence）。
 6. サムネの文字の誤字と、幅168pxに縮めても読めるか（2 の codex-frame-check.yml で一緒に見る）。
+7. **大きいりな（つかみ・締め）は必ず話す動画**（2026-11-16 ユーザー指示）：short-build.yml の「big presenter frames」に「大きいりなの話す動画がない」の LOOK が1つでも出たら投稿しない。その場面だけ longcat-colab.yml を wait=0（Modal だけ）で作り直し、short-build.yml をもう一度動かす（最大2回）。それでも作れなければ投稿せず、理由を通知する。立ち絵に口を描く代わりの方法で投稿しない。
 
 ## 4. 投稿と通知
 - short-upload.yml（2-2 の 4）を name・publish_at（例 2026-11-10T21:00:00+09:00）・comment・log で動かす（中で upload-tmp に置き、youtube-upload.yml を動かす）。予約公開の動画は非公開で上がり、21:00 に YouTube が公開する。公開の数分後に、サムネの入れ直しと固定コメントが自動で行われる。公開15分後に short-thumb-check.yml がショート一覧のサムネ（i.ytimg.com/vi/<ID>/sardefault.jpg）を入れた画像と比べ、違えば入れ直す（checks/<名前>/thumb.md が LOOK のときだけ thumb:<ID> で手で入れ直す）。コメントの固定は、毎日21:23の予定作業「星餓りな 固定コメントの固定」が内蔵ブラウザで行う（手順は tools/pin_comment.md）。
