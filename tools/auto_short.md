@@ -34,7 +34,7 @@
 - rina-shorts スキルの手順どおり（構成・吹き出し・声 Leda・息継ぎなし）。
 - **新しい作り方（2026-11-16 ユーザー決定、この日の次の自動ショートから）**：見本は shorts/rina_newfmt_trial（spec.json・short.html。公開しない試作）。
   - 「このニュース、{SEC}でまとめます」の行は書かない。その位置（つかみの次）に、続きを見る理由を具体的に言う一文（「答えは〜。しかも〜」「結論は〜」）。spec の sec・fixed_wav（channel/rina_intro/）も使わない。
-  - つかみの行（場面 hook）に "big": true。0秒は本物の画像＋大きいりなの顔＋特大テロップ（数値は shorts_rules.md 構成1）。
+  - つかみの行（場面 hook）に "big": true。0秒は大きいりなの顔＋特大テロップ（問い）の2つだけ。本物の画像は0.5〜1秒後に画面いっぱいで（2026-11-17。数値は shorts_rules.md 構成1）。
   - 最後は冒頭につながる一言で締め、spec に "tail_logo": 0（ロゴ画面なし、声が終わって0.15秒で終わる）。動画全体は55秒前後・最大60秒（超えると short_plan.py が終了コード4、"whole": true。台本を削る）。
   - longcat/jobs.json は hook と verdict の2つ（つかみは表情を変える言葉を入れる。例 "She leans slightly toward the camera with a curious, playful look, eyebrows raised, as if asking the viewer a riddle."）。
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
