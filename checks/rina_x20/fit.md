@@ -1,2 +1,2 @@
 RESULT: LOOK
-- LOOK 全体｜check_fit.js が止まった（1）｜Actions の画面｜-
+- LOOK 32.4秒｜はみ出し｜場面 twist｜「4枚まで」が枠から 8px 出ている
