@@ -329,6 +329,8 @@ const S={
    if(i){const w=860,h=w*i.height/i.width,sc=0.92+0.08*back(u/0.4);g.save();g.translate(CX,860);g.scale(sc,sc);g.drawImage(i,-w/2,-h/2,w,h);g.restore();}
    text('AI・ガジェット・家電のニュース',CX,1060,44,C.sub,'center',800);g.globalAlpha=1;},
 };
+const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
+const VF={};function vidImg(sc,k){const key=sc+k;if(key in VF)return Promise.resolve(VF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{VF[key]=i;r(i)};i.onerror=()=>{VF[key]=null;r(null)};i.src='vid/'+sc+'/'+String(k+1).padStart(4,'0')+'.jpg';});}
 const VIDN={};let VIDF=null;
 let BIGF=null;const VERDICT_CLIP=true;  // true once big/verdict holds the talking ending clip
 // each scene's picture is enlarged to fill the free area (x 70-1010, y 300-1270: inside YouTube's side crop, below its search icon, above the bubble),
