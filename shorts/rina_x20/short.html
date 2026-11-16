@@ -240,15 +240,15 @@ const S={
  hook(u,d,L){bg(u);mini(u);
    if(u<1.1){card(150,450,780,600);if(IMG.official)picC('official',150,450,780,600,'#FFFFFF');else xLogo(CX,740,300);rrect(150,450,780,600,30,null,C.bar);
      if(IMG.official){g.save();g.strokeStyle=C.warn;g.lineWidth=10;g.lineCap='round';g.beginPath();g.ellipse(CX,815,215,105,-0.03,0,Math.PI*2*clamp((u-0.15)/0.3));g.stroke();g.restore();creditAt('出典：X（Impress Watch掲載）',915,1025);}
-     if(u>0.5)stamp('何枚まで？',CX,560,(u-0.5)/0.25,C.warn,56,-0.05);
+     if(u>0.5)stamp('上限は？',CX,560,(u-0.5)/0.25,C.warn,56,-0.05);
    }else{card(150,450,780,600);xLogo(CX,560,130);
      const n=Math.min(20,4+Math.floor(Math.max(0,u-1.6)*14));grid(250,660,580,4,4,1.1,u,0.08);
      if(u>1.6){g.save();g.globalAlpha*=clamp((u-1.6)/0.3);rrect(250,800,580,190,24,'#EEF1F6');text('？',CX,895,120,C.acc,'center',900,300);g.restore();}
    }
    const z=1+0.05*Math.sin(Math.min(u,3)*Math.PI*2);g.save();g.translate(CX,1190);g.scale(z,z);g.translate(-CX,-1190);
    g.lineJoin='round';g.textAlign='center';g.textBaseline='middle';
-   g.font=`900 72px ${FONT}`;g.lineWidth=18;g.strokeStyle='#FFFFFF';g.strokeText('Xの画像、1回に',CX,1130);g.fillStyle=C.text;g.fillText('Xの画像、1回に',CX,1130);
-   g.font=`900 110px ${FONT}`;g.lineWidth=22;g.strokeText('何枚まで？',CX,1240);g.fillStyle=C.acc;g.fillText('何枚まで？',CX,1240);g.restore();},
+   g.font=`900 72px ${FONT}`;g.lineWidth=18;g.strokeStyle='#FFFFFF';g.strokeText('10年続いたXの上限',CX,1130);g.fillStyle=C.text;g.fillText('10年続いたXの上限',CX,1130);
+   g.font=`900 110px ${FONT}`;g.lineWidth=22;g.strokeText('何枚になった？',CX,1240);g.fillStyle=C.acc;g.fillText('何枚になった？',CX,1240);g.restore();},
  intro(u){bg(u);glow(CX,1000,600,C.brand,0.32);if(BIGF)abs(()=>g.drawImage(BIGF,-90,298,1260,2240));},
  what(u,d,L){bg(u);mini(u);const t2=telHas(L,'4枚から');
    mixLine([['X',C.brand],['の投稿の画像',C.text]],CX,385,64);
