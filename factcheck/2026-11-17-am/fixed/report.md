@@ -1,0 +1,55 @@
+# Codexの事実の点検：0本を採用（51本中）
+
+| 記事id | 結果 | 内容 |
+|---|---|---|
+| ai-gtig-autonomous-exploit | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-openai-csam-classifier | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-openai-embedded-evaluators | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-suneast-v90-sdxc | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-popn-happy30 | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-softbank-sumaho-debut2 | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-adobe-max-sneaks-2026 | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-final-fukubukuro-2027 | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-splatoon-raiders-artbook | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-boox-palma3 | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-iphone-duo-resale | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-old-iphone-ad-attack | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-marvell-lumentum | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-chargespot-tailor-model | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-stock-narekan-cad-search | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-amazon-talkbin-podcast | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-kept-kiera-correction-tape | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-makura-lattice-mini | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-yamaha-pas-with-2027 | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-harry-potter-magic-awakened-end | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-youtube-teen-mental-health | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-base-picking-list | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-razer-soma-pro | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-mercari-ai-dev | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-tapple-maintenance | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-youtube-music-latin-grammy | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-youtube-video-ab-testing | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-accenture-redesign-work | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-paypal-cross-border | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-after-icey | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-mercenaries-grace-ps5 | 未処理 | Codex wrote no out.json (timeout or error) |
+| game-ufc6-pride-expansion | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-geo-second-retailing | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-audible-audio-discovery | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-rakuten-q3-ec | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-shipping-fee-survey | 未処理 | Codex wrote no out.json (timeout or error) |
+| ec-yahoo-ai-delivery | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-llamacpp-v1 | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-diamond-foundry-200mm | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-google-ask-maps-itinerary | 未処理 | Codex wrote no out.json (timeout or error) |
+| future-tesla-cybercab-berlin | 未処理 | Codex wrote no out.json (timeout or error) |
+| future-zoox-uber-lasvegas | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-buffalo-qi2-plug-charger | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-libreoffice-26-8-3 | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-gallium-oxide-novel-crystal | 未処理 | Codex wrote no out.json (timeout or error) |
+| ai-google-ai-course-free | 未処理 | Codex wrote no out.json (timeout or error) |
+| gadget-km5-mp1-sp1-preorder | 未処理 | Codex wrote no out.json (timeout or error) |
+| mobile-zoom-windows-vuln | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-paypay-anthropic-stock | 未処理 | Codex wrote no out.json (timeout or error) |
+| other-yasukuni-shop-leak | 未処理 | Codex wrote no out.json (timeout or error) |
+| service-netflix-palace-of-secrets | 未処理 | Codex wrote no out.json (timeout or error) |
