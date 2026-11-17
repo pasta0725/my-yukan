@@ -1,0 +1,85 @@
+URL: https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/
+TITLE: NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab
+SITE: NVIDIA
+PUBLISHED: 2026-11-17 08:00 (page: 2026-11-16T23:00:05+00:00)
+OG_IMAGE: https://blogs.nvidia.com/wp-content/uploads/2026/11/nv-blog-1280x680-1.jpg
+IMAGES:
+
+TEXT:
+At SC26, an annual supercomputing conference taking place this week in Chicago, NVIDIA is introducing the DGX Spark HPC Developer Kit for researchers, academics and developers.
+The kit is a four-node cluster of
+NVIDIA DGX Spark systems
+, each connected directly to its two neighbors in a ring, with an NVIDIA HPC SDK installation playbook coming soon. Researchers get a place at their desk to run multi-node scientific workloads, AI models and agents, instead of waiting for time on a shared GPU cluster. The kit puts the GB10 Grace Blackwell Superchip on researchers’ desks.
+A Supercomputing Lab on Any Desk
+The DGX Spark Developer Kit changes how researchers work.
+Read All NVIDIA Announcements From SC26
+It scales from one system, or node, to four — linked directly to one another over NVIDIA ConnectX-7 networking, with no network switch to buy or set up.
+At four nodes, it provides 512GB of combined memory and 20TB of NVMe storage that provides researchers more capacity to distribute models and scientific workloads across the cluster. With NVFP4, researchers can deploy models with up to 700B parameters locally across the four DGX Spark clusters, such as DeepSeek V4.1.
+With that much power at the desk, researchers with a fixed compute and server allocation no longer have to wait in a queue for every job. Teams can develop and debug on their own, saving server hours for production runs and keeping unpublished results, and proprietary datasets on premises.
+The playbook for NVIDIA HPC SDK is coming soon, bringing GPU-accelerated C, C++ and Fortran compilers, libraries and message passing interface tools to the DGX Spark cluster — the same development tools used on NVIDIA-powered supercomputers. Teams can build and test scientific applications across four nodes, check how computation and data are distributed, and debug communication issues before scaling to larger systems.
+The kit brings scientific simulation and AI models and agents to the desktop, with demonstrated four-system workloads including LAMMPS with Kokkos for materials simulation and NAMD for molecular dynamics. The broader DGX Spark community has validated GROMACS for molecular dynamics, OpenFOAM for fluid dynamics, WRF for weather modeling and NVIDIA NIM microservices such as OpenFold3 and Boltz-2 for predicting biomolecular structures.
+Running on DGX Spark, new open dataset and post-training recipes for
+Nemotron 3.5 Super VL
+help researchers adapt the model for life sciences and chemistry, enabling secure scientific workflows on infrastructure organizations control.
+What Researchers Can Do With It
+The kit opens up new possibilities for researchers.
+Researchers can explore agent-assisted workflows that prepare simulation inputs, launch runs and summarize results, while the scientists validate the setup and conclusions.
+Researchers can also train AI models that approximate slow simulations, then use them to refine wing designs toward minimum drag.
+Before committing supercomputer time, a team can narrow a 10-million-cell simulation to the 50-500 dimensions that matter.
+Kvantify
+is using NVIDIA cuQuantum, and reports running tensor-network simulations of quantum-chemistry circuits with up to 70 qubits and 975 gates on a single DGX Spark, benchmarking circuits generated for penicillin ground-state energy calculations.
+CYRAN AI
+, an IIT Delhi spin-out, uses DGX Spark and its PixelFlux library to accelerate JPEG 2000 decoding for large satellite images, supporting local geospatial analysis.
+OpenFold
+shows how researchers can fine-tune OpenFold3 on NVIDIA DGX Spark to improve protein-ligand structure predictions for drug discovery.
+The
+Rubin Lab at IGI
+at University of California, Berkeley is using a DGX Spark and NVIDIA Evo 2 model to predict bacterial traits directly from genome sequences by comparing embeddings from genomic and protein language models against the classical baselines. With no 11-hour cluster queue times, results arrived 15x sooner on DGX Spark.
+The
+Hartwig Group at UC Berkeley
+is using a DGX Spark to perform LoRA fine-tuning on the Nemotron 3 Super 120B-A12B model for chemistry machine learning, training a prediction head on experimental values. By running locally on the Spark using NVFP4 quantization, the lab successfully fit a 120B-class model on a single device and bypassed multi-day cluster queue times, allowing them to run continuous eight- to 24-hour training fits back-to-back.
+Where to Find the Kit
+The developer kit is on display at SC26 and available for sale. DGX Spark products and cables can be purchased from top OEM partners and are also available through
+NVIDIA Marketplace
+.
+Partners include Acer, ASUS, Dell Technologies, GIGABYTE, H3C, HP, Lenovo, MSI and xFusion.
+An NVIDIA playbook for building and running the NVIDIA HPC SDK, a software development kit for scientific computing, is coming soon. Once available, it will give scientists and researchers a local platform to develop multi-node GPU applications, explore FP32 and mixed-precision algorithms and run molecular dynamics and materials simulations using LAMMPS with Kokkos before scaling to data center systems.
+Learn more about
+NVIDIA DGX Spark
+.
+Subscribe to the
+NVIDIA Local AI newsletter
+. Follow NVIDIA RTX Spark on
+X
+,
+Instagram
+,
+TikTok
+and
+Facebook
+.
+See
+notice
+regarding software product information.
+Read All NVIDIA Announcements From SC26
+Categories:
+AI
+Tags:
+Agentic AI
+Artificial Intelligence
+DGX Spark
+Local AI
+Open Source
+Related News
+AI
+NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab
+Nov 16, 2026
+Supercomputing
+CUDA at 20: How the Platform Transformed Scientific Computing
+Nov 16, 2026
+AI Infrastructure
+NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Engineering and Analytics
+Nov 16, 2026
+AI
+AI Day Seoul Brings Together Korea’s Industry Leaders, Startups and Developer Communities
+Nov 15, 2026

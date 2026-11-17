@@ -1,0 +1,60 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2156896.html
+TITLE: 「拡大鏡」がタッチパッドとタッチ操作に対応、タスクバーのプレビューをリスト形式に／「Windows 11 Insider Preview」でテスト開始
+SITE: 窓の杜
+PUBLISHED: 2026-11-17 11:05 (page: 2026-11-17T11:05:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2156/896/windows_insider.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/896/video1_l.gif | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/896/video2_l.gif | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/896/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/896/image2_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/896/image3_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/896/image4_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/896/image5_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B000R5IZ8W.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「拡大鏡」がタッチパッドとタッチ操作に対応、タスクバーのプレビューをリスト形式に
+「Windows 11 Insider Preview」でテスト開始
+樽井 秀人
+2026年11月17日 11:05
+タッチパッドのジェスチャーで「拡大鏡」を操作（米Microsoftのブログより）
+米Microsoftは11月16日（現地時間）、「Windows 11 Insider Preview」ビルドをアップデートした。今回はBetaとExperimentalチャネルの更新で、以下のビルドが展開中だ。
+Beta（26H2）
+：Build 26320.10003
+Experimental（26H2）
+：Build 26340.10013
+なお、Experimental/BetaチャネルからExperimental（Future Platforms）チャネルへの移動は現在、一時的にブロックされている。同社は早期の解決に取り組んでいるとのこと。
+「拡大鏡」がタッチパッドとタッチ操作に対応
+今回、Experimental（26H2）チャネルのハイライトとして案内されている機能の一つが「拡大鏡」アプリの改善だ。タッチパッドとタッチスクリーンのジェスチャーに対応し、マウスやキーボードを利用できないシーンでの操作性が大きく向上している。
+「拡大鏡」が起動中（［Windows］＋［+］キーで起動）であれば、以下のジェスチャーが利用できる。
+タッチパッド
+：3本指で上にスワイプするとズームイン、下にスワイプするとズームアウト。1本指で普段どおり操作すると、拡大表示がポインターに追従する。3本指でタップすると、100％と直前の倍率を切り替え
+タッチスクリーン
+：3本指でドラッグして画面を移動。3本指で1回タップし、もう一度タップして指を離さずに上へドラッグするとズームイン、下へドラッグするとズームアウト。3本指でダブルタップすると、100％と直前の倍率を切り替え
+タッチスクリーンのジェスチャーで「拡大鏡」を操作（米Microsoftのブログより）
+どちらのジェスチャーも既定で有効で、［アクセシビリティ］－［拡大鏡］設定ページで個別に無効化できる。
+また、「拡大鏡」のツールバーにはヘルプ（［?］）ボタンが追加された。サポート記事を開いたり、新機能を確認したり、「フィードバック Hub」でフィードバックを送ったりできる。
+ツールバーにヘルプボタンが追加された（画像は英語環境）
+タスクバーのプレビューをリスト形式に
+Windows 11ではタスクバーのアプリにマウスを重ねると開いているウィンドウのプレビューが表示されるが、これをリストスタイルにするオプションも導入される。オプションは［個人用設定］－［タスクバー］設定ページに用意される。
+［個人用設定］－［タスクバー］ページで、プレビューの表示形式を選択（画像は英語環境）
+リスト形式では、ウィンドウのタイトルが一覧表示される
+セキュリティ関連の改善
+FIDO2（Fast Identity Online 2）セキュリティキーに保存されているパスキーを表示し、キー全体をリセットせずに1つずつ削除できるようになった。管理者はPINの最小桁数、ユーザー確認の常時要求、エンタープライズ構成証明（enterprise attestation）といった企業向けの設定も構成できる。
+セキュリティキーに保存されたパスキーを個別に管理できる（画像は英語環境）
+また、管理されたデバイスの標準ユーザーが「BitLocker」のプリブートPINを設定できるようになった。これまでは管理者権限のないユーザーはTPM+PINの保護機能を追加できなかったが、「Microsoft Intune」などで既存の「BitLocker」ポリシーを構成すれば、PINが未設定のデバイスに通知が表示され、そこからPINを設定できる。
+標準ユーザーにプリブートPINの追加を求める通知（画像は英語環境）
+Experimental（Future Platforms）チャネルに導入された
+「Remote Lock」
+も、Experimental（26H2）チャネルで段階的に展開される。紛失・盗難にあったデバイスや侵害されたデバイスを、IT管理者が「Microsoft Intune」からデータを消去せずに遠隔ロックできる。
+そのほかにも、Experimental（26H2）チャネルでは以下の変更が加えられている。
+開発者がサポート対象のデバイスで「Microsoft Pluton」セキュリティプロセッサーを利用できる「Microsoft Pluton Cryptographic Provider」をプレビュー提供。標準のWindows CNG APIを通じて、ハードウェアで保護された暗号鍵の保管・操作が可能
+［設定］アプリで「Microsoft アカウント」からローカルアカウントへ切り替える際、データ損失を防ぐため、「BitLocker」回復キーのバックアップをかならず促すように
+なお、2025年4月に発表された
+UWPの「Map」コントロールと「Windows Maps platform API」の非推奨化
+に伴い、オフラインマップ機能と関連する画面が［設定］アプリから削除される点には注意したい。
+Amazonで購入
+「Windows」関連商品
+Amazonで購入

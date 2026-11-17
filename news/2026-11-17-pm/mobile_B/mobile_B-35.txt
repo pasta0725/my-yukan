@@ -1,0 +1,58 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2156759.html
+TITLE: 誕生から約3年半、ローカルAIの推論エンジン「llama.cpp」がv1.0.0に／テンソルライブラリ「ggml」も同時にメジャーアップデート、今後はセマンティックバージョニングを採用
+SITE: 窓の杜
+PUBLISHED: 2026-11-16 17:32 (page: 2026-11-16T17:32:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2156/759/image_top.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2156/759/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2148/850/list.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0H81D27N1.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+誕生から約3年半、ローカルAIの推論エンジン「llama.cpp」がv1.0.0に
+テンソルライブラリ「ggml」も同時にメジャーアップデート、今後はセマンティックバージョニングを採用
+樽井 秀人
+2026年11月16日 17:32
+Hugging Faceの公式ブログ
+大規模言語モデル（LLM）の推論エンジン「llama.cpp」が11月13日、v1.0.0へとアップデートされた。機械学習向けのテンソルライブラリ「ggml」も、同日付けでv1.0.0がリリースされている。
+「llama.cpp」は、C/C++で実装されたオープンソースのLLM推論エンジン。量子化や最適化されたバックエンドにより、一般的なPCからハイエンドのサーバーまで、幅広いハードウェアでマルチモーダルなLLMを動作させられる。現在は150以上のアーキテクチャーのバリエーションに対応しており、ローカルAIを支える基盤として、多くのアプリケーションがこのプロジェクトを利用している。
+関連記事
+システム・ファイル
+ハードウェア
+Windows
+NVIDIA RTX Sparkの登場に合わせてWindows MLがllama.cppに対応！ GGUFモデルが使いやすくなる？
+今後はAPIの非互換をメジャーバージョンで明示
+2023年3月の誕生から約3年半、プロジェクトは大きく成長し、ライブラリのインターフェイスに依存する開発者も増えた。v1.0.0のリリースは、そうした開発者に対する責任を示すものだという。
+今後、「llama.cpp」と「ggml」はAPI/ABIの互換性が失われる変更をメジャーバージョンの更新で示し、それ以外は以下のルールに従ってバージョンを更新する（セマンティックバージョニング）。
+メジャー
+：公開C API（./include）の破壊的な変更
+マイナー
+：後方互換性のある機能追加、バックエンドの更新、モデルのサポート、APIの追加
+パッチ
+：APIの変更を伴わないバグ修正
+Windows向けには、GitHubのビルド済みバイナリのほか、「conda-forge」や「WinGet」といった配布チャネルも用意されている。ただし、
+公式の配布方針
+によると「WinGet」は正式版ではなく、ナイトリービルドが提供される。
+v1.0.0のおもな変更点
+v1.0.0では非推奨となっていた公開APIが削除されたため、既存のコードがそのままではビルドできなくなる可能性がある。そのほか、以下のような変更が加えられている。
+FP8形式のKVキャッシュに対応
+MoEモデルのエキスパートをホストメモリにキャッシュする機能を追加
+テキストモデル「Kimi-K3.1-Pro」「Ripple」「xing4_0」、音声合成モデル「drama-3」、画像認識モデル「MageVL-Cowork」「Kimi-K3.1」に対応
+「llama-server」のセキュリティを強化（SSRF、CORS、DNSリバインディングへの対策など）
+音声合成用のOpenAI互換エンドポイント「/v1/audio/speech」を追加
+Web UIを刷新。チャットを名前付きのグループにまとめたり、Markdownをライブプレビューしながら入力したりできるように
+「ggml」v1.0.0でも非推奨APIの削除やFP8のサポートが行われたほか、CUDA/Metal、Vulkan、SYCL、OpenCL、WebGPUといった各バックエンドでパフォーマンスの改善が図られている。
+Amazonで購入
+「llama.cpp」関連商品
+Amazonで購入
+ソフトウェア情報
+「llama.cpp」
+【著作権者】
+The ggml authors
+【対応OS】
+Windows/macOS/Linuxなど
+【ソフト種別】
+フリーソフト
+【バージョン】
+1.0.0（26/11/13）
