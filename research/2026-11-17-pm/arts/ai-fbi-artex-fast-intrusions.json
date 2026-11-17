@@ -1,0 +1,169 @@
+{
+ "id": "ai-fbi-artex-fast-intrusions",
+ "category": "ai",
+ "title": "FBI、AI攻撃ツールは3時間未満で侵入と警告",
+ "summary": "弱い認証や残った接続権限をAIが突き、人の対応が追いつく前に被害が広がっています。",
+ "image": {
+  "src": "https://techcrunch.com/wp-content/uploads/2026/02/china-hacker-computer-flag.jpg?resize=1200,675",
+  "kind": "ogp",
+  "credit": "TechCrunch",
+  "page": "https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "AIと不正侵入"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "FBIがAI攻撃ツールArtexの悪用を警告し、3時間未満の侵入例を示しました。",
+    "韓国や米企業の顧客に被害があり、日本の金融機関への攻撃も報じられています。",
+    "多要素認証の不足や、取引終了後に残った認証情報が侵入につながっています。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "FBIがAI攻撃ツール「Artex」の悪用を警告したと、TechCrunchが11月16日に報じました。金融機関や企業の顧客にも被害が及んでいます。"
+  },
+  {
+   "type": "h",
+   "text": "弱い防御をAIが素早く探す"
+  },
+  {
+   "type": "p",
+   "text": "Artexは、ネットワークの守りを点検するためのソフトです。文章を扱うAIにつないで使います。攻撃者はこれを悪用し、弱い認証や漏れたパスワードを手掛かりに侵入しています。"
+  },
+  {
+   "type": "p",
+   "text": "FBIによると、標的を狙い始めてから3時間未満で強い操作権限を得る例があります。侵入後は、別の機器やデータベースへ攻撃を広げます。大量の通信で警報が出ても、人の対応が追いつきにくい速さです。"
+  },
+  {
+   "type": "p",
+   "text": "攻撃者が目標を文章で与えると、ArtexはAIが動くための指示に変えます。詳しい技術を知らなくても、複数の組織を同時に狙えます。FBIは、政府機関や医療機関も攻撃対象に挙げています。"
+  },
+  {
+   "type": "p",
+   "text": "取引先向けのサイトや古いサービスなど、手入れが行き届かない場所も狙われます。FBIは、管理用の操作画面に接続できる相手を制限するよう勧めています。アプリに与えた権限やログインの記録を見直す対策も挙げました。"
+  },
+  {
+   "type": "h",
+   "text": "韓国と米顧客、日本への攻撃"
+  },
+  {
+   "type": "p",
+   "text": "韓国で個人情報が盗まれた人数には、報道によって違いがあります。TechCrunchは少なくとも6万8000人と報じました。BleepingComputerとThe Registerでは、約6万7000人です。"
+  },
+  {
+   "type": "p",
+   "text": "FBIは、韓国の金融機関で多要素認証などの防御が足りなかった点を挙げました。多要素認証は、パスワード以外の確認も組み合わせる方式です。"
+  },
+  {
+   "type": "p",
+   "text": "米IT管理会社ConnectWiseへの侵入でも、Artexが使われました。FBIは、Microsoftが先に公表した被害を確認しています。攻撃者はバックアップ用アプリの認証情報を奪いました。顧客がアプリに与えていた権限を悪用した攻撃です。"
+  },
+  {
+   "type": "p",
+   "text": "TechCrunchは、少なくとも2250の顧客のMicrosoft 365環境へのアクセスを報じました。BleepingComputerの報道では、2250超はログインを試みた環境の数です。The Registerは、2250超の環境で侵入被害があったと報じました。"
+  },
+  {
+   "type": "p",
+   "text": "The Recordは、日本の金融機関も攻撃対象になったと報じました。日本での被害人数や対象者は、まだ明らかになっていません。"
+  },
+  {
+   "type": "h",
+   "text": "使い終えた認証情報も侵入口"
+  },
+  {
+   "type": "p",
+   "text": "セキュリティー会社Barracudaも関連攻撃を受けました。契約が終わった外部業者の認証情報を無効にせず、残していたためです。攻撃者はそこから、顧客システムにつなぐための認証情報に届きました。"
+  },
+  {
+   "type": "p",
+   "text": "Barracudaは記録が十分でなく、不正アクセスを否定できませんでした。被害があった前提で顧客の認証情報を変更しました。同社は一部顧客に、連携用の認証情報を作り直すよう直接通知しています。"
+  },
+  {
+   "type": "h",
+   "text": "公開をやめても旧版は流通"
+  },
+  {
+   "type": "p",
+   "text": "開発元は悪用を受け、Artexのプログラムを非公開に変えました。それでもFBIは、以前の公開版や改変版が広く出回っていると警告しています。商用版のARTEX PROもあり、公開停止だけでは攻撃者の利用を止められていません。"
+  },
+  {
+   "type": "p",
+   "text": "BleepingComputerとThe Recordは、公開された操作画面を1600超と報じました。The Registerは、11月4日時点で公開状態の機器が1465台あったと報じました。いずれもインターネットから見えるものの数です。FBIは、外部から見えない環境を含む利用数はもっと多いとみています。"
+  },
+  {
+   "type": "p",
+   "text": "Artexの料金は不明です。日本での提供や日本語対応は発表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "盗んだ認証情報で攻撃が続く"
+  },
+  {
+   "type": "p",
+   "text": "Amazonも、Artexを悪用した攻撃の調査結果を公表しました。1つは、AIを使うための認証情報を盗む攻撃です。盗んだ情報でAIを動かし、次の認証情報を探していました。AIの利用費を負担せずに、攻撃を続ける仕組みです。"
+  },
+  {
+   "type": "p",
+   "text": "もう1つは、偽の顔動画や身分証の画像で本人確認をすり抜けようとする攻撃です。対象は暗号資産の取引所でした。The Registerは、ある確認サービスが偽動画による試みをすべて拒否したと伝えています。"
+  },
+  {
+   "type": "p",
+   "text": "Amazonは、初期設定のパスワードなどが残る場所で攻撃が成功したと説明しました。修正されていないソフトも侵入口になりました。基本的な防御の不足を、AIが素早く突いた形です。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "3時間未満",
+     "label": "狙い始めてから侵入まで"
+    },
+    {
+     "value": "6万8000人以上",
+     "label": "韓国の流出人数（TechCrunch）"
+    },
+    {
+     "value": "2250顧客以上",
+     "label": "アクセス先（TechCrunch）"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "企業の管理担当者は、今回の警告を受けて多要素認証がない接続先を点検してください。",
+    "外部委託を管理する人は、契約終了時に無効にすべき認証情報が残っていないか確認してください。",
+    "Barracudaから通知を受けた顧客は、通知の案内に沿って連携用の認証情報を作り直してください。",
+    "Artexに関わる不審な動きを把握した組織は、FBIかネット犯罪の通報窓口IC3に報告してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "攻撃にAIを使っていても、入口には弱い認証や古い権限が残っています。異常を見てから対応する速さだけでなく、使わない入口を減らせているかが判断の軸になります。"
+  }
+ ],
+ "source_name": "TechCrunch",
+ "source_url": "https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/",
+ "published": "2026-11-17",
+ "refs": [
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/"
+  },
+  {
+   "name": "BleepingComputer",
+   "url": "https://www.bleepingcomputer.com/news/security/fbi-warns-artex-ai-hacking-tool-is-powering-global-cyberattacks/"
+  },
+  {
+   "name": "The Record",
+   "url": "https://therecord.media/artex-ai-tool-fbi-flash-alert"
+  },
+  {
+   "name": "The Register",
+   "url": "https://www.theregister.com/cyber-crime/2026/11/16/attackers-are-using-ai-agents-to-automate-cybercrime-at-industrial-scale-fbi-and-aws-warn/5310223"
+  }
+ ]
+}

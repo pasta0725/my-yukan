@@ -1,0 +1,136 @@
+{
+ "id": "ai-nvidia-rubin-hpc-2028",
+ "category": "ai",
+ "title": "NVIDIA、研究用GPUを2028年に提供へ",
+ "summary": "AIが考えた材料や分子の候補を、計算で確かめる過程を速める設計です。",
+ "image": {
+  "src": "https://blogs.nvidia.com/wp-content/uploads/2026/11/hpc-blog-rubin-hpc-gpu-1920x1080-5957124-1.jpg",
+  "kind": "press",
+  "credit": "NVIDIA",
+  "page": "https://blogs.nvidia.com/blog/rubin-hpc/"
+ },
+ "visual": {
+  "icon": "chip",
+  "kicker": "AIの模擬実験"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "NVIDIAが、科学計算向けの新GPU「Rubin HPC」を発表しました。",
+    "1基に5万超の計算用コアを備え、2028年の提供を予定しています。",
+    "AIが研究の候補を考え、計算で確かめて修正する作業を支えます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "NVIDIAは11月16日、研究用GPU「Rubin HPC」を発表しました。会議SC26で披露し、2028年の提供を予定しています。"
+  },
+  {
+   "type": "h",
+   "text": "AIの研究候補を計算で検証"
+  },
+  {
+   "type": "p",
+   "text": "Rubin HPCは、NVIDIAのVera Rubin基盤に加わる新しいGPUです。GPUは、多数の計算を同時に進める半導体です。科学や工学の模擬実験と、データ処理を速めるために設計しました。AIの学習や回答生成よりも、幅広い科学計算を重視した製品です。"
+  },
+  {
+   "type": "p",
+   "text": "AIが材料や分子の候補を考えても、その性質を確かめる計算が必要です。AIが自ら道具を使って作業する仕組みを、AIエージェントと呼びます。Rubin HPCは、こうしたAIが使う模擬実験を支えます。"
+  },
+  {
+   "type": "h",
+   "text": "計算とデータ移動を強化"
+  },
+  {
+   "type": "p",
+   "text": "1基に載せるCUDAコアは5万個を超えます。CUDAコアは、計算を分担する小さな処理部分です。NVIDIAは、同社GPUで最多の搭載数になると説明しました。Tom's Hardwareは、従来のRubinのコア数を2万8672個と報じました。"
+  },
+  {
+   "type": "p",
+   "text": "計算部分を増やすだけでなく、必要なデータを送り続ける設計にします。大きなデータの中に散らばる値を取り出す処理も速めます。計算部分がデータ待ちで止まる時間を減らす狙いです。"
+  },
+  {
+   "type": "h",
+   "text": "GPU同士の通信も強化する"
+  },
+  {
+   "type": "p",
+   "text": "複数のGPU間の通信には、第7世代のNVLinkを使います。NVLinkはGPU同士を高速につなぐ技術です。従来のRubinは第6世代を採用していました。NVIDIAの計算用ソフト群「CUDA-X」と組み合わせて使います。"
+  },
+  {
+   "type": "p",
+   "text": "想定する用途には、気候や金融リスクの計算があります。遺伝子の情報を調べる研究も対象です。AIが仮説を立て、模擬実験の結果から次の候補を選ぶ流れを速めます。研究者が実験室で確かめる候補を絞る用途につながります。"
+  },
+  {
+   "type": "h",
+   "text": "2028年提供へ残る未公表事項"
+  },
+  {
+   "type": "p",
+   "text": "発表は、スーパーコンピューターの会議SC26で行いました。提供予定は2028年です。具体的な発売日や価格、前の世代に対する処理速度の比較値は示していません。"
+  },
+  {
+   "type": "p",
+   "text": "各社によると、メモリーの容量やデータを送る速さは未公表です。消費電力や、搭載するシステムの詳細も明らかにしていません。高い精度が必要な計算での処理性能も、まだわかっていません。"
+  },
+  {
+   "type": "p",
+   "text": "日本での提供や日本語対応は発表されていません。今回示した仕様は、研究や設計で使う計算を対象としています。ゲームの描画性能に関する数値は公表していません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "2028年",
+     "label": "提供予定"
+    },
+    {
+     "value": "5万個超",
+     "label": "1基のCUDAコア"
+    },
+    {
+     "value": "第7世代",
+     "label": "GPU間の接続技術"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "研究用GPUの導入を考える人は、2028年の提供に向けて発売日と価格の発表を確認してください。",
+    "科学計算の担当者は、導入前に必要なソフトと処理速度の比較値を確認してください。",
+    "一般のAI利用者は、今のところ特にすることはありません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "AIが答えを提案するだけでなく、計算で確かめる道具も使う流れを支える製品です。研究の速さを判断するには、コア数だけでなく実際の模擬実験にかかる時間も必要です。"
+  }
+ ],
+ "source_name": "NVIDIA",
+ "source_url": "https://blogs.nvidia.com/blog/rubin-hpc/",
+ "published": "2026-11-17",
+ "refs": [
+  {
+   "name": "NVIDIA",
+   "url": "https://blogs.nvidia.com/blog/rubin-hpc/"
+  },
+  {
+   "name": "PC Watch",
+   "url": "https://pc.watch.impress.co.jp/docs/news/2156918.html"
+  },
+  {
+   "name": "VideoCardz",
+   "url": "https://videocardz.com/newz/nvidia-announces-rubin-hpc-gpu-with-over-50000-cuda-cores-and-nvlink-7-launching-in-2028"
+  },
+  {
+   "name": "Tom’s Hardware",
+   "url": "https://www.tomshardware.com/pc-components/gpus/nvidia-announces-rubin-hpc-gpu-with-record-number-of-cuda-cores-at-supercomputing-2026-new-chip-accelerates-agentic-hpc-workloads-arrives-in-2028"
+  },
+  {
+   "name": "Notebookcheck",
+   "url": "https://www.notebookcheck.net/Nvidia-unveils-Rubin-HPC-GPU-with-nearly-2-5x-RTX-5090-s-CUDA-cores-coming-in-2028.1451701.0.html"
+  }
+ ]
+}
