@@ -311,8 +311,8 @@ const S={
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('高度なAI',CX,1040,1,C.brand,64);},10);},
  photo(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'画像')),d-0.8);
    heading([['対象',C.acc],['の例',C.text]]);
-   withEnter(enter(u,0),()=>{ipic('tools',150,450,780,560,28,1.5+0.08*u/Math.max(1,d),0.38,0.62);creditAt('写真：ゴリミー',915,985);});
-   redRing(330,690,120,95,(u-0.3)/0.35);
+   withEnter(enter(u,0),()=>{ipic('tools',150,450,780,520,28,1);creditAt('写真：ゴリミー',915,945);});
+   redRing(444,637,75,62,(u-0.3)/0.35);
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{card(150,1050,780,200);g.save();g.translate(300,1150);for(let i=0;i<5;i++){g.rotate(Math.PI*2/5);g.fillStyle=C.acc;g.fillRect(-7,-80,14,44);}g.restore();text('画像の生成',640,1150,56,C.text,'center',900,420);},16);},
  complex(u,d,L){bg(u);mini(u);
    heading([['複雑な',C.acc],['依頼',C.text]]);
