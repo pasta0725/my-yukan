@@ -1,0 +1,507 @@
+===== https://www.itmedia.co.jp/news/article/2611/17/2000003245/
+(status 200)
+Share
+印刷する
+「Microsoft 365」大規模障害、7月の修正で混入した不具合が原因　負荷増と容量減が重なり世界に波及
+公開
+2026年11月17日 07時05分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+　米Microsoftは11月15日（現地時間）、
+12日に発生したMicrosoft 365の大規模障害
+について、暫定的なインシデントレポートを公表した。7月に適用した修正に潜んでいた不具合が、サーバの負荷増加と処理能力の低下によって表面化し、障害が世界規模に連鎖したという。
+　Copilot、AIエージェント、プラットフォーム担当エグゼクティブバイスプレジデント（EVP）のチャールズ・ラマンナ氏が15日、Xに報告の要約を投稿した。詳細はMicrosoft 365管理センターで管理者向けに公開している。同氏は顧客への影響について謝罪した。
+ 公式Xでの謝罪（Grok翻訳）
+　今回の障害は、Microsoft 365の各サービスへの通信を中継する「ネットワークゲートウェイ」で発生した。同社は原因として3つの要因を挙げている。
+　1つ目は、特定の負荷条件下でサーバが応答しなくなる潜在的な不具合だ。内部処理で複数の処理が同じ資源を取り合う「ロック競合」が原因で、7月に展開を始めたゲートウェイ専用の修正によって混入した。この更新プログラムは数週間かけて全世界に展開されたが、3カ月以上にわたって不具合は顕在化していなかった。
+　事前の負荷テストで不具合を検出できなかったのは、テスト環境と実際の運用環境で通信の特性やハードウェア構成が異なっていたためだ。不具合はCPUコア数の多い新しいサーバほど発生しやすかったが、負荷テストはコア数の少ない旧型のサーバを中心に実施していたという。なお、この不具合はMicrosoft 365のゲートウェイ固有のもので、Windows全般には影響しないとしている。
+　2つ目は負荷の増加だ。Microsoft 365は可用性を高めるため、独立した2つのネットワークゲートウェイシステムを運用している。障害発生の約15時間前、Teamsの通信が一方のゲートウェイから、Exchange Onlineも利用する主要ゲートウェイに切り替わった。これにより負荷が増え、通信のパターンも変化した。こうした切り替え自体は通常の運用の一部だという。
+　3つ目はサーバ容量の減少だ。前日に発生した別の問題によって、ゲートウェイのサーバ容量の約14％が利用できない状態だった。ただし、処理能力には余裕があり、この問題だけでは障害は発生していなかった。
+　これらの要因が重なり、米国の通信量がピークを迎える時間帯に7月から潜んでいた不具合が表面化した。リクエストが滞留してサーバが応答しなくなると、通常の自動復旧機能によって通信が他の正常なサーバに振り分けられた。しかし、振り分け先にも負荷が集中し、同じ不具合が発生。障害が連鎖的に拡大し、2時間足らずでサーバの80％以上が応答しなくなった。
+　本来、ゲートウェイには障害が他の区画や地域に広がるのを防ぐ仕組みがあるが、別の問題によって機能せず、影響が世界規模に及んだという。
+　Teams、OneDrive、SharePoint、Officeアプリなどは障害のあるゲートウェイを迂回できたため、比較的早く復旧した。Teamsのチャットや会議は障害期間の大半で正常に利用できたという。一方、Exchange Onlineなどは迂回できず、復旧に時間がかかった。
+　復旧作業が難航したのは、サーバを再稼働させても、滞留していた大量の通信が集中して再び応答しなくなったためだ。通常の自動復旧機能は、これほど大規模な障害を想定していなかった。また、不具合の原因となった修正が数カ月前に適用されたものだったため、通常のロールバック手順では即座に元の状態へ戻せなかった。
+　同社は問題のあるコードを以前の正常な状態に戻す更新を開発。サーバをグループ単位でいったん切り離し、更新と再起動を行ってから段階的にサービスに戻すことで復旧を進めた。
+　Microsoftは、さらに詳しい経緯をまとめた最終的なインシデントレポートを今週中に公開する予定としている。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+X投稿
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+関連記事
+金曜に起きた「Outlook使えない」問題、土曜午後に復旧……「Microsoft 365」障害、約36時間続く
+MS障害、政府共通システムにも影響　デジタル相「朝、なんで使えないんだろうと思ったら」
+Microsoft 365で大規模障害　「Outlook」でメールにアクセスできず、「Teams」など複数サービスに影響
+Microsoft、約6万人対象の希望退職制度を発表　巨額のAI投資で経費抑制か
+Special
+PR
+こんなメディアも見られています
+        ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+ケンタッキー、一部メニュー画像に生成AI　実験販売の商品など　SNSは「違和感」の声も
+Special
+PR
+本日の新着記事
+米商務省、中国企業による第三国データセンター経由のAIチップ“遠隔利用”を規制へ
+モリサワや「mineo」など会員情報漏えい　マーケツール「KARTE」不正アクセス、外部サービス連携用シークレットキーなども
+AIに打ち明けた相談は“広告トラッカー”に筒抜け？　ChatGPT、Claude、Gemini含む42サービスを米大が調査
+OpenAI、児童性的虐待コンテンツ（CSAM）検出ツールを公開　ChatGPTで探すと24時間アカウント停止の警告も
+スパコン「富岳」不正アクセスで運用停止　研究データや外部接続用SSH鍵など流出の可能性　他システムへの接続試行も確認
+アクセスランキング
+1
+パスワードより安全なはずが……パスキー対応103サイトを検証→全てに脆弱性　独大学の調査結果
+2
+「Microsoft 365」大規模障害、7月の修正で混入した不具合が原因　負荷増と容量減が重なり世界に波及
+3
+スパコン「富岳」に不正アクセス　理研が明らかに
+4
+Google、人間の関与なしに脆弱性を見つけて悪用するAIフレームワークを初めて観測　GTIGのAI脅威レポート
+5
+OpenAIをカリフォルニア州が提訴　「AIエージェントの制御を80回以上失った」
+6
+ジェンスン・フアン氏退任は「NVIDIAバブル崩壊」の序章か？　どうなる今後の半導体業界
+7
+秋葉原スマートごみ箱、不法投棄を見越し“防犯カメラのある場所”に設置していた　千代田区に聞いた運用の実際
+8
+ドコモ「5G SA」今月3度目の障害、約6時間で復旧　原因は同じ「交換機への通信集中」
+9
+マッチングアプリ「タップル」緊急メンテで停止　「待ち合わせしてるのに連絡取れない」ユーザー困惑
+10
+エンジニア転職のpaiza、最大90万件の個人情報漏えいのおそれ　退職者などアクセス可能な状態、約13年続く
+ もっと見る 
+    ITmedia NEWS SNS
+ITmedia News
+ Tweets by itmedia_news 
+        @itmedia_newsをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
+
+===== https://japan.cnet.com/article/35254971/
+(status 200)
+Continue to CNET Japan
+新着
+カテゴリ
+AI
+モビリティ
+働き方
+フード
+ヘルスケア
+金融
+地域創生
+不動産
+宇宙
+製品・サービス
+アップルセンター
+深掘り
+解説
+インタビュー
+特集・連載
+音声コンテンツ
+Newsletter登録
+企業情報センター
+プレスリリース
+イベント情報
+関連サイト
+                    4X
+ZDNET Japan
+Tetsudo.com
+朝日新聞
+CNET各国版
+United States
+France
+Germany
+Korea
+新着記事
+人気記事
+カテゴリ
+AI
+モビリティ
+働き方
+フード
+ヘルスケア
+金融
+地域創生
+不動産
+宇宙
+製品・サービス
+アップルセンター
+深掘り
+解説
+インタビュー
+特集・連載
+音声コンテンツ
+4X ID
+ログイン
+新規登録
+FAQ
+Myページ
+ログアウト
+FAQ
+新着
+カテゴリ
+AI
+モビリティ
+働き方
+フード
+ヘルスケア
+金融
+地域創生
+不動産
+宇宙
+製品・サービス
+アップルセンター
+深掘り
+解説
+インタビュー
+特集・連載
+音声コンテンツ
+Newsletter登録
+企業情報センター
+プレスリリース
+イベント情報
+関連サイト
+4X
+ZDNET Japan
+Tetsudo.com
+朝日新聞
+CNET各国版
+United States
+France
+Germany
+Korea
+ログイン
+新規登録
+FAQ
+Myページ
+ログアウト
+FAQ
+新着
+人気
+カテゴリ
+AI
+モビリティ
+働き方
+フード
+ヘルスケア
+金融
+地域創生
+不動産
+宇宙
+製品・サービス
+アップルセンター
+深掘り
+解説
+インタビュー
+特集・連載
+音声
+CNET Japan
+>
+ニュース
+>
+製品・サービス
+Microsoft 365大規模障害、Outlookだけ復旧が遅れた理由とは　同社説明
+            CNET Japan Staff
+2026年11月17日 09時05分
+ポスト
+一覧
+note
+テキスト
+HTML
+電子書籍
+PDF
+テキスト
+電子書籍
+PDF
+　Microsoftは、11月12日に発生した「Microsoft 365」の大規模障害について、7月に展開を始めた更新に潜んでいた不具合に、通信負荷の増加とサーバ容量の減少が重なり、障害が連鎖的に拡大したと
+説明した
+。一時はネットワークゲートウェイのサーバの8割超が応答不能となり、通常の自動復旧でも回復できなかったという。
+    Microsoft 365のロゴ（画像：Microsoft）
+    出典：
+公式資料
+    ※クリックすると拡大画像が見られます
+　同社幹部のCharles Lamanna氏が11月16日、暫定的な原因分析をXで公開した。障害が発生したのは、複数のMicrosoft 365サービスへの接続を中継する「ネットワークゲートウェイ」。同氏は、3つの要因が重なったと説明している。
+3つの要因が重なり、サーバが次々に応答不能に
+　1つ目は、7月に展開を始めたゲートウェイ専用の修正プログラムに潜んでいた不具合だ。特定の負荷がかかると内部処理が競合し、サーバが過負荷で応答しなくなる。修正プログラムは数週間かけて世界中に展開されたが、その後3カ月以上は問題が表面化しなかった。
+　事前の負荷試験では、CPUのコア数が比較的少ない低性能な機器を主に使用していた。しかし、実際にはコア数が多い新しい機器ほど不具合が起きやすかった。試験時の通信パターンも実際の運用環境とは異なり、問題を発見できなかったという。なお、今回の不具合や修正は、一般のWindows環境には関係しないとしている。
+　2つ目は、通信負荷の増加だ。障害発生の約15時間前、Teamsの通信が別系統のゲートウェイから、Exchange Onlineも利用する主要なゲートウェイに切り替わった。これにより通信負荷が増え、通信パターンも変化した。この切り替え自体は、サービスの継続性を確保するための通常の運用だったという。
+　3つ目は、サーバ容量の減少だ。前日に発生した別の問題により、ゲートウェイのサーバ容量の約14％が利用できない状態になっていた。容量の減少だけなら問題はなかったが、通信負荷の増加と重なったことで、7月から潜んでいた不具合が表面化した。
+　一部のサーバが応答しなくなると、システムは通信を残りの正常なサーバに振り分けた。しかし、それによって負荷が集中し、残るサーバも次々に応答不能となった。障害は2時間足らずでゲートウェイ基盤全体に広がり、最も深刻な時点ではサーバの80％超が応答しなくなったという。
+　本来は、基盤を複数の区画に分け、障害の波及を防ぐ仕組みがある。しかし、別の問題によってこの仕組みが機能せず、障害が世界中に広がるのを防げなかったとしている。
+再起動しても通信が集中、復旧が長期化
+　復旧も難航した。サーバを再起動しても、滞留していた通信が一斉に集中し、再び応答不能になったためだ。通常の自動復旧では対応できず、原因となった更新も数カ月前のものだったことから、直前の変更を取り消す通常の切り戻しでは元に戻せなかった。
+　Microsoftは、問題のある処理を以前の正常な状態に戻す更新を作成。サーバをまとまった単位でいったんサービスから切り離し、更新の適用と再起動を行った上で、順次サービスに戻した。
+　Teams、OneDrive、SharePointなどは別系統のゲートウェイに切り替えることで影響を抑えられた。一方、Exchange Onlineでは同様の切り替えができず、メールサービスの復旧に時間がかかった。
+　Microsoftは、最終的な事後検証報告で、さらに詳しい経緯を明らかにする予定としている。
+Amazonで現在開催中のセールを見る
+Amazonのアソシエイトとして、CNET Japanは適格販売により収入を得ています
+CNET Japanの記事を毎朝メールでまとめ読み（無料）
+      メールマガジン購読のお申し込み
+あなたにおすすめの記事
+なぜPayPayは他のスマホ決済を圧倒できたのか--「やり方はADSLの時と同じ」とは
+「ストリートビュー」が捉えたクレイジーすぎる光景38連発
+性能の割に安いUSB充電器の動作が怪しいので分解したら「謎の塊」が入っていた話
+絶対に迷わずにiPhoneの電源を切る（シャットダウンする）方法
+AIが通訳するから英語学習は今後「オワコン」？--スピークバディCEOの見方は
+「ビットコイン」に資産性はあるのか--積立サービスを始めたメルカリ、担当CEOに聞いた
+記事一覧
+製品・サービス
+-PR-
+企画広告
+AIで議事録作成はラクになった
+営業AIの鍵はデータの質
+録音したら、あとはおまかせ！
+構図は、撮ってから決める
+企画広告一覧
+ZDNET Japan 注目ヘッドライン
+          MAで小さい企業が変化をリードできるように--HubSpotのハリガンCEO
+          ドイツ・ミュンヘン市が再びオープンソースに移行--「Linux」デスクトップを含まず
+          「完璧過ぎて、うり二つ」-- AIで磨き上げられた履歴書が採用担当者の新たな悩みの種に
+          週末にスマートホームをオープンソース化--Googleから「Siri」へ乗り換えた話
+          「Android」、アプリの「バブル」化機能を導入--アプリへのアクセスが容易に
+編集部おすすめの記事
+【独占】生成AI勃興でリストラ敢行　巨額調達ダイニーが人材削減に踏み切った理由
+【独占】みずほFG傘下の道を選んだUPSIDER宮城社長インタビュー　「スイングバイIPO当然目指す」
+メルカリが「2四半期連続のMAU減少」を恐れない理由--日本事業責任者が語る【インタビュー】
+なぜPayPayは他のスマホ決済を圧倒できたのか--「やり方はADSLの時と同じ」とは
+野村不動産グループが浜松町に本社を「移転する前」に実施した「トライアルオフィス」とは
+「ChatGPT Search」の衝撃--Chromeの検索窓がデフォルトで「ChatGPT」に
+「S.RIDE」が目指す「タクシーが捕まる世界」--タクシー配車のエスライド、ビジネス向け好調
+人気の記事
+1
+ドコモ光、44万件の顧客情報流出
+2
+トラックの後ろにつなぐトレーラーを電動化で「ガソリン消費3割削減」　27年末納入
+3
+スマホを操作できない人も「東京アプリ」で1万1000円相当を受取可能に　都が代理申請を容認
+4
+PayPay、地銀6行からのチャージと口座登録を一時停止　10月30日夜〜31日
+5
+auのキャリアメールで障害　UQ mobileでも発生--KDDI発表
+CNET Japanは、Ziff Davisからのライセンスに基づき株式会社4Xが運営しています。CNET Japan is operated by 4X  Corp under license from Ziff Davis.
+個人情報保護方針
+          ｜ 
+利用規約
+          ｜ 
+運営会社
+          ｜ 
+クッキーについて
+          ｜ 
+広告について
+ニュース
+製品・サービス
+企業・業界
+社会
+オフトピック
+解説
+リリース
+イベント
+過去記事
+特集
+インタビュー
+デジタル製品
+モバイル
+PC
+AV
+デジタルカメラ
+アップル
+エンターテインメント
+4X ID
+X
+Facebook
+サイトマップ
+4X 
+ZDNET Japan
+Tetsudo.com
+朝日新聞
+当サイトは最新ブラウザでの閲覧を推奨します。
+Copyright (c) 2026 4X  Corp. All rights reserved. No reproduction or republication without written permission.
+CNET Japanは、Ziff Davisからのライセンスに基づき株式会社4Xが運営しています。
+        CNET Japan is operated by 4X  Corp under license from Ziff Davis.
+個人情報保護方針
+利用規約
+運営会社
+クッキーについて
+広告について
+当サイトは最新ブラウザでの閲覧を推奨します。
+Copyright (c) 2026 4X  Corp. All rights reserved. No reproduction or republication
+          without written permission.
+このサイトでは、利用状況の把握や広告配信などのために、Cookieなどを使用してアクセスデータを取得・利用しています。
+      これ以降ページを遷移した場合、Cookieなどの設定や使用に同意したことになります。
+      Cookieなどの設定や使用の詳細、オプトアウトについては
+詳細
+をご覧ください。
+[ 閉じる ]
+
+===== https://forest.watch.impress.co.jp/docs/news/2156753.html
+(status 200)
+ニュース
+ほぼ丸1日続いた「Microsoft 365」「Outlook」障害の原因は？　Microsoftが暫定報告
+ 7月から潜んでいた不具合に当日の状況が絡み合い、連鎖的なダウンを招く 
+樽井 秀人
+2026年11月16日 16:30
+暫定版のインシデント事後レポート（Preliminary Post Incident Report）
+ 　米Microsoftは日本時間11月16日、先週発生した
+「Microsoft 365」「Exchange Online」の大規模障害
+について、暫定版のインシデント事後レポート（Preliminary Post Incident Report：PIR）を公開した。「Microsoft 365 管理センター」の「サービス正常性」から、インシデントID「MO1550821」「EX1550543」で閲覧できる。 
+ 　レポートによると、障害が発生していたのは下記の時間帯（協定世界時、UTC）。ほぼ丸1日にわたり継続したことになる。 
+発生：12日16時20分（日本時間13日1時20分）
+収束：13日16時10分（日本時間14日1時10分）
+ 　もっとも大きな影響を受けたのは「Exchange Online」で、ほとんどのユーザーが「Outlook」などのメールクライアントからメールボックスにアクセスできなくなったほか、多くのユーザーでメールの配信が遅延した。 
+ 　また、「Copilot」「Teams」「SharePoint」「OneDrive」「Defender」「Purview」など、「Exchange Online」の機能を利用するサービスにも影響が及んだ。 
+「Microsoft 365 管理センター」の『サービス正常性』に掲載された「MO1550821」
+3つの要因が重なり、ネットワークゲートウェイが世界規模でダウン
+ 　障害の原因は、多くの「Microsoft 365」サービスの前段に置かれているネットワークゲートウェイが、世界規模でダウンしたこと。これには、以下の3つの要因が重なっていたという。 
+潜在的な不具合
+：Windowsの内部プロセスでロック競合が起き、特定の負荷条件下でCPUとメモリを使い果たしてサーバーが応答しなくなる（「Microsoft 365」のネットワークゲートウェイサーバー専用に用意された修正に起因するもので、一般的なWindows環境では発生しない）
+負荷の急増
+：障害の約15時間前、「Teams」が代替のネットワークゲートウェイから「Exchange Online」と共用のゲートウェイへフェイルオーバーし、負荷と通信パターンが変化した
+サーバー容量の減少
+：前日に起きた別の問題により、ネットワークゲートウェイのサーバー容量の約14％が稼働していなかった
+ 　問題の変更は今年7月に展開が始まり、3カ月以上にわたって世界中で問題なく動作していた。この不具合はコア数の多い新しいハードウェアほど悪化するが、通常の負荷テストはコア数の少ない性能の低いハードウェアを中心に行い、通信パターンも実環境と異なっていたため、検出できなかったという。 
+ 　負荷の増加と容量の減少が重なったことで、米国のトラフィックがピークを迎える時間帯にこの不具合が顕在化。応答しなくなったサーバーのトラフィックは自動で正常なエンドポイントへ振り向けられるが、それがかえって残りのサーバーでも同じ問題を起こしやすくし、サーバーからサーバーへと障害が連鎖した。不具合は2時間足らずでほぼ全体に広がり、最悪の時点では80％以上のサーバーが応答しなくなったという。さらに、別の問題により、区画を分けて障害の波及を防ぐ仕組みも機能せず、影響が全世界に拡大した。 
+ 　なお、「Teams」「OneDrive」「SharePoint」「Office」アプリなどは問題のゲートウェイから切り離せたため、比較的早く一部が復旧した。「Teams」のチャットや会議は、障害期間の大半で問題なく利用できていた。一方、「Exchange Online」は規模の都合上、このゲートウェイから切り離すことができなかった。 
+復旧が長引いた理由と今後の対策
+ 　復旧に時間がかかったのは、サービスに戻したサーバーが待機していたトラフィックですぐに再び応答しなくなったため。自動復旧の仕組みもこれほど広範な応答不能状態からの復旧を想定しておらず、数カ月前に入り込んだ潜在的な不具合だったことから、通常のロールバックや機能フラグでもすぐには元に戻せなかった。 
+ 　最終的には、該当するWindowsのコードを以前の正常な状態に戻すアップデートを開発。サーバーをグループ単位でサービスから外し、アップデートを適用して再起動したうえで戻すという手順で、段階的にサービスを復旧させた。 
+ 　すでに実施済みの対策としては、このアップデートのほか、遅延したメールが配信不能として返送されないよう配信期限を延長したこと、容量の追加、トラフィックの振り向けや接続処理の監視強化、障害の連鎖を防ぐトラフィック分散の安全策などが挙げられている。包括的な再発防止策は、11月20日に予定されている最終版のPIRで示されるとのこと。 
+We have released the Preliminary Post-Incident Report of last week’s outage, which is accessible via the Admin center under MO1550821 and EX1550543.
+— Microsoft 365 Status (@MSFT365Status)
+November 16, 2026
+Amazonで購入
+「Exchange Online」関連商品
+Amazonで購入
+
+===== https://expertinsights.com/news/microsoft-365-outage-post-incident-report
+(status 200)
+Microsoft Traces Global 365 Outage to a July Fix That Its Own Failover Spread    
+            A latent gateway defect, a routine Teams failover and reduced capacity combined to trigger cascading failures across Microsoft 365’s shared networking infrastructure.        
+                Published on Nov 16, 2026            
+                            Written by
+                                    Alessandro Mascellino                                
+Microsoft published a 
+preliminary post-incident report
+ on Nov. 16 into 
+the outage
+ that began on Nov. 12, which left users unable to reach Exchange Online mailboxes and hit many other Microsoft 365 services. It came a day after Microsoft confirmed to Expert Insights that it had 
+rolled back a spam rule change
+ that had blocked emails to Outlook.com.
+The report is available in the Microsoft 365 admin center under MO1550821 and EX1550543. Charles Lamanna, Microsoft’s executive vice president of Copilot, Agents and Platform, posted an 
+abridged version on X
+. Microsoft said its final review was due later this week.
+Three conditions converged during peak US traffic. A latent defect came from a fix for Microsoft 365 networking gateway servers, whose deployment began in July. It ran worldwide for more than three months without observed issues. Microsoft said neither the defect nor the fix applied to broader Windows deployments.
+Lock contention in an internal process left gateway servers overwhelmed under certain loads. Testing missed it because labs used different traffic and hardware mixes and focused on weaker machines with fewer cores. The problem was worse on newer machines with more cores.
+Failover and Rerouting Turned a Latent Defect Into a Cascade
+About 15 hours before the outage, Teams failed over from an alternative gateway to the primary gateway shared with Exchange Online. Microsoft said this type of failover was part of normal operations, but it increased load and changed traffic patterns.
+An unrelated issue the previous day had already taken nearly 14% of gateway capacity out of service. On its own, that loss had no impact.
+Together, the conditions triggered the defect. Automatic rerouting sent traffic to healthy endpoints, spreading the same load across fewer servers and causing a cascading failure. In under two hours, the defect had hit the fleet. At the lowest point, more than 80% of servers were unresponsive.
+For context, the gateway is built from thousands of “capacity units,” shards of capacity, hardware and networking grouped into regions, with bulkheads between them meant to contain failures. Microsoft said a separate issue, which it did not describe, kept those bulkheads from stopping the cascade, letting it spread across the gateway infrastructure globally.
+Teams, OneDrive, SharePoint and Office apps failed out of the gateway and recovered earlier, with Teams chats and meetings working for most of the outage. Exchange Online could not fail out of the gateway, and Microsoft did not say why.
+Recovery Systems Could Not Reverse the Failure Quickly
+Waiting traffic overwhelmed restarted servers, and automated recovery was not designed for such a broad unresponsive state. Because the defect had been deployed months earlier, normal rollback, flighting and feature flags could not quickly reverse it.
+Engineers built an update restoring the previous code path, then took groups of servers out of service, patched and restarted them. At times, they applied the process to 50% or more of a region at once.
+During the outage, Microsoft paused all deployments, and on Nov. 12 its status account 
+said
+ it had “not identified any recent change correlated with the start of impact.” It extended the email timeout to 48 hours on Nov. 13 to preserve delayed mail, and said on Nov. 14 that service had been restored to the remaining impacted customers and regions.
+            Top Stories        
+                                Cybercrime                            
+                                Hijacked GitHub Accounts Push CI Secret Stealer to Tens of Thousands of Repositories                            
+                                Vulnerabilities                            
+                                Attackers Exploit Xen Orchestra Login Flaw That Accepts an Empty Token                            
+                                Industry                            
+                                Microsoft Rolls Back Spam Rule Change That Blocked Emails To Outlook.com                            
+        Written By    
+                        Alessandro Mascellino                    
+Cybersecurity Reporter
+Alessandro Mascellino is a British-Italian freelance journalist specializing in technology and gaming. He has contributed to several publications, including Wired, The Independent, and Android Police. By day, he works as a journalist. By night, he co-manages a game studio that creates narrative games.
+                    Top Stories                
+                                Hijacked GitHub Accounts Push CI Secret Stealer to Tens of Thousands of Repositories                            
+                                Attackers Exploit Xen Orchestra Login Flaw That Accepts an Empty Token                            
+                                Microsoft Rolls Back Spam Rule Change That Blocked Emails To Outlook.com                            
+                    Industry Perspectives                
+                                CISO Q&A: Matthew Browning On Protecting Dating App Users, AI Hyper-Adoption, And Why CISOs Must Engage The Business                             
+                                CISO Q&A: Rory Alsop On Why Compliance Should Be A By-Product, Not The Goal                            
+                                CISO Q&A: Nathan Smolenski On Why AI Is Shining A Light On Broken Security Fundamentals
+
+===== https://news.mynavi.jp/techplus/article/20261116-5335439/
+(status 200)
+Microsoftは、Microsoft 365の管理者向けサービス正常性ダッシュボードにおいて、
+11月12日から13日にかけて発生した大規模障害
+の原因と復旧状況を報告した。
+同ダッシュボードの閲覧には管理者権限を持つアカウントでのサインインが必要だが、障害通知（MO1550821、EX1550543）の内容は、
+米ペンシルベニア大学が公開するMicrosoftの障害通知記録
+でも確認できる。
+今回の障害では、Exchange OnlineやOutlookを中心に、Microsoft Teams、Microsoft 365 Copilot、SharePoint Onlineなど複数のサービスに影響が及んだ。利用者がメールボックスに接続できなくなるほか、メール配送の遅延や、一部の業務アプリケーションで機能が利用できなくなる問題が発生した。
+同社は障害の原因について、過去のネットワーク容量増強時に生じた問題が、最近実施されたネットワーク変更によって顕在化したと説明している。
+閉じる
+ネットワーク変更で潜在的なバグが表面化
+Microsoftの暫定的な原因分析によると、障害はExchange Onlineへの接続を確立するシステムで発生したと見られる。
+通常のネットワーク保守やアップグレードに伴って通信経路が変更された際、以前から存在していたソフトウェアの不具合が表面化したという。
+この影響で、サーバが処理する接続要求が急増し、処理待ちの要求が蓄積した。最終的に影響を受けたサーバの処理能力が限界に達し、新しい接続を受け付けられなくなった。
+Microsoftは、こうした問題がExchange Onlineへのアクセス障害を引き起こし、関連するMicrosoft 365サービスにも広範囲に影響したと説明している。
+また、今回の障害について、サイバー攻撃やAIエージェントに関連した問題ではないことを明らかにした。悪意のある活動が障害を引き起こしたことを示す証拠も確認されていないという。
+復旧したサーバが再び応答しなくなる問題も発生
+今回の障害では、復旧作業を進める過程でも問題が発生していた。
+Microsoftによると、障害の発生後、影響を受けたサーバを復旧させる作業を実施したものの、通信の受け付けを再開すると再び応答しなくなる現象が確認されたという。
+このため、単純なサーバの再起動だけでは安定した復旧が難しい状況となっていた。
+同社は、影響を受けたサーバへの通信量や通信の種類を制限するとともに、トラフィックの振り分け方法を調整した。また、一部のサーバについては以前のソフトウェア構成を使って再構築するなど、複数の対策を並行して実施した。
+さらに、サーバの処理能力を確保するため、仮想マシンの増強や、認証・ルーティングに関係する構成要素への修正も進めた。
+復旧作業では、一度にすべての通信を再開するのではなく、サーバの安定性を確認しながら段階的にサービスを回復させる方法を採用した。Microsoftは、復旧に時間を要したものの、各段階で安定性を検証することが、サービスの確実な回復につながったと説明している。
+OutlookだけでなくTeamsやCopilotにも影響
+今回の障害では、Exchange Onlineへの接続問題を起点として、Microsoft 365の複数のサービスで機能障害が発生した。
+Outlookでは、Web版やデスクトップ版など複数の接続方法でメールボックスにアクセスできなくなる可能性があった。また、メールの配送が遅延する問題も確認された。
+Microsoft Teamsでは、Exchange Onlineに依存するカレンダーなどの機能が影響を受けた。一方、チャットやオンライン会議などの主要機能は、おおむね利用可能な状態だったという。
+Microsoft 365 CopilotやMicrosoft Graphでも、Exchange Onlineのメール、予定表、連絡先などにアクセスする機能に影響が及んだ。
+このほか、SharePoint Online、Microsoft Intune、Microsoft Purview、Power Appsなどについても、一部の機能で問題が報告された。ただし、SharePoint Onlineに直接保存されたファイルへのアクセスは維持されていた。
+このように、障害の影響はメールサービスだけにとどまらず、Exchange Onlineと連携する業務アプリケーションにも広がった。
+Microsoft 365は復旧、詳細な事後報告書を公開へ
+Microsoftの障害通知によると、今回の障害は11月13日16時10分（UTC、日本時間14日午前1時10分）を終了時刻として記録されている。
+同社は復旧作業の過程で、サービスの安定性に加え、障害期間中に滞留したメールの配送状況についても監視を続けた。
+障害通知の最終ステータスは「Service restored」（サービス復旧）となっている。
+Microsoftは今回の障害について、根本原因の詳細な調査を継続するとともに、再発防止に向けた対策を検討している。
+同社は、暫定的な事後報告書を2営業日以内、最終的な事後報告書を5営業日以内に提供する方針を示している。
+今回の障害では、ネットワークの変更によって潜在的な不具合が表面化し、Exchange Onlineだけでなく、同サービスに依存する複数のMicrosoft 365製品に影響が波及した。今後公開される事後報告書では、根本原因の詳細や再発防止策が焦点となる。
+
+===== https://x.com/MSFT365Status/status/2122205066157257160?ref_src=twsrc%5Etfw
+(status 200)
+Microsoft 365 Status
+@MSFT365Status
+We have released the Preliminary Post-Incident Report of last week’s outage, which is accessible via the Admin center under MO1550821 and EX1550543.
+5:48 AM · Nov 16, 2026
+·
+539.6K
+Views
+27
+96
+312
+217

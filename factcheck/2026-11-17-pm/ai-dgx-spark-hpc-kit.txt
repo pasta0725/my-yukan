@@ -1,0 +1,170 @@
+===== https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/
+(status 200)
+At SC26, an annual supercomputing conference taking place this week in Chicago, NVIDIA is introducing the DGX Spark HPC Developer Kit for researchers, academics and developers.
+The kit is a four-node cluster of 
+NVIDIA DGX Spark systems
+, each connected directly to its two neighbors in a ring, with an NVIDIA HPC SDK installation playbook coming soon. Researchers get a place at their desk to run multi-node scientific workloads, AI models and agents, instead of waiting for time on a shared GPU cluster. The kit puts the GB10 Grace Blackwell Superchip on researchers’ desks. 
+A Supercomputing Lab on Any Desk
+The DGX Spark Developer Kit changes how researchers work.
+Read All NVIDIA Announcements From SC26
+It scales from one system, or node, to four — linked directly to one another over NVIDIA ConnectX-7 networking, with no network switch to buy or set up. 
+At four nodes, it provides 512GB of combined memory and 20TB of NVMe storage that provides researchers more capacity to distribute models and scientific workloads across the cluster. With NVFP4, researchers can deploy models with up to 700B parameters locally across the four DGX Spark clusters, such as DeepSeek V4.1.
+With that much power at the desk, researchers with a fixed compute and server allocation no longer have to wait in a queue for every job. Teams can develop and debug on their own, saving server hours for production runs and keeping unpublished results, and proprietary datasets on premises.
+The playbook for NVIDIA HPC SDK is coming soon, bringing GPU-accelerated C, C++ and Fortran compilers, libraries and message passing interface tools to the DGX Spark cluster — the same development tools used on NVIDIA-powered supercomputers. Teams can build and test scientific applications across four nodes, check how computation and data are distributed, and debug communication issues before scaling to larger systems.
+The kit brings scientific simulation and AI models and agents to the desktop, with demonstrated four-system workloads including LAMMPS with Kokkos for materials simulation and NAMD for molecular dynamics. The broader DGX Spark community has validated GROMACS for molecular dynamics, OpenFOAM for fluid dynamics, WRF for weather modeling and NVIDIA NIM microservices such as OpenFold3 and Boltz-2 for predicting biomolecular structures.
+Running on DGX Spark, new open dataset and post-training recipes for 
+Nemotron 3.5 Super VL
+ help researchers adapt the model for life sciences and chemistry, enabling secure scientific workflows on infrastructure organizations control.
+What Researchers Can Do With It
+The kit opens up new possibilities for researchers. 
+Researchers can explore agent-assisted workflows that prepare simulation inputs, launch runs and summarize results, while the scientists validate the setup and conclusions.  
+Researchers can also train AI models that approximate slow simulations, then use them to refine wing designs toward minimum drag. 
+Before committing supercomputer time, a team can narrow a 10-million-cell simulation to the 50-500 dimensions that matter.
+Kvantify
+ is using NVIDIA cuQuantum, and reports running tensor-network simulations of quantum-chemistry circuits with up to 70 qubits and 975 gates on a single DGX Spark, benchmarking circuits generated for penicillin ground-state energy calculations.
+CYRAN AI
+, an IIT Delhi spin-out, uses DGX Spark and its PixelFlux library to accelerate JPEG 2000 decoding for large satellite images, supporting local geospatial analysis.
+OpenFold
+ shows how researchers can fine-tune OpenFold3 on NVIDIA DGX Spark to improve protein-ligand structure predictions for drug discovery.
+The 
+Rubin Lab at IGI
+ at University of California, Berkeley is using a DGX Spark and NVIDIA Evo 2 model to predict bacterial traits directly from genome sequences by comparing embeddings from genomic and protein language models against the classical baselines. With no 11-hour cluster queue times, results arrived 15x sooner on DGX Spark.
+The 
+Hartwig Group at UC Berkeley
+ is using a DGX Spark to perform LoRA fine-tuning on the Nemotron 3 Super 120B-A12B model for chemistry machine learning, training a prediction head on experimental values. By running locally on the Spark using NVFP4 quantization, the lab successfully fit a 120B-class model on a single device and bypassed multi-day cluster queue times, allowing them to run continuous eight- to 24-hour training fits back-to-back.
+Where to Find the Kit
+The developer kit is on display at SC26 and available for sale. DGX Spark products and cables can be purchased from top OEM partners and are also available through 
+NVIDIA Marketplace
+. 
+Partners include Acer, ASUS, Dell Technologies, GIGABYTE, H3C, HP, Lenovo, MSI and xFusion.
+An NVIDIA playbook for building and running the NVIDIA HPC SDK, a software development kit for scientific computing, is coming soon. Once available, it will give scientists and researchers a local platform to develop multi-node GPU applications, explore FP32 and mixed-precision algorithms and run molecular dynamics and materials simulations using LAMMPS with Kokkos before scaling to data center systems.
+Learn more about
+NVIDIA DGX Spark
+. 
+Subscribe to the
+NVIDIA Local AI newsletter
+. Follow NVIDIA RTX Spark on
+X
+,
+Instagram
+,
+TikTok
+ and
+Facebook
+.
+See
+notice
+ regarding software product information.
+Read All NVIDIA Announcements From SC26
+Categories:
+AI
+Tags:
+Agentic AI
+Artificial Intelligence
+DGX Spark
+Local AI
+Open Source
+Related News
+AI
+							NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab						
+						Nov 16, 2026					
+Supercomputing
+							CUDA at 20: How the Platform Transformed Scientific Computing						
+						Nov 16, 2026					
+AI Infrastructure
+							NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Engineering and Analytics						
+						Nov 16, 2026					
+AI
+							AI Day Seoul Brings Together Korea’s Industry Leaders, Startups and Developer Communities						
+						Nov 15, 2026
+
+===== https://gigazine.net/news/20261117-dgx-spark-developer-kit/
+(status 200)
+▼サーバー運営を助ける支援をお願いします
+  ▲サーバー運営を助ける支援をお願いします
+毎月
+825円(税込)
+900円
+(うち手数料33円)
+毎月
+1回
+    親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！
+    ・
+これまでGIGAZINEを支援してくれたメンバーのリスト
+2026年11月17日 12時37分
+ハードウェア
+NVIDIAが小型AIスパコンDGX Sparkを4台つなげてメモリ容量512GBを実現する「DGX Spark Developer Kit」を発表、最大700Bのモデルを実行可能
+NVIDIAが小型AIスーパーコンピューター「
+DGX Spark
+」を4台連係させてAIクラスターを形成できる「
+DGX Spark Developer Kit
+」を発表しました。
+NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab | NVIDIA Blog
+https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515
+A supercomputing lab on your desk. ⚡
+New at 
+#SC26
+: the NVIDIA DGX Spark HPC Developer Kit, built for researchers, academics and developers.
+🟢 Connect up to 4x DGX Spark systems in a ring over NVIDIA ConnectX-7
+🟢 No network switch needed
+🟢 Up to 512GB of memory 
+pic.twitter.com/XisUR3ZOxg
+— NVIDIA RTX Spark (@NVIDIARTXSpark) 
+November 16, 2026
+DGX Sparkは片手で持てるサイズの小型PCです。128GBのメモリを備えたAIチップ「NVIDIA GB10 Grace Blackwell Superchip」を搭載しており、卓上で大型AIモデルをローカル実行するためのマシンとして提供されています。
+NVIDIAがデスクトップPCサイズのAIスパコン「DGX Spark」と「DGX Station」を発表、Blackwell世代のAI特化GPUを搭載し個人環境でローカルAI開発が可能 - GIGAZINE
+DGX Spark Developer Kitは4台のDGX Sparkを接続して1個のクラスターとして扱えるシステムです。クラスター全体のメモリ容量は512GB、ストレージ容量は20TBにおよび、DeepSeek-V4.1を含む最大7000億パラメーターのモデルをローカル実行できます。
+4台のDGX SparkはNVIDIAのネットワークシステムである「
+ConnectX-7
+」を用いて相互接続されます。このため、導入時にネットワークスイッチを別途購入する必要はないとのこと。
+DGX Spark Developer Kitは2026年11月15日から20日までシカゴで開催されているスーパーコンピューター国際会議「
+SC26
+」の会場に展示されています。また、クラスターの構築に必要なDGX Sparkやケーブルは各OEM事業者を介して購入できます。
+誰でも簡単にWindowsやMacで広告ブロックできる「AdGuard 広告ブロッカー」のインストールと使い方、ブラウザだけでなくアプリやスタートメニューに出る広告までまとめて削除
+Google
+優先ソースに設定
+Clipboard
+記事タイトルとURLをコピー
+X
+Facebook
+Bluesky
+Discord
+Threads
+・関連記事
+NVIDIAがデスクトップPCサイズのAIスパコン「DGX Spark」と「DGX Station」を発表、Blackwell世代のAI特化GPUを搭載し個人環境でローカルAI開発が可能 - GIGAZINE
+VRAM容量16GBのデスクトップ用グラボ「GeForce RTX 5060 Ti」を搭載したZOTAC製ミニPC「MAGNUS EN275060TC」はローカルAIやゲームで実用的なのか徹底検証してみた - GIGAZINE
+VRAM容量32GBで30万円未満なIntelグラボ「Intel Arc Pro B70 Creator 32GB」でローカルLLM「Qwen3.8 27B」や動画生成AI「MiniMax H3」を実行して生成速度を確かめてみた - GIGAZINE
+Windowsの高性能PCで動くローカルAIをブラウザからみんなで利用できる環境を「Ollama＋Open WebUI」で構築してみた - GIGAZINE
+・関連コンテンツ
+NVIDIAがAI特化GPU「Rubin」とAI特化CPU「Vera」の詳細を発表、AIラック「Vera Rubin NVL72」の処理性能はFP64精度で2400TFLOPS＆Groqの高速推論チップも統合
+NVIDIAがGB300を内蔵したモンスター級WindowsデスクトップPC「DGX Station」を発表、メモリは最大748GBで最大1兆パラメーターのAIを実行可能
+NVIDIAがおよそ1万円で手に入る128コアGPU搭載の超小型AIボード「Jetson Nano」を発表
+ついにNVIDIAがノートPC向けSoC「NVIDIA RTX Spark」を発表、128GBメモリ＆NVIDIA製GPU＆ArmベースCPU搭載で高性能AIをローカル実行
+Huaweiが最大1万5488個のAscend 960チップを搭載するAIコンピューティングクラスター「Atlas 960 SuperPoD」を発表、SuperPoDを複数ユニットつなげた「SuperCluster」も登場
+Appleは新しいSiriを動かすためにGeminiを小型化してiPhoneに詰め込む作業を進めている
+数百億円超を費やしてMicrosoftがChatGPTの開発元であるOpenAIのためにAI開発用のスパコンを構築
+NVIDIAのBlackwell Ultra(GB300 NVL72)はH200の50倍高速にAI処理が可能でコストは35分の1に削減
+2026年11月17日 12時37分00秒
+ in  
+AI
+,   
+ハードウェア
+,  Posted by log1o_hf
+You can read the machine translated English article 
+NVIDIA has announced the 'DGX Spark Deve…
+.
+お邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。
+×
+いいえ、後で時間があれば
+はい、寄付します
+←
+
+===== https://www.techno-edge.net/article/2026/11/17/5741.html
+(status 200)
+NVIDIAは、米シカゴで開催中のスーパーコンピューター学会「SC26」で、研究者や開発者向けの「DGX Spark HPC Developer Kit」を
+発表
+しました。小型AIスーパーコンピューター「DGX Spark」4台を1組にしたキットで、会場で展示するとともに販売を始めています。
+4台のDGX Sparkは、それぞれ両隣とNVIDIA ConnectX-7で直結するリング状につながり、ネットワークスイッチは不要です。4台構成ではメモリが合計512GB、NVMeストレージが合計20TBになります。4ビットの数値形式NVFP4を使えば、DeepSeek V4.1のような最大7000億（700B）パラメーター級のモデルを4台に分散して動かせるとしています。各機はGB10 Grace Blackwell Superchipを搭載します。
+狙いは、共用のGPUクラスターの順番待ちをせずに机の上で複数ノードの科学計算やAIモデル、AIエージェントを動かせるようにすることです。C、C++、Fortranのコンパイラーやライブラリ、MPIツールをそろえた「NVIDIA HPC SDK」の導入手順（プレイブック）も近く公開する予定。材料シミュレーションのLAMMPS、分子動力学のNAMDは4台構成で動作を確認済みで、コミュニティではGROMACS、OpenFOAM、気象モデルWRFなども動いているとしています。
+UCバークレーの研究室では、Nemotron 3 Super（120B-A12B）をNVFP4で1台のDGX Sparkに載せてLoRAで追加学習し、何日もかかるクラスターの順番待ちを避けられたという例も紹介しています。
+DGX Spark本体とケーブルは、Acer、ASUS、Dell、GIGABYTE、HP、Lenovo、MSIなどのパートナーとNVIDIA Marketplaceで購入できます。今回のキットの価格は明らかにされていません。

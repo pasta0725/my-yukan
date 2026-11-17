@@ -1,0 +1,300 @@
+===== https://www.itmedia.co.jp/news/article/2611/17/2000003241/
+(status 200)
+Share
+印刷する
+Innovative Tech
+AIに打ち明けた相談は“広告トラッカー”に筒抜け？　ChatGPT、Claude、Gemini含む42サービスを米大が調査
+公開
+2026年11月17日 12時00分
+著者
+山下（Seamless）
+[ITmedia]
+印刷する
+連載新着通知を受け取る
+Googleで優先するソースとして追加
+Innovative Tech：
+2019年にスタートした本連載「Innovative Tech」は、世界中の幅広い分野から最先端の研究論文を独自視点で厳選、解説する。執筆は研究論文メディア「
+Seamless
+」（シームレス）を主宰し、日課として数多くの論文に目を通す山下氏が担当。イラストや漫画は、同メディア所属のアーティスト・
+おね
+氏が手掛けている。X：
+＠shiropen2
+　米ニューヨーク州立大学ストーニーブルック校に所属する研究者らが発表した論文「
+Penny for Your Prompts: A Measurement Study of Contextual Leakage in AI Chat Platforms
+」（IEEE S&P 2027採択）は、AIチャットbotに入力した会話内容や個人情報が、サイト内の追跡プログラム（トラッカー）を通じて外部企業へ漏えいする実態を調査した研究報告だ。
+　AIチャットbotは日常的な疑問から病状、法律相談、個人的な悩みまで、ユーザーが詳細な情報を打ち明ける場となっている。ユーザーはこうした対話がプライベートに保たれていると期待しているが、Webサイトの仕組みとして見ると、多くのAIチャットサービスには一般的な通販サイトやニュースサイトと同じように、広告配信や行動分析のためのトラッキングの外部プログラムが埋め込まれている。
+　研究チームは、この実態を解明するため、ChatGPTやClaude、Geminiなどの汎用AI25種と、健康・法律・教育に特化した専門AI17種の計42サービスを対象に調査を実施した。
+調査対象となった42サービス
+　調査では単に外部への通信を記録するだけでなく、ブラウザのJavaScriptエンジンの動きを詳細に追跡する手法を採用。これにより、ユーザーのどの操作が引き金となり、ページのどの部分から情報が抜き出され、どこへ送信されたのかという一連の流れを特定している。
+　調査の結果、42サービスのうち21サービスが、質問内容から自動生成された会話の要約タイトルを外部のトラッカーに漏えいさせていた。このうち9サービスでは、ユーザーが入力したプロンプトがそのまま外部へ送信されていた。
+　会話内容の漏えいが確認されたサービスのうち、汎用AIでは13種中11種、専門AIでは8種中8種で、アカウント登録時に入力されたユーザーのメールアドレスも外部へ送信されていた。
+　また、汎用AI25種では、ブラウザから送信される平均540件の通信のうち、約22％にあたる118件がトラッカー向けの通信だった。その送信先を企業別にまとめると、全体の41.8％がGoogleに集中していた。次いでMicrosoft（12.2％）、ByteDance（8.6％）、Meta（8.3％）と続いた。
+汎用AI25種から既知トラッカーへ送られた通信を、受信企業ごとに集約したもの
+　なぜこのような現象が起きるのか。プログラムの動作解析からは、トラッカー側が特別なハッキングをしているわけではなく、従来のWebサイトでページのタイトル（titleタグなど）を自動取得する機能をそのまま動かしているだけだという事実が判明した。
+漏えいの仕組みの概念図
+　多くのAIチャットbotは、ユーザーの質問内容を要約して新しい会話タイトルを作り、それをWebページのタイトル部分にそのまま反映する仕様になっている。そのため、プロンプトの送信時や別の会話への切り替え時にトラッカーが作動すると、質問のコアが詰まった会話タイトルをただのページ名として機械的に読み取り、外部へ送信してしまう。
+　プロンプト本文の場合は操作録画ツールによるページ内テキストの収集や、プロンプトがURLに含まれる仕様が経路となっていた。
+Source and Image Credits: Bekos, Paschalis, et al. “Penny for Your Prompts: A Measurement Study of Contextual Leakage in AI Chat Platforms.” arXiv preprint arXiv:2610.37467 (2026).
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+Innovative Tech
+2019年にスタートした本連載「Innovative Tech」は、世界中の幅広い分野から最先端の研究論文を独自視点で厳選、解説している。執筆は研究論文メディア「Seamless」（シームレス）を主宰し、日課として数多くの論文に目を通す山下氏が担当。イラストや漫画は、同メディア所属のアーティスト・おね氏が手掛けている。 
+連載新着通知を受け取る
+この連載の記事をもっと見る
+この記事の著者
+山下（Seamless）
+2014年から幅広い分野の研究論文をピックアップして解説しているメディア「Seamless」（シームレス）を主宰している。
+関連記事
+「ChatGPT」まだ使ってる？　生成AI市場激戦、一強時代は終わるのか
+もはや必須？　企業の「AIを使いました」報告　米国では“明示なし”フェイク音声が物議に
+“ChatGPT以後”に公開のWebサイト、35％がAI生成に？　米スタンフォード大などが調査　広まる「不自然に明るい文章」
+ChatGPT vs. Google検索──どっちで調べるのが学習効果が高い？　8日間の実験で検証した研究
+Special
+PR
+こんなメディアも見られています
+        ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+ケンタッキー、一部メニュー画像に生成AI　実験販売の商品など　SNSは「違和感」の声も
+Special
+PR
+本日の新着記事
+米商務省、中国企業による第三国データセンター経由のAIチップ“遠隔利用”を規制へ
+モリサワや「mineo」など会員情報漏えい　マーケツール「KARTE」不正アクセス、外部サービス連携用シークレットキーなども
+AIに打ち明けた相談は“広告トラッカー”に筒抜け？　ChatGPT、Claude、Gemini含む42サービスを米大が調査
+OpenAI、児童性的虐待コンテンツ（CSAM）検出ツールを公開　ChatGPTで探すと24時間アカウント停止の警告も
+スパコン「富岳」不正アクセスで運用停止　研究データや外部接続用SSH鍵など流出の可能性　他システムへの接続試行も確認
+アクセスランキング
+1
+パスワードより安全なはずが……パスキー対応103サイトを検証→全てに脆弱性　独大学の調査結果
+2
+「Microsoft 365」大規模障害、7月の修正で混入した不具合が原因　負荷増と容量減が重なり世界に波及
+3
+スパコン「富岳」に不正アクセス　理研が明らかに
+4
+Google、人間の関与なしに脆弱性を見つけて悪用するAIフレームワークを初めて観測　GTIGのAI脅威レポート
+5
+OpenAIをカリフォルニア州が提訴　「AIエージェントの制御を80回以上失った」
+6
+ジェンスン・フアン氏退任は「NVIDIAバブル崩壊」の序章か？　どうなる今後の半導体業界
+7
+秋葉原スマートごみ箱、不法投棄を見越し“防犯カメラのある場所”に設置していた　千代田区に聞いた運用の実際
+8
+ドコモ「5G SA」今月3度目の障害、約6時間で復旧　原因は同じ「交換機への通信集中」
+9
+マッチングアプリ「タップル」緊急メンテで停止　「待ち合わせしてるのに連絡取れない」ユーザー困惑
+10
+エンジニア転職のpaiza、最大90万件の個人情報漏えいのおそれ　退職者などアクセス可能な状態、約13年続く
+ もっと見る 
+    ITmedia NEWS SNS
+ITmedia News
+ Tweets by itmedia_news 
+        @itmedia_newsをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
+
+===== https://arxiv.org/abs/2610.37467
+(status 200)
+Computer Science > Cryptography and Security
+arXiv:2610.37467
+ (cs)
+  [Submitted on 27 Oct 2026]
+Title:
+Penny for Your Prompts: A Measurement Study of Contextual Leakage in AI Chat Platforms
+Authors:
+Paschalis Bekos
+, 
+Billy Tsouvalas
+, 
+Nick Nikiforakis
+, 
+Michalis Polychronakis
+View a PDF of the paper titled Penny for Your Prompts: A Measurement Study of Contextual Leakage in AI Chat Platforms, by Paschalis Bekos and 3 other authors
+View PDF
+HTML (experimental)
+Abstract:
+AI chatbot platforms have become one of the most popular web interfaces users interact with online, routinely receiving personal and intimate information shared under an expectation of privacy. Yet, on the web application side, these platforms have the ability to embed third-party analytics, advertising, and session replay scripts that operate silently alongside the chatbot, creating an underexamined channel for conversational data leakage towards third parties. We conduct the first systematic large-scale measurement study of contextual leakage in AI chatbots, auditing the web interfaces of 42 general-purpose and domain-specific (health, legal, and education) platforms. Beyond standard network interception, we instrument the browser at the JavaScript engine level to attribute each data flow to the exact user action that triggered it, and the DOM capture mechanism used to retrieve its content, a granularity invisible to network-layer analysis alone. We find that 21 of these platforms leak conversation titles to third-party trackers, while nine leak verbatim user prompts. Beyond content, we observe a substantial amount of chatbot platforms sending user emails to third-party trackers, enabling the association of conversational context with a user's identity. Our findings cast traditional web privacy issues under a new light, highlighting the privacy issues that are inherent in how users interact with modern AI chatbots.
+Comments:
+To appear in the IEEE Symposium on Security & Privacy (S&P), May 2027
+Subjects:
+Cryptography and Security (cs.CR)
+; Computers and Society (cs.CY)
+Cite as:
+arXiv:2610.37467
+ [cs.CR]
+(or 
+arXiv:2610.37467v1
+ [cs.CR]
+ for this version)
+https://doi.org/10.48550/arXiv.2610.37467
+Focus to learn more
+                  arXiv-issued DOI via DataCite
+Submission history
+ From: Paschalis Bekos [
+view email
+]      
+[v1]
+        Tue, 27 Oct 2026 16:01:08 UTC (3,020 KB)
+Full-text links:
+Access Paper:
+View a PDF of the paper titled Penny for Your Prompts: A Measurement Study of Contextual Leakage in AI Chat Platforms, by Paschalis Bekos and 3 other authors
+View PDF
+HTML (experimental)
+TeX Source
+view license
+Additional Features
+Audio Summary
+Current browse context:
+cs.CR
+< prev
+  |  
+next >
+new
+ | 
+recent
+ | 
+2026-10
+    Change to browse by:
+cs
+cs.CY
+References & Citations
+SciX
+Google Scholar
+Semantic Scholar
+export BibTeX citation
+Loading...
+BibTeX formatted citation
+×
+loading...
+Data provided by: 
+Bookmark
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer
+(
+What is the Explorer?
+)
+Connected Papers Toggle
+Connected Papers
+(
+What is Connected Papers?
+)
+Litmaps Toggle
+Litmaps
+(
+What is Litmaps?
+)
+scite.ai Toggle
+scite Smart Citations
+(
+What are Smart Citations?
+)
+Code, Data, Media
+Code, Data and Media Associated with this Article
+alphaXiv Toggle
+alphaXiv
+(
+What is alphaXiv?
+)
+Links to Code Toggle
+CatalyzeX Code Finder for Papers
+(
+What is CatalyzeX?
+)
+DagsHub Toggle
+DagsHub
+(
+What is DagsHub?
+)
+GotitPub Toggle
+Gotit.pub
+(
+What is GotitPub?
+)
+Huggingface Toggle
+Hugging Face
+(
+What is Huggingface?
+)
+ScienceCast Toggle
+ScienceCast
+(
+What is ScienceCast?
+)
+Demos
+Demos
+Replicate Toggle
+Replicate
+(
+What is Replicate?
+)
+Spaces Toggle
+Hugging Face Spaces
+(
+What is Spaces?
+)
+Spaces Toggle
+TXYZ.AI
+(
+What is TXYZ.AI?
+)
+Related Papers
+Recommenders and Search Tools
+Link to Influence Flower
+Influence Flower
+(
+What are Influence Flowers?
+)
+Core recommender toggle
+CORE Recommender
+(
+What is CORE?
+)
+Author
+Venue
+Institution
+Topic
+        About arXivLabs
+arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv's community? 
+Learn more about arXivLabs
+.
+Which authors of this paper are endorsers?
+ |
+Disable MathJax
+ (
+What is MathJax?
+)
