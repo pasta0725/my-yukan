@@ -1,0 +1,48 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2157064.html
+TITLE: 実行中のWinUIアプリを調査する「WinUI DevTools」を試験導入、「winapp」v0.8.0が公開／C++プロジェクト対応、ブランチごとの並行実行も
+SITE: 窓の杜
+PUBLISHED: 2026-11-17 14:51 (page: 2026-11-17T14:51:37+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2157/064/winapp.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2157/064/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2157/064/image2_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2157/064/image3_l.gif | 
+- https://images-na.ssl-images-amazon.com/images/P/4815636613.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+実行中のWinUIアプリを調査する「WinUI DevTools」を試験導入、「winapp」v0.8.0が公開
+C++プロジェクト対応、ブランチごとの並行実行も
+樽井 秀人
+2026年11月17日 14:51
+「Windows App Development CLI」（winapp）v0.8.0
+米Microsoftは11月9日（現地時間）、「Windows App Development CLI」（winapp）v0.8.0を発表した。実行中のWinUIアプリを直接調査・編集できる「WinUI DevTools」の導入が目玉だ。
+「Windows App Development CLI」（winapp）は、「Visual Studio」「MSBuild」に依存せずにWindowsアプリを開発・パッケージ化できるようにするコマンドラインツール。「Electron」や「Rust」「Tauri」「Flutter」といったクロスプラットフォームフレームワークでWindowsアプリを構築する開発者に向けて設計されており、ストア提出用・サイドロード用のパッケージも作成できる。
+「WinUI DevTools」（試験的プレビュー）
+「WinUI DevTools」は、実行中のWinUIアプリの要素を選んで、プロパティやレイアウトを調べたり、値をその場で試したりできる開発者向けツール。「Visual Studio」の外でも、デバッグ中のアプリの状態を手軽に確認・改変できるわけだ。現段階では以下の機能がサポートされている。
+UI要素をクリックして選択
+ビジュアルツリー（Visual Tree、UI要素の親子・階層関係）の確認
+プロパティやレイアウト情報の閲覧
+WidthやMarginなどをライブ変更（アプリを再起動すると元に戻る）
+テーマ変更
+AIコーディングエージェント向けのコメント追加
+「WinUI DevTools」でビジュアルツリーとプロパティを表示したところ
+DevToolsを開いて、コントロールのプロパティを確認する様子
+また、［winapp devtools］コマンドで、ビジュアルツリーの検査や要素の検索、プロパティの取得・変更をコマンドラインから行える。
+「DevTools」はC#/C++で書かれた「WinUI 3」アプリに対応しており、対応するWinUIプロジェクトを［winapp run］で起動すると、既定で有効になる（CIや「Windows Sandbox」を除く）。無効にしたい場合は［--devtools off］オプションを付ければよい。
+パフォーマンスプロファイリング、C++プロジェクトのサポート、ブランチごとの並行実行など
+そのほかにも、本バージョンでは以下の改善が行われた。
+パフォーマンスプロファイリング（winapp perf）
+：WinUIの動作を記録し、負荷の高いXAMLの解析やレイアウト、描画処理をターミナルから調べられる
+C++プロジェクトのサポート
+：「.vcxproj」をビルドして実行したり、「MSIX」パッケージにしたりできる
+チェックアウトごとのパッケージID
+：「--unique-identity」オプションで、同じアプリの複数のチェックアウトを並べて実行できる
+UI録画の改善
+：WinUIのメニューやフライアウト、ツールチップも録画されるようになったほか、マウスポインターとクリックの強調表示を追加できる
+「winapp」は、
+「GitHub」
+でホストされているオープンソースのコマンドラインツール（ライセンスは「MIT」）で、Windowsアプリの作成・実行・デバッグ・パッケージ化をターミナルやAIコーディングエージェントから行える。現在はパブリックプレビューの段階で、「WinGet」や「npm」からインストールできる。
+Amazonで購入
+「アプリ開発」関連商品
+Amazonで購入
