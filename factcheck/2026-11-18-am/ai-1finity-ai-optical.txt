@@ -1,0 +1,251 @@
+===== https://xtech.nikkei.com/atcl/nxt/news/24/03476/
+(status 200)
+富士通のネットワーク関連子会社である1FINITY（ワンフィニティ）は2026年11月17日、離れたデータセンターにあるサーバーを光通信で接続できるNIC（ネットワーク・インターフェース・カード）「1Finity Ultra Optical System N100」を開発したと発表した。AI（人工知能）の学習や推論により拡大する計算需要に対応する。1FINITYは今回の新製品を含むAIデータセンターのネットワーク領域で、2030年度に1000億円の売り上げを目指す。
+　AI向けの計算基盤として、複数のデータセンターに計算リソースを分散配置し、それらを連携させて活用することへの期待が高まっている。一方で従来の製品では、データセンター間の距離が長くなると通信遅延やパケットロスの影響を受け、データ転送効率が低下するという課題があった。
+新製品「1Finity Ultra Optical System N100」
+（写真：日経クロステック）
+[画像のクリックで拡大表示]
+　1FINITYが開発した新製品は、400ギガビット／秒（Gbps）対応の光インターフェースを2ポート搭載し、合計で最大800Gbpsのネットワーク接続が可能だ。また、長距離伝送による通信遅延やパケットロスの影響を抑える同社独自のデータ転送技術「xRDMA（Extend Remote Direct Memory Access）」を採用した。これらにより、約100キロメートル離れたデータセンター間でも低遅延で大容量の通信ができるという。
+　1FINITYは2026年11月から新製品の先行受注を開始し、2027年4月からグローバルで出荷を開始する予定だ。先行受注では、医療や金融といった業種の5社への提供が既に決定しており、グローバルで50社以上の顧客との商談が進行中だという。
+この記事の目次へ戻る
+#1FINITY
+#NIC
+#データセンター
+
+===== https://www.1finity.co.jp/newsroom/press-release/1finity-ultra-optical-system-n100
+(status 200)
+遠隔地のデータセンター間を高速低遅延で直接光接続できるAI時代の光ネットワークインターフェースカード「1Finity Ultra Optical System N100」のグローバル提供について
+2026年11月17日
+富士通グループでネットワーク事業を担う1FINITY株式会社（以下、1Finity）は、独自のデータ転送技術により、地理的に100km程度離れたデータセンターのCPUやGPUなどの計算リソースを、大容量かつ低遅延な光通信で接続する光ネットワークインターフェースカード（注1）「1Finity Ultra Optical System N100」（以下、1Finity NIC）を開発しました。1Finityは、2027年4月からの本製品のグローバル提供に先駆け、2026年11月より先行受注を開始し、順次提供していきます。（注2）なお、100km級の長距離スケールアクロス（注3）接続かつ最大800Gbpsの高速通信を実現できる光ネットワークインターフェースカードは世界初です。（注4）
+背景
+生成AIをはじめとするAI技術の急速な普及に伴い、AIの学習や推論に必要な計算リソースやデータ量は急激に増加しています。一方、データセンターでは電力や設置スペースなどの制約が課題であり、複数のデータセンターに計算リソースを分散配置し、それらを連携させて効率的に活用することへのニーズが高まっています。
+こうした中、再生可能エネルギーによる発電に適した電力を確保しやすい地域へ計算リソースを分散配置し、都市部などの電力を多く必要とする地域と高速ネットワークで接続することで、電力と通信を一体的に最適化するワット・ビット連携（注5）の検討も進められています。
+しかし、一般的なイーサネット通信では、データセンター間の距離が長くなるほど、通信遅延やパケットロスの影響を受けてデータ転送効率が低下します。特に大規模なAI処理では、大量データを継続的に転送する必要があるため、GPUが処理に必要なデータを待つ時間が増えてしまい、計算リソースを十分に活用できないことが課題でした。
+1Finityは、こうしたニーズにいち早く対応するため、CPUやGPUなどの計算リソースをデータセンター内および遠隔のデータセンター間で高速な光ネットワークで接続し、大容量データを高速伝送可能な1Finity NICを開発しました。1Finity NICは、NEDO（国立研究開発法人新エネルギー・産業技術総合開発機構）のグリーンイノベーション基金事業「次世代グリーンデータセンター技術開発」補助事業の成果で得た技術を活用して製品化したものです。
+1Finity NICの概要と特長
+1Finity NICは、長距離においても大量のデータを高速かつ低遅延で転送する1Finity独自のデータ転送技術xRDMA（Extend Remote Direct Memory Access）と高速光インターフェースを搭載したネットワークインターフェースカードです。サーバの拡張インターフェースとして広く普及しているPCI Expressに準拠しており、対応する既存サーバに搭載するだけで容易に利用できます。例えば、離れた場所に設置されたデータセンター間においても、各拠点のサーバに1Finity NICを搭載するだけで、伝送距離や通信量の変動に応じた調整を行わずに、遠隔地のサーバ間を容易に接続できます。既存サーバの構成や対応要件に応じて1Finity NICを装着できるため、分散コンピューティング環境を効率的に構築できます。これにより、AIの学習や推論をはじめ、大量のデータ転送を必要とするコンピューティング環境において、地理的に分散した計算リソースやデータの効率的な活用を支援します。
+1Finity NICの主な特長は以下の通りです。
+1. 大容量かつ高速伝送を可能にする400Gbps × 2ポートの高速光インターフェースを搭載
+400Gbps QSFP56-DD（注6）インターフェースを2ポート搭載し、合計最大800Gbpsのネットワーク接続に対応します。これにより、AIの学習や推論時にGPUサーバ間で発生する大容量データを高速に転送し、通信待ち時間によるGPUの稼働効率低下を抑えます。また、複数のデータセンターに分散配置された計算リソースを連携させ、大規模なAI処理に効率的に活用できます。
+2. 長距離でも高スループットなデータ転送を実現するxRDMA
+1Finity独自のデータ伝送技術xRDMAにより、伝送距離の長距離化に伴う通信遅延やパケットロスの影響を抑え、遠隔のデータセンター間でも高いデータ転送効率を維持します。これにより、約100km離れたデータセンター間においても、GPUやCPUなどの計算リソース間で大容量データを効率的に転送でき、AIの学習や推論、分散データベースなどの処理に活用できます。
+1Finity NICのイメージ
+今後について
+1Finityは今後、お客様との検証や実環境での活用を通じて、1Finity NICのユースケースを拡大するとともに、AIの学習や推論、分散データベースなどの大容量かつ低遅延なデータ転送が求められる領域への展開を進めていきます。また、1Finity NICや光ネットワーク技術を活用し、データセンター内からデータセンター間までをシームレスにつなぐことで、計算リソースを効率的に活用できる次世代AIインフラストラクチャーの実現を目指します。
+商標について
+記載されている製品名などの固有名詞は、各社の商標または登録商標です。
+注釈
+注1 光ネットワークインターフェースカード：
+サーバに搭載され、ネットワークとの接続およびデータの送受信を担うハードウェアであり、光信号を直接処理することで長距離・超高速通信を実現するもの
+注2 2027年4月からのグローバル提供に先駆け、2026年11月より先行受注を開始し、順次提供：
+お客様との個別契約により、製品仕様や提供条件、出荷時期は異なる場合がある
+注3 スケールアクロス（Scale Across）：
+離れた拠点やデータセンター間を高速・低遅延なネットワークで接続し、複数の計算資源を一体的に利用する技術
+注4 100km級の長距離スケールアクロス接続かつ最大800Gbpsの高速通信を実現できる光ネットワークインターフェースカードは世界初：
+2026年11月1Finity調べ
+注5 ワット・ビット連携：
+電力（ワット）と情報通信（ビット）を連携させることで、AI活用、脱炭素、地域振興を同時に実現する構想
+注6 QSFP56-DD（Quad Small Form-factor Pluggable 56 Double Density）：
+1レーン当たり最大約50Gbps級の信号を8レーン収容し、400Gbps通信に対応する小型の光トランシーバ規格
+関連リンク
+「1Finity Ultra Optical System N100」の製品ページ
+記者説明会資料
+「Ultra Optical System N100のグローバル提供について」説明資料
+本件に関するお問い合わせ
+1Finity株式会社 
+お問い合わせフォーム
+
+===== https://news.mynavi.jp/techplus/article/20261117-5347023/
+(status 200)
+富士通グループでネットワーク事業を担う1Finityは11月17日、100キロメートル程度離れたデータセンターのCPUやGPUなどの計算リソースを光通信で接続する光ネットワークインターフェースカード「1Finity Ultra Optical System N100」（以下、1Finity NIC）を開発したことを発表し、記者説明会を開いた。
+11月より先行受注と順次提供を開始し、2027年4月より本格的にグローバルで出荷を開始予定。
+1Finity NIC
+AI需要増でデータセンターに限界、求められる「スケールアクロス」とは
+AI技術が急速に普及している。AI利用は学習から推論へと移りつつあり、実用の拡大に伴って計算リソースやデータ量も急激に増大している。こうした課題に対して、いくつかの解決策が考えられる。単一システム内で高性能なCPUに入れ替える「スケールアップ」や、サーバの増設などシステムを拡張する「スケールアウト」などだ。
+一方、データセンターでは電力供給や設置スペースなどが制約となっている。そこで注目されているのが、複数のデータセンターに計算リソースを分散配置する「スケールアクロス」である。
+その取り組みの一つが、再生可能エネルギーなど電力を確保しやすい地域に計算リソースを配置し、都市部などと高速ネットワークで接続して電力と通信を最適化する「ワット・ビット連携」だ。
+しかしながら、一般的なイーサネット通信では、接続距離が長くなるほど通信品質が劣化し、遅延の増大やスループットの低下などが生じる。特に大規模なAI処理においては、大量データを継続的に転送する必要があり、計算リソースを十分に活用できない。
+このような課題に対して1Finityは、遠隔のデータセンター間を高速な光ネットワークで接続し大容量データを高速伝送可能な1Finity NICを開発した。
+なお、同製品はNEDO（新エネルギー・産業技術総合開発機構）のグリーンイノベーション基金事業「次世代グリーンデータセンター技術開発」補助事業の成果で得た技術を活用して製品化された。
+閉じる
+離れたデータセンターを連携して単一の計算基盤のように使う「スケールアクロス」が求められている
+最大800Gbpsでデータセンターを光接続する「N100」の仕組み
+1Finity NICは、長距離でも大量のデータを高速かつ低遅延で転送する独自のデータ転送技術「xRDMA」（Extended Remote Direct Memory Access）と、高速光インタフェースを搭載したネットワークインタフェースカード。
+サーバの拡張インタフェースであるPCI Expressに準拠し、既存サーバに搭載するだけで伝送距離や通信量の変動に応じた調整を行わずに利用できる。また、従来は複数個必要となる、汎用的なNICやスイッチ、ルータが不要だ。
+400ギガビット / 秒 QSFP56-DD（Quad Small Form-factor Pluggable 56 Double Density）インタフェースを2ポート搭載し、最大800ギガビット / 秒のネットワーク接続に対応。
+1Finity NICの構成イメージ
+AIの学習や推論時にGPUサーバ間で発生する大容量データを高速に転送し、通信待ち時間によるGPUの稼働効率低下を抑制できるという。これにより、複数のデータセンターに分散配置された計算リソースを効率的に連携させ、大規模なAI処理を実現する。
+データ転送時間を20分の1未満にする独自技術「xRDMA」
+1Finityのデータ伝送技術「xRDMA」はデータ伝送時のハンドシェイクと呼ばれる工程を削減し、低遅延でのデータ伝送を実現した。長距離の伝送に伴う通信遅延やパケットロスの影響を抑え、遠隔でも高いデータ転送効率を維持している。
+同社によると、従来技術のRDMAと比較して20キロメートル伝送時の推論データ転送時間を20分の1未満まで低減できたとのことだ。
+1Finity NICによる長距離伝送の実証結果
+1Finity フォトニクスシステム事業本部長を務める松井秀樹氏は「構成にもよるが、理論的には10分の1から50分の1まで転送時間を短縮できる」と説明した。
+1Finity フォトニクスシステム事業本部 本部長 松井秀樹氏
+xRDMAによるデータ伝送時間の削減効果
+3秒後の自動車レース展開を100km先のGPUで予測
+同社は1Finity NICを用いて、KYOJO CUPの協力により自動車レースでの有効性を確認する実証を行った。実証は、レースカーに搭載したカメラ映像やセンサーのテレメトリーデータを、100キロメートル離れたデータセンターで分析するというもの。
+具体的には、会場の簡易なCPUサーバでオンボード映像とテレメトリーデータを収集し、遠隔地のデータセンターでAI推論。データセンター間も1Finity NICで接続し、あたかも単一のデータセンターかのように活用した。
+実証のシステム構成
+その結果、1Finity NICの使用により、伝送遅延約20分の1、ジッター（伝送のゆらぎ）約1000分の1を実現したという。この高速通信により、約3秒後のレース展開を適切に予測し、レース戦略に利用したとのことだ。
+「3秒後のレース展開を予測する、ちょっとしたタイムマシンを作っているような感覚でこの取り組みを進めている」（松井氏）
+数秒後の動きを予測するこの技術は、将来的には自動運転の事故防止などに応用できるとのことだ。
+自動車レース展開の予測結果の比較
+
+===== https://www.sdxcentral.com/news/fujitsu-launches-world-first-optical-nic-with-1finity-n100/
+(status 200)
+Fujitsu launches 'world first' optical NIC with 1Finity N100
+Fujitsu's networking arm unleashes network interface card bolstered by xRDMA technology
+November 17, 2026
+By
+Giacomo "Jack" Lee
+            Have your say
+– Dan Meyer
+Fujitsu networking arm 1Finity released what it claimed to be the world’s first optical network interface card (NIC).
+The 1Finity Ultra Optical System N100, also known as 1Finity NIC, is capable of delivering connectivity of up to 800 Gb/s over distances of approximately 62 miles (100 kilometers). With the release, 1FInity aims to address growing constraints on data center power, space, and computing capacity as AI adoption expands and AI workloads increasingly shift from training toward inference.
+The PCI Express 5.0-compatible card incorporates two 400 Gb/s quad small form-factor pluggable 56 double density (QSFP56-DD) optical interfaces, providing an aggregate capacity of 800 Gb/s. Each interface uses eight lanes operating at approximately 50 Gb/s.
+Central to the N100 is 1Finity’s proprietary Extended Remote Direct Memory Access (xRDMA) technology, developed to tackle the latency, packet loss, and throughput degradation seen with conventional Ethernet and RDMA communications over longer distances. Such protocols require repeated handshakes and other exchanges that can delay large data transfers and leave GPUs sitting idle. According to 1Finity, xRDMA reduces these exchanges through hardware acceleration, maintaining consistent throughput and low jitter regardless of changing transmission distances or traffic conditions.
+In a comparison of AI inference data transfers across a 12-mile connection, the firm reported that its technology completed transfers in less than one-twentieth of the time required by conventional TCP/IP networking. Across workloads ranging from one to 64 concurrent executions, the company’s internal benchmarks showed transfer times of approximately 0.18 to 0.8 seconds using xRDMA, compared with up to 22.9 seconds over TCP/IP.
+The N100 marks 1Finity’s first NIC release as well as the wider Fujitsu group from 
+which it spun out of last year
+. Its lineage dates back to 2022 research from Fujitsu working on a photonics-based NIC, held as part of the group’s wider research work into the 
+all-photonics network (APN) concept.
+ Both parent and subsidiary are part of the Innovative Optical and Wireless Network (IOWN) Global Forum.
+In a press conference, Hideki Matsui, SVP and head of 1Finity's Photonics System Business Unit, claimed the N100 helps address “the growing compute demand of AI inference requires distributed data centers connected by (APN); 1Finity NIC enables this connectivity.”
+More in Data Center Interconnects
+Memory & Storage Supplement 2026
+15 Oct 2026
+Man behind Netflix’s data center network cut in brutal layoffs
+26 Oct 2026
+Cisco hikes software prices in portfolio 'rebalance'
+More in The Networking Channel
+The AI Infrastructure Supplement
+28 Jul 2026
+AI back-end networking spend to hit $1T by 2030: report
+09 Sep 2026
+Zayo disrupts networking with AI agent service
+Tags
+1Finity
+APAC
+APN
+Fujitsu
+Hideki Matsui
+Japan
+NIC
+Photonics
+RDMA
+SmartNIC
+xRDMA
+Comments
+
+===== https://businessnetwork.jp/article/38636/
+(status 200)
+1FINITYが光NIC「N100」発表　遠隔地のAIサーバーを低遅延接続しスケールアクロス実現
+AI
+データセンター
+光伝送
+富士通
+関根禎嘉（編集部）
+2026.11.17
+ページタイトルとURLがコピーされました
+        拡大し続けるAIデータセンター需要に対応するため、遠隔地の計算資源を一体的に利用する「スケールアクロス」が注目されているが、その実現の課題となるのが大量データの高速・低遅延転送だ。1FINITYが発表した光NIC「N100」は、100km級の長距離をルーターやスイッチを介さずに直接接続し、データ転送の遅延を大幅に削減する。すでにグローバルで50社以上の引き合いがあるという。      
+1FINITYは2026年11月17日、光ネットワークインターフェースカード（光NIC）の新製品「1Finity Ultra Optical System N100（以下、N100）」を発表した。
+光NIC「1Finity Ultra Optical System N100」の実機
+AIデータセンターの需要が拡大する一方、電力や設置スペースの制約から、単一のデータセンターで計算能力を拡張することが難しくなっている。そこで注目されているのが、遠隔地のデータセンターを相互接続し、一体的な計算基盤として利用する「スケールアクロス」の考え方だ。
+N100はこれを実現するための製品で、離れたデータセンターのサーバー間を光回線で高速・低遅延に接続する。同社によれば、100km級の長距離スケールアクロス接続と最大800Gbpsの通信を両立する光NICは世界初という。
+NICを活用したスケールアクロス構成のイメージ
+ルーター・スイッチなしに遠隔地のAIサーバーを“直結”
+1FINITY フォトニクスシステム事業本部長の松井秀樹氏は、スケールアクロスでAIワークロードを動かすには「距離が離れていることを感じさせないことが大きなポイント」と話した。
+「N100」の実機を手に説明する1FINITY フォトニクスシステム事業本部長の松井秀樹氏
+N100はPCIe5.0インターフェースを備え、サーバーに搭載して使用。対向するサーバーとは光ネットワークを介して直接接続する。従来のサーバー間接続に必要だった汎用NICやルーター、スイッチなどの「間にあったネットワーク装置を不要にし、ネットワークとデータセンターのインフラの境をなくす」（松井氏）。
+400Gbpsの光ポートを2つ搭載し、合計最大800Gbpsの通信に対応する。2028年度には各ポートを800Gbpsに増速し、合計1.6Tbpsに対応する予定だ。
+「N100」には400Gbpsポートを2つ搭載しAIサーバー間を高速接続
+接続にはユーザーが確保したダークファイバーのほか、通信事業者が提供するAPNなども利用できる。ポイントツーポイント接続だけでなく、メッシュ状の接続にも対応するという。
+          次のページ　独自技術「xRDMA」で長距離でも低遅延通信を実現          
+          続きのページは、会員の方のみ閲覧していただけます。
+無料会員登録
+ログインする
+ページタイトルとURLがコピーされました
+関連リンク
+発表資料（1FINITY）
+RELATED ARTICLE
+関連記事
+測定機能を一新した新型VNA　独自AIも搭載し生産性大幅向上
+加Lambdaがエヌビディア製CPOスイッチを大規模導入、1万GPUクラスターを接続
+NTT島田社長が描く宇宙光通信の未来　「増大する宇宙データをIOWNで運ぶ」
+NTT木下氏が語るR&D戦略「AIの進歩とエネルギー問題の両立を光で支える」
+デジタルスイス戦略2026
+SPECIAL TOPIC
+スペシャルトピック
+              シスコが提唱する通信インフラのセキュリティ対策　脆弱性発見からパッチ適用までの“空白期間”を埋める
+              日本企業にフィットするクラウドPBX　選定時に押さえたい5つのポイント
+              5Gは速いだけでは社会インフラになれない　フィジカルAIを支える止めない通信
+              「AI導入の失敗は、モデルより運用にある」　エイチシーエル・ジャパン阿久津氏が説くAIインフラの育て方
+              「歴史は繰り返す。AIネットワークもEthernetへ」 アリスタ兵頭氏が4領域での進化を徹底解説
+              エヌビディア愛甲氏が語る「CPOに賭ける理由」、消費電力5%減がAIの性能を高める
+スペシャルトピック一覧
+NEW ARTICLES
+新着記事
+1FINITYが光NIC「N100」発表　遠隔地のAIサーバーを低遅延接続しスケールアクロス実現
+2026.11.17
+SPECIAL TOPIC
+測定機能を一新した新型VNA　独自AIも搭載し生産性大幅向上
+2026.11.17
+NECマグナスら、ロボットが居住者へ宅配物を自動配送する実証　2028年度商用化へ
+2026.11.17
+加Lambdaがエヌビディア製CPOスイッチを大規模導入、1万GPUクラスターを接続
+2026.11.17
+NECと日本IBM、日本初方式のハイブリッド型量子安全通信の実証に成功
+2026.11.17
+NTT島田社長が描く宇宙光通信の未来　「増大する宇宙データをIOWNで運ぶ」
+2026.11.17
+NTTが光量子コンピュータ向けソフトウェアの第一弾、機械学習アプリ用SDKを開発
+2026.11.17
+NTT木下氏が語るR&D戦略「AIの進歩とエネルギー問題の両立を光で支える」
+2026.11.17
+IIJらが挑む「RPTP」の実力　公衆回線でも、高精度なマイクロ秒同期は届く
+2026.11.17
+ITU電気通信標準化局長選挙、現職の尾上氏が再選
+2026.11.16
+記事一覧
+FEATURE
+特集
+ソリューション特集
+AIで進化する「クラウドPBX」の今　刷新進むオフィス電話、各社の注目機能と選定時のポイントは？
+ソリューション特集
+“AI社会の時計”をどう作るか　データセンターにおける時刻同期技術の現在地
+ソリューション特集
+Wi-Fi 6E/7の現在地と未来　国内でも対応APが拡大、SPモード解禁で広がる可能性
+ソリューション特集
+60GHz帯無線LANの現在地　Wi-Fiと光ファイバーの間を埋める選択肢に
+ワイヤレスジャパン×WTP 2026レポート
+XGMF、総務省、NICT、NTTドコモ、KDDI、Wi-SUN、AHPCなど注目ブースの展示を大紹介！
+ソリューション特集
+光ファイバーセンシングの現在地　グローバルでは鉄道会社やガス事業者らが本格導入
+ソリューション特集
+イーサネットで作るGPUネットワーク　間近に迫る1.6TbE時代とローカルLLMに備えを
+ソリューション特集
+6GHz帯Wi-Fiは「低遅延」「多端末」で　Wi-Fi 7への準備も始めておこう
+WHITE PAPER
+ホワイトペーパー
+［講演資料］AIファクトリー時代のデータセンターおよびネットワークインフラのあり方、その課題と展望（エヌビディア 愛甲シニアマーケティングマネージャ）
+AIインフラ＆ネットワークサミット2026
+［講演資料］AWSがお客様と描く、これからのAIインフラの姿（アマゾンウェブサービスジャパン 瀧澤執行役員）
+AIインフラ＆ネットワークサミット2026
+［講演資料］AIインフラの新潮流 ～推論・ネットワーク・資本の交差点～（野村総合研究所 藤吉チーフリサーチャー）
+AIインフラ＆ネットワークサミット2026
+［講演資料］AI Infrastructure validation at scale（Keysight Technologies）
+AIインフラ＆ネットワークサミット2026
+［講演資料］HCLTechのChip-to-Cloud戦略とPhysical AIが拓く次世代運用（エイチシーエル・ジャパン）
+AIインフラ＆ネットワークサミット2026
+テクノロジー業界のAI成熟度レポート：スコアが9ポイント下落する中、「先駆企業」は何が違うのか
+ServiceNow Japan合同会社
+なぜ、Lenovoは顧客オンボーディングを40%速められたのか
+ServiceNow Japan合同会社
+XaaS時代の顧客体験ガイド：CCOが抱える3つの問いに答える
+ServiceNow Japan合同会社
+「少人数で脆弱性対応を回すには」積水化成品工業が3カ月半で構築したセキュリティ基盤
+ServiceNow Japan合同会社
+製造業の「AI成熟度レポート」　先駆企業が実践する3つのこと
+ServiceNow Japan合同会社
+ホワイトペーパー一覧
+×

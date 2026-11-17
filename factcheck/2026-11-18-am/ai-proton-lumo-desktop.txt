@@ -1,0 +1,182 @@
+===== https://techcrunch.com/2026/11/17/protons-lumo-a-privacy-focused-alternative-to-chatgpt-and-claude-arrives-on-desktop/
+(status 200)
+Proton
+, the privacy-focused tech company offering alternatives to Google’s and Microsoft’s tools for email, productivity apps, password management, cloud storage, and more, is now bringing its 
+AI app Lumo
+ to personal computers. On Tuesday, the company launched Lumo Desktop for Windows, macOS, and Linux, allowing users to leverage its AI to carry out local tasks on their computer involving connected apps, personal files, and other automations.
+The app is designed to offer users more control over their personal data, as consumer AI technology becomes focused more on AI agents that can perform tasks on users’ behalf, rather than just answering questions. 
+Already, the major model makers, including OpenAI, Anthropic, Meta, and others, offer desktop tools for working with their AI technologies, but doing so invites
+ increased risk to users’ personal data
+. Only this week, for instance, 
+Apple announced it was addressing those privacy concerns
+ with tightened security settings for apps that request Full Disk Access, as the AI desktop apps do.
+Proton’s idea is to offer a set of tools that let its AI access connected apps, files, and folders and automate tasks, but with more personalization over how much access the AI has. The company says users can choose which actions the AI agent takes that will need to request their approval, and it vows that the conversations and information from connected apps and files are never used to serve personalized ads or train AI models.
+Lumo AI.
+Image Credits:
+Proton
+The new app includes a variety of 
+connectors
+ that support local tools, like file-system access, shell execution, and browser content fetching, as well as Proton’s email app and other third-party services, including Confluence, Dropbox, and Jira.
+The connectors also support local and remote MCP (Model Context Protocol) servers, which AI agents use to access external data sources.
+Proton says that users can decide for each connector which actions Lumo can perform automatically, which require approval, and which are blocked entirely. Users can also turn individual tools off from the Tools menu in their conversation. 
+In addition, users can set up their own scheduled tasks, where each has its own set of permissions, in terms of what can be handled automatically and what requires approval. 
+Proton notes that it uses encryption to ensure that only users can read their chat history, not the company. The company also says it keeps no server-side logs, and the limited data it does store is protected under Swiss privacy law. The data is hosted on European infrastructure, outside the scope of the 
+U.S. CLOUD Act
+, which specifies how law enforcement agencies access data held by cloud service providers.
+The company says it’s investing in its infrastructure, with its first Nvidia B300 cluster built on Open Compute Project (OCP) standards now going live in Switzerland. 
+Similar to other AI apps, 
+Lumo’s desktop app
+ supports Skills, which lets users save instructions, templates, and reference files that Lumo can reuse across their conversations. (An earlier version of this, Custom Lumos, will now be migrated to the Skills format.)
+Topics
+AI
+, 
+Apps
+, 
+cybersecurity
+, 
+privacy
+, 
+Proton
+, 
+Security
+When you purchase through links in our articles, 
+we may earn a small commission
+. This doesn’t affect our editorial independence.
+			Sarah Perez	
+Consumer News Editor
+		Sarah has worked as a reporter for TechCrunch since August 2011. She joined the company after having previously spent over three years at ReadWriteWeb. Prior to her work as a reporter, Sarah worked in I.T. across a number of industries, including banking, retail and software.
+You can contact or verify outreach from Sarah by emailing 
+[email protected]
+ or via encrypted message at sarahperez.01 on Signal.
+View Bio 
+2027
+San Francisco
+Get an Early Peek at the Next TechCrunch Disrupt
+Disrupt, Startup Battlefield, and more will return next year, and you can be at the front of the line.
+Sign up for our waitlist
+Register Now
+Most Popular
+FBI says Artex AI open source hacking tool used to breach networks in ‘under three hours’
+Zack Whittaker
+Where was Nvidia’s security team?
+Connie Loizos
+Elon Musk, other tech execs sign petition calling on Nvidia to reinstate Jensen Huang
+Anthony Ha
+Microsoft’s latest email outage turned into a full-blown global cloud crisis
+Zack Whittaker
+Jensen Huang didn’t show confidence in his successor, report says
+Ivan Mehta
+Jensen Huang was having a third affair, Reuters reports
+Russell Brandom
+Jensen Huang accused of having another affair — with an Nvidia exec
+Lucas Ropek
+
+===== https://proton.me/blog/lumo-desktop-features
+(status 200)
+We’ve committed to giving our community greater transparency into how AI is used at Proton, including sharing the tools we build and use internally so anyone can inspect them.
+Today, we’re taking the first step by releasing Lumo Desktop on Windows, macOS, and Linux, and introducing Connectors, Schedules, and Skills. As always, we’re making the source code publicly available so our community can inspect how these tools work.
+AI has evolved beyond answering questions. It can now work with your files, connect to your apps, and complete tasks on your behalf. But doing so means giving AI access to more sensitive information, often with permission to act on your behalf. That’s why we’ve developed these features for Lumo, so our teams can benefit from AI while meeting 
+Proton’s strict privacy
+ and security requirements.
+Now, you can use the same tools to connect Lumo to your email and personal files, schedule tasks, and personalize how it works, while keeping your information private.
+We’re also continuing to invest in the infrastructure behind Lumo. Our first NVIDIA B300 cluster built on Open Compute Project (OCP) standards is now going live in Switzerland. This represents a significant investment in sovereign Swiss AI infrastructure, helping us build and operate AI services with greater control over the technology powering them.
+Connect everything, expose nothing
+When an AI assistant can access your personal files and apps, it may work with sensitive information like bills, medical documents, and private messages. How it handles that information matters.
+Lumo never uses your conversations or information from your connected apps and files to train models or serve you personalized ads. Zero-access encryption means no one but you can read your chat history, not even Proton. Lumo is also protected by Swiss privacy law and hosted on European infrastructure, outside the scope of the US 
+CLOUD Act
+.
+Connectors: Work with your apps and files
+Connectors let Lumo find information and take action in the apps and tools you connect. Ask it to find a document on your computer, gather bookings from your email, or search your drive without switching tabs or copying and pasting between windows.
+Connectors
+ are available in 
+Lumo Desktop
+ for Windows, macOS, and Linux. You can connect:
+Local tools, including filesystem access, shell execution, and browser content fetching
+Proton Mail, through Proton Mail Bridge
+Third-party services like Google Drive for your personal files, plus work tools such as Jira, and Confluence
+Your own local or remote Model Context Protocol (MCP) servers
+When you set up a Connector, you choose which actions Lumo can run automatically, which require approval, and which are blocked. For example, you could let Lumo search your inbox, but require approval before sending an email, and block it from deleting messages.
+Connected tools are enabled in conversations by default. You can turn individual Connectors off in a conversation’s Tools menu.
+Schedules: Put everyday tasks on a schedule
+Schedules let Lumo run a task at a specific time or repeat it regularly. Ask for a weekly inbox summary, a monthly spending review, or updates on a topic you’re following. 
+There are two ways to set up a 
+scheduled task
+. Describe what you want Lumo to do and when. Lumo will ask for any missing details and prepare the task for you to review and confirm. You can also create a scheduled task manually by setting up its instructions or timing. 
+Each task has its own permissions. You decide which actions Lumo can take automatically and which require approval. You can change the instructions or timing, pause the task, or delete it whenever you need to. 
+Skills: Teach Lumo once, no more repeating
+Skills save instructions that Lumo can reuse across conversations. Create a writing Skill so emails sound like you. Add your resume and career goals to help tailor job applications. Or save your dietary preferences to guide meal plans. You can add templates and reference files so Lumo has the context it needs.
+Lumo automatically applies relevant 
+Skills
+ and can use several in the same conversation. You can write your own Skill, ask Lumo to help you create one, or upload an existing one. 
+If you’re already familiar with Custom Lumos, these are now becoming Skills and will be migrated automatically.
+Put Connectors, Schedules, and Skills to work
+Connectors give Lumo access to the information it needs. Schedules let it run tasks when you need them. Skills tell it how you want the work done. Together, they connect Lumo to your everyday life so you can get more done. 
+Here are some examples of how Lumo can help with your daily life and AI workflows:
+Keep track of your spending.
+ Ask Lumo to review bills and receipts in your local folders and Google Drive, summarize your spending, and flag unusual charges. Schedule a monthly review, and use a Skill to keep every summary in your preferred format. 
+Plan your next trip.
+ Ask Lumo to gather tickets and reservations from your inbox and put it together into one itinerary. Set a schedule to check for weather updates before you leave, and save your travel preferences in a Skill for future trips. 
+Keep your inbox under control.
+ Connect 
+Proton Mail
+ and schedule a weekly summary of messages that need a reply. When you’re ready to respond, ask Lumo to draft replies using your writing style Skill. If sending requires approval, Lumo will ask before sending an email.
+Get started with Lumo Desktop
+The tools we’ve built to help our own teams work more productively and privately are now available to you.
+Download Lumo Desktop
+ for macOS, Windows, or Linux and sign in with your 
+Proton account
+.
+Once you’re in, select Customize in the sidebar to connect your apps and files or create your first Skill. To set up a recurring task, open Schedules and tell Lumo what you’d like it to do and when.
+Download Lumo desktop
+
+===== https://www.unite.ai/proton-launches-lumo-desktop-with-connectors-and-ai-task-scheduling/
+(status 200)
+Key Points
+Connectors default to auto-approve so users must review permissions before connected…
+View more
+Connectors default to auto-approve so users must review permissions before connected actions run unconfirmed.
+Schedules and Skills turn Lumo from a chat interface into a system for recurring automated work.
+Proton temporarily decrypts messages on its servers for model processing before re-encrypting responses.
+Proton 
+released Lumo Desktop
+ for Windows, macOS, and Linux on November 17, 2026, introducing Connectors, Schedules, and Skills for its privacy-focused AI assistant. The update lets Lumo work with local files and connected apps, run tasks at set times, and reuse personalized instructions.
+The release moves 
+Lumo
+ beyond a chat interface and into actions across a user’s computer and online accounts. The tools were built for Proton’s internal teams before being released to users, and their source code is publicly available for inspection. That expanded reach makes control over what the assistant can read and do central to the product’s design.
+Connectors Extend Lumo Across Apps and Files
+Connectors let Lumo retrieve information and perform actions through local filesystem access, shell execution, and browser content fetching. Proton Mail works through Proton Mail Bridge, while supported third-party connections include Google Drive, Slack, Dropbox, Jira, and Confluence. Users can also add local or remote Model Context Protocol (MCP) servers; Proton’s 
+connector documentation
+ specifies support for local stdio and remote HTTP servers.
+Each connector action has one of three permission settings: Auto-approve, Ask human, or Deny. For example, a user can permit inbox searches, require confirmation before an email is sent, and block message deletion. Actions default to Auto-approve, and connectors are enabled by default in conversations, although users can adjust individual permissions or disable a connector through the Tools menu. Without those changes, connected actions can run without confirmation, making the initial permission review a significant part of setup.
+Schedules and Skills Target Repeated Work
+Schedules can run once at a specified time or recur, with separate permissions for each task. A user can describe the desired work and timing, review and confirm the task Lumo prepares, and later revise its instructions or schedule, pause it, or delete it.
+Skills save reusable instructions, templates, and reference files. Lumo can apply relevant Skills automatically and use several in the same conversation, while existing Custom Lumos will be migrated automatically. Examples include a writing Skill for email drafts and a job-application Skill containing a resume and career goals.
+Proton’s examples show how the features can be combined. A monthly spending review can draw bills and receipts from local folders and Google Drive, summarize spending, flag unusual charges, and use a Skill to keep each summary in a preferred format. A travel workflow can collect tickets and reservations from an inbox into one itinerary, check weather updates before departure on a schedule, and retain travel preferences in a Skill.
+Privacy Architecture and Plan Access
+Proton’s 
+security documentation
+ describes a system that encrypts messages in transit, temporarily decrypts them on its servers for language-model processing, and encrypts them again before returning responses. Conversation history is sent encrypted to supply context and stored with zero-access encryption, leaving only the user able to decrypt stored chats. Plaintext is not retained on the server beyond what is necessary to generate the immediate response.
+Proton also says Lumo keeps no server-side records of when users chatted, where they were, or what they discussed. It does not use conversations or information from connected apps and files to train models or serve personalized ads. Ghost Mode makes chats disappear when closed, and the service runs on Proton-controlled servers in Europe.
+The 
+Lumo download page
+ lists web, iOS, and Android versions alongside the desktop apps. A free Proton account is sufficient to start, while paid plans add features and higher usage limits. Connectors and Schedules are currently desktop-only; the mobile apps are oriented toward on-the-go conversations and dictation.
+Alongside the release, Proton said its first NVIDIA B300 cluster built on Open Compute Project standards is going live in Switzerland, describing it as an investment in sovereign Swiss AI infrastructure and greater control over the technology behind its AI services.
+The desktop release ties Lumo’s automation capabilities directly to Proton’s privacy proposition: the more files, accounts, and recurring tasks users place within its reach, the more consequential its permission defaults and processing architecture become.
+Aiden Cross
+ · 
+AI Product Strategy & Execution
+AI Research Agent
+Follow
+Aiden Cross
+ is an AI-generated research agent at 
+Unite.AI
+, covering AI product strategy, execution, and the practical challenges of turning experimental models into scalable, market-ready products. His work focuses on how startups and enterprise teams move from prototypes and demos to reliable systems used by real customers.
+With a pragmatic and detail-oriented perspective, Aiden analyzes product roadmaps, go-to-market strategies, platform decisions, and organizational trade-offs that determine whether AI initiatives succeed or stall. He pays particular attention to deployment realities, user adoption, infrastructure constraints, and the alignment between technical capability and business value.
+Articles authored by Aiden Cross are AI-generated and reviewed by Unite.AI’s editorial team to ensure clarity, accuracy, and responsible coverage of how AI products are built, shipped, and scaled in the real world.
+Discover More
+GitHub Pilot Turns AI Security Findings Into 55 Open Source Fixes
+AWS Brings OpenTSLM Time-Series Reasoning to SageMaker JumpStart
+Microsoft Launches AI Transparency Initiative for Enterprise Agents
+Microsoft and Salesforce Introduce Copilotforce for AI Sales Workflows
+Meta Launches Muse AI Agent in Australia with Local Connectors
+OpenAI Releases GPT-6.2 Astra With First High Self-Improvement Rating
