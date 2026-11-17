@@ -291,7 +291,7 @@ function gauge(x,y,r,k){const cols=['#3FA66B','#E8C23D','#E8843D','#D01C29'];g.s
   for(let i=0;i<4;i++){g.strokeStyle=cols[i];g.beginPath();g.arc(x,y,r,Math.PI+i*Math.PI/4+0.02,Math.PI+(i+1)*Math.PI/4-0.02);g.stroke();}
   const a=Math.PI+Math.PI*(0.08+0.55*ease(k));g.strokeStyle=C.ink;g.lineWidth=r*0.07;g.lineCap='round';g.beginPath();g.moveTo(x,y);g.lineTo(x+Math.cos(a)*r*0.92,y+Math.sin(a)*r*0.92);g.stroke();
   g.fillStyle=C.ink;g.beginPath();g.arc(x,y,r*0.1,0,7);g.fill();g.restore();}
-function podium(x,y,w,h,rank,col){rrect(x,y,w,h,18,col);text(String(rank),x+w/2,y+h*0.42,Math.min(110,h*0.55),'#FFFFFF','center',900);}
+function podium(x,y,w,h,rank,col){rrect(x,y,w,h,18,col);}  // no rank digits: the heights show the order (frame check: fewer blocks)
 // the 0 s picture: OpenAI's official GPT-6.2 Astra image, sharp in the middle band, the same picture blurred behind it to fill the tall screen
 function openBg(){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;g.save();g.filter='blur(28px) brightness(0.42)';const s=Math.max(W/i.width,H/i.height)*1.08;g.drawImage(i,CX-i.width*s/2,960-i.height*s/2,i.width*s,i.height*s);g.restore();}
 const OPEN_R=[-151,260,1376,774];  // ASTRA logo spans x 75-1005 (zoom to 1.015): clear of YouTube's 50 px side bands
@@ -299,7 +299,7 @@ function openPic(z){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);
   g.save();g.filter='blur(28px) brightness(0.42)';const s=Math.max(W/i.width,H/i.height)*1.08;g.drawImage(i,CX-i.width*s/2,960-i.height*s/2,i.width*s,i.height*s);g.restore();
   g.save();g.translate(CX,OPEN_R[1]+OPEN_R[3]/2);g.scale(z,z);g.translate(-CX,-(OPEN_R[1]+OPEN_R[3]/2));g.drawImage(i,OPEN_R[0],OPEN_R[1],OPEN_R[2],OPEN_R[3]);g.restore();}
 // the first sentence's telop changes every 0.5-1 s: caption chunks longer than 6 characters are cut at word boundaries
-const OPEN_SPLIT={'費用は20分の1だそう':['費用は','20分の1','だそう'],'仕事の試験でライバル超え':['仕事の試験で','ライバル超え']};
+const OPEN_SPLIT={'費用は20分の1だそう':['費用は20分の1','だそう'],'仕事の試験でライバル超え':['仕事の試験で','ライバル超え']};
 function openParts(s){if(OPEN_SPLIT[s])return OPEN_SPLIT[s];if(s.replace(/[、。]/g,'').length<=6)return [s];const segs=[...SEG.segment(s)].map(x=>x.segment);const out=[];let cur='';
   for(const t of segs){if(cur&&(cur+t).replace(/[、。]/g,'').length>6&&cur.length>=2&&!NOSTART.includes(t[0])){out.push(cur);cur=t;}else cur+=t;}if(cur){if(cur.replace(/[、。]/g,'').length<2&&out.length)out[out.length-1]+=cur;else out.push(cur);}return out;}
 const S={
@@ -370,7 +370,7 @@ const S={
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
    const t2=Math.min(Math.max(1.0,telHas(L,'首位')),d-1.0);
    withEnter(enter(u,0.3),()=>{podium(170,820,340,260,2,C.bar);text('Astra',340,770,56,C.text,'center',900,320);},16);
-   withEnter(enter(u,t2),()=>{podium(570,640,340,440,1,C.acc);text('Fable 5.2',740,590,56,C.text,'center',900,330);},16);
+   withEnter(enter(u,t2),()=>{podium(570,640,340,440,1,C.acc);text('Fable 5.2',740,590,56,C.text,'center',900,330);crown(740,505,46,C.acc);},16);
    },
  // the end: big rina talks to the end (LongCat). The opening picture sits above her and, at 「このAI」, grows back to the 0 s layout.
  verdict(u,d,L){bg(u);const t2=telHas(L,'このAI');const kz=ease((u-t2+0.1)/0.6);
