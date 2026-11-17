@@ -294,7 +294,7 @@ function gauge(x,y,r,k){const cols=['#3FA66B','#E8C23D','#E8843D','#D01C29'];g.s
 function podium(x,y,w,h,rank,col){rrect(x,y,w,h,18,col);text(String(rank),x+w/2,y+h*0.42,Math.min(110,h*0.55),'#FFFFFF','center',900);}
 // the 0 s picture: OpenAI's official GPT-6.2 Astra image, sharp in the middle band, the same picture blurred behind it to fill the tall screen
 function openBg(){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;g.save();g.filter='blur(28px) brightness(0.42)';const s=Math.max(W/i.width,H/i.height)*1.08;g.drawImage(i,CX-i.width*s/2,960-i.height*s/2,i.width*s,i.height*s);g.restore();}
-const OPEN_R=[-173,250,1421,799];  // ASTRA logo spans x 60-1020: clear of YouTube's 50 px side bands
+const OPEN_R=[-151,260,1376,774];  // ASTRA logo spans x 75-1005 (zoom to 1.015): clear of YouTube's 50 px side bands
 function openPic(z){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;
   g.save();g.filter='blur(28px) brightness(0.42)';const s=Math.max(W/i.width,H/i.height)*1.08;g.drawImage(i,CX-i.width*s/2,960-i.height*s/2,i.width*s,i.height*s);g.restore();
   g.save();g.translate(CX,OPEN_R[1]+OPEN_R[3]/2);g.scale(z,z);g.translate(-CX,-(OPEN_R[1]+OPEN_R[3]/2));g.drawImage(i,OPEN_R[0],OPEN_R[1],OPEN_R[2],OPEN_R[3]);g.restore();}
@@ -304,7 +304,7 @@ function openParts(s){if(OPEN_SPLIT[s])return OPEN_SPLIT[s];if(s.replace(/[、�
   for(const t of segs){if(cur&&(cur+t).replace(/[、。]/g,'').length>6&&cur.length>=2&&!NOSTART.includes(t[0])){out.push(cur);cur=t;}else cur+=t;}if(cur){if(cur.replace(/[、。]/g,'').length<2&&out.length)out[out.length-1]+=cur;else out.push(cur);}return out;}
 const S={
  // 0 s (user 2026-11-17): only the real picture (OpenAI's GPT-6.2 Astra key visual) and the huge telop of the first sentence, chunk by chunk.
- open(u,d,L){abs(()=>{openPic(1.0+0.05*u/Math.max(1,d));creditAt('画像：OpenAI',1000,1105);
+ open(u,d,L){abs(()=>{openPic(1.0+0.015*u/Math.max(1,d));creditAt('画像：OpenAI',1000,1010);
      let last=null;const ch=P.tel.filter(x=>x.start>=L.start-0.01&&x.start<L.start+d);
      ch.forEach((tl,i)=>{const end=ch[i+1]?ch[i+1].start:L.start+d;const parts=openParts(tl.text);const n=parts.join('').length;let s0=tl.start;
        parts.forEach(pt=>{if(s0<=CURT+0.001)last={start:s0,text:pt};s0+=(end-tl.start)*pt.length/n;});});
@@ -324,7 +324,7 @@ const S={
    tag('OpenAI',CX,900,(u-0.6)/0.3,C.brand,64);
    creditAt('画像：OpenAI',925,765);},
  when(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'ChatGPT')),d-1.0);
-   if(u<t2+0.15){withEnter(enter(u,0),()=>{calIcon(CX,700,300,'11月','17');});withEnter(enter(u,0.4),()=>{pill('米国時間',CX,1060,56,C.brand);});}
+   if(u<t2+0.15){withEnter(enter(u,0),()=>{calIcon(CX,700,300,'11月','17');});withEnter(enter(u,0.1),()=>{pill('米国時間',CX,1060,56,C.brand);});}
    else{withEnter(enter(u,t2+0.15,0.2),()=>{card(150,470,370,560);chatBig(335,660,95,C.brand);text('ChatGPT',335,860,52,C.text,'center',900,330);text('Work',335,935,52,C.text,'center',900,330);},14);
      withEnter(enter(u,t2+0.4,0.2),()=>{card(560,470,370,560);codeIcon(745,660,95);text('Codex',745,895,58,C.text,'center',900,330);},14);}},
  // who: individuals (Plus, Pro), companies (Enterprise), schools (Edu)
@@ -347,7 +347,7 @@ const S={
    },
  price(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'2割')),d-0.9);
    heading([['API基本料金',C.text],['（入力）',C.sub]]);
-   withEnter(enter(u,0),()=>{card(150,470,780,560,30);text('100万トークンあたり',CX,530,34,C.sub,'center',800,700);
+   withEnter(enter(u,0),()=>{card(150,470,780,340,30);text('100万トークンあたり',CX,530,34,C.sub,'center',800,700);
      text('10ドル',330,700,84,C.sub,'center',900,320);g.save();g.strokeStyle=C.warn;g.lineWidth=9;g.beginPath();g.moveTo(205,705);g.lineTo(455,695);g.stroke();g.restore();});
    arrowR(480,600,700,(u-0.5)/0.35,C.acc);
    if(u>0.85)withEnter(enter(u,0.85,0.25),()=>{text('8ドル',760,700,110,C.acc,'center',900,320);},10);
@@ -365,21 +365,21 @@ const S={
    if(u>0.3){g.save();g.translate(810,760);g.scale(k1,k1);rrect(-28,-28,56,56,8,'#8A8F98');g.restore();text('Fable 5.2',790,840,40,C.text,'center',900,260);}
    if(u>0.7){g.save();g.translate(300,580);g.scale(k2,k2);g.fillStyle=C.brand;g.beginPath();for(let i=0;i<10;i++){const r=i%2?16:40,a=-Math.PI/2+i*Math.PI/5;g.lineTo(Math.cos(a)*r,Math.sin(a)*r);}g.closePath();g.fill();g.restore();text('Astra',300,650,40,C.brand,'center',900,220);}
    tag('費用は5%',CX,1110,(u-t2)/0.3,C.acc,64);
-   creditAt('OpenAIの発表をもとに作図',925,1020);},
+   },
  twist(u,d,L){bg(u);mini(u);
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
    const t2=Math.min(Math.max(1.0,telHas(L,'首位')),d-1.0);
    withEnter(enter(u,0.3),()=>{podium(170,820,340,260,2,C.bar);text('Astra',340,770,56,C.text,'center',900,320);},16);
    withEnter(enter(u,t2),()=>{podium(570,640,340,440,1,C.acc);text('Fable 5.2',740,590,56,C.text,'center',900,330);},16);
-   creditAt('出典：Artificial Analysis',925,1130);},
+   },
  // the end: big rina talks to the end (LongCat). The opening picture sits above her and, at 「このAI」, grows back to the 0 s layout.
  verdict(u,d,L){bg(u);const t2=telHas(L,'このAI');const kz=ease((u-t2+0.1)/0.6);
-   abs(()=>{const P0=[90,300,900,325],P1=[OPEN_R[0],-77,OPEN_R[2],OPEN_R[3]];/* the logo ends up at y 300-600, above her hair */const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
+   abs(()=>{const P0=[90,300,900,325],P1=[0,290,1080,420];const R=P0.map((v,i)=>v+(P1[i]-v)*kz);  // ends as a full-width band of the ASTRA logo above her hair (y 290-710, below the search icon band)
      glow(CX,1250,600,C.brand,0.32*(1-kz));
      if(kz>0){g.save();g.globalAlpha=kz;openBg();g.restore();}
-     g.save();g.beginPath();g.roundRect(Math.max(0,R[0]),R[1],Math.min(W,R[2]+Math.min(0,R[0])*2),R[3],28*(1-kz));g.clip();const i=IMG.open0;if(i){const s=Math.max(R[2]/i.width,R[3]/i.height);g.drawImage(i,R[0]+R[2]/2-i.width*s/2,R[1]+R[3]/2-i.height*s/2,i.width*s,i.height*s);}g.restore();
+     g.save();g.beginPath();g.roundRect(R[0],R[1],R[2],R[3],28*(1-kz));g.clip();const i=IMG.open0;if(i){const sc=Math.max(R[2]/i.width,R[3]/i.height)*(1+0.19*kz);g.drawImage(i,R[0]+R[2]/2-642*sc,R[1]+R[3]/2-470*sc,i.width*sc,i.height*sc);}g.restore();
      if(kz<0.05)creditAt('画像：OpenAI',975,600);
-     bigRina(VERD_R);if(kz>0.95)creditAt('画像：OpenAI',1000,690);});},
+     bigRina(VERD_R);if(kz>0.95)creditAt('画像：OpenAI',1000,685);});},
 };
 const BIGS=['hook','verdict'];
 const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
