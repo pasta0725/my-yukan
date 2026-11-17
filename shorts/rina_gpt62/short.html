@@ -298,7 +298,7 @@ function openPic(z){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);
   g.save();g.filter='blur(28px) brightness(0.42)';const s=Math.max(W/i.width,H/i.height)*1.08;g.drawImage(i,CX-i.width*s/2,960-i.height*s/2,i.width*s,i.height*s);g.restore();
   g.save();g.translate(CX,OPEN_R[1]+OPEN_R[3]/2);g.scale(z,z);g.translate(-CX,-(OPEN_R[1]+OPEN_R[3]/2));g.drawImage(i,OPEN_R[0],OPEN_R[1],OPEN_R[2],OPEN_R[3]);g.restore();}
 // the first sentence's telop changes every 0.5-1 s: caption chunks longer than 6 characters are cut at word boundaries
-const OPEN_SPLIT={};
+const OPEN_SPLIT={'費用は20分の1だそう':['費用は','20分の1','だそう'],'仕事の試験でライバル超え':['仕事の試験で','ライバル超え']};
 function openParts(s){if(OPEN_SPLIT[s])return OPEN_SPLIT[s];if(s.replace(/[、。]/g,'').length<=6)return [s];const segs=[...SEG.segment(s)].map(x=>x.segment);const out=[];let cur='';
   for(const t of segs){if(cur&&(cur+t).replace(/[、。]/g,'').length>6&&cur.length>=2&&!NOSTART.includes(t[0])){out.push(cur);cur=t;}else cur+=t;}if(cur){if(cur.replace(/[、。]/g,'').length<2&&out.length)out[out.length-1]+=cur;else out.push(cur);}return out;}
 const S={
@@ -345,21 +345,21 @@ const S={
  sol(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'費用')),d-1.0);
    heading([['普段使いの',C.text],['Sol',C.brand]]);
    withEnter(enter(u,0),()=>{codeIcon(CX,560,90,'#2E3A55');});
-   const k=ease((u-t2)/0.6);
+   const k=ease((u-t2)/0.6);text('費用',CX,690,44,C.sub,'center',900);
    withEnter(enter(u,0.3),()=>{card(150,720,780,120,26);text('Astra',190,780,46,C.text,'left',900,170);rrect(380,758,520,44,22,C.bar);});
    withEnter(enter(u,0.5),()=>{card(150,870,780,120,26);text('Sol',190,930,46,C.text,'left',900,170);rrect(380,908,Math.max(30,520*(1-0.8*k)),44,22,C.acc);});
-   if(k>0.95)tag('費用 約1/5',CX,1080,(u-t2-0.6)/0.3,C.acc,52);},
+   },
  price(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'2割')),d-0.9);
    heading([['API基本料金',C.text],['（入力）',C.sub]]);
    withEnter(enter(u,0),()=>{card(150,470,780,560,30);text('100万トークンあたり',CX,530,34,C.sub,'center',800,700);
      text('10ドル',330,700,84,C.sub,'center',900,320);g.save();g.strokeStyle=C.warn;g.lineWidth=9;g.beginPath();g.moveTo(205,705);g.lineTo(455,695);g.stroke();g.restore();});
    arrowR(480,600,700,(u-0.5)/0.35,C.acc);
    if(u>0.85)withEnter(enter(u,0.85,0.25),()=>{text('8ドル',760,700,110,C.acc,'center',900,320);},10);
-   tag('−20%',CX,900,(u-t2)/0.3,C.warn,72);},
+   },
  safety(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'公開')),d-1.2);
    heading([['OpenAIの',C.brand],['安全評価',C.text]]);
    withEnter(enter(u,0),()=>{card(150,470,780,560,30);gauge(CX,850,290,(u-0.3)/0.9);});
-   if(u>1.2)withEnter(enter(u,1.2,0.2),()=>{text('高',CX+150,640,120,C.warn,'center',900);},10);
+   if(u>1.2)withEnter(enter(u,1.2,0.2),()=>{text('高',CX,960,110,C.acc,'center',900);},10);
    tag('同社で初',CX,1080,(u-t2)/0.3,C.acc,56);},
  // the core (~40 s): OpenAI's own chart, Astra (left, cheap) vs Fable 5.2 (far right, expensive)
  core(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'費用')),d-0.9);
@@ -374,7 +374,7 @@ const S={
    const t2=Math.min(Math.max(1.0,telHas(L,'首位')),d-1.0);
    withEnter(enter(u,0.3),()=>{podium(170,820,340,260,2,C.bar);text('Astra',340,770,56,C.text,'center',900,320);},16);
    withEnter(enter(u,t2),()=>{podium(570,640,340,440,1,C.acc);text('Fable 5.2',740,590,56,C.text,'center',900,330);},16);
-   creditAt('外部の総合ランキング',925,1130);},
+   creditAt('出典：Artificial Analysis',925,1130);},
  // the end: big rina talks to the end (LongCat). The opening picture sits above her and, at 「このAI」, grows back to the 0 s layout.
  verdict(u,d,L){bg(u);const t2=telHas(L,'このAI');const kz=ease((u-t2+0.1)/0.6);
    abs(()=>{const P0=[90,300,900,325],P1=OPEN_R;const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
