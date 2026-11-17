@@ -1,0 +1,222 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script><script src="pal.js"></script>
+<script>
+// スプラトゥーン3 Ver.12.0.0「Xマッチにフレンドと2人組」解説ショート（アバターなし）。
+// helpers are copied from shorts/_template/short.html; the scenes below are drawn in screen coordinates
+// (diagram x70-1010, y300-1270; caption plate x110-900, y1290-1495; nothing at y180-280 or outside x50-1030).
+let MEASURE=false,CURT=0,CURI=0;
+const W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
+  line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
+  glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+// big captions: white letters + thin sharp black edge, no blur (2026-11-17 user chose B; the thick round white edge with a soft shadow looked blobby)
+Object.assign(C,{capText:'#FFFFFF',capEdge:'#000000',capNum:'#FFA51F'});
+const CX=540, MAXW=680, CAP_Y=1168;
+let BASE=null;function abs(fn){g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+const CT={s:1.12,y0:360,y1:375};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
+// ---------- helpers ----------
+function bg(u){abs(()=>bg0(u));}
+function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+// ---- overflow check (2026-11-13: "11/17" ran out of its calendar icon and nobody noticed) ----
+// every filled rrect is remembered in screen pixels; text() warns when its text sticks out of the smallest box it sits in.
+// check_fit.js renders the whole video and lists these warnings. text(s,...,maxw) also shrinks the font to fit maxw.
+let BOXES=[];window.FIT_WARN=window.FIT_WARN||[];
+function devBox(x,y,w,h){const m=g.getTransform();const xs=[x,x+w].map((a,i)=>m.a*a+m.c*(i?y+h:y)+m.e),ys=[y,y+h].map((b,i)=>m.b*(i?x+w:x)+m.d*b+m.f);return [Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)];}
+function noteBox(x,y,w,h){if(!MEASURE)BOXES.push(devBox(x,y,w,h));}
+function checkText(s,x,y,size,align){if(MEASURE)return;const tw=g.measureText(s).width;const x0=align==='left'?x:align==='right'?x-tw:x-tw/2;const b=devBox(x0,y-size*0.5,tw,size);
+  const cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2;let best=null;for(const r of BOXES){if(cx>r[0]&&cx<r[2]&&cy>r[1]&&cy<r[3]&&(!best||(r[2]-r[0])*(r[3]-r[1])<(best[2]-best[0])*(best[3]-best[1])))best=r;}
+  if(best&&(b[0]<best[0]-3||b[2]>best[2]+3||b[1]<best[1]-3||b[3]>best[3]+3))window.FIT_WARN.push({t:+CURT.toFixed(2),scene:P.lines[CURI]?P.lines[CURI].scene:'',text:s,over:Math.round(Math.max(best[0]-b[0],b[2]-best[2],best[1]-b[1],b[3]-best[3]))});}
+function rrect(x,y,w,h,r,fill,stroke){if(fill)noteBox(x,y,w,h);g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900,maxw){g.font=`${weight} ${size}px ${FONT}`;if(maxw){const w0=g.measureText(s).width;if(w0>maxw){size=Math.floor(size*maxw/w0);g.font=`${weight} ${size}px ${FONT}`;}}checkText(s,x,y,size,align);g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+function marks(s,warn){const m=new Array(s.length).fill(C.capText);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum);
+  // numbers inside product names (PS5, Switch 2, iPhone 17, GPT-6, M5) stay plain: only values (price, date, count) are highlighted (2026-11-14 user decision)
+  const prod=/[A-Za-z][A-Za-z+]*[ -]?([0-9][0-9.]*)(?![0-9.,万円倍月日秒%年人台本件回時分])/g;let p;
+  while((p=prod.exec(s))){const st=p.index+p[0].length-p[1].length;for(let i=st;i<p.index+p[0].length;i++)m[i]=C.capText;}
+  if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
+function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;const segb=new Set();for(const x of SEG.segment(s)){i+=x.segment.length;segb.add(i);if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}
+  // also right after particles - but not inside a word like 見なが|ら (2026-11-10 Issue #4): only when the next letter is not hiragana, or the word splitter also cuts there
+  for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j])&&(!HIRA.test(s[j])||segb.has(j)||'、。'.includes(s[j-1])))cuts.push(j);
+  const keep=j=>j>=3&&s.length-j>=3;  // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
+  cuts.push(s.length);
+  const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  let best=null;const c=[...new Set(cuts)].sort((a,b)=>a-b).filter(x=>x>0&&x<s.length&&keep(x)&&!/[0-9]/.test(s[x-1]));  // never break right after a digit (11|月17日, 2000|位)
+  const PEN=a=>(s.slice(a,a+2)==='いう'&&s[a-1]==='と')?size*0.6:(KANJI.test(s[a-1])&&KANJI.test(s[a]))?size*2.2:('をにはがでとのもへやかよね、。てばし'.includes(s[a-1])?0:size*0.9);  // prefer breaking right after a particle; avoid 再|入荷 (kanji|kanji)
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));const sc=m+PEN(a);if(m<=maxw*1.15&&(!best||sc<best.sc))best={L,m,sc};}if(!best)for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));if(!best||m<best.m)best={L,m,sc:m};}
+  if(best&&best.m<=maxw)return best.L;
+  let b3=null;for(const a of c)for(const b of c)if(b-a>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const m=Math.max(...L.map(W));if(!b3||m<b3.m)b3={L,m};}
+  return (b3&&(!best||best.m>maxw*1.06))?b3.L:(best?best.L:[s]);}  // 2 lines that would shrink the text by more than ~6% -> 3 lines (Issue #4)
+function bigTelop(s,y){s=s.replace(/[、。]$/,'');let size=150;let lines=wrapJa(s,size,940);if(lines.length>2)lines=[s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
+  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>940)size=Math.floor(size*940/w);}
+  const lh=size*1.18,y0=y-(lines.length-1)*lh/2;const m=marks(s,false);let off=0;
+  lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i];g.fillText(L[i],xs[i],yy);}off+=L.length;});}
+
+window.ready=(async()=>{await Promise.all([load('key','img/key.jpg'),load('blur','img/key_blur.jpg'),load('xt','img/xtitle.png')]);await document.fonts.ready;})();
+const CLIP={};function clipImg(i){return new Promise(r=>{if(CLIP[i])return r(CLIP[i]);const im=new Image();im.onload=()=>{CLIP[i]=im;r(im)};im.onerror=()=>r(null);im.src='img/clip/f'+String(i).padStart(4,'0')+'.jpg';});}
+let CLIPF=null;
+const YEL='#F5C400',BLU='#5A46E0',GRY='#B4BBC6',OK='#1FA35B',NUM='#FFA51F';
+const curTel=()=>{let last=P.tel[0];for(const tl of P.tel){if(tl.start<=CURT+1e-6)last=tl;else break;}return last;};
+function head(parts,y=372,size=66){mixLine(parts,CX,y,size);}
+function chip(t,x,y,col,ink,size=40){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(t).width+size*1.5;rrect(x-w/2,y-size*0.82,w,size*1.64,size*0.82,col);text(t,x,y+2,size,ink);return w;}
+function tag(t,xr,y){g.font=`700 24px ${FONT}`;const w=g.measureText(t).width+28;g.save();g.globalAlpha*=0.9;g.beginPath();g.roundRect(xr-w,y-20,w,40,10);g.fillStyle='#FFFFFF';g.fill();g.restore();g.font=`700 24px ${FONT}`;g.textAlign='right';g.textBaseline='middle';g.fillStyle='#3F4757';g.fillText(t,xr-14,y+1);}
+function person(x,y,s,col,ink='#16213A'){g.save();g.lineWidth=s*0.07;g.strokeStyle=ink;g.fillStyle=col;g.lineJoin='round';
+  g.beginPath();g.roundRect(x-s*0.40,y-s*0.02,s*0.80,s*0.60,[s*0.34,s*0.34,s*0.12,s*0.12]);g.fill();g.stroke();
+  g.beginPath();g.arc(x,y-s*0.36,s*0.27,0,7);g.fill();g.stroke();g.restore();}
+function duoLink(x1,x2,y,s,k){if(k<=0)return;g.save();g.globalAlpha*=clamp(k);const e=ease(k);const cx=(x1+x2)/2,hw=((x2-x1)/2+s*0.62)*(0.6+0.4*e);
+  g.beginPath();g.roundRect(cx-hw,y-s*0.78,hw*2,s*1.52,s*0.46);g.fillStyle='rgba(255,165,31,0.30)';g.fill();g.lineWidth=7;g.strokeStyle=NUM;g.stroke();g.restore();}
+function mark(ok,x,y,r,k){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);g.lineWidth=r*0.3;g.lineCap='round';
+  if(ok){g.strokeStyle=OK;g.beginPath();g.arc(0,0,r,0,7);g.stroke();}else{g.strokeStyle=C.warn;g.beginPath();g.moveTo(-r,-r);g.lineTo(r,r);g.moveTo(r,-r);g.lineTo(-r,r);g.stroke();}g.restore();}
+function arrowR(x1,x2,y,col,lw=12){g.save();g.strokeStyle=col;g.lineWidth=lw;g.lineCap='round';g.lineJoin='round';g.beginPath();g.moveTo(x1,y);g.lineTo(x2,y);g.moveTo(x2-26,y-26);g.lineTo(x2,y);g.lineTo(x2-26,y+26);g.stroke();g.restore();}
+function arrowD(x,y1,y2,col,lw=12){g.save();g.strokeStyle=col;g.lineWidth=lw;g.lineCap='round';g.lineJoin='round';g.beginPath();g.moveTo(x,y1);g.lineTo(x,y2);g.moveTo(x-24,y2-24);g.lineTo(x,y2);g.lineTo(x+24,y2-24);g.stroke();g.restore();}
+// official key art: blurred copy fills the screen, the sharp picture pans slowly in front of it
+function keyArt(px,dim){const b=IMG.blur;if(b)g.drawImage(b,0,0,W,H);else{g.fillStyle='#1B1E4A';g.fillRect(0,0,W,H);}
+  const k=IMG.key;if(k){const h=1160,w=h*k.width/k.height;px=Math.max(W-w,Math.min(0,px));g.drawImage(k,px,140,w,h);}
+  if(dim){g.fillStyle=`rgba(8,12,28,${dim})`;g.fillRect(0,0,W,H);}}
+function telopShade(){const gr=g.createLinearGradient(0,880,0,1300);gr.addColorStop(0,'rgba(8,12,28,0)');gr.addColorStop(1,'rgba(8,12,28,0.62)');g.fillStyle=gr;g.fillRect(0,880,W,420);}
+function stepText(parts,u,d){const w=parts.map(p=>p.length+1),tot=w.reduce((a,b)=>a+b,0);let acc=0;for(let i=0;i<parts.length;i++){acc+=w[i];if(u<d*acc/tot)return parts[i];}return parts[parts.length-1];}
+// caption plate (no presenter in this video): navy plate, white letters, numbers orange
+function cap(s,k,warn){s=s.trim();const cx=505,maxw=716;let size=74;let lines=s.includes('「')?[s]:wrapJa(s,size,maxw);  // a quote stays on one line
+  for(const Ln of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(Ln).width;if(w>maxw)size=Math.floor(size*maxw/w);}
+  if(lines.length===3)size=Math.min(size,58);
+  g.save();g.shadowColor='rgba(16,34,57,0.30)';g.shadowBlur=26;g.shadowOffsetY=8;g.beginPath();g.roundRect(110,1290,790,205,40);g.fillStyle='#16213A';g.fill();g.restore();
+  const lh=size*1.2,cy=1393,y0=cy-(lines.length-1)*lh/2;const m=marks(s,warn);let off=0;g.save();g.globalAlpha*=clamp(0.45+k/0.14);
+  lines.forEach((Ln,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(Ln).width;let x=cx-w/2;g.textAlign='left';g.textBaseline='middle';
+    for(let i=0;i<Ln.length;i++){const col=m[off+i];g.fillStyle=col===C.warn?'#FF8A8A':col;g.fillText(Ln[i],x,y0+li*lh);x+=g.measureText(Ln[i]).width;}off+=Ln.length;});g.restore();}
+function cal(cx,cy,day,label,k,hot){withEnter(k,()=>{const w=380,h=470,x=cx-w/2,y=cy-h/2;rrect(x,y,w,h,36,C.card);
+  g.save();g.beginPath();g.roundRect(x,y,w,112,[36,36,0,0]);g.fillStyle=hot?C.acc:C.brand;g.fill();g.restore();
+  text('2026年11月',cx,y+58,46,'#FFFFFF','center',900);text(day,cx,y+250,210,C.text);text(label,cx,y+405,64,hot?C.acc:C.brand);},36);}
+function pairRow(y,tl,tr,ok,k,km,crown){withEnter(k,()=>{rrect(90,y-170,900,335,36,C.card);
+  const xa=250,xb=600,s=180;
+  g.save();g.lineWidth=14;g.lineCap='round';if(ok){g.strokeStyle=NUM;}else{g.strokeStyle=GRY;g.setLineDash([20,22]);}g.beginPath();g.moveTo(xa+92,y-40);g.lineTo(xb-92,y-40);g.stroke();g.restore();
+  person(xa,y-30,s,YEL);person(xb,y-30,s,ok?YEL:GRY);
+  if(crown){[xa].concat(ok?[xb]:[]).forEach(x=>{g.save();g.translate(x,y-128);g.fillStyle=NUM;g.strokeStyle='#16213A';g.lineWidth=5;g.lineJoin='round';g.beginPath();g.moveTo(-34,0);g.lineTo(-40,-38);g.lineTo(-17,-18);g.lineTo(0,-46);g.lineTo(17,-18);g.lineTo(40,-38);g.lineTo(34,0);g.closePath();g.fill();g.stroke();g.restore();});}
+  chip(tl,xa,y+108,C.acc,'#FFFFFF',38);chip(tr,xb,y+108,ok?C.acc:'#7A8494','#FFFFFF',38);},30);
+  mark(ok,850,y-20,60,km);}
+function stamp(t,x,y,size,col,k,rot=-0.05){if(k<=0)return;const st=ease(k);g.save();g.translate(x,y);g.rotate(rot);g.scale(1.4-0.4*st,1.4-0.4*st);g.globalAlpha*=st;g.font=`900 ${size}px ${FONT}`;const w=g.measureText(t).width+size*0.9;rrect(-w/2,-size*0.8,w,size*1.6,size*0.3,col);text(t,0,3,size,'#FFFFFF');g.restore();}
+const S={
+ // 0 s: official key art + giant caption only
+ open(u,d,L){keyArt(-150-55*CURT,0);telopShade();bigTelop(stepText(['ひとり専用だった','Xマッチに','フレンドと2人で','参加できます'],u,d),1110);tag('©Nintendo　出典：スプラトゥーン3 公式サイト',1005,1338);},
+ // "but not with just anyone"
+ tease(u,d,L){keyArt(-150-55*CURT,0.5);
+   withEnter(enter(u,0,0.2),()=>{rrect(150,400,780,480,44,'#FFFFFF');person(350,660,230,YEL);person(730,660,230,GRY);
+     g.save();g.setLineDash([22,20]);g.lineWidth=13;g.lineCap='round';g.strokeStyle='#8791A1';g.beginPath();g.moveTo(462,640);g.lineTo(618,640);g.stroke();g.restore();
+     text('自分',350,820,42,C.text,'center',800);text('フレンド',730,820,42,C.text,'center',800);},30);
+   const k=(u-0.3)/0.3;if(k>0){g.save();g.translate(540,640);const sc=back(k);g.scale(sc,sc);g.beginPath();g.arc(0,0,74,0,7);g.fillStyle=C.warn;g.fill();text('？',0,4,96,'#FFFFFF');g.restore();}
+   bigTelop(stepText(['でも','誰とでも','組めるわけでは','ありません'],u,d),1110);},
+ // "this news in one minute"
+ decl(u,d,L){bg(u);
+   withEnter(enter(u,0,0.2),()=>{rrect(210,330,660,230,36,C.card);const i=IMG.xt;if(i){const w=430,h=w*i.height/i.width;g.drawImage(i,CX-w/2,428-h/2,w,h);}
+     text('出典：スプラトゥーン3 公式サイト ©Nintendo',CX,530,24,C.sub,'center',700);});
+   const k=back((u-0.1)/0.35);if(u>0.1){g.save();g.translate(CX,710);g.scale(k,k);mixLine([['フレンドと',C.text],['2人組',C.acc]],0,0,112);g.restore();}
+   const r=150,cy=1010,pr=clamp(u/d);g.save();g.lineWidth=30;g.strokeStyle=C.dotOff;g.beginPath();g.arc(CX,cy,r,0,7);g.stroke();
+   g.strokeStyle=C.brand;g.lineCap='round';g.beginPath();g.arc(CX,cy,r,-Math.PI/2,-Math.PI/2+Math.PI*2*Math.max(0.02,pr));g.stroke();g.restore();text('1分',CX,cy+4,120,C.acc);},
+ // announced 11/17, released 11/18 as Ver.12.0.0
+ when(u,d,L){bg(u);const t2=telHas(L,'18日'),t3=telHas(L,'Ver');head([['任天堂',C.brand],['が発表',C.text]]);
+   cal(290,700,'17','発表',enter(u,0.05),false);if(u>t2-0.05)arrowR(498,582,700,C.sub,14);cal(790,700,'18','配信',enter(u,t2),true);
+   if(u>t3){const k=back((u-t3)/0.35);g.save();g.translate(CX,1075);g.scale(k,k);rrect(-330,-80,660,160,44,C.card2);text('Ver.12.0.0',0,4,104,'#FFFFFF','center',900,600);g.restore();}
+   tag('出典：任天堂サポート「更新データ Ver.12.0.0」',1005,1245);},
+ // playable from the 2026 winter season; winter seasons have started on Dec 1
+ season(u,d,L){bg(u);const t2=telHas(L,'冬は例年');head([['遊べるのは',C.text],['次のシーズン',C.acc]]);
+   withEnter(enter(u,0.1),()=>{rrect(110,450,860,400,44,C.card2);g.save();g.beginPath();g.roundRect(110,450,860,400,44);g.clip();
+     for(let i=0;i<16;i++){const x=140+((i*197)%800),y=450+((i*131+CURT*(40+i%5*14))%400),r=5+i%4*2;g.beginPath();g.arc(x+12*Math.sin(CURT*1.3+i),y,r,0,7);g.fillStyle='rgba(255,255,255,0.55)';g.fill();}g.restore();
+     mixLine([['2026',NUM],['冬',"#FFFFFF"]],CX,585,150);text('Chill Season から',CX,745,84,'#FFFFFF','center',900,780);},36);
+   withEnter(enter(u,t2),()=>{rrect(170,905,740,240,36,C.card);text('冬シーズンの開幕は例年',CX,965,42,C.sub,'center',800);mixLine([['12月1日',C.acc]],CX,1060,118);},30);
+   if(u>t2+0.3)text('※今回の開始日は未発表',CX,1192,34,C.sub,'center',800);
+   tag('出典：任天堂サポート',1005,1250);},
+ // duo of two, still 8 players (official battle clip on top)
+ duo(u,d,L){bg(u);const t2=telHas(L,'試合');
+   rrect(62,312,956,544,28,'#0F1626');if(CLIPF){g.save();g.beginPath();g.roundRect(70,320,940,528,22);g.clip();g.drawImage(CLIPF,70,320,940,528);g.restore();}
+   tag('©Nintendo　出典：スプラトゥーン3 公式サイト',1000,822);
+   const y=1050,s=112,xy=[118,236,354,472],xb=[608,726,844,962];
+   duoLink(xy[0],xy[1],y,s,(u-0.25)/0.3);
+   xy.forEach((x,i)=>withEnter(enter(u,0.03*i,0.2),()=>person(x,y,s,YEL),20));xb.forEach((x,i)=>withEnter(enter(u,0.12+0.03*i,0.2),()=>person(x,y,s,BLU),20));
+   text('VS',540,y-8,44,C.sub,'center',900);
+   if(u>0.3){const k=back((u-0.3)/0.3);g.save();g.translate(177,925);g.scale(k,k);chip('2人組',0,0,C.acc,'#FFFFFF',44);g.restore();}
+   if(u>t2+0.25){const k=back((u-t2-0.25)/0.3);g.save();g.translate(CX,1200);g.scale(k,k);mixLine([['試合は',C.text],['8人',C.acc]],0,0,84);g.restore();}},
+ // a duo on my team -> the same number of duos on the other team
+ mirror(u,d,L){bg(u);const t2=telHas(L,'相手');head([['2人組の数は',C.text],['両チーム同じ',C.acc]],372,62);
+   const s=170,xs=[205,425,655,875],ya=650,yb=1075;
+   text('味方',110,478,48,C.text,'left',900);text('相手',110,903,48,C.text,'left',900);
+   duoLink(xs[0],xs[1],ya,s,(u-0.2)/0.3);duoLink(xs[0],xs[1],yb,s,(u-t2)/0.3);
+   xs.forEach(x=>{person(x,ya,s,YEL);person(x,yb,s,BLU);});
+   if(u>0.25){const k=back((u-0.25)/0.3);g.save();g.translate(315,ya+158);g.scale(k,k);chip('2人組',0,0,C.acc,'#FFFFFF',42);g.restore();}
+   if(u>t2+0.05){const k=back((u-t2-0.05)/0.3);g.save();g.translate(315,yb+158);g.scale(k,k);chip('2人組',0,0,C.acc,'#FFFFFF',42);g.restore();}
+   if(u>t2+0.35){const k=back((u-t2-0.35)/0.3);g.save();g.translate(765,ya+212);g.scale(k,k);rrect(-170,-58,340,116,30,C.card2);text('同じ数',0,3,64,'#FFFFFF');g.restore();}},
+ // but: three conditions
+ cond(u,d,L){bg(u);const t2=telHas(L,'条件');stamp('ただし',CX,470,120,C.warn,u/0.25);
+   if(u>t2){const k=back((u-t2)/0.35);g.save();g.translate(CX,860);g.scale(k,k);text('条件が',-215,10,116,C.text);text('3つ',215,0,290,C.acc);g.restore();}},
+ // 1: X Power measured in that rule (first 5 matches of the season)
+ c1(u,d,L){bg(u);const t2=telHas(L,'終えて');chip('条件 1',CX,372,C.card2,'#FFFFFF',50);mixLine([['Xパワー',C.brand],['の計測が完了',C.text]],CX,495,64);
+   withEnter(enter(u,0.1),()=>{rrect(110,580,860,560,40,C.card);text('ルールごと・シーズン最初の5試合',CX,660,42,C.sub,'center',800,780);
+     for(let i=0;i<5;i++){const x=220+i*160,y=830,on=clamp((u-0.35-i*0.22)/0.18);g.beginPath();g.arc(x,y,60,0,7);g.fillStyle=C.dotOff;g.fill();
+       if(on>0){g.save();g.translate(x,y);g.scale(back(on),back(on));g.beginPath();g.arc(0,0,60,0,7);g.fillStyle=C.brand;g.fill();text(String(i+1),0,4,62,'#FFFFFF');g.restore();}}},36);
+   if(u>t2){const k=back((u-t2)/0.3);g.save();g.translate(CX,1030);g.scale(k,k);rrect(-250,-62,500,124,62,OK);text('✓ 計測完了',0,3,66,'#FFFFFF','center',900,440);g.restore();}
+   tag('出典：スプラトゥーン3 公式サイト／任天堂サポート',1005,1245);},
+ // 2: 2000.0 or more only with 2000.0 or more
+ c2(u,d,L){bg(u);const t2=telHas(L,'2000以上の人と');chip('条件 2',CX,372,C.card2,'#FFFFFF',50);mixLine([['Xパワー',C.brand],['2000以上',C.acc],['どうし',C.text]],CX,495,64);
+   pairRow(745,'2000以上','2000以上',true,enter(u,0.1),(u-0.55)/0.3);pairRow(1095,'2000以上','2000未満',false,enter(u,t2),(u-t2-0.4)/0.3);},
+ // 3: players matched only inside the top 2000 -> only with top 2000
+ c3(u,d,L){bg(u);const t2=telHas(L,'対戦'),t3=telHas(L,'同じ上位');chip('条件 3',CX,372,C.card2,'#FFFFFF',50);mixLine([['上位2000位以内',C.acc],['どうし',C.text]],CX,495,64);
+   pairRow(735,'2000位以内','2000位以内',true,enter(u,0.1),(u-0.55)/0.3,true);pairRow(1075,'2000位以内','2001位以下',false,enter(u,t3),(u-t3-0.4)/0.3,true);
+   if(u>t2){g.save();g.globalAlpha*=clamp((u-t2)/0.2);text('※上位2000位以内だけで対戦している人が対象',CX,1258,29,C.sub,'center',800);g.restore();}},
+ // smaller X Power changes, matchmaking may take longer
+ cost(u,d,L){bg(u);const t2=telHas(L,'相手探し');head([['2人組',C.acc],['の注意点',C.text]]);
+   withEnter(enter(u,0.08),()=>{rrect(90,440,900,420,40,C.card);text('Xパワーの増減',CX,505,46,C.sub,'center',800);
+     const e1=ease((u-0.25)/0.4),e2=ease((u-0.55)/0.4);const col=(x,h,c)=>{g.save();g.strokeStyle=c;g.lineWidth=20;g.lineCap='round';g.lineJoin='round';const y=660;g.beginPath();g.moveTo(x,y-h);g.lineTo(x,y+h);g.moveTo(x-30,y-h+30);g.lineTo(x,y-h);g.lineTo(x+30,y-h+30);g.moveTo(x-30,y+h-30);g.lineTo(x,y+h);g.lineTo(x+30,y+h-30);g.stroke();g.restore();};
+     col(300,40+70*e1,C.brand);text('1人',300,815,54,C.text);col(780,40+8*e2,C.acc);text('2人組',780,815,54,C.acc);
+     if(u>0.6)text('小さめ',780,560,40,C.acc,'center',900);});
+   withEnter(enter(u,t2),()=>{rrect(90,900,900,310,40,C.card);const cx=250,cy=1050,a=(u-t2)*2.4;
+     g.save();g.translate(cx+16*Math.cos(a),cy+16*Math.sin(a));g.strokeStyle=C.ink;g.lineWidth=18;g.lineCap='round';g.beginPath();g.arc(-10,-10,56,0,7);g.stroke();g.beginPath();g.moveTo(34,34);g.lineTo(74,74);g.stroke();g.restore();
+     text('相手探しが',640,1010,58,C.text,'center',900,520);text('長引くことも',640,1095,68,C.warn,'center',900,520);});},
+ // a trial: Nintendo will analyse and decide whether to continue
+ trial(u,d,L){bg(u);const t2=telHas(L,'任天堂は'),t3=telHas(L,'続ける');stamp('お試し',CX,400,104,C.acc,(u-0.05)/0.25,-0.04);
+   const node=(y,k,fn)=>withEnter(k,()=>{rrect(170,y-82,740,164,36,C.card);fn();},30);
+   node(630,enter(u,0.25),()=>mixLine([['2026',C.acc],['冬に試験導入',C.text]],CX,633,60));
+   if(u>t2)arrowD(CX,730,790,C.sub,14);node(885,enter(u,t2),()=>text('遊ばれ方を分析',CX,888,62,C.text,'center',900,680));
+   if(u>t3)arrowD(CX,985,1045,C.sub,14);node(1140,enter(u,t3),()=>{text('続けるか判断',CX-40,1143,62,C.text,'center',900,560);const p=1+0.08*Math.sin(u*7);g.save();g.translate(800,1140);g.scale(p,p);g.beginPath();g.arc(0,0,54,0,7);g.fillStyle=C.acc;g.fill();text('？',0,4,70,'#FFFFFF');g.restore();});
+   tag('出典：任天堂サポート',1005,1255);},
+ // voices on X (summarised)
+ voices(u,d,L){keyArt(-560-20*u,0.62);chip('Xの声（要約）',CX,400,'#FFFFFF',C.ink,46);
+   const card=(x,y,t,k)=>withEnter(k,()=>{g.save();g.beginPath();g.roundRect(x,y,760,190,44);g.fillStyle='#FFFFFF';g.fill();g.beginPath();g.moveTo(x+70,y+186);g.lineTo(x+50,y+236);g.lineTo(x+130,y+186);g.closePath();g.fill();g.restore();noteBox(x,y,760,190);text(t,x+380,y+98,62,C.ink,'center',900,700);},40);
+   card(110,540,'一生来ないと思ってた',enter(u,0.25));card(210,850,'もう孤独な旅じゃない',enter(u,Math.min(1.5,d*0.5)));
+   tag('背景 ©Nintendo　出典：スプラトゥーン3 公式サイト',1005,1255);},
+ // closing line over the opening picture (loops back to 0 s)
+ end(u,d,L){keyArt(-150-55*Math.max(0,P.T-CURT),0);telopShade();bigTelop(stepText(['4年間','ひとり専用だった','Xマッチが','この冬、変わります'],u,d),1110);tag('©Nintendo　出典：スプラトゥーン3 公式サイト',1005,1338);},
+};
+const NOCAP=['open','tease','end'];
+window.render=async function(t){BOXES=[];CURT=t;
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}CURI=cur;
+  const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.T)-L.start;
+  if(L.scene==='duo')CLIPF=await clipImg(Math.min(222,16+Math.floor(u*54)));
+  g.save();if(cur>0&&L.scene!=='tease'&&u<0.12){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut (not at 0 s: the first frame is still)
+  BASE=g.getTransform();S[L.scene](u,d,L);
+  if(!NOCAP.includes(L.scene)){const last=curTel();cap(last.text,t<last.start?1:(t-last.start),L.scene==='cond');}
+  g.restore();
+};
+</script></body></html>
