@@ -277,7 +277,7 @@ function clockIcon(x,y,s,h,m){g.save();g.translate(x,y);g.beginPath();g.arc(0,0,
   const a1=(h%12+m/60)/12*Math.PI*2-Math.PI/2,a2=m/60*Math.PI*2-Math.PI/2;g.lineWidth=s*0.09;g.beginPath();g.moveTo(0,0);g.lineTo(Math.cos(a1)*s*0.5,Math.sin(a1)*s*0.5);g.stroke();g.lineWidth=s*0.06;g.beginPath();g.moveTo(0,0);g.lineTo(Math.cos(a2)*s*0.78,Math.sin(a2)*s*0.78);g.stroke();g.restore();}
 function person(x,y,s,col){g.save();g.translate(x,y);g.fillStyle=col||C.brand;g.beginPath();g.arc(0,-s*0.55,s*0.3,0,7);g.fill();g.beginPath();g.roundRect(-s*0.45,-s*0.18,s*0.9,s*0.9,s*0.35);g.fill();g.restore();}
 function bar(label,mult,x,y,w,k,hi){rrect(x,y,w,108,26,hi?C.buyFill:C.card);text(label,x+30,y+54,40,hi?C.buyInk:C.text,'left',900,150);
-  const bw=(w-400)*clamp(k)*mult/20;rrect(x+200,y+38,Math.max(10,bw),32,16,hi?'#FFFFFF':C.brand);if(k>0.15)text(Math.max(1,Math.round(mult*ease(k)))+'倍',x+w-30,y+54,48,hi?C.buyInk:C.acc,'right',900,150);}
+  const bw=(w-400)*clamp(k)*mult/20;rrect(x+200,y+38,Math.max(10,bw),32,16,hi?'#FFFFFF':C.brand);if(k>0.95)text(mult+'倍',x+w-30,y+54,48,hi?C.buyInk:C.acc,'right',900,150);}
 function heading(parts){mixLine(parts,CX,395,70);}
 const OPEN_SPLIT={'このSiri、':['この','Siri、'],'難しいお願いには':['難しい','お願いには'],'1日の回数制限が':['1日の','回数制限が']};
 const S={
@@ -297,33 +297,30 @@ const S={
  hook(u,d,L){bg(u);abs(()=>{glow(CX,1050,620,C.brand,0.30);bigRina(HOOK_R);
    g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;rrect(90,300,900,325,28,'#FFFFFF');g.restore();ipic('open0',90,300,900,325,28,1+0.05*u/Math.max(1,d));creditAt('画像：Apple',975,600);});},
  when(u,d,L){bg(u);mini(u);
-   heading([['Apple',C.brand],['が試験中',C.text]]);
    withEnter(enter(u,0),()=>{calIcon(CX,700,300,'11月','16');});
    withEnter(enter(u,Math.min(1.0,d*0.4)),()=>{pill('試験版のiOS',CX,1060,56,C.brand);});},
  free(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'無料')),d-0.8);
-   heading([['ふだんの',C.text],['一言',C.acc]]);
    withEnter(enter(u,0),()=>{card(170,470,340,330);clockIcon(340,600,80,3,0);text('タイマー',340,740,46,C.text,'center',900,300);});
    withEnter(enter(u,0.35),()=>{card(570,470,340,330);appIcon('chat',740,600,140,C.brand);text('メッセージ',740,740,46,C.text,'center',900,300);});
-   if(u>t2)withEnter(enter(u,t2,0.2),()=>{check(CX-200,1000,62,true);text('無料・無制限',CX+50,1000,64,C.acc,'center',900,420);},10);},
+   if(u>t2)withEnter(enter(u,t2,0.2),()=>{check(CX-270,1000,62,true);text('無料・無制限',CX+50,1000,64,C.acc,'center',900,420);},10);},
  target(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.8,telHas(L,'高度')),d-0.8);
    heading([['上限が',C.text],['つくのは',C.acc]]);
    withEnter(enter(u,0),()=>{serverIcon(CX,700,190,'#2E3A55');});
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('高度なAI',CX,1040,1,C.brand,64);},10);},
  photo(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'画像')),d-0.8);
    heading([['対象',C.acc],['の例',C.text]]);
-   withEnter(enter(u,0),()=>{ipic('tools',150,450,780,520,28,1);creditAt('写真：ゴリミー',915,945);});
-   redRing(444,637,75,62,(u-0.3)/0.35);
+   withEnter(enter(u,0),()=>{ipic('tools',150,450,780,520,28,2.4,0.3775,0.37);creditAt('写真：ゴリミー',915,945);});
+   redRing(540,700,190,170,(u-0.3)/0.35);
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{card(150,1050,780,200);g.save();g.translate(300,1150);for(let i=0;i<5;i++){g.rotate(Math.PI*2/5);g.fillStyle=C.acc;g.fillRect(-7,-80,14,44);}g.restore();text('画像の生成',640,1150,56,C.text,'center',900,420);},16);},
  complex(u,d,L){bg(u);mini(u);
    heading([['複雑な',C.acc],['依頼',C.text]]);
-   const st=[['予定',()=>calIcon(250,720,150,'今日','3時')],['出発時刻',()=>clockIcon(540,720,110,14,20)],['送る',()=>appIcon('mail',830,720,170,C.brand)]];
-   st.forEach(([lab,fn],i)=>{withEnter(enter(u,i*Math.min(0.9,d/5)),()=>{fn();text(lab,[250,540,830][i],900,46,C.text,'center',900,250);},16);if(i<2)arrowR([340,650][i],[440,720][i],720,(u-i*Math.min(0.9,d/5)-0.3)/0.3,C.sub);});},
+   const st=[['予定',()=>calIcon(250,720,120,'予定','3時')],['出発時刻',()=>clockIcon(540,720,90,14,20)],['送る',()=>appIcon('mail',830,720,150,C.brand)]];
+   st.forEach(([lab,fn],i)=>{withEnter(enter(u,i*Math.min(0.9,d/5)),()=>{fn();},16);if(i<2)arrowR([368,642][i],[440,742][i],720,(u-i*Math.min(0.9,d/5)-0.3)/0.3,C.sub);});},
  count(u,d,L){bg(u);mini(u);
    heading([['1日に',C.text],['何回？',C.acc]]);
    withEnter(enter(u,0),()=>{text('？',CX,700,360,C.acc,'center',900);});
    withEnter(enter(u,Math.min(1.0,d*0.4)),()=>{tag('未公表',CX,1030,1,C.brand,64);},10);},
  reset(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'夜中')),d-0.9);
-   heading([['上限',C.acc],['に達すると',C.text]]);
    withEnter(enter(u,0),()=>{card(150,470,780,200,40,'#FFFFFF');bellIcon(260,570,70,C.acc);text('上限に達しました',600,570,48,C.ink,'center',900,560);});
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{clockIcon(CX,900,160,0,0);tag('0時ごろまで',CX,1130,1,C.brand,56);},14);},
  plus(u,d,L){bg(u);mini(u);
@@ -331,13 +328,11 @@ const S={
    withEnter(enter(u,0),()=>{cloudIcon(CX,720,260,C.brand,'iCloud+');});
    withEnter(enter(u,Math.min(1.2,d*0.5)),()=>{tag('200GB以上',CX,1050,1,C.acc,60);},10);},
  tiers(u,d,L){bg(u);mini(u);const t1=Math.min(Math.max(0.9,telHas(L,'200')),d-1.6),t3=Math.min(Math.max(t1+0.6,telHas(L,'12')),d-0.6);
-   heading([['料金',C.text],['そのまま',C.acc]]);
    const R=[['200GB',2],['2TB',5],['6TB',10],['12TB',20]];
    R.forEach(([lab,m],i)=>{const ts=i===0?t1:i===3?t3:t1+(t3-t1)*i/3;withEnter(enter(u,i===0?0:ts-0.4),()=>bar(lab,m,150,480+i*150,780,(u-ts)/0.6,i===3),16);});},
  japan(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'同じ')),d-0.9);
-   heading([['日本',C.brand],['では',C.text]]);
    withEnter(enter(u,0),()=>{card(220,470,640,340);g.save();g.beginPath();g.arc(CX,580,60,0,7);g.fillStyle='#FFFFFF';g.fill();g.lineWidth=4;g.strokeStyle=C.bar;g.stroke();g.beginPath();g.arc(CX,580,30,0,7);g.fillStyle='#E0383E';g.fill();g.restore();
-     text('200GB',CX,690,44,C.text,'center',900,500);text('月540円',CX,760,64,C.acc,'center',900,560);});
+     text('月540円',CX,730,72,C.acc,'center',900,560);});
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('同じ倍率？',CX,1000,1,C.brand,60);},10);},
  twist(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'早い')),d-0.8);
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
