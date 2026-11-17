@@ -95,7 +95,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-const FIXW={'まだ公表されていません':['まだ','公表されていません'],'「Ask Maps」の':['「Ask Maps」の'],'日ごとの予定表ができます':['日ごとの','予定表ができます'],'渋滞や営業中かどうかも':['渋滞や','営業中かどうかも'],'近くのお店の空き枠が並びます':['近くのお店の','空き枠が並びます'],'まだ発表されていません':['まだ','発表されていません'],'まずアメリカから始まります':['まずアメリカから','始まります']};  // never break inside a word (予定表・営業中・空き枠)
+const FIXW={'これまでどおり無料で':['これまでどおり','無料で'],'まだ公表されていません':['まだ','公表されていません'],'「Ask Maps」の':['「Ask Maps」の'],'日ごとの予定表ができます':['日ごとの','予定表ができます'],'渋滞や営業中かどうかも':['渋滞や','営業中かどうかも'],'近くのお店の空き枠が並びます':['近くのお店の','空き枠が並びます'],'まだ発表されていません':['まだ','発表されていません'],'まずアメリカから始まります':['まずアメリカから','始まります']};  // never break inside a word (予定表・営業中・空き枠)
 function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
   const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
@@ -309,8 +309,8 @@ const S={
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('高度なAI',CX,1040,1,C.brand,64);},10);},
  photo(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'画像')),d-0.8);
    heading([['対象',C.acc],['の例',C.text]]);
-   withEnter(enter(u,0),()=>{ipic('tools',150,450,780,520,28,2.4,0.3775,0.37);creditAt('写真：ゴリミー',915,945);});
-   redRing(540,700,190,170,(u-0.3)/0.35);
+   withEnter(enter(u,0),()=>{ipic('tools',290,450,500,520,28,4.5,0.3775,0.365);creditAt('写真：ゴリミー',775,945);});
+   redRing(540,700,180,180,(u-0.3)/0.35);
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{card(150,1050,780,200);g.save();g.translate(300,1150);for(let i=0;i<5;i++){g.rotate(Math.PI*2/5);g.fillStyle=C.acc;g.fillRect(-7,-80,14,44);}g.restore();text('画像の生成',640,1150,56,C.text,'center',900,420);},16);},
  complex(u,d,L){bg(u);mini(u);
    heading([['複雑な',C.acc],['依頼',C.text]]);
@@ -328,8 +328,8 @@ const S={
    withEnter(enter(u,0),()=>{cloudIcon(CX,720,260,C.brand,'iCloud+');});
    withEnter(enter(u,Math.min(1.2,d*0.5)),()=>{tag('200GB以上',CX,1050,1,C.acc,60);},10);},
  tiers(u,d,L){bg(u);mini(u);const t1=Math.min(Math.max(0.9,telHas(L,'200')),d-1.6),t3=Math.min(Math.max(t1+0.6,telHas(L,'12')),d-0.6);
-   const R=[['200GB',2],['2TB',5],['6TB',10],['12TB',20]];
-   R.forEach(([lab,m],i)=>{const ts=i===0?t1:i===3?t3:t1+(t3-t1)*i/3;withEnter(enter(u,i===0?0:ts-0.4),()=>bar(lab,m,150,480+i*150,780,(u-ts)/0.6,i===3),16);});},
+   const R=[['200GB',2],['12TB',20]];
+   R.forEach(([lab,m],i)=>{const ts=i===0?t1:t3;withEnter(enter(u,i===0?0:ts-0.4),()=>bar(lab,m,150,560+i*220,780,(u-ts)/0.6,i===1),16);});},
  japan(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'同じ')),d-0.9);
    withEnter(enter(u,0),()=>{card(220,470,640,340);g.save();g.beginPath();g.arc(CX,580,60,0,7);g.fillStyle='#FFFFFF';g.fill();g.lineWidth=4;g.strokeStyle=C.bar;g.stroke();g.beginPath();g.arc(CX,580,30,0,7);g.fillStyle='#E0383E';g.fill();g.restore();
      text('月540円',CX,730,72,C.acc,'center',900,560);});
