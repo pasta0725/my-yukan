@@ -1,0 +1,172 @@
+===== https://pc.watch.impress.co.jp/docs/news/2156918.html
+(status 200)
+ニュース
+NVIDIA、CUDAコア5万超の科学計算向けGPU「Rubin HPC」
+劉 尭
+2026年11月17日 10:28
+ 　AIエージェントがシミュレーションを回す時代を見据えたGPUが登場する。NVIDIAは11月16日(現地時間)、HPC向けの新GPU「Rubin HPC」を発表した。Vera Rubinプラットフォームに属する製品で、2028年の提供開始を予定している。 
+ 　Rubin HPCは、科学、工学、分析の各ワークフローにおけるシミュレーションやデータ処理の高速化を主眼に置いたGPU。単一GPUに5万を超えるCUDAコアを搭載するほか、CUDAコアへデータを途切れなく供給するスパースデータアクセラレーション機能を備える。また、GPU間のインターコネクトには第7世代NVLinkを採用する。 
+ 　アプリケーションが膨大なデータセットにアクセスし、散在する少数の値を収集して結果を計算する処理を大規模に繰り返す用途を想定。こうした処理に向けて、Rubin HPCは計算能力だけでなくデータ転送も同時に拡張する。 
+ 　なお、メモリの種類や容量、FP64などの演算性能、搭載システムといった詳細は現時点で明らかにされていない。 
+「NVIDIA」関連アイテム
+Amazonで購入
+
+===== https://videocardz.com/newz/nvidia-announces-rubin-hpc-gpu-with-over-50000-cuda-cores-and-nvlink-7-launching-in-2028
+(status 200)
+NVIDIA announces new Rubin HPC GPU for scientific computing, launching in 2028
+NVIDIA has announced Rubin HPC, a new GPU designed for high-performance computing, scientific simulations and data analytics. Revealed at SC26, the GPU is part of the Vera Rubin platform but targets workloads that require large amounts of general-purpose GPU computation rather than primarily AI inference and training.
+The company confirms that Rubin HPC features 
+more than 50,000 CUDA cores on a single GPU
+, the highest count NVIDIA has announced for one GPU. The processor will also support seventh-generation NVLink technology, moving beyond the NVLink 6 interconnect used by the existing Rubin architecture.
+Rubin HPC focuses on compute and data movement
+Rubin HPC introduces sparse data acceleration designed to improve access to scattered data during computation. NVIDIA says this capability will keep its CUDA cores supplied with data rather than leaving them waiting for memory operations. The GPU targets operations including sparse matrix calculations, stencil computations, sorting and reductions.
+© NVIDIA
+NVIDIA NVL4 Rack
+These operations are common in scientific and engineering software. NVIDIA lists climate modeling, genomic analysis, engineering simulations and financial risk analysis among the workloads that could benefit from the architecture. Rubin HPC will also work with NVIDIA’s CUDA-X libraries, including algorithms that AI agents can invoke when running simulations.
+More specifications are still missing
+NVIDIA has not provided the exact CUDA core count, memory capacity, memory bandwidth, power consumption or FP32 and FP64 compute performance. For reference, the existing Rubin GPU features 
+288GB of HBM4 memory, u
+p to 22 TB/s of memory bandwidth and NVLink 6 connectivity delivering 3.6 TB/s of bidirectional bandwidth. These specifications should not be assumed for Rubin HPC.
+NVIDIA expects Rubin HPC to become available in 
+2028
+, two years after the introduction of the standard Rubin generation. The company has not announced pricing, system configurations or manufacturing partners for the new GPU.
+Share
+Set as Preferred Source
+Follow on Google
+Source: 
+NVIDIA
+
+===== https://www.tomshardware.com/pc-components/gpus/nvidia-announces-rubin-hpc-gpu-with-record-number-of-cuda-cores-at-supercomputing-2026-new-chip-accelerates-agentic-hpc-workloads-arrives-in-2028
+(status 200)
+(Image credit: Nvidia)
+Copy link
+Facebook
+X
+Whatsapp
+Reddit
+Pinterest
+Flipboard
+Email
+Share this article
+0
+Join the conversation
+Follow us
+Add us as a preferred source on Google
+Newsletter
+Subscribe to our newsletter
+The Supercomputing 2026 conference is under way, and despite continuing turmoil elsewhere in the company, Nvidia has lots to reveal at the show. Foremost among its announcements today, Nvidia took the wraps off a new member of the Rubin GPU family 
+called Rubin HPC
+, a chip that the company says is meant to accelerate agentic workflows and simulation for scientists, engineers, and analysts working with large data sets.
+To accelerate those most demanding workloads, Nvidia says Rubin HPC has the highest number of CUDA cores on any of its GPUs - "more than 50,000" - which might imply that this chip uses a configuration similar to the four-die Rubin Ultra GPU, which links those dies together using NVLink-C2C.
+Today's Rubin GPU has 224 SMs and 28,672 CUDA cores, so scaling compute resources to the degree Rubin HPC does would necessarily require more dies on a package. Nvidia didn't reveal more details of the chip's physical layout alongside the announcement. (The representative image shared by the company wouldn't appear to take this into account.)
+Latest Videos From
+Tom's Hardware
+Watch full video here: 
+To keep data moving between Rubin HPC GPUs, Nvidia will use its NVLink 7 interconnect. The company didn't share any new details of the bandwidth or physical layer of this interconnect within the rack, 
+but past disclosures about the tech
+ have indicated that it retains the 3.6 TB/s of per-GPU bandwidth that NVLink 6 delivers while enlarging the size of its scale-up domain.
+Nvidia didn't share any details of the Rubin HPC GPU's HBM capacity or bandwidth, and it also didn't share whether this part includes a rebalancing of compute resources towards native FP64, as AMD and Intel are touting at the conference with their own GPUs this week.
+Nvidia instead touts the suitability of this chip for scientists and engineers using agentic workflows, for which the company expects faster simulation performance and therefore faster opportunities for discovery in those fields thanks to better agent performance in those domains.
+In fields like climate research, genomic analysis, and financial simulation, Nvidia says the Rubin HPC GPU's "balanced design," with both higher compute resources and (presumably) faster data movement between nodes, will help feed the chip with the massive data sets typical of those workloads, minimizing idle compute resources and achieving better utilization.
+Researchers, engineers, and analysts marshaling agent swarms to explore the problem spaces in their domains will also be able to take advantage of Nvidia's CUDA-X domain-specific libraries to boost performance on Rubin HPC, tightening the reasoning loop from hypothesis to simulation to refinement and hastening the pursuit of the most promising results.
+Nvidia says Rubin HPC will arrive sometime in 2028.
+See all comments (0)
+Jeffrey Kampman
+Senior Analyst, Graphics
+As the Senior Analyst, Graphics at Tom's Hardware, Jeff Kampman covers everything that has to do with graphics cards, gaming performance, and more. From integrated graphics processors to discrete graphics cards to the hyperscale installations powering our AI future, if it's got a GPU in it, Jeff is on it. 
+No comments yet
+Comment from the forums
+
+===== https://www.notebookcheck.net/Nvidia-unveils-Rubin-HPC-GPU-with-nearly-2-5x-RTX-5090-s-CUDA-cores-coming-in-2028.1451701.0.html
+(status 200)
+Nvidia has announced Rubin HPC, a new GPU designed for high-performance computing, scientific simulations and data analytics. It features more than 50,000 CUDA cores on a single chip and introduces seventh-generation NVLink connectivity, with availability expected in 2028.
+Announced at the SC26 supercomputing conference, Rubin HPC is part of Nvidia's Vera Rubin platform but is specifically optimized for workloads that rely on general-purpose GPU computing rather than primarily AI training and inference. Nvidia says the GPU is intended to accelerate common operations in scientific computing, including sparse matrix calculations, stencil computations, sorting and reductions. These workloads are used in areas such as climate modeling, genomic analysis, engineering simulations and financial risk assessment. The GPU will also work with Nvidia's CUDA-X libraries, which offer optimized implementations of complex algorithms that AI agents can use to run simulations and analyze data.
+Nvidia argues that faster simulations can shorten the cycle of testing an idea, evaluating the results and refining the next step. In fields such as materials science, molecular research and industrial design, AI agents may generate numerous candidate materials, molecules or designs that need to be evaluated through simulation.
+For agents tackling science and engineering, faster simulation means faster discovery, - 
+Ian Buck
+, vice president of hyperscale and high-performance computing at Nvidia.  
+The company says Rubin HPC is intended to help researchers and engineers explore more possibilities and direct laboratory work toward the most promising candidates.
+The company says the GPU is designed to balance computing power with data movement. Rather than simply increasing compute capacity, Rubin HPC includes sparse data acceleration intended to keep its CUDA cores supplied with data instead of leaving them waiting for memory operations.
+Nvidia has yet to disclose the GPU's full specifications, including its memory capacity, bandwidth, power consumption and detailed compute performance. The company has also provided no details about pricing or the systems that will use the GPU.
+Rubin HPC will use seventh-generation Nvidia NVLink interconnect technology. This is intended to improve GPU-to-GPU communication in large systems, where multiple accelerators often work together on demanding simulation and analytics workloads.
+For comparison, the standard 
+Rubin GPU
+ features 288 GB of HBM4 memory, up to 22 TB/s of memory bandwidth and sixth-generation NVLink connectivity with up to 3.6 TB/s of bidirectional bandwidth. These specifications should not be assumed to apply to Rubin HPC. With more than 50,000 CUDA cores, the new GPU will have nearly 2.5 times as many as the RTX 5090, which has 21,760 CUDA cores.
+Nvidia expects Rubin HPC to become available in 2028, roughly two years after the introduction of the standard Rubin generation.
+Source(s)
+Nvidia
+⟨
+Previous article
+Apple MacBook Pro OLED: PWM flickering causes headaches for many users
+Next article
+Chase, Zelle, Bank of America, and several other banking apps are down for thousands of users
+⟩
+Add as a preferred source on Google
+ static version  
+load dynamic
+Loading Comments 
+ Comment on this article
+Related Articles
+Andrew Sozinow
+ - Tech Writer 
+ - 215 articles published on Notebookcheck
+ since 2024
+I’ve been fascinated by computers, electronics and modern technology since childhood. I started writing IT-news at high school and have been doing it continuously for more than 10 years. During this time, I have worked for many media outlets, and now I am a news editor at 3DNews. Sometimes I also write smartphone reviews. In July 2024, I decided to try my hand at writing news on Notebookcheck. When I'm not working, I like to play videogames, do puzzles, and travel.
+> 
+Expert reviews and news on laptops, smartphones and tech innovations
+ >  
+News
+ >  
+News Archive
+ >  
+Newsarchive 2026 11
+ >  Nvidia unveils Rubin HPC GPU with nearly 2.5× RTX 5090's CUDA cores, coming in 2028 
+Andrew Sozinov, 2026-11-16 (Update: 2026-11-16)
+
+===== https://blogs.nvidia.com/blog/rubin-hpc/
+(status 200)
+Announced today at SC26, NVIDIA Rubin HPC is a new GPU in the 
+NVIDIA Vera Rubin
+ platform designed to accelerate simulation and data processing for science, engineering and analytics workflows. 
+As agents help scientists and engineers explore more candidate materials, molecules and designs, they rely on simulations to test those ideas and guide their next steps. Rubin HPC will accelerate those simulations, shortening the path from exploration to scientific discovery and industrial design.
+The Rubin HPC GPU features a record number of CUDA cores — more than 50,000 on a single GPU — as well as a sparse data acceleration capability that keeps those cores fed with data, and accelerates GPU-to-GPU connectivity with seventh-generation 
+NVIDIA NVLink
+ interconnect technology.
+Read All NVIDIA Announcements From SC26
+Scientists and engineers rely on simulation to understand complex systems before committing to experiments or physical prototypes. Working with agents, these teams can explore more candidate materials, molecules and designs. This increases demand for the GPU-accelerated simulations needed to evaluate those ideas and guide next steps.
+“For agents tackling science and engineering, faster simulation means faster discovery,” said 
+Ian Buck
+, vice president of hyperscale and high-performance computing at NVIDIA. “Rubin HPC accelerates the simulations agents use to test ideas and guide their next steps, helping scientists and engineers explore more possibilities and bring breakthroughs closer.” 
+Turning Faster Computation Into Faster Discovery
+Across climate models, engineering simulations, genomic analysis and financial risk, scientific computing workloads take a similar shape: an application reaches into an immense dataset, gathers a handful of scattered values, calculates a result and repeats this on an enormous scale. 
+To help address the challenge, Rubin HPC will offer a balanced design, scaling data movement and compute together rather than increasing compute alone. 
+That balance is what optimizes Rubin HPC for scientific computing. It keeps the GPU’s record number of CUDA cores supplied with data, so they spend their time computing rather than waiting. This accelerates recurring patterns of every simulation workload — from sparse matrix operations to stencil computations to sorting and reductions. 
+These patterns are prevalent across data analytics, science and engineering workloads, which is why a purpose-built GPU delivering the broadest acceleration can help unlock cross-industry breakthroughs.
+NVIDIA CUDA-X
+ libraries offer a growing set of optimized implementations of complex algorithms for agents to use, including those most relevant to simulation and analytics. Used together with Rubin HPC, the libraries can give agents the fastest glide path to reasoning outcomes. 
+And faster agent-invoked simulations mean faster feedback — shortening the loop of hypothesis, simulation and refinement, so researchers and engineers can choose next steps sooner and point lab work at the most promising candidates.
+Rubin HPC is expected to be available in 2028.
+Read All NVIDIA Announcements From SC26
+Categories:
+AI
+AI Infrastructure
+Supercomputing
+Tags:
+Agentic AI
+CUDA-X
+NVIDIA Vera Rubin
+NVLink
+Science
+Related News
+AI Infrastructure
+							How the World’s Most Advanced AI Infrastructure Supply Chain Invents the Future						
+						Nov 16, 2026					
+AI Infrastructure
+							NVIDIA Sweeps MLPerf Training and Endpoints as Vera Rubin Debuts With Leading Performance						
+						Nov 16, 2026					
+AI Infrastructure
+							NVIDIA CUDA-X Libraries Give Agents the Tools to Accelerate Scientific Discovery						
+						Nov 16, 2026					
+AI Infrastructure
+							NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Engineering and Analytics						
+						Nov 16, 2026

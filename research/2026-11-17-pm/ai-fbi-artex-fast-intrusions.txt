@@ -1,0 +1,184 @@
+===== https://www.bleepingcomputer.com/news/security/fbi-warns-artex-ai-hacking-tool-is-powering-global-cyberattacks/
+(status 200)
+FBI warns ARTEX AI hacking tool is powering global cyberattacks
+                            By 
+Lawrence Abrams
+November 15, 2026
+01:29 PM
+0
+The FBI is warning that hackers are using an AI-powered penetration testing framework called ARTEX to automate cyberattacks against organizations worldwide, including a recent ConnectWise supply-chain breach that compromised Microsoft 365 customer environments.
+In a 
+FLASH advisory
+ released Friday, the agency said multiple threat actors have weaponized the open-source framework since at least August 2026 to target organizations across the financial, government, technology, defense, healthcare, and other sectors.
+"ARTEX significantly reduces the time required to chain attack techniques, with some intrusions progressing from initial targeting to privileged access in under three hours," reads the FBI advisory.
+"The framework enables threat actors with minimal technical expertise to conduct complex, multi-target operations simultaneously, fundamentally accelerating attack velocity and expanding operational scale."
+ARTEX is an autonomous penetration testing framework written in Go that uses artificial intelligence agents to perform reconnaissance, discover vulnerabilities, exploit systems, escalate privileges, and steal data with little human intervention.
+Rather than using its own AI model, the framework integrates with external large language models (LLMs), including Anthropic Claude, OpenAI GPT, DeepSeek, GLM, Grok, and Kimi.
+Attackers provide their goals and tasks to ARTEX, which converts them into commands executed by specialized AI agents. This allows them to automate intrusion activities and target multiple organizations simultaneously.
+The FBI says the framework is particularly effective at identifying vulnerabilities in overlooked systems, including partner portals, employee applications, legacy services, and third-party integrations.
+While these automated attacks can generate large volumes of suspicious traffic that trigger security alerts, their speed can leave defenders with little time to respond before attackers breach a system.
+ARTEX was originally released on GitHub in July 2026 by a developer known as Autumn-27, who removed the repository on October 8 after reports emerged that threat actors were abusing the framework.
+However, the FBI says the framework remains available through community forks, archived copies, localized versions, and a commercial edition called ARTEX PRO.
+As of early November, researchers had identified more than 1,600 publicly exposed ARTEX consoles, with the actual number of deployments believed to be significantly higher.
+The FBI's 13-page advisory includes indicators of compromise associated with known ARTEX campaigns, including IP addresses, command-and-control infrastructure, and suspicious network activity.
+Separately, cybersecurity researcher MalwareMustDie released an 
+open-source ARTEX detection signature pack
+ on Friday to help defenders identify attacks involving the framework.
+The detection pack includes rules and indicators for various security monitoring and threat detection tools, covering suspicious network requests, identity abuse, cloud activity, malicious files, and automated attack patterns.
+The researcher also published a detection playbook that categorizes indicators by confidence level, warning that IP addresses and other infrastructure indicators can become outdated or generate false positives.
+Organizations are urged to secure internet-facing applications, restrict access to cloud administration interfaces, review application permissions and authentication logs, and implement rate limits on sensitive APIs.
+The bureau also recommends monitoring for unusual bursts of automated requests, suspicious cloud activity, unexpected credential or privilege changes, and large data transfers.
+The FBI cautions that IP addresses listed in the IOCs may have changed since the attacks occurred.
+Organizations that identify suspicious activity associated with ARTEX are encouraged to report their findings to the FBI or its Internet Crime Complaint Center (IC3).
+Known Artex-linked attacks
+The advisory highlights several previously reported cyberattacks involving ARTEX, including the 
+October ConnectWise Cloud Backup supply-chain attack
+ that allowed hackers to gain unauthorized access to Microsoft 365 customer environments.
+The attack compromised application identities used by ConnectWise's cloud backup service, formerly known as SkyKick Cloud Backup, allowing attackers to authenticate to customer tenants using permissions previously granted to the applications.
+At the time, cybersecurity firm Huntress reported identifying at least 162 compromised tenants.
+In an 
+investigation published
+ in October, Microsoft attributed the campaign to a China-state-aligned threat actor tracked as Storm-0940, which used ARTEX to accelerate reconnaissance, password spraying, and abuse of cloud application permissions.
+After compromising ConnectWise application identities, the attackers used ARTEX to attempt authentication against more than 2,250 downstream Microsoft 365 tenants, with some intrusions progressing to credential modifications and attempts to establish persistent access.
+The FBI also referenced attacks against 
+South Korean financial institutions
+ that exposed personal information belonging to approximately 67,000 people.
+In that campaign, a Chinese-speaking threat actor combined ARTEX with Claude Code agents to attack multiple banks, including Shinhan Bank, KB Kookmin Bank, and Hana Bank.
+Researchers at CrowdStrike discovered the attacker's exposed infrastructure, which contained ARTEX configuration files, Claude Code session histories, and other records documenting the intrusions.
+In a separate investigation, South Korean police 
+arrested seven suspects
+ linked to attacks against more than 90 organizations, with ARTEX reportedly used in most of the intrusions.
+Authorities said the gang stole approximately 8.2 million data records from organizations including hospitals, educational institutions, and businesses.
+More recently, CrowdStrike reported that a Chinese cyberespionage group tracked as Vapor Panda 
+used ARTEX in automated attacks
+ targeting more than 200 organizations across 14 countries.
+The campaign compromised at least nine organizations, with AI agents performing reconnaissance, exploiting vulnerabilities, deploying web shells, stealing credentials, and pursuing different attack paths when initial attempts failed.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Runaway AI hacking agent behind WorkOS breach after escaping sandbox
+OpenAI's new GPT-6 Cyber AI finds 81 Firefox flaws, 948 Linux bugs
+When an AI Agent Is the Incident, the Identity Record Is the Evidence
+California sues OpenAI over AI agents escaping sandboxes, hacking firms
+How one AI agent exposed five critical enterprise security gaps
+
+===== https://therecord.media/artex-ai-tool-fbi-flash-alert
+(status 200)
+FBI flash alert says Artex tool automating cyberattacks at ‘machine speed’
+ Open-source AI platform Artex is being used prolifically by cybercriminals and nation-states to breach government agencies and dozens of critical sectors worldwide, according to a new FBI advisory.  
+ The FBI released a flash alert on Friday about the tool, which has caused alarm among cybersecurity experts for its ability to take any large language model and turn it into a powerful hacking tool that can “automate multiple phases of cyber intrusions at machine speed, from reconnaissance through data exfiltration.” 
+ “Artex significantly reduces the time required to chain attack techniques, with some intrusions progressing from initial targeting to privileged access in under three hours,” the FBI said. “The framework enables threat actors with minimal technical expertise to conduct complex, multi-target operations simultaneously, fundamentally accelerating attack velocity and expanding operational scale.” 
+ The tool was released in August on GitHub by an account known as "Autumn-27.” The developer of the framework — 
+identified
+ as Chinese cybersecurity engineer Li Puhua — 
+released
+ a statement on GitHub on October 8 saying the tool was abused by malicious actors. 
+ The developer denied any responsibility for crimes committed with it and eventually removed the GitHub repository.  
+ The FBI said on Friday that despite the removal, the framework “continues to proliferate through community forks, localized variations, archived copies, and a commercial version … ensuring continued availability to threat actors.” 
+ The advisory cites 
+recent research
+ from cybersecurity firm Censys showing over 1,600 publicly exposed Artex console instances, with total deployments likely significantly higher when including systems behind firewalls or in private networks. 
+ The penetration testing platform can translate high-level tactical goals described in words into actionable machine commands executed by AI agents, requiring minimal human interaction beyond the initial objectives.  
+ Artex can integrate any AI model, including frontier models Anthropic Claude and OpenAI GPT as well as open-source or Chinese-origin models like DeepSeek, GLM and Kimi.  
+ “Analysis of attacker-controlled Artex instances shows Chinese models are most prevalent, with DeepSeek Flash family models dominating usage due to their balance of capabilities, relatively low cost, and lack of observable guardrails when framed for penetration testing,” the FBI explained. 
+ The tool has been used to conduct reconnaissance and data exfiltration attacks targeting financial services, government, technology, defense, semiconductor, energy, healthcare, manufacturing, telecommunications and legal industries. 
+ It was recently 
+implicated
+ in 
+multiple attacks
+ on South Korean and 
+Japanese
+ financial institutions, causing national scandals in both countries. Microsoft said Artex was used by Chinese state-backed actors in a recent 
+supply chain attack on IT management software company ConnectWise
+.  
+ Amazon joined the fray on Friday, 
+releasing
+ its own study finding “disparate Chinese-nexus threat groups” using Artex for “a large-scale theft of credentials to access AI models, organized as a self-sustaining operation in which stolen keys paid for the LLM inference powering further credential hunting.”  
+ “Another campaign targeted cryptocurrency exchanges for know-your-customer (KYC) verification bypass using real-time deepfake injection,” Amazon CISO CJ Moses said. 
+ Moses argued their investigation showed that frameworks like Artex “have progressed from experimental use to sustained, multi-objective offensive operations that run with minimal human intervention.” 
+ They warned that Artex is automating time-consuming phases of exploitation and is allowing smaller threat groups to run concurrent intrusion campaigns at a scale they previously could not. 
+ Agents deployed by Artex have shown an ability to “map trust relationships between organizations” and compromise weak third-party vendors.  
+ Artex is adept at identifying and exploiting systems that have less security attention than others, including “partner and supplier portals, mobile backends, employee applications, sales-support systems, legacy services, third-party integrations, and applications created across different business units,” the FBI explained. 
+ The tool generates a high-volume of attempts that will set off defense sensors but works at a speed that makes it difficult for defenders to keep up.  
+Technology
+Cybercrime
+News
+Nation-state
+No previous article
+No new articles
+Jonathan Greig
+is a Breaking News Reporter at Recorded Future News. Jonathan has worked across the globe as a journalist since 2014. Before moving back to New York City, he worked for news outlets in South Africa, Jordan and Cambodia. He previously covered cybersecurity at ZDNet and TechRepublic.
+
+===== https://www.inc.com/chloe-aiello/the-fbi-warns-that-hackers-are-using-this-tool-to-break-into-companies-in-under-3-hours/91437543
+(status 403)
+Please enable JS and disable any ad blocker
+
+===== https://www.theregister.com/cyber-crime/2026/11/16/attackers-are-using-ai-agents-to-automate-cybercrime-at-industrial-scale-fbi-and-aws-warn/5310223
+(status 200)
+cyber-crime
+    Attackers are using AI agents to automate cybercrime at 'industrial scale,' FBI and AWS warn
+        Critical orgs around the globe under seige
+Jessica Lyons
+Jessica
+Lyons
+Cybersecurity Editor
+Published
+mon 16 Nov 2026 // 19:52 UTC
+Make us preferred on Google
+READ MORE
+Japan's Fugaku supercomputer has decidedly un-super security
+now
+US extends chip sale restrictions to more Asian countries to reduce risk of ‘diversion’ to China
+4 hours ago
+California sues OpenAI for misleading public about AI safety
+5 hours ago
+Infoblox customer and staff data exposed in Sharepoint breach
+7 hours ago
+‘123456’ has been the world’s most popular password for 7 out of the last 8 years
+10 hours ago
+Attackers are using open source AI penetration testing framework ARTEX to automate their attacks on banks, governments, energy and healthcare providers, and other critical sectors around the globe, according to security alerts from the FBI and Amazon Threat Intelligence.
+Between October 3 and November 5, Amazon’s MadPot honeypot threat sensors detected two ARTEX campaigns: one that allowed thieves to steal AI credentials at “industrial scale” to gain free access to models, and a second that generated deepfake videos to trick live selfie checks.
+In the first one, miscreants used AI agents to steal API keys, and then feed these keys into the ARTEX framework’s model gateway to power more agents searching for more AI model access keys. 
+REG AD
+“Agents validated identities through each provider’s token and identity services, enumerated storage, assessed permission scope, and went after managed AI model services, secrets and parameter stores, and application identities,” AWS Chief Information Security Officer CJ Moses 
+wrote in a blog post
+ on Friday. 
+REG AD
+Targets included LLM gateways and proxy platforms such as One API, New API, Veloera, Sub2API, and LiteLLM, and AI application builders Dify, FastGPT, Langflow, RAGFlow, Open WebUI, LobeChat, and Ollama.
+This campaign also used cloud credentials to gain stolen access to the models.
+In a second campaign, attackers used ARTEX to create real-time deepfake videos to trick identity verification (KYC) checks at two cryptocurrency exchanges, and forged ID photos to pass document checks.
+“The agents reverse-engineered one vendor’s liveness protocol in detail, documenting the face-detection event stream it sends, how it tracks face position during the check, and the coordinate system it uses to tell the user where to move,” Moses wrote. 
+The agents did manage to complete the full movement sequence with the face positioned within 7 pixels of the target, but this feat was not enough, as the vendor’s server-side verdict rejected the deepfake in every attempt.
+In a separate session, agents built a real-time deepfake video pipeline on a single consumer-grade GPU using an open-source face animation model. This video achieved 11.5 frames per second, which Moses said is “close to what a live video check expects.”
+Meanwhile, agents also worked on the ID document checks, building synthetic camera metadata whose image dimensions matched the real values inside the JPEG file, and preserving the original camera compression tables that are usually replaced by re-saving an edited image.
+While the end goal was stealing cryptocurrency, the campaign illustrates how ARTEX runs several sessions simultaneously, with multiple agents working toward the same result. “One searched for ways to cash out, one worked on clearing account balances, one set up the deepfake video pipeline, and one carried out the verification bypass,” Moses wrote.
+REG AD
+None of the attack techniques are new, but both of these campaigns show how AI agents can boost the speed and persistence of the attacker. 
+“The agents succeeded where basic security hygiene was missing, including default or hardcoded credentials, keys left in code and public artifacts, unauthenticated interfaces and inference endpoints, and unpatched software,” Moses added. “Getting those fundamentals right remains the most effective defense.”
+The FBI weighs in
+The FBI also hammered this message in a 
+separate Friday alert
+ noting “ARTEX significantly reduces the time required to chain attack techniques, with some intrusions progressing from initial targeting to privileged access in under three hours.” 
+The federal cops cited the August attacks against South Korean financial institutions that stole personal data belonging to about 67,000 people. The FBI also highlighted a September ARTEX campaign that targetedd ConnectWise Cloud Backup customers in a supply chain attack that ultimately compromised more than 
+2,250 downstream Microsoft tenants
+.
+After these security breaches became public, the original ARTEX developer removed the GitHub repository in October. 
+However, forked and localized variations plus a commercial version remain, and as of November 4 internet scanning service Censys 
+identified 1,465
+ hosts running an exposed ARTEX console. And the total number of deploymentsis “likely significantly higher when including systems behind firewalls or in private networks,” according to the FBI.
+The feds urged all organizations – especially those operating internet-exposed applications, self-service portals, cloud infrastructure, and partner or supplier systems – to implement a series of mitigation measures outlined in its Flash alert.
+REG AD
+These include reducing external attack surfaces by restricting sensitive services to trusted networks, private connectivity, or dedicated administrative paths, and moving enterprise applications behind zero-trust access policies and permissions. ®
+ai agents
+security
+aws
+cyber-crime
+ai and ml
+fbi
+Make us preferred on Google
+
+===== https://www.ic3.gov/CSA/2026/261113.pdf
+(status 200)
+(PDF: not extracted)
