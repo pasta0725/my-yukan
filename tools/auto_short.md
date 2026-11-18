@@ -53,6 +53,13 @@
   3. **書き出しと確認**：spec.json・short.html・（つかみと締めの大きいりなの）longcat/jobs.json・channel/meta を main に、画面の画像と channel/thumbs/<名前>.jpg を work に置いてから short-build.yml（refs、extra は 1 と同じ）。中で 音声のつなぎ → short_plan.py → 長さと無音 → つかみと締めの話す動画（longcat-colab.yml。音声が変わったときだけ。Colab を最大20分、だめなら Modal）→ 大きいりなのコマ（場面 intro・verdict と "big": true の行） → check_fit.js → render_par.js → 声（check_voice.py）・画面（Codex）・事実（Codex）を行い、全部の LOOK を build.md にまとめる。plan.js と字幕（channel/captions/<名前>_ja.srt）は自動で main に入る。完成動画は work の final/<名前>.mp4、1秒ごとのコマ一覧は final/<名前>_sheets/。直したら short-build をもう一度。
   4. **投稿**：build.md が OK（LOOK は親が問題なしと判断したものだけ）なら short-upload.yml（publish_at、comment、log=shorts_log.csv の1行（動画IDの所は {ID}））。upload-tmp への配置・youtube-upload.yml・記録の追加までを1回で行い、upload.md の「ID:」の行が動画ID。公開15分後のサムネ確認（short-thumb-check.yml、違えば入れ直す → thumb.md）も自動で始まる。試すときは dry_run=yes（何も上げない）。
 - **予備（自動が動かない・FAILED のとき）**：従来どおり個別に動かす（tts.yml → split_tts.py・check_split.py → short_plan.py → longcat-colab.yml → check_fit.js → render_par.js → voice-check.yml・codex-frame-check.yml → upload-tmp・youtube-upload.yml）。そのときは決まった手順を Sonnet の実行役（effort high）に任せてよい（親への返事は OK か LOOK の1〜3行だけ、台本・場面は変えない）。画面・事実が FAILED（Codex が答えなかった）のときだけ、作った本人ではない Sonnet のサブエージェント（effort high）で同じ項目を確かめる。
+- **Claude の利用枠を減らす読み方・待ち方**（2026-11-18 ユーザーの依頼。手作りの1本で約46万〜49万トークン・操作180〜250回を使っていた。多くは作り直しのたびに長い記録や画像を読み直す分）：
+  - 結果は1行目の RESULT と「- LOOK」の行だけ読む。ジョブの記録（gh run view --log）は丸ごと読まず、grep で必要な行を20行までに絞る。
+  - ルールの文書・short.html・spec.json は最初に1回読んだら読み直さない。直すときは直す所だけ（Edit や python の置き換え）。
+  - 1秒ごとのコマ一覧は小さめ（1コマ幅216px）で1回見て、指摘や気になる時刻だけ拡大して見る。同じ一覧を何度も見ない。
+  - 画面の直しは preview（要所のコマだけ、数秒〜2分）で確かめてから short-build を1回。直すたびに short-build を回さない。作り直しは1〜2回を目標にする。
+  - 待つときは gh run watch を1回（Bash の run_in_background）。数十秒ごとに状態を確かめない。
+  - タイトル・概要欄・英訳・字幕のような決まった形の文章は、手作りの回なら Sonnet のサブエージェントに任せてよい（自動ショートは今までどおり親が書く）。
 - 素材のブランチを試しに戻すとき（公開済みの動画）：short-restore.yml（name）でドライブの zip を work に戻せる。
 
 ## 3. 人の代わりの確認（全部通ったときだけ投稿）
