@@ -96,7 +96,9 @@ def prep(video, wd, script=None, plan=None, thumb=None):
         if t < T and grab(video, t, f): crops.append((i, t, Image.open(f).crop((40, 1230, 1040, 1680))))
     for k in range(0, len(crops), 8):
         grid([label(im.copy(), f"#{i} {mmss(t)}", 28) for i, t, im in crops[k:k + 8]], 2, 1000, 450, os.path.join(wd, "sheets", f"tel_{k // 8 + 1:02d}.png"))
-    json.dump([{"n": i, "t": t, "text": tel[i][1]} for i, t, _ in crops], open(os.path.join(wd, "captions.json"), "w", encoding="utf-8"), ensure_ascii=False)
+    # 2026-11-18: the first sentence is shown chunk by chunk as the giant caption (bigTelop), so a crop there shows only a part
+    hook_end = (P["lines"][0].get("end", 0) if P and P.get("lines") else 0) or 4.5
+    json.dump([{"n": i, "t": t, "text": tel[i][1], "hook": t <= hook_end + 0.2} for i, t, _ in crops], open(os.path.join(wd, "captions.json"), "w", encoding="utf-8"), ensure_ascii=False)
     if thumb and os.path.exists(thumb):
         im = Image.open(thumb).convert("RGB"); small = im.resize((168, round(im.height * 168 / im.width)))
         big = im.resize((900, round(im.height * 900 / im.width)))
@@ -116,7 +118,7 @@ def prep(video, wd, script=None, plan=None, thumb=None):
         s2 = Image.new("RGB", (600 + 40 + 600, max(crop.height, boxed.height)), (255, 255, 255))
         s2.paste(crop, (0, 0)); s2.paste(boxed, (640, 0)); s2.save(os.path.join(wd, "sheets", "thumb_crop.png"))
     tel_list = "\n".join(f"- #{i} {mmss(t)} {s}" for i, (t, s) in enumerate(tel) if s)
-    prompt = PROMPT.format(T=f"{T:.1f}", script=script_text(script) or "（台本なし）", tel=tel_list or "（予定の字幕一覧なし）",
+    prompt = PROMPT.format(hook=f"{hook_end:.1f}", T=f"{T:.1f}", script=script_text(script) or "（台本なし）", tel=tel_list or "（予定の字幕一覧なし）",
                            thumb="あり（thumb.png：左が原寸に近い大きさ、右が幅168pxに縮めたもの）" if thumb and os.path.exists(thumb) else "なし")
     open(os.path.join(wd, "prompt.txt"), "w", encoding="utf-8").write(prompt)
     json.dump(SCHEMA, open(os.path.join(wd, "schema.json"), "w"), ensure_ascii=False)
@@ -128,17 +130,17 @@ PROMPT = """あなたは YouTube ショート動画（縦 1080x1920、長さ {T}
 - all_XX.png：1秒ごとの全画面（左上の黄色い字が動画の時刻 分:秒）。ピンクの帯は YouTube の画面で隠れる所（左右の端 50px、上の y180〜280 は検索の虫眼鏡）。帯そのものは動画にはありません。
 - tel_XX.png：右下の吹き出し・字幕の部分を原寸で切り出したもの（字幕の切り替えごとに1枚、左上が #番号 と時刻）。誤字・改行はこちらで細かく見る。
 - thumb.png：サムネイル（{thumb}）。
-- thumb_crop.png（サムネがあるとき）：左＝チャンネルの一覧での見え方（上下の端が少し切れ、右上に「…」のボタン＝灰色の丸）、右＝全体にピンクの枠（文字と顔を入れる安全域。右上の小さい枠は「…」の場所で文字を置かない）。一覧の形で文字が1文字でも欠けている・灰色の丸に重なる、文字や顔がピンクの枠からはみ出している、2段目の文字が横幅の8割に届かず左右が大きく空いている、オレンジや黄色の背景に黄色の文字で馴染んでいる、のどれかなら what を「サムネ」にして LOOK にする。
+- thumb_crop.png（サムネがあるとき）：左＝チャンネルの一覧での見え方（上下の端が少し切れ、右上に「…」のボタン＝灰色の丸）、右＝全体にピンクの枠（文字と顔を入れる安全域。右上の小さい枠は「…」の場所で文字を置かない）。一覧の形で文字が1文字でも欠けている・灰色の丸に重なる、文字や顔がピンクの枠の上下からはみ出している（左右は切れないので、文字が左右の端近くまであってよい。2026-11-18 ユーザー）、2段目の文字が横幅の8割に届かず左右が大きく空いている、オレンジや黄色の背景に黄色の文字で馴染んでいる、のどれかなら what を「サムネ」にして LOOK にする。
 同じフォルダの frames/ に原寸のコマ（t_秒.png、c_番号.png）があります。怪しい所は画像を開く道具で拡大して確かめてよい。ファイルは変更しないこと。
 
 点検する項目（1つでも当てはまれば LOOK）:
 1. 空の吹き出し：白い吹き出しが出ているのに中に文字がない（出始め・消え際の一瞬のコマでも、中身が無ければ書く）。
 2. 改行：吹き出し・字幕の行頭が助詞（は が を に で と も の へ や から まで より）・小さい字（ゃ ゅ ょ っ ャ ュ ョ ッ ー 、。）・「た」「だ」で始まる。「」の中で改行。数字と単位・カタカナ語・英単語・ひらがなの単語の途中で改行。3文字未満しかない行。
 3. はみ出し：文字がカード・吹き出し・アイコン（カレンダー等）の枠から出ている、他の文字や絵と重なって読めない、画面の端で切れている。
-4. YouTube の画面との重なり：文字や大事な絵がピンクの帯（左右の端、上の y180〜280）に入っている。りなの体（左下の女の子のイラスト）が下のほうで帯や画面下部に入るのは問題ない。
-5. 誤字：画面の文字を下の「台本」「予定の字幕」と比べ、違う漢字（例：疑う→擬う）、抜けた字・余計な字、変換の誤り、数字の違いがないか。台本と言い回しが少し違うだけで意味も字も正しいものは問題なし。
+4. YouTube の画面との重なり：文字・数字・人や りなの顔がピンクの帯（左右の端、上の y180〜280）に入っている。背景に敷いた写真・映像（公式の画像など）や りなの髪・体が帯に入るのは問題ない（2026-11-18：背景の写真の端を毎回指摘していた）。
+5. 誤字（0〜{hook}秒の画面中央の特大テロップは、最初の一文を0.5〜1秒ごとに区切って出す作り。区切りの一部だけが見えるのは正しいので書かない）：画面の文字を下の「台本」「予定の字幕」と比べ、違う漢字（例：疑う→擬う）、抜けた字・余計な字、変換の誤り、数字の違いがないか。台本と言い回しが少し違うだけで意味も字も正しいものは問題なし。
 6. サムネイル（ある場合）：誤字、幅168pxでも主な文字が読めるか。
-7. 情報の詰め込み（2026-11-17）：1つのコマに、吹き出しの字幕を除いて文字の塊が4つ以上ある（見出し・カードのラベル・札などを1つずつ数える）、同じ言葉が見出しとカードで繰り返されている、小さな部品をたくさん並べた図で何を見ればよいか分からない。what を「詰め込み」にして、何秒の場面かと、減らす案（残す1つ）を書く。
+7. 情報の詰め込み（2026-11-17）：1つのコマに、吹き出しの字幕を除いて文字の塊が4つ以上ある（見出し・カードのラベル・札などを1つずつ数える。出典の小さな札「画像：○○」「動画：○○」と、公式の写真・映像の中に元からある文字は数えない）、同じ言葉が見出しとカードで繰り返されている、小さな部品をたくさん並べた図で何を見ればよいか分からない。what を「詰め込み」にして、何秒の場面かと、減らす案（残す1つ）を書く。
 上の項目以外の好み（色・デザイン）は書かない。見えない・判断できない所は推測で OK にせず LOOK にする。
 
 台本（字幕のもと）:
@@ -178,7 +180,9 @@ def rule_items(wd, d):
             if l[0] in HEAD: out.append({"time": tm, "what": "改行", "where": "吹き出し・字幕", "detail": f"行が「{l[0]}」で始まる：{' / '.join(L)}"})
         if len(L) > 1 and any(len(NOPUNCT.sub("", l)) < 3 for l in L):
             out.append({"time": tm, "what": "改行", "where": "吹き出し・字幕", "detail": f"3文字未満の行がある：{' / '.join(L)}"})
-        if x["text"] and NOPUNCT.sub("", "".join(L)) != NOPUNCT.sub("", x["text"]):
+        seen, want = NOPUNCT.sub("", "".join(L)), NOPUNCT.sub("", x["text"])
+        if x.get("hook") and seen and seen in want: continue   # a chunk of the giant caption of the first sentence: by design
+        if x["text"] and seen != want:
             out.append({"time": tm, "what": "誤字", "where": "吹き出し・字幕", "detail": f"見えた文字「{''.join(L)}」・予定「{x['text']}」"})
     return out
 
