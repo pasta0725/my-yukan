@@ -1,0 +1,25 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2157354.html
+TITLE: PowerShell 5.1が非推奨に。次期WindowsからPowerShell 7へ移行
+SITE: PC Watch
+PUBLISHED: 2026-11-18 11:46 (page: 2026-11-18T11:46:54+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2157/354/01.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2157/354/01_l.jpg | 
+
+TEXT:
+ニュース
+PowerShell 5.1が非推奨に。次期WindowsからPowerShell 7へ移行
+宇都宮 充
+2026年11月18日 11:46
+Windowsに標準搭載されるPowerShellが、次期バージョンにて「PowerShell 5.1」から「PowerShell 7」に切り替わる。Microsoftが11月17日にアナウンスしたもので、PowerShell 5.1がデフォルトで有効となるのは、現行のWindows 11バージョン26H2およびWindows Server 2025が最後になる。
+今後、PowerShell 5.1は非推奨のツールとなり、引き続きセキュリティパッチなどのサポートは行なわれるものの、新機能は追加されない。Windowsの次期バージョンでは、オンデマンド機能(FOD)としての提供となり、将来的には利用不可となる予定。
+なお、PowerShell 5.1と7はこれまで通り共存が可能で、5.1で利用していた既存のスクリプトの多くはそのまま7でも問題なく動作するとしている。ただし、一部仕様が異なるため、環境を移行する前にテストを実施するよう呼びかけている。
+また、スクリプトやツールがどちらのバージョンで動作しているかは、以下の方法で確認できるとしている。
+起動方法(実行ファイル)
+「powershell.exe」の場合: PowerShell 5.1
+「pwsh.exe」の場合: PowerShell 7以降
+コマンド「$PSVersionTable.PSEdition」の実行結果
+「Desktop」と表示される場合: PowerShell 5.1
+「Core」と表示される場合: PowerShell 7以降
+Windows 11 Home
+Windows 11 Professional

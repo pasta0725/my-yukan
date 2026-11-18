@@ -1,0 +1,49 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2157448.html
+TITLE: 9BでQwen3.8-27B級の性能！層を2回通す「SenseNova-Loop-9B」
+SITE: PC Watch
+PUBLISHED: 2026-11-18 13:55 (page: 2026-11-18T13:55:35+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2157/448/1.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2157/448/1_l.png | 
+- https://asset.watch.impress.co.jp/img/pcw/docs/2157/448/2_l.png | 
+- https://asset.watch.impress.co.jp/img/pcw/docs/2157/448/3_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0BPM2LR7C.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+9BでQwen3.8-27B級の性能！層を2回通す「SenseNova-Loop-9B」
+劉 尭
+2026年11月18日 13:55
+9BながらQwen3.8-27Bに匹敵する性能を得たというSenseNova-Loop
+パラメータを増やすのではなく、同じ層を使い回すことで処理を深くするという、ちょっと変わったアプローチのLLMが登場した。SenseTime(商湯科技)は11月17日(中国時間)、マルチモーダル言語モデル「SenseNova-Loop-9B」を、オープンウェイト(モデルの重み)として公開した。ライセンスはApache License 2.0で、商用利用もできる。モデルはHugging Faceで、推論・学習用のコードはGitHubで配布している。
+SenseNova-Loop-9Bの最大の特徴は、モデル内部の32層のうち、4層から27層の中間24層を同じ重みのまま2回通す「共有ループアーキテクチャ」を採用した点。層を再利用し、多様体制約付きハイパーコネクション(mHC)と組み合わせることで、限られたパラメータ予算内で計算の深度を拡張する。総パラメータ数は9B(90億)ながら、推論時の実効パラメータ数は約14.6B(146億)相当になるという。コンテキスト長は最大512Kトークンで、テキストと画像を入力できる。
+これにより、4bit量子化されたウェイト(重み)の場合、容量を約4.9GBに抑えた。また、KVキャッシュも8bitもしくは4bit量子化することで、長文コンテキスト推論に必要なメモリを削減できる。
+その一方で、性能はQwen3.8-27Bに匹敵するとうたっている。公式の比較では、AIDABenchで65.31対65.01と上回り、AutomationBenchは36.67で並んだものの、NL2Repoでは41.36対44.60で及ばなかった。
+実際に、SenseNova-Loop-9BはインタラクティブなWebサイトや3Dシーン、HTMLを生成できるとしている(ただし、3Dやアニメーションを多用する複雑な生成は一度で完成しないことが課題とされている)。
+SenseNova-Loop-9Bのアーキテクチャ
+コンテキスト長
+8bit KVキャッシュ
+4bit KVキャッシュ
+64K
+約10GiB
+約9GiB
+128K
+約12GiB
+約10GiB
+256K
+約15GiB
+約12GiB
+ただし、特殊アーキテクチャゆえに広く使われている推論エンジンのllama.cppは使用できず、専用の実装およびパッチが適用されたLightLLMやSGLang、vLLMを使うよう案内している。
+SenseNova-Loop-9Bで生成した3Dモデル
+#SenseNova
+-Loop-9B is officially here — now
+#OpenSource
+!
+Just 9B parameters, competitive with Qwen3.8-27B across multiple benchmarks.
+🔹 Big gains over Preview: NL2Repo 19.91 → 41.36; AutomationBench 14.33 → 36.67; GAIA 37.86 → 69.90
+🔹 Loop + mHC: 32 unique layers, 56 layer…
+pic.twitter.com/QagZqxKx7a
+— SenseTime (@SenseTime_AI)
+November 17, 2026
+「GPU」関連アイテム
+Amazonで購入

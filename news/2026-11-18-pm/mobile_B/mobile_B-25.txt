@@ -1,0 +1,51 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2157314.html
+TITLE: 「Google Chrome 158」が公開 ～204件の脆弱性を修正、「XSLT」サポートが終了／「Web Install API」対応、Android版では「WebHID」にも
+SITE: 窓の杜
+PUBLISHED: 2026-11-18 13:05 (page: 2026-11-18T13:05:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2157/314/google_chrome.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2157/314/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2157/314/image2_l.png | 
+
+TEXT:
+ニュース
+「Google Chrome 158」が公開 ～204件の脆弱性を修正、「XSLT」サポートが終了
+「Web Install API」対応、Android版では「WebHID」にも
+樽井 秀人
+2026年11月18日 13:05
+「Google Chrome 158」が安定（Stable）チャネルに
+窓の杜から
+ダウンロード
+米Googleは11月17日（現地時間、以下同）、デスクトップ向け「Google Chrome」の安定（Stable）チャネルをアップデートした。
+「Chrome 157」
+に続くメジャーリリースで、Windows/Mac環境にはv158.0.8127.36/.37が、Linux環境にはv158.0.8127.36が順次展開される。
+「Chrome 158」では「XSLT」のサポートが終了し、オリジントライアルやエンタープライズポリシーを有効にしている場合を除き、安定版では機能しなくなる。
+「XSLT」（Extensible Stylesheet Language Transformations）は、XMLデータの変換ルールを記述するXMLベースの言語。たとえば、XMLデータを人間にも読みやすいHTML形式へ変換するといった用途に用いられる。v1.0は1999年に標準化され、すべてのWebブラウザーでネイティブサポートされていたが、v2.0、v3.0へ追従するWebブラウザーは現れず、「Chrome」をはじめとする「Chromium」系ブラウザーでは、これらの変換処理に「libxslt」が用いられていた。
+「libxslt」はC言語ベースの古く複雑なライブラリで、バッファーオーバーフローなどのメモリ安全性に関わる脆弱性が繰り返し報告されている。Googleは、利用が大きく減る一方で、攻撃の糸口になっているとして削除を決めた。
+なお、「Gecko」（Firefox）や「WebKit」（Safari）も、「XSLT」を削除する方針を示している。「Chrome」でのオリジントライアルとエンタープライズポリシーも「Chrome 176」で終了し、すべてのユーザーで無効化される予定。
+そのほかにも、Webサイトからユーザーへアプリのインストールを促せる
+「Web Install API」
+（navigator.install()メソッド）と、そのHTML版である<install>要素がデスクトップ版で導入された。マニフェストURLを指定することで、別のオリジンのWebアプリもインストールさせられる。IT管理者は「WebAppInstallByUserEnabled」ポリシーなどで、この機能を制御可能だ。
+「Web Install API」のデモで表示されたWebアプリのインストール画面
+また、Android版「Chrome」では、USBやBluetoothで接続したHIDデバイスとWebアプリがやり取りできる「WebHID」APIがサポートされた（Android 17以降）。デスクトップ版では
+「Chrome 89」
+から利用できたもので、メカニカルキーボードやゲーミングマウスのカスタマイズなどに使われている。
+開発者向けの新機能としては、CSSで<audio>/<video>要素の再生状態にマッチする疑似クラス（:playing、:pausedなど）や、すべてのカスタムハイライトにマッチする「::highlight(*)」セレクターなどが追加された。
+セキュリティ修正
+「Chrome 158」では、
+204件
+のセキュリティ修正も実施されている。このうち、深刻度が4段階中もっとも高い「Critical」（致命的）と評価された脆弱性は、以下の6件。
+CVE-2026-130963
+：Use after free in WebView
+CVE-2026-131031
+：Out of bounds write in GPU
+CVE-2026-131060
+：Buffer overflow in Media
+CVE-2026-131008
+：Use after free in GarbageCollection
+CVE-2026-131054
+：Out of bounds write in ANGLE
+CVE-2026-130975
+：Use after free in WebAudio
+残りは4段階中2番目に高い「High」が62件、「Medium」が82件、「Low」が54件。今回は、悪用が確認されている脆弱性のアナウンスはない。
+デスクトップ向け「Google Chrome」はWindows/Mac/Linuxに対応しており、現在、同社のWebサイトから無償でダウンロード可能。Windows版はWindows 10以降（Arm版はWindows 11以降）、Mac版はmacOS 13 Ventura以降に対応する。すでにインストールされている場合は自動で更新されるが、設定画面（chrome://settings/help）にアクセスすれば手動でアップデート可能。アップデートを完全に適用するには、「Google Chrome」の再起動が必要だ。

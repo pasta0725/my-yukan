@@ -1,0 +1,147 @@
+URL: https://www.publickey1.jp/blog/26/aioracle_dbpostgresqlazure_database_migration_service.html
+TITLE: ［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+SITE: Publickey
+PUBLISHED: 2026-11-18 06:40 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/oracle2postgresql-ms01.png
+IMAGES:
+- https://www.publickey1.jp/2026/oracle2postgresql-ms01.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+2026年11月18日
+マイクロソフトは日本時間11月18日未明に開幕した年次イベント「Microsoft Ignite 2026」で、Azure Database Migration Service （Azure DMS）におけるOracle DBからPostgreSQLへのデータ移行機能をプレビュー版として
+提供開始したと発表しました
+。
+Azure DMSは、データベースのダウンタイムを最小限に抑えつつ、Microsoft Azure上のデータベースサービスに移行するための機能を提供するマネージドサービスです。
+これまでMySQL、PostgreSQL、MongoDBからの移行に対応していましたが、新たにOracle DatabaseからPostgreSQL（Azure HorizonDBあるいはAzure Database for PostgreSQL flexible server）への移行機能の追加が発表されました。
+スキーマ、データ、アプリの3段階で移行
+マイクロソフトが紹介しているOracle DBからPostgreSQLへの移行は3つの段階に分かれています。
+第一段階はVS Codeの拡張機能である「PostgreSQL extension for VS Code」を利用し、そこから呼び出されるAI支援機能によってOracle DBのデータベーススキーマからテーブル、制約、インデックス、シーケンス、ビュー、トリガー、PL/SQLパッケージ、プロシージャ、権限、依存関係などを抽出し、それらをPostgreSQL用に変換し、ターゲットとなるPostgreSQLデータベースに展開します。
+第二段階でAzure DMSを用いてOracle DBとPostgreSQLに接続、スキーマのマッピングを行った上で、データをコピーします。
+Azure DMSは移行元と移行先との接続性の検証、データのコピー、オンライン移行における継続的な同期、監視、計画的な切り替え（カットオーバー）といったプロセスを担います。
+そして第三段階ではマイクロソフトが提供するpostgres-skillsプラグインに同梱されている新たなmigrate-oracle-appスキルを利用します。
+このスキルには、AIエージェントのための移行ワークフロー、移行スクリプト、言語ガイダンスなどが含まれており、Java、.NET、Python、C、C++の各プログラミング言語に対応。ツールチェーンによる発見、ビルド、テスト、統合、パッケージングのガイダンスを提供します。
+AIを活用したこれら三段階の作業によってOracle DBからPostgreSQLへの移行が実現されます。
+Microsoft Ignite 2026関連記事
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表
+あわせて読みたい
+Microsoft Azure
+Oracle Database
+PostgreSQL
+RDB
+クラウド
+データベース
+機械学習・AI
+Microsoft
+≫次の記事
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+≪前の記事
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+軽量なマイクロVMでネイティブよりアプリを高速起動できる「Hyperlight-Unikraft」登場
+Node.jsとnpmをWebブラウザ上で実行可能にする「OpenVessel」、神戸ソフトがオープンソースで公開
+PostgreSQL 19リリース延期の背景。β4で多くの新機能取り下げが発生、原因はAIによるコードレビューか
+Cloudflare、AI専用でタブやテーマや拡張などない軽量ヘッドレスブラウザ「Kitesurf」、オープンソースで公開
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

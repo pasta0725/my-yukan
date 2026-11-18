@@ -1,0 +1,141 @@
+URL: https://www.publickey1.jp/blog/26/nodejsnpmwebopenvessel.html
+TITLE: Node.jsとnpmをWebブラウザ上で実行可能にする「OpenVessel」、神戸ソフトがオープンソースで公開
+SITE: Publickey
+PUBLISHED: 2026-11-17 00:23 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/openvessel-oss01.png
+IMAGES:
+- https://www.publickey1.jp/2026/openvessel-oss01.png | fig
+- https://www.publickey1.jp/2026/openvessel-oss02.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+Node.jsとnpmをWebブラウザ上で実行可能にする「OpenVessel」、神戸ソフトがオープンソースで公開
+2026年11月17日
+神戸ソフトは、Webブラウザ上でNode.jsとパッケージマネージャのnpm、AstroなどのNode.jsに対応したフレームワークなどが実行できる「
+OpenVessel
+」を
+オープンソースで公開しました
+。
+OpenVesselは、Webブラウザ上にインメモリのファイルシステム、プロセス、シグナル、パイプ、シェルなどのNode.jsを動かすための最小限のOSの仕組みを実装し、その上にNode.jsのJavaScript部分をそのまま載せています。
+現在動作しているNode.jsのバージョンは26。
+神戸ソフトによると、Node.js自身の試験のうちブラウザ上で実行可能な1237本の試験にはすべてパスしているとのことです。
+Node.js/AstroでWebブラウザ上にWebサイト構築
+下記は同社が公開しているOpenVesselのデモサイトをWebブラウザで開いたところです。
+3つのペインの一番左にファイル一覧、真ん中にWebサイトのコンテンツを記したMarkdownファイル、一番右に表示されているのがNode.js上のAstroでレンダリングされたWebサイト（localhost:4321/）です。
+真ん中のMarkdownを書き換えると、動的にWebサイトに反映されるため、実際にAstroが動作していることが分かります。
+また画面下のシェルでは「ps」コマンドで実行中のプロセスの表示や、「ls」コマンドでファイルの一覧、など基本的なシェルコマンドが利用できます。
+そしてこのシェルから「npm」コマンドを使ってさまざまなNode.jsのパッケージをインストール可能です。
+OpenVesselを利用することで簡単にNode.js環境を構築でき、Node.js上でのアプリケーション開発や動作確認などを行うことができるようになります。
+あわせて読みたい
+JavaScript
+プログラミング言語
+仮想化
+Node.js
+TypeScript
+≫次の記事
+軽量なマイクロVMでネイティブよりアプリを高速起動できる「Hyperlight-Unikraft」登場
+≪前の記事
+PostgreSQL 19リリース延期の背景。β4で多くの新機能取り下げが発生、原因はAIによるコードレビューか
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+軽量なマイクロVMでネイティブよりアプリを高速起動できる「Hyperlight-Unikraft」登場
+Node.jsとnpmをWebブラウザ上で実行可能にする「OpenVessel」、神戸ソフトがオープンソースで公開
+PostgreSQL 19リリース延期の背景。β4で多くの新機能取り下げが発生、原因はAIによるコードレビューか
+Cloudflare、AI専用でタブやテーマや拡張などない軽量ヘッドレスブラウザ「Kitesurf」、オープンソースで公開
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

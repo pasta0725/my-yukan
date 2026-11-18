@@ -1,0 +1,144 @@
+URL: https://www.publickey1.jp/blog/26/postgresqloltpolapmicrosoft_fabric_horizondb.html
+TITLE: ［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+SITE: Publickey
+PUBLISHED: 2026-11-18 06:43 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/fabric-horizondb-ann01.png
+IMAGES:
+- https://www.publickey1.jp/2026/fabric-horizondb-ann01.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+2026年11月18日
+マイクロソフトは日本時間11月18日未明に開幕した年次イベント「Microsoft Ignite 2026」で、PostgreSQL互換のサーバレスデータベース「Microsoft Fabric HorizonDB」の
+パブリックプレビュー版を発表しました
+。
+数秒でプロビジョニング、すぐに使い始められる
+Azure HorizonDBがエンタープライズ向けのミッションクリティカル対応データベースなのに対して、Fabric HorizonDBは主にプロトタイプや開発環境などを想定したサーバレスデータベースです。
+数秒でプロビジョニングできるため、AIエージェントや人間の開発者はすぐにデータベースを利用した作業に取り掛かることができます。
+サーバレスとしては非アクティブ状態が5分間続くとコンピュートが自動的に一時停止し、クエリが到着すると自動的に一時停止していたコンピュートが再開します。
+OLTPとOLAPの処理を両方こなせる
+Fabric HorizonDBはその名前が示す通り、マイクロソフトのデータ分析基盤であるMicrosoft Fabricのデータレイク「OneLake」に統合されています。
+Fabric HorizonDBのテーブルはデフォルトでOneLakeにレプリケートされるため、Fabric HorizonDBのデータに対して通常のトランザクション処理だけでなく、分析処理も高速に行える仕組みを備えています。
+またAzure HorizonDBと同じく、ベクトル検索のための拡張機能であるPgVectorやDiskANNインデックス、全文検索の拡張機能pg_textsearchのためのBM25ランキングなども利用可能です。
+これにより人間の開発者やAIエージェントはPostgreSQL互換のデータベースを通じてOLTP、OLAP、文脈や関係性に基づく推論などをすべて行えるようになります。
+Microsoft Ignite 2026関連記事
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表
+あわせて読みたい
+Microsoft Azure
+PostgreSQL
+RDB
+クラウド
+データベース
+OLAP
+≫次の記事
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+≪前の記事
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+軽量なマイクロVMでネイティブよりアプリを高速起動できる「Hyperlight-Unikraft」登場
+Node.jsとnpmをWebブラウザ上で実行可能にする「OpenVessel」、神戸ソフトがオープンソースで公開
+PostgreSQL 19リリース延期の背景。β4で多くの新機能取り下げが発生、原因はAIによるコードレビューか
+Cloudflare、AI専用でタブやテーマや拡張などない軽量ヘッドレスブラウザ「Kitesurf」、オープンソースで公開
+Google Antigravity、クラウド上でAIエージェントが働く「リモートエージェント」機能を搭載。就業時間外でもAIエージェントは働き続ける
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて
