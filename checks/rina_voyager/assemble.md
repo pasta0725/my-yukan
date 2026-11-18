@@ -2,7 +2,7 @@ RESULT: OK
 
 
 使った音声：
-- s1: narration/rina_voyager/manual/s1.wav
+- s1: narration/rina_voyager_fix1/split/s1.wav
 - s2: narration/rina_voyager/manual/s2.wav
 - s3: channel/rina_intro/60s.wav（使い回し）
 - s4: narration/rina_voyager/manual/s3.wav
