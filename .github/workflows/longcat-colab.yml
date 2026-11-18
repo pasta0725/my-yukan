@@ -62,8 +62,14 @@ jobs:
           if [ -z "$got" ]; then echo "no Colab GPU after $n tries"; exit 0; fi
           echo "colab $got" > /tmp/out/via.txt
           trap '$C usage || true; $C stop -s lc || true' EXIT
-          echo 'import os; os.makedirs("/content/in", exist_ok=True); print("ready")' | timeout 180 $C exec -s lc --timeout 0
-          for f in "$DIR"/*; do timeout 300 $C upload -s lc "$f" "/content/in/$(basename "$f")"; done
+          # 2026-11-19: right after getting the GPU, the first command lost its connection once and Colab was given up (Modal made
+          # the clip). A dropped connection is retried now (3 times, 20 s apart) before giving up; uploads too.
+          ok=""; for k in 1 2 3; do
+            if echo 'import os; os.makedirs("/content/in", exist_ok=True); print("ready")' | timeout 180 $C exec -s lc --timeout 0 | grep -q ready; then ok=1; break; fi
+            echo "ready check $k failed (connection?), retrying"; sleep 20
+          done
+          [ -n "$ok" ] || { echo "Colab did not answer after getting the GPU: giving up Colab"; rm -f /tmp/out/via.txt; exit 0; }
+          for f in "$DIR"/*; do for k in 1 2 3; do timeout 300 $C upload -s lc "$f" "/content/in/$(basename "$f")" && break; echo "upload $k failed: $f"; sleep 10; done; done
           cp tools/colab_longcat_remote.py /tmp/run.py
           printf '%s\n' 'import glob as _g, shutil as _s, os as _o' 'for _d in _g.glob("/content/out/*/"):' '    _v = sorted(_g.glob(_d + "**/*.mp4", recursive=True), key=_o.path.getmtime)' '    if _v: _s.copy(_v[-1], _d.rstrip("/") + ".mp4"); print("clip", _d, _v[-1], flush=True)' >> /tmp/run.py
           # 2026-11-18: the run on Colab hung for over 50 minutes with no end (usually about 15), and the build was cancelled by hand.
