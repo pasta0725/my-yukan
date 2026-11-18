@@ -65,6 +65,7 @@ function marks(s,warn){const m=new Array(s.length).fill(C.capText);
   // numbers inside product names (PS5, Switch 2, iPhone 17, GPT-6, M5) stay plain: only values (price, date, count) are highlighted (2026-11-14 user decision)
   const prod=/[A-Za-z][A-Za-z+]*[ -]?([0-9][0-9.]*)(?![0-9.,万円倍月日秒%年人台本件回時分])/g;let p;
   while((p=prod.exec(s))){const st=p.index+p[0].length-p[1].length;for(let i=st;i<p.index+p[0].length;i++)m[i]=C.capText;}
+  {const re=/ハブ4/g;let q;while((q=re.exec(s)))m[q.index+2]=C.capText;}   // ハブ4 is a product name: its 4 stays plain
   if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
 // ---------- line breaks (2026-11-18): the rules of tools/shorts_rules.md「画面と字幕」are applied here, while the caption is laid out ----------
 // (they used to be found only in the screen check after a 15-minute render: 259億|キロ, 6万|1000キロ, Codexに|登場, a line starting with た/だ)
@@ -188,7 +189,7 @@ function fullPic(k,S,z,R=OPEN_R,blurBg=true){const i=IMG[k];if(!i)return;
   const gr=g.createLinearGradient(0,R[1]+R[3]-260,0,R[1]+R[3]);gr.addColorStop(0,'rgba(5,7,13,0)');gr.addColorStop(1,'rgba(5,7,13,0.75)');g.fillStyle=gr;g.fillRect(R[0],R[1]+R[3]-260,R[2],260);g.restore();}
 const lerpS=(a,b,k)=>a.map((v,i)=>v+(b[i]-v)*k);
 // the first sentence's telop changes every 0.5-1 s
-const OPEN_SPLIT={'「ちょっと寒い」って言うと':['「ちょっと寒い」','って言うと'],'暖房をすすめてきます':['暖房を','すすめてきます']};
+const OPEN_SPLIT={'「ちょっと寒い」で暖房を':['「ちょっと寒い」で','暖房を'],'暖房をすすめてきます':['暖房を','すすめてきます']};
 function openParts(s){s=s.replace(/[、。]$/,'');return OPEN_SPLIT[s]||[s];}
 function openChunks(L,d){const out=[];const ch=P.tel.filter(x=>x.start>=L.start-0.01&&x.start<L.start+d);
   ch.forEach((tl,i)=>{const end=ch[i+1]?ch[i+1].start:L.start+d;const parts=openParts(tl.text);const n=parts.join('').length;let s0=tl.start;parts.forEach(pt=>{out.push({start:s0,text:pt});s0+=(end-tl.start)*pt.length/n;});});return out;}
@@ -196,23 +197,23 @@ function openChunks(L,d){const out=[];const ch=P.tel.filter(x=>x.start>=L.start-
 const S={
  // 0 s (rules 2026-11-17): only the real picture and the huge telop. このリモコン = the hub (official key visual), 「ちょっと寒い」 = the man's bubble, 暖房を = the hub's reply
  open(u,d,L){abs(()=>{const ch=openChunks(L,d);let cur=null,ci=0;ch.forEach((c,i)=>{if(c.start<=CURT+0.001){cur=c;ci=i;}});if(!cur&&ch.length){cur=ch[0];ci=0;}
-     const tRoom=ch[1]?ch[1].start-L.start:1.2,tHub=ch[3]?ch[3].start-L.start:2.6;
+     const tRoom=ch[1]?ch[1].start-L.start:1.2,tHub=ch[2]?ch[2].start-L.start:2.4;
      if(u<tRoom){fullPic('kv',KV,1.0+0.04*u/Math.max(0.5,tRoom));creditAt(CR,1040,1330);}
      else{const k=ease((u-tHub+0.05)/0.45);fullPic('room',lerpS(ROOM_MAN,ROOM_HUB,k),1.02+0.03*(u-tRoom)/Math.max(0.5,d-tRoom));creditAt(CR,1040,1330);}
      if(cur){const k=CURT-cur.start;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1480);g.scale(sc,sc);g.translate(-CX,-1480);bigTelop(cur.text,1480);g.restore();}});},
  // no smart speaker needed: a generic speaker, crossed out at 「要りません」, and the hub itself
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.7,telHas(L,'要りません')),d-0.8);
-   withEnter(enter(u,0),()=>{card(150,380,780,470);speakerIcon(CX,615,150);text('スマートスピーカー',CX,800,46,C.text,'center',900,700);});
-   cross(CX,600,150,(u-t2)/0.3);
-   withEnter(enter(u,0.25),()=>{cpic('prod',[208,240,820,880],250,900,580,560,1);},20);
-   creditAt(CR,820,1435);},
+   withEnter(enter(u,0),()=>{card(150,380,780,360);speakerIcon(CX,530,110);text('スマートスピーカー',CX,680,46,C.text,'center',900,700);});
+   cross(CX,525,115,(u-t2)/0.3);
+   withEnter(enter(u,0.25),()=>{cpic('prod',[208,240,820,880],260,780,560,500,1);},20);
+   creditAt(CR,805,1255);},
  // 「このニュース、1分でまとめます。」: the reused pointing clip at the old size, behind her the official picture, a little darker, nothing over her head (2026-11-18)
- hook(u,d,L){abs(()=>{const i=IMG.info;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(i){g.save();g.filter='brightness(0.62)';const s=Math.max(W/i.width,H/i.height)*(1.02+0.05*u/Math.max(1,d));g.drawImage(i,CX-i.width*s/2,960-i.height*s/2,i.width*s,i.height*s);g.restore();}
+ hook(u,d,L){abs(()=>{const i=IMG.info;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(i){g.save();g.filter='brightness(0.55)';const s=Math.max(W/i.width,H/i.height)*(1.02+0.05*u/Math.max(1,d));g.drawImage(i,CX-i.width*s/2,960-i.height*s/2,i.width*s,i.height*s);g.restore();}
    bigRina(HOOK_R);});},
  // small answer (~10 s): SwitchBot Hub 4
  what(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'ハブ4')),d-0.8);
    withEnter(enter(u,0),()=>{cpic('prod',[208,200,860,900],150,380,780,780,1+0.05*ease(u/2.5));});
-   tag('SwitchBot ハブ4',CX,1110,(u-t2)/0.3,C.brand,62);
+   tag('SwitchBot ハブ4',CX,1240,(u-t2)/0.3,C.brand,62);
    creditAt(CR,915,1060);},
  // when: pre-orders from 18 November
  when(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'予約')),d-0.9);
@@ -220,31 +221,30 @@ const S={
    tag('予約販売 開始',CX,1060,(u-t2)/0.3,C.brand,66);},
  // before: the older hubs needed a smart speaker to be used by voice
  before(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'スマートスピーカー')),d-1.2);
-   withEnter(enter(u,0),()=>{pill('これまで',CX,430,56,C.bar);});
+   withEnter(enter(u,0),()=>{pill('これまで',CX,430,56,C.sub);});
    withEnter(enter(u,0.2),()=>{card(150,530,780,560);oldHub(330,760,190);text('ハブ',330,990,50,C.text,'center',900,260);});
    withEnter(enter(u,t2-0.1,0.25),()=>{plusSign(CX,760,40);speakerIcon(750,760,150);text('スピーカー',750,990,50,C.text,'center',900,300);},14);},
  // after: talk to the hub itself
  after(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'話しかける')),d-1.0);
    withEnter(enter(u,0),()=>{pill('これから',CX,430,56,C.acc);});
-   withEnter(enter(u,0.15),()=>{const z=1+0.12*ease((u-t2)/1.2);cpic('kv',[KV[0],KV[1]+20,KV[2],KV[3]-20],170,520,740,700,z,28,false);creditAt(CR,895,1195);});},
+   withEnter(enter(u,0.15),()=>{const z=1+0.05*ease((u-t2)/1.2);cpic('kv',[KV[0],KV[1]+20,KV[2],KV[3]-20],170,520,740,700,z,28,false);creditAt(CR,895,1195);});},
  // the AI: an everyday phrase in, a suggestion out (official picture, the two bubbles)
  ai(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'意図')),d-0.9);
-   withEnter(enter(u,0),()=>{cpic('room',[150,150,560,330],150,380,780,460,1);});
-   withEnter(enter(u,0.6),()=>{pill('GPTモデル',CX,900,52,C.brand);},12);
-   withEnter(enter(u,t2,0.25),()=>{cpic('room',[760,250,500,200],150,990,780,312,1);creditAt(CR,915,1275);},20);},
+   withEnter(enter(u,0),()=>{cpic('room',[170,150,520,300],150,380,780,450,1);});
+   withEnter(enter(u,0.6),()=>{pill('GPTモデル',CX,890,52,C.brand);},12);
+   withEnter(enter(u,t2,0.25),()=>{cpic('room',[770,260,490,165],150,960,780,263,1);creditAt(CR,915,1200);},20);},
  // how it sends: infrared (TV, air conditioner) and Bluetooth (Fire TV)
  ir(u,d,L){bg(u);mini(u);const t1=Math.min(Math.max(0.5,telHas(L,'赤外線')),d-1.6),t2=Math.min(Math.max(t1+0.6,telHas(L,'Bluetooth')),d-0.8);
    withEnter(enter(u,0),()=>{cpic('matter',[250,215,780,455],150,430,780,580,1+0.03*u/Math.max(1,d));creditAt(CR,915,985);});
    const k1=ease((u-t1)/0.3),k2=ease((u-t2)/0.3);
-   if(k1>0){g.save();g.globalAlpha*=k1;g.strokeStyle=C.warn;g.lineWidth=9;g.beginPath();g.arc(150+(897-250)*1.0,430+(338-215)*1.0,62,0,7);g.stroke();g.restore();}
+   if(k1>0){g.save();g.globalAlpha*=k1;g.strokeStyle=C.warn;g.lineWidth=9;g.beginPath();g.arc(868,587,62,0,7);g.stroke();g.restore();}
    tag('赤外線',780,1110,(u-t1)/0.3,C.warn,56);
-   if(k2>0){g.save();g.globalAlpha*=k2;g.strokeStyle=C.brand;g.lineWidth=9;g.beginPath();g.arc(150+(403-250),430+(333-215),62,0,7);g.stroke();g.restore();}
-   tag('Bluetooth',300,1110,(u-t2)/0.3,C.brand,56);},
+   if(k2>0){g.save();g.globalAlpha*=k2;g.strokeStyle=C.brand;g.lineWidth=9;g.beginPath();g.arc(238,580,62,0,7);g.stroke();g.restore();}
+   tag('Bluetooth',290,1110,(u-t2)/0.3,C.brand,56);},
  // by hand: the dial (official picture, left panel), then the screen keys (right panel)
  dial(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'4つ')),d-1.0);const k=ease((u-t2+0.1)/0.4);
    withEnter(enter(u,0),()=>{cpic('dial',lerpS([33,35,392,598],[855,35,392,598],k),230,380,620,780,1,32);creditAt(CR,835,1135);});
-   tag('ダイヤル',CX,1235,(u-0.4)/0.3*(1-k)+(k>0?0:0),C.brand,54);
-   tag('4つのボタン',CX,1235,(u-t2)/0.3,C.acc,54);},
+   if(u<t2)tag('ダイヤル',CX,1235,(u-0.4)/0.3,C.brand,54);else tag('4つのボタン',CX,1235,(u-t2)/0.3,C.acc,54);},
  // the price: the number comes with its word
  price(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.5,telHas(L,'1万')),d-0.9);
    withEnter(enter(u,0),()=>{cpic('prod',[208,200,860,900],230,380,620,620,1);creditAt(CR,835,975);});
@@ -267,8 +267,8 @@ const S={
  verdict(u,d,L){bg(u);const tl=Math.min(Math.max(1.5,telHas(L,'人に')),d-0.8);const kz=ease((u-tl+0.1)/0.5);
    abs(()=>{glow(CX,1250,600,C.brand,0.32);const R=[0,290,1080,430];
      if(kz<1)cpic('room',[100,130,1100,438],R[0],R[1],R[2],R[3],1.0+0.04*u/Math.max(1,d),0,false);
-     if(kz>0){g.save();g.globalAlpha*=kz;cpic('kv',[KV[0]-200,KV[1]+60,KV[2]+400,KV[3]-120],R[0],R[1],R[2],R[3],1,0,false);g.restore();}
-     creditAt(CR,1030,690);
+     if(kz<1)creditAt(CR,1030,690);
+     if(kz>0){g.save();g.globalAlpha*=kz;fullPic('kv',KV,1.0);creditAt(CR,1040,330);g.restore();}  // the 0 s picture comes back behind her: the loop seam does not show
      bigRina(VERD_R);});},
 };
 const BIGS=['hook','verdict'];

@@ -3,19 +3,19 @@
  "lines": [
   {
    "scene": "open",
-   "say": "このリモコン、「ちょっと寒い」って言うと、暖房をすすめてきます。",
-   "show": "このリモコン、「ちょっと寒い」って言うと、暖房をすすめてきます。",
+   "say": "このリモコン、「ちょっと寒い」で暖房をすすめてきます。",
+   "show": "このリモコン、「ちょっと寒い」で暖房をすすめてきます。",
    "puppet": true,
    "se": "don",
-   "wav": "narration/rina_switchbot_hub4/split_m/s1.wav"
+   "wav": "narration/rina_switchbot_hub4_fix1/split/s1.wav"
   },
   {
    "scene": "tease",
    "say": "しかも、スマートスピーカーは要りません。",
-   "show": "しかも、スマートスピーカーは要りません。",
+   "show": "しかも、スマート・スピーカーは要りません。",
    "puppet": true,
    "se": "pop",
-   "wav": "narration/rina_switchbot_hub4/split_m/s2.wav"
+   "wav": "narration/rina_switchbot_hub4_fix1/split/s2.wav"
   },
   {
    "scene": "hook",
@@ -45,7 +45,7 @@
   {
    "scene": "before",
    "say": "これまでのハブは、声で動かすのに、スマートスピーカーが必要でした。",
-   "show": "これまでのハブは、声で動かすのに、スマートスピーカーが必要でした。",
+   "show": "これまでのハブは、声で動かすのに、スマート・スピーカーが必要でした。",
    "puppet": true,
    "se": "pop",
    "wav": "narration/rina_switchbot_hub4/split_m/s5.wav"
@@ -53,7 +53,7 @@
   {
    "scene": "after",
    "say": "ハブフォーは、本体に「ハローカタ」と話しかけるだけです。",
-   "show": "ハブ4は、本体に「Hello Kata」と話しかけるだけです。",
+   "show": "ハブ4は、本体に「Hello Kata」と、話しかけるだけ。",
    "puppet": true,
    "se": "ding",
    "wav": "narration/rina_switchbot_hub4/split_m/s6.wav"
@@ -118,7 +118,7 @@
  "speed": 1.15,
  "gap": 0.03,
  "period_pause": 0.04,
- "comma_max": 0.15,
+ "comma_max": 0.3,
  "tail_logo": 0,
  "lipsync": "python3",
  "lead": 0.1
