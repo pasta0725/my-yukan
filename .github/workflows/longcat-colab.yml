@@ -49,7 +49,7 @@ jobs:
               n=$((n+1))
               hm=""; [ "${g%%:*}" != "$g" ] && hm="--high-mem"
               if $C new -s lc --gpu ${g%%:*} $hm >/tmp/new.log 2>&1; then
-                mem=$(echo 'import subprocess;print(subprocess.run(["nvidia-smi","--query-gpu=memory.total","--format=csv,noheader,nounits"],capture_output=True,text=True).stdout.strip())' | $C exec -s lc --timeout 0 | grep -oE '^[0-9]+' | head -1)
+                mem=$(echo 'import subprocess;print(subprocess.run(["nvidia-smi","--query-gpu=memory.total","--format=csv,noheader,nounits"],capture_output=True,text=True).stdout.strip())' | timeout 180 $C exec -s lc --timeout 0 | grep -oE '^[0-9]+' | head -1)
                 echo "try $n: got $g (${mem:-?} MB)"
                 if [ "${mem:-0}" -ge 70000 ]; then got=$g; break; fi
                 echo "  too little memory, giving it back"; $C stop -s lc || true
@@ -62,14 +62,16 @@ jobs:
           if [ -z "$got" ]; then echo "no Colab GPU after $n tries"; exit 0; fi
           echo "colab $got" > /tmp/out/via.txt
           trap '$C usage || true; $C stop -s lc || true' EXIT
-          echo 'import os; os.makedirs("/content/in", exist_ok=True); print("ready")' | $C exec -s lc --timeout 0
-          for f in "$DIR"/*; do $C upload -s lc "$f" "/content/in/$(basename "$f")"; done
+          echo 'import os; os.makedirs("/content/in", exist_ok=True); print("ready")' | timeout 180 $C exec -s lc --timeout 0
+          for f in "$DIR"/*; do timeout 300 $C upload -s lc "$f" "/content/in/$(basename "$f")"; done
           cp tools/colab_longcat_remote.py /tmp/run.py
           printf '%s\n' 'import glob as _g, shutil as _s, os as _o' 'for _d in _g.glob("/content/out/*/"):' '    _v = sorted(_g.glob(_d + "**/*.mp4", recursive=True), key=_o.path.getmtime)' '    if _v: _s.copy(_v[-1], _d.rstrip("/") + ".mp4"); print("clip", _d, _v[-1], flush=True)' >> /tmp/run.py
-          $C exec -s lc --timeout 0 -f /tmp/run.py || echo "exec ended with an error (clips may still be there)"
+          # 2026-11-18: the run on Colab hung for over 50 minutes with no end (usually about 15), and the build was cancelled by hand.
+          # Now it gets 35 minutes; after that the clips made so far are downloaded and Modal makes the rest (next step).
+          timeout 2100 $C exec -s lc --timeout 0 -f /tmp/run.py || echo "exec ended with an error or ran past 35 minutes (clips may still be there)"
           mkdir -p /tmp/out
           for n in $(python3 -c "import json,os;print(' '.join(j[0] for j in json.load(open(os.environ['DIR']+'/jobs.json'))))"); do
-            $C download -s lc /content/out/$n.mp4 /tmp/out/$n.mp4 || echo "no clip $n"
+            timeout 300 $C download -s lc /content/out/$n.mp4 /tmp/out/$n.mp4 || echo "no clip $n"
           done
           ls -la /tmp/out
       - name: fallback to Modal
@@ -80,7 +82,9 @@ jobs:
           DIR: ${{ inputs.dir }}
         run: |
           mkdir -p /tmp/out
-          ls /tmp/out/*.mp4 >/dev/null 2>&1 && { echo "Colab made the clips"; exit 0; }
+          miss=""; for n in $(python3 -c "import json,os;print(' '.join(j[0] for j in json.load(open(os.environ['DIR']+'/jobs.json'))))"); do [ -s "/tmp/out/$n.mp4" ] || miss="$miss $n"; done
+          [ -z "$miss" ] && { echo "Colab made the clips"; exit 0; }
+          echo "missing:$miss"   # 2026-11-18: before, one clip from Colab was enough to skip Modal even when another was missing
           echo "no clip from Colab -> Modal (LongCat)"
           pip install -q modal
           modal run tools/modal_avatar.py --dir "$DIR" --model longcat --out /tmp/out
