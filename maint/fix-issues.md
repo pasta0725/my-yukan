@@ -1,9 +1,7 @@
-RESULT: FIXED=0 PARTIAL=0 HOLD=1 KEEP=1 NONE=4
+RESULT: FIXED=0 PARTIAL=0 HOLD=0 KEEP=0 NONE=4
 #23 未処理：直したが main に push できなかった（次回もう一度）
 #24 未処理：直したが main に push できなかった（次回もう一度）
 #25 未処理：直したが main に push できなかった（次回もう一度）
-#26 保留のまま：ログインに関する同じ問題の追加報告のため、保留を続けます。
-#30 保留：画像の選び間違いの原因は未確認で、6枚という上限も現行の決まりと異なるため保留です。
 #31 未処理：直したが main に push できなかった（次回もう一度）
-実行：https://github.com/pasta0725/my-yukan/actions/runs/44192833059
-run_id: 44192833059
+実行：https://github.com/pasta0725/my-yukan/actions/runs/44269534264
+run_id: 44269534264
