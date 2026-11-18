@@ -46,7 +46,7 @@ jobs:
         with: { path: ~/.cache/pip, key: "pip-short-pyopenjtalk-0.4.1-py312" }
       - name: tools
         run: |
-          sudo apt-get install -y -qq ffmpeg >/dev/null
+          bash tools/ci_install.sh
           pip install -q numpy scipy pillow pyopenjtalk==0.4.1
       - name: materials from the branch work (text files on main win)
         run: |
@@ -169,7 +169,7 @@ jobs:
         with: { name: short-src, path: "shorts/${{ inputs.name }}" }
       - name: tools
         run: |
-          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk fonts-noto-cjk-extra >/dev/null
+          bash tools/ci_install.sh fonts
           pip install -q numpy scipy pillow
           npm i --no-save --silent playwright@1.49.1 >/dev/null && npx playwright install --with-deps chromium >/dev/null 2>&1
           mkdir -p /tmp/rep
@@ -226,7 +226,7 @@ jobs:
         with: { name: short-src, path: "shorts/${{ inputs.name }}" }
       - uses: actions/download-artifact@v4
         with: { name: video, path: /tmp/v }
-      - run: sudo apt-get install -y -qq ffmpeg >/dev/null && pip install -q faster-whisper pykakasi
+      - run: bash tools/ci_install.sh && pip install -q faster-whisper pykakasi
       - name: check
         run: |
           mkdir -p /tmp/rep; set +e
@@ -250,7 +250,7 @@ jobs:
         with: { auth: "${{ secrets.CODEX_AUTH }}" }
       - name: pictures
         run: |
-          which ffmpeg >/dev/null || sudo apt-get install -y -qq ffmpeg >/dev/null
+          bash tools/ci_install.sh
           python3 -c "import PIL" 2>/dev/null || pip install -q pillow
           git fetch -q origin "+work:refs/remotes/origin/work" || true
           T=""; git show "origin/work:channel/thumbs/$NM.jpg" > /tmp/thumb.jpg 2>/dev/null && [ -s /tmp/thumb.jpg ] && T=/tmp/thumb.jpg

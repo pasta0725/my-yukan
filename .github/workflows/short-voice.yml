@@ -57,7 +57,7 @@ jobs:
       - name: split and transcribe
         if: env.STOP != '1'
         run: |
-          sudo apt-get install -y -qq ffmpeg >/dev/null
+          bash tools/ci_install.sh
           pip install -q numpy faster-whisper
           python3 tools/work_branch.py get "$D"
           set +e
