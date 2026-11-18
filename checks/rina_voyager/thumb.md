@@ -1,2 +1,3 @@
-RESULT: LOOK
-- LOOK サムネ｜確かめられなかった（ブランチ work に channel/thumbs/rina_voyager.jpg がない、または途中で停止）｜ショート一覧で目で見る｜-
+RESULT: OK
+
+ショート一覧のサムネは入れた画像と同じ（差 0.2）。動画 z29qQx2ae8Y
