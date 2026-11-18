@@ -1,0 +1,149 @@
+{
+ "id": "ai-nvidia-science-agents-cudax",
+ "category": "ai",
+ "title": "NVIDIA、研究用AIと科学計算ツールを拡充",
+ "summary": "自前の計算機で仮説を試し、薬や天体の分析も進められます。",
+ "visual": {
+  "icon": "ai",
+  "kicker": "科学のAI"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "NVIDIAが研究用AIと、AIから使える科学計算ツールを拡充します",
+    "分子の計算は既存ソフト比で最大3倍に高速化すると説明しています",
+    "自前の計算機でデータを管理でき、国内では理化学研究所も研究者向けに提供しています"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "NVIDIAは米国時間11月16日、研究用AIと計算ツールの拡充を発表しました。科学計算の会議SC26で紹介しています。"
+  },
+  {
+   "type": "h",
+   "text": "研究用AIを自前の計算機で"
+  },
+  {
+   "type": "p",
+   "text": "「Nemotron for Science」は、研究用AIを作るための道具一式です。実験の計画やプログラムの実行を進めます。土台は公開モデルのNemotron 3.5 Super VLです。化学の公開データと、研究分野に合わせて追加学習する手順を組み合わせます。"
+  },
+  {
+   "type": "p",
+   "text": "化学データ「LitmusBench v0.2」には、約5万問が入っています。AIに化学を学ばせたり、理解度を試したりするためのデータです。分子の性質や薬の開発実験のデータをもとにしています。水などへの溶けやすさや、体内での分子の変化を予測する力を高める狙いです。"
+  },
+  {
+   "type": "p",
+   "text": "DGX Sparkや自前のスーパーコンピューターなどで動かせます。このモデルは、メモリー128GBのDGX Spark向けにも調整されています。研究者がモデルとデータを管理する方式です。一般向けチャットアプリの追加機能とは異なります。"
+  },
+  {
+   "type": "h",
+   "text": "仮説を立てて計算で確かめる"
+  },
+  {
+   "type": "p",
+   "text": "アルゴンヌ国立研究所では、この仕組みを使うAIが1回の指示から仮説を立てました。必要な模擬実験を選んで検証も進めています。NVIDIAは、分子が結びつく新たな場所を2か所特定したと説明しました。"
+  },
+  {
+   "type": "p",
+   "text": "同研究所は、たんぱく質を使った治療薬の候補を設計・評価する仕組みにも組み込んでいます。がんなどの病気の治療に向けた研究です。"
+  },
+  {
+   "type": "p",
+   "text": "KTH王立工科大学は、分子の動きを計算するソフトの設定不良を直すAIを作りました。DGX Sparkを1台使って、一晩で修正を試しています。直した設定は、計算ソフト側でも別に検証しました。"
+  },
+  {
+   "type": "p",
+   "text": "企業では、化学の図から情報を取り出す使い方もあります。Terray Therapeuticsは、反応前後の物質や実験条件を読み取るようAIを追加学習しました。Lila Sciencesは、自動化した研究室で使う実験手順の作成に活用しています。"
+  },
+  {
+   "type": "h",
+   "text": "薬や細胞の分析道具も拡充"
+  },
+  {
+   "type": "p",
+   "text": "CUDA-Xは、大量の計算を並行して進める半導体「GPU」用のソフトの部品集です。新しいcuPotentialは、薬の候補を調べる分子計算を助けます。既存の模擬実験ソフトを最大3倍に速め、計算の安定性も改善するとしています。"
+  },
+  {
+   "type": "p",
+   "text": "公開ソフトになったcuSpaは、細胞の形や位置関係の計算を速めます。がん研究向けの事例では、通常の処理を担う半導体「CPU」を使う場合と比べて900倍の高速化を報告しました。いずれも特定の計算での結果です。"
+  },
+  {
+   "type": "h",
+   "text": "天体観測の分析待ちを短縮"
+  },
+  {
+   "type": "p",
+   "text": "cuPhotonは、各地の電波望遠鏡が集めたデータの解析に使います。観測結果を照合する処理は、従来1か月以上かかっていました。NVIDIAは、これを8分に短縮できたと発表しました。"
+  },
+  {
+   "type": "h",
+   "text": "利用条件と日本向けの案内"
+  },
+  {
+   "type": "p",
+   "text": "モデルと化学データは、11月16日の発表時点で公開済みです。AIのモデルなどを配布するサイト「Hugging Face」で入手できます。"
+  },
+  {
+   "type": "p",
+   "text": "理化学研究所は、計算基盤「RIKYU」でこのモデルを提供しています。研究者は、AIを呼び出す窓口「RiVault」を通じて利用できます。"
+  },
+  {
+   "type": "p",
+   "text": "対象は、AIや計算環境を用意して研究する人です。料金や無料で使える範囲の詳しい条件と、日本語対応は発表されていません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "最大3倍",
+     "label": "既存の分子計算との比較"
+    },
+    {
+     "value": "900倍",
+     "label": "細胞計算のCPU比"
+    },
+    {
+     "value": "8分",
+     "label": "天体観測データの照合"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "導入を考える研究者は、Hugging Faceで公開済みのモデルと化学データを確認できます。",
+    "研究者は、使っている分子計算ソフトと新しい道具の対応状況を確認します。",
+    "研究データを外へ出せない組織は、手元で動かす構成と利用条件を確認します。",
+    "一般の利用者が今すぐ行う手続きはありません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "研究用AIでは、文章を答える力に加えて計算を実行できるかが違いになります。手元のデータを管理したまま、検証の待ち時間をどこまで減らせるかが判断材料です。"
+  }
+ ],
+ "source_name": "NVIDIA",
+ "source_url": "https://blogs.nvidia.com/blog/cuda-x-libraries-agents-accelerate-scientific-discovery/",
+ "published": "2026-11-17",
+ "refs": [
+  {
+   "name": "NVIDIA",
+   "url": "https://blogs.nvidia.com/blog/cuda-x-libraries-agents-accelerate-scientific-discovery/"
+  },
+  {
+   "name": "NVIDIA",
+   "url": "https://blogs.nvidia.com/blog/ian-buck-sc26/"
+  },
+  {
+   "name": "NVIDIA",
+   "url": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents"
+  }
+ ],
+ "image": {
+  "src": "https://blogs.nvidia.com/wp-content/uploads/2026/11/hpc-for-dev-tech-blog-cuda-x-sc26-1920x1080-5818376.jpg",
+  "kind": "press",
+  "credit": "NVIDIA",
+  "page": "https://blogs.nvidia.com/blog/cuda-x-libraries-agents-accelerate-scientific-discovery/"
+ }
+}

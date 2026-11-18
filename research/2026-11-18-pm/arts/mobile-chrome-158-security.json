@@ -1,0 +1,128 @@
+{
+ "id": "mobile-chrome-158-security",
+ "category": "other",
+ "title": "Google、Chrome 158で204件修正",
+ "summary": "致命的な問題6件を含む更新で、適用の完了にはブラウザーの再起動が必要です。",
+ "image": {
+  "src": "https://asset.watch.impress.co.jp/img/wf/docs/2157/314/image1_l.png",
+  "kind": "ogp",
+  "credit": "窓の杜",
+  "page": "https://forest.watch.impress.co.jp/docs/news/2157314.html"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "ブラウザー更新"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "GoogleがChrome 158を公開し、安全性に関わる問題204件を修正。",
+    "Windows、Mac、Linuxへ順次配信し、最も深刻な問題6件も直します。",
+    "PC利用者は更新を確認して再起動し、Androidの新機能はOSの条件も確認を。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Googleは11月17日、米国時間にPC版Chromeの安定版を158へ更新しました。Windows、Mac、Linux向けに順次配信します。"
+  },
+  {
+   "type": "h",
+   "text": "204件を修正して順次配信"
+  },
+  {
+   "type": "p",
+   "text": "今回の修正は204件です。このうち6件は、深刻度が4段階で最も高い「致命的」に分類されています。窓の杜によると、今回、悪用が確認されている問題の発表はありません。"
+  },
+  {
+   "type": "p",
+   "text": "Security NEXTによると、深刻度が2番目の「高」の問題は62件です。Chromeに機能を足す「拡張機能」にも不備がありました。操作の許可を確かめる処理などを直しています。"
+  },
+  {
+   "type": "p",
+   "text": "PC版Chromeは無料です。Windows版はWindows 10以降、Arm版はWindows 11以降が対象です。Mac版はmacOS 13 Ventura以降に対応します。"
+  },
+  {
+   "type": "h",
+   "text": "古い変換機能の標準対応終了"
+  },
+  {
+   "type": "p",
+   "text": "XMLという形式のデータを、読みやすいWeb画面などに変換する「XSLT」を標準で使えなくします。Googleは、利用が減る一方で処理用ソフトの弱点が攻撃の入り口になるとして、削除を決めました。"
+  },
+  {
+   "type": "p",
+   "text": "試験制度や企業向け設定を使う場合は、当面の例外があります。ただし、その例外もChrome 176で終了予定です。サイトを管理する人は、XSLTを使う画面の見直しが必要になります。"
+  },
+  {
+   "type": "h",
+   "text": "スマホでも入力機器を設定"
+  },
+  {
+   "type": "p",
+   "text": "Android版は、WebアプリからUSBやBluetoothの入力機器を扱う「WebHID」に対応しました。Android 17以降が条件です。PCでは、ゲーム用マウスやキーボードの設定変更などに使われてきました。"
+  },
+  {
+   "type": "p",
+   "text": "PC版には、サイトからWebアプリの導入を促す「Web Install API」も加わります。Webアプリは、Webの仕組みで動くアプリです。企業の管理者は、この導入機能を設定で制御できます。"
+  },
+  {
+   "type": "img",
+   "src": "https://asset.watch.impress.co.jp/img/wf/docs/2157/314/image2_l.png",
+   "kind": "ogp",
+   "credit": "窓の杜",
+   "page": "https://forest.watch.impress.co.jp/docs/news/2157314.html",
+   "caption": "Web Install APIのデモで表示されたアプリの導入画面"
+  },
+  {
+   "type": "h",
+   "text": "再起動まで進めて更新を完了"
+  },
+  {
+   "type": "p",
+   "text": "すでにChromeを使っていれば、自動更新の対象になります。配信は数日から数週間かけて進みます。手動ではChromeの設定画面から更新を確認できます。更新を完全に適用するには、Chromeを再起動してください。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "204件",
+     "label": "安全性に関わる修正"
+    },
+    {
+     "value": "6件",
+     "label": "深刻度が最上位の問題"
+    },
+    {
+     "value": "Android 17",
+     "label": "WebHIDの対応条件"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "PC版Chromeを使う人は、更新を確認したあと再起動まで進めてください。",
+    "Androidで周辺機器の設定をしたい人は、利用前にOSが17以降か確認してください。",
+    "XSLTを使うサイトの管理者は、例外措置が終わるChrome 176までに対応を見直してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "ゲーム用の周辺機器をスマホから設定できる仕組みは、PC以外での調整にもつながりそうです。対応するWebアプリと機器がそろうかが、使えるかどうかの分かれ目になります。"
+  }
+ ],
+ "source_name": "窓の杜",
+ "source_url": "https://forest.watch.impress.co.jp/docs/news/2157314.html",
+ "published": "2026-11-18",
+ "refs": [
+  {
+   "name": "窓の杜",
+   "url": "https://forest.watch.impress.co.jp/docs/news/2157314.html"
+  },
+  {
+   "name": "Security NEXT",
+   "url": "https://www.security-next.com/192998"
+  }
+ ]
+}

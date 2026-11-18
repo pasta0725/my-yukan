@@ -1,0 +1,152 @@
+{
+ "id": "ai-nvidia-vera-rubin-mlperf",
+ "category": "ai",
+ "title": "NVIDIA、AI学習性能が前世代比で最大2倍",
+ "summary": "GPUを4倍に増やす試験では、学習時間が16分から約4分に縮みました。",
+ "visual": {
+  "icon": "chip",
+  "kicker": "AI性能"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "NVIDIAがVera RubinのAI学習・実行試験の結果を発表しました",
+    "GPUあたりの学習性能は、前世代比で最大2倍と説明しています",
+    "ゲームの描画性能や、個人向けGPUの速さを比べた試験ではありません"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "NVIDIAは米国時間11月16日、AI基盤Vera Rubinの性能試験結果を発表しました。学習とAIの実行を別々に測っています。"
+  },
+  {
+   "type": "h",
+   "text": "学習速度は前世代の最大2倍"
+  },
+  {
+   "type": "p",
+   "text": "MLPerf Trainingは、AIが決められた正確さに達するまでの時間を測る試験です。今回の版は6.1です。NVIDIAは、前世代GB300に比べてGPUあたり最大2倍の性能を発表しました。GPUはAIの計算を担う半導体です。"
+  },
+  {
+   "type": "p",
+   "text": "Vera Rubinはこの学習試験に初参加し、7項目のうち6項目で最速でした。DeepSeek-V3では、新旧ともにGPUを1024基使って比べています。学習時間はGB300の8.03分に対し、Vera Rubinは4.14分でした。他の項目でも、同じ台数で前世代の1.4〜1.6倍の速さでした。"
+  },
+  {
+   "type": "p",
+   "text": "計算設備をネット経由で貸すNebiusも、新旧のGPUを64基ずつ使って比較しています。gpt-oss 20Bの学習は、GB300の18.24分から11.21分に縮みました。Qwen3.5の追加学習は、37.01分から24.82分になりました。いずれもVera Rubinでの結果です。"
+  },
+  {
+   "type": "h",
+   "text": "GPUを増やした場合の速さ"
+  },
+  {
+   "type": "p",
+   "text": "DeepSeek-V3の学習試験では、GPUを256基から1024基へ増やしました。学習時間は16分から約4分に縮みました。多数のGPUをつないだときに、追加した分だけ効率よく働くかを確かめる比較です。"
+  },
+  {
+   "type": "p",
+   "text": "DeepSeek-V3の最短時間は、前世代GB300による1.38分でした。NVIDIAはこの試験で、GPUを1万240基使いました。台数をそろえた比較とは別の結果です。"
+  },
+  {
+   "type": "h",
+   "text": "試験に加わった新しい課題"
+  },
+  {
+   "type": "p",
+   "text": "MLCommonsは、今回の学習試験に2つの課題を加えました。1つは、利用者に合う商品などを薦めるAIの学習です。もう1つは、学習済みのAIを追加で鍛える試験です。道具を使いながら、プログラム開発の課題を解く力を伸ばします。"
+  },
+  {
+   "type": "p",
+   "text": "MLCommonsの集計では、24組織が153システムの結果を提出しました。参加者には富士通も含まれます。"
+  },
+  {
+   "type": "h",
+   "text": "電力あたりのAI処理量を測定"
+  },
+  {
+   "type": "p",
+   "text": "別のMLPerf Endpointsは、AIがプログラム作成などの仕事を進める性能を測ります。Kimi K3を動かす試験では、同程度の応答速度を条件に比較しました。Vera Rubinの電力あたりの処理量は、GB300の10倍超だったと説明しています。"
+  },
+  {
+   "type": "p",
+   "text": "比べた構成はVera RubinがGPU32基、GB300が48基です。同時に処理する要求数も異なります。GPU単体の速さではなく、システム全体の消費電力と処理量を比べた数字です。"
+  },
+  {
+   "type": "h",
+   "text": "暫定値と日本向けの提供条件"
+  },
+  {
+   "type": "p",
+   "text": "このAI実行試験の値は11月9日公表の暫定結果です。試験を運営するMLCommonsの検証は終わっておらず、値が変わる可能性があります。"
+  },
+  {
+   "type": "p",
+   "text": "NVIDIAは、新しいソフトを使った学習試験の再測定も行いました。同じ機器構成でも学習時間が短くなりました。この再測定は未検証で、公認の試験と測り方が異なる可能性があります。"
+  },
+  {
+   "type": "p",
+   "text": "対象はAIサービスを動かす企業や、AIを開発する組織です。性能結果の公表に伴う料金変更は発表されていません。無料・有料の利用条件も示されていません。"
+  },
+  {
+   "type": "p",
+   "text": "日本での提供や日本語対応は発表されていません。一般の利用者が今すぐ行う手続きはありません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "最大2倍",
+     "label": "学習性能のGPUあたり比較"
+    },
+    {
+     "value": "16分→約4分",
+     "label": "GPU256基→1024基"
+    },
+    {
+     "value": "10倍超",
+     "label": "実行時の電力効率・暫定"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "一般の利用者が今すぐ行う手続きはありません。",
+    "AI基盤を選ぶ企業は、導入前に自社の処理内容と試験条件を比べます。",
+    "電力効率を判断する担当者は、MLCommonsによる検証後の値も確認します。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "速く学習できれば、AIを更新するための待ち時間を減らせそうです。ただ、計算設備の性能だけで普段のAIサービスの料金や回答速度まで決まるわけではありません。"
+  }
+ ],
+ "source_name": "NVIDIA",
+ "source_url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/",
+ "published": "2026-11-17",
+ "refs": [
+  {
+   "name": "NVIDIA",
+   "url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/"
+  },
+  {
+   "name": "MLCommons",
+   "url": "https://mlcommons.org/2026/11/mlperf-training-v6-1-results/"
+  },
+  {
+   "name": "Nebius",
+   "url": "https://nebius.com/blog/posts/mlperf-training-v6-1-results"
+  },
+  {
+   "name": "NVIDIA",
+   "url": "https://developer.nvidia.com/blog/nvidia-vera-rubin-nvl72-achieves-up-to-2x-blackwell-ultra-performance-in-mlperf-training-v6-1/"
+  }
+ ],
+ "image": {
+  "src": "https://blogs.nvidia.com/wp-content/uploads/2026/11/vera-rubin-mlperf-training-endpoints.png",
+  "kind": "press",
+  "credit": "NVIDIA",
+  "page": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/"
+ }
+}
