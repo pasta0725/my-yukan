@@ -1,0 +1,161 @@
+{
+ "id": "ai-microsoft-perception",
+ "category": "ai",
+ "title": "Microsoft、3チームのAIで攻撃検知と修復",
+ "summary": "弱点探しから修復までをAIが分担し、重要な判断には人が関わります。",
+ "image": {
+  "src": "https://www.publickey1.jp/2026/HXWPdJiXoAAF46K.png",
+  "kind": "ogp",
+  "credit": "Publickey",
+  "page": "https://www.publickey1.jp/blog/26/aiaimicrosoft_perception.html"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "AI防御"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Microsoftが、AIでサイバー攻撃に対抗するPerceptionの一般提供を始めました。",
+    "攻撃役・防御役・修復役の3チームが、共通の手順書に沿って連携します。",
+    "企業向けの有料サービスで、利用量に応じて支払います。日本での提供条件は未公表です。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは11月19日までに、AI防御サービス「Perception」の一般提供を始めました。利用量に応じた料金がかかります。"
+  },
+  {
+   "type": "h",
+   "text": "速まる攻撃にAIで対抗"
+  },
+  {
+   "type": "p",
+   "text": "Publickeyは、AIによる攻撃の自動化で、人の操作だけでは対応が難しくなると説明しています。Perceptionは、防御する側もAIを使い、機械の速さで対処するためのサービスです。"
+  },
+  {
+   "type": "p",
+   "text": "発表の場は、11月18日未明に開幕した年次イベント「Ignite 2026」です。3つのチームに役割を分け、弱点探しと攻撃への対応を担います。修復まで一連の流れをつなぎます。"
+  },
+  {
+   "type": "p",
+   "text": "SecurityWeekによると、7月に「Project Perception」として発表されました。8月からは、防御サービス「Microsoft Defender」内で一般向けに試験提供していました。"
+  },
+  {
+   "type": "h",
+   "text": "攻撃役と防御役が連携"
+  },
+  {
+   "type": "p",
+   "text": "レッドチームは攻撃者の立場で、悪用されそうな弱点を探します。実際に攻撃される前に、穴を見つける役目です。ブルーチームは攻撃の検知や調査を担い、被害が起きた際にも対応します。"
+  },
+  {
+   "type": "p",
+   "text": "ブルーチームでは、4つのAI機能が正式提供になりました。攻撃への対応を、次の役割に分けて担います。\n・警告の仕分け\n・攻撃の調査\n・攻撃を見つけるルール作り\n・脅威の情報の扱い"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftの分析では、警告の仕分け役は、一般的なDefenderの未処理の警告の約80%に対応できます。根拠は、同社の防御製品に集まった約800万件の警告の分析です。"
+  },
+  {
+   "type": "p",
+   "text": "レッドチームでは、偵察を担うAIが正式提供になりました。ウェブアプリに試しに攻撃を仕掛け、弱点を調べるAIは試験提供です。"
+  },
+  {
+   "type": "h",
+   "text": "修復役は他社クラウドも"
+  },
+  {
+   "type": "p",
+   "text": "グリーンチームは、見つかった弱点やプログラムの不具合を直す役割です。修正のほかに、被害につながる危険を小さくする対応も担います。"
+  },
+  {
+   "type": "p",
+   "text": "このチームには、他社のクラウドでも働く新たな手順書が2つあります。Microsoftの環境に加え、AWSとGoogle Cloudも対象です。防御上の問題に優先順位を付けるAIは正式提供になりました。危険を減らすAIは一般向けの試験提供です。"
+  },
+  {
+   "type": "p",
+   "text": "修正がすぐにできない場合は、一時的な防御策を提案できます。弱点のあるシステムを、恒久的な修正ができるまで守るための機能です。この機能も試験提供の段階です。"
+  },
+  {
+   "type": "h",
+   "text": "重要な判断は人に委ねる"
+  },
+  {
+   "type": "p",
+   "text": "各チームは「プレイブック」と呼ぶ手順書に沿って、自律的に連携します。日常の弱点探しと攻撃時の対応を支えますが、重要な判断が必要な段階では人に確認します。担当者が決めた条件に当てはまる事態が起きると、手順書の処理が自動で始まる仕組みです。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは、社内の既存ルールを引き継ぎ、AIの権限を必要最小限に絞ると説明しています。AIの行動はすべて記録され、後から点検できます。担当者が目的を伝えるか手順書を選ぶと、必要なAIが処理を担う仕組みです。"
+  },
+  {
+   "type": "p",
+   "text": "外部の業務ツールとつなぐ機能も試験提供しています。防御情報の集約や対応の自動化を担うツールが対象です。社内のITサービスを管理するツールとも連携します。"
+  },
+  {
+   "type": "h",
+   "text": "利用量に応じた料金と管理"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftの製品案内では、Perceptionは利用量に応じた有料サービスです。使った分を払う方法と、事前に契約する「AI Flex Plan」を選べます。具体的な単価と日本での提供条件は明らかになっていません。日本語への対応も公表されていません。"
+  },
+  {
+   "type": "p",
+   "text": "AI Flex Planは、対象となる同社のAIサービス間で利用分を振り分けられる契約です。契約期間は1年か3年で、月払いか前払いを選べます。Azureの利用額を事前に約束する契約「MACC」がある場合、どちらの購入方法もその利用額に算入されます。"
+  },
+  {
+   "type": "p",
+   "text": "見積もりツールは、導入時にも利用中にも使える機能です。利用額はDefenderの管理画面で確認し、予算も設定できます。表示場所は「Setup & configuration」内の「Microsoft Perception」です。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoft Security Copilotとは、役割も料金も分かれています。Copilotはチャットで人の作業を助けます。Perceptionは複数のAIが実際の処理まで担い、両者を組み合わせて使えます。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "3チーム",
+     "label": "防御を分担するAI"
+    },
+    {
+     "value": "11月18日",
+     "label": "発表イベントの開幕"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "企業のセキュリティ担当者は、導入検討時に既存の防御体制と役割を比べてください。",
+    "複数のクラウドを使う企業は、修復の手順書が自社の環境に対応するか確認してください。",
+    "導入する企業は、利用開始時に費用を見積もり、管理画面で予算を設定してください。",
+    "個人の利用者は、今のところ特にすることはありません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "弱点を見つける速さだけでなく、修復までつながるかが導入判断の軸になります。人が確認する場面とAIが自動で進める範囲を、具体的に把握したいサービスです。"
+  }
+ ],
+ "source_name": "Publickey",
+ "source_url": "https://www.publickey1.jp/blog/26/aiaimicrosoft_perception.html",
+ "published": "2026-11-19",
+ "refs": [
+  {
+   "name": "Publickey",
+   "url": "https://www.publickey1.jp/blog/26/aiaimicrosoft_perception.html"
+  },
+  {
+   "name": "SecurityWeek",
+   "url": "https://www.securityweek.com/microsoft-takes-perception-agentic-security-platform-out-of-preview/"
+  },
+  {
+   "name": "Microsoft",
+   "url": "https://www.microsoft.com/en-us/security/business/microsoft-perception-agentic-system"
+  }
+ ]
+}

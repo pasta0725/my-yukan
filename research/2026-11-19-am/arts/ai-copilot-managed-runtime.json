@@ -1,0 +1,153 @@
+{
+ "id": "ai-copilot-managed-runtime",
+ "category": "ai",
+ "title": "Microsoft、AI製アプリの社内実行基盤を公開",
+ "summary": "従業員がAIで作ったアプリを、会社の認証や権限の下で動かせます。",
+ "image": {
+  "src": "https://www.publickey1.jp/2026/copilot-managed-runtime-ga01.png",
+  "kind": "ogp",
+  "credit": "Publickey",
+  "page": "https://www.publickey1.jp/blog/26/aicopilot_managed_runtime.html"
+ },
+ "visual": {
+  "icon": "ai",
+  "kicker": "社内アプリ"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Microsoftが、AIで作った社内アプリを安全に動かす基盤の正式提供を始めました。",
+    "会社のMicrosoft 365と同じ管理範囲で動き、1500種類以上のデータ接続に対応します。",
+    "公開中のアプリを止めずに改修でき、データを保存する新しい試用機能も加わります。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは11月17日、社内用のCopilot Managed Runtimeの正式提供を発表しました。各組織への提供を順次始めています。"
+  },
+  {
+   "type": "h",
+   "text": "アプリ作成後の運用を支援"
+  },
+  {
+   "type": "p",
+   "text": "AIでアプリを作れる人が増えると、会社の中で安全に動かす仕組みも必要になります。この基盤は、AIが生成したアプリなどを社内で実行するためのサービスです。Microsoftがアプリの置き場所や処理能力の調整を運営します。安定して動かすための管理も同社が担います。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは9月に一般向けの試用版を公開していました。今回の正式提供は、年次イベントのIgniteで発表しました。Publickeyは、イベントが11月18日未明に開幕したと伝えています。"
+  },
+  {
+   "type": "p",
+   "text": "背景には、開発者以外の従業員もAIへの指示でアプリを作れるようになった変化があります。作ったアプリが、許可のない情報や通信先に触れないようにする管理が課題です。"
+  },
+  {
+   "type": "h",
+   "text": "会社の認証と権限で管理"
+  },
+  {
+   "type": "p",
+   "text": "アプリは、所属組織のMicrosoft 365と同じテナント内に配置されます。テナントは、会社ごとに分かれたサービスの管理範囲です。会社の認証基盤であるEntra IDを使い、利用者やアクセス権を管理できます。"
+  },
+  {
+   "type": "p",
+   "text": "操作の記録を残す監査ログも使えます。情報部門はMicrosoft 365の管理センターでアプリの一覧や稼働状態を確認できます。異なるツールで作ったアプリも、同じ場所で管理できます。"
+  },
+  {
+   "type": "h",
+   "text": "社内外のデータにつなぐ"
+  },
+  {
+   "type": "p",
+   "text": "接続先は1500種類以上のデータソースに対応します。接続を仲介する「コネクタ」を使い、必要なデータとアプリを結び付けます。Microsoft 365内のデータにアクセスする仕組みも利用できます。"
+  },
+  {
+   "type": "p",
+   "text": "Work IQという機能も組み合わせられます。AIが組織内のデータの文脈を理解するための仕組みです。アプリを動かす場所と、仕事のデータを使うための機能をまとめて提供します。"
+  },
+  {
+   "type": "h",
+   "text": "開発手段と提供条件を確認"
+  },
+  {
+   "type": "p",
+   "text": "対応アプリは、Copilot CodeやCopilot Studioなどで作れます。Copilot Coworkも利用できます。GitHub CopilotやVS Codeを使う開発にも対応します。他社の開発ツールからは、専用の開発用部品を組み込む方法も用意します。"
+  },
+  {
+   "type": "p",
+   "text": "Manusは、同社で作ったアプリも組織のMicrosoft環境で動かせると説明しています。会社が定めた安全管理などのルールを、そのままアプリに適用できます。"
+  },
+  {
+   "type": "p",
+   "text": "公開中のアプリを同僚が使っている間も、作成者はプログラムを改修できます。変更履歴を残すGitという仕組みを使い、準備が整ってから改修を反映します。GitHub Enterpriseを使う組織は、自社のプログラム保管場所と接続できます。社内で決めた確認や公開の手順を引き継げます。"
+  },
+  {
+   "type": "p",
+   "text": "MSDynamicsWorldは、Copilot Codeの正式提供は今後数週間以内と報じました。アプリを作る側のCodeと、動かす基盤では提供段階が異なります。"
+  },
+  {
+   "type": "p",
+   "text": "料金と日本での提供条件は明らかになっていません。日本語への対応も公表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "試用機能で保存や開発を拡大"
+  },
+  {
+   "type": "p",
+   "text": "アプリ独自の業務データを保存する新機能も加わります。Frontierという先行提供枠での試用で、Microsoft Fabricとつなぎます。このデータ管理サービスに、担当者や日付などを記録できます。従来のSharePointやDataverseとの接続に加わる選択肢です。"
+  },
+  {
+   "type": "p",
+   "text": "Copilot Studio向けの開発にも、一般向けの試用機能が加わります。作業を代行するAIや仕事の手順を、自分のパソコンで作成・修正できます。その成果をCopilot Studioに公開し、ブラウザーで作業する同僚とも共同で開発できます。"
+  },
+  {
+   "type": "p",
+   "text": "プログラムを書いて独自のAIを作る「Code Agents」は、今後始まる先行試用です。利用には申し込みと承認が必要になります。作ったAIはこの基盤で動き、Microsoftが認証や監視などを支えます。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "1500種類以上",
+     "label": "接続できるデータ元"
+    },
+    {
+     "value": "11月18日",
+     "label": "発表イベントの開幕"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "社内アプリを作る人は、公開前に情報部門とデータへのアクセス範囲を確認してください。",
+    "管理者は、導入検討時に会社の認証や監査の運用と合うか確かめてください。",
+    "日本の利用企業は、契約条件と料金の案内を確認してから採用を判断できます。",
+    "試用機能を検討する企業は、導入前に正式提供の機能との違いや利用条件を確かめてください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "AIでアプリを作れても、会社で使い続けるには管理が要ります。認証と監視をまとめられる点は、試作を日常の業務に移したい企業の判断材料になりそうです。"
+  }
+ ],
+ "source_name": "Publickey",
+ "source_url": "https://www.publickey1.jp/blog/26/aicopilot_managed_runtime.html",
+ "published": "2026-11-19",
+ "refs": [
+  {
+   "name": "Publickey",
+   "url": "https://www.publickey1.jp/blog/26/aicopilot_managed_runtime.html"
+  },
+  {
+   "name": "Microsoft",
+   "url": "https://techcommunity.microsoft.com/blog/copilot-managed-runtime-blog/copilot-managed-runtime-is-now-generally-available-with-additional-new-preview-f/4571846"
+  },
+  {
+   "name": "MSDynamicsWorld",
+   "url": "https://msdynamicsworld.com/story/ignite-2026-microsoft-updates-copilot-story-dynamics-365-salesforce"
+  }
+ ]
+}

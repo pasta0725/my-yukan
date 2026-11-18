@@ -1,0 +1,153 @@
+{
+ "id": "ai-windows-server-2028-ai",
+ "category": "ai",
+ "title": "Microsoft、次期サーバーを社内AIの実行基盤へ",
+ "summary": "公開試験版のWindows Server 2028で、企業内のAI処理を支えます。",
+ "image": {
+  "src": "https://www.publickey1.jp/2026/windows-server2028-la.png",
+  "kind": "ogp",
+  "credit": "Publickey",
+  "page": "https://www.publickey1.jp/blog/26/windows_server_2028microsoft_foundryai.html"
+ },
+ "visual": {
+  "icon": "pc",
+  "kicker": "社内AI"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Microsoftが、企業向けのWindows Server 2028の公開試験版を発表しました。",
+    "社内でAIを動かす機能は一部の顧客向けで、基本ソフトとは別に機器の条件もあります。",
+    "一般向けPC用とは別の製品です。企業は移行前に、今の業務が新しい安全設定で動くか確認が必要です。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは11月17日（現地時間）、次期サーバーの基本ソフトを発表しました。Windows Server 2028の公開試験版です。"
+  },
+  {
+   "type": "h",
+   "text": "従来のサーバーから役割拡大"
+  },
+  {
+   "type": "p",
+   "text": "Windows Server 2028は、現在のWindows Server 2025に続く大型更新です。Windows Serverは企業の利用者や機器を管理し、業務アプリを動かす土台として使われてきました。次期版では、社内でのAI処理も役割に加わります。"
+  },
+  {
+   "type": "h",
+   "text": "会社の中でAIの答えを作る"
+  },
+  {
+   "type": "p",
+   "text": "新たに担うのは「AI推論」、つまりAIが入力に応じて答えを作る処理です。AIを動かすためのMicrosoft Foundryなどを利用します。会社の中のサーバーを、AIの実行場所にする方向です。"
+  },
+  {
+   "type": "p",
+   "text": "同社は、社内の業務アプリやデータの近くでAIを動かす仕組みを目指します。AIを動かす場所は、用途に応じて選ぶ構想です。社内サーバーに加え、外部のクラウドや手元の端末も選択肢になります。"
+  },
+  {
+   "type": "p",
+   "text": "学習結果が公開されたAIや、企業が独自に調整したAIへの対応を進めています。AIの処理を速めるAMD製のカードは、2027年上半期から試験対応の予定です。次期版に加え、サポート中のWindows Serverも対象になります。"
+  },
+  {
+   "type": "h",
+   "text": "試験版で使える機能と条件"
+  },
+  {
+   "type": "p",
+   "text": "公開試験版は発表と同じ11月17日（現地時間）に提供が始まりました。参加窓口はWindows Server Insider Programです。安全対策や性能に関する新機能を試せます。管理の新機能も対象です。"
+  },
+  {
+   "type": "p",
+   "text": "AI関連の機能を試せるのは、早期利用プログラムに参加する一部の顧客です。OSとは別に、使う機器にも条件があります。Microsoftの開発担当者と直接やり取りできる参加枠への応募も受け付けています。"
+  },
+  {
+   "type": "p",
+   "text": "正式版の提供時期と料金は明らかになっていません。日本での提供条件と日本語対応も公表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "初期設定から安全対策を強化"
+  },
+  {
+   "type": "p",
+   "text": "次期版は、導入直後から安全対策を強めます。必要な機能に絞った構成「Server Core」では、保護を強めた設定が標準です。共通の安全設定の基準も新しくなります。"
+  },
+  {
+   "type": "p",
+   "text": "The Registerは、従来の設定のままでは動かない場合があると報じました。古い通信・認証方式や、一部の管理ツールなどが影響を受ける可能性があります。同紙に対し、IT管理会社Lansweeperは新しい安全設定の対象が新規導入に限られると説明しました。この条件が正式版でも続けば、上書き更新では新設定が適用されない可能性があります。"
+  },
+  {
+   "type": "p",
+   "text": "仮想マシンは、物理的なサーバーの中に作るコンピューター環境です。次期版では、正しく起動するか確かめる保護機能の拡張を予定します。処理内容を機器側で暗号化し、外から読み取られにくくする機能も搭載予定です。この機能には対応する機器が必要です。"
+  },
+  {
+   "type": "p",
+   "text": "電子証明書の自動管理も計画しています。証明書は通信相手などを確かめるために使います。将来の量子コンピューターによる解読に備える暗号技術も搭載する予定です。"
+  },
+  {
+   "type": "h",
+   "text": "記憶装置と日々の管理も更新"
+  },
+  {
+   "type": "p",
+   "text": "データを保存する記憶装置は、高速なNVMe方式を標準で有効にします。ネットワーク経由で高速な記憶装置につなぐ方式にも対応します。データを管理する方式「ReFS」からの起動も可能になります。AIだけでなく、サーバーの土台となる機能も更新します。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoft Intuneによるサーバー管理も試験提供します。対象は、継続利用するサーバーのうち条件に合う環境です。PCと同じ仕組みで設定や更新を管理できます。アプリの管理や、社内ルールに沿っているかの確認も可能です。"
+  },
+  {
+   "type": "p",
+   "text": "外部のクラウドからサーバーを管理するAzure Arcとの連携も続きます。仮想マシンなどをまとめて管理する機能も正式提供になりました。機能名はWindows Admin Center Virtualization Modeです。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "2028",
+     "label": "公開試験版の版番号"
+    },
+    {
+     "value": "2025",
+     "label": "現行製品の版番号"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "企業のサーバー担当者は、AI機能の検証前に参加条件と対応機器を確認してください。",
+    "移行を考える企業は、導入前に既存の業務や管理ツールが新しい安全設定で動くか確かめてください。",
+    "導入を考える企業は、正式版の時期と日本での提供条件を確認してください。",
+    "一般のPC利用者は、この発表を理由に手元のWindowsを更新する必要はありません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "AIへの対応と、日々の管理の改善は分けて考えると導入を判断しやすくなります。AIの利用がまだ限られる企業でも、安全設定の変更は移行計画に関わる話です。"
+  }
+ ],
+ "source_name": "Publickey",
+ "source_url": "https://www.publickey1.jp/blog/26/windows_server_2028microsoft_foundryai.html",
+ "published": "2026-11-19",
+ "refs": [
+  {
+   "name": "Publickey",
+   "url": "https://www.publickey1.jp/blog/26/windows_server_2028microsoft_foundryai.html"
+  },
+  {
+   "name": "窓の杜",
+   "url": "https://forest.watch.impress.co.jp/docs/news/2157329.html"
+  },
+  {
+   "name": "The Register",
+   "url": "https://assets.theregister.com/2026/11/18/202617/"
+  },
+  {
+   "name": "Microsoft",
+   "url": "https://techcommunity.microsoft.com/blog/windowsservernewsandbestpractices/windows-server-2028-a-trusted-foundation-for-an-evolving-enterprise/4574112"
+  }
+ ]
+}
