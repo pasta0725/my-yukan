@@ -12,7 +12,7 @@ on:
       max_press: {description: "stories with at most this many official pictures", required: false, default: "1"}
       only_extra: {description: "only stories listed in extra (yes/no)", required: false, default: "no"}
       codex_pick: {description: "yes = Codex chooses the pictures too (2026-11-14)", required: false, default: "no"}
-      model: {description: "Codex model for choosing", required: false, default: "gpt-6-astra"}
+      model: {description: "Codex model for choosing (2026-11-19: Sol to save the Codex quota)", required: false, default: "gpt-6.1-sol"}
       effort: {description: "reasoning effort for choosing", required: false, default: "medium"}
 jobs:
   find:

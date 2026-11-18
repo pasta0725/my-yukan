@@ -104,12 +104,12 @@ GitHub 上の Codex（ChatGPT のプラン、CODEX_AUTH）に、Claude のサブ
 | ① | 書き足し（手順5-0） | codex-research.yml に fill=yes（単独なら codex-fill.yml） | research/ED/arts/ |
 | ② | 事実の点検（手順5-2） | factcheck-pages.yml に check=yes（単独なら codex-factcheck.yml） | factcheck/ED/fixed/、changes.md |
 | ③ | 公式画像の選択 | official-images.yml に codex_pick=yes | 成果物 codex-picks |
-| ④ | 記事を書く（全担当、2026-11-15〜） | codex-write.yml（edition、workers=全担当、model=gpt-6.1-sol、effort=high） | codexwrite/ED/<担当名>.json |
+| ④ | 記事を書く（全担当、2026-11-15〜） | codex-write.yml（edition、workers=全担当、model=gpt-6.1-sol、effort=medium。朝刊だけ。夕刊は Sonnet の担当が書く、2026-11-19） | codexwrite/ED/<担当名>.json |
 | ⑤ | AI報告の確認と修正（毎日2回） | codex-fix-issues.yml（gpt-6.1-sol・high） | main への修正、maint/fix-issues.md |
 | ⑥ | 週1回の見直し | codex-weekly-review.yml（dry_run=yes で試し） | tools/learning/reports/、maint/weekly-review.md |
 - 指示文は tools/codex/（fill.md・factcheck.md・pick.md・write.md）。①②④は tools/style.md も渡す。④は make_briefs.py の担当別の指示書に、ネットなしの差分（write.md）を足したもの。
 - 機械の検査 tools/codex_check.py：JSON が壊れている、id・category・image・source_url・published が変わった、画像が増減した、refs が6本を超える／取ったページ（status 200）以外のURL（点検では元の refs 以外）、必要な部品（keys・h 3〜5・stat・point・最後の rina）がない、200字を超える段落、120字を超える rina、舞台裏の言い回し、本文にURL、文字が減った（点検は2割以上）、点検で書き換えが多すぎる（6か所かつ4割を超える）ものは使わない（元のまま）。④は、ニュースフォルダにないURL・掲載済み・期間外の記事を落とす。
-- どれも失敗・時間切れ・却下のときは、その分だけ今までどおり Claude が行う（予備）。モデルは入力 model・effort で変えられる（既定 gpt-6-astra、①②④は high、③は medium。号づくりの④は gpt-6.1-sol・high を指定して動かす）。実際に使ったモデルは各実行の要約（Summary）に出る。共通の準備は .github/actions/codex-setup、実行は tools/codex_run.py。
+- どれも失敗・時間切れ・却下のときは、その分だけ今までどおり Claude が行う（予備）。モデルは入力 model・effort で変えられる（2026-11-19 から既定は gpt-6.1-sol。①②は high、③④は medium。Codex の利用枠が朝刊の途中で尽きたため、Astra をやめ、記事を書く深さを下げ、夕刊の記事は Sonnet に戻した。調べ物①の検索そのものも同じモデルで動く）。実際に使ったモデルは各実行の要約（Summary）に出る。共通の準備は .github/actions/codex-setup、実行は tools/codex_run.py。
 - 2026-11-14 の試し（11/13夕刊）：①49本中46本採用（3本は追加なし）、②52本中38本を直した（直した点94か所）、③8本中1本に2枚、④8本とも検査に通った。
 
 ## 図解（2026-11-09〜、公式画像の補充のあと）

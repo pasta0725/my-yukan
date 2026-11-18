@@ -9,8 +9,8 @@ on:
       edition: {description: "edition id, e.g. 2026-11-10-am (uses data/<edition>.json)", required: true}
       max_refs: {description: "only stories with at most this many refs (empty = all)", required: false, default: ""}
       fill: {description: "yes = after the pages are pushed, Codex also writes the additions (codex-fill.yml, 2026-11-14)", required: false, default: "no"}
-      model: {description: "Codex model for the additions", required: false, default: "gpt-6-astra"}
-      effort: {description: "reasoning effort for the additions", required: false, default: "high"}
+      model: {description: "Codex model for the search and the additions (2026-11-19: Sol to save the Codex quota)", required: false, default: "gpt-6.1-sol"}
+      effort: {description: "reasoning effort for the search and the additions", required: false, default: "high"}
 permissions:
   contents: write
 jobs:
@@ -50,7 +50,7 @@ jobs:
           [ "$(python3 -c "import json;print(len(json.load(open('/tmp/sh/shard_${{ matrix.k }}.json'))))")" = 0 ] && { mkdir -p /tmp/out; exit 0; }
           mkdir -p /tmp/w && cp /tmp/sh/shard_${{ matrix.k }}.json /tmp/w/stories.json && cd /tmp/w
           start=$(date +%s)
-          timeout 2400 codex --search exec --skip-git-repo-check -s workspace-write "You are a news research assistant.
+          timeout 2400 codex --search exec --skip-git-repo-check -s workspace-write -m "${{ inputs.model }}" -c 'model_reasoning_effort="${{ inputs.effort }}"' "You are a news research assistant.
           Read ./stories.json. Each item is a tech news story (Japanese title and summary, the article it came from in source_url,
           and URLs we already have in have). For EVERY story, use web search to find:
           1) up to 4 MORE articles from OTHER outlets (not in have, not the same site as source_url) that report this same event,
