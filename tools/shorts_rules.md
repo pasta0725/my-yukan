@@ -69,6 +69,8 @@
   3. 記録が残らなかった：出力を tail で最後にまとめて出す作りで途中経過が見えず、取り消すと GitHub もログを残さなかった。→ 1行ずつ時刻付きで出し、Colab 側の run.log を必ず取ってきて、成果物 longcat-log に30日残す。
   4. 取り消したときに Colab の GPU を返す段がなかった（返さないと単位を使い続ける）。→ 取り消し・失敗でも必ず返し、残り単位と使用量を記録する。
 - まだ分かっていないこと：止まった2回で Colab の中の何が止まったか（ログが無い）。次に起きたら longcat-log の run.log の最後の行で、どこで止まったかを見て、ここに追記する。
+- 11-19（rina_switchbot_hub4）：A100 80GB は1回目で借りられ、メモリ確認の exec も通ったが、次の exec（/content/in を作るだけ）で colab-cli が「Connection was lost」を出したまま終わらず、timeout 180 で止まった（終了コード124）。Colab の段が失敗し、自動で Modal が締めを作った（via.txt＝modal longcat、約15分）。こちら側の問題：借りた直後の exec・upload にやり直しがなく、1回の接続切れで Colab をあきらめる作り。また Colab の段の失敗で、Modal で作れても longcat の段が赤（failure）になる。→ 直す案：最初の exec と upload を数回やり直す（だめなら session を作り直す）、Colab の段は失敗しても次へ進める（Issue に記録）。
+- 11-19 の Codex：07:19 の事実確認と 08:1x の画面確認が「利用上限（08:42 に解除）」で FAILED。朝刊づくり（04:14〜04:47 の codex-write・codex-research・factcheck-pages）で枠を使っていたと思われる。朝刊の直後に手作りのショートを始めるときは、codex.log の上限の行で残りを確かめ、確認は解除のあとに回す。
 - 別件で見つかったこと：自動ショートが Colab を試さず Modal だけ（wait=0）で作った日があった（11-15・11-16。11-18 は Colab が実際に止まったあとの作り直しなので決まりどおり）。
 
 ## 画面と字幕
