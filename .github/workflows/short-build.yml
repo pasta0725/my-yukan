@@ -108,8 +108,8 @@ jobs:
               have = subprocess.run(["git", "cat-file", "-e", f"origin/generated:generated/{nm}_longcat/{sc}.mp4"], capture_output=True).returncode == 0
               if not (have and md5(src) == md5(dst)): need = True
               shutil.copy(src, dst)
-              with wave.open(src) as w: seg = max(1, math.ceil(w.getnframes() / w.getframerate() / 2.5 - 1e-6))
-              if job[1] != seg: job[1] = seg; changed = True   # about 2.5 s of audio per segment (tools/shorts_rules.md)
+              with wave.open(src) as w: seg = 1 + math.ceil(max(0.0, w.getnframes() / w.getframerate() - 93 / 25) / (80 / 25) - 1e-6)
+              if job[1] != seg: job[1] = seg; changed = True   # LongCat 1.5: 3.72 s, then +3.2 s per segment (2026-11-18; was 2.5 s per segment = one segment too many)
               img = job[3]
               if not os.path.exists(f"{D}/{img}"):
                   for c in (f"channel/rina_idle/longcat/{img}", f"channel/rina_poses/{img}", f"channel/rina_puppet/{img}"):

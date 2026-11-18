@@ -73,7 +73,21 @@ jobs:
           for n in $(python3 -c "import json,os;print(' '.join(j[0] for j in json.load(open(os.environ['DIR']+'/jobs.json'))))"); do
             timeout 300 $C download -s lc /content/out/$n.mp4 /tmp/out/$n.mp4 || echo "no clip $n"
           done
+          timeout 120 $C download -s lc /content/out/run.log /tmp/out/colab_run.log || echo "no run.log from Colab"
+          [ -f /tmp/out/colab_run.log ] && { echo "--- last 60 lines of the Colab log ---"; tail -60 /tmp/out/colab_run.log; }
           ls -la /tmp/out
+      - name: give the Colab GPU back (also when the job is cancelled or cut off; 2026-11-18)
+        if: always()
+        env: { COLAB_ADC: "${{ secrets.COLAB_ADC }}" }
+        run: |
+          [ -n "$COLAB_ADC" ] || exit 0
+          printf '%s' "$COLAB_ADC" > "$RUNNER_TEMP/adc.json"; export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
+          timeout 120 colab --auth=adc stop -s lc >/dev/null 2>&1 || true
+          timeout 60 colab --auth=adc usage || true   # "Usage rate" above 0 here means a runtime is still running and costing units
+      - name: keep the Colab log (to find out why when it fails or hangs)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with: { name: longcat-log, path: /tmp/out/colab_run.log, if-no-files-found: ignore, retention-days: 30 }
       - name: fallback to Modal
         if: always() && inputs.fallback == 'yes'
         env:
