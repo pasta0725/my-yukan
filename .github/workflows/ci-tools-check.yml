@@ -1,0 +1,14 @@
+name: ci-tools-check
+# Tries tools/ci_install.sh (ffmpeg + the Japanese font) the same way the video jobs do, and prints how long each part took.
+# 2026-11-18: made to check the font cache after the 41-minute install; run it again when an install looks slow.
+on: { workflow_dispatch: {} }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with: { path: ~/.cache/ci-fonts, key: ci-fonts-noto-cjk-v1 }
+      - run: bash tools/ci_install.sh fonts
+      - run: ffmpeg -hide_banner -version | head -1; fc-match "Noto Sans CJK JP:weight=210"; ls -la ~/.cache/ci-fonts

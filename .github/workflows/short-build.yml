@@ -167,6 +167,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with: { name: short-src, path: "shorts/${{ inputs.name }}" }
+      - uses: actions/cache@v4   # the Japanese font (2026-11-18: downloading 300 MB from Ubuntu every run once took 41 min)
+        with: { path: ~/.cache/ci-fonts, key: ci-fonts-noto-cjk-v1 }
       - name: tools
         run: |
           bash tools/ci_install.sh fonts
