@@ -1,0 +1,111 @@
+===== https://forest.watch.impress.co.jp/docs/news/2157395.html
+(status 200)
+ニュース
+「Firefox 160.0.1」が公開 ～PDFの印刷やタブのクラッシュなどを修正
+ 深刻度「High」の脆弱性2件にも対処 
+樽井 秀人
+2026年11月18日 17:56
+「Firefox」v160.0.1
+窓の杜から
+ダウンロード
+ 　Mozillaは11月17日（米国時間）、デスクトップ向け「Firefox」の最新版v160.0.1をリリースチャネルで公開した。
+「Firefox 160」
+の不具合に対処したマイナーアップデートとなっている。 
+Windows環境で、一部のプリンターでPDFを印刷すると細い線が太い黒い四角形として印刷される
+AMD製グラフィックスを搭載したMacで、PDFやWebページのグラフィック、WebGLコンテンツが空白になったり、崩れて表示されたりする（「Google スプレッドシート」のセルが黒くなるなど）
+Waylandを利用する一部のLinux環境で、ゲームや「Google Meet」の背景などWebGL・canvasコンテンツの色が正しく表示されない
+「Google Store」など一部のサイトで、リンク先の読み込みに非常に時間がかかる
+「ChatGPT」をはじめとする一部のサイトで、タブがクラッシュする
+サイトが短時間に多数のデータグラムを送信すると、WebTransport接続でデータグラムを送信できなくなる
+サイトがスクロールをブロックしているのに、トラックパッドやマウスのスワイプでページがスクロールしてしまうことがある
+ 　Mozillaのセキュリティアドバイザリには2件の修正が掲載されており、深刻度はいずれも4段階中2番目の「High」。このうち1件はAndroid環境に関するものだ。音声・動画再生コンポーネントにおける解放後メモリ使用（CVE-2026-130021）と、Android環境の「Graphics: CanvasWebGL」コンポーネントにおける境界条件の誤りによる権限昇格（CVE-2026-130020）が修正されている。 
+ 　デスクトップ版「Firefox」はWindows/macOS/Linuxなどに対応する寄付歓迎のフリーソフトで、現在MozillaのWebサイトからダウンロード可能。Windows版はWindows 10/11に対応しており、窓の杜ライブラリからもダウンロードできる。 
+Amazonで購入
+「Firefox」関連商品
+Amazonで購入
+
+===== https://www.firefox.com/en-US/firefox/160.0.1/releasenotes/
+(status 200)
+160.0.1
+Firefox Release
+November 17, 2026
+Version 160.0.1, first offered to Release channel users on November 17, 2026
+                            Fixed
+Fixed thin lines in PDFs printing as thick black boxes on some printers on Windows. (
+Bug 2091728
+)
+Fixed PDFs, web page graphics, and WebGL content appearing blank or broken on Macs with AMD graphics, such as black cells in Google Sheets. (
+Bug 2091596
+)
+Fixed incorrect colors in WebGL and canvas content, such as games and Google Meet backgrounds, on some Linux systems using Wayland. (
+Bug 2089043
+)
+Fixed links on some sites, such as the Google Store, taking a very long time to load. (
+Bug 2087787
+)
+Fixed tabs crashing on some sites, most notably ChatGPT. (
+Bug 2088486
+)
+Fixed WebTransport connections being unable to send datagrams after a site sent many in quick succession.  (
+Bug 2092532
+)
+Fixed trackpad and mouse swipes sometimes scrolling the page when a site had blocked scrolling. (
+Bug 2086786
+)
+Various 
+security fixes
+.
+Reference link to 
+160.0 release notes
+.
+  Get the most recent version
+        Download Firefox
+        — English (US)
+Windows 64-bit
+Windows 64-bit MSI
+Windows ARM64/AArch64
+Windows 32-bit
+Windows 32-bit MSI
+macOS
+Linux 64-bit
+Linux ARM64/AArch64
+Android
+iOS
+Your system may not meet the requirements for Firefox, but you can try one of these versions:
+        Download Firefox
+        — English (US)
+Windows 64-bit
+Windows 64-bit MSI
+Windows ARM64/AArch64
+Windows 32-bit
+Windows 32-bit MSI
+macOS
+Linux 64-bit
+Linux ARM64/AArch64
+Android
+iOS
+Firefox is 
+no longer supported
+ on Windows 8.1 and below.
+Please download Firefox ESR (Extended Support Release) to use Firefox.
+        Download Firefox ESR 64-bit
+        Download Firefox ESR 32-bit
+        Download a different build
+Firefox is 
+no longer supported
+ on macOS 10.14 and below.
+Please download Firefox ESR (Extended Support Release) to use Firefox.
+      Download Firefox ESR
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                  Download Firefox
+                Download for Linux 64-bit
+                Download for Linux ARM64
+Firefox
+ for Android
+Firefox
+ for iOS
+      Firefox Privacy Notice

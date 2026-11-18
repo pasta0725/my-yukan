@@ -1,0 +1,266 @@
+===== https://www.publickey1.jp/blog/26/aicopilot_managed_runtime.html
+(status 200)
+×
+マイクロソフト、AIが生成したアプリを企業内で安全に実行するランタイム「Copilot Managed Runtime」正式リリース
+2026年11月19日
+マイクロソフトは日本時間11月18日未明に開幕した年次イベント「Microsoft Ignite 2026」で、AIが生成したアプリなどを企業内で安全に実行するための基盤となる
+「Copilot Managed Runtime」の正式リリースを発表しました
+。
+AIを活用することでプログラマだけでなく社内のあらゆる従業員が自分のアイデアをバイブコーディングなどによりアプリケーションとして構築できるようになりました。
+すると次の問題は、そのようにして作られたアプリケーションを、どのように社内で安全にデプロイし、実行するか、ということになります。
+そのためにはアプリケーションを適切な権限で実行し、適切なデータの範囲のみ読み書きできるようにして勝手にファイルやネットワークにアクセスせず、万が一不正な振る舞いをしたとしても既存のデータを壊したりしないように厳密なサンドボックス内で囲う、といった仕組みが求められます。
+今回正式リリースとなったCopilot Managed Runtimeは、そうしたAIによって構築された脆弱性や安全性にリスクを抱えている可能性があるアプリケーションを、社内で、具体的には組織で利用しているMicrosoft 365と同一テナント内で安全にデプロイし実行するための基盤を提供するマネージドサービスです。
+Microsoft 365テナント内で社内アプリを実行
+Copilot Managed Runtimeはマイクロソフトが運営するマネージドサービスであり、ホスティング、スケーリング、可用性についてユーザーは気にする必要がありません。
+ユーザーのアプリケーションは、ユーザーが所属する組織のMicrosoft 365と同じテナント境界内にデプロイされ、Entra ID ベースの認証、アクセス制御、ポリシー適用、監査ログなどが利用可能です。
+また、1500種類以上のデータソースに接続可能なコネクタ、Microsoft 365などのサービス内データへアクセスできるMicrosoft Graph、AIが組織内のさまざまなデータのコンテキストを理解できるようにするためのWork IQなどをはじめとする多数の機能も利用可能です
+情報部門はCopilot Managed Runtimeのアプリ一覧を参照し、それぞれの状態を監視できます。
+Copilot Managed Runtimeに対応したアプリケーションは、Copilot Code、Copilot Cowork、Copilot Studioなどによる生成に加えて、GitHub Copilot、VS Code、そしてCopilot Managed RuntimeのSDKを用いることでサードパーティの開発プラットフォームやツールでも対応するアプリケーション開発が可能です。
+Microsoft Ignite 2026関連記事
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表
+Windows Server 2028がパブリックプレビュー公開。Microsoft FoundryなどAIによる推論の実行基盤へと拡張
+マイクロソフト、AIが生成したアプリを企業内で安全に実行するランタイム「Copilot Managed Runtime」正式リリース
+マイクロソフト、AIによるサイバー攻撃にAIエージェントで対抗する新サービス「Microsoft Perception」提供開始
+あわせて読みたい
+Microsoft Azure
+クラウド
+機械学習・AI
+Microsoft Edge
+≫次の記事
+マイクロソフト、AIによるサイバー攻撃にAIエージェントで対抗する新サービス「Microsoft Perception」提供開始
+≪前の記事
+Windows Server 2028がパブリックプレビュー公開。Microsoft FoundryなどAIによる推論の実行基盤へと拡張
+タグクラウド
+クラウド
+AWS
+ / 
+Azure
+ / 
+Google Cloud
+クラウドネイティブ
+ / 
+サーバレス
+クラウドのシェア
+ / 
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+ / 
+Java
+ / 
+.NET
+WebAssembly
+ / 
+Web標準
+開発ツール
+ / 
+テスト・品質
+アジャイル開発
+ / 
+スクラム
+ / 
+DevOps
+データベース
+ / 
+機械学習・AI
+RDB
+ / 
+NoSQL
+ネットワーク
+ / 
+セキュリティ
+HTTP
+ / 
+QUIC
+OS
+ / 
+Windows
+ / 
+Linux
+ / 
+仮想化
+サーバ
+ / 
+ストレージ
+ / 
+ハードウェア
+ITエンジニアの給与・年収
+ / 
+働き方
+殿堂入り
+ / 
+おもしろ
+ / 
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+ @Publickey
+Facebookで ：
+ Publickeyのページ
+RSSリーダーで ： 
+Feed
+最新記事10本
+マイクロソフト、AIによるサイバー攻撃にAIエージェントで対抗する新サービス「Microsoft Perception」提供開始
+マイクロソフト、AIが生成したアプリを企業内で安全に実行するランタイム「Copilot Managed Runtime」正式リリース
+Windows Server 2028がパブリックプレビュー公開。Microsoft FoundryなどAIによる推論の実行基盤へと拡張
+［速報］マイクロソフト、コーディング用AIモデルとして高性能かつ低価格「MAI Code 2」「MAI Code 2 Flash」発表
+［速報］マイクロソフト、PostgreSQL互換のミッションクリティカル向けデータベースサービス「Azure HorizonDB」正式リリース
+［速報］PostgreSQL互換のサーバレスでOLTPとOLAP両対応を実現する「Microsoft Fabric HorizonDB」パブリックプレビュー
+［速報］AIがOracle DBからPostgreSQLへの移行を支援、「Azure Database Migration Service」プレビュー
+［速報］Azure SQL Databaseをローカルで実行する「Azure SQL Database local development container」パブリックプレビュー
+軽量なマイクロVMでネイティブよりアプリを高速起動できる「Hyperlight-Unikraft」登場
+Node.jsとnpmをWebブラウザ上で実行可能にする「OpenVessel」、神戸ソフトがオープンソースで公開
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて
+
+===== https://techcommunity.microsoft.com/blog/copilot-managed-runtime-blog/copilot-managed-runtime-is-now-generally-available-with-additional-new-preview-f/4571846
+(status 200)
+Copilot Managed Runtime Blog 
+5 MIN READ
+Copilot Managed Runtime is now generally available, with additional new preview features
+DavidBlyth
+Microsoft
+Nov 17, 2026
+AI is making it easier to turn ideas into working apps in Copilot Cowork, Copilot Code, Copilot Studio and the dev tools you already use. Running those apps for work still requires security, governance and ongoing operations. In September we introduced Microsoft Copilot Managed Runtime in public preview to bring those requirements together.
+Today at Microsoft Ignite, we’re announcing that Microsoft Copilot Managed Runtime is generally available and beginning to roll out to tenants. Copilot Managed Runtime brings Microsoft-operated hosting together with identity, governed data access, and app lifecycle management, giving teams the foundation for turning the apps they create into managed apps they can use for enterprise work and IT can trust
+.
+Build in the tools that fit your team
+Makers can start in Copilot Code, Copilot Cowork, Copilot Studio, GitHub Copilot, VS Code or third-party development platforms and tools. Copilot Managed Runtime provides Microsoft-managed hosting and execution for published apps across these paths. That gives teams room to choose how they build, and open collaboration opportunities across products all while bringing their published apps onto a common operating foundation.
+“AI agents can now build many of the web apps enterprise teams need, and many organizations want those apps to run in their own environment. With Copilot Managed Runtime, apps built with Manus will run in an organization’s own Microsoft environment and automatically inherit existing security and compliance policies, giving teams the capability and speed of an AI agent with enterprise-grade control.” 
+Tao Zhang, Co-founder and Chief Product Officer at Manus
+Microsoft operates the platform, hosting, scaling and availability are handled for you, with no cloud services to configure, so teams can focus on the app and the work it needs to do. Entra sign-in and sharing make it easier to put that app in colleagues’ hands. Governed connections give the app access to the organizational data and services it needs within the boundaries set by IT. The governance controls exist in the platform to allow IT to federate and scale development and operations, all guided by IT.
+Regardless of the entry point, Copilot or third-party tools, the code stays editable and Git-backed. This allows makers to keep iterating on the app, while the published app stays live, then promote changes when they're ready. Organizations using GitHub Enterprise can connect their own repositories, so apps follow the same branching, review and release practices as the rest of their software
+.
+Give IT one place to see and govern every app
+For apps on Copilot Managed Runtime, Entra identity, sharing and access sit alongside policy enforcement and audit logging. Organizational policies govern connector, data and endpoint access. These capabilities bring the operating requirements of an app into its managed foundation, so makers and IT can work from the same boundaries.
+App inventory and monitoring in Microsoft 365 admin center give administrators a central view of the apps teams have published. That visibility helps IT oversee apps created through different tools without organizing its inventory around each authoring experience. Makers retain flexibility in how they create, and administrators have a common place to see and manage those apps
+.
+Give apps a place for their own business records
+Moving onto our preview features, some apps also need to keep data of their own, such as the owners, dates and status updates behind a team’s launch tracker. A new frontier public preview of Microsoft Fabric integration adds an out-of-the-box option for persistent app storage and backend capabilities for those business records; this is in addition to existing connectivity with SharePoint and Dataverse. Teams can choose this data layer when an app needs it, alongside the hosting and execution provided by Copilot Managed Runtime.
+Now supporting agents and additional artifacts
+Create Copilot Studio agents and workflows locally
+Now in public preview, Copilot Managed Runtime dev tooling will allow users to build custom Copilot Studio agents and workflows locally, make modifications with their developer tool of choice and then publish to Copilot Studio using the CLI. This enables makers and developers using Copilot Studio to easily work with other members of their team, some who may be using the browser based UX or those working locally on their machine.
+Developers can continue using their developer tools and pushing changes directly from their machine, working together on a single source of truth integrated into their existing version control platforms such as GitHub. For organizations like Qualcomm, this approach brings together familiar developer workflows with new ways to build and manage agents
+:
+"What excites us about the CLI is bringing code-first development to Copilot Studio. For Qualcomm users and engineers, the combination of the CLI and coding agents offers a fast and natural way to build and test agents, while also supporting more mature ALM practices and complementing the Copilot Studio UI experience. Together, these approaches give teams the flexibility to build and manage agents in the way that works best for them” 
+- Paulo Joaquim, IT Architect, Principal, Qualcomm Incorporated
+Get started with the CLI here: 
+https://aka.ms/msagent-cli
+Create custom agents in code
+For makers and developers who want to author an agent directly in code, we’re introducing Code Agents in early-access preview (this will require signing up and being accepted). Coming soon, these custom agents are created and hosted on Copilot Managed Runtime, with a choice of model, orchestrator or harness within the preview’s supported scope. This lets teams reuse the AI stack, developer tools and workflows they already have, while Microsoft provides hosting, Microsoft Entra identity, channels, monitoring and lifecycle management. Customers and partners can sign up at 
+aka.ms/cmrcodeagents-signup
+. 
+From idea to the show floor
+Consider an event team creating a show-floor operations app in Copilot Cowork. In this illustrative scenario, an interactive 3D map shows booth readiness and open help requests. The team reviews and publishes the app for colleagues with Microsoft Entra identity access, governed connections, IT control and hosting all through Copilot Managed Runtime.
+The team chooses to use the new Fabric integration to store the app's records. A developer could clone the code locally with Git and improve it using their preferred tools while colleagues continue using the published app.
+For an agent project, the developer could edit Copilot Studio agent definitions locally, keep changes in source control and push the updated project back to Copilot Studio, keeping the agent and associated workflows together.
+These paths support collaboration across Copilot Code, Copilot Cowork, Copilot Studio and third-party tools as teams create, publish and maintain solutions
+.
+Start with the artifact your team needs today
+Start with a business process your team wants to improve. Consider who will use the artifact, what information it needs, and how your team will maintain it. Choose the authoring experience that fits the work, then use Copilot Managed Runtime to bring the result to your colleagues, with a foundation for building more connected solutions over time.
+Already have an app created and want to use it with your enterprise business? Then use Copilot Managed Runtime and check out the Copilot Managed Runtime CLI to get started: 
+https://aka.ms/cmrrepo
+General availability makes Copilot Managed Runtime a foundation for the apps teams put to work. The new previews expand the options for local agent development and custom app data. Together, these steps give makers more ways to create useful tools, collaborate more than ever, all while keeping app and agent operations secured and governed for your enterprise.
+Updated 
+Nov 13, 2026
+Version 1.0
+agent development
+ai agents
+ai apps
+app development
+app hosting
+cli
+cmr
+connectors
+copilot managed runtime
+developer tools
+Like
+Like
+0
+Comment
+Comment
+DavidBlyth
+Microsoft
+Joined 
+August 03, 2026
+Send Message
+View Profile
+Copilot Managed Runtime Blog 
+Follow this blog for product updates, technical guidance, examples and best practices for building and managing code in Copilot Managed Runtime.
+
+===== https://msdynamicsworld.com/story/ignite-2026-microsoft-updates-copilot-story-dynamics-365-salesforce
+(status 200)
+Article
+    Ignite 2026: Microsoft's Copilot story for Dynamics 365, Salesforce evolves for partnership, competition
+                by 
+        Jason
+        Gumpert
+                Editor,
+        MSDynamicsWorld.com
+November 17 2026
+Microsoft is advancing its Copilot story, with new GA and preview plans announced today at Ignite 2026. 
+Copilot Home is “where Chat and Cowork come together”, explained Microsoft’s Jared Spataro, and the experience is now generally available. Copilot Managed Runtime for application hosting and management is also GA, and Copilot Code will reach GA in the coming weeks. 
+Copilot Home is “your new starting point in Copilot,” Spataro explained. It’s intended to be the place where you can view recent activity and get suggestions about what to do with Copilot. And Microsoft is introducing a new experience in Copilot called Today, which they describe as “a command center across mail, calendar, Teams threads, meetings, and tasks.” “Today” is in private preview in the Copilot app and Outlook. 
+Microsoft also announced that the "Dynamics 365 in Copilot" initiative is adding plugins for D365 Sales, Customer Service, and ERP applications. There are currently 57 CRM skills, 39 finance and operations skills available via the plugins, with more on the way, 
+according to Jeff Teper
+, Microsoft EVP for Apps and Agents. Initial releases of the Sales, Customer Service, and ERP plugins are 
+already GA
+. 
+Microsoft Contact Center Intelligence, which provides agents for voice and digital channels on top of contact center platforms, has reached GA.
+Dynamics 365 Activate
+, the AI-based toolset for accelerating a migration to Dynamics 365 and originally known as 
+Project Mia
+, is already GA for D365 Customer Experience apps. Activate has now reached private preview for D365 ERP, Teper announced, and will be focused first on SAP ECC. Organizations running SAP ECC can work with their Microsoft partner to use Dynamics 365 Activate to analyze processes, configurations, customizations, and dependencies to surface migration gaps and scope their project, according to Microsoft. Early results have shown it can shorten implementation lifecycles, according to partners cited by Microsoft.
+On the CRM side, Salesforce migrations are the first target scenario for D365 Activate. 
+On the cooperative side of the Salesforce relationship, Microsoft today 
+announced Salesforce in Copilot
+, a plugin with over 38 prebuilt sales skills. Salesforce will also gain new integrations for Teams and Fabric.
+    FREE Membership Required to View Full Content:
+          Joining MSDynamicsWorld.com gives you free, unlimited access to news, analysis, white papers, case studies, product brochures, and more. You can also receive periodic email newsletters with the latest relevant articles and content updates. 
+              Learn more about us here
+    Get full access
+          or
+          login
+    Contact Center
+    Copilot
+    Customer Engagement
+    Customer Service
+    Customer Service
+    Data Migration
+    Dynamics 365
+    Dynamics AX
+    Dynamics CRM
+    Finance and Operations
+    Ignite 2026
+    Power Platform
+    Sales
+    Sales & Marketing
+                About   
+        Jason
+        Gumpert
+As the editor of MSDynamicsWorld.com, Jason oversees all editorial content on the site and at our events, as well as providing site management and strategy. He can be reached at 
+[email protected]
+.
+Prior to co-founding MSDynamicsWorld.com, Jason was a Principal Software Consultant at Parametric Technology Corporation (PTC), where he implemented solutions, trained customers, managed software development, and spent some time in the pre-sales engineering organization. He has also held consulting positions at CSC Consulting and Monitor Group.
+                More about
+        Jason
+        Gumpert

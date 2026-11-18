@@ -1,0 +1,381 @@
+===== https://www.watch.impress.co.jp/docs/news/2157470.html
+(status 200)
+ニュース
+Copilotを「仕事の新しいOS」に　MicrosoftがAI・セキュリティ強化
+浅井 淳志
+2026年11月18日 15:00
+Copilotによるローカル診断機能
+ Microsoftは17日(米国時間)、開発者向けイベント「Microsoft Ignite 2026」において、「Copilot」の機能拡充やWindowsのセキュリティ強化、AIエージェント向けの新たな実行環境などを発表した。 
+ サティア・ナデラCEOは同イベントの基調講演において、Copilotを「仕事の新しいOS(The new OS for work)」と位置付け、AIとの対話やエージェントへの業務の委任、アプリ開発、自律的なタスクの実行などをCopilotに統合する方針を示した。 
+CopilotがPC内のファイル操作や診断に対応
+ Copilotでは、「Copilot+ PC」向けに、PC内のファイルやアプリなどを参照する「ローカルコンテキスト」、PCを操作する「ローカルアクション」、端末上でAIを動作させる「ローカルモデル」の3機能を導入する。 
+ ローカルコンテキストでは、ユーザーの許可に基づき、開いているファイルや使用中のアプリ、PCの状態などをCopilotが参照できるようになる。ローカルアクションでは、自然言語によるファイルの検索・整理・移動・コピー・名前変更などに対応する。 
+ また、PCを読み取り専用で検査し、Bluetoothの接続不良やネットワークの速度低下などの原因を調べるローカル診断機能も提供する。AIについても、処理内容に応じてローカルとクラウドを使い分ける仕組みを導入する。 
+Windowsのセキュリティ強化　障害発生時や特権昇格に伴うリスクを軽減
+ セキュリティ分野では、「Windows Endpoint Security Platform」と「Windows Administrator Protection(管理者保護)」の一般提供を開始した。Windows Endpoint Security Platformは、従来カーネルモードで動作していたセキュリティ保護機能をユーザーモードに移行できるようにするもので、障害発生時にデバイス全体に影響を与えるリスクを軽減する。 
+ Windows Administrator Protectionでは、管理者権限を常時与えるのではなく、必要なタスクの実行時に限ってWindows Helloによる本人確認を行ない、一時的に権限を付与することで、特権昇格に伴うリスクからデバイスを保護する。 
+ また、セキュアブートや仮想化ベースのセキュリティ、メモリ整合性などのセキュリティ状態をまとめて確認できる「Windows Baseline Protection」もプレビュー提供されている。 
+AIエージェントの実行環境に新機能
+ AIエージェント向けには、安全な実行環境を提供する「Microsoft Execution Containers(MXC)」に新たな封じ込め機能を追加した。MXCは、エージェントごとに隔離された実行環境を用意し、アクセスできるファイルやネットワークを制限する技術。 
+ 今回、通信対象やアクセス先などの制限を強化した改良版のプロセスコンテナをプレビュー提供するほか、高リスクのワークロード向けにハードウェアによる隔離に対応した小型仮想マシンの開発も進めていることを発表した。 
+ また、AIエージェント向けのクラウドPC環境「Windows 365 for Agents」も拡充。「Copilot Credits」に対応するほか、2027年初頭には「Microsoft Foundry」でのプレビュー提供を予定している。 
+PCからAzureまでをつなぐAIインフラ構想
+ 同社は、PC、クラウドPC、データセンターを1つのAIインフラとして統合する方針も示した。クラウドPCの「Windows 365」には、新たなストリーミング技術「Direct Stream」を発表した。 
+ 接続の安定性や速度、セキュリティなどを強化する技術で、クラウドPCをローカルPCのように使えるようにするという。また、2027年初頭には、NVIDIAのGPUを搭載したクラウドPCのプレビュー提供を予定している。 
+ サーバー分野では、Microsoft Foundryをパブリックプレビュー中の「Windows Server 2028」に拡張するとともに、AMDやNVIDIAのAI向けハードウェアへの対応も進める。
+
+===== https://blogs.windows.com/windowsexperience/2026/11/17/microsoft-ignite-2026-building-windows-for-the-next-era-of-work/
+(status 200)
+Microsoft Ignite 2026: Building Windows for the next era of work
+							Written By
+								Pavan Davuluri, Executive Vice President, Windows + Devices
+							published
+							November 17, 2026
+Every major shift in computing has changed what people can do at work, and 
+Windows has been at the center. 
+Today, it runs
+ critical work
+ inside your organizations
+, on over a billion devices across the world
+.
+That
+ is a privilege and 
+a responsibility
+.
+I
+t’s
+ why, 
+above all else
+, 
+we’re
+ moving faster than ever 
+on 
+security
+ so you can build on a foundation of trust and lead in the era of Hybrid Intelligence
+.
+Agents are the next shift
+ in computing
+.
+Over the past year, organizations have moved AI from pilots into daily work, and agents are now taking on tasks across apps, files
+,
+ and systems. In conversations with technology leaders, the questions 
+they’re
+ asking 
+have 
+evolved
+. They 
+are past debating whether to adopt AI
+. They
+ are
+ turning to agents and
+ want to know how to run 
+them
+ securely, and how to scale outcomes without cost 
+or 
+risk growing faster than value.
+Today at Ignite, we announced:
+A trusted, secure, and more resilient foundation.
+ The Windows endpoint security platform and Windows administrator protection are now generally available, Windows baseline protection is in preview, and Windows Autopatch customers deploy updates over 40% faster than with on-premises management.
+The most secure platform for agents.
+ New containment capabilities in Microsoft Execution Containers (MXC), which OpenAI and Meta are already building on, and Windows 365 for Agents, now eligible for Copilot Credits.
+Hybrid Intelligence at work.
+ GitHub Copilot Fusion can now route coding work to local models on developer PCs, in preview, and local context, actions and models are coming soon to Copilot on Copilot+ PCs.
+One estate, from the PC to Azure built as connected AI infrastructure.
+ Direct Stream for Windows 365, and Windows Server 2028 in public preview, with Microsoft Foundry and support for new AI hardware from AMD and NVIDIA.
+A trusted, secure, and more resilient foundation
+Critical work happens on Windows, and staying protected while threats evolve has never been more important. That starts with a trusted, secure, and more resilient Windows foundation. We are making investments to harden the platform, make it easier to protect and manage devices, and keep them current.
+Historically, some security protections ran in the Windows kernel, where one failure could affect the entire device. In 2024, we started working with our security partners on a more resilient approach. Today, the Windows endpoint security platform is 
+generally available
+. It lets security providers move critical protections from kernel mode to user mode, making Windows more resilient while preserving the protection customers expect. We are deeply grateful to the ecosystem partners who have built on the platform with us, including Bitdefender, CrowdStrike, ESET, SentinelOne, Sophos, Trellix and TrendAI.
+We’re also making device security easier to verify. Windows baseline protection, 
+now in preview
+ in the Windows Insider Program, brings foundational protections like secure boot, virtualization-based security and memory integrity together into one verifiable security state. People get better visibility into the security posture of their PC, and IT gets a clear yes-or-no answer for every device in the fleet. Application developers can use baseline protection to verify that the devices running their applications meet their security requirements. The baseline will continue to evolve as we raise the bar in security. 
+We are proud to be collaborating with partners from across the ecosystem to see how Windows baseline protection helps meet their needs.
+We’re also making it easier to protect your devices from the risks that come with elevated privilege. With Windows administrator protection, now generally available, IT can enable local administrators to run with standard user privileges by default. When a task needs administrator rights, Windows Hello verifies the user and grants those rights to that task alone. When the task ends, so do the elevated privileges, and the risk that came with them.
+The same AI that’s helping organizations scale is also helping attackers move faster. Our latest 
+Microsoft Digital Defense Report
+ found that weaponizing a vulnerability, which once took expert skills, now takes just one prompt. New vulnerabilities across the industry are on track to double this year. We’re using AI to stay ahead. 
+MDASH
+, Microsoft Security’s multi-model agentic scanning harness, now scans Windows code at a scale we’ve never had before, finding vulnerabilities earlier and fixing them faster. In October alone, we shipped fixes for more than 1,100 vulnerabilities, more than in all of 2025. Those fixes only protect your employees once they reach your devices.
+Our fastest customers deploy security updates to more than two-thirds of their devices within a week. Windows Autopatch helps more organizations move at that speed: on average, Autopatch customers deploy updates over 40% faster than customers using on-premises management, and usage has grown more than 50% in the last year, to over 150 million enrolled devices. Autopatch now also gives IT more control over updates, better visibility into the features they include and fewer interruptions, with one reboot a month.
+The same management principles now apply to apps. With Microsoft Intune Enterprise App Management, IT can deploy and manage apps at scale and can now preview automatic updates not just for the applications they deploy, but the applications people install themselves, with the same controls and deadlines they know from Windows Autopatch.
+Windows is also standardizing on declarative management, so devices keep themselves in the state IT defines. Policies such as Wi-Fi and VPN apply, within minutes and stay protected from drift, even when a device is offline.
+All of this builds on the improvements we’ve made to 
+Windows quality
+ throughout the year, across performance, reliability and craft.
+Learn more about Windows security and management at Ignite.
+Hybrid Intelligence on Windows
+The same trusted foundation that applies to your employees extends to AI and agents on Windows. 
+When an agent acts on your behalf, you need to know what it can access and what it does. That’s where Hybrid Intelligence begins. Hybrid Intelligence on Windows brings together a secure agent platform and intelligent model routing across a broad range of Windows PCs powered by capable silicon. 
+Hybrid Intelligence uses the right model and compute for each task, on the device or in the cloud. The result is AI that’s secure by design, smarter about token spend, and more useful every day.
+Building Windows to be the most secure platform for agents
+Agents bring big productivity gains, and because they can work across files, networks and apps, they also bring new security risks. Customers shouldn’t have to choose between giving agents free rein and blocking them entirely. That’s why we’re building containment, identity and manageability into Windows to run and manage agents securely:
+Containment:
+limit what an agent can access and do.
+Identity:
+tell an agent’s activity apart from a person’s.
+Manageability:
+govern access and monitor what agents do. 
+Microsoft Execution Containers (MXC) has been generally available on Windows 11 since October. MXC gives each agent a contained environment, with policies for which files and networks it can reach, enforced by Windows at runtime. MXC works on Windows, Linux and macOS, and on Windows it’s built into the operating system, which gives organizations more control of their data and a broader range of containment options, from process and session containers to WSL containers, virtual machines and Windows 365 for Agents.
+Since general availability, we’ve improved quality and made agent identity harder to tamper with. At Ignite, we’re adding:
+Process container improvements
+, in preview, which give each agent a protected workspace with clear limits on what it can talk to, which networks it can reach and how it proves its identity, reducing the risk that an agent reaches the wrong data or affects the rest of the device.
+Learning and permissive modes
+, now generally available, which let IT observe how an agent normally works with system services before enforcing restrictions, so policies roll out without breaking legitimate work.
+Local Micro VMs,
+ now experiment
+al, give higher-risk workloads a hardware-backed virtualized boundary, with hardware-enforced isolation.
+Leading 
+a
+gent builders 
+and c
+ustomers 
+are 
+integrating with MXC
+. OpenAI has turned MXC on by default in 
+Codex,
+ Meta is running MXC on tens of thousands of Windows devices, and more than 20 agent and app builders, including Anthropic, Box, Perplexity and 
+Replit
+, are building on MXC.
+Agent 365 
+governance and policies 
+extend to local agents, 
+including on
+ Windows, so together with Microsoft Entra, Intune, Defender and Purview, organizations can govern agents with the practices they already use.
+Learn more about Windows security, management, and agent governance at Ignite.
+Windows 365 for Agents
+Some agents need a computer of their own. Windows 365 for Agents gives them secure Cloud PCs, joined to Microsoft Entra and managed in Intune like any other PC in your fleet. Agents use them the way people do. They see the screen, click, type and move data between apps, so they can work in line-of-business, browser, legacy and on-premises Windows apps, including apps without an API.
+Windows 365 for Agents is available as a computer-use tool in Microsoft Copilot Studio, is coming to Microsoft Foundry in preview early next year and is now eligible for Copilot Credits, bringing it into one billing, governance and cost-management experience.
+Agents can now reach on-premises apps using agent identities, in preview, and persistent agent Cloud PCs for long-running, always-on work are coming to Frontier preview. Microsoft’s own business operations team uses Windows 365 for Agents to process orders and has cut processing time by 60%.
+Learn more about Windows 365 for Agents.
+Bringing local context, actions, and diagnostics to Copilot 
+with Hybrid Intelligence
+Copilot is AI built for work, and on Windows it can do even more. Three local capabilities are coming soon to Copilot+ PCs, and they’ll make Copilot more helpful in the moments that matter most at work.
+The first is 
+local context
+. Much of what people work on lives on their PC: the files they have open, the apps they’re using, and the current state of their device. With permission, Copilot can use that information to offer better help, bringing local context into the flow of work.
+The second is 
+local actions
+. Helpful AI doesn’t stop at answers. Copilot will be able to take action across Windows, from working with files to helping diagnose PC issues, while the user stays in control.
+The third is 
+local models
+. Not every task needs the cloud. Copilot will increasingly use models running right on the PC and reach to the cloud when a task calls for it, so each task runs where it makes the most sense, making token costs go further.
+Here’s
+ what that looks like in practice. With 
+local file actions in Copilot
+, people can ask Copilot in plain language to find, organize, move, 
+copy
+ or rename files. Tidying a cluttered 
+D
+ownloads folder or pulling project files together takes a sentence
+,
+ and 
+your employees can 
+spend time on 
+more important activities while Copilot does the 
+work on Windows
+.
+Local PC diagnostics
+ brings the same simplicity to troubleshooting. Copilot can run a read-only scan of the system to help find the root cause of errors or performance issues, then explain what’s going on in clear terms. Figuring out why your Bluetooth audio isn’t working or why your network connection is slow takes a quick question instead of a support call.
+These capabilities can help resolve many of the most common reasons people call IT support. Employees get time back, and IT teams spend less time on tickets and more on work that moves the business forward.
+And building on the 
+new Windows Search experience
+ that makes it faster to find what you need and take action, we’re also now making it seamless to move into Copilot right from that very flow, for people who choose it.
+Bringing Hybrid Intelligence to GitHub Copilot on Windows
+Developers are some of the biggest consumers of AI tokens. GitHub Copilot Fusion routes each coding task to the right model, and it can now tap into local models like MAI Code 1.1 Flash on developer PCs powered by NVIDIA RTX Spark and 
+now extending to AMD Ryzen™ AI Max Series and Ryzen™ AI Max 400 Series processors
+. Hybrid Intelligence is available on the GitHub Copilot app, CLI and VS Code in preview. Several Fortune 500 companies are already piloting this experience.
+We’re also working with 
+Adobe
+, 
+Autodesk
+, 
+Dell
+, 
+HP
+, 
+Insight
+, 
+NVIDIA
+ and 
+PwC
+ in the Windows Hybrid Intelligence pilot to bring local models into their development workflows.
+“Adobe’s flagship Windows apps like Premiere and After Effects already use local AI to deliver creative value to our users. Like many leading organizations, we’re looking to optimize growing AI spend, both ours and our customers’, without giving up access to frontier capabilities. We’re excited for more ways to harness hybrid intelligence to empower our developers to run key workflows in the right place, whether that’s local or cloud.”
+— Ely Greenfield, CTO and EVP of Adobe’s Creative Products
+Agent builders 
+like 
+Hermes
+, 
+OpenClaw
+,
+Perplexity
+,
+Replit
+ and more
+are
+ building local AI experiences on Windows. 
+Christie’s
+, the fine art and luxury auction house, uses 
+Replit’s
+ agent on Windows to work with private art collection data that never leaves the device.
+One estate, from the PC to Azure built as connected AI infrastructure
+Hybrid intelligence extends across your entire Windows estate. Windows connects PCs, servers and Azure as one system, with trust and intelligence spanning them all, so you can match the model and the compute to the work. That makes your PCs and servers part of your AI infrastructure, and that infrastructure becomes how you grow your core business, scale expertise and accelerate time to market.
+PCs for every role.
+ For knowledge work, that’s a Copilot+ PC, many powered by Intel Core Ultra. For builders, Windows supports the broadest range of devices, from PCs powered by NVIDIA RTX Spark, like Surface Laptop Ultra, to PCs with AMD Ryzen AI Max processors. For teams that need frontier models on device, NVIDIA DGX Station for Windows brings trillion-parameter models to the deskside. AMD, Intel, NVIDIA and Qualcomm bring this portfolio to life at every tier, in devices from every major PC maker.
+Cloud PCs for everyone.
+ Windows 365 is the same Windows, with the same apps and the same identity, streamed from the Microsoft Cloud, and tens of thousands of organizations rely on it. Today, we’re introducing 
+Direct Stream
+, the streaming technology behind Windows 365 and Azure Virtual Desktop. It brings together years of work on connection reliability, speed, transport security and in-session performance to make a Cloud PC feel like a local PC. People connect within seconds, with nearly 300% improvement in connection reliability on challenging networks compared with when Windows 365 first launched. With NVIDIA, GPU-enabled Cloud PCs, coming in preview early next year, will stream full 4:4:4-equivalent color and sharper text to up to two 4K displays at 60 frames per second, with low latency and less bandwidth. Cloud PCs, including GPU-enabled configurations, can also run compatible AI models, giving developers more compute with predictable subscription costs.
+That changes who Windows 365 is for. Now it’s an option for everyone in your organization, and knowledge workers can make it their everyday PC. With IT budgets tight, it can also extend the life of PCs you aren’t ready to replace, giving anyone more compute in minutes with no new hardware.
+Learn more about what’s new in Windows 365, including Windows 365 for Agents.
+Servers that run AI next to your data.
+ Your servers hold the mission-critical apps and data your business depends on. 
+Windows Server 2028
+, now in public preview
+, extends the trusted foundation to the datacenter with new security hardening, including Trusted Launch virtual machines, post-quantum cryptography and a hardened OS baseline. For the first time, endpoint teams can manage servers and PCs as one Windows fleet with Intune and Windows Autopatch, while infrastructure teams use Azure Arc.
+Your servers will become token factories, built for intelligence you can own. That’s why we’re 
+extending Microsoft Foundry to Windows Server 2028
+ and expanding hardware choice. 
+AMD’s MI350P accelerator
+ will be available in preview
+ in the first half of 2027 for Windows Server 2025 and later, and 
+NVIDIA DGX Station for Windows
+, with the GB300 Grace Blackwell Ultra Desktop Superchip and up to 748 GB of coherent memory, will support Windows Server 2028 at general availability. Organizations building agents on an open model like NVIDIA Nemotron now have one path: build on a Windows PC, run on Windows Server next to their data and scale to Azure when they need more.
+Where to start in 2027
+Every hardware decision you make in the next 12 to 18 months is an AI decision. It will shape what your teams can do, and what your tokens cost, until your next refresh. As you plan for 2027, here’s where to start:
+Strengthen the foundation now.
+ Deploy updates with Windows Autopatch, turn on Windows administrator protection and evaluate Windows baseline protection.
+Secure your agentic workflows.
+ Set MXC policies with Intune to control what your agents can access within your organization.
+Start piloting Hybrid Intelligence in GitHub Copilot on Windows.
+ For your developers, start leveraging Copilot Fusion on Windows to route coding workflows to local models and save tokens.
+Plan your refresh by role,
+ with Copilot+ PCs and Windows 365 in one plan, so every person gets the compute their work needs.
+Bring AI to your data.
+ Test Windows Server 2028 in the 
+Windows Insider Program for Windows Server
+, or apply to the 
+Windows Server TAP
+ for earlier access.
+Leaders shouldn’t have to choose between moving quickly and moving carefully. That’s why we’re building Windows to be the OS for hybrid intelligence: the most secure platform for agents, an AI budget that goes further and an estate built as connected AI infrastructure, so intelligence reaches every person in your organization.
+Join me today at 2 p.m. PT for our innovation session
+, where PwC’s Digital Workplace team will share how they’re deciding where AI runs across more than 360,000 devices in over 130 countries. We hope you have a great Ignite!
+
+===== https://www.digit.in/features/laptops/your-copilot-pc-will-soon-organise-files-and-diagnose-windows-issues-locally.html/amp/
+(status 200)
+Your Copilot+ PC will soon organise files and diagnose Windows issues locally
+By 
+Aman Rashid
+ | 
+Updated on 18-Nov-2026
+Add 
+Digit
+ as a
+preferred source
+Follow Us
+For most of us, using a PC still means doing a lot of small jobs ourselves. Finding a document buried in Downloads, moving files into the right folders or figuring out why Bluetooth has stopped working can eat into the day. Microsoft wants Copilot to take on some of that work. At Ignite 2026, the company announced new local capabilities coming to Copilot+ PCs, including the ability to understand what you are working on, carry out simple actions in Windows and help diagnose common PC problems. The important bit is that some of this will happen directly on the device, rather than relying on the cloud for every request. Here’s everything you need to know about the latest development.
+Copilot will understand what you're doing on your PC
+One of the biggest changes Microsoft is working on is giving Copilot more context about what you are doing on your computer. Think about it. If you have several documents open, are working on a presentation or have a particular application running, you usually have to explain all of that when asking an AI chatbot for help. Microsoft wants to reduce that effort. With local context coming to Copilot+ PCs, Copilot will be able to understand which files you have open, which applications you're using and the current state of your PC. This will work with your permission, so you remain in control of what information Copilot can access.
+Also read: 
+Microsoft is building dedicated PCs for AI agents, what does it mean?
+For instance, imagine you're working on a presentation and need help finding a particular document or understanding something in an open file. Instead of explaining what you're working on and manually sharing the relevant information, Copilot could use the context available on your PC to provide more useful assistance.
+You can ask Copilot to organise your files
+Microsoft is also bringing local actions to Copilot, which means it won't just answer questions but will be able to perform certain tasks directly in Windows. One example is file management. Microsoft says users will be able to ask Copilot in plain language to find, organise, move, copy or rename files. So, if your Downloads folder is full of documents, screenshots and random files you've forgotten about, you could simply ask Copilot to help organise them.
+You could also ask it to find files related to a particular project and bring them together. Instead of manually searching through folders, opening documents and moving them one by one, Copilot will handle the task through a simple instruction. This is a useful addition because file management is one of those everyday PC activities that can get unnecessarily tedious. You don't always remember where you saved something, especially when you're juggling multiple projects.
+Again, Microsoft hasn't suggested that Copilot will take over complete control of your files. The company says users will remain in control while Copilot carries out these actions. We'll have to see how well it handles more complicated instructions when the features roll out.
+Copilot could also help you figure out what's wrong with your PC
+Another interesting addition is local PC diagnostics. If you've ever struggled with a slow internet connection, Bluetooth audio that refuses to work or a PC that suddenly starts behaving strangely, you'll know how frustrating troubleshooting can be. Usually, you end up searching online, going through Windows settings or contacting customer support. Microsoft wants Copilot to make this process simpler.
+With local PC diagnostics, you will be able to ask Copilot about a problem, and it can run a read-only scan of your system to look for possible causes. It can then explain what's going wrong in simpler terms, rather than making you deal with technical information that might not mean much to you. For example, if your Bluetooth headphones aren't connecting properly or your network connection is unusually slow, you could ask Copilot to investigate. It will examine relevant system information and help identify the possible cause.
+There's an important distinction here, though. Microsoft says Copilot will run a read-only scan and explain the problem. It hasn't promised that the assistant will automatically repair every issue it finds. You may still have to follow the suggested steps yourself.
+Not everything will need the cloud
+There's another part of Microsoft's announcement that deserves attention. Copilot will increasingly use AI models running directly on your PC, rather than sending every request to the cloud. Microsoft calls this Hybrid Intelligence. The idea is to use the computing power available on your device for tasks that can be handled locally, while turning to cloud-based models when a request needs more computing power. This could make certain AI features more responsive and reduce how much businesses spend on cloud-based AI services. It also means that your PC's hardware will play a bigger role in determining what Copilot can do.
+Microsoft hasn't said that every Copilot feature will work offline, so don't expect to disconnect your PC from the internet and have the entire assistant available. Instead, the company wants Windows to decide where a particular AI task should run. All three local capabilities, including context, actions and models, are coming soon to Copilot+ PCs. Microsoft hasn't announced a specific public rollout date yet.
+Is this what using a Windows PC will look like?
+Microsoft's announcement is appealing because it focuses on things people actually do on their computers every day. You don't necessarily need an AI assistant to write an essay or generate an image. Sometimes, you just want it to find a missing file, tidy up a folder or help you understand why something isn't working. That's where these additions could make a real difference. Copilot is moving beyond answering questions and getting closer to handling everyday PC tasks. There are still questions around how reliably it will perform these actions and how much control users will have over them. But if Microsoft gets the basics right, using a Windows PC could become a little less about managing files and settings, and a little more about getting your actual work done.
+Aman Rashid
+Aman Rashid
+ is the Senior Assistant Editor at Digit, where he leads the website along with the brand’s YouTube, social media, and overall video operations. He has been covering consumer technology for several years, with experience across news, reviews, and features. Outside of work, Aman is a sneaker enthusiast and an avid follower of WWE, Dragon Ball, and the Marvel Cinematic Universe.
+View full profile
+
+===== https://tbreak.com/copilot-plus-pcs-file-management-pc-diagnostics/
+(status 200)
+Tech
+/
+AI
+/
+Apps
+/
+PC
+Good luck Windows users: Copilot will manage files and diagnose problems on Copilot+ PCs.
+Microsoft says Copilot+ PCs will get plain-language file commands, read-only diagnostics, and on-device AI, but it hasn’t set a rollout date.
+Abbas Jaffar Ali
+Nov 18, 2026
+Change language to
+English
+Español
+Русский
+中文
+العربية
+0:00
+Microsoft is bringing file management and PC diagnostics to Copilot on Copilot+ PCs, but the features aren’t available yet.
+Once the features roll out, you can ask Copilot to find, organise, move, copy, or rename files in plain language. It’ll also be able to look for the cause of an error or slowdown without changing anything on your PC.
+Pavan Davuluri, Microsoft’s executive vice president for Windows + Devices, described the features as coming soon in his 
+Ignite 2026 post on the Windows Experience Blog
+. Microsoft hasn’t given a rollout date or said whether other Windows 11 PCs will get them.
+Subscribe to our Newsletters for more Tech Stories
+Found us on Google? 
+Add tbreak as a preferred source
+ to see more of our stories in Top Stories.
+What Copilot can see and change
+Copilot can use open files, apps, and device state to give more relevant help, but it needs your permission to access files or personal data.
+File commands can change where a file is stored or what it’s called, but diagnostics are read-only. Copilot will scan the system to help find the root cause of an error or performance issue and explain it in plain language. Microsoft hasn’t said whether Copilot will be able to apply a fix itself.
+Microsoft’s broader design for Windows agents limits what they can access and do. It also distinguishes an agent’s activity from a person’s and provides controls to manage access and monitor what agents do.
+The file tools follow the same direction as Microsoft’s 
+local-first overhaul of Windows 11 Search
+. The company is also 
+reducing Copilot interruptions in Windows 11
+.
+When Copilot will use the cloud
+Hybrid Intelligence is Microsoft’s term for choosing where each task runs. For knowledge work, Microsoft points to Copilot+ PCs, many powered by Intel Core Ultra. With the new features, Copilot can run AI models on the PC and send work to the cloud when needed. Microsoft describes Hybrid Intelligence as designed for a broad range of Windows hardware, but it’s tying these Copilot features to Copilot+ PCs.
+A separate developer preview is already available in the GitHub Copilot app, GitHub Copilot CLI, and Visual Studio Code. It runs on RTX Spark PCs, including Surface Laptop Ultra-class machines, as well as computers powered by AMD Ryzen AI Max and Ryzen AI Max 400.
+In his Ignite analysis, 
+Paul Thurrott
+ sees the local Copilot features as the biggest user-facing change but argues agents in Windows 11 are still a long way off.
+You may also like
+Microsoft’s MAI Code 2 claims 98% of GPT-6.1 Sol’s performance at 40% of the cost
+Nov 18, 2026
+Nvidia’s board rules out Jensen Huang’s return as CEO, hours after he offered to come back
+Nov 18, 2026
+Duck Side of the Moon launches on PS5 for $19.99 with a free update
+Nov 18, 2026
+Ranger’s Path leaves Early Access and lands on PS5 and Xbox
+Nov 18, 2026
+Tree of Savior M opens global pre-registration
+Nov 18, 2026
+Taskbar Chickens gets a Steam demo ahead of its 2027 PC launch
+Nov 18, 2026
+Proton’s Lumo Desktop adds automation with per-action controls
+Nov 18, 2026
+Gemini moves into texts and email for US users
+Nov 18, 2026
+EVE Vanguard’s alpha is live with DLSS 4.5, plus a War Thunder reward
+Nov 17, 2026
+More in Tech
+Apple names 45 finalists for its App Store Awards
+Nov 18, 2026
+Aqara launches six smart lights with Apple Home support
+Nov 18, 2026
+Windows Server 2028 preview hardens Server Core by default
+Nov 18, 2026
+AMD sets CES 2027 launch event without naming products
+Nov 18, 2026
+AI-native 6G blueprint puts intelligence inside the network
+Nov 18, 2026
+Workday is buying Honeydew to give AI agents shared definitions
+Nov 18, 2026
+UAE funds research to pull water from air with less energy
+Nov 18, 2026
+Nvidia says Hugging Face deal is on track after Huang exit
+Nov 18, 2026
+Keanu Reeves returns in Saber’s John Wick prequel game
+Nov 18, 2026
