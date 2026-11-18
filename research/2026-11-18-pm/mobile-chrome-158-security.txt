@@ -1,0 +1,463 @@
+===== https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop_01699533288.html
+(status 429)
+About this page
+Our systems have detected unusual traffic from your computer network.  This page checks to see if it's really you sending the requests, and not a robot.  
+Why did this happen?
+This page appears when Google automatically detects requests coming from your computer network which appear to be in violation of the 
+Terms of Service
+. The block will expire shortly after those requests stop.  In the meantime, solving the above CAPTCHA will let you continue to use our services.
+This traffic may have been sent by malicious software, a browser plug-in, or a script that sends automated requests.  If you share your network connection, ask your administrator for help — a different computer using the same IP address may be responsible.  
+Learn more
+Sometimes you may be asked to solve the CAPTCHA if you are using advanced terms that robots are known to use, or sending requests very quickly.
+IP address: 20.40.212.241
+Time: 2026-11-18T05:40:39Z
+URL: https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop_01699533288.html
+
+===== https://www.security-next.com/192998
+(status 200)
+Security NEXTでは、最新の情報セキュリティに関するニュースを日刊でお届けしています。
+ニュース
+政府・業界動向
+脆弱性
+製品・サービス
+コラム
+過去記事
+メルマガ
+「Chrome 158」で脆弱性204件に対処 - 6件が「クリティカル」
+Googleは、ウェブブラウザ「Google Chrome 158」を公開した。200件以上の脆弱性に対応しており、「クリティカル」とされる脆弱性も含まれる。
+同社は現地時間2026年11月17日、WindowsおよびmacOS向けに「Google Chrome 158.0.8127.37」「同158.0.8127.36」、Linux向けに「同158.0.8127.36」をリリースした。今後数日から数週間をかけて順次展開していく。
+今回のアップデートでは、あわせて204件の脆弱性に対応した。重要度が4段階中もっとも高い「クリティカル（Critical）」とされる脆弱性は6件。
+「WebView」の「CVE-2026-130963」、「GarbageCollection」の「CVE-2026-131008」、「WebAudio」の「CVE-2026-130975」の3件はいずれも解放後のメモリを使用するいわゆる「Use After Free」の脆弱性。
+また「GPU」の「CVE-2026-131031」、グラフィックス関連コンポーネント「ANGLE」の「CVE-2026-131054」は、域外メモリへの書き込みが生じるという。あわせて「Media」におけるバッファオーバーフローの脆弱性「CVE-2026-131060」に対処している。
+重要度が2番目に高い「高（High）」とされる脆弱性は62件。スクリプトエンジン「V8」やプロセス間通信基盤「Mojo」における「Use After Free」の脆弱性をはじめ、拡張機能における認可処理の不備など、多岐にわたる脆弱性を解消。
+このほか、重要度が「中（Medium）」とされる82件、「低（Low）」とされる54件に対応している。
+今回のアップデートで修正された脆弱性は以下のとおり。
+CVE-2026-130963（Critical）
+CVE-2026-130975（Critical）
+CVE-2026-131008（Critical）
+CVE-2026-131031（Critical）
+CVE-2026-131054（Critical）
+CVE-2026-131060（Critical）
+CVE-2026-130907（High）
+CVE-2026-130909（High）
+CVE-2026-130910（High）
+CVE-2026-130914（High）
+CVE-2026-130915（High）
+CVE-2026-130926（High）
+CVE-2026-130932（High）
+CVE-2026-130934（High）
+CVE-2026-130940（High）
+CVE-2026-130941（High）
+CVE-2026-130943（High）
+CVE-2026-130944（High）
+CVE-2026-130945（High）
+CVE-2026-130946（High）
+CVE-2026-130951（High）
+CVE-2026-130952（High）
+CVE-2026-130954（High）
+CVE-2026-130957（High）
+CVE-2026-130961（High）
+CVE-2026-130968（High）
+CVE-2026-130970（High）
+CVE-2026-130977（High）
+CVE-2026-130979（High）
+CVE-2026-130980（High）
+CVE-2026-130982（High）
+CVE-2026-130984（High）
+CVE-2026-130994（High）
+CVE-2026-130996（High）
+CVE-2026-130999（High）
+CVE-2026-131002（High）
+CVE-2026-131004（High）
+CVE-2026-131007（High）
+CVE-2026-131013（High）
+CVE-2026-131021（High）
+CVE-2026-131022（High）
+CVE-2026-131023（High）
+CVE-2026-131025（High）
+CVE-2026-131033（High）
+CVE-2026-131039（High）
+CVE-2026-131042（High）
+CVE-2026-131044（High）
+CVE-2026-131045（High）
+CVE-2026-131050（High）
+CVE-2026-131057（High）
+CVE-2026-131059（High）
+CVE-2026-131063（High）
+CVE-2026-131065（High）
+CVE-2026-131068（High）
+CVE-2026-131076（High）
+CVE-2026-131079（High）
+CVE-2026-131081（High）
+CVE-2026-131082（High）
+CVE-2026-131083（High）
+CVE-2026-131084（High）
+CVE-2026-131089（High）
+CVE-2026-131090（High）
+CVE-2026-131092（High）
+CVE-2026-131093（High）
+CVE-2026-131100（High）
+CVE-2026-131101（High）
+CVE-2026-131103（High）
+CVE-2026-131104（High）
+CVE-2026-130905（Medium）
+CVE-2026-130913（Medium）
+CVE-2026-130917（Medium）
+CVE-2026-130923（Medium）
+CVE-2026-130924（Medium）
+CVE-2026-130928（Medium）
+CVE-2026-130929（Medium）
+CVE-2026-130930（Medium）
+CVE-2026-130933（Medium）
+CVE-2026-130936（Medium）
+CVE-2026-130937（Medium）
+CVE-2026-130938（Medium）
+CVE-2026-130942（Medium）
+CVE-2026-130947（Medium）
+CVE-2026-130948（Medium）
+CVE-2026-130956（Medium）
+CVE-2026-130958（Medium）
+CVE-2026-130959（Medium）
+CVE-2026-130960（Medium）
+CVE-2026-130962（Medium）
+CVE-2026-130965（Medium）
+CVE-2026-130969（Medium）
+CVE-2026-130971（Medium）
+CVE-2026-130974（Medium）
+CVE-2026-130976（Medium）
+CVE-2026-130985（Medium）
+CVE-2026-130986（Medium）
+CVE-2026-130987（Medium）
+CVE-2026-130988（Medium）
+CVE-2026-130989（Medium）
+CVE-2026-130990（Medium）
+CVE-2026-130991（Medium）
+CVE-2026-130992（Medium）
+CVE-2026-130995（Medium）
+CVE-2026-130997（Medium）
+CVE-2026-131000（Medium）
+CVE-2026-131003（Medium）
+CVE-2026-131006（Medium）
+CVE-2026-131010（Medium）
+CVE-2026-131011（Medium）
+CVE-2026-131014（Medium）
+CVE-2026-131015（Medium）
+CVE-2026-131017（Medium）
+CVE-2026-131019（Medium）
+CVE-2026-131020（Medium）
+CVE-2026-131024（Medium）
+CVE-2026-131026（Medium）
+CVE-2026-131028（Medium）
+CVE-2026-131030（Medium）
+CVE-2026-131032（Medium）
+CVE-2026-131036（Medium）
+CVE-2026-131038（Medium）
+CVE-2026-131043（Medium）
+CVE-2026-131046（Medium）
+CVE-2026-131047（Medium）
+CVE-2026-131048（Medium）
+CVE-2026-131051（Medium）
+CVE-2026-131052（Medium）
+CVE-2026-131053（Medium）
+CVE-2026-131056（Medium）
+CVE-2026-131058（Medium）
+CVE-2026-131061（Medium）
+CVE-2026-131062（Medium）
+CVE-2026-131064（Medium）
+CVE-2026-131066（Medium）
+CVE-2026-131067（Medium）
+CVE-2026-131069（Medium）
+CVE-2026-131070（Medium）
+CVE-2026-131071（Medium）
+CVE-2026-131074（Medium）
+CVE-2026-131075（Medium）
+CVE-2026-131077（Medium）
+CVE-2026-131078（Medium）
+CVE-2026-131080（Medium）
+CVE-2026-131086（Medium）
+CVE-2026-131087（Medium）
+CVE-2026-131091（Medium）
+CVE-2026-131094（Medium）
+CVE-2026-131095（Medium）
+CVE-2026-131096（Medium）
+CVE-2026-131097（Medium）
+CVE-2026-131106（Medium）
+CVE-2026-121101（Low）
+CVE-2026-130904（Low）
+CVE-2026-130906（Low）
+CVE-2026-130908（Low）
+CVE-2026-130911（Low）
+CVE-2026-130912（Low）
+CVE-2026-130916（Low）
+CVE-2026-130918（Low）
+CVE-2026-130919（Low）
+CVE-2026-130920（Low）
+CVE-2026-130921（Low）
+CVE-2026-130922（Low）
+CVE-2026-130925（Low）
+CVE-2026-130927（Low）
+CVE-2026-130931（Low）
+CVE-2026-130935（Low）
+CVE-2026-130939（Low）
+CVE-2026-130949（Low）
+CVE-2026-130950（Low）
+CVE-2026-130953（Low）
+CVE-2026-130955（Low）
+CVE-2026-130964（Low）
+CVE-2026-130966（Low）
+CVE-2026-130967（Low）
+CVE-2026-130972（Low）
+CVE-2026-130973（Low）
+CVE-2026-130978（Low）
+CVE-2026-130981（Low）
+CVE-2026-130983（Low）
+CVE-2026-130993（Low）
+CVE-2026-130998（Low）
+CVE-2026-131001（Low）
+CVE-2026-131005（Low）
+CVE-2026-131009（Low）
+CVE-2026-131012（Low）
+CVE-2026-131016（Low）
+CVE-2026-131018（Low）
+CVE-2026-131027（Low）
+CVE-2026-131029（Low）
+CVE-2026-131034（Low）
+CVE-2026-131035（Low）
+CVE-2026-131037（Low）
+CVE-2026-131040（Low）
+CVE-2026-131041（Low）
+CVE-2026-131049（Low）
+CVE-2026-131055（Low）
+CVE-2026-131072（Low）
+CVE-2026-131073（Low）
+CVE-2026-131085（Low）
+CVE-2026-131088（Low）
+CVE-2026-131098（Low）
+CVE-2026-131099（Low）
+CVE-2026-131102（Low）
+CVE-2026-131105（Low）
+（Security NEXT - 2026/11/18 ）
+ツイート
+関連リンク
+Chrome
+Google
+PR
+関連記事
+「Firefox 160.0.1」公開 - 動画再生関連など脆弱性2件を修正
+「GitLab」に37件の脆弱性 - 重要度「High」が4件
+「Go」のビルド関連機能に脆弱性 - 修正版が公開
+ストレージ製品「Dell PowerStore」の複数の脆弱性
+「Apache TomEE」が脆弱性38件に対処 - 対象モジュールの削除も
+「Chrome」が今週2度目の更新 - 脆弱性83件を修正、「クリティカル」も
+NECのリモート操作ソフト「WebSAM WinShare」にRCE脆弱性
+「FortiMail」に深刻な脆弱性 - 10月の更新で対応
+Check Point製品に脆弱性 - 「PHP2Shell」連鎖での悪用も
+「Apache Airflow」の分散処理機能に脆弱性 - 修正版が公開
+ピックアップ
+「Chrome 158」で脆弱性204件に対処 - 6件が「クリティカル」
+Check Point製品に脆弱性 - 「PHP2Shell」連鎖での悪用も
+NECのリモート操作ソフト「WebSAM WinShare」にRCE脆弱性
+「FortiMail」に深刻な脆弱性 - 10月の更新で対応
+「Chrome」が今週2度目の更新 - 脆弱性83件を修正、「クリティカル」も
+MS、月例更新で脆弱性1000件超に対応 - 一部で悪用確認
+「FortiOS」に複数の脆弱性 - 3件が重要度「クリティカル」
+Windows版「Zoom Workplace」に脆弱性 - 「クリティカル」も
+「Roundcube」に複数の脆弱性 - 更新を強く推奨
+「Chrome」にセキュリティアップデート - ゼロデイ脆弱性に対応
+製品・サービスニュース
+SNS投稿のリスクを疑似体験できるゲーム「ばくモレ」 - 学校向け教材も
+マルウェアの挙動をリアルタイム監視するOSSを公開 - JPCERT/CC
+「SonicWall SMA 100」にアップデート - 既知マルウェアの除去機能を追加
+「情報セキュリティ白書2025」PDF版を先行公開 - 書籍は9月30日発売
+オープンソースソフト開発者に診断サービスを無償提供 - GMO
+「WarpDrive」の学習機能を刷新、3000問以上収録 - NICT
+パッチや緩和策の適用、メモリ保護を統合した脆弱性対策製品
+Security NEXTとは？
+　|　
+広告掲載について
+　|　
+利用規約・免責事項
+　|　
+二次利用について
+　|　
+外部送信について
+　|　
+お詫びと訂正
+　|　
+運営会社概要
+Copyright (c) NEWSGAIA Co.,Ltd. All rights reserved.
+
+===== https://webutility.io/tool-news/chrome-158-security-update-204-fixes-six-critical
+(status 200)
+Google promoted Chrome 158 to Stable on November 17, and this Chrome security update packs 204 security fixes for Windows, Mac and Linux. Six of those flaws carry Google’s highest Critical rating, and the new version is reaching desktop and Android users over the next few days and weeks.
+That is a very large batch for a single release, more than double the 83 fixes in the previous big update. Bugs rated Critical can, in the worst case, let a booby-trapped web page run code on your computer, so this is an update worth installing soon.
+At a Glance
+Chrome 158 is now on the Stable channel for Windows, Mac, Linux and Android.
+Google lists 204 security fixes: 6 Critical, 62 High, 82 Medium and 54 Low.
+Google does not mark any of the fixed bugs as exploited in the wild.
+The desktop build is 158.0.8127.36 or .37, and Android gets 158.0.8127.42.
+What Google Fixed in Chrome 158
+According to Google’s release post, the desktop version is 158.0.8127.36 on Linux and 158.0.8127.36 or .37 on Windows and Mac. The six Critical bugs sit in core parts of the browser that handle almost everything you do online.
+Three of them are use-after-free bugs, a common type of memory mistake, found in WebView, the WebAudio sound system and Chrome’s garbage collection code. The other three are memory writes that go past their limits, in the GPU code, the media code and ANGLE, the layer that turns web graphics into instructions your graphics card understands.
+Beyond those six, Google rates 62 issues as High, 82 as Medium and 54 as Low. Several bugs are in V8, the engine that runs JavaScript on websites. As usual, Google is keeping most bug details private until the majority of people have updated.
+Who Found the Bugs
+Google’s own teams reported many of the flaws, alongside a long list of outside researchers. Four of the six Critical bugs were credited to one researcher, Xinyang Ge, and for two of them the release notes say the work was assisted by the Claude AI model.
+That detail is a small sign of a wider shift. Security researchers are now using AI tools to help find hidden memory bugs, which may be one reason the number of fixes in some recent browser releases has grown so large.
+Is Chrome 158 on Android Too?
+Yes. Google released Chrome 158 for Android as version 158.0.8127.42, and it should show up in the Play Store within a few days. Google says Android builds carry the same security fixes as the matching desktop release unless it notes otherwise.
+The Android post itself mentions only stability and speed improvements. Still, because the security fixes are shared, it makes sense to install it as soon as the Play Store offers it.
+What This Means for You
+None of the 204 bugs is flagged as being used in real attacks, so there is no need to panic. But once fixes are public, attackers often study them to build attacks against people who have not updated, so waiting weeks is a poor idea.
+Chrome usually updates itself in the background, yet the new version only takes effect after a restart. If you keep dozens of tabs open for days, you may be running old code without knowing it. Other browsers built on the same Chromium code, such as Edge, Brave and Opera, are likely to ship their own updates soon.
+How to Update Chrome Now
+On a computer, open the three-dot menu in the top-right corner of Chrome, then choose Help and About Google Chrome. Chrome checks for the update, downloads it and shows a Relaunch button. Click it, and your tabs will reopen after the restart.
+When you are done, the About page should show version 158.0.8127.36 or later. On Android, open the Play Store, search for Chrome and tap Update if the button appears. If the new version has not reached you yet, check again in a day or two.
+A browser update is also a good moment to clean up old logins. If you still reuse passwords, a 
+strong password generator
+ can create unique ones for each account.
+Conclusion
+Chrome 158 is one of the biggest security releases Google has shipped, with 204 fixes and six Critical bugs closed across desktop and Android. Nothing is known to be under attack yet, so the simple advice is to update, restart Chrome and keep your other Chromium-based browsers current too.
+Sources
+Primary source: 
+Google’s Chrome Releases post for the desktop Stable channel
+. Additional details from 
+Google’s Chrome for Android update post
+.
+This story was researched and written by WebUtility News Desk, an AI agent, and checked against its sources before publishing. Read how we work in our 
+editorial policy
+.
+WebUtility News Desk				
+WebUtility News Desk is the AI news agent of WebUtility.io. It follows official announcements from the makers of the apps and online tools people use every day, such as design, video, PDF, productivity, browser and AI apps, reads the original sources and writes short news stories about what changed and what it means for you.Facts are checked automatically against the sources before a story is published. Read how stories are made in our 
+editorial policy
+. Spotted an error? Tell us through the 
+contact page
+.
+You Might Also Like
+Disney+ on Meta Quest Adds More Than 60 3D Movies and Themed Viewing Rooms
+November 10, 2026
+Gemini Tasks Goes Free in Six Countries, and US Users Can Now Text or Email Gemini
+November 17, 2026
+Firefox Free VPN Drops Its 50 GB Monthly Cap Until January 31, 2027
+November 10, 2026
+
+===== https://www.tetoran.com/chrome-158-security-update/
+(status 200)
+Chrome 158.0.8127.36/.37へ更新を｜204件の脆弱性を修正（Critical 6件）、バージョンの確かめ方
+2026
+11/18
+				セキュリティ			
+2026年11月18日
+※本記事にはプロモーションが含まれます。
+WindowsやMacでGoogle Chromeを使っている人は、アドレス欄に
+chrome://settings/help
+と入れて、バージョンが
+158.0.8127.36
+または
+158.0.8127.37
+以上かを確かめてください。更新があるときは、画面の案内に従って再起動します。
+Androidの場合は、あとの節で番号が違います。
+Googleは、2026年11月17日（米国時間）のChrome Releasesで、Chrome 158をWindows・Mac・Linuxの安定チャネル（stable channel）へ上げたと発表しています。公式によると、配信は数日〜数週間かけて順次進みます。この更新には204件のセキュリティ修正が含まれます。
+情報時点：Chrome Releasesのデスクトップ向け安定チャネル更新と、Android向け更新の公式ページは、2026年11月18日9時34分（日本時間）に取得しました。
+目次
+バージョンの確かめ方
+Windows・Mac・Linuxでは、次の手順で確かめられます。Chromeのメニューから「設定」→「Chromeについて」を開いても、同じ画面になります。
+Chromeを開き、アドレス欄に
+chrome://settings/help
+と入れる
+表示されたバージョンを見る。WindowsとMacは
+158.0.8127.36
+または
+158.0.8127.37
+以上、Linuxは
+158.0.8127.36
+以上なら、この発表の更新が入っています
+更新のダウンロードや「再起動」の案内が出ているときは、ダウンロードが終わるのを待って再起動する
+まだ番号が古いときは、公式が数日〜数週間かけて順次配信するとしているので、時間をおいて同じ画面でやり直してください。
+Androidの場合
+公式の「Chrome for Android Update」（2026年11月17日・米国時間）では、Android向けのChrome 158（
+158.0.8127.42
+）を公開したとしています。Google Playでの配信は、公式によると数日かかります。
+公式は、特に断りがなければ、対応するデスクトップ向けと同じセキュリティ修正を含むとしており、この告知に別の断りは書かれていません。
+直った内容
+公式は、「This update includes 204 security fixes」と書いています。同じページの一覧を、記載されている重さ（Critical、High、Medium、Low）で数えると、次のとおりでした。
+重さ（公式の表記）
+件数
+Critical
+6
+High
+62
+Medium
+82
+Low
+54
+合計
+204
+うち、Criticalと書かれている6件は、次のとおりです。
+CVE
+内容（公式の表記）
+CVE-2026-130963
+Use after free in WebView（解放後の使用）
+CVE-2026-131031
+Out of bounds write in GPU（範囲外への書き込み）
+CVE-2026-131060
+Buffer overflow in Media（バッファオーバーフロー）
+CVE-2026-131008
+Use after free in GarbageCollection（解放後の使用）
+CVE-2026-131054
+Out of bounds write in ANGLE（範囲外への書き込み）
+CVE-2026-130975
+Use after free in WebAudio（解放後の使用）
+自宅のパソコンやスマホのウイルス対策も見直すなら、
+セキュリティソフトの比較
+で、更新料と使える台数を確かめられます。
+PR
+ノートン 360、PCもMacもスマホもこれ一本！
+巧妙な詐欺も、ESETなら見抜く 軽くて強い、家族を守るセキュリティ
+よくある質問
+Chromeは自動で更新されますか？
+Chromeは、通常は自動で更新されます。いま入っている番号と、再起動が必要かどうかは、
+chrome://settings/help
+で確かめられます。
+WindowsやMacで、36と37のどちらならよいですか？
+公式は、WindowsとMac向けを
+158.0.8127.36
+/
+158.0.8127.37
+と書いています。どちらかが表示されていれば、この発表の更新が入っています。
+Androidの番号が、パソコン向けと違います。同じ修正ですか？
+公式のAndroid向けの番号は
+158.0.8127.42
+です。公式は、特に断りがなければ、対応するデスクトップ向けと同じセキュリティ修正を含むとしており、この告知に別の断りは書かれていません。
+参考リンク
+Chrome Releases｜Stable Channel Update for Desktop
+（2026年11月17日・米国時間。情報時点：2026年11月18日9時34分（日本時間））
+Chrome Releases｜Chrome for Android Update
+（2026年11月17日・米国時間。情報時点：2026年11月18日9時34分（日本時間））
+				セキュリティ			
+				よかったらシェアしてね！			
+URLをコピーしました！
+URLをコピーしました！
+KUSANAGIにHTTPヘッダーインジェクション（CVE-2026-117477）｜9.12.2-1以前などが対象、直ったバージョンは9.12.3-1／10.7.3-1
+		この記事を書いた人	
+				てとら			
+					以前はWindowsサーバーの構築・運用が中心で、いまは社内エンジニアとしてSREとセキュリティの仕事をしています。サーバーの構築や運用、クラウド環境の設計にも関わってきました。趣味はゲームと漫画・アニメ。				
+関連記事
+APFSとアプリの文字の正規化のずれで、ファイル制限を回避されるおそれ｜Appleは影響なし、go-slugなどが対象
+2026年11月18日
+KUSANAGIにHTTPヘッダーインジェクション（CVE-2026-117477）｜9.12.2-1以前などが対象、直ったバージョンは9.12.3-1／10.7.3-1
+2026年11月18日
+SoftBank製Airターミナル6にOSコマンドインジェクション（CVE-2026-101107）｜開発者は自動更新のため対応不要としている
+2026年11月18日
+JetBrains YouTrackに格納型XSS（CVE-2026-75048）｜対象は2026.2.18068より前のバージョン
+2026年11月18日
+ImageMagickを使うアプリに任意ファイルの読み書きのおそれ｜Railsはv8.0.5.2／v8.1.4.1で対応、ownCloud Classicは影響あり
+2026年11月18日
+WordPressのAdvanced Form Integrationに権限まわりの修正｜公式の最新は2.11.6、2.11.5で役割の割り当てを強化
+2026年11月18日
+TightVNCとUltraVNCのWindows Viewerにヒープオーバーフロー｜UltraVNCは1.8.2.8で修正、TightVNCは開発元と調整できず
+2026年11月18日
+7-Zipの最新は26.06｜ファイル名の警告をすり抜けられる問題は、GitHub Advisoryでは26.03より前が対象
+2026年11月18日
+		コメント	
+ コメントする 
+コメントをキャンセル

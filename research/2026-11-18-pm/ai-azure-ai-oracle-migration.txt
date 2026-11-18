@@ -1,0 +1,78 @@
+===== https://www.aib.vote/en/news/azure-dms-oracle-postgresql-migration-preview
+(status 429)
+We're verifying your browser
+Website owner? Click here to fix
+
+===== https://windowsforum.com/news/azure-dms-adds-oracle-to-postgresql-migration-preview-with-downtime-required.452872/
+(status 200)
+O
+racle shops eyeing PostgreSQL on Azure now have a Microsoft-managed way to move the data. Azure Database Migration Service (DMS) has an Oracle-to-PostgreSQL route in public preview, published on Azure Updates on November 17, 2026. It's useful, but it's a preview and it's offline only. The data move is also only one piece of an Oracle migration.
+What Microsoft announced​
+Microsoft's Ignite 2026 database roundup says DMS now supports offline data migrations from Oracle to Azure Database for PostgreSQL. I'm quoting no words from that post. Its description of the workflow is that teams configure connections, select schemas, and start and track the transfer in one experience. They don't have to build custom data-movement processes.
+A companion Microsoft Tech Community post adds specifics the Azure Updates entry lacked. The Oracle route in DMS, now in public preview, supports offline migration from Oracle 19c and later to both Azure Database for PostgreSQL flexible server and Azure HorizonDB. A separate HorizonDB post says offline migration is now in preview, and online migration is coming soon. Treat that "coming soon" as a roadmap statement, not a date.
+What "preview" means here​
+Microsoft's own DMS documentation says scenarios usually start in preview. Preview scenarios might not be available in all regions, and they may be revised before general availability. That page is dated February 20, 2026, so it predates this announcement. It doesn't describe this Oracle-to-PostgreSQL route.
+Azure's general status definition says "In preview" means available for non-production use and testing. I couldn't retrieve the update page itself, so I can't confirm:
+region availability
+pricing
+size limits
+networking requirements
+Check those in the portal before you plan around the preview.
+Offline means downtime​
+Microsoft's DMS documentation is blunt about the trade-off. In an offline migration, application downtime starts when the migration starts. Online migration limits downtime to the cutover. The documentation recommends testing an offline migration to see whether the downtime is acceptable.
+For Oracle-to-PostgreSQL, that means:
+Rehearse the transfer with a representative copy of the data and time it.
+Plan a write freeze or maintenance window for the real run.
+If the outage is unacceptable, this preview isn't your answer yet. Third-party replication tools, or the promised online mode, are the alternatives.
+How it compares with what existed​
+Microsoft's migration tools matrix (last updated August 18, 2026) lists only third-party tools for this pair. Ora2Pg and Ispirer are listed for schema and offline data work, and Striim for online data migration. The matrix flags all of these as non-Microsoft products. It may not yet reflect the new preview.
+Microsoft's DMS support table, dated earlier in 2026, showed Oracle sources only for Azure SQL targets, as preview scenarios using DMS via SSMA. It showed no Oracle-to-PostgreSQL entry. The new route is therefore a different target engine, not an update to the Oracle-to-SQL Server path.
+The tooling history is longer than that. In 2019 Microsoft announced an online (minimal downtime) Oracle-to-PostgreSQL migration in DMS, also as a preview. That's a reminder that preview labels in this area have a long shelf life. Also note the 2026 support table shows no online Oracle option for any target, so I wouldn't assume the 2019 capability is still available.
+Data is only half the job​
+Microsoft's Ignite post frames Oracle workloads as hard to move because migrating the data is only half the job. The Tech Community migration post describes three stages:
+Schema conversion
+ with the PostgreSQL extension for VS Code.
+Data movement
+ with Azure DMS, after the converted schema is deployed.
+Application conversion
+ with the Oracle application conversion skill in the postgres-skills plugin.
+The HorizonDB post says schema conversion reads the Oracle data dictionary and uses Microsoft Foundry models to generate PostgreSQL DDL. It then compiles the results against a PostgreSQL database and flags objects needing manual changes in a conversion report.
+Application conversion is its own preview. Microsoft's documentation says it needs Node.js 22 or later, and Docker for PostgreSQL integration testing. It also warns that AI-assisted conversion can produce incorrect or incomplete changes. A successful build doesn't establish production readiness. The limitations page says it "doesn't migrate production data", so this tooling doesn't replace DMS.
+Practical checklist​
+Confirm your version.
+ Microsoft's companion post cites Oracle 19c and later. Older releases aren't covered by that statement.
+Convert and review the schema first.
+ Data movement follows a deployed, reviewed target schema.
+Pick the target deliberately.
+ The two documented targets are flexible server and HorizonDB, which is a separate PostgreSQL-compatible service.
+Mind authentication.
+ A community private-preview guide, which isn't official documentation, said migration users had to authenticate by username and password on both ends. Verify whether that still holds in the public preview.
+Test in non-production.
+ That's Azure's own definition of preview use.
+Validate afterward.
+ Compare row counts and run functional, integration and performance tests. PL/SQL, data types and Oracle-specific features can need manual work.
+Bottom line​
+This is a real addition for teams that wanted a first-party path from Oracle to managed PostgreSQL. It's an offline, preview-stage data mover, not a full migration solution. Use it to evaluate your cutover window and your schema conversion results. Don't plan a production cutover around it until Microsoft confirms its regions and limits and ships the online mode it has promised.
+Update: Additional details (November 18, 2026)​
+A follow-up WindowsForum report says the DMS walkthrough supports public and private network paths and Oracle connections over TLS. It advises checking DNS and routing for private access, firewall rules for public access, and certificate trust for TLS.
+The report also says the separate application-conversion skill covers Java, .NET, Python, C and C++.
+References
+(In preview) Public Preview: Migrate Oracle databases to Azure Database for PostgreSQL using Azure Database Migration Service
+											Azure Updates
+ · 
+											2026-11-17T20:00:32Z
+Azure DMS Previews Offline Oracle Migration to HorizonDB and PostgreSQL
+											azure.microsoft.com
+GitHub - AnshulAngaria/oracle-to-postgresql-data-migration: Private preview guide for migrating Oracle data to Azure Database for PostgreSQL with Azure DMS · GitHub
+											github.com
+Click to expand...
+
+===== https://techcommunity.microsoft.com/blog/azuresqlblog/whats-new-in-databases-at-microsoft-ignite-2026-ai-ready-data-for-apps-and-agent/4570764
+(status 403)
+An unexpected error occured.
+20261118T054103Z-154d4d4c65997l6chC1BY13q1c00000046s0000000004e0k
+
+===== https://techcommunity.microsoft.com/blog/adforpostgresql/complete-oracle-to-postgresql-migration-move-your-schema-data-and-application-co/4573626
+(status 403)
+An unexpected error occured.
+20261118T054103Z-154d4d4c659drcqthC1BY1m3dc00000046wg000000006gyy
