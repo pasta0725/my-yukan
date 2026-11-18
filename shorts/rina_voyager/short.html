@@ -286,7 +286,7 @@ function building(x,y,s,col){g.save();g.translate(x,y);g.fillStyle=col||C.brand;
 const NASA='画像：NASA（想像図）';
 // the 0 s picture: NASA's illustration of Voyager 1 in interstellar space, filling the tall screen (the probe sits around 42% across)
 function openPic(z){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;const s=Math.max(W/i.width,H/i.height)*z;g.drawImage(i,CX-i.width*s*0.42,960-i.height*s*0.5,i.width*s,i.height*s);}
-const OPEN_SPLIT={'このボイジャー1号、':['この','ボイジャー1号、'],'話しかけても':['話しかけても'],'返事が来るのは2日後です。':['返事が来るのは','2日後']};
+const OPEN_SPLIT={'このボイジャー1号に':['この','ボイジャー1号に'],'話しかけても':['話しかけても'],'返事が来るのは2日後です。':['返事が来るのは','2日後']};
 function openParts(s){if(OPEN_SPLIT[s])return OPEN_SPLIT[s];if(s.replace(/[、。]/g,'').length<=7)return [s];const segs=[...SEG.segment(s)].map(x=>x.segment);const out=[];let cur='';
   for(const t of segs){if(cur&&(cur+t).replace(/[、。]/g,'').length>7&&cur.length>=2&&!NOSTART.includes(t[0])){out.push(cur);cur=t;}else cur+=t;}if(cur){if(cur.replace(/[、。]/g,'').length<2&&out.length)out[out.length-1]+=cur;else out.push(cur);}return out;}
 function earth(x,y,r){globe(x,y,r,0.2);}
