@@ -14,6 +14,7 @@ on:
       delay: {description: "minutes after the publish time", default: "15"}
 permissions:
   contents: write
+  actions: write
 jobs:
   thumb:
     runs-on: ubuntu-latest
@@ -38,7 +39,13 @@ jobs:
           DL: "${{ inputs.delay }}"
         run: |
           w=0; [ -n "$T" ] && w=$(( $(date -d "$T" +%s) - $(date +%s) ))
-          w=$(( w + DL * 60 )); [ $w -gt 0 ] && { echo "waiting $w s"; sleep $w; }
+          w=$(( w + DL * 60 ))
+          if [ $w -gt 18000 ]; then   # 2026-11-18: GitHub stops a job after 6 hours; a 7:00 publish uploaded the evening before waits 13 hours
+            echo "waiting $w s: sleep 5 h, then start again"; sleep 18000
+            GH_TOKEN="${{ github.token }}" gh workflow run short-thumb-check.yml --repo "${{ github.repository }}" --ref main -f name="$NM" -f id="$ID" -f at="$T" -f delay="$DL"
+            printf 'RESULT: RELAY\n\n公開まで5時間以上あるので、5時間後に同じ確認をもう一度始めた。\n' > /tmp/th.md; exit 0
+          fi
+          [ $w -gt 0 ] && { echo "waiting $w s"; sleep $w; }
           diff() { curl -s -o /tmp/yt.jpg "https://i.ytimg.com/vi/$ID/sardefault.jpg?t=$(date +%s)"; python3 -c "
           from PIL import Image, ImageChops, ImageStat
           v = lambda p: Image.open(p).convert('L').resize((36, 64))

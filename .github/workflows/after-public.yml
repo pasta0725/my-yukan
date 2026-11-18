@@ -1,0 +1,56 @@
+name: after-public
+# After a scheduled Short goes public: set the thumbnail once more, post the first comment, move the video to Drive.
+# Split out of youtube-upload.yml on 2026-11-18: a job may run 6 hours at most, and the 7:00 publishes were uploaded the
+# evening before (13 hours of waiting), so the waiting job was cancelled and the thumbnail and comment never came
+# (rina_x20 11/17, rina_siri_limits 11/18). Now a wait longer than 5 hours sleeps 5 hours and starts this workflow again.
+on:
+  workflow_dispatch:
+    inputs:
+      name: {description: "short name", required: true}
+      id: {description: "video ID", required: true}
+      at: {description: "publish time, e.g. 2026-11-19T07:00:00+09:00", required: true}
+      comment: {description: "first comment (optional)", default: ""}
+permissions: { contents: read, actions: write }
+jobs:
+  wait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env: { N: "${{ inputs.name }}", ID: "${{ inputs.id }}", T: "${{ inputs.at }}", C: "${{ inputs.comment }}", GH_TOKEN: "${{ github.token }}" }
+    steps:
+      - name: wait (relay when it is longer than 5 hours)
+        run: |
+          w=$(( $(date -d "$T" +%s) - $(date +%s) + 20 ))
+          if [ $w -gt 18000 ]; then
+            echo "publish in $w s: sleep 5 h, then start again"; sleep 18000
+            gh workflow run after-public.yml --repo "${{ github.repository }}" --ref main -f name="$N" -f id="$ID" -f at="$T" -f comment="$C"
+            echo "RELAYED=1" >> "$GITHUB_ENV"; exit 0
+          fi
+          [ $w -gt 0 ] && sleep $w; true
+      - uses: actions/checkout@v4
+        if: env.RELAYED != '1'
+      - uses: actions/setup-python@v5
+        if: env.RELAYED != '1'
+        with: { python-version: "3.12" }
+      - name: set the thumbnail again and comment, once it is public
+        if: env.RELAYED != '1'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          pip install -q google-api-python-client google-auth
+          python3 tools/work_branch.py get channel/thumbs || true
+          for i in $(seq 1 40); do
+            s=$(python3 tools/youtube_upload.py "$N" "status:$ID" | grep -oE 'privacy: [a-z]+' | cut -d' ' -f2)
+            echo "privacy: $s"
+            if [ "$s" = public ]; then
+              python3 tools/youtube_upload.py "$N" "thumb:$ID" || echo "thumbnail again failed (set it with video=thumb:$ID)"
+              [ -n "$C" ] && python3 tools/youtube_upload.py "$N" "comment:$ID" --comment "$C"
+              echo "PUBLIC=1" >> "$GITHUB_ENV"; exit 0
+            fi
+            [ "$s" = private ] && [ $i -ge 20 ] && { echo "still private (stopped?) - no comment"; exit 0; }
+            sleep 30
+          done
+      - name: move the video and its materials to Google Drive
+        if: env.PUBLIC == '1'
+        run: gh workflow run drive-store.yml --repo "${{ github.repository }}" -f name="$N" || echo "start drive-store.yml by hand (name=$N)"

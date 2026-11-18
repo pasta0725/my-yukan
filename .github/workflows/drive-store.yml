@@ -73,4 +73,8 @@ jobs:
           fi
           echo "done: video=${VIDEO_OK:-0} assets=${ASSETS_OK:-0}" | tee -a "$GITHUB_STEP_SUMMARY"
           # the day's talking clips and fetched pages are used up once the video is published (user 2026-11-12: remove them)
-          if [ "$VIDEO_OK" = 1 ] && [ "$ASSETS_OK" = 1 ]; then for b in generated fetched work; do git push -q origin --delete "$b" 2>/dev/null && echo "deleted branch $b"; done; fi
+          # 2026-11-18: only when no other video is still waiting on upload-tmp. Deleting them while a 7:00 video was waiting
+          # removed its thumbnail and materials (rina_x20, rina_siri_limits).
+          git fetch -q origin upload-tmp 2>/dev/null && WAITING=$(git ls-tree --name-only origin/upload-tmp 2>/dev/null | grep -c '\.mp4$') || WAITING=0
+          if [ "$VIDEO_OK" = 1 ] && [ "$ASSETS_OK" = 1 ] && [ "${WAITING:-0}" = 0 ]; then for b in generated fetched work; do git push -q origin --delete "$b" 2>/dev/null && echo "deleted branch $b"; done
+          elif [ "${WAITING:-0}" != 0 ]; then echo "kept branches generated, fetched, work: $WAITING video(s) still waiting on upload-tmp"; fi
