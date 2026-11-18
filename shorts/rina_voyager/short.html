@@ -303,7 +303,7 @@ const S={
  // 0 s (user 2026-11-17): only the real picture (NASA's Voyager 1 illustration, full screen) and the huge telop of the first sentence, chunk by chunk.
  open(u,d,L){abs(()=>{openPic(1.0+0.05*u/Math.max(1,d));creditAt(NASA,1000,1640);
      const ph=['このボイジャー1号に','話しかけても','返事が来るのは','2日後'],full=L.text||ph.join('');const tot=ph.join('').length;let acc=0,last=ph[0],t0=0;
-     for(const x of ph){const st=d*0.92*acc/tot;if(u>=st){last=x;t0=st;}acc+=x.length;}
+     for(const x of ph){const st=d*0.82*acc/tot;if(u>=st){last=x;t0=st;}acc+=x.length;}
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // 49 years: the launch year counts up to now, then the stamp "first for a human-made object"
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'人工物')),d-0.9);
