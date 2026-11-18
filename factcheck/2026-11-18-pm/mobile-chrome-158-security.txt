@@ -1,0 +1,317 @@
+===== https://forest.watch.impress.co.jp/docs/news/2157314.html
+(status 200)
+ニュース
+「Google Chrome 158」が公開 ～204件の脆弱性を修正、「XSLT」サポートが終了
+ 「Web Install API」対応、Android版では「WebHID」にも 
+樽井 秀人
+2026年11月18日 13:05
+「Google Chrome 158」が安定（Stable）チャネルに
+窓の杜から
+ダウンロード
+ 　米Googleは11月17日（現地時間、以下同）、デスクトップ向け「Google Chrome」の安定（Stable）チャネルをアップデートした。
+「Chrome 157」
+に続くメジャーリリースで、Windows/Mac環境にはv158.0.8127.36/.37が、Linux環境にはv158.0.8127.36が順次展開される。 
+ 　「Chrome 158」では「XSLT」のサポートが終了し、オリジントライアルやエンタープライズポリシーを有効にしている場合を除き、安定版では機能しなくなる。 
+ 　「XSLT」（Extensible Stylesheet Language Transformations）は、XMLデータの変換ルールを記述するXMLベースの言語。たとえば、XMLデータを人間にも読みやすいHTML形式へ変換するといった用途に用いられる。v1.0は1999年に標準化され、すべてのWebブラウザーでネイティブサポートされていたが、v2.0、v3.0へ追従するWebブラウザーは現れず、「Chrome」をはじめとする「Chromium」系ブラウザーでは、これらの変換処理に「libxslt」が用いられていた。 
+ 　「libxslt」はC言語ベースの古く複雑なライブラリで、バッファーオーバーフローなどのメモリ安全性に関わる脆弱性が繰り返し報告されている。Googleは、利用が大きく減る一方で、攻撃の糸口になっているとして削除を決めた。 
+ 　なお、「Gecko」（Firefox）や「WebKit」（Safari）も、「XSLT」を削除する方針を示している。「Chrome」でのオリジントライアルとエンタープライズポリシーも「Chrome 176」で終了し、すべてのユーザーで無効化される予定。 
+ 　そのほかにも、Webサイトからユーザーへアプリのインストールを促せる
+「Web Install API」
+（navigator.install()メソッド）と、そのHTML版である<install>要素がデスクトップ版で導入された。マニフェストURLを指定することで、別のオリジンのWebアプリもインストールさせられる。IT管理者は「WebAppInstallByUserEnabled」ポリシーなどで、この機能を制御可能だ。 
+「Web Install API」のデモで表示されたWebアプリのインストール画面
+ 　また、Android版「Chrome」では、USBやBluetoothで接続したHIDデバイスとWebアプリがやり取りできる「WebHID」APIがサポートされた（Android 17以降）。デスクトップ版では
+「Chrome 89」
+から利用できたもので、メカニカルキーボードやゲーミングマウスのカスタマイズなどに使われている。 
+ 　開発者向けの新機能としては、CSSで<audio>/<video>要素の再生状態にマッチする疑似クラス（:playing、:pausedなど）や、すべてのカスタムハイライトにマッチする「::highlight(*)」セレクターなどが追加された。 
+セキュリティ修正
+ 　「Chrome 158」では、
+ 204件 
+ のセキュリティ修正も実施されている。このうち、深刻度が4段階中もっとも高い「Critical」（致命的）と評価された脆弱性は、以下の6件。 
+CVE-2026-130963
+：Use after free in WebView
+CVE-2026-131031
+：Out of bounds write in GPU
+CVE-2026-131060
+：Buffer overflow in Media
+CVE-2026-131008
+：Use after free in GarbageCollection
+CVE-2026-131054
+：Out of bounds write in ANGLE
+CVE-2026-130975
+：Use after free in WebAudio
+ 　残りは4段階中2番目に高い「High」が62件、「Medium」が82件、「Low」が54件。今回は、悪用が確認されている脆弱性のアナウンスはない。 
+ 　デスクトップ向け「Google Chrome」はWindows/Mac/Linuxに対応しており、現在、同社のWebサイトから無償でダウンロード可能。Windows版はWindows 10以降（Arm版はWindows 11以降）、Mac版はmacOS 13 Ventura以降に対応する。すでにインストールされている場合は自動で更新されるが、設定画面（chrome://settings/help）にアクセスすれば手動でアップデート可能。アップデートを完全に適用するには、「Google Chrome」の再起動が必要だ。
+
+===== https://www.security-next.com/192998
+(status 200)
+Security NEXTでは、最新の情報セキュリティに関するニュースを日刊でお届けしています。
+ニュース
+政府・業界動向
+脆弱性
+製品・サービス
+コラム
+過去記事
+メルマガ
+「Chrome 158」で脆弱性204件に対処 - 6件が「クリティカル」
+Googleは、ウェブブラウザ「Google Chrome 158」を公開した。200件以上の脆弱性に対応しており、「クリティカル」とされる脆弱性も含まれる。
+同社は現地時間2026年11月17日、WindowsおよびmacOS向けに「Google Chrome 158.0.8127.37」「同158.0.8127.36」、Linux向けに「同158.0.8127.36」をリリースした。今後数日から数週間をかけて順次展開していく。
+今回のアップデートでは、あわせて204件の脆弱性に対応した。重要度が4段階中もっとも高い「クリティカル（Critical）」とされる脆弱性は6件。
+「WebView」の「CVE-2026-130963」、「GarbageCollection」の「CVE-2026-131008」、「WebAudio」の「CVE-2026-130975」の3件はいずれも解放後のメモリを使用するいわゆる「Use After Free」の脆弱性。
+また「GPU」の「CVE-2026-131031」、グラフィックス関連コンポーネント「ANGLE」の「CVE-2026-131054」は、域外メモリへの書き込みが生じるという。あわせて「Media」におけるバッファオーバーフローの脆弱性「CVE-2026-131060」に対処している。
+重要度が2番目に高い「高（High）」とされる脆弱性は62件。スクリプトエンジン「V8」やプロセス間通信基盤「Mojo」における「Use After Free」の脆弱性をはじめ、拡張機能における認可処理の不備など、多岐にわたる脆弱性を解消。
+このほか、重要度が「中（Medium）」とされる82件、「低（Low）」とされる54件に対応している。
+今回のアップデートで修正された脆弱性は以下のとおり。
+CVE-2026-130963（Critical）
+CVE-2026-130975（Critical）
+CVE-2026-131008（Critical）
+CVE-2026-131031（Critical）
+CVE-2026-131054（Critical）
+CVE-2026-131060（Critical）
+CVE-2026-130907（High）
+CVE-2026-130909（High）
+CVE-2026-130910（High）
+CVE-2026-130914（High）
+CVE-2026-130915（High）
+CVE-2026-130926（High）
+CVE-2026-130932（High）
+CVE-2026-130934（High）
+CVE-2026-130940（High）
+CVE-2026-130941（High）
+CVE-2026-130943（High）
+CVE-2026-130944（High）
+CVE-2026-130945（High）
+CVE-2026-130946（High）
+CVE-2026-130951（High）
+CVE-2026-130952（High）
+CVE-2026-130954（High）
+CVE-2026-130957（High）
+CVE-2026-130961（High）
+CVE-2026-130968（High）
+CVE-2026-130970（High）
+CVE-2026-130977（High）
+CVE-2026-130979（High）
+CVE-2026-130980（High）
+CVE-2026-130982（High）
+CVE-2026-130984（High）
+CVE-2026-130994（High）
+CVE-2026-130996（High）
+CVE-2026-130999（High）
+CVE-2026-131002（High）
+CVE-2026-131004（High）
+CVE-2026-131007（High）
+CVE-2026-131013（High）
+CVE-2026-131021（High）
+CVE-2026-131022（High）
+CVE-2026-131023（High）
+CVE-2026-131025（High）
+CVE-2026-131033（High）
+CVE-2026-131039（High）
+CVE-2026-131042（High）
+CVE-2026-131044（High）
+CVE-2026-131045（High）
+CVE-2026-131050（High）
+CVE-2026-131057（High）
+CVE-2026-131059（High）
+CVE-2026-131063（High）
+CVE-2026-131065（High）
+CVE-2026-131068（High）
+CVE-2026-131076（High）
+CVE-2026-131079（High）
+CVE-2026-131081（High）
+CVE-2026-131082（High）
+CVE-2026-131083（High）
+CVE-2026-131084（High）
+CVE-2026-131089（High）
+CVE-2026-131090（High）
+CVE-2026-131092（High）
+CVE-2026-131093（High）
+CVE-2026-131100（High）
+CVE-2026-131101（High）
+CVE-2026-131103（High）
+CVE-2026-131104（High）
+CVE-2026-130905（Medium）
+CVE-2026-130913（Medium）
+CVE-2026-130917（Medium）
+CVE-2026-130923（Medium）
+CVE-2026-130924（Medium）
+CVE-2026-130928（Medium）
+CVE-2026-130929（Medium）
+CVE-2026-130930（Medium）
+CVE-2026-130933（Medium）
+CVE-2026-130936（Medium）
+CVE-2026-130937（Medium）
+CVE-2026-130938（Medium）
+CVE-2026-130942（Medium）
+CVE-2026-130947（Medium）
+CVE-2026-130948（Medium）
+CVE-2026-130956（Medium）
+CVE-2026-130958（Medium）
+CVE-2026-130959（Medium）
+CVE-2026-130960（Medium）
+CVE-2026-130962（Medium）
+CVE-2026-130965（Medium）
+CVE-2026-130969（Medium）
+CVE-2026-130971（Medium）
+CVE-2026-130974（Medium）
+CVE-2026-130976（Medium）
+CVE-2026-130985（Medium）
+CVE-2026-130986（Medium）
+CVE-2026-130987（Medium）
+CVE-2026-130988（Medium）
+CVE-2026-130989（Medium）
+CVE-2026-130990（Medium）
+CVE-2026-130991（Medium）
+CVE-2026-130992（Medium）
+CVE-2026-130995（Medium）
+CVE-2026-130997（Medium）
+CVE-2026-131000（Medium）
+CVE-2026-131003（Medium）
+CVE-2026-131006（Medium）
+CVE-2026-131010（Medium）
+CVE-2026-131011（Medium）
+CVE-2026-131014（Medium）
+CVE-2026-131015（Medium）
+CVE-2026-131017（Medium）
+CVE-2026-131019（Medium）
+CVE-2026-131020（Medium）
+CVE-2026-131024（Medium）
+CVE-2026-131026（Medium）
+CVE-2026-131028（Medium）
+CVE-2026-131030（Medium）
+CVE-2026-131032（Medium）
+CVE-2026-131036（Medium）
+CVE-2026-131038（Medium）
+CVE-2026-131043（Medium）
+CVE-2026-131046（Medium）
+CVE-2026-131047（Medium）
+CVE-2026-131048（Medium）
+CVE-2026-131051（Medium）
+CVE-2026-131052（Medium）
+CVE-2026-131053（Medium）
+CVE-2026-131056（Medium）
+CVE-2026-131058（Medium）
+CVE-2026-131061（Medium）
+CVE-2026-131062（Medium）
+CVE-2026-131064（Medium）
+CVE-2026-131066（Medium）
+CVE-2026-131067（Medium）
+CVE-2026-131069（Medium）
+CVE-2026-131070（Medium）
+CVE-2026-131071（Medium）
+CVE-2026-131074（Medium）
+CVE-2026-131075（Medium）
+CVE-2026-131077（Medium）
+CVE-2026-131078（Medium）
+CVE-2026-131080（Medium）
+CVE-2026-131086（Medium）
+CVE-2026-131087（Medium）
+CVE-2026-131091（Medium）
+CVE-2026-131094（Medium）
+CVE-2026-131095（Medium）
+CVE-2026-131096（Medium）
+CVE-2026-131097（Medium）
+CVE-2026-131106（Medium）
+CVE-2026-121101（Low）
+CVE-2026-130904（Low）
+CVE-2026-130906（Low）
+CVE-2026-130908（Low）
+CVE-2026-130911（Low）
+CVE-2026-130912（Low）
+CVE-2026-130916（Low）
+CVE-2026-130918（Low）
+CVE-2026-130919（Low）
+CVE-2026-130920（Low）
+CVE-2026-130921（Low）
+CVE-2026-130922（Low）
+CVE-2026-130925（Low）
+CVE-2026-130927（Low）
+CVE-2026-130931（Low）
+CVE-2026-130935（Low）
+CVE-2026-130939（Low）
+CVE-2026-130949（Low）
+CVE-2026-130950（Low）
+CVE-2026-130953（Low）
+CVE-2026-130955（Low）
+CVE-2026-130964（Low）
+CVE-2026-130966（Low）
+CVE-2026-130967（Low）
+CVE-2026-130972（Low）
+CVE-2026-130973（Low）
+CVE-2026-130978（Low）
+CVE-2026-130981（Low）
+CVE-2026-130983（Low）
+CVE-2026-130993（Low）
+CVE-2026-130998（Low）
+CVE-2026-131001（Low）
+CVE-2026-131005（Low）
+CVE-2026-131009（Low）
+CVE-2026-131012（Low）
+CVE-2026-131016（Low）
+CVE-2026-131018（Low）
+CVE-2026-131027（Low）
+CVE-2026-131029（Low）
+CVE-2026-131034（Low）
+CVE-2026-131035（Low）
+CVE-2026-131037（Low）
+CVE-2026-131040（Low）
+CVE-2026-131041（Low）
+CVE-2026-131049（Low）
+CVE-2026-131055（Low）
+CVE-2026-131072（Low）
+CVE-2026-131073（Low）
+CVE-2026-131085（Low）
+CVE-2026-131088（Low）
+CVE-2026-131098（Low）
+CVE-2026-131099（Low）
+CVE-2026-131102（Low）
+CVE-2026-131105（Low）
+（Security NEXT - 2026/11/18 ）
+ツイート
+関連リンク
+Chrome
+Google
+PR
+関連記事
+「Firefox 160.0.1」公開 - 動画再生関連など脆弱性2件を修正
+「GitLab」に37件の脆弱性 - 重要度「High」が4件
+「Go」のビルド関連機能に脆弱性 - 修正版が公開
+ストレージ製品「Dell PowerStore」の複数の脆弱性
+「Apache TomEE」が脆弱性38件に対処 - 対象モジュールの削除も
+「Chrome」が今週2度目の更新 - 脆弱性83件を修正、「クリティカル」も
+NECのリモート操作ソフト「WebSAM WinShare」にRCE脆弱性
+「FortiMail」に深刻な脆弱性 - 10月の更新で対応
+Check Point製品に脆弱性 - 「PHP2Shell」連鎖での悪用も
+「Apache Airflow」の分散処理機能に脆弱性 - 修正版が公開
+ピックアップ
+「Chrome 158」で脆弱性204件に対処 - 6件が「クリティカル」
+Check Point製品に脆弱性 - 「PHP2Shell」連鎖での悪用も
+NECのリモート操作ソフト「WebSAM WinShare」にRCE脆弱性
+「FortiMail」に深刻な脆弱性 - 10月の更新で対応
+「Chrome」が今週2度目の更新 - 脆弱性83件を修正、「クリティカル」も
+MS、月例更新で脆弱性1000件超に対応 - 一部で悪用確認
+「FortiOS」に複数の脆弱性 - 3件が重要度「クリティカル」
+Windows版「Zoom Workplace」に脆弱性 - 「クリティカル」も
+「Roundcube」に複数の脆弱性 - 更新を強く推奨
+「Chrome」にセキュリティアップデート - ゼロデイ脆弱性に対応
+製品・サービスニュース
+SNS投稿のリスクを疑似体験できるゲーム「ばくモレ」 - 学校向け教材も
+マルウェアの挙動をリアルタイム監視するOSSを公開 - JPCERT/CC
+「SonicWall SMA 100」にアップデート - 既知マルウェアの除去機能を追加
+「情報セキュリティ白書2025」PDF版を先行公開 - 書籍は9月30日発売
+オープンソースソフト開発者に診断サービスを無償提供 - GMO
+「WarpDrive」の学習機能を刷新、3000問以上収録 - NICT
+パッチや緩和策の適用、メモリ保護を統合した脆弱性対策製品
+Security NEXTとは？
+　|　
+広告掲載について
+　|　
+利用規約・免責事項
+　|　
+二次利用について
+　|　
+外部送信について
+　|　
+お詫びと訂正
+　|　
+運営会社概要
+Copyright (c) NEWSGAIA Co.,Ltd. All rights reserved.

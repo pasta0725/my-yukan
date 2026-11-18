@@ -1,0 +1,327 @@
+===== https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/
+(status 200)
+Text
+        settings
+Story text
+Size
+Small
+Standard
+Large
+Width
+*
+Standard
+Wide
+Links
+Standard
+Orange
+* Subscribers only
+Learn more
+            Minimize to nav
+Opening the keynote at its Ignite event, Microsoft CEO Satya Nadella outlined the company’s vision for its new 
+“frontier
+ ecosystem,” announcing Tuesday the general availability of Word, Excel, and PowerPoint inside Copilot, which he described as “the new OS for work.”
+The announcement is a striking inversion of how we’ve traditionally used software. Rather than an app like Word being the attraction and 
+Clippy the assistant
+ to help you use it, Microsoft envisions the new Copilot integrations will see agents driving things, with the software packages riding shotgun. Applications will become plugin components of the agent’s work, backed by an organizational knowledge layer that draws context from emails, meetings, calendars, chats, and files. Users will now be able to create documents, spreadsheets, and presentations directly in Copilot, with the resulting files remaining editable in their respective Office applications.
+The rollout marks a major step toward the 
+Copilot redesign the company first announced
+ in September. Parts of that vision are now becoming “generally available,” as Nadella puts it, with autonomous agents and new governance tools arriving alongside them.
+All about agents
+Copilot Autopilot (not to be confused with Windows Autopilot) is a “persistent, proactive agent for personal productivity” according to Microsoft. In a nutshell, Autopilot is a cloud-based autonomous AI agent that users can delegate responsibilities to, not just single tasks. Autopilot can be authorized to work across services like email and calendars and complete tasks assigned to it as part of its role. Autopilot will use usage-based billing via Copilot Credits, but final pricing has not been announced ahead of general availability.
+Also announced as generally available at the keynote speech was 
+Microsoft IQ
+, an intelligence platform that houses 
+Work IQ
+, a context layer that helps agents understand a company’s communications, relationships, and ongoing work. Nadella described Work IQ as perhaps a company’s most valuable database: “It has a deep understanding of the people, their relationships to other people, your emails, your meetings, chats, projects that make up all the fabric of work.” Whether companies want autonomous agents to have access to internal documents and messaging data will have to be determined by their own internal IT review.
+Copilot Workspaces is a collaborative environment currently available through Microsoft’s Frontier early-access program, but coming soon will be the ability to bring personal Autopilot agents into Workspaces. Early in the keynote address, Nadella said that “Until now, AI interactions have mostly been single-player. Workspaces makes it a truly multiplayer experience, where people and agents drive towards a common goal, with shared context.”
+Governance over trust
+Trust, the third pillar of Microsoft’s new frontier ecosystem, was something that Nadella continued returning to during his presentation, and not in a way that some might expect. “We find ourselves in a place where alignment is elusive. Mechanistic understanding of these models is elusive. The question is: How can you even trust all this powerful technology? The reality is, by definition, you can’t,” he said.
+In a departure from the norms of “AI is magic” corporate hype sentiment, Nadella conceded that the internal workings of AI thought processes remain difficult to understand, and models cannot be trusted to govern themselves, regardless of whether their answers are accurate. Nadella described the solution as “an architectural imperative to separate the supply of intelligence” from the authority granted to it. Microsoft says each Autopilot agent will have a unique ID, and administrators can restrict permissions or block it entirely. All agent activities are logged for human review, and Autopilot can ask for human approval before engaging in certain actions.
+              Human ambition, intelligence, and trust are said to be the three pillars of the frontier ecosystem.
+      Human ambition, intelligence, and trust are said to be the three pillars of the frontier ecosystem.
+The promised agent controls and admission that AI systems can’t always be trusted are meaningful, but Microsoft is asking businesses and users to place their trust in the company’s own safeguards instead, though the effectiveness of those safeguards against mistakes, rogue actions, or data exposure will still have to be demonstrated. In Microsoft’s view, the solution to untrustworthy intelligence is not to make AI agents trustworthy, but to control what they’re permitted to do. Businesses will have to decide how much autonomy they delegate to agents.
+Along with the guardrails, Microsoft announced what it calls the “
+AI Transparency Initiative
+.” The effort has partnered with 40-plus major companies, including Adobe and Mastercard, to develop open, industrywide standards for AI governance and security. Nadella described the initiative as a way for industry to “help establish an open standard that makes AI safer, more transparent, and more accessible.”
+Minding and measuring token-spend
+Along with the other announced additions, Microsoft also announced expanding capabilities for 
+Agent 365
+, its existing control plane for managing AI agents across enterprise environments. The new agent sheriff extends existing identity, security, and management systems to AI agents. Microsoft describes the objective as providing “observability at every layer of the stack.” Agent 365 offers governance controls over agent behavior in what Microsoft says is “autonomous in execution, but bounded and supervised.”
+Along with Agent 365 comes 
+Agent 365 Business Analytics
+: “You can simply think of this as an ERP system of AI usage. You can see exactly what’s driving the spend and connect the spend to the outcomes that drive business value,” said Nadella. Customers will be able to see real-world costs associated with AI token-spend, and compare those metrics to the value of work performed. Microsoft acknowledged that the estimations of assisted 
+work hours are determined by a model
+, and not a direct measurement of time that may have been saved. This is a telling concession for Microsoft to make as businesses evaluate whether there will be an ROI on AI implementations, but according to Judson Althoff, CEO of Microsoft Commercial Business, “anything you can do with Claude or ChatGPT, you can do better with Copilot, 
+for less
+.”
+The outage in the room
+Nadella offered only a brief acknowledgment of 
+last week’s outage
+ that disrupted access to services like Exchange Online and Teams for users across the globe. “Last week was a reminder of how critical digital infrastructure is as the dial tone for the world,” he said. “We know the trust you place in our services and take that responsibility extremely seriously, and in that context I know we have work to do.”
+              Some big promises
+      Some big promises
+That statement was all the time the elephant in the room was given, but Microsoft did seem to acknowledge the public’s growing concern over data center projects by highlighting the previously discussed “
+community-first AI infrastructure plan
+.” Not a surprise in a presentation that asks organizations to extend more autonomy to software agents, at a time when Microsoft’s existing infrastructure is under increased scrutiny.
+                  Nick Indge
+Senior Technology Reporter
+                  Nick Indge
+Senior Technology Reporter
+      Nick Indge is a Senior Technology Reporter at Ars Technica covering hardware, embedded systems, and self-hosted infrastructure. A former security investigator turned tech writer, he writes to help readers escape subscription traps and regain ownership of their digital lives. He lives in Chicagoland with his family and a goofball husky.
+    110 Comments
+
+===== https://blogs.microsoft.com/blog/2026/11/17/ignite-2026-building-the-frontier-ecosystem/
+(status 200)
+Satya Nadella, Microsoft Chairman and CEO, delivered the opening keynote at 
+Ignite in San Francisco
+ this morning. Here is an edited version of his remarks.
+This week is about two things: First is how we capitalize on new capabilities that are growing exponentially. And second is how do we build the capability to deal with the consequences of these exponentials.
+At times like these, I always find it helpful to be grounded in our mission: To empower every person and every organization on the planet to achieve more. In today’s world, that means building a frontier ecosystem. We need to parlay any technological advance into real outcomes and new points of leverage for people, organizations and society at large.
+For us, that comes down to three things: Keeping human ambition at the center, ensuring your control of your organization’s intelligence and learning, and trust.
+And so, our goal is to build a stack that addresses these three core architectural principles.
+Copilot
+Copilot is the 
+new OS for work
+. Copilot brings together all the new form factors of human-computer interaction, whether it is Chat, Cowork, Code or Autopilot, into one experience. It also brings together the disparate categories of knowledge work, coding and business process. That is why we have all of Office with its richness built into Copilot. And underlying it is a model system that matches the right intelligence to the right context to the right form factor to accomplish the task.
+Home gives you one place to start, whether you need a quick answer or want to assign and complete complex, multi-step tasks. Code brings the power of an infinite SaaS factory to every individual. It lets you build your own custom SaaS apps, dashboards and much more. And Autopilot is an autonomous agent that keeps moving your work forward 24×7 in all the places where you and your team collaborate.
+Underlying all this is Work IQ. You can think of this as the most important database for any organization, with a deep understanding of people, their relationships, documents, emails, meetings, chats and projects that make up the fabric of work.
+And we are going further. We are extending Copilot for specific roles: sales, legal, finance, service. We are organizing the skills, connectors and plugins for these roles across the entire surface area of Copilot.
+And that includes third-party systems, too. In fact, today we are announcing new plugins for business applications, starting with Dynamics 365. And it is not just Dynamics. We are very excited to partner with Salesforce to 
+bring Salesforce to Copilot
+.
+And we are going beyond that as well. Up until now, we have mostly been in a single player world of people and their agent loops and swarms. But the time has come for a true multiplayer form factor, where people, their agents and other people are all driving towards a common goal, with shared context. This is Copilot Workspaces:
+YouTube Video
+Click here to load media
+Microsoft IQ
+The idea behind IQ is to help every organization 
+build, retain and continuously improve
+ its own intelligence. Essentially, we are taking the system we built underneath Copilot and externalizing it as a first-class platform that embodies your organizational intelligence as an asset that you continuously build and control.
+We are bringing together all of the data you have across Fabric, Foundry and Microsoft 365. And, of course, all the third-party context too. Microsoft IQ comes with hundreds of new connectors we are announcing today, so agents can get the full enterprise context where business gets done. And all this rich context manifests as business plugins that can be shared and inherited across the organization.
+Models
+For us, it is about mapping intelligence to a given task, with the best economics. This is something we can uniquely do in the context of real-world tasks by tuning our products, harness and tools, and the model system, end-to-end.
+And today we are thrilled to announce 
+Microsoft-Decision-1.1
+, which is now generally available and ready for enterprise deployment. We have added multimodal support. And we have improved performance, making decisions more accurate and responses faster. Already, more than 4,000 customers have used it. And we ourselves are using it for core tasks like routing, data labeling, personalization, content filtering and hundreds of other use cases.
+Foundry of course has all the most popular closed and open weight models, too. We are very excited to bring GPT 6.2 to Foundry. It is a great model that sets a new bar for AI in professional work. And today we are announcing that Meta’s latest models are all coming to Foundry as well.
+We are also innovating at the frontier with our own MAI model family that is both compute-efficient when it comes to pre-training and token-efficient when it comes to product deployment. Our goal is to put additional points on the frontier curve informed by real world task-performance.
+And we are going further. We are announcing MAI Licensed Weights, meaning our trusted customers will now be able to get access to Microsoft AI model weights through our Frontier Co.
+Today, we are 
+introducing lots of new models
+. But I want to highlight two in particular:
+First, Code. We are introducing our new flagship family of agentic coding models: Code 2. Code 2 is at the frontier of cost-performance for everyday enterprise coding tasks. It excels in taking code to production, deep debugging, multifile implementation, repo-wide reasoning and UI at a fraction of frontier cost.
+Code 2 Flash is designed for fast, high-volume work like code explanations, targeted edits, routine fixes and rapid iterations. It brings near-flagship quality for a much lower cost. These models are both generally available today on GitHub Copilot, both in the model picker and as part of Copilot Fusion. They are also available in Foundry.
+We are taking the same approach in cyber. Cyber 2 Flash is our most capable security model yet. It is a flash-sized model that delivers performance ahead of frontier models at a fraction of the cost per task. And, just as we have done with coding, we are co-designing the model with the tools and systems where it will be used. We are integrating Cyber 2 with Perception.
+Agent 365
+Successfully deploying AI systems starts with making sure you have observability at every layer of the stack. That is where Agent 365 comes in. It is a control plane that extends your existing governance, identity, security and management systems to the agents in your enterprise. We already have over 50 million agents in Agent 365.
+And it includes FinOps, too. As AI scales, every organization needs a clear line between what it spends and the value AI creates. That is why today we are announcing Agent 365 Business Analytics. You can think of it as your ERP system for AI usage. You can see exactly what is driving spend. You can connect spend to outcomes to drive business value. And you can optimize ROI across different scenarios.
+Security
+The next thing I want to talk about is how you take the environment you have set up, from Copilot to IQ to Agent 365, and secure it. And that is where Perception and our security stack comes in. We are building an end-to-end trust platform. We are helping customers both secure their AI deployments and use AI to strengthen their security posture.
+Perception is a 
+complete agentic security system
+ with teams of red, blue and green agents that run through playbooks to deliver security outcomes at machine speed, with you always in control.
+Essentially, think about it like this: red team agents simulate attacks, blue team agents detect attacks and green team agents fix and remediate. With Playbooks, you can compose teams of agents to tackle complex jobs and trigger them to take action autonomously.
+Perception helps connect all the signals, sensors and actuators across your identity, client, cloud, apps and agents to intelligence to secure your end-to-end environments. And I am very excited to share that Perception is now generally available.
+In addition to the work we have been doing across our products, we are also working across the ecosystem to ensure everyone can innovate at speed and scale, safely. Today, we can see almost everything models touch. But we cannot see what happens inside the model. And what the model tells us about itself is not independent evidence. These nested black boxes are simply unacceptable. We need to be able to examine what AI sees and does, verify its actions independently and control what it is allowed to do.
+That is why today we are also announcing the 
+Microsoft AI Transparency Initiative
+.
+There are three parts to this: First, we will expand our collaboration in NIST’s Agent Standards Initiative, drawing on its research to help lead the development of open, industry-wide standards for AI transparency, security and governance.
+Second, we are taking a full ecosystem approach. Together, we can enable AI systems that are accountable, independently verifiable and safe by design, regardless of the model or provider. Already, 40 organizations are working with us on defining and applying these standards.
+Third, we are working to incorporate the same standards in our products, including MAI models, Foundry and Copilot. Our ambition through our research, our product work and our ecosystem is to help establish an open industry standard that makes AI safer, more transparent and more accessible.
+Cobalt 200 VMs
+Underneath all of this is unbelievable silicon. We are building a heterogeneous platform working across the ecosystem to bring you all the latest innovation. We are also advancing our own hardware systems, co-designing silicon, servers and infrastructure to get more from every watt, chip and datacenter.
+We just announced Maia 300, which will deliver 40 percent more tokens per watt compared with leading GPU-based systems. Azure Boost and Azure Integrated HSM move critical infrastructure and security functions into purpose-built silicon. And today we are announcing general availability of our 
+next-generation Cobalt 200 VMs
+, which are our highest-performing general-purpose VMs with leading price-performance.
+So, that is a quick walk through some of our news. When you look at all that is coming, it is clear that we are entering an era of ubiquitous intelligence. The key imperatives for us are to ensure human ambition, a firm’s control of its own intelligence and the diffusion of the benefits broadly. That is the promise of a frontier ecosystem. And that is what we are here to build together.
+For more information on today’s announcements, check out the 
+Book of News
+.
+Tags: 
+AI
+, 
+Copilot
+, 
+Frontier Transformation
+, 
+Ignite 2026
+, 
+Microsoft IQ
+, 
+Security
+
+===== https://www.microsoft.com/en-us/copilot/blog/2026/11/17/copilot-at-microsoft-ignite-expanding-whats-possible-with-intelligence-built-for-work/?icid=mscom_marcom_BRCP1a_CopilotatIgnite
+(status 200)
+/
+1x
+Powered by Microsoft Copilot
+This morning, at Microsoft Ignite 2026, we shared how 
+our vision for Copilot
+ is becoming real for customers. 
+Home
+, where 
+Chat
+ and 
+Cowork
+ come together, and 
+Office in Copilot
+ are now generally available. 
+Code
+ will become generally available in the coming weeks, while 
+Copilot Managed Runtime
+ for securely hosting and managing apps is now generally available. And 
+Autopilot
+ is beginning to roll out to Frontier customers today. Plus, new plugins and skills built for sales, service, finance, and legal teams are available, as is an expanded 
+Agent 365
+ platform so you can get even smarter about your intelligence spend. 
+We’re building 
+Copilot
+ to use raw intelligence to do real work for real people. No single lab is the best at everything, and you shouldn’t have to pick just one. Copilot brings together leading models from across the industry. And with 
+Auto
+ routing, your employees don’t need to worry about picking the right model for every job. Under the hood, Auto dynamically selects the right models and effort for the task, balancing quality, speed, and cost. It saves more power for the moments that need it and spends less when the task doesn’t. Employees can also manually select models from OpenAI or Anthropic, with model access governed by organizational policies. 
+And 
+Work IQ
+ sets Copilot apart. Knowledge work is fundamentally fragmented and messy. It happens over emails, Teams meetings and chats, Word memos, PowerPoint slide comments, and more. Microsoft 365 holds more than 19.5 exabytes of data, with 90 billion emails, 15 billion Teams messages, and 10 billion new files added every week. Giving a model access to that information isn’t enough. The challenge is identifying and reasoning over what matters for the task at hand. 
+Work IQ solves this problem
+. It understands what you’re looking for and identifies what you can ignore. The result is accurate, efficient answers that traditional APIs can’t match. 
+  The new foundation of work
+  A job is never just one kind of work. You ask questions. You hand things off. You build things. You follow through until they’re done. For years, each of those lived in a different tool. And you were the glue holding it all together. So, we built one place for all of it.
+Now generally available, 
+Home
+ is your new starting point in Copilot, where 
+Chat
+ and 
+Cowork
+ come together. As work travels between meetings, chats, documents, emails, apps, and agents, Home keeps you grounded and moving forward. You can review recent activity, get suggestions on what Copilot can help with, and pick up work right where you left off. Ask a quick question in Chat or hand off a whole workflow to Cowork.
+Copilot is more powerful without asking you to do more. Home has one composer, powered by 
+Auto
+, where you can start all your work: tell Copilot what you want to accomplish, and it intelligently routes the work to the right models and effort for the task. For more complex work, Auto may recommend moving from Chat to Cowork. If you agree, Copilot transfers the task seamlessly, helping deliver the outcome with the right level of investment. 
+Inside Home is a new experience called 
+Today
+. It’s a command center across mail, calendar, Teams threads, meetings, and tasks. It proactively shows you what you missed, what needs attention now, and what can wait. Today doesn’t just surface the work; it helps you get it done. The draft is written and ready for you to edit; the schedule change is already proposed; and the forgotten follow-up is waiting for you to send it, complete with context so you can catch up quickly. Today is currently in private preview in the Copilot app and Outlook. 
+More and more, AI companies are building their own documents, slides, or spreadsheets. It proves what we’ve known all along: knowledge work runs on Word, Excel, and PowerPoint. Copilot has existed in the Office apps for years, and it’s gotten really good. Today, we’re bringing the full power of 
+Office
+ directly into the Copilot app. You can move from idea to a finished document, editing and coauthoring with your teammates. And because every file inherits Microsoft 365 permissions, sensitivity labels, and compliance controls from the start, your work stays protected as you collaborate. This is the only AI tool where you can create a PowerPoint deck or Excel spreadsheet without spinning a meter—all this value is already included in your Copilot subscription license. 
+We’re expanding what Copilot can do with 
+Autopilot
+, a trusted autonomous agent that is personal to you, always on, and working for you. Autopilot lives in your tenant and has its own identity, memory, and tools. It shows up where people already work, like Teams, Outlook, chats, channels, and documents, so you can @mention it like a colleague. It can watch Teams channels, follow up on emails, run recurring work, and manage a project—without waiting for a prompt. And it can do things like set up and manage a full supplier review process: building the schedule and workback plan, then handling prep, meetings, and follow-ups on its own, right down to reaching out to stakeholders for updates. 
+  Handing off real work to an agent that acts on its own takes trust. So, Autopilot runs on the identity, security, and compliance foundation IT already uses. Each Autopilot has its own Microsoft Entra Agent ID and a named manager. IT can scope its access and block it anytime. Its sign-ins and actions are logged under its own name, so security teams have a clear audit trail. Powered by Work IQ, it understands how your organization works within existing permissions. You decide what work Autopilot takes on and can check with you before key actions. Autopilot is starting to rollout to customers in Frontier today.
+The future of work is people and agent collaboration. Until now, AI interactions have mostly been single player. 
+Workspaces
+ makes it a truly multiplayer experience, where people and agents drive towards a common goal, with shared context. As the evolution of Copilot Notebooks, it’s where people and agents build on each other’s work. An agent drafts a section of a document, and you review. You leave a comment, and an agent picks it up. Your Autopilot takes a task and checks with you before anything is final. It’s right in the Copilot app, where your files, conversations, people, and agents are all easily accessible. And the collaboration continues in Microsoft Teams. Workspaces is now available in Frontier. 
+Apps are the new knowledge worker artifact. With 
+Copilot Code
+, generally available in the coming weeks, the people closest to the problems can now build the solutions. Describe what you want to create in your own words—like an app, an interactive dashboard, or a persistent desktop widget. Copilot picks the best approach and builds it. Share them just as you would a Word document. Apps are securely hosted and managed in your tenant with the 
+Copilot Managed Runtime
+, generally available today. IT stays in control, with every app visible and managed in the Microsoft 365 admin center. 
+This is the new Copilot: one place for all the ways you work. And Copilot works even better on 
+Windows
+, where Hybrid Intelligence allows Copilot to ground itself in all the context on your local PC, complete local actions, and even offload the right work to models running locally on your PC, saving you time and money. 
+  But none of it matters until Copilot creates real value inside your business. Today nearly 80% of the Fortune 500 companies use Cowork. 
+At medicine company Lilly, the team is using Copilot for multi-step research and analysis to shorten the path to real breakthroughs. The team has spent decades pushing science to make conditions that are incurable today, treatable tomorrow. More than 5,000 people at Lilly are using 
+Copilot Cowork
+ every month, including the team of scientists, who now hand Cowork multistep research tasks that identify the most promising paths before the lab work begins. This collaborative approach has allowed Lilly’s scientists to spend more time on science that could become someone’s next medicine.
+  And Bayer, Honda, Mastercard, and Michelin are all using Copilot to transform the way they work.
+  Redesigning how the business works
+Copilot is an extensible platform. Work IQ provides the context, while Microsoft and partner-built plugins bring your unique knowledge, business data, and processes into the Copilot experience. A new 
+plugin catalog
+ makes these plugins easy to discover, with the 
+unified plugin registry
+ providing centralized management and control. 
+Today, we’re announcing 
+Dynamics 365 in Copilot
+ with updated plugins for Dynamics 365 Sales, Dynamics 365 Service, and Dynamics 365 Finance and Operations. These plugins bring more than 100 prebuilt skills into Copilot, enabling you to build account plans, create sales presentations in PowerPoint, prep for customer meetings, prioritize pipeline, manage suppliers, and handle account reconciliation all in the flow of work. Dynamics 365, our agentic system of record, is integrated with Work IQ and 
+Agent 365
+. 
+For 
+sales
+, Copilot works with your CRM platform to prioritize pipeline, roll up the forecast, check deal readiness, build competitive strategy, and prep sellers for meetings, with follow-ups and CRM updates drafted for review. Using 44 thoughtfully designed sales skills, agents can take the repeatable parts further: qualifying leads, researching prospects, and managing outreach, so sellers get qualified opportunities with the homework already done and spend more time with customers. 
+For 
+customer service
+, Copilot draws on 13 skills to work with your case management system to triage cases, pull together case history, research answers from knowledge, draft customer replies, and build escalation summaries, with case updates held for review before anything is committed. Agents take things even further: creating and updating cases, following up and closing them, turning resolved cases into knowledge, and evaluating interaction quality. 
+For sales and service, we know connecting to every system of record is crucial. So, we’re excited to announce 
+Salesforce in Copilot
+, a new plugin with more than 38 prebuilt sales skills, bringing Salesforce context into the systems where people already work. Copilot brings together account, opportunity, and pipeline data with conversations, commitment, and decisions, with interactive widgets to make the business easier to understand, not just retrieve.
+For 
+finance
+, your team can work directly in the Copilot app to manage broader workflows, bringing in the full power of Excel and your ERP platform, using 30 prebuilt finance skills. You can analyze, edit, and co-author workbooks from Chat or delegate multistep work to Cowork that combines Excel models and analyses with rich deliverables like an investment committee memo. From month-end close to acquisition evaluation, Copilot supports the real work of your finance team. 
+For 
+legal
+, professionals can use more than 20 purpose-built legal skills draft and negotiate agreements, manage obligations and deadlines, turn research into guidance, and advance legal matters in the systems where work already happens. Copilot brings together legal skills in Word and Cowork, developed with legal engineers around real-world legal workflows, and partner-built plugins that connect Copilot to trusted legal systems. Legal professionals stay in control, with work protected by existing security, compliance, and governance controls. 
+  “By surfacing account insights, service updates, and important client developments in real-time, our teams can stay aligned, make informed decisions, and take action without switching applications,” shared Christian Lewis, Managing Director, Commercial Hub Co-Lead, BNY. “This connected experience helps our organization work from shared customer context, improve productivity, and stay focused on delivering greater value to clients.”
+  Scale with confidence
+  Every IT leader needs control through management, governance, and security. And every business leader needs to understand business value and manage spend. We’ve built Copilot with the features you need to scale with confidence. 
+Today, we’re expanding 
+Agent 365
+ to give you even more control over that estate. We’re broadening visibility through new connected platforms, including Anthropic, Databricks, OpenAI, Salesforce and more, as well as helping you manage agents across multiple tenants. We are also expanding identity and access governance through Entra Agent ID, adding new controls for agent tools, including model context protocol (MCP) servers, plugins, and skills, and strengthening security and containment for local agents running on devices through deeper integration with Intune, Defender, and Windows with Microsoft Execution Containers (MXC). 
+Agent 365 also now extends into business value with FinOps for AI. It helps organizations not only manage and control AI spend, but also understand the value those investments create. That matters more as AI spending grows. Corporate AI spending doubled in a year, and more than 80% of it now sits outside the enterprise IT budget.
+1
+ This means IT leaders need control through management, governance, and security, and business leaders need visibility into spend, adoption, and value. 
+To tackle this head on, we’re introducing 
+Agent 365 Business Analytics
+, a new experience that connects spend, guardrails, adoption, and ROI. Rolling out today in Frontier Public, it starts with a new way to measure your investment: in work completed, not simply tokens. It analyzes the tasks, how long that work typically takes a person, and the share Cowork performed, providing a sophisticated view of the hours your intelligence supports and what the work is worth. Together, these insights help leaders understand and control what they’re spending, see the business value intelligence is creating, and make better decisions about where to invest next.
+Plus, 
+Agent 365 Cost Management
+ gives IT a central place to see and control what’s driving spend by tracking consumption across users, services, agents, and models. Leaders can set spending policies, limits, and proactive alerts and control which models are available. In Cowork, your team sets a spending limit, so there’s no runaway spend and no surprises when the bill arrives. 
+And we’ve uniquely designed our 
+commercial model
+ to help you control your AI spend in two ways. First, our predictable, per-user subscription makes powerful Copilot capabilities broadly accessible. Second: a usage-based consumption model that gives you access to the most powerful AI for the very hardest tasks. With both, you can feel comfortable giving the right AI to everyone, while still empowering your most advanced AI users. And as the Frontier advances, we’ll continue to move more and more capability into the subscription license. This combination of our user subscription license, plus the power of Auto and Work IQ, makes Copilot cheaper and more efficient than other AI tools. Based on a recent GigaOm report, for comparable quality, 
+Copilot is 84% cheaper
+ than Claude and 63% cheaper than ChatGPT for an everyday user. For an advanced user, Copilot is 68% cheaper than Claude and 35% cheaper than ChatGPT. 
+  Ultimately, the question isn’t just which companies have the most powerful AI. It’s who can make that innovation practical and economical enough to deliver real business results. We’ve designed Copilot to empower all our customers to do just that. 
+  Get started
+Today we showed you how our vision for 
+Copilot
+ is becoming real for customers. One person asking, delegating, building, and automating, in one place. A team of people and agents moving work forward together in Teams. A finance function redesigned around what intelligence can do now. And with the tools to help organizations understand and manage their AI spending. 
+  It’s people who power companies with ideas, judgment, and expertise. Copilot and Windows expand what they can do and help organizations turn new possibilities into repeatable value. We are committed to helping you put AI in the hands of all your employees, empowering them to accomplish more while accelerating your business. We can’t wait to see what you and your people do with all this new power.
+1
+Boston Consulting Group, “The Formula for Agentic AI Value: The Applied AI Index 2026,” September 30, 2026. 
+www.bcg.com/publications/2026/the-formula-for-agentic-ai-value
+LinkedIn
+			Jared Spataro			
+				Chief Marketing Officer, Copilot, Microsoft			
+Jared leads Microsoft’s AI at Work efforts, helping every organization leverage AI and agents to solve their unique business problems, reduce costs, and drive net-new value creation. His team conducts research to help predict and shape what the future of work and business will look like across industries, while also delivering new products and features within Copilot, Copilot Studio, Microsoft 365, Dynamics 365, and Power Platform.
+Subscribe to Jared’s newsletter
+				See more articles from this author			
+Enterprise
+News
+Microsoft Copilot
+
+===== https://businessupturn.com/technology/microsoft-makes-word-excel-and-powerpoint-generally-available-inside-copilot/
+(status 200)
+Technology
+Microsoft makes Word, Excel and PowerPoint generally available inside Copilot
+By 
+Saptam Modak
+4
+ min read
+·
+Published on 
+Nov 18, 2026 · 7:59 AM IST
+A laptop and notebook on a desk, shown for illustration. Credit: Hippopx, CC0.
+-Advertisement-
+Microsoft has made Word, Excel and PowerPoint generally available inside its Copilot app, moving a central part of its Office software into the AI interface. The release was announced at Ignite on 17 November, alongside wider availability of Home, which combines Copilot's Chat and Cowork experiences.
+Users can create files, edit them and work on them with colleagues without leaving Copilot. The change follows an earlier rollout to Frontier customers in October, so this week's news is broader availability rather than the first demonstration of Office inside the app.
+Microsoft is presenting Copilot as a starting point for work that previously began in separate applications. That does not mean those applications have disappeared: the documents, spreadsheets and presentations remain editable in the standalone Office programs.
+Office files stay connected to OneDrive
+The company says work created in the Copilot app is saved in OneDrive. Files keep the sharing permissions, security labels and compliance controls that organisations already apply through Microsoft 365.
+The Office experience includes comments and coauthoring, letting colleagues continue working on the same file as a conversation with Copilot develops. Microsoft's earlier product announcement also described a library for reopening recent Office files and continuing to edit them beside the chat.
+That continuity matters to the release. A presentation or spreadsheet is meant to remain a working Office file, rather than becoming a separate output that has to be rebuilt before a team can use it.
+Home brings Chat and Cowork together
+Home is also generally available. It puts short questions and longer delegated tasks behind one prompt box, with a shared history for Chat and Cowork conversations.
+Microsoft says Copilot can recommend Cowork when a request needs more work than a chat answer. If the user agrees, it carries over the request and relevant context instead of requiring them to start again.
+Projects, another generally available feature, groups related conversations, tasks and outputs. Users can add instructions and source material for a continuing piece of work, while the resulting files remain stored in OneDrive.
+Not every Ignite feature is broadly available
+The wider announcement includes several products at earlier stages. Today, a view covering email, meetings, Teams and tasks, is in private preview. Shared Workspaces and the proactive Autopilot agent are reaching customers through Frontier, Microsoft's early-access programme.
+Code, which lets people describe an application they want built, is due to become generally available in the coming weeks. Those separate timetables mean the Office release should not be read as a launch date for every capability shown at Ignite.
+Microsoft says the subscription licence covers the creation of Excel spreadsheets and PowerPoint presentations, with no separate usage meter for that work. That statement does not make all of its autonomous-agent services free or remove their separate access conditions.
+The bottom line
+Office inside Copilot is now a generally available way to create and collaborate on familiar Microsoft files. The broader shift towards ongoing AI work is still arriving in stages, with preview features and future releases sitting alongside the newly available Office tools.
+Tags:
+Excel
+Microsoft
+Microsoft Copilot
+Microsoft Office
+PowerPoint
+Word
+-Advertisement-
