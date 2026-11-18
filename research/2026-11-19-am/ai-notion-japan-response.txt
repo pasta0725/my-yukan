@@ -1,0 +1,247 @@
+===== https://into-the-program.com/notion-ai-fireworks-kirin-conversation-data-incident/
+(status 200)
+AI
+Security
+サイバー被害・注意喚起
+Notion AIの対話が委託先から流出｜キリンは260名分を確認
+公開日
+2026.11.18
+約4分で読めます
+※本ページのリンクにはプロモーションが含まれています。
+SHARE
+この記事のポイント
+対象
+Notion AIのInsights機能、Fireworks AIの委託処理
+影響
+対象ワークスペースの対話記録の一部に影響。キリンは260名分の個人情報が含まれていたと公表。
+推奨対応
+通知を受けた管理者はワークスペース内で対象記録を確認し、含まれていた認証情報を失効・再発行する。
+目次
+Notion AIの処理委託先であるFireworks AIへの不正アクセスを受け、キリンホールディングスは2026年11月17日、従業員とNotion AIの対話の一部が外部に漏えいし、260名分の個人情報を含んでいたと公表した。Notionは、影響が確認されたワークスペースに通知している。通知を受けた組織は、公式の案内に沿ってワークスペース内で対象記録を確認し、認証情報が含まれていれば失効や再発行を進める。
+スポンサーリンク
+対象はInsightsに使われた対話記録
+Notionのセキュリティ告知
+によると、対象データにはAIの利用状況を把握するInsights機能に使われた対話記録が含まれていた。Notionが公表した影響範囲は全ワークスペースの1％未満で、ほかのNotion機能に影響はなかったとしている。Fireworks AIとの通信は11月3日までに切断し、翌4日に同社側に置いていたデータを削除した。Insightsは調査のため停止されている。
+11月2日にFireworks AIから最初の連絡を受けた時点では、調査対象に合成テストデータはあったが顧客データは含まれていなかった。顧客データにアクセスされた可能性が伝えられたのは6日で、8日に対象データが確定した。Notionは9日に影響を受けた顧客への連絡を始め、12日に告知を公表した。最初の連絡時点の対象範囲と、その後の調査結果は分けて読む必要がある。
+また、
+Fireworks AIのセキュリティ告知
+は11月17日、調査していた不正アクセスが別々の2件だったと説明した。これらはFireworks AI側の調査結果であり、同社が公表した顧客情報全体の影響範囲を、そのままNotionのワークスペースや対話記録の対象範囲として読むことはできない。
+国内利用企業の公表では影響の確度が異なる
+キリンホールディングスの公式発表
+によると、同社は11月13日にNotionから連絡を受け、10月5日から24日までに記録された対話の一部の漏えいを確認した。対象は、従業員230名の氏名・社用電話番号・社用メールアドレス、新卒採用応募者22名と取引先従業員8名の氏名。パスワードやカード情報は含まれず、公表時点で二次被害は確認されていない。同社はNotion AIの利用を停止し、対象者への個別連絡を進めている。
+イサナドットネットの第一報
+では、従業員27名が10月5日から22日までに行った164件のやり取りが対象だった。案件進捗や打ち合わせの要約、担当者名などが含まれ、認証情報や決済情報、受託システムのデータ、預かった資料ファイルそのものは含まれていなかった。同社は第三者による取得や悪用は確認されていないとし、漏えいのおそれとして対応している。キリンが確認した漏えいとは、組織ごとに公表の確度を区別したい。
+スポンサーリンク
+管理者は質問と回答の両方を確認する
+Notionは、影響が特定された顧客に対象データをワークスペース内で確認する手順を案内し、対象記録に貼り付けたパスワードや
+APIキー
+などの変更を推奨している。連絡を受けていない場合は、現時点では対象と特定されておらず、対応は不要という案内だ。通知の真偽に疑いがあれば、メール中のリンクから
+認証情報
+を入力せず、普段使っている経路から管理者や提供元に確認するとよい。
+管理者が対象記録を受け取ったら、質問と回答を一組で確認する。質問に氏名がなくても、回答に引用や要約として取引先名や連絡先が現れることがある。Notionによると、大多数の対象ワークスペースでは記録に投稿者や所属先を示すラベルが付いていなかった。ただし、会話の本文自体に識別できる情報が書かれていれば、その情報は残る。今回の国内企業の発表は、そこを点検する必要性を示している。
+対象記録に認証情報が見つかった場合は、発行元で失効し、関連するシステムの設定を更新する。対話を削除しても発行済みのキーは止まらない。個人情報が見つかった場合は、漏えいの確認状況と対象項目を記録し、社内の担当窓口に渡す。対象記録そのものを社内チャットへ広く転載せず、確認担当者に閲覧を絞れば、調査中の二次的な拡散を避けやすい。
+出典・一次情報
+本記事は以下の公開情報をもとに作成しています。最新の状況は各リンク先で確認してください。
+公式アドバイザリ
+Notionのセキュリティ告知
+公式アドバイザリ
+キリンホールディングスの公式発表
+公式アドバイザリ
+イサナドットネットの第一報
+公式アドバイザリ
+Fireworks AIのセキュリティ告知
+SHARE
+この記事を書いた人
+Ryohei
+Webエンジニア / アプリ開発者 / 技術ブログ運営者
+福岡のWeb制作会社に勤務するWebエンジニアです。10年以上にわたりWeb制作・開発に携わり、ヒアリングや進行管理から、コーディング、CMSの構築、システム開発、サーバーの構築・保守・運用まで、Webサイト制作の工程を幅広く担当しています。Webサイトは、これまでに100以上の構築・保守を手がけてきました。
+個人でもWebサイトの制作・改修やWebアプリの開発・運用を行い、AIを活用した開発にも取り組んでいます。近年はWebセキュリティにも注力しています。
+2015年から技術メディア「Into the Program」を運営し、実務や開発で得た知識をもとに、プログラミングの実装方法やWebサイトの運用・セキュリティ情報を発信しています。
+主な分野
+Webサイト構築・保守・運用 / HTML/CSS / JavaScript / PHP / WordPress / サーバー構築・保守・運用 / アプリ開発 / セキュリティ対策
+資格・試験合格
+情報セキュリティマネジメント試験
+基本情報技術者試験
+AWS認定ソリューションアーキテクト アソシエイト
+PHP8技術者認定ウィザード
+メディア運営
+2015年〜
+記事の作成・更新について
+セキュリティ記事は、ベンダーの公式アドバイザリやCVE・JVNなどの一次情報を参照し、出典と情報確認日を記載します。実環境での検証を行った場合は、その環境と確認範囲を明示します。重要な追加情報や誤りを把握した場合は、内容を確認して追記・訂正します。
+@ry_apps
+@itp_media（更新情報）
+お問い合わせ
+RY-Apps
+
+===== https://www.tetoran.com/notion-ai-fireworks-data-leak-2026-11/
+(status 200)
+Notion AIのチャット履歴が委託先Fireworksへの不正アクセスで流出したおそれ｜対象はワークスペースの1%未満、TENTIALは10月5日〜24日分
+2026
+11/18
+				セキュリティ			
+2026年11月18日
+Notionを使っている人と、株式会社TENTIALのサービスを使っている人は、まず次のことをしてください。
+Notionから、影響があるという連絡を受けていなければ、公式の案内では、いま何かする必要はない、とされています。調査は続いており、新たに影響が分かった場合は連絡する、とも書いています
+Notionから影響があるとして連絡を受けた人は、案内の手順で対象データをワークスペース内で確認できます。Notionは、そのデータを漏えいしたものとして扱うことをすすめています。インシデントの期間中に、機密情報、パスワード、APIキーなどをNotion AIに貼り付けた場合は、パスワードを変更し、APIキーなどを再発行してください
+TENTIALのオンラインストアや、同社の顧客データベースなど、同社システムへの不正アクセスではない、とTENTIALは書いています。同社のサービスは通常どおり使える、としています。TENTIALやNotionを名乗る、身に覚えのないメール、SMS、電話のリンクは開かないでください
+Notion Labs, Inc.は、委託先のFireworks AIへの不正アクセスが、Notionワークスペースの1%未満に影響している、とセキュリティ勧告で説明しています。影響を受けたのは、インサイト機能に使われていたNotion AIとのチャット内容です。ほかのNotion機能への影響は見つかっていない、としています。Notionのシステム自体が侵害された事案ではない、とも書いています。
+日本では、株式会社TENTIALが2026年11月17日、社内業務で使うNotionのAI機能のチャット履歴の一部が外部に流出した可能性がある、と発表しました。対象期間は2026年10月5日〜10月24日です。含まれる可能性のある個人情報は、氏名、メールアドレス、電話番号で、人によって項目は異なる、としています。対象人数は確認中です。クレジットカード情報は含まれていない、と書いています。
+情報時点：Notionのセキュリティ勧告（英語と日本語）、Fireworks AIのセキュリティ速報、TENTIALのお知らせは、2026年11月17日23時23分から23時24分（日本時間）に取得しました。
+目次
+Notionが示している経緯
+日付
+Notion公式（日本語）の説明
+11月2日
+夜、Fireworksから、少量のデータに悪意のある第三者がアクセスしたと通知を受けた。調査の結果、そのデータセットにはNotion AIの合成テストデータが含まれ、お客様のデータは含まれていなかった
+11月3日
+朝までに、NotionはFireworksとの接続を解除し、通信をすべて停止した
+11月4日
+Fireworksのシステム内にあるNotionのデータをすべて削除した
+11月6日
+Fireworksから、悪意のある第三者がお客様のデータにアクセスした可能性があると通知を受け、社内調査を始めた
+11月8日
+Fireworksが、影響を受けたデータセットの全容を確認した
+11月9日
+Notionが、影響を受けたお客様に連絡した
+11月11日
+影響を受けたユーザーのメッセージ内で見つかった、流出したNotion APIキーを無効化した
+11月12日
+タイムラインを更新。第三者のAPIキーの流出について、発行元のベンダーにも報告した（11月13日の更新で説明）
+11月8日にFireworksから提供されたデータセットを分析したところ、インサイト機能に使われていたNotion AIとのチャット内容が含まれていた、とNotionは書いています。影響を受けたワークスペースの大半は「特定不可能」な状態だった、としています。特定不可能とは、チャットに投稿者や送信元ワークスペースのラベルが付いておらず、ツール呼び出しの結果も含まれていない、という意味です。チャットの内容自体を除き、特定のワークスペース、ユーザー、企業に結び付く情報は存在しない、と説明しています。
+Notionは、インサイト機能の提供と、Fireworksを通じたオープンウェイトモデルの提供を、調査に伴い停止している、としています。
+TENTIALが公表した、自社分の影響
+TENTIALは2026年11月11日、Notionから「委託先のFireworks AIへの不正アクセスにより、当社のNotion AIのチャット履歴の一部が外部に流出した可能性がある」との通知を受けた、と書いています。精査の結果、一部にお客様、取引先、従業員などの個人情報が含まれていることを確認した、としています。流出した可能性があるのは、従業員がNotionのAI機能を使ったときのチャット履歴の一部（入力内容とAIの回答）です。
+TENTIALは、2026年11月15日に個人情報保護委員会へ報告した、としています。Notionが2026年11月3日までにFireworksとの接続を遮断し、同社上のデータを削除している、とも書いています。現時点で、本件に起因する不正利用などの二次被害は確認していない、としています。対象人数は確認中です。
+問い合わせは、TENTIALのカスタマーサポート（
+https://tential.jp/contact
+）です。
+Fireworks AI側の説明（Fireworks自身の顧客データ）
+Fireworks AIは、2026年10月のセキュリティ事案の更新（最終更新は2026年11月9日）で、アカウントや請求の情報への影響が見つかった、と書いています。支払いカード番号はFireworksが保管しておらず、影響を受けていない、としています。Inference、Training SDK、Nexusについては、標準でデータを保持しない設定であり、影響は検出していない、とも書いています。この説明はFireworks自身の顧客データについてのもので、上に書いたNotion AIのチャット内容とは、対象が異なります。
+身に覚えのないSMSやメールの見分け方は、
+偽のSMSや宅配メールの見分け方の記事
+も見てください。パスワードをほかのサービスでも使っている人は、
+パスワード漏えい時の確認
+も見てください。
+よくある質問
+Notionを使っていれば、自分も対象ですか？
+Notionは、影響はワークスペースの1%未満、と説明しています。連絡がなければ、ワークスペースへの影響は確認されておらず、現時点での対応は必要ない、としています。新たに分かった場合は連絡する、とも書いています。
+TENTIALの店で買った人の、カード情報も漏れましたか？
+TENTIALは、クレジットカード情報は含まれていない、としています。同社のオンラインストアや顧客データベースなど、同社システムへの不正アクセスではない、とも書いています。
+チャットの内容から、誰の会話か分かりますか？
+Notionは、影響を受けたワークスペースの大半は特定不可能で、チャットの内容自体を除き、特定のワークスペース、ユーザー、企業に結び付く情報は存在しない、と説明しています。一方、TENTIALは精査の結果、自社の対象データに、お客様、取引先、従業員などの個人情報（氏名、メールアドレス、電話番号）が含まれることを確認した、としています。含まれる項目は人によって異なる、と書いています。
+参考リンク
+Notion｜Fireworks AIのインシデントについて（日本語）
+（更新：2026年11月12日。情報時点：2026年11月17日23時24分（日本時間））
+Notion｜Security incident involving a third-party AI vendor（英語）
+（情報時点：2026年11月17日23時23分（日本時間））
+Fireworks AI｜Update on October 2026 security incident
+（最終更新：2026年11月9日。情報時点：2026年11月17日23時23分（日本時間））
+TENTIAL｜当社が利用するクラウドサービス［の委託先］への不正アクセスによる情報流出の可能性に関するお知らせ
+（2026年11月17日。情報時点：2026年11月17日23時23分（日本時間））
+tetoran｜偽のSMSや宅配メールの見分け方
+tetoran｜パスワード漏えい時の確認
+				セキュリティ			
+				よかったらシェアしてね！			
+URLをコピーしました！
+URLをコピーしました！
+エレコム製無線LANルータ3機種にOSコマンドインジェクション（CVE-2026-101113）｜WRC-BE36QS-B、WRC-BE36QSD-B、WRC-W701-Bのv2.1.3およびそれ以前
+プリザンターに4件の脆弱性、バージョン1.5.10.0で修正｜APIキー漏えいと任意ファイル取得など、Pleasanter.netは11月9日に適用済み
+		この記事を書いた人	
+				てとら			
+					以前はWindowsサーバーの構築・運用が中心で、いまは社内エンジニアとしてSREとセキュリティの仕事をしています。サーバーの構築や運用、クラウド環境の設計にも関わってきました。趣味はゲームと漫画・アニメ。				
+関連記事
+Puppet EnterpriseのCVE-2026-115731｜公式の修正は2026.0.1・2025.12.1・2023.8.13。CISAがKEVに追加
+2026年11月18日
+Chrome 158.0.8127.36/.37へ更新を｜204件の脆弱性を修正（Critical 6件）、バージョンの確かめ方
+2026年11月18日
+APFSとアプリの文字の正規化のずれで、ファイル制限を回避されるおそれ｜Appleは影響なし、go-slugなどが対象
+2026年11月18日
+KUSANAGIにHTTPヘッダーインジェクション（CVE-2026-117477）｜9.12.2-1以前などが対象、直ったバージョンは9.12.3-1／10.7.3-1
+2026年11月18日
+SoftBank製Airターミナル6にOSコマンドインジェクション（CVE-2026-101107）｜開発者は自動更新のため対応不要としている
+2026年11月18日
+JetBrains YouTrackに格納型XSS（CVE-2026-75048）｜対象は2026.2.18068より前のバージョン
+2026年11月18日
+ImageMagickを使うアプリに任意ファイルの読み書きのおそれ｜Railsはv8.0.5.2／v8.1.4.1で対応、ownCloud Classicは影響あり
+2026年11月18日
+WordPressのAdvanced Form Integrationに権限まわりの修正｜公式の最新は2.11.6、2.11.5で役割の割り当てを強化
+2026年11月18日
+		コメント	
+ コメントする 
+コメントをキャンセル
+
+===== https://www.system.exposed/posts/fireworks-ai-breach-exposed-notion-ai-chat-transcripts-in-a/
+(status 200)
+Graphic: system.exposed
+Notion has disclosed that a breach at its AI infrastructure provider, Fireworks AI, exposed Notion AI chat transcripts from a small number of workspaces [1]. The transcripts came from a dataset used for Notion’s Insights feature, which has since been disabled [1].
+Notion says it first heard of a problem on November 2, when Fireworks alerted it to an exposed dataset that Fireworks described as containing only synthetic test data. Notion cut off traffic to Fireworks, deleted its data from the vendor’s systems and halted training runs by November 3. On November 8, Fireworks confirmed that customer data, including Notion users’ data, had been accessed [1].
+The Notion exposure follows two separate Fireworks incidents in October. Both are covered below, because the second widened the scope of what was taken [2][4].
+Who is affected
+Notion says the impact is under 1% of its users or workspaces. The sources disagree on the unit: Notion’s account as reported by BleepingComputer says “users” [1], while The Register’s quoted Notion email and SecurityWeek’s summary say “workspaces” [3][4]. We have not seen either Notion or Fireworks publish an absolute number.
+Fireworks’ update did not state how many of its customers were affected by either October incident [4]. Bloomberg, as relayed by The Register, reports that Fireworks is working with customers including Cursor and Harvey to assess impact [4]. We have not seen a statement from those companies.
+Beyond Notion, Fireworks says the second incident exposed the following for some customers [2][4]:
+Resource metadata: identifiers, display names, descriptions and creation times.
+Billing information: billing and shipping addresses, invoice and payment history, account balance and credit usage.
+Incomplete model weights and datasets.
+Fireworks says it does not store payment card numbers, so those were not accessed [2].
+What happened at Fireworks
+Fireworks first disclosed an incident on October 9, after detecting unauthorized use of internal credentials on October 6. Attackers read environment variables containing API keys and tokens for some customers [4]. According to BleepingComputer, Fireworks said at the time that the evidence indicates links to a financially motivated group engaged in LLMjacking, meaning the sale of unauthorized access to language models through illicit gateways [2].
+The Register instead reports that Fireworks suspects those links in connection with the latest incident [4]. The sources do not make clear which incident the LLMjacking suspicion applies to, and both describe it as a suspicion rather than a confirmed attribution.
+The second incident started at a third-party cloud provider that hosted Fireworks research and development machines. Fireworks says that provider was compromised on October 23, and that on October 24 the attacker used that access to reach Fireworks development machines and run an unauthorized workload [2]. Fireworks detected the activity the same day. As of October 25 it had seen no further successful access to the platform customers use [2].
+The sources differ slightly on timing. BleepingComputer’s Notion article places the attacker’s access to the development environment on October 23 [1], while Fireworks’ advisory, as quoted, separates the provider compromise (October 23) from the reach into Fireworks machines (October 24) [2]. We follow the advisory.
+Fireworks says it revoked and replaced credentials and service accounts, restricted network pathways, isolated affected systems and tightened access to storage and analytics systems. It is working with Palo Alto Networks’ Unit 42 on the investigation [2][4]. Fireworks’ CEO said the attackers did not appear to be after model weights and that most downloads were partial and stopped [4]. That is the vendor’s own assessment.
+What the Notion transcripts contain
+Notion says the transcripts were “unattributable” for the vast majority of affected workspaces. That means they carried no label showing who wrote them or which workspace they came from, and they contained no tool call results [1]. Notion’s notice to affected customers says no other workspace data was affected [4].
+That does not make the content harmless. Users on Reddit noted that a conversation can itself contain identifying details [4]. Notion advises rotating any passwords, API keys or other credentials that were typed into affected chats [1].
+The sources do not explain why chat transcripts were present in a dataset on Fireworks’ side. Notion says Fireworks had contractually committed to zero data retention for Notion data [1]. Separately, Fireworks enables Notion to run some open-weight models and to analyze stored conversations for Insights [1]. The sources do not reconcile these points.
+They also do not say whether the exposed dataset was reached in the October 23–24 incident or in a separate event. Notion’s own timeline begins with the November 2 alert [1]. The Notion claims above rest on BleepingComputer and The Register’s reporting of Notion’s statements.
+What to do
+Notion workspace owners:
+ check whether you received a notice. If you did, use Security incident review in Notion’s desktop web interface to see the affected data, and share the link that lets members download their own transcripts [1]. If neither you nor your workspace owner received a notice, Notion says no action is needed for now [1].
+Everyone who used Notion AI:
+ if you are in an affected workspace, rotate any password, API key or token you may have pasted into an AI chat [1]. Treat identifying details in those chats as potentially exposed.
+Fireworks customers:
+ our recommendation is to rotate your Fireworks API keys and remove any you do not recognise. Environment variables and secrets stored in evaluation jobs were exposed in the first incident [4].
+Fireworks customers:
+ review billing and usage history for unfamiliar activity. Google researchers have reported that LLMjacking with stolen keys can produce very large cloud AI charges, in some cases as high as $1 million [2].
+Fireworks customers:
+ if you uploaded datasets or trained models on the platform, ask Fireworks directly whether your assets were among those accessed. We have not seen a customer count or a per-customer list from Fireworks; its update did not state how many customers were affected [4].
+Security and procurement teams:
+ inventory which AI vendors receive chat or prompt data. Check what they retain, and whether their retention terms match what they actually hold.
+notion
+fireworks ai
+supply chain
+llmjacking
+data breach
+privacy
+Read next
+Threat News
+Optimizely flaw let attackers inject malware into 178 customer websites
+Nov 18, 2026
+Threat News
+critical
+Exploited
+CISA adds Puppet Enterprise deserialization RCE (CVE-2026-115731) to KEV
+Nov 17, 2026
+Threat News
+high
+CISA urges immediate patching of Oracle Java flaw CVE-2026-114938 ("Java4Shell")
+Nov 17, 2026
+Threat News
+Optimizely supply chain attack injects card skimmer and iOS exploit code into customer scripts
+Nov 17, 2026
+Newsletter · Free
+Get stories like this every morning
+ Every actively exploited vulnerability, verified against NVD and CISA, plus this week's patch deadlines. Five minutes each weekday morning, and a digest on Saturdays.
+
+===== https://www.notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor?trk=article-ssr-frontend-pulse_little-text-block
+(status 200)
+←
+All security advisories
+Updates
+Investigating
+In addition to previously notifying the impacted customers, on 12 November we reported exposed third-party API keys found in affected user messages to the vendors that issued them.
+13 November 2026
+Investigating
+On 11 November, we revoked exposed Notion API keys that were found in affected user messages during our investigation.
+11 November 2026
