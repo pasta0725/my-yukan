@@ -285,7 +285,7 @@ function building(x,y,s,col){g.save();g.translate(x,y);g.fillStyle=col||C.brand;
 // ---------- helpers for the Voyager short (2026-11-18 auto) ----------
 const NASA='画像：NASA（想像図）';
 // the 0 s picture: NASA's illustration of Voyager 1 in interstellar space, filling the tall screen (the probe sits around 42% across)
-function openPic(z){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;const s=Math.max(W/i.width,H/i.height)*z;g.drawImage(i,CX-i.width*s*0.42,860-i.height*s*0.5,i.width*s,i.height*s);}
+function openPic(z){const i=IMG.open0;g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;const s=Math.max(W/i.width,H/i.height)*z;g.drawImage(i,CX-i.width*s*0.42,960-i.height*s*0.5,i.width*s,i.height*s);}
 const OPEN_SPLIT={'このボイジャー1号、':['この','ボイジャー1号、'],'話しかけても':['話しかけても'],'返事が来るのは2日後です。':['返事が来るのは','2日後']};
 function openParts(s){if(OPEN_SPLIT[s])return OPEN_SPLIT[s];if(s.replace(/[、。]/g,'').length<=7)return [s];const segs=[...SEG.segment(s)].map(x=>x.segment);const out=[];let cur='';
   for(const t of segs){if(cur&&(cur+t).replace(/[、。]/g,'').length>7&&cur.length>=2&&!NOSTART.includes(t[0])){out.push(cur);cur=t;}else cur+=t;}if(cur){if(cur.replace(/[、。]/g,'').length<2&&out.length)out[out.length-1]+=cur;else out.push(cur);}return out;}
@@ -312,7 +312,7 @@ const S={
    withEnter(enter(u,0),()=>{card(170,440,740,330);text('1977年',CX,540,64,C.sub,'center',900,600);bigNum(String(cnt(u,0.2,1.0,49)),'年',CX,680,1,C.acc,150);});
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('人工物で初',CX,960,1,C.brand,70);},10);},
  hook(u,d,L){bg(u);abs(()=>{glow(CX,1050,620,C.brand,0.30);bigRina(HOOK_R);
-   g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;rrect(90,300,900,325,28,'#0B1222');g.restore();ipic('lightday',90,300,900,325,28,1+0.06*u/Math.max(1,d),0.75,0.5);creditAt(NASA,975,600);});},
+   g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;rrect(90,300,900,325,28,'#0B1222');g.restore();ipic('lightday',90,300,900,325,28,1.05+0.06*u/Math.max(1,d),0.58,0.5);creditAt(NASA,975,600);});},
  when(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'夜')),d-0.9);
    withEnter(enter(u,0),()=>{calIcon(CX,640,300,'11月','18');});
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('夜7時16分',CX,1010,1,C.acc,64);},10);},
