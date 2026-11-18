@@ -95,7 +95,7 @@ function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
 // line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
 const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-const FIXW={'Codexに登場':['Codexに登場'],'これまでどおり無料で':['これまでどおり','無料で'],'まだ公表されていません':['まだ','公表されていません'],'「Ask Maps」の':['「Ask Maps」の'],'日ごとの予定表ができます':['日ごとの','予定表ができます'],'渋滞や営業中かどうかも':['渋滞や','営業中かどうかも'],'近くのお店の空き枠が並びます':['近くのお店の','空き枠が並びます'],'まだ発表されていません':['まだ','発表されていません'],'まずアメリカから始まります':['まずアメリカから','始まります']};  // never break inside a word (予定表・営業中・空き枠)
+const FIXW={'およそ259億キロです':['およそ','259億キロです'],'キロにすると、およそ259億キロです':['キロにすると、','およそ','259億キロです'],'時速およそ6万1000キロで':['時速およそ','6万1000キロで'],'機体は今も、時速およそ6万1000キロで':['機体は今も、','時速およそ','6万1000キロで'],'Codexに登場':['Codexに登場'],'これまでどおり無料で':['これまでどおり','無料で'],'まだ公表されていません':['まだ','公表されていません'],'「Ask Maps」の':['「Ask Maps」の'],'日ごとの予定表ができます':['日ごとの','予定表ができます'],'渋滞や営業中かどうかも':['渋滞や','営業中かどうかも'],'近くのお店の空き枠が並びます':['近くのお店の','空き枠が並びます'],'まだ発表されていません':['まだ','発表されていません'],'まずアメリカから始まります':['まずアメリカから','始まります']};  // never break inside a word (予定表・営業中・空き枠)
 function wrapJa(s,size,maxw){if(FIXW[s])return FIXW[s];g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;for(const x of SEG.segment(s)){i+=x.segment.length;if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j]))cuts.push(j);for(let j=2;j<s.length;j++)if(s.slice(j,j+2)==='よう'&&s[j-1]==='る')cuts.push(j);
   const keep=j=>j>=3&&(s.length-j>=3||(s.length-j===2&&/^[\u4e00-\u9fff]+$/.test(s.slice(j))))&&!'版機円点件年月日人分秒位'.includes(s[j])&&!(/[0-9.×]/.test(s[j-1])&&!(s.includes('×')&&/[ァ-ヶ]/.test(s[j])))&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をはがでとのもへやよねてば'.includes(s[j-1])&&false)&&!(HIRA.test(s[j-1])&&HIRA.test(s[j])&&!'をにはがでとのもへ'.includes(s[j-1])&&s.slice(j,j+2)!=='よう')&&!(/[\u30a0-\u30ffA-Za-z]/.test(s[j-1])&&/[\u30a0-\u30ffA-Za-z]/.test(s[j]))&&!(s[j-1]==='と'&&HIRA.test(s[j-2]||'')&&HIRA.test(s[j]))&&!'「（『'.includes(s[j-1])&&!'）」』'.includes(s[j]);  // never split a number from its unit, nor open a bracket at a line end (2026-11-10)
     // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
@@ -302,14 +302,12 @@ function pulse(x0,x1,y,k,col){if(k<=0||k>=1)return;const x=x0+(x1-x0)*k;g.save()
 const S={
  // 0 s (user 2026-11-17): only the real picture (NASA's Voyager 1 illustration, full screen) and the huge telop of the first sentence, chunk by chunk.
  open(u,d,L){abs(()=>{openPic(1.0+0.05*u/Math.max(1,d));creditAt(NASA,1000,1640);
-     let last=null;const ch=P.tel.filter(x=>x.start>=L.start-0.01&&x.start<L.start+d);
-     ch.forEach((tl,i)=>{const end=ch[i+1]?ch[i+1].start:L.start+d;const parts=openParts(tl.text);const n=parts.join('').length;let s0=tl.start;
-       parts.forEach(pt=>{if(s0<=CURT+0.001)last={start:s0,text:pt};s0+=(end-tl.start)*pt.length/n;});});
-     if(!last&&ch.length){last={start:L.start,text:openParts(ch[0].text)[0]};}
-     if(last){const k=CURT-last.start;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last.text,1400);g.restore();}});},
+     const ph=['このボイジャー1号に','話しかけても','返事が来るのは','2日後'],full=L.text||ph.join('');const tot=ph.join('').length;let acc=0,last=ph[0],t0=0;
+     for(const x of ph){const st=d*0.92*acc/tot;if(u>=st){last=x;t0=st;}acc+=x.length;}
+     const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // 49 years: the launch year counts up to now, then the stamp "first for a human-made object"
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'人工物')),d-0.9);
-   withEnter(enter(u,0),()=>{card(170,440,740,330);text('1977年',CX,540,64,C.sub,'center',900,600);bigNum(String(cnt(u,0.2,1.0,49)),'年',CX,680,1,C.acc,150);});
+   withEnter(enter(u,0),()=>{card(170,440,740,330);text('1977年',CX,540,64,C.sub,'center',900,600);bigNum('49','年',CX,680,ease(u/0.3),C.acc,150);});
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('人工物で初',CX,960,1,C.brand,70);},10);},
  hook(u,d,L){bg(u);abs(()=>{glow(CX,1050,620,C.brand,0.30);bigRina(HOOK_R);
    g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;rrect(90,300,900,325,28,'#0B1222');g.restore();ipic('lightday',90,300,900,325,28,1.05+0.06*u/Math.max(1,d),0.58,0.5);creditAt(NASA,975,600);});},
@@ -336,8 +334,8 @@ const S={
    withEnter(enter(u,0),()=>{ipic('hero',150,420,780,520,28,1.35+0.08*u/Math.max(1,d),0.66,0.42);creditAt(NASA,915,915);});
    if(u>t2)withEnter(enter(u,t2,0.2),()=>{tag('時速6万1000km',CX,1060,1,C.acc,60);},10);},
  history(u,d,L){bg(u);mini(u);const s1=Math.min(0.5,d*0.15),s2=Math.min(Math.max(1.6,telHas(L,'2012')),d-1.0);
-   withEnter(enter(u,0),()=>{planet(300,560,95,'#D9A066','#B9784A',false);text('木星',300,700,50,C.text,'center',900);},16);
-   withEnter(enter(u,s1),()=>{planet(780,560,80,'#E6CF94','#CDB273',true);text('土星',780,700,50,C.text,'center',900);},16);
+   withEnter(enter(u,0),()=>{planet(300,560,95,'#D9A066','#B9784A',false);},16);
+   withEnter(enter(u,s1),()=>{planet(780,560,80,'#E6CF94','#CDB273',true);},16);
    if(u>s2)withEnter(enter(u,s2,0.25),()=>{card(170,820,740,300,30,C.card2);text('2012年',CX,900,60,'#FFA51F','center',900);text('太陽圏の外へ',CX,1020,70,'#FFFFFF','center',900,660);},16);},
  twist(u,d,L){bg(u);mini(u);
    const st=ease(u/0.25);g.save();g.translate(CX,395);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
