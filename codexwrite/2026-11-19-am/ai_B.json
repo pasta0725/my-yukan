@@ -1,0 +1,434 @@
+[
+ {
+  "id": "ai-copilot-local-actions",
+  "category": "ai",
+  "title": "Copilot、PC内の整理と不調診断に対応へ",
+  "summary": "許可した資料やPCの状態を使い、会話から端末の操作を手伝います。",
+  "image": {
+   "src": "https://www.watch.impress.co.jp/img/ipw/list/2157/470/01.jpg",
+   "kind": "ogp",
+   "credit": "Impress Watch",
+   "page": "https://www.watch.impress.co.jp/docs/news/2157470.html"
+  },
+  "visual": {
+   "icon": "pc",
+   "kicker": "PC操作"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Copilotに、PC内のファイル操作や端末の不調を調べる機能を導入します。",
+     "対象はCopilot+ PCで、資料やアプリの参照には利用者の許可が必要です。",
+     "日本での提供時期や料金、日本語への対応は明らかになっていません。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Microsoftは11月17日（米国時間）、Copilotの端末向け機能を発表しました。会話でPCを操作する範囲を広げます。"
+   },
+   {
+    "type": "h",
+    "text": "開いている資料を許可して参照"
+   },
+   {
+    "type": "p",
+    "text": "Copilotは、利用者が許可した範囲でPC内の情報を使います。開いているファイルや使用中のアプリに加え、PCの状態も対象です。こうした参照の仕組みを「ローカルコンテキスト」と呼びます。"
+   },
+   {
+    "type": "p",
+    "text": "導入先は、AI処理に対応するCopilot+ PCです。Microsoftは端末内の情報参照、操作、AI処理の3機能を導入します。"
+   },
+   {
+    "type": "h",
+    "text": "ファイルを会話で探して整理"
+   },
+   {
+    "type": "p",
+    "text": "「ローカルアクション」は、普段の言葉でファイルを扱う機能です。検索や整理に対応し、移動やコピーもできます。ファイル名の変更も対象に含まれます。"
+   },
+   {
+    "type": "h",
+    "text": "端末の不調を読み取りで診断"
+   },
+   {
+    "type": "p",
+    "text": "診断機能では、PCの設定や状態を読み取り専用で調べます。Bluetoothがつながらない場合や、通信速度が落ちた場合の原因を探ります。ファイルの整理とは別に、端末の不調を調べる用途を用意します。"
+   },
+   {
+    "type": "h",
+    "text": "端末とクラウドで処理を分担"
+   },
+   {
+    "type": "p",
+    "text": "AIの処理は、PC内とインターネット上のクラウドで使い分けます。端末でAIを動かす仕組みは「ローカルモデル」と呼ばれます。Microsoftは、処理内容に応じて実行場所を選ぶ方針です。"
+   },
+   {
+    "type": "p",
+    "text": "新機能の料金と日本での提供時期は明らかになっていません。日本語への対応も公表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "3機能",
+      "label": "端末向けの新機能"
+     },
+     {
+      "value": "11月17日",
+      "label": "米国時間の発表日"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "利用を考える人は、手元のPCがCopilot+ PCか確認してください。",
+     "資料を扱う人は、情報を参照させる前に許可する範囲を確かめてください。",
+     "日本の利用者は、提供時期と対応言語が明らかになってから利用を判断できます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "整理と診断では、AIに任せる操作の範囲が違います。読み取り専用の診断から役立ち方を確かめられるなら、PCに詳しくない人も使い始めやすそうです。"
+   }
+  ],
+  "source_name": "Impress Watch",
+  "source_url": "https://www.watch.impress.co.jp/docs/news/2157470.html",
+  "published": "2026-11-18",
+  "refs": [
+   {
+    "name": "Impress Watch",
+    "url": "https://www.watch.impress.co.jp/docs/news/2157470.html"
+   }
+  ]
+ },
+ {
+  "id": "ai-microsoft-perception",
+  "category": "ai",
+  "title": "Microsoft、3チームのAIで攻撃検知と修復",
+  "summary": "弱点探しから修復までをAIが分担し、重要な判断には人が関わります。",
+  "image": {
+   "src": "https://www.publickey1.jp/2026/HXWPdJiXoAAF46K.png",
+   "kind": "ogp",
+   "credit": "Publickey",
+   "page": "https://www.publickey1.jp/blog/26/aiaimicrosoft_perception.html"
+  },
+  "visual": {
+   "icon": "lock",
+   "kicker": "AI防御"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Microsoftが、AIでサイバー攻撃に対抗するPerceptionの一般提供を始めました。",
+     "攻撃役・防御役・修復役の3チームが、共通の手順書に沿って連携します。",
+     "企業の防御を支えるサービスで、日本での提供条件や料金は明らかになっていません。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Microsoftは11月19日までに、AI防御サービスの一般提供を始めました。名称は「Microsoft Perception」です。"
+   },
+   {
+    "type": "h",
+    "text": "速まる攻撃にAIで対抗"
+   },
+   {
+    "type": "p",
+    "text": "Publickeyは、AIによる攻撃の自動化で、人の操作だけでは対応が難しくなると説明しています。Perceptionは、防御する側もAIを使い、機械の速さで対処するためのサービスです。"
+   },
+   {
+    "type": "p",
+    "text": "発表の場は、11月18日未明に開幕した年次イベントです。3つのチームに役割を分け、弱点探しと攻撃への対応を担います。修復まで一連の流れをつなぎます。"
+   },
+   {
+    "type": "h",
+    "text": "攻撃役と防御役が連携"
+   },
+   {
+    "type": "p",
+    "text": "レッドチームは攻撃者の立場で、悪用されそうな弱点を探します。実際に攻撃される前に、穴を見つける役目です。ブルーチームは攻撃の検知や調査を担い、被害が起きた際にも対応します。"
+   },
+   {
+    "type": "h",
+    "text": "修復役は他社クラウドも"
+   },
+   {
+    "type": "p",
+    "text": "グリーンチームは、見つかった弱点やプログラムの不具合を直す役割です。修正のほかに、被害につながる危険を小さくする対応も担います。"
+   },
+   {
+    "type": "p",
+    "text": "このチームの手順書は、Microsoft以外のクラウドも対象にしています。AWSとGoogle Cloudも含むため、防御の対象は同社の環境だけに限りません。"
+   },
+   {
+    "type": "h",
+    "text": "重要な判断は人に委ねる"
+   },
+   {
+    "type": "p",
+    "text": "各チームは「プレイブック」と呼ぶ手順書に沿って、自律的に連携します。日常の弱点探しと攻撃時の対応を支えますが、重要な判断が必要な段階では人に確認します。"
+   },
+   {
+    "type": "p",
+    "text": "一般提供は始まりましたが、料金と日本での提供条件は明らかになっていません。日本語への対応も公表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "3チーム",
+      "label": "防御を分担するAI"
+     },
+     {
+      "value": "11月18日",
+      "label": "発表イベントの開幕"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "企業のセキュリティ担当者は、導入検討時に既存の防御体制と役割を比べてください。",
+     "複数のクラウドを使う企業は、修復の手順書が自社の環境に対応するか確認してください。",
+     "個人の利用者は、今のところ特にすることはありません。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "弱点を見つける速さだけでなく、修復までつながるかが導入判断の軸になります。人が確認する場面とAIが自動で進める範囲を、具体的に把握したいサービスです。"
+   }
+  ],
+  "source_name": "Publickey",
+  "source_url": "https://www.publickey1.jp/blog/26/aiaimicrosoft_perception.html",
+  "published": "2026-11-19",
+  "refs": [
+   {
+    "name": "Publickey",
+    "url": "https://www.publickey1.jp/blog/26/aiaimicrosoft_perception.html"
+   }
+  ]
+ },
+ {
+  "id": "ai-copilot-managed-runtime",
+  "category": "ai",
+  "title": "Microsoft、AI製アプリの社内実行基盤を公開",
+  "summary": "従業員がAIで作ったアプリを、会社の認証や権限の下で動かせます。",
+  "image": {
+   "src": "https://www.publickey1.jp/2026/copilot-managed-runtime-ga01.png",
+   "kind": "ogp",
+   "credit": "Publickey",
+   "page": "https://www.publickey1.jp/blog/26/aicopilot_managed_runtime.html"
+  },
+  "visual": {
+   "icon": "ai",
+   "kicker": "社内アプリ"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Microsoftが、AI製アプリを社内で動かすCopilot Managed Runtimeを正式公開しました。",
+     "会社のMicrosoft 365と同じ管理範囲で動き、1500種類以上のデータ接続に対応します。",
+     "アプリの作成だけでなく、情報部門による権限管理や稼働状況の監視も支えます。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Microsoftは11月19日までに、社内アプリ用の新基盤を正式公開しました。名称は「Copilot Managed Runtime」です。"
+   },
+   {
+    "type": "h",
+    "text": "アプリ作成後の運用を支援"
+   },
+   {
+    "type": "p",
+    "text": "AIでアプリを作れる人が増えると、会社の中で安全に動かす仕組みも必要になります。この基盤は、AIが生成したアプリなどを社内で実行するためのサービスです。Microsoftがアプリの置き場所や処理能力の調整を運営します。発表の場は、11月18日未明に開幕した年次イベントです。"
+   },
+   {
+    "type": "p",
+    "text": "背景には、開発者以外の従業員もAIへの指示でアプリを作れるようになった変化があります。作ったアプリが、許可のない情報や通信先に触れないようにする管理が課題です。"
+   },
+   {
+    "type": "h",
+    "text": "会社の認証と権限で管理"
+   },
+   {
+    "type": "p",
+    "text": "アプリは、所属組織のMicrosoft 365と同じテナント内に配置されます。テナントは、会社ごとに分かれたサービスの管理範囲です。会社の認証基盤であるEntra IDを使い、利用者やアクセス権を管理できます。"
+   },
+   {
+    "type": "p",
+    "text": "操作の記録を残す監査ログも使えます。情報部門はアプリの一覧を確認し、それぞれの稼働状態を監視できます。"
+   },
+   {
+    "type": "h",
+    "text": "社内外のデータにつなぐ"
+   },
+   {
+    "type": "p",
+    "text": "接続先は1500種類以上のデータソースに対応します。接続を仲介する「コネクタ」を使い、必要なデータとアプリを結び付けます。Microsoft 365内のデータにアクセスする仕組みも利用できます。"
+   },
+   {
+    "type": "p",
+    "text": "Work IQという機能も組み合わせられます。AIが組織内のデータの文脈を理解するための仕組みです。アプリを動かす場所と、仕事のデータを使うための機能をまとめて提供します。"
+   },
+   {
+    "type": "h",
+    "text": "開発手段と提供条件を確認"
+   },
+   {
+    "type": "p",
+    "text": "対応アプリは、Copilot CodeやCopilot Studioなどで作れます。GitHub CopilotやVS Codeを使う開発にも対応します。他社の開発ツールからは、専用の開発用部品を組み込む方法も用意します。"
+   },
+   {
+    "type": "p",
+    "text": "料金と日本での提供条件は明らかになっていません。日本語への対応も公表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "1500種類以上",
+      "label": "接続できるデータ元"
+     },
+     {
+      "value": "11月18日",
+      "label": "発表イベントの開幕"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "社内アプリを作る人は、公開前に情報部門とデータへのアクセス範囲を確認してください。",
+     "管理者は、導入検討時に会社の認証や監査の運用と合うか確かめてください。",
+     "日本の利用企業は、契約条件と料金の案内を確認してから採用を判断できます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "AIでアプリを作れても、会社で使い続けるには管理が要ります。認証と監視をまとめられる点は、試作を日常の業務に移したい企業の判断材料になりそうです。"
+   }
+  ],
+  "source_name": "Publickey",
+  "source_url": "https://www.publickey1.jp/blog/26/aicopilot_managed_runtime.html",
+  "published": "2026-11-19",
+  "refs": [
+   {
+    "name": "Publickey",
+    "url": "https://www.publickey1.jp/blog/26/aicopilot_managed_runtime.html"
+   }
+  ]
+ },
+ {
+  "id": "ai-windows-server-2028-ai",
+  "category": "ai",
+  "title": "Microsoft、次期サーバーを社内AIの実行基盤へ",
+  "summary": "公開試験版のWindows Server 2028で、企業内のAI処理を支えます。",
+  "image": {
+   "src": "https://www.publickey1.jp/2026/windows-server2028-la.png",
+   "kind": "ogp",
+   "credit": "Publickey",
+   "page": "https://www.publickey1.jp/blog/26/windows_server_2028microsoft_foundryai.html"
+  },
+  "visual": {
+   "icon": "pc",
+   "kicker": "社内AI"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Microsoftが、Windows Server 2028の公開試験版を発表しました。",
+     "現行の2025に続く大型更新で、社内でAIの回答を作る処理を担います。",
+     "一般向けPC用とは別の製品で、正式版の時期や料金は明らかになっていません。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Microsoftは11月19日までに、次期サーバーOSの公開試験版を発表しました。社内でAIを動かす用途を広げます。"
+   },
+   {
+    "type": "h",
+    "text": "従来のサーバーから役割拡大"
+   },
+   {
+    "type": "p",
+    "text": "Windows Server 2028は、現在のWindows Server 2025に続く大型更新です。Windows Serverは企業の利用者や機器を管理し、業務アプリを動かす土台として使われてきました。次期版では、社内でのAI処理も役割に加わります。"
+   },
+   {
+    "type": "h",
+    "text": "会社の中でAIの答えを作る"
+   },
+   {
+    "type": "p",
+    "text": "新たに担うのは「AI推論」、つまりAIが入力に応じて答えを作る処理です。AIを動かすためのMicrosoft Foundryなどを利用します。会社の中のサーバーを、AIの実行場所にする方向です。"
+   },
+   {
+    "type": "p",
+    "text": "現段階は、一般に試せるパブリックプレビューです。正式版の提供時期と料金は明らかになっていません。日本での提供条件と日本語対応も公表されていません。"
+   },
+   {
+    "type": "h",
+    "text": "仮想マシンの保護を強化"
+   },
+   {
+    "type": "p",
+    "text": "仮想マシンは、物理的なサーバーの中に作るコンピューター環境です。次期版では、正しく起動するか確かめる保護機能の拡張を予定します。処理内容を機器側で暗号化し、外から読み取られにくくする機能も搭載予定です。"
+   },
+   {
+    "type": "p",
+    "text": "電子証明書の自動管理も計画しています。証明書は通信相手などを確かめるために使います。将来の量子コンピューターによる解読に備える暗号技術も搭載する予定です。"
+   },
+   {
+    "type": "h",
+    "text": "記憶装置と日々の管理も更新"
+   },
+   {
+    "type": "p",
+    "text": "データを保存する記憶装置は、高速なNVMe方式を標準で有効にします。ネットワーク経由で高速な記憶装置につなぐ方式にも対応します。AIだけでなく、サーバーの土台となる機能も更新します。"
+   },
+   {
+    "type": "p",
+    "text": "Microsoft Windows Intuneによるサーバー管理も試験提供します。サーバーの設定や更新状況などを管理する仕組みです。担当者は、AIを動かす機能と合わせて運用面の変更も確認できます。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "2028",
+      "label": "公開試験版の版番号"
+     },
+     {
+      "value": "2025",
+      "label": "現行製品の版番号"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "企業のサーバー担当者は、検証時に社内AIを動かすための対応機能を確認してください。",
+     "導入を考える企業は、正式版の時期と日本での提供条件を確認してください。",
+     "一般のPC利用者は、この発表を理由に手元のWindowsを更新する必要はありません。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "社内のサーバーがAIの実行場所になると、アプリ管理に加えてAI処理の運用も検討することになります。公開試験版では、使いたいAIを動かせるかが判断の出発点です。"
+   }
+  ],
+  "source_name": "Publickey",
+  "source_url": "https://www.publickey1.jp/blog/26/windows_server_2028microsoft_foundryai.html",
+  "published": "2026-11-19",
+  "refs": [
+   {
+    "name": "Publickey",
+    "url": "https://www.publickey1.jp/blog/26/windows_server_2028microsoft_foundryai.html"
+   }
+  ]
+ }
+]
