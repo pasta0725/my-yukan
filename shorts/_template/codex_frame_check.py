@@ -135,7 +135,7 @@ PROMPT = """あなたは YouTube ショート動画（縦 1080x1920、長さ {T}
 
 点検する項目（1つでも当てはまれば LOOK）:
 1. 空の吹き出し：白い吹き出しが出ているのに中に文字がない（出始め・消え際の一瞬のコマでも、中身が無ければ書く）。
-2. 改行：吹き出し・字幕の行頭が助詞（は が を に で と も の へ や から まで より）・小さい字（ゃ ゅ ょ っ ャ ュ ョ ッ ー 、。）・「た」「だ」で始まる。「」の中で改行。数字と単位・カタカナ語・英単語・ひらがなの単語の途中で改行。3文字未満しかない行。
+2. 改行：吹き出し・字幕の行頭が助詞（は が を に で と も の へ や から まで より）・小さい字（ゃ ゅ ょ っ ャ ュ ョ ッ ー 、。）・助動詞の「た」「だ」（「〜した」「〜だ」の切れ端。例：「調べ／たあと」）で始まる。「ただし」「ただ」「だから」「たとえば」のような言葉の頭が行頭にあるのは問題ない（例：1行目「ただし電力は」は正しい）。「」の中で改行。数字の途中・数字と単位の間（例：「259億／キロ」「6万／1000キロ」）・カタカナ語・英単語・ひらがなの単語の途中で改行。3文字未満しかない行（例：「Codexに／登場」）。
 3. はみ出し：文字がカード・吹き出し・アイコン（カレンダー等）の枠から出ている、他の文字や絵と重なって読めない、画面の端で切れている。
 4. YouTube の画面との重なり：文字・数字・人や りなの顔がピンクの帯（左右の端、上の y180〜280）に入っている。背景に敷いた写真・映像（公式の画像など）や りなの髪・体が帯に入るのは問題ない（2026-11-18：背景の写真の端を毎回指摘していた）。
 5. 誤字（0〜{hook}秒の画面中央の特大テロップは、最初の一文を0.5〜1秒ごとに区切って出す作り。区切りの一部だけが見えるのは正しいので書かない）：画面の文字を下の「台本」「予定の字幕」と比べ、違う漢字（例：疑う→擬う）、抜けた字・余計な字、変換の誤り、数字の違いがないか。台本と言い回しが少し違うだけで意味も字も正しいものは問題なし。
@@ -162,7 +162,29 @@ SCHEMA = {"type": "object", "additionalProperties": False, "required": ["result"
 SCHEMA["required"].append("captions")
 
 HEAD = set("はがをにでとものへやただゃゅょっぁぃぅぇぉャュョッァィゥェォー、。，．」』）)!！?？")  # a line must not start with these
+HEAD_W = ("から", "まで", "より")
+# 2026-11-18: words whose first letter is in HEAD but which may start a line (「ただし電力は」 was counted as a mistake), after 、 or a particle;
+# the same lists as shorts/_template/wrap_rules.js (check_fit.js) and wrapJa() in short.html
+HEAD_OK = ("ただし", "ただ", "だから", "だけど", "だが", "だって", "たとえば", "たった", "たくさん", "たぶん", "でも", "では", "ところが", "ところで",
+           "とても", "とくに", "とりあえず", "もう", "もし", "もっと", "もちろん", "しかし", "しかも")
+HEAD_OK_AFTER = set("、。」』）!！?？ 　はがをにでともへやよねばす")
+HEAD_FREE = ("かか", "かけ", "かなり", "かつて", "かわり", "でき", "とき", "ところ")
 NOPUNCT = re.compile(r"[\s、。，．,.!！?？「」『』（）()・…ー〜~]")
+DIG, KATA = re.compile(r"[0-9０-９]"), re.compile(r"[\u30a1-\u30fa\u30fc]")
+
+
+def head_bad(prev, line):
+    """'' when `line` may start a new line after `prev` (the line above), else what is wrong."""
+    if line.startswith(HEAD_FREE) or (line.startswith(HEAD_OK) and prev and prev[-1] in HEAD_OK_AFTER): return ""
+    w = next((x for x in HEAD_W if line.startswith(x)), "")
+    if w or line[0] in HEAD: return f"行が「{w or line[0]}」で始まる"
+    a, b = (prev or " ")[-1], line[0]
+    if DIG.match(a) and b not in "、。，．,!！?？ 　」』）": return "数字の途中か、数字と単位の間で改行"
+    if a in "億万千百十兆" and len(prev) > 1 and DIG.match(prev[-2]) and b not in "、。，．,!！?？ 　」』）": return "数字の途中か、数字と単位の間で改行"
+    if DIG.match(b) and (a in ".,，．約第" or (len(prev) > 1 and DIG.match(prev[-2]))): return "数字の途中で改行"
+    if KATA.match(a) and KATA.match(b): return "カタカナ語の途中で改行"
+    if re.match(r"[A-Za-z]", a) and re.match(r"[A-Za-z]", b): return "英単語の途中で改行"
+    return ""
 
 
 def rule_items(wd, d):
@@ -176,8 +198,9 @@ def rule_items(wd, d):
         L = [l.strip() for l in c.get("lines", []) if l.strip()]; tm = mmss(x["t"])
         if not L:
             out.append({"time": tm, "what": "空の吹き出し", "where": "吹き出し・字幕", "detail": f"文字が見えない（予定「{x['text']}」）"}); continue
-        for l in L[1:]:
-            if l[0] in HEAD: out.append({"time": tm, "what": "改行", "where": "吹き出し・字幕", "detail": f"行が「{l[0]}」で始まる：{' / '.join(L)}"})
+        for k in range(1, len(L)):
+            why = head_bad(L[k - 1], L[k])
+            if why: out.append({"time": tm, "what": "改行", "where": "吹き出し・字幕", "detail": f"{why}：{' / '.join(L)}"})
         if len(L) > 1 and any(len(NOPUNCT.sub("", l)) < 3 for l in L):
             out.append({"time": tm, "what": "改行", "where": "吹き出し・字幕", "detail": f"3文字未満の行がある：{' / '.join(L)}"})
         seen, want = NOPUNCT.sub("", "".join(L)), NOPUNCT.sub("", x["text"])

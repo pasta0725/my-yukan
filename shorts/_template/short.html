@@ -58,7 +58,7 @@ function mini(u){abs(()=>glow(210,1380,260,C.brand,0.22));drawChar(CUR||IMG.mini
 function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
 function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
 function credit(t='出典：TechCrunch ほか'){abs(()=>text(t,950,362,26,C.sub,'right',700));}
-// ---------- caption: white + black edge, yellow numbers, red only for caution, <=696px, <=2 lines ----------
+// ---------- caption colours: numbers orange, product-name numbers plain, red only for caution ----------
 function marks(s,warn){const m=new Array(s.length).fill(C.capText);
   const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
   paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum);
@@ -66,12 +66,62 @@ function marks(s,warn){const m=new Array(s.length).fill(C.capText);
   const prod=/[A-Za-z][A-Za-z+]*[ -]?([0-9][0-9.]*)(?![0-9.,万円倍月日秒%年人台本件回時分])/g;let p;
   while((p=prod.exec(s))){const st=p.index+p[0].length-p[1].length;for(let i=st;i<p.index+p[0].length;i++)m[i]=C.capText;}
   if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
-function splitLine(s){const pt='をにはがでとのもへ、';const brk=[];for(let i=2;i<s.length-1;i++){if(pt.includes(s[i-1])&&!pt.includes(s[i]))brk.push(i);} // never start a line with a particle
-  if(!brk.length)return [s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
-  const mid=s.length/2;const b=brk.sort((a,b)=>Math.abs(a-mid)-Math.abs(b-mid))[0];return [s.slice(0,b),s.slice(b)];}
-function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let lines=[s];
-  if(g.measureText(s).width>MAXW){lines=splitLine(s);}
-  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>MAXW)size=Math.floor(size*MAXW/w);}
+// ---------- line breaks (2026-11-18): the rules of tools/shorts_rules.md「画面と字幕」are applied here, while the caption is laid out ----------
+// (they used to be found only in the screen check after a 15-minute render: 259億|キロ, 6万|1000キロ, Codexに|登場, a line starting with た/だ)
+// a line never starts with a particle, a small letter or the auxiliary た/だ (a word like ただし・ただ・だから may start a line after 、 or a particle);
+// never break inside 「」, inside a number, between a number and its unit (259億キロ・6万1000キロ・20分の1・11月18日), inside a katakana or English word,
+// before the number of a name (iPhone 17・ボイジャー1号), nor between two hiragana except right after a particle; 3+ letters a line; 2 lines, 3 only if needed.
+// check_fit.js checks the result with its own copy of the rules (wrap_rules.js), so a mistake here is still caught before rendering.
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});
+const NOSTART='、。，．,.・…」』）)】〕!！?？をにはがでとのもへやかよねっゃゅょぁぃぅぇぉゎッャュョァィゥェォヮヵヶーんてただ';
+const NOSTART_W=['から','まで','より','だけ','しか','ほど','など','くらい','ぐらい','ので','のに','けど','ます','ません'];   // particles and endings of 2+ letters
+const HEAD_OK=['ただし','ただ','だから','だけど','だが','だって','たとえば','たった','たくさん','たぶん','でも','では','ところが','ところで','とても','とくに','とりあえず','もう','もし','もっと','もちろん','しかし','しかも'];
+const HEAD_OK_AFTER='、。」』）!！?？ 　はがをにでともへやよねばす';   // ...but only after these (so not 来|ただけ, なん|だから, 思い|もしない)
+const HEAD_FREE=['かか','かけ','かなり','かつて','かわり','でき','とき','ところ'];   // verbs and nouns that look like a particle (24時間|かかります, 予定表が|できます): may start a line anywhere
+const UNITS=['時間','年間','日間','週間','分間','秒間','カ月','ヶ月','か月','ヵ月','言語','光年','光日','万円','億円','千円','兆円','万人','億人','万台','パーセント'];
+const RE_KANJI=/[一-鿿々〆]/,RE_HIRA=/[ぁ-ゟ]/,RE_KATA=/[ァ-ヺーヽヾ]/,RE_AN=/[A-Za-z0-9Ａ-Ｚａ-ｚ０-９.\-+_'’&]/,RE_DIG=/[0-9０-９]/;
+const SOFT='をにはがでとのもへやよねばて';   // hiragana|hiragana is a word boundary only right after these (and where the word splitter agrees)
+const letters=t=>t.replace(/[\s、。，．,.!！?？「」『』（）()・…〜~]/g,'').length;
+function numSpans(s){const out=[];const re=/[0-9０-９][0-9０-９.,，．:：億万千百十兆]*(?:分の[0-9０-９][0-9０-９.,，．]*)?/g;let m;   // [start, end of the number, end of its unit word]
+  while((m=re.exec(s))){const a=m.index;let b=a+m[0].length;while(b>a+1&&'.,，．:：'.includes(s[b-1]))b--;const w=UNITS.find(x=>s.startsWith(x,b));out.push([a,b,w?b+w.length:b]);}return out;}
+function breakWhy(s,j,segb){const p=s[j-1],n=s[j];   // '' = a line may start at s[j]; otherwise the rule it would break
+  const headOK=HEAD_FREE.some(w=>s.startsWith(w,j))||HEAD_OK.some(w=>s.startsWith(w,j))&&HEAD_OK_AFTER.includes(p);
+  if(!headOK&&(NOSTART.includes(n)||NOSTART_W.some(w=>s.startsWith(w,j))))return 'head';
+  const h=s.slice(0,j);if(h.split(/[「『（(【]/).length>h.split(/[」』）)】]/).length||'「『（(【'.includes(p))return 'bracket';
+  for(const [a,b,u] of numSpans(s)){if(j>a&&j<b)return 'number';if(j>b&&j<u)return 'unit';if(j===b&&!'、。，．,!！?？ 　」』）'.includes(n))return 'unit';
+    if(j===a&&('約第$¥＄￥#＃+＋'.includes(p)||(j>=2&&RE_DIG.test(s[j-2]))))return 'number';}   // 約|259億, 11月|18日, 7時|16分
+  if(n===' '||n==='　')return 'space';
+  if(RE_DIG.test(n)&&(RE_AN.test(p)||RE_KATA.test(p)||p===' '))return 'name';
+  if(RE_KATA.test(p)&&RE_KATA.test(n))return 'katakana';
+  if(RE_AN.test(p)&&RE_AN.test(n))return 'word';
+  if(RE_HIRA.test(p)&&RE_HIRA.test(n)&&!headOK&&!(SOFT.includes(p)&&(segb.has(j)||p==='て')))return 'hiragana';   // まと|めます, 見なが|ら (伝えて|います is fine)
+  if(RE_KANJI.test(p)&&RE_HIRA.test(n)&&!segb.has(j))return 'okurigana';   // 届|く
+  return '';}
+function wrapJa(s,size,maxw,maxLines=3){g.font=`900 ${size}px ${FONT}`;const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  const segb=new Set();let i=0;for(const x of SEG.segment(s)){i+=x.segment.length;segb.add(i);}
+  const cand=new Set(segb);for(let j=1;j<s.length;j++)if((SOFT+'、。」』）!！?？ 　').includes(s[j-1])||HEAD_OK.some(w=>s.startsWith(w,j)))cand.add(j);   // the word splitter misses some
+  const c=[...cand].filter(j=>j>0&&j<s.length&&letters(s.slice(0,j))>=3&&letters(s.slice(j))>=3&&!breakWhy(s,j,segb)).sort((a,b)=>a-b);
+  if(!c.length)return [s];   // no allowed place: one line (it shrinks; check_fit.js reports it when the letters get too small)
+  // cost of a layout = how much the letters shrink (%) + how bad the break places are + a little for uneven lines.
+  // 3 lines are drawn at 64px at most (about 13.5% smaller) and win only when 2 lines would shrink by more than ~16%: 2 lines are the rule (zelda 2026-11-09).
+  const SP=numSpans(s);
+  const PEN=a=>{const p=s[a-1],n=s[a];if(SP.some(([x,b,u])=>a===u&&u>b)||(RE_DIG.test(s[a-2]||'')&&RE_KANJI.test(p)))return 2;   // right after a number and its unit (24時間|かかります, 1日|かけて)
+    if(('をにはがでとのもへやかよね、。てばし」』）!！?？ 　').includes(p)||HEAD_OK.some(w=>s.startsWith(w,a)))return 0;   // best right after a particle
+    if(s.slice(a,a+2)==='いう'&&p==='と')return 3;if(RE_KANJI.test(p)&&RE_KANJI.test(n))return 30;if(RE_KANJI.test(p)&&RE_HIRA.test(n))return 18;return 5;};   // 予定|表・営業|中 (kanji|kanji) only as a last resort
+  const cost=(L,cap,extra)=>{const m=Math.max(...L.map(W));const eff=Math.min(cap,size*Math.min(1,maxw/m));return (1-eff/size)*100+extra+3*Math.min(m,maxw)/maxw;};
+  let best={L:[s],sc:cost([s],size,8)};
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const sc=cost(L,size,PEN(a));if(sc<best.sc)best={L,sc};}
+  if(maxLines>=3)for(const a of c)for(const b of c)if(b>a&&letters(s.slice(a,b))>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const sc=cost(L,size*64/74,PEN(a)+PEN(b)+2.5);if(sc<best.sc)best={L,sc};}
+  return best.L;}
+// the lines and the letter size of each kind of caption (check_fit.js reads them through window.WRAP_LOG)
+function fitSize(lines,size,maxw){for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>maxw)size=Math.floor(size*maxw/w);}return size;}
+function logWrap(kind,s,o){if(Array.isArray(window.WRAP_LOG))window.WRAP_LOG.push({kind,text:s,lines:o.lines,size:o.size});return o;}
+function captionLayout(s){const lines=wrapJa(s,66,MAXW,2);return logWrap('caption',s,{lines,size:fitSize(lines,66,MAXW)});}
+function bubbleLayout(s){const lines=wrapJa(s,74,BMAXW);let size=fitSize(lines,74,BMAXW);if(lines.length===3)size=Math.min(size,64);return logWrap('bubble',s,{lines,size});}
+function telopLayout(s){const lines=wrapJa(s,150,940,2);return logWrap('telop',s,{lines,size:fitSize(lines,150,940)});}
+window.LAYOUT={caption:captionLayout,bubble:bubbleLayout,telop:s=>telopLayout(s.replace(/[、。]$/,'')),base:{caption:66,bubble:74,telop:150}};
+// ---------- caption over the big presenter: white + black edge, orange numbers, red only for caution, <=680px, <=2 lines ----------
+function caption(s,y,k,warn){const o=captionLayout(s),lines=o.lines,size=o.size;
   const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
   g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
   let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
@@ -83,35 +133,18 @@ function caption(s,y,k,warn){let size=66;g.font=`900 ${size}px ${FONT}`;let line
     g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
   g.restore();}
 
-// ---------- speech bubble: the caption is Rina's line, right next to her (x370-915, y1165-1440 stays clear of the Shorts buttons and title) ----------
-const BX=372,BY=1300,BW=543,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+// ---------- speech bubble: the caption is Rina's line, right next to her (x400-915, y1300-1575 stays clear of the Shorts buttons and title) ----------
+const BX=400,BY=1300,BW=515,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
 function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
-  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+226);g.lineTo(BX-40,BY+196);g.lineTo(BX,BY+166);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+150);g.lineTo(BX-40,BY+122);g.lineTo(BX,BY+94);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}  // tail at Rina's mouth
 function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
-// line breaks only at word boundaries (Intl.Segmenter), never before a particle or punctuation; 2 lines, 3 if needed to stay big
-const SEG=new Intl.Segmenter('ja',{granularity:'word'});const NOSTART='、。」』）をにはがでとのもへやかよねっゃゅょぁぃぅぇぉーんてただ';
-function wrapJa(s,size,maxw){g.font=`900 ${size}px ${FONT}`;const cuts=[0];let i=0;const KANJI=/[\u4e00-\u9fff々]/,HIRA=/[\u3041-\u309f]/;const segb=new Set();for(const x of SEG.segment(s)){i+=x.segment.length;segb.add(i);if(i<s.length&&!NOSTART.includes(s[i])&&!(KANJI.test(s[i-1])&&HIRA.test(s[i])))cuts.push(i);}
-  // also right after particles - but not inside a word like 見なが|ら (2026-11-10 Issue #4): only when the next letter is not hiragana, or the word splitter also cuts there
-  for(let j=1;j<s.length;j++)if('をにはがでとのもへやよね、。てば'.includes(s[j-1])&&!NOSTART.includes(s[j])&&(!HIRA.test(s[j])||segb.has(j)||'、。'.includes(s[j-1])))cuts.push(j);
-  const keep=j=>j>=3&&s.length-j>=3;  // every line keeps at least 3 characters  // also right after particles (the word splitter misses some)
-  cuts.push(s.length);
-  const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
-  let best=null;const c=[...new Set(cuts)].sort((a,b)=>a-b).filter(x=>x>0&&x<s.length&&keep(x));
-  const PEN=a=>(s.slice(a,a+2)==='いう'&&s[a-1]==='と')?size*0.6:(KANJI.test(s[a-1])&&KANJI.test(s[a]))?size*2.2:('をにはがでとのもへやかよね、。てばし'.includes(s[a-1])?0:size*0.9);  // prefer breaking right after a particle; avoid 再|入荷 (kanji|kanji)
-  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));const sc=m+PEN(a);if(m<=maxw*1.15&&(!best||sc<best.sc))best={L,m,sc};}if(!best)for(const a of c){const L=[s.slice(0,a),s.slice(a)];const m=Math.max(...L.map(W));if(!best||m<best.m)best={L,m,sc:m};}
-  if(best&&best.m<=maxw)return best.L;
-  let b3=null;for(const a of c)for(const b of c)if(b-a>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const m=Math.max(...L.map(W));if(!b3||m<b3.m)b3={L,m};}
-  return (b3&&(!best||best.m>maxw*1.06))?b3.L:(best?best.L:[s]);}  // 2 lines that would shrink the text by more than ~6% -> 3 lines (Issue #4)
-function bubbleText(s,k,warn){abs(()=>{let size=74;let lines=wrapJa(s,size,BMAXW);
-  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>BMAXW)size=Math.floor(size*BMAXW/w);}
-  if(lines.length===3)size=Math.min(size,64);
+function bubbleText(s,k,warn){abs(()=>{const o=bubbleLayout(s),lines=o.lines,size=o.size;
   const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
   const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
     g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:(m[off+i]===C.capNum?'#D64D00':m[off+i]);g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
 // giant caption over the 0 s picture (the first sentence, chunk by chunk, user 2026-11-17): white letters, thin sharp black edge, no blur (user chose style B), numbers orange
-function bigTelop(s,y){s=s.replace(/[、。]$/,'');let size=150;let lines=wrapJa(s,size,940);if(lines.length>2)lines=[s.slice(0,Math.ceil(s.length/2)),s.slice(Math.ceil(s.length/2))];
-  for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>940)size=Math.floor(size*940/w);}
+function bigTelop(s,y){s=s.replace(/[、。]$/,'');const o=telopLayout(s),lines=o.lines,size=o.size;   // at most 2 lines, never cut in half by letter count (2026-11-18)
   const lh=size*1.18,y0=y-(lines.length-1)*lh/2;const m=marks(s,false);let off=0;
   lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
     g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
