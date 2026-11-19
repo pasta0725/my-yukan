@@ -1,0 +1,59 @@
+# Codexの書き足し：54本を採用（55本中）
+
+| 記事id | 結果 | 内容 |
+|---|---|---|
+| ai-chatgpt-live-dictation | 採用 | 793→1192字, refs 1→5 |
+| ai-gemini-mac-computer-use | 採用 | 941→1855字, refs 2→5 |
+| ai-gemini-tool-retrieval | 採用 | 857→1479字, refs 1→4 |
+| ai-google-ai-ultra-family | 採用 | 916→1508字, refs 1→5 |
+| ai-microsoft-database-agents | 採用 | 1004→1483字, refs 1→2 |
+| mobile-aiwa-windows-tablets-retail | 採用 | 851→1249字, refs 1→4 |
+| service-summer-replay | 採用 | 754→1072字, refs 1→4 |
+| gadget-awol-luxvision | 採用 | 846→1478字, refs 1→4 |
+| game-sakatsuku-2026-winter-update | 採用 | 1054→2007字, refs 1→3 |
+| mobile-iijmio-aquos-sense11 | 採用 | 1069→1712字, refs 2→5 |
+| mobile-mineo-leak-scope | 採用 | 1074→1562字, refs 2→4 |
+| mobile-msi-4k-180hz-oled | 採用 | 854→1328字, refs 1→3 |
+| mobile-oppo-black-friday | 採用 | 1044→2115字, refs 1→4 |
+| mobile-uq-motorola-edge60 | 採用 | 896→1407字, refs 1→3 |
+| gadget-lg-swing-ai | 採用 | 1025→1645字, refs 1→4 |
+| gadget-roborock-flow | 採用 | 1243→1537字, refs 1→5 |
+| gadget-sanwa-dual-video-hub | 採用 | 771→1213字, refs 1→2 |
+| gadget-xiaomi-clip | 採用 | 1099→1626字, refs 3→5 |
+| gadget-xiaomi-watch-s5-41 | 採用 | 1208→2088字, refs 2→5 |
+| other-nict-ultraviolet-wireless | 採用 | 887→1364字, refs 1→3 |
+| service-clio-creator-awards | 採用 | 922→1600字, refs 1→3 |
+| ai-tanashi-carpentry-training | 採用 | 949→1337字, refs 1→5 |
+| game-muv-luv-mellow-days | 採用 | 988→1568字, refs 2→5 |
+| service-buffalo-direct-camera | 採用 | 954→1737字, refs 1→4 |
+| service-minna-fudeoh-address-export | 採用 | 860→1680字, refs 1→4 |
+| service-monogatari-app-registration | 採用 | 884→1277字, refs 1→4 |
+| service-physical-asia-season-two | 採用 | 803→1110字, refs 1→3 |
+| service-secrets-trailer | 採用 | 867→1207字, refs 1→4 |
+| game-mlb-the-show-27 | 採用 | 991→1313字, refs 1→4 |
+| game-nintendo-holiday-switch-2 | 採用 | 1219→1679字, refs 1→4 |
+| game-paranormasight-steam-sale | 採用 | 869→1875字, refs 1→3 |
+| game-rakuten-switch-holiday | 採用 | 1004→1368字, refs 1→3 |
+| game-wobbly-life-switch2 | 採用 | 823→1245字, refs 1→4 |
+| other-aist-euglena-battery | 採用 | 904→1426字, refs 1→2 |
+| other-familymart-drink-robot | 採用 | 926→1342字, refs 1→4 |
+| ai-disney-anzellan-ai | 採用 | 994→1690字, refs 1→3 |
+| ai-shadow-api-model-study | 採用 | 1077→1537字, refs 1→2 |
+| ec-amazon-shopping-survey | 採用 | 886→1205字, refs 1→3 |
+| ec-jcrew-style-advisor | 採用 | 905→1575字, refs 1→4 |
+| ec-primevideo-boxing17 | 採用 | 1157→1928字, refs 1→4 |
+| ec-shirohato-shop-renewal | 採用 | 788→1259字, refs 1→2 |
+| ec-sushiro-online-store | 採用 | 698→1002字, refs 1→2 |
+| ai-canva-generative-ai-settings | 採用 | 937→1383字, refs 1→5 |
+| future-liver-perfusion-record | 採用 | 1038→1337字, refs 1→2 |
+| future-osmo-scent-engineering | 採用 | 1019→1699字, refs 1→3 |
+| future-sila-panasonic-batteries | 採用 | 999→1742字, refs 1→3 |
+| future-southwest-hydropower-drought | 採用 | 1035→1941字, refs 1→5 |
+| mobile-japannext-6k-4k-monitors | 採用 | 793→1286字, refs 1→3 |
+| other-php-emergency-maintenance | 採用 | 932→1393字, refs 1→4 |
+| ai-sakura-flash-trial | 採用 | 875→1708字, refs 1→3 |
+| gadget-earth-cardboard-lp | 採用 | 708→807字, refs 1→2 |
+| other-anthropic-ipo-debut | 採用 | 1312→1887字, refs 2→4 |
+| other-docomo-10g-first-year | 採用 | 819→1583字, refs 1→3 |
+| other-google-play-japan-accelerator | 変更なし |  |
+| other-nikke-hokkaido-data | 採用 | 1090→1481字, refs 1→4 |
