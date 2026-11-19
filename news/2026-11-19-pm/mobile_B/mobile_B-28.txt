@@ -1,0 +1,50 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2157695.html
+TITLE: Webサーバー「nginx」に10件の脆弱性 ～HTTP/2実装の欠陥は未認証でリモートコード実行も／「CVE-2026-123633」「CVE-2026-123007」に警戒、v1.30.7/v1.31.9で修正
+SITE: 窓の杜
+PUBLISHED: 2026-11-19 11:35 (page: 2026-11-19T11:35:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2157/695/nginx.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2157/695/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B00HOWSZ5Y.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+Webサーバー「nginx」に10件の脆弱性 ～HTTP/2実装の欠陥は未認証でリモートコード実行も
+「CVE-2026-123633」「CVE-2026-123007」に警戒、v1.30.7/v1.31.9で修正
+樽井 秀人
+2026年11月19日 11:35
+「nginx」でセキュリティアップデートが実施
+米F5は11月18日（現地時間）、Webサーバー「nginx」（エンジンエックス）の安定版（stable）v1.30.7と開発版（mainline）v1.31.9を公開した。10件の脆弱性が修正されたセキュリティアップデートとなっている。
+今回のアップデートで修正された脆弱性は、以下の通り。深刻度は「nginx.org」の評価で「major」が3件、「medium」が4件、「minor」が3件。v1.31.8までの幅広いバージョンに影響する（「CVE-2026-120993」のみ、安定版であるv1.30系統は影響を受けない）。
+CVE-2026-123007
+（major）：HTTP/2のフロー制御におけるメモリ破損
+CVE-2026-118899
+（major）：TLS 1.3でリクエストボディを読み込む際の無限ループ
+CVE-2026-113425
+（major）：メールプロキシモジュールにおける解放後メモリ使用（use-after-free）
+CVE-2026-123634
+（medium）：「resolver」における解放後メモリ使用
+CVE-2026-121810
+（medium）：HTTP/3における解放後メモリ使用
+CVE-2026-123633
+（medium）：HTTP/2における解放後メモリ使用
+CVE-2026-120967
+（medium）：streamモジュールでクライアント証明書を検証する際のSNIバイパス
+CVE-2026-120993
+（minor）：PROXYプロトコル バージョン2を使用する際のNULLポインター参照
+CVE-2026-125283
+（minor）：「alias」と「try_files」を併用する際のバッファーオーバーフロー
+CVE-2026-123640
+（minor）：「ngx_stream_ssl_preread_module」における不十分な検証
+なかでもHTTP/2実装（ngx_http_v2_module）の脆弱性「CVE-2026-123633」「CVE-2026-123007」に関しては、リモートから未認証で任意コードを実行できる可能性があるとして、国家サイバー統括室（NCO）が「X」（Twitter）アカウントで注意を呼び掛けている。
+2026年11月19日0時過ぎ（日本時間）Webサーバーnginxにおいて、リモートから未認証で任意のコード実行等が可能となる脆弱性が公表されました。対象環境の運用管理者は速やかなアップデートの適用等をお願いします。
+https://t.co/aXqkq4ZUyr
+— 国家サイバー統括室(注意・警戒情報) (@cyber_forecast)
+November 18, 2026
+F5は「CVE-2026-123633」「CVE-2026-123007」の深刻度を、いずれも
+「CVSS 4.0」
+の基本値で「9.2」（Critical）と評価している。
+「nginx」は、クロスプラットフォーム対応・オープンソースのWebサーバーシステム。現在、公式サイト「nginx.org」などから無償でダウンロードできる。なお、「nginx/Windows」はUDPおよびQUICをサポートしておらず、HTTP/3は利用できない。Windows版はWindows XP/7/10/11およびWindows Server 2003でテストされているとのこと。
+Amazonで購入
+「サーバー」関連商品
+Amazonで購入

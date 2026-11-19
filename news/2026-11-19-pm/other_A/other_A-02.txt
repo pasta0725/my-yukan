@@ -1,0 +1,52 @@
+URL: https://k-tai.watch.impress.co.jp/docs/news/2157838.html
+TITLE: グーグル、推論の深さとコスト効率を両立した新AIモデル「Gemini 4 Neon」を発表 APIやGeminiアプリで提供
+SITE: ケータイ Watch
+PUBLISHED: 2026-11-19 13:10 (page: 2026-11-19T13:10:01+09:00)
+OG_IMAGE: https://k-tai.watch.impress.co.jp/img/ktw/list/2157/838/neon.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/neon_l.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/comparison_l.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/benchmarks_l.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/table_l.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/autobax_m.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/webexploitbench_m.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/secben_m.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/exploitgym_m.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/cwe_m.jpg | 
+- https://asset.watch.impress.co.jp/img/ktw/docs/2157/838/grey_l.jpg | 
+
+TEXT:
+ニュース
+グーグル、推論の深さとコスト効率を両立した新AIモデル「Gemini 4 Neon」を発表　APIやGeminiアプリで提供
+岩井 祐一郎
+2026年11月19日 13:10
+グーグルは18日、新AIモデル「Gemini 4 Neon」を発表した。複雑なソフトウェア開発やビジネス業務の高速処理を目的に設計し、同日よりGoogle AI StudioやGeminiアプリなどで順次提供を開始した。
+NeonはCarbonとHydrogenの間
+「Gemini 4 Neon」は、Gemini 4ファミリーにおいて高難度プロジェクト向けの「Gemini 4 Carbon」と、日常の高速処理を担う「Gemini 4 Hydrogen」の中間に位置するモデル。推論の深さと処理効率を両立し、高頻度な業務ワークフローに対応する。
+コンテキストウィンドウ（一度に処理できる情報量）は100万トークンを備える。API料金は入力トークン100万あたり3米ドル、キャッシュ済みの入力は95％割引の0.15米ドル、出力トークン100万あたり15米ドル。
+提供チャネルは開発者、企業、一般ユーザー向けに展開する。開発者はGoogle AI StudioやAndroid StudioのGemini API有料ティアのほか、Google AI ProまたはUltraプラン契約者向けのGoogle Antigravityで利用できる。
+企業向けにはGemini for businessのAPIやモデル選択メニュー、Google Antigravityを通じて提供する。一般ユーザーもGoogle AI ProまたはUltraプランを契約していれば、Geminiアプリのモデル選択メニューから選択できる。
+サイバーセキュリティ担当者向けには、Fairwind Programの対象メンバーに対し数日以内にアクセス提供を開始する。プログラムへの参加を希望する企業や担当者は、Google Cloudの担当アカウントチームへの問い合わせが必要。
+4段階の思考レベルでコストと性能を制御
+Neonはタスクの難易度に応じて推論の深さとトークン消費量を調整できる4段階の思考レベルを搭載した。チームやワークロードの要件に合わせ、処理コストと精度のバランスを柔軟に制御できる。
+デフォルトの「high」思考レベルでは、Artificial Analysis Intelligence Indexで高スコアを維持しつつ、Gemini 4 Carbonと比較してタスクあたりのコストを32％削減した。運用コストを抑えた実用的な処理を実現する。
+また、high設定ではVals IndexとAgent Arena Indexの両方でパレート最適（効率性と性能の均衡点）を達成した。競合する主要モデルと比較し、タスクあたりのコストを約50％～80％低く抑えている。
+最も深い複数ステップの推論を行う「xhigh」思考レベルでは、Artificial Analysis Intelligence Indexでスコア61を獲得し総合3位にランクインした。大規模なモデルに迫るスコアを出しながら、競合モデルの最高設定比でタスクあたりのコストを36％以上削減する。
+ビジネス・科学分野のベンチマークと導入企業の評価
+ビジネス業務の領域では、スプレッドシート、PDF、グラフ、音声、動画などの多様なデータを100万トークン内で統合し、構造化された成果物へ変換する。第三者機関のVals Indexでは70.9％を記録し2位に入った。
+法務や税務の専門領域でも高い数値を示し、Legal Research BenchとTax Agent Benchの両ベンチマークで1位を獲得した。Surge AIの評価でも、財務、会計、スプレッドシートモデリング、複雑な制約条件遵守の各部門で1位を記録。
+専門的なグラフを読み解くChartographyでは73.5％、Agents' Last Exam v1.1では75.8％を達成した。さらに、ZapierのAutomationBenchで56.3％、長期ビジネス運営をシミュレーションするAndon Labsの「Vending-Bench 2」で1万6843米ドルを記録し、ともに総合1位となった。
+4200件以上の実環境エージェントセッションを対象としたAgent Arena Indexでは、スコア1336を獲得し世界2位でデビューした。指示への追従性を測るステアラビリティ部門でも2位に入り、複数ステップの指示遵守能力を示している。
+科学や数学の定量分析分野でも高いスコアを収めた。技術研究や数学課題を扱うTerminal-Bench Scienceで70.5％、RiemannBenchで84.0％、HLE-Diamondで71.3％をそれぞれ記録している。
+本番開発向けエージェント機能と実装デモ
+開発領域では、ツールを多用し長時間稼働する自律型エージェントワークフロー向けに設計した。単体での動作に加え、Google Antigravity内で並列稼働するGemini 4 Hydrogenサブエージェントを指揮するオーケストレーターとしても機能する。
+不要なファイル読み込みを削減し、作業中の進捗共有や長時間セッションでのコンテキスト圧縮を実行する。ベンチマークではArtificial Analysis Coding Agent Indexで58.6を記録し総合1位を獲得したほか、Terminal-Bench 4.1で65.2％、FrontierCode 2.0のhigh設定で46.2％を達成した。
+リポジトリを横断した複数ファイルのデバッグやリファクタリングにも対応する。SWE-sweepベンチマークでは、mini-SWEハーネス環境で12.8％のトップスコアを記録し、Google Antigravity上ではその3倍以上となる39.0％に達した。
+サイバー防衛と安全性・Gemini アプリでの活用
+サイバーセキュリティ分野では、安全なコード生成を測るAutoBaxBenchの全難易度でCarbonを上回り、最難関のhardティアで76％を記録した。ペネトレーションテストを評価するWebExploitBench v1.2でも、競合大規模モデルの半分のコストで51.26％を達成している。
+既存コードの強化においては、脆弱性発見のSEC-bench Proで90.5％を記録しつつコストを約半分に抑えた。悪用可能性の検証を行うExploitGymではCarbonの半分のトークン数で同等水準に達し、パッチ適用のCollinear CWE-bench v2ではCarbonを3.4％上回る70.7％を獲得した。
+安全性面では、サイバー攻撃やバイオセキュリティの悪用に対するリアルタイム保護を組み込みながら、正当な業務の誤拒否率を低減した。拒否率はTerminal-Bench 4.0で1.98％、Terminal-Bench-Scienceでは0％に抑えている。
+複数ステップの作業で手抜きや結果の捏造を防ぐトレーニングを施し、Terminal-Bench 4.0での不正行為率は0.0％を維持した。コーディング不正評価でショートカットを選んだ割合は2.45％と、Gemini 4モデル中で最も低い数値となった。
+外部データに悪意ある指示を仕込む間接プロンプトインジェクション攻撃への耐性も高めた。Gray SwanのIPIベンチマークでは、最高思考レベルかつリアルタイム保護有効時にすべての攻撃を防御し、攻撃成功率0.0％を記録している。
+一般向けのGemini アプリでは、アップロードしたスプレッドシートやPDF、写真の読解に加え、GmailやGoogleドキュメントからの情報抽出に対応する。Web検索を組み合わせたベンダー間の価格比較や最新市場データのブリーフ作成もこなす。
+また、Geminiのタスク機能がNeon上で動作するようになり、複数ステップの作業を効率化した。光熱費が急増した原因を探る請求明細の分析や、返金交渉に向けた複数の領収書と書類の照合といった日常の複雑なタスクも迅速に処理できる。
