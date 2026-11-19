@@ -1,11 +1,14 @@
 name: gemini-models
-# Lists the Gemini models whose name contains "tts" (names only, the key is never printed).
-on: { workflow_dispatch: {} }
+# Lists the Gemini models whose name contains the given word (default "tts"; names only, the key is never printed).
+on:
+  workflow_dispatch:
+    inputs:
+      filter: {description: "word in the model name (empty = all)", default: "tts"}
 jobs:
   list:
     runs-on: ubuntu-latest
     steps:
-      - env: { GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}" }
+      - env: { GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}", F: "${{ inputs.filter }}" }
         run: |
           curl -s -H "x-goog-api-key: $GEMINI_API_KEY" "https://generativelanguage.googleapis.com/v1beta/models?pageSize=200" \
-            | python3 -c "import json,sys;[print(m['name']) for m in json.load(sys.stdin).get('models',[]) if 'tts' in m['name']]"
+            | python3 -c "import json,os,sys;f=os.environ.get('F','');[print(m['name'],m.get('displayName',''),','.join(m.get('supportedGenerationMethods',[]))) for m in json.load(sys.stdin).get('models',[]) if f in m['name']]"
