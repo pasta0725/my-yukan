@@ -1,9 +1,12 @@
 name: gemini-models
 # Lists the Gemini models whose name contains the given word (default "tts"; names only, the key is never printed).
+# With "try": asks that model once to watch a public YouTube Short (to see if the free key can use it for tools/competitors.py).
 on:
   workflow_dispatch:
     inputs:
       filter: {description: "word in the model name (empty = all)", default: "tts"}
+      try: {description: "model to test with one video (empty = no test)", default: ""}
+      video: {description: "YouTube URL for the test", default: "https://www.youtube.com/shorts/hfenkW2oE8M"}
 jobs:
   list:
     runs-on: ubuntu-latest
@@ -12,3 +15,20 @@ jobs:
         run: |
           curl -s -H "x-goog-api-key: $GEMINI_API_KEY" "https://generativelanguage.googleapis.com/v1beta/models?pageSize=200" \
             | python3 -c "import json,os,sys;f=os.environ.get('F','');[print(m['name'],m.get('displayName',''),','.join(m.get('supportedGenerationMethods',[]))) for m in json.load(sys.stdin).get('models',[]) if f in m['name']]"
+      - if: inputs.try != ''
+        env: { GEMINI_API_KEY: "${{ secrets.GEMINI_API_KEY }}", M: "${{ inputs.try }}", V: "${{ inputs.video }}" }
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.request, urllib.error
+          body = {"contents": [{"parts": [{"file_data": {"file_uri": os.environ["V"]}}, {"text": "この動画の最初の3秒と終わり方を日本語で2行で説明して"}]}]}
+          req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{os.environ['M']}:generateContent",
+                                       data=json.dumps(body).encode(), headers={"x-goog-api-key": os.environ["GEMINI_API_KEY"], "Content-Type": "application/json"})
+          t = time.time()
+          try:
+              r = json.load(urllib.request.urlopen(req, timeout=300))
+              print("RESULT: OK", os.environ["M"], f"{time.time()-t:.0f}s"); print(r["candidates"][0]["content"]["parts"][0]["text"][:400])
+          except urllib.error.HTTPError as e:
+              print("RESULT: HTTP", e.code, f"{time.time()-t:.0f}s"); print(e.read().decode()[:600])
+          except Exception as e:
+              print("RESULT: ERROR", type(e).__name__, f"{time.time()-t:.0f}s")
+          PY
