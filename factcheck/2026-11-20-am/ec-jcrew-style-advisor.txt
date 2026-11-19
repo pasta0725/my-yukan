@@ -1,0 +1,467 @@
+===== https://netshop.impress.co.jp/e/2026/11/19/17044
+(status 200)
+海外のEC事情・戦略・マーケティング情報ウォッチ
+Claude活用で「個別商品検索」から脱却へ。スタイリング知見をAI実装した米ファッションブランドの挑戦
+米国のファッションブランドJ.CrewはAnthropicの「Claude」を活用した新たなAIスタイリング支援ツール「Style Advisor」を公式サイトに導入しました。「Claude Code」や「Claude Opus 5.5」で試作し、運用にはAIモデル「Sonnet 5.5」と「Haiku 5.5」を使い分ける自社開発の仕組みや、ブランドの世界観を保つ開発背景を解説します。
+Digital Commerce 360
+[転載元]
+11月19日 8:00
+シェア
+ポスト
+はてブ
+Bluesky
+優先するニュース提供元に追加
+【視聴無料 12/10まで】見逃した方必見！ 「ネッ担2026秋」オンデマンド配信中
+目次
+「Claude」を活用した新たなスタイリング支援ツール「Style Advisor」とは
+「Style Advisor」の仕組み
+米国のファッションブランドJ.Crew（ジェイ・クルー）は、Anthropicの「Claude Code」を活用して、新たなスタイリング支援ツールを自社開発し、自社ECサイト「JCrew.com」に導入しました。AI基盤にはAnthropicの「Claude」を採用。消費者がECサイト上で入力した質問や要望を「Claude」のモデルに送信し、回答を生成する仕組みです。
+「Claude」を活用した新たなスタイリング支援ツール「Style Advisor」とは
+「Style Advisor（スタイル・アドバイザー）」と呼ばれるこのツールは、オンラインショッピング利用者1人ひとりに合わせたパーソナライズされた商品提案（レコメンデーション）を提供します。11月12日付で「Claude」の公式ブログに掲載された発表で明らかになりました。
+なお、米国のEC専門誌『Digital Commerce 360』の各種データベースにおけるJ.Crewの順位は次の通りです。
+「北米EC事業 トップ1000社」データベース：80位
+（北米の大手EC事業者を年間EC売上高などに基づいて順位付け）
+AI Commerce Rankings（AIコマースランキング）：135位
+（『Digital Commerce 360』とReFiBuyによるランキング。「Top 1000 Pro with AI Database」で提供）
+J.Crew Groupのリビー・ワドル（Libby Wadle）CEOは、導入の背景について次のように説明しています。
+消費者の期待が変化し、AIによって小売業に新たな可能性が生まれるなか、
+J.Crewは従来のオンラインショッピングのあり方を見直しています。個別の商品を検索するだけでなく、よりつながりがありインスピレーションを重視した体験へと進化させようとしているのです
+。私たちは以前から、顧客が将来どのような買い物を望むのか、そしてその変化に後から対応するのではなく、
+自ら主導するにはどうすればよいか
+を考えてきました。
+最先端モデルを用いた自社チームによる開発プロセス
+Anthropicによると、「Style Advisor」の開発はJ.Crewの製品開発チームが主導し、次のモデルを活用しています。
+プロトタイプ（試作品）の構築：
+「Claude Code」と「Claude Opus 5.5」を使用
+本番サービスへの開発：
+Anthropicが
+「複雑で自由度の高い作業」に適していると位置付ける「Claude Fable 5.1」モデルを活用
+し、試作品を基にエンジニアが本番稼働できるサービスへと仕上げた
+最終的に「Style Advisor」は、
+J.Crewのスタイリストが店頭などで顧客に対応するような形で商品レコメンデーションを提供すること
+をめざしています。
+ワドル氏はさらに次のように語っています。
+私たちは、
+ショッピング体験を根本から見直す機会がある
+と考えています。Anthropicとの協業を通じて、
+J.Crewが数十年にわたって培ってきたスタイリング、商品構成（マーチャンダイジング）、クリエイティブの専門知識を結集し、今後の消費者行動のあり方を形作ることに役立てています。
+「Style Advisor」の仕組み
+「Style Advisor」は現在、J.CrewのECサイト「JCrew.com」
+で利用できます。サイトのメニューから選択するとWebブラウザ内にアシスタントが起動し、画面上には
+消費者が入力する質問やプロンプトの候補を提示します。
+「Style Advisor」のイメージ（画像は編集部が「JCrew.com」からキャプチャ）
+実際の運用では、処理の性質に応じて異なる「Claude」モデルが役割を分担しています。
+「Claude Sonnet 5.5」モデル：
+消費者が入力したプロンプトを受け取り、
+スタイリングに関する回答
+を生成。
+「Claude Haiku 5.5」モデル：
+より短く、特定の目的に絞ったタスクを担当。
+また、J.Crewによると、レコメンデーションの際に参照・活用されるスタイルは
+すべて同社のチームが考案したもの
+であるため、AIによる提案内容が
+ブランドの方針や優先事項と一貫性を保つよう設計
+されています。
+Anthropicのポール・スミス（Paul Smith）最高商務責任者（CCO）は、J.Crewの取り組みを次のように評価しています。
+J.Crewは、ファッション業界でも特に独自のスタイル（視点）が確立されたブランドの1つです。J.Crewのチームは「Claude」を活用し、その専門知識を新たな形で顧客に届けています。
+最先端のモデルを使って体験を構築し、実際の運用にはより高速で効率的なモデルを採用したことで、顧客はブランドのスタイリング方針に忠実な回答を迅速に得ることができます。
+この記事は
+今西由加さん
+が翻訳。世界最大級のEC専門メディア『Digital Commerce 360』（旧『Internet RETAILER』）の記事をネットショップ担当者フォーラムが、
+天井秀和さん
+、
+白川久美さん
+、
+中島郁さん
+の協力を得て、日本向けに編集したものです。
+関連リンク
+J. Crew turns to Claude to create new Style Advisor tool
+（2026/11/12）
+ この記事のキーワード 
+：
+#AI
+#AIエージェント
+#Anthropic
+#Claude
+#J.Crew
+#Style Advisor
+#エージェンティックコマース
+#ファッション
+#海外
+AI 
+963
+集客 
+2,385
+売上向上 
+3,357
+運営 
+6,551
+顧客対応・顧客サポート 
+2,036
+商品企画・開発（MD） 
+1,454
+オムニチャネル 
+1,428
+業界動向 
+10,551
+海外 
+1,578
+解説・ノウハウ 
+3,501
+この記事をシェアしてほしいタヌ！
+シェアする
+ポストする
+>ブクマする
+noteで書く
+LINEで送る
+優先するニュース提供元にネッ担を追加
+【12/10まで】「ネッ担2026秋」のアーカイブ配信視聴無料！ ファンケル、アルビオン、ユナイテッドアローズ、そごう・西武などの講演を「いつでも」「どこでも」「気軽に」視聴できます
+ ファンケル、カインズ、ユナイテッドアローズ、マドラス、そごう・西武、楽天、アルビオンなどが登壇【ネッ担2026秋 無料オンデマンド配信】
+ 【12/10 16時まで】「ネッ担2026秋」オンデマンド配信中！ AI時代の検索対策＋実例、脱安売り＋ファン作り、エージェンティックコマース、サイバー対策など計45講演以上を無料で学べる
+11月6日 17:15
+前の記事
+Googleが公開した「Universal Cart」とは？ Walmartらも使う複数ECの一括購入の衝撃
+関連記事
+「Claude」も「エージェント型コマース」へ本格参入、Anthropicが提示する「EC事業者＆消費者」向け2つのAI活用モデルとは
+9月17日 7:00
+Anthropicがめざす「AI同士で完結させる」買い物体験とは? AmazonやeBayも警戒する“マルチエージェント”型コマースの衝撃＋OpenAIやGoogleの動向まとめ
+5月14日 8:00
+アマゾンがAIサービスを拡充。顧客の好みに応じて商品をパーソナライズ提案する「Amazon Interests」とは？
+2025年4月3日 8:00
+GapのAI戦略・エージェント型コマースとは？ AIスタイリングと会話型検索で推進する「次世代ショッピング体験」
+10月15日 9:30
+「商品デザイン」「広告コピー」などEC現場で広がる生成AI活用＋効果＋課題とは【米国EC企業の事例】
+2023年10月12日 7:30
+「検索」から「AI推薦」へ、EC流入元AIのシェアが大きく変化。「ChatGPT」独走を追う「Gemini」、「Claude」急伸の衝撃
+9月10日 7:00
+バックナンバー
+ Claude活用で「個別商品検索」から脱却へ。スタイリング知見をAI実装した米ファッションブランドの挑戦
+11月19日 8:00
+AI
+集客
+売上向上
+運営
+顧客対応・顧客サポート
+商品企画・開発（MD）
+オムニチャネル
+業界動向
+海外
+解説・ノウハウ
+ Googleが公開した「Universal Cart」とは？ Walmartらも使う複数ECの一括購入の衝撃
+11月12日 8:00
+AI
+集客
+売上向上
+運営
+顧客対応・顧客サポート
+商品企画・開発（MD）
+オムニチャネル
+業界動向
+海外
+解説・ノウハウ
+ WalmartのAIエージェンティックコマース戦略。Anthropicのオープン規格「MCP」も採用、AIショッピング安全対策と商機とは
+11月5日 8:00
+AI
+集客
+売上向上
+運営
+顧客対応・顧客サポート
+商品企画・開発（MD）
+オムニチャネル
+業界動向
+海外
+解説・ノウハウ
+ AIエージェントが勝手に購入するリスクをどう防ぐ？ EC事業者が知っておくべき「購入意図の事前記録」というアメリカン・エキスプレスの新たなアプローチ
+10月29日 8:00
+AI
+集客
+売上向上
+運営
+顧客対応・顧客サポート
+商品企画・開発（MD）
+オムニチャネル
+業界動向
+海外
+解説・ノウハウ
+ なぜAI訪問客はトップページをスキップするのか？ 購買意欲の高い顧客をつかまえるAI時代のEC改善アプローチ
+10月22日 7:00
+AI
+集客
+売上向上
+運営
+顧客対応・顧客サポート
+商品企画・開発（MD）
+オムニチャネル
+業界動向
+海外
+解説・ノウハウ
+ GapのAI戦略・エージェント型コマースとは？ AIスタイリングと会話型検索で推進する「次世代ショッピング体験」
+10月15日 9:30
+AI
+集客
+売上向上
+運営
+顧客対応・顧客サポート
+商品企画・開発（MD）
+オムニチャネル
+業界動向
+海外
+解説・ノウハウ
+ バックナンバーをもっと見る 
+この記事の筆者
+Digital Commerce 360
+世界最大級のネット通販業界の専門誌『Digital Commerce 360』（旧『Internet Retailer』）は、雑誌のほか、Web媒体、メールマガジンなどを運営。Vertical Web Media社が運営を手がけている。
+Eコマースの戦略に関し、デイリーニュース、解説記事、研究記事、電子商取引におけるグローバルリーダーをランク付けする分析レポートなどを発行している。
+Digital Commerce 360
+Digital Commerce 360
+のプロフィールを見る
+筆者の人気記事
+新型コロナの感染拡大で消費者の買い物意識と購買行動はどのように変わったのか？
+2020年5月14日 8:00
+ネット通販の未来はどうなる？ 成長のカギを握る「4つのS」とは？
+2017年12月21日 7:00
+55
+21
+デジタル時代の消費者ニーズ大調査2020「最新の購買行動」「Amazonを利用する理由」「自社ECサイトに求めること」
+2020年2月20日 8:00
+83
+44
+あなたのネット通販サイトのコンバージョン率をECサイト業界平均2％超えにする5つの方法
+2018年4月26日 7:00
+21
+Instagramのインスタ内で決済まで行う新機能「Checkout（チェックアウト）」とは？
+2019年3月28日 8:00
+61
+23
+Amazonの弱点5つを分析してシェアを奪い取る方法
+2018年9月27日 7:00
+27
+21
+業界情報やナレッジが詰まったメルマガ配信やソーシャルもよろしくです！
+姉妹サイトもぜひ： 
+ネッ担お悩み相談室
+・
+Web担
+メルマガ
+Facebook
+X(エックス)
+BlueSky
+Googleニュース
+RSS
+
+===== https://claude.com/resources/articles/j-crew-style-advisor-with-claude
+(status 200)
+Online, shopping usually happens one product at a time, so a customer who finds a sweater has to search again for the pants and shoes that go with it. To change that, J.Crew today launched Style Advisor, an AI stylist on 
+JCrew.com
+ (opens in new tab)
+ that helps customers shop by complete outfit. J.Crew’s team built it with 
+Claude Code
+ (opens in new tab)
+ using multiple Claude models, from Fable to Haiku, each matched to the work it does best. It is available now for women’s and men’s styles in the U.S.
+For more than 40 years, J.Crew’s own stylists have built complete looks by balancing proportion, color, and layering and by pairing pieces in unexpected ways. Style Advisor brings that expertise online. Customers describe what they need, such as an outfit for a beach wedding or a first job interview, and it answers with complete looks drawn from J.Crew’s own photo shoots. They can keep refining from there, so shopping becomes a visual conversation.
+How it's built
+J.Crew’s product team used 
+Claude Fable
+ (opens in new tab)
+ 5.1, Anthropic’s model for complex, open-ended work, to plan how Style Advisor should reason like a stylist, then built a working prototype with 
+Claude Opus
+ (opens in new tab)
+ 5.5 in Claude Code. J.Crew’s engineers took that prototype to production. In each conversation, 
+Claude Sonnet
+ (opens in new tab)
+ 5.5 acts as the stylist and decides each step of the response, while 
+Claude Haiku
+ (opens in new tab)
+ 5.5 handles quick, focused tasks so Style Advisor answers quickly. Because every look comes from J.Crew’s stylists, its recommendations stay consistent with J.Crew’s styling point of view.
+How customers use Style Advisor
+Shop complete outfits.
+ Every recommendation starts from looks J.Crew stylists created for the brand's catalog shoots, and Style Advisor shows them in photos so customers see the full outfit.
+Build from a single piece.
+ A customer can start with one item and get suggestions for the pieces that complete the look.
+Dress for the occasion. 
+Customers can say where they're going, whether that's a vacation, a holiday party, or a wedding, and get recommendations for it.
+Get J.Crew's point of view. 
+Style Advisor applies the same styling principles a J.Crew stylist would use in a store.
+What's next
+At launch, Style Advisor helps customers find new outfit ideas and shop with more confidence. Over time, J.Crew plans to make it more personal by tailoring suggestions to each customer's preferences and past purchases, and to bring it to more markets and product lines.
+“As consumer expectations evolve and AI opens up new possibilities for retail, J.Crew is challenging the traditional model of online shopping, moving beyond individual product searches toward a more connected and inspiration-led experience,” said Libby Wadle, Chief Executive Officer of J.Crew Group. “For a long time, we’ve been thinking about how customers will want to shop in the future, and how we can lead that evolution rather than react to it. We see an opportunity to fundamentally rethink the shopping experience. Through our work with Anthropic, we're bringing decades of J.Crew styling, merchandising and creative expertise together to help shape what’s next for customer behavior.”
+“J.Crew has one of the most recognizable points of view in fashion, and its team used Claude to bring that expertise to customers in a new way,” said Paul Smith, Chief Commercial Officer, Anthropic. “They used a frontier model to build the experience and faster, more efficient models to run it, so customers get quick answers that stay true to the brand’s styling.”
+Start building with 
+Claude Code
+ (opens in new tab)
+ today.
+Article
+Nov 9, 2026
+JPMorganChase expands Claude Code to more employees across the firm
+Claude Code
+Article
+Oct 28, 2026
+IDC brings Quanta into Claude and adopts Claude across the company
+IDC integrated Claude as part of its Quanta platform, and it has rolled Claude out across its own business
+Claude Cowork
+Claude Code
+1 more
+: Claude Enterprise
+Claude Enterprise
+Article
+Oct 21, 2026
+HCLTech joins the Claude Partner Network as a Global Premier partner
+HCLTech will bring Claude into the solutions it provides for banks, hospitals, telecom companies, and manufacturers.
+Article
+Sep 28, 2026
+A new approach to agent security with Claude Managed Agents and NVIDIA
+Note: This blog has been updated from its original version to include additional technical details on Claude Managed Agents.
+Claude Platform
+
+===== https://fortune.com/2026/11/11/jcrew-anthropic-ai-style-advisor/?trk=public_post_comment-text
+(status 200)
+Over the course of four decades, J. Crew’s style has woven cashmere cardigans, tweed jackets, and other preppy staples that have attracted high-profile fans including Michelle Obama, Demi Moore, and Meghan Markle.
+Recommended Video
+Throughout the apparel brand’s history—beginning as a catalog, then growing to become a physical and omnichannel retailer—those styling decisions were made by humans. But beginning today, there’s artificial intelligence at work too.
+On Wednesday, J. Crew announced a new consumer-facing, AI-enabled tool called Style Advisor, which runs on a collection of Anthropic’s models. Style Advisor is trained on data from thousands of outfit pairings from the company’s photo shoots and J. Crew’s styling principles, outfit and accessories pairings.
+“It’s not just about the piece that you’re looking for, but how to style it,” says Danielle Schmelkin, chief information officer at J. Crew. “What those stylists bring to the table—and really recommend more than just the item that you may have picked up when you walked into the store—we are really looking to create that online.”
+As more shoppers gravitate to agentic shopping, with more than 
+50% of global consumers
+ using AI to buy goods within the past three months, new tools have proliferated ranging from 
+Meta
+ Platforms’ Muse agent and Alexa for Shopping from 
+Amazon
+ to AI shopping assistants created by retailers including Lowe’s, 
+Ulta Beauty
+, and Macy’s.
+But while 56% of consumers say they use AI chat or search tools including Anthropic’s Claude or OpenAI’s ChatGPT, only 27% are gravitating to retailer-created AI shopping assistants, according to consulting firm McKinsey.
+“I think the visual piece is really important,” says Schmelkin of the distinctive edge that she promises Style Advisor will offer. In the future, the tool will also pull in data from a consumer’s past purchase history, allowing Style Advisor to make even more personalized recommendations, replicating that’s already possible during the omnichannel shopping experience.
+She says Style Advisor is also grounded in contextual details, asking questions to better understand a shopper’s intent. If a J. Crew customer were to tell it that they were looking for an outfit to attend a wedding—in, say, Miami, but not too formal—the tool will make recommendations based on these nuances.
+Style Advisor will debut on J. Crew’s desktop website and is expected to later be added to the retailer’s mobile app.
+J. Crew’s Style Advisor runs on a variety of Claude’s models, including Fable 5.1, which is leveraged to handle the more complex and ambiguous judgment that allows the tool to think and respond like a stylist. Claude’s Sonnet 5.5 and Haiku 4.5 support the speed and efficiency of the back-and-forth responses between consumers and the AI stylist, while Claude Opus 5.5 was utilized by J. Crew’s team to build a working prototype. 
+“What is the actual experience that we want the shopper to have, and then, how do we think about making sure that we’re mapping the right models to be able to deliver that,” says Lauren Collett, Anthropic’s enterprise go-to-market leader. 
+Schmelkin says J. Crew built in a back-end observation layer that allows the retailer to closely monitor the costs. “We want to make sure we are constantly refining and using these models in the right way, both in terms of the outputs for our customers, but also the efficiency we want to see to make this scalable,” says Schmelkin.
+Internally at J. Crew, to bolster AI adoption, the retailer has created an AI fluency program that begins with the basics and advances up through vibe coding. An internal AI lab, called “Second Thread,” began with just the tech team but has broadened to incorporate all corporate employees to discuss AI use cases and propose other technology solutions.
+For four years, J. Crew has also run a two-day tech summit that features workshops, hackathons, guest speakers, and vendor presentations. Initially, this programming was only available to the tech team, but J. Crew has more recently democratized access. Employees are also encouraged to use AI enterprise tools from Anthropic and OpenAI.
+The Style Advisor was conceptualized by a J. Crew digital product designer, who developed a working prototype before engineers were pulled into the project. The fact that the tool wasn’t mandated from the top of J. Crew’s C-suite reflects Schmelkin’s efforts to encourage employees to chart their own path on AI. 
+“I’ve been screaming to anyone who will listen for years now to get in there and build a habit,” says Schmelkin. “You have to find your a-ha moment and then all of a sudden…this could really change the way you think about your own life, work, and team productivity.”
+John Kell
+NEWS PACKETS
+Nvidia’s shares rattled by CEO's affair and board probe.
+ The biggest tech headlines swirling this week 
+centered on an admission
+ over the weekend that Nvidia CEO Jensen Huang had been unfaithful to his wife and that the AI chip maker’s board was investigating reports that he had been targeted by a business executive who U.S. intelligence says was a Chinese spy. Nvidia’s 
+shares slipped
+ on Monday as U.S. lawmakers are also 
+asking for more information
+. 
+Fortune
+reports
+ that Nvidia controls about 90% of the market for high-powered GPU computer chips used in AI data centers. And yet another issue is poor succession planning by the board: Huang, who has been CEO for 33 years, has 60 direct reports and no clear successor.
+Alphabet, meanwhile, takes aim at Nvidia.
+ On Monday, Google 
+debuted
+ new AI chips that Bloomberg reports are intended to take some share from Nvidia’s dominant position and represent an acceleration in product development coming from the company’s chip division. But another corner of the search giant’s AI business is facing mounting criticism. Politicians are lamenting the company’s decision to block search for K-12 student accounts if districts have enacted AI bans. Sen. Edward Markey has 
+demanded
+ that the company reverse a policy; while Google says its AI features are so interconnected with search that it cannot offer the service without AI.
+Anthropic continues to advance plans for IPO; debuts new frontier models.
+ Yet another AI company aiming to navigate more turbulent times is Anthropic, which is reportedly planning to go 
+public next week
+ even as shares of AI companies have faced pressure as investors fret about high infrastructure costs and U.S. midterm election results that are divisively more “anti AI.” Separately, on Monday, Anthropic 
+debuted two new AI models
+ called Fable 5.2 and Mythos 5.2, which the company said generate outputs that are 30% faster than their predecessors. The models also cost 20% less than the prior generation. And on Tuesday, it 
+unveiled a suite of new office productivity tools
+ aimed at knowledge workers, putting Anthropic in closer competition with Microsoft.
+OpenAI raises about $11 billion in a new funding round. 
+The ChatGPT maker’s latest effort to raise more funds reportedly closed on Friday, with the remainder of the round, which could hit as much as $20 billion in total, expected to be completed “in the coming weeks,” according to 
+media reports
+. OpenAI has reportedly sought out to raise $30 billion or more at a valuation of $1.4 trillion, but settled for a lower figure and a valuation of $1.25 trillion, amid the pressure AI companies are facing from investors. More optimistically, Business Insider 
+reports
+ on fresh research data from Graphite that found ChatGPT has captured 81% of worldwide AI chatbot traffic, easily outpacing rivals Google and Anthropic, who had been making some inroads.
+ADOPTION CURVE
+Data and analytics, cyber jobs will see the largest headcount increase in 2027.
+ AI’s impact on jobs have loomed over the IT industry, magnified by younger, entry-level workers that have taken to social media to lament they can’t find their first role and as Meta, Microsoft, Amazon, and other tech giants have announced layoffs. Yet encouragingly, 40% of enterprises plan to increase their IT headcount in 2027, according to a 
+survey
+ of 2,002 CIOs and other tech leaders conducted by Gartner. The biggest changes will be for data and analytics and cybersecurity roles.
+Alicia Mullery, VP analyst at Gartner, tells 
+Fortune
+ that much of the concern about AI in the workplace is that these systems will save organizations so much time, they’ll need less people. But that’s not always the case: AI can create a lot of so-called “slop” that workers need to rummage through. And, even when the outputs are more advantageous, there are still plenty of instances where human-machine collaboration is needed.
+IT departments tend to be further along on their AI journey and this is where CIOs can continue to step in and guide, remaking workflows across other parts of the business, says Mullery. “I see the CIO as really being at the forefront of being able to say, ‘Hey our teams went through this first,’” adds Mullery. “Here’s what we learned, here’s what worked, and here’s what didn’t work.”
+Courtesy of Gartner
+JOBS RADAR
+Hiring:
+- 
+FFB Bank
+ is 
+seeking a CIO
+, a remote-based role. Posted salary range: $275K-$375K/year.
+- 
+Citi 
+is 
+seeking a head of retail and wealth risk technology
+, based in Rutherford, New Jersey. Posted salary range: $250K-$500K/year.
+- 
+DBV Technologies 
+is 
+seeking a VP of IT
+, based in Bernards, New Jersey. Posted salary range: $300K-$350K/year.
+- 
+The American Board of Emergency Medicine 
+is 
+seeking a CIO
+, based in East Lansing, Michigan. Posted salary range: $200K-$250K/year.
+Hired:
+- 
+Hyatt
+named
+ Danny Miles to serve as the hospitality company’s chief digital and information officer, leading a newly combined organization that includes engineering, digital products, enterprise technology, data, AI, and cybersecurity. Miles most recently served as CTO at athletic gear maker Under Armour and also was CTO at Dollar Shave Club and a VP at Nike.
+- 
+Fox Factory 
+promoted
+ Troy Henige to the newly established role of CTO, leading the manufacturer’s enterprise technology and product roadmap strategies. Henige spent seven years in engineering roles at motorcycle and ATV suspension manufacturer Progressive Suspension before joining Fox a decade ago, most recently serving as VP of engineering.
+- 
+Time 
+appointed
+ Michael Dugan to the role of CTO. He joins the media company from peer G/O Media, where he served as CTO. Previously, Dugan served as CTO of Hearst Magazines and spent 17 years at Forbes, including four years as CTO.
+- 
+Authentic Brands Group
+promoted
+ Adnan Somani to the role of CTO, expanding his responsibilities to include overseeing the brand management company’s AI strategy and IT organization. Somani joined Authentic Brands as EVP of digital technology in May 2024 and previously, founded the technology startup Aiva Labs.
+- 
+Presidio
+announced
+ Doran Stienike will join the IT services firm as CIO, effective November 9. Previously, Stienike served as CIO and chief information security officer at software-as-a-service provider CSG International. He also served as CIO and held other technology leadership roles at ConAgra Foods.
+- 
+OneTrust
+named
+ Tim Mullen to serve as CIO, overseeing the governance and compliance software firm’s enterprise technology strategy and accelerating its AI efforts. Mullen joined OneTrust in 2022 and previously served as CISO. He also held information security leadership roles at Change Healthcare, InterContinental Hotels Group, and Travelport.
+- 
+DNSFilter
+announced
+ the appointment of Justin Foster as CTO. Foster joins the cybersecurity company from another cyber firm, Forescout, where he most recently served as CTO and oversaw the research and development organization. He joined Forescout through its acquisition of Cysiv, where he was co-founder and CTO.
+This is the web version of CIO Intelligence, a weekly newsletter on the tech, trends, and news IT leaders need to know. 
+Sign up
+ for free.
+
+===== https://thenextweb.com/news/jcrew-style-advisor-claude-ai-stylist
+(status 200)
+J.Crew built its new Style Advisor with several of Anthropic’s Claude models.
+Credit: Planet Volumes on Unsplash
+J.Crew has launched Style Advisor, an AI stylist on its US website built with Anthropic’s Claude. Shoppers describe an occasion and get complete outfits from looks J.Crew’s stylists put together. Personal recommendations based on past purchases will come later.
+J.Crew has launched Style Advisor, an AI stylist on its website built with Anthropic’s Claude, Anthropic 
+announced
+ on Thursday. It is available in the US for women’s and men’s clothing.
+Instead of searching for a sweater, then trousers, then shoes, shoppers can describe what they need, such as an outfit for a beach wedding or a first job interview. Style Advisor replies with complete looks, and shoppers can keep refining them. They can also start from one item and ask what goes with it.
+Every suggestion comes from outfits J.Crew’s own stylists put together for the brand’s catalogue shoots. The AI picks and shows those looks rather than inventing new ones, which keeps it in line with the brand’s style.
+“
+We see an opportunity to fundamentally rethink the shopping experience,
+” said Libby Wadle, CEO of J.Crew Group.
+J.Crew built the tool using several Claude models. In each conversation, the mid-sized 
+Sonnet 5.5
+ acts as the stylist, while the smaller Haiku 5.5 handles quick tasks so answers come fast. For now, it does not tailor suggestions to each shopper’s past purchases, but J.Crew plans to add that and expand to more countries.
+Retailers are racing to add AI stylists. Ralph Lauren launched its Ask Ralph assistant 
+late last year
+, and Kate Spade uses 
+Amazon’s shopping AI
+, while Zalando’s agent will 
+shop other retailers
+ from 2027. On Prime Day, shoppers sent by AI assistants were 
+more likely to buy
+ than those from search.
+Get the TNW newsletter
+Get the most important tech news in your inbox each week.

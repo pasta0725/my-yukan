@@ -1,0 +1,211 @@
+===== https://www.technologyreview.com/2026/11/18/1148816/smell-startup-osmo-ai-nose-good-as-humans/
+(status 200)
+EXECUTIVE SUMMARY
+In a lab near Newark Airport in New Jersey, a team of around 30 experienced human sniffers are slowly working their way through every odor on Earth. Their careful notes—“nutty,” “peachy,” “marine”—are cross-referenced with a chemical analysis to create a rich set of training data for what AI startup Osmo calls the world’s first foundation model for smell. The company’s goal, says founder Alex Wiltschko, is “to give computers a sense of smell.”
+“Scent molecules are really the only language most species on this planet can speak,” he says. “Most species can’t communicate with sound or visually, so it truly is Earth’s original language. And it’s incredibly powerful for us, from a memory and an emotional standpoint. You can smell something once and remember it for the rest of your life. You can smell something on the street and be pulled back to high school.”
+In the last few months, Wiltschko claims, Osmo’s model has achieved “human-level olfactory intelligence.” The company’s definition of this is that the model is about as good as the average person at detecting and discriminating between smells, and about as good as a junior perfume designer at creating them. It says its technology is already being used in the fragrance industry to help brands design and manufacture new scents. Last month, the company says, Osmo’s AI model outperformed in-house perfumers at one of the world’s largest consumer goods companies. Wiltschko believes it could be deployed eventually for threat detection at airports, for example, or diagnosing diseases. 
+Wiltschko spun the startup out of his work at Google Brain, the search giant’s former AI research lab, in 2023, and he is running the same playbook as AI startups in other domains: Throw a lot of data at difficult problems, and see what happens. The challenge with scent, Wiltschko says, is that there was a dearth of good data. Before Osmo, there were fewer than 200,000 human descriptions of smells in existing databases, by his count. Plus, the chemical sensor devices needed to collect data are expensive, and the fragrance industry is secretive about its work on olfactory science. 
+OSMO AI
+A lot of the company’s work has been in creating its own dataset of more than 10 million human labels and 800 million “scent tokens,” which describe the exact molecules and concentrations that go into creating specific odors. Osmo uses spectrometers and other chemical sensors, running around the clock, to break down the molecular makeup of everything from fruit and flowers to pantry  staples and organs. A team of around 70 trained data labelers in the US and overseas spend their days sniffing things and writing down what they smell like, using a standardized fragrance vocabulary.
+Mapping out scents in this way is throwing out some unlikely parallels. In the same way that changing the order of words can drastically influence the meaning of a sentence, rearranging scent molecules in different proportions can drastically alter the smells humans perceive. “The scent tokens that define the smell of a newborn baby have massive overlap with the scent tokens in a fresh plate of cooked spaghetti,” Wiltschko says. (Specifically Barilla brand spaghetti, he says, which perhaps raises some questions for the people at the pasta factory.)
+The company also creates its own scents, using a smell-printing robot the size of a school bus that mixes ingredients according to precise formulas to make samples for Osmo’s own research and fragrances for paying customers. It can design and print scents to order based on a ChatGPT-style prompt. Wiltschko flipped open his laptop to show me how the AI model worked. He opened a text box on screen, and I asked him to generate a fragrance that smelled like a Portuguese custard tart (we were in Lisbon for Web Summit), aimed at 18- to 23-year-old men. The system spent a few minutes cogitating, then generated three options for potential scent profiles that matched the brief (creamy, coconutty, fruity) and the molecules needed to create them. If I’d continued with the ordering process, my signature L’Eau de Custard would have been ready about a week later. 
+Osmo’s technology has already been used to create retail fragrances, including for giants like Procter & Gamble. The Gates Foundation, which invested $5 million when Osmo launched, later gave the company a $3.5 million 
+grant
+ to assess molecules that repel disease-carrying insects, and Osmo identified eight substances that were more repellent than DEET. Osmo has also worked with StockX, the online clothing marketplace, on 
+using smell to spot counterfeit sneakers
+ by detecting differences in the chemical composition of the materials used in the shoes.
+But not everyone is convinced by the technology or the company’s big claims. Avery Gilbert, a smell scientist and author of 
+What the Nose Knows
+, has been sharply critical of Osmo on his 
+Substack
+, arguing that some of its marketing claims are undocumented, and that its patent filings still rely on human sensory panels and perfumers, rather than AI. “This heavy reliance on human sensory judgments seems odd for a company premised on super-cool AI,” he wrote in March. In response, Wiltschko says that “human perception isn't a workaround for AI”. “Language models learn from what people have written. Our model learns from what people smell. Smell is ultimately a human experience, so the model has to learn from humans to bridge chemistry and perception. That’s what lets it predict how people will experience a scent as well as the human nose does.”
+Michael Schmuker, a former professor of neural computation at the University of Hertfordshire who has previously consulted for Osmo, says the company’s technology is an achievement. With colleagues, he created an open-source, reverse-engineered 
+version
+ of Osmo’s 2023 model, but it lacks the reams of data the company has collected since. 
+But even with all this smell data, Osmo may be missing some of the factors that make human olfaction unique, Schmuker says. “Smell is super complex. Context is very important for smell. The same molecule may evoke a different association depending on context,” he says. “[The smell of] a French cheese like Camembert is partly the same molecule as in used nappies. You don’t confuse the two because of the context.”
+In a controlled setting like a fragrance lab, this lack of context may not matter so much. But it could have an impact if Osmo’s technology becomes, as Wiltschko suggests, the “olfactive channel” for AI world models. Imagine a machine that could sniff out spoilage in food on a production line, or detect tumors through smell the way dogs have been trained to do in 
+pilot studies
+.
+For that to happen, sensor technology will need to get a lot better, Schmuker says. The models will need to keep improving. Medical diagnostics is the biggest prize. 
+“There’s a lot of history of companies that have gone directly at that mountain peak and, unfortunately, not been successful, because it is very expensive and it is very difficult,” Wiltschko says. "So what we’re doing is building this foundation at the foothills of all these mountains. We’re sending expeditions up to the mountains, doing explorations, and basically smelling the whole world.”
+This article has been updated with an additional comment from Alex Wiltschko.
+Deep Dive
+Artificial intelligence
+Don’t be fooled—LLMs don’t reason
+Ten years after AlphaGo’s match against Go champion Lee Sedol, today’s AI still isn’t tapping into the machinery that made that win possible.
+By 
+Thore Graepel
+archive page
+“We were looking at it wrong”: The explosive claim that’s upended the AI world
+An exclusive interview with Nick Cammarata, the researcher whose 26,000-word viral blog post has AI safety folks celebrating.
+By 
+Will Douglas Heaven
+archive page
+Don’t be fooled by this summer of AI hype 
+Breathless claims about AGI and new capabilities fall apart pretty quickly under scrutiny.
+By 
+Timnit Gebru
+archive page
+Emily M. Bender
+archive page
+The agentic web is here
+With the rise of personal AI assistants, the internet isn't just for humans anymore.
+By 
+Grace Huckins
+archive page
+Stay connected
+Illustration by Rose Wong
+Get the latest updates from
+MIT Technology Review
+Discover special offers, top stories,
+            upcoming events, and more.
+
+===== https://atlabyte.com/en/news/startup-osmo-claims-ai-smell-recognition-at-human-level-trained-on-10m-labels
+(status 200)
+Искусственный интеллект
+Startup Osmo claims AI smell recognition at human level, trained on 10M labels
+18.11.2026
+·
+5
+min read
+17127
+Искусственный интеллект · illustration by the publication
+US startup Osmo claims its AI smell model has reached human-level performance and is already helping fragrance brands create new scents.
+In recent months, at a laboratory near Newark Airport in New Jersey, about 30 trained experts have been describing smells with words like “nutty,” “peachy,” or “marine”; these notes, combined with chemical analysis, become training data for Osmo’s artificial intelligence model. The startup calls it the first foundation model for smell, and founder Alex Wiltschko’s goal is to “give computers a sense of smell.”
+“Scent molecules are really the only language most species on this planet speak,” Wiltschko says. “Most species can’t communicate with sound or sight, so it truly is Earth’s original language. You can remember a smell for life: you catch a scent on the street and you’re back in high school.”
+According to Wiltschko, the model has reached “human-level olfactory intelligence”: it detects and distinguishes smells about as well as an average person and creates fragrances at the level of a junior perfumer. The technology is already used in the fragrance industry; Osmo claims that last month its model outperformed in-house perfumers at one of the world’s largest consumer goods companies.
+How Osmo collects smells
+Wiltschko started Osmo in 2023, spinning it out of his work at Google Brain, Google’s former AI research lab. He is using the same playbook as other AI startups: throw a lot of data at a problem and see what happens. The issue was a shortage of good data: before Osmo, existing databases had fewer than 200,000 human descriptions of smells, and the chemical sensors needed are expensive. The fragrance industry is also reluctant to share its work.
+The company built its own dataset of more than 10 million human labels and 800 million “scent tokens” that describe the molecules and concentrations behind a particular odor. Spectrometers and other chemical sensors run around the clock, breaking down the molecular makeup of fruit, flowers, pantry staples, and organs. About 70 trained labelers in the US and abroad spend their days sniffing samples and writing down impressions using a standardized fragrance vocabulary.
+The approach reveals unexpected parallels: changing word order can change a sentence’s meaning, and changing the proportions of scent molecules can drastically change the smell a person perceives. According to Wiltschko, the scent tokens of a newborn baby have a huge overlap with those of a fresh plate of cooked Barilla spaghetti.
+What has already been done using the AI
+The company also makes its own scents using a device the size of a school bus that mixes ingredients according to exact formulas and prints samples. The system accepts text prompts in the style of ChatGPT: in a demo, the model generated three fragrance options for a Portuguese custard tart aimed at men aged 18–23. Had the order been placed, a signature perfume would have been ready about a week later.
+Fragrance: retail scents, including products for Procter & Gamble.
+Insect control: the Gates Foundation invested $5 million at Osmo’s launch and gave $3.5 million to evaluate molecules that repel disease-carrying insects. Osmo found eight substances that work better than DEET.
+Counterfeiting: Osmo worked with online marketplace StockX to spot fake sneakers by chemical composition of materials.
+Gates Foundation funding for Osmo
+$ million
+Investment at launch
+5
+Grant for repellent research
+3,5
+Gates Foundation
+Criticism and limitations
+Not everyone accepts Osmo’s claims. Avery Gilbert, a smell researcher and author of What the Nose Knows, has criticized the company on his Substack blog, saying some marketing claims are not documented and its patent filings still rely on human sensory panels and perfumers rather than AI. Osmo representatives did not respond by the time of publication.
+Michael Schmuker, a former professor of neural computation at the University of Hertfordshire and a former Osmo consultant, calls the technology an achievement. With colleagues, he built an open-source, reverse-engineered version of Osmo’s 2023 model, but it lacks the volume of data the company has collected since.
+Schmuker warns that even with a large amount of data, the model may miss context that matters for human olfaction. The same molecule can evoke different associations depending on the situation: the smell of Camembert partly overlaps with the smell of used nappies, but people don’t confuse the two because of context.
+In the controlled environment of a fragrance lab, the lack of context may not matter, but it could become a problem if Osmo wants to use the technology to diagnose diseases by smell, as trained dogs have been taught to do in pilot studies, or to detect spoiled food on a production line. According to Schmuker, this would require much better sensors and more advanced models. Medical diagnostics is the biggest prize.
+Our view
+We think it matters that Osmo is not just publishing papers but trying to commercialize smell: work with Procter & Gamble, the StockX project, and funding from the Gates Foundation are concrete signs that the market needs this technology. The main risk is not data but bold promises: if the model fails to handle real-world context, trust in the whole field could suffer.
+We will watch whether Osmo can move from fragrance tasks to medical diagnostics, the hardest and potentially most valuable goal. For now, the company is building a “foundation at the foot of the mountains,” as Wiltschko puts it, rather than storming the peak.
+#
+Osmo
+#
+AI
+Share:
+Telegram
+WhatsApp
+X
+Copy link
+AI model comparison
+Fresh GPQA, SWE-bench, AIME and MMLU-Pro benchmarks — who leads right now:
+Claude Opus 5.5 vs Sakana Namazu
+Claude Opus 5.5 vs GPT-6 Astra
+Claude Opus 5.5 vs Muse Wonder Full
+Claude Opus 5.5 vs Kimi K3.1 Pro
+All models & benchmarks
+Read also
+111,5
+$
+Opening price
+Anthropic goes public on Nasdaq as shares open at $111.50
+Anthropic began trading on Nasdaq under the ticker ANT; the first trade took place at $111.50 per share.
+19.11.2026
+2813
+Reuters: Meta’s AI agent Muse mixes up conversations and exposes users’ private data
+Meta employees said that the company’s artificial-intelligence agent Muse mixes up conversations across accounts and exposes users’ private data, Reuters reports.
+#
+Meta
+#
+Muse
+3 more
+19.11.2026
+5887
+Anthropic (US) goes public at $83: Amazon and Google stakes valued at $307.9B
+Anthropic begins trading at $83 per share. Amazon and Google hold stakes worth nearly $308 billion combined, but a large part of that money will flow back to them through AI infrastructure contracts.
+#
+Amazon
+#
+Anthropic
+3 more
+19.11.2026
+16351
+OpenAI launches Live Dictation in ChatGPT: real-time speech transcription without the 10-minute limit
+OpenAI is rolling out Live Dictation, a ChatGPT feature that transcribes speech in real time and removes the previous 10-minute limit.
+#
+ChatGPT
+#
+Live Dictation
+2 more
+19.11.2026
+5607
+
+===== https://www.briefia.fr/en/article/osmo-claims-human-level-artificial-sense-of-smell
+(status 200)
+Research
+·
+Tom Levy
+·
+November 18, 2026
+Osmo Claims Human-Level Artificial Sense of Smell
+Key Takeaways
+1
+Osmo compares its model to an average person for detecting and distinguishing odors and to a novice perfumer for creating them.
+2
+The company has amassed over 10 million human annotations and 800 million olfactory tokens.
+3
+Avery Gilbert challenges some commercial claims; Michael Schmuker emphasizes the role of context in human smell.
+Why it matters
+ : 
+The technology is already being used to develop perfumes, but its application for medical diagnosis is still being considered.
+Osmo claims to have reached human-level performance with its olfactory AI model, which, according to the company, can detect and distinguish odors like an average person and compose scents like a novice perfumer. Its technology has already been used in commercial perfumes, including for Procter & Gamble. Some of the company's claims are contested, while medical applications remain under consideration.
+Scientists Discuss the Claimed Capabilities
+Olfactory specialist Avery Gilbert, author of 
+What the Nose Knows
+, contests some of Osmo's commercial promises on Substack, deeming them insufficiently documented. He also argues that patent applications continue to rely on human evaluators and perfumers rather than AI. In March, he criticized this dependence on human judgment in light of the AI capabilities being touted. Osmo had not responded to these criticisms by the time of publication.
+Michael Schmuker, a former professor of neural computation at the University of Hertfordshire and a former consultant for Osmo, praises it as a technical achievement. Along with colleagues, he reverse-engineered an open version of the 2023 model without access to the data volumes accumulated by the company since. However, he believes the system may not capture certain nuances of human olfaction, particularly its relationship to context.
+To explain this limitation, Michael Schmuker mentions a molecule found in both Camembert cheese and used diapers: context allows humans to differentiate these odors. He notes that distinct associations can arise from the same molecule. Last month, Osmo claimed that its model had outperformed in-house perfumers at one of the world's largest consumer goods companies.
+Custom Perfumes to Repellents
+According to Osmo, brands are already using its technology to develop and manufacture their scents. The company has a robot as large as a school bus that assembles ingredients according to precise formulations. It produces samples for internal research as well as perfumes for paying clients. The design can start with a written instruction, akin to a request made to 
+ChatGPT
+.
+At the Web Summit in Lisbon, Alex Wiltschko demonstrated on his computer a perfume request reminiscent of a Portuguese egg tart, aimed at men aged 18 to 23. After a few minutes, the model provided three proposals with creamy, coconut, and fruity profiles, along with the molecules to be used. If the order had been confirmed, the scent would have been available about a week later.
+La lettre du soir
+Gratuit · 19 h
+Le brief IA que les pros lisent chaque soir
+Les 7 actus IA du jour, décryptées en 5 min. Gratuit.
+Inclus dès l'inscription :
+ notre sélection des meilleurs guides & comparatifs IA.
+Choisissez votre rythme
+Quotidien
+Hebdo
+Les deux
+Gratuit · Pas de spam · Désabonnement en 1 clic
+Other projects extend beyond perfumery. The Gates Foundation, which invested $5 million at launch, later awarded Osmo $3.5 million to test repellent molecules against disease-carrying insects. The company identified eight substances that are more repellent than DEET. It has also collaborated with StockX, an online clothing marketplace, to detect counterfeit sneakers based on the chemical differences between their materials.
+Human Evaluators Feed the Model
+Founded in 2023 by Alex Wiltschko following his research at Google Brain, Google's former AI lab, Osmo relies on building large datasets. According to its founder, previous databases contained fewer than 200,000 human-written odor descriptions. This scarcity is compounded by the high cost of chemical sensors and the confidentiality of research in the fragrance industry. Osmo presents the results of its work as the world's first foundational model dedicated to olfaction.
+Near Newark Airport in New Jersey, about 30 experienced evaluators describe odors; their assessments are compared with chemical analyses to train the system. More broadly, around 70 trained annotators, based in the U.S. and elsewhere, use a common lexicon of perfumery. Osmo has gathered over 10 million human annotations and 800 million olfactory tokens, which specify the present molecules and their concentrations.
+Spectrometers and other sensors operate continuously to analyze fruits, flowers, raw materials, or organs. A variation in molecular proportions can significantly alter human perception of an odor. Alex Wiltschko states that the tokens associated with a newborn largely overlap with those of fresh Barilla spaghetti.
+Medical Uses Would Require Better Sensors
+Alex Wiltschko aims to give computers olfactory capabilities and envisions providing this sensory input to global AI models. He describes odor molecules as a mode of communication accessible to most species, unlike sound or vision. He also emphasizes their connections to emotions and memory, with a single exposure potentially leaving a lasting impression.
+The founder envisions applications such as threat detection in airports and disease diagnosis. Possible uses include identifying spoiled food on a production line or detecting tumors by smell. Pilot studies have already trained dogs for this latter task.
+Michael Schmuker believes that such applications would require significant advancements in sensors; the models would also need to continue improving. Alex Wiltschko reminds that companies have failed by directly targeting very challenging and costly applications. He describes Osmo's approach as building a technical foundation while exploring multiple avenues.
+Twitter
+LinkedIn
+Slack
+Teams
+Copier
+Lire sur Brief IA
+Brief IA — L'actualité IA en français
+L'essentiel de l'actualité de l'intelligence artificielle, décrypté et expliqué chaque jour.
+Voir toutes les actus IA →
