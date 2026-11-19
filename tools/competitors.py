@@ -7,7 +7,7 @@ Runs weekly on GitHub Actions (.github/workflows/competitors.yml) -> branch "met
    plus fixed ones. ~100 quota units per search, we use about 10 searches (daily quota is 10,000).
 2. Keeps videos up to 3 minutes, adds views, likes, comments, channel size, and "views per day" and
    "views per subscriber" (a small channel with many views = the content itself is working).
-3. For the top 6, asks Gemini (free tier, GEMINI_API_KEY) to watch the video by its YouTube URL and describe:
+3. For the top 6, asks Gemini (free tier, GEMINI_API_KEY; model gemini-4-neon, else the newest flash) to watch the video by its YouTube URL and describe:
    the first 3 seconds (hook), structure, length, on-screen text, voice/character, ending, thumbnail/title pattern,
    and what makes it work. Gemini only reads public videos; nothing is downloaded or copied.
 Never prints secrets.
@@ -100,31 +100,44 @@ def gemini_model(key):
     return ok[0] if ok else "gemini-flash-latest"
 
 
+PREFERRED = os.environ.get("GEMINI_MODEL") or "gemini-4-neon"   # 2026-11-20 user: use Gemini 4 Neon; falls back to the newest flash
+
+
 def gemini_watch(v):
     key = os.environ.get("GEMINI_API_KEY")
     if not key: return {"error": "no GEMINI_API_KEY"}
-    try:
-        global _MODEL
-        _MODEL = globals().get("_MODEL") or gemini_model(key)
-        prompt = ("この縦型ショート動画を見て、日本語で次の項目をJSONで答えてください。キー: hook（最初の3秒に何を見せ何を言うか）, "
-                  "structure（場面の流れを短く）, on_screen_text（字幕・テロップの出し方）, voice（声・話し方・キャラクター）, "
-                  "visuals（映像の素材：実写・画面録画・イラスト・AI映像など）, ending（終わり方）, title_pattern（タイトルの型）, "
-                  "why_it_works（伸びている理由の見立てを3つ）, length_feel（テンポ）。事実だけを書き、推測は推測と書く。")
-        body = {"contents": [{"parts": [{"file_data": {"file_uri": v["url"]}}, {"text": prompt}]}],
-                "generationConfig": {"responseMimeType": "application/json"}}
-        req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{_MODEL}:generateContent",
-                                     data=json.dumps(body).encode(), headers={"x-goog-api-key": key, "Content-Type": "application/json"})
-        import time
-        for attempt in range(4):   # Gemini often answers 503 (busy) - wait and try again
-            try: r = json.load(urllib.request.urlopen(req, timeout=300)); break
-            except urllib.error.HTTPError as e:
-                if e.code not in (429, 500, 503) or attempt == 3: raise
-                time.sleep(30 * (attempt + 1))
-        txt = r["candidates"][0]["content"]["parts"][0]["text"]
-        out = json.loads(txt); out["_model"] = _MODEL
-        return out
-    except Exception as e:
-        return {"error": f"{type(e).__name__}: {str(e)[:200]}"}
+    global _MODELS
+    if not globals().get("_MODELS"):
+        try: auto = gemini_model(key)
+        except Exception: auto = "gemini-flash-latest"
+        _MODELS = [PREFERRED] + ([auto] if auto != PREFERRED else [])
+    prompt = ("この縦型ショート動画を見て、日本語で次の項目をJSONで答えてください。キー: hook（最初の3秒に何を見せ何を言うか）, "
+              "structure（場面の流れを短く）, on_screen_text（字幕・テロップの出し方）, voice（声・話し方・キャラクター）, "
+              "visuals（映像の素材：実写・画面録画・イラスト・AI映像など）, ending（終わり方）, title_pattern（タイトルの型）, "
+              "why_it_works（伸びている理由の見立てを3つ）, length_feel（テンポ）。事実だけを書き、推測は推測と書く。")
+    body = {"contents": [{"parts": [{"file_data": {"file_uri": v["url"]}}, {"text": prompt}]}],
+            "generationConfig": {"responseMimeType": "application/json"}}
+    import time
+    errors = []
+    for model in list(_MODELS):
+        try:
+            req = urllib.request.Request(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                                         data=json.dumps(body).encode(), headers={"x-goog-api-key": key, "Content-Type": "application/json"})
+            for attempt in range(4):   # Gemini often answers 503 (busy) - wait and try again
+                try: r = json.load(urllib.request.urlopen(req, timeout=300)); break
+                except urllib.error.HTTPError as e:
+                    if e.code not in (429, 500, 503) or attempt == 3: raise
+                    time.sleep(30 * (attempt + 1))
+            txt = r["candidates"][0]["content"]["parts"][0]["text"]
+            out = json.loads(txt); out["_model"] = model
+            if errors: out["_fallback_from"] = errors
+            return out
+        except Exception as e:
+            errors.append(f"{model}: {type(e).__name__}: {str(e)[:150]}")
+            print("gemini", errors[-1], file=sys.stderr)
+            if isinstance(e, urllib.error.HTTPError) and e.code in (400, 403, 404) and model in _MODELS and len(_MODELS) > 1:
+                _MODELS.remove(model)   # this model cannot be used with this key: stop trying it for the other videos
+    return {"error": " / ".join(errors)[:400]}
 
 
 if __name__ == "__main__":
