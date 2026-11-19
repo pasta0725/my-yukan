@@ -173,14 +173,14 @@ function fullPic(k,z,fx=0.5,fy=0.5,dim=0){const i=IMG[k];g.fillStyle='#0B1222';g
 function tagI(s,x,y,k,fill,ink,size=56){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);pill(s,0,0,size,fill,ink);g.restore();}
 const S={
  // 0 s (user 2026-11-17): only the real picture (the official GTA6 key art, full screen) and the huge telop of the first sentence, chunk by chunk.
- open(u,d,L){abs(()=>{fullPic('open0',1.0+0.06*u/Math.max(1,d),0.5,0.5);creditAt(RS,1000,1640);
-     const ph=['このゲーム','警察が','車だけでなく','服まで覚えて','追ってきます'];const tot=ph.join('').length;let acc=0,last=ph[0],t0=0;
+ open(u,d,L){abs(()=>{fullPic('open0',1.2+0.06*u/Math.max(1,d),0.5,0.62);creditAt(RS,1000,1640);
+     const ph=['このゲーム','警察が','車だけじゃなくて','服まで覚えて','追ってきます'];const tot=ph.join('').length;let acc=0,last=ph[0],t0=0;
      for(const x of ph){const st=d*0.82*acc/tot;if(u>=st){last=x;t0=st;}acc+=x.length;}
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // 13 years: the number counts up over the key art, then the release date
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'11月')),d-0.9);
    withEnter(enter(u,0),()=>{ipic('sq',170,410,740,430,28,1.0,0.5,0.42);creditAt(RS,895,815);});
-   withEnter(enter(u,0.15),()=>{bigNum(String(Math.max(1,cnt(u,0.15,0.7,13))),'年ぶり',CX,975,1,C.acc,170);},10);
+   withEnter(enter(u,0.15),()=>{bigNum('約'+Math.max(1,cnt(u,0.15,0.7,13)),'年ぶり',CX,975,1,C.acc,170);},10);
    if(u>t2)tagI('11月19日発売',CX,1150,(u-t2)/0.3,C.brand,'#FFFFFF',56);},
  // "1分でまとめます" (reused pose clip): the news picture fills the screen behind her, a little darker (user 2026-11-18)
  hook(u,d,L){abs(()=>{fullPic('sunset',1.08+0.08*u/Math.max(1,d),0.5,0.5,0.35);creditAt(RS,1000,340);bigRina(HOOK_R);});},
@@ -191,7 +191,7 @@ const S={
  history(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'2025')),d-1.2),t3=Math.min(Math.max(t2+0.6,telHas(L,'延期')),d-0.6);
    withEnter(enter(u,0),()=>{card(170,410,740,300,30);text('前作 GTA5',CX,490,54,C.sub,'center',900,660);text('2013年',CX,610,110,C.acc,'center',900,660);});
    if(u>t2)withEnter(enter(u,t2),()=>{card(170,770,740,300,30,C.card2);text('発売の予定',CX,850,54,'#E3EAF4','center',900,660);text('2025年',CX,970,110,'#FFA51F','center',900,660);});
-   if(u>t3)stamp('延期',790,1030,(u-t3)/0.3,C.warn,72,-0.12);},
+   if(u>t3)stamp('延期',800,1115,(u-t3)/0.3,C.warn,72,-0.12);},
  hw(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'Xbox')),d-0.8);
    withEnter(enter(u,0),()=>{ipic('city',150,400,780,440,28,1.05+0.05*u/Math.max(1,d));creditAt(RS,915,815);});
    withEnter(enter(u,0.2),()=>{tagI('PS5',CX,930,1,C.brand,'#FFFFFF',72);},10);
