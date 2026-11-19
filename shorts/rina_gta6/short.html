@@ -180,7 +180,7 @@ const S={
  // 13 years: the number counts up over the key art, then the release date
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'11月')),d-0.9);
    withEnter(enter(u,0),()=>{ipic('sq',170,410,740,430,28,1.0,0.5,0.42);creditAt(RS,895,815);});
-   withEnter(enter(u,0.15),()=>{bigNum('約'+Math.max(1,cnt(u,0.15,0.7,13)),'年ぶり',CX,975,1,C.acc,170);},10);
+   bigNum('約13','年ぶり',CX,975,ease((u-0.15)/0.3),C.acc,170);
    if(u>t2)tagI('11月19日発売',CX,1150,(u-t2)/0.3,C.brand,'#FFFFFF',56);},
  // "1分でまとめます" (reused pose clip): the news picture fills the screen behind her, a little darker (user 2026-11-18)
  hook(u,d,L){abs(()=>{fullPic('sunset',1.08+0.08*u/Math.max(1,d),0.5,0.5,0.35);creditAt(RS,1000,340);bigRina(HOOK_R);});},
@@ -189,15 +189,15 @@ const S={
    withEnter(enter(u,0.15),()=>{ipic('vert',320,470,440,600,28,1.0,0.5,0.4);creditAt(RS,745,1045);});
    if(u>t2)tagI('GTA6',CX,1130,(u-t2)/0.3,C.acc,'#FFFFFF',80);},
  history(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'2025')),d-1.2),t3=Math.min(Math.max(t2+0.6,telHas(L,'延期')),d-0.6);
-   withEnter(enter(u,0),()=>{card(170,410,740,300,30);text('前作 GTA5',CX,490,54,C.sub,'center',900,660);text('2013年',CX,610,110,C.acc,'center',900,660);});
-   if(u>t2)withEnter(enter(u,t2),()=>{card(170,770,740,300,30,C.card2);text('発売の予定',CX,850,54,'#E3EAF4','center',900,660);text('2025年',CX,970,110,'#FFA51F','center',900,660);});
-   if(u>t3)stamp('延期',800,1115,(u-t3)/0.3,C.warn,72,-0.12);},
+   if(u<=t2)withEnter(enter(u,0),()=>{card(170,560,740,300,30);text('前作 GTA5',CX,640,54,C.sub,'center',900,660);text('2013年',CX,760,110,C.acc,'center',900,660);});
+   else withEnter(enter(u,t2),()=>{card(170,560,740,300,30,C.card2);text('今作の予定',CX,640,54,'#E3EAF4','center',900,660);text('2025年',CX,760,110,'#FFA51F','center',900,660);});
+   if(u>t3)stamp('延期',800,900,(u-t3)/0.3,C.warn,72,-0.12);},
  hw(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'Xbox')),d-0.8);
    withEnter(enter(u,0),()=>{ipic('city',150,400,780,440,28,1.05+0.05*u/Math.max(1,d));creditAt(RS,915,815);});
    withEnter(enter(u,0.2),()=>{tagI('PS5',CX,930,1,C.brand,'#FFFFFF',72);},10);
    if(u>t2)tagI('Xbox Series X|S',CX,1100,(u-t2)/0.3,C.brand,'#FFFFFF',60);},
  price(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'9800')),d-1.6),t3=Math.min(Math.max(t2+0.6,telHas(L,'1万')),d-0.8);
-   withEnter(enter(u,0),()=>{tagI('ダウンロード専用',CX,420,1,C.brand,'#FFFFFF',52);},10);
+   if(u<=t2)withEnter(enter(u,0),()=>{tagI('ダウンロード専用',CX,700,1,C.brand,'#FFFFFF',60);},10);
    if(u>t2)withEnter(enter(u,t2),()=>{card(170,530,740,260,30);text('通常版',CX,595,50,C.sub,'center',900);text('9800円',CX,705,110,C.acc,'center',900,660);});
    if(u>t3)withEnter(enter(u,t3),()=>{card(170,840,740,260,30,C.card2);text('上位版',CX,905,50,'#E3EAF4','center',900);text('1万2280円',CX,1015,110,'#FFA51F','center',900,660);});},
  age(u,d,L){bg(u);mini(u);
