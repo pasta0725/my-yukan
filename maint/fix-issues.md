@@ -1,12 +1,16 @@
-RESULT: FIXED=0 PARTIAL=0 HOLD=1 KEEP=0 NONE=8
+RESULT: FIXED=0 PARTIAL=0 HOLD=2 KEEP=2 NONE=9
+#14 保留のまま：本文を取れないサイトの続報のため、保留を継続
 #23 未処理：直したが main に push できなかった（次回もう一度）
 #24 未処理：直したが main に push できなかった（次回もう一度）
-#25 保留：音声の切り分けと読み方の判定は、報告時の音声で確かめる必要があります。
 #28 未処理：直したが main に push できなかった（次回もう一度）
+#30 保留のまま：顔が主役の画像を選んだ続報のため、保留を継続
 #31 未処理：直したが main に push できなかった（次回もう一度）
 #32 未処理：直したが main に push できなかった（次回もう一度）
 #33 未処理：直したが main に push できなかった（次回もう一度）
 #34 未処理：直したが main に push できなかった（次回もう一度）
 #35 未処理：直したが main に push できなかった（次回もう一度）
-実行：https://github.com/pasta0725/my-yukan/actions/runs/44490118281
-run_id: 44490118281
+#36 未処理：直したが main に push できなかった（次回もう一度）
+#37 保留：Hydrogenで6本成功。Neonの利用条件とFlashの時間切れは保留
+#38 保留：朝刊の処理が動いたか、Grok側の記録が必要
+実行：https://github.com/pasta0725/my-yukan/actions/runs/44631328333
+run_id: 44631328333
