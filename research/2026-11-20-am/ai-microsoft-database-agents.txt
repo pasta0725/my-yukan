@@ -1,0 +1,672 @@
+===== https://www.techtarget.com/news/microsoft-launches-new-postgres-database-adds-to-fabric-capabilities/875121/
+(status 200)
+An article from
+                Microsoft launches new Postgres database, adds to Fabric capabilities
+Microsoft is previewing a Fabric feature that lets AI agents use live transactions and historical records together in real time.
+        Published Nov. 18, 2026
+Eric Avidon
+Senior Reporter, Data
+Share
+Copy link
+Email
+LinkedIn
+X/Twitter
+Facebook
+Print
+Add us on Google
+            Getty Images
+        Listen to the article
+8 min
+            This audio is auto-generated. Please let us know if you have 
+feedback
+.
+As part of the slew of product development updates out of Microsoft Ignite, Azure HorizonDB, a fully managed PostgreSQL database service from the tech giant that is designed to meet the security, resilience and scale requirements of the AI era, is now generally available.
+Microsoft also unveiled Fabric HorizonDB, a version of the new database optimized to bring PostgreSQL into 
+its Fabric platform
+ for analytics and data management, in preview. 
+PostgreSQL is distinguished by its flexibility and versatility, handling traditional relational database workloads as well as geospatial, time series, JSON and the 
+vector database workloads that have become critical
+ over the past few years due to their role helping enterprises index and operationalize unstructured data and data spread across disparate systems. Because of its adaptability, PostgreSQL is now 
+the most popular database format
+.
+Other new Fabric capabilities include Database Hub, a single environment to monitor and manage databases across customers' Microsoft estates that is now generally available, and database agents, now in preview, to provide users with AI-assisted SQL and PostgreSQL capabilities for observing their database operations. 
+While beneficial for Microsoft users, the new 
+PostgreSQL database capabilities
+ are not unique, according to Sanjeev Mohan, founder and principal of analyst firm SanjMo. However, Microsoft does distinguish its PostgreSQL capabilities from those of rivals such as AWS and Google Cloud through integrations with the broad Microsoft data and AI ecosystem.
+"Every major vendor is converging on the same pattern: Postgres for operational data, an open lakehouse for analytics, and a semantic layer that gives agents business context," Mohan told TechTarget. "Microsoft's edge is integration by tightly connecting the database, OneLake, Power BI semantic models, Fabric Apps and Copilot."
+Michael Ni, an analyst at Constellation Research, similarly noted that while the individual capabilities don't differentiate Microsoft from its competitors, the way it integrates them does create separation.
+"Microsoft is keeping pace with … AWS and Google to deliver on converged database and AI technologies," he told TechTarget. "All are investing in bringing operational data, analytics, and AI closer together. Where Microsoft may have an advantage is how it packages these capabilities for enterprise customers. ... That could reduce the amount of new infrastructure and integration work required."
+However, whether Microsoft can deliver simplicity in practice has not yet been proven, Ni added.
+Prioritizing PostgreSQL for AI
+Microsoft previously provided PostgreSQL database capabilities with Azure Database for PostgreSQL. Now, with the launch of HorizonDB, Microsoft is providing PostgreSQL database capabilities purpose-built for the unique demands of AI.
+"We are reimagining the data layer," Microsoft CEO Satya Nadella said during the keynote address at Ignite. "Agents need databases that can keep up with the speed and scale while giving them the context they need for all of the reasoning and actions. That's why we are building HorizonDB."
+HorizonDB, which is built to handle 128 terabytes of data per cluster to serve agents the data volume in real time that they require to 
+deliver optimal results
+, performed eight times faster than self-managed PostgreSQL in benchmark testing conducted by Microsoft -- independent, third-party test results were not provided.
+"Microsoft's edge is integration by tightly connecting the database, OneLake, Power BI semantic models, Fabric Apps and Copilot."
+Sanjeev Mohan
+Founder and principal, SanjMo
+By bringing HorizonDB into Fabric, Nadella noted that Microsoft is fully unifying previously separate transactional and analytical data for agents.
+"With HorizonDB and Fabric coming together, agents now can reason over live transactions along with petabytes of historical records in real time," he said. "This vision that we have had for 20-plus years is now finally coming together for [customers] to build the next generation of systems."
+Mohan likewise noted that HorizonDB's launch is a significant step for Microsoft as it builds the foundational capabilities enterprises need to 
+develop and deploy agents at scale
+. Previously, the tech giant merely provided a managed version of open-source PostgreSQL.
+With HorizonDB, Microsoft is adding a cloud-native database purpose-built for the modern era rather than one when databases served as sources for data assets such as reports and dashboards.
+"PostgreSQL has become the default database for new applications and, increasingly, for AI agents," Mohan said. "[HorizonDB] gives Microsoft customers a Postgres option built for enterprise scale and agentic workloads, not just a hosted copy of the community version."
+The new capabilities in Fabric are similarly significant, according to Ni.
+Fabric HorizonDB integrates PostgreSQL database capabilities with Fabric to copy tables into Fabric without requiring users to build complex and expensive data pipelines; it also unifies disparate data types to provide 
+a foundation for both AI and traditional BI
+. Database Hub is designed to help system administrators more easily oversee their swath of databases so they can identify potential problems, prioritize work and more easily apply governance. And database agents are built to help data teams move from reactive monitoring toward automating their database operations.
+"The Fabric additions are significant because Microsoft is making it easier to build applications around the data and analytics they already have," Ni said. "Users can more simply create and manage applications that use trusted data, accept input and write changes back to operational systems. That's a practical step toward closing the gap between analyzing the business and acting on … analysis."
+The test of their true efficacy will be how well the new features work with external operating systems enterprises use in addition to Microsoft capabilities, he added.
+Context still a concern
+Beyond launching HorizonDB and augmenting Fabric with new capabilities, Microsoft updated Azure DocumentDB with new deployment options to 
+address data sovereignty
+, added tools that enable developers to build AI applications in Azure Managed Redis, introduced capabilities designed to help users create purpose-built applications in Power BI, and made the Rayfin service for application development generally available.
+Collectively, the new features move Microsoft closer to enabling customers to build agents that reason over massive amounts of data in real time, according to Mohan. However, Microsoft still needs to augment features such as Microsoft IQ and Agent 365 to 
+better serve agents with relevant context
+ in addition to data volume.
+"Microsoft has a long track record of handling extreme scale without much fanfare, but scale isn't the hard part -- context is," Mohan said. "Agents need to know what the data means, whether it's current and whether they're allowed to act on it."
+Mohan added that Microsoft IQ and Agent 365 need to keep 
+semantic definitions
+ and 
+ontologies
+ up to date as data changes, give customers control over what agents can do as well as what they can read, and clearly show customers how much
+ it costs to run agents
+ that process massive amounts of data.
+Ni, meanwhile, noted that the new HorizonDB and Fabric capabilities complement Microsoft's existing foundation for real-time data processing through Fabric Real-Time Intelligence. But like Mohan, he suggested that what Microsoft needs to focus on is 
+bringing context into the mix
+.
+"Microsoft is assembling many of the pieces, [but] the remaining challenge is bringing real-time signals, current operational state, business context and execution policies together for a particular decision," Ni said. "That's where enterprises will determine whether these capabilities can support reliable agentic operations."
+Eric Avidon is a senior reporter for Informa TechTarget and a journalist with more than three decades of experience. He covers analytics and data management.
+Add us on Google
+Share
+Copy link
+Email
+LinkedIn
+X/Twitter
+Facebook
+Print
+Filed Under:
+AI
+, 
+Data
+, 
+AI Infrastructure
+, 
+Data Management
+
+===== https://devblogs.microsoft.com/azure-sql/whats-new-across-microsoft-sql-at-microsoft-ignite-2026/
+(status 200)
+From Microsoft Ignite
+I’m here in San Francisco enjoying specialty lattes, fall-ish weather (I guess?), and all the excitement around Microsoft announcements at Ignite 2026. It’s a cool energy to be surrounded by so many people at organizations that are trying to innovate with AI for the era of AI. These applications are the apps that run our world, and how they advance (or don’t) will change their trajectories at those companies as well as likely have real impact on our day-to-day lives.
+At Microsoft Ignite, our Microsoft SQL announcements focus on making the innovation path simpler: modernize existing applications, start new ones locally, and use better tools to develop, secure, and operate the database as the application grows.
+Here’s what’s new across Azure SQL, SQL database in Fabric, SQL Server, and the tools you use every day.
+Azure SQL Database Hyperscale: start here, stay here
+Azure SQL Database Hyperscale is our modernization (and innovation!) target of choice. 
+It brings the SQL engine you know to a cloud architecture that separates compute and storage, giving applications room to grow without making database replatforming the next milestone. A few months ago, we announced support for scale to zero (serverless auto-pause preview) making this a great solution for all sizes and types of workloads, starting at 10GB (read: Hyperscale is not just for big databases!).
+There is 
+no extra database software to procure, acquire, purchase, or manage
+. You consume the managed Azure service rather than buying and operating a separate database software stack. I have to mention it is price-matched to AWS Aurora (based on a March 2026 list price comparison of provisioned per-core compute costs in US East regions for Azure SQL Database Hyperscale Standard Series Gen5 and AWS Aurora I/O optimized db.r7i.large).
+Hyperscale cross-database querying is in preview!
+ Cross-database queries help customers unblock SQL Server migrations by reducing the query rewrites and application redesign needed to move applications with cross-database dependencies. Customers can combine data across databases in the same Hyperscale elastic pool for reporting, analytics, and application workflows without building and maintaining extra data copies or pipelines solely to support those queries. They can preserve separate databases and per-database access controls, reuse familiar T-SQL skills, and simplify access to related business data. 
+Get started today
+.
+Security
+ in the era of AI is two-fold, how you set up security for your data, and how your data provider maintains security. Fortunately, Microsoft SQL is elite at both, constantly pushing updates to maintain what we consider the most secure database on the planet, but also providing customer capabilities so you can set your organization up for success. One update is 
+Regex-based dynamic data masking (GA) 
+which helps handle masking for variable-length values with more flexibility.  
+AES keys support for Transparent Data Encryption (TDE) with customer-managed keys in Azure SQL Database (GA)
+, provides an alternative to RSA keys for protecting data at rest and helping you prepare for the evolving quantum threat landscape and 
+TDE encryption scan suspend and resume (public preview) 
+gives administrators more control over when scan work runs. 
+Database-level managed identity in Azure SQL Database (public preview)
+ enables separate, passwordless access to external data for each database which strengthens customer and business-unit isolation while preserving shared-server economics.  
+Recently a customer told me how great Microsoft SQL search options are, and we’re only getting better! 
+Built-in fuzzy string matching (GA)
+ helps applications compare inconsistent names or identify possible duplicates without moving that work out of SQL. Check out our 
+YouTube channel
+ for a recent episode on this topic.
+Agentic modernization to Hyperscale
+For existing SQL Server and hybrid estates, modernization starts with understanding the business and supported applications, because your database isn’t moving in isolation. With the evolution of AI, agents, and skills, modernizing to Hyperscale is getting easier. Our updates help bring assessment, application context and innovation, and migration closer together.
+Modernize CLI (App+DB)
+ delivers an end-to-end assessment that evaluates an application and its database dependencies as a single workload. It combines application-code modernization opportunities with SQL Server migration readiness, compatibility, and target recommendations in one consolidated report.
+In 
+Database Hub
+, agentic assessment and migration as optimization (both public preview) bring migration readiness into everyday estate management: use the Copilot sidecar to view readiness at scale, start assessments, and review results, and use the 
+Optimize
+ card to spot migration opportunities and open the full assessment in the Azure portal.
+Across 
+SSMS, Azure Arc, and Azure Catalyst (Azure Migrate got an upgrade!)
+, updated assessments add Hyperscale service-tier recommendations to target selection, clarify readiness after remediation, and provide instance-level elastic-pool recommendations so you can evaluate databases together.
+When you’re ready to move, 
+Azure Arc
+ expands migration access to more Azure-registered and agentless server scenarios, building on September’s Arc-to-Hyperscale migration preview. 
+DMS
+ private networking adds VNet peering and custom DNS support for supported migration endpoints without exposing databases publicly, and 
+SqlPackage 170.5 and SQL Projects SDK 2.3 (GA)
+ add deployment versioning, pre-plan scripts, and a force-Azure-compatibility export option.
+Start locally. Build toward Hyperscale.
+This is something I’ve been dreaming about since I joined the Microsoft SQL team: an always up-to-date local container that I could use to simulate and understand Azure SQL Database features and behaviors, without deploying anything or spinning any meters. The
+ Azure SQL Database local development container is now public preview
+, so you can start doing exactly that! New container provisioning experiences in the VS Code MSSQL extension and SSMS bring container setup directly into familiar tools, making it easier to get started with local SQL development. In VS Code, 
+Microsoft Entra authentication and expanded support for container runtimes and environments
+, including Podman, WSL, and Apple Silicon, offer greater flexibility for local development.
+When you’re ready for Azure, the 
+Local-to-Cloud Deployment Wizard, now in public preview for the MSSQL extension for VS Code
+, provides a guided path from a local database to a free tier Azure SQL Database with built-in deployment preparation and compatibility validation. Prefer working with AI agents? 
+Microsoft SQL Agent skills
+ continues to expand, with skills spanning local container development to cloud deployment, all easily installed as a plugin for your agent of choice.
+Database Hub is generally available
+Database Hub in Microsoft Fabric
+ brings database discovery, monitoring, and optimization into one estate view, with real-time dashboards for Microsoft SQL, PostgreSQL, and Cosmos DB, improved filtering, and visibility into end-of-support, maintenance, and issues across database groups.
+Copilot in Database Hub (public preview)
+ helps you explore performance trends, investigate issues, and ask follow-up questions in natural language, grounded in Database Hub information. The 
+Database Hub CLI skill
+, available in 
+skills-for-fabric
+, brings inventory, health, performance, and security insights into GitHub Copilot CLI, VS Code Copilot, Claude Code, and Cursor after setup.
+We’re making 
+Database Agents
+ even more powerful with three new public preview capabilities designed to help you identify issues faster, investigate them with AI, and make informed decisions to improve database performance. 
+Enhanced detection
+ helps uncover potential problems, while 
+AI-powered skills
+ let you investigate queries, analyze execution plans, and explore solutions directly from an issue or through Copilot side chat. You can receive 
+recommendations
+ for query rewrites, hints, and indexes, each backed by evidence and clear explanations to help you understand the issue and determine the best next steps. Of course, AI is only used when you choose to invoke these skills, and you’re always in control of reviewing recommendations before making changes to your database.
+Alerts for Azure SQL Database (public preview)
+, powered by Fabric Activator, turn templates or performance charts into alerts across one or more databases, with actions such as Teams messages or Power Automate flows.
+Other updates across Microsoft SQL
+Azure SQL Managed Instance 
+adds GA for the zone-redundant Next-gen General Purpose (GP) tier, with a flexible memory option, log throughput of up to 220 MB/s, and more storage per vCore. MI link support for Always On availability groups (AGs) with multiple databases is now GA. SQL Managed Instance now also supports PITR backup immutability beyond 7 days and LTR backup immutability, both in public preview. Azure Migrate Runbooks also enter preview, with the runbook using existing Azure Blob backups to make migration smoother.
+For 
+SQL database in Fabric,
+ Point-in-time restore (PITR) for deleted databases, and smaller maximum vCore options are now generally available for SQL database in Microsoft Fabric.
+For our SQL Server customers, support for SQL Server 2025 on Ubuntu 26.04 LTS and Arc-enabled SQL Server Best Practices Assessment (BPA) v2, including support for Failover Cluster Instances, enter public preview. 
+SQL Server on Azure VMs
+ expands to Germany’s Delos Cloud, while Azure Local adds SQL licensing selection and updates, including disconnected scenarios.
+On the developer front, the MSSQL extension introduces the 
+Query Performance Dashboard
+ (Preview), bringing Query Store insights directly into VS Code. You can also open 
+Database Hub
+ from the Object Explorer context menu to see resource-specific information in the Fabric Database Hub portal.
+Data API builder (DAB) improvements
+ let you apply configuration changes by redeploying an existing deployment rather than creating a new one. You can also run DAB locally using the DAB CLI as an alternative to Docker. 
+Azure SQL Dev Hub
+ also released an expanded preview with more capabilities and updates based on feedback, making it easier for you and your agents to get started.
+SQL Server Management Studio
+ (SSMS) introduces several new capabilities, including local Azure SQL Database container creation (preview), Hot Exit (preview), improved bacpac/dacpac creation and deployment wizards (preview), and integration with Fabric Database Hub, including Fabric SQL database creation (GA). GitHub Copilot in SSMS also adds Bring Your Own Model (BYOM) support, enabling users to work with their preferred AI models, including those hosted through Foundry Local.
+What next
+Start with the application you have.
+ Assess its database dependencies and migration requirements. Evaluate Hyperscale as the destination!
+Or start with a new local application.
+ Try the container and guided development-to-cloud workflow in your tool of choice.
+Keep learning.
+ Watch the 
+Microsoft SQL YouTube channel
+ and 
+Explore Azure SQL Database Hyperscale
+ for more and use the 
+SQL AI Developer certification
+ to build the skills behind these workflows.
+Start here, stay here!
+–Anna
+
+===== https://solv-systems.com/resources/microsoft-ignite-2026-preview
+(status 200)
+In Short: Microsoft Ignite 2026 Runs 17-20 November
+Microsoft Ignite 2026
+ runs from 17 to 20 November 2026 at Moscone Center in San Francisco, with a free digital pass for anyone who cannot travel. Day 1 brought the main announcements for data teams: Fabric apps and Database Hub in Fabric are now generally available, Fabric HorizonDB is in public preview, and Microsoft did not announce general availability for Fabric IQ ontologies.
+Update, 18 November 2026:
+ We first published this preview on 8 October. It now starts with what Microsoft announced on day 1 for data teams, then covers the event facts, the sessions worth catching, and how our pre-event expectations compared with what was announced. We will publish a full recap after the event, as we did for 
+FabCon Europe 2026
+ and 
+Microsoft Build 2026
+.
+What Microsoft Announced on Day 1 for Data Teams
+Microsoft published its Ignite announcements on 17 November in the 
+Book of News
+ and on the 
+Azure blog
+. These are the items that matter most for Fabric, Power BI and database teams, with the status Microsoft gave each one as of 18 November. Read the status word before planning production work around any of them.
+Fabric and Power BI
+Fabric apps and Rayfin - generally available.
+ Fabric provisions the backend for business apps (database, authentication, data APIs, functions, storage and hosting) and connects them to existing semantic models, warehouses and lakehouses. Microsoft says builders created more than 100,000 apps with Rayfin since its preview launch. See 
+what Rayfin is
+ and 
+Fabric apps for Power BI Pro
+.
+Custom data apps in Power BI Desktop - preview, now extended to Power BI Pro.
+ An agentic experience that turns a semantic model into an interactive app that captures input, updates records and writes back to the source.
+Fabric as a backend for apps built in Copilot - Frontier public preview.
+ Copilot Managed Runtime itself is now generally available. Its Fabric integration is billed in Copilot Credits, which Microsoft introduced as a new usage-based billing option for Fabric. Microsoft's 
+Copilot Credits guide
+ only documents that billing for this integration, so do not assume Copilot Credits pay for other Fabric workloads yet.
+Fabric IQ
+Fabric IQ integrations in Microsoft Copilot - generally available.
+ Fabric IQ in Copilot Chat and Cowork was already generally available from September; Ignite extends it.
+Fabric IQ in Excel
+ (ask governed semantic models and build live, Fabric-connected PivotTables in Edit with Copilot) - preview.
+Fabric IQ connectors for ChatGPT and Claude
+, bringing Power BI semantic model insights into both assistants - preview.
+Fabric IQ ontologies in GitHub Copilot
+ and 
+IQ sharing for ontologies
+ - preview.
+Fabric data agents in Microsoft Copilot
+ - coming, with general availability "coming soon" and no date.
+Conversational experiences embedded in Fabric apps
+ - Microsoft's own pages disagree on whether this is generally available or preview, so check before relying on it.
+Databases
+Database Hub in Fabric - generally available.
+ One place to discover, monitor and manage databases across Azure, Fabric, on-premises and other clouds. See our 
+Database Hub explainer
+.
+SQL and PostgreSQL database agents
+ in Database Hub - preview.
+Fabric HorizonDB - public preview.
+ Serverless PostgreSQL inside Fabric and the default database for Fabric apps, with tables replicated into OneLake in Delta format by default. Microsoft has not published pricing. See 
+What is Fabric HorizonDB?
+.
+Azure HorizonDB - generally available
+ in 13 Azure regions. Mirroring Azure HorizonDB into Fabric is in preview.
+Salesforce
+Data federation from OneLake into Salesforce Data 360 - generally available
+, so Data 360 can query Fabric data without copying it.
+Salesforce Data 360 shortcut into OneLake - public preview
+, for sharing curated Data 360 data into OneLake.
+Salesforce in Copilot - public preview (beta)
+, part of the Copilotforce announcement; our 
+Copilotforce explainer
+ covers the OneLake side. For the wider comparison, see 
+Salesforce Data Cloud vs Microsoft Fabric
+.
+Ignite 2026 Dates, Venue and Passes
+From the Ignite site on 8 October 2026:
+Dates and venue
+ - "November 17-20, 2026, in San Francisco at Moscone Center, with a digital event experience available online"
+Pre-day
+ - the agenda runs from Monday 16 November, with badge pick-up and pre-day sessions, certifications and labs
+Conference pass, $2,325
+ - all in-person experiences at Moscone Center plus full access to the digital venue
+Hub-only pass, $1,625
+ - Hub experiences, including booths, theatre sessions and lunch, from 17 to 19 November
+Digital pass, free
+ - keynotes, sessions and "a wide range of technical content"
+The 
+opening keynote
+ is Satya Nadella and Judson Althoff, who "unveil the latest innovations driving the next wave of AI transformation". It was available in person or streamed. The agenda placed it on Tuesday 17 November, 18:00 to 20:00 GMT - 10:00 in San Francisco and 20:00 in Johannesburg. A second keynote, Ignite Frontier Transformation, is aimed at partners.
+For most UK and South African teams, the free digital pass is the right choice. The keynote and breakouts are where the announcements landed, and the recordings follow on demand.
+What the Session Catalogue Tells Us
+The catalogue groups sessions by topic, including Agent Platform, Copilot, Data, Microsoft IQ and Security. On 8 October the 
+Data
+ topic alone listed 104 sessions. These are the ones we would still watch, live or on demand.
+Fabric and Power BI
+Agentic development with Fabric Copilot (BRK356)
+ - Fabric Copilot as "the AI-powered front door to agentic development", with Fabric IQ, data, databases and apps working together
+Building, deploying, and governing Microsoft Fabric at scale (BRK352)
+ - development workflows, automation, observability, governance, security and cost management
+AI-ready data integration with Fabric Data Factory (BRK353)
+ - pipelines, Dataflows, Copy Jobs, Mirroring, dbt, and migrating Azure Data Factory workloads to Fabric
+Building high-performance analytics with Fabric Data Warehouse (BRK350)
+ - including "GPU acceleration capabilities"
+Build intelligent PostgreSQL apps with HorizonDB in Microsoft Fabric (BRK359)
+ - described as "a Fabric-native PostgreSQL experience"
+Fabric IQ and Microsoft IQ
+Designing Fabric IQ for enterprise adoption (BRK305)
+ and 
+Fabric IQ: Trusted business context for enterprise AI (BRK306)
+Ground agents in your business with an ontology in Fabric IQ (LAB672)
+ - building an ontology from Power BI semantic models and OneLake data
+If Fabric IQ is new to you, start with 
+what Fabric IQ means for Power BI users
+.
+Copilot and agents
+The evolution of the Microsoft Copilot app (BRK201)
+ - Chat, Cowork, Code and Autopilot "in one connected experience"
+Build like a startup. Deploy like an enterprise. (BRK355)
+ - Rayfin building apps on Fabric data and Work IQ "directly within Copilot"
+How much should you own? Choosing the right agent architecture (BRK243)
+ and 
+From traces to better agents: The Foundry improvement loop (BRK249)
+ - for teams building in Microsoft Foundry
+Observability for AI with Fabric Data Agent, Foundry, and Agent 365 (LTG1214)
+ - which describes a "new integration with Microsoft Agent 365" giving admins organisation-wide visibility of Fabric data agent usage
+Which session types to pick
+The session code tells you the depth. Microsoft describes Innovation Sessions as L-100 content that connects new features to business decisions, and Breakouts (BRK) as "L-200 to L-400 deep technical content" with live code and demos. Lightning Talks (LTG) are short and focused, Theater sessions (THR) are product demos with questions, and Table Talks (TT) are small-group discussions. Labs need an RSVP. For a data team watching remotely on the free pass, the BRK sessions are where the technical detail is. Split the list between colleagues, then meet the following week to compare notes against your own roadmap.
+What We Expected, and What Happened
+We wrote the expectations below on 8 October, from the catalogue and the timelines Microsoft gave in September. Under each one we have added what Microsoft announced on day 1.
+The new Copilot moves forward.
+ On 25 September Microsoft said Code would reach broad availability "in the coming weeks" and Autopilot would enter private preview. With a breakout dedicated to the Copilot app, we expect status updates on 
+Home, Code and Autopilot
+, and on the plugin registry, which Microsoft said would be "generally available across surfaces in the coming weeks". 
+What happened:
+ this post focuses on the data announcements; check the 
+Ignite 2026 Book of News
+ for the Copilot app updates.
+Fabric IQ ontologies get closer to general availability.
+ One theatre session (THR871) mentioned "Fabric IQ Ontology GA", and the BRK305 description talked about Fabric IQ reaching general availability. At FabCon Europe, ontology creation from semantic models was announced in preview. 
+What happened:
+ Microsoft did not announce general availability for Fabric IQ ontologies. It announced Fabric IQ ontologies in GitHub Copilot and IQ sharing for ontologies, both in preview, and made Fabric IQ integrations in Microsoft Copilot generally available. Treat ontologies as preview for production planning; our guide to 
+Fabric IQ ontologies
+ covers what they do.
+Copilot becomes an app platform.
+ The Rayfin session describes Copilot "evolving into a platform where apps are built, shared, and run". Our explainer on 
+what Rayfin is
+ covers the background. Expect more on how Copilot-built apps reach Fabric data and how IT governs them. 
+What happened:
+ Copilot Managed Runtime is now generally available, its Fabric data backend is in Frontier public preview, and Fabric apps are generally available with app governance in the OneLake Governance hub.
+More cost control.
+ Microsoft said Copilot Studio agents would join its FinOps for AI cost management in October. Fabric governance and cost management also have a breakout. Expect cost and observability to be a running theme, which matters if you are budgeting for 
+Copilot Credits
+. 
+What happened:
+ Microsoft introduced Copilot Credits as a new usage-based billing option for Fabric, so far documented only for the Copilot Managed Runtime integration (public preview), and announced Agent 365 cost analysis through Fabric in preview.
+What to Do Now
+Use the free digital pass
+ to watch the sessions above, live or on demand
+Check your status assumptions
+ for the features you depend on against Microsoft's day-1 wording above
+Read the status words, not the headlines.
+ "Announced", "preview" and "generally available" mean different things for production planning
+Do not pause work that rests on GA features.
+ Semantic model quality, capacity planning and Copilot spending policies will not be undone by an announcement
+Where Solv Systems Comes In
+After Ignite we help Fabric and Power BI teams sort what is ready from what is not, and turn the relevant announcements into a practical roadmap. Read more about our 
+Microsoft Fabric consulting services
+.
+Sources and Further Reading
+Microsoft Ignite 2026 - official event site
+Microsoft Ignite 2026 session catalogue
+Introducing the new Copilot with Home, Code and Autopilot - Official Microsoft Blog
+Microsoft Ignite 2026 registration
+Microsoft Ignite 2026 Book of News
+What's new in Azure at Microsoft Ignite 2026 - Azure blog
+Introducing the new Microsoft IQ - Azure blog
+What's new in databases at Microsoft Ignite 2026
+HorizonDB on Azure and Fabric
+Copilot Managed Runtime is now generally available
+Microsoft and Salesforce announce Copilotforce
+Copilot Credits Guide (PDF)
+Frequently asked
+When and where is Microsoft Ignite 2026?
+Microsoft says Ignite takes place 17-20 November 2026 at Moscone Center in San Francisco, with a digital event online. The published agenda starts on Monday 16 November with badge pick-up and pre-day sessions, certifications and labs.
+How much does Microsoft Ignite 2026 cost?
+On 8 October 2026 the Ignite site listed a Conference pass at 2,325 dollars, a Hub-only pass at 1,625 dollars covering the Hub at Moscone Center from 17 to 19 November, and a free Digital pass with access to keynotes, sessions and technical content.
+Can I watch the Ignite 2026 keynote online?
+Yes. Microsoft lists the opening keynote with Satya Nadella and Judson Althoff as available in person or streamed on the digital venue, and the free Digital pass covers keynotes and sessions. The agenda placed it on Tuesday 17 November, 18:00 to 20:00 GMT.
+What did Microsoft announce at Ignite 2026 for Microsoft Fabric?
+On 17 November 2026 Microsoft made Fabric apps with Rayfin, Database Hub in Fabric and Fabric IQ integrations in Microsoft Copilot generally available. Fabric HorizonDB, SQL and PostgreSQL database agents, Fabric IQ in Excel, Fabric IQ ontologies in GitHub Copilot and custom data apps for Power BI Pro arrived in preview.
+Which Ignite 2026 sessions should Power BI and Fabric teams watch?
+Good starting points in the catalogue are Agentic development with Fabric Copilot (BRK356), Building, deploying, and governing Microsoft Fabric at scale (BRK352), Designing Fabric IQ for enterprise adoption (BRK305), AI-ready data integration with Fabric Data Factory (BRK353) and The evolution of the Microsoft Copilot app (BRK201).
+Should we change Fabric or Copilot plans after Ignite 2026?
+Not for work that rests on generally available features. Re-plan only where a feature you depend on changed status: Fabric apps and Database Hub are now generally available, while Fabric HorizonDB and Fabric IQ ontologies are still preview.
+Did Microsoft make Fabric IQ ontologies generally available at Ignite 2026?
+No. Microsoft did not announce general availability for Fabric IQ ontologies at Ignite 2026. It announced Fabric IQ ontologies in GitHub Copilot and IQ sharing for ontologies, both in preview.
+
+===== https://www.gethynellis.com/2026/11/microsoft-ignite-2026-day-1-announcements/
+(status 401)
+To access this website, please wait while we complete a security check.
+Loading...
+
+===== https://techcommunity.microsoft.com/blog/AzureSQLBlog/whats-new-in-databases-at-microsoft-ignite-2026-ai-ready-data-for-apps-and-agent/4570764
+(status 200)
+Azure SQL Blog 
+11 MIN READ
+What's new in databases at Microsoft Ignite 2026: AI-ready data for apps and agents
+Shireesh_Thota
+Microsoft
+Nov 17, 2026
+This week we’re sharing how Microsoft databases help organizations modernize the data that runs their business, build the next generation of intelligent applications, and operate it all with the help of agents. 
+By Shireesh Thota, Corporate Vice President, Azure Databases and Fabric Applications, Microsoft
+Organizations putting agents to work are learning quickly that an agent is only as good as the business context behind it. That context starts with trusted business data. Every transaction, customer interaction and operational event tells AI what is happening right now, and much of it lives in operational databases. 
+Microsoft IQ
+ helps bring that context together for agents. As AI becomes more capable, the database becomes even more important.
+With 
+Azure databases
+ and 
+Microsoft Fabric
+, we're making that data estate work as one: unified, rich with business context and governed at the source. But that data is spread across today's business applications, while new intelligent apps demand more scale, speed, and context. Organizations need to do three things at once:
+Build what comes next on cloud-native databases designed for scale, analytics, and AI.
+Modernize the trusted data they already have onto AI-ready foundations.
+Operate a growing estate with the help of agents.
+Here's how our top announcements at 
+Microsoft Ignite
+ help with each.
+Build on one PostgreSQL foundation, from Azure to Fabric 
+At Ignite last year, we introduced 
+Azure HorizonDB
+ in preview. Today, Azure HorizonDB is generally available: a fully managed, PostgreSQL-compatible database service built for mission-critical and AI-powered applications. 
+With Azure HorizonDB, teams can build AI applications directly on transactional data using built-in vector search, AI Functions and AI Pipelines that invoke models from SQL queries, along with built-in AI model management in preview. With the PostgreSQL extension for VS Code, developers can manage, tune, and monitor their databases with AI assistance in the same editor where they write their application code.
+For critical workloads, multi-zone high availability and distributed storage support fast recovery to help keep applications running. Microsoft Entra ID, private endpoints, managed identities, and service- or customer-managed keys help protect sensitive data, bringing resilience and security together with HorizonDB’s AI capabilities.
+"Our AI ambitions depend on secure, reliable, high-performance API access to LSEG’s data. Azure HorizonDB meets our enterprise security requirements while providing a PostgreSQL foundation for our existing API services and the MCP layer powering new AI experiences.”
+Grzegorz Giedrojc, Director of Engineering, LSEG (London Stock Exchange Group)
+Serverless PostgreSQL in Fabric, from first query to OneLake 
+In Microsoft Fabric, 
+we're
+ bringing the 
+HorizonDB
+ foundation closer to analytics with serverless PostgreSQL built for applications and agents. As AI accelerates development, databases need to start just as quickly and handle bursty workloads.
+Microsoft Fabric HorizonDB
+provisions
+ databases in seconds, pauses after five minutes of inactivity and resumes with the next query, 
+giving
+ developers and agents PostgreSQL 
+that scales with how they build
+,
+without
+ infrastructure to
+ manag
+e
+. 
+Fabric 
+HorizonDB
+ is
+ also 
+available as a PostgreSQL database 
+for Fabric apps
+. W
+ith the Rayfin SDK, PostgreSQL joins data APIs, authentication, storage, and hosting in one managed backend, so builders can focus on application logic.
+ Beyond serverless operations, Fabric 
+HorizonDB
+ supports 
+translytical
+ capabilities
+, combining transa
+ctions and analytics,
+ on OneLake, bringing the scale and performance of Fabric’s analytical engines to applications working with live transactional data:
+Run translytical queries.
+ PostgreSQL queries are transparently pushed down to Fabric Data Warehouse for distributed CPU- or GPU-powered execution. Full and partial pushdown allow a single query to join PostgreSQL tables with data in OneLake, with analytical queries running an order of magnitude faster than they would natively in PostgreSQL.
+Bring operational data into analytics automatically.
+ Mirroring continuously replicates HorizonDB tables into Fabric for large-scale analytics and enrichment without separate data integration pipelines.
+Put enriched data back into applications.
+ Enriched data from Fabric Data Warehouse flows back into HorizonDB synced tables, where applications and agents can access it with low-latency, high-concurrency performance.
+The result is a continuous loop. Application data flows into OneLake, analytics enrich it, and insights flow back to the applications and agents that act on them, all within Fabric.
+I'm especially excited to bring HorizonDB to both Azure and Microsoft Fabric, giving teams one PostgreSQL foundation for mission-critical apps and AI-native development. For the full story, read 
+what’s new in HorizonDB
+.
+Modernize with a plan, accelerated by agents 
+The applications that run your business hold your most valuable context, and modernizing them onto AI-ready foundations, with less migration friction, makes that context available to new intelligent experiences. Agents are changing how that work gets done, from discovery to code conversion. 
+Every modernization starts with a plan. Azure Catalyst (formerly Azure Migrate), 
+introduced at Ignite
+, brings IT teams and developers together around one plan for applications and databases, from discovery and assessment through migration and modernization. Agents help identify what's ready to move, where changes are needed and the right Azure destination for each workload, and GitHub Copilot modernization carries that plan into the code. 
+“
+Transforming a legacy mainframe archive into a modern cloud solution is not just a technical upgrade; it's an opportunity to innovate, streamline, and future-proof your environment. Embrace the challenge, and you'll unlock new efficiencies and capabilities that were once unimaginable.” 
+- Daniel Tanner, Stream Technical Lead, Client Document & Records Management (CDRM), 
+UBS
+AI-assisted migrations from Oracle to managed PostgreSQL on Azure
+Some workloads ask more of that plan than others. For many organizations, Oracle workloads can be the hardest to move, because migrating the data is only half the job. The application code that depends on it must move, too. 
+Two new previews address both halves
+.
+Oracle to PostgreSQL migration in Azure Database Migration Service
+ now supports offline data migrations to Azure Database for PostgreSQL. Teams can configure connections, select schemas, and start and track the transfer in one experience, without building custom data-movement processes.
+For application code, 
+AI-assisted Oracle application conversion
+ provides a plug-in that converts Oracle code to work with Azure Database for PostgreSQL. Available through GitHub Copilot CLI or Visual Studio Code, and directly within existing modernization workflows such as Modernize CLI, the skills identify Oracle-specific dependencies and propose code changes for PostgreSQL compatibility. Developers review and validate the changes before accepting them.
+Together, they bring agentic assistance to the whole migration, not just the data. There's much more to the PostgreSQL story at Ignite – 
+check it out
+. 
+Run your apps where your data lives with DocumentDB 
+Last year, we introduced 
+Azure DocumentDB
+, our MongoDB-compatible document database powered by the open-source DocumentDB engine governed by the Linux Foundation. Now we’re expanding how organizations can deploy DocumentDB across hybrid and multicloud environments. DocumentDB enabled by Azure Arc and DocumentDB on Azure Local, both in preview, let organizations run MongoDB compatible workloads on supported Kubernetes clusters or customer-owned infrastructure, including on-premises and edge environments. Learn more about these new announcements 
+here
+.
+Build intelligent apps faster 
+Cloud-native applications need cloud-native data services designed for elastic scale, resilience, and security, with diverse data models and direct connections to analytics and AI. AI is raising the bar on all of it as apps and agents are built faster, grow less predictably and need context in real time. Our news this week meets developers where they build, from deploying complete apps in Fabric to scaling SQL, giving agents memory and serving AI experiences in at speed.
+Build and deploy intelligent apps with Fabric apps 
+Fabric apps are now generally available, giving developers and coding agents a simpler path to building and deploying complete business applications. They build with Rayfin, the open-source SDK and CLI that provides databases, authentication, functions, storage, and observability, and deploy to Fabric, connected to enterprise data and governance. In just five months of preview, builders created more than 100,000 apps with Rayfin and deployed them on Fabric. Fabric apps connect to existing semantic models, warehouses, and lakehouses, so teams can build on trusted data without recreating data models or access controls. Teams can also turn analytics into applications that move users from insight to action. Content Security Policy settings and private sites add more protection.
+Builders can also start in familiar tools. With Microsoft Copilot, they can go from a simple prompt to a working application, using Fabric as a ready-made backend for databases, storage, and data APIs. Integrations with Power BI Pro and Power BI Desktop, both in preview, help teams turn trusted semantic models into interactive business applications. 
+At Thomson Reuters, the Monthly Business Review now runs as a Fabric app, built on the same certified Power BI semantic models that ground the company's DeepVista AI framework.
+"This is a breakthrough in how Finance works. Certified semantic models give us numbers we can trust. Thomson Reuters DeepVista's AI agents let analysts and leaders ask questions in natural language and get insights they can act on. The monthly business hub solution automates the business review, so we spend our time on what to do next." 
+Michael Goddard, Head of Corporate Finance, Thomson Reuters
+Fabric apps are just one part of a big week for Microsoft Fabric. Catch up on 
+all the Fabric news from Ignite
+ to see what else is new.
+Build locally, scale confidently with Azure SQL Database Hyperscale 
+The SQL applications organizations trust most are ready for their next chapter: cloud-native scale, better economics, and AI. 
+Azure SQL Database Hyperscale
+ runs the SQL engine teams already know, on a cloud native distributed architecture that separates compute from storage, enabling applications to scale with demand. With relational, JSON, graph and vector data unified under familiar SQL security and governance, developers can build AI powered experiences grounded in real-time business data without a separate vector database. That makes Hyperscale the destination for modernizing SQL applications and the foundation for new AI applications.
+Great applications start on a laptop, not in a provisioning queue. Azure SQL Database container, now in public preview, brings the SQL engine to local development without requiring an Azure subscription. Developers get familiar T-SQL, system views, and driver behavior, along with vector support and AI_GENERATE_EMBEDDINGS to prototype AI-powered applications. When ready to deploy, the new local-to-cloud deployment wizard in the MSSQL extension for VS Code, also in public preview, provides a streamlined path from the developer's laptop to Azure SQL Database Hyperscale.
+Growing applications often split data across databases. Cross-database querying for Hyperscale, now in limited preview, lets developers use familiar T-SQL three-part names to query across databases in the same elastic pool from one connection, while each database enforces its own permissions. From laptop to cloud scale, it's the same SQL the whole way. 
+Ready to start building? Read more about these and other 
+Azure 
+SQL announcements at Ignite
+ to see how teams are modernizing and building what’s next on Hyperscale.
+Modernize and build AI apps that remember 
+Azure Cosmos DB
+ powers some of the world's most demanding AI applications, and more organizations want to bring their existing applications onto the same foundation. With 
+R
+e
+l
+at
+io
+n
+a
+l
+-
+to
+-
+C
+o
+sm
+os
+D
+B
+mo
+de
+rn
+i
+z
+a
+t
+io
+n
+a
+s
+s
+i
+s
+t
+a
+n
+t
+, now in preview, London Stock Exchange Group (LSEG) modernized several legacy Oracle databases of record, including real-time pricing and instrument data, to Azure Cosmos DB, improving the latency and scale at which LSEG serves that data to traders. 
+“Thanks to Azure Cosmos DB scale and performance, we have centered on Cosmos DB as the database strategy going forward for our database of records, the authoritative datasets used for downstream services and products.”
+Claire Armstrong, Head of Engineering Instrument & Quote, LSEG Data & Analytics
+For new applications, the 
+AI
+-assisted data modeler
+in Azure Cosmos DB extension for Visual Studio Code, now in preview, helps developers get the data model right from the start. And as these workloads become business-critical, Azure Backup for Azure Cosmos DB, now generally available, adds immutable backups and long-term retention in a vault isolated from the source account, a key requirement in regulated industries.
+Modernizing the data layer matters even more as organizations put agents to work, because an agent is only as useful as what it remembers. That memory lives in the database, and Cosmos DB is a natural home for it. To keep that memory relevant as it grows, 
+automatic embedding generation for Azure Cosmos DB
+, now in public preview, lets developers generate vector embeddings right where their data lives. 
+We are excited to announce 
+Microsoft.Embedding-1
+, a new multimodal embedding model with single- and multi-vector support for more granular matching, developed by the Cosmos DB team in partnership with Microsoft Research. The model is available via the Cosmos DB embedding generation service, and can be used with and without Cosmos DB. At the time of this publication, the Microsoft.Embedding-1 tops the 
+V
+i
+D
+o
+R
+e
+em
+be
+d
+ding
+mo
+del
+s 
+l
+e
+a
+de
+r
+b
+o
+ard
+. 
+And 
+semantic reranker
+, now generally available, reorders retrieved results by meaning and query intent, sharpening relevance for search, RAG, and agents without custom ranking pipelines.
+Agent Memory Toolkit
+ takes advantage of these core database capabilities to provide end-to-end serverless agent memory solution for facts, episodic, and procedural memories with built-in memory workflows for summation, reconciliation, and promotion.
+Explore these and other 
+Azure Cosmos DB announcements
+ at Ignite to see how teams are modernizing and building smarter AI apps.
+Relevant context is only half the equation. AI experiences also need to respond in real time. That's where 
+Azure Managed Redis
+ comes in. Teams are moving beyond traditional caching to use Redis as a real-time data layer for AI-driven applications, serving the session state, cached results and vector lookups that keep experiences fast. Redis 8 is 
+now 
+available
+ in Azure Managed Redis, bringing the latest Redis innovation to Azure's fully managed service. With double the throughput, richer queries, atomic JSON updates, field-level expiration and fine-grained security, Redis 8 simplifies development and helps you build sophisticated applications faster. 
+Scale operations with confidence 
+As estates grow and as agents create more applications and more databases, operations can’t scale on human effort alone. The next step is bringing agents into the database lifecycle itself, with people defining goals, boundaries and trust, and agents providing the scale.
+Gain visibility and control across your database estate
+Operations start with knowing what you have. 
+Database Hub
+, now generally available, brings your entire database estate together in one place, with unified visibility, observability, and centralized governance. It gives teams a single control plane for the Microsoft databases portfolio, and a place where people and agents work side by side to understand the estate, prioritize what matters and act.
+Manage your databases more intelligently with AI 
+Database agent, now in preview, brings AI-assisted operations into the tools database professionals and developers already use.
+Database 
+a
+gent
+ for SQL
+ combines native in-database intelligence with AI-powered reasoning to continuously monitor operational signals across the SQL estate, proactively detects issues, explains their impact, and recommends actionable remediation. Database agent in VS Code for PostgreSQL brings AI-powered reasoning into the developer’s editor and recommends remediation steps or executes approved actions through Copilot agent mode.
+Rather than replacing human judgment, database agent works within your existing identity, permissions, approval boundaries, and audit trail. It helps teams move from observing databases to intelligently managing them, from a single database in VS Code to the full estate in Database Hub. For database teams, that means less time chasing alerts and more time on the work that moves the business forward. 
+Learn more
+ about Database Hub, database agent, and other exciting news.
+Build what’s next without leaving what matters behind 
+Every intelligent experience starts with data. The opportunity in front of every organization is to modernize the applications that run the business while creating what comes next, on one connected foundation. The organizations that lead with AI won’t be the ones that start over. They’ll be the ones that turn the trusted data they already have into context their agents can act on. With Azure databases and Microsoft Fabric shipped together, that’s exactly what we’re building.
+To keep going:
+Explore the new 
+Microsoft Databases roadmap site
+ to see 
+what’s
+ coming next.
+Watch our Microsoft Ignite session
+,
+ BRK362 Data Foundations for Modern Apps, AI, and Agents, on demand. 
+Validate your skills with 
+SQL AI Database Developer
+ and 
+Azure Cosmos DB AI Developer
+ certifications.
+Updated 
+Nov 17, 2026
+Version 2.0
+azure sql
+Like
+Like
+0
+Comment
+Comment
+Shireesh_Thota
+Microsoft
+Joined 
+November 09, 2023
+Send Message
+View Profile
+Azure SQL Blog 
+Follow this blog board to get notified when there's new activity
