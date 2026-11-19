@@ -5,7 +5,7 @@
 
 ## 流れ
 1. **毎日 09:13**：metrics.yml（tools/collect_metrics.py）が数字を集め、ブランチ metrics の metrics/<日付>.json に置く。
-1-2. **毎週月曜 10:17**：competitors.yml（tools/competitors.py）が、この1週間に伸びた日本のテック・AIショートを集め、上位6本を Gemini（2026-11-20〜 Gemini 4 Neon。使えないときはその日いちばん新しい Flash）に見せて「最初の3秒・流れ・テロップ・声・映像・終わり方・タイトルの型・伸びた理由」を書き出す（ブランチ metrics の competitors/<日付>.json）。
+1-2. **毎週月曜 10:17**：competitors.yml（tools/competitors.py）が、この1週間に伸びた日本のテック・AIショートを集め、上位6本を Gemini（その日いちばん新しい Flash。2026-11-20 に Gemini 4 Neon を試したが、無料の鍵では毎回「使いすぎ」（429）で使えなかった）に見せて「最初の3秒・流れ・テロップ・声・映像・終わり方・タイトルの型・伸びた理由」を書き出す（ブランチ metrics の competitors/<日付>.json）。
 2. **毎週月曜 12:47**：予定作業「週1回の見直し」が、この文書の手順で数字を読み、週報を書き、params.json を少し動かし、大きな変更を提案する。
 3. ユーザーが提案に答えたら（チャットで番号を言うなど）、Claude がその変更を行い、changelog.md に書く。
 
