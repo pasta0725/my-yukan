@@ -1,0 +1,197 @@
+URL: https://eetimes.itmedia.co.jp/ee/articles/2611/18/news059.html
+TITLE: 光GPUで演算も省電力化 NTTのIOWN構想は次の領域へ
+SITE: EE Times Japan
+PUBLISHED: 2026-11-18 11:00 (page: )
+OG_IMAGE: https://image.itmedia.co.jp/ee/articles/2611/18/cover_news059.jpg
+IMAGES:
+- https://image.itmedia.co.jp/ee/articles/2611/18/ks261118_N201_w290.jpg | NTT執行役員 研究企画部門長の木下真吾氏
+- https://image.itmedia.co.jp/ee/articles/2611/18/ks261118_N202.jpg | IOWNロードマップ
+- https://image.itmedia.co.jp/ee/articles/2611/18/ks261118_N203.jpg | PEC-2開発状況
+- https://image.itmedia.co.jp/ee/articles/2611/18/ks261118_N204.jpg | PEC-3開発状況
+
+TEXT:
+メディア
+テクノロジー
+製品解剖
+先端技術
+電池／エネルギー
+デバイス
+アナログ
+メモリ
+LSI
+マイコン
+FPGA
+プロセス
+パワー
+部品材料
+センシング
+通信
+無線
+テスト/計測
+業界動向
+企業動向
+M&A
+統計
+インタビュー
+コラム
+テーマ特集
+フィジカルAI
+エッジAI
+パワーエレクトロニクス
+半導体後工程
+読者調査（EE Times Research）
+カーボンニュートラル
+IoT
+電源設計（EDN Japan）
+エレクトロニクス入門（EDN Japan）
+5G
+カーボンニュートラル
+展示会
+IoT・エッジコンピューティング EXPO
+SEMICON Japan
+CEATEC
+EdgeTech＋
+TECHNO-FRONTIER
+人とくるま展
+特集
+ニュース
+海外
+国内
+連載
+福田昭のストレージ通信
+福田昭のデバイス通信
+湯之上隆のナノフォーカス
+大山聡の業界スコープ
+大原雄介のエレ・組み込みプレイバック
+リタイア直前エンジニアの社会人大学漂流記
+世界を「数字」で回してみよう
+踊るバズワード 〜Behind the Buzzword
+この10年で起こったこと、次の10年で起こること
+製品分解で探るアジアの新トレンド
+光伝送技術を知る
+“異端児エンジニア”が仕掛けた社内改革、執念の180日
+イノベーションは日本を救うのか
+JASA発IoT通信
+IHSアナリスト「未来展望」
+「英語に愛されないエンジニア」のための新行動論
+電子版
+EE Times Japan×EDN Japan統合電子版
+電子ブックレット
+読者登録
+ホワイトペーパー
+Special
+Microchip情報
+全記事一覧
+EE Times Japan
+>
+先端技術
+>
+光GPUで演算も省電力化 NTTのIOWN構想は次の領域へ
+：
+光電融合の進捗も紹介
+（1/2 ページ）
+NTTの最新技術や研究を紹介する「NTT R&D FORUM 2026」のメディア向け内覧会が開催された。執行役員で研究企画部門長の木下真吾氏による基調講演では、IOWNの光電融合デバイス開発状況や、光を演算領域に展開する取り組みなどが紹介された。
+»
+2026年11月18日 11時00分 公開
+[
+杉山康介
+，
+EE Times Japan
+]
+NTT執行役員 研究企画部門長の木下真吾氏
+NTTの最新技術や研究を紹介する「NTT R&D FORUM 2026」が、2026年11月18〜20日、24〜25日にかけてNTT武蔵野研究開発センタ（東京都武蔵野市）で開催される。
+メディア向け内覧会の基調講演では、同社執行役員で研究企画部門長の木下真吾氏がIOWN（Innovative Optical & Wireless Network）による光電融合デバイスの開発状況や、光を演算領域へと展開する取り組みなどを紹介した。
+光スイッチは26年度末の商用化予定、チップレット量産も着手
+IOWN構想ではデータセンター間を光でつなぐIOWN 1.0から、サーバ間をつなぐIOWN 2、チップ間のIOWN 3、チップ内のIOWN 4と4段階のステップを定義していて、うちIOWN 1はすでに商用サービスの提供を開始している。
+IOWNロードマップ［クリックで拡大］出所：NTT
+大規模言語モデル（LLM）の中でも特に大規模なものを動作させる場合、データセンターでは数万台以上のGPUが稼働し、相互に通信しあう。通信を制御するスイッチ機器の内部に張り巡らされた電気配線では、データ容量の増大につれて消費電力や発熱も大きくなっている。
+この課題を解決するため、NTTはスイッチASICの直近で光電変換可能な光通信モジュール「PEC（Photonics-Electronics Convergence）-2」を開発。従来のスイッチに挿し込む方式の光通信モジュールの場合、内部の情報処理用ICチップとモジュール間の電気通信が消費電力増の要因になっていたが、PEC-2は情報処理用ICチップと光エンジンを同一の台座上に実装することで、30cm程度あった電気通信距離を3cmまで短縮した。
+NTTではスイッチASICを担当する米Broadcom、筐体を担当する台湾Accton Technologyと協力のもと、通信容量102.4Tビット秒（Tbps）のPEC-2搭載光スイッチを開発中で、2026年度末の商用化を予定しているという。
+PEC-2開発状況［クリックで拡大］出所：NTT
+チップ用の光電融合デバイス「PEC-3」の開発も進んでいて、木下氏によると「研究レベルでは送信速度64Gbps、消費電力は1ビット当たり0.75ピコジュール（pJ）と世界最高速、最低消費電力の光チップレット技術を確立している」という。
+すでに量産に向けた取り組みにも着手していて、2026年10月には新エネルギー・産業技術総合開発機構（NEDO）から、量産技術確立に向けて160億円の支援を受けることが発表された。補助金を合わせた総事業費は240億円になり、「2031年に10万台、2033年に100万台の生産を実現し、世界シェア3割獲得を目指す」（木下氏）とした。
+PEC-3開発状況［クリックで拡大］出所：NTT
+GPU演算を光で省電力化
+1
+|
+2
+次のページへ
+Copyright © ITmedia, Inc. All Rights Reserved.
+Special Contents
+PR
+特別協賛
+PR
+スポンサーからのお知らせ
+PR
+Special Contents
+PR
+Pickup Contents
+PR
+印刷して読む 電子ブックレット
+「PCIM 2026」で見たパワー半導体最前線――電子版2026年10月号
+製造現場にフィジカルAIをどう実装するか――電子版2026年9月号
+フィジカルAIが生み出す新たな「設計思想」――電子版2026年8月号
+2026年上半期の半導体業界を振り返る――電子版2026年7月号
+記事ランキング
+鴻海、ソニーセミコンの車載カメラモジュール事業買収へ　約72億円
+ロームのSiCと三菱のSiを混載「重さ7割減」日本発インバーター技術に迫る
+「世界初」直径200mmの単結晶ダイヤモンドを開発 米新興
+株価急落のキオクシア、「底力」が見えてくるのはこれからだ
+光GPUで演算も省電力化 NTTのIOWN構想は次の領域へ
+先端パッケージングは「半導体の限界超える相棒」 Lamが語る3つの進化
+月で1000年動く半導体、AlNの高放射線耐性を実証
+一般のエンジニアには刺さらない!? それでもMATSimに「使う価値」がある理由
+結晶をわずかに伸ばすと絶縁体が金属に　東北大らが成功
+NVIDIA創業者のJensen Huang氏が辞任、33年間の経営に幕
+≫
+11〜30位はこちら
+Special Site
+PR
+あなたにおすすめの記事
+PR
+RSSフィード
+EE Times Japan
+EE Times Japanについて
+メディアガイド
+Media Guide (English)
+よくあるお問い合わせ
+お問い合わせ
+広告について
+EE Times Specialへ
+利用規約
+サイトマップ
+会員メニュー
+読者登録（メルマガ購読）
+登録内容変更
+電子版 バックナンバー
+公式SNS
+Facebook
+X
+EE Times 海外ネットワーク
+EE Times
+EE Times Asia
+EE Times China
+EE Times India
+EE Times Taiwan
+海外提携サイト
+Electronic Supply & Manufacturing China
+All material on this site Copyright © ITmedia, Inc. All Rights Reserved.
+This site contains articles under license from AspenCore LLC.
+ITmediaはアイティメディア株式会社の登録商標です。
+メディア一覧
+|
+公式SNS
+|
+広告案内
+|
+お問い合わせ
+|
+プライバシーポリシー
+|
+RSS
+|
+運営会社
+|
+採用情報
+|
+推奨環境

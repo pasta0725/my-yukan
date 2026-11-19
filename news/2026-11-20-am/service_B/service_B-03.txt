@@ -1,0 +1,173 @@
+URL: https://blog.google/intl/ja-jp/company-news/technology/introducing-gemini-4-neon/
+TITLE: Gemini 4 Neon を発表
+SITE: Google Japan Blog
+PUBLISHED: 2026-11-19 06:00 (page: 2026-11-18)
+OG_IMAGE: https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-neon__blog-header__sm.width-1300.png
+IMAGES:
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-neon__blog-header__sm.width-200.format-webp.webp | ジェミニ4ネオンのヒーローイメージ
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_neon_table.width-1200.format-webp.webp | ベンチマーク表
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_neon__benchmarks__aa-in.width-1200.format-webp.webp | AA Index v5.01のタスクごとのコストを示すグラフ
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_autobax_bench.width-1200.format-webp.webp | Autobaxbenchチャート
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_neon_webexploitbench.width-1200.format-webp.webp | webexploitbenchチャート
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-neon__benchmark__secben.width-1200.format-webp.webp | sacbenchproチャート
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_neon_exploitgym.width-1200.format-webp.webp | exploitgymベンチマークチャート
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_neon_cwe.width-1200.format-webp.webp | CWEベンチv2チャート
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_4_neon_grey_swan.width-1200.format-webp.webp | グレースワンチャート
+- https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-neon__comparison-graphi.width-1200.format-webp.webp | ジェミニ4のモデルを示すチャート
+
+TEXT:
+Gemini 4 Neon を発表
+2026年 11月 18日
+|
+x.com
+Facebook
+LinkedIn
+メール
+リンクをコピー
+複雑なソフトウェア エンジニアリング、ナレッジ ワーク、科学分野のワークフローにおいて、最先端の知能とエンドツーエンドでの高速なタスク完了を実現します。
+Koray Kavukcuoglu
+SVP, Google DeepMind and Chief AI Architect, Google
+共有
+x.com
+Facebook
+LinkedIn
+メール
+リンクをコピー
+この記事の内容
+本日、Gemini 4 Neon を発表します。複雑なソフトウェア エンジニアリング、ナレッジ ワーク、科学分野のワークフローにおいて、最先端の知能とエンドツーエンドでの高速なタスク完了を実現するモデルです。
+Neon は、xhigh 思考レベルにおいて
+Artificial Analysis Intelligence Index
+でスコア 61 を獲得し、同クラスのモデルを上回って総合 3 位にランクインしました。より大規模で処理速度の遅いモデルに肉薄する結果です。また、
+Vals Index
+でも 2 位となり、パレート最適を達成しています。モデル単体の能力を高めるだけでなく、使いやすさの向上にも注力しており、新しい
+Agent Arena Index
+では、ステアラビリティにおいて 2 位を獲得しました。さらに、複数ステップの指示に従う能力にも優れており、事実に基づかない情報の生成を抑える継続的な取り組みの成果として、Google Antigravity の社内テストで過去最低の発生率を記録しています。
+料金は、入力トークン 100 万あたり 3 米ドル（キャッシュされた入力トークンは 95% 割引の 100 万あたり 0.15 米ドル）、出力トークン 100 万あたり 15 米ドルで、100 万トークンのコンテキスト ウィンドウを備えています。
+Gemini 4 Neon は、本日より
+Google AI Studio
+の Gemini API、
+Gemini for business
+（API およびモデル選択メニュー経由）、
+Google Antigravity
+（有料の Google AI Pro および Ultra ユーザー向け）、そして
+Gemini アプリ
+（Google AI Pro および Ultra プランユーザー向け）で順次提供を開始します。
+エンタープライズ業務、分析、科学分野で発揮される高い実力
+日々のビジネス業務は、スプレッドシート、PDF、グラフ、音声、動画など多岐にわたるデータで構成されています。Neon は、これらすべての入力を 100 万トークンのコンテキスト ウィンドウ内で統合し、構造化された成果物へと変換します。独立機関による評価でもトップクラスのモデルとして位置づけられており、
+Vals Index
+で 2 位（70.9%）を獲得したほか、
+Legal Research Bench
+および
+Tax Agent Bench
+の両ベンチマークで 1 位を達成しました。
+また、
+Surge AI
+の各カテゴリーでも優れた成績を収めており、財務、会計、スプレッドシート モデリング、複雑な制約条件の遵守といった分野のほとんどのベンチマークで 1 位を獲得しています。さらに、専門的で情報密度の高いグラフを読み解く Chartography で 73.5% を記録し、
+Agents' Last Exam v1.1
+（75.8%）でも最先端モデルと同等のパフォーマンスを発揮しました。加えて、Zapier の
+AutomationBench
+（56.3%）と、長期的なビジネス運営をシミュレーションする
+Andon Labs の Vending-Bench 2
+（16,843 米ドル）の両方で総合 1 位を達成しています。そして、4,200 件以上の実環境エージェント セッションを対象とした
+Arena の新しい Agent Arena Index
+では、スコア 1336 で世界 2 位のデビューを飾りました。
+定量分析、数学、技術研究の課題を網羅する科学・数学的推論の分野においても、
+Terminal-Bench Science
+（70.5%）、
+RiemannBench
+（84.0%）、
+HLE-Diamond
+（71.3%）でクラス最高峰のスコアを記録しています。
+本番環境レベルのコード開発に向けて設計
+長時間稼働するエージェント ワークフロー向けに設計された Neon は、ツールを多用する複雑なタスクをエンドツーエンドで高いパフォーマンスのまま完遂します。単体で動作する場合はもちろん、Google Antigravity 内で並列稼働する Gemini 4 Hydrogen サブエージェントを指揮する、高速かつ高度な判断力を備えたオーケストレーターとしても機能します。不要なファイルの読み込みを減らし、作業を進めながら進捗を共有し、長時間のセッションでもコンテキストの圧縮を確実にこなします。
+開発者や研究者の中核的なワークフロー全般で最先端のパフォーマンスを発揮し、同クラスの主要モデルと互角以上に渡り合っています。
+Artificial Analysis Coding Agent Index
+（58.6）で総合 1 位を獲得したほか、
+Terminal-Bench 4.1
+で 65.2%、
+FrontierCode 2.0
+（デフォルトの high 設定）で 46.2% を記録しました。本番環境レベルのコード開発では、リポジトリを横断した複数ファイルのデバッグやリファクタリングを、ピンポイントかつ的確な編集で処理します。SWE-sweep においても、mini-SWE ハーネスで 12.8% とすでにトップに立っているほか、Google Antigravity 上ではその 3 倍以上となる最先端の 39.0% に達し、Antigravity ハーネスが引き出すポテンシャルの高さを示しています。
+Google Antigravity で Blender MCP を操作し、Gemini 4 Neon が /swarm を使用してフォトリアリスティックな 3D ラボベンチを構築しました。Gemini 4 Carbon と Gemini 4 Hydrogen にはブンゼンバーナーの炎を、Gemini 4 Argon と Neon には高電圧ガス放電管を組み合わせ、各モデル名の元素を正確に視覚化しています。
+Google Antigravity 上で、Gemini 4 Neon がモンブランとシャモニーの実際の標高地形データを使い、一人称視点の WebGL2 フリーライドスキー シミュレーターをゼロから作成しました。既存の素材を一切使わず、10,200 行のカスタム シェーダー、6 つのアルパイン コースにわたる 120 Hz のスキー物理演算、ダイナミックな滑走跡、表層雪崩、空間 Web オーディオを組み合わせています。
+Google Antigravity で /swarm を活用し、Gemini 4 Neon がアーカイブ写真をもとに、1936 年のケンブリッジ大学キングス カレッジにあったアラン・チューリングの研究室をインタラクティブな 3D で再現しました。外のキングス チャペルから室内の X.8 号室まで再現し、机の上には実際に動作する万能チューリング マシンまで備えています。
+Google Antigravity 内の Gemini 4 Neon エージェント スウォームが、1 枚の画像を埋め込み画像も Apps Script も一切使わずに 100,000 セルの Google スプレッドシートへと変換しました。500,000 個以上のライブ数式を用いてエッジ検出や 3D 深度マッピングを実行し、6 つのインタラクティブなモードでシーンのライティングを再構成しています。
+本番レベルのワークフローに効率性と柔軟な制御をもたらす
+新しいモデルをリリースするたびに思考レベルを洗練させ、チームがより細かく制御でき、各ティア間をスムーズに移行できるよう改善を続けています。Neon の 4 つの思考レベルは段階的にスケールするため、ワークロードのニーズに合わせて知能の深さとトークン消費量を自在に調整できます。
+Neon は、第三者機関の各種ベンチマークにおいて、タスクあたりのコストを抑えながら高いパフォーマンスを実現しています。デフォルトの high 思考レベルでは、Artificial Analysis Intelligence Index の高スコアを維持しつつ、Carbon と比べてタスクあたりのコストを 32% 削減しました。また、high 設定において Vals Index と Agent Arena の両方でパレート最適に位置しており、競合する最先端モデルと比較してタスクあたりのコストを約 50%〜80% 抑えています。さらに、xhigh 思考レベルでは、最も難解なエンジニアリング、分析、科学分野のワークロードに向けて、より深い複数ステップの推論を提供します。ここで Neon は最高の知能スコアを記録しながらも、競合モデルの最高設定と比べてタスクあたりのコストを 36% 以上低く抑えています。
+高速かつ効率的な最先端のサイバー防衛を実現
+エージェントによるコーディングが普及するなか、最初から安全なコードを生成することは極めて重要です。サイバーセキュリティ向けの Gemini 4 Neon は、
+AutoBaxBench
+の easy、medium、hard すべての難易度において Carbon より安全なコードを生成し、hard ティアでは最先端の 76% を達成しました。
+システムを守るためには、攻撃者より先に欠陥を見つけ出すことも欠かせません。ペネトレーション テストは、企業のサイバーセキュリティの要です。
+WebExploitBench v1.2
+において、Neon は競合する大規模モデルの半分のコストで最先端のスコア（51.26%）を記録しました。
+既存のコードを強化する取り組みにおいても、サイバーセキュリティ向けの Neon は、脆弱性の発見、検証、パッチ適用というコード強化のライフサイクル全体で最先端のパフォーマンスを発揮します。しかも、大規模なフロンティア モデルよりも高速でコスト効率に優れています。
+コードの脆弱性の発見：
+SEC-bench Pro
+で最先端のパフォーマンス（90.5%）を達成しつつ、課題あたりのコストを約半分に抑えています。
+悪用検証によるリスクの優先順位付け：
+どの脆弱性から優先的に修正すべきかを判断するため、防衛担当者はモデルを使って悪用可能性を検証します。ExploitGym では、Carbon の半分のトークン数で最先端のパフォーマンスを実現しました。
+脆弱性のパッチ適用：
+脆弱性の根本原因を修正することは、サイバーセキュリティ防衛のライフサイクルにおける重要なステップです。Collinear の
+CWE-bench v2
+で 70.7% に達し、Carbon を 3.4% 上回る結果を出しています。
+サイバーセキュリティ向けの Gemini 4 Neon は、
+Fairwind Program
+の一環として、今後数日以内にプログラムに参加されているサイバーセキュリティ担当者向けに順次提供を開始します。
+安全で信頼できる実行のための設計
+Gemini 4 Neon は、
+Gemini 4 の安全性およびセキュリティ スタック
+における改良を基盤としており、深刻な悪用やプロンプト インジェクションに対する Gemini 4 Carbon レベルの保護を維持しながら、モデルのアライメントとエージェントとしての挙動をさらに進化させています。本番環境で負荷の高い長時間タスクを担うモデルとして、以下の点に注力しました。
+最先端モデルの悪用リスクの軽減：
+Neon はより高速かつ低コストなモデルでありながら最先端の能力を備えているため、サイバー攻撃やバイオセキュリティの悪用に対して Carbon と同等の強力なリアルタイム保護機能を組み込んでいます。一方で、正当な業務を誤って拒否するケースは大幅に減らしており、たとえば Terminal-Bench 4.0 での拒否率はわずか 1.98%、Terminal-Bench-Science では 0% に抑えています。
+アライメントと規律あるモデル挙動の強化：
+社内のコーディング利用において、思考の連鎖とアクションの不整合を監視するモニターのアラート発生率は、すでに低い水準にあった Carbon のベースラインをさらに下回りました。これは Neon のアライメント傾向が向上していることを示しており、同じモニターが外部サービス上の Neon を保護するためにも導入されています。Neon は、手抜きや結果の捏造、ユーザーの意図を超えた逸脱を行わずに複数ステップの作業を完遂するようトレーニングされており、リクエストを最後までやり遂げる姿勢と指定範囲を守るバランスの改善を続けています。Terminal-Bench 4.0 での不正行為率は Carbon と同じく 0.0% を維持し、コーディング不正評価でショートカットを選んだ割合はわずか 2.45% と、すべての Gemini 4 モデルの中で最低を記録しました。また、エージェント安全性スイートでの不整合アクション率は 0.09%、エージェント誠実性評価での合格率は 99.2% を達成しています。
+さらに、エージェント挙動評価では、Carbon の高いベースラインを土台に、各エフォート レベル全体で対応不足を 43%〜56%、過剰な介入を 15%〜35% 削減しています。
+間接プロンプト インジェクション攻撃からの保護：
+Gray Swan の IPI ベンチマークにおいて、アクセス先のウェブページ、メール、ドキュメント、コードに悪意のある指示が仕込まれている場合でも、Neon は同クラスの他モデルより高い耐性を示しました。最高の思考レベルでリアルタイム保護機能を有効にした状態では、この Gray Swan ベンチマーク内のすべての攻撃を防御し、他の Gemini モデルのみが達成していた攻撃成功率 0.0% に並びました。
+詳細については、
+Gemini 4 Neon モデルカード
+（英語）をご覧ください。
+より深い分析のために
+Gemini アプリにおいて、Gemini 4 Neon は最先端の推論と素早い応答が求められる作業で真価を発揮します。
+より高品質な文章作成とナレッジ ワーク：
+整理された構成と自然で分かりやすいトーンで、明確な文章を作成します。スプレッドシート、PDF、写真などのアップロードされたファイルをより正確に読み取り、情報量の多い資料を役立つレポートや要約へとまとめ上げるほか、Gmail や Google ドキュメントなどの Google アプリから関連する詳細情報も引き出します。
+信頼性の高い調査と分析：
+ウェブ上のさまざまな情報源から詳細を頻繁に取り込むため、大きな買い物をする前のベンダー間の価格比較や、最新の市場データをもとにした複雑なブリーフの作成など、動きの速いトピックでも常に最新の情報に基づいた回答が得られます。
+複雑なタスクをより迅速にサポート：
+Gemini のタスク機能が Neon 上で動作するようになり、複雑で複数ステップにわたる作業を大規模モデルよりも迅速かつ効率的に処理できるようになりました。光熱費が急増した原因を探るために請求明細を分析したり、返金交渉のために複数の領収書や書類を突き合わせたりといった手間のかかる作業を任せても、利用上限をより有効に活用しながら、これまで以上に多くのタスクを片付けられます。
+Gemini 4 ファミリーにおける Neon の位置づけ
+Neon は、複雑なコーディング、分析的推論、そして本番レベルのエンタープライズ ワークフローのために構築されたモデルです。最も難解で長期的なプロジェクトを担う Gemini 4 Carbon、日常の高速な実行を担う Gemini 4 Hydrogen に対し、Neon は思考の深さと効率性を高次元で両立します。複雑かつ高頻度なワークフローに最先端の推論をもたらし、より速く、より高いコスト効率で処理します。
+本日より Gemini 4 Neon をお試しください
+Gemini 4 Neon は、
+本日
+より順次提供を開始します。
+開発者の皆さま：
+Google AI Studio
+および
+Android Studio
+の Gemini API 有料ティアで開発にご利用いただけます。また、有料の Google AI Pro または Ultra プランをご利用の方は
+Google Antigravity
+で、すべての Pro および Ultra プランをご利用の方は AI Studio で Neon をお試しいただけます。
+企業の皆さま：
+Gemini for business
+（API またはモデル選択メニュー経由）および Google Antigravity で Gemini 4 Neon をご利用いただけます。
+一般ユーザーの皆さま：
+Google AI Pro または Ultra プランをご利用の方は、
+Gemini アプリ
+のモデル選択メニューから Gemini 4 Neon を選択してお使いいただけます。
+サイバーセキュリティ担当者の皆さま：
+対象となる
+Fairwind Program
+のメンバー向けに、今後数日以内にアクセス提供を開始します。Fairwind Program へのアクセスをご希望の場合は、Google Cloud の担当アカウント チームまでお問い合わせください。
+Get the latest news from Google in your inbox
+Sign up for our newsletters with product updates, event information, special offers, and more.
+Done. Just one step more.
+Check your inbox to confirm your subscription.
+You can also subscribe with a
+different email address
+.
+Your information will be used in accordance with
+Google's privacy policy.
+You may opt out at any time.
+関連タグ:

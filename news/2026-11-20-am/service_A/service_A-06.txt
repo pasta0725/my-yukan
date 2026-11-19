@@ -1,0 +1,117 @@
+URL: https://www.itmedia.co.jp/news/article/2611/19/2000003332/
+TITLE: Microsoftの「Agent Framework」が侵害され、認証情報を盗む不正版がPyPIで公開
+SITE: ITmedia NEWS
+PUBLISHED: 2026-11-19 14:58 (page: 2026-11-19T14:58:26)
+OG_IMAGE: https://www.itmedia.co.jp/news/article/ogp/2611/19/2000003332/10012559/2048
+IMAGES:
+- https://www.itmedia.co.jp/news/article/image/2611/19/2000003332/10012556/728 | 
+- https://www.itmedia.co.jp/news/article/image/2611/19/2000003332/10012557/728 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/19/2000003351/10012623/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/19/2000003347/10012610/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/19/2000003338/10012578/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/19/2000003344/10012596/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/19/2000003334/10012564/232 | 
+
+TEXT:
+Share
+印刷する
+Microsoftの「Agent Framework」が侵害され、認証情報を盗む不正版がPyPIで公開
+公開
+2026年11月19日 14時58分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+米Microsoftが提供するAIエージェント開発用のオープンソースツールキット「Microsoft Agent Framework」のPythonパッケージが侵害され、認証情報を盗む不正なバージョンがPythonの公式パッケージリポジトリ「PyPI」で公開されていた。米セキュリティ企業のSocket、StepSecurity、OX Securityが相次いで報告し、米BleepingComputerなどが報じた。
+Microsoft Agent Frameworkは、AIエージェントを開発したり、複数のエージェントを連携させたりするためのオープンソースのSDKだ。Microsoftが2025年10月に発表し、2026年4月に正式版の1.0を公開した。プログラミング言語はPythonと.NETに対応している。同社がこれまで提供してきた開発ツール「Semantic Kernel」と「AutoGen」の後継に当たり、PyPIでは月間約20万回ダウンロードされている。
+Microsoft Agent Frameworkと連携するサービスのイメージ（画像：Microsoft）
+GitHubのセキュリティ情報データベース「GitHub Advisory Database」によると、不正なバージョンは「1.26.1」と「1.26.2」で、11月17日（協定世界時）に公開され、その後PyPIから削除された。「1.26.0」以前のバージョンは影響を受けない。
+GitHubのアドバイザリ
+不正版は、インストールされた環境でPythonが起動するたびに自動で実行される仕組みになっていた。Pythonが起動時に自動で読み込む「.pth」ファイルを悪用したもので、開発者がプログラムの中でAgent Frameworkを読み込んでいなくても、インストールしただけで実行される。不正版は正規の関連パッケージ「agent-framework-core」の1.26.0を引き続き利用していたため、フレームワーク自体は通常どおり動き、利用者が異常に気付きにくい状態だった。
+盗み出す対象は、Azure、AWS、GitHub、Docker、Hugging Face、OpenAIなどのサービスにアクセスするためのパスワードやアクセストークンだ。環境変数や設定ファイル、同じマシンで動いている他のプロセスから情報を集め、攻撃者が用意した外部のWebサービス「webhook.site」に送信する。AzureのマネージドIDやAzure DevOpsのトークンの取得も試みており、攻撃者がクラウド上の別のリソースにアクセスできるようになる恐れがある。1.26.2では、開発の自動化に使われる「GitHub Actions」のトークンも狙うよう機能が追加されていた。
+StepSecurityによると、1.26.1は公開から約30分後にPyPIによって隔離された。しかし攻撃者はその約2分後に、不正なコードを別のファイルに移した1.26.2を公開した。1.26.2も約8分後に隔離されている。BleepingComputerは、攻撃者が1回目の隔離の後もパッケージを公開する権限を持っていたことになると指摘している。StepSecurityは、同じ日にメンテナー（管理者）用の新しいアカウントが作られ、プロジェクトに追加されていたことも確認している。
+攻撃者がどのようにしてMicrosoftの公式プロジェクトでパッケージを公開する権限を得たのかは分かっていない。BleepingComputerはMicrosoftに問い合わせたが、記事の公開時点で回答はなかったという。
+GitHub Advisory Databaseは、1.26.1か1.26.2をインストールした環境では、情報が既に漏えいしたものとして扱うよう求めている。その環境からアクセス可能な認証情報はすべて再発行する必要があるという。StepSecurityはさらに、pipコマンドを実行するだけでも不正なコードが再び動作する可能性があるため、該当する環境をネットワークから切り離し、安全が確保されるまではPythonやpipを実行せず、1.26.0に固定した上でクリーンな環境を再構築するよう呼び掛けている。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+GitHubのアドバイザリ
+Socketの報告
+StepSecurityの報告
+OX Securityの報告
+コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは
+ログイン
+が必要です
+Special
+PR
+関連記事
+https://www.itmedia.co.jp/news/articles/2605/15/news075.html
+https://www.itmedia.co.jp/news/articles/2604/10/news023.html
+https://www.itmedia.co.jp/news/articles/2301/03/news033.html
+Special
+PR
+こんなメディアも見られています
+ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+メールマガジン最新号
+「AIとのチャット記録」が漏えいか、Notion　委託先に不正アクセス
+無印良品「21年までクレカ番号で顧客を識別していた」　“全ケタ保有＆漏えい“巡り謝罪　削除漏れなぜ発生
+Special
+PR
+本日の新着記事
+美少女ゲーム「NIKKE」経由でマルウェア感染　北海道2自治体、委託先が認める
+楽天証券、アンソロピックIPOで「抽選対象外」の表示不具合　後から「当選」の報告相次ぐ　「想定より申し込み多く」
+脆弱性で話題「nginx」なんて読む？　「ンギンクス」ではなく……
+「焼肉きんぐ」「ゆず庵」など11アプリ、会員の氏名・電話番号の項目を廃止　予定を前倒し
+nginx「緊急」脆弱性、官房長官が「必要な措置」呼び掛け
+アクセスランキング
+1
+六花亭、カード番号全桁＋セキュリティコード約8000件流出か　決済画面のプログラム改ざん
+2
+「焼肉きんぐ」「ゆず庵」など11アプリ、会員の氏名・電話番号の項目を廃止　予定を前倒し
+3
+美少女ゲーム「NIKKE」経由でマルウェア感染　北海道2自治体、委託先が認める
+4
+楽天証券、アンソロピックIPOで「抽選対象外」の表示不具合　後から「当選」の報告相次ぐ　「想定より申し込み多く」
+5
+「楽天証券」漏えい、あなたは対象？　ログインして「重要なお知らせ」確認を
+6
+口座情報漏えいの楽天証券、「ワンタイムキー発行に時間がかかっている」　出金やログインパス変更に必要
+7
+nginx「緊急」脆弱性、官房長官が「必要な措置」呼び掛け
+8
+脆弱性で話題「nginx」なんて読む？　「ンギンクス」ではなく……
+9
+Microsoftの「Agent Framework」が侵害され、認証情報を盗む不正版がPyPIで公開
+10
+楽天証券漏えい、“テスト環境に顧客情報”のマズさ　識者「一般的でない」
+もっと見る
+ITmedia NEWS SNS
+ITmedia News
+Tweets by itmedia_news
+@itmedia_newsをフォロー
+インフォメーション
+注目情報をチェック
+メールマガジン
+Specialインデックス
+お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
