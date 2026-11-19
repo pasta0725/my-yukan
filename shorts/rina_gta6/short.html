@@ -221,10 +221,10 @@ const S={
    withEnter(enter(u,sw?t2:0),()=>{ipic(sw?'sea':'beach',150,420,780,500,28,1.05+0.05*u/Math.max(1,d),0.5,0.5);creditAt(sw?GW:RS,915,895);});
    if(!sw)tagI('食事で体型が変わる',CX,1040,(u-0.2)/0.3,C.brand,'#FFFFFF',56);else tagI('海で宝探し',CX,1040,(u-t2-0.1)/0.3,C.acc,'#FFFFFF',60);},
  // the end: big rina talks to the end (LongCat). The opening key art sits above her and grows to the full screen (loop to 0 s).
- verdict(u,d,L){bg(u);const t2=Math.max(0.6,telHas(L,'まず'));const kz=ease((u-t2+0.1)/0.6);
+ verdict(u,d,L){bg(u);const t2=Math.min(Math.max(1.0,telHas(L,'着替え')),d-0.8);const kz=ease((u-t2+0.1)/0.6);
    abs(()=>{const P0=[90,300,900,325],P1=[0,0,W,H];const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
      if(kz<1)glow(CX,1250,600,C.brand,0.32);
-     g.save();g.beginPath();g.roundRect(R[0],R[1],R[2],R[3],28*(1-kz));g.clip();const i=IMG.open0;if(i){const s=Math.max(R[2]/i.width,R[3]/i.height);g.drawImage(i,R[0]+R[2]/2-i.width*s/2,R[1]+R[3]/2-i.height*s/2,i.width*s,i.height*s);}g.restore();
+     g.save();g.beginPath();g.roundRect(R[0],R[1],R[2],R[3],28*(1-kz));g.clip();const i=IMG.open0;if(i){const s=Math.max(R[2]/i.width,R[3]/i.height)*(1+0.2*kz),iw=i.width*s,ih=i.height*s;g.drawImage(i,clamp(R[0]+R[2]/2-iw/2,R[0]+R[2]-iw,R[0]),clamp(R[1]+R[3]/2-ih*(0.5+0.12*kz),R[1]+R[3]-ih,R[1]),iw,ih);}g.restore();
      if(kz<0.05)creditAt(RS,975,600);else if(kz>0.95)creditAt(RS,1000,520);
      bigRina(VERD_R);});},
 };
