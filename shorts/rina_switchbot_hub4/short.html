@@ -234,7 +234,7 @@ const S={
    withEnter(enter(u,0.6),()=>{pill('GPTモデル',CX,890,52,C.brand);},12);
    withEnter(enter(u,t2,0.25),()=>{cpic('room',[770,260,490,165],150,960,780,263,1);creditAt(CR,915,1200);},20);},
  // how it sends: infrared (TV, air conditioner) and Bluetooth (Fire TV)
- ir(u,d,L){bg(u);mini(u);const t1=Math.min(Math.max(1.35,telHas(L,'赤外線')),d-1.6)   // 「…は赤外線」: the word comes at the end of the chunk,t2=Math.min(Math.max(t1+0.6,telHas(L,'Bluetooth')),d-0.8);
+ ir(u,d,L){bg(u);mini(u);const t1=Math.min(Math.max(1.35,telHas(L,'赤外線')),d-1.6)/* 「…は赤外線」: the word comes at the end of the chunk */,t2=Math.min(Math.max(t1+0.6,telHas(L,'Bluetooth')),d-0.8);
    withEnter(enter(u,0),()=>{cpic('matter',[250,215,780,455],150,430,780,580,1+0.03*u/Math.max(1,d));creditAt(CR,915,985);});
    const k1=ease((u-t1)/0.3),k2=ease((u-t2)/0.3);
    if(k1>0){g.save();g.globalAlpha*=k1;g.strokeStyle=C.warn;g.lineWidth=9;g.beginPath();g.arc(868,587,62,0,7);g.stroke();g.restore();}
