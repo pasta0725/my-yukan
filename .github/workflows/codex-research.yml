@@ -9,7 +9,7 @@ on:
       edition: {description: "edition id, e.g. 2026-11-10-am (uses data/<edition>.json)", required: true}
       max_refs: {description: "only stories with at most this many refs (empty = all)", required: false, default: ""}
       fill: {description: "yes = after the pages are pushed, Codex also writes the additions (codex-fill.yml, 2026-11-14)", required: false, default: "no"}
-      model: {description: "Codex model for the search and the additions (2026-11-19: Sol to save the Codex quota)", required: false, default: "gpt-6.1-sol"}
+      model: {description: "Codex model for the search and the additions (2026-11-19: Sol to save the Codex quota)", required: false, default: "gpt-6.2-sol"}
       effort: {description: "reasoning effort for the search and the additions", required: false, default: "high"}
 permissions:
   contents: write

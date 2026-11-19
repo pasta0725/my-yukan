@@ -8,7 +8,7 @@ on:
       edition: {description: "edition id, e.g. 2026-11-10-am", required: true}
       check: {description: "yes = after the pages are pushed, Codex also checks and fixes the articles (codex-factcheck.yml, 2026-11-14)", required: false, default: "no"}
       src_ref: {description: "optional commit to read data/<edition>.json from (default: main now; for tests on past editions)", required: false, default: ""}
-      model: {description: "Codex model for the check (2026-11-19: Sol to save the Codex quota)", required: false, default: "gpt-6.1-sol"}
+      model: {description: "Codex model for the check (2026-11-19: Sol to save the Codex quota)", required: false, default: "gpt-6.2-sol"}
       effort: {description: "reasoning effort for the check", required: false, default: "high"}
 permissions:
   contents: write

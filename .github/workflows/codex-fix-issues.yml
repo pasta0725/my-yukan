@@ -11,7 +11,7 @@ name: codex-fix-issues
 on:
   workflow_dispatch:
     inputs:
-      model: {description: "Codex model", required: false, default: "gpt-6.1-sol"}
+      model: {description: "Codex model", required: false, default: "gpt-6.2-sol"}
       effort: {description: "reasoning effort", required: false, default: "high"}
 concurrency: { group: codex-fix-issues, cancel-in-progress: false }
 permissions:

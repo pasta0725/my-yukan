@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run: {description: "yes = do not push anything to main (test)", required: false, default: "no"}
-      model: {description: "Codex model", required: false, default: "gpt-6.1-sol"}
+      model: {description: "Codex model", required: false, default: "gpt-6.2-sol"}
       effort: {description: "reasoning effort", required: false, default: "high"}
 concurrency: { group: codex-weekly-review, cancel-in-progress: false }
 permissions:

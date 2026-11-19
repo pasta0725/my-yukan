@@ -6,7 +6,7 @@ name: short-build
 #             (channel/captions/<name>_ja.srt and shorts/<name>/plan.js are pushed to main), silence/length check,
 #             longcat/<scene>.wav from the finished line
 #   longcat : longcat-colab.yml (Colab, then Modal) only when that clip is missing or its audio changed
-#   facts   : codex-short-factcheck.yml (Codex gpt-6.1-sol, high) on script, subtitles, title and description
+#   facts   : codex-short-factcheck.yml (Codex gpt-6.2-sol, high) on script, subtitles, title and description
 #   render  : big presenter frames (tools/big_clip.py; scenes intro / verdict and every line with "big": true, e.g. the big hook
 #             of the new way 2026-11-16), check_fit.js, render_par.js -> work: final/<name>.mp4 (+ final/<name>_sheets/)
 #   voice   : tools/check_voice.py on the video        frames: Codex screen check (shorts/_template/codex_frame_check.py)
@@ -22,7 +22,7 @@ on:
       longcat_wait: {description: "minutes to retry Colab before Modal", default: "20"}
       longcat_fallback: {description: "Modal when Colab gives no clip (yes/no)", default: "yes"}
       facts: {description: "run the fact check (yes/no)", default: "yes"}
-      fact_model: {description: "Codex model for the fact check", default: "gpt-6.1-sol"}
+      fact_model: {description: "Codex model for the fact check", default: "gpt-6.2-sol"}
       frame_model: {description: "Codex model for the screen check", default: "gpt-6-astra"}
       effort: {description: "Codex reasoning effort", default: "high"}
 permissions:

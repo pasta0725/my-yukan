@@ -11,7 +11,7 @@ on:
     inputs:
       edition: {description: "edition id, e.g. 2026-11-14-pm (news/<edition> must be on the branch news)", required: true}
       workers: {description: "comma separated worker names", required: false, default: "game_A,game_B"}
-      model: {description: "Codex model", required: false, default: "gpt-6.1-sol"}
+      model: {description: "Codex model", required: false, default: "gpt-6.2-sol"}
       effort: {description: "reasoning effort (2026-11-19: medium to save the Codex quota)", required: false, default: "medium"}
 permissions:
   contents: write

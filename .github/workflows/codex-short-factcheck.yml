@@ -15,7 +15,7 @@ on:
       srt: {description: "subtitles (empty = channel/captions/<name>_ja.srt)", default: ""}
       extra: {description: "more reference texts, space separated <branch>:<path> or repo paths (e.g. fetched:fetched/x/page.txt)", default: ""}
       text: {description: "other text to check (e.g. the thumbnail copy)", default: ""}
-      model: {description: "Codex model", default: "gpt-6.1-sol"}
+      model: {description: "Codex model", default: "gpt-6.2-sol"}
       effort: {description: "reasoning effort", default: "high"}
   workflow_call:
     inputs:
@@ -26,7 +26,7 @@ on:
       srt: {type: string, default: ""}
       extra: {type: string, default: ""}
       text: {type: string, default: ""}
-      model: {type: string, default: "gpt-6.1-sol"}
+      model: {type: string, default: "gpt-6.2-sol"}
       effort: {type: string, default: "high"}
     outputs:
       result: {value: "${{ jobs.check.outputs.result }}"}
