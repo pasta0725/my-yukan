@@ -12,7 +12,7 @@ on:
       video: {description: "work:<path> | upload-tmp:<file> | path in the repo", required: true}
       script: {description: "script/subtitles: spec.json, lines.json, .srt or .txt (empty = shorts/<name>/spec.json); plan.js next to it is used for caption times", default: ""}
       thumb: {description: "thumbnail: work:<path> | path in the repo (empty = work:channel/thumbs/<name>.jpg if there; - = none)", default: ""}
-      model: {description: "Codex model (strongest first; if it is refused, the account's default model is used)", default: "gpt-6-astra"}
+      model: {description: "Codex model (strongest first; if it is refused, the account's default model is used)", default: "gpt-6.2-sol"}
       effort: {description: "reasoning effort", default: "high"}
 permissions:
   contents: write
