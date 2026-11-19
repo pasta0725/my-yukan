@@ -304,6 +304,27 @@ def art_desc(a):
         k = k.strip()
         if k and k not in d: d += ("" if d.endswith(("。", "！", "？")) else "。") + k
     return d[:140]
+# もしもアフィリエイト (2026-11-20): site/config.json の "moshimo" に番号が入ったときだけ、記事の "shop" から商品リンク欄を出す
+MOSHIMO = {k: v for k, v in (CFG.get("moshimo") or {}).items() if isinstance(v, dict) and str(v.get("a_id") or "").strip()}
+SHOP_URL = {"amazon": ("Amazon", "https://www.amazon.co.jp/s?k={q}"), "rakuten": ("楽天市場", "https://search.rakuten.co.jp/search/mall/{q}/")}
+def shop_box(a):
+    items = [x for x in (a.get("shop") or []) if isinstance(x, dict) and (x.get("name") or "").strip()][:3]
+    if not items or not MOSHIMO: return ""
+    from urllib.parse import quote
+    rows = []
+    for x in items:
+        q = quote((x.get("query") or x["name"]).strip())
+        btns = []
+        for shop, (lab, tmpl) in SHOP_URL.items():
+            m = MOSHIMO.get(shop)
+            if not m: continue
+            u = (f'https://af.moshimo.com/af/c/click?a_id={quote(str(m["a_id"]))}&p_id={m.get("p_id", "")}&pc_id={m.get("pc_id", "")}'
+                 f'&pl_id={m.get("pl_id", "")}&url={quote(tmpl.format(q=q), safe="")}')
+            btns.append(f'<a href="{E(u)}" rel="sponsored nofollow noopener" target="_blank">{E(lab)}で見る</a>')
+        if btns: rows.append(f'<li><b>{E(x["name"].strip())}</b><span>{"".join(btns)}</span></li>')
+    if not rows: return ""
+    return ('<section class="shop"><h2><span class="pr">広告</span>この記事に出てきた商品</h2><ul>' + "".join(rows)
+            + '</ul><p class="shopnote">リンク先はアフィリエイトリンクです。値段や在庫はリンク先でご確認ください。</p></section>')
 def fig(x, first=False):
     cap = E(x.get("caption")); cred = E(x.get("credit"))
     return (f'<figure><img src="{E(x["src"])}" alt="{cap}" {'fetchpriority="high"' if first else 'loading="lazy"'} referrerpolicy="no-referrer" onerror="this.parentNode.remove()">'
@@ -329,6 +350,8 @@ for a in arts:
         # show the main official image after the lead
         idx = next((i for i, p in enumerate(parts) if p.startswith("<p>")), 0) + 1
         parts.insert(idx, fig(a["_img"]))
+    shop = shop_box(a)
+    if shop: parts.append(shop)
     refs = a.get("refs") or [{"name": a.get("source_name"), "url": a.get("source_url")}]
     src = ('<section class="src"><h2>もとになった記事・発表</h2><ul>'
            + "".join(f'<li><a href="{E(r.get("url"))}" rel="nofollow noopener">{E(r.get("name"))}</a></li>' for r in refs if r.get("url"))
@@ -349,7 +372,7 @@ for a in arts:
     body = (f'<article class="art{" future" if c == "future" else ""}" style="--c:var({var})">{band}<div class="crumb"><a href="/">トップ</a> ＞ <a href="/category/{SLUG[c]}/">{E(lab)}</a></div>'
             f'<h1>{E(a["title"])}</h1><div class="meta">{tag(c, False)}<span><time datetime="{ed_time(a["_date"])}">{E(a["_date"][:4])}年{E(jed(a["_date"]))}（{"7:00" if a["_date"].endswith("-am") else "17:30"}）</time></span><span>出典：{E(a.get("source_name"))}</span></div>'
             f'<p class="byline">文：<a href="/about/">{E(NAME)}編集部</a></p>'
-            + ('<p class="prnote"><span class="pr">PR</span>この記事には広告（アフィリエイトリンク）が含まれます。</p>' if a.get("pr") else "")
+            + ('<p class="prnote"><span class="pr">PR</span>この記事には広告（アフィリエイトリンク）が含まれます。</p>' if a.get("pr") or shop else "")
             + "".join(parts) + src + "</article>")
     day = [x for x in arts if x["_date"] == a["_date"]]
     alist = (f'<nav class="alist" aria-label="{E(jdate(a["_date"]))}のニュース"><h2>{E(jdate(a["_date"]))}のニュース</h2><ul>'
