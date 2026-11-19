@@ -64,7 +64,7 @@ if a.video.startswith("banner:"):   # banner:<image in the repo> = replace the c
     yt.channels().update(part="brandingSettings", body={"id": me["id"], "brandingSettings": bs}).execute()
     print("ok: banner"); sys.exit(0)
 cmd, _, vid0 = a.video.partition(":")
-if cmd in ("stop", "go", "status", "comment") and vid0:
+if cmd in ("stop", "go", "status", "comment", "at") and vid0:
     v = yt.videos().list(part="status", id=vid0).execute()["items"]
     if not v: sys.exit("no such video")
     st0 = v[0]["status"]
@@ -72,11 +72,15 @@ if cmd in ("stop", "go", "status", "comment") and vid0:
     if cmd == "comment":
         yt.commentThreads().insert(part="snippet", body={"snippet": {"videoId": vid0, "topLevelComment": {"snippet": {"textOriginal": a.comment}}}}).execute()
         print("ok: comment"); sys.exit(0)
-    new = {"privacyStatus": "private" if cmd == "stop" else "public", "selfDeclaredMadeForKids": False,
+    new = {"privacyStatus": "private" if cmd in ("stop", "at") else "public", "selfDeclaredMadeForKids": False,
            "containsSyntheticMedia": st0.get("containsSyntheticMedia", False), "license": st0.get("license", "youtube"),
            "embeddable": st0.get("embeddable", True), "publicStatsViewable": st0.get("publicStatsViewable", True)}
+    if cmd == "at":   # move a scheduled publish (2026-11-19): private + the new publishAt (UTC); needs --publish-at
+        if not a.publish_at: sys.exit("at: needs --publish-at")
+        from datetime import datetime, timezone
+        new["publishAt"] = datetime.fromisoformat(a.publish_at).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     yt.videos().update(part="status", body={"id": vid0, "status": new}).execute()
-    print(f"ok: {cmd}", vid0); sys.exit(0)
+    print(f"ok: {cmd}", vid0, new.get("publishAt", "")); sys.exit(0)
 meta = json.load(open(os.path.join(ROOT, "channel", "meta", f"{a.name}.json"), encoding="utf-8"))
 
 body = {

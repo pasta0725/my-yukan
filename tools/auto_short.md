@@ -75,7 +75,7 @@
 - short-upload.yml（2-2 の 4）を name・publish_at（例 2026-11-10T21:00:00+09:00）・comment・log で動かす（中で upload-tmp に置き、youtube-upload.yml を動かす）。予約公開の動画は非公開で上がり、21:00 に YouTube が公開する。公開の数分後に、サムネの入れ直しと固定コメントが自動で行われる。公開15分後に short-thumb-check.yml がショート一覧のサムネ（i.ytimg.com/vi/<ID>/sardefault.jpg）を入れた画像と比べ、違えば入れ直す（checks/<名前>/thumb.md が LOOK のときだけ thumb:<ID> で手で入れ直す）。コメントの固定は、毎日21:23の予定作業「星餓りな 固定コメントの固定」が内蔵ブラウザで行う（手順は tools/pin_comment.md）。
 - 通知（PushNotification と SendUserMessage の両方、日本語）：
   「今日の自動ショート：<タイトル>（<選んだ理由1行>）。21:00に公開されます。https://youtube.com/shorts/<ID>　止めたいときは Claude に『動画止めて <ID>』と言うか、YouTube Studio アプリで非公開にしてください。」
-- 止める：youtube-upload.yml の video=stop:<ID>。すぐ出す：video=go:<ID>。状態：video=status:<ID>。
+- 止める：youtube-upload.yml の video=stop:<ID>。すぐ出す：video=go:<ID>。状態：video=status:<ID>。予約の時刻を変える：video=at:<ID> と publish_at（2026-11-19〜）。変えたら、待っている after-public.yml の実行を止めて、新しい時刻で after-public.yml を動かし直す（古い時刻のままだとコメントが二重になる）。
 - channel/shorts_log.csv の1行は short-upload.yml の log で足される（動かなかったときは手で足す）。完成動画と素材のドライブへの移動は、youtube-upload.yml が公開を確かめたあと drive-store.yml を自動で動かす（動いていなければ name=<名前> で手で動かす。media の名前が rina_ を外した名前と違うときは extra=media/<名前>）。
 
 ## 5. うまくいかないとき
