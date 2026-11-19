@@ -7,7 +7,7 @@ Runs weekly on GitHub Actions (.github/workflows/competitors.yml) -> branch "met
    plus fixed ones. ~100 quota units per search, we use about 10 searches (daily quota is 10,000).
 2. Keeps videos up to 3 minutes, adds views, likes, comments, channel size, and "views per day" and
    "views per subscriber" (a small channel with many views = the content itself is working).
-3. For the top 6, asks Gemini (free tier, GEMINI_API_KEY; the newest flash, or GEMINI_MODEL first) to watch the video by its YouTube URL and describe:
+3. For the top 6, asks Gemini (free tier, GEMINI_API_KEY; gemini-4-hydrogen, else the newest flash) to watch the video by its YouTube URL and describe:
    the first 3 seconds (hook), structure, length, on-screen text, voice/character, ending, thumbnail/title pattern,
    and what makes it work. Gemini only reads public videos; nothing is downloaded or copied.
 Never prints secrets.
@@ -100,7 +100,7 @@ def gemini_model(key):
     return ok[0] if ok else "gemini-flash-latest"
 
 
-PREFERRED = os.environ.get("GEMINI_MODEL", "")   # a model to try first. 2026-11-20: gemini-4-neon answered 429 every time on the free key, so the default is the newest flash again
+PREFERRED = os.environ.get("GEMINI_MODEL") or "gemini-4-hydrogen"   # 2026-11-20 user: Gemini 4 Hydrogen (watched a Short in 48 s on the free key; gemini-4-neon gave 429 every time). Falls back to the newest flash
 
 
 def gemini_watch(v):
