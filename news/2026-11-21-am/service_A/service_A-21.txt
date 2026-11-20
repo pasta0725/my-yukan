@@ -1,0 +1,17 @@
+URL: https://www.watch.impress.co.jp/docs/news/2158217.html
+TITLE: Gemini API、必要なツールのみを取得可能に トークン消費を削減
+SITE: Impress Watch
+PUBLISHED: 2026-11-20 15:08 (page: 2026-11-20T15:08:53+09:00)
+OG_IMAGE: https://www.watch.impress.co.jp/img/ipw/list/2158/217/01.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/ipw/docs/2158/217/01_s.jpg | 
+
+TEXT:
+ニュース
+Gemini API、必要なツールのみを取得可能に　トークン消費を削減
+浅井 淳志
+2026年11月20日 15:08
+Googleは19日(米国時間)、Gemini APIのInteractions APIで、AIエージェントが必要なツールのみを取得する新機能「Tool Retrieval」のプレビュー提供を開始した。入力トークン数の削減とツール選択精度の維持を図る。対応モデルはGemini 3.6以降。
+従来は、Gemini APIを利用するアプリに多数のツールを接続していると、Geminiに処理を依頼するたびにすべてのツールのパラメータ定義を読み込む必要があり、ツール数が増えるほど入力トークン数や処理時間が増加し、ツールの選択精度も低下する課題があった。
+Tool Retrievalは、各ツールの名前と説明のみをGeminiに認識させ、詳細な定義は必要になるまで読み込まない機能。Geminiが処理時に使用するツールを判断すると、該当するツールのパラメータ定義を取得し、関数の呼び出しまでを1回のリクエスト内で実行する。これにより、数十から数百のツールを接続している場合でも、不要なツールの読み込みを減らせる。
+利用には、APIへのリクエストに「tool_search」を追加し、必要時のみ読み込みたいツールを指定する。ツールの検索はGoogleのサーバーで実行されるため、ユーザー側でインデックスを作成・管理する必要はない。同機能は、Gemini APIのリモートMCPサーバーにも対応している。

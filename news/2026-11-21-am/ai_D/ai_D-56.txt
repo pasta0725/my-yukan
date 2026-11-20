@@ -1,0 +1,99 @@
+URL: https://blogs.nvidia.com/blog/microsoft-ignite-accelerated-computing-azure-windows-pcs/
+TITLE: NVIDIA and Microsoft Expand Accelerated Computing From Azure to Windows PCs
+SITE: NVIDIA
+PUBLISHED: 2026-11-20 05:00 (page: 2026-11-19T20:00:15+00:00)
+OG_IMAGE: https://blogs.nvidia.com/wp-content/uploads/2026/11/nvidia-microsoft.png
+IMAGES:
+
+TEXT:
+NVIDIA and Microsoft are extending their full-stack collaboration to help organizations build, customize and deploy intelligent applications — from next-generation infrastructure on Azure to industrial systems and Windows PCs.
+At
+Microsoft Ignite
+, the companies are expanding access to Azure virtual machines powered by NVIDIA Vera Rubin NVL72 systems, as well as adding customer availability to NVIDIA open models and customization capabilities through Microsoft Foundry, and new options for running AI at the edge, where businesses generate and use their data.
+Microsoft is also using NVIDIA technologies to accelerate its own models and services, including
+NVIDIA Dynamo
+inference software for post-training and
+NVIDIA RTX PRO 6000 Blackwell GPUs
+for Bing search models.
+NVIDIA Vera Rubin NVL72 Running in Azure
+NVIDIA Vera Rubin NVL72 systems are running in Azure data centers
+, providing infrastructure designed for demanding reasoning, agentic applications, and large-scale model training and inference.
+Microsoft and NVIDIA are also collaborating to extend confidential computing to bare-metal and rack-scale AI infrastructure. The work will help protect sensitive models and data while they are being processed, supporting organizations that need to work with proprietary or regulated information.
+NVIDIA Confidential Computing
+and attestation help customers verify the computing environment before releasing sensitive models, data or keys. As AI workloads span more interconnected accelerators, the companies are working to extend those protections across the AI factory infrastructure.
+To help data centers get more performance from available power, NVIDIA and Microsoft are also collaborating on power efficiency using
+NVIDIA MaxLPS
+.
+Azure’s Vera Rubin preview builds on NVIDIA and Microsoft’s codesign and performance optimization, underscored in the latest NVIDIA Blackwell-based MLPerf results. In
+MLPerf Training v6.1
+, Azure scaled to 10,240 NVIDIA GPUs with GB200 NVL72 systems on the DeepSeek-V3 model, the largest scale in the round. In
+MLPerf Inference v6.1
+, Azure’s NVIDIA GB300 NVL72 systems led cloud submissions on DeepSeek-R1 interactive throughput by over 10%, per Signal65.
+Helping Enterprises Customize and Deploy Open Models
+Enterprise AI agents need to reason through complex tasks, find relevant company information and understand business documents. NVIDIA and Microsoft are expanding the models and services available through Microsoft Foundry to help developers bring these capabilities into business applications.
+Microsoft’s serverless Programmed Training offering gives developers control over post-training workflows while Foundry manages the underlying infrastructure. Enterprises can focus on their business data, evaluating model responses and improving model behavior.
+Foundry Managed Compute adds support for deploying custom model weights, helping connect model customization with deployment through Microsoft’s managed services.
+EY
+used Programmed Training in Microsoft Foundry to adapt NVIDIA Nemotron open models for classifying corporate purchasing records, improving accuracy on its evaluation dataset by 55% and lowering cost by 15x compared with proprietary frontier models. The work demonstrates how enterprises can customize open models for specialized business tasks.
+The expanded NVIDIA Nemotron 3.5 lineup on Foundry Managed Compute supports different requirements across enterprise applications. Nemotron 3.5 Super is designed for long-running agents working across coding, research and business workflows, while Lightning supports applications that need fast responses and tool use.
+Complementary models help agents find relevant information with Nemotron Embed and Rerank, extract structured information from documents with Nemotron Parse and detect harmful content with Nemotron Content Safety. Nemotron 3.5 Bolt — designed for high-throughput, low-latency reasoning — and Transcribe, for speech recognition, are coming soon.
+Bringing AI Closer to Enterprise Data
+NVIDIA and Microsoft are expanding deployment options beyond the cloud, helping organizations run models and agents closer to their data while maintaining control over their infrastructure and operations.
+Expanded support for Nemotron 3.5 in Foundry Local brings capabilities for reasoning, coding and tool-using agents to Azure Local environments. Retrieval models help applications find evidence across text, document images, charts and tables.
+Azure Local will also support NVIDIA RTX PRO 6000 Blackwell GPUs from hardware partners, giving organizations additional options for deploying AI on premises.
+Azure Local is expanding to
+NVIDIA Jetson Thor
+and
+Jetson Orin
+edge AI platforms to support industrial applications such as machine vision, robotics and autonomous operations. NVIDIA physical AI models, including
+Cosmos
+, are also being brought to Foundry Local.
+On Windows PCs powered by
+NVIDIA RTX Spark
+, NVIDIA and Microsoft will showcase local large language model experiences at Ignite, demonstrating how developers can run AI applications directly on devices.
+For organizations using Cloud PCs, the companies are bringing Direct Stream capabilities to GPU-accelerated Windows 365 Cloud PCs. These capabilities support demanding graphics applications with up to two 4K streams at 60 frames per second and low latency, even over challenging networks. A limited preview is open for sign-ups, with public preview planned for early 2027.
+Connecting Scientific AI With Microsoft Discovery
+For scientific research,
+NVIDIA BioNemo Agent Toolkit
+and
+NVIDIA ALCHEMI Toolkit
+are
+expanding into the Microsoft Discovery catalog
+, bringing models for life sciences, drug discovery and materials and chemical science into Microsoft’s agentic research platform.
+BioNeMo Agent Toolkit helps scientists use natural language to run computational biology workflows in Microsoft Discovery, with agents coordinating the tools and model calls needed to carry out the work.
+An initial
+integration uses the RFD4-Proteina model
+, developed in collaboration with the University of Washington’s Institute for Protein Design, to generate candidate protein structures and amino acid sequences for further evaluation and laboratory validation.
+Accelerating Microsoft’s Models and Services
+Alongside expanding customer access to NVIDIA technologies, Microsoft is using NVIDIA software and accelerated computing in its own AI development and services.
+Microsoft AI uses NVIDIA Dynamo to support reinforcement learning rollout inference during post-training. This computationally intensive process generates the experiences used to improve models.
+Dynamo coordinates inference across a large GPU fleet, optimizing performance, as well as helping manage requests, model updates and recovery from failures. The deployment builds on joint engineering between Microsoft AI and NVIDIA.
+Visit
+NVIDIA at Ignite
+for demonstrations spanning enterprise applications, robotics, accelerated data processing and local computing, with hardware including an NVIDIA GB300 NVL72 rack and RTX Spark devices. View
+NVIDIA sessions, hands-on labs and booth theater presentations
+.
+Categories:
+AI Infrastructure
+Cloud
+Hardware
+Software
+Tags:
+Cosmos
+Inference
+Jetson
+Nemotron
+NVIDIA Blackwell
+Related News
+AI
+NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab
+Nov 16, 2026
+AI Infrastructure
+NVIDIA Sweeps MLPerf Training and Endpoints as Vera Rubin Debuts With Leading Performance
+Nov 16, 2026
+Supercomputing
+CUDA at 20: How the Platform Transformed Scientific Computing
+Nov 16, 2026
+AI Infrastructure
+NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Engineering and Analytics
+Nov 16, 2026
