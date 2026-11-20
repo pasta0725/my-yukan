@@ -5,7 +5,7 @@
 ## 今の状態
 - 公開サイト「星餓りなのテックニュース」：朝刊と夕刊を毎日自動で作る（予定作業）。マイ夕刊は 2026-11-16 に止めた（GitHub Pages はリダイレクトだけ）。
 - ショート：毎日 17:36 に自動で1本（公開時刻は tools/learning/params.json の publish_time）。手作りはユーザーの頼みで。
-  - 直近：GTA6発売（8HWqjxuAyfI、ユーザーの指示で 11/19 23:45 に早めた）、SwitchBot ハブ4（hfenkW2oE8M、11/19 21:40 手作り・すぐ公開）。
+  - 直近：Anthropic上場（rfOKZyqoIfo、11/21 07:00 予約・自動）、GTA6発売（8HWqjxuAyfI）、SwitchBot ハブ4（hfenkW2oE8M、手作り）。
   - 予約の時刻を変える：youtube-upload.yml の video=at:<ID> と publish_at。そのあと古い after-public.yml の実行を止めて、新しい時刻で動かし直す（tools/auto_short.md）。
 - Codex（2026-11-19 ユーザーの決定。朝刊の途中で Codex の利用枠が尽きたため）：
   - モデルは GPT-6.2 Sol（gpt-6.2-sol）。調べ物・事実の点検・公式画像選びも Astra をやめて Sol。
