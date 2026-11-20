@@ -127,8 +127,8 @@ const S={
    withEnter(enter(u0,0.4),()=>{rrect(1110,130,750,300,30,C.card);text('HYPER BLACK FRIDAY',1485,190,40,C.acc);
      text('11/19 20:00',1485,268,56,C.text);text('↓',1485,322,34,C.sub);text('11/25 1:59',1485,375,56,C.text);});
    if(i===5){const T=[['値下げ',C.warn,'セールの期間だけ'],['ポイント増',C.pt,'期間限定で多い'],['いつもと同じ',C.bar,'値段は変わらない']];
-     T.forEach((t,j)=>{const tt=[0.6,3.2,6.0][j];withEnter(enter(u,tt),()=>{const x=1110+j*255;rrect(x,470,235,220,24,C.card2);rrect(x+20,495,195,70,20,t[1]);text(t[0],x+117,530,32,'#FFFFFF','center',900,180);
-       text(t[2],x+117,620,24,C.sub,'center',800,210);});});}},
+     T.forEach((t,j)=>{const tt=[0.6,3.2,6.0][j];withEnter(enter(u,tt),()=>{const x=60+j*350;rrect(x,720,330,200,24,C.card2);rrect(x+25,740,280,80,22,t[1]);text(t[0],x+165,780,40,'#FFFFFF','center',900,260);
+       text(t[2],x+165,870,32,C.text,'center',800,300);});});}},
  parts(u,d,L,i){bg(u);partTagNone();shopTag();text('今日の3つ',W/2,150,60,C.text);
    const T=[[1,'5つ','ブラックフライデーだけ安い','値下げ3つ・ポイント2つ'],[2,'3つ','新製品の予約で安い','冬の新製品祭り'],[3,'3つ','値下げなしの売れ筋','お店のランキング上位']];
    const at=[0.3,2.4,4.6];T.forEach((t,j)=>{withEnter(enter(u,at[j]),()=>{const x=90+j*590,col=PART[t[0]][2];rrect(x,260,560,560,32,C.card);rrect(x,260,560,110,32,col);
@@ -156,8 +156,8 @@ const S={
      ['x8pro','POCO X8 Pro','ポイント20倍',C.pt],['x8max','POCO X8 Pro Max','ポイント18倍・11倍',C.pt]];
    R.forEach((r,j)=>{const t=1.6+j*1.6;withEnter(enter(u0,t),()=>{const y=220+j*130;rrect(160,y,1180,112,24,C.card);rrect(170,y+10,92,92,16,'#FFFFFF');contain(PR[r[0]].imgs[0],174,y+14,84,84);
      text(r[1],290,y+56,42,C.text,'left',900,620);rrect(940,y+24,380,64,32,r[3]);text(r[2],1130,y+56,32,'#FFFFFF','center',900,350);});});
-   if(i>=54){withEnter(enter(u,0.1),()=>{rrect(1380,220,460,300,28,C.pt);text('ポイント',1610,280,36,'#FFFFFF','center',800);text('11/22 23:59',1610,370,60,'#FFFFFF');text('まで',1610,450,36,'#FFFFFF','center',800);});
-     withEnter(enter(u,3.0),()=>{rrect(1380,560,460,300,28,C.warn);text('値下げ',1610,620,36,'#FFFFFF','center',800);text('11/25 1:59',1610,710,60,'#FFFFFF');text('まで',1610,790,36,'#FFFFFF','center',800);});}},
+   if(i>=54){withEnter(enter(u,0.1),()=>{rrect(1380,200,460,220,28,C.pt);text('ポイント',1610,250,36,'#FFFFFF','center',800);text('11/22 23:59',1610,320,60,'#FFFFFF');text('まで',1610,385,32,'#FFFFFF','center',800);});
+     withEnter(enter(u,3.0),()=>{rrect(1380,440,460,220,28,C.warn);text('値下げ',1610,490,36,'#FFFFFF','center',800);text('11/25 1:59',1610,560,60,'#FFFFFF');text('まで',1610,625,32,'#FFFFFF','center',800);});}},
  verdict(u,d,L,i){cover('banner',0,0,W,H,1.08,1);g.fillStyle='rgba(11,18,34,0.88)';g.fillRect(0,0,W,H);glow(1400,600,600,C.brand,0.3);
    const s0=sceneStart(i),u0=CURT-P.lines[s0].start;
    withEnter(enter(u0,0.1),()=>{rrect(90,300,820,300,32,C.card);text('リンクは概要欄に',500,400,64,C.acc);text('楽天のページで今の値段を確認',500,500,38,C.text,'center',800,760);});
