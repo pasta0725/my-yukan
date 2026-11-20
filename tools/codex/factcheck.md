@@ -15,7 +15,7 @@ Check, in title, summary, keys, every p and h, stat, point, img captions and the
 - every number, date, day of week, time, price (and 税込み/税別), percentage, spec, count;
 - every proper name (company, product, model, service, person, title/role, place);
 - "who / from when / for whom / where": who announced it, who is affected, start and end dates, countries/regions,
-  whether it is free or paid, whether it is available in Japan / in Japanese.
+  whether it is free or paid, and any claims about availability in Japan or support for Japanese.
 This is a CHECK, not an edit: change only what is wrong. Most articles need 0–3 changes; more than 6 changed texts is
 almost always too many (results with too many rewrites are thrown away). Do NOT reword correct sentences, do NOT change
 the style of keys/point (short bullet wording is fine there), do NOT add 「〇〇によると」 to facts that a readable page
@@ -27,9 +27,11 @@ How to fix:
 2. A fact that no readable page contains: if it is important and plausible, attribute it softly as
    「〜と伝えられています」 (or name the outlet if the article says which one reported it); if it is a detail or looks
    invented, delete it. Do not attribute or delete facts that ARE on a readable page.
-   The availability in Japan and support for Japanese must still be covered as required by style.md. Keep statements
-   such as 「日本での提供や日本語対応は発表されていません」 when the relevant readable announcement is silent on them.
-   If it gives an answer, update the statement to match.
+   Apply the writing rules on availability in Japan and support for Japanese only where they apply (e.g. AI articles
+   under style.md section 1). Check the two facts separately. If a readable source establishes a domestic rollout,
+   including a Japan-only workplace use or a release date for Japan, keep that information. Use 「発表されていません」
+   only for a relevant detail left unanswered by the readable sources. The language of a news article alone does not
+   establish the release region or language support.
 3. If no page could be read for this article, only fix internal contradictions (title vs body, stat vs body, wrong
    day-of-week for a date, different numbers for the same thing) and do not delete facts just because pages failed.
 4. stat: every number must appear in the body with its meaning; fix or remove stat items that do not.
