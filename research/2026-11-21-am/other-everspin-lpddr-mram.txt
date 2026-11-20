@@ -1,0 +1,277 @@
+===== https://www.halbleiter.org/en/news/everspin-jedec-lpddr-mram-standard/
+(status 200)
+Everspin pushes JEDEC LPDDR work to make MRAM easier to adopt
+November 17, 2026
+Image: ChatGPT
+Share
+Facebook
+X
+LinkedIn
+WhatsApp
+E-Mail
+Everspin Technologies is trying to move 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ closer to the LPDDR ecosystem by supporting a 
+JEDEC
+JEDEC
+Joint Electron Device Engineering Council
+JEDEC defines industry specifications and measurement loops for memory interfaces and devices.
+ task group that is exploring an LPDDR persistent-memory standard. The company sees standardization as the practical way to persuade controller vendors to implement 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ support in silicon.
+Steffen Hellmold, Everspin’s VP of corporate strategy, chairs the new group under 
+JEDEC
+JEDEC
+Joint Electron Device Engineering Council
+JEDEC defines industry specifications and measurement loops for memory interfaces and devices.
+’s JC-42.6 Low Power Memories Subcommittee. The effort is still exploratory, but it is meant to define a path for using existing LPDDR infrastructure with limited changes to host controllers and 
+DRAM
+DRAM
+1. dynamic random access memory
+Memory technology or system for temporarily or permanently storing digital information.
+2. dynamic random-access memory
+DRAM is a volatile memory technology
+ standards.
+The technical problem is not a simple interface translation. Everspin’s earlier DDR4 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ work could reuse 
+DRAM
+DRAM
+1. dynamic random access memory
+Memory technology or system for temporarily or permanently storing digital information.
+2. dynamic random-access memory
+DRAM is a volatile memory technology
+ host controllers by adjusting page sizes and timings, and that approach worked in systems such as 
+IBM
+IBM
+International Business Machines
+IBM is a US technology company active in computer hardware, software and semiconductor research.
+’s FlashCore Module. In 
+AMD
+AMD
+advanced micro devices
+AMD is a semiconductor company that develops processors, graphics solutions, and adaptive devices.
+ Xilinx 
+FPGA
+FPGA
+field-programmable gate array
+Reconfigurable logic device whose internal circuits can be programmed after manufacturing.
+s, memory interface generators could adapt DDR4 soft 
+IP
+IP
+1. image placement
+2. Internet protocol
+Interface or communications concept for transmitting data between devices and systems.
+3. Intellectual Property
+IP denotes licensable semiconductor design blocks or technology elements.
+ for 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+. That flexibility is much harder to achieve with LPDDR5 and LPDDR6, where controller implementations are based on hard 
+IP
+IP
+1. image placement
+2. Internet protocol
+Interface or communications concept for transmitting data between devices and systems.
+3. Intellectual Property
+IP denotes licensable semiconductor design blocks or technology elements.
+ and the required changes must be built into the controller supplier’s design.
+Hellmold said 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ does not need refresh and does not require 
+DRAM
+DRAM
+1. dynamic random access memory
+Memory technology or system for temporarily or permanently storing digital information.
+2. dynamic random-access memory
+DRAM is a volatile memory technology
+’s highest speed bins, but it does need support for page sizes measured in tens or hundreds of bytes rather than kilobytes, as well as somewhat longer timings. The envisioned standard would therefore add, substitute, or remove functions rather than mirror a full LPDDR 
+DRAM
+DRAM
+1. dynamic random access memory
+Memory technology or system for temporarily or permanently storing digital information.
+2. dynamic random-access memory
+DRAM is a volatile memory technology
+ interface. Those settings must also remain configurable, with the software-visible flexibility that soft 
+IP
+IP
+1. image placement
+2. Internet protocol
+Interface or communications concept for transmitting data between devices and systems.
+3. Intellectual Property
+IP denotes licensable semiconductor design blocks or technology elements.
+ used to provide now exposed through the controller implementation itself.
+The participants in the 
+JEDEC
+JEDEC
+Joint Electron Device Engineering Council
+JEDEC defines industry specifications and measurement loops for memory interfaces and devices.
+ group come from edge 
+AI
+AI
+artificial intelligence
+AI stands for artificial intelligence
+, 
+IoT
+IoT
+internet of things
+This term describes connected devices and systems that exchange data over networks.
+, industrial, automotive, enterprise storage, and hyperscale data centers, including both prospective users and suppliers. Everspin’s aim is to create enough customer demand that controller 
+IP
+IP
+1. image placement
+2. Internet protocol
+Interface or communications concept for transmitting data between devices and systems.
+3. Intellectual Property
+IP denotes licensable semiconductor design blocks or technology elements.
+ vendors will commit the changes to silicon.
+Potential use cases include gigabyte-scale 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ solutions and a more cost-effective alternative to battery-backed 
+DRAM
+DRAM
+1. dynamic random access memory
+Memory technology or system for temporarily or permanently storing digital information.
+2. dynamic random-access memory
+DRAM is a volatile memory technology
+. Everspin also points to 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ as a persistent write cache ahead of 
+NAND
+NAND
+1. Not AND
+A logic gate that outputs 0 when all inputs are 1, and outputs 1 in all other cases
+2. negative-AND
+NAND denotes a logic operation and is also the name of a widely used flash memory type.
+ for checkpointing, which could reduce processor stall time while preserving state.
+The initiative comes alongside broader 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ adoption efforts. Everspin recently demonstrated 4 GB of 
+CXL
+CXL
+Compute Express Link
+A high-speed interface standard used here to pool memory across servers and GPUs.
+-attached DDR4 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ at the SNIA Developer Conference, positioned as a persistent cache tier between 
+DRAM
+DRAM
+1. dynamic random access memory
+Memory technology or system for temporarily or permanently storing digital information.
+2. dynamic random-access memory
+DRAM is a volatile memory technology
+ and 
+NAND
+NAND
+1. Not AND
+A logic gate that outputs 0 when all inputs are 1, and outputs 1 in all other cases
+2. negative-AND
+NAND denotes a logic operation and is also the name of a widely used flash memory type.
+ rather than a 
+NAND
+NAND
+1. Not AND
+A logic gate that outputs 0 when all inputs are 1, and outputs 1 in all other cases
+2. negative-AND
+NAND denotes a logic operation and is also the name of a widely used flash memory type.
+ replacement. 
+MRAM
+MRAM
+magnetoresistive random access memory
+A non-volatile random access memory that stores information using magnetic states.
+ is also seeing broader interest in servers, data centers, and satellites as 
+NOR
+NOR
+1. NOT OR
+Ein nichtflüchtiger Flash-Speichertyp mit schnellerem Zugriff für Steuer- und Firmware-Funktionen.
+2. negative OR
+A logical operation that yields the inverted result of an OR function; the term is also used for NOR flash.
+ flash shortages and 
+AI
+AI
+artificial intelligence
+AI stands for artificial intelligence
+ workloads increase pressure on memory options.
+        Source: 
+EE Times
+More background: Devices
+
+===== https://www.everspin.com/news/everspin-leads-jedec-task-group-mram-lpddr-standard
+(status 200)
+Everspin leads JEDEC task group for MRAM-LPDDR standard
+November 18, 2026
+press
+Image
+JEDEC SmartBrief highlights Everspin’s work leading a JEDEC task group exploring how MRAM could be integrated into the LPDDR ecosystem. The initiative is looking at support for persistent memory in LPDDR5 and LPDDR6 controller architectures, with the goal of making MRAM easier to adopt in systems that need low-power, non-volatile memory.
+The SmartBrief coverage points readers to the recent EE Times article examining the task group and Everspin’s efforts to broaden MRAM adoption through an industry standard.
+Read the JEDEC SmartBrief coverage
+
+===== https://amongzero.se/articles/everspin-executive-says-jedec-group-is-exploring-lpddr-support-for-persistent-mr-4spktegj/
+(status 200)
+Risk / Uncertainty
+This is exploratory work, not an approved JEDEC specification. The supplied account is a single EE Times report centered on statements from an Everspin executive who chairs the group. What would weaken this view: The signal would weaken if the task group does not advance, controller vendors decline implementation, proposed changes prove too costly or complex, or customers continue preferring established DRAM, flash or battery-backed alternatives.
+
+===== https://www.everspin.com/news/everspin-technologies-chair-new-jedecr-task-group-exploring-lpddr-persistent-memory-standard
+(status 200)
+Everspin Technologies to Chair New JEDEC® Task Group Exploring LPDDR Persistent Memory Standard
+October 20, 2026
+releases
+New effort brings together industry stakeholders to address controller support and interoperability for persistent memory within LPDDR architectures
+CHANDLER, Ariz.
+--(BUSINESS WIRE)--Oct. 20, 2026--
+Everspin Technologies, Inc.
+ (NASDAQ: MRAM), the world's leading developer and manufacturer of Magnetoresistive Random Access Memory (MRAM) solutions, today announced that 
+Steffen Hellmold
+, vice president of corporate strategy, is serving as chair of the JEDEC task group focused on exploring a new LPDDR persistent memory (PMEM) standard.
+The task group was established under JEDEC’s JC-42.6 Low Power Memories Subcommittee following expressions of support from several participating member companies. The proposed effort is intended to explore how persistent memory could leverage the existing LPDDR ecosystem while limiting changes to LPDDR DRAM standards and host controllers.
+The work is intended to enable controller support for both DRAM and persistent memory, as well as approaches that enable LPDDR DRAM and persistent memory from multiple vendors to operate within compatible system architectures.
+Steffen Hellmold
+, vice president of corporate strategy at 
+Everspin Technologies
+ and chair of the new JEDEC task group, has participated in JEDEC standards activities for more than 30 years. His career spans product development, technology strategy, business development and corporate strategy across the semiconductor, memory and data storage industries.
+“I’m excited to support the 
+JEDEC LPDDR Persistent Memory Task Group
+ as it evaluates requirements and possible standards approaches for persistent memory within the LPDDR ecosystem,” Hellmold said. “Everspin brings more than 10 years of experience shipping DDR STT-MRAM for data center applications, giving us a practical understanding of how to integrate persistent memory into customer systems. We look forward to contributing that experience and expertise to the task group’s work.”
+The task group brings together participants from across the semiconductor, memory, storage, controller and hyperscale data center ecosystem. Companies interested in participating can find information about JEDEC membership and the LPDDR PMEM effort on the JEDEC website at 
+https://www.jedec.org/join-jedec
+.
+About Everspin Technologies
+Everspin Technologies Inc. is the world’s leading provider of Magnetoresistive RAM (MRAM). Everspin MRAM delivers the industry’s most robust, highest-performance, non-volatile memory for Industrial IoT, Data Centers, and other mission-critical applications where data persistence is paramount. Headquartered in Chandler, Arizona, Everspin provides commercially available MRAM solutions to a large and diverse customer base. For more information, visit 
+www.everspin.com
+Cautionary Statement Regarding Forward-Looking Statements
+This press release contains forward-looking statements regarding future events or results. Forward-looking statements are identified by words such as “will,” “expects” or similar expressions and include, but are not limited to, statements regarding Everspin’s anticipated business plans and business strategy. These forward-looking statements are subject to known and unknown risks, uncertainties, assumptions, and other factors that may cause actual results or outcomes to be materially different from any future results or outcomes expressed or implied by the forward-looking statements, including, without limitation, the risks set forth under the caption “Risk Factors” in Everspin’s Annual Report on Form 10-K for the year ended December 31, 2025 filed with the SEC on March 5, 2026, as well as in Everspin’s subsequent filings with the SEC. Any forward-looking statements made by Everspin in this press release speak only as of the date on which they are made, and subsequent events may cause these expectations to change. Everspin disclaims any obligations to update or alter these forward-looking statements in the future, whether as a result of new information, future events or otherwise, except as required by law.
+View source version on businesswire.com: 
+https://www.businesswire.com/news/home/20261020363936/en/
+Media Contact:
+Everspin Technologies
+Stephanie Quinn
+T: 480-316-8370
+E: 
+stephanie.quinn@everspin.com
+Source: Everspin Technologies, Inc.
