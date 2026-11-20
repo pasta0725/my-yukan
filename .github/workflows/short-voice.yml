@@ -58,7 +58,7 @@ jobs:
         if: env.STOP != '1'
         run: |
           bash tools/ci_install.sh
-          pip install -q numpy faster-whisper
+          pip install -q numpy faster-whisper pyopenjtalk
           python3 tools/work_branch.py get "$D"
           set +e
           python3 tools/split_tts.py "$L" "$D" "$D/split" > /tmp/split.log 2>&1; echo "split exit $?"; cat /tmp/split.log
