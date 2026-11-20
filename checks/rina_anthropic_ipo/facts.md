@@ -1,0 +1,11 @@
+RESULT: LOOK
+- LOOK 台本1・7・13行目（say・show）／日本語タイトル／概要欄1行目／英語タイトル／英語概要欄1行目｜「価値が一時2兆ドルに」「価値は一時2兆ドルに」「価値2兆ドルがついた」「一時2兆ドル」「会社の価値は一時2兆ドルに達しました」「briefly worth $2 trillion」「briefly valuing the company at about $2 trillion」は、約2兆ドルの算定条件を省いています。｜上場初日の評価額は、未確定の株式報酬などを含む完全希薄化後ベースで一時約2兆ドル。発行済み株式ベースでは最大約1兆5000億ドルです。｜CNA（ロイター、取得資料7）「fully diluted US$2 trillion valuation includes stock options and restricted stock units」「the company's value reached as much as US$1.5 trillion on Thursday」
+- LOOK 台本2・6行目（say・show）／概要欄2行目（りなの見方）／英語概要欄1行目｜「集めたお金も、あのSpaceXを抜いて史上最大です」「総額は約813億ドルで」「過去最大の資金を集めた会社」「raising about $81.3 billion」は、既存株主分を含む売り出し総額をAnthropic自身の調達額として伝えています。｜約813億ドルは、既存株主分を含むIPOの売り出し総額です。この総額でSpaceXの約750億ドルを上回りました。Anthropic自身の売り出し分は公開価格で計算すると費用控除前で約794億ドルです。既存株主分の売却代金はAnthropicに入りません。｜マイ夕刊「売り出しの総額は約813億ドルです」「9億5635万1354株が同社の分です」「その株の売却代金はAnthropicには入りません」／The Guardian（AP通信の集計）「its IPO proceeds of about $75bn in June」
+- LOOK 英語概要欄1行目｜「It sold 980 million shares at $83」は、9億8000万株すべてをAnthropicが売ったとしています。｜IPOの売り出しは合計9億8000万株で、Anthropic分は9億5635万1354株、既存株主分は2364万8646株です。売り出しの完了は、所定の条件を満たせば11月20日の予定と発表されました。｜Anthropic（IPO価格発表）「956,351,354 of which are being sold by Anthropic and 23,648,646 of which are being sold by certain selling stockholders」「expected to close on November 20, 2026, subject to the satisfaction of customary closing conditions」
+- LOOK 台本9行目（say・show）｜「1日の終わりは97ドルまで下がりました」は、終値を97ドルちょうどとしています。｜初日の終値は1株97.17ドルです。丸める場合は、概要欄と同じ「約97ドル」です。｜The Guardian（17時13分の更新）「Anthropic finished its first trading day at $97.17 per share.」
+- LOOK 台本11行目（say・show）／概要欄「▼ポイント」4項目目｜「来年の上場が報じられています」「来年の上場が報じられている」は、上場を目指しているという報道を、上場そのものが報じられたように伝えています。｜OpenAIは2027年の上場を視野に入れていると報じられています。｜CNA（ロイター）「its arch-rival OpenAI reportedly eyeing a 2027 listing」
+
+確かめた事実の数：34　/　同じ事実が複数の箇所に出る場合は、まとめて数えました。
+
+事実確認（Codex gpt-6.2-sol・effort high）　対象：rina_anthropic_ipo
+照らした資料：マイ夕刊の記事 data/2026-11-20-am.json other-anthropic-ipo-debut（点検済みの記事。出典 Fox News）、research/2026-11-20-am/other-anthropic-ipo-debut.txt（元記事・参考記事のページ本文）、factcheck/2026-11-20-am/other-anthropic-ipo-debut.txt（元記事・参考記事のページ本文）、fetched:fetched/anthropic_ipo/1.txt、fetched:fetched/anthropic_ipo/2.txt、fetched:fetched/anthropic_ipo/4.txt、fetched:fetched/anthropic_ipo/7.txt
