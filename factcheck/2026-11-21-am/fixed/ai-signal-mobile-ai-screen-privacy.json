@@ -1,0 +1,137 @@
+{
+ "id": "ai-signal-mobile-ai-screen-privacy",
+ "category": "ai",
+ "title": "Signal、スマホでAIの画面読み取りを制限",
+ "summary": "メッセージ画面の撮影を制限し、端末のAIに会話が渡る経路を減らします。",
+ "image": {
+  "src": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/protecting-your-privacy-1.png?quality=90&strip=all&crop=0%2C3.8035109331691%2C100%2C92.392978133662&w=1200",
+  "kind": "ogp",
+  "credit": "Signal",
+  "page": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "会話の保護"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "メッセージアプリのSignalが、スマホで会話の画面撮影を制限します。",
+    "iOS 27では最初から有効で、AndroidではAIの読み取りを検知すると働きます。",
+    "会話の画面を撮る必要があるときは、Signalの設定で制限を外せます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "11月20日、Signalがスマホに組み込まれたAIから会話を守る対策を発表しました。SiriやGeminiによる画面の読み取りを防ぐ狙いです。"
+  },
+  {
+   "type": "h",
+   "text": "スマホごとに違う撮影制限"
+  },
+  {
+   "type": "p",
+   "text": "Signalによると、対象はiOS 27とAndroidの2系統です。9to5Macは、iPhone向けの更新で撮影制限が最初から有効になったと報じました。Signalを開いている間は画面を撮れません。アプリを切り替える画面でも撮影が制限されます。"
+  },
+  {
+   "type": "p",
+   "text": "Androidでは、AIが画面を読もうとしたのを検知すると、Signalが撮影を止めます。このとき、画面を守る「Screen security」の設定が自動でオンになります。読み取りを検知できない端末は対象外です。機種ごとの開始日は発表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "AIが読んだ会話の行方"
+  },
+  {
+   "type": "p",
+   "text": "Signalは、送受信中のメッセージを暗号化し、第三者に読まれないようにしています。Android Authorityによると、画像を送らずにGeminiへ画面の内容を質問できます。AIが読み取った会話は、端末やインターネット上の保存先に残るおそれがあるとSignalは説明しました。撮影を止めても、AIが端末のファイルを直接読む経路は残ります。"
+  },
+  {
+   "type": "h",
+   "text": "制限を解除するときの影響"
+  },
+  {
+   "type": "p",
+   "text": "画面撮影が必要なときは、Signalの設定で制限を解除できます。iPhoneでは「プライバシー」を開き、「Block Siri AI」をオフにします。The Next Webは、端末によっては画面に出る案内から解除できると報じました。メレディス・ウィテカー代表は、解除すると相手のメッセージもAIに渡りうると警告しました。"
+  },
+  {
+   "type": "h",
+   "text": "パソコンで使える会話の保護"
+  },
+  {
+   "type": "p",
+   "text": "Signalは昨年、Windows 11でMicrosoftのRecallによる画面撮影を初期設定で止めました。Recallは、表示した画面を記録して後から探せる機能です。消える設定のメッセージも、Recallの記録に残るおそれがあります。"
+  },
+  {
+   "type": "p",
+   "text": "Macでは、画面撮影を確実に止める手段がなく、同じ保護を使えません。SignalはmacOS 27の利用者に、Siriが自動で読み取る対象からSignalを外すよう案内しています。「システム設定」の「Siri」で「Excluded Apps（除外するアプリ）」にSignalを追加します。"
+  },
+  {
+   "type": "h",
+   "text": "開発元に求める今後の対応"
+  },
+  {
+   "type": "p",
+   "text": "SignalはAppleやGoogleに、画面の読み取りやファイルの取得を止める仕組みを求めています。Microsoftにも同じ要望を出しました。通知へのアクセスを止める手段や、AIが情報をどう扱うかの説明も求めています。Signalは、AppleとGoogleとの話し合いについて、慎重ながらも前向きな見方を示しました。"
+  },
+  {
+   "type": "p",
+   "text": "Signalは、MetaのMuseのように利用者から広い許可を得て動くAIにも対策が必要だと訴えています。Metaはロイターに、利用者が自分で許可した場合だけ、Museがほかのアプリにアクセスすると説明しました。"
+  },
+  {
+   "type": "p",
+   "text": "今回の対策に追加料金がかかるかは明らかにされていません。日本での提供や日本語対応は発表されていません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "iOS 27",
+     "label": "対象のiOS"
+    },
+    {
+     "value": "2系統",
+     "label": "対策の対象となるOS"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "iPhoneで撮影が必要になったら、Signalの「プライバシー」で制限を切り替えられます。",
+    "AndroidでSignalを使う人は、アプリの設定で画面撮影の制限を確認できます。",
+    "撮影のために制限を解除するときは、相手の会話もAIが読み取れる可能性があります。",
+    "macOS 27でSignalを使う人は、今すぐSiriが自動で読み取る対象から外せます。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "会話の途中で別のアプリのAIを使うときも、画面には会話相手のメッセージが映ることがあります。画面を守る設定がアプリごとにあると、端末全体の便利さと会話の扱いを自分で調整しやすくなります。"
+  }
+ ],
+ "source_name": "The Verge",
+ "source_url": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app",
+ "published": "2026-11-20",
+ "refs": [
+  {
+   "name": "The Verge",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app"
+  },
+  {
+   "name": "Signal",
+   "url": "https://signal.org/blog/protecting-your-privacy/"
+  },
+  {
+   "name": "9to5Mac",
+   "url": "https://9to5mac.com/2026/11/20/signal-now-blocks-screenshots-on-iphone-to-stop-siri-ai-from-seeing-chats/"
+  },
+  {
+   "name": "Android Authority",
+   "url": "https://www.androidauthority.com/signal-blocks-gemini-siri-ai-private-messages-3737647/"
+  },
+  {
+   "name": "The Next Web",
+   "url": "https://thenextweb.com/news/signal-ai-agents-blocks-screenshots-siri-gemini-whittaker"
+  }
+ ]
+}
