@@ -135,22 +135,29 @@ for ln in lines:
         spec["fingers"] = 1 if sec == 60 else sec // 10
 
 # 3) telop chunks: split the shown text into 5-15 character pieces, timed by length
+TM = spec.get("tel_max", 15)   # longest caption piece; a wide (1920x1080) video uses about 22 (2026-11-21)
 def chunks(s):
     parts = [p for p in re.split(r"(?<=[、。！？])", s) if p.strip()]
     out = []
     for p in parts:
         p = p.strip()
-        while len(p) > 15:
+        while len(p) > TM:
             inq = lambda j: (p[:j].count("『") + p[:j].count("「")) > (p[:j].count("』") + p[:j].count("」"))
             # cut after a particle or just before a quote, never inside 『』「」 (it split 『ゼルダの|伝説』, 2026-11-09)
-            c = [m.end() for m in re.finditer(r"[をにはがでとのもへや]", p[:15]) if not inq(m.end()) and p[m.end():m.end() + 1] not in "りるれろっまんいうえ" and not (re.match(r"[ぁ-ん]", p[m.start() - 1:m.start()] or "x") and re.match(r"[ぁ-ん]", p[m.end():m.end() + 1] or "x"))] + [m.start() for m in re.finditer(r"[『「]", p[:15])]  # not inside a verb such as 下が|りました (2026-11-10)
+            c = [m.end() for m in re.finditer(r"[をにはがでとのもへや]", p[:TM]) if not inq(m.end()) and p[m.end():m.end() + 1] not in "りるれろっまんいうえ" and not (re.match(r"[ぁ-ん]", p[m.start() - 1:m.start()] or "x") and re.match(r"[ぁ-ん]", p[m.end():m.end() + 1] or "x"))] + [m.start() for m in re.finditer(r"[『「]", p[:TM])]  # not inside a verb such as 下が|りました (2026-11-10)
             c = [j for j in c if j >= 4 and len(re.sub(r"[、。]", "", p[j:])) > 3]   # no tiny leftover such as 「演奏で|きます」
-            if not c and len(p) <= 18: break
+            if not c and len(p) <= TM + 3: break
             cut = max(c or [12])
-            while cut > 4 and re.match(r"[A-Za-z0-9. ]", p[cut - 1]) and re.match(r"[A-Za-z0-9. ]", p[cut]): cut -= 1  # never inside a Latin name such as Opu|s 5.5 (2026-11-10)
-            out.append(p[:cut]); p = p[cut:]
+            q = min([k for k in (p.find("」"), p.find("』")) if k >= 0] or [99])
+            if not c and q < 99 and not re.sub(r"[、。！？]", "", p[q + 1:]) and len(p) <= 26: break   # a quoted name and its 、: one piece
+            if not c and q <= 20 and len(p) - q > 3: cut = q + 1 + (p[q + 1:q + 2] in "をにはがでとのもへや")   # keep a quoted name whole (「Xiaomi Watch S5」の, 2026-11-21)
+            c0 = cut
+            while cut > 4 and re.match(r"[A-Za-z0-9.]", p[cut - 1]) and re.match(r"[A-Za-z0-9.]", p[cut]): cut -= 1  # never inside a Latin word such as Opu|s 5.5 (2026-11-10)
+            if cut <= 4: cut = c0   # a long Latin name: cut at a space instead (Xiao|mi Watch S5, 2026-11-21)
+            while 4 < cut < len(p) and p[cut] != " " and re.match(r"[A-Za-z0-9.]", p[cut - 1]) and re.match(r"[A-Za-z0-9.]", p[cut]): cut += 1
+            out.append(p[:cut].strip()); p = p[cut:].strip()
         if p:
-            if len(re.sub(r"[、。]", "", p)) <= 3 and out and len(out[-1]) + len(p) <= 18: out[-1] += p  # no tiny leftovers
+            if len(re.sub(r"[、。]", "", p)) <= 3 and out and len(out[-1]) + len(p) <= TM + 3: out[-1] += p  # no tiny leftovers
             else: out.append(p)
     return out
 tel = []

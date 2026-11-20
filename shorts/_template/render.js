@@ -7,7 +7,7 @@ const D = process.cwd() + '/';
 process.on('uncaughtException', e => { if (e.code !== 'EPIPE') throw e; });
 (async () => {
   const b = await chromium.launch({ args: ['--allow-file-access-from-files'] });
-  const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
+  const p = await b.newPage({ viewport: { width: +(process.env.W || 1080), height: +(process.env.H || 1920) } });
   p.on('pageerror', e => console.log('PAGE ERROR', e.message));
   await p.goto('file://' + D + (process.env.PAGE || 'short.html')); await p.evaluate(() => window.ready);
   const T = await p.evaluate(() => PLAN.T), fps = 30, N = Math.floor(T * fps);

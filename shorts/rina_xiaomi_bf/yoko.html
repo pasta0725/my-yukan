@@ -1,0 +1,188 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script src="plan.js"></script>
+<script src="../../channel/rina_puppet/index.js"></script><script src="../_template/puppet.js"></script>
+<script>
+// 星餓りな 初の横動画（1920x1080, 2026-11-21）楽天 Xiaomi公式ショップのブラックフライデー。
+// Layout: left = product picture on a white card, right = name / price / the feature of the line being said,
+// bottom = caption band (x60-1560), bottom-right = small Rina (PNGTuber), big Rina (LongCat) only at the greeting and the end.
+const W=1920,H=1080,c=document.getElementById('c');let g=c.getContext('2d');const P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C={bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',
+  ink:'#141A2B',bar:'#5B6784',line:'rgba(255,255,255,0.025)',capText:'#FFFFFF',capEdge:'#000000',capNum:'#FFA51F',orange:'#FF6900',pt:'#BF0000',green:'#2FBF71'};
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+window.FIT_WARN=[];let MEASURE=false,CURI=0,CURT=0;
+function rrect(x,y,w,h,r,fill,stroke,lw=4){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;g.fill();}if(stroke){g.lineWidth=lw;g.strokeStyle=stroke;g.stroke();}}
+function text(s,x,y,size,col,align='center',weight=900,maxw){g.font=`${weight} ${size}px ${FONT}`;if(maxw){const w0=g.measureText(s).width;if(w0>maxw){size=Math.floor(size*maxw/w0);g.font=`${weight} ${size}px ${FONT}`;
+    if(size<20)window.FIT_WARN.push({t:+CURT.toFixed(2),text:s,size});}}
+  g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function strike(x0,x1,y,col,lw=5){g.strokeStyle=col;g.lineWidth=lw;g.beginPath();g.moveTo(x0,y);g.lineTo(x1,y);g.stroke();}
+function enter(u,t0,dur=0.3){return ease((u-t0)/dur);}
+function withEnter(k,fn,dy=24){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function glow(x,y,r,col,a=0.35){const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function bg(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+600;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-600,H);g.stroke();}}
+function cover(k,x,y,w,h,z=1,alpha=1,fx=0.5,fy=0.5){const i=IMG[k];if(!i)return;const s=Math.max(w/i.width,h/i.height)*z;const iw=i.width*s,ih=i.height*s;
+  g.save();g.beginPath();g.rect(x,y,w,h);g.clip();g.globalAlpha*=alpha;g.drawImage(i,x+(w-iw)*fx,y+(h-ih)*fy,iw,ih);g.restore();}
+function contain(k,x,y,w,h,z=1,alpha=1){const i=IMG[k];if(!i)return;const s=Math.min(w/i.width,h/i.height)*z;const iw=i.width*s,ih=i.height*s;
+  g.save();g.globalAlpha*=alpha;g.drawImage(i,x+(w-iw)/2,y+(h-ih)/2,iw,ih);g.restore();}
+const yen=n=>n.toLocaleString('ja-JP')+'円';
+// ---------- caption: white letters + thin black edge, numbers orange (same rule as the Shorts) ----------
+function marks(s){const m=new Array(s.length).fill(C.capText);const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円倍月日秒%+時分gmhA]*/g,C.capNum);
+  const prod=/[A-Za-z][A-Za-z+]*[ -]?([0-9][0-9.]*)(?![0-9.,万円倍月日秒%年人台本件回時分]|GB|mm|W|mAh|g|インチ|ニト|K)/g;let p;
+  while((p=prod.exec(s))){const st=p.index+p[0].length-p[1].length;for(let i=st;i<p.index+p[0].length;i++)m[i]=C.capText;}return m;}
+function edgeLine(L,m,cx,y,size,align='center'){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=align==='center'?cx-w/2:cx;const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+  g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.15;g.strokeStyle=C.capEdge;for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],y);g.restore();
+  g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],y);}}
+function caption(s,cx,y,maxw,k,size=60){s=s.replace(/[、。]$/,'');g.font=`900 ${size}px ${FONT}`;let w=g.measureText(s).width;if(w>maxw){size=Math.floor(size*maxw/w);}
+  if(size<36)window.FIT_WARN.push({t:+CURT.toFixed(2),text:s,size,kind:'caption'});
+  g.save();g.globalAlpha*=clamp(0.4+k/0.1);edgeLine(s,marks(s),cx,y,size);g.restore();}
+// ---------- products (prices / periods checked on the Rakuten item pages, 2026-11-20 ~20:00 JST) ----------
+const PR={
+ pad8:{part:1,no:'1',cat:'タブレット',name:'Xiaomi Pad 8',imgs:['pad8_1','pad8_3','pad8_4','pad8_2'],
+   price:{rows:[['8GB＋256GB',79980,67980],['12GB＋256GB',86980,73900]],badge:'15%引き',until:'11/25 1:59まで'}},
+ pad2b:{part:1,no:'2',cat:'タブレット＋子ども用カバー',name:'REDMI Pad 2 Play Bundle',imgs:['pad2b_2','pad2b_4','pad2b_1'],
+   price:{rows:[['4GB＋128GB',32980,27980]],badge:'15%引き',until:'11/25 1:59まで'}},
+ pb20k:{part:1,no:'3',cat:'モバイルバッテリー',name:'Xiaomi 22.5W Power Bank 20000',imgs:['pb20k_2','pb20k_4','pb20k_3'],
+   price:{rows:[['ケーブル付き',3080,2280]],badge:'26%引き',until:'11/25 1:59まで'}},
+ x8pro:{part:1,no:'4',cat:'スマホ',name:'POCO X8 Pro',imgs:['x8pro_3','x8pro_2','x8pro_4'],
+   price:{pts:[['8GB＋256GB',79980,'20倍']],note:'約14,540ポイント',until:'11/22 23:59まで'}},
+ x8max:{part:1,no:'5',cat:'スマホ',name:'POCO X8 Pro Max',imgs:['x8max_2','x8max_3','x8max_1'],
+   price:{pts:[['12GB＋256GB',99980,'18倍'],['12GB＋512GB',109980,'11倍']],until:'11/22 23:59まで'}},
+ s5:{part:2,no:'1',cat:'スマートウォッチ',name:'Xiaomi Watch S5 41mm',imgs:['s5_4','s5_1','s5_3'],
+   price:{rows:[['予約価格',33800,29800,'〜']],badge:'予約で安い',until:'12/7まで・11/27から発送'}},
+ pb10k:{part:2,no:'2',cat:'マグネット式バッテリー',name:'Xiaomi UltraThin Magnetic Power Bank 10000 25W',imgs:['pb10k_2','pb10k_1','pb10k_3'],
+   price:{rows:[['予約価格',9980,8480]],badge:'予約で安い',until:'12/7まで・11/27から発送'}},
+ clip:{part:2,no:'3',cat:'イヤホン',name:'Xiaomi Clip',imgs:['clip_2','clip_4','clip_3'],
+   price:{rows:[['予約価格',19800,17800]],badge:'予約で安い',until:'12/7まで・11/27から発送'}},
+ band11:{part:3,no:'1位',cat:'スマートバンド',name:'Xiaomi Smart Band 11',imgs:['band11_1','band11_2','band11_3'],
+   price:{plain:'7,980円',plainSub:'ムーンゴールド色は6,980円'}},
+ buds8:{part:3,no:'2位',cat:'イヤホン',name:'Redmi Buds 8 Lite',imgs:['buds8_1','buds8_2','buds8_3'],price:{plain:'3,680円'}},
+ w6lite:{part:3,no:'3位',cat:'スマートウォッチ',name:'REDMI Watch 6 Lite',imgs:['w6lite_1','w6lite_2','w6lite_3'],price:{plain:'7,980円'}},
+};
+const PART={1:['第1部','ブラックフライデーだけ安い',C.acc],2:['第2部','新製品の予約で安い',C.green],3:['第3部','値下げなしの売れ筋',C.brand]};
+// the feature card of each line (index = line number - 1); null = keep the price box only
+const FEAT={
+ 12:['Snapdragon 8s Gen 4','ゲームも動画編集もこなせる'],13:['11.2インチ・3.2K','1秒に144回書き換え'],14:['電池 9200mAh','45Wで充電'],15:['重さ 約485g','勉強にも仕事にも'],
+ 18:['4GB＋128GB・11インチ','電池 9000mAh'],19:['子ども向けの保護カバー','EVA素材'],
+ 22:['容量 20000mAh','ケーブル内蔵・3台同時に充電'],
+ 26:['電池 6500mAh','ソニー5000万画素・手ぶれ補正'],27:['IP68','水やほこりに強い'],
+ 31:['電池 8500mAh','100Wの急速充電'],32:['6.83インチ・1.5K','ちらつきを抑える仕組み'],
+ 35:['1.32インチ 有機EL','明るさ 最大3000ニト'],36:['電池 最長14日','5ATM防水・かざして支払う機能'],37:['小さめの41mm',''],
+ 39:['厚さ 6.6mm','容量 10000mAh'],40:['置くだけ 最大25W','ケーブル 最大45W・2台同時'],
+ 42:['片耳 5.5g','耳に挟んで着ける'],43:['マイク4つ','電池 最大38時間'],
+ 46:['厚さ 9.99mm','電池 最長21日・睡眠や心拍数を記録'],48:['ノイズキャンセリング','電池 最大36時間'],50:['1.96インチ 有機EL','位置を測る仕組み・電池 最大18日'],
+};
+function partTag(p){const [a,b,col]=PART[p];g.font=`900 34px ${FONT}`;const wa=g.measureText(a).width;g.font=`900 34px ${FONT}`;const wb=g.measureText(b).width;
+  rrect(60,34,wa+40,60,30,col);text(a,80,64,34,C.ink,'left');text(b,60+wa+60,64,34,C.text,'left');}
+function shopTag(){text('楽天 Xiaomi公式 楽天市場店｜価格は11/20時点',1860,64,26,C.sub,'right',700);}
+// time since the first line of the current scene (scenes span several lines)
+function sceneStart(i){let k=i;while(k>0&&P.lines[k-1].scene===P.lines[i].scene)k--;return k;}
+function priceBox(p,u0,x,y,w){const pr=p.price;let h=0;
+  if(pr.rows){const n=pr.rows.length;h=n===1?230:380;rrect(x,y,w,h,26,C.card);
+    pr.rows.forEach((r,j)=>{const yy=y+(n===1?120:95+j*150);withEnter(enter(u0,0.15+j*0.5),()=>{
+      text(r[0],x+36,yy-48,30,C.sub,'left',800);const wo=text(yen(r[1]),x+36,yy+12,40,C.sub,'left',800);strike(x+30,x+42+wo,yy+12,C.sub,4);
+      text('→',x+60+wo,yy+12,40,C.sub,'left',800);
+      const k=back((u0-0.4-j*0.5)/0.4);g.save();g.translate(x+120+wo,yy+12);g.scale(k,k);text(yen(r[2])+(r[3]||''),0,0,76,C.acc,'left',900,w-170-wo);g.restore();});});
+    if(pr.badge){const k=back((u0-0.6)/0.35);if(k>0){g.save();g.translate(x+w-130,y+42);g.rotate(0.04);g.scale(k,k);rrect(-110,-38,220,76,38,p.part===2?C.green:C.warn);text(pr.badge,0,0,36,'#FFFFFF','center',900,190);g.restore();}}
+    text(pr.until,x+w-28,y+h-28,28,C.text,'right',800);}
+  else if(pr.pts){const n=pr.pts.length;h=n===1?250:390;rrect(x,y,w,h,26,C.card);
+    pr.pts.forEach((r,j)=>{const yy=y+(n===1?110:95+j*140);withEnter(enter(u0,0.15+j*0.5),()=>{text(r[0],x+36,yy-46,30,C.sub,'left',800);
+      text(yen(r[1]),x+36,yy+14,56,C.text,'left');const k=back((u0-0.4-j*0.5)/0.4);g.save();g.translate(x+w-190,yy);g.scale(k,k);rrect(-150,-50,300,100,24,C.pt);
+      text('ポイント'+r[2],0,2,44,'#FFFFFF','center',900,270);g.restore();});});
+    if(pr.note)text(pr.note+'（ページの表示）',x+36,y+h-40,30,C.acc,'left',800);
+    text(pr.until,x+w-28,y+h-40+(pr.note?0:0),28,C.text,'right',800);}
+  else if(pr.plain){h=200;rrect(x,y,w,h,26,C.card);rrect(x+w-210,y+24,180,56,28,C.bar);text('値下げなし',x+w-120,y+52,28,'#FFFFFF');
+    text(pr.plain,x+36,y+96,72,C.text,'left');if(pr.plainSub)text(pr.plainSub,x+36,y+160,30,C.sub,'left',800);}
+  return h;}
+// ---------- scenes (u = time in the line, d = line length, L = the line, i = line index) ----------
+function productScene(key,u,d,L,i){const p=PR[key];bg(u);partTag(p.part);shopTag();
+  const s0=sceneStart(i),u0=CURT-P.lines[s0].start,k=i-s0;
+  // left: picture card; the picture changes every line (hero first)
+  const im=p.imgs[k%p.imgs.length];rrect(60,130,880,800,30,'#FFFFFF');
+  g.save();g.beginPath();g.roundRect(60,130,880,800,30);g.clip();const z=1.0+0.04*clamp(u/Math.max(d,1));
+  const kf=clamp(u/0.35);if(k>0&&kf<1){contain(p.imgs[(k-1)%p.imgs.length],80,150,840,760,1.0,1-kf);}contain(im,80,150,840,760,z,k>0?kf:1);g.restore();
+  // right: number + category, name, price box, feature card
+  const X=1000,RW=840;
+  withEnter(enter(u0,0),()=>{rrect(X,136,86,86,43,PART[p.part][2]);text(p.no,X+43,180,p.no.length>1?32:46,C.ink);text(p.cat,X+108,160,30,C.sub,'left',800);
+    text(p.name,X+108,206,52,C.text,'left',900,RW-110);});
+  const h=priceBox(p,u0,X,262,RW);
+  const f=FEAT[i];if(f){const y=262+h+34;const ke=enter(u,0.1,0.3);withEnter(ke,()=>{rrect(X,y,560,150,24,C.card2,PART[p.part][2],4);
+      text(f[0],X+30,y+(f[1]?52:75),46,C.text,'left',900,500);if(f[1])text(f[1],X+30,y+110,28,C.sub,'left',800,500);});}}
+const S={
+ hook(u,d,L,i){const t0=CURT-P.lines[sceneStart(i)].start;cover('banner',0,0,W,H,1.02+0.05*clamp(t0/18),1,0.5,0.5);g.fillStyle='rgba(8,10,20,0.35)';g.fillRect(0,0,W,H);
+   if(i===1){const k=back((u-0.6)/0.4);if(k>0){g.save();g.translate(1500,300);g.rotate(-0.05);g.scale(k,k);rrect(-230,-70,460,140,30,C.warn);text('全部じゃない',0,0,60,'#FFFFFF');g.restore();}}
+   if(i===2){const k=back((u-0.3)/0.4);if(k>0){g.save();g.translate(1500,300);g.scale(k,k);rrect(-280,-90,560,180,30,C.acc);text('314商品を確認',0,-20,58,C.ink);text('（ショップ全体）',0,45,30,C.ink,'center',800);g.restore();}}},
+ intro(u,d,L,i){cover('banner',0,0,W,H,1.08,1);g.fillStyle='rgba(11,18,34,0.88)';g.fillRect(0,0,W,H);glow(1400,600,600,C.brand,0.3);
+   withEnter(enter(u,0.1),()=>{text('楽天 Xiaomi公式ショップ',90,330,56,C.text,'left');text('ブラックフライデー',90,430,92,C.acc,'left');text('本当に今だけ安いのは？',90,540,64,C.text,'left');});
+   bigRina(i);},
+ sale(u,d,L,i){bg(u);partTagNone();shopTag();const s0=sceneStart(i),u0=CURT-P.lines[s0].start;
+   withEnter(enter(u0,0),()=>{rrect(60,130,1000,562,30,'#000');cover('banner',60,130,1000,562,1.0);});
+   withEnter(enter(u0,0.4),()=>{rrect(1110,130,750,300,30,C.card);text('HYPER BLACK FRIDAY',1485,190,40,C.acc);
+     text('11/19 20:00',1485,268,56,C.text);text('↓',1485,322,34,C.sub);text('11/25 1:59',1485,375,56,C.text);});
+   if(i===5){const T=[['値下げ',C.warn,'セールの期間だけ'],['ポイント増',C.pt,'期間限定で多い'],['いつもと同じ',C.bar,'値段は変わらない']];
+     T.forEach((t,j)=>{const tt=[0.6,3.2,6.0][j];withEnter(enter(u,tt),()=>{const x=1110+j*255;rrect(x,470,235,220,24,C.card2);rrect(x+20,495,195,70,20,t[1]);text(t[0],x+117,530,32,'#FFFFFF','center',900,180);
+       text(t[2],x+117,620,24,C.sub,'center',800,210);});});}},
+ parts(u,d,L,i){bg(u);partTagNone();shopTag();text('今日の3つ',W/2,150,60,C.text);
+   const T=[[1,'5つ','ブラックフライデーだけ安い','値下げ3つ・ポイント2つ'],[2,'3つ','新製品の予約で安い','冬の新製品祭り'],[3,'3つ','値下げなしの売れ筋','お店のランキング上位']];
+   const at=[0.3,2.4,4.6];T.forEach((t,j)=>{withEnter(enter(u,at[j]),()=>{const x=90+j*590,col=PART[t[0]][2];rrect(x,260,560,560,32,C.card);rrect(x,260,560,110,32,col);
+     text(PART[t[0]][0],x+280,315,48,C.ink);text(t[2],x+280,470,44,C.text,'center',900,500);text(t[1],x+280,600,110,col);text(t[3],x+280,730,30,C.sub,'center',800,500);});});},
+ note(u,d,L,i){bg(u);partTagNone();shopTag();const s0=sceneStart(i),u0=CURT-P.lines[s0].start;
+   withEnter(enter(u0,0.1),()=>{rrect(260,220,1400,240,32,C.card);text('価格・ポイントは',960,290,44,C.sub,'center',800);text('2026年11月20日 20時ごろ の楽天の表示',960,380,62,C.text,'center',900,1300);});
+   if(i===8)withEnter(enter(u,0.2),()=>{rrect(260,510,1400,200,32,C.acc);text('買う前に、商品ページで今の値段を確認',960,610,56,C.ink,'center',900,1300);});},
+ pad8(u,d,L,i){productScene('pad8',u,d,L,i)},pad2b(u,d,L,i){productScene('pad2b',u,d,L,i)},pb20k(u,d,L,i){productScene('pb20k',u,d,L,i)},
+ x8pro(u,d,L,i){productScene('x8pro',u,d,L,i)},x8max(u,d,L,i){productScene('x8max',u,d,L,i)},
+ s5(u,d,L,i){productScene('s5',u,d,L,i)},pb10k(u,d,L,i){productScene('pb10k',u,d,L,i)},clip(u,d,L,i){productScene('clip',u,d,L,i)},
+ band11(u,d,L,i){productScene('band11',u,d,L,i)},buds8(u,d,L,i){productScene('buds8',u,d,L,i)},w6lite(u,d,L,i){productScene('w6lite',u,d,L,i)},
+ part2(u,d,L,i){bg(u);glow(960,450,700,C.green,0.25);partTag(2);shopTag();
+   withEnter(enter(u,0.1),()=>{text('第2部',960,230,64,C.green);text('新製品の予約で安い',960,350,96,C.text);});
+   withEnter(enter(u,2.0),()=>{rrect(410,470,1100,120,30,C.card);text('ブラックフライデーとは別の「冬の新製品祭り」',960,530,44,C.text,'center',900,1040);});
+   withEnter(enter(u,5.5),()=>{rrect(410,630,520,150,30,C.card2);text('予約価格',670,680,32,C.sub,'center',800);text('12/7まで',670,740,52,C.acc);
+     rrect(990,630,520,150,30,C.card2);text('発送',1250,680,32,C.sub,'center',800);text('11/27から順に',1250,740,52,C.text);});},
+ part3(u,d,L,i){bg(u);glow(960,450,700,C.brand,0.25);partTag(3);shopTag();
+   withEnter(enter(u,0.1),()=>{text('第3部',960,230,64,C.brand);text('値下げなしの売れ筋',960,350,96,C.text);});
+   withEnter(enter(u,1.6),()=>{rrect(460,480,1000,150,30,C.card);text('お店のランキング上位3つ',960,535,48,C.text);text('（11/13〜11/19の集計）',960,595,30,C.sub,'center',800);});},
+ part3end(u,d,L,i){bg(u);partTag(3);shopTag();const K=['band11','buds8','w6lite'];
+   K.forEach((k,j)=>withEnter(enter(u,0.15+j*0.25),()=>{const x=70+j*500,p=PR[k];rrect(x,140,470,700,30,'#FFFFFF');contain(p.imgs[0],x+20,160,430,460);
+     text(p.no,x+40,680,40,C.brand,'left');text(p.name,x+235,740,34,C.ink,'center',900,430);text(p.price.plain,x+235,800,48,C.ink);}));},
+ summary(u,d,L,i){bg(u);partTagNone();shopTag();const s0=sceneStart(i),u0=CURT-P.lines[s0].start;text('まとめ',960,140,60,C.text);
+   const R=[['pad8','Xiaomi Pad 8','15%引き',C.warn],['pad2b','REDMI Pad 2 Play Bundle','15%引き',C.warn],['pb20k','Power Bank 20000','26%引き',C.warn],
+     ['x8pro','POCO X8 Pro','ポイント20倍',C.pt],['x8max','POCO X8 Pro Max','ポイント18倍・11倍',C.pt]];
+   R.forEach((r,j)=>{const t=1.6+j*1.6;withEnter(enter(u0,t),()=>{const y=220+j*130;rrect(160,y,1180,112,24,C.card);rrect(170,y+10,92,92,16,'#FFFFFF');contain(PR[r[0]].imgs[0],174,y+14,84,84);
+     text(r[1],290,y+56,42,C.text,'left',900,620);rrect(940,y+24,380,64,32,r[3]);text(r[2],1130,y+56,32,'#FFFFFF','center',900,350);});});
+   if(i>=54){withEnter(enter(u,0.1),()=>{rrect(1380,220,460,300,28,C.pt);text('ポイント',1610,280,36,'#FFFFFF','center',800);text('11/22 23:59',1610,370,60,'#FFFFFF');text('まで',1610,450,36,'#FFFFFF','center',800);});
+     withEnter(enter(u,3.0),()=>{rrect(1380,560,460,300,28,C.warn);text('値下げ',1610,620,36,'#FFFFFF','center',800);text('11/25 1:59',1610,710,60,'#FFFFFF');text('まで',1610,790,36,'#FFFFFF','center',800);});}},
+ verdict(u,d,L,i){cover('banner',0,0,W,H,1.08,1);g.fillStyle='rgba(11,18,34,0.88)';g.fillRect(0,0,W,H);glow(1400,600,600,C.brand,0.3);
+   const s0=sceneStart(i),u0=CURT-P.lines[s0].start;
+   withEnter(enter(u0,0.1),()=>{rrect(90,300,820,300,32,C.card);text('リンクは概要欄に',500,400,64,C.acc);text('楽天のページで今の値段を確認',500,500,38,C.text,'center',800,760);});
+   bigRina(i);},
+};
+function partTagNone(){}
+// ---------- big Rina (LongCat frames, big/<scene>/NNNN.png, 1080x1920 transparent), time = since the first line of the scene ----------
+const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const im=new Image();im.onload=()=>{BF[key]=im;r(im)};im.onerror=()=>{BF[key]=null;r(null)};im.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
+let BIGF=null;const BIG_R=[980,-60,950,1689];
+function bigRina(i){if(BIGF)g.drawImage(BIGF,BIG_R[0],BIG_R[1],BIG_R[2],BIG_R[3]);else Puppet.big(g,'big_hq',BIG_R[0]+150,BIG_R[1]+60,650,1170,CURT,mouthNow());}
+const mouthNow=()=>{const L=P.lines[CURI];return L&&L.puppet?Puppet.mouthAt(P.voices[CURI],CURT-L.start):null;};
+function mini(){const a=Puppet.assets.small_sticker;if(!a)return;const s=0.42;glow(1760,930,240,C.brand,0.18);Puppet.chibi(g,1600,670,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker');}
+window.ready=(async()=>{const ks=new Set(['banner']);Object.values(PR).forEach(p=>p.imgs.forEach(k=>ks.add(k)));
+  await Promise.all([...ks].map(k=>load(k,'img/'+k+'.jpg')).concat([(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]));await document.fonts.ready;})();
+const BIGS=['intro','verdict'],NOCAP_BG=['hook'];
+window.render=async function(t){g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  CURI=cur;CURT=t;const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  BIGF=null;if(BIGS.includes(L.scene)){const s0=sceneStart(cur);let k=Math.floor((t-P.lines[s0].start)*30);let im=await bigImg(L.scene,k);while(!im&&k>0){k--;im=await bigImg(L.scene,k);}BIGF=im;}
+  g.save();S[L.scene](u,d,L,cur);g.restore();
+  if(!BIGS.includes(L.scene))mini();
+  // caption band
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
+  if(last&&t<P.voice_end+0.1){const big=BIGS.includes(L.scene);const y=big?820:1000;const cx=big?500:810,mw=big?860:1480;
+    if(!big&&L.scene!=='hook'){g.fillStyle='rgba(5,8,16,0.55)';g.fillRect(0,950,1580,100);}
+    caption(last.text,L.scene==='hook'?790:cx,L.scene==='hook'?900:y,L.scene==='hook'?1440:mw,t-last.start,L.scene==='hook'?96:60);}
+};
+</script></body></html>
