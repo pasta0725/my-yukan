@@ -307,7 +307,8 @@ def art_desc(a):
     return d[:140]
 # もしもアフィリエイト (2026-11-20): site/config.json の "moshimo" に番号が入ったときだけ、記事の "shop" から商品リンク欄を出す
 MOSHIMO = {k: v for k, v in (CFG.get("moshimo") or {}).items() if isinstance(v, dict) and str(v.get("a_id") or "").strip()}
-SHOP_URL = {"amazon": ("Amazon", "https://www.amazon.co.jp/s?k={q}"), "rakuten": ("楽天市場", "https://search.rakuten.co.jp/search/mall/{q}/")}
+SHOP_URL = {"amazon": ("Amazon", "https://www.amazon.co.jp/s?k={q}"), "rakuten": ("楽天市場", "https://search.rakuten.co.jp/search/mall/{q}/"),
+            "yahoo": ("Yahoo!ショッピング", "https://shopping.yahoo.co.jp/search?p={q}")}
 def shop_box(a):
     items = [x for x in (a.get("shop") or []) if isinstance(x, dict) and (x.get("name") or "").strip()][:3]
     if not items or not MOSHIMO: return ""
@@ -405,7 +406,7 @@ about = f'''<div class="doc"><h1>このサイトについて</h1>
 write("/about/", page("このサイトについて", f"{NAME}の運営方針と記事の作り方。", about, "/about/"))
 privacy = f'''<div class="doc"><h1>プライバシーポリシー</h1>
 <h2>アクセス解析</h2><p>当サイトでは、サイトの改善のために Cloudflare Web Analytics（Cookieを使わない解析ツール）で、閲覧されたページ・参照元・端末の種類などを集計しています。また、Google Search Console で Google 検索での表示回数などを確認しています。個人を特定する情報は集めません。</p>
-<h2>広告・アフィリエイト</h2><p>当サイトは、もしもアフィリエイトを通じて、Amazon、楽天市場などのアフィリエイトプログラムに参加しています。Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。リンク先のサービスでは、Cookieなどを使って閲覧や購入の情報が扱われることがあります。詳しくは各サービスのプライバシーポリシーをご確認ください。</p>
+<h2>広告・アフィリエイト</h2><p>当サイトは、もしもアフィリエイトを通じて、Amazon、楽天市場、Yahoo!ショッピングなどのアフィリエイトプログラムに参加しています。Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。リンク先のサービスでは、Cookieなどを使って閲覧や購入の情報が扱われることがあります。詳しくは各サービスのプライバシーポリシーをご確認ください。</p>
 <h2>Xの投稿の埋め込み</h2><p>記事ページの「Xの声」では、X（旧Twitter）の投稿を公式の埋め込み機能で表示しています。表示するときに、お使いのブラウザとXのサーバーとの間で通信が行われます。詳しくはXのプライバシーポリシーをご確認ください。</p>
 <h2>外部リンク</h2><p>記事内のリンク先のサイトで起きたことについて、当サイトは責任を負いません。</p>
 <h2>改定</h2><p>このポリシーは、必要に応じて改定します。</p></div>'''
