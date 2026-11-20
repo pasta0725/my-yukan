@@ -174,8 +174,7 @@ function tagI(s,x,y,k,fill,ink,size=56){if(k<=0)return;const sc=back(k);g.save()
 const S={
  // 0 s (user 2026-11-17): only the real picture (the listing day at the Nasdaq, full screen) and the huge telop of the first sentence, chunk by chunk.
  open(u,d,L){abs(()=>{fullPic('bell',1.0+0.05*u/Math.max(1,d),0.4,0.55);creditAt(RT,1000,1640);
-     const ph=['Claudeの会社','上場初日に','価値が一時','約2兆ドルに'];const tot=ph.join('').length;let acc=0,last=ph[0],t0=0;
-     for(const x of ph){const st=d*0.82*acc/tot;if(u>=st){last=x;t0=st;}acc+=x.length;}
+     const T=P.tel.filter(x=>x.start<L.start+d-0.01);let last=T[0].text,t0=0;for(const x of T){if(x.start-L.start<=u){last=x.text;t0=Math.max(0,x.start-L.start);}}
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // the money raised: largest ever, past SpaceX
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'SpaceX')),d-1.2),t3=Math.min(Math.max(t2+0.5,telHas(L,'史上最大')),d-0.6);
@@ -190,17 +189,16 @@ const S={
  price(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'目安')),d-0.9);
    withEnter(enter(u,0),()=>{text('1株の値段',CX,480,56,C.sub,'center',900);});
    bigNum('83','ドル',CX,650,ease((u-0.2)/0.3),C.acc,200);
-   if(u>t2)withEnter(enter(u,t2),()=>{card(220,860,640,200,30,C.card2);text('事前の目安',CX,915,40,'#E3EAF4','center',900);text('70〜78ドル',CX,995,72,'#FFA51F','center',900,580);});
-   if(u>t2+0.6)tagI('上回った',800,840,(u-t2-0.6)/0.3,C.acc,'#FFFFFF',48);},
+   if(u>t2)tagI('目安を上回った',CX,900,(u-t2)/0.3,C.brand,'#FFFFFF',60);},
  // the total vs SpaceX: the bars grow first, the numbers come when they stop (user 2026-11-17: the answer never before the picture)
  total(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'6月')),d-1.2);
    const e1=ease((u-0.1)/0.7),e2=ease((u-t2)/0.7),X0=200,full=680;
-   withEnter(enter(u,0),()=>{text('集めたお金',CX,450,56,C.sub,'center',900);
+   withEnter(enter(u,0),()=>{
      text('Anthropic',X0,560,48,C.brand,'left',900);rrect(X0,600,Math.max(1,full*e1),110,22,C.acc);if(e1>0.95)text('約813億ドル',X0+full-20,655,54,'#FFFFFF','right',900);});
-   if(u>t2)withEnter(enter(u,t2),()=>{text('6月のSpaceX',X0,800,48,C.sub,'left',900);rrect(X0,840,Math.max(1,full*750/813*e2),110,22,C.bar);if(e2>0.95)text('約750億ドル',X0+full*750/813-20,895,54,'#FFFFFF','right',900);});},
+   if(u>t2)withEnter(enter(u,t2),()=>{text('SpaceX',X0,800,48,C.sub,'left',900);rrect(X0,840,Math.max(1,full*750/813*e2),110,22,C.bar);});},
  // opening price 83 -> 111.5 (+34%), then the value hits 2 trillion for a while
  open2(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.6,telHas(L,'34')),d-2.0),t3=Math.min(Math.max(t2+0.8,telHas(L,'報酬')),d-1.0);
-   if(u<=t3){withEnter(enter(u,0),()=>{text('最初の値段',CX,450,56,C.sub,'center',900);text('83ドル',CX,580,64,C.sub,'center',900);
+   if(u<=t3){const f83=u>t2?1-clamp((u-t2)/0.3):1;withEnter(enter(u,0)*f83,()=>{text('83ドル',CX,580,64,C.sub,'center',900);
        g.strokeStyle=C.acc;g.lineWidth=12;g.lineCap='round';g.beginPath();g.moveTo(CX,640);g.lineTo(CX,720);g.moveTo(CX-30,690);g.lineTo(CX,720);g.lineTo(CX+30,690);g.stroke();});
      bigNum('111.5','ドル',CX,820,ease((u-0.3)/0.3),C.acc,170);
      if(u>t2)tagI('34%高く',CX,1020,(u-t2)/0.3,C.acc,'#FFFFFF',64);}
@@ -221,8 +219,8 @@ const S={
    withEnter(enter(u,0),()=>{card(200,440,680,170,30);text('1〜9月の本業',CX,525,60,C.text,'center',900,600);});
    if(u>t2){bigNum('13億','ドル',CX,780,ease((u-t2)/0.3),C.warn,180);tagI('赤字',CX,990,(u-t2-0.3)/0.3,C.warn,'#FFFFFF',72);}},
  rival(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'2027')),d-0.8);
-   withEnter(enter(u,0),()=>{card(200,440,680,220,30,C.card2);text('ライバル',CX,500,44,'#E3EAF4','center',900);text('OpenAI',CX,590,96,'#FFFFFF','center',900,600);});
-   if(u>t2){tagI('2027年に上場か',CX,800,(u-t2)/0.3,C.acc,'#FFFFFF',72);withEnter(enter(u,t2+0.4),()=>{text('（報道）',CX,920,44,C.sub,'center',800);});}},
+   withEnter(enter(u,0),()=>{card(200,440,680,200,30,C.card2);text('OpenAI',CX,540,96,'#FFFFFF','center',900,600);});
+   if(u>t2)tagI('2027年上場か（報道）',CX,780,(u-t2)/0.3,C.acc,'#FFFFFF',60);},
  // the end: big rina talks to the end (LongCat). The opening photo sits above her and grows to the full screen (loop to 0 s).
  verdict(u,d,L){bg(u);const t2=Math.min(Math.max(1.0,telHas(L,'新機能')),d-0.8);const kz=ease((u-t2+0.1)/0.6);
    abs(()=>{const P0=[90,300,900,325],P1=[0,0,W,H];const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
