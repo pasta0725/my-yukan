@@ -1,0 +1,270 @@
+===== https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app
+(status 200)
+AI
+News
+Tech
+Signal is blocking Gemini and Siri AI from reading your screen
+Signal will now restrict screenshots on mobile devices, and says AI agents are ‘hostile to privacy.’
+Signal will now restrict screenshots on mobile devices, and says AI agents are ‘hostile to privacy.’
+by
+Jess Weatherbed
+Nov 20, 2026, 12:30 PM UTC
+Link
+Share
+Gift
+Signal users on iOS will see this option to toggle blocking screenshots and preventing Siri AI from scanning on-screen content.
+Image: Signal
+Jess Weatherbed
+is a news writer focused on creative industries, computing, and internet culture. Jess started her career at TechRadar, covering news and hardware reviews.
+Signal is restricting the ability to take screenshots on Android and iOS devices in an effort to prevent AI agents from reading users’ messages and other data. The agentic AI capabilities built into operating systems that analyze on-screen information to learn more about the user are “undermining Signal’s ability to independently guarantee privacy,” Signal president 
+Meredith Whittaker said in a blog post
+, while urging OS providers to make it easier for app developers to control what data agents can access.
+“We want to be very clear: it is a serious problem that Signal – and application developers beyond – lack robust tools to prevent AI agents from undermining application-level privacy,” Whittaker said. “Even where we are able to detect and block AI data access, Google, Apple, Microsoft, and others do not provide ways for developers to easily restrict such AI data access without making drastic compromises to the core user experience. This is also the reason we are currently unable to implement these protections on macOS.”
+Signal is addressing the privacy concerns by blocking the ability to take screenshots in the app on 
+iOS 27
+ and Android, which should prevent 
+Siri
+, Gemini, and other Android AI assistants from reading on-screen content. Users can restore screenshot capabilities in Signal’s app settings, but Whittaker warns that doing so will “potentially expose your (and your contacts’) Signal content to these AI agents, and break our privacy guarantees.” Whittaker admits that Signal’s screenshot-blocking remedy is “incomplete,” as it doesn’t address alternative ways that AI agents can access app data, such as retrieving it via the device file system.
+Signal’s app security settings on Android devices will display this message for the screenshot-blocking feature.
+Image: Signal
+Signal took a similar approach last year to prevent 
+Microsoft’s controversial Recall feature
+ from capturing secured chats. The encrypted messaging service says it’s struggling to develop a better solution due to the lack of available information regarding how AI agents are actually accessing application data, and is now calling on Apple, Google, and Microsoft to provide “simple technical tools and accurate documentation” to app developers. Signal also says more tools are needed to prevent third-party agents, like 
+Meta’s Muse,
+ from using deep accessibility settings in apps like a “skeleton key” to access application data.
+“We all need to recognize that the current integration of AI agents into the operating system, without these common-sense remedies, represents an existential threat to privacy at the application layer, and the ability of independent developers like Signal to protect your sensitive data,” said Whittaker. “Signal is the canary in the coal mine, but this affects the entire ecosystem and should galvanize anyone who cares about these fundamental rights.”
+Follow topics and authors
+ from this story to see more like this in your personalized homepage feed and to receive email updates.
+Jess Weatherbed
+AI
+Android
+Apple
+Google
+iOS
+News
+Security
+Tech
+Most Popular
+Most Popular
+The wait begins for GTA VI on PC
+Anthropic mathematician claims to have solved prestigious Millennium Prize problem with Claude
+Meta now sells 3D movies on Quest VR headsets
+I let Apple’s always-listening AI summarize my life for two weeks
+Microsoft is killing its great tasks app in favor of its worse tasks app
+Advertiser Content From
+This is the title for the native ad
+
+===== https://signal.org/blog/protecting-your-privacy/
+(status 200)
+Signal is Serious About Protecting Your Privacy
+Meredith Whittaker
+   on 20 Nov 2026
+Privacy is our mission; it’s why we exist, and we do everything we can to protect it.
+This means that we are restricting the latest AI agents built into mobile operating systems from potentially capturing and storing your Signal data.
+We’ve already had to do this once with Windows. Last year, we used screenshot blocking to 
+prevent
+ Microsoft’s Recall AI from taking and storing screenshots of your Signal messages on Windows 11 operating systems by default.
+1
+ We will now be taking similar measures to restrict agentic systems built into iOS 27 and on Android versions where we can detect an AI assistant attempting to read your Signal screen.
+2
+The problem is similar to Microsoft Recall on Windows: Google and Apple are integrating agentic capabilities like 
+Gemini Intelligence
+ with Google Gemini and 
+Onscreen Awareness
+ with Siri AI deep into their operating systems. This is a significant move. Google (Android), Apple (iOS/macOS), and Microsoft (Windows) produce the three major consumer operating systems (OS), which comprise the environment that third-party developers – like Signal – build their apps to function and operate within. To put it differently, these three operating systems are the oceans in which Signal, and other applications, must swim; they dictate the conditions of life for the application ecosystem. Right now, these agentic AI integrations are changing this environment in a way that’s making it increasingly hostile to privacy. This is an existential threat to Signal, and our ability to responsibly uphold our mission.
+In order to gain access to information about you, these OS AI agents “scan” the information that’s on your screen. In doing so, your Signal data is captured, then made available to these agentic systems in order to allow them to answer your questions and do your bidding.
+The net result is that these AI capabilities in the operating system are undermining Signal’s ability to independently guarantee privacy. For over a decade, this guarantee has been backed by our tried and trusted open source code base and our formally verified encryption protocol. These have been scrutinized by some of the best security experts and hackers across the world, and shown to be robust. Now, in service of AI agentic capabilities, your sensitive data is being captured, stored, and made accessible to whatever local database or remote server an OS-level AI agent is using at that moment. All of this is outside of Signal’s control once the data has been captured, and imperils the privacy of all the participants in a conversation.
+So, we are blocking such capture by preventing screenshots in the app on iOS 27 and when AI assistants attempt to capture screen data on Android.
+2
+People who want the ability to take screenshots can disable this protection within the Signal app’s settings. However, doing so will potentially expose your (and your contacts’) Signal content to these AI agents, and break our privacy guarantees. Our remedy is also incomplete – while we are doing everything we can, restricting screenshots does not address other more sneaky ways AI agents could potentially access application data, such as retrieving content already present on a user’s device via the filesystem.
+We want to be very clear: it is a serious problem that Signal – and application developers beyond – lack robust tools to prevent AI agents from undermining application-level privacy. Even where we are able to detect and block AI data access, Google, Apple, Microsoft, and others do not provide ways for developers to easily restrict such AI data access without making drastic compromises to the core user experience. This is also the reason we are currently unable to implement these protections on macOS.
+3
+We are also struggling with a significant lack of documentation about how these AI agents actually work. Over the past few months, we’ve spent considerable developer time and energy doing forensic investigations across Android and iOS in an attempt to learn what is actually happening when these AI systems access application data. Without better documentation and clear technical specifications, it will be increasingly difficult for Signal to provide robust privacy and security to the many millions of people who rely on us.
+We continue to call on the major consumer operating system companies – Apple, Google, and Microsoft – to provide simple technical tools and accurate documentation that give developers like Signal ways to prevent AI agents from accessing sensitive application data. In particular, we are calling on these companies to provide two common-sense remedies that can protect the privacy so many millions of people rely on:
+Developers should have an easy and well-documented way to opt their app out of AI data access and processing, including (but not limited to) screen reading, filesystem access, notifications, APIs, and other OS frameworks, all without undermining the core utility of an application.
+Operating system companies should create better documentation and technical specifications around how these AI agents function, particularly regarding data access and processing. Confidential computing approaches are not a complete solution, and do not address these core concerns. In particular, these approaches still leave the power to determine the extent of privacy guarantees (if any) in the hands of these providers.
+We also see a growing need for tools that can prevent third-party agents, like Meta’s Muse, from accessing application data using the deep permissions that users are encouraged to grant them during setup. In many cases these agents are leveraging accessibility settings that were meant to empower actual people to get the most out of their apps and services, not to act as a skeleton key that provides access to AI agents.
+In addition to taking these technical measures to block capture, we are engaging in conversations across the ecosystem to make the stakes clear. There is a lot of work to be done in the industry to improve the ways that AI agents operate in the operating system, and how and whether they capture and process private data. We are cautiously optimistic that some major OS providers, like Google and Apple, are engaging with us on how these systems should better interface with privacy-sensitive apps like Signal. We hope to have more to share on this topic soon, and that these companies recognize the danger to the ecosystem and work with us and others to create standardized approaches that meaningfully protect privacy across the industry.
+Finally, we want to acknowledge that we are not the only ones recognizing these perils, and we are grateful to our allies for pushing for similar 
+changes
+. We all need to recognize that the current integration of AI agents into the operating system, without these common-sense remedies, represents an existential threat to privacy at the application layer, and the ability of independent developers like Signal to protect your sensitive data. Signal is the canary in the coal mine, but this affects the entire ecosystem and should galvanize anyone who cares about these fundamental rights.
+Signal Technology Foundation is the nonprofit home of the Signal app, which is trusted by millions around the world. We protect free expression and enable secure global communication through open source privacy technology. Signal Technology Foundation is a US 501(c)(3) tax-exempt organization.
+Microsoft Recall captures your screen every few seconds, extracts text from screenshots via optical character recognition, then populates a searchable on-device database with this personal data in order to allow the AI system to query it – potentially exposing and retaining your Signal data indefinitely, including disappearing messages. 
+↩
+There are multiple versions of Android beyond the Google-provided distributions on Pixel devices. For many vendors, we don’t have a reliable way to detect when a screenshot was attempted 
+if
+ screenshots are already disabled. Rather than choose a poor user experience (where screenshots simply stop working, confusing users), we decided to instead focus on detecting when an AI assistant attempts to access the screen. We automatically enable the “Screen security” setting in Signal Android when this type of access is detected. 
+↩
+↩
+2
+Careful readers will note that in addition to not being able to cover all Android devices, we are also not blocking Siri AI on macOS. This is because we cannot reliably block screenshots on macOS. Faced with a lack of clearly documented APIs that allow us to implement screenshot protection, we do not have the tools available that let us do the job. While protections against continuous screen capture exist on macOS, we cannot apply them to screenshots (which is how most agentic systems access data from applications like Signal). Trying to implement screenshot blocking on macOS has revealed to us a minefield of bewildering decisions that place user privacy at risk, including APIs that have been deprecated in favor of screen-protection solutions that 
+only work for streaming media
+ and other DRM-protected content. This is something we hope Apple remedies urgently. For now, the only recommendation we have for macOS 27 users is to add Signal to the Excluded Apps section in System Settings > Siri to protect message content from proactive access by Siri AI. 
+↩
+ Tweet
+ Facebook
+Don't have Signal? 
+Give it a try!
+
+===== https://9to5mac.com/2026/11/20/signal-now-blocks-screenshots-on-iphone-to-stop-siri-ai-from-seeing-chats/
+(status 200)
+Signal
+Signal now blocks screenshots on iPhone to stop Siri AI from seeing chats
+Ryan Christoffel
+ | Nov 20 2026 - 8:29 am PT																
+								4 Comments							
+Popular secure messaging app Signal has rolled out a new update that automatically disables screenshots for the sake of blocking Siri AI from reading your chats. Here are the details.
+Signal update disables iPhone screenshots by default as a new privacy protection
+Signal’s latest app update on iPhone disables a key system feature: taking screenshots.
+As Signal 
+told 
+Reuters
+, that’s because Apple doesn’t currently provide better tools for iOS developers to safeguard app content from Siri AI and third-party AI agents.
+By default, users who update and try to take a screenshot will see a message that says: “Screenshot prevented by ‘Block Siri AI’ setting.” 
+Fortunately, there’s an easy workaround. Users who want to re-enable screenshots can do so by visiting Signal’s privacy settings and turning off the new toggle that’s labeled ‘Block Siri AI.’
+Here’s 
+9to5Mac’s
+ own Arin Waichulis
+:
+Signal now blocks in-app screenshots on iPhone to keep Siri AI from reading chats
+It’s a new toggle in settings that’s on by default, but can be turned off
+No equivalent for its Mac app 
+pic.twitter.com/ImsinqMNPq
+— Arin (@arinwaichulis) 
+November 20, 2026
+Here’s exactly what that toggle does, per the in-app settings:
+Prevent Siri AI from scanning Signal content. This will also block you from taking screenshots in the app and App Switcher.
+It’s good to see that users can manually disable the new privacy setting if they want. But Signal’s decision to block screenshots does raise important questions about the potential gap in privacy tools for iOS developers.
+Apple already lets you block Siri AI from accessing whichever apps you manually exclude, and that became 
+even easier in iOS 27.2
+. But rather than directing users to that system option, Signal seems to believe it needed to take action itself with this update.
+What do you think of Signal’s latest move? Let us know in the comments.
+Best iPhone accessories
+AirPods Pro 3 (
+now only $179
+, down from $249)
+10-year AirTag battery case
+MagSafe Car Mount for iPhone
+100W USB-C fast charging power adapter
+HomeKit Garage Door Opener
+FTC: We use income earning auto affiliate links.
+More.
+You’re reading 9to5Mac — experts who break news about Apple and its surrounding ecosystem, day after day. Be sure to check out 
+our homepage
+ for all the latest news, and follow 9to5Mac on 
+Twitter
+, 
+Facebook
+, and 
+LinkedIn
+ to stay in the loop. Don’t know where to start? Check out our 
+exclusive stories
+, 
+reviews
+, 
+how-tos
+, and 
+subscribe to our YouTube channel
+Check out 9to5Mac on YouTube for more Apple news:
+Comments
+Expand
+Close
+ comments
+Expand
+Close
+ comments
+Guides
+Signal
+Author
+			Ryan Christoffel		
+iryantldr			
+Ryan got his start in journalism as an Editor at MacStories, where he worked for four years covering Apple news, writing app reviews, and more. For two years he co-hosted the Adapt podcast on Relay FM, which focused entirely on the iPad. As a result, it should come as no surprise that his favorite Apple device is the iPad Pro.
+
+===== https://www.androidauthority.com/signal-blocks-gemini-siri-ai-private-messages-3737647/
+(status 200)
+Affiliate links on Android Authority may earn us a commission. 
+Learn more.
+General technology
+Signal is blocking screenshots to prevent Gemini and Siri AI from scanning your chats
+Signal wants AI assistants to stay out of your private conversations.
+Hillary Keverenge
+•
+Nov 20, 2026
+ — 7:35 AM ET
+•
+•
+Megan Ellis / Android Authority
+Add Android Authority on Google: 
+Preferred Source
+Google Discover
+TL;DR
+Signal is introducing protections to prevent Gemini and Siri AI from scanning private conversations on Android and iOS 27.
+The protections also block users from taking screenshots inside Signal, but they can be disabled.
+Signal is calling on Google, Apple, and Microsoft to give app developers better tools to restrict AI access without compromising app functionality.
+AI assistants are increasingly doing things on our phones that would previously require us to open an app ourselves. Gemini can already 
+order food and book rides using third-party Android apps
+, and just yesterday, Google started rolling out 
+similar computer-use capabilities on Macs
+. Meanwhile, Apple’s Siri AI can understand what’s on your iPhone’s screen. But what happens when the app an AI assistant tries to read contains information that was never meant to leave it?
+That’s a question Signal is tackling head-on. The encrypted messaging service 
+announced
+ today that it is introducing protections against AI assistants capturing its content on Android and iOS 27.
+On Android, Signal will automatically enable its Screen security setting when it detects an AI assistant attempting to read your screen. On iOS 27, Signal has introduced a Block Siri AI setting. Both measures also prevent users from taking screenshots inside the app, although you can turn off these protections in Signal’s settings.
+Signal faced a similar problem last year when it 
+blocked Microsoft’s Recall feature
+ from taking screenshots of conversations on Windows 11. Even disappearing messages could potentially outlive their intended lifespan in Recall’s searchable database.
+The concern is that although Signal’s end-to-end encryption protects messages in transit, it cannot protect their contents once an AI assistant captures them directly from your screen. Remember, Gemini can already 
+automatically analyze your screen
+ without requiring you to manually share a screenshot when asking about on-screen content.
+However, Signal acknowledges that its solution is incomplete. It cannot reliably implement similar protections on macOS or cover every Android device. Blocking screenshots also does nothing to prevent AI agents from potentially accessing sensitive information through other means, such as local files. This explains why Signal wants Google, Apple, and Microsoft to give developers better documentation and tools to block AI access without sacrificing existing app functionality.
+Even if you don’t use Signal, consider what this could mean for your banking, healthcare, or workplace apps. As AI assistants become more useful by gaining access to more of our digital lives, developers need equally capable tools to determine where that access ends.
+News
+AI
+Google Gemini
+Signal
+Siri
++
+Conversation
+Read what readers said or add your take.
+Open conversation
+
+===== https://thenextweb.com/news/signal-ai-agents-blocks-screenshots-siri-gemini-whittaker
+(status 200)
+Screenshot: Signal
+Signal is blocking screenshots inside its app on iOS 27, and on Android when it detects an AI assistant trying to read the screen. The aim is to keep AI agents built into phone software away from private chats, Signal president Meredith Whittaker wrote in a 
+blog post
+ on Friday.
+Signal gave the post to Reuters ahead of its release, and 
+Reuters’ Katie Paul
+ reported the move first.
+“Right now, these agentic AI integrations are changing this environment in a way that’s making it increasingly hostile to privacy. This is an existential threat to Signal, and our ability to responsibly uphold our mission,” Whittaker wrote.
+Her targets are Gemini Intelligence on Android and the Onscreen Awareness feature of 
+Apple’s Siri AI
+. Both scan what is on the screen so they can answer questions and act for the user. Once captured, Signal data can end up in whatever local database or remote server the agent uses, outside Signal’s control, she wrote.
+How the block works
+On iOS, a new “Block Siri AI” setting is on by default. Its description says it stops Siri AI from scanning Signal content and also blocks screenshots in the app and the App Switcher. On Android, Signal turns on its Screen security setting when an assistant tries to capture the screen.
+Users get pop-up windows that let them switch the block off, depending on the device, Reuters reported. Whittaker warned that doing so could expose their own and their contacts’ messages to the agents.
+She called the fix “incomplete”. Blocking screenshots does not stop agents from reaching content already stored on the phone through its filesystem.
+Signal took the same step on Windows last year, against Microsoft’s Recall. It cannot do it on macOS. Apple, Google and Microsoft offer no easy way for apps to restrict AI data access without “drastic compromises” to how they work, Whittaker wrote. On a Mac, Signal suggests adding the app to the 
+Excluded Apps list
+ in the Siri settings, 
+Digital Trends
+ reported.
+What Signal wants from Apple, Google and Microsoft
+Signal asks for two things. Developers need an easy, documented way to opt their apps out of AI data access, from screen reading to files and notifications. The companies also need to explain how their agents access and process data. Confidential computing approaches “are not a complete solution”, Whittaker wrote.
+She also wants tools to rein in third-party agents such as Meta’s Muse. These use the deep permissions people grant them at setup. Such agents use accessibility settings as “a skeleton key”, she wrote.
+Muse got around its own Connector tool to pull Signal messages on a Mac and on Android, Reuters reported earlier this week. On the Mac, it used accessibility and screenshot tools. An Apple update this week closed that route but added new agent permissions with extra warnings, according to Reuters.
+Meta told Reuters that agents need to see and use people’s computers to work for them. Muse reaches other apps only through permissions users explicitly grant, it said. Meta has 
+denied similar claims
+ before.
+Signal said it is “cautiously optimistic” that Google and Apple are engaging with it on the issue. Whittaker has 
+warned about agents
+ since at least June.
+“Signal is the canary in the coal mine, but this affects the entire ecosystem,” the post said.
+Get the TNW newsletter
+Get the most important tech news in your inbox each week.
+Get more TNW on Google
+Add as a preferred source
+Read more TNW news
+Follow on Google
+@thenextweb
