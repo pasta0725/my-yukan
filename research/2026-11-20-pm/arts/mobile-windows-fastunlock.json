@@ -1,0 +1,132 @@
+{
+ "id": "mobile-windows-fastunlock",
+ "category": "mobile",
+ "title": "Windows 11のロック画面に弱点が見つかる",
+ "summary": "暗号化でデータを守るPCも、電源が入っているとロック画面の弱点を悪用されるおそれがあります。",
+ "image": {
+  "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2158/179/1_l.png",
+  "kind": "ogp",
+  "credit": "PC Watch",
+  "page": "https://pc.watch.impress.co.jp/docs/news/2158179.html"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "Windows弱点"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Windows 11のロック画面に、サインイン前でも操作できる弱点が見つかりました。",
+    "悪用にはPCに直接触れられることと、Microsoftアカウントとの連携が必要です。",
+    "修正はまだです。持ち運ぶ前に電源を切ると、この弱点に備えられます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "研究者が11月19日（現地時間）、Windows 11のロック画面の弱点を公開しました。電源の入ったPCを他人に触られると、悪用されるおそれがあります。"
+  },
+  {
+   "type": "h",
+   "text": "公表されたロック画面の弱点"
+  },
+  {
+   "type": "p",
+   "text": "弱点の名前は「FastUnlock」です。研究者のNightmare Eclipse氏が、プログラムなどを公開するサイトのGitHubで明らかにしました。TechTroduceは同氏をAbdelhamid Naceri氏と紹介しました。Kyberkitは発表者をChaotic Eclipse氏の名で伝えています。"
+  },
+  {
+   "type": "h",
+   "text": "サインイン前にできたこと"
+  },
+  {
+   "type": "p",
+   "text": "ナレーター（画面を読み上げる機能）の処理に弱点があります。アカウントの回復画面が関係します。研究者は、ロック画面用のアカウント「WsiAccount」の権限でプログラムを動かせると説明しています。TechTroduceが報じた公開実演では、設定画面などの操作まで確認できます。"
+  },
+  {
+   "type": "p",
+   "text": "同メディアは、組織が管理するPCで試した管理者の投稿も紹介しました。管理者によれば、ロック前から開いていたアプリを操作できました。プログラムも起動できたといいます。Kyberkitは、独立した検証での裏付けはないと報じました。"
+  },
+  {
+   "type": "h",
+   "text": "悪用の条件と検証した範囲"
+  },
+  {
+   "type": "p",
+   "text": "悪用する人がPCに直接触れられる必要があります。PC上の少なくとも1つのアカウントが、オンラインのMicrosoftアカウントとつながっていることも条件です。"
+  },
+  {
+   "type": "p",
+   "text": "研究者は11月のセキュリティ更新を入れたWindows 11 26H2で試しました。試したPCではどれも同じ動きが起きたと説明しています。Windows 10やWindows 11の別の版は試しておらず、影響はまだわかっていません。"
+  },
+  {
+   "type": "h",
+   "text": "暗号化したPCへの影響"
+  },
+  {
+   "type": "p",
+   "text": "BitLockerは、保存したデータを暗号で守るWindowsの機能です。TechTroduceによると、弱点が表れるのは起動後にWindowsが暗号化したデータを扱えるようになってからです。暗号そのものを破ったという報告はありません。Kyberkitが伝えた研究者の説明では、暗号化したPCのロック画面を抜けるまで約5分でした。"
+  },
+  {
+   "type": "p",
+   "text": "電源を切れば、この弱点のあるロック画面も閉じます。Kyberkitは、大事なデータを扱うPCに、BitLockerで起動時にも暗証番号を求める設定を勧めています。"
+  },
+  {
+   "type": "h",
+   "text": "修正と悪用の報告状況"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは、修正プログラムをまだ提供していません。修正前に公になった弱点をゼロデイと呼びます。修正が出る時期は示していません。"
+  },
+  {
+   "type": "p",
+   "text": "弱点を識別するための番号（CVE）は公表されていません。Kyberkitは、Microsoftが見解を示していないと報じました。TechTroduceの報道では、Microsoftの公式な注意情報は出ていません。実際の攻撃に広く使われたと確認できる報告もありません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "11月19日",
+     "label": "弱点を公開（現地時間）"
+    },
+    {
+     "value": "26H2",
+     "label": "動作を確認したバージョン"
+    },
+    {
+     "value": "0本",
+     "label": "提供済みの修正パッチ"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "Windows 11のノートPCは、外出先で手元に置いてください。",
+    "持ち運ぶ前や保管するときは、PCの電源を完全に切ってください。",
+    "Microsoftが修正を出したら、Windows Update（更新機能）で早めに適用してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "共用の机でPCを使う人にも関係する話です。検証された版が限られているので、手元のPCが別の版でも安心と判断するには早いです。"
+  }
+ ],
+ "source_name": "PC Watch",
+ "source_url": "https://pc.watch.impress.co.jp/docs/news/2158179.html",
+ "published": "2026-11-20",
+ "refs": [
+  {
+   "name": "PC Watch",
+   "url": "https://pc.watch.impress.co.jp/docs/news/2158179.html"
+  },
+  {
+   "name": "TechTroduce",
+   "url": "https://www.techtroduce.com/windows-11-lock-screen-zero-day-bitlocker-bypass/"
+  },
+  {
+   "name": "Kyberkit",
+   "url": "https://kyberkit.com/en/articles/windows-fastunlock-zero-day-narrator-lock-screen-reported"
+  }
+ ]
+}
