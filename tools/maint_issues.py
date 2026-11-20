@@ -76,13 +76,14 @@ def cmd_guard(repo, base, todo_path, out):
     try: res = json.load(open(os.path.join(repo, "_fix", "result.json")))
     except Exception as e: res = {"issues": [], "checks": [], "error": f"result.json を読めない（{type(e).__name__}）"}
     checks = [c for c in res.get("checks", []) if isinstance(c, str)][:8]
-    dec = {}
+    dec, files_of = {}, {}
     for r in res.get("issues", []):
         try: n = int(r.get("number"))
         except Exception: continue
         if n not in todo: continue
         d = r.get("decision") if r.get("decision") in ("fixed", "partial", "hold", "keep") else "hold"
         if d == "keep" and not todo[n]["on_hold"]: d = "hold"
+        files_of[n] = [f.removeprefix("./") for f in (r.get("files") or []) if isinstance(f, str)]
         dec[n] = {"number": n, "title": todo[n]["title"], "decision": d,
                   "comment": str(r.get("comment") or "").strip()[:3000], "summary": str(r.get("summary") or "").strip()[:200]}
     for n, t in todo.items():
@@ -95,6 +96,30 @@ def cmd_guard(repo, base, todo_path, out):
     patch = subprocess.run(["git", "diff", "--cached", "--binary", base], cwd=repo, capture_output=True, text=True).stdout
     problems = []
     files = [l.split("\t") for l in names.strip().splitlines() if l.strip()]
+    # 2026-11-20: the job's token can never push .github/workflows/ (GitHub refuses it without the workflows permission;
+    # run 44704822352 lost 11 fixes that way). Take workflow edits out of the patch, and hold the issues that made them
+    # (their comment keeps the suggestion, a Claude session applies it). If no issue says it made them, hold everything.
+    wf = sorted({p for _, *ps in files for p in ps if p.startswith(".github/workflows/")})
+    if wf:
+        owners = [d for n, d in dec.items() if d["decision"] in ("fixed", "partial") and set(files_of.get(n, [])) & set(wf)]
+        if owners:
+            keep = {f for n, d in dec.items() if d["decision"] in ("fixed", "partial") and d not in owners for f in files_of.get(n, [])}
+            changed = {p for _, *ps in files for p in ps}
+            back = sorted(set(wf) | ({f for d in owners for f in files_of[d["number"]]} & changed) - keep)
+            for f in back:  # back to the base version (a file Codex added is removed)
+                if sh(["git", "cat-file", "-e", f"{base}:{f}"], repo)[0] == 0: sh(["git", "checkout", "-q", base, "--", f], repo)
+                else: sh(["git", "rm", "-q", "-f", "--cached", "--", f], repo); os.path.exists(os.path.join(repo, f)) and os.remove(os.path.join(repo, f))
+            for d in owners:
+                d["decision"] = "hold"
+                d["comment"] = ("保留：直し案がワークフロー（" + "、".join(set(files_of[d["number"]]) & set(wf)) +
+                                "）の変更なので、自動では main に反映できません。Claude の会話で反映します。\n\n" + d["comment"])[:3000]
+                d["summary"] = "ワークフローの変更なので Claude で反映（" + d["summary"][:120] + "）"
+            _, names = sh(["git", "diff", "--cached", "--name-status", base], repo)
+            _, numstat = sh(["git", "diff", "--cached", "--numstat", base], repo)
+            patch = subprocess.run(["git", "diff", "--cached", "--binary", base], cwd=repo, capture_output=True, text=True).stdout
+            files = [l.split("\t") for l in names.strip().splitlines() if l.strip()]
+        else:
+            problems.append("ワークフローの変更（自動では main に push できない）" + "、".join(wf))
     total = 0
     for row in numstat.strip().splitlines():
         a, d, f = (row.split("\t") + ["", "", ""])[:3]
