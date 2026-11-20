@@ -1,0 +1,70 @@
+URL: https://blogs.nvidia.com/blog/ian-buck-sc26/
+TITLE: Ian Buck Kicks Off NVIDIA’s Week at SC26 as Science Enters the Age of Agents
+SITE: NVIDIA
+PUBLISHED: 2026-11-17 23:00 (page: 2026-11-17T14:00:10+00:00)
+OG_IMAGE: https://blogs.nvidia.com/wp-content/uploads/2026/11/Buck-Talk-SC26-scaled.jpeg
+IMAGES:
+
+TEXT:
+NVIDIA’s Ian Buck kicked off the company’s week at SC26 in Chicago on Monday with new tools for AI agents, software that can plan experiments, run code and check results on researchers’ own systems.
+In NVIDIA’s special address, Buck announced
+Nemotron for Science
+, the Rubin HPC GPU and an
+expanded Vera CPU platform for high-performance computing
+. He also detailed a new collaboration in quantum computing with
+IBM and Fermi National Accelerator Laboratory
+.
+“The frontier of computing and the new scientific stack is going to be simulation, as always, but combined with AI and the future of quantum,” said Buck, vice president of hyperscale and high-performance computing at NVIDIA.
+Buck opened the talk by looking back to his first public talk on CUDA, at an SC06 tutorial in Tampa, Florida, 20 years ago. NVIDIA now offers more than 1,000
+CUDA-X libraries
+, he said.
+Open Models for Science Agents
+“[Agents] have been just a game changer in how we interface with our supercomputers, with our devices, our instruments and how we can do the research,” Buck said.
+Simulation remains the foundation of scientific computing, “which will always be on the top,” Buck said, with AI, quantum and now agents working alongside it.
+Nemotron for Science combines the Nemotron 3.5 Super VL open model with a new open chemistry dataset and post-training recipes for life sciences and chemistry, Buck explained. Researchers can run it locally on a DGX Spark, a workstation or their own supercomputer.
+At Argonne National Laboratory, Buck said, an agent built with the toolkit took a single prompt, planned and tested hypotheses, chose which simulations to run and identified two new binding sites.
+“You own your data. You own the model,” Buck said.
+Buck highlighted other agents already in use:
+GROMACS:
+An agent from KTH Royal Institute of Technology repairs broken GROMACS setups on its own. In one overnight run on a single DGX Spark, it fixed 81% of test cases.
+SETI Institute:
+At the Allen Telescope Array, an agent took a one-line prompt to plot a methanol line. Buck explained that it then retuned for Doppler shift on its own [NGC 869 vs. 896, check slide].
+Nsight AI Porting Agent:
+NVIDIA’s new agent ported a routine from the Weather Research and Forecasting (WRF) model to GPUs, Buck said, speeding it up more than 5x using about 150 million tokens.
+CPUs for the Agent Loop
+Agents lean on CPUs to run tool calls between model steps, Buck explained.
+“That’s exactly what agents need,” he said. “They need a CPU that can run, evaluate, run the tool, perform the operations, gather the results.”
+DKRZ, the German Climate Computing Center, has selected Vera CPUs for its HLRE-5 supercomputer, expected in early 2028. Buck said it joins Vera systems already announced at Texas Advanced Computing Center.
+A New GPU for Science
+Rubin HPC is a new GPU in the Vera Rubin platform, built for science, engineering, analytics and AI, Buck said.
+It supports precisions from FP64 to FP4, adds sparse-data acceleration and connects over seventh-generation NVIDIA NVLink. With more than 50,000 CUDA cores, it has about three times as many as Hopper, Buck said. It is expected in 2028.
+Quantum Error Correction
+Buck said a simulation on Jülich’s JUPITER supercomputer showed that a technique called magic state cultivation can cut the operations needed for one logical step tenfold. The work is being added to CUDA-Q.
+NVIDIA, IBM and Fermilab announced plans today for a quantum computing co-design platform to support error-correction and applications research. NVIDIA and IBM are pairing NVIDIA DGX B200 systems with IBM quantum computers, including those powered by IBM Quantum Nighthawk.
+Buck also introduced a new breakthrough for quantum decoding. The goal, Buck explained, is to cut decoding latency from about 300 microseconds to 10. A new CUDA-Q decoding algorithm, TCBP-JOBS, cuts error-correction research computation from 12 weeks to 45 minutes, he said.
+Networking
+Buck also showed one of the first deployments of
+NVIDIA Photonics co-packaged optics switches, at Lambda
+. He said they are 15x more reliable on bit errors and link flaps.
+See
+notice
+regarding software product information.
+Categories:
+Supercomputing
+Tags:
+Events
+SC26
+Supercomputing
+Related News
+Supercomputing
+Ian Buck Kicks Off NVIDIA’s Week at SC26 as Science Enters the Age of Agents
+Nov 17, 2026
+Networking
+Lambda Boosts AI Factory Resiliency and Efficiency With NVIDIA Photonics
+Nov 16, 2026
+AI Infrastructure
+NVIDIA Expands Slurm to Bring Quantum Computing Into Supercomputing
+Nov 16, 2026
+AI Infrastructure
+NVIDIA CUDA-X Libraries Give Agents the Tools to Accelerate Scientific Discovery
+Nov 16, 2026

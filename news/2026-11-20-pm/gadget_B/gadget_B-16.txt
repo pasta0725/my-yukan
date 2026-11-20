@@ -1,0 +1,65 @@
+URL: https://www.gizmodo.jp/article/2611-ps4-local-llm-qwen/
+TITLE: 13年前の無印PS4がAIマシンに。普通にチャットできる速さだった
+SITE: GIZMODO JAPAN
+PUBLISHED: 2026-11-20 12:15 (page: 2026-11-20T12:15:00+09:00)
+OG_IMAGE: https://media.loom-app.com/loom/2026/11/16/067f9ae0-526c-470f-a68c-026125acf510/original.jpg?w=1200&h=630
+IMAGES:
+- https://media.loom-app.com/loom/2026/11/16/067f9ae0-526c-470f-a68c-026125acf510/original.jpg?w=1200 | 13年前の無印PS4がAIマシンに。普通にチャットできる速さだった
+- https://media.loom-app.com/loom/2026/11/16/9350bc61-9a9c-41d0-afb1-a46db8b4b24f/original.jpg?w=800 | Image: Garlic.LLM
+
+TEXT:
+13年前の無印PS4がAIマシンに。普通にチャットできる速さだった
+Nov 20,2026 12:15
+武者良太
+( GIZMODOライター )
+Google検索でギズモードを
+お気に入りに追加
+Image: PlayStation.Blog
+しかもPS4 Proではなく、無印PS4やPS4 Slimでね。
+2013年に発売開始、シリーズで
+累計1億1720万台
+（2022年3月末時点）を売り上げたプレイステーション4こと
+PS4
+。
+そのPS4を
+ローカルLLMマシンとして動かす
+という、おもしろいプロジェクトがありまして。
+Advertisement
+脱獄必須
+だし、自作アプリが使えるようになる
+GoldHEN
+をインストールする必要がある...すなわち、
+安全性は一切保証できない自己責任な使い方
+となりますが、面白くないですか？ BDドライブがイカれちゃって、ジャンクを数千円で仕入れられそうなPS4の活用方法が生まれるだなんて。
+動作したのはAlibabaのQwen3.5-9B
+Image: Garlic.LLM
+実践した
+Leonardo Alegría氏
+によれば、独自開発のオープンソースプロジェクト「
+Garlic LLM
+」で
+Qwen3.5-9B
+を用いることで、
+テキストチャット
+では
+31〜39トークン/秒
+、ボイスチャットでは約22トークン/秒、
+コード生成
+では
+最大43トークン/秒
+のスコアが出せるとのこと。
+PS4のCPUとGPUが共有するメモリは8GB。90億パラメーターのモデルをそのまま動かすには厳しいため、4bitや3bitへの量子化で必要なメモリを削減しています。
+それにしても、この実用的な速度はなんなのでしょうか。ここでキーポイントとなるのが、
+PS4の176GB/sというメモリ帯域
+です。
+メモリ16GBのApple M6（153GB/s）より速い。M3 Pro（150GB/s）より速い。Intel Core Ultra X9 388H（153.6GB/s）より、AMD Ryzen AI 9 HX 475（136.5GB/s）よりも、速い。
+CPU・GPU演算能力、キャッシュ、AIアクセラレータなどを含めた
+総合性能では近代的なSoCにかないっこない
+のですが、
+コンパクトなLLM
+を動かす分には
+メモリ帯域が効いて実用的になる
+ところ。
+ゲーム専用機の実力を見たり。って気持ちになりますね。
+Source:
+Garlic.LLM

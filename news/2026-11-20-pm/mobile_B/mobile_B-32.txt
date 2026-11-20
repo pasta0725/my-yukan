@@ -1,0 +1,54 @@
+URL: https://forest.watch.impress.co.jp/docs/serial/usecopilotpc/2158020.html
+TITLE: さよならPhi Silica、ようこそAion Instruct。Windows内蔵の言語モデルが刷新【使ってわかるAI PC】
+SITE: 窓の杜
+PUBLISHED: 2026-11-20 08:08 (page: 2026-11-20T08:08:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2158/020/01.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/020/01_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2140/265/list.jpg | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/020/ishida_s.png | 
+- https://images-na.ssl-images-amazon.com/images/P/4798073873.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+使ってわかるAI PC
+第121回
+さよならPhi Silica、ようこそAion Instruct。Windows内蔵の言語モデルが刷新
+60%に小型化し、9倍の長文に対応。GPUへの対応も進む
+石田 賀津男
+2026年11月20日 08:08
+Phi SilicaがAion Instructに置き換えられる
+Phi Silicaが来年1月で置き換え
+マイクロソフトは11月13日、これまでWindowsのオンデバイス言語モデルとして提供されてきたPhi Silicaを、新たな言語モデルであるAion Instructに置き換えると発表した。2027年1月にはAion Instructが一般の端末に提供される予定で、かなり差し迫ったタイミングでの発表となった。
+Copilot+ PCユーザーにとっては大きな変更になるのだが、Phi Silicaを意識して使ってきたユーザーもそう多くはないだろう。Phi SilicaがAion Instructに置き換わるとどうなるのか解説していく。
+Phi Silicaってなんだっけ？
+まずPhi Silicaとは何かという話から。現在はCopilot+ PC向けに提供されているローカル処理用のAIモデルで、自然言語を理解したり書き換えたりする時に使われる。
+例えば、「Click to Do（クリックして実行）」で選択した文章の要約や書き換え、PowerToysのAdvanced Pasteでクリップボードのテキストを加工する際などに使われている。ユーザーが意識せずとも、自然言語をローカル処理する時によく使われるAIモデルだ。
+関連記事
+システム・ファイル
+ハードウェア
+Windows
+「Microsoft PowerToys」に追加されたローカルAI機能を試してみた
+より小さくて記憶力のいいAion Instruct
+ではAion InstructとPhi Silicaはどんな違いがあるのだろうか。最もわかりやすい違いが、モデルのパラメーターとコンテキストサイズだ。簡単に言うと、パラメーターはAIモデルの容量、コンテキストサイズはAIモデルが扱える文章量となる。
+Phi Silicaは38億パラメーターで、コンテキストサイズは3.5Kトークン。これに対してAion Instructは23億パラメーターで、コンテキストサイズは32Kトークンとなっている。つまりAion Instructは、Phi Silicaの6割程度のコンパクトサイズで、扱える文章量は約9倍に増えている。
+パラメーターが小さくなるのは、AIモデルの進化による。小さいからといって性能が悪いわけではなく、サイズを小さくしながらも性能を上げようとしている。Aion Instructについては、少なくともPhi Silicaの用途をカバーできる性能を維持したまま、サイズを小さくできたと考えていいだろう。
+またパラメーターの縮小は、メモリ使用量削減にもつながる。マイクロソフトはWindows 11 26H2でメモリ使用量の削減を実現したが、Phi SilicaからAion Instructに移行することで、Windows内蔵の言語AIを動かす時のメモリ使用量が削減されるかもしれない。導入するタイミングが今になったのは偶然だと思うが、このメモリ高騰時代に導入する意味が増えたとは言える。
+コンテキストサイズが大きくなると、一度に扱える文章量が増える。チャットのやりとりを繰り返して長文になっても、前に話したことを長く覚えられるようになる、というイメージだ。Phi Silicaではチャットのやりとりは難しかったが、Aion Instructではもっと積極的にチャットしたり、長く思考して複雑な処理を行えるようになる可能性がある。
+Aion InstructはNVIDIA/AMDのGPU対応も進む
+Phi SilicaからAion Instructへの変更に関して、ユーザーは特に意識する必要はなく、いつもどおりWindows Updateを実行するだけでいいはずだ。そしてAion Instructに移行したからといって、おそらく使用感が大きく変わることもなく、今までどおりに使用できるだろう。今すぐ何かが変わるというより、Windows AIの基礎が強化される、と考えるといい。
+変更点として大きいのは、GPUへの対応だ。Phi SilicaもGPU対応が進められてきたが、Aion InstructではNVIDIAのRTXシリーズや、AMDのRDNA4世代などのディスクリートGPUへの対応を表明している。これは2027年1月に間に合うとは発表されていないが、今後はCopilot+ PC以外でもWindows内蔵の言語AIの利用が広がっていくことになる。
+記事中で使う参考画像も用意できないほど地味な内容だが、WindowsのローカルAIもどんどん強化されていくのだということが伝われば十分だと思う。
+著者プロフィール：石田賀津男（いしだ かつお）
+1977年生まれ、滋賀県出身。金沢工業大学 工学部情報工学科卒。
+ゲーム専門誌『GAME Watch』（インプレス）の記者を経てフリージャーナリスト。ゲーム等のエンターテイメントと、PC・スマホ・ネットワーク等のIT系にまたがる分野を中心に幅広く執筆中。1990年代からのオンラインゲーマー。窓の杜で連載『
+石田賀津男の『酒の肴にPCゲーム』
+』（
+AKIBA PC Hotline!に移動
+）、『
+使ってわかるCopilot+ PC
+』などを執筆。
+・著者Webサイト：
+https://ougi.net/
+Amazonで購入
+「Copilot+ PC」関連商品
+Amazonで購入
