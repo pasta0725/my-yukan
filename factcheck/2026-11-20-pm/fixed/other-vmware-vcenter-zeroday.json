@@ -1,0 +1,139 @@
+{
+ "id": "other-vmware-vcenter-zeroday",
+ "category": "other",
+ "title": "VMware vCenterの認証回避欠陥、9月から悪用",
+ "summary": "Broadcomが5件を修正。最も深刻な1件は修正前から使われていた。",
+ "visual": {
+  "icon": "lock",
+  "kicker": "脆弱性"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "企業のサーバーを管理するVMware製品で、欠陥5件の修正が公表されました",
+    "最も深刻な欠陥は10点満点で9.8。少なくとも9月上旬から攻撃に使われました",
+    "管理者は更新を急ぎます。vCenter 7.0の場合は延長サポートの契約を確認します"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Broadcomは現地時間11月19日、企業向けのVMware vCenterなどの欠陥5件の修正を公表しました。1件はすでに攻撃に使われていました。"
+  },
+  {
+   "type": "h",
+   "text": "修正の対象になった製品"
+  },
+  {
+   "type": "p",
+   "text": "Broadcomは今回の案内を4段階で最も高い「クリティカル」と位置づけました。対象の1つは、仮想サーバー（ソフトで作ったサーバー）を管理するVMware vCenterです。"
+  },
+  {
+   "type": "p",
+   "text": "サーバーを運用するための「SDDC Manager」では、欠陥3件に対処しました。\n・保存データの不正な読み書きにつながる欠陥は深刻度8.1です。\n・不正な命令で機器を操作できる欠陥は7.2でした。\n・操作できる範囲が不正に広がる欠陥は6.7です。"
+  },
+  {
+   "type": "p",
+   "text": "残る1件は、仮想サーバー上で動くWindowsを支える「VMware Tools」の欠陥です。特定の設定では、本来許されていない操作ができるおそれがあります。深刻度は6.7です。Broadcomは11月20日に告知を更新し、対象の版を明確にしました。"
+  },
+  {
+   "type": "h",
+   "text": "最も深刻な認証回避の欠陥"
+  },
+  {
+   "type": "p",
+   "text": "最も深刻なのは、vCenterのディレクトリサービス（利用者情報を管理する機能）の欠陥です。識別番号は「CVE-2026-123890」です。Broadcomは共通の評価基準「CVSSv3.1」で9.8（10点満点）と判定しました。この欠陥は最上位の「クリティカル」に当たります。"
+  },
+  {
+   "type": "p",
+   "text": "この欠陥があると、第三者が本人確認をすり抜けてシステムに入るおそれがあります。侵入者が管理者と同じ権限を得ると、仮想サーバーまで操作できてしまいます。"
+  },
+  {
+   "type": "h",
+   "text": "攻撃はいつから始まったか"
+  },
+  {
+   "type": "p",
+   "text": "Google Cloud傘下のMandiantがこの欠陥を報告しました。Google Threat Intelligence Groupと共同で調査し、結果を11月19日に公表しました。少なくとも2026年9月上旬には攻撃に使われていました。両者は、中国との関係が疑われる集団「Armory Castle」が攻撃に関わったとみています。"
+  },
+  {
+   "type": "p",
+   "text": "BleepingComputerは、Windowsの利用者や端末を管理するデータが盗まれたと報じました。被害に遭った組織の数は明らかになっていません。個人情報への影響や本人への連絡も不明です。"
+  },
+  {
+   "type": "h",
+   "text": "修正版と旧版の問い合わせ先"
+  },
+  {
+   "type": "p",
+   "text": "BroadcomはvCenterを使う組織に、急いで更新するよう呼びかけています。単独で使うvCenter 8.0の修正版は8.0 U3mです。"
+  },
+  {
+   "type": "p",
+   "text": "VMware Cloud Foundationなどに含まれるvCenterにも修正版が出ました。9.1系の修正版は9.1.1.0200です。9.0系は9.0.2.0200に更新します。"
+  },
+  {
+   "type": "p",
+   "text": "SecurityWeekによると、vCenter 7.0は2025年10月に通常のサポートが終わりました。7.0向けの修正版は一般に公開されていません。延長サポートの契約がある組織は、Broadcomのサポート窓口に問い合わせます。同社の案内では、今回の5件に更新に代わる回避策はありません。"
+  },
+  {
+   "type": "p",
+   "text": "SDDC Managerの9.1系では、以前の更新で3件を順次修正しました。Broadcomが案内する最新版の9.1.1.0200にも、3件分の修正が入っています。"
+  },
+  {
+   "type": "p",
+   "text": "Windows向けVMware Toolsの修正版は、13系では13.1.5.0です。12.3系から12.5系の修正版は12.5.5です。12.5.5には、32ビット版のWindowsでこの欠陥を修正する12.4.10も入っています。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "5件",
+     "label": "今回対処した脆弱性"
+    },
+    {
+     "value": "9.8",
+     "label": "認証回避の深刻度（10点満点）"
+    },
+    {
+     "value": "9月上旬",
+     "label": "悪用が確認された時期"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "管理者はBroadcomの告知「VMSA-2026-0009.1」で対象の版を確かめ、早めに更新します。",
+    "vCenter 7.0の延長サポートを契約している組織は、早めにBroadcomに問い合わせます。",
+    "vCenterの管理者は、社内の担当者と9月上旬以降の不審なアクセスを点検します。",
+    "職場のシステムを利用するだけなら、自分で更新する必要はありません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "利用者や端末を管理するデータが盗まれると、影響は別の社内システムにも広がりかねません。職場から案内が出たら、普段使うシステムが対象に含まれるかを確かめたいところです。"
+  }
+ ],
+ "source_name": "Security NEXT",
+ "source_url": "https://www.security-next.com/193141",
+ "published": "2026-11-20",
+ "refs": [
+  {
+   "name": "Security NEXT",
+   "url": "https://www.security-next.com/193141"
+  },
+  {
+   "name": "Broadcom",
+   "url": "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/39495"
+  },
+  {
+   "name": "BleepingComputer",
+   "url": "https://www.bleepingcomputer.com/news/security/vmware-patches-vcenter-zero-day-exploited-in-attacks-since-september/"
+  },
+  {
+   "name": "SecurityWeek",
+   "url": "https://www.securityweek.com/newly-patched-vmware-vcenter-flaw-exploited-as-zero-day-by-chinese-apt/"
+  }
+ ]
+}
