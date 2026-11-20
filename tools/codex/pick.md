@@ -14,11 +14,17 @@ A picture fits only if ALL of these are true:
    about it, the place or event. Not a different product or an older unrelated item.
    Not a different announcement either: if the page URL in info.md is a different press release / page from the article's own
    reference page, even from the same company, do not choose it (e.g. a store-opening release for an app article).
-3. It is not: a photo whose main subject is a person's face (a portrait, a speaker on stage, a headshot); a logo or
+   Not an older edition: if a banner or picture shows a date, check it fits the article's year (a weekday that does not
+   match this year's date means it is from another year, e.g. a sale page from last year). Not the single products of a
+   sale or shop page (food, daily goods...) unless the article is about that product.
+3. It is not: a photo whose main subject is a person's face (a portrait, a speaker on stage, a headshot, and also a video
+   thumbnail made of a face and big text, e.g. YouTube); a generic stock or mood photo (hands, people at a laptop, an
+   abstract "AI" image) that does not show the real product, screen or event; a logo or
    wordmark alone; an icon or app icon alone; an ad, banner, campaign or coupon graphic that is mainly text (but a guide image that shows the article's own screen or feature may be chosen even if it has a lot of text); a generic
    site share image; a blurry, broken, mostly empty or "(could not load)" picture; a near-duplicate of a picture you
    already chose (then keep only the bigger one).
 When in doubt, leave it out.
+At most 12 pictures per article (the user's decision 2026-11-20; the importer also stops at 12).
 
 For each chosen picture write a caption in Japanese: what is shown, 10–40 characters, plain words, using the same names
 as the article text (e.g. 「Pixel 10の新しい通話画面」). No URL, no 「公式画像」, no guesses about things you cannot see.
