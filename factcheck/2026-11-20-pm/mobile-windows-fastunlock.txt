@@ -1,0 +1,95 @@
+===== https://pc.watch.impress.co.jp/docs/news/2158179.html
+(failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+
+===== https://www.techtroduce.com/windows-11-lock-screen-zero-day-bitlocker-bypass/
+(status 200)
+Share
+Facebook
+Twitter
+LinkedIn
+Pinterest
+Email
+A newly disclosed Windows 11 security vulnerability could allow someone with physical access to a locked PC to execute programs without entering the owner’s password or PIN. The flaw, dubbed FastUnlock, exploits Microsoft’s built-in Narrator accessibility feature and reportedly works even on systems protected by BitLocker drive encryption.
+Security researcher Abdelhamid Naceri, also known as Nightmare Eclipse, publicly disclosed the vulnerability on November 19, 2026, through a GitHub repository detailing the issue. Naceri claims the exploit works consistently on tested Windows 11 systems, including a machine running Windows 11 version 26H2 with the November 2026 security updates installed.
+The vulnerability affects how Windows Narrator handles its interface while an account remains locked. According to Naceri’s disclosure, certain accessibility and account recovery interactions can expose Windows interface elements that should remain inaccessible before authentication.
+The researcher describes a sequence involving the Microsoft account recovery interface and Narrator’s keyboard navigation controls. Although the relevant windows can remain hidden behind the lock screen, keyboard focus reportedly allows interaction with them. This can provide access to Windows Settings and potentially create opportunities to launch software without completing the normal sign-in process.
+Naceri states that successful exploitation can execute code within the Windows lock-screen account, identified as WsiAccount. His published demonstration shows access to Windows interface controls, but it does not demonstrate the complete execution of a program from removable storage. That final stage remains a claim rather than a fully demonstrated result in the publicly available material.
+An early third-party test provides some additional support for the discovery. A system administrator posting under the username danrhodes1987 on Reddit reported reproducing the behavior on Microsoft Intune-managed devices. The administrator claimed it was possible to launch programs within the context of an existing user session and interact with applications left open before the device was locked.
+However, these initial reports do not establish that the vulnerability affects every Windows 11 PC or that all claimed capabilities work across different configurations.
+The BitLocker implications are particularly significant for gaming laptops and other portable Windows PCs. BitLocker protects stored information through drive encryption, helping prevent unauthorized access when a computer is lost or stolen.
+FastUnlock does not appear to break BitLocker’s encryption algorithms or reveal the encryption keys directly. Instead, the reported attack targets a running Windows environment where the encrypted system drive has already been unlocked during normal startup.
+If an attacker can execute software inside that environment without authenticating, some of the practical protections users expect from the combination of BitLocker and the Windows lock screen could be undermined.
+The distinction matters because a successful lock-screen bypass is not necessarily equivalent to decrypting a powered-off BitLocker drive. The disclosed technique concerns unauthorized access through an active Windows session, rather than a demonstrated cryptographic defeat of BitLocker itself.
+Naceri identifies two important requirements: an attacker must have physical access to the computer, and at least one Windows account must be connected to an online Microsoft account. The researcher has specifically tested Windows 11 26H2 but has not established whether the same behavior affects Windows 10 or other Windows 11 releases.
+For PC gamers, the most relevant scenario involves a gaming laptop left unattended in a shared space, taken while locked, or stolen while Windows remains running. Depending on the affected configuration and the attacker’s resulting privileges, personal documents, saved application sessions and locally stored information could potentially be exposed.
+The disclosure arrives amid Microsoft’s continuing efforts to strengthen Windows 11 security. The company’s recent 
+expansion of Memory Integrity protections
+ addresses a different category of system-level threats and should not be confused with a fix for this lock-screen vulnerability.
+As of the November 19 disclosure, no Microsoft security advisory, assigned CVE identifier or confirmed patch specifically addressing FastUnlock had been identified. There is also no verified evidence establishing widespread exploitation of this particular vulnerability in real-world attacks.
+Until its scope is clarified, owners of Windows gaming laptops and other portable PCs should prioritize physical security, avoid leaving devices unattended while signed in, and fully shut down sensitive systems before transporting or storing them in potentially insecure locations. Keeping Windows updated remains important, although existing updates should not be assumed to resolve this newly reported issue.
+The original research establishes a credible basis for investigating the lock-screen flaw, but the full extent of its impact, affected Windows versions and potential BitLocker-related consequences remain subject to further independent testing and Microsoft’s response.
+
+===== https://kyberkit.com/en/articles/windows-fastunlock-zero-day-narrator-lock-screen-reported
+(status 200)
+Key points
+According to Security Affairs and the author's README, the bug is in the redesigned Narrator, which runs as the WsiAccount user on the lock screen; the attack starts from the "I forgot my PIN" option.
+Requirements: physical access and an account linked to a Microsoft account. Microsoft has not commented; there is no CVE and no patch.
+According to 
+Security Affairs
+, the researcher Chaotic Eclipse published a write-up of a flaw called 
+FastUnlock
+ on GitHub on 19 November 2026. It is the same author who released the 
+SignDrop exploit
+ a week earlier.
+What we know
+According to the 
+author's README
+, the bug sits in the redesigned 
+Narrator
+. On the lock screen it runs as the WsiAccount user, and the author says the new interface was not built with that in mind.
+The author claims an attacker can run code on the lock screen and get past 
+BitLocker
+, and says they got into an encrypted machine in about five minutes.
+Requirements: 
+physical access
+ to the computer and at least one account linked to a 
+Microsoft account
+.
+Tested on Windows 11 26H2 with the November updates. The author has not tried Windows 10 or older builds.
+What we don't know
+According to Security Affairs, Microsoft has not commented. There is no CVE, no patch, and no independent confirmation. Everything above is the author's claim.
+What to do now
+Don't leave a laptop unattended
+ while it is locked or asleep - in a hotel, a car or the office.
+On sensitive devices consider 
+BitLocker with a pre-boot PIN
+ and 
+shutting down instead of sleeping
+. As described, the attack starts at the lock screen, which a powered-off machine with a pre-boot PIN never reaches. Pick a PIN longer than the default six digits - our 
+Hello Again article
+ explains why.
+Watch the December Patch Tuesday; we will add the fix here.
+Sources
+Security Affairs - Chaotic Eclipse Releases FastUnlock, a New Windows Zero-Day Vulnerability (19 Nov 2026)
+GitHub - MSNightmare/FastUnlock (author's README)
+Spotted a mistake? 
+Let us know
+ and we will correct it openly.
+Related
+Actively exploited
+Webworm hides inside government networks with a modified SoftEther VPN Bridge instead of malware
+Rapid7 researchers published an analysis on 19 November 2026 of a tool they link to Webworm, a China-aligned group that targets government organisations, mainly in Europe. It is not classic malware but a rebuilt open-source SoftEther VPN Bridge that connects the attacker's network to the victim's internal network while posing as monitoring software. Antivirus products barely detect it.
+Security news · 
+19 November 2026
+News
+Hello Again: an attacker holding your PC can bypass the TPM lockout and guess short Windows Hello and BitLocker PINs
+On 13 November 2026, researchers at Technische Universität Berlin published “Hello Again”. They show that on many AMD PCs and some Intel PCs, someone who opens the case can roll back the firmware TPM's wrong-guess counter. A four-digit Windows Hello PIN then falls in roughly 40 hours instead of 69 days. The defence is simple: a longer PIN.
+Security news · 
+18 November 2026
+Critical
+Chrome 158 ships 204 security fixes: six critical flaws, two of them reaching outside the sandbox
+Google promoted Chrome 158 to the stable channel on Tuesday 17 November 2026 with 204 security fixes. Chromium rates six of the bugs as critical, and according to their NVD records two of them let an attacker run code outside the browser sandbox simply by getting the victim to open a crafted page. Google does not report any exploitation. The update rolls out gradually, so trigger it manually and restart the browser.
+Security news · 
+18 November 2026
+ · 
+CVSS 9.6

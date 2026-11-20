@@ -1,0 +1,387 @@
+===== https://www.itmedia.co.jp/aiplus/article/2611/20/2000003353/
+(status 200)
+Share
+印刷する
+Antigravityを他社AIから操作すると「垢BAN」？　注意点をGoogle Cloud日本法人に聞いた
+公開
+2026年11月20日 08時15分
+著者
+村田知己
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+　「Google Antigravity」（以下、Antigravity）をサードパーティのAIツールを介して利用すると規約違反でアカウント停止の可能性――米Googleが定めたこのような規約が話題だ。一部のユーザーの間ではAntigravityをヘッドレスで起動できる「agy -p」コマンドなどの利用で「Googleアカウント全体が停止されてしまうのでは」という懸念が広がり、有志のXユーザーが状況を整理したポストの表示回数は49万回に達している。
+Xユーザー、金のニワトリ氏が整理した内容（同氏の許諾を得て掲載）
+　本稿では、公開されている規約とグーグル・クラウド・ジャパンへの取材を基に、ユーザーが注意すべきポイントを整理する。
+「個人向けプランでは」他社AI経由の利用に要注意
+　話題となっている規約「
+Google Antigravity 追加利用規約
+」の6条では「サードパーティのソフトウェア、ツール、またはサービスを使用して本サービスにアクセスすること（例：OpenClawをAntigravity OAuthとともに使用すること）は、本契約の違反となります」と記載されており、「このような行為は、お客様のAntigravityアカウントおよび／またはGemini CLIアカウントの停止または終了の理由となる場合があります」とされている。Googleはその理由について、Antigravity公式の
+FAQ
+で「正規の製品ユーザーのエクスペリエンスを著しく低下させる」ためとしている。
+　グーグル・クラウド・ジャパンに詳細を確認したところ、この規約は個人ユーザー向けのものであり、FAQに書かれている「正規の製品ユーザー」とは主に法人向けプランユーザーのことだという。個人向けの無料プランまたは比較的安価な「Google AI Pro」プランにおいて、サードパーティツール経由でAntigravityを「不正利用・過剰利用するユーザーが現れると、システム全体のキャパシティが圧迫され、法人向けプランユーザーのエクスペリエンスを著しく低下させる恐れがある」（同社）とのこと。
+　上記の理由から、グーグル・クラウド・ジャパンは「コンシューマー版Antigravityをご利用の際は、サードパーティのソフトウェア、ツール、またはサービスを使用して本サービスにアクセスすることをお控えください」と注意を促し、法人向けプランを通じてAntigravityを使用する際は別の利用規約が適用されるため、コンシューマー向け規約に基づくアカウント停止措置は発生しないとしている。
+ユーザーに求められる対応
+　では、ユーザーはどのようにAntigravityを利用すれば“安全”なのか。
+　まず、個人向け「Google AI」プランユーザーは、他社のAIエージェントからAntigravity CLIをヘッドレスで起動するなど、サードパーティツールからAntigravityを利用することを避ける必要がある。規約違反が確認された場合「Antigravityアカウント」の停止につながるとされる一方、XではGoogle DeepMindでAntigravityの開発を担当するヴァルン・モハン氏が日本のユーザーに対して「Googleアカウントに影響することはない」と発言している。
+金のニワトリ氏に対する、Google DeepMind担当者の発言
+　Googleは、Antigravity CLIのヘッドレスモードが「直接のスクリプト実行とCI（継続的インテグレーション）ワークフロー向けに設計されている」とし、サードパーティのコーディングエージェントなどで「Gemini」を利用する際は「Gemini Enterprise」や「Google AI Studio」で発行したAPIキーを利用するよう勧めている。
+　一方、法人向けプランユーザーには今回話題になっている規約は適用されず、
+Google Cloud
+や
+Gemini Enterprise
+の規約が適用される。
+　筆者が確認した限りではこれらの規約に「サードパーティツール経由でのAntigravityの利用」に関する記載はないが、Google Cloudの「Service Specific Terms」内「Service Terms」19条には「サードパーティのAIエージェントの使用に起因する一切の責任をGoogle Cloudが否認する」とある。また、「AI／MLサービスにアクセスするサードパーティサービスに起因する一切の責任を否認する」ともされている。つまり、サードパーティのサービス経由でGoogle CloudのAIツールを使う場合、Google Cloudが損害などに対する責任を負うことはないものの、そういったユースケース自体は想定されているということだ。
+　Antigravityにおいては、あくまで法人向けプランユーザーが「正規の製品ユーザー」であるため、サードパーティツール経由での利用が認められないとする強い根拠はなさそうだ。ITmedia AI＋は現在、法人プランにおいてサードパーティツール経由でのAntigravity利用が認められるのかどうか、グーグル・クラウド・ジャパンに再度確認を取っている。回答があり次第、本稿に追記する予定だ。
+　現在、Googleの新モデル発表が相次ぎ、その性能の高さが話題となっている。これに伴ってAntigravityのユーザーも増えているだろう。本稿の内容も参考に、自身の契約プランとユースケースを今一度確認してほしい。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+個人プランユーザー向けのAntigravity利用規約
+Antigravityに関するFAQ
+Google Cloudの個別サービス規約
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia AI＋メールマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+この記事の著者
+村田知己
+ITmedia AI＋ 編集記者。市場調査会社でのエンジニア職を経て、2022年アイティメディア入社。キーマンズネット編集部、社内のデータ分析基盤構築担当、ITmedia エンタープライズ編集部を経て現職。
+関連記事
+Google、わずか2カ月で4つ目のモデル公開「Gemini 4 Neon」　一部「Fable同等」性能をコスト半分で
+「Gemini 4 Hydrogen」とは　性能とユースケースまとめ　Googleの「誰でも使える」最新モデル
+Googleの「最強」モデル「Gemini 4 Carbon」一般提供開始　Antigravityでのマルチエージェントチーム編成機能も
+Special
+PR
+こんなメディアも見られています
+        ITmedia AI＋に関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+ジェンスン・フアン氏退任は「NVIDIAバブル崩壊」の序章か？　どうなる今後の半導体業界
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+Special
+PR
+よく見られているカテゴリー
+意思決定支援
+研究動向
+アクセスランキング
+1
+さよなら「Claude Code」　人気AIに愛想を尽かしたエンジニアの意外な移行先：906th Lap
+2
+Antigravityを他社AIから操作すると「垢BAN」？　注意点をGoogle Cloud日本法人に聞いた
+3
+なぜ中国はヒューマノイドを量産するのか　突き動かす「焦り」と足踏みの正体
+4
+ChatGPT「Plus」プラン一部ユーザーに「dots」解禁　「Business Standard」全ユーザーにも
+5
+孫正義氏が明かす、アンソロピック出資見送りの舞台裏　「僕の失敗」「あん時入れときゃよかった」
+6
+「オントロジー」とは結局何なのか　Palantir、Databricks、Snowflake、NVIDIAで中身が違う理由
+7
+孫正義氏が「墓石に刻んでほしい」と明かした言葉　流した涙、もう「時間との勝負」やり残したことは？
+8
+コマツ油機開発センタが挑む設計プロセス改革、ナレッジ検索／整備に生成AI活用
+9
+Mac版「Gemini」にユーザーの代わりにアプリを操作する「computer use」機能追加　まず米国で
+10
+「e-F@ctory」から次の進化へ、三菱電機が描くAI主体の自律型工場
+ もっと見る 
+Special
+PR
+    ITmedia AI＋ SNS
+        @itm_aiplusをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmedia AI＋をフォロー
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
+
+===== https://ai-garage.jp/news/antigravity-ban-third-party-tools/
+(status 200)
+この記事の要点
+Google Antigravity の追加利用規約は、他社のソフト・ツール・サービスから Antigravity を使うこと（例：OpenClaw に Antigravity のログインを使わせる）を規約違反とし、Antigravity と Gemini CLI のアカウントの停止・終了の理由になりうると書いている
+止まるのは Antigravity の利用だけで、Google アカウント全体には影響しないと、Google DeepMind で Antigravity を担当するヴァルン・モハン氏が2026年11月17日（日本時間）に X で答えた
+この規約が効くのは無料・Google AI Pro・Ultra などの個人プラン。Gemini Enterprise など法人の契約で使う場合は管理者が結んだ別の規約になり、個人向け規約による停止は起きないと、グーグル・クラウド・ジャパンが ITmedia に答えた
+他社のコーディングエージェントで Gemini を使いたいなら、Google は Google AI Studio か Gemini Enterprise の API キーを勧めている。API の料金は Gemini 4 Neon で入力100万トークンあたり $3・出力 $15（無料枠なし）
+やっほー、ぼくてんびん丸！
+Google の AI コーディング道具「Antigravity」を、ほかの会社のツールから使うと「垢BAN」される
+——そんな話が X で広がっているよ。結論から言うと、
+個人プランで他社ツールから Antigravity のログインを使うのは規約違反で、止められるのは Antigravity（と Gemini CLI）のアカウント
+。Google アカウントまるごとではない、と担当者が答えているんだ。どこまでが OK で、どこからが NG なのかを表で整理するね。
+何があったの？
+話の発端は、
+Google Antigravity の追加利用規約
+にある次の1文だよ（ぼくの訳）。
+他社のソフトウェア・ツール・サービスを使って本サービスにアクセスすること（例：OpenClaw を Antigravity の OAuth＝ログインの仕組みとともに使うこと）は、本契約の違反です。こうした行為は、きみの Antigravity および／または Gemini CLI のアカウントの停止または終了の理由になりえます。
+公式の FAQ にも、
+「Claude Code・OpenClaw・OpenCode などの他社のソフトを Antigravity のログインで使えないのはなぜ？」
+ という問いがあって、「規約違反で、正規の製品ユーザーの体験を大きく下げるから。アカウントの停止・終了につながることがある」と答えているよ。
+日本では、Antigravity をヘッドレス（画面なし）で動かす 
+agy -p
+ を使っている人の間で「Google アカウントごと止められるのでは」と心配が広がったんだ。流れを日本時間で並べるとこうなるよ。
+日時（日本時間）
+できごと
+11月16日 18時47分
+X ユーザーの金のニワトリ氏（@gosrum）が、規約と Google 担当者の説明を整理したポストを投稿。約49.6万回表示された（11月20日確認）
+11月17日 5時08分
+Google DeepMind で Antigravity を担当するヴァルン・モハン氏が、そのポストに「Antigravity の使い方による措置は Google アカウントに影響しない。Antigravity に限られる」と返信
+11月20日 8時15分
+ITmedia AI＋ が、グーグル・クラウド・ジャパンへの取材で「この規約は個人ユーザー向け」と報道
+モハン氏の返信がこれだよ。
+Hey, any actions based on Antigravity usage will not affect your Google account. It’s limited to Antigravity.
+— Varun Mohan (@_mohansolo) 
+2026年11月16日
+グーグル・クラウド・ジャパンは ITmedia の取材に、
+FAQ の「正規の製品ユーザー」は主に法人向けプランのユーザーのこと
+で、無料や Google AI Pro の個人ユーザーが他社ツール経由で使いすぎると、システム全体が圧迫されて法人ユーザーの体験が落ちるおそれがある、と説明したよ。そのうえで「個人向けの Antigravity では、他社のソフト・ツール・サービスからのアクセスは控えてほしい」と呼びかけているんだ。
+Antigravity とは？
+Google Antigravity は、Google が作った AI のコーディング道具一式だよ。
+ アプリ・CLI（ターミナルで動く版、コマンド名は 
+agy
+）・IDE・VS Code や JetBrains 向けの拡張・Python の SDK があって、どれからでも Gemini などのモデルに「コードを書いて」「直して」「確かめて」と任せられる。
+たとえるなら、
+Google が貸してくれる「AI の作業部屋」の会員証
+みたいなもの。会員証で自分が部屋を使うのは自由だけど、その会員証を別の会社の道具に渡して、勝手に部屋を使わせるのは会員規約で禁止、というイメージだね。
+きみの使い方で変わるのは、
+「Antigravity の利用枠を、Claude Code や OpenCode などの別の道具から使う」やり方が個人プランではできない
+ことだけ。Antigravity のアプリや CLI を自分で使うぶんには、何も変わらないよ。
+利用枠はプランで違って、無料は週ごとに戻る基本の枠、
+Google AI Pro（月2,900円）
+ は5時間ごとに戻る多めの枠（週の上限まで）、
+Ultra
+ はいちばん多い枠になっている（Antigravity の Plans ページ）。
+どこまで OK？どこから NG？
+公式の規約・FAQ・ドキュメントに書かれていることを、使い方ごとに並べたよ。どれも
+個人プラン
+（無料・AI Pro・Ultra）での話だよ。
+使い方
+個人プランでは
+公式の根拠
+Antigravity のアプリ・IDE・CLI を自分で操作する
+OK
+公式の使い方そのもの
+VS Code・JetBrains などの公式拡張から使う
+OK
+ドキュメントに公式拡張の案内がある
+Zed・JetBrains・Xcode などのエディタから ACP（エディタと AI をつなぐ共通の仕組み）で 
+agy acp
+ を使う
+OK
+ドキュメントがエディタごとの設定手順を載せている
+自分のスクリプトや CI（自動テストの仕組み）で 
+agy -p
+ を動かす
+OK
+ヘッドレスモードは「直接のスクリプト実行と CI 向け」と書いている
+Claude Code・OpenCode・OpenClaw などに Antigravity のログインを使わせる
+NG
+規約違反。アカウントの停止・終了の理由になりうる
+他社のコーディングエージェントやアプリの中に 
+agy
+ を組み込んで動かす
+NG
+FAQ が「個人プランでは認めていない」と書いている
+複数アカウントを自動で切り替えて枠を回す
+NG
+同じ FAQ が「個人プランでは認めていない」と書いている
+Gemini Enterprise など法人の契約で使う
+別の規約
+管理者が結んだ規約が適用される。グーグル・クラウド・ジャパンは「個人向け規約による停止は起きない」と回答
+グレーなのは、T3 Code のような「別の会社のエージェント用アプリ」から ACP で Antigravity を呼ぶ使い方
+だよ。公式ドキュメントが ACP の相手として名前を挙げているのは
+エディタ
+で、こうしたアプリを認めるとも禁じるとも書いていない。X では「公式アプリをそのまま使うので問題なし」という声と「規約的にグレーかも」という声の両方があるんだ（11月20日時点）。不安なら、次の節の API キーに切り替えるのが確実だよ。
+法人の契約についても、ITmedia によると Google Cloud の規約には「他社ツール経由の Antigravity の利用」を禁じる記載は見当たらず、法人プランで認められるかは ITmedia が改めて問い合わせ中なんだ。
+他社ツールで Gemini を使いたいときは？
+Google の公式 FAQ は、
+他社のコーディングエージェントで Gemini を使うなら、Google AI Studio か Gemini Enterprise の API キーを使う
+ように勧めているよ。API キーなら使ったぶんだけ払う従量課金なので、規約の心配はなくなる。
+当サイトで記録している API の料金（
+Gemini のモデル情報
+）だと、こうなるよ。
+モデル
+入力（100万トークンあたり）
+出力（100万トークンあたり）
+無料枠
+Gemini 4 Neon
+$3
+$15
+なし
+Gemini 4 Hydrogen
+$1.50
+$7.50
+あり
+Google Workspace の仕事用アカウントでも、自分の Google Cloud のプロジェクトで「Pay As You Go（使ったぶん払い）」を選べば、トークン単位で払って Antigravity を使えるよ（公式 FAQ）。
+もし止められたら？
+公式の規約が書いている停止の範囲は「
+Antigravity および／または Gemini CLI のアカウント
+」で、モハン氏も「Google アカウントには影響しない」と答えている。Gmail や Google ドライブまで使えなくなる、という話ではないんだ。
+ただ、注意点が2つあるよ。
+Google の共通の利用規約
+には、重大な違反や繰り返しの違反でアカウント全体を止められる決まりが別にある。金のニワトリ氏も「Google アカウント全体の停止リスクがゼロになったわけではない」と書いている
+停止の解除の手順は、公式の規約にも FAQ にも書かれていない
+（11月20日確認）。規約が案内している問い合わせ先は、Antigravity の公式フォーラム（discuss.ai.google.dev）だよ
+Antigravity の評判は？Xの反応
+11月20日時点の X では、
+Antigravity そのものには「相性がいい」「利用枠が別なのが助かる」と良い声がある
+一方で、
+規約の件には「Google の説明が納得できない」「どこまでが違反か分からず怖い」という不満
+が集まっているよ。
+Claude Code や Codex も使っているけれど、Antigravity だけは異常に相性がいい、という声だよ。
+私にとってAntigravityは、すでにVS Codeの進化形なんですよね。
+Claude CodeもCodexも使っていますが、なぜかAntigravityだけは異常に相性がいい。
+他では原因不明のところで引っかかる作業も、Antigravityでは驚くほどスムーズ。ハルシネーションも体感的に少ない。…
+— HASHI (@HASHI25522553) 
+2026年11月20日
+Gemini のチャットの枠と Antigravity の枠が別扱いなのが助かる、Ultra の人には使い勝手が一気に上がりそう、という声。
+通常チャット枠とAntigravityのクォータが別腹扱いになってるのめちゃくちゃ助かりますよね(・ω・´) Ultra勢の使い勝手一気に跳ね上がりそうです！
+— よぞら。 (@lovelessx0911) 
+2026年11月19日
+一方で、「個人ユーザーは正規ユーザーではない」と言っているように読める Google の説明に、納得できないという声もあったよ。
+なにこれ？個人ユーザーは非正規ユーザーだと言いたいわけ？まじでこれGoogleが言ったんだとしたら凄いな。
+そもそもサードパーティ経由でAntigravityを使うのが不正利用なのは、そう言う規約だからだし、過剰利用も正規枠内の話だし、説明になってなくね？ 
+https://t.co/AREQOWFCMC
+pic.twitter.com/Ee16r4g4We
+— NAKAMURA Atsushi (@nuits_jp) 
+2026年11月20日
+ほかにも、「
+agy -p
+ を人間が打つのと他のエージェントが打つので何が違うのか分からないと、安心して使えない」「Gemini 4 Neon を使いたいけど、ほかのツールで無理に使って垢BANされるのは怖い」という声が多かったよ。11月20日時点で、実在を確認できたXのポストから選んだよ。
+ぼくの見解
+ぼくがいちばん大事だと思うのは、
+「何が止まるか」と「何がだめか」がやっと公式の言葉でそろった
+ことだよ。止まるのは Antigravity と Gemini CLI だけ、だめなのは「他社ツールにログインを使わせる」「他社エージェントに agy を組み込む」「アカウントの自動切り替え」の3つ。自分で使うぶんには何も気にしなくていい。
+そのうえで、なぜ Google がここまで厳しいのかは、料金を見ると想像がつく気がする。
+Google AI Pro は月2,900円の定額
+で、5時間ごとに枠が戻る。一方で、同じ Gemini 4 Neon を API で使うと、
+出力100万トークンで $15
+（当サイトの
+料金の記録
+）。他社のエージェントに休みなく回させると、定額の枠で API の何倍ものトークンを使えてしまう。法人ユーザーの体験が落ちる、という Google の説明の裏には、この差があるのかもしれないね。
+ただ、「正規の製品ユーザー＝主に法人」という言い方は、お金を払っている AI Pro・Ultra の人には引っかかるのも分かるよ。
+グレーな部分（他社のエージェント用アプリからの ACP など）を公式がはっきりさせない限り、こわごわ使う人は減らない
+と思う。
+まとめ
+個人プランで、
+他社ツールに Antigravity のログインを使わせる・他社エージェントに 
+agy
+ を組み込む・アカウントを自動で切り替える
+のは規約違反。止められるのは Antigravity と Gemini CLI のアカウント
+アプリ・CLI・公式拡張・エディタの ACP・自分のスクリプトの 
+agy -p
+ は OK
+法人の契約は別の規約。他社ツールで Gemini を使いたいなら 
+API キー（従量課金）
+ が確実
+規約は「会員証を他人の道具に貸さない」というだけの話
+だよ。自分の手で使うぶんには、Antigravity はちゃんと頼れる作業部屋なんだ。迷ったら API キー、と覚えておいてね！
+よくある質問
+Q.
+Antigravity とは？
+A.
+Google Antigravity は、Google が作った AI のコーディング道具一式。アプリ・CLI（ターミナルで動く版）・IDE・各エディタ向け拡張があり、Gemini などのモデルに、コードを書く・直す・確かめる作業を任せられる。無料プランと、Google AI Pro・Ultra の加入者向けの多い利用枠がある。
+Q.
+Antigravity を他社ツールから使うと垢BANされる？
+A.
+個人プランでは、そのおそれがある。追加利用規約は、Claude Code・OpenCode・OpenClaw などの他社のソフトから Antigravity のログインで使うことを規約違反とし、Antigravity と Gemini CLI のアカウントの停止・終了の理由になりうると書いている（2026年11月20日確認）。
+Q.
+Antigravity で停止されると Google アカウントも止まる？
+A.
+Google DeepMind で Antigravity を担当するヴァルン・モハン氏は、2026年11月17日（日本時間）に X で「Antigravity の使い方による措置は Google アカウントに影響しない。Antigravity に限られる」と答えた。ただし Google の共通の利用規約には、重大な違反でアカウント全体を止められる決まりが別にある。
+Q.
+agy -p（ヘッドレスモード）は使ってはいけない？
+A.
+自分のスクリプトや CI（自動テストの仕組み）で使うのは、公式が想定している使い方。だめなのは、agy を他社のコーディングエージェントやアプリの中に組み込んで動かすことと、複数アカウントの自動切り替えで、公式 FAQ は個人プランでは認めていないと書いている。
+Q.
+Antigravity の評判は？
+A.
+2026年11月20日時点の日本語の X の反応では、「ほかのコーディング AI より相性がいい」「チャットと別の利用枠なのが助かる」という声がある一方、規約の件では「個人ユーザーは正規ユーザーではないのか」「どこまでが違反か分からず安心して使えない」という不満が目立った。
+参考・一次ソース
+→ Google Antigravity Additional Terms of Service（他社のソフト・ツール・サービスでの利用は規約違反で、Antigravity と Gemini CLI のアカウントの停止・終了の理由になりうる。2026-11-20 確認） 
+→ Google Antigravity Docs：FAQ（Claude Code・OpenClaw・OpenCode でのログイン利用、agy -p を他社エージェントに組み込む使い方、アカウントの自動切り替え。2026-11-20 確認） 
+→ Google Antigravity Docs：Headless mode（agy -p はスクリプトと CI 向け） 
+→ Google Antigravity Docs：Other editors (ACP)（Zed・JetBrains IDE・Android Studio・Xcode などのエディタから使う手順） 
+→ Google Antigravity：Plans（無料・Google AI Pro・Ultra の利用枠の戻り方） 
+→ ITmedia AI＋：Antigravityを他社AIから操作すると「垢BAN」？　注意点をGoogle Cloud日本法人に聞いた（2026年11月20日） 
+この記事に出てきた用語・モデル
+用語をやさしく解説
+AIエージェント
+Agentic Coding
+APIキー
+利用上限（メッセージ上限）
+関連 AI モデル
+Gemini
+まとめて読む
+このテーマの動きは、時系列で1ページに整理しています。
+ Gemini の2026年アップデートまとめ →
+この記事をシェア
+Xでシェア
+はてなブックマークに追加
+URLをコピー
+出典つき引用文をコピー
+引用文は「『タイトル』 - ai-garage.jp URL」の形でコピーされます。出典として URL を残したまま貼れます。
+関連記事
+2026/10/13
+Gemini Agent は日本でいつから？企業向けで Enterprise なら追加料金なし
+2026/11/19
+Gemini 4 Neon とは？速いのに総合3位、12月からCarbonより安い新モデル
+2026/11/13
+Gemini 4 Hydrogen が登場！無料でも使える？料金と3.8 Flashとの違い
+2026/11/6
+Gemini Omni 1.2 Flash 登場！動画は15秒に、無料で月何本作れるかも整理
+
+===== https://antigravity.google/terms
+(status 200)
+Google Antigravity Additional
+Terms of Service
+If you are accessing the Service through 
+Gemini Enterprise (Google Cloud)
+, 
+Gemini Enterprise for Business
+ or a Google Workspace subscription on the Google Cloud Pre-GA Offering Terms, or with an API Key in Gemini for business, then you are subject to the terms of use accepted or signed by your administrator applicable to such service (including its applicable terms for downloadable software).
+BY DOWNLOADING, INSTALLING, OR OTHERWISE ACCESSING OR USING THE GOOGLE ANTIGRAVITY SERVICES (HEREIN REFERRED TO AS THE “SERVICE”), YOU AGREE THAT YOU HAVE READ AND UNDERSTOOD, AND, AS A CONDITION TO YOUR USE OF THE SERVICE, YOU AGREE TO BE BOUND BY, THE FOLLOWING TERMS AND CONDITIONS:
+The following documents govern your use of the Service:
+a. the 
+Google Terms of Service
+ (the “Universal Terms”);
+b. these Google Antigravity Additional Terms of Service (the “Google Antigravity Terms”); and
+c. the 
+Google Privacy Policy
+ (the “Privacy Policy”).
+Please read each of the above documents carefully, starting with the Universal Terms. Collectively, we refer to the Universal Terms the Google Antigravity Terms, and the Privacy Policy as the “Agreement.” This Agreement is a binding contract between you and Google regarding your use of the Service. If you do not agree to all Agreement terms, do not use the Service.
+When you use the Service, we record and store your user data, interaction data pertaining to your usage of the Service, related metadata connected to the Service, and any feedback you provide (“Interactions”). Such data may be aggregated over multiple users, and will be collected only when you have the Service running. You will have the option to delete your Interactions. If you would like to request that your Interactions be deleted, you can email 
+antigravity-support@google.com
+. When using the Remote Agents feature, you will also be able to delete your data at any time by navigating to your settings. Note that such Interactions will be used in accordance with the terms of this Agreement unless and until you request deletion in accordance with the previous sentence.
+The Service includes goal-oriented AI systems or workflows that perform actions or tasks on your behalf in a supervised or autonomous manner that you may create, orchestrate, or initiate within the Service (“AI Agents”). You are solely responsible for: (a) the actions and tasks performed by an AI Agent; (b) determining whether the use an AI Agent is fit for its use case; (c) authorizing an AI Agent’s access and connection to data, applications, and systems; and (d) exercising judgment and supervision when and if an AI Agent is used in production environments to avoid any potential harm the AI Agent may cause.
+We use Interactions to evaluate, develop, and improve Google and Alphabet research, products, services and machine learning technologies.
+ Interactions are collected and used in accordance with this Agreement and the Privacy Policy. Google employees and contractors may access, view, review and use Interactions. Please don’t submit confidential information or any data you wouldn’t want a reviewer to see or Google to use to improve our products, services and machine-learning technologies. If you don’t want your Interactions used in this way, navigate to settings to change your preference on how such data is used. Even when your Telemetry is toggled off, Google still uses your data to provide the service, process any feedback and help keep Antigravity safe.
+You must not abuse, harm, interfere with, or disrupt the Service. This includes, but is not limited to, using the Service in connection with products not provided by us. Using third party software, tools, or services to access the Service (e.g. using OpenClaw with Antigravity OAuth) is a breach of this Agreement. Such actions may be grounds for suspension or termination of your Antigravity and/or Gemini CLI accounts.
+We may permit you to use our contextual auxiliary files that help the Service perform chain of thought and agentic tasks more effectively (“AGY Skill(s)”). We make no warranties or guarantees regarding the AGY Skills. You are solely responsible for: (a) determining whether the use of an AGY Skill is fit for its use case; and (b) exercising judgment and supervision when and if an AGY Skill is used in production environments to avoid any potential harm the AGY Skill may cause.
+If you select a third party or open source model as your main agent model, you will be subject to the terms of that model. For Anthropic specifically, you agree to be bound by its terms and conditions found at 
+https://www.anthropic.com/legal/commercial-terms
+.
+Enterprise or other signed or accepted terms do not apply to the use of the Antigravity Marketplace within the Service.
+Please reach out on 
+https://discuss.ai.google.dev/c/antigravity/64
+ with any questions or suggestions.
