@@ -1,0 +1,378 @@
+[
+ {
+  "id": "ai-signal-mobile-ai-screen-privacy",
+  "category": "ai",
+  "title": "Signal、スマホでAIの画面読み取りを制限",
+  "summary": "メッセージ画面の撮影を制限し、端末のAIに会話が渡る経路を減らします。",
+  "image": {
+   "src": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/protecting-your-privacy-1.png?quality=90&strip=all&crop=0%2C3.8035109331691%2C100%2C92.392978133662&w=1200",
+   "kind": "ogp",
+   "credit": "Signal",
+   "page": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app"
+  },
+  "visual": {
+   "icon": "lock",
+   "kicker": "会話の保護"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "メッセージアプリのSignalが、スマホのアプリ内でスクリーンショットを制限します。",
+     "対象はiOS 27とAndroidで、SiriやGeminiによる画面の読み取りを抑えます。",
+     "画面を撮る必要があるときは、Signalの設定から制限を解除できます。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "11月20日、Signalがスマホに組み込まれたAIから会話を守る対策を明らかにしました。"
+   },
+   {
+    "type": "h",
+    "text": "対象はスマホのアプリ内"
+   },
+   {
+    "type": "p",
+    "text": "対象はiOS 27とAndroidの2系統です。Signal内のスクリーンショットが制限されます。SiriやGeminiなどが画面経由で会話を読み取るのを防ぐ狙いです。Signalは、端末のファイルを直接読む経路には対策が及ばないと説明しました。"
+   },
+   {
+    "type": "h",
+    "text": "制限を解除するときの影響"
+   },
+   {
+    "type": "p",
+    "text": "スクリーンショットが必要なら、Signalのアプリ設定から制限を解除できます。Signalのメレディス・ウィテカー代表は、解除すると相手のメッセージもAIに渡りうると警告しました。"
+   },
+   {
+    "type": "h",
+    "text": "先行したパソコンの対策"
+   },
+   {
+    "type": "p",
+    "text": "Signalは昨年、MicrosoftのRecallにも同様の対策を取りました。Recallは、表示した画面を記録して後から探せる機能です。Signalは、現時点でmacOSに同じ保護を実装できていません。"
+   },
+   {
+    "type": "h",
+    "text": "開発元に求める今後の対応"
+   },
+   {
+    "type": "p",
+    "text": "SignalはAppleやGoogleなどに、アプリ側でAIのアクセスを制限する手段を求めています。今回の対策に追加料金がかかるかは明らかにされていません。日本での提供や日本語対応は発表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "iOS 27",
+      "label": "対象のiOS"
+     },
+     {
+      "value": "2系統",
+      "label": "対策の対象となるOS"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "スマホでSignalを使う人は、アプリの設定で画面撮影の制限を確認できます。",
+     "撮影のために制限を解除するときは、相手の会話もAIが読み取れる可能性を考慮してください。",
+     "MacでSignalを使う人は、スマホと同じ保護が使えるか今後の案内を確認できます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "会話の途中で別のアプリのAIを使うときも、画面の情報は会話相手と共有したものです。画面を守る設定がアプリごとにあると、端末全体の便利さと会話の扱いを自分で調整しやすくなります。"
+   }
+  ],
+  "source_name": "The Verge",
+  "source_url": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app",
+  "published": "2026-11-20",
+  "refs": [
+   {
+    "name": "The Verge",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app"
+   }
+  ]
+ },
+ {
+  "id": "ai-claude-riemann-proof-claim",
+  "category": "ai",
+  "title": "Claudeでリーマン予想の証明案、検証はこれから",
+  "summary": "素数の並び方を巡る難問に、Anthropic所属の数学者が解答を提示しました。",
+  "visual": {
+   "icon": "doc",
+   "kicker": "数学の難問"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Anthropic所属の数学者が、Claudeを用いてリーマン予想を証明したと主張しています。",
+     "1859年に提起された代表的な難問で、研究者による独立した検証はこれからです。",
+     "証明案は、論理の各段階をコンピューターで確認できる形式で公開されました。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "米The Vergeは日本時間11月21日、リーマン予想の証明案が出たと報じました。数学者のLevent Alpöge氏がClaudeを使ってまとめた案です。"
+   },
+   {
+    "type": "h",
+    "text": "素数の分布を巡る長年の難問"
+   },
+   {
+    "type": "p",
+    "text": "リーマン予想は1859年に提起されました。ある数式の値がゼロになる場所を調べると、素数がどのように分布するかを理解する手がかりになります。この予想は、クレイ数学研究所が選んだ7つのミレニアム懸賞問題の一つです。"
+   },
+   {
+    "type": "h",
+    "text": "数学者とClaudeの役割"
+   },
+   {
+    "type": "p",
+    "text": "Alpöge氏によれば、Claudeは証明の組み立てに欠かせない役割を果たしました。証明案は、論理の各段階をコンピューターで確かめられる言語のLeanで記述されています。Anthropicは8月、当時のClaudeの手法でこの問題を証明できる見通しはないと説明していました。"
+   },
+   {
+    "type": "h",
+    "text": "独立した検証と賞の条件"
+   },
+   {
+    "type": "p",
+    "text": "証明案は本人のサイトで公開され、独立した検証は済んでいません。研究所が賞の対象として検討するには、公開後に少なくとも2年の検証を経て、数学界の広い支持を得る必要があります。賞金は1問につき100万ドルです。これまでに研究所が正式に解決を認めたのは、ポアンカレ予想の1問です。"
+   },
+   {
+    "type": "h",
+    "text": "今回の発表と利用条件"
+   },
+   {
+    "type": "p",
+    "text": "Anthropicは今回の証明案について見解を示していません。同じ使い方ができるプランや料金は明らかにされていません。日本での提供や日本語対応は発表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "1859年",
+      "label": "リーマン予想の提起"
+     },
+     {
+      "value": "2年以上",
+      "label": "賞の検討に必要な検証"
+     },
+     {
+      "value": "100万ドル",
+      "label": "1問あたりの賞金"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "証明案を確かめたい人は、Alpöge氏が公開したLeanの記述を確認できます。",
+     "賞の認定を追う人は、今後のクレイ数学研究所の発表を確認できます。",
+     "Claudeを研究で使う人は、同じ使い方ができるプランが示されるか今後の案内を確認できます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "数学でAIを使うなら、結論に至る途中の式や前提を自分で確かめられる形にしておくと、どこを見直すべきかがわかります。証明案を検証できる形で共有する取り組みは、難問以外でも参考になります。"
+   }
+  ],
+  "source_name": "The Verge",
+  "source_url": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem",
+  "published": "2026-11-21",
+  "refs": [
+   {
+    "name": "The Verge",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem"
+   }
+  ]
+ },
+ {
+  "id": "ai-nvidia-microsoft-azure-rubin",
+  "category": "ai",
+  "title": "NVIDIAとMicrosoft、企業向けAI基盤を拡充",
+  "summary": "クラウドで新型の演算基盤が動き、企業が社内でAIを動かす選択肢も広がります。",
+  "visual": {
+   "icon": "chip",
+   "kicker": "業務のＡＩ"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "MicrosoftのクラウドでNVIDIAの新型AI演算基盤Vera Rubinが稼働しました。",
+     "企業は公開されたAIモデルを自社のデータに合わせ、業務用アプリに組み込めます。",
+     "企業向けクラウドPCでは、高精細な画面を滑らかに転送する機能を一部で試せます。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "NVIDIAは日本時間11月20日、Microsoftと企業向けAIの提供を広げると発表しました。新型の演算基盤がAzureで稼働しています。"
+   },
+   {
+    "type": "h",
+    "text": "クラウドで新型基盤が稼働"
+   },
+   {
+    "type": "p",
+    "text": "Microsoftのクラウド、AzureでVera Rubinを使う企業向けの試用枠を広げます。大規模なAIの学習や、複数の手順をこなす作業の代行に使う演算基盤です。これまでの共同開発では、前世代のBlackwellを使ってAIの学習性能を検証してきました。"
+   },
+   {
+    "type": "h",
+    "text": "業務に合わせてAIを調整"
+   },
+   {
+    "type": "p",
+    "text": "Microsoftの開発基盤Foundryでは、NVIDIAの公開モデルを扱う選択肢が増えます。企業は自社のデータでモデルを追加学習させ、用途に合わせて調整できます。調達記録の分類など、社内のルールに沿った判断をさせる使い方です。"
+   },
+   {
+    "type": "h",
+    "text": "社内の設備やPCでも処理"
+   },
+   {
+    "type": "p",
+    "text": "企業が社内の設備でAIを動かす環境にも、NVIDIAの公開モデルへの対応が広がります。文章やグラフ、表から回答の根拠を探す業務にも使えます。対応するWindows PC上でAIを直接動かす実演も予定しています。"
+   },
+   {
+    "type": "h",
+    "text": "クラウドPCで高精細表示"
+   },
+   {
+    "type": "p",
+    "text": "企業向けのWindows 365では、画面転送機能（Direct Stream）を一部の利用者が試せます。4Kの画面を最大2本、毎秒60コマで転送でき、公開試用は2027年初めの予定です。日本での提供や日本語対応は発表されていません。利用料金も明らかにされていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "最大2本",
+      "label": "同時に転送できる画面"
+     },
+     {
+      "value": "毎秒60コマ",
+      "label": "4K画面の転送"
+     },
+     {
+      "value": "2027年初め",
+      "label": "公開試用の予定"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "社内でAIを開発する担当者は、Azureと社内設備のどちらで処理するか比較できます。",
+     "Windows 365の管理者は、対象なら限定試用に申し込めます。",
+     "日本で導入を検討する組織は、料金と国内の提供条件が発表されてから判断できます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "仕事でAIを選ぶときは、回答の速さに加え、書類をどこで処理するかで使い道が変わります。部門ごとに持ち出せる資料が違う職場なら、処理する場所を選べると導入範囲を決めやすくなります。"
+   }
+  ],
+  "source_name": "NVIDIA",
+  "source_url": "https://blogs.nvidia.com/blog/microsoft-ignite-accelerated-computing-azure-windows-pcs/",
+  "published": "2026-11-20",
+  "refs": [
+   {
+    "name": "NVIDIA",
+    "url": "https://blogs.nvidia.com/blog/microsoft-ignite-accelerated-computing-azure-windows-pcs/"
+   }
+  ]
+ },
+ {
+  "id": "ai-meta-digital-brain-data-target",
+  "category": "ai",
+  "title": "Meta、公開脳データの目標を2万5000時間に拡大",
+  "summary": "個人を識別する情報を除いた研究データを共有し、人の知能や脳の健康を調べます。",
+  "image": {
+   "src": "https://about.fb.com/wp-content/uploads/2026/11/Highlights-From-the-Open-Source-AI-For-Science-Summit_Social-Share-1.jpg?w=1200",
+   "kind": "press",
+   "credit": "Meta",
+   "page": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/"
+  },
+  "visual": {
+   "icon": "ai",
+   "kicker": "科学とＡＩ"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Metaは、研究者が集めて公開する脳データの目標を1万5000時間から引き上げました。",
+     "病院財団や大学との共同事業で、データから個人を識別する情報を除いて共有します。",
+     "科学向けAIの発表会では、化学の授業で分子の変化を見せる教材も紹介しました。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Metaは日本時間11月21日、脳の研究データを集める事業の拡大を公表しました。事業名はDigital Brain Projectです。"
+   },
+   {
+    "type": "h",
+    "text": "脳データの収集目標を拡大"
+   },
+   {
+    "type": "p",
+    "text": "Metaはロスチャイルド病院財団、モントリオール大学と共同事業を始めました。研究者が脳データを集め、個人を識別する情報を除いて公開できるよう資金を出しています。収集目標は1万5000時間から2万5000時間に引き上げます。人の知能への理解を深め、脳や神経の健康を改善する方法を探る狙いです。"
+   },
+   {
+    "type": "h",
+    "text": "化学の反応を見せる教材"
+   },
+   {
+    "type": "p",
+    "text": "Metaは10月の米国での会合で、原子を模擬するAIの高速版（UMA Nitro）を公開しました。教材（UMA Playground）では、分子を組み立てて結合の変化を観察できます。Discovery Educationが高校の化学教員に教材と授業用ガイドを提供します。教材は料金が明らかにされておらず、日本での提供や日本語対応は発表されていません。"
+   },
+   {
+    "type": "h",
+    "text": "数学の検証を助ける資料"
+   },
+   {
+    "type": "p",
+    "text": "Metaの研究チームは、数学の公開資料集（ATLAS）も紹介しました。無料で読める教科書26冊を、コンピューターが論理の手順を確認できる形に書き直した資料です。定義や結果は4万5000件を超え、証明の出発点にできる知識をまとめています。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "1万5000時間",
+      "label": "脳データの従来目標"
+     },
+     {
+      "value": "2万5000時間",
+      "label": "脳データの新目標"
+     },
+     {
+      "value": "26冊",
+      "label": "数学資料の元の教科書"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "脳の研究に関わる人は、共同事業が公開するデータの内容を今後確認できます。",
+     "化学を教える人は、国内での利用条件が示されたら授業用ガイドの対象を確認できます。",
+     "数学を学ぶ人は、公開資料集でどの教科書を扱っているか確かめられます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "化学の授業では、分子の結合が変わる途中を何度も見られると、反応式だけでは浮かびにくい動きを想像しやすくなります。実験の前後で同じ反応を見比べる教材として使えそうです。"
+   }
+  ],
+  "source_name": "Meta",
+  "source_url": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/",
+  "published": "2026-11-21",
+  "refs": [
+   {
+    "name": "Meta",
+    "url": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/"
+   }
+  ]
+ }
+]
