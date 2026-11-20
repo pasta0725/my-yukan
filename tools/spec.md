@@ -106,7 +106,9 @@ Always: easy Japanese for a non-engineer, YOUR OWN WORDS only (never copy senten
          {"type":"point","items":["あなたへの影響・やること1","2","3"]},
          {"type":"rina","text":"りなの見方：2〜3文・120字以内（tools/style.md 9-2）"}],
  "source_name":"サイト名","source_url":"https://article","published":"YYYY-MM-DD",
- "refs":[{"name":"サイト名","url":"https://..."}]}   ← every article you read for this story (max 5, source_url first), URLs exactly as fetched
+ "refs":[{"name":"サイト名","url":"https://..."}],   ← every article you read for this story (max 5, source_url first), URLs exactly as fetched
+ "shop":[{"name":"商品名（公式の表記）","query":"Amazon・楽天で探す語"}]}   ← optional, 0–3 items (see "Shop links")
+Shop links (2026-11-20, the user's request: もしもアフィリエイト): add "shop" only for products the story is about that an ordinary person in Japan can buy now in shops or online (on sale or taking pre-orders): devices, accessories, game titles, consoles. Never for apps, AI services, subscriptions, rumors, products not sold in Japan, or companies. "query" = maker + exact model name (e.g. "SwitchBot ハブ3"), so the search finds that product. The site shows the box only after the user's affiliate number is set, and adds the 「PR」 notice automatically; do not write about the links in the body.
 Write source_url and refs with https:// (if a page gives http://, change it to https://).
 Blocks: one keys, a lead p, 3–5 h each followed by 1–2 p, one stat, one point, one rina at the very end (see tools/style.md). No image URL may appear twice in one story. News-site (ogp) images ≤ 2 per story counting image+img+gallery.
 Validate with python3 json.load. Final reply: count, titles, image counts (press/ogp), problems.
