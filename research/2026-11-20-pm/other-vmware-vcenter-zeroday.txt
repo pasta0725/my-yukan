@@ -1,0 +1,675 @@
+===== https://www.bleepingcomputer.com/news/security/vmware-patches-vcenter-zero-day-exploited-in-attacks-since-september/
+(status 200)
+VMware patches vCenter zero-day exploited in attacks since September
+                            By 
+Lawrence Abrams
+November 19, 2026
+07:26 PM
+0
+Broadcom has released security updates to fix a critical VMware vCenter Server authentication bypass vulnerability that Chinese-linked hackers have exploited in zero-day attacks since September 2026.
+The vulnerability, tracked as CVE-2026-123890, affects the VMware Directory Service in vCenter Server, a management platform organizations use to manage VMware virtualized environments.
+According Broadcom, the flaw allows an unauthenticated attacker with network access to a vulnerable vCenter Server to bypass authentication and gain unauthorized access.
+Successful exploitation can allow attackers to obtain administrative access to vCenter, giving them control over the virtual machines managed by the server.
+Broadcom patched the vulnerability on November 19 in VMSA-2026-0009, which also fixes four other vulnerabilities affecting VMware SDDC Manager and VMware Tools for Windows.
+"You are affected if you are running any version of VMware vCenter, SDDC Manager, or VMware Tools for Windows prior to the versions listed as "fixed" in the VMSA," 
+Broadcom's security advisory reads
+.
+"This includes vCenter and SDDC Manager deployed standalone and as part of VMware Cloud Foundation, VMware vSphere Foundation, VMware Telco Cloud Platform, and VMware Telco Cloud Infrastructure, as well as VMware Tools installed in Windows virtual machines."
+The company considers the vCenter vulnerability as an emergency update, urging organizations to install the patches as soon as possible.
+Broadcom says there are no official workarounds for the vulnerabilities, although network restrictions and firewall controls can help reduce exposure.
+Furthermore, the vulnerability affects vCenter regardless of whether Enhanced Linked Mode is enabled.
+While Broadcom has not confirmed that the flaw was exploited, researchers at Google's Mandiant have documented attacks exploiting CVE-2026-123890.
+Chinese hackers exploited VMware zero-day
+In a report published today, Mandiant and Google Threat Intelligence Group (GTIG) revealed that a suspected Chinese state-sponsored hacking group tracked as Armory Castle (formerly UNC5221) exploited CVE-2026-123890 in early September 2026.
+"Successful exploitation results in a remote authentication bypass which creates an authenticated session established as 
+administrator@vsphere.local
+," 
+explains Mandiant
+.
+"Using the authenticated administrator session, the attacker can execute arbitrary commands and acquire files, including the data.mdb database, by leveraging the vCenter Server Directory Service (
+vmdird
+) RPC interface 
+vmdirdbcp
+."
+Armory Castle is a cyberespionage group known for exploiting zero-day vulnerabilities in enterprise network appliances, including Citrix NetScaler and Ivanti Connect Secure devices, to breach corporate networks and deploy custom malware.
+The group was also recently linked to attacks 
+exploiting a BeyondTrust Remote Support zero-day
+, tracked as CVE-2026-102764, which has been exploited since late August.
+Mandiant says the VMware exploitation was part of the same intrusion campaign, with the attackers first compromising BeyondTrust Remote Support appliances before moving laterally into internal Linux systems and targeting VMware infrastructure.
+After gaining access to an internal Linux appliance, the hackers deployed the "SLIMSAVAGE" web shells to maintain persistent access, escalated privileges to root, and scanned the internal network for VMware systems.
+SLIMSAVAGE webshell deployed on Linux servers
+S​​ource: Mandiant
+The attackers then used a custom Golang exploitation tool named BONESAW to exploit CVE-2026-123890 and compromise a VMware vCenter Server.
+Mandiant observed the tool successfully creating a vCenter Single Sign-On (SSO) administrator account and stealing the server's directory database, which can be used to extract further credentials.
+BONESAW can also extract SAML signing keys, allowing attackers to forge authentication tokens and gain administrative access to VMware environments.
+Following the exploitation, the hackers deployed another tool called SAWSNAKE, which enables so-called Golden SAML attacks to forge authentication tokens, bypass multifactor authentication, and impersonate legitimate users.
+During the attack, the attackers also deployed additional web shells and backdoors, including CAGEMATCH, BEARBONES, and LAZYBONES, to execute commands, transfer files, steal credentials, and maintain access to compromised systems.
+Armory Castle attack flow
+Source: Mandiant
+The attacks ultimately allowed Armory Castle to move deeper into the victims' virtualized environments, access ESXi hosts, and extract sensitive information from virtual machines, including Windows Active Directory database files.
+Mandiant says the use of two zero-day vulnerabilities in the same campaign, along with multiple malware families tailored to the targeted platforms, demonstrates the threat actor's technical expertise.
+The researchers urge admins to apply the VMware security updates as soon as possible and configure additional security controls to protect their virtualization infrastructure against future attacks.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Unpatched AhsayCBS flaws exploited to deploy webshells, mine crypto
+Apache warns of Roller RCE vulnerability exploited in attacks
+New N-able "4EverAble2Shell" zero-day exploited hours after PoC released
+Critical Xen Orchestra auth bypass flaw exploited to hijack VM servers
+Hackers now exploit critical Barracuda ESG flaws to gain root access
+
+===== https://www.securityweek.com/newly-patched-vmware-vcenter-flaw-exploited-as-zero-day-by-chinese-apt/
+(status 200)
+A China-linked espionage group exploited a VMware vCenter zero-day vulnerability for more than two months before Broadcom released a patch on Thursday, according to Google.
+Tracked as 
+CVE-2026-123890
+ (CVSS score of 9.8), the bug resides in the VMware Directory Service and could let remote, unauthenticated attackers obtain an authenticated session with administrator privileges.
+Mandiant, which reported the bug to Broadcom, has 
+linked its exploitation to Armory Castle
+, a suspected Chinese threat actor formerly tracked as UNC5221 and also known as Warp Panda.
+According to Mandiant, the hackers gained initial access 
+through CVE-2026-102764
+, a recently patched BeyondTrust Remote Support zero-day. They then pivoted to Linux appliances on the internal network and targeted vCenter in early September.
+They used a custom tool called Bonesaw to exploit CVE-2026-123890, steal the Lightning Memory-Mapped Database (LMDB), extract SAML signing material, and create a single sign-on (SSO) administrator account.
+Next, the attackers deployed a second tool to forge SAML tokens and installed backdoors. They also took the vCenter master encryption key and database credentials, then moved to an ESXi host and extracted additional information.
+Advertisement. Scroll to continue reading.
+“Mandiant has evidence that Armory Castle had knowledge of CVE-2026-123890 prior to the disclosure of CVE-2026-59309 on July 29, 2026,” Google notes.
+Bonesaw was used against a vCenter server already patched for 
+CVE-2026-59309
+, a separate vCenter authentication bypass disclosed in July.
+Charles Carmakal, CTO at Mandiant, 
+said on LinkedIn
+ that the company investigated multiple incidents involving Armory Castle’s exploitation of CVE-2026-123890.
+Broadcom has released fixes in vCenter versions 9.1.1.0200, 9.0.2.0200, and 8.0 U3m. According to Mandiant, Bonesaw works against vCenter 7.x and 8.x. However, there is no public patch for version 7.0, which 
+reached end of general support
+ in October 2025.
+Broadcom’s advisory, which also resolves four SDDC Manager and VMware Tools flaws, does not mention in-the-wild exploitation.
+“Organizations should both apply the patches and examine their systems for evidence of compromise,” Carmakal said.
+Related
+: 
+Hackers Exploit Cisco Expressway Vulnerability Soon After PoC Release
+Related
+: 
+Critical Apache Roller, Axis Vulnerabilities Exploited in Attacks
+Related
+: 
+Java4Shell Exploitation Attempts Begin as Vendors Rush Out Advisories
+Written By
+Eduard Kovacs
+Eduard Kovacs (@EduardKovacs) is senior managing editor at SecurityWeek. He worked as a high school IT teacher before starting a career in journalism in 2011. Eduard holds a bachelor’s degree in industrial informatics and a master’s degree in computer techniques applied in electrical engineering.
+Daily Briefing Newsletter
+            Subscribe to the SecurityWeek Email Briefing for the latest cybersecurity threats, trends, and expert
+            insights.
+More from 
+Eduard Kovacs
+Java4Shell Exploitation Attempts Begin as Vendors Rush Out Advisories
+Last of Five Defendants Sentenced in US Scattered Spider Hacking Case
+Microsoft Takes Perception Agentic Security Platform Out of Preview
+Microsoft Agent Framework Releases Poisoned With Credential Stealer
+Java4Shell Vulnerability Puts Enterprise Applications at Risk of Takeover
+Market Research Giant Ipsos Investigating Breach of Internal System 
+Fandango Warns Ticket Buyers of Payment Card Data Exposure
+Optimizely Vulnerability Exploited to Serve Malware on Major Websites
+Latest News
+PHP Patches Seven Critical RCE Vulnerabilities
+Nvidia Responds to Gentlemen Ransomware Claim
+Hackers Exploit Cisco Expressway Vulnerability Soon After PoC Release
+StepSecurity Secures $20 Million to Expand Supply Chain Protection
+Critical Apache Roller, Axis Vulnerabilities Exploited in Attacks
+The Governance Gap in Open-Weight AI and What to Do About It
+Splunk Patches Nearly 140 Flaws Across Three Core Products
+F5 Patches Critical NGINX2Root Flaws as PoC Exploits Go Public
+Trending
+Java4Shell Vulnerability Puts Enterprise Applications at Risk of Takeover
+Microsoft Agent Framework Releases Poisoned With Credential Stealer
+Optimizely Vulnerability Exploited to Serve Malware on Major Websites
+Nvidia Responds to Gentlemen Ransomware Claim
+PHP Readies Critical Security Updates to Patch Another RCE Flaw
+PHP Patches Seven Critical RCE Vulnerabilities
+Java4Shell Exploitation Attempts Begin as Vendors Rush Out Advisories
+Attacker Targets 60,000 GitHub Repositories in Credential Theft Campaign
+Daily Briefing Newsletter
+Subscribe to the SecurityWeek Email Briefing to stay informed on the latest threats, trends, and technology, along with insightful columns from industry experts.
+NOW LIVE:
+ CISO Forum 2026 Summit
+November 10 & 11, 2026
+Join as we bring together CISOs, senior cybersecurity executives, practitioners, industry experts, and other security leaders to share practical experience and examine the issues shaping enterprise cybersecurity strategy.
+Register
+Webinar:
+ The Agentic SDLC Security Playbook
+December 3, 2026
+Join to learn the four levels of architecting security into the agentic SDLC – from securing the code your developers' agents write to running a coordinated system of security agents you've built yourself.
+Register
+People on the Move
+Zeke Maldonado has been named Principal Deputy CIO at the US Department of Commerce.
+FusionAuth has appointed Phil Allen as CRO.
+Dave Farrow has become CISO at Bitwarden.
+More People On The Move
+Expert Insights
+The Governance Gap in Open-Weight AI and What to Do About It
+Lower costs, data privacy, and greater control are driving open-weight AI adoption, but many organizations are not addressing the risks that come with it.
+(Etay Maor)
+Is AI Making Us Worse at Cybersecurity?
+Overreliance on AI could erode the creativity, clear communication, and critical thinking security teams need when there’s no playbook.
+(Joshua Goldfarb)
+The Agent Smith Dilemma: Governing Agentic Identities
+Every autonomous AI agent deployed across your enterprise today is a new proxy identity operating inside your perimeter.
+(Danelle Au)
+Passkeys Are Better Than Passwords. But They Are Not Enough.
+As organizations eliminate passwords, attackers will adapt. Instead of attacking the authenticator directly, they will look for opportunities around it.
+(Torsten George)
+When Risk Becomes Personal: What Security Leaders Can Learn From a Cancer Diagnosis
+Risk managers are trained to spot weak signals, plan for disruption and make hard decisions under uncertainty. But the discipline looks different when the risk is not a system or an enterprise, but you.
+(Steve Durbin)
+Flipboard
+Reddit
+Whatsapp
+Whatsapp
+Email
+
+===== https://thehackernews.com/2026/11/critical-vmware-vcenter-flaw-cvss-98.html
+(status 200)
+11 Real Stories: How Identity Exposure Unlocks Active Attack Paths
+Map cross-domain privilege escalation to sever breach routes at key choke points.
+
+===== https://www.cyber.gc.ca/en/alerts-advisories/vmware-security-advisory-av26-1185
+(status 200)
+Serial number: 
+AV26-1185
+Date: 
+November 19, 2026
+As of November 19, 2026, VMware is affected by vulnerabilities in the following products:
+VMware Cloud Foundation / VMware vSphere Foundation - vCenter
+9.1.x.x Versions prior to 9.1.1.0200
+9.0.x.x Versions prior to 9.0.2.0200
+VMware vCenter
+8.0 Versions prior to 8.0 U3m
+Version 7.0
+VMware Cloud Foundation vCenter
+5.x versions prior to 5.2.5
+VMware Telco Cloud Platform vCenter
+Versions 3.0, 4.x, 5.0.x, 5.1.x, 5.2
+VMware Telco Cloud Infrastructure vCenter
+Version 3.0
+Open source reporting indicates that CVE-2026-123890 is exploited in the wild.
+The Cyber Centre encourages users and administrators to review the provided web links and apply any necessary updates as they become available.
+VMSA-2026-0009: VMware vCenter, Tools, and SDDC Manager updates address multiple vulnerabilities (CVE-2026-123890, CVE-2026-123891, CVE-2026-123892, CVE-2026-123893, CVE-2026-123894)
+Security Advisories - VMware Cloud Foundation
+
+===== https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/39495
+(status 200)
+VMSA-2026-0009: VMware vCenter, Tools, and SDDC Manager updates address multiple vulnerabilities (CVE-2026-123890, CVE-2026-123891, CVE-2026-123892, CVE-2026-123893, CVE-2026-123894)
+Product/Component
+VMware Cloud Foundation
+4 more products
+List of Products
+5 Products
+Close
+VMware Cloud Foundation
+VMware Telco Cloud Infrastructure
+VMware Telco Cloud Platform
+VMware vCenter Server
+VMware vSphere Foundation
+Notification Id
+39495
+Last Updated
+20 November 2026
+Initial Publication Date
+19 November 2026
+Status
+OPEN
+Severity
+CRITICAL
+CVSS Base Score
+9.8
+WorkAround
+None
+Affected CVE
+CVE-2026-123890, CVE-2026-123891, CVE-2026-123892, CVE-2026-123893, CVE-2026-123894
+Advisory ID:
+VMSA-2026-0009.1
+Advisory Severity:
+Critical
+CVSSv3 Range:
+6.7-9.8
+Synopsis:
+VMware vCenter, Tools, and SDDC Manager updates address multiple vulnerabilities (CVE-2026-123890, CVE-2026-123891, CVE-2026-123892, CVE-2026-123893, CVE-2026-123894)
+Issue date:
+2026-11-19
+Updated on:
+2026-11-20
+CVE(s)
+CVE-2026-123890, CVE-2026-123891, CVE-2026-123892, CVE-2026-123893, CVE-2026-123894
+1. Impacted Products
+VMware vCenter
+VMware Cloud Foundation
+VMware vSphere Foundation
+VMware Tools
+VMware Telco Cloud Platform
+VMware Telco Cloud Infrastructure 
+2. Introduction
+Multiple vulnerabilities in VMware vCenter, Tools, and SDDC Manager were privately reported to Broadcom. Updates are available to remediate these vulnerabilities in affected Broadcom products. 
+3a. vCenter authentication-bypass vulnerability (CVE-2026-123890) 
+Description: 
+VMware vCenter contains an authentication bypass vulnerability in the VMware Directory Service. Broadcom has evaluated the severity of this issue to be in the 
+Critical severity range
+ with a maximum CVSSv3 base score of 
+9.8
+.
+Known Attack Vectors:
+A malicious actor with network access to vCenter may exploit this issue to bypass authentication and gain unauthorized access to the system.
+Resolution: 
+To remediate CVE-2026-123890 apply the patches listed in the 'Fixed Version' column of the 'Response Matrix' found below.
+Workarounds:
+None
+Additional Documentation:
+A supplemental FAQ was created for clarification. Please see: 
+https://brcm.tech/vmsa-2026-0009-qna
+Acknowledgments: 
+Broadcom would like to thank Mandiant for reporting this issue to us.
+Notes:
+None
+Response Matrix:
+VMware Product
+Component
+Version
+Running On
+CVE
+CVSSv3
+Severity
+Fixed Version
+Workarounds
+Additional Documentation
+VMware Cloud Foundation,
+VMware vSphere Foundation
+vCenter
+9.1.x.x
+Any
+CVE-2026-
+123890
+9.8
+Critical
+9.1.1.0200
+None
+FAQ
+VMware Cloud Foundation,
+VMware vSphere Foundation
+vCenter
+9.0.x.x
+Any
+CVE-2026-
+123890
+9.8
+Critical
+9.0.2.0200
+None
+FAQ
+VMware vCenter
+N/A
+8.0
+Any
+CVE-2026-
+123890
+9.8
+Critical
+8.0 U3m 
+None
+FAQ
+VMware vCenter
+N/A
+7.0
+Any
+CVE-2026-
+123890
+9.8
+Critical
+Contact Broadcom Support if you have extended support contract.
+None
+FAQ
+VMware Cloud Foundation 
+vCenter
+5.x
+Any
+CVE-2026-
+123890
+9.8
+Critical
+5.2.5
+None
+Async Patching
+ Guide: 
+KB88287
+VMware Telco Cloud Platform
+vCenter
+3.0, 4.x, 5.0.x, 5.1.x, 5.2
+Any
+CVE-2026-
+123890
+9.8
+Critical
+KB463116
+None
+FAQ
+VMware Telco Cloud Infrastructure
+vCenter
+3.0
+Any
+CVE-2026-
+123890
+9.8
+Critical
+KB463116
+None
+FAQ
+3b. SDDC Manager SQL-injection vulnerability (CVE-2026-123891) 
+Description:
+SDDC Manager contains an SQL-injection vulnerability due to improper sanitization of user-supplied input. Broadcom has evaluated the severity of this issue to be in the 
+Important severity range
+ with a maximum CVSSv3 base score of 
+8.1
+.
+Known Attack Vectors:
+A malicious authenticated actor may exploit this issue by using a specially crafted SQL query to perform unauthorised read/write operations in the database.
+Resolution: 
+To remediate CVE-2026-123891 apply the patches listed in the 'Fixed Version' column of the 'Response Matrix' found below.
+Workarounds:
+None
+Additional Documentation:
+A supplemental FAQ was created for clarification. Please see: 
+https://brcm.tech/vmsa-2026-0009-qna
+Acknowledgments: 
+Broadcom would like to thank Arnoldas Radisauskas of NATO NCSC
+for reporting this issue to us.
+Notes:
+[1] Please note that patches are cumulative, meaning the current version includes all previously released fixes. While CVE-2026-123891 and CVE-2026-123892 were initially addressed in version 9.1.0.0, and CVE-2026-123893 was addressed in 9.1.1.0, version 9.1.1.0200 is the latest available version and contains the fixes for all of these CVEs.
+3c. SDDC Manager authenticated command-injection vulnerability(CVE-2026-123892) 
+Description:
+SDDC Manager contains an authenticated command-injection vulnerability due to improper sanitization of user-supplied input.  Broadcom has evaluated the severity of this issue to be in the 
+Important severity range
+ with a maximum CVSSv3 base score of 
+7.2
+.
+Known Attack Vectors:
+A malicious authenticated actor may exploit this issue to execute arbitrary commands on the appliance.
+Resolution: 
+To remediate CVE-2026-123892 apply the patches listed in the 'Fixed Version' column of the 'Response Matrix' found below.
+Workarounds:
+None
+Additional Documentation:
+A supplemental FAQ was created for clarification. Please see: 
+https://brcm.tech/vmsa-2026-0009-qna
+Acknowledgments: 
+Broadcom would like to thank Arnoldas Radisauskas of NATO NCSC
+for reporting this issue to us.
+Notes:
+[1] Please note that patches are cumulative, meaning the current version includes all previously released fixes. While CVE-2026-123891 and CVE-2026-123892 were initially addressed in version 9.1.0.0, and CVE-2026-123893 was addressed in 9.1.1.0, version 9.1.1.0200 is the latest available version and contains the fixes for all of these CVEs.
+3d. SDDC Manager local privilege-escalation vulnerability(CVE-2026-123893) 
+Description: 
+SDDC Manager contains a local privilege-escalation vulnerability. Broadcom has evaluated the severity of this issue to be in the 
+Moderate severity range
+ with a maximum CVSSv3 base score of 
+6.7
+.
+Known Attack Vectors:
+A malicious actor with administrative privileges on SDDC Manager may exploit this issue to elevate privileges to root.
+Resolution: 
+To remediate CVE-2026-123893 apply the patches listed in the 'Fixed Version' column of the 'Response Matrix' found below.
+Workarounds:
+None
+Additional Documentation:
+A supplemental FAQ was created for clarification. Please see: 
+https://brcm.tech/vmsa-2026-0009-qna
+Acknowledgments: 
+Broadcom would like to thank Arnoldas Radisauskas of NATO NCSC
+for reporting this issue to us.
+Notes:
+[1] Please note that patches are cumulative, meaning the current version includes all previously released fixes. While CVE-2026-123891 and CVE-2026-123892 were initially addressed in version 9.1.0.0, and CVE-2026-123893 was addressed in 9.1.1.0, version 9.1.1.0200 is the latest available version and contains the fixes for all of these CVEs.
+Response Matrix 3b, 3c, 3d: 
+VMware Product
+Component
+Version
+Running On
+CVE
+CVSSv3
+Severity
+Fixed Version
+Workarounds
+Additional Documentation
+VMware Cloud Foundation
+SDDC Manager
+9.1.x.x
+Any
+CVE-2026-
+123891, 
+CVE-2026-
+123892
+8.1
+, 
+7.2
+Important
+[1] 
+9.1.1.0200
+None
+FAQ
+VMware Cloud Foundation,
+VMware vSphere Foundation
+SDDC Manager/ VCF Installer
+9.1.x.x
+Any
+CVE-2026-
+123893
+6.7
+Moderate
+[1]
+9.1.1.0200
+None
+FAQ
+VMware Cloud Foundation
+SDDC Manager
+9.0.x.x
+Any
+CVE-2026-
+123891, 
+CVE-2026-
+123892
+8.1
+, 
+7.2
+, 
+6.7
+Important
+9.0.2.0100
+None
+FAQ
+VMware Cloud Foundation,
+VMware vSphere Foundation
+SDDC Manager / VCF Installer
+9.0.x.x
+Any
+CVE-2026-
+123893
+6.7
+Moderate
+9.0.2.0100
+None
+FAQ
+VMware Cloud Foundation 
+SDDC Manager
+5.x
+Any
+CVE-2026-
+123891, 
+CVE-2026-
+123892, 
+CVE-2026-
+123893
+8.1
+, 
+7.2
+, 
+6.7
+Important
+5.2.5
+None
+FAQ
+3e. VMware Tools SAML Token Signature Bypass vulnerability (CVE-2026-123894)
+Description: 
+VMware Tools for Windows contains a SAML token signature bypass vulnerability. Broadcom has evaluated the severity of this issue to be in the 
+Moderate severity range
+ with a maximum CVSSv3 base score of 
+6.7
+.
+Known Attack Vectors:
+A malicious actor with access to a local privileged process on a Windows guest VM configured with Guest Alias mapping can exploit this vulnerability to elevate their privileges within the VM.
+Resolution: 
+To remediate CVE-2026-123894 apply the patches listed in the 'Fixed Version' column of the 'Response Matrix' found below.
+Workarounds:
+None
+Additional Documentation:
+A supplemental FAQ was created for clarification. Please see: 
+https://brcm.tech/vmsa-2026-0009-qna
+Acknowledgments: 
+Broadcom would like to thank Noam Pomerantz for reporting this issue to us.
+Notes:
+[1] VMware Tools 12.4.10 which is part of VMware Tools 12.5.5, also addresses the issue for Windows 32-bit.
+Response Matrix: 
+VMware Product
+Component
+Version
+Running On
+CVE
+CVSSv3
+Severity
+Fixed Version
+Workarounds
+Additional Documentation
+VMware Cloud Foundation,
+VMware vSphere Foundation
+VMware Tools
+13.x.x.x
+Windows
+CVE-2026-
+123894
+6.7
+Moderate
+13.1.5.0
+None
+FAQ
+VMware Tools
+N/A
+13.x.x.x
+Windows
+CVE-2026-
+123894
+6.7
+Moderate
+13.1.5.0
+None
+FAQ
+VMware Tools
+N/A
+12.3.x, 12.4.x, 12.5.x
+Windows
+CVE-2026-
+123894
+6.7
+Moderate
+[1]12.5.5 
+None
+FAQ
+4. References
+VMware vCenter 9.1.1.0200
+Downloads and Documentation:
+https://support.broadcom.com/group/ecx/productfiles?displayGroup=VMware%20Cloud%20Foundation%209&release=9.1.1.0&os=&servicePk=545627&language=EN&groupId=545684&viewGroup=true
+https://techdocs.broadcom.com/bin/gethidpage?ux-context-string=vcenter-9-1-1-2&appid=vcf-9-1&language=en&format=rendered
+VMware vCenter 9.0.2.0200
+Downloads and Documentation:
+https://support.broadcom.com/group/ecx/productfiles?displayGroup=VMware%20Cloud%20Foundation%209&release=9.0.2.0&os=&servicePk=537791&language=EN&groupId=537830&viewGroup=true
+https://techdocs.broadcom.com/bin/gethidpage?ux-context-string=vcenter-9-0-2-0-2&appid=vcf-9-0&language=en&format=rendered
+VMware vCenter 8.0 U3m
+Downloads and Documentation:
+https://support.broadcom.com/web/ecx/solutiondetails?patchId=16137
+https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/release-notes/vcenter-server-update-and-patch-release-notes/vsphere-vcenter-server-80u3m-release-notes.html
+VMware Tools 13.1.5
+Downloads and Documentation:
+https://support.broadcom.com/group/ecx/productfiles?displayGroup=VMware%20Cloud%20Foundation%209&release=9.1.1.0&os=&servicePk=545627&language=EN&groupId=545614&viewGroup=true
+https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/tools/13-1-0/release-notes/vmware-tools-1315-release-notes.html
+VMware Tools 12.5.5
+Downloads and Documentation:
+https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Tools&freeDownloads=true
+https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/tools/12-5-0/release-notes/vmware-tools-1255-release-notes.html
+Mitre CVE Dictionary Links:
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-123890
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-123891
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-123892
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-123893
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-123894
+FIRST CVSSv3 Calculator:
+CVE-2026-123890: 
+https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+CVE-2026-123891: 
+https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N
+CVE-2026-123892: 
+https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H
+CVE-2026-123893: 
+https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H
+CVE-2026-123894: 
+https://www.first.org/cvss/calculator/3.1#CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H
+5. Change Log:
+2026-11-19 VMSA-2026-0009
+Initial security advisory.
+2026-11-20 VMSA-2026-0009.1
+Updated advisory to clarify the impacted VMware Tools versions.
+6. Contact:
+E-mail: 
+[email protected]
+PGP key
+https://knowledge.broadcom.com/external/article/321551
+VMware Security Advisories
+https://www.broadcom.com/support/vmware-security-advisories
+VMware External Vulnerability Response and Remediation Policy
+https://www.broadcom.com/support/vmware-services/security-response
+VMware Lifecycle Support Phases
+https://support.broadcom.com/group/ecx/productlifecycle
+VMware Security Blog
+https://blogs.vmware.com/security
+X
+https://x.com/VMwareSRC
+Copyright 2026 Broadcom. All rights reserved.
+×
+                            It appears your Broadcom Products and Services are 
+                            supported by one of our certified Support partners
+                            Click below to be redirected to the appropriate Support 
+                            Partner Portal to request support
+                            For non-product related issues (Support Portal / Licensing) Click 
+HERE
+Continue
+×
+                            For 
+Technical Support
+ (issues with products or services)  
+Select 
+Technical
+ to be redirected to the My Entitlements page
+Expand the product you require support on
+Select the case icon from the case column
+You will be redirected to the appropriate vendor portal where you can raise your technical request
+                            For 
+Non-Technical Support
+ (issues with portal access, license keys, software downloads)
+Select 
+Non-Technical
+ to be redirected to Broadcom's case management portal
+Technical
+Non-Technical
+×
+Access Denied
+This feature has been disabled by your administrator.
+×
+                            To prevent this message from showing again, please enable pop-up blockers for 
+support.broadcom.com
+                            or click Continue to proceed.
+Continue
+    Top

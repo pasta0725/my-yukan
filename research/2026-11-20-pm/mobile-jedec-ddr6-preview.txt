@@ -1,0 +1,312 @@
+===== https://www.tomshardware.com/pc-components/ram/ddr6-ram-shrinks-by-44-percent-while-delivering-4x-ddr5s-baseline-bandwidth-jedec-previews-12-8-gt-s-modules-with-up-to-1-terabyte-of-capacity-per-slot
+(status 200)
+(Image credit: Getty Images)
+Copy link
+Facebook
+X
+Whatsapp
+Reddit
+Pinterest
+Flipboard
+Email
+Instagram
+Share this article
+16
+Join the conversation
+Follow us
+Add us as a preferred source on Google
+Newsletter
+Subscribe to our newsletter
+Today's 
+best RAM
+ will look huge compared to upcoming DDR6 memory. JEDEC has just released a preview of the DDR6 specification, confirming that next-generation memory modules will be 44% shorter than DDR5. That is only the physical aspect, though. From a performance perspective, DDR6 will debut at 12.8 GT/s, more than double DDR5's baseline transfer rate, while also quadrupling the memory bandwidth per memory module thanks to a new design.
+Go deeper with TH Premium: Memory
+(Image credit: SK Hynix)
+AI data centers are swallowing the world's memory and storage supply
+Samsung debuts three next-generation memory technologies for AI data centers
+The future of DRAM: From DDR5 to future ICs
+High-bandwidth memory roadmap
+Inside the history of DRAM price-fixing lawsuits
+JEDEC's DDR6 preview highlights improvements in various areas, including performance, capacity, reliability, and power efficiency. These advancements align with the upgrades DDR5 brought to the table when it launched.
+One of the most notable differences is that DDR6 memory modules will measure just 74mm in length, 44% shorter than DDR5’s 133mm memory modules. This makes DDR6 only 6% longer than DDR5 SO-DIMM modules, which you commonly find in laptops and mini-PCs.
+Latest Videos From
+Tom's Hardware
+Watch full video here: 
+JEDEC has maintained the pin count for many years, sticking to 288 pins for DDR4 and DDR5. However, DDR6 may finally break that mould. Given the substantial reduction in length with DDR6 and the data bus width upgrade, it is reasonable to assume that DDR6 will have a completely different pinout and density. Sadly, JEDEC has not revealed the pin count for DDR6.
+Early rumors suggested that DDR6 may be limited to CAMM form factors to feed the AI boom. However, JEDEC's announcement at least does not rule out other form factors. It appears JEDEC is still determining which form factors DDR6 will use. Potential options include RDIMM, UDIMM, and CAMM formats, just like DDR5.
+DDR6 Specifications
+Swipe to scroll horizontally
+Header Cell - Column 0 
+DDR6
+DDR5
+DDR4
+Baseline JEDEC Transfer Rates (MT/s)
+12,800
+4,800
+1,600
+Baseline JEDEC Bandwidth Per Module (GB/s)
+153.6
+38.4
+12.8
+Peak JEDEC Transfer Rates (MT/s)
+14,400
+9,200
+3,200
+Peak Baseline Bandwidth Per Module (GB/s)
+172.8
+73.6
+25.6
+Channels
+4 x 24-bit
+2 x 32-bit
+1 x 64-bit
+Burst Length
+?
+BL16
+BL8
+Banks
+64
+32
+16
+Nominal Operating Voltage (V)
+?
+1.2
+1.1
+Pins
+?
+288
+288
+Length (mm)
+74
+133
+133
+Notably, JEDEC has increased the data bus width in DDR6 to 96 bits, a 50% boost over DDR5's 64 bits. The channel architecture for DDR6 will also change substantially. While DDR4 and DDR5 leveraged a single 64-bit channel and two 32-bit sub-channels, DDR6 takes a different approach. JEDEC will implement a design with four 24-bit sub-channels.
+Using the baseline for comparison, DDR6 offers up to 153.6 GB/s of total module bandwidth, compared to DDR5's 38.4 GB/s. That is a 4X uplift in bandwidth. If we compare DDR5-9200 RDIMMs, which max out at 73.6 GB/s per module, with DDR6-12800 RDIMMs, the uplift is a little more than double.
+Stay On the Cutting Edge: Get the Tom's Hardware Newsletter
+Get Tom's Hardware's best news and in-depth reviews, straight to your inbox.
+At least on the server side, DDR6 RDIMMs will start at DDR6-12800, whereas DDR5 RDIMMs topped out at DDR5-9200. JEDEC anticipates DDR6 reaching DDR6-14400 and beyond. This is for the server and enterprise market, though. It remains to be seen which DDR6 speed will launch in the consumer market. DDR5 commenced at DDR5-4800.
+DDR6 may be shorter than DDR5, but it makes up for it by having 2X the bank count. This will help push higher data rates and capacities. DDR6 will support 128Gb (16GB) dies, which represents a massive leap. We are looking at 4X the density of early DDR5 memory modules. Instead of placing chips side by side on the PCB, DDR6 enables die stacking, allowing manufacturers to place multiple dies on top of each other via Through-Silicon Vias (TSVs).
+Consumer DDR5 memory modules currently sit at 64GB per module, while server RDIMMs have reached 
+512GB
+. DDR6 could raise module capacity to 128GB or 256GB and potentially scale RDIMMs to 1TB or more per slot.
+DDR6 has no official launch date. Many believe 2029 is a realistic target for commercialization. However, in the current state of things, it would be a miracle if DDR6 had no setbacks.
+Download the Tom's Hardware app for up-to-the-minute updates on 
+iOS
+ and 
+Android
+. Also follow
+ Tom's Hardware on Google News
+, or
+ add us as a preferred source
+, to get our latest news, analysis, & reviews in your feeds.
+See all comments (16)
+Zhiye Liu
+News Editor, RAM Reviewer & SSD Technician
+Zhiye Liu is a news editor, memory reviewer, and SSD tester at Tom’s Hardware. Although he loves everything that’s hardware, he has a soft spot for CPUs, GPUs, and RAM.
+16 Comments
+Comment from the forums
+AM6 can't come soon enough.
+Looks good for the future APUs, for sure :D
+Regards.
+Reply
+May sound impressive, but nobody in the world will be able to afford to buy it for another 10 years!
+Reply
+If it doesn't change between now and the specification actually being published this should mean the death of SODIMMs. The last couple of generations have both been a bit under 70mm long so with this being 73mm I cannot see why it would be carried forward. The size also explains the push for better die stacking because of how much less module area is available limiting the number of packages (I don't expect to see any die stacking on client products).
+On the UDIMM side of things I'm wondering if there will be any latency penalties having packages not all being next to each other. DDR5 SODIMMs of 16GB+ have two packages side by side and then two above, but all DDR5 UDIMMs have them side by side. On the topic of consumer products there's the potential that channels could be side by side length wise and not take up much more room than a single UDIMM does today.
+I believe this is the first confirmation that DDR6 channels are going to be effectively 96-bit though it was expected given that LPDDR6 is. DDR6 is going to be the biggest fundamental change to socketed memory since the advent of dual channel. The base configuration, on paper, has a dual channel bandwidth of ~307GB/s which effectively doubles the 
+best 
+available today. This ought to mean a lot for integrated graphics and the amount of bandwidth per core as CPU core counts are increasing.
+Typically we would see client products first (less validation required), but in the current market I just don't see that happening. DDR6 was also supposed to have the specification rolling out this year, but that obviously isn't happening either. I suspect next year is when it will be finalized and then it could be in enterprise as early as 2028 depending on demand and how well MRDIMMs are scaling. I'd like to see it pop up in client ASAP, but I wouldn't really bet on any earlier than end of 2029 to some time in 2030. LPDDR6 will likely hit client much earlier than DDR6 does so it will be interesting to see what sort of productization it sees. 
+I didn't see a link in the article here's the JEDEC preview announcement: https://www.jedec.org/news/pressreleases/jedec%C2%AE-previews-next-generation-ddr6-dram-higher-performance-greater-capacity
+Reply
+"DDR6 has no official launch date. Many believe 2029 is a realistic target for commercialization. However, in the current state of things, it would be a miracle if DDR6 had no setbacks."
+There is a lot of money available to make this happen. First one out the door will make a ton of money. This is how the AI bubble pops.
+Reply
+Razzi16
+ said:
+May sound impressive, but nobody in the world will be able to afford to buy it for another 10 years!
+With Zen 7 likely coming to AM5, most people aren't going to be buying DDR6-capable CPUs for around 5 years.
+thestryker
+ said:
+The base configuration, on paper, has a dual channel bandwidth of ~307GB/s which effectively doubles the 
+best 
+available today. This ought to mean a lot for integrated graphics and the amount of bandwidth per core as CPU core counts are increasing.
+Basically double if you compare 12800 MT/s DDR6 to something crazy like this: https://www.corsair.com/us/en/explorer/diy-builder/memory/corsair-sets-new-ddr5-world-record-at-12832-mts/
+If you compare to typical DDR5-6000 memory Ryzen owners are using now, it's a tripling and change. Or quadrupling from entry-level DDR5-4800, which has seen more use in the memory dark ages. Although it's possible more people will be using 8000-10000 MT/s by the end of the generation.
+That's better than Gorgon Halo bandwidth in what should be the cheap trash configuration (dual-channel), so very good for our precious iGPUs. Maybe the integrated NPUs as well if those are sticking around.
+If OEMs want to cheap out, they might give you single-channel, as they do now, or produce DDR6 "HUDIMM" memory, giving PCs as low as 48-bit and ~77 GB/s.
+Reply
+it will be fun when this launches because no one will be able to afford it lol. and companys will be absolutely destroyed at the rate these prices are going no one can sell lol.
+Reply
+We'll probably have another moon landing before this stuff comes out and is readily available.
+Reply
+jabliese
+ said:
+"DDR6 has no official launch date. Many believe 2029 is a realistic target for commercialization. However, in the current state of things, it would be a miracle if DDR6 had no setbacks."
+There is a lot of money available to make this happen. First one out the door will make a ton of money. This is how the AI bubble pops.
+Yep -- DDR6 will surely become commercially available as RDIMMs for servers first and then UDIMM and CAMM later for consumers. With the massive cash reserves that the big mem makers have and pricing incentives to bring faster and higher-capacity memory to market, I don't see this being delayed. Yeah, I'm sure early availability will be limited and expensive.
+Reply
+The article
+ said:
+While DDR4 and DDR5 leveraged a single 64-bit channel and two 32-bit sub-channels, DDR6 takes a different approach. JEDEC will implement a design with four 24-bit sub-channels.
+Nit-picks:
+DDR4 was not bifurcated. LPDDR4 was, but not regular DDR4, which had a true 64-bit channel width.
+DDR5 technically had 32-bit channels, not sub-channels. Don't ask me what the difference is, but the 32-bit channels of a DDR5 DIMM are fully independent. I've read that some of the LPDDR standards have actual sub-channels, FWIW.
+Reply
+The biggest thing for many gamers, besides the extreme increase in speed/power will be... being able to use all 4 memory slots on your motherboard. It always bothered me that I never used two of the slots. It will make RGB lighted motherboards look way better with everything full.
+Truthfully though, I prefer a dark case but I still like it light enough to look inside and see everything.
+Reply
+View All 16 Comments
+Show more comments
+
+===== https://www.trendforce.com/news/2026/11/19/news-jedec-previews-preliminary-ddr6-specs-targeting-over-50-higher-bandwidth-and-12-8-gts-speeds/
+(status 200)
+[News] JEDEC Previews Preliminary DDR6 Specs, Targeting Over 50% Higher Bandwidth and 12.8 GT/s Speeds
+2026-11-19
+Semiconductors
+                    editor                
+JEDEC 
+has unveiled preliminary specifications for its next-generation DDR6 DRAM standard, targeting higher bandwidth, capacity, power efficiency, and reliability to meet growing demand from AI, cloud computing, data centers, servers, and client devices. According to JEDEC, DDR6 is expected to deliver over 50% higher memory bandwidth at introduction through faster data rates and a wider data bus, with further gains planned as speeds increase.
+Specifically, DDR6 RDIMMs are expected to start at 12.8 GT/s, up from DDR5’s 9.2 GT/s, with a roadmap extending to 14.4 GT/s and beyond. The standard will also expand the data bus width from 64 to 96 data lines, representing a 50% increase. Alongside these improvements, DDR6 will introduce a new memory architecture organized around pseudo-channels. The design aims to increase bandwidth per DRAM package while allowing more flexible memory configurations to support system reliability and more efficient data movement.
+DDR6 Targets Higher Memory Density, Improved Power Efficiency and Compact Modules
+Beyond bandwidth improvements, DDR6 is designed to support greater memory capacity, with planned support for DRAM die densities of up to 128Gb. Optimizations for die stacking are also expected to increase memory density within each package. At the module level, JEDEC is targeting a more compact 74mm design, significantly shorter than DDR5’s 133mm module length. The smaller footprint is intended to help systems accommodate higher memory density.
+Power efficiency is another focus of DDR6 development. JEDEC aims to improve performance per watt compared with DDR5 through the adoption of VSS-terminated I/O and low-power operating modes designed for data center applications. Meanwhile, DDR6 is being developed to support multiple module form factors, potentially including RDIMM, UDIMM, and CAMM. This flexibility is intended to address different computing requirements.
+Memory Makers Begin Early DDR6 Development
+Major memory manufacturers have already begun early preparations for commercialization. According to a May report by 
+The Elec
+, citing industry sources, Samsung Electronics, SK hynix, and Micron have asked substrate suppliers to begin preliminary development based on initial design specifications. The suppliers are developing substrates that account for memory thickness, stack-up structures, and wiring, with early prototypes undergoing testing and validation.
+As The Elec notes, DDR6’s higher data rates present greater challenges for signal integrity and power efficiency, prompting closer collaboration between memory manufacturers and substrate suppliers from the early design stages. Industry sources expect DDR6 commercialization to begin in 2028–2029 or later, although mass production will depend on end-customer demand.
+Read more
+[News] Memory Makers Reportedly Tap Substrate Suppliers for DDR6 Prototypes; Commercialization May Start 2028–29
+[News] Samsung Says HBM Share Matches DRAM Standing as HBM4 Sales Triple; DS Margin Hits 72%, 10 LTA Clients Signed
+(Photo credit: Samsung)
+Please note that this article cites information from 
+JEDEC
+ and 
+The Elec
+.
+                                DDR6
+                                JEDEC
+Next Article 
+[News] Anthropic Raises Record US$81B in IPO at US$1.5T Valuation; Moonshot, DeepSeek Eye Listings
+
+===== https://videocardz.com/newz/jedec-announces-ddr6-memory-modules-are-44-shorter-than-ddr5-speeds-up-to-14-4-gt-s
+(status 200)
+JEDEC previews DDR6 memory with 74 mm modules, 44% shorter than DDR5
+DDR6 modules could be considerably smaller than standard DDR5 DIMMs.
+JEDEC has published an early preview of the DDR6 memory standard, outlining changes to memory bandwidth, capacity and module dimensions. One of the more interesting details is a proposed 74 mm module length, compared with 133 mm for standard DDR5 DIMMs. This would make the new module approximately 44% shorter than today’s full-size desktop and server memory modules.
+The standard DDR5 DIMM measures 133.35 mm in length, a form factor shared with previous DDR generations. JEDEC’s proposed DDR6 design would reduce this to just 74 mm. The smaller dimensions are intended to increase memory density in systems where motherboard space is limited, including servers and data center platforms.
+Shorter modules designed for higher memory density
+The reduced module length could allow system manufacturers to fit more memory sockets into the same motherboard area. This would be useful for high-capacity server configurations, where memory slots compete for space with processors, cooling hardware and other components. However, JEDEC has not indicated that every DDR6 module will use the 74 mm form factor.
+I have seen some discussions on possible DDR6 being CAMM module only, but JEDEC confirms they are ‘considering’ several factors, including RDIMM, UDIMM and CAMM. However, the standard module seems to have a shorter design. 
+DDR6 is also being developed with higher memory capacities in mind. The proposed standard supports DRAM die densities of up to 128 Gb, 
+equivalent to 16 GB per die.
+ JEDEC is also working on improvements to
+ die stacking,
+ which could increase capacity without requiring larger memory packages.
+Beyond the physical dimensions, JEDEC is targeting DDR6 RDIMM transfer rates starting at 12.8 GT/s, with a roadmap extending to 14.4 GT/s and higher. The planned data bus increases from 64 to 96 bits, while the number of banks doubles. JEDEC expects these changes to deliver more than 50% additional memory bandwidth at introduction compared with DDR5, although this does not translate directly into an equivalent application performance increase.
+Increased Performance
+Higher bandwidth: 
+Improved data rates and a wider bus will combine to increase bandwidth more than 50% at introduction, with further bandwidth increases as data rates increase. This bandwidth target is distinct from a claim of equivalent improvement in application performance.
+Higher data rates: 
+DDR6 RDIMMs move beyond DDR5’s 9.2 GT/s to a data rate that will start at 12.8 GT/s with a roadmap extending to 14.4 GT/s and beyond.
+Wider bus: 
+The data bus expands from 64 to 96 DQ, a 50% increase in data bus width.
+Pseudo-channel architecture: 
+DDR6’s planned architecture organizes memory access into pseudo-channels to support higher bandwidth per DRAM package. It is intended to provide greater configuration flexibility for system reliability and more efficient data movement.
+Higher bank availability:
+ 2X bank count and improved refresh boost data bus efficiency, enabling system performance at higher speed grades and higher capacities.
+Higher Capacities
+Higher DRAM density: 
+Support for up to 128Gb DRAM die density.
+Efficient capacity scaling: 
+Optimizations for die stacking in DDR6 packages delivers more density per package footprint.
+Compact module footprint:
+ A significantly narrower 74mm DDR6 module length, compared with 133mm for DDR5, is intended to help accommodate higher system memory density.
+Reliability
+Flexible reliability: 
+Support for multiple system error-correcting code (ECC) implementations will allow system designers to balance cost, power, and reliability at the system level.
+Built for the data center:
+ Interface optimized for high-capacity modules with configurations oriented to general purpose compute as well as AI inferencing and agentic AI, which demand more capacity and performance close to the CPU.
+Energy Efficiency
+Improved performance-per-watt: 
+DDR6 targets significantly
+ improved performance-per-watt 
+versus DDR5 through a change to VSS-terminated IO and data-center-focused low power modes.
+Form Factors
+Breadth of form factors: 
+DDR6 is being defined across multiple form factors – potentially including RDIMM, UDIMM, and CAMM to serve a broad range of applications while balancing reliability, performance, power, and cost.
+Share
+Set as Preferred Source
+Follow on Google
+Source: 
+JEDEC
+
+===== https://www.gdm.or.jp/pressrelease/2026/1119/661066
+(status 200)
+トップ
+ > 
+                ニュース
+                > 
+リリース 海外
+JEDECから次世代「DDR6 DRAM」のプレビュー発表。速度が大幅向上、モジュールサイズは74mmに
+2026.11.19 10:56 更新
+2026.11.18 配信 
+DDR6
+メモリ
+データレートやデータバス幅、ダイ密度などが大きく向上
+JEDEC Solid State Technology Association（本部：アメリカ バージニア州）は2026年11月18日（現地時間）、次世代メインメモリ規格である
+「DDR6 DRAM」
+のプレビューを発表した。
+現在開発中の「DDR6 DRAM」は、データレートの向上とデータバス幅の拡張により、導入時点で帯域幅が50％以上増加する見込み。データレートはDDR5の9.2GT/sを上回る12.8GT/sから始まり、ロードマップでは14.4GT/s以上への拡張が予定されている。データバスも64 DQから96 DQへと拡張され、データバス幅は50％増加する。
+また、メモリへのアクセスを擬似チャネルに分割し、パッケージあたりの帯域幅を向上させる擬似チャネルアーキテクチャに対応。バンク数は2倍になり、リフレッシュレートの改善によりデータバスの効率が向上する。
+さらに最大128GbのDRAMダイ密度をサポートするほか、ダイスタッキングの最適化によりパッケージ面積あたりの容量が向上。モジュールサイズもDDR5の133mmから74mmへと大幅に短縮され、より高いシステムメモリ密度に対応可能な設計になっている。
+そのほか複数のシステムエラー訂正コード（ECC）実装をサポート。フォームファクタもRDIMM、UDIMM、CAMMなど複数が用意され、信頼性・性能・電力・コストのバランスを取りながら幅広いアプリケーションに対応する。
+なお、上記の仕様や機能は最終的な標準規格ではなく、JEDECの開発および承認プロセスを通じて変更される可能性があるとしている。
+JEDEC Previews Next-Generation DDR6 DRAM: Higher Performance, Greater Capacity, Improved Power Efficiency and Data-Center-Class Reliability
+https://www.jedec.org/news/pressreleases/jedec%C2%AE-previews-next-generation-ddr6-dram-higher-performance-greater-capacity
+文： 編集部 絵踏 一
+                                                    JEDEC Solid State Technology Association： 
+https://www.jedec.org/
+前の記事
+記事一覧
+次の記事
+Crowxis、TeamコラボDDR5メモリ「W5U5600TEP-16G」11…
+TSMCが3D DRAM製造へ参入か、NVIDIAの要請で計画策定と海外報道
+CFD、メモリ相性保証サービス付きDDR5-5600 16GBメモリ「D5U56…
+KLEVV、低レイテンシ駆動のオーバークロックDDR5メモリ「CRAS V RG…
+BIWINとはナニモノ？知られざる業界の巨人が手がけた最上位メモリ、Origin…
+(お買い得中古品情報) 完全未チェックの玄人向けジャンクDDR5・DDR4メモリ…
+2026年11月20日
+(アキバ取材班) CORSAIRの360mmオールインワン水冷「iCUE LINK TITAN II 360 RX RGB」発売
+2026年11月20日
+(アキバ取材班) CORSAIR、ATX 3.1準拠の奥行き125mm電源「CX ATX 3.1」シリーズ発売
+2026年11月20日
+(アキバ取材班) 腕に装着する「スマートウォッチ型TOYカメラ2」が800円。18種のミニゲームも内蔵
+2026年11月20日
+(アキバ取材班) ASRock、税込12,480円のRyzen 9000シリーズ対応マザーボード「A620AM-P」発売
+2026年11月20日
+(アキバ取材班) 長時間録画向け高耐久microSDカード「SANDISK Security Cam Card/Dash Cam Card」が入荷
+WHAT'S NEWを見る
+2026年11月12日
+女流プロ雀士・佐藤芽衣さん、6年ぶりのPC新調！インテル® Core™ Ultra デスクトップ・プロセッサーで理想の一台を組む
+2026年11月5日
+妥協なき画質と性能、ASRock Taichi初のゲーミングディスプレイ「TCO27USA」を試す
+2026年11月2日
+国内再始動のColorfulは第5の選択肢となるか？高コスパMini-ITX「CVN B860I GAMING FROZEN V20」検証
+2026年10月30日
+これで全てが分かる。ASUS「ROG Cronox ARGB」徹底解説
+2026年10月28日
+最先端スペックに生まれ変わった、Razerエルゴゲーミングマウス最新版「Basilisk V4 Pro」レビュー
+
+===== https://www.businesswire.com/news/home/20261118955745/en/JEDEC-Previews-Next-Generation-DDR6-DRAM-Higher-Performance-Greater-Capacity-Improved-Power-Efficiency-and-Data-Center-Class-Reliability
+(status 403)
+Page Unavailable
+Please be advised that this page is unavailable.
+Call +1.888.381.9473 for our Web Support team or 
+open a support ticket
+ if you need further assistance. 
+Reference Error ID: 
+0.635ed617.1795153140.288e1e33
+Client IP: 
+4.149.245.180
