@@ -220,7 +220,7 @@ const S={
  loss(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'13億')),d-0.8);
    withEnter(enter(u,0),()=>{card(200,440,680,170,30);text('1〜9月の本業',CX,525,60,C.text,'center',900,600);});
    if(u>t2){bigNum('13億','ドル',CX,780,ease((u-t2)/0.3),C.warn,180);tagI('赤字',CX,990,(u-t2-0.3)/0.3,C.warn,'#FFFFFF',72);}},
- rival(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'来年')),d-0.8);
+ rival(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'2027')),d-0.8);
    withEnter(enter(u,0),()=>{card(200,440,680,220,30,C.card2);text('ライバル',CX,500,44,'#E3EAF4','center',900);text('OpenAI',CX,590,96,'#FFFFFF','center',900,600);});
    if(u>t2){tagI('2027年に上場か',CX,800,(u-t2)/0.3,C.acc,'#FFFFFF',72);withEnter(enter(u,t2+0.4),()=>{text('（報道）',CX,920,44,C.sub,'center',800);});}},
  // the end: big rina talks to the end (LongCat). The opening photo sits above her and grows to the full screen (loop to 0 s).
