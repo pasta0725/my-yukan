@@ -14,6 +14,33 @@ new way (user's decision 2026-11-16, tools/shorts_rules.md): no 「{SEC}でま�
             A line with "big": true is a big talking presenter line (e.g. the hook at 0 s): short-build.yml makes its frames
             from the LongCat clip of the same scene name. Specs without these keys come out exactly as before."""
 import json, os, re, subprocess, sys, wave
+
+
+def mark_period_pauses(runs, say, windows, win):
+    body = say.rstrip("。！？ 　")
+    total = max(1, sum(c not in "、。！？「」 　" for c in body))
+    spoken = 0
+    for c in body:
+        if c in "。！？":
+            want = spoken / total * windows
+            free = [r for r in runs if r[2] == "comma" and (r[1] - r[0]) * win >= 0.25]
+            if free:
+                nearest = min(free, key=lambda r: abs((r[0] + r[1]) / 2 - want))
+                nearest[2] = "period"
+        elif c not in "、「」 　":
+            spoken += 1
+
+
+if sys.argv[1:] == ["--selftest"]:
+    with open("narration/rina_ff7sale/lines.json", encoding="utf-8") as f:
+        hook = json.load(f)["lines"][0].splitlines()[0]
+    pauses = [[14, 38, "comma"], [52, 87, "comma"]]
+    mark_period_pauses(pauses, hook, 130, 0.01)
+    assert [r[2] for r in pauses] == ["comma", "period"]
+    mark_period_pauses(pauses[:1], hook, 130, 0.01)
+    assert pauses[0][2] == "comma"
+    sys.exit(0)
+
 import numpy as np
 
 spec = json.load(open(sys.argv[1], encoding="utf-8")); W = sys.argv[2]; os.makedirs(W, exist_ok=True)
@@ -37,7 +64,7 @@ def readw(p):
 def squeeze(x, say, period=0.04, comma_max=0.30, min_pause=0.14, thr_db=-40, win=0.01):
     """no breath at 「。」: the pause at each sentence end inside the line is cut to `period` seconds.
     「、」 may keep a breath (capped at comma_max). Short silences (< min_pause), such as the small 「っ」, are never touched.
-    Which pause belongs to which 「。」 is found by position: each 。 takes the nearest long pause to where it falls in the text."""
+    Each 「。」 takes the nearest available pause of at least 0.25 seconds, so it cannot take a short 「っ」 pause."""
     h = int(SR * win); n = len(x) // h
     if n == 0: return x
     quiet = 20 * np.log10(np.sqrt((x[: n * h].reshape(n, h) ** 2).mean(axis=1) + 1e-12)) < thr_db
@@ -47,15 +74,7 @@ def squeeze(x, say, period=0.04, comma_max=0.30, min_pause=0.14, thr_db=-40, win
         while j < n and quiet[j] == quiet[i]: j += 1
         if quiet[i] and i > 0 and j < n and (j - i) * win >= min_pause: runs.append([i, j, "comma"])
         i = j
-    body = say.rstrip("。！？ 　")
-    chars = [c for c in body if c not in "、。！？「」 　"]; tot = max(1, len(chars))
-    k = 0
-    for c in body:
-        if c in "。！？" and runs:
-            frac = k / tot; want = frac * n
-            free = [r for r in runs if r[2] == "comma"]
-            if free: min(free, key=lambda r: abs((r[0] + r[1]) / 2 - want))[2] = "period"
-        elif c not in "、「」 　": k += 1
+    mark_period_pauses(runs, say, n, win)
     out, pos = [], 0
     for a, b, kind in runs:
         keep = int((period if kind == "period" else min(comma_max, (b - a) * win)) / win)

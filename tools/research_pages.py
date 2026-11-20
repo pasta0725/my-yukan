@@ -46,6 +46,8 @@ if sys.argv[1] == "split":
 
 elif sys.argv[1] == "fetch":
     found, out = json.load(open(sys.argv[2])), sys.argv[3]
+    if not isinstance(found, dict) or not found:
+        sys.exit("調査結果がありません。検索の記録を確認してください。")
     os.makedirs(out, exist_ok=True)
 
     def job(item):

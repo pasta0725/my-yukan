@@ -57,13 +57,33 @@ def prep(src, jobs):
     print("pick jobs:", len(cand))
 
 
+def missing_pick_reason(job):
+    try:
+        with open(os.path.join(job, "codex.log"), encoding="utf-8", errors="replace") as f:
+            attempts = re.split(r"(?m)^--- attempt \d+ model=\S+ rc=(-?\d+|timeout)[ \t]*$", f.read())
+    except FileNotFoundError:
+        return "実行記録がありません"
+    if len(attempts) > 1:
+        status, log = attempts[-2:]
+        if status == "timeout":
+            return "時間切れ"
+        if status != "0":
+            if re.search(r"you['’]ve hit your usage limit", log, re.I):
+                return "Codex の利用上限"
+            return f"Codex の実行に失敗（終了番号 {status}）"
+    return "選んだ結果のファイルがありません"
+
+
 def collect(src, jobs, out):
     cand = json.load(open(os.path.join(src, "candidates.json"), encoding="utf-8"))
     os.makedirs(out, exist_ok=True)
     picks, rows = {}, []
     for sid, c in cand.items():
-        f = os.path.join(jobs, sid, "pick.json")
-        if not os.path.exists(f): rows.append((sid, "未処理", "no pick.json")); continue
+        job = os.path.join(jobs, sid)
+        f = os.path.join(job, "pick.json")
+        if not os.path.exists(f):
+            rows.append((sid, "未処理", missing_pick_reason(job)))
+            continue
         try:
             p = json.load(open(f, encoding="utf-8"))
             items = p.get(sid, p.get("picks", [])) if isinstance(p, dict) else p

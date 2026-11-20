@@ -34,6 +34,7 @@ Rules (all must be kept):
    「りなの見方：」. It may only rely on facts that are in the body. Rewrite it only if it would otherwise be wrong or weaker.
 7. refs: keep all existing refs in order (source_url stays first). Append {"name": "<媒体名・会社名>", "url": "<URL exactly
    as on its ===== line>"} for each page you actually used. Only URLs from refs_allowed.txt. At most 6 refs in total.
+   Keep source links in refs. The checker rejects newly added URLs in any reader-visible text, including captions.
 8. Never change "id", "category", "image", "source_url", "source_name", "published", "visual", and never add, remove or
    change "img" or "gallery" blocks (pictures are handled elsewhere).
 9. If no page adds a useful new fact about the same event, write out.json identical to article.json.

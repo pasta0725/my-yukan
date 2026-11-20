@@ -22,10 +22,14 @@ the style of keys/point (short bullet wording is fine there), do NOT add 「〇�
 supports (refs already show the sources), do NOT add new facts, and do NOT "improve" precision of a correct statement.
 How to fix:
 1. A fact that a readable page contradicts: correct it to what the page says (if pages disagree with each other, write
-   both with their source, e.g. 「〇〇は△△と伝えています」).
+   both with their source, e.g. 「〇〇は△△と伝えています」). Before calling two figures inconsistent, check what each one
+   measures and compare them in the same unit.
 2. A fact that no readable page contains: if it is important and plausible, attribute it softly as
    「〜と伝えられています」 (or name the outlet if the article says which one reported it); if it is a detail or looks
    invented, delete it. Do not attribute or delete facts that ARE on a readable page.
+   The availability in Japan and support for Japanese must still be covered as required by style.md. Keep statements
+   such as 「日本での提供や日本語対応は発表されていません」 when the relevant readable announcement is silent on them.
+   If it gives an answer, update the statement to match.
 3. If no page could be read for this article, only fix internal contradictions (title vs body, stat vs body, wrong
    day-of-week for a date, different numbers for the same thing) and do not delete facts just because pages failed.
 4. stat: every number must appear in the body with its meaning; fix or remove stat items that do not.

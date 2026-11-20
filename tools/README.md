@@ -36,7 +36,7 @@
    | other_A | その他 | 通信・セキュリティ・法律/規制の注目ニュース（基準は spec.md、2026-11-08に引き下げ）：ケータイ Watch・ITmedia NEWS・Security NEXT・総務省/公正取引委員会/デジタル庁の発表、7日以内 | 4 |
    | other_B | その他 | 企業・業界と半導体の注目ニュース：日経クロステック・EE Times Japan・ITmedia NEWS・Reuters、7日以内 | 4 |
    - 出力は WORKDIR/<担当名>.json（例 mobile_A.json）。build_edition.py が1日の上限（AI14・その他8・宇宙4・ほか各7）で切る。
-   - 2026-11-15〜（ユーザーの決定）：全担当を Codex（GPT-6.2 Sol、深さ high）が書く（下の「Codexに任せる作業」の④）。ニュースが取れたらすぐ codex-write.yml を全担当で動かす。codexwrite/ED/<担当名>.json が無い・空・締め切りまでに出ないときだけ、その担当を Claude（Sonnet）で書く。Codex はネット検索をしないので、ニュースフォルダにない関心の話題は拾いにくい（2026-11-14 の比較：正確さは同じ、ルールの守り方は Codex が上、深さは Sonnet が上）。
+   - 朝刊は Codex（GPT-6.2 Sol、深さ medium）、夕刊は Sonnet が全担当を書く（2026-11-19〜、下の「Codexに任せる作業」の④）。朝刊はニュースが取れたらすぐ codex-write.yml を全担当で動かす。codexwrite/ED/<担当名>.json が無い・空・締め切りまでに出ないときだけ、その担当を Claude（Sonnet）で書く。Codex はネット検索をしないので、ニュースフォルダにない関心の話題は拾いにくい（2026-11-14 の比較：正確さは同じ、ルールの守り方は Codex が上、深さは Sonnet が上）。
    - ユーザーが個人的に関心のある話題（Apple・Google・Xiaomi・Anker・Dreame・任天堂・SONY・GeForce NOW・ChatGPT・Claude・Grok・Muse）は積極的に記事にする（2026-11-09）。各担当が自分のカテゴリに合うものを検索で探し、build_edition.py はこれらを優先して残し、カテゴリごとに上限を2本まで超えてよい。詳しくは spec.md の Personal-interest topics。
 3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD-am（または -pm） [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。公式画像の補充（add_official_images.py）のあとに `python3 -I tools/place_images.py data/YYYY-MM-DD.json` で画像を本文の合間に配る（2026-11-08 ユーザーの希望）。
 4. 見出し一覧を見て、同じ出来事が別ジャンルにも入っていれば id を指定して作り直す。
