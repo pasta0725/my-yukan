@@ -1,0 +1,127 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2158044.html
+TITLE: 「Wireshark 4.6.10」が公開、Windows Server 2016などに対応する「4.4」系の最終版も／39件の脆弱性を修正、前回から倍増
+SITE: 窓の杜
+PUBLISHED: 2026-11-20 13:05 (page: 2026-11-20T13:05:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2158/044/wireshark.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/044/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2151/000/list.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B076CWFDB8.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「Wireshark 4.6.10」が公開、Windows Server 2016などに対応する「4.4」系の最終版も
+39件の脆弱性を修正、前回から倍増
+樽井 秀人
+2026年11月20日 13:05
+「Wireshark」v4.6.10がリリース
+窓の杜から
+ダウンロード
+フリーのパケットキャプチャーツール「Wireshark 4.6.10」が、11月18日（協定世界時）に公開された。
+「Wireshark 4.6」シリーズ
+の最新版となる。
+本バージョンでは、以下の39件の脆弱性が修正された。AI支援による脆弱性報告の増加が背景にあるようで、
+前回
+の19件から倍増した。
+wnpa-sec-2026-111
+：RTSE protocol dissector crash.（CVE-2026-130469）
+wnpa-sec-2026-112
+：NBAP protocol dissector crash.（CVE-2026-130468）
+wnpa-sec-2026-113
+：PEAK CAN TRC file parser crash when built with older versions of GLib.（CVE-2026-130467）
+wnpa-sec-2026-114
+：ERF file parser crash.（CVE-2026-130466）
+wnpa-sec-2026-115
+：Ascend file parser large loop.（CVE-2026-130465）
+wnpa-sec-2026-116
+：MsgPack and NNTP protocol dissector crashes.（CVE-2026-130464）
+wnpa-sec-2026-117
+：Android Logcat file parser crash.（CVE-2026-130463）
+wnpa-sec-2026-118
+：Multiple protocol dissector and file parser hangs.（CVE-2026-130462）
+wnpa-sec-2026-119
+：IEEE 1609.2 protocol dissector crash.（CVE-2026-130461）
+wnpa-sec-2026-120
+：Multiple protocol dissector crashes.（CVE-2026-130460）
+wnpa-sec-2026-121
+：Tektronix K12xx file parser large loop.（CVE-2026-130459）
+wnpa-sec-2026-122
+：IrDA protocol dissector crash.（CVE-2026-130458）
+wnpa-sec-2026-123
+：Matter protocol dissector crash.（CVE-2026-130457）
+wnpa-sec-2026-124
+：ERF file parser crash.（CVE-2026-130456）
+wnpa-sec-2026-125
+：Kafka protocol dissector infinite loop.（CVE-2026-130455）
+wnpa-sec-2026-126
+：IEEE 1905 protocol dissector crash.（CVE-2026-130454）
+wnpa-sec-2026-127
+：OpenWire protocol dissector crash.（CVE-2026-130453）
+wnpa-sec-2026-128
+：USB-PTP protocol dissector crash.（CVE-2026-130452）
+wnpa-sec-2026-129
+：Multiple protocol dissector infinite loops.（CVE-2026-130451）
+wnpa-sec-2026-130
+：Multiple protocol dissector crashes.（CVE-2026-130450）
+wnpa-sec-2026-131
+：TLS protocol dissector memory leak.（CVE-2026-130449）
+wnpa-sec-2026-132
+：Exported PDU protocol dissector crash.（CVE-2026-130448）
+wnpa-sec-2026-133
+：Exported PDU protocol dissector crash.（CVE-2026-130447）
+wnpa-sec-2026-134
+：ACN protocol dissector crash.（CVE-2026-130446）
+wnpa-sec-2026-135
+：Multiple protocol dissector crashes and infinite loops, and memory leaks.（CVE-2026-130445）
+wnpa-sec-2026-136
+：Multiple protocol dissector crashes.（CVE-2026-130442）
+wnpa-sec-2026-137
+：Multiple protocol dissector crashes.（CVE-2026-130443）
+wnpa-sec-2026-138
+：Multiple protocol dissector crashes.（CVE-2026-130440）
+wnpa-sec-2026-139
+：Multiple protocol dissector crashes.（CVE-2026-130439）
+wnpa-sec-2026-140
+：Dissection engine crash.（CVE-2026-130441）
+wnpa-sec-2026-141
+：Multiple protocol dissector crashes.（CVE-2026-130438）
+wnpa-sec-2026-142
+：PROFINET protocol dissector crash.（CVE-2026-130444）
+wnpa-sec-2026-143
+：Multiple protocol dissector crashes.（CVE-2026-130437）
+wnpa-sec-2026-144
+：Multiple protocol dissector memory leaks.（CVE-2026-130436）
+wnpa-sec-2026-145
+：SDP protocol dissector crash.（CVE-2026-130435）
+wnpa-sec-2026-146
+：Protocol dissector crashes.（CVE-2026-130434）
+wnpa-sec-2026-147
+：SCTP protocol dissector heap disclosure.
+wnpa-sec-2026-148
+：iLBC audio codec crash.
+wnpa-sec-2026-149
+：AMR audio codec crash.
+おもな影響はクラッシュや無限ループ、メモリリークなどで、SCTPの解析処理でヒープメモリの情報が漏洩する問題も含まれる。また、Windows版とmacOS版のインストーラーには、「HTTP2Shell」脆弱性（CVE-2026-111497）を修正した「brotli 1.2.1」が同梱されている。Windows版に同梱するパケットキャプチャードライバー「Npcap」も、v1.88からv1.89へ更新された。
+関連記事
+セキュリティ
+脆弱性
+その他
+Googleの圧縮形式「Brotli」に深刻な脆弱性「HTTP2Shell」、Web関連に幅広く影響【10月30日追記】
+「Wireshark」は、Windows/Mac/Linuxなどをサポートするクロスプラットフォーム対応のネットワークプロトコルアナライザー。ネットワークに流れるさまざまなパケットを採取し、情報をリアルタイムで表示したり、ログファイルを解析・調査できる。Windows版の対応OSは64bit版のWindows 10/11およびWindows Server 2019/2022で、現在公式サイト「wireshark.org」から無償でダウンロード可能。窓の杜ライブラリからもダウンロードできる。
+なお、
+旧ブランチの「Wireshark 4.4」シリーズ
+についても、同日に「Wireshark 4.4.20」が公開されている。こちらも36件の脆弱性が修正されており、利用中の場合はアップデートを忘れないようにしたい。
+v4.4.20は「Wireshark 4.4」シリーズの最終リリースとなる見込み。「Wireshark 4.4」シリーズは、Windows 10 バージョン1607とWindows Server 2016、macOS 11を公式にサポートする最後のリリースブランチでもある。
+Amazonで購入
+「パケットキャプチャー」関連商品
+Amazonで購入
+ソフトウェア情報
+「Wireshark」Windows版
+【著作権者】
+Gerald Combs and contributors
+【対応OS】
+64bit版のWindows 10/11およびWindows Server 2019/2022
+【ソフト種別】
+フリーソフト
+【バージョン】
+4.6.10（26/11/18）

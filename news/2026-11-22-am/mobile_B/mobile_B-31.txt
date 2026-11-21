@@ -1,0 +1,39 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2158045.html
+TITLE: 「PostgreSQL 19」が正式リリース、オープンソースのリレーショナルデータベース（RDB）／稼働を止めずにテーブルを最適化できる「REPACK」などの新機能。2031年11月までサポート
+SITE: 窓の杜
+PUBLISHED: 2026-11-20 15:28 (page: 2026-11-20T15:28:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2158/045/postgresql.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/045/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0HLQ85HWK.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「PostgreSQL 19」が正式リリース、オープンソースのリレーショナルデータベース（RDB）
+稼働を止めずにテーブルを最適化できる「REPACK」などの新機能。2031年11月までサポート
+樽井 秀人
+2026年11月20日 15:28
+「PostgreSQL 19」がリリース
+PostgreSQL Global Development Groupは11月19日、オープンソースのリレーショナルデータベース（RDB）システム「PostgreSQL 19」を正式リリースした。大規模なワークロードにおける管理と開発の両方を簡素化することに重点が置かれている。
+目玉となるのは、テーブルの肥大化（bloat）を解消する「REPACK」コマンドだ。更新や削除が頻繁なテーブルにたまった未使用領域を回収し、インデックスに合わせてデータを並べ替えられる。
+従来の「VACUUM FULL」「CLUSTER」コマンドではクリーンアップが完了するまでテーブルにアクセスできなかったが、「REPACK (CONCURRENTLY)」を使えば処理の大部分で読み書きを継続できる。なお、「VACUUM FULL」「CLUSTER」も互換性のために引き続き利用可能。
+また、クエリプランナーの実行計画の選択を安定させる「pg_plan_advice」拡張が追加された。「プランアドバイス」と呼ばれるミニ言語で異なる実行計画を試すこともできる。あわせて追加された「pg_stash_advice」拡張を使えば、アドバイスを保存してクエリ識別子に基づき自動適用できるため、アプリケーションを変更せずに遅い実行計画を修正できる。
+そのほかの主な変更点は、以下の通り。
+オートバキュームが並列ワーカーでインデックスを処理可能に。処理するテーブルの優先順位を決める新しいスコアリングシステムも導入
+「wal_level」が「replica」の場合、最初の論理レプリケーションスロットの作成時に実効WALレベルが自動で「logical」へ引き上げられ、再起動なしで論理レプリケーションを有効化可能に
+シーケンス値の論理レプリケーションに対応
+スタンバイで「WAIT FOR LSN」コマンドを使い、プライマリーで書き込んだデータを読み取れる「書き込み後の読み取り」の一貫性に対応
+「INSERT ... ON CONFLICT DO SELECT」を追加し、「取得または作成」のパターンを簡素化
+「COPY」コマンドがJSON形式での出力に対応
+外部キーのチェックを高速化。テストでは一括挿入が約2倍高速に
+サーバー側でのServer Name Indication（SNI）に対応し、接続先のホスト名ごとに異なるTLS証明書を提示可能に
+md5パスワード認証の成功時に警告を出すように。RADIUS認証のサポートは削除
+JIT（実行時コンパイル）を既定で無効化
+「PostgreSQL 19」のサポート期間は、2031年11月19日まで。なお、旧バージョンの「PostgreSQL 14」は、
+11月12日のアップデート
+をもってサポートが終了している。
+「PostgreSQL」はWindows/macOS/Linux/BSD/Solarisなどに対応しており、現在、公式サイト「postgresql.org」から無償でダウンロード可能。Windows版インストーラーは、EDBのWebサイトから入手できる。
+旧バージョンからのデータ移行には、ダンプとリストア、「pg_upgrade」、または論理レプリケーションが必要。互換性に影響する変更もあるため、移行前にリリースノートを確認したい。
+Amazonで購入
+「PostgreSQL」関連商品
+Amazonで購入
