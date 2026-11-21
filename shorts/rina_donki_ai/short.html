@@ -1,0 +1,268 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0B1222}canvas{display:block}</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="plan.js"></script><script src="pal.js"></script>
+<script src="../../channel/rina_puppet/index.js"></script><script src="../_template/puppet.js"></script>
+<script>
+// Design rules: iPhone shows x~98-982 (sides cropped), Shorts tabs end y~330, right buttons x>=885 from y~970,
+// channel/title text from y~1480. Diagrams live in y400-1080 centred on x540, captions in their own band below, mini presenter under that.
+// palette A (navy + yellow), 4 colours max, captions 12 chars x 2 lines, one motion vocabulary.
+let W=1080,H=1920,c=document.getElementById('c'),g=c.getContext('2d'),P=window.PLAN;
+const FONT='"Noto Sans CJK JP",sans-serif';
+const C=Object.assign({bg0:'#17223A',bg1:'#0B1222',card:'#1F2D4C',card2:'#283A60',text:'#F4F1F3',sub:'#AEB8CB',acc:'#FBD530',brand:'#458FDE',warn:'#F4514F',ink:'#141A2B',bar:'#5B6784',
+  line:'rgba(255,255,255,0.025)',capText:'#F4F1F3',capEdge:'#05070D',capShadow:'rgba(0,0,0,0.45)',capNum:'#FBD530',dotOff:'#24314F',overlay:'rgba(11,18,34,0.6)',
+  glow:'#458FDE',glowA:1,charShadow:null,litShadow:'rgba(150,190,255,0.55)',litBlur:40,onAcc:'#141A2B',buyFill:'#FBD530',buyInk:'#141A2B',waitText:'#F4F1F3',cardShadow:null},window.PAL||{}); // palette: dark A by default, pal.js overrides
+// big captions: white letters + thin sharp black edge, no blur (2026-11-17 user chose B; the thick round white edge with a soft shadow looked blobby)
+Object.assign(C,{capText:'#FFFFFF',capEdge:'#000000',capNum:'#FFA51F'});
+const CX=540, MAXW=680, CAP_Y=1168;
+let BASE=null,MEASURE=false;function abs(fn){if(MEASURE)return;g.save();g.setTransform(BASE);fn();g.restore();}            // screen coordinates (header, presenter, background)
+const CT={s:1.12,y0:360,y1:375};                                                       // diagram coordinates: the old y360-1110 band drawn into y400-1080
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);                       // decelerate (enter)
+const back=x=>{x=clamp(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);}; // overshoot: numbers & verdict only
+const IMG={};const load=(k,s)=>new Promise(r=>{const i=new Image();i.onload=()=>{IMG[k]=i;r()};i.onerror=()=>r();i.src=s;});
+const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);const i=new Image();i.onload=()=>{CH[f]=i;r(i)};i.onerror=()=>r(null);i.src='char/f'+f+'.png';});}
+let CUR=null;
+function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
+  if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
+window.ready=(async()=>{await Promise.all([load('key','img/key.jpg'),load('floor','img/floor.jpg'),load('pop','img/pop.jpg'),load('p450','img/p450.jpg'),(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]);await document.fonts.ready;measureFits();})();
+const telAt=(txt)=>P.tel.find(x=>x.text===txt);
+const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
+// ---------- helpers ----------
+function bg(u){abs(()=>bg0(u));}
+function bg0(u){const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,C.bg0);gr.addColorStop(1,C.bg1);g.fillStyle=gr;g.fillRect(0,0,W,H);
+  g.strokeStyle=C.line;g.lineWidth=2;for(let x=-200+(u*16%96);x<W+400;x+=96){g.beginPath();g.moveTo(x,0);g.lineTo(x-420,H);g.stroke();}
+}
+function glow(x,y,r,col,a=0.35){col=C.glow;a*=C.glowA;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,hexA(col,a));gr.addColorStop(1,hexA(col,0));g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}
+function hexA(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`;}
+// ---- overflow check (2026-11-13: "11/17" ran out of its calendar icon and nobody noticed) ----
+// every filled rrect is remembered in screen pixels; text() warns when its text sticks out of the smallest box it sits in.
+// check_fit.js renders the whole video and lists these warnings. text(s,...,maxw) also shrinks the font to fit maxw.
+let BOXES=[];window.FIT_WARN=window.FIT_WARN||[];
+function devBox(x,y,w,h){const m=g.getTransform();const xs=[x,x+w].map((a,i)=>m.a*a+m.c*(i?y+h:y)+m.e),ys=[y,y+h].map((b,i)=>m.b*(i?x+w:x)+m.d*b+m.f);return [Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)];}
+function noteBox(x,y,w,h){if(!MEASURE)BOXES.push(devBox(x,y,w,h));}
+function checkText(s,x,y,size,align){if(MEASURE)return;const tw=g.measureText(s).width;const x0=align==='left'?x:align==='right'?x-tw:x-tw/2;const b=devBox(x0,y-size*0.5,tw,size);
+  const cx=(b[0]+b[2])/2,cy=(b[1]+b[3])/2;let best=null;for(const r of BOXES){if(cx>r[0]&&cx<r[2]&&cy>r[1]&&cy<r[3]&&(!best||(r[2]-r[0])*(r[3]-r[1])<(best[2]-best[0])*(best[3]-best[1])))best=r;}
+  if(best&&(b[0]<best[0]-3||b[2]>best[2]+3||b[1]<best[1]-3||b[3]>best[3]+3))window.FIT_WARN.push({t:+CURT.toFixed(2),scene:P.lines[CURI]?P.lines[CURI].scene:'',text:s,over:Math.round(Math.max(best[0]-b[0],b[2]-best[2],best[1]-b[1],b[3]-best[3]))});}
+function rrect(x,y,w,h,r,fill,stroke){if(fill)noteBox(x,y,w,h);g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;if(C.cardShadow&&fill===C.card){g.save();g.shadowColor=C.cardShadow;g.shadowBlur=26;g.shadowOffsetY=8;g.fill();g.restore();}else g.fill();}if(stroke){g.strokeStyle=stroke;g.lineWidth=4;g.stroke();}}
+function img(k,cx,cy,w,alpha=1){const i=IMG[k];const h=w*i.height/i.width;g.globalAlpha*=alpha;g.drawImage(i,cx-w/2,cy-h/2,w,h);g.globalAlpha/=alpha||1;return h;}
+function text(s,x,y,size,col,align='center',weight=900,maxw){g.font=`${weight} ${size}px ${FONT}`;if(maxw){const w0=g.measureText(s).width;if(w0>maxw){size=Math.floor(size*maxw/w0);g.font=`${weight} ${size}px ${FONT}`;}}checkText(s,x,y,size,align);g.textAlign=align;g.textBaseline='middle';g.fillStyle=col;g.fillText(s,x,y);return g.measureText(s).width;}
+function edgeText(s,x,y,size,col,align='center'){g.font=`900 ${size}px ${FONT}`;g.textAlign=align;g.textBaseline='middle';g.lineJoin='round';
+  g.save();g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;g.strokeText(s,x,y);g.restore();g.fillStyle=col;g.fillText(s,x,y);}
+function enter(u,t0,dur=0.25){return ease((u-t0)/dur);}               // cards & images: fade + rise 28px
+function withEnter(k,fn,dy=28){if(k<=0)return;g.save();g.globalAlpha*=k;g.translate(0,dy*(1-k));fn();g.restore();}
+function brandTag(){}  // rule: the logo appears only on the final card  // channel logo instead of the old マイ夕刊 tag
+function mixLine(parts,cx,y,size){g.font=`900 ${size}px ${FONT}`;const ws=parts.map(([t])=>g.measureText(t).width);let x=cx-ws.reduce((a,b)=>a+b,0)/2;parts.forEach(([t,col],i)=>{text(t,x,y,size,col,'left');x+=ws[i];});}
+function lit(fn){g.save();g.shadowColor=C.litShadow;g.shadowBlur=C.litBlur;fn();g.restore();}  // dark products: soft light rim so they do not sink into the navy
+// small presenter in the lower-left (decoration, sits under the Shorts title area, never carries information)
+let CURI=0,CURT=0;const mouthNow=()=>{const L=P.lines[CURI];return L&&L.puppet?Puppet.mouthAt(P.voices[CURI],CURT-L.start):null;};
+function mini(u){abs(()=>glow(220,1375,240,C.brand,0.22));const a=Puppet.assets.small_sticker,s=0.56;abs(()=>Puppet.chibi(g,62,1280,a.size[0]*s,a.size[1]*s,CURT,mouthNow(),'small_sticker'));}  // whole body side inside YouTube's ~50px side crop  // PNGTuber chibi (2026-11-09): only mouth/eyes change  // face between the caption band and the channel name
+function drawChar(im,x,y,w,h){abs(()=>drawChar0(im,x,y,w,h));}
+function drawChar0(im,x,y,w,h){if(!im)return;if(C.charShadow){g.save();g.shadowColor=C.charShadow;g.shadowBlur=36;g.shadowOffsetY=10;g.drawImage(im,x,y,w,h);g.restore();}else g.drawImage(im,x,y,w,h);} // light themes: a soft shadow separates the white coat from the light background
+function credit(t='出典：TechCrunch ほか'){abs(()=>text(t,950,362,26,C.sub,'right',700));}
+// ---------- caption colours: numbers orange, product-name numbers plain, red only for caution ----------
+function marks(s,warn){const m=new Array(s.length).fill(C.capText);
+  const paint=(re,col)=>{re.lastIndex=0;let x;while((x=re.exec(s)))for(let i=x.index;i<x.index+x[0].length;i++)m[i]=col;};
+  paint(/[0-9][0-9.,万円ニトコマ倍月日秒%+]*/g,C.capNum);
+  // numbers inside product names (PS5, Switch 2, iPhone 17, GPT-6, M5) stay plain: only values (price, date, count) are highlighted (2026-11-14 user decision)
+  const prod=/[A-Za-z][A-Za-z+]*[ -]?([0-9][0-9.]*)(?![0-9.,万円倍月日秒%年人台本件回時分])/g;let p;
+  while((p=prod.exec(s))){const st=p.index+p[0].length-p[1].length;for(let i=st;i<p.index+p[0].length;i++)m[i]=C.capText;}
+  if(warn)paint(/ただし|宣伝/g,C.warn); return m;}
+// ---------- line breaks (2026-11-18): the rules of tools/shorts_rules.md「画面と字幕」are applied here, while the caption is laid out ----------
+// (they used to be found only in the screen check after a 15-minute render: 259億|キロ, 6万|1000キロ, Codexに|登場, a line starting with た/だ)
+// a line never starts with a particle, a small letter or the auxiliary た/だ (a word like ただし・ただ・だから may start a line after 、 or a particle);
+// never break inside 「」, inside a number, between a number and its unit (259億キロ・6万1000キロ・20分の1・11月18日), inside a katakana or English word,
+// before the number of a name (iPhone 17・ボイジャー1号), nor between two hiragana except right after a particle; 3+ letters a line; 2 lines, 3 only if needed.
+// check_fit.js checks the result with its own copy of the rules (wrap_rules.js), so a mistake here is still caught before rendering.
+const SEG=new Intl.Segmenter('ja',{granularity:'word'});
+const NOSTART='、。，．,.・…」』）)】〕!！?？をにはがでとのもへやかよねっゃゅょぁぃぅぇぉゎッャュョァィゥェォヮヵヶーんてただ';
+const NOSTART_W=['から','まで','より','だけ','しか','ほど','など','くらい','ぐらい','ので','のに','けど','ます','ません'];   // particles and endings of 2+ letters
+const HEAD_OK=['ただし','ただ','だから','だけど','だが','だって','たとえば','たった','たくさん','たぶん','でも','では','ところが','ところで','とても','とくに','とりあえず','もう','もし','もっと','もちろん','しかし','しかも'];
+const HEAD_OK_AFTER='、。」』）!！?？ 　はがをにでともへやよねばす';   // ...but only after these (so not 来|ただけ, なん|だから, 思い|もしない)
+const HEAD_FREE=['かか','かけ','かなり','かつて','かわり','でき','とき','ところ'];   // verbs and nouns that look like a particle (24時間|かかります, 予定表が|できます): may start a line anywhere
+const UNITS=['時間','年間','日間','週間','分間','秒間','カ月','ヶ月','か月','ヵ月','言語','光年','光日','万円','億円','千円','兆円','万人','億人','万台','パーセント'];
+const RE_KANJI=/[一-鿿々〆]/,RE_HIRA=/[ぁ-ゟ]/,RE_KATA=/[ァ-ヺーヽヾ]/,RE_AN=/[A-Za-z0-9Ａ-Ｚａ-ｚ０-９.\-+_'’&]/,RE_DIG=/[0-9０-９]/;
+const SOFT='をにはがでとのもへやよねばて';   // hiragana|hiragana is a word boundary only right after these (and where the word splitter agrees)
+const letters=t=>t.replace(/[\s、。，．,.!！?？「」『』（）()・…〜~]/g,'').length;
+function numSpans(s){const out=[];const re=/[0-9０-９][0-9０-９.,，．:：億万千百十兆]*(?:分の[0-9０-９][0-9０-９.,，．]*)?/g;let m;   // [start, end of the number, end of its unit word]
+  while((m=re.exec(s))){const a=m.index;let b=a+m[0].length;while(b>a+1&&'.,，．:：'.includes(s[b-1]))b--;const w=UNITS.find(x=>s.startsWith(x,b));out.push([a,b,w?b+w.length:b]);}return out;}
+function breakWhy(s,j,segb){const p=s[j-1],n=s[j];   // '' = a line may start at s[j]; otherwise the rule it would break
+  const headOK=HEAD_FREE.some(w=>s.startsWith(w,j))||HEAD_OK.some(w=>s.startsWith(w,j))&&HEAD_OK_AFTER.includes(p);
+  if(!headOK&&(NOSTART.includes(n)||NOSTART_W.some(w=>s.startsWith(w,j))))return 'head';
+  const h=s.slice(0,j);if(h.split(/[「『（(【]/).length>h.split(/[」』）)】]/).length||'「『（(【'.includes(p))return 'bracket';
+  for(const [a,b,u] of numSpans(s)){if(j>a&&j<b)return 'number';if(j>b&&j<u)return 'unit';if(j===b&&!'、。，．,!！?？ 　」』）'.includes(n))return 'unit';
+    if(j===a&&('約第$¥＄￥#＃+＋'.includes(p)||(j>=2&&RE_DIG.test(s[j-2]))))return 'number';}   // 約|259億, 11月|18日, 7時|16分
+  if(n===' '||n==='　')return 'space';
+  if(RE_DIG.test(n)&&(RE_AN.test(p)||RE_KATA.test(p)||p===' '))return 'name';
+  if(RE_KATA.test(p)&&RE_KATA.test(n))return 'katakana';
+  if(RE_AN.test(p)&&RE_AN.test(n))return 'word';
+  if(RE_HIRA.test(p)&&RE_HIRA.test(n)&&!headOK&&!(SOFT.includes(p)&&(segb.has(j)||p==='て')))return 'hiragana';   // まと|めます, 見なが|ら (伝えて|います is fine)
+  if(RE_KANJI.test(p)&&RE_HIRA.test(n)&&!segb.has(j))return 'okurigana';   // 届|く
+  return '';}
+function wrapJa(s,size,maxw,maxLines=3){g.font=`900 ${size}px ${FONT}`;const W=t=>g.measureText(t).width;if(W(s)<=maxw)return [s];
+  const segb=new Set();let i=0;for(const x of SEG.segment(s)){i+=x.segment.length;segb.add(i);}
+  const cand=new Set(segb);for(let j=1;j<s.length;j++)if((SOFT+'、。」』）!！?？ 　').includes(s[j-1])||HEAD_OK.some(w=>s.startsWith(w,j)))cand.add(j);   // the word splitter misses some
+  const c=[...cand].filter(j=>j>0&&j<s.length&&letters(s.slice(0,j))>=3&&letters(s.slice(j))>=3&&!breakWhy(s,j,segb)).sort((a,b)=>a-b);
+  if(!c.length)return [s];   // no allowed place: one line (it shrinks; check_fit.js reports it when the letters get too small)
+  // cost of a layout = how much the letters shrink (%) + how bad the break places are + a little for uneven lines.
+  // 3 lines are drawn at 64px at most (about 13.5% smaller) and win only when 2 lines would shrink by more than ~16%: 2 lines are the rule (zelda 2026-11-09).
+  const SP=numSpans(s);
+  const PEN=a=>{const p=s[a-1],n=s[a];if(SP.some(([x,b,u])=>a===u&&u>b)||(RE_DIG.test(s[a-2]||'')&&RE_KANJI.test(p)))return 2;   // right after a number and its unit (24時間|かかります, 1日|かけて)
+    if(('をにはがでとのもへやかよね、。てばし」』）!！?？ 　').includes(p)||HEAD_OK.some(w=>s.startsWith(w,a)))return 0;   // best right after a particle
+    if(s.slice(a,a+2)==='いう'&&p==='と')return 3;if(RE_KANJI.test(p)&&RE_KANJI.test(n))return 30;if(RE_KANJI.test(p)&&RE_HIRA.test(n))return 18;return 5;};   // 予定|表・営業|中 (kanji|kanji) only as a last resort
+  const cost=(L,cap,extra)=>{const m=Math.max(...L.map(W));const eff=Math.min(cap,size*Math.min(1,maxw/m));return (1-eff/size)*100+extra+3*Math.min(m,maxw)/maxw;};
+  let best={L:[s],sc:cost([s],size,8)};
+  for(const a of c){const L=[s.slice(0,a),s.slice(a)];const sc=cost(L,size,PEN(a));if(sc<best.sc)best={L,sc};}
+  if(maxLines>=3)for(const a of c)for(const b of c)if(b>a&&letters(s.slice(a,b))>=3){const L=[s.slice(0,a),s.slice(a,b),s.slice(b)];const sc=cost(L,size*64/74,PEN(a)+PEN(b)+2.5);if(sc<best.sc)best={L,sc};}
+  return best.L;}
+// the lines and the letter size of each kind of caption (check_fit.js reads them through window.WRAP_LOG)
+function fitSize(lines,size,maxw){for(const L of lines){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;if(w>maxw)size=Math.floor(size*maxw/w);}return size;}
+function logWrap(kind,s,o){if(Array.isArray(window.WRAP_LOG))window.WRAP_LOG.push({kind,text:s,lines:o.lines,size:o.size});return o;}
+function captionLayout(s){const lines=wrapJa(s,66,MAXW,2);return logWrap('caption',s,{lines,size:fitSize(lines,66,MAXW)});}
+function bubbleLayout(s){const lines=wrapJa(s,74,BMAXW);let size=fitSize(lines,74,BMAXW);if(lines.length===3)size=Math.min(size,64);return logWrap('bubble',s,{lines,size});}
+function telopLayout(s){const lines=wrapJa(s,150,940,2);return logWrap('telop',s,{lines,size:fitSize(lines,150,940)});}
+window.LAYOUT={caption:captionLayout,bubble:bubbleLayout,telop:s=>telopLayout(s.replace(/[、。]$/,'')),base:{caption:66,bubble:74,telop:150}};
+// ---------- caption over the big presenter: white + black edge, orange numbers, red only for caution, <=680px, <=2 lines ----------
+function caption(s,y,k,warn){const o=captionLayout(s),lines=o.lines,size=o.size;
+  const lh=size*1.22, y0=y-(lines.length-1)*lh/2, sc=0.94+0.06*ease(k/0.12*1);
+  g.save();g.globalAlpha*=clamp(k/0.08);g.translate(CX,y);g.scale(sc,sc);g.translate(-CX,-y);
+  let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const m=marks(s,warn).slice(off,off+L.length);off+=L.length;
+    const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;
+    // two passes: every edge first, then every letter, so a letter's edge never covers its neighbour
+    const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;
+    for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[i];g.fillText(L[i],xs[i],yy);}});
+  g.restore();}
+
+// ---------- speech bubble: the caption is Rina's line, right next to her (x400-915, y1300-1575 stays clear of the Shorts buttons and title) ----------
+const BX=400,BY=1300,BW=515,BH=275,BCX=BX+BW/2+6,BMAXW=BW-70;
+function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.arcTo(BX+BW,BY,BX+BW,BY+44,44);g.lineTo(BX+BW,BY+BH-44);g.arcTo(BX+BW,BY+BH,BX+BW-44,BY+BH,44);
+  g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+150);g.lineTo(BX-40,BY+122);g.lineTo(BX,BY+94);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}  // tail at Rina's mouth
+function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
+  bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
+function bubbleText(s,k,warn){abs(()=>{const o=bubbleLayout(s),lines=o.lines,size=o.size;
+  const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
+  const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i]===C.capText?C.ink:(m[off+i]===C.capNum?'#D64D00':m[off+i]);g.fillText(L[i],x,y0+li*lh);x+=g.measureText(L[i]).width;}off+=L.length;});g.restore();});}
+// giant caption over the 0 s picture (the first sentence, chunk by chunk, user 2026-11-17): white letters, thin sharp black edge, no blur (user chose style B), numbers orange
+function bigTelop(s,y){s=s.replace(/[、。]$/,'');const o=telopLayout(s),lines=o.lines,size=o.size;   // at most 2 lines, never cut in half by letter count (2026-11-18)
+  const lh=size*1.18,y0=y-(lines.length-1)*lh/2;const m=marks(s,false);let off=0;
+  lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=CX-w/2;const yy=y0+li*lh;const xs=[];for(let i=0;i<L.length;i++){xs.push(x);x+=g.measureText(L[i]).width;}
+    g.save();g.textAlign='left';g.textBaseline='middle';g.lineJoin='miter';g.miterLimit=2.5;g.lineWidth=size*0.14;g.strokeStyle=C.capEdge;for(let i=0;i<L.length;i++)g.strokeText(L[i],xs[i],yy);g.restore();
+    g.textAlign='left';g.textBaseline='middle';for(let i=0;i<L.length;i++){g.fillStyle=m[off+i];g.fillText(L[i],xs[i],yy);}off+=L.length;});}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+// ---------- helpers copied from earlier shorts ----------
+function creditAt(s,x,y){g.font=`700 24px ${FONT}`;const w=g.measureText(s).width;g.save();g.globalAlpha*=0.85;rrect(x-w-16,y-18,w+32,36,18,'#FFFFFF');g.restore();text(s,x,y,24,C.sub,'right',700);}
+function card(x,y,w,h,r=30,fill){rrect(x,y,w,h,r,fill||C.card);}
+function stamp(s,x,y,k,col,size=60,rot=-0.06){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.rotate(rot);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w=g.measureText(s).width+size*0.9;
+  rrect(-w/2,-size*0.8,w,size*1.6,size*0.35,col);text(s,0,2,size,'#FFFFFF');g.restore();}
+function bigNum(s,unit,x,y,k,col,size=150){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);g.font=`900 ${size}px ${FONT}`;const w1=g.measureText(s).width;g.font=`900 ${size*0.4}px ${FONT}`;const w2=g.measureText(unit).width;
+  const x0=-(w1+w2+8)/2;text(s,x0,0,size,col||C.acc,'left');text(unit,x0+w1+8,size*0.18,size*0.4,C.text,'left');g.restore();}
+function pill(s,x,y,size,fill,ink){g.font=`900 ${size}px ${FONT}`;const w=g.measureText(s).width+size*1.1;rrect(x-w/2,y-size*0.85,w,size*1.7,size*0.85,fill);text(s,x,y+2,size,ink||'#FFFFFF');return w;}
+function ipic(k,x,y,w,h,r=28,z=1,fx=0.5,fy=0.5){const i=IMG[k];if(!i)return;g.save();noteBox(x,y,w,h);g.beginPath();g.roundRect(x,y,w,h,r);g.clip();g.fillStyle='#FFFFFF';g.fillRect(x,y,w,h);
+  const s=Math.max(w/i.width,h/i.height)*z;const iw=i.width*s,ih=i.height*s;g.drawImage(i,x+w/2-iw*fx,y+h/2-ih*fy,iw,ih);g.restore();rrect(x,y,w,h,r,null,C.bar);}
+function tag(s,x,y,k,col,size=46){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);pill(s,0,0,size,col||C.warn);g.restore();}
+function cnt(u,t0,dur,to){return Math.round(to*ease((u-t0)/dur));}
+// ---------- scenes (u = time in scene, d = scene length) ----------
+// ---------- helpers for the Donki AI employee short (2026-11-21 auto) ----------
+const PP='画像：PPIH';
+// a picture filling the whole screen; fx/fy = the point of the picture kept in the middle; dim = darken (0..1)
+function fullPic(k,z,fx=0.5,fy=0.5,dim=0){const i=IMG[k];g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;const s=Math.max(W/i.width,H/i.height)*z;const iw=i.width*s,ih=i.height*s;
+  const x=clamp(W/2-iw*fx,W-iw,0),y=clamp(H/2-ih*fy,H-ih,0);g.drawImage(i,x,y,iw,ih);if(dim>0){g.fillStyle=`rgba(0,0,0,${dim})`;g.fillRect(0,0,W,H);}}
+function tagI(s,x,y,k,fill,ink,size=56){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);pill(s,0,0,size,fill,ink);g.restore();}
+// a simple person silhouette (a "candidate" waiting backstage)
+function person(x,y,s,col){g.save();g.translate(x,y);g.scale(s,s);g.fillStyle=col;g.beginPath();g.arc(0,-46,30,0,7);g.fill();g.beginPath();g.moveTo(-48,40);g.quadraticCurveTo(-48,-8,0,-8);g.quadraticCurveTo(48,-8,48,40);g.closePath();g.fill();g.restore();}
+const S={
+ // 0 s (user 2026-11-17): only the real picture (Ai Kondo, full screen) and the huge telop of the first sentence, chunk by chunk.
+ open(u,d,L){abs(()=>{fullPic('key',1.0+0.05*u/Math.max(1,d),0.475,0.42);creditAt(PP,1000,1640);
+     const T=P.tel.filter(x=>x.start<L.start+d-0.01);let last=T[0].text,t0=0;for(const x of T){if(x.start-L.start<=u){last=x.text;t0=Math.max(0,x.start-L.start);}}
+     const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
+ // more of them are waiting backstage (hidden number)
+ tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'出番')),d-1.0);
+   withEnter(enter(u,0),()=>{ipic('key',300,420,480,560,28,1.0+0.05*u/Math.max(1,d),0.475,0.45);creditAt(PP,765,960);});
+   if(u>t2){[[190,700],[890,700],[150,1000],[930,1000]].forEach(([x,y],j)=>withEnter(enter(u,t2+j*0.12),()=>{person(x,y,1.25,C.bar);text('？',x,y-58,40,'#FFFFFF');},20));
+     tagI('出番待ち',CX,1100,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',60);}},
+ // "1分でまとめます" (reused pose clip): the sales floor photo fills the screen behind her, a little darker (user 2026-11-18)
+ hook(u,d,L){abs(()=>{fullPic('floor',1.05+0.08*u/Math.max(1,d),0.5,0.45,0.35);creditAt(PP,1000,340);bigRina(HOOK_R);});},
+ what(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.8,telHas(L,'ドンキ')),d-0.9);
+   withEnter(enter(u,0),()=>{ipic('key',190,420,700,520,28,2.2,0.56,0.93);creditAt(PP,875,925);});
+   if(u>t2){tagI('生成AIで制作',CX,1080,(u-t2)/0.3,C.brand,'#FFFFFF',64);}},
+ // 11/23 calendar
+ debut(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'宣伝')),d-0.9);
+   withEnter(enter(u,0),()=>{card(290,420,500,480,36,'#FFFFFF');rrect(290,420,500,120,36,C.warn);g.fillStyle=C.warn;g.fillRect(290,500,500,40);
+     text('11月',CX,482,64,'#FFFFFF','center',900,420);text('23',CX,700,240,C.acc,'center',900,420);text('勤労感謝の日',CX,850,44,C.sub,'center',900,420);});
+   if(u>t2)stamp('正式デビュー',CX,1060,(u-t2)/0.3,C.brand,64,-0.05);},
+ // the look: based on the mascot Donko, pink hair + ponytail
+ look(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'ピンク')),d-0.9);
+   withEnter(enter(u,0),()=>{ipic('key',190,420,700,600,28,1.35,0.5,0.3);creditAt(PP,875,1005);});
+   withEnter(enter(u,0.3),()=>tagI('ドンコがもと',CX,1100,1,C.brand,'#FFFFFF',56));
+   if(u>t2)tagI('ピンクのポニーテール',CX,1210,(u-t2)/0.3,C.acc,'#FFFFFF',52);},
+ // trial since July: the in-store POP
+ trial(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'動画')),d-1.0);
+   withEnter(enter(u,0),()=>{ipic(u<t2?'pop':'p450',190,420,700,u<t2?700:520,28,1.0+0.05*u/Math.max(1,d),0.5,0.4);creditAt(PP,875,u<t2?1105:925);});
+   tagI('7月から試験運用',CX,u<t2?1200:1040,(u-0.3)/0.3,C.acc,'#FFFFFF',56);},
+ // cheap and fast: about a month -> about a week (the bar shrinks first, the label comes when it stops)
+ fast(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.6,telHas(L,'看板')),d-2.0),t3=Math.min(Math.max(t2+0.6,telHas(L,'1週間')),d-0.8);
+   withEnter(enter(u,0),()=>{tagI('安く',380,500,1,C.brand,'#FFFFFF',72);tagI('早く',700,500,1,C.acc,'#FFFFFF',72);});
+   if(u>t2)withEnter(enter(u,t2),()=>{text('売り場の看板づくり',CX,650,52,C.text,'center',900,760);
+     const X0=200,full=680;rrect(X0,720,full,100,22,C.bar);text('1か月ほど',X0+full-20,770,48,'#FFFFFF','right',900);
+     const e=ease((u-t3)/0.7);if(u>t3){rrect(X0,880,Math.max(1,full-(full*0.77)*e),100,22,C.acc);if(e>0.95)text('1週間前後',X0+full*0.23+20,930,48,C.text,'left',900);}});},
+ // about 18 months, about 40 people
+ team(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'社内')),d-0.9);
+   withEnter(enter(u,0),()=>{text('開発',CX,470,56,C.sub,'center',900);});
+   bigNum('約1年半','',CX,640,ease((u-0.2)/0.3),C.acc,150);
+   if(u>t2){withEnter(enter(u,t2),()=>text('社内チーム',CX,860,56,C.sub,'center',900));bigNum('約40','人',CX,1030,ease((u-t2-0.2)/0.3),C.acc,170);}},
+ // but... (red stamp only here): the usual store POP uses little AI
+ twist(u,d,L){bg(u);mini(u);
+   const st=ease(u/0.25);g.save();g.translate(CX,430);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
+   const t2=Math.min(Math.max(1.4,telHas(L,'うちっぽさ')),d-1.0);
+   withEnter(enter(u,0.3),()=>{card(200,540,680,230,30);text('ふだんの店のPOP',CX,610,52,C.text,'center',900,620);text('生成AIはあまり使わない',CX,700,48,C.warn,'center',900,620);});
+   if(u>t2)withEnter(enter(u,t2),()=>{card(160,830,760,170,30,C.card2);text('「うちっぽさが薄れる」',CX,915,58,C.text,'center',900,700);});},
+ // the core: about 20 candidates already backstage (silhouettes appear, the count runs up to 20)
+ core(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'20')),d-1.0);
+   const n=u<t2?0:Math.min(20,Math.floor(20*ease((u-t2)/1.0))+1);
+   for(let j=0;j<n;j++){const x=220+(j%5)*160,y=520+Math.floor(j/5)*150;person(x,y,0.95,j%2?C.brand:C.bar);}
+   if(u>t2){text('候補',CX,1150,52,C.sub,'center',900);bigNum('約'+Math.min(20,n),'人',CX,1270,1,C.acc,120);}},
+ // the end: big rina talks to the end (LongCat). The opening picture sits above her and grows to the full screen (loop to 0 s).
+ verdict(u,d,L){bg(u);const t2=Math.min(Math.max(1.0,telHas(L,'ドンキで')),d-0.8);const kz=ease((u-t2+0.1)/0.6);
+   abs(()=>{const P0=[90,300,900,325],P1=[0,0,W,H];const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
+     if(kz<1)glow(CX,1250,600,C.brand,0.32);
+     g.save();g.beginPath();g.roundRect(R[0],R[1],R[2],R[3],28*(1-kz));g.clip();const i=IMG.key;if(i){const s=Math.max(R[2]/i.width,R[3]/i.height)*(1+0.05*kz),iw=i.width*s,ih=i.height*s;g.drawImage(i,clamp(R[0]+R[2]*0.5-iw*0.475,R[0]+R[2]-iw,R[0]),clamp(R[1]+R[3]/2-ih*0.42,R[1]+R[3]-ih,R[1]),iw,ih);}g.restore();
+     if(kz<0.05)creditAt(PP,975,600);else if(kz>0.95)creditAt(PP,1000,520);
+     bigRina(VERD_R);});},
+};
+const BIGS=['hook','verdict'];
+const BF={};function bigImg(sc,k){const key=sc+k;if(key in BF)return Promise.resolve(BF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{BF[key]=i;r(i)};i.onerror=()=>{BF[key]=null;r(null)};i.src='big/'+sc+'/'+String(k).padStart(4,'0')+'.png';});}
+const VF={};function vidImg(sc,k){const key=sc+k;if(key in VF)return Promise.resolve(VF[key]);return new Promise(r=>{const i=new Image();i.onload=()=>{VF[key]=i;r(i)};i.onerror=()=>{VF[key]=null;r(null)};i.src='vid/'+sc+'/'+String(k+1).padStart(4,'0')+'.jpg';});}
+const VIDN={};let VIDF=null;
+let BIGF=null;const VERDICT_CLIP=true;
+// big rina [x, y, w, h]: hook = the earlier pose size (user 2026-11-18), verdict = the old ending size
+const HOOK_R=[-90,298,1260,2240],VERD_R=[18,560,1044,1856];
+function bigRina(R){if(BIGF)g.drawImage(BIGF,R[0],R[1],R[2],R[3]);else Puppet.big(g,'big_hq',R[0],R[1],R[2],R[3],CURT,mouthNow());}
+const FIT={},FX0=70,FX1=1010,FY0=300,FY1=1270;
+const NOFIT=['open','hook','verdict'];
+function measureFits(){const oc=document.createElement('canvas');oc.width=W;oc.height=H;const g0=g;g=oc.getContext('2d');MEASURE=true;const seen=new Set();
+  for(let i=0;i<P.lines.length;i++){const L=P.lines[i];if(NOFIT.includes(L.scene)||seen.has(L.scene))continue;seen.add(L.scene);
+    const d=(P.lines[i+1]?P.lines[i+1].start:P.voice_end)-L.start;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);CURI=i;CURT=L.start+d-0.02;BASE=g.getTransform();
+    g.save();g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);try{S[L.scene](d-0.02,d,L);}catch(e){}g.restore();
+    const a=g.getImageData(0,0,W,H).data;let x0=W,x1=0,y0=H,y1=0;
+    for(let y=0;y<H;y+=2)for(let x=0;x<W;x+=2){if(a[(y*W+x)*4+3]>10){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y;}}
+    if(x1<=x0)continue;const k=Math.min(1.5,(FX1-FX0)/(x1-x0),(FY1-FY0)/(y1-y0));
+    FIT[L.scene]={k,tx:(FX0+FX1)/2-k*(x0+x1)/2,ty:(FY0+FY1)/2-k*(y0+y1)/2,box:[x0,y0,x1,y1]};}
+  MEASURE=false;g=g0;window.FIT=FIT;}
+window.render=async function(t){BOXES=[];
+  g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.fillStyle=C.bg1;g.fillRect(0,0,W,H);
+  let cur=P.lines.length-1;for(let i=0;i<P.lines.length;i++){if(t<(P.lines[i+1]?P.lines[i+1].start:1e9)){cur=i;break;}}
+  CURI=cur;CURT=t;const L=P.lines[cur],u=Math.max(0,t-L.start),d=(P.lines[cur+1]?P.lines[cur+1].start:P.voice_end)-L.start;
+  if(BIGS.includes(L.scene)){let k=Math.floor(u*30);let im=await bigImg(L.scene,k);while(!im&&k>0){k--;im=await bigImg(L.scene,k);}BIGF=im;}
+  VIDF=null;if(VIDN[L.scene]){const n=VIDN[L.scene];const k=Math.min(n-1,Math.floor(u*VIDFPS));VIDF=await vidImg(L.scene,k);}
+  g.save();if(u<0.12&&cur>0){const s=1.03-0.03*u/0.12;g.translate(W/2,H/2);g.scale(s,s);g.translate(-W/2,-H/2);} // small punch-in on every cut (not at 0 s)
+  BASE=g.getTransform();g.save();const F=FIT[L.scene];if(F){g.translate(F.tx,F.ty);g.scale(F.k,F.k);}g.translate(CX,CT.y1);g.scale(CT.s,CT.s);g.translate(-CX,-CT.y0);
+  S[L.scene](u,d,L);g.restore();g.restore();
+  if(L.scene==='open')return;  // 0 s: the huge telop is the caption, no bubble
+  let last=null;for(const tl of P.tel){if(tl.start<=t)last=tl;else break;}if(!last)last=P.tel[0];
+  if(BIGS.includes(L.scene)){if(last&&last.start>=L.start-0.01)caption(last.text,1330,t<last.start?1:(t-last.start),false);}
+  else{bubble();if(last)bubbleText(last.text,t<last.start?1:(t-last.start),['twist'].includes(L.scene));}
+};
+</script></body></html>
