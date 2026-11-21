@@ -1,0 +1,452 @@
+[
+ {
+  "id": "ai-nvidia-omniverse-voice-vr",
+  "category": "ai",
+  "title": "NVIDIA、声で物を探せるVRのAI開発例を公開",
+  "summary": "写真から仮想空間を組み立て、ヘッドセットで物をつかんだときの揺れまで確かめました。",
+  "image": {
+   "src": "https://blogs.nvidia.com/wp-content/uploads/2026/10/Copy-of-nvidia-ov-x-astra-4up-KV-r1-press-4k-r2-1680x945.png",
+   "kind": "press",
+   "credit": "NVIDIA",
+   "page": "https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/"
+  },
+  "visual": {
+   "icon": "ai",
+   "kicker": "仮想空間"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "NVIDIAが、生成AIを使って仮想空間やロボットの試験を作った事例を公開しました。",
+     "VRの試作では、写真2枚から作業部屋を作り、音声で物を探す機能を組み込みました。",
+     "仮想空間の物を手に取る操作は、開発者がヘッドセットを着けて確かめました。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "NVIDIAは米国時間の11月19日、GPT-6やClaudeで仮想空間やロボット試験を組み立てた事例を公開しました。"
+   },
+   {
+    "type": "h",
+    "text": "声で探して手に取るVR"
+   },
+   {
+    "type": "p",
+    "text": "開発者は、仮想現実（VR）の部屋に声で物を呼び出せる仕組みを試作しました。まず、GPT-6 Astraに参考画像を2枚渡しました。AIは立体画像を作るソフトのBlenderで部屋を組み立てました。"
+   },
+   {
+    "type": "p",
+    "text": "続いて、プログラムを書くAIのClaude Codeで、声を手がかりに立体素材を探す機能を作りました。見つけた物はVRの中でつかんだり、動かしたりできます。"
+   },
+   {
+    "type": "h",
+    "text": "装着してわかった物の揺れ"
+   },
+   {
+    "type": "p",
+    "text": "試作にはMeta Quest 3を使いました。開発は週末に行われ、Claude Codeが作業したのは約8時間です。"
+   },
+   {
+    "type": "p",
+    "text": "自動テストでは、物をつかんだときの揺れを拾えませんでした。開発者が装着して揺れに気づきました。画面を描き替えるたびにつかむ動作を更新するよう直すと、揺れは収まりました。"
+   },
+   {
+    "type": "h",
+    "text": "ロボットの動きも仮想試験"
+   },
+   {
+    "type": "p",
+    "text": "今回の事例はNVIDIAの開発基盤Omniverseを使っています。VRでは、開発者が既存の立体素材のライブラリーを活用しました。Omniverseには、物のぶつかり方を計算し、立体映像にするための部品がそろっています。"
+   },
+   {
+    "type": "p",
+    "text": "別の試作では、Claude Codeが病院の集中治療室を組み立てました。開発者は同じ病棟を256個並べ、768台の小型ロボットを歩かせました。仮想空間で14秒後も立っていたのは766台でした。"
+   },
+   {
+    "type": "h",
+    "text": "試作品の公開範囲と条件"
+   },
+   {
+    "type": "p",
+    "text": "VRの試作は、作り方やAIに渡す指示の例とともに公開されています。デモを動かす費用は案内されていません。日本での提供や日本語対応は発表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "2枚",
+      "label": "部屋作りの参考画像"
+     },
+     {
+      "value": "約8時間",
+      "label": "VR試作のAI作業"
+     },
+     {
+      "value": "256個",
+      "label": "病棟の同時試験"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "VRの試作に関心がある人は、公開デモの作り方から必要な機材を確認できます。",
+     "日本語で声をかけて使いたい人は、試す前に対応言語の案内を確認してください。",
+     "ロボットの試験に関心がある人は、病棟の公開デモで動作を確かめる手順を見られます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "仮想の部屋では、見た目が整っていても、物をつかんで初めてわかる違和感があります。VRを遊ぶ側から見ると、触ったときの動きまで人が確かめる工程に意味があります。"
+   }
+  ],
+  "source_name": "NVIDIA",
+  "source_url": "https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/",
+  "published": "2026-11-20",
+  "refs": [
+   {
+    "name": "NVIDIA",
+    "url": "https://blogs.nvidia.com/blog/developers-simulation-frontier-ai-agents/"
+   }
+  ]
+ },
+ {
+  "id": "ai-openai-hebbia-research",
+  "category": "ai",
+  "title": "OpenAI、GPT-6の金融調査の評価結果を公開",
+  "summary": "金融向けの試験で、AIが根拠に選んだ引用のうち99.5%が質問に関連していました。",
+  "image": {
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/3I47jibmRIaesj0H0Gc5OH/70f4bf13077e5b8c09b322a8e2ab8d41/hebbia-example-01-smoked-depth.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "page": "https://openai.com/business/customer-stories/hebbia"
+  },
+  "visual": {
+   "icon": "doc",
+   "kicker": "資料調査"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "OpenAIが、HebbiaによるGPT-6 Astraの金融調査の試験結果を公開しました。",
+     "試験のスライドは、構成や書式など、当てはまる要件の97.9%を満たしました。",
+     "資料を読む人は、回答の引用やスライドの脚注から根拠に戻れます。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "OpenAIは11月20日、金融調査サービスHebbiaがGPT-6 Astraを試した結果を公開しました。"
+   },
+   {
+    "type": "h",
+    "text": "買収調査からスライドまで"
+   },
+   {
+    "type": "p",
+    "text": "HebbiaのMatrixは、複数の資料を調べ、回答と根拠を結び付けるサービスです。今回試したGPT-6 Astraは、質問に必要な箇所を選び、分析をPowerPointのスライドにまとめます。"
+   },
+   {
+    "type": "p",
+    "text": "例えば、買収候補を調べる担当者が約2000件の資料を読み込ませる場面です。契約条件や特定の顧客への売上の偏りを抽出し、社内の書式に沿った資料にできます。"
+   },
+   {
+    "type": "img",
+    "caption": "会社概要のスライドと、根拠を確認できる引用欄",
+    "src": "https://images.ctfassets.net/kftzwdyauwt9/7IwIf5YpXjsfb6CscupJjO/7aa15b85fcce3df8e25248178d42250a/hebbia-example-02-smoked-depth.png?w=3840&q=90&fm=webp",
+    "kind": "press",
+    "credit": "OpenAI",
+    "page": "https://openai.com/business/customer-stories/hebbia"
+   },
+   {
+    "type": "h",
+    "text": "引用から元の資料へ戻る"
+   },
+   {
+    "type": "p",
+    "text": "回答の引用を開くと、元の文書と該当箇所が表示されます。スライドの脚注からも、数字の根拠にたどれます。"
+   },
+   {
+    "type": "p",
+    "text": "Hebbiaの試験では、引用した箇所のうち99.5%が質問と関連していました。例えば、売上の集計期間が合っているかを元の表で確かめられます。"
+   },
+   {
+    "type": "h",
+    "text": "スライド作成で測った要件"
+   },
+   {
+    "type": "p",
+    "text": "Hebbiaは2026年8月から9月に、公開前のモデルを同じ調査課題と採点基準で比較しました。金融の専門家が基準を作るか、元の資料に照らして点検しました。"
+   },
+   {
+    "type": "p",
+    "text": "GPT-6 Astraのスライドは、当てはまる要件全体のうち97.9%を満たしました。必要な種類の資料をどれだけ引用できたかでも、比較したモデルの中で首位でした。"
+   },
+   {
+    "type": "h",
+    "text": "料金と国内提供の案内"
+   },
+   {
+    "type": "p",
+    "text": "OpenAIは、Hebbiaの試験結果を企業事例として紹介しました。Matrixでこのモデルを使う場合の料金は明らかにされていません。日本での提供や日本語対応は発表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "約2000件",
+      "label": "買収調査の資料例"
+     },
+     {
+      "value": "99.5%",
+      "label": "質問に関連する引用"
+     },
+     {
+      "value": "97.9%",
+      "label": "満たした資料要件"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "Matrixを利用する企業は、このモデルが使える契約か導入前に確認してください。",
+     "AIが作った資料を提出する担当者は、脚注から元資料を開いて数字を確かめてください。",
+     "日本語の資料で使いたい担当者は、採用前に対応言語の案内を確認してください。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "AIが資料に使った根拠を残してくれると、作った人以外も数字を確認できます。複数人で手分けして資料を点検する職場に向きそうです。"
+   }
+  ],
+  "source_name": "OpenAI",
+  "source_url": "https://openai.com/business/customer-stories/hebbia",
+  "published": "2026-11-20",
+  "refs": [
+   {
+    "name": "OpenAI",
+    "url": "https://openai.com/business/customer-stories/hebbia"
+   }
+  ]
+ },
+ {
+  "id": "ai-shortical-ai-likeness",
+  "category": "ai",
+  "title": "Shortical、俳優の顔を借りてAI短編を制作",
+  "summary": "俳優が顔の利用を許可し、本人に似せた映像がスマホ向けドラマで本人役を演じます。",
+  "visual": {
+   "icon": "spark",
+   "kicker": "映像制作"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Shorticalが、米国で俳優の顔をもとにしたAI短編ドラマを初公開しました。",
+     "実在の人物の容姿を使うのは同社初で、俳優のAki Avniと直接契約しました。",
+     "同社のサイトでは、作品に顔を使ってよい人を一般からも募っています。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "米TechCrunchは11月21日、Shorticalが全編をAIで作った新作を米国で初上映したと報じました。"
+   },
+   {
+    "type": "h",
+    "text": "俳優本人の許諾で映像化"
+   },
+   {
+    "type": "p",
+    "text": "新作の題名は「Inevitable」です。米ドラマ「24」に出演した俳優Aki Avniが、顔の使用を認める契約を結びました。"
+   },
+   {
+    "type": "p",
+    "text": "作中では、AIで作ったAvniの姿が本人役を演じます。本人が映画会社に顔の使用を許可し、事件に巻き込まれる筋書きです。初上映はロサンゼルスで行われました。"
+   },
+   {
+    "type": "h",
+    "text": "スマホで見る短編の料金"
+   },
+   {
+    "type": "p",
+    "text": "Shorticalは、1話約2分の恋愛ドラマなどをスマホ向けに手がけてきました。従来の実写作品もあり、最近はAIで作った作品が同社サイトに並んでいます。"
+   },
+   {
+    "type": "p",
+    "text": "同社の短編は通常、最初の7〜10話を無料で見られます。続きは月額制で、加入すると同社の全作品を見られます。新作の料金は明らかにされていません。日本での提供や日本語対応は発表されていません。"
+   },
+   {
+    "type": "h",
+    "text": "顔の利用許諾を一般募集"
+   },
+   {
+    "type": "p",
+    "text": "同社サイトでは、作品に顔を使ってよい人を募っています。応募者がSNSのアカウント名を送ると、同社が契約を提示するかどうか判断します。"
+   },
+   {
+    "type": "p",
+    "text": "同社によると、募集を通じて契約を結んだ例はまだありません。Avniとは個別に契約しており、同社は今回の公開を機に募集を広める方針です。"
+   },
+   {
+    "type": "h",
+    "text": "報酬や利用条件の決まり方"
+   },
+   {
+    "type": "p",
+    "text": "Avniの報酬は実写作品の同程度の役に見合う額だったと同社は説明しました。Avniと一般の応募者が受け取る具体的な額は公表していません。"
+   },
+   {
+    "type": "p",
+    "text": "作品の公開後に追加報酬を支払うかは、契約ごとに判断する方針です。Shorticalの経営トップが明らかにしました。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "約2分",
+      "label": "通常の1話の長さ"
+     },
+     {
+      "value": "7〜10話",
+      "label": "通常の無料視聴分"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "新作を見たい人は、申し込む前に国内配信と日本語対応を確認してください。",
+     "顔の利用募集に応募する人は、契約前にどの作品に使われるかを確かめてください。",
+     "報酬が気になる応募者は、署名前に支払い額と追加報酬の条件を確認してください。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "顔を貸す契約では、撮影の拘束時間だけでは仕事の範囲を測れません。使える期間や、公開後に映像を作り直す場合の扱いも報酬と一緒に考えたいところです。"
+   }
+  ],
+  "source_name": "TechCrunch",
+  "source_url": "https://techcrunch.com/2026/11/21/is-selling-an-ai-version-of-your-face-to-this-microdrama-startup-the-future-of-hollywood/",
+  "published": "2026-11-22",
+  "refs": [
+   {
+    "name": "TechCrunch",
+    "url": "https://techcrunch.com/2026/11/21/is-selling-an-ai-version-of-your-face-to-this-microdrama-startup-the-future-of-hollywood/"
+   }
+  ]
+ },
+ {
+  "id": "ai-meta-ai-emissions-goal",
+  "category": "ai",
+  "title": "Meta、AI設備拡大で2030年の排出目標を再検討",
+  "summary": "サーバーなどの設備が排出増の一因で、排出量は1年で1560万トンから2170万トン超に増えました。",
+  "image": {
+   "src": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/Meta-El-Paso-data-center-2560x1440.jpg",
+   "kind": "ogp",
+   "credit": "Ars Technica",
+   "page": "https://arstechnica.com/ai/2026/11/meta-reconsiders-2030-net-zero-goal-amid-record-emissions-from-ai-data-centers/"
+  },
+  "visual": {
+   "icon": "chart",
+   "kicker": "ＡＩと電力"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Metaは、温室効果ガスを2030年までに実質ゼロとする目標の期限を見直しています。",
+     "2025年の総排出量は二酸化炭素換算で2170万トンを超え、前年から約4割増えました。",
+     "施設で直接使う水は減りましたが、施設に送る電気を作るために使う水は増えました。"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Metaは11月19日の報告書で、AI向け施設の需要を受け、温室効果ガスの排出目標を再検討すると明らかにしました。"
+   },
+   {
+    "type": "h",
+    "text": "見直す期限は2030年"
+   },
+   {
+    "type": "p",
+    "text": "Metaは、温室効果ガスの排出を2030年までに実質ゼロにする目標を見直しています。実質ゼロとは、出した量から回収などで埋め合わせた分を引き、差し引きゼロにする考え方です。"
+   },
+   {
+    "type": "p",
+    "text": "Metaは、AIを動かすための設備の需要が予想より速く伸びたと説明しました。長期的には実質ゼロをめざす方針です。新たな期限や途中の目標は示していません。"
+   },
+   {
+    "type": "h",
+    "text": "サーバーなどが排出増の一因"
+   },
+   {
+    "type": "p",
+    "text": "二酸化炭素に換算した総排出量は、2024年の1560万トンから、2025年は2170万トン超になりました。前年から約4割増です。"
+   },
+   {
+    "type": "p",
+    "text": "Metaは、データセンター向けサーバーなどの設備を、増加の大きな要因に挙げました。再生可能エネルギーへの取り組みや炭素の回収などを反映した排出量も、810万トン超から1180万トン超に増えました。"
+   },
+   {
+    "type": "h",
+    "text": "施設の外で増えた水使用"
+   },
+   {
+    "type": "p",
+    "text": "施設で直接使った水は、2024年の8億2500万ガロンから、2025年は7億9000万ガロンに減りました。一方、水不足の懸念がある地域に限ると増えています。"
+   },
+   {
+    "type": "p",
+    "text": "施設で買った電気を作るために使った水は、同じ期間に190億ガロンから260億ガロン超に増えました。施設の敷地外でも、稼働に伴って水が使われています。"
+   },
+   {
+    "type": "h",
+    "text": "国内サービスへの影響"
+   },
+   {
+    "type": "p",
+    "text": "発表は、AIを支える施設の環境目標に関するものです。日本での提供や日本語対応、サービス料金の変更は発表されていません。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "2030年",
+      "label": "再検討中の達成期限"
+     },
+     {
+      "value": "1560万トン",
+      "label": "2024年の総排出量"
+     },
+     {
+      "value": "2170万トン超",
+      "label": "2025年の総排出量"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "Metaのサービスを使っている人は、今のところ特にすることはありません。",
+     "排出目標を追う人は、次の発表で実質ゼロの達成期限がいつになるか確認できます。",
+     "水の負担を知りたい人は、次の報告書でも施設と発電の使用量をあわせて見られます。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "達成の期限が変わると、年ごとの排出量がどれだけ減ったかも見ておきたいところです。総排出量と、埋め合わせを反映した量を並べると、どこで改善したかを考えやすくなります。"
+   }
+  ],
+  "source_name": "Ars Technica",
+  "source_url": "https://arstechnica.com/ai/2026/11/meta-reconsiders-2030-net-zero-goal-amid-record-emissions-from-ai-data-centers/",
+  "published": "2026-11-21",
+  "refs": [
+   {
+    "name": "Ars Technica",
+    "url": "https://arstechnica.com/ai/2026/11/meta-reconsiders-2030-net-zero-goal-amid-record-emissions-from-ai-data-centers/"
+   }
+  ]
+ }
+]
