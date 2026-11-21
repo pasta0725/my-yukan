@@ -210,14 +210,14 @@ const S={
      const e=ease((u-t3)/0.7);if(u>t3){rrect(X0,880,Math.max(1,full-(full*0.77)*e),100,22,C.acc);if(e>0.95)text('1週間前後',X0+full*0.23+20,930,48,C.text,'left',900);}});},
  // about 18 months, about 40 people
  team(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'社内')),d-0.9);
-   if(u<=t2){withEnter(enter(u,0),()=>{text('開発',CX,560,64,C.sub,'center',900);});bigNum('約1年半','',CX,760,ease((u-0.2)/0.3),C.acc,170);}
+   if(u<=t2){withEnter(enter(u,0),()=>{text('開発',CX,560,64,C.sub,'center',900);});bigNum('約1年半','',CX,760,ease((u-0.2)/0.3),C.acc,120);}
    else{withEnter(enter(u,t2),()=>text('社内チーム',CX,560,64,C.sub,'center',900));bigNum('約40','人',CX,760,ease((u-t2-0.2)/0.3),C.acc,190);}},
  // but... (red stamp only here): the usual store POP uses little AI
  twist(u,d,L){bg(u);mini(u);
    const st=ease(u/0.25);g.save();g.translate(CX,430);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
    const t2=Math.min(Math.max(1.4,telHas(L,'うちっぽさ')),d-1.0);
    if(u<=t2)withEnter(enter(u,0.3),()=>{card(200,560,680,300,30);text('ふだんの店のPOP',CX,640,56,C.text,'center',900,620);text('生成AIはあまり使わない',CX,760,52,C.warn,'center',900,620);});
-   if(u>t2)withEnter(enter(u,t2),()=>{card(160,630,760,170,30);text('「うちっぽさが薄れる」',CX,715,58,C.brand,'center',900,700);});},
+   if(u>t2)withEnter(enter(u,t2),()=>{text('広報担当者の話',CX,590,44,C.sub,'center',900);card(160,630,760,170,30);text('「うちっぽさが薄れる」',CX,715,58,C.brand,'center',900,700);});},
  // the core: about 20 candidates already backstage (silhouettes appear, the count runs up to 20)
  core(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'20')),d-1.0);
    const n=u<t2?0:Math.min(20,Math.floor(20*ease((u-t2)/0.8))+1);
