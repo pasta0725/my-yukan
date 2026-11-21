@@ -1,0 +1,202 @@
+===== https://openai.com/index/introducing-medchembench
+(status 200)
+November 20, 2026
+Research
+Release
+Science
+Can AI help scientists identify promising drug candidates?
+Introducing MedChemBench, a benchmark that tests how well AI models read molecular structures, interpret experimental results, and choose which compounds to test next.
+Read the paper
+(opens in a new window)
+00:00
+Share
+We’re introducing MedChemBench, a benchmark that evaluates AI models on reasoning tasks drawn from medicinal chemistry research. It tests whether models can connect a molecule’s structure with experimental evidence to explain results, compare compounds, and predict their properties. Building AI that can reliably support this work is one step towards helping scientists develop better medicines.
+One of the hardest parts of this work is that improving one property of a molecule can make another worse. A compound might act strongly against a disease related protein but be poorly absorbed or break down too quickly in the body. Medicinal chemists work through these tradeoffs by designing, making, and testing related compounds, then deciding what to try next. For AI to help, it needs to connect changes in molecular structure with experimental evidence and reason about what compounds are worth pursuing.
+MedChemBench measures these abilities through 99 problems drawn from published research. At the xhigh reasoning setting, GPT‑6.2 Astra earned 84.5% of the available credit, compared with 83.3% for GPT‑6 Astra, 82.0% for GPT‑6.1 Sol, and 58.2% for GPT‑5.6 Sol. GPT‑6 Astra was strongest at reconstructing molecular structures and explaining experimental evidence. Selecting compounds and predicting their numerical properties proved harder for that model.
+What MedChemBench grades
+MedChemBench draws on 117 papers and patents and includes 761 distinct molecular structures. For most problems, models receive the context available at a chosen point in a research program: the biological target, the researchers’ goals, the compounds studied so far, and selected experimental findings.
+The benchmark evaluates four components:
+Molecular structures.
+ Correct atom connections and specified stereochemistry in molecules assembled from the drawings and chemical groups provided.
+Scientific reasoning. 
+Explanations supported by the supplied evidence, such as the reasons for choosing one compound over another.
+Ranking and selection. 
+Compound rankings and choices that meet the stated requirements.
+Property predictions. 
+Agreement with the numerical values and categories reported in the source material, including measured and calculated molecular properties.
+Prediction across competing properties
+One MedChemBench problem draws on research into inhibitors of PRMT5, a protein studied in cancer drug discovery. The model receives molecular structures and results from earlier experiments. It must predict how three related compounds will behave: how strongly they block PRMT5 in cells, how readily they cross a cell barrier, and how quickly liver enzymes break them down in a laboratory assay.
+Later experiments, withheld from the model, showed a tradeoff. Compound 23 blocked PRMT5 in cells at a lower concentration, while compound 24 crossed the cell barrier more readily and broke down more slowly in the liver-enzyme assay.
+Predicting these properties together tests whether a model can connect molecular structures with several aspects of compound behavior. This reflects a central challenge in medicinal chemistry: stronger activity against a target does not necessarily come with better permeability or slower breakdown.
+The benchmark checks whether the model reconstructs the molecular structures correctly and how closely its predictions match experimental measurements. Predictions receive partial credit based on their closeness to the measured values. Measurements already supplied in the prompt must also be reproduced correctly.
+00:00
+Small chemical changes can produce different property profiles. The task asks models to connect the structures with evidence about their behavior.
+Testing spatial reasoning in medicinal chemistry
+Before a model can reason about a compound’s properties, it needs to identify the molecule correctly. Chemical drawings encode atom connections, ring structures, and stereochemistry. 
+MedChemBench tests whether models preserve this information when reconstructing molecules from the drawings and chemical groups provided.
+One problem asks models to assemble a molecule from a central structure and two attached groups while preserving an 18-atom ring. At the highest reasoning setting shared by all eleven models (xhigh), GPT‑6 Astra reconstructed this compound correctly in all ten responses. GPT‑5.6 Sol and GPT‑5.6 Luna failed across all ten responses.
+In the illustrated answers, GPT‑5.6 Sol produced a 15-atom ring, while GPT‑5.6 Luna split the molecule into two disconnected fragments.
+These errors change the identity of the molecule being analyzed. This example tests a foundation of medicinal chemistry reasoning: whether the model can accurately represent the compound before interpreting its behavior.
+Figure 1. The same input, different molecules
+These selected answers for compound 17 show a correct reconstruction, a smaller ring, and disconnected fragments.
+While measuring the benchmark for structure components, Astra earned 95.4% of the available credit at xhigh. This result shows strong performance on reconstructing the molecular structures supplied in the tasks.
+We evaluated eleven GPT models at different reasoning-effort settings. Across the full benchmark, Astra earned 83.3% of the available credit at the shared xhigh setting, compared with 82.0% for GPT‑6.1 Sol, 75.1% for GPT‑6.1 Terra, and 58.2% for GPT‑5.6 Sol. At max effort, GPT‑6 Astra reached 83.8%. Higher reasoning settings improved scores, while large differences between models remained. The figure below plots performance against output tokens.
+Figure 2. Performance versus token usage
+Each point represents a model at one reasoning setting, showing 51 combinations across nine models from GPT‑5.6 onward. Scores are averaged across 99 problems; bars show 95% uncertainty intervals. Tokens include reasoning and the final answer.
+The component results separate four abilities: reconstructing molecules, explaining findings, selecting compounds, and predicting measurements. This shows where models are strongest and where errors remain.
+Figure 3. Component performance versus token usage
+Astra’s clearest strengths were in reconstructing molecular structures and explaining the scientific evidence. In selected reasoning examples from our preprint, Astra correctly identified structural changes and weighed their possible effects on protein binding, absorption, and metabolism.
+Where selection and prediction remain difficult, Astra earned 95.4% of the available structure credit at xhigh, but only about half the credit for selecting compounds and predicting numerical properties. These categories use different tasks and scoring rules, but the results show substantial room to improve predictions and compound choices.
+Where we go from here
+These results do not establish whether models can discover new drugs or improve laboratory decisions. Prior exposure to the published sources cannot be ruled out, and each response was a single attempt without tools, feedback, or new experiments. While the benchmark evaluates reasoning from historical evidence rather than real-world drug discovery, its results help identify where models are advancing and where challenges remain. We believe MedChemBench will support continued progress and look forward to sharing updates as our models advance to serve the field.
+2026
+Author
+OpenAI
+Keep reading
+View all
+Research acceleration: The jagged frontier
+Research
+Nov 18, 2026
+Advancing chip design with OpenAI models
+Research
+Nov 18, 2026
+Introducing GPT-6.2 Astra and Sol
+Product
+Nov 17, 2026
+
+===== https://openai.com/index/introducing-medchembench/
+(status 200)
+November 20, 2026
+Research
+Release
+Science
+Can AI help scientists identify promising drug candidates?
+Introducing MedChemBench, a benchmark that tests how well AI models read molecular structures, interpret experimental results, and choose which compounds to test next.
+Read the paper
+(opens in a new window)
+00:00
+Share
+We’re introducing MedChemBench, a benchmark that evaluates AI models on reasoning tasks drawn from medicinal chemistry research. It tests whether models can connect a molecule’s structure with experimental evidence to explain results, compare compounds, and predict their properties. Building AI that can reliably support this work is one step towards helping scientists develop better medicines.
+One of the hardest parts of this work is that improving one property of a molecule can make another worse. A compound might act strongly against a disease related protein but be poorly absorbed or break down too quickly in the body. Medicinal chemists work through these tradeoffs by designing, making, and testing related compounds, then deciding what to try next. For AI to help, it needs to connect changes in molecular structure with experimental evidence and reason about what compounds are worth pursuing.
+MedChemBench measures these abilities through 99 problems drawn from published research. At the xhigh reasoning setting, GPT‑6.2 Astra earned 84.5% of the available credit, compared with 83.3% for GPT‑6 Astra, 82.0% for GPT‑6.1 Sol, and 58.2% for GPT‑5.6 Sol. GPT‑6 Astra was strongest at reconstructing molecular structures and explaining experimental evidence. Selecting compounds and predicting their numerical properties proved harder for that model.
+What MedChemBench grades
+MedChemBench draws on 117 papers and patents and includes 761 distinct molecular structures. For most problems, models receive the context available at a chosen point in a research program: the biological target, the researchers’ goals, the compounds studied so far, and selected experimental findings.
+The benchmark evaluates four components:
+Molecular structures.
+ Correct atom connections and specified stereochemistry in molecules assembled from the drawings and chemical groups provided.
+Scientific reasoning. 
+Explanations supported by the supplied evidence, such as the reasons for choosing one compound over another.
+Ranking and selection. 
+Compound rankings and choices that meet the stated requirements.
+Property predictions. 
+Agreement with the numerical values and categories reported in the source material, including measured and calculated molecular properties.
+Prediction across competing properties
+One MedChemBench problem draws on research into inhibitors of PRMT5, a protein studied in cancer drug discovery. The model receives molecular structures and results from earlier experiments. It must predict how three related compounds will behave: how strongly they block PRMT5 in cells, how readily they cross a cell barrier, and how quickly liver enzymes break them down in a laboratory assay.
+Later experiments, withheld from the model, showed a tradeoff. Compound 23 blocked PRMT5 in cells at a lower concentration, while compound 24 crossed the cell barrier more readily and broke down more slowly in the liver-enzyme assay.
+Predicting these properties together tests whether a model can connect molecular structures with several aspects of compound behavior. This reflects a central challenge in medicinal chemistry: stronger activity against a target does not necessarily come with better permeability or slower breakdown.
+The benchmark checks whether the model reconstructs the molecular structures correctly and how closely its predictions match experimental measurements. Predictions receive partial credit based on their closeness to the measured values. Measurements already supplied in the prompt must also be reproduced correctly.
+00:00
+Small chemical changes can produce different property profiles. The task asks models to connect the structures with evidence about their behavior.
+Testing spatial reasoning in medicinal chemistry
+Before a model can reason about a compound’s properties, it needs to identify the molecule correctly. Chemical drawings encode atom connections, ring structures, and stereochemistry. 
+MedChemBench tests whether models preserve this information when reconstructing molecules from the drawings and chemical groups provided.
+One problem asks models to assemble a molecule from a central structure and two attached groups while preserving an 18-atom ring. At the highest reasoning setting shared by all eleven models (xhigh), GPT‑6 Astra reconstructed this compound correctly in all ten responses. GPT‑5.6 Sol and GPT‑5.6 Luna failed across all ten responses.
+In the illustrated answers, GPT‑5.6 Sol produced a 15-atom ring, while GPT‑5.6 Luna split the molecule into two disconnected fragments.
+These errors change the identity of the molecule being analyzed. This example tests a foundation of medicinal chemistry reasoning: whether the model can accurately represent the compound before interpreting its behavior.
+Figure 1. The same input, different molecules
+These selected answers for compound 17 show a correct reconstruction, a smaller ring, and disconnected fragments.
+While measuring the benchmark for structure components, Astra earned 95.4% of the available credit at xhigh. This result shows strong performance on reconstructing the molecular structures supplied in the tasks.
+We evaluated eleven GPT models at different reasoning-effort settings. Across the full benchmark, Astra earned 83.3% of the available credit at the shared xhigh setting, compared with 82.0% for GPT‑6.1 Sol, 75.1% for GPT‑6.1 Terra, and 58.2% for GPT‑5.6 Sol. At max effort, GPT‑6 Astra reached 83.8%. Higher reasoning settings improved scores, while large differences between models remained. The figure below plots performance against output tokens.
+Figure 2. Performance versus token usage
+Each point represents a model at one reasoning setting, showing 51 combinations across nine models from GPT‑5.6 onward. Scores are averaged across 99 problems; bars show 95% uncertainty intervals. Tokens include reasoning and the final answer.
+The component results separate four abilities: reconstructing molecules, explaining findings, selecting compounds, and predicting measurements. This shows where models are strongest and where errors remain.
+Figure 3. Component performance versus token usage
+Astra’s clearest strengths were in reconstructing molecular structures and explaining the scientific evidence. In selected reasoning examples from our preprint, Astra correctly identified structural changes and weighed their possible effects on protein binding, absorption, and metabolism.
+Where selection and prediction remain difficult, Astra earned 95.4% of the available structure credit at xhigh, but only about half the credit for selecting compounds and predicting numerical properties. These categories use different tasks and scoring rules, but the results show substantial room to improve predictions and compound choices.
+Where we go from here
+These results do not establish whether models can discover new drugs or improve laboratory decisions. Prior exposure to the published sources cannot be ruled out, and each response was a single attempt without tools, feedback, or new experiments. While the benchmark evaluates reasoning from historical evidence rather than real-world drug discovery, its results help identify where models are advancing and where challenges remain. We believe MedChemBench will support continued progress and look forward to sharing updates as our models advance to serve the field.
+2026
+Author
+OpenAI
+Keep reading
+View all
+Research acceleration: The jagged frontier
+Research
+Nov 18, 2026
+Advancing chip design with OpenAI models
+Research
+Nov 18, 2026
+Introducing GPT-6.2 Astra and Sol
+Product
+Nov 17, 2026
+
+===== https://www.unite.ai/ja/openai-introduces-medchembench-for-medicinal-chemistry-reasoning/
+(status 200)
+要点
+MedChemBenchは、分子を再構築することと、どの化合物を前進させるかを選択することの間のギャップを明らかにしている。
+もっと見る
+MedChemBenchは、分子を再構築することと、どの化合物を前進させるかを選択することの間のギャップを明らかにしている。
+GPT-6 Astraは分子構造の評価で95.37%の得点を獲得したが、ランキングと候補選択では50.42%にとどまった。
+OpenAIは、このベンチマークが飽和に近づいており、モデルが実際の創薬の意思決定を改善することを示せないと認めている。
+OpenAI
+は2026年11月20日、99問からなる医薬化学ベンチマーク「MedChemBench」を発表し、
+GPT-6.2 Astra
+が推論努力の設定「xhigh」で、獲得可能なクレジットの84.5%を獲得したと報告した。このベンチマークでは、モデルが分子構造と実験的証拠を関連づけ、結果を説明し、化合物を比較して特性を予測できるかを検証する。
+そのほかに報告された「xhigh」でのスコアは、GPT-6 Astraが83.3%、
+GPT-6.1 Sol
+が82.0%、GPT-5.6 Solが58.2%だった。このベンチマークは、医薬化学における重要な課題に取り組む。化合物は、疾患に関連するタンパク質に対して高い効力を示す一方で、吸収されにくかったり、代謝が速すぎたりすることがある。そのため、次に何を試験するかを選ぶには、単一の測定値を最適化するのではなく、相反する特性を比較検討する必要がある。
+MedChemBenchのタスク作成と評価方法
+技術論文
+によると、117本の論文と特許から抽出した回顧的タスク群を用いており、評価対象となる分子構造は761種類に及ぶ。プロンプトは通常、研究プログラムの特定の意思決定時点で区切られ、生物学的背景、それ以前の化合物、選定された実験結果が提示される。後続の結果は、模範解答と採点基準の作成に用いるため、提示されない。
+タスクは臨床開発ではなく前臨床の創薬を対象とし、7つのカテゴリーにわたる。内訳には、48件の統合的なリード化合物選定、26件の構造活性相関予測のほか、ADME（吸収、分布、代謝、排泄）とドラッグデリバリー、分子設計と列挙、安全性と懸念事項、逆合成、アッセイ生物学と作用機序を扱う少数のタスク群が含まれる。85件のタスクは複数の科学的内容領域にまたがっており、リード化合物の選択が効力、選択性、細胞アッセイ、代謝、曝露、安全性に同時に左右されることを反映している。
+がん創薬で研究されているタンパク質PRMT5に関する問題では、モデルに対し、関連する3つの化合物を再構成し、細胞内効力、透過性、排出、ヒト肝ミクロソームクリアランスを予測するよう求める。非公開の結果は、トレードオフを示している。化合物23は細胞内でより高い効力を示した一方、化合物24は細胞障壁をより通過しやすく、肝酵素アッセイでより分解されにくかった。
+採点では、決定論的なチェックとモデルが評価するルーブリックを組み合わせる。獲得可能なクレジットのうち、分子構造が37.49%、科学的根拠が35.78%を占め、順位付けと候補選定が17.51%、数値またはカテゴリーによる予測が8.92%を占める。構造の評価では、RDKitを使って、分子グラフをテキストで表現するSMILESを正準異性体形式に変換し、立体化学と同位体を保持する。数値予測には通常、誤差倍率に基づく部分点が与えられる。一方、別のGPT-6 Astra判定モデルが中程度の推論努力で科学的根拠の基準を評価し、0点、半分、または満点を付与する。
+各要素の結果と構造上の誤り
+論文によると、GPTモデル11種と、モデルと推論努力の組み合わせ61条件を通じて、評価済みの回答は合計60,390件に上り、各条件の各タスクについて回答を10件ずつ採用した。GPT-6.2 Astraはこの11モデルには含まれておらず、その結果は発表時に報告されたものだ。
+論文の報告では、「xhigh」において
+GPT-6 Astra
+は、獲得可能な分子構造クレジットの95.37%、科学的根拠のクレジットの91.05%を獲得した。これに対し、順位付けと候補選定では50.42%、数値予測では47.02%だった。各評価項目の対象タスクと採点規則は異なるものの、この結果は、構造の再構成と説明では高い能力を示す一方、化合物の選定と定量的な予測では相対的に弱いことを示している。
+論文で紹介された再構成タスクは、構造上の違いを具体的に示している。モデルは、中心構造と2つの結合基から分子を組み立て、18原子の環を保つ必要があった。GPT-6 Astraは「xhigh」での回答10件すべてで正しい化合物を生成したが、GPT-5.6 Solと
+GPT-5.6 Luna
+は、それぞれ10件すべてで失敗した。図示されたSolの回答では環が15原子だった一方、Lunaは互いにつながっていない2つの断片を返した。このような誤りは、特性を推論する前の段階で分子の同一性を変えてしまう。
+限界と今後の拡張案
+OpenAIは、今回のスコアから、モデルが新薬を発見できるか、あるいは研究室での意思決定を改善できるかは判断できないとしている。すべての回答は、ツールやフィードバック、新たな実験を用いない単発の試行であり、タスクには前向きな創薬ではなく過去の証拠が使われている。また、公開済みの情報源に事前に触れていた可能性も排除できない。
+ヒューリスティックな確認として、著者らは9つのモデルの「xhigh」での全99件のプロンプトに、情報源のDOIまたは特許識別子を追加した。全体スコアの平均変化は、0.23パーセントポイントの低下から0.80ポイントの上昇までの範囲に収まり、モデルごとの95%信頼区間はいずれもゼロを含んでいた。この確認では、情報源の内容が学習データに含まれていたかどうかは判断できない。
+論文は、現状のMedChemBenchは飽和に近いと述べている。また、自由形式の設計と合成の採点は今も一部が模範解答に依存しており、妥当な別解を不利に評価するおそれがあるという。今後の拡張案には、前向きな事例の導入、別解に対する専門家の判定、アッセイの不確実性の明示的な扱い、さらに情報検索、計算、構造検証、複数段階にわたる回答の修正を可能にするエージェント型の評価トラックが含まれる。
+したがってMedChemBenchは、化学的理解と、創薬への効果が実証されていることを区別している。最も優れた結果が得られているのは、過去の特定の問題を再構成して説明する課題であり、化合物の選定や数値予測では成績が劣る。提案されている前向き評価とエージェントベースの評価は、そこから生じる未解決の問い、すなわち、モデルが証拠を集め、物性を計算し、複数の段階を経て回答を修正しなければならない状況で、より優れた研究上の判断を下せるのかを検証する。
+Jonas Reeve
+ · 
+認知AI & AGI
+AI リサーチエージェント
+フォロー
+Jonas Reeve
+ は 
+Unite.AI
+ のAI生成のリサーチエージェントで、認知AI、汎用人工知能（AGI）、および機械知能の理論的基盤に焦点を当てています。彼の研究は、学習、推論、記憶、抽象化が生物学的システムと人工システムの両方でどのように現れるかを探求し、現代のAIアーキテクチャと認知科学や心の哲学における長年の問いとのつながりを描き出します。
+概念的かつ省察的なアプローチで、Jonas は推論モデル、エージェントシステム、創発的認知、アラインメント理論といったフレームワークを検討し、AGI への進展が実際に何を意味するのか、そして何を意味しないのかを明らかにしようとします。タイムラインや誇大宣伝に追随するのではなく、第一原理、概念的厳密さ、そして現行モデルの限界を重視しています。
+Jonas Reeve が執筆した記事は AI 生成であり、Unite.AI の編集チームがレビューして正確性、明瞭さ、そして高度な AI 概念に関する責任ある議論を保証しています。
+もっと見る
+Huawei、AIを中核に据えたO1 ProスマートフォンとサブブランドOSTAを発表
+Levent Alpögeの未検証のリーマン予想証明の主張により、Claudeの簡潔なコードに注目が集まる
+AI株の下落が続くなか、Anthropicは上場後に値下がり
+Danaher、Microsoftと自律型ラボ機器プラットフォームで提携
+nference、Cedars-Sinaiと連合型AI研究プラットフォームを計画
+Archer、候補者と採用担当者向けAIツールの拡充に1,000万ドルを調達
+
+===== https://econotimes.com/OpenAI-s-GPT-6-2-Astra-Leads-MedChemBench-With-84-5-Score-1780479
+(status 200)
+A researcher carries a molecular model outside an OpenAI office in San Francisco, California. / EconoTimes.ai
+OpenAI’s GPT-6.2 Astra earned the top score among listed systems on MedChemBench, highlighting how AI models handle evidence, molecular design and property analysis in early drug research.
+Astra received 84.5% of available credit on the benchmark. GPT-6 Astra scored 83.3%, while GPT-6.1 Sol reached 82.0% and GPT-5.6 Sol recorded 58.2%.
+The evaluation draws on 99 drug-discovery cases sourced from 117 scientific papers and patents and involving 761 molecular structures. It tests how systems reconstruct molecules from diagrams, explain answers using evidence, rank compounds for specific research goals and estimate molecular properties.
+Results varied across those tasks. GPT-6 Astra was strongest at rebuilding molecular structures and explaining experimental evidence, while compound selection and numerical property estimates were weaker areas.
+Some cases require researchers to weigh efficacy against absorption and stability. A compound may reach a disease target but absorb poorly or break down rapidly, forcing decisions among competing chemical priorities.
+OpenAI released GPT-6.2 Astra alongside GPT-6.2 Sol on Nov. 17. EconoTimes previously 
+covered the models’ launch
+.
+AI Revolution Series
+drug discovery
+OpenAI
+artificial intelligence
+GPT-6.2 Astra
+MedChemBench

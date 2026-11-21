@@ -1,0 +1,222 @@
+===== https://www.gizmodo.jp/article/0b0516f2-94f8-442e-bdae-2987f090be13/
+(status 200)
+1万円のシンセをAIで魔改造。電子楽器のファームウェア開放が始まった
+Nov 20,2026 22:00
+6,732
+巽英俊
+ ( GIZMODOライター )
+Google検索でギズモードを
+お気に入りに追加
+Image: 
+ M-VAVE
+中国の
+M-VAVE
+という楽器メーカーが販売している小型FMシンセ「
+FM-1
+」が、ちょっとした話題になっています。きっかけはユーザーによる
+カスタムファームウェアの開発
+です。
+この秋からソフトウェア改造が流行
+Image: 
+ M-VAVE
+Advertisement
+FM-1はアリエクなどを覗くと、だいたい1万円以下で買えるガジェットシンセ。音源方式はFMで、6オペレーター、32アルゴリズム、同時発音数12とシンプルな構成です。
+今年の夏ごろから有志がこのFM-1の
+内部プログラムの解析
+を始め、秋になってAIコーディングツールを活用した
+カスタムファームウェア
+が急加速。
+FM以外のシンセエンジンやら、リズムマシンやサンプラーの機能を盛り込むやら
+で、グルーブボックス化する猛者も現れ、SNSで情報共有しています。ツマミが多いインターフェースがグルーブボックス向きだったのも目をつけられた理由でしょう。しかも安いし。
+注目すべきは、これに対するM-VAVE側の反応です。非公式でやりたい放題な改造ブームを排除するどころか、10月には「
+FM1 Open
+」を発表。開発用SDKやソースコード、ブラウザ上で動く開発環境まで提供し、「
+どんどんいじっちゃってください
+」とばかりに、ユーザーによる機能拡張を後押しする姿勢を見せています。
+この動きに呼応したのかは定かではありませんが、
+AKAI Professional（アカイ プロフェッショナル）
+は次の新製品「Sample Key」でファームウェアの開放をほのめかしています。
+BEHRINGER（ベリンガー）
+も開発中のサンプラー「KICK」のオープンソース化を打ち出しています。
+この投稿をInstagramで見る
+Akai Professional(@akai_pro)がシェアした投稿
+AIを使って自分好みに進化させる
+ファームウェアといったら、その製品がどう機能するのかを定義する超重要事項であり、勝手な書き換えなどメーカーからすればご法度だったはず。そこをユーザーに開放することに、楽器業界が新しい可能性を見い出し始めているようです。
+背景にあるのは、
+AIによるソフトウェア開発の民主化
+です。これまではC言語などでプログラムを書ける一部の技術者だけが参加できた領域を、AIがどどっと開放しました。プログラミング経験が乏しくても、欲しい機能をAIに言葉で伝えて実装できるようになったわけです。
+メーカー側にもメリットがあります。低価格化が進む楽器市場では、ハードウェアの性能や音色だけで差別化するのが難しくなっています。実際のところ、最近は各社の製品がかなり似通ってきていますしね。しかし、ユーザーが自由に機能を追加できる製品なら、
+購入後も話題が続き、コミュニティが育ち、製品寿命も延びます
+。ユーザー自身が無償の開発チームになってくれるわけですから。
+もちろん、改造による故障や動作保証、セキュリティなどの課題は残ります。すべてを自由にするのではなく、メーカーがどこまで責任を持つかという制度の設計も重要になるでしょう。しかし、これからの楽器は、完成された製品を買うだけのものではなくなるのかもしれません。
+メーカーはハードウェアと基本OSだけを用意
+し、そこから先はユーザーが好きなように育てていく。
+なかには途方もなく斬新な手法を生み出すユーザーが生まれるかもしれません。そんな電子楽器って、夢があると思いませんか？
+Source: 
+M-VAVE
+, 
+AKAI Professional
+, 
+BEHRINGER
+
+===== https://thesynthsource.com/fm1-open/
+(status 200)
+Articles
+FM1 Open: M-VAVE’s official answer to the FM-1 custom firmware boom
+M-VAVE has answered the FM-1 hacking scene with FM1 Open, a browser Workbench, a GPL-licensed app built on a closed engine SDK, and its own alternative firmware. Here is what it contains and what it changes.
+Bernardo de Azevedo
+October 16, 2026
+ · 
+Updated 
+October 19, 2026
+𝕏
+🔗
+Before FM1 Open appeared, for about three weeks in the autumn of 2026, the most interesting development work on the M-VAVE FM-1 happened entirely outside M-VAVE. Independent developers worked out how to load their own code onto the $70 pocket FM synth, and by 17 October the tracking site FW Radar listed 63 community firmware projects for it. Manufacturers usually respond to that kind of activity in one of two ways: they ignore it, or they close the door with a signed bootloader in the next update.
+M-VAVE did neither. On 17 October the company announced FM1 Open, an official development project with a browser-based Workbench, a public GitHub repository, a binary SDK and an alternative firmware of its own. The forum it runs for FM-1 owners states plainly that users are welcome to share and discuss third-party firmware as well as official firmware. For a budget instrument sold mostly through online marketplaces, that is an unusual move, and it arrived with complications attached.
+This article looks at what FM1 Open contains, what is open and what is not, the licensing disputes that surrounded its first days, and what it might mean for the scene that prompted it. For background on the instrument itself, see our main article on the 
+M-VAVE FM-1
+.
+Table of Contents
+Toggle
+What FM1 Open contains
+FM1 Open has three visible parts. The first is the Workbench at open.m-vave.com/fm1-workbench, a bilingual English and Chinese web application that runs in desktop Chrome or Edge. According to Synth Anatomy, it lets users explore the instruments, edit device projects, manage samples and flash firmware, and most of the music-making features can be tried in the browser without an FM-1 connected. The page itself describes an eight-track, 64-step environment with six engines, live parameter editing, a step sequencer, a mixer, per-track effects, preset browsing and export of projects, track voices and DX7 voices. Saving to the device writes to a chosen slot and then reloads the project to verify it.
+The second part is the GitHub repository m-vave/fm1_open. Its current public history begins with a commit labelled “Initial FM1 Open V12 release” on 16 October 2026, followed by an update to V13 the next day, although Elektronauts users were already linking to a repository of that name on 14 October. The README summarizes the release in one line, “8 tracks, 8 sample slots, 16 FX demos; binary SDK included,” and points developers to the Workbench to download a source-and-SDK package matching the online build.
+The third part is the official alternative firmware, which is what most FM-1 owners will actually notice. It turns the unit from a single-patch DX7-style synth into a multitrack instrument. It is an alternative to stock V15 rather than its successor: the Workbench links to M-VAVE’s V15 firmware, and the SDK bundles a V15 recovery image, which matters for anyone who wants to go back.
+The official alternative firmware
+The headline feature list is straightforward. The firmware offers six sound sources that can be assigned to tracks: a six-operator FM synth, a 303-style bass synth, an 808-style drum machine, a chiptune synth, a pluck synth and a sampler with eight shared sample slots. Synth Anatomy describes independent tracks for melody, bass, drums and custom samples, with looping patterns and per-track sound and rhythm editing.
+The public header files fill in more detail. The instrument interface defines eight tracks of 64 steps and a step format that carries chord, gate, probability, tie and an alternate-tuning flag. Up to 16 parameter locks can be stored per sequence, and there is a per-track tuning API that accepts offsets in whole cents for each pitch class, although the README notes that no dedicated tuning editor is included yet. That is a considerably richer sequencer than the stock 16-step design.
+The third-party notices explain where several of the engines come from. The 303 voice is a C adaptation of Robin Schmidt’s Open303. The 808 and pluck voices adapt models from Electrosmith’s DaisySP, which in turn draws on Emilie Gillet’s Plaits code. The filter is adapted from Gillet’s stmlib, the chiptune voice uses Mitsutaka Okazaki’s emu2149 PSG emulator, and the FM model is a C adaptation of Google’s MSFA code as maintained in Dexed. All of those components are open source under MIT or Apache-2.0 terms, and the notices list the exact upstream commits.
+The release also ships with demo projects, which the README counts as 16 “FX demos”. In a first-look video featured on MATRIXSYNTH on 18 October, the YouTuber PhilipsKnobs installed FM1 Open over stock V15 and played through some of these demos, while stressing that it was not yet a full review.
+What is open in FM1 Open and what is not
+The name suggests a fully open-source platform, but the licensing is layered, and the layers matter.
+The application code that M-VAVE owns is licensed GPL-3.0-only, with an additional permission under section 7 of the GPL that allows the app, and modified versions of it, to be linked with the FM1 binary SDK and distributed.
+The core engine library, libfm1_engine.a, is proprietary. M-VAVE grants a royalty-free permission to copy it, link it with the app or a modified app, and redistribute it in binary form, for commercial or non-commercial use, but only for firmware that runs on M-VAVE FM1 devices. No source is supplied.
+The boot and update files and the V15 recovery image are distributed under the Apache License 2.0.
+Third-party components keep their own licenses, and the notices say that complete packages must comply with each of them, including any obligation to provide corresponding source.
+The toolchain is also partly vendor-specific. Firmware builds require Windows x64 and JieLi’s PI32v2 clang 4.0.1 r3 compiler, while the web version is compiled from the included C sources with WASI SDK 27. One detail in the README looks like a direct response to GPL concerns: before running a web or package build, the developer must set an environment variable pointing to an HTTPS download of that build’s source archive, and the builds stop if it is missing. In other words, the tooling tries to make it difficult to publish a binary without also publishing where its source lives.
+The practical effect is that developers can study, change and redistribute everything around the engine, and can ship firmware that uses the engine, but they cannot see inside it or move it to other hardware. That is closer to the model used by many embedded platforms with closed vendor libraries than to a fully open synth.
+A welcome mat for third-party firmware
+The cultural signal may be as important as the code. M-VAVE’s official forum rules, quoted on Elektronauts on 14 October, say: “You are welcome to share and discuss both official and third-party firmware.” The same day, Charles Vestal, the developer behind the X0X and FoMni firmwares, wrote that he had contacted M-VAVE and been told the company would launch an “open source community” within days.
+That stance removes much of the uncertainty that hangs over most hacked hardware. Developers no longer have to wonder whether the next official update will lock them out, and users posting about a community firmware on the official forum are not breaking any rule. Synth Anatomy welcomed the approach, arguing that walling off hardware is the wrong strategy and that open SDKs help devices stay useful after their original developers move on.
+The controversies
+FM1 Open did not arrive without criticism, and two issues stand out.
+The first concerns credit. Synth Anatomy wrote that it saw many parallels between M-VAVE’s firmware and other firmware engines, and that M-VAVE had borrowed from other projects without disclosing it, calling that “a pity”. The same article said M-VAVE had done the same with Dexed for the original FM-1. 0, with copyright lines for Google and for Pascal Gauthier, alongside Open303, DaisySP, Plaits, stmlib and emu2149, and they credit a community pull request by Vikram Rojo dated 17 October.
+Whether those notices were complete from the first public build is harder to establish, since the repository’s visible history starts on 16 October.
+The second issue is licensing in the strict sense. On 14 October, Vestal wrote on Elektronauts that M-VAVE had been “distributing some GPL work (including my own) compiled with closed source binaries,” which he described as a violation of the GPL. He added that he had raised the issue and that M-VAVE had taken the work down for now while it sorted out the licensing. The point he raised is a real one: a GPL linking exception can only be granted by the people who hold copyright in the code concerned.
+M-VAVE can attach one to its own app, and its license text says the exception does not grant rights in third-party code beyond that code’s own license, but it cannot add an exception to code written by community developers. Any community GPL code combined with the closed engine would need its authors’ permission.
+We could find no detailed public statement from M-VAVE on either point by 18 October. Both are worth watching, because they will shape whether independent developers see FM1 Open as a foundation to build on or as something to keep at a distance.
+What it means for the scene
+For users, the most immediate benefit is a manufacturer-backed alternative firmware and a manufacturer-hosted recovery image. The SDK’s copy of the V15 package matches the SHA-256 hash that the independent FM-1-RE project recorded for stock V15 when it documented a successful rollback in September, which suggests it is the same file M-VAVE ships through its normal updater. That does not make flashing risk-free. The FM1 Open README still tells users to back up projects and samples and to keep the device powered during saves and firmware updates, and the SDK terms disclaim liability for data loss or device malfunction.
+For developers, FM1 Open offers a documented hardware layer, board drivers, a known-good audio path and an engine they are allowed to ship, all of which previously had to be reverse engineered or recreated. The catch is the closed engine and its FM1-only grant. Projects that want to remain entirely free software, such as Felucca and its many forks, have their own engines and may have little reason to adopt it.
+The timing is also significant. On 16 October, the same day the FM1 Open repository went public, Felucca’s maintainer Leo Kuroshita added a maintenance notice saying he was stepping back from active development, with only occasional maintenance from then on. Felucca had become the base layer for many community firmwares. An official SDK could give the scene a more stable reference point as individual maintainers come and go, or it could split development between an open community stack and a vendor stack. Both outcomes are plausible.
+Final perspective
+FM1 Open is a sensible and, for this price class, rare response to a community that had already taken the hardware in its own direction. M-VAVE has published real code, a practical browser tool, a more capable official firmware and clear permission for third-party work, and it has kept the recovery path to stock firmware in view.
+It is also a partial opening. The engine stays closed, the license structure needs careful reading, and the first days were marked by credible complaints about attribution and about GPL code combined with closed binaries. How M-VAVE resolves those complaints, and whether independent developers choose to build on its SDK, will say more about the project’s value than the launch itself. For now, FM-1 owners have one more good firmware to try, and developers have a vendor that has said in writing that their work is welcome.
+Sources
+M-VAVE FM-1 Open: the green light for custom firmware and community hacks, Synth Anatomy
+m-vave/fm1_open, GitHub
+FM1 Workbench, M-VAVE
+M-VAVE forum announcement, topic 4
+M-VAVE just released new firmware for the FM-1, MATRIXSYNTH
+M-VAVE FM-1 discussion thread, page 18, Elektronauts
+M-Vave FM-1 custom and alternative firmware, FW Radar
+Felucca custom firmware for M-VAVE FM-1, GitHub
+FM-1 firmware reverse engineering, AL-255, GitHub
+M-VAVE just released NEW firmware for the FM-1!, PhilipsKnobs, YouTube
+Written by
+Bernardo de Azevedo
+Founder & Editor
+His connection with music began at age 6, in the 1980s, when his father introduced him to Jean-Michel Jarre's Rendez-Vous on vinyl. He works professionally in the legal field, while synthesizers became his space for abstraction and creative exploration. Founder of The Synth Source.
+
+===== https://www.synth-news.com/en/news/firmware-updates/m-vave-fm1-open-firmware-v13-update/
+(status 200)
+Screenshot: M-VAVE, FM1 Workbench editor (open.m-vave.com), Open firmware V13.
+M-VAVE
+, the brand behind the 
+FM-1
+, a small battery-powered FM synth inspired by the Yamaha DX7, has released 
+FM1 Open
+: an official alternative firmware, its web editor and a development kit for writing your own firmware. Version 
+V13
+ and its development kit went online on October 17, 2026 on the 
+FM1 Workbench
+, the project’s official site. The manufacturer is responding to the wave of unofficial firmware that has appeared since the instrument launched.
+Six engines instead of one
+The stock FM-1 is an FM synth: a few sine oscillators, called operators, modulate each other’s frequency to build rich tones. The Open firmware keeps that engine and adds five more. Each track can use any of them, with its own settings:
+DX7
+: six-operator FM, with per-operator editing, algorithm selection and import of DX7 patches in .syx format.
+303
+: a TB-303-style acid bass with cutoff, resonance, accent, slide and drive; playable monophonically with slide or with four-voice polyphony.
+808
+: fully synthesized drums, eleven parts each adjustable on its own.
+PSG
+: 8-bit console and home computer chip sounds (YM, AY, noise and mixed modes).
+PLUCK
+: a plucked-string model with decay and brightness controls.
+SAMPLER
+: eight sample slots sharing about 20 seconds of memory. WAV files are imported from the browser.
+A pocket groovebox
+M-VAVE FM1 Open: one track’s path (x8)
+DX7 (6-operator FM)
+303 (acid bass)
+808 (synthesized drums)
+PSG (chip sounds)
+PLUCK (plucked strings)
+SAMPLER (8 slots)
+Engine chosen for the track
+Track envelope and LFO
+Reverb and delay sends
+shared effects
+Mixer, mute and solo
+MASTER: audio, USB, Bluetooth
+Sequencer: 8 tracks of 16 to 64 steps, one loop length per track
+The firmware turns the FM-1 into a small all-in-one: 
+eight tracks
+, each with its own 16, 32, 48 or 64-step loop, per-step parameter locks (a setting that applies to one step only), per-step probability, a per-track arpeggiator with swing and hold, a mixer with mute and solo, and sends to a shared reverb and delay. Every engine also gets an envelope and an LFO; for envelope basics, see our guide to 
+the ADSR envelope
+.
+MIDI essentials
+Item
+FM1 Open V13
+Channels
+Tracks 1 to 7 on channels 1 to 7, track 8 on channel 10
+MIDI inputs
+Physical MIDI, USB and Bluetooth (BLE MIDI), same rules
+Sync
+MIDI clock at 24 pulses per quarter note, Start, Continue, Stop, Song Position, MMC
+Not supported
+RPN and NRPN, polyphonic aftertouch, MTC, Bank Select
+Editing
+Web editor in Chrome or Edge (Web MIDI), downloadable offline version
+Open, with conditions
+What sets it apart from community hacks is the licence. The application is published under 
+GPLv3 with an SDK linking exception
+: you may modify and redistribute it, but M-VAVE’s proprietary sound engine ships only as a binary inside the development kit. It is a managed opening, comparable to the 
+OXI Coral 3.0 firmware
+, which also lets users build their own firmware, and more limited than the full code release of 
+Mutable Instruments Beads
+.
+Updating happens in the browser over a USB data cable. The official guide stresses backing up sounds, projects and samples first. As 
+Synth Anatomy
+ reported, M-VAVE warns that flashing may cause data loss or prevent the unit from starting.
+Who is it for?
+For FM-1 owners who want more than an FM synth: a small drum machine and a pocket acid bass, on batteries, controllable over Bluetooth. For developers, it is a cheap platform for writing their own engines. It is not the ideal tool to learn FM: detailed DX7 patch editing on such a small screen is hard work, and the web editor quickly becomes essential.
+What does it cost?
+The FM1 Open firmware, its editor and the development kit are 
+free
+. M-VAVE does not state a recommended retail price for the FM-1 on the official pages we checked: price not disclosed.
+What does it compete with?
+Korg NTS-1 digital kit mkII
+: another small programmable synth, open to third-party oscillators and effects through Korg’s logue SDK, but monophonic at heart and without a multitrack sequencer.
+Teenage Engineering Pocket Operators
+: the same pocket format and on-the-go use, but one fixed engine per model and no third-party firmware.
+FM1 Open stands out for its six engines, eight tracks and open licence. It loses on the ergonomics of a tiny device and on the proprietary engine, which stays closed. For more recent updates, see our 
+firmware updates
+ section.
+Share
+                    Bluesky                
+                    Facebook                
+                    LinkedIn
+
+===== https://pianoandsynth.com/m-vave-fm1-open-official-1-firmware-development-project/
+(failed: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
