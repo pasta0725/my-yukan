@@ -94,6 +94,7 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 1. `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/official-images.yml/dispatches -f ref=main -f 'inputs[dates]=<号のID>'`
    （tools/find_official_images.py：公式画像0〜1枚の記事について、参考記事の中の公式ページへのリンクをたどり、画像を集めて候補一覧の画像 sheet_NN.jpg と candidates.json を作る。公開サイトから表示できるかも確かめる）
 2. `gh run download <実行ID> -n official-images` で取得。候補一覧を見て、記事に合う画像を選ぶ（顔が主役・ロゴだけ・無関係・ニュースサイトの画像は除く）。選んだ結果は {"記事id":[{"n":番号,"caption":"何が写っているか"}]}。
+   公式画像は、記事にすでにある分も含めて1記事12枚まで。選んだ画像は記事の内容がよく伝わる順に並べる。
 3. 候補がなかった記事は、WebSearch だけで公式ページを探し（WebFetch は使わない）、{"記事id":["公式ページURL"]} を imgjobs/<号のID>.json に置いて push、`inputs[extra]=imgjobs/<号のID>.json`・`inputs[only_extra]=yes` でもう一度実行して選ぶ。
 4. `python3 -I tools/pick_official_images.py candidates.json picks*.json` で号に取り込み（add_official_images.py と place_images.py も自動で動く）、コミットして push。
 5. 2026-11-14〜：1. を `-f 'inputs[codex_pick]=yes'` 付きで動かすと、Codex が候補を1記事ずつ大きめの画像で見て選ぶ（1記事15秒ほど）。成果物 codex-picks に picks_codex.json（2. の形）、report.md（選んだ枚数・外した理由）、story_<記事id>.jpg。Claude は report.md を読み、選ばれた記事の story_<記事id>.jpg を数枚見て確かめ、`python3 -I tools/pick_official_images.py candidates.json picks_codex.json` で取り込む。codex-picks が無いときは 2. のやり方で選ぶ。

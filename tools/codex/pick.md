@@ -5,7 +5,8 @@ Files here:
 - story.jpg (attached to this message) — the candidate pictures, each with its number n in an orange box under it.
 - info.md — the article (title, summary, text) and, for each candidate n: its size, the page it was found on, credit, alt text.
 
-Choose EVERY candidate that fits (the user's rule: use all suitable official pictures), and none that does not.
+Choose all suitable official pictures up to 12, in order of how well they show the subject of the article.
+The importer counts any official pictures already in the article toward the 12-picture limit (the user's decision 2026-11-20).
 A picture fits only if ALL of these are true:
 1. It comes from an official page: the company's or organization's own site, newsroom, blog, product or store page,
    or a press-release service (PR TIMES, @Press, Business Wire, PR Newswire...). Not a news site, blog, shop review,
@@ -17,14 +18,13 @@ A picture fits only if ALL of these are true:
    Not an older edition: if a banner or picture shows a date, check it fits the article's year (a weekday that does not
    match this year's date means it is from another year, e.g. a sale page from last year). Not the single products of a
    sale or shop page (food, daily goods...) unless the article is about that product.
-3. It is not: a photo whose main subject is a person's face (a portrait, a speaker on stage, a headshot, and also a video
-   thumbnail made of a face and big text, e.g. YouTube); a generic stock or mood photo (hands, people at a laptop, an
-   abstract "AI" image) that does not show the real product, screen or event; a logo or
+3. It is not: a photo dominated by people's faces (a portrait, a speaker on stage, a headshot, a group around a table
+   with large faces in view, or a video thumbnail made of a face and big text, e.g. YouTube); a generic stock or mood
+   photo (hands, people at a laptop, an abstract "AI" image) that does not show the real product, screen or event; a logo or
    wordmark alone; an icon or app icon alone; an ad, banner, campaign or coupon graphic that is mainly text (but a guide image that shows the article's own screen or feature may be chosen even if it has a lot of text); a generic
    site share image; a blurry, broken, mostly empty or "(could not load)" picture; a near-duplicate of a picture you
    already chose (then keep only the bigger one).
 When in doubt, leave it out.
-At most 12 pictures per article (the user's decision 2026-11-20; the importer also stops at 12).
 
 For each chosen picture write a caption in Japanese: what is shown, 10–40 characters, plain words, using the same names
 as the article text (e.g. 「Pixel 10の新しい通話画面」). No URL, no 「公式画像」, no guesses about things you cannot see.
