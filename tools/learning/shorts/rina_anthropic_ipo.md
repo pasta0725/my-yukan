@@ -20,6 +20,15 @@
   | narration | 1 | 0 | 1 |
   | youtube-upload | 1 | 0 | 1 |
 - 書き出し（short-build）2回・読み上げ（narration）1回
+- 話す動画（つかみ・締め）：
+  - 11/20 17:52 Colab（約24分）
+- 直した履歴（コミット6件）：
+  - 17:41 台本と項目 rina_anthropic_ipo
+  - 17:45 台本の事実を直し、読み上げを頼む rina_anthropic_ipo
+  - 17:45 サムネの頼み方 rina_anthropic_ipo
+  - 17:51 画面と締めの話す動画の頼み方 rina_anthropic_ipo（7〜10文目は無音の位置で切り直し）
+  - 17:52 ショート自動：rina_anthropic_ipo の plan.js と字幕
+  - 18:27 画面の情報を減らし、0秒のテロップを字幕に合わせる rina_anthropic_ipo
 - Claude の使った量：記録の仕組みの前で不明（11/18 の手作り1本で約46万〜49万・操作180〜250回、auto_short.md 2-2）
 <!-- 数字ここまで -->
 

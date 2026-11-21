@@ -81,7 +81,7 @@
 - channel/shorts_log.csv の1行は short-upload.yml の log で足される（動かなかったときは手で足す）。完成動画と素材のドライブへの移動は、youtube-upload.yml が公開を確かめたあと drive-store.yml を自動で動かす（動いていなければ name=<名前> で手で動かす。media の名前が rina_ を外した名前と違うときは extra=media/<名前>）。
 
 ## 4-2. 振り返り（毎回、通知と HANDOFF の前。2026-11-21〜）
-- `python3 tools/short_record.py <名前> --write` で時間・自動作業の回数と失敗・書き出しと読み上げの回数・Claude の使った量を tools/learning/shorts/<名前>.md に入れる（自分で数え直さない）。
+- `python3 tools/short_record.py <名前> --write` で時間・自動作業の回数と失敗・書き出しと読み上げの回数・話す動画が Colab か Modal か（Modal なら理由）・直した履歴・Claude の使った量を tools/learning/shorts/<名前>.md に入れる（自分で数え直さない）。
 - 残り（やり直し・つまずき・品質・次の改善1〜3個）を短く書き、next.md を書き換える（効いた改善は決まりの文書へ移して消す。5つまで）。手順は tools/learning/shorts/README.md。
 - 通知の最後に「今回の振り返り：<一番大きい改善1行>」を足す。
 - 投稿しなかった日も、止まった理由を記録に書く（数字は同じ道具で取れる）。

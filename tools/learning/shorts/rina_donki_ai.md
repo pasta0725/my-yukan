@@ -21,6 +21,24 @@
   | short-thumb-check | 1 | 0 | 1 |
   | youtube-upload | 1 | 0 | 1 |
 - 書き出し（short-build）5回・読み上げ（narration）2回
+- 話す動画（つかみ・締め）：
+  - 11/21 17:54 Colab（約26分）
+- 直した履歴（コミット15件）：
+  - 17:38 rina_donki_ai: media urls and refs
+  - 17:42 rina_donki_ai: script and meta draft
+  - 17:44 rina_donki_ai: fixes from the fact check, short.html
+  - 17:45 rina_donki_ai: thumbnail jobs, longcat jobs
+  - 17:47 rina_donki_ai: narration lines
+  - 17:53 rina_donki_ai: manual split s8-s10, screen fixes from preview
+  - 17:54 ショート自動：rina_donki_ai の plan.js と字幕
+  - 17:54 ショート自動：rina_donki_ai の longcat の区切り数を音声の長さに合わせた
+  - 18:31 rina_donki_ai: fixes from the build check, re-read one line
+  - 18:34 ショート自動：rina_donki_ai の plan.js と字幕
+  - 18:43 rina_donki_ai: size of 約1年半, speaker of the quote, English description
+  - 18:53 rina_donki_ai: quote marks on 社員, one colour for the candidates
+  - 18:54 ショート自動：rina_donki_ai の plan.js と字幕
+  - 19:03 rina_donki_ai: caption break in the debut line
+  - 19:04 ショート自動：rina_donki_ai の plan.js と字幕
 - Claude の使った量：記録の仕組みの前で不明（11/18 の手作り1本で約46万〜49万・操作180〜250回、auto_short.md 2-2）
 <!-- 数字ここまで -->
 
