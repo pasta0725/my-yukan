@@ -180,13 +180,13 @@ const S={
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // more of them are waiting backstage (hidden number)
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'出番')),d-1.0);
-   withEnter(enter(u,0),()=>{ipic('key',300,420,480,560,28,1.0+0.05*u/Math.max(1,d),0.475,0.45);creditAt(PP,765,960);});
-   if(u>t2){[[190,700],[890,700],[150,1000],[930,1000]].forEach(([x,y],j)=>withEnter(enter(u,t2+j*0.12),()=>{person(x,y,1.25,C.bar);text('？',x,y-58,40,'#FFFFFF');},20));
-     tagI('出番待ち',CX,1100,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',60);}},
+   withEnter(enter(u,0),()=>{ipic('key',240,400,600,700,28,1.0+0.05*u/Math.max(1,d),0.475,0.45);creditAt(PP,825,1080);});
+   if(u>t2){[[150,620],[930,620],[150,950],[930,950]].forEach(([x,y],j)=>withEnter(enter(u,t2+j*0.12),()=>{person(x,y,1.25,C.bar);text('？',x,y-58,40,'#FFFFFF');},20));
+     tagI('出番待ち',CX,1180,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',60);}},
  // "1分でまとめます" (reused pose clip): the sales floor photo fills the screen behind her, a little darker (user 2026-11-18)
  hook(u,d,L){abs(()=>{fullPic('floor',1.05+0.08*u/Math.max(1,d),0.5,0.45,0.35);creditAt(PP,1000,340);bigRina(HOOK_R);});},
  what(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.8,telHas(L,'ドンキ')),d-0.9);
-   withEnter(enter(u,0),()=>{ipic('key',190,420,700,520,28,2.2,0.56,0.93);creditAt(PP,875,925);});
+   withEnter(enter(u,0),()=>{ipic('key',190,420,700,560,28,1.15,0.5,0.55);creditAt(PP,875,965);});
    if(u>t2){tagI('生成AIで制作',CX,1080,(u-t2)/0.3,C.brand,'#FFFFFF',64);}},
  // 11/23 calendar
  debut(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'宣伝')),d-0.9);
@@ -200,8 +200,8 @@ const S={
    if(u>t2)tagI('ピンクのポニーテール',CX,1210,(u-t2)/0.3,C.acc,'#FFFFFF',52);},
  // trial since July: the in-store POP
  trial(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'動画')),d-1.0);
-   withEnter(enter(u,0),()=>{ipic(u<t2?'pop':'p450',190,420,700,u<t2?700:520,28,1.0+0.05*u/Math.max(1,d),0.5,0.4);creditAt(PP,875,u<t2?1105:925);});
-   tagI('7月から試験運用',CX,u<t2?1200:1040,(u-0.3)/0.3,C.acc,'#FFFFFF',56);},
+   withEnter(enter(u,0),()=>{ipic(u<t2?'pop':'p450',190,420,700,520,28,1.0+0.05*u/Math.max(1,d),0.5,u<t2?0.35:0.4);creditAt(PP,875,925);});
+   tagI('7月から試験運用',CX,1040,(u-0.3)/0.3,C.acc,'#FFFFFF',56);},
  // cheap and fast: about a month -> about a week (the bar shrinks first, the label comes when it stops)
  fast(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.6,telHas(L,'ボード')),d-2.0),t3=Math.min(Math.max(t2+0.6,telHas(L,'1週間')),d-0.8);
    withEnter(enter(u,0),()=>{tagI('安く',380,500,1,C.brand,'#FFFFFF',72);tagI('早く',700,500,1,C.acc,'#FFFFFF',72);});
@@ -218,7 +218,7 @@ const S={
    const st=ease(u/0.25);g.save();g.translate(CX,430);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
    const t2=Math.min(Math.max(1.4,telHas(L,'うちっぽさ')),d-1.0);
    withEnter(enter(u,0.3),()=>{card(200,540,680,230,30);text('ふだんの店のPOP',CX,610,52,C.text,'center',900,620);text('生成AIはあまり使わない',CX,700,48,C.warn,'center',900,620);});
-   if(u>t2)withEnter(enter(u,t2),()=>{card(160,830,760,170,30,C.card2);text('「うちっぽさが薄れる」',CX,915,58,C.text,'center',900,700);});},
+   if(u>t2)withEnter(enter(u,t2),()=>{card(160,830,760,170,30);text('「うちっぽさが薄れる」',CX,915,58,C.brand,'center',900,700);});},
  // the core: about 20 candidates already backstage (silhouettes appear, the count runs up to 20)
  core(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'20')),d-1.0);
    const n=u<t2?0:Math.min(20,Math.floor(20*ease((u-t2)/1.0))+1);
