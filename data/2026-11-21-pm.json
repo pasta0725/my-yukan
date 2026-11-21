@@ -1,0 +1,4692 @@
+{
+ "date": "2026-11-21-pm",
+ "label": "11月21日（土）の夕刊",
+ "updatedAt": "2026-11-21T14:30:53+09:00",
+ "articles": [
+  {
+   "id": "ai-openai-anti-distillation",
+   "category": "ai",
+   "title": "OpenAI、AIの考えの抜き取りを防ぐ対策 成功率54.0%→0.2%",
+   "summary": "他社に能力をまねされない守りを公開。最新モデルで攻撃の成功率が大きく下がった。",
+   "image": {
+    "src": "https://images.ctfassets.net/kftzwdyauwt9/5SUtPGdssrttC7LfP1yoJ1/b6b000846ab3576c1735c29534ab20b0/combatting-adversarial-distillation-social.png?w=1600&h=900&fit=fill",
+    "kind": "press",
+    "credit": "OpenAI",
+    "page": "https://openai.com/index/combatting-adversarial-distillation"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "AIの安全対策"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIが、AIの回答をまねて別のAIを育てる「蒸留」の悪用を防ぐ取り組みを公表した",
+      "最新のGPT-6.2 Astraでは、過去の質問の考えの抜き取り成功率が54.0%から0.2%に下がった",
+      "ChatGPTの使い方は変わらず、利用者がすることは特にない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月20日、AIの能力を無断でまねる「蒸留」の悪用を防ぐ取り組みを公表しました。最新モデルでは、抜き取りの成功率が大きく下がったといいます。"
+    },
+    {
+     "type": "h",
+     "text": "蒸留はなぜ安全の問題か"
+    },
+    {
+     "type": "p",
+     "text": "蒸留とは、あるAIの回答や考え方を使って、別のAIに学習させる手法です。許可なく行うと、元のAIが持つ安全のための制限を引き継がないまま、能力だけをコピーできてしまいます。OpenAIは、サイバー攻撃の手伝いを断るAIの能力が、制限のないAIに移る例を挙げています。"
+    },
+    {
+     "type": "h",
+     "text": "狙われるのは途中の考え"
+    },
+    {
+     "type": "p",
+     "text": "特に守りたいのは、AIが答えを出すまでに内部で作る途中の考えです。OpenAIは「保護された推論」と呼んでいます。最終的な答えに出ない情報が入っているため、別のAIの学習データとして価値が高いからです。社内の実験では、途中の考えそのものを使うと、要約を使うよりサイバー関連の能力が移りやすい傾向がありました。"
+    },
+    {
+     "type": "h",
+     "text": "1回ごとと集団への2段構え"
+    },
+    {
+     "type": "p",
+     "text": "守りは、1回ごとのやり取りへの対策と、悪用の集団的な動きへの対策の2段です。1回ごとの対策は、AIへの訓練、不正な質問や漏えいを見つける検出器、API（外部のソフトからAIを使う窓口）での制限です。GPT-6.2 AstraとSolでは、途中の考えを元の会話の履歴に結び付けました。過去のメッセージが書き換えられると、その後の考えは捨てられます。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/kftzwdyauwt9/v3SwlCju2INrQ6LXdq8eB/d0aca54aed53ede3aee7ffc0c40b0646/combatting-adversarial-distillation-diagram-light.png?w=3840&q=90&fm=webp",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "OpenAIの蒸留対策の図。AIの訓練、検出器、APIでの制限という1回ごとの守りと、集団を見つける守りの2層",
+     "page": "https://openai.com/index/combatting-adversarial-distillation"
+    },
+    {
+     "type": "h",
+     "text": "成功率は54.0%から0.2%へ"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは、AIを使った自動の攻撃役で、途中の考えを抜き取れるかを試しました。結果は6種類の攻撃役の平均です。以前の質問で作られた考えを抜き取れた割合は、GPT-6 Astraが54.0%、GPT-6.2 Astraが0.2%でした。今の質問の考えを抜く攻撃は、22.9%から0.9%に下がっています。"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは、改善の一部をGPT-6 Astraにも適用しているところだと述べています。"
+    },
+    {
+     "type": "h",
+     "text": "アカウント停止と法整備"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは今年、許可のない蒸留の動きを複数確認したと述べています。毎週の取り締まりは数千から数万のアカウント規模で、夏に増えました。2月には議会に、DeepSeekが米国のモデルを蒸留しようとした動きを説明しました。9月には、ある活動の中心部分をMoonshot AI（Kimiの開発元）に関係する人物によるものと報告しています。"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは、外国の組織による抜き取りを特定し、制裁しやすくする法案への支持も議会に伝えています。最近止めた新しい事例は、近く共有する予定です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "54.0%→0.2%",
+       "label": "過去の考えの抜き取り成功率"
+      },
+      {
+       "value": "22.9%→0.9%",
+       "label": "今の考えの抜き取り成功率"
+      },
+      {
+       "value": "数千〜数万",
+       "label": "毎週対処する口座数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ChatGPTを使う人：新しい操作や料金の変更はなく、特にすることはありません。",
+      "GPT-6.2 AstraやSolをAPIで使う開発者：過去のメッセージを書き換えると、その後の保護された推論が破棄される点を知っておく。",
+      "最近の蒸留の事例について、OpenAIが追加で公表する予定です。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ふだんChatGPTを使う人に見える変化はありません。ただ、強いAIほど「まねされない守り」も一緒に作る時代になっています。数字はOpenAI自身の試験の結果なので、外部の検証もあわせて見たいところです。"
+    }
+   ],
+   "source_name": "OpenAI",
+   "source_url": "https://openai.com/index/combatting-adversarial-distillation",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "OpenAI",
+     "url": "https://openai.com/index/combatting-adversarial-distillation"
+    }
+   ]
+  },
+  {
+   "id": "mobile-pixel9a-used-rakuten",
+   "category": "mobile",
+   "title": "楽天市場で中古Pixel 9aが6万9000円から、状態を選べる",
+   "summary": "ニューズドテックが中古のPixel 9a（128GB）を販売。外装は目立つ傷のないAランクです。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/mobile/articles/2611/21/asa_rakuten_01.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia Mobile",
+    "page": "https://www.itmedia.co.jp/mobile/articles/2611/21/news007.html"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "中古スマホ"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "楽天市場で、ニューズドテックが中古の「Google Pixel 9a（128GB）」を売っています。",
+      "外装は目立つ傷がないAランクで、価格は6万9000円からです。",
+      "画面の状態とSIMピンの有無を選べ、選ぶほど価格が上がります。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "楽天市場のニューズドテックが、中古「Google Pixel 9a（128GB）」を販売中です。6万9000円からで、画面の状態も選べます。"
+    },
+    {
+     "type": "h",
+     "text": "価格と選べる条件"
+    },
+    {
+     "type": "p",
+     "text": "外装は、目立つ傷がないAランクです。標準の価格は6万9000円です。画面を「液晶キレイめ」にすると2000円、「液晶キレイめ（極）」にすると4000円高くなります。SIMピンを付けると、さらに500円かかります。価格は2026年11月20日時点です。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/mobile/articles/2611/21/asa_rakuten_02.jpg",
+     "kind": "ogp",
+     "credit": "ITmedia Mobile",
+     "caption": "楽天市場での販売ページのイメージ",
+     "page": "https://www.itmedia.co.jp/mobile/articles/2611/21/news007.html"
+    },
+    {
+     "type": "p",
+     "text": "メニューには「液晶」と書かれていますが、Pixel 9aの画面は有機ELです。"
+    },
+    {
+     "type": "h",
+     "text": "検品と返品・交換の保証"
+    },
+    {
+     "type": "p",
+     "text": "専任スタッフが検品から発送まで行い、各種ボタンやバッテリーなど31項目を確かめます。不具合があれば、30日以内に返金か交換を受け付けます。傷の状態に満足できないときは、7日間の返品にも対応するとしています。"
+    },
+    {
+     "type": "h",
+     "text": "Pixel 9aの中身"
+    },
+    {
+     "type": "p",
+     "text": "2025年発売のモデルで、プロセッサはGoogle Tensor G4、メモリは8GBです。「Gemini」「かこって検索」「音声消しゴムマジック」などのAI機能が使えます。OSとセキュリティの更新は、発売から7年間保証されています。"
+    },
+    {
+     "type": "p",
+     "text": "ITmedia Mobileの関連記事は、Pixel 10aも同じTensor G4で、キャリアではこちらが買いやすい状況だと伝えています。なお、今回の紹介記事は、販売ページへのリンクで収益を得ています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "6万9000円",
+       "label": "最も安い構成"
+      },
+      {
+       "value": "31項目",
+       "label": "検品で確かめる数"
+      },
+      {
+       "value": "7年間",
+       "label": "更新の保証期間"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買う人：外装ランク、画面の状態、SIMピンの有無を選んでから、最終価格を確かめる。",
+      "不安な人：不具合は30日以内の返金・交換、傷への不満は7日間の返品を使える。",
+      "迷う人：Pixel 10aなど新品の価格とも見比べる。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "中古は、状態を選べる点が決め手です。保証と、発売から7年続く更新が残るのも安心材料です。ただ、キャリアの新品割引と比べてから決めたいところです。"
+    }
+   ],
+   "source_name": "ITmedia Mobile",
+   "source_url": "https://www.itmedia.co.jp/mobile/articles/2611/21/news007.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "ITmedia Mobile",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/21/news007.html"
+    }
+   ]
+  },
+  {
+   "id": "gadget-framework-touchpad-kb",
+   "category": "gadget",
+   "title": "Framework、TV向けタッチパッド付きキーボード99ドル",
+   "summary": "ノートPC並みの打鍵感でTVやPS5もつなげる、書き換え自由な無線キーボードです。",
+   "image": {
+    "src": "https://media.loom-app.com/loom/2026/11/19/1a1ed326-fbb9-4ac4-8f0b-a97f11e7201d/original.png?w=1200",
+    "kind": "ogp",
+    "credit": "GIZMODO JAPAN（Image: Framework）",
+    "page": "https://www.gizmodo.jp/article/2611-framework-wireless-touchpad-keyboard/"
+   },
+   "visual": {
+    "icon": "pc",
+    "kicker": "ソファ用入力機器"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Frameworkが、タッチパッド内蔵のワイヤレスキーボード「Wireless Touchpad Keyboard」を発表しました。",
+      "価格は99ドルです。USBドングルを使うと、最大4台の機器を切り替えて使えます。",
+      "スマートTVやPS5の文字入力が楽になります。日本での発売や価格は明らかになっていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "PCメーカーのFrameworkが、ソファで使うタッチパッド内蔵のワイヤレスキーボードを作りました。価格は99ドルです。"
+    },
+    {
+     "type": "h",
+     "text": "なぜTV向けのキーボードか"
+    },
+    {
+     "type": "p",
+     "text": "Android TVやGoogle TVなど、スマートTV用のOSにはBluetoothキーボードをつなげられます。付属のリモコンでは、カーソルを動かすのも検索語を打つのも手間がかかります。"
+    },
+    {
+     "type": "p",
+     "text": "タッチパッド一体型のキーボードは昔からありますが、機種は少なく、キーが小さいものが中心です。定番のLogicool K400 Plusは初出が2015年で、今の使い方には合わなくなっているとGIZMODO JAPANは指摘しています。"
+    },
+    {
+     "src": "https://media.loom-app.com/loom/2026/11/19/dc6c8d64-123a-4622-b597-f9e62c2a8402/original.jpg?w=800",
+     "kind": "ogp",
+     "credit": "GIZMODO JAPAN（Image: Framework）",
+     "page": "https://www.gizmodo.jp/article/2611-framework-wireless-touchpad-keyboard/",
+     "type": "img",
+     "caption": "Frameworkが公開した製品の写真"
+    },
+    {
+     "type": "h",
+     "text": "ノートPC譲りの打鍵感と使い方"
+    },
+    {
+     "type": "p",
+     "text": "Frameworkの新製品は、ノートPCのような打鍵感を持たせたキーボードです。スマートTVのほか、WindowsやMacでも使えるモードがあります。バッテリーを内蔵し、USB Type-Cケーブルでつないでも使えます。"
+    },
+    {
+     "type": "h",
+     "text": "ドングルで4台を切り替え"
+    },
+    {
+     "type": "p",
+     "text": "USBドングル（USB端子に挿す小さな受信機）を使うと、4台の機器につなげます。スマートTV、PS5、リビングのミニPC、Meta Quest 3などを切り替えながら、文字を入力できます。"
+    },
+    {
+     "type": "h",
+     "text": "書き換えと修理のしやすさ"
+    },
+    {
+     "type": "p",
+     "text": "ファームウェア（機器を動かす内蔵プログラム）は、オープンソースのZMKとZephyrです。ZMK対応ツールで、キーの割り当てを変えられます。3Dプリンター向けに、専用ホルダーを作るためのCADデータも公開されています。バッテリーは、ユーザー自身で交換できます。"
+    },
+    {
+     "type": "h",
+     "text": "価格と日本での扱い"
+    },
+    {
+     "type": "p",
+     "text": "価格は99ドルです。日本での発売時期や日本円の価格は、明らかになっていません。ノートPCに近い作りでTV以外にも使えることから、手ごろな値段だとGIZMODO JAPANは評価しています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "99ドル",
+       "label": "Frameworkが示した価格"
+      },
+      {
+       "value": "4台",
+       "label": "ドングルで接続できる数"
+      },
+      {
+       "value": "2015年",
+       "label": "K400 Plusの初出"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "リビングのTVの文字入力に困っている人は、手持ちのTVがBluetoothキーボードに対応しているか確かめる",
+      "PS5やミニPCを居間で使う人は、1台で切り替えられる便利さが自分に合うか考える",
+      "日本での発売や価格はまだわからないため、続報を待つ"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "リモコンでの検索入力に疲れている人には、気になる中身です。ただ、日本で買えるかはまだわかりません。まず手持ちのTVがBluetoothキーボードに対応しているか確かめておくと、買うかどうかを決めやすいです。"
+    }
+   ],
+   "source_name": "GIZMODO JAPAN",
+   "source_url": "https://www.gizmodo.jp/article/2611-framework-wireless-touchpad-keyboard/",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "GIZMODO JAPAN",
+     "url": "https://www.gizmodo.jp/article/2611-framework-wireless-touchpad-keyboard/"
+    }
+   ]
+  },
+  {
+   "id": "service-ultra-youtube-family",
+   "category": "service",
+   "title": "AI Ultra付きYouTube Premium、同居家族5人まで共有",
+   "summary": "追加料金なしで同居家族も広告なしで見られる。条件は同居と、管理者の直接契約。",
+   "image": {
+    "src": "https://japan.cnet.com/storage/2026/11/20/9aa745dad485c519255336cf2ac36e9d/large.jpg",
+    "kind": "ogp",
+    "credit": "CNET Japan",
+    "page": "https://japan.cnet.com/article/35255226/"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "家族で共有"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "AI Ultra付属のYouTube Premiumが日本でも家族向けに",
+      "契約者本人に加えて、同居の家族最大5人まで追加料金なしで使える",
+      "対象国の既存契約者は自動で切り替わる。共有には同居などの条件がある"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Google AI Ultra付属のYouTube Premiumが日本でも家族向けになり、同居家族最大5人が追加料金なしで使えます。"
+    },
+    {
+     "type": "h",
+     "text": "個人プランから家族向けへ"
+    },
+    {
+     "type": "p",
+     "text": "これまでの特典は、契約者本人だけが使える個人プランでした。今回、契約者本人に加えて同居する家族最大5人まで広がり、追加の料金はかかりません。Googleの発表によると、対象国の既存の契約者も、自動的にファミリープランへ切り替わります。"
+    },
+    {
+     "type": "h",
+     "text": "共有するための条件"
+    },
+    {
+     "type": "p",
+     "text": "利用規約によると、Googleのファミリーグループの管理者が、Google AI Ultraを直接契約している必要があります。さらに、メンバー全員が管理者と同居していることも条件です。別居の家族は対象になりません。"
+    },
+    {
+     "type": "h",
+     "text": "家族が使える機能"
+    },
+    {
+     "type": "p",
+     "text": "家族はそれぞれのGoogleアカウントで、YouTubeの動画やYouTube Musicを広告なしで楽しめます。オフライン再生やバックグラウンド再生にも対応しています。"
+    },
+    {
+     "type": "img",
+     "src": "https://japan.cnet.com/storage/2026/11/20/ee96e99727ac4471ac21d51d1ac9f36d/body-01.jpg",
+     "kind": "ogp",
+     "credit": "Google（CNET Japan掲載）",
+     "caption": "スマートフォンに表示されたYouTube Premiumの画面",
+     "page": "https://japan.cnet.com/article/35255226/"
+    },
+    {
+     "type": "h",
+     "text": "二重払いにならないか確認"
+    },
+    {
+     "type": "p",
+     "text": "Google Oneとは別にYouTube Premiumを契約している場合は、料金が重複する可能性があります。YouTubeの「購入とメンバーシップ」で契約状況を確認でき、必要なら既存の契約を解約できます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "最大5人",
+       "label": "追加で使える同居家族"
+      },
+      {
+       "value": "追加料金なし",
+       "label": "家族分の費用"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Google AI Ultraを契約している人は、家族がファミリーグループに入っていて、同居しているかを確認する。",
+      "家族がすでにYouTube Premiumを別契約しているなら、「購入とメンバーシップ」で状況を見て、重複していれば解約を考える。",
+      "別居の家族は共有できないので、別途契約が要る。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "Google AI Ultraを契約済みなら、同居の家族分のYouTube Premiumまで含まれる形です。ただ条件は同居と、管理者の直接契約。家族が別に払っている場合は、先に重複を止めると無駄が出ません。"
+    }
+   ],
+   "source_name": "CNET Japan",
+   "source_url": "https://japan.cnet.com/article/35255226/",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "CNET Japan",
+     "url": "https://japan.cnet.com/article/35255226/"
+    }
+   ]
+  },
+  {
+   "id": "game-zelda-albw-35th",
+   "category": "game",
+   "title": "「神々のトライフォース」発売35周年 今もSwitchで遊べる",
+   "summary": "1991年発売の2Dゼルダが35周年。シリーズは今年40周年で、関連の動きも続きます。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2157/195/1_l.jpg",
+    "kind": "ogp",
+    "credit": "任天堂（GAME Watch掲載）",
+    "page": "https://game.watch.impress.co.jp/docs/kikaku/2157195.html"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "ゼルダ35周年"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "任天堂の「ゼルダの伝説 神々のトライフォース」が、1991年11月21日の発売から35周年を迎えました。",
+      "2026年は第1作から数えてシリーズ40周年で、Switch 2版「時のオカリナ」は11月5日に発売済みです。",
+      "今はNintendo Switch Onlineの加入者向けに、Switch 2とSwitchで遊べます。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "任天堂の「ゼルダの伝説 神々のトライフォース」が、11月21日で発売35周年を迎えました。"
+    },
+    {
+     "type": "h",
+     "text": "35周年とシリーズ40周年"
+    },
+    {
+     "type": "p",
+     "text": "本作は1991年11月21日に、スーパーファミコン用ソフトとして出ました。第1作「ゼルダの伝説」は1986年2月21日に、ファミリーコンピュータ ディスクシステムのソフトとして出ており、2026年はシリーズ全体の40周年にあたります。"
+    },
+    {
+     "type": "h",
+     "text": "初代に戻った見下ろし型の冒険"
+    },
+    {
+     "type": "p",
+     "text": "第2作「リンクの冒険」は横スクロールでしたが、本作は第1作と同じ見下ろし型の探索に戻りました。初代はヒントが少なく迷いやすかったため、序盤は行き先のダンジョンをマップに示して、迷いにくくしています。"
+    },
+    {
+     "type": "p",
+     "text": "画面には陰影や高低差が加わり、効果音もステレオになりました。剣から出るビームの音が、飛ぶ向きに合わせて左右に動きます。"
+    },
+    {
+     "type": "h",
+     "text": "光と闇、2つの世界を行き来する"
+    },
+    {
+     "type": "p",
+     "text": "ハイラルは表の世界と、闇に染まった裏の世界に分かれます。3つのダンジョンを巡って「マスターソード」を抜き、アグニムとの最初の決戦を終えると、裏の世界へ進みます。敵は強くなり、ダンジョンの数も8つに増えます。"
+    },
+    {
+     "type": "p",
+     "text": "中盤に「マジカルミラー」を手に入れると、2つの世界を自由に行き来できます。表の世界で水門を開けると裏の世界の水路に水が満ちるなど、片方の行動がもう片方を変える仕掛けです。"
+    },
+    {
+     "type": "h",
+     "text": "難所と、遊び心のある小ネタ"
+    },
+    {
+     "type": "p",
+     "text": "裏の世界は敵の攻撃が重く、氷の塔やボスのガモース戦が難所とされます。次の行き先を示す案内も少なく、当時は「不親切」という声もあったと特集は振り返ります。一方で、壁のひびの奥にある妖精の部屋や魔法の粉など、知識があれば楽になる仕掛けもあります。"
+    },
+    {
+     "type": "p",
+     "text": "剣は半円を描いて振れるようになり、溜めて放つ回転斬りも加わりました。コッコを斬り続けると大群に襲われる、アグニム戦で虫取り網が弾を打ち返せる、といった小ネタはその後のシリーズにも受け継がれています。"
+    },
+    {
+     "type": "h",
+     "text": "今遊ぶ方法と40周年の動き"
+    },
+    {
+     "type": "p",
+     "text": "今は有料サービス「Nintendo Switch Online」の加入者向けクラシックタイトルとして、Switch 2とSwitchで遊べます。巻き戻しやどこでもセーブが使えるため、難所にも挑み直しやすくなっています。"
+    },
+    {
+     "type": "p",
+     "text": "9月8日の「ゼルダの伝説 40周年 Direct 2026.9.8」で、Switch 2版「時のオカリナ」（11月5日発売）などが発表されました。実写映画の公開日は2027年4月30日に決まり、40周年コンサートは2027年1月から全国で開かれます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "35周年",
+       "label": "神々のトライフォースの発売から"
+      },
+      {
+       "value": "40周年",
+       "label": "ゼルダシリーズ全体"
+      },
+      {
+       "value": "4月30日",
+       "label": "実写映画の公開日（2027年）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Switch 2かSwitchを持っていて、Nintendo Switch Onlineに入っている人は、クラシックタイトルから本作を探せます。",
+      "どの加入プランで遊べるかは、任天堂の案内で確かめます。",
+      "映画は2027年4月30日、コンサートは2027年1月から。日程の詳細は、各公式発表を待ちます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "2Dゼルダが初めてなら、40周年の流れで神トラから入るのは自然な選択です。ヒントが少ない作りなので、詰まったら巻き戻しを使うと気楽に進められます。リメイクされた3Dの「時のオカリナ」とは、遊びの味が違います。"
+    }
+   ],
+   "source_name": "GAME Watch",
+   "source_url": "https://game.watch.impress.co.jp/docs/kikaku/2157195.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "GAME Watch",
+     "url": "https://game.watch.impress.co.jp/docs/kikaku/2157195.html"
+    }
+   ]
+  },
+  {
+   "id": "future-space-armor-test",
+   "category": "future",
+   "title": "Space Armor、秒速7.2kmの衝突で裏面の破片出ず",
+   "summary": "衛星用の防護タイルを宇宙服に使えるか調べた初期試験。実用の確認はこれからです。",
+   "image": {
+    "src": "https://sorae.info/wp-content/uploads/2026/11/20261121-atomic-6-space-armor-spacesuit-test.jpg",
+    "kind": "ogp",
+    "credit": "sorae（Atomic-6）",
+    "page": "https://sorae.info/space/20261121-atomic-6-space-armor-spacesuit-test.html"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "宇宙ゴミ防護"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "米Atomic-6が、衛星向けの防護タイルを宇宙飛行士の防護に使えるか調べた試験結果を発表",
+      "直径3mmのアルミ球を秒速約7.2kmでぶつけ、タイルの裏側に破片は出なかった",
+      "宇宙服としての実用性は未検証で、曲面タイルなどの追加試験が予定されている"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Atomic-6は11月20日付で、衛星向けの防護タイルを宇宙飛行士の防護に使えるか調べた試験の結果を発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "Space Armorとは"
+    },
+    {
+     "type": "p",
+     "text": "Space Armorは、宇宙機を飛来物から守る複合材の六角形タイルです。衝突で出る二次的な破片も抑えるよう作られています。直径3mmまでの飛来物に対応する「Lite」は衛星向け、直径12.5mmまでを目指す「Max」は有人宇宙船や宇宙ステーション向けです。"
+    },
+    {
+     "type": "p",
+     "text": "Liteは日本時間2026年10月20日、SpaceXの相乗りミッション「Bandwagon-5」で打ち上げられたPortal Space Systemsの宇宙機「Starburst-1」に載り、初の飛行実証に臨んでいます。"
+    },
+    {
+     "type": "h",
+     "text": "試験のやり方と結果"
+    },
+    {
+     "type": "p",
+     "text": "試験は、米テキサスA&M大学の超高速衝突の実験施設で行われました。人体を模した透明な胴体模型の前にLiteを置き、直径3mmのアルミ球を秒速約7.2km（時速約2万6000km）でぶつけています。比べる相手は厚さ4mmのアルミ板で、衝突角度や模型との間隔、固定方法はそろえました。"
+    },
+    {
+     "type": "p",
+     "text": "Liteの背後の模型には、目に見える傷も貫通もありませんでした。タイルの裏にも膨らみやひび、飛び散る破片は確認されていません。アルミ板では、裏面の材料が剥がれて飛び散る「裏面剥離（スポーリング）」が起き、破片が模型に食い込みました。"
+    },
+    {
+     "type": "h",
+     "text": "まだわからないこと"
+    },
+    {
+     "type": "p",
+     "text": "比べたのは単板のアルミで、飛来物を層で散らす「ホイップル・シールド」や宇宙服全体ではありません。試験は固定した模型で行われ、与圧服（中の空気を保つ服）や生命維持装置は含まれていません。負傷の程度や衝突後の気密、宇宙服としての実用性は検証していないとしています。"
+    },
+    {
+     "type": "h",
+     "text": "今後の予定"
+    },
+    {
+     "type": "p",
+     "text": "Atomic-6は、胸や肩の形に近い曲面タイルの試験と、衝突角度を変えた追加試験を行う予定です。宇宙服に採用される時期は発表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "秒速約7.2km",
+       "label": "アルミ球の衝突速度"
+      },
+      {
+       "value": "3mm",
+       "label": "Liteが対応する飛来物"
+      },
+      {
+       "value": "12.5mm",
+       "label": "Maxが目指す飛来物"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "今のところ、読者が何かをする必要はありません。",
+      "次に見る点は、胸や肩に近い曲面タイルと、衝突角度を変えた試験の結果です。",
+      "今回確かめたのは目に見える損傷の有無だけで、宇宙服にできると決まったわけではありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "衛星用のタイルを宇宙服に使う話は、まだ最初の一歩です。次に見るべきは、曲面タイルの試験と、宇宙服全体や気密を保てるかの確認です。"
+    }
+   ],
+   "source_name": "sorae",
+   "source_url": "https://sorae.info/space/20261121-atomic-6-space-armor-spacesuit-test.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "sorae",
+     "url": "https://sorae.info/space/20261121-atomic-6-space-armor-spacesuit-test.html"
+    }
+   ]
+  },
+  {
+   "id": "other-rakuten-insight-ai-planner",
+   "category": "other",
+   "title": "企画職の63.1%が仕事でAI活用 楽天インサイト調査",
+   "summary": "企画の仕事では6割超がAIを使い、7割近くが「発想の幅が広がった」と答えました。",
+   "image": {
+    "src": "https://corp.rakuten.co.jp/news/assets/img/press/2026_press_jp/1120_01/①企画業務にけるAIの活用状況.jpg",
+    "kind": "press",
+    "credit": "楽天インサイト",
+    "page": "https://corp.rakuten.co.jp/news/press/2026/1120_01.html"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "AI活用調査"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "楽天インサイトが、企画職のAI活用を調べた調査結果を発表",
+      "企画職の63.1%が仕事でAIを使い、活用経験者の76.3%が今後も使いたい",
+      "AIが出した案を自分の案として扱うことに、47.1%が抵抗なし、24.0%は抵抗あり"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "楽天インサイトは2026年11月20日、企画職を対象にしたAI活用の調査結果を公開しました。仕事でAIを使う人は6割を超えています。"
+    },
+    {
+     "type": "h",
+     "text": "調べた相手と方法"
+    },
+    {
+     "type": "p",
+     "text": "調査は2026年7月24日から7月30日まで、インターネットで行いました。対象は、同社に登録するモニターのうち、全国の20〜69歳の企画職994人です。このうち、仕事でAIを使った経験がある775人には、くわしい質問を重ねました。"
+    },
+    {
+     "type": "h",
+     "text": "企画職の6割超がAIを活用"
+    },
+    {
+     "type": "p",
+     "text": "994人のうち、企画の仕事でAIを「積極的に活用」している人は29.1%、「一部で活用」している人は34.0%でした。合わせて63.1%です。年代別では30代が最も多く、両方を合わせて68.7%、「積極的に活用」だけでは35.7%でした。"
+    },
+    {
+     "type": "p",
+     "text": "20代は「AIを使う仕事をしていない」と答えた人が13.7%で、ほかの年代より多くなりました。50代・60代は「一部で活用」が36.3%と40.9%で、積極的に使う人より控えめな使い方が目立ちます。"
+    },
+    {
+     "type": "h",
+     "text": "AIの案を自分の案にできるか"
+    },
+    {
+     "type": "p",
+     "text": "AIが出したアイデアを「自分のアイデア」として扱うことに、「抵抗を感じない」人は47.1%でした。「抵抗を感じる」人も24.0%います。30代は抵抗を感じない人が59.7%と最多で、20代は「やや抵抗を感じる」が36.8%と、全年代で最も高くなりました。"
+    },
+    {
+     "type": "img",
+     "src": "https://corp.rakuten.co.jp/news/assets/img/press/2026_press_jp/1120_01/②AIが出したアイデアについて.JPG",
+     "kind": "press",
+     "credit": "楽天インサイト",
+     "caption": "AIが出したアイデアの扱いについての調査結果",
+     "page": "https://corp.rakuten.co.jp/news/press/2026/1120_01.html"
+    },
+    {
+     "type": "h",
+     "text": "アイデアの幅が広がった人は67.0%"
+    },
+    {
+     "type": "p",
+     "text": "AIを使った人のうち、企画の質やアイデアの幅が「広がった」と答えた人は67.0%で、30代では71.7%でした。AIの普及で自分のスキルや価値が「高まる」と考える人は59.3%です。今後も「活用したい」は76.3%（30代は80.1%）でした。"
+    },
+    {
+     "type": "img",
+     "src": "https://corp.rakuten.co.jp/news/assets/img/press/2026_press_jp/1120_01/%E2%91%A2AI%E3%81%AE%E6%B4%BB%E7%94%A8%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88%E3%81%A8%E4%BB%8A%E5%BE%8C%E3%81%AE%E6%B4%BB%E7%94%A8%E6%84%8F%E5%90%91.JPG",
+     "kind": "press",
+     "credit": "楽天インサイト",
+     "caption": "AI活用のメリットと今後の活用意向のグラフ",
+     "page": "https://corp.rakuten.co.jp/news/press/2026/1120_01.html"
+    },
+    {
+     "type": "h",
+     "text": "これから必要な力の1位"
+    },
+    {
+     "type": "p",
+     "text": "今後の企画職に必要なスキルは、「AIを活用する力」が44.6%で1位でした。わずかな差で「課題を発見し、企画を立案する力」が44.5%、「データを読み解き、意思決定に活かす力」が43.1%、「コミュニケーション力・調整力」が42.8%と続きます。60代は「人間ならではの感性・共感力」が48.0%で高めでした。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "63.1%",
+       "label": "仕事でAIを活用"
+      },
+      {
+       "value": "67.0%",
+       "label": "発想の幅が広がった"
+      },
+      {
+       "value": "76.3%",
+       "label": "今後も活用したい"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "企画や資料づくりの仕事をしている人は、AIを下書きや案出しに使う人が多数派だと知っておく",
+      "AIの案を自分の成果として出すかどうかは、職場や自分の考えを確かめてから決める",
+      "調査は企画職の775人（AI活用経験者）が対象で、ほかの職種には当てはまらないことがある"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AIを使う人が多数派でも、案を自分のものと呼べるかで意見は割れています。使うなら、最後に自分で選び、手を入れる一手間を入れておくと安心です。"
+    }
+   ],
+   "source_name": "楽天グループ",
+   "source_url": "https://corp.rakuten.co.jp/news/press/2026/1120_01.html",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "楽天グループ（プレスリリース）",
+     "url": "https://corp.rakuten.co.jp/news/press/2026/1120_01.html"
+    }
+   ]
+  },
+  {
+   "id": "ai-openai-medchembench",
+   "category": "ai",
+   "title": "OpenAI、薬の研究力を測るAI試験 最新GPTは84.5%",
+   "summary": "創薬の研究で使う推論力の試験。ただし新薬を発見できる証明ではない。",
+   "image": {
+    "src": "https://images.ctfassets.net/kftzwdyauwt9/6kbw4PSOhEqlbbiM3ZYhOb/1c770a466f57e0117f970cb124b921ee/introducing-medchembench-header-poster-4k.png?w=3840&q=50&fm=webp",
+    "kind": "press",
+    "credit": "OpenAI",
+    "page": "https://openai.com/index/introducing-medchembench"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "AIの試験"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIが、AIの薬の研究力を測る試験「MedChemBench」を公開した",
+      "99問の試験で、最新のGPT-6.2 Astraは84.5%の得点を取った",
+      "一般向けの機能ではなく、新薬を発見できるという証明でもない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月20日、AIが薬の研究で通用するかを測る試験「MedChemBench」を発表しました。99問で、最新モデルは84.5%を得点しました。"
+    },
+    {
+     "type": "h",
+     "text": "どんな試験なのか"
+    },
+    {
+     "type": "p",
+     "text": "MedChemBenchは、薬の研究（医薬化学）から出した99問で、AIの推論力を測る試験です。元になったのは117本の論文と特許で、761種類の分子の構造が入っています。薬の研究では、ある性質を良くすると別の性質が悪くなることがよくあります。この兼ね合いを読み解けるかが試されます。"
+    },
+    {
+     "type": "h",
+     "text": "試験が見る4つの力"
+    },
+    {
+     "type": "p",
+     "text": "試験が採点するのは、次の4つです。\n・分子の構造を正しく組み立てる力\n・実験結果の理由を説明する力\n・次に試す化合物を選び、順位をつける力\n・性質の数値を予測する力"
+    },
+    {
+     "type": "h",
+     "text": "最新GPTの成績"
+    },
+    {
+     "type": "p",
+     "text": "最も深く考える設定（xhigh）で、GPT-6.2 Astraは得点の84.5%を取りました。GPT-6 Astraは83.3%、GPT-6.1 Solは82.0%、GPT-5.6 Solは58.2%です。OpenAIは11種類のGPTモデルを比べました。分子の構造を組み立てる部分では、Astraが95.4%を取っています。"
+    },
+    {
+     "type": "h",
+     "text": "分子の再現で差が出た"
+    },
+    {
+     "type": "p",
+     "text": "ある問題では、中心の構造と2つの部品をつなぎ、18個の原子の輪を保った分子を作ります。GPT-6 Astraは10回すべて正しく組み立てました。GPT-5.6 Solは輪が15個の原子になり、GPT-5.6 Lunaは分子が2つの断片に分かれました。どちらも10回すべて失敗です。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/kftzwdyauwt9/1VTqzHLMhkmIYnsS9nSqau/bff555251736290c430519e004502198/introducing-medchembench-structure-comparison.png?w=3840&q=90&fm=webp",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "同じ問題への3つの答えの比較。正しい分子、輪が小さくなった分子、2つに分かれた分子",
+     "page": "https://openai.com/index/introducing-medchembench"
+    },
+    {
+     "type": "h",
+     "text": "まだわからないこと"
+    },
+    {
+     "type": "p",
+     "text": "化合物を選ぶ力と数値を予測する力は、Astraでも得点が約半分にとどまりました。OpenAIは、この結果が新薬の発見や研究室での判断に役立つかを示すものではないと述べています。過去に公開された資料をAIが学習済みだった可能性は否定できず、各回答は道具も実験もない1回きりの挑戦です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "84.5%",
+       "label": "GPT-6.2 Astraの得点率"
+      },
+      {
+       "value": "99問",
+       "label": "試験の問題数"
+      },
+      {
+       "value": "58.2%",
+       "label": "GPT-5.6 Solの得点率"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "一般の人：使える新機能ではなく、研究向けの成績表です。ChatGPTの機能追加や料金、日本での提供の話は出ていません。",
+      "AIに医療や薬の相談をする人：この試験は、新薬の発見や研究室での判断に役立つことを示すものではありません。",
+      "研究に関心がある人：OpenAIのページから、論文（プレプリント）が読めます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AIの成績は、試験の作り方で見え方が変わります。84.5%という数字は、薬が作れる確率ではなく、過去の研究を読み解く力の得点です。そう受け止めて読むのがよさそうです。"
+    }
+   ],
+   "source_name": "OpenAI",
+   "source_url": "https://openai.com/index/introducing-medchembench",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "OpenAI",
+     "url": "https://openai.com/index/introducing-medchembench"
+    }
+   ]
+  },
+  {
+   "id": "mobile-galaxy-ring-apnea",
+   "category": "mobile",
+   "title": "Galaxy Ring、米韓で睡眠時無呼吸の検知に対応",
+   "summary": "指輪型で初の睡眠時無呼吸リスク検知。日本での提供は未発表です。",
+   "image": {
+    "src": "https://img.global.news.samsung.com/global/wp-content/uploads/2026/11/02162108/Samsung-Mobile-Sleep-Apnea-Feature-Galaxy-Ring_Thumb932.jpg",
+    "kind": "press",
+    "credit": "サムスン電子",
+    "page": "https://news.samsung.com/global/upgraded-sleep-apnea-feature-now-available-on-galaxy-ring-following-regulatory-approvals-from-us-fda-and-korea-mfds"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "スマートリング"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "サムスンが、Galaxy WatchとGalaxy Ringの睡眠時無呼吸検知機能を更新しました。",
+      "米国は2026年7月にFDA認可、韓国は新たにMFDS承認を得ました。",
+      "日本での提供や時期は、まだ発表されていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "サムスン電子は、Galaxy WatchとGalaxy Ringの睡眠時無呼吸検知機能を更新しました。指輪型では世界初のリスク検知機能だと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "更新で変わった検知の中身"
+    },
+    {
+     "type": "p",
+     "text": "強化されたアルゴリズムが、睡眠中の体の数値を細かく分析します。これまでのリスク評価に加えて、検知した呼吸の乱れの程度も示します。集めたデータは、医療機関を受診するときにも使えます。"
+    },
+    {
+     "type": "img",
+     "src": "https://img.global.news.samsung.com/global/wp-content/uploads/2026/11/02162550/Samsung-Mobile-Sleep-Apnea-Feature-Galaxy-Ring_dl2-728x410.jpg",
+     "kind": "press",
+     "credit": "サムスン電子",
+     "caption": "Galaxy Ringの睡眠時無呼吸検知機能のイメージ",
+     "page": "https://news.samsung.com/global/upgraded-sleep-apnea-feature-now-available-on-galaxy-ring-following-regulatory-approvals-from-us-fda-and-korea-mfds"
+    },
+    {
+     "type": "h",
+     "text": "米国と韓国での認可"
+    },
+    {
+     "type": "p",
+     "text": "米国では2026年7月に、食品医薬品局（FDA）の認可を受けました。今回、韓国でも食品医薬品安全処（MFDS）の承認を新たに得ました。サムスンは今後、提供する国を増やすとしていますが、国名は挙げていません。"
+    },
+    {
+     "type": "h",
+     "text": "使うための条件"
+    },
+    {
+     "type": "p",
+     "text": "サムスンによると、この機能は市販の医療用ソフトで、Samsung Health Monitorアプリから使います。対象は18歳以上で、中等度から重度の無呼吸の兆候を探します。対応するスマホとGalaxy Wearableアプリが必要です。"
+    },
+    {
+     "type": "h",
+     "text": "診断の代わりにはならない"
+    },
+    {
+     "type": "p",
+     "text": "すでに無呼吸と診断された人は対象外で、診断や治療の代わりにもなりません。10日間のうち、有効なデータが2晩分そろうと結果を出せます。Galaxy WatchはGalaxy Watch 9（Wear OS 7.0以上）が対応し、Watch 7と8は今後の更新で対応します。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2晩分",
+       "label": "必要な有効データ"
+      },
+      {
+       "value": "2026年7月",
+       "label": "米国FDAの認可"
+      },
+      {
+       "value": "18歳以上",
+       "label": "対象の年齢"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "日本で使いたい人：提供の有無や時期は未発表なので、サムスンの案内を待つ。",
+      "睡眠中の呼吸が気になる人：この機能は診断ではないので、症状があれば医療機関に相談する。",
+      "Galaxy Watch 7や8を使う人：対応は今後の更新で行われる予定。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "健康機能は、日本でいつ使えるかが一番の分かれ目です。今は米韓の認可だけなので、日本の人はまだ試せません。指輪で睡眠を記録したい人は、今ある機能で選ぶのが無難です。"
+    }
+   ],
+   "source_name": "ケータイ Watch",
+   "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2158289.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "ケータイ Watch",
+     "url": "https://k-tai.watch.impress.co.jp/docs/news/2158289.html"
+    },
+    {
+     "name": "Samsung Newsroom",
+     "url": "https://news.samsung.com/global/upgraded-sleep-apnea-feature-now-available-on-galaxy-ring-following-regulatory-approvals-from-us-fda-and-korea-mfds"
+    }
+   ]
+  },
+  {
+   "id": "gadget-qobuz-appletv-app",
+   "category": "gadget",
+   "title": "QobuzがApple TV向けアプリ。最大192kHz/24bit",
+   "summary": "リビングの大画面で、高音質の音楽配信を操作して聴けるようになりました。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/avw/docs/2158/215/main_s.jpg",
+    "kind": "ogp",
+    "credit": "AV Watch",
+    "page": "https://av.watch.impress.co.jp/docs/news/2158215.html"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "Apple TV対応"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "高音質音楽配信のQobuzが、Apple TV向けアプリの配信を始めました。",
+      "tvOS 26以降の第4世代以降のApple TVで、最大192kHz/24bit再生に対応します。",
+      "リビングのテレビ画面で、選曲から再生までできます。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Qobuzは、Apple TV向けのアプリを配信し始めました。tvOS 26以降を搭載した第4世代以降のApple TVで、最大192kHz/24bitの再生ができます。"
+    },
+    {
+     "type": "h",
+     "text": "対応機種と音質"
+    },
+    {
+     "type": "p",
+     "text": "対象は、tvOS 26以降を搭載した第4世代以降のApple TVです。最大192kHz/24bitの再生をサポートします。"
+    },
+    {
+     "type": "p",
+     "text": "第2世代Apple TV 4Kでは、最大48kHzに制限されます。"
+    },
+    {
+     "type": "h",
+     "text": "リビング向けの画面づくり"
+    },
+    {
+     "type": "p",
+     "text": "Qobuzは、リビングでの聴き方を想定して設計したと説明しています。ホームには、ミュージックチームの選曲、新作、アルバム・オブ・ザ・ウィーク、名盤、プレイリスト、ラジオなどが集まります。"
+    },
+    {
+     "type": "p",
+     "text": "聴いた履歴に基づく、おすすめやミックスも表示されます。"
+    },
+    {
+     "type": "h",
+     "text": "アルバム表示とほかの機器との連携"
+    },
+    {
+     "type": "p",
+     "text": "アルバムのページでは、アルバム情報と曲目リストが並んで表示されます。サブスクリプション会員のライブラリ（アルバム、アーティスト、プレイリスト、お気に入り）は、ほかの機器と同期されます。"
+    },
+    {
+     "type": "p",
+     "text": "「Qobuz Connect」を使うと、Apple TVで再生しながら、スマートフォンやタブレットで操作できます。"
+    },
+    {
+     "type": "h",
+     "text": "Qobuzの狙い"
+    },
+    {
+     "type": "p",
+     "text": "最高製品責任者のアクセル・デスタニョール氏は、会員から以前よりApple TV向けアプリを望む声が多かったとコメントしました。大画面向けの画面で、自分のライブラリ、編集部の選曲、高音質を楽しめるといいます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "192kHz",
+       "label": "対応する再生の上限"
+      },
+      {
+       "value": "48kHz",
+       "label": "第2世代Apple TV 4Kの上限"
+      },
+      {
+       "value": "tvOS 26",
+       "label": "必要なOSの版"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Apple TVを持っている人は、機種の世代とtvOSが26以降かを設定で確かめる",
+      "第2世代Apple TV 4Kでは上限が48kHzなので、期待する音質と合うか考える",
+      "Qobuzの会員は、ライブラリがApple TVに同期されるか試す"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "すでにApple TVとQobuzを使っている人は、すぐ試せます。これから契約するなら、自宅のスピーカーやアンプの音で違いがわかるかを考えてからにすると安心です。"
+    }
+   ],
+   "source_name": "AV Watch",
+   "source_url": "https://av.watch.impress.co.jp/docs/news/2158215.html",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "AV Watch",
+     "url": "https://av.watch.impress.co.jp/docs/news/2158215.html"
+    }
+   ]
+  },
+  {
+   "id": "service-caa-leak-six-steps",
+   "category": "service",
+   "title": "消費者庁、個人情報が漏れた後の6つの対策を公表",
+   "summary": "パスワード変更や明細の確認など、漏えい後に自分でできる対策をまとめた。",
+   "image": {
+    "src": "https://japan.cnet.com/storage/2026/11/20/11bd5b112988ee7bb1923f1f035617a0/large.jpg",
+    "kind": "ogp",
+    "credit": "CNET Japan",
+    "page": "https://japan.cnet.com/article/35255240/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "漏えい対策"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "消費者庁が20日、情報漏えい後に被害を防ぐ6つの対策の資料を公表",
+      "パスワード変更、多要素認証、パスキー、明細の確認など",
+      "不安なら、被害の前でも消費者ホットライン「188」に相談できる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "消費者庁は11月20日、企業などへの不正アクセスで漏れた個人情報の悪用を防ぐため、6つの対策をまとめた資料を公表しました。"
+    },
+    {
+     "type": "h",
+     "text": "6つの対策"
+    },
+    {
+     "type": "p",
+     "text": "挙げられたのは、IDとパスワードの変更、多要素認証、パスキー、利用明細の確認、メールのURLへの注意、警察庁推奨アプリの利用です。"
+    },
+    {
+     "type": "img",
+     "src": "https://japan.cnet.com/storage/2026/11/20/451dfafb5e2d33cbe67be86ea5091953/body-01.jpg",
+     "kind": "ogp",
+     "credit": "消費者庁（CNET Japan掲載）",
+     "caption": "IDやパスワードの変更など6つの対策をまとめた図",
+     "page": "https://japan.cnet.com/article/35255240/"
+    },
+    {
+     "type": "h",
+     "text": "パスワードはすぐ変更"
+    },
+    {
+     "type": "p",
+     "text": "流出したログインIDやパスワードは、すぐに変更するよう呼びかけています。パスワードは推測されにくい長いものにし、ほかのサービスとの使い回しは避けます。"
+    },
+    {
+     "type": "h",
+     "text": "多要素認証とパスキー"
+    },
+    {
+     "type": "p",
+     "text": "多要素認証は、複数の方法で本人確認する仕組みです。パスワードに加えて、スマホでの確認や一度だけ使える認証コードを使います。対応サービスでは、指紋認証や顔認証、暗証番号でログインできる「パスキー」も選べます。偽サイトでIDなどを盗む「フィッシング」に強いのが特徴です。"
+    },
+    {
+     "type": "h",
+     "text": "明細とメールの確認"
+    },
+    {
+     "type": "p",
+     "text": "クレジットカード、キャリア決済（携帯料金とまとめて払う方法）、ネットバンキングの明細は、こまめに見ます。身に覚えのない請求があれば、すぐカード会社へ連絡します。企業や公的機関を名乗るメールはフィッシングを疑い、リンクを開かず、ブックマークした公式サイトや公式アプリから確認します。"
+    },
+    {
+     "type": "h",
+     "text": "警察庁推奨アプリと相談先"
+    },
+    {
+     "type": "p",
+     "text": "警察庁推奨のアプリには、詐欺に使われた番号からの着信を警告したり遮断したりする機能があります。不安があれば、被害の前でも最寄りの消費生活センターなどに相談できます。消費者ホットライン「188」に電話すると、地域の窓口を案内してもらえます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "6つ",
+       "label": "消費者庁がまとめた対策"
+      },
+      {
+       "value": "188",
+       "label": "消費者ホットラインの番号"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "情報漏えいの知らせを受けたら、該当サービスのIDとパスワードをすぐ変え、使い回しているサービスも変更する。",
+      "対応しているサービスでは、多要素認証かパスキーを設定する。",
+      "企業を名乗るメールのリンクは開かず、公式アプリやブックマークから確認する。",
+      "困ったら、消費者ホットライン「188」に電話する。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "漏えいの知らせが続く今は、全部を一度にやらなくても、まず使い回しているパスワードの変更から始めるのが現実的です。多要素認証かパスキーを足せば、盗まれたパスワードだけでは入られにくくなります。"
+    }
+   ],
+   "source_name": "CNET Japan",
+   "source_url": "https://japan.cnet.com/article/35255240/",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "CNET Japan",
+     "url": "https://japan.cnet.com/article/35255240/"
+    }
+   ]
+  },
+  {
+   "id": "game-ps5-control-center-customize",
+   "category": "game",
+   "title": "PS5のコントロールセンター、アイコンを並べ替えられる",
+   "summary": "電源アイコンを左端に置けば、PSボタンを押してすぐ電源を切れます。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2157/513/1_l.jpg",
+    "kind": "ogp",
+    "credit": "GAME Watch",
+    "page": "https://game.watch.impress.co.jp/docs/news/2157513.html"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "PS5の小ワザ"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "PS5のコントロールセンターは、アイコンの並べ替えや追加ができます。",
+      "コントロールセンターを開いてアイコンを選び、DualSenseのオプションボタンを押すと設定画面に入れます。",
+      "電源を一番左に置くと、PSボタンを押してすぐ電源オフにできます。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "PS5でPSボタンを押すと出るコントロールセンターは、よく使う項目の並びを自分で変えられます。GAME Watchが手順を紹介しました。"
+    },
+    {
+     "type": "h",
+     "text": "コントロールセンターとは"
+    },
+    {
+     "type": "p",
+     "text": "PS5の電源を切るとき、PSボタンを押して一番右の「電源」を選ぶ人が多いはずです。このとき出てくるのがコントロールセンターです。「ホーム」「お知らせ」「ミュージック」「ダウンロード/アップロード」など、ゲーム中にすぐ開きたい項目が集まっています。"
+    },
+    {
+     "type": "h",
+     "text": "並べ替えの手順"
+    },
+    {
+     "type": "p",
+     "text": "コントロールセンターを表示した状態で、どれかのアイコンを選びます。そこでDualSenseの右上にあるオプションボタンを押すと、カスタマイズ画面に移れます。ここでアイコンの順番の入れ替えや、項目の追加ができます。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2157/513/2_l.jpg",
+     "kind": "ogp",
+     "credit": "GAME Watch",
+     "caption": "PS5のカスタマイズ手順の画面（GAME Watch掲載）",
+     "page": "https://game.watch.impress.co.jp/docs/news/2157513.html"
+    },
+    {
+     "type": "h",
+     "text": "追加できる項目"
+    },
+    {
+     "type": "p",
+     "text": "カスタマイズ画面には、通常は表示されないPlayStation VRのアイコンもあります。さらに、ゲーム配信に便利な「ブロードキャスト」や、各種の設定を呼び出せる「アクセシビリティ」なども加えられます。並びの初期状態は、ホームが一番左で、電源が右端です。"
+    },
+    {
+     "type": "h",
+     "text": "電源を一番左に置くと"
+    },
+    {
+     "type": "p",
+     "text": "PSボタンを押すと、一番左のアイコンが選ばれた状態で開きます。そのため、電源のアイコンを一番左に移すと、ボタンを押してすぐ電源をオフにできます。ゲームのたびに右端まで動かしていた人は、手間が減ります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1回",
+       "label": "PSボタンを押す回数"
+      },
+      {
+       "value": "2項目",
+       "label": "記事が挙げる追加例"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "電源を毎回右端まで動かしている人は、電源アイコンを一番左に移します。",
+      "手順は、コントロールセンターを開く、アイコンを選ぶ、オプションボタンを押す、の順です。",
+      "ゲーム配信をする人は、カスタマイズ画面で「ブロードキャスト」を追加できます。",
+      "くわしい手順は、PlayStationサポートの「PS5のコントロールセンターをカスタマイズする方法」で確かめます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ゲームを終えるたびに使う電源オフこそ、1手減らす価値がある小ワザです。設定は本体だけで終わり、お金も新しい機器も要りません。まずは電源を一番左へ動かすだけで試すと、違いがわかりやすいです。"
+    }
+   ],
+   "source_name": "GAME Watch",
+   "source_url": "https://game.watch.impress.co.jp/docs/news/2157513.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "GAME Watch",
+     "url": "https://game.watch.impress.co.jp/docs/news/2157513.html"
+    }
+   ]
+  },
+  {
+   "id": "future-andromeda-stellar-merger",
+   "category": "future",
+   "title": "アンドロメダ銀河で巨星が伴星を飲み込む過程を分析",
+   "summary": "巨星が伴星を飲み込み、中心核へ沈んだとみる研究。合体の確認は追跡観測待ちです。",
+   "image": {
+    "src": "https://sorae.info/wp-content/uploads/2026/11/at-2025abao-nasa-2026-11-20-1.jpg",
+    "kind": "ogp",
+    "credit": "NASA, ESA, CSA, STScI ほか（sorae掲載）",
+    "page": "https://sorae.info/astronomy/20261120-at-2025abao.html"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "星の合体"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "コロンビア大学の研究チームが、巨星が伴星を飲み込む際の増光を分析し、論文が「Nature」に載った",
+      "舞台は地球から約250万光年のアンドロメダ銀河で、太陽の約7倍の質量の星が約7年かけて明るくなっていた",
+      "伴星は主星の中心核と合体したとみられるが、確かめるには追跡観測が必要"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "コロンビア大学の研究チームは、アンドロメダ銀河の増光現象「AT 2025abao」を分析し、巨星が伴星を飲み込んだとみる成果を発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何を調べたのか"
+    },
+    {
+     "type": "p",
+     "text": "連星は、互いの重力で結びついた2つの星です。晩年に大きく膨らんだ星が相手（伴星）を飲み込むと、2つは膨らんだ星の外側のガスの層（外層）を共有します。伴星はガスの抵抗でエネルギーを失い、内側へ沈んでいきます。"
+    },
+    {
+     "type": "p",
+     "text": "外層が吹き飛べば、2つは近い連星として残ります。吹き飛ばなければ合体すると考えられています。ただ、沈み込む途中を観測で直接捉えた例は、これまでなかったと研究チームは説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "AT 2025abaoの正体"
+    },
+    {
+     "type": "p",
+     "text": "アンドロメダ銀河（M31）の外縁部では、2025年10月に急な増光が検出されました。その後は明るさがほぼ横ばいのまま温度が下がり、光が赤みを帯びています。星の合体で起きると考えられる「高輝度赤色新星」の特徴だといいます。"
+    },
+    {
+     "type": "h",
+     "text": "増光前の星を特定"
+    },
+    {
+     "type": "p",
+     "text": "増光前のデータから、同じ場所に星があったことがわかりました。質量は太陽の約7倍で、晩年に大きく膨らんだ「AGB星」と推定されています。明るさは1989年から変わらなかったものの、2018年ごろから約7年かけてゆっくり増していました。"
+    },
+    {
+     "type": "p",
+     "text": "この増光は、伴星が抵抗で失ったエネルギーが光に変わったと考えれば、おおむね説明できるといいます。"
+    },
+    {
+     "type": "h",
+     "text": "合体したのか"
+    },
+    {
+     "type": "p",
+     "text": "放出された物質の運動エネルギーを伴星のエネルギーでまかなったなら、伴星は主星の中心核に達したはずだといいます。一方、放出された物質は外層の約1割で、外層の大部分は残っているとみられます。"
+    },
+    {
+     "type": "p",
+     "text": "研究チームは、伴星が外層を吹き飛ばせないまま中心核と合体したと考えています。本当に合体したのかは、今後の追跡観測で確かめる必要があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約250万光年",
+       "label": "アンドロメダ銀河までの距離"
+      },
+      {
+       "value": "約7倍",
+       "label": "主星の質量（太陽比）"
+      },
+      {
+       "value": "約7年",
+       "label": "ゆっくり増光した期間"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "今のところ、読者がすることは特にありません。",
+      "伴星が本当に合体したかは、今後の追跡観測の結果で確かめられます。",
+      "約250万光年先の出来事で、暮らしに直接の影響はありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "暮らしに直接届く話ではなく、星の最期を調べる基礎研究です。次に見るべきは追跡観測で、中心核まで合体したのかがわかるかどうかです。"
+    }
+   ],
+   "source_name": "sorae",
+   "source_url": "https://sorae.info/astronomy/20261120-at-2025abao.html",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "sorae",
+     "url": "https://sorae.info/astronomy/20261120-at-2025abao.html"
+    }
+   ]
+  },
+  {
+   "id": "other-rakuten-sec-fsa",
+   "category": "other",
+   "title": "楽天証券の漏えい、金融庁が報告を要求 財務相が対応求める",
+   "summary": "金融庁が19日に原因の報告を求め、財務相は顧客の不安解消を要請しました。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/ogp/2611/20/2000003371/10012689/2048",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS",
+    "page": "https://www.itmedia.co.jp/news/article/2611/20/2000003371/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "楽天証券漏えい"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "楽天証券の情報漏えいを受け、金融庁が19日に原因などの報告を求めた。",
+      "漏えいの恐れがあるのは、IDなど最大1125万口座分と、口座情報最大447万口座分。",
+      "財務相によると、パスワードは漏れておらず、不正取引は今のところ確認されていない。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "楽天証券の口座を持つ人に関わる話です。片山さつき財務相は11月20日、漏えいを「非常に遺憾」と述べ、顧客の不安解消を求めました。"
+    },
+    {
+     "type": "h",
+     "text": "漏れた恐れがある情報"
+    },
+    {
+     "type": "p",
+     "text": "楽天証券は11月17日、最大約1125万口座分のIDなどと、最大約447万口座分の口座情報が外部に漏れた恐れがあると発表しました。口座情報には、勤務先や出金先口座の情報、本人が申告した年収・金融資産、商品別の資産情報などが含まれます。20日の会見では、記者が最大1572万口座分の可能性について質問しました。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.itmedia.co.jp/news/article/image/2611/20/2000003371/10012699/728",
+     "kind": "ogp",
+     "credit": "ITmedia NEWS",
+     "caption": "楽天証券のニュースリリースより（ITmedia NEWS掲載）",
+     "page": "https://www.itmedia.co.jp/news/article/2611/20/2000003371/"
+    },
+    {
+     "type": "h",
+     "text": "金融庁が報告を求めた"
+    },
+    {
+     "type": "p",
+     "text": "金融庁は11月19日、楽天証券に対し、事実関係や発生原因の分析、再発防止策などの報告を求めました。金融商品取引法と個人情報保護法に基づく措置で、顧客情報の保存状況も確認します。片山財務相は「一番重要なのは顧客保護」と述べ、報告を検証して厳正に対応するとしました。"
+    },
+    {
+     "type": "h",
+     "text": "財務相が求めた対応"
+    },
+    {
+     "type": "p",
+     "text": "財務相は、多くの顧客が悪用を不安に感じるのは容易に想像できると述べました。楽天証券には、不正取引の相談があればすぐ真偽を確認し、金融庁に報告するよう求めています。警察や国家サイバー統括室（NCO）とも連携していると説明しました。"
+    },
+    {
+     "type": "h",
+     "text": "不正取引の状況と今後"
+    },
+    {
+     "type": "p",
+     "text": "財務相は、現時点ではパスワードが漏れておらず、不正取引は確認されていないと聞いていると話しました。漏えいの原因や再発防止策は、楽天証券が金融庁に出す報告で明らかになる見通しです。報告の内容はまだ公表されていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1125万口座",
+       "label": "IDなどが漏れた恐れ"
+      },
+      {
+       "value": "447万口座",
+       "label": "口座情報が漏れた恐れ"
+      },
+      {
+       "value": "1572万口座",
+       "label": "会見で話題の最大数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "楽天証券の口座がある人は、ログインして「重要なお知らせ」で対象かどうかを確認する。",
+      "楽天証券を名乗るメールやSMSのリンクは開かず、公式アプリか公式サイトから確かめる。",
+      "身に覚えのない取引があれば、すぐ楽天証券に相談する。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "次に見るのは、楽天証券が金融庁に出す報告の中身です。口座情報には年収や資産が含まれるため、対象かもしれない人は不審な連絡への警戒を続けてください。"
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/20/2000003371/",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/20/2000003371/"
+    }
+   ]
+  },
+  {
+   "id": "ai-openai-performance-factory",
+   "category": "ai",
+   "title": "OpenAI、ChatGPTの速度低下をCodexが調べる仕組み",
+   "summary": "原因探しから修正案まで自動化。3か月余りで600件超の原因を特定した。",
+   "image": {
+    "src": "https://images.ctfassets.net/kftzwdyauwt9/1GmNPxrS3qwhYU0t43dsaa/0df53811b9acf8f9699ace630362f112/performance-factory-social.png?w=1600&h=900&fit=fill",
+    "kind": "press",
+    "credit": "OpenAI",
+    "page": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+   },
+   "visual": {
+    "icon": "chip",
+    "kicker": "社内の仕組み"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIが、ChatGPTの速度低下をAIが調べて直す社内の仕組みを紹介した",
+      "3か月余りで1700件超を調べ、600件超で原因を特定した",
+      "社内の仕組みの紹介で、利用者が操作する新機能ではない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月19日、ChatGPTの動作が遅くなる問題をAIが調べて直す社内の仕組み「Performance Factory」を紹介しました。"
+    },
+    {
+     "type": "h",
+     "text": "Performance Factoryとは"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIのコード生成AI「Codex」を使い、性能の悪化を見つけて直す自動の仕組みです。クラウド上で動き、技術者が決めた手順書に沿って、複数のAIが仕事を分担します。AIが仕事を進められるのは、作業の状態を1件ずつ記録する管理表があるためです。"
+    },
+    {
+     "type": "h",
+     "text": "警報から回復確認まで"
+    },
+    {
+     "type": "p",
+     "text": "性能の警報が鳴ると、仕組みが作業を1件開きます。AIがまず遅くなった原因を調べて記録し、直す案を出します。技術者が確認して反映すると、別のAIが性能が元に戻ったかを調べます。最初に作った悪化対応の手順（Regression Workflow）が、この全工程を自動で回します。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/kftzwdyauwt9/4GVsirng1kgJ1GzSsQ9Iof/f21a0b8682d456132be1ef8e1b9ce0ed/performance-factory-orchestrator-architecture-light.png?w=3840&q=90&fm=webp",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "Performance Factoryの流れ。警報、技術者、AIの間で作業が受け渡される",
+     "page": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+    },
+    {
+     "type": "h",
+     "text": "3か月の実績"
+    },
+    {
+     "type": "p",
+     "text": "3か月余りで、この手順は1700件超の調査を追い、600件超で原因を突き止めました。1日あたり17件の自動調査にあたります。以前は技術者が手作業で調べ、よく起きる問題のために30以上の専用ツールを作っていました。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/kftzwdyauwt9/581rKVIvguLraKii21zIgr/83deca5cdcec639b656a9a5ec1954f4b/performance-factory-evolution-light.png?w=3840&q=90&fm=webp",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "性能調査の進化。手作業から、道具の整備、Codexとの共同作業、自動化へ",
+     "page": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+    },
+    {
+     "type": "h",
+     "text": "AI同士で間違いを減らす"
+    },
+    {
+     "type": "p",
+     "text": "初期のAIは、もっともらしい説明を見つけると調査をやめ、誤った診断をすることがありました。そこで、診断を崩そうとする別のAIを加えました。ある調査では、ChatGPTの会話の失敗が画像のダウンロードの異常と診断されました。確認役のAIは、ファイルの場所を探す社内サービスが回復しても画像の失敗が続いている点に気づき、調査をやり直させました。"
+    },
+    {
+     "type": "p",
+     "text": "人が100件の原因の提案を確認した結果、正確と判断できたのは70%でした。残る30%は、さらに詰める必要があるか、原因との結び付きが十分に示されていませんでした。"
+    },
+    {
+     "type": "h",
+     "text": "直すほうが難しい"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは、原因探しより正しく直すほうが難しかったと述べています。AIの案は必要以上に複雑だったり、新しい不具合を生んだりしました。修正案にも確認役のAIを付けています。データの一時保存（キャッシュ）を足すと速くなる反面、古いデータが残る恐れがあり、こうした判断は技術者が行います。"
+    },
+    {
+     "type": "p",
+     "text": "今後は、模擬の性能テストで修正案を事前に試す仕組みや、リスクの低い修正を人の確認なしで出す方法を検討しています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1700件超",
+       "label": "3か月余りの調査件数"
+      },
+      {
+       "value": "600件超",
+       "label": "原因を特定した件数"
+      },
+      {
+       "value": "70%",
+       "label": "原因提案100件の正確率"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "ChatGPTを使う人：新しい機能はなく、操作は変わりません。速度の改善幅など、利用者への具体的な効果は示されていません。",
+      "社内にAIの運用を取り入れたいチームの人：手順書とAIの分担、確認役のAIという設計が参考になります。OpenAIは、ほかのチームの参考になることを望んでいます。",
+      "件数や正確率はOpenAI自身の報告です。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ChatGPTが急に遅くなったとき、裏ではAIが原因を探しています。原因の提案の正確率は70%で、直す案は人が確認する設計です。AIに任せきりにしない点が、ほかの会社にも参考になります。"
+    }
+   ],
+   "source_name": "OpenAI",
+   "source_url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast",
+   "published": "2026-11-19",
+   "refs": [
+    {
+     "name": "OpenAI",
+     "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+    }
+   ]
+  },
+  {
+   "id": "mobile-honor-magic9-g500",
+   "category": "mobile",
+   "title": "HONOR Magic9 Pro Max、500mm望遠を手持ちで試す",
+   "summary": "500mm相当の外付けレンズ「G500」を深センで試用。日本での発売時期は不明です。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/mobile/articles/2611/21/ky5622_ya01.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia Mobile",
+    "page": "https://www.itmedia.co.jp/mobile/articles/2611/21/news001.html"
+   },
+   "visual": {
+    "icon": "camera",
+    "kicker": "望遠スマホ"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "HONORが、500mm相当の外付けレンズ「G500」と新型「Magic9 Pro Max」を発表しました。",
+      "山根康宏氏が深センで試し、手持ちでも撮れたと伝えています。",
+      "日本での価格や発売時期は、まだわかっていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "HONORは最新スマホ「Magic9 Pro Max」と同時に、500mm相当で撮れる外付けレンズ「G500」を発表しました。ITmedia Mobileが深センで試しました。"
+    },
+    {
+     "type": "h",
+     "text": "広がる外付け望遠レンズ"
+    },
+    {
+     "type": "p",
+     "text": "外付けの望遠レンズ（テレコンバーター）に対応する中国メーカーの高級機は、2025年から増えています。OPPOは日本でも売る「OPPO Find X9 Ultra」向けに400mmのレンズを用意しました。vivoは海外で、300mmの「G2 Ultraレンズ」を展開中です。HONORの500mmは、この2社より長い焦点距離です。"
+    },
+    {
+     "type": "h",
+     "text": "画面とチップの主な仕様"
+    },
+    {
+     "type": "p",
+     "text": "チップはQualcommのSnapdragon 8 Gen Elite Extreme 6で、画面は6.8型です。最大の明るさは1万ニトです。自撮りカメラは5500万画素で、センサーの縦横比は1:1の正方形です。縦でも横でも、画角を十分に確保できます。"
+    },
+    {
+     "type": "h",
+     "text": "3つの背面カメラと側面ボタン"
+    },
+    {
+     "type": "p",
+     "text": "背面は、2億画素の広角、2億画素の3.5倍望遠、5000万画素の超広角の3つです。右側面のカメラボタンで、起動、シャッター、ズームを操作できます。左側面にはAIボタンもあります。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/mobile/articles/2611/21/ky5622_ya02.jpg",
+     "kind": "ogp",
+     "credit": "ITmedia Mobile",
+     "caption": "Magic9 Pro Maxの試用写真",
+     "page": "https://www.itmedia.co.jp/mobile/articles/2611/21/news001.html"
+    },
+    {
+     "type": "h",
+     "text": "ARRI協業のシネマモード"
+    },
+    {
+     "type": "p",
+     "text": "カメラの配置は、動画で協業するARRIの映像カメラの正面の見た目に着想を得ています。Appleとは無関係です。シネマモードでは、最大4K／60fpsのLog撮影と、10bitの4:2:2収録ができます。87種類の公式ルックを、撮影画面でその場で確かめられます。"
+    },
+    {
+     "type": "h",
+     "text": "手持ちで撮れた500mm"
+    },
+    {
+     "type": "p",
+     "text": "G500を付けても手持ちで撮影できたと、山根氏は伝えています。レンズの価格や、日本での取り扱いは、まだわかっていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "500mm",
+       "label": "HONOR G500の望遠"
+      },
+      {
+       "value": "400mm",
+       "label": "OPPOのレンズ"
+      },
+      {
+       "value": "300mm",
+       "label": "vivoのレンズ"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "外付け望遠に興味がある人：日本で今買えるのは、400mmレンズを用意するOPPO Find X9 Ultra。",
+      "HONOR機を待つ人：価格や日本での発売時期は未発表なので、発表を待つ。",
+      "動画を撮る人：シネマモードは最大4K／60fpsまで。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "望遠の長さだけなら、この3社の中でHONORが一番です。ただ、日本で買えるかは決まっていません。今すぐ試したいなら、400mmのレンズがあるOPPOが現実的です。"
+    }
+   ],
+   "source_name": "ITmedia Mobile",
+   "source_url": "https://www.itmedia.co.jp/mobile/articles/2611/21/news001.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "ITmedia Mobile",
+     "url": "https://www.itmedia.co.jp/mobile/articles/2611/21/news001.html"
+    }
+   ]
+  },
+  {
+   "id": "gadget-mvave-fm1-open",
+   "category": "gadget",
+   "title": "1万円シンセをAIで改造。M-VAVEが開発環境を公開",
+   "summary": "安いFMシンセの有志改造をメーカーが後押しし、楽器業界にも開放の動きが出ています。",
+   "image": {
+    "src": "https://media.loom-app.com/loom/2026/11/15/468bcee8-e49b-4a1e-a431-b92113c86955/original.jpg?w=800",
+    "kind": "ogp",
+    "credit": "GIZMODO JAPAN（Image: M-VAVE）",
+    "page": "https://www.gizmodo.jp/article/0b0516f2-94f8-442e-bdae-2987f090be13/"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "楽器の改造"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "中国M-VAVEの小型FMシンセ「FM-1」で、AIを使った改造ファームウェア作りが盛り上がっています。",
+      "M-VAVEは10月に開発キットとソースコードを公開しました。AKAI Professionalは開放をほのめかし、BEHRINGERはオープンソース化を打ち出しています。",
+      "買った楽器に、自分で機能を足す遊び方が広がるかもしれません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "中国の楽器メーカーM-VAVEの小型シンセ「FM-1」を、ユーザーがAIで改造する動きが広がっています。メーカーも10月に、公式の開発環境を出しました。"
+    },
+    {
+     "type": "h",
+     "text": "FM-1はどんなシンセか"
+    },
+    {
+     "type": "p",
+     "text": "FM-1は、アリエクなどで1万円以下で買えるFM方式の小型シンセです。6オペレーター（音を作る部品）、32アルゴリズム（部品のつなぎ方）、同時発音数12というシンプルな構成です。"
+    },
+    {
+     "type": "h",
+     "text": "AIで一気に広がった改造"
+    },
+    {
+     "type": "p",
+     "text": "今年の夏ごろから、有志がFM-1の内部プログラムを調べ始めました。秋にはAIコーディングツールを使った改造ファームウェアが急に増え、SNSで情報が共有されています。"
+    },
+    {
+     "type": "p",
+     "text": "FM以外の音源に変えたり、リズムマシンやサンプラーの機能を足したりする人もいます。グルーブボックス（曲作りまでできる機材）にする例もあります。ツマミが多く安いことも、改造向きと見られた理由です。"
+    },
+    {
+     "type": "h",
+     "text": "メーカーが公式に後押し"
+    },
+    {
+     "type": "p",
+     "text": "M-VAVEは改造を止めず、10月に「FM1 Open」を発表しました。開発用のSDK、ソースコード、ブラウザで動く開発環境が使えます。"
+    },
+    {
+     "type": "p",
+     "text": "AKAI Professionalは、次の新製品「Sample Key」でファームウェアの開放をほのめかしています。BEHRINGERは、開発中のサンプラー「KICK」をオープンソースにする方針です。"
+    },
+    {
+     "type": "h",
+     "text": "広がる背景と残る課題"
+    },
+    {
+     "type": "p",
+     "text": "背景には、AIのおかげで、プログラミング経験が乏しい人も機能を足せるようになったことがあります。GIZMODO JAPANは、価格競争で差が付けにくい中、購入後も話題が続けば製品寿命が延びるとみています。"
+    },
+    {
+     "type": "p",
+     "text": "一方で、改造による故障、動作保証、セキュリティの課題は残ります。メーカーがどこまで責任を持つかが、これからの論点です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "1万円以下",
+       "label": "FM-1の実売の目安"
+      },
+      {
+       "value": "12",
+       "label": "FM-1の同時発音数"
+      },
+      {
+       "value": "10月",
+       "label": "FM1 Openの発表時期"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "FM-1を持っている人は、FM1 Openの開発環境が使えるか、M-VAVEの案内で確かめる",
+      "改造ファームウェアを入れる前に、故障したときの保証の扱いを確認する",
+      "AKAIのSample KeyやBEHRINGERのKICKの続報を待つ"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "楽器は買ったまま使うもの、という常識が変わりつつあります。試すなら、保証がどうなるかを確かめたうえで、失敗しても困らない安い機材から始めるのが安心です。"
+    }
+   ],
+   "source_name": "GIZMODO JAPAN",
+   "source_url": "https://www.gizmodo.jp/article/0b0516f2-94f8-442e-bdae-2987f090be13/",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "GIZMODO JAPAN",
+     "url": "https://www.gizmodo.jp/article/0b0516f2-94f8-442e-bdae-2987f090be13/"
+    }
+   ],
+   "shop": [
+    {
+     "name": "M-VAVE FM-1",
+     "query": "M-VAVE FM-1"
+    }
+   ]
+  },
+  {
+   "id": "service-paydon-leak",
+   "category": "service",
+   "title": "決済アプリ「Payどん」全停止、25万1172件の情報漏えい",
+   "summary": "委託先の不正アクセスで氏名や口座情報などが漏れた恐れ。不審な連絡に注意。",
+   "image": {
+    "src": "https://japan.cnet.com/storage/2026/11/20/d779a0441b2b8d3efed19a80b85b518c/large.jpg",
+    "kind": "ogp",
+    "credit": "CNET Japan",
+    "page": "https://japan.cnet.com/article/35255222/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "情報漏えい"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "鹿児島の4金融機関が、決済アプリ「Payどん」の全サービスを20日に停止",
+      "漏えいは25万1172件。氏名や口座情報、取引履歴なども含まれる",
+      "不審な電話・メール・SMSに応じず、リンクは開かない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "鹿児島銀行など4つの金融機関は11月20日、Payどんの委託先への不正アクセスで、個人情報25万1172件が漏えいしたと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が起きたのか"
+    },
+    {
+     "type": "p",
+     "text": "発表したのは、鹿児島銀行、南日本銀行、鹿児島相互信用金庫、鹿児島信用金庫です。決済システムの委託先インフキュリオンが11月19日、自社の決済基盤「Wallet Station」への不正アクセスを確認しました。4機関は被害の拡大を防ぐため、20日午前6時20分にPayどんの全サービスを止めました。"
+    },
+    {
+     "type": "img",
+     "src": "https://japan.cnet.com/storage/2026/11/20/302c0186b7b8e0c6d61f796f39a78673/body-01.jpg",
+     "kind": "ogp",
+     "credit": "鹿児島銀行（CNET Japan掲載）",
+     "caption": "キャッシュレス決済アプリ「Payどん」",
+     "page": "https://japan.cnet.com/article/35255222/"
+    },
+    {
+     "type": "h",
+     "text": "漏れた可能性のある情報"
+    },
+    {
+     "type": "p",
+     "text": "利用者の氏名、生年月日、電話番号、メールアドレス、パスワードが含まれます。口座情報、ポイント残高、取引履歴（日時、店舗名、金額）も対象です。加盟店の店舗名と電話番号も漏れた可能性があります。"
+    },
+    {
+     "type": "h",
+     "text": "不正利用と現在の状況"
+    },
+    {
+     "type": "p",
+     "text": "インフキュリオンは、不審な通信を遮断し、関連する機能を止めました。影響を受けた事業者へのシステム提供も一時停止しています。漏えいした情報を使った不正利用は、発表時点で確認されていません。Payどんの再開時期は、まだ明らかになっていません。"
+    },
+    {
+     "type": "h",
+     "text": "ほかの事案との関係"
+    },
+    {
+     "type": "p",
+     "text": "Payどんでは11月4日にも、メール送信の委託先アララへの不正アクセスで、利用者と加盟店のメールアドレスが漏れたと公表されていました。4機関によると、今回は別の事案で関連はありません。なお、同じインフキュリオンへの不正アクセスを理由に、AEON Payも20日にコード決済の一部を止めています。"
+    },
+    {
+     "type": "h",
+     "text": "届くかもしれない連絡への備え"
+    },
+    {
+     "type": "p",
+     "text": "インフキュリオンは、漏れた情報を悪用した不審な電話やメール、SMSが届く恐れがあると注意を呼びかけています。心当たりのない連絡には応じず、メッセージのURLにアクセスしたり、暗証番号やパスワードを入力したりしないよう求めています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "25万1172件",
+       "label": "漏えいした個人情報"
+      },
+      {
+       "value": "4機関",
+       "label": "発表した金融機関"
+      },
+      {
+       "value": "11月4日",
+       "label": "別事案の公表日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Payどんの利用者は、再開や詳細の案内を、各金融機関の発表で確認する。",
+      "不審な電話・メール・SMSには応じず、URLを開かない。暗証番号やパスワードも入力しない。",
+      "Payどんと同じパスワードを別のサービスで使っているなら、そちらを変更する。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "氏名だけでなく口座情報や取引履歴まで含まれる点が重い話です。Payどんを使っていたなら、不審な連絡に応じないことと、パスワードの使い回しを見直すことを、早めにしておくと安心です。"
+    }
+   ],
+   "source_name": "CNET Japan",
+   "source_url": "https://japan.cnet.com/article/35255222/",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "CNET Japan",
+     "url": "https://japan.cnet.com/article/35255222/"
+    },
+    {
+     "name": "CNET Japan（AEON Pay）",
+     "url": "https://japan.cnet.com/article/35255235/"
+    }
+   ]
+  },
+  {
+   "id": "game-gta6-prelaunch-32m",
+   "category": "game",
+   "title": "GTA VI、発売前に3250万本 初日売上は37億9000万ドル",
+   "summary": "発売前の本数も初日の売上も新記録。前作の初日の数倍にあたる規模です。",
+   "image": {
+    "src": "https://www.4gamer.net/games/758/G075801/20261121002/SS/001.jpg",
+    "kind": "ogp",
+    "credit": "4Gamer.net",
+    "page": "https://www.4gamer.net/games/758/G075801/20261121002/"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "売上新記録"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Rockstar Gamesが、11月19日発売の「グランド・セフト・オートVI」で発売前に3250万本を販売したと発表しました。",
+      "発売日が終わった時点の全世界の売上高は推計37億9000万ドルで、エンタメ作品の初日として過去最高とされています。",
+      "対応機種はPS5とXbox Series X|S。価格は標準版が9800円（税込み）です。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Rockstar Gamesは11月21日、「グランド・セフト・オートVI」の発売前の販売が3250万本に達したと発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "発売前の本数は過去最高"
+    },
+    {
+     "type": "p",
+     "text": "3250万本は、全プラットフォームを合わせた発売前の販売本数として新記録とされています。11月9日のTake-Two Interactiveの決算説明会では、予約が当初の予想を大きく上回っていると説明されていました。ただ、そのときは具体的な本数が出ておらず、今回の発表で数字が明らかになりました。"
+    },
+    {
+     "type": "h",
+     "text": "初日の売上高は37億9000万ドル"
+    },
+    {
+     "type": "p",
+     "text": "発売日の11月19日が終わった時点で、全世界の売上高は推計37億9000万ドルに達しました。エンターテインメント作品の初日売上として過去最高だと、Rockstar Gamesは説明しています。"
+    },
+    {
+     "type": "p",
+     "text": "前作「グランド・セフト・オートV」の初日売上は、日本とブラジルを除く集計で8億ドルでした。今回はその数倍にあたります。ただし前作は集計の範囲が違うため、まったく同じ条件の比較ではありません。"
+    },
+    {
+     "type": "h",
+     "text": "対応機種と価格のまとめ"
+    },
+    {
+     "type": "p",
+     "text": "対応機種はPS5とXbox Series X|Sです。価格は標準版（スタンダード・エディション）が9800円（税込み）、アルティメット・エディションが1万2280円（税込み）です。発売日は11月19日でした。"
+    },
+    {
+     "type": "h",
+     "text": "決算説明会での会社の姿勢"
+    },
+    {
+     "type": "p",
+     "text": "Take-Twoのゼルニック最高経営責任者は、11月9日の決算説明会で、11月19日の発売に自信を見せました。一方で、発売後の実績を確かめるまでは成功を宣言しない慎重な姿勢も示していました。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "3250万本",
+       "label": "発売前の販売本数"
+      },
+      {
+       "value": "37億9000万ドル",
+       "label": "初日の売上高（推計）"
+      },
+      {
+       "value": "8億ドル",
+       "label": "前作の初日（日伯除く）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "遊びたい人は、PS5かXbox Series X|Sを用意します。標準版は9800円（税込み）です。",
+      "アルティメット・エディション（1万2280円、税込み）との違いは、販売ページや公式サイトで確かめます。",
+      "売上高の数字は発売元の推計です。前作との比較は、集計の範囲が違う点に気をつけます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "前作の初日と比べて数倍という差は、人気の大きさが数字で伝わります。ただ前作の集計は日本とブラジルを除いていて、条件がそろった比べ方ではありません。遊ぶ予定なら、まず手元の本体がPS5かXbox Series X|Sかを確かめたいところです。"
+    }
+   ],
+   "source_name": "4Gamer.net",
+   "source_url": "https://www.4gamer.net/games/758/G075801/20261121002/",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "4Gamer.net",
+     "url": "https://www.4gamer.net/games/758/G075801/20261121002/"
+    }
+   ],
+   "shop": [
+    {
+     "name": "グランド・セフト・オートVI（PS5）",
+     "query": "グランド・セフト・オートVI PS5"
+    }
+   ]
+  },
+  {
+   "id": "future-euclid-dr1-foundation",
+   "category": "future",
+   "title": "ユークリッド望遠鏡が初の大規模データ公開 10億超の天体",
+   "summary": "ESAが約13か月分の観測データを公開。宇宙の3Dマップ作りの土台になります。",
+   "image": {
+    "src": "https://sorae.info/wp-content/uploads/2026/11/galaxy-ngc-1291-euclid-esa-2026-11-19-1.jpg",
+    "kind": "ogp",
+    "credit": "ESA/Euclid/Euclid Consortium/NASA（sorae掲載）",
+    "page": "https://sorae.info/astronomy/20261120-ngc-1291.html"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "宇宙の地図"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ESAが、ユークリッド宇宙望遠鏡の初の大規模データ「DR1-Foundation」を公開した",
+      "約13か月分で、約1900平方度の範囲から10億個を超える天体の光を捉えた",
+      "数百万個以上の銀河の距離を測り、宇宙の3Dマップを作る基礎になる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ESAは2026年11月12日付で、ユークリッド宇宙望遠鏡の初の大規模観測データを公開しました。"
+    },
+    {
+     "type": "h",
+     "text": "公開されたデータの中身"
+    },
+    {
+     "type": "p",
+     "text": "名前は「DR1-Foundation」です。2023年7月に打ち上げられたユークリッドが、約13か月かけて集めた観測データをまとめています。範囲は約1900平方度で、満月約9500個分に当たります。10億個を超える天体の光を捉えました。"
+    },
+    {
+     "type": "h",
+     "text": "3Dマップと暗黒物質"
+    },
+    {
+     "type": "p",
+     "text": "ユークリッドは数十億個の銀河を観測し、そのうち数百万個以上は距離も測ります。このデータが、宇宙の3Dマップを作る基礎になります。3Dマップは、ダークマター（暗黒物質）やダークエネルギーの謎に迫る研究に使われます。"
+    },
+    {
+     "type": "h",
+     "text": "同時公開の環状銀河"
+    },
+    {
+     "type": "p",
+     "text": "データ公開にあわせて、エリダヌス座の方向、地球から約3300万光年にある環状銀河「NGC 1291」の画像も公開されました。取得に約70分かかり、写る範囲は満月の約半分（約0.11平方度）です。背景には、遠い銀河も数多く写っています。"
+    },
+    {
+     "type": "h",
+     "text": "年老いた銀河のリング"
+    },
+    {
+     "type": "p",
+     "text": "NASAが2014年に公開した解説では、NGC 1291の年齢は約120億年です。中心部は年老いた星が占め、星の材料のガスは使い果たされています。一方、円盤のリングでは新しい星が生まれています。"
+    },
+    {
+     "type": "p",
+     "text": "リングは、中心の棒状構造の重力がガスを特定の距離に集めて圧縮し、星を生んでいると考えられています。ただしNOIRLabが2026年2月に公開した解説では、過去に別の銀河と合体した結果の可能性も挙げられています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約13か月",
+       "label": "公開データの観測期間"
+      },
+      {
+       "value": "約1900平方度",
+       "label": "観測した範囲"
+      },
+      {
+       "value": "10億個超",
+       "label": "光を捉えた天体の数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "今のところ、読者がすることは特にありません。",
+      "このデータは、研究者が宇宙の3Dマップを作るための土台に使います。",
+      "ダークマターやダークエネルギーの研究成果が出たとき、このデータが使われているかを確かめます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "暮らしに届く話ではなく、宇宙の成り立ちを調べる基礎データです。次に見るべきは、これを使った3Dマップやダークマター研究の成果です。"
+    }
+   ],
+   "source_name": "sorae",
+   "source_url": "https://sorae.info/astronomy/20261120-ngc-1291.html",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "sorae",
+     "url": "https://sorae.info/astronomy/20261120-ngc-1291.html"
+    }
+   ]
+  },
+  {
+   "id": "other-h3-mhi-transfer",
+   "category": "other",
+   "title": "H3打ち上げ、JAXAから三菱重工へ移管 11号機から",
+   "summary": "来年1月の11号機から、三菱重工が法律上の打上げ実施者も担います。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/ogp/2611/20/2000003374/10012698/2048",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS",
+    "page": "https://www.itmedia.co.jp/news/article/2611/20/2000003374/"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "H3移管"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "JAXAは11月20日、H3ロケット「22形態」の打ち上げを段階的に三菱重工へ移すと発表した。",
+      "2027年1月11日予定の11号機から、三菱重工が法律上の「打上げ実施者」になる。",
+      "残りの24形態や30形態なども、順次、民間に移す計画。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "日本の基幹ロケット「H3」の打ち上げ担当が、国の機関から民間企業へ移ります。JAXAが11月20日に発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "何が変わるのか"
+    },
+    {
+     "type": "p",
+     "text": "三菱重工業は4号機から「打上げ輸送サービス」を提供し、打ち上げの実務を担ってきました。ただ、法律上の「打上げ実施者（打ち上げを行う責任を負う立場）」はJAXAでした。11号機以降は、この立場も三菱重工が担います。"
+    },
+    {
+     "type": "h",
+     "text": "最初に移るのは11号機"
+    },
+    {
+     "type": "p",
+     "text": "11号機は2027年1月11日に打ち上げる予定で、政府の情報収集衛星「光学時間軸多様化1号機」を載せます。形態は「22形態」で、メインエンジン2基と補助ブースター2本を使います。エンジンは「LE-9エンジン Type1A」、ブースターは「SRB-3」です。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.itmedia.co.jp/news/article/image/2611/20/2000003374/10012697/728",
+     "kind": "ogp",
+     "credit": "ITmedia NEWS",
+     "caption": "移管に関するJAXAの発表資料（ITmedia NEWS掲載）",
+     "page": "https://www.itmedia.co.jp/news/article/2611/20/2000003374/"
+    },
+    {
+     "type": "h",
+     "text": "残りの形態も順に民間へ"
+    },
+    {
+     "type": "p",
+     "text": "JAXAは、まず「LE-9エンジン Type1A」を使う22形態を三菱重工に移します。残る「24形態」と「30形態」も、段階的に民間へ移す計画です。開発中の「LE-9エンジン Type2」を使う打ち上げも同様です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2027年1月11日",
+       "label": "11号機の打ち上げ予定"
+      },
+      {
+       "value": "22形態",
+       "label": "最初に移す形態"
+      },
+      {
+       "value": "4号機",
+       "label": "三菱重工が実務を始めた号機"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "打ち上げを見たい人は、2027年1月11日予定の11号機の日程を今後の発表で確認する。",
+      "24形態や30形態の移管時期はこれからの発表を待つ。",
+      "今のところ、一般の人が手続きなどでやることはありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "打ち上げの責任の持ち主が民間になるのは、日本のロケットが国の事業から企業のサービスへ進む節目です。次は、24形態など残りの形態がいつ移るかが見どころです。"
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/20/2000003374/",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/20/2000003374/"
+    }
+   ]
+  },
+  {
+   "id": "ai-openai-codex-sandbox",
+   "category": "ai",
+   "title": "OpenAI、Codexが手元のPCで動く範囲を限る仕組みを解説",
+   "summary": "標準は作業フォルダ内だけ書き込み可で、通信は停止。設定で変えられる。",
+   "image": {
+    "src": "https://images.ctfassets.net/kftzwdyauwt9/1PnylD7lJwgUw7jYNP8wLh/7fa5553001136f3982e8d4db44146de3/inside-the-codex-sandbox-social.png?w=1600&h=900&fit=fill",
+    "kind": "press",
+    "credit": "OpenAI",
+    "page": "https://openai.com/index/inside-the-codex-sandbox"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "Codexの安全"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "OpenAIが、Codexがパソコンでコマンドを動かすときの制限の仕組みを解説した",
+      "標準の設定は、書き込みを作業フォルダ内に限り、ネット接続を止める",
+      "個人も企業も、許可の範囲を設定で変えられる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは11月18日、コード生成AI「Codex」が手元のパソコンで安全に作業するための「サンドボックス」の仕組みを技術ブログで解説しました。"
+    },
+    {
+     "type": "h",
+     "text": "サンドボックスとは"
+    },
+    {
+     "type": "p",
+     "text": "サンドボックスは、動いているプログラムが触れる範囲を限る仕組みです。たとえば写真の整理なら、写真フォルダの読み書きは許し、ネット接続は止めて、外へのアップロードを防げます。コードの確認なら、オンラインの説明書は読めるようにして、元のファイルは読み取り専用にできます。"
+    },
+    {
+     "type": "h",
+     "text": "標準の設定の中身"
+    },
+    {
+     "type": "p",
+     "text": "標準の「:workspace」設定では、書き込みは作業フォルダ内に限ります。履歴を管理する「.git」とCodexの設定の「.codex」の2か所は、読み取り専用です。パソコン内の読み取りは広く認め、ネット接続は止めています。作業フォルダの外にある道具や部品を、普通に使えるようにするためです。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/kftzwdyauwt9/7phvBtHTMSTY6vHJx9YL9L/0a4cf5a80f25882a663681872f648617/codex-sandbox-command-desktop-light.png?w=3840&q=90&fm=webp",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "設定や管理者の要件から、実行時の許可が決まるまでの流れ図",
+     "page": "https://openai.com/index/inside-the-codex-sandbox"
+    },
+    {
+     "type": "h",
+     "text": "それでも残る弱点"
+    },
+    {
+     "type": "p",
+     "text": "OpenAIは、弱点も認めています。読み取りが広いため、APIキーを書いた設定ファイルなどが読める場合があります。ネットを止めるので、部品のダウンロードもできません。防げない例として、AIが手元の整形ツール「prettier」に悪いコードを混ぜる場合を挙げています。Gitの変更一覧に出ないことがあり、エディターで保存した瞬間に、サンドボックスの外で動いてしまいます。"
+    },
+    {
+     "type": "h",
+     "text": "仮想環境を使わない理由"
+    },
+    {
+     "type": "p",
+     "text": "Docker（パソコンの中に別の環境を作る技術）などは使いません。macOS、Windows、Linuxの3つが持つ仕組みで、今の作業環境のまま範囲を限ります。Macでアプリを作る場合、Macにしかない道具やiPhoneのシミュレーターを、Dockerの中では動かせないからです。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/kftzwdyauwt9/1fI91cZrglfbUhn7ZFs0bS/6ccf3d41b7c58fffbc20ca2baaf424a5/creating-sandbox-diagram-desktop-light.svg?w=3840&q=90",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "Linuxでサンドボックスを作り、コマンドを起動する流れの図",
+     "page": "https://openai.com/index/inside-the-codex-sandbox"
+    },
+    {
+     "type": "h",
+     "text": "設定の変え方と企業向け"
+    },
+    {
+     "type": "p",
+     "text": "利用者は、設定ファイル（config.toml）に「許可プロファイル」を作り、複数のプロジェクトで同じ制限を使えます。企業の管理者は、requirements.tomlで選べるプロファイルを絞れます。たとえば、危険な全アクセスを禁止して、読み取り専用を初期値にできます。"
+    },
+    {
+     "type": "p",
+     "text": "制限の外で動かしたいときは、Codexが許可を求めます。利用者に確認するか、自動レビューに回すかは、設定しだいです。開発者は「codex sandbox」コマンドで、同じ仕組みを自分のツールに組み込めます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "3種類",
+       "label": "対応するOS"
+      },
+      {
+       "value": "2か所",
+       "label": "読み取り専用の場所"
+      },
+      {
+       "value": "初期は停止",
+       "label": "標準設定のネット接続"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Codexを使う人：標準では作業フォルダの外に書き込めず、ネット接続も止まっています。ダウンロードが要る作業は、追加の許可が必要になります。",
+      "会社で使う人：管理者が、選べる許可の範囲を絞れます。社内の決まりを確かめましょう。",
+      "APIキーを書いたファイルが読める場合があるため、置き場所に気をつけましょう。この解説は仕組みの説明で、料金や日本での提供条件には触れていません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AIにパソコンを触らせるとき、どこまで任せるかを自分で決められる、という話です。標準では書き込みとネット接続が絞られています。まず初期設定のまま試し、必要な許可だけ足していくのが安心です。"
+    }
+   ],
+   "source_name": "OpenAI",
+   "source_url": "https://openai.com/index/inside-the-codex-sandbox",
+   "published": "2026-11-18",
+   "refs": [
+    {
+     "name": "OpenAI",
+     "url": "https://openai.com/index/inside-the-codex-sandbox"
+    }
+   ]
+  },
+  {
+   "id": "mobile-ggear-intel50",
+   "category": "mobile",
+   "title": "ツクモ、インテル50周年のゲーミングPCを50万円で発売",
+   "summary": "RTX 5080を積んだ数量限定の記念モデルで、旧ロゴのピンバッジなどが付きます。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2158/418/01_l.jpg",
+    "kind": "ogp",
+    "credit": "PC Watch",
+    "page": "https://pc.watch.impress.co.jp/docs/news/2158418.html"
+   },
+   "visual": {
+    "icon": "pc",
+    "kicker": "記念PC"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ヤマダデンキが11月20日、インテル50周年記念のPCを発売",
+      "直販価格は50万円。数量限定で、RTX 5080を搭載",
+      "旧ロゴのピンバッジなど3種類の特典が付きます"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ヤマダデンキは11月20日、TSUKUMOブランドの「G-GEAR」から、インテル設立50周年を記念したゲーミングPCを発売しました。直販価格は50万円です。"
+    },
+    {
+     "type": "h",
+     "text": "記念デザインのケースが目印"
+    },
+    {
+     "type": "p",
+     "text": "インテル株式会社は4月28日に設立50周年を迎えました。記念モデル「GE7J-M261BH/INTEL50」は、G-GEARのプレミアムミドルタワーケースに特別なデザインを施したデスクトップPCです。ツクモネットショップで数量限定で販売されています。"
+    },
+    {
+     "type": "h",
+     "text": "性能と主な仕様"
+    },
+    {
+     "type": "p",
+     "text": "CPUはCore Ultra 7 270K Plus、ビデオカードはGeForce RTX 5080です。最新ゲームのほか、4K動画編集のようなクリエイティブ用途にも対応できる性能とされています。"
+    },
+    {
+     "type": "p",
+     "text": "主な仕様は、水冷式のCPUクーラー、DDR5-5600のメモリ32GB、1TBのNVMe SSD、80 PLUS Gold認証の850W電源、OSはWindows 11 Homeです。無線はWi-Fi 7、有線は2.5Gigabit Ethernetに対応します。"
+    },
+    {
+     "type": "h",
+     "text": "購入特典のグッズ"
+    },
+    {
+     "type": "p",
+     "text": "購入特典は、Intelの旧ロゴデザインを含むピンバッジセット、A5サイズのステッカー、Bunnymanのフィギュア2体セットです。ピンバッジとステッカーには、ひと昔前のロゴが並びます。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2158/418/03_l.jpg",
+     "kind": "ogp",
+     "credit": "PC Watch",
+     "caption": "付属するステッカー、フィギュア、ピンバッジセット",
+     "page": "https://pc.watch.impress.co.jp/docs/news/2158418.html"
+    },
+    {
+     "type": "h",
+     "text": "買う前に確かめたいこと"
+    },
+    {
+     "type": "p",
+     "text": "本体サイズは230×445×460mm、重さは約14kgで、置く場所に余裕が要ります。数量限定ですが、台数は示されていません。50万円が税込みか税別かも示されていないので、購入ページの表示で確かめてください。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "50万円",
+       "label": "直販価格"
+      },
+      {
+       "value": "50周年",
+       "label": "インテル株式会社の設立から"
+      },
+      {
+       "value": "約14kg",
+       "label": "本体の重さ"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買いたい人は、ツクモネットショップで在庫と販売条件を確かめます。数量限定です。",
+      "置き場所は230×445×460mmの空きと、約14kgの重さに耐えられる台を用意します。",
+      "価格は税込みか税別かが示されていないので、注文前に購入ページで確認します。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "ケースの記念デザインと特典を気に入るかが、買う決め手になりそうです。性能だけで選ぶなら、通常のG-GEARと価格を見比べてからにすると安心です。"
+    }
+   ],
+   "source_name": "PC Watch",
+   "source_url": "https://pc.watch.impress.co.jp/docs/news/2158418.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2158418.html"
+    }
+   ],
+   "shop": [
+    {
+     "name": "G-GEAR GE7J-M261BH/INTEL50",
+     "query": "G-GEAR GE7J-M261BH/INTEL50"
+    }
+   ]
+  },
+  {
+   "id": "gadget-honda-avancier-atmos",
+   "category": "gadget",
+   "title": "ホンダ新型SUV、国内の日本車で初のDolby Atmos",
+   "summary": "Bose製の12スピーカーで立体音響に対応。国内の価格や発売日は未発表です。",
+   "image": {
+    "src": "https://av.watch.impress.co.jp/img/avw/list/2158/305/4261120_001H.jpg",
+    "kind": "ogp",
+    "credit": "AV Watch",
+    "page": "https://av.watch.impress.co.jp/docs/news/2158305.html"
+   },
+   "visual": {
+    "icon": "audio",
+    "kicker": "車で立体音響"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ドルビーが、ホンダの新型SUV「AVANCIER」にDolby Atmosが載ると発表しました。",
+      "国内で売る日本車では初です。Boseのシステムが12個のスピーカーを制御します。",
+      "日本やタイ、中国などで順次発売の予定です。日本の価格や発売日は明らかになっていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ドルビーラボラトリーズは、ホンダの新型SUV「AVANCIER（アヴァンシア）」がDolby Atmosに対応すると発表しました。日本車メーカーが国内で売る車では初です。"
+    },
+    {
+     "type": "h",
+     "text": "Boseの12スピーカーで立体音響"
+    },
+    {
+     "type": "p",
+     "text": "車載オーディオは、Dolby Atmos対応のBOSEプレミアムサウンドシステムです。12個のスピーカーをまとめて制御し、前後左右に高さを加えた3次元の音を再現します。"
+    },
+    {
+     "type": "p",
+     "text": "発表では、すべての乗員を包み込むような没入感のある3Dサウンドを提供するとされています。"
+    },
+    {
+     "type": "h",
+     "text": "聴けるサービスの例"
+    },
+    {
+     "type": "p",
+     "text": "ドルビーによると、日本ではAmazon MusicやAudibleなどのストリーミングで、Dolby Atmosの作品を楽しめます。タイではTIDAL、中国ではQQ MusicやiQIYIが例に挙がっています。"
+    },
+    {
+     "type": "h",
+     "text": "AVANCIERはどんな車か"
+    },
+    {
+     "type": "p",
+     "text": "AVANCIERは、ハイブリッドの3列SUVです。「Grand-Journey」を掲げ、上質な移動と丁寧な造りをねらっています。"
+    },
+    {
+     "type": "p",
+     "text": "新しいHマークをハイブリッドモデルとして初めて付け、新開発のプラットフォームと次世代の「Honda Hybrid」を初めて載せます。"
+    },
+    {
+     "type": "h",
+     "text": "室内の装備と発売の予定"
+    },
+    {
+     "type": "p",
+     "text": "1列目は、15.4インチの大型センターディスプレイに機能を集約しています。2列目には、タッチ操作パネルとスマートフォンホルダー付きの大型アームレストがあります。"
+    },
+    {
+     "type": "p",
+     "text": "発売は、日本やタイ、中国など、アジアを中心に順次の予定です。日本での価格や発売日は、明らかになっていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "12個",
+       "label": "制御するスピーカーの数"
+      },
+      {
+       "value": "15.4インチ",
+       "label": "1列目のディスプレイ"
+      },
+      {
+       "value": "3列",
+       "label": "座席の列数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "新車を検討中の人は、価格と発売日の発表を待つ",
+      "立体音響の音楽をよく聴く人は、車選びの条件の1つとして覚えておく",
+      "発売後に販売店などで音を聴ける機会があるか、確かめる"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "音にこだわる人には、車選びの新しい目安が増えました。ただ、価格も発売日もこれからなので、買うかどうかはまだ決められません。発売後に、実際に聴いた人の感想が出てくるのを待つのが無難です。"
+    }
+   ],
+   "source_name": "AV Watch",
+   "source_url": "https://av.watch.impress.co.jp/docs/news/2158305.html",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "AV Watch",
+     "url": "https://av.watch.impress.co.jp/docs/news/2158305.html"
+    }
+   ]
+  },
+  {
+   "id": "game-palworld-comeback-3-measures",
+   "category": "game",
+   "title": "パルワールド、正式版でプレイヤーを呼び戻した3つの施策",
+   "summary": "「オワコン」と呼ばれた後、動画と配信者への声かけで盛り返した経緯をポケットペアが語りました。",
+   "image": {
+    "src": "https://www.4gamer.net/games/574/G057444/20261121015/SS/006.jpg",
+    "kind": "ogp",
+    "credit": "4Gamer.net",
+    "page": "https://www.4gamer.net/games/574/G057444/20261121015/"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "パルワールド"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ポケットペアの担当者が11月20日、上海の講演で「パルワールド」を正式版で盛り返した3つの施策を語りました。",
+      "正式版は2026年7月10日。直前の7月8日に累計プレイヤーが4000万人を超え、Steamの同時接続は約90万人に達しました。",
+      "3つの施策は、変化を見せる宣伝、配信者への声かけ、短い動画の大量投稿です。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ポケットペアは7月10日の「パルワールド」正式版で、離れた人を呼び戻しました。その進め方が11月20日の上海の講演で語られました。"
+    },
+    {
+     "type": "h",
+     "text": "熱狂のあと「オワコン」の声も"
+    },
+    {
+     "type": "p",
+     "text": "アーリーアクセスは2024年1月19日に始まり、わずか8時間でプレイヤーが100万人に達しました。累計では2500万人、Steamの同時接続はピーク時に約210万人でした。"
+    },
+    {
+     "type": "p",
+     "text": "ところが同時接続が30万人まで落ちると、英語圏でも日本でも中国でもSNSで「オワコン」と呼ぶ声が出ました。講演したBuckley氏は、人数が落ち着くのは自然なことだとして、正式版では2024年に遊んだ人をどう呼び戻すかを考えたといいます。"
+    },
+    {
+     "type": "h",
+     "text": "施策1 ゲームの変化を見せる"
+    },
+    {
+     "type": "p",
+     "text": "1つ目は、2024年に遊んだきりの人へ、あれからの変化を見せることです。YouTubeやBilibiliで新要素を紹介し、「Bilibili World」と「ChinaJoy」には大型ブースを出しました。"
+    },
+    {
+     "type": "p",
+     "text": "Amazonの提案で、北米向けにTwitchの広告から体験版も配りました。ブラウザ上で、ダウンロードなしに15分間、パルとの戦闘や捕獲を無料で遊べる仕組みです。"
+    },
+    {
+     "type": "h",
+     "text": "施策2 配信者とメディアに声をかける"
+    },
+    {
+     "type": "p",
+     "text": "2つ目は、過去に配信したクリエイターやインフルエンサーに、できるだけ広く声をかけることです。かつての視聴者が配信に戻れば、見覚えのないパルを通じてゲームの変化が伝わります。"
+    },
+    {
+     "type": "p",
+     "text": "メディアの注目も狙い、「Summer Game Fest 2026」でシネマティックトレイラーを公開しました。ここで正式版のリリース日も発表され、再び話題を集めました。"
+    },
+    {
+     "type": "h",
+     "text": "施策3 短い動画を数か月分用意"
+    },
+    {
+     "type": "p",
+     "text": "3つ目は、パルの動きや新しい仕組みを10〜20秒で見せる動画を、数か月前から大量に作りためたことです。毎日違うパルを出せるうえ、反応を見て関連動画を続けて出せました。何十万回も再生された動画がいくつもあり、あるネコのパルは出れば100万回に届くと、Buckley氏は不思議がっていました。"
+    },
+    {
+     "type": "h",
+     "text": "正式版後の数字"
+    },
+    {
+     "type": "p",
+     "text": "7月8日の時点で、累計プレイヤーは4000万人を超えていました。7月10日に正式版を出すと、Steamの同時接続は約90万人に達し、ランキングも上位15位以内に戻りました。価格は3400円（税込み）です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "100万人",
+       "label": "開始8時間のプレイヤー数"
+      },
+      {
+       "value": "4000万人",
+       "label": "7月8日の累計プレイヤー"
+      },
+      {
+       "value": "約90万人",
+       "label": "正式版直後のSteam同時接続"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "2024年に遊んで離れた人は、正式版で新しいパルや新エリア、育成要素が増えています。価格は3400円（税込み）です。",
+      "15分の体験版は北米向けの企画でした。日本で同じ体験版が出るかは、わかっていません。",
+      "今後の大型アップデートは、ポケットペアの公式発表で確かめます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "「オワコン」と言われたあとに、見せ方を変えて人を戻した例です。2024年に止めた人は、動画で今のパルワールドを見てから買うか決めると、損をしにくいです。"
+    }
+   ],
+   "source_name": "4Gamer.net",
+   "source_url": "https://www.4gamer.net/games/574/G057444/20261121015/",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "4Gamer.net",
+     "url": "https://www.4gamer.net/games/574/G057444/20261121015/"
+    }
+   ]
+  },
+  {
+   "id": "future-supernova-sn2026ahvu",
+   "category": "future",
+   "title": "NGC 1433で超新星、ピーク前から観測できる好機",
+   "summary": "爆発直後から追える超新星。相手の星の正体を探る手がかりになります。",
+   "image": {
+    "src": "https://sorae.info/wp-content/uploads/2026/11/galaxy-ngc-1433-gemini-south-noirlab-2026-11-16-1.jpg",
+    "kind": "ogp",
+    "credit": "International Gemini Observatory/NOIRLab/NSF/AURA（sorae掲載）",
+    "page": "https://sorae.info/astronomy/20261118-ngc-1433-sn-2026ahvu.html"
+   },
+   "visual": {
+    "icon": "spark",
+    "kicker": "超新星"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "NOIRLabが、棒渦巻銀河NGC 1433で11月2日に見つかった超新星「SN 2026ahvu」の画像を公開した",
+      "Ia型と確認され、11月18日から23日に最も明るくなると予測されている",
+      "発見前日には写っておらず、爆発の早い段階から観測を続けられる点が貴重"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "NOIRLabは、チリのジェミニ南望遠鏡が捉えた超新星「SN 2026ahvu」の画像を、11月12日付で公開しました。"
+    },
+    {
+     "type": "h",
+     "text": "どこで何が見つかったか"
+    },
+    {
+     "type": "p",
+     "text": "NGC 1433は、とけい座の方向、地球から約5000万光年先にある棒渦巻銀河です。星が棒状に集まった中心部を、渦巻腕が取り巻いています。画像の中心から右へ少し下がった所に、これまでなかった青白い点が写りました。2026年11月2日に発見されたSN 2026ahvuです。"
+    },
+    {
+     "type": "p",
+     "text": "画像が公開された11月12日の時点でも、明るさは増していました。11月18日から23日に最も明るくなると予測されています。"
+    },
+    {
+     "type": "h",
+     "text": "Ia型超新星とは"
+    },
+    {
+     "type": "p",
+     "text": "分光観測の結果、爆発から間もないIa型超新星だと確認されました。太陽のような星が最後に残す、小さくて密度の高い天体を白色矮星といいます。白色矮星が連星の相手から物質を受け取ったり、別の白色矮星と合体したりして、質量が太陽の約1.4倍を超えると爆発して吹き飛ぶと考えられています。"
+    },
+    {
+     "type": "h",
+     "text": "ピーク前の観測が貴重な理由"
+    },
+    {
+     "type": "p",
+     "text": "Ia型には、どちらの過程で爆発するのか、爆発がどう始まるのかなど、まだはっきりしないことがあります。相手が普通の恒星なら、飛び散った物質がその星にぶつかって加熱され、見る向きによっては爆発後の数日だけ光が余分に増えると予測されています。この余分な光が見つかれば、相手が普通の恒星だった証拠になります。"
+    },
+    {
+     "type": "p",
+     "text": "SN 2026ahvuは、発見前日の観測では写っていません。爆発の早い段階から追えているため、NOIRLabは、時間がたつと失われかねない手がかりを集める機会だとしています。"
+    },
+    {
+     "type": "h",
+     "text": "爆発前後の画像比較"
+    },
+    {
+     "type": "p",
+     "text": "チリのブランコ4m望遠鏡の観測装置「DECam（ダークエネルギーカメラ）」でも、発見の数日後と出現前の画像があります。出現前の画像には、青白い点がまだ写っていません。爆発の前後で周辺を比べることも、白色矮星の相手だった天体の正体を探る手がかりになるといいます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約5000万光年",
+       "label": "NGC 1433までの距離"
+      },
+      {
+       "value": "約1.4倍",
+       "label": "爆発の目安の質量（太陽比）"
+      },
+      {
+       "value": "11月18〜23日",
+       "label": "明るさのピーク予測"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "今のところ、読者がすることは特にありません。",
+      "次に見る点は、余分な光が見つかるかと、爆発前後の画像比較で相手の星の正体がわかるかです。",
+      "約5000万光年先の出来事で、暮らしに直接の影響はありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "暮らしに直接届く話ではありません。次に見るべきは、爆発直後の余分な光が見つかるかどうかです。見つかれば、相手の星の正体に近づきます。"
+    }
+   ],
+   "source_name": "sorae",
+   "source_url": "https://sorae.info/astronomy/20261118-ngc-1433-sn-2026ahvu.html",
+   "published": "2026-11-18",
+   "refs": [
+    {
+     "name": "sorae",
+     "url": "https://sorae.info/astronomy/20261118-ngc-1433-sn-2026ahvu.html"
+    }
+   ]
+  },
+  {
+   "id": "other-kappa-sushi-loss",
+   "category": "other",
+   "title": "かっぱ寿司、中間決算で経常赤字8億9000万円 店舗数で3社に差",
+   "summary": "売上は367億円。原価率は競合並みでも、店舗数の少なさが響いていると分析されています。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/business/articles/2611/20/cover_news012.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia ビジネスオンライン",
+    "page": "https://www.itmedia.co.jp/business/articles/2611/20/news012.html"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "回転ずし"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "かっぱ寿司の2027年3月期の中間決算は、経常損益が8億9000万円の赤字になりました。",
+      "売上高は367億円（前年同期比0.9％減）で、店舗数は約300と、500店舗超の競合3社に差があります。",
+      "ITmedia ビジネスオンラインの分析では、味より店舗数と印象の差が課題とされています。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "かっぱ寿司の2027年3月期第2四半期決算は、売上高が367億円、経常損益が8億9000万円の赤字でした。"
+    },
+    {
+     "type": "h",
+     "text": "中間決算の数字"
+    },
+    {
+     "type": "p",
+     "text": "売上高は前年同期比0.9％減の367億円でした。経常損益は、前年同期の8億4000万円の黒字から、8億9000万円の赤字に変わりました。売上高は2012年度の941億円をピークに減り、近年は700億円台です。"
+    },
+    {
+     "type": "h",
+     "text": "店舗数で3社に差"
+    },
+    {
+     "type": "p",
+     "text": "かっぱ寿司は1979年に長野市で1号店を出し、1984年に関東へ進出した業界の先駆けです。2012年度に約390店あった店舗は、いまは約300店です。はま寿司、スシロー、くら寿司は、いずれも500店舗超を展開しています。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/business/articles/2611/20/sy_kapp_01.jpg",
+     "kind": "ogp",
+     "credit": "ITmedia ビジネスオンライン",
+     "caption": "苦戦が続くかっぱ寿司（記事掲載の写真）",
+     "page": "https://www.itmedia.co.jp/business/articles/2611/20/news012.html"
+    },
+    {
+     "type": "h",
+     "text": "味ではなくイメージの差"
+    },
+    {
+     "type": "p",
+     "text": "原価率（売上に対する材料費の割合）は、2000年代後半のかっぱ寿司が4割を下回っていました。同じ頃、くら寿司は45％超、スシローは50％前後でした。いまはスシローとくら寿司が40％台前半、かっぱ寿司は50％弱で、むしろ競合を上回っています。"
+    },
+    {
+     "type": "p",
+     "text": "筆者は、いまの味が劣っているとは感じないとしています。一度下がった印象は戻しにくく、店舗が少ないため、看板としての宣伝効果でも後れを取っていると分析しています。"
+    },
+    {
+     "type": "h",
+     "text": "これまでの業績の流れ"
+    },
+    {
+     "type": "p",
+     "text": "経常利益は2011年度まで2桁億円でしたが、2012年度に前年度比75％減の7億9000万円になり、2013年度に赤字へ転じました。2014年度にコロワイド傘下に入って黒字に戻りましたが、ブランドを刷新した2016年度と、2020〜2022年度は赤字でした。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "8億9000万円",
+       "label": "中間期の経常赤字"
+      },
+      {
+       "value": "367億円",
+       "label": "中間期の売上高"
+      },
+      {
+       "value": "約300店",
+       "label": "現在の店舗数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "かっぱ寿司の利用者が、今すぐ手続きをする必要はありません。",
+      "回転ずしの各社を比べるときは、売上だけでなく店舗数と原価率も見ると違いがわかる。",
+      "次の決算で赤字が続くかが、立て直しの進み具合を見る材料になる。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "今回の分析では、赤字の理由は味ではなく、店舗数の少なさと印象の面が大きいとされています。次に見るのは、出店や店舗の見直しなど、3社との差を縮める動きが出るかどうかです。"
+    }
+   ],
+   "source_name": "ITmedia ビジネスオンライン",
+   "source_url": "https://www.itmedia.co.jp/business/articles/2611/20/news012.html",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "ITmedia ビジネスオンライン",
+     "url": "https://www.itmedia.co.jp/business/articles/2611/20/news012.html"
+    }
+   ]
+  },
+  {
+   "id": "ai-idc-hire-more",
+   "category": "ai",
+   "title": "AIで高い成果の企業ほど増員を見込む、IDCが調査結果",
+   "summary": "AIで成果を出す企業の過半数が、今後18カ月で人が増えると予想。",
+   "image": {
+    "src": "https://image.itmedia.co.jp/enterprise/articles/2611/21/cover_news003.jpg",
+    "kind": "ogp",
+    "credit": "ITmedia AI+",
+    "page": "https://www.itmedia.co.jp/enterprise/articles/2611/21/news003.html"
+   },
+   "visual": {
+    "icon": "chart",
+    "kicker": "AIと雇用"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "調査会社IDCは、AIで高い成果を出す企業ほど、今後の増員を見込む割合が高いと発表しました。",
+      "AI投資で50％以上のROIを得ている「リーダー」の過半数が、今後18カ月で人が増えると見ています。",
+      "どの企業も一部の人員は減らしていますが、リーダーは削減と並行して増員も見込んでいます。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "IDCは2026年11月17日（現地時間）、「AIが普及すれば企業の人員は減る」という通説と食い違う調査結果を、公式ブログで発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "調査の中身と「リーダー」の意味"
+    },
+    {
+     "type": "p",
+     "text": "IDCは、AI投資で50％以上のROI（投資に対する利益の割合）を得ていると答えた組織を「リーダー」と呼んでいます。調査は2026年5月の「Worldwide Future of Work Survey」です。それによると、リーダーの過半数が、今後18カ月で自組織の人員が増えると見込んでいます。"
+    },
+    {
+     "type": "h",
+     "text": "増員を見込む職位の割合"
+    },
+    {
+     "type": "p",
+     "text": "増えると見込む割合は、職位を問わずリーダーのほうが高くなりました。ROIがまだプラスでない「ラガード」と比べると、次のとおりです。\n・初級職：リーダー68％、ラガード40％（中間の「アチーバー」は51％）\n・中間管理職：リーダー63％、ラガード39％\n・上級管理職：リーダー59％、ラガード36％"
+    },
+    {
+     "type": "h",
+     "text": "削減も、リーダーは少ない"
+    },
+    {
+     "type": "p",
+     "text": "3分類の組織は、いずれも一部の人員を削減しています。リーダーも例外ではありません。ただ、人員の減少を見込む割合は、リーダーはどの職位でも12％以下で、中間管理職と上級管理職では3％でした。IDCは、削減と増員は二者択一ではなく、新しい役割に投資を移す動きだと説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "体制の差と、IDCの助言"
+    },
+    {
+     "type": "p",
+     "text": "AI活用を進める専門組織「CoE」が全面的に動いている割合は、リーダーが63％、ラガードが15％でした。AIの動く範囲を決める「ガードレール」を設けたうえで、AIエージェントを完全に自律稼働させている割合は、リーダーが33％、ラガードが20％です。IDCは、決まりを整えるのが先で、自律はその後に続くとしています。"
+    },
+    {
+     "type": "p",
+     "text": "IT部門には、仕事の割り当ての責任者を1人決めること、人・外部人材・AIエージェントを横断して管理できるかでベンダーを選ぶこと、AI前提の働き方を見直し続けることを勧めています。今後見るべきは人員数ではなく、仕事の配分だとしています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "68％",
+       "label": "初級職の増員を見込むリーダー"
+      },
+      {
+       "value": "40％",
+       "label": "同じ見込みのラガード"
+      },
+      {
+       "value": "63％",
+       "label": "CoEが全面稼働のリーダー"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "AI導入を進める企業の担当者は、人を減らす前提でなく、仕事の配分とコストを測る。",
+      "社内にAI活用の専門組織や、AIの動く範囲を決める決まりがあるか確認する。",
+      "一般の働き手は、自分の職場のAI活用の進み具合を、今後の採用の見通しを考える材料にできる。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AIで仕事が減るかどうかは、その会社がAIで成果を出せているかで見え方が変わりそうです。ただ、これは調査回答者の見込みで、実際の採用数ではありません。自分の職場のAI活用の進み具合も、判断の目安になります。"
+    }
+   ],
+   "source_name": "ITmedia AI+",
+   "source_url": "https://www.itmedia.co.jp/enterprise/articles/2611/21/news003.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/enterprise/articles/2611/21/news003.html"
+    }
+   ]
+  },
+  {
+   "id": "mobile-gigabyte-aorus-prime3",
+   "category": "mobile",
+   "title": "GIGABYTE、RTX 5060 Ti機を41万1000円前後で発売",
+   "summary": "AORUSブランドの部品でそろえた完成品のゲーミングPCが11月20日に出ました。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2158/420/01_l.jpg",
+    "kind": "ogp",
+    "credit": "PC Watch",
+    "page": "https://pc.watch.impress.co.jp/docs/news/2158420.html"
+   },
+   "visual": {
+    "icon": "pc",
+    "kicker": "ゲーミングPC"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "GIGABYTEが11月20日、ゲーミングデスクトップを発売",
+      "実売予想は41万1000円前後（税込み）",
+      "Ryzen 5 9500FとRTX 5060 Tiを搭載"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "GIGABYTEは11月20日、ゲーミングPC「AORUS PRIME 3 AP3A5N6T-5103P」を発売。実売予想は41万1000円前後（税込み）です。"
+    },
+    {
+     "type": "h",
+     "text": "発売日と価格"
+    },
+    {
+     "type": "p",
+     "text": "GIGABYTEは同じ11月20日に製品を発表し、その日から販売を始めました。価格の41万1000円前後は、実際に店で付く価格の予想です。取り扱い店舗の情報は、伝えられていません。"
+    },
+    {
+     "type": "h",
+     "text": "AORUSの部品でそろえた構成"
+    },
+    {
+     "type": "p",
+     "text": "ゲーミング向けパーツブランド「AORUS」の主要パーツを採用し、安定した動作と耐久性をうたいます。CPUクーラーは「AORUS AirFlow 9025」、マザーボードはB850チップセットを使ったカスタムモデルです。側面はクリアで、光るクーラーが見えます。"
+    },
+    {
+     "type": "h",
+     "text": "性能と主な仕様"
+    },
+    {
+     "type": "p",
+     "text": "CPUはRyzen 5 9500Fで、6コア12スレッド、最大5GHzです。ビデオカードはOCモデル（出荷時に動作を引き上げたモデル）の「GeForce RTX 5060 Ti WINDFORCE MAX OC 16G」です。最新ゲームのほか、4K動画編集やAIの作業も安定してこなせるとうたいます。"
+    },
+    {
+     "type": "p",
+     "text": "メモリはDDR5-5600の32GB（16GB×2、最大64GB）、ストレージは1TBのNVMe SSD、電源は80 PLUS Gold認証の650Wです。OSはWindows 11 Proです。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/pcuser/articles/2611/20/yk30028_02_PRIME.jpg",
+     "kind": "ogp",
+     "credit": "ITmedia PC USER",
+     "caption": "側面から見た内部。GIGABYTEのGeForce RTXカードが入っている",
+     "page": "https://www.itmedia.co.jp/pcuser/articles/2611/20/news054.html"
+    },
+    {
+     "type": "h",
+     "text": "端子と大きさ"
+    },
+    {
+     "type": "p",
+     "text": "映像出力はDisplayPort 2.1bが3基とHDMIです。通信は2.5Gigabit Ethernet、Wi-Fi 7、Bluetooth 5.4に対応し、USB端子は種類を合わせて14基あります。本体サイズは205×410×400mm、重さは12.5kgです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "41万1000円",
+       "label": "実売予想価格（税込み）"
+      },
+      {
+       "value": "32GB",
+       "label": "メモリ容量"
+      },
+      {
+       "value": "12.5kg",
+       "label": "本体の重さ"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買いたい人は、41万1000円前後が予想価格なので、店の表示で実際の価格を確かめます。",
+      "置き場所に、205×410×400mmの空きと12.5kgを支える台を用意します。",
+      "取り扱い店舗がまだ伝えられていないため、買う前にGIGABYTEの案内を見ます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "41万円台という価格は、同じ性能帯の完成品や自作と見比べる価値があります。パーツ選びの手間を省き、光るクーラーまでAORUSでそろえたい人向けです。"
+    }
+   ],
+   "source_name": "PC Watch",
+   "source_url": "https://pc.watch.impress.co.jp/docs/news/2158420.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2158420.html"
+    },
+    {
+     "name": "ITmedia PC USER",
+     "url": "https://www.itmedia.co.jp/pcuser/articles/2611/20/news054.html"
+    }
+   ],
+   "shop": [
+    {
+     "name": "GIGABYTE AORUS PRIME 3 AP3A5N6T-5103P",
+     "query": "GIGABYTE AORUS PRIME 3 AP3A5N6T-5103P"
+    }
+   ]
+  },
+  {
+   "id": "game-lostsword-japan-prereg",
+   "category": "game",
+   "title": "スマホRPG『ロストソード』日本上陸、事前登録を開始",
+   "summary": "韓国発の2DアクションRPG。登録者全員に専用コスチュームが贈られます。",
+   "image": {
+    "src": "https://cimg.kgl-systems.io/camion/files/dengeki/94689/a51494b66b20eaec11fe501f5bdf797f4.jpg?x=1280",
+    "kind": "ogp",
+    "credit": "電撃オンライン",
+    "page": "https://dengekionline.com/article/202611/94689"
+   },
+   "visual": {
+    "icon": "phone",
+    "kicker": "事前登録"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "韓国発の2DアクションRPG『ロストソード』の日本向け事前登録が11月18日に始まった",
+      "基本プレイ無料。15万人を超えると☆5キャラ「炎帝・ケイ」が全員に配られる",
+      "対応はiOSとAndroid。正式リリースの日は、まだ発表されていない"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "韓国で人気の2DアクションRPG『ロストソード』が日本に上陸します。2026年11月18日から、日本向けの事前登録が始まりました。"
+    },
+    {
+     "type": "h",
+     "text": "どんなゲームか"
+    },
+    {
+     "type": "p",
+     "text": "舞台はアーサー王伝説をモチーフにした世界「ブリタニア」です。異世界に迷い込んだ少年イーサンが、少女の姿で描かれた円卓の騎士たちと冒険します。キャラ5人とペット3体でパーティーを組み、必殺技ではアニメのような専用カットが入ります。"
+    },
+    {
+     "type": "p",
+     "text": "放置型RPGの要素があり、気軽に遊べます。ボス戦、レイド、PvPの「コロシアム」では、編成と戦略が勝敗を分けます。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/dengeki/94689/a29aa750d1aa4d768eb84a3e42c7257ee.jpg?x=1280",
+     "kind": "ogp",
+     "credit": "電撃オンライン",
+     "caption": "『ロストソード』の紹介画像",
+     "page": "https://dengekionline.com/article/202611/94689"
+    },
+    {
+     "type": "h",
+     "text": "事前登録の特典"
+    },
+    {
+     "type": "p",
+     "text": "登録者数に応じて、全員に次の報酬が贈られます。\n・3万人突破：ダイヤ×1,000\n・5万人突破：ゴールド×1,000,000\n・10万人突破：ダイヤ×3,000\n・15万人突破：☆5キャラクター「炎帝・ケイ」\nさらに、登録者全員に「炎帝・ケイ」専用コスチューム「炎の宴」も贈られます。受付は正式リリースまでです。"
+    },
+    {
+     "type": "h",
+     "text": "韓国での実績と基本情報"
+    },
+    {
+     "type": "p",
+     "text": "公式の紹介によると、2025年1月の韓国リリースから50日で、ジャンル内のダウンロード数と売上の1位になりました。その後、北米・欧州、台湾・香港・マカオにも広がっています。開発はCODECAT、運営はWEMADE CONNECTです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "15万人",
+       "label": "炎帝・ケイが配られる登録数"
+      },
+      {
+       "value": "50日",
+       "label": "韓国で1位になるまでの日数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "遊ぶ予定の人は、公式サイトかApp Store・Google Playで事前登録しておくと、専用コスチュームを受け取れます。",
+      "基本プレイは無料ですが、アプリ内課金があります。",
+      "正式リリースの日が決まっていないので、続報は公式サイトや公式Xで確認してください。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "事前登録は無料で、ゲームを決めかねている人も気軽に押さえておけます。ただ、韓国での1位は公式の紹介にある実績なので、日本向けの出来は配信後の評判を見てからでも遅くありません。"
+    }
+   ],
+   "source_name": "電撃オンライン",
+   "source_url": "https://dengekionline.com/article/202611/94689",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "電撃オンライン",
+     "url": "https://dengekionline.com/article/202611/94689"
+    }
+   ]
+  },
+  {
+   "id": "other-accenture-security",
+   "category": "other",
+   "title": "アクセンチュア日本法人、「セキュリティーのアクセンチュア」を表明",
+   "summary": "買収した米ドラゴスの技術を生かし、工場などOT分野の守りで日本企業向けサービスを広げます。",
+   "visual": {
+    "icon": "lock",
+    "kicker": "OT防御"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "アクセンチュアの日本法人は11月20日、「セキュリティーのアクセンチュア」を新しい旗印にすると表明しました。",
+      "2026年9月までに株式の過半を取得した米ドラゴスの技術を生かし、日本企業向けのサービスを広げます。",
+      "対象はOT（工場や設備を動かす制御・運用技術）の守りです。M&Aと人材の強化で需要を狙います。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "アクセンチュアは2026年11月20日の記者説明会で、セキュリティー事業を前面に出す方針を示し、工場など現場の機器の守りに力を入れます。"
+    },
+    {
+     "type": "h",
+     "text": "説明会で表明したこと"
+    },
+    {
+     "type": "p",
+     "text": "日本法人の濱岡大社長が、「セキュリティーのアクセンチュア」を新たな旗印として打ち出しました。OTは工場や設備を動かす仕組みで、止まると生産に影響が出ます。この分野の守りに、同社は力を入れる考えです。"
+    },
+    {
+     "type": "h",
+     "text": "ドラゴスとはどんな会社か"
+    },
+    {
+     "type": "p",
+     "text": "ドラゴスは、OTのセキュリティーを手がける米国の企業です。アクセンチュアは2026年9月までに、同社の株式の過半を取得しました。説明会にはドラゴスの共同創業者でCEO（最高経営責任者）のロバート・M・リー氏も登壇しました。"
+    },
+    {
+     "type": "h",
+     "text": "日本向けの広げ方"
+    },
+    {
+     "type": "p",
+     "text": "アクセンチュアは、ドラゴスの技術や知見を生かして、日本企業向けのサービスを広げます。日経クロステックは、M&A（企業買収）と人材の強化で、OTの需要を取り込む狙いだと伝えています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "過半",
+       "label": "取得したドラゴス株の割合"
+      },
+      {
+       "value": "11月20日",
+       "label": "記者説明会の日"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "工場や設備の制御システムを持つ会社の人は、OT向けの守りを相談できる先が増える動きとして押さえておく。",
+      "個人の読者が、今すぐすることは特にありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "工場など現場の機器の守りに、大手コンサルが力を入れ始めました。次に見るのは、日本での新サービスや買収が具体的に発表されるかどうかです。"
+    }
+   ],
+   "source_name": "日経クロステック",
+   "source_url": "https://xtech.nikkei.com/atcl/nxt/column/18/00001/12194/",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "日経クロステック",
+     "url": "https://xtech.nikkei.com/atcl/nxt/column/18/00001/12194/"
+    }
+   ]
+  },
+  {
+   "id": "ai-tiktok-ai-check",
+   "category": "ai",
+   "title": "TikTok、AI生成かを調べる機能と肖像の無断利用検出を公開",
+   "summary": "TikTokのAIで作った画像・動画かを誰でも調べられ、有名人の顔の無断利用も検出できます。",
+   "image": {
+    "src": "https://www.watch.impress.co.jp/img/ipw/list/2158/347/01.jpg",
+    "kind": "ogp",
+    "credit": "Impress Watch",
+    "page": "https://www.watch.impress.co.jp/docs/news/2158347.html"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "AI判別機能"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "TikTokが、AI生成かを調べる「透明性確認」と、肖像の無断利用を探す「肖像検出」を発表",
+      "AI生成のラベルを付けた動画は、これまでに累計50億本以上",
+      "透明性確認はTikTokのアカウントがなくても使えます"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "TikTokは20日、AIが作った画像や動画の扱いを透明にする2つの新機能を発表しました。ファイルをアップロードして確かめる機能と、顔の無断利用を探す機能です。"
+    },
+    {
+     "type": "h",
+     "text": "アップロードして調べる機能"
+    },
+    {
+     "type": "p",
+     "text": "透明性確認は、画像や動画をアップロードすると、TikTokのAI作成機能で生成・編集されたものかを確かめられる機能です。TikTokのアカウントがなくても使え、TikTokの透明性センターから入ります。"
+    },
+    {
+     "type": "h",
+     "text": "判定に使う2つの仕組み"
+    },
+    {
+     "type": "p",
+     "text": "判定には、作成の履歴を記録する「コンテンツクレデンシャル」を使います。もう1つは、TikTok独自の「VeraDura」です。目に見えない透かしを使う技術です。"
+    },
+    {
+     "type": "h",
+     "text": "顔の無断利用を探す肖像検出"
+    },
+    {
+     "type": "p",
+     "text": "肖像検出は、本人の同意なく顔や姿が使われたかもしれないAI生成コンテンツを、TikTok上で見つけて報告できる機能です。使いたい人が自分で申し込む方式で、世界での展開が始まりました。"
+    },
+    {
+     "type": "p",
+     "text": "使えるのは、対象となるクリエイターや公人です。政府機関、政治家、政党のアカウントも使えます。利用には、第三者の会社を通じた本人確認と登録が必要です。"
+    },
+    {
+     "type": "h",
+     "text": "見つかった後の流れ"
+    },
+    {
+     "type": "p",
+     "text": "登録後に、自分の肖像が使われたかもしれない投稿やアカウントが見つかると、通知が届きます。内容を確認し、TikTokのセーフティチームへ直接報告できます。コミュニティガイドラインに違反していれば、削除されます。"
+    },
+    {
+     "type": "p",
+     "text": "個人情報への配慮として、集めるデータは最小限に抑えます。本人確認に使った身分証の資料は、TikTokが続けて持つことはないとしています。"
+    },
+    {
+     "type": "h",
+     "text": "これまでのAI表示の取り組み"
+    },
+    {
+     "type": "p",
+     "text": "TikTokは以前から、AI生成コンテンツにラベルを付けてきました。累計で50億本以上の動画に付けています。「トピックを管理」機能を使うと、「おすすめ」に出るAI生成コンテンツの量を自分で増減できます。"
+    },
+    {
+     "type": "p",
+     "text": "透明性確認が日本で使えるか、料金がかかるかは、発表では示されていません。他社のAIで作ったものを調べられるかも、明らかにされていません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2つ",
+       "label": "今回発表の新機能"
+      },
+      {
+       "value": "50億本以上",
+       "label": "ラベルを付けた累計動画数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "気になる画像・動画は、TikTokの透明性センターでアップロードして確かめられます。",
+      "クリエイターや公人は、肖像検出に申し込むと、無断利用の疑いを通知で知れます。",
+      "日本での提供範囲や料金は発表されていないので、TikTokの案内を待ちます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AI動画が増えるなか、アカウントなしで調べられるのは便利です。ただ、調べられるのはTikTokのAI機能で作ったものだけです。ほかのAIで作った動画の真偽は、これだけでは決められません。"
+    }
+   ],
+   "source_name": "Impress Watch",
+   "source_url": "https://www.watch.impress.co.jp/docs/news/2158347.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "Impress Watch",
+     "url": "https://www.watch.impress.co.jp/docs/news/2158347.html"
+    }
+   ]
+  },
+  {
+   "id": "mobile-asus-harpe2-ace-mini",
+   "category": "mobile",
+   "title": "ASUS、Demon1と作った47gのマウスを12月3日発売",
+   "summary": "VALORANT世界王者と共同開発した小型の軽量ワイヤレスマウスで、予約は11月27日からです。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2158/406/01_l.jpg",
+    "kind": "ogp",
+    "credit": "PC Watch",
+    "page": "https://pc.watch.impress.co.jp/docs/news/2158406.html"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "ゲーミング"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "ASUSが軽量マウス「ROG Harpe II Ace Mini」を12月3日に発売",
+      "重さ約47gで、価格は2万5020円。予約は11月27日から",
+      "VALORANT世界王者Demon1選手と共同開発"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ASUSは、軽量ワイヤレスマウス「ROG Harpe II Ace Mini」を12月3日に発売します。価格は2万5020円、予約は11月27日からです。"
+    },
+    {
+     "type": "h",
+     "text": "発売日・価格・色"
+    },
+    {
+     "type": "p",
+     "text": "通常モデルと、Demon1選手のシグネチャーモデル「Demon1 Edition」は、どちらも2万5020円です。税込みか税別かは示されていません。発売時の色はBlackとMoonlight Whiteで、Lava RedとAqua Blueの時期は未定です。ケーブル、レシーバー、キャリングケースが付き、色は本体に合わせています。"
+    },
+    {
+     "type": "h",
+     "text": "小型で47gの形"
+    },
+    {
+     "type": "p",
+     "text": "VALORANTの世界王者でもあるDemon1選手が、試作の段階から開発に加わりました。通常サイズの「Harpe II Ace」より長さと幅を小さくし、高さを少し増して安定させています。つかみ持ちにもつまみ持ちにも合い、重さは約47gです。マウスソールは従来モデルより大きくなりました。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2158/406/14_l.jpg",
+     "kind": "ogp",
+     "credit": "PC Watch",
+     "caption": "つかみ持ち・つまみ持ちに合わせた形をうたう発表の画面",
+     "page": "https://pc.watch.impress.co.jp/docs/news/2158406.html"
+    },
+    {
+     "type": "h",
+     "text": "センサーとスイッチ"
+    },
+    {
+     "type": "p",
+     "text": "センサーは「ROG AimPoint Pro 65K」で、最大解像度は6万5000dpiです。キャリブレーション（調整）で誤差を1%未満に抑えたとうたい、スキャンレートは最大2万fpsです。クリックは光学式の「ROG Optical Micro Switch」で、1億回の押下に耐えます。左右の重さのばらつきを減らすため、特性が近いスイッチを検査で選んで組み合わせています。"
+    },
+    {
+     "type": "h",
+     "text": "つなぎ方と電池"
+    },
+    {
+     "type": "p",
+     "text": "接続は、独自の「ROG SpeedNova 8K Gen II」による2.4GHz無線、Bluetooth 5.1、USB有線の3通りです。2.4GHz無線とUSB有線では、8000Hzのポーリングレート（1秒に位置を伝える回数）に対応します。電池は2.4GHz無線・1000Hz・LEDオフで最大142時間です。"
+    },
+    {
+     "type": "p",
+     "text": "レシーバーのLED2つで、電波の強さや電池残量を色で確かめられます。設定はWebブラウザー上の「Gear Link」で変えられ、スキャンレートなどを最大に上げる「Zone Mode」は、本体のボタンでも切り替えられます。"
+    },
+    {
+     "type": "h",
+     "text": "Demon1 Editionの特徴"
+    },
+    {
+     "type": "p",
+     "text": "Demon1 Editionの色はパープルで、Demon1選手の妻が好きな色だそうです。レシーバーには愛猫をモチーフにしたデザインが入り、ステッカーも付きます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "約47g",
+       "label": "本体の重さ"
+      },
+      {
+       "value": "2万5020円",
+       "label": "どちらのモデルも同じ価格"
+      },
+      {
+       "value": "142時間",
+       "label": "電池の最長時間"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "買いたい人は、11月27日の予約開始を待ち、12月3日の発売に備えます。",
+      "握り方がつかみ持ち・つまみ持ちの人は、小型の本機が候補になります。",
+      "設定は、ブラウザーで開く「Gear Link」から変えられます。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "47gの軽さと小さめの形が合うかは、手の大きさと持ち方で決まります。2万5020円なので、握り心地を確かめられるなら確かめてから予約すると安心です。"
+    }
+   ],
+   "source_name": "PC Watch",
+   "source_url": "https://pc.watch.impress.co.jp/docs/news/2158406.html",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "PC Watch",
+     "url": "https://pc.watch.impress.co.jp/docs/news/2158406.html"
+    }
+   ]
+  },
+  {
+   "id": "game-persona6-wada-interview",
+   "category": "game",
+   "title": "『ペルソナ6』は通過点、次作まで待たせない工夫を進める",
+   "summary": "P-Studioの和田氏が、新作の手応えと次作までの間隔に触れました。",
+   "image": {
+    "src": "https://cimg.kgl-systems.io/camion/files/94660/thumbnail_jQUF.jpg?x=1280",
+    "kind": "ogp",
+    "credit": "ファミ通.com",
+    "page": "https://www.famitsu.com/article/202611/94660"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "ペルソナ6"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "P-Studioの和田和久総合プロデューサーが『ペルソナ6』に触れたインタビューが公開",
+      "『ペルソナ6』は通過点で、次の作品まで長く待たせない工夫を進めているといいます",
+      "発売日は未発表。『ペルソナ4 リバイバル』は2027年2月18日に発売予定"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "『ペルソナ』シリーズを作るP-Studioの和田和久総合プロデューサーが、セガ系の読み物でインタビューに答えました。11月20日にファミ通が内容を伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "インタビューは2回シリーズの後編"
+    },
+    {
+     "type": "p",
+     "text": "このインタビューは「セガサマニア」の第2回で、テーマが『ペルソナ』シリーズです。セガサマニアは、セガサミーグループ各社の事業や開発現場を紹介する読み物です。前編ではシリーズの歴史と、作品の価値を広げてきた歩みが振り返られました。"
+    },
+    {
+     "type": "h",
+     "text": "『ペルソナ3』時代から今の開発まで"
+    },
+    {
+     "type": "p",
+     "text": "公開された後編では、シリーズの転機になった『ペルソナ3』当時の開発現場が語られました。あわせて、海外へ広げるきっかけや、シリーズを育て続けるための開発面の取り組みにも触れています。最後に、今年発表された番号つきの最新作『ペルソナ6』の話が出ました。"
+    },
+    {
+     "type": "h",
+     "text": "『ペルソナ6』について語られたこと"
+    },
+    {
+     "type": "p",
+     "text": "『ペルソナ6』は、話せることがまだ限られています。それでも和田氏は、これまでの挑戦の成果を作品そのもので示したい考えで、手応えを感じながら作っているとのことです。さらに『ペルソナ6』は終点ではなく、次の作品まで長く待たせないよう、さまざまな工夫をしていると語りました。工夫の具体策は示されていません。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/famitsu/94660/a809b1a1ed26c889a8f26d7bc5b654918.jpg?x=767",
+     "kind": "ogp",
+     "credit": "ファミ通.com",
+     "caption": "インタビュー記事に添えられた画像",
+     "page": "https://www.famitsu.com/article/202611/94660"
+    },
+    {
+     "type": "h",
+     "text": "発売日・対応機種と先に出る作品"
+    },
+    {
+     "type": "p",
+     "text": "『ペルソナ6』の発売日は発表されていません。対応機種はNintendo Switch 2、PS5、Xbox Series X|S（Xboxゲームパス対応）、PC（Steam）です。シリーズでは先に、『ペルソナ4 リバイバル』が2027年2月18日に発売予定です。『ペルソナ4 ザ・ゴールデン』のフルリメイクです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "未発表",
+       "label": "ペルソナ6の発売日"
+      },
+      {
+       "value": "2月18日",
+       "label": "P4リバイバルの発売日（2027年）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "『ペルソナ6』を待つ人は、発売日がまだ出ていないので、予約や機種選びを急がなくて大丈夫です。",
+      "『ペルソナ6』はSwitch 2、PS5、Xbox Series X|S、PCの4種類向けなので、持っている機種で選べます。",
+      "先に遊びたい人は、2027年2月18日発売予定の『ペルソナ4 リバイバル』が候補です。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "新作の発売日が未定なので、今は買う準備より情報待ちの段階です。シリーズを久しぶりに遊ぶ人は、2027年2月に出る『ペルソナ4 リバイバル』が先に手に取れる作品になります。"
+    }
+   ],
+   "source_name": "ファミ通",
+   "source_url": "https://www.famitsu.com/article/202611/94660",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "ファミ通",
+     "url": "https://www.famitsu.com/article/202611/94660"
+    }
+   ]
+  },
+  {
+   "id": "other-kose-reservation-leak",
+   "category": "other",
+   "title": "コーセーの予約システムで顧客2万8098件の個人情報が流出",
+   "summary": "店頭体験の予約システムの不備が悪用され、住所や生年月日が見られました。",
+   "visual": {
+    "icon": "lock",
+    "kicker": "コーセー流出"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "コーセーの店頭体験・レッスン予約システムが不正アクセスを受け、顧客2万8098件の個人情報が流出した。",
+      "対象は直営店「Maison KOSE銀座」と、閉店した「Maison KOSE表参道」の予約利用者。",
+      "対象の顧客には、コーセーからメールで連絡が行く。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "コーセーは、公式サイトの予約システムから顧客の個人情報2万8098件が流出したと明らかにしました。直営店で体験やレッスンを予約した人が対象です。"
+    },
+    {
+     "type": "h",
+     "text": "何が起きたのか"
+    },
+    {
+     "type": "p",
+     "text": "コーセーは11月10日、会員の個人情報を読み込むリクエストが短時間に繰り返し行われているのを確認しました。調べたところ、システムのアクセス制御（誰に何を見せるかの設定）の不備が悪用され、第三者が顧客の個人情報にアクセスしていたとわかりました。"
+    },
+    {
+     "type": "h",
+     "text": "流出した情報と対象の人"
+    },
+    {
+     "type": "p",
+     "text": "流出したのは、氏名、住所、電話番号、生年月日、性別、メールアドレスなどです。対象は、直営店「Maison KOSE銀座」と、閉店した「Maison KOSE表参道」で、同システムを使って店頭体験やレッスンを予約した顧客です。"
+    },
+    {
+     "type": "h",
+     "text": "コーセーの対応"
+    },
+    {
+     "type": "p",
+     "text": "コーセーは被害の拡大を防ぐため、システムを停止し、個人情報保護委員会へ報告しました。対象の顧客にはメールで連絡します。アクセス制御を見直し、プログラムを改修するほか、システムの脆弱性診断（弱点の検査）も行うとしています。"
+    },
+    {
+     "type": "h",
+     "text": "まだわかっていないこと"
+    },
+    {
+     "type": "p",
+     "text": "不正アクセスをした相手や、流出した情報の悪用の有無は公表されていません。流出した情報から詐欺の手口が使われるおそれもあるため、届いた連絡の真偽は公式の案内で確かめる必要があります。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2万8098件",
+       "label": "流出した個人情報の件数"
+      },
+      {
+       "value": "11月10日",
+       "label": "不審なアクセスを確認した日"
+      },
+      {
+       "value": "2店舗",
+       "label": "対象の直営店（銀座・表参道）"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Maison KOSE銀座か表参道の店頭体験・レッスンを予約したことがある人は、届くメールを確認する。",
+      "コーセーを名乗るメールやSMSのリンクは開かず、公式サイトのお知らせで確かめる。",
+      "住所や生年月日が漏れた恐れがあるため、不審な電話や郵便にも注意する。",
+      "問い合わせ窓口は、コーセー公式サイトのお知らせで確認する。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "対象かどうかの目安は、コーセーからのメールです。メールが届いても本文のリンクは開かず、公式サイトのお知らせで同じ内容を確かめてください。"
+    }
+   ],
+   "source_name": "Security NEXT",
+   "source_url": "https://www.security-next.com/193020",
+   "published": "2026-11-19",
+   "refs": [
+    {
+     "name": "Security NEXT",
+     "url": "https://www.security-next.com/193020"
+    }
+   ]
+  },
+  {
+   "id": "ai-ai-router-secret-leak",
+   "category": "ai",
+   "title": "AIの仲介網で秘密が漏れる実態、200万件近い実験で判明",
+   "summary": "AIアプリの裏側の仲介網で、入力した鍵やURLが盗まれ悪用された。",
+   "image": {
+    "src": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/ai-privacy-leakage-1152x648.jpg",
+    "kind": "ogp",
+    "credit": "Ars Technica",
+    "page": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "AI仲介の漏えい"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "研究者が、おとり情報入りの依頼を200万件近くAIの仲介網に流し、漏えいを調べた",
+      "少なくとも3つのAI提供元が侵入され、受けた依頼の中身が盗まれていた",
+      "「データを残さない」設定を無視する事業者も見つかった。AIアプリ選びに関わる"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "セキュリティ会社Dragosの研究者HD Moore氏が、AIの仲介網の漏えいを調べました。おとり入りの依頼を200万件近く送った実験です。"
+    },
+    {
+     "type": "h",
+     "text": "おとりを仕込んだ実験の中身"
+    },
+    {
+     "type": "p",
+     "text": "今のAIアプリの多くは、「AIルーター」（依頼を空いているAIへ振り分ける仲介サービス）を使います。OpenRouterやVercelが例です。Moore氏は、AWSの接続用の鍵、パスワード、専用URL、非公開の保管場所への参照などを作りました。1つの秘密は、1回の依頼にだけ入れて送ります。盗まれた場合は、どの中継点から漏れたかを突き止められます。"
+    },
+    {
+     "type": "p",
+     "text": "依頼は送信中は暗号化されますが、仲介の各段階で中身が読める状態に戻ります。各社が記録を残す期間は、それぞれの方針しだいです。"
+    },
+    {
+     "type": "h",
+     "text": "侵入された3つの提供元"
+    },
+    {
+     "type": "p",
+     "text": "Moore氏によると、少なくとも3つのAI提供元が攻撃者に侵入され、依頼が盗まれていました。10月下旬の短い時間帯に送った依頼はすべて盗まれ、AIが動く前に拒否された依頼も含まれます。盗まれた鍵はAWSの操作に数万回使われ、数時間後に試された例もありました。"
+    },
+    {
+     "type": "p",
+     "text": "うち2社では、保存しない設定（ZDR）付きの依頼も盗まれました。設定は、侵入された後では役に立ちません。侵入された提供元のうち2社に送った鍵は、同じ借り物のサーバーから使われ、同じ攻撃者の可能性が高いといいます。"
+    },
+    {
+     "type": "h",
+     "text": "再販業者と設定の無視"
+    },
+    {
+     "type": "p",
+     "text": "低価格で依頼を集め、記録機能を有効にして待つ再販業者もありました。記録された鍵が、あとで第三者に使われた例が複数あります。送り先を変えて比べ、モデルの提供元ではなく再販業者が原因だと特定しました。"
+    },
+    {
+     "type": "p",
+     "text": "ある中国のAI研究所の仕組みは、7月から10月に送った依頼の半数超から秘密のURLを読みに来ました。「データ収集なし」の設定付きでも約3分の2で起き、多くは2〜3日後でした。このモデルを再販する米国の業者経由でも同じ動きがあり、米国内で処理したい利用者の狙いは満たされませんでした。"
+    },
+    {
+     "type": "h",
+     "text": "防ぐ方法と日本の利用者"
+    },
+    {
+     "type": "p",
+     "text": "Moore氏は、自前のサーバーでAIを動かすのが最も有効だが費用が高いと述べました。難しければ、大手の提供元と直接契約し、契約とプライバシーポリシーを1つに絞るのが次善です。仲介サービスの標準の振り分けは受け入れず、上流の提供元を自分で選ぶよう勧めています。それでも漏えいゼロは保証されません。"
+    },
+    {
+     "type": "p",
+     "text": "侵入された事業者や漏れたアプリの名前は示されていません。日本の利用者への影響や日本語対応について、発表はありません。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "200万件近く",
+       "label": "送ったおとり入りの依頼"
+      },
+      {
+       "value": "少なくとも3社",
+       "label": "侵入された提供元"
+      },
+      {
+       "value": "数万回",
+       "label": "盗まれた鍵のAWS使用回数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "出どころのわからない格安のAI再販サービスに、鍵・パスワード・社外秘の資料を入力しない。",
+      "AIアプリに秘密の鍵を貼ってしまったことがあるなら、その鍵を無効にして作り直す。",
+      "仕事で使うAIアプリは、どの提供元のAIにつながっているかを担当部署に確認する。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AIに貼った文章が、見えないところで何社も通ることがあります。パスワードや鍵は、どのAIにも貼らないのが無難です。"
+    }
+   ],
+   "source_name": "Ars Technica",
+   "source_url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/",
+   "published": "2026-11-21",
+   "refs": [
+    {
+     "name": "Ars Technica",
+     "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/"
+    }
+   ]
+  },
+  {
+   "id": "mobile-edge-158-remix",
+   "category": "mobile",
+   "title": "Edge 158公開、ページを作り変える「Remix」を追加",
+   "summary": "指示文でページの見た目を変える機能と、怪しい通知を自動で止める対策が入りました。",
+   "image": {
+    "src": "https://asset.watch.impress.co.jp/img/wf/docs/2158/136/image2_l.png",
+    "kind": "ogp",
+    "credit": "窓の杜",
+    "page": "https://forest.watch.impress.co.jp/docs/news/2158136.html"
+   },
+   "visual": {
+    "icon": "globe",
+    "kicker": "Edge更新"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Microsoftが「Edge 158」を11月19日（現地時間）に公開",
+      "ページの見た目を指示文で変える「Remix」が新登場",
+      "怪しい通知の自動停止も追加。XSLTは159で無効に"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "米Microsoftは11月19日（現地時間）、ブラウザー「Microsoft Edge」のデスクトップ版158を安定版として公開しました。"
+    },
+    {
+     "type": "h",
+     "text": "Remixでできること"
+    },
+    {
+     "type": "p",
+     "text": "「Remix」は、開いているWebページの見た目や使い勝手を、自分好みに変える新機能です。フォント・色・配置を短い指示文で調整し、読みやすくしたり、足りない道具を足したり、不要な部分を隠したりできます。個人用のMicrosoftアカウントか職場アカウントでサインインしたデスクトップ版が対象です。提供状況は市場やバージョンで異なります。"
+    },
+    {
+     "type": "h",
+     "text": "Remixの仕組みと注意点"
+    },
+    {
+     "type": "p",
+     "text": "変え方は、フォントと色を変える「外観」と、変えたい内容を文章で頼む「カスタム」の2通りです。保存した設定は「edge://remix/」で一覧できます。Remixは端末の中で動き、変わるのは自分の画面だけで、元のWebサイトや他の人の表示は変わりません。AIで作る初回の確認画面では、ページ情報をMicrosoftが使うと案内されます。"
+    },
+    {
+     "type": "h",
+     "text": "怪しい通知を自動で止める"
+    },
+    {
+     "type": "p",
+     "text": "通知から誘導されたサイトが、詐欺・フィッシング・マルウェアのページとして「Microsoft Defender SmartScreen」にブロックされると、そのサイトの通知を自動で止めて利用者に知らせます。止まったサイトは「edge://settings/privacy/sitePermissions/allPermissions/notifications」でいつでも確認でき、元に戻せます。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/wf/docs/2158/136/image3_l.png",
+     "kind": "ogp",
+     "credit": "窓の杜",
+     "caption": "信頼できないサイトの通知をブロックしたと知らせる表示",
+     "page": "https://forest.watch.impress.co.jp/docs/news/2158136.html"
+    },
+    {
+     "type": "h",
+     "text": "Google取り込みとワークスペース"
+    },
+    {
+     "type": "p",
+     "text": "初回セットアップのあとでも、設定画面から「Google アカウント」のパスワード、お気に入り、履歴、自動入力データを取り込めるようになりました（Windows版のみ）。ワークスペースは、別ウィンドウを開かず今のウィンドウ内で切り替えられます。よく使うものをピン留めし、絵文字も付けられます。"
+    },
+    {
+     "type": "h",
+     "text": "なくなる機能とXSLTの扱い"
+    },
+    {
+     "type": "p",
+     "text": "旧版の「Workspaces V1」は158で既定無効になり、159で完全に削除されます。「Express checkout」は廃止済みで、「Performance Detector」は164で廃止の予定です。ブラウザー内蔵の「XSLT」（XMLを変換する仕組み）も、Chromeに続き159で既定無効になります。"
+    },
+    {
+     "type": "p",
+     "text": "XSLTは、ポリシーやオリジントライアル（試験的な機能を一時的に使う制度）で一時的に使えますが、176で使えなくなります。Microsoftは、XSLTを使う社内アプリを洗い出し、サーバー側の変換やJavaScriptへ移すよう管理者に呼びかけています。開発者向けには、Webアプリのインストールを促す「Web Install API」も入りました。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "Edge 159",
+       "label": "XSLTが既定で無効になる版"
+      },
+      {
+       "value": "Edge 164",
+       "label": "Performance Detector廃止予定"
+      },
+      {
+       "value": "Edge 176",
+       "label": "XSLTの一時使用も終わる版"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "Edgeを使っている人は待てば自動で更新されます。すぐ入れるなら「edge://settings/help」を開いて更新します。",
+      "Remixを使うときは、AIで作る初回の確認画面でページ情報の扱いを読んでから同意します。",
+      "会社のIT管理者は、XSLTを使う社内アプリがないか、159が出るまでに調べて移行を始めます。",
+      "Chromium側のセキュリティ修正も反映されています。CVE番号の一覧は公開待ちなので、早めの更新が望ましいです。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "Remixは、文字が小さいページや邪魔な表示の多いページを自分用に整えたい人に向きそうです。AIで作るときはページ情報がMicrosoftに使われるので、仕事のページでは会社のルールを先に確かめると安心です。"
+    }
+   ],
+   "source_name": "窓の杜",
+   "source_url": "https://forest.watch.impress.co.jp/docs/news/2158136.html",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "窓の杜",
+     "url": "https://forest.watch.impress.co.jp/docs/news/2158136.html"
+    }
+   ]
+  },
+  {
+   "id": "game-blueprotocol-season4",
+   "category": "game",
+   "title": "『ブループロトコル：スターレゾナンス』新シーズン4が開幕",
+   "summary": "探偵もの風の新ストーリーと、周回の手間を減らす改修が入りました。",
+   "image": {
+    "src": "https://cimg.kgl-systems.io/camion/files/94420/thumbnail_GcBc.jpg?x=1280",
+    "kind": "ogp",
+    "credit": "ファミ通.com",
+    "page": "https://www.famitsu.com/article/202611/94420"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "新シーズン"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "MMORPG『ブループロトコル：スターレゾナンス』でシーズン4が11月19日に開幕",
+      "新マップ「モンテノール渓谷」と、探偵もの風のメインストーリー第5話が登場",
+      "ノーマルモード廃止など周回の手間を減らす改修で、復帰組も戻りやすくなった"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "MMORPG『ブループロトコル：スターレゾナンス』で、2026年11月19日に新シーズン「光跡の祈願」が始まりました。ストーリーは、これまでにない探偵もの風です。"
+    },
+    {
+     "type": "p",
+     "text": "なお、この紹介はゲーム側の提供でファミ通に載った記事がもとです。仕様や画面は開発中の環境のもので、正式版と違う場合があります。"
+    },
+    {
+     "type": "h",
+     "text": "探偵もの風の新ストーリー"
+    },
+    {
+     "type": "p",
+     "text": "メインストーリーの第5話「白昼夢、夜の歌」が始まりました。舞台は新マップ「モンテノール渓谷」です。謎の笛吹きが、シーズン2から続く災害「幻花晶災」をさらに悪化させようとします。主人公たちは笛の音をたどり、「ファイロ旅楽団」と出会います。身分を偽って楽団に探りを入れる展開です。"
+    },
+    {
+     "type": "h",
+     "text": "新キャラと再登場キャラ"
+    },
+    {
+     "type": "p",
+     "text": "旅楽団の新キャラは、熱血詩人のスレト、リーダーのヴィルダ、楽師のトライバン、毒舌のレラハの4人です。シーズン2で人気だったファルファラ、ダヤ、ボイスも再登場します。ファルファラは今回の物語で、主人公たちにずっと同行します。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/famitsu/94420/a4e47cf3c61c47808f9c45b0d1a01fd0d.jpg?x=767",
+     "kind": "ogp",
+     "credit": "ファミ通.com",
+     "caption": "シーズン4を紹介する記事の画像",
+     "page": "https://www.famitsu.com/article/202611/94420"
+    },
+    {
+     "type": "h",
+     "text": "強さの仕組みと新ダンジョン"
+    },
+    {
+     "type": "p",
+     "text": "強さの基準になる「祈り強度」は、選んで取る強化効果の中身が新しくなりました。新要素の「誓約」は、ダンジョン「極限空間」に入ると5つから1つ選び、ステータスを上げる仕組みです。パーティー内で選ぶ誓約が分かれるほど、効果を上げるエネルギーが多く貯まります。"
+    },
+    {
+     "type": "p",
+     "text": "極限空間には新ダンジョンが6つ加わります。完全な新作が3つ、過去シーズンの印象的なダンジョンのリメイクが3つです。"
+    },
+    {
+     "type": "h",
+     "text": "周回の手間を減らす改修"
+    },
+    {
+     "type": "p",
+     "text": "今シーズンから、次のように変わります。\n・極限空間のノーマルモードを廃止\n・レイドのハードモードを廃止し、ナイトメアモードの難易度を引き下げ\n・極限空間の限定外観アイテムが、一定確率で直接ドロップ（周回からの交換も可能）\n・レグディニス遺跡のボス階層で、最上級素材の選択ボックスが一定確率でドロップ"
+    },
+    {
+     "type": "h",
+     "text": "復帰・新規向けのイベント"
+    },
+    {
+     "type": "p",
+     "text": "シーズン記念の「海風祭」イベントは、2027年1月4日5時までです。15日間の特別ログインボーナスイベントもあり、累計6日目にはボスイマジンのウィル1つと交換できる量の「奥義ウィル・欠片」がもらえます。"
+    },
+    {
+     "type": "p",
+     "text": "バトルイマジンの交換イベントは、2027年4月15日5時までです。交換できるのは同じシーズン・同じレアリティーどうしに限られますが、かつて手に入らなかったボスイマジンを入手できます。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "6つ",
+       "label": "極限空間の新ダンジョン"
+      },
+      {
+       "value": "15日間",
+       "label": "特別ログインボーナス"
+      },
+      {
+       "value": "5つ",
+       "label": "選べる誓約の数"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "久しぶりに戻る人は、15日間のログインボーナスと、2027年4月15日5時までのイマジン交換を使うと始めやすくなります。",
+      "周回が負担で離れていた人は、ノーマルモード廃止やドロップの改修で手間が減ります。",
+      "「海風祭」は2027年1月4日5時までなので、報酬を集めたい人は期限を確認してください。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "探偵風の新ストーリーと周回の改修で、離れていた人が戻りやすい回です。ただし今回の紹介は提供記事なので、遊びやすさは自分で試して決めるのが確実です。"
+    }
+   ],
+   "source_name": "ファミ通",
+   "source_url": "https://www.famitsu.com/article/202611/94420",
+   "published": "2026-11-19",
+   "refs": [
+    {
+     "name": "ファミ通",
+     "url": "https://www.famitsu.com/article/202611/94420"
+    }
+   ]
+  },
+  {
+   "id": "other-osaki-ransomware",
+   "category": "other",
+   "title": "大崎電気工業がランサム攻撃 スマートメーターの出荷が停止",
+   "summary": "埼玉事業所などの生産システムが止まり、再開の時期は決まっていません。",
+   "visual": {
+    "icon": "box",
+    "kicker": "大崎電気攻撃"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "計測制御機器の大崎電気工業がランサムウェア攻撃を受け、生産関連システムが止まった。",
+      "11月17日にデータの暗号化を確認。スマートメーターなどの生産・出荷ができず、再開時期は未定。",
+      "データが外部に流出した可能性も含め、外部の協力を得て調査している。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "大崎電気工業は、ランサムウェア攻撃で生産と出荷が止まっていると明らかにしました。スマートメーターなどを納める取引先に影響が出ています。"
+    },
+    {
+     "type": "h",
+     "text": "何が起きたのか"
+    },
+    {
+     "type": "p",
+     "text": "大崎電気工業は11月17日、サーバ内のデータがランサムウェア（データを暗号化して使えなくする不正プログラム）で暗号化されていると確認しました。同じ日に外部ネットワークとの接続を切り、埼玉事業所と子会社の生産関連システムを止めました。"
+    },
+    {
+     "type": "h",
+     "text": "生産・出荷への影響"
+    },
+    {
+     "type": "p",
+     "text": "システム停止により、スマートメーターなどの生産と出荷ができない状態です。再開の時期は決まっていません。同社は、顧客に生産と出荷の停止を個別に説明しています。"
+    },
+    {
+     "type": "h",
+     "text": "情報流出の調べ"
+    },
+    {
+     "type": "p",
+     "text": "同社は、データが外部に流出した可能性も含めて、外部の協力を得て調査を進めています。流出した情報の種類や、手口の詳細は公表されていません。調査の結果は、同社の続報で明らかになる見通しです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "11月17日",
+       "label": "暗号化を確認した日"
+      },
+      {
+       "value": "未定",
+       "label": "生産・出荷の再開時期"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "大崎電気工業から計測機器を仕入れている企業は、同社からの個別の連絡を確認する。",
+      "流出の有無を調べている段階のため、同社を名乗る不審なメールのリンクは開かない。",
+      "今のところ、一般の利用者が手続きをする必要は発表されていません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "次に見るのは、生産の再開時期と、データ流出の有無がはっきりするかどうかです。納入に関わる会社は、同社の続報と個別の連絡を待つことになります。"
+    }
+   ],
+   "source_name": "Security NEXT",
+   "source_url": "https://www.security-next.com/193088",
+   "published": "2026-11-19",
+   "refs": [
+    {
+     "name": "Security NEXT",
+     "url": "https://www.security-next.com/193088"
+    }
+   ]
+  },
+  {
+   "id": "ai-ms-perception",
+   "category": "ai",
+   "title": "Microsoft、AIの攻撃に3チームのAIで対抗する新サービス",
+   "summary": "赤・青・緑の3チームのAIが、攻撃の発見から修復まで担う。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/ogp/2611/20/2000003368/10012681/2048",
+    "kind": "ogp",
+    "credit": "ITmedia AI+（Publickey転載）",
+    "page": "https://www.itmedia.co.jp/news/article/2611/20/2000003368/"
+   },
+   "visual": {
+    "icon": "lock",
+    "kicker": "MS新サービス"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "Microsoftが、AI攻撃に対抗する「Microsoft Perception」の提供開始を発表しました。",
+      "役割の違う3つのチーム（レッド・ブルー・グリーン）のAIが、手順書に沿って協調して動きます。",
+      "重要な判断の場面では人に確認を求める仕組みです。料金や日本での提供状況はまだわかっていません。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "Microsoftは年次イベント「Microsoft Ignite 2026」で、AIによる攻撃に対抗する新サービス「Microsoft Perception」の提供開始を発表しました。"
+    },
+    {
+     "type": "h",
+     "text": "新サービスが生まれた背景"
+    },
+    {
+     "type": "p",
+     "text": "Microsoftは、AIを使ったサイバー攻撃の自動化が進んでいると説明しています。攻撃の相手を見つけてから攻撃するまでの時間や、攻撃そのものにかかる時間が大きく短くなったということです。人の操作だけでは対応が難しいため、守る側もAIエージェントを使い、機械の速さで動く必要があるとしています。"
+    },
+    {
+     "type": "h",
+     "text": "3つのチームの役割"
+    },
+    {
+     "type": "p",
+     "text": "Perceptionは、3つのチームのAIエージェントで構成されます。\n・レッドチーム：攻撃される前に、攻撃者の目線で弱点（脆弱性）を見つける\n・ブルーチーム：攻撃の検知と調査、被害が出たときの対応を担う\n・グリーンチーム：弱点やバグの修復、またはリスクの低減を担う"
+    },
+    {
+     "type": "h",
+     "text": "動き方と人の判断"
+    },
+    {
+     "type": "p",
+     "text": "3つのチームは、「プレイブック」と呼ばれる手順書に従って、ふだんから協調して自律的に動きます。攻撃を未然に防いだり、攻撃を受けたときに機械の速さで対応したりするのが狙いです。ただし、重要な判断が必要な段階では、人の判断を仰ぐ仕組みになっています。"
+    },
+    {
+     "type": "h",
+     "text": "対応するクラウドの範囲"
+    },
+    {
+     "type": "p",
+     "text": "グリーンチーム用のプレイブックは、Microsoft自身のプラットフォームだけでなく、AWSとGoogle Cloudもカバーしていると説明されています。他社のクラウドを使う企業も対象になりうる設計です。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "3チーム",
+       "label": "赤・青・緑のAIエージェント"
+      },
+      {
+       "value": "3社",
+       "label": "手順書が対応するクラウド"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "自社でMicrosoftやAWS、Google Cloudを使っている担当者は、守りの自動化が進む流れとして把握しておく。",
+      "導入を考える企業は、料金や日本での提供時期が発表されるのを待って確認する。",
+      "一般の利用者がすることは、今のところ特にありません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "人がログを追いかける速さでは、AIの攻撃に追いつけないという前提の発表です。企業の担当者には、AIが自動で動く範囲と、人が判断を握る範囲の線引きが気になるところです。個人の利用者が試せる形かどうかは、まだわかっていません。"
+    }
+   ],
+   "source_name": "ITmedia AI+",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/20/2000003368/",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "ITmedia AI+",
+     "url": "https://www.itmedia.co.jp/news/article/2611/20/2000003368/"
+    }
+   ]
+  },
+  {
+   "id": "ai-korea-exam-aiglasses",
+   "category": "ai",
+   "title": "韓国の大学入試で電子機器の不正111件、AI眼鏡の使用も摘発",
+   "summary": "AI眼鏡の普及で不正のハードルが下がり、試験制度の議論も起きている。",
+   "image": {
+    "src": "https://www.itmedia.co.jp/news/article/ogp/2611/20/2000003376/10012702/2048",
+    "kind": "ogp",
+    "credit": "ITmedia NEWS（産経新聞配信）",
+    "page": "https://www.itmedia.co.jp/news/article/2611/20/2000003376/"
+   },
+   "visual": {
+    "icon": "ai",
+    "kicker": "AIと入試"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "韓国教育省は、19日の大学入試で電子機器を巡る不正行為111件を確認したと明らかにしました。",
+      "AI眼鏡や小型カメラ、スマホの使用で5件が摘発され、持ち込みは54件でした。",
+      "産経新聞の記者がAI眼鏡で数学の試験を解くと、30分余りで完了し、誤答は1問でした。"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "韓国教育省は11月20日、19日の大学修学能力試験（修能）で、スマートグラス（AI眼鏡）など電子機器を巡る不正行為が111件あったと明らかにしました。"
+    },
+    {
+     "type": "h",
+     "text": "試験で確認された不正の内訳"
+    },
+    {
+     "type": "p",
+     "text": "修能は、日本の大学入学共通テストに相当する試験です。教育省によると、試験中にAI眼鏡や小型カメラ、スマートフォンを使ったとして5件が摘発されました。受信を拒否できない緊急災害アラートを鳴らす対策では、電子機器の持ち込みが54件確認されました。"
+    },
+    {
+     "type": "h",
+     "text": "別の試験を巡る男性の死亡"
+    },
+    {
+     "type": "p",
+     "text": "19日には、ソウル市内の宿泊施設で男性の死亡も確認されました。男性は教育系インフルエンサーとして活動し、法科大学院に進むための適性試験でAI機器を使った不正受験の疑いが浮上していました。警察は解剖の結果、事件性は確認されなかったとしています。"
+    },
+    {
+     "type": "h",
+     "text": "AI眼鏡でどこまで解けるか"
+    },
+    {
+     "type": "p",
+     "text": "産経新聞の記者は、中国製のAI眼鏡を着けて、2025年の修能で出された数学の問題に挑みました。制限時間は100分でしたが、答案は30分余りで完成し、誤答は1問だけでした。AI機器の普及で、不正のハードルは急速に下がっていると同紙は伝えています。"
+    },
+    {
+     "type": "h",
+     "text": "韓国紙が求める議論"
+    },
+    {
+     "type": "p",
+     "text": "朝鮮日報は20日の社説で、事実上すべての試験が不信を持たれる状況にあると指摘しました。暗記中心で5択中心の試験制度を、急に変わるAI時代にも続けるのか、根本的な議論を始める必要があると訴えています。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "111件",
+       "label": "確認された電子機器の不正"
+      },
+      {
+       "value": "5件",
+       "label": "AI眼鏡などの使用で摘発"
+      },
+      {
+       "value": "54件",
+       "label": "アラートで確認した持ち込み"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "試験を受ける人は、受験案内の持ち込みルールを確認し、AI眼鏡やスマホを着けたまま会場に入らない。",
+      "家族に受験生がいる人は、試験会場での電子機器の扱いを事前に伝えておく。",
+      "日本の試験でAI眼鏡がどう扱われるかは、まだ報じられていません。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "AI眼鏡が使われるようになると、スマホだけを見張る検査では足りなくなりそうです。試験を受ける人は、持ち込み禁止の電子機器にAI眼鏡も入るかを、事前に確かめておくと安心です。"
+    }
+   ],
+   "source_name": "ITmedia NEWS",
+   "source_url": "https://www.itmedia.co.jp/news/article/2611/20/2000003376/",
+   "published": "2026-11-20",
+   "refs": [
+    {
+     "name": "ITmedia NEWS",
+     "url": "https://www.itmedia.co.jp/news/article/2611/20/2000003376/"
+    }
+   ]
+  },
+  {
+   "id": "ai-mymems-will-wright",
+   "category": "ai",
+   "title": "シムシティ生みの親、思い出をAIで遊びにする新作MyMems",
+   "summary": "来年発売予定。入力した記憶から、人物や遊ぶ世界をAIが作る。",
+   "image": {
+    "src": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/Moonlit-walk-1152x648.png",
+    "kind": "ogp",
+    "credit": "Ars Technica",
+    "page": "https://arstechnica.com/gaming/2026/11/will-wrights-next-simulation-will-use-ai-to-mine-content-from-your-memories/"
+   },
+   "visual": {
+    "icon": "game",
+    "kicker": "AIの新作"
+   },
+   "body": [
+    {
+     "type": "keys",
+     "items": [
+      "「シムシティ」「ザ・シムズ」を作ったウィル・ライト氏が、新作「MyMems」を発表",
+      "発売は来年（2027年）の予定。価格や対応機種は発表されていない",
+      "自分の記憶をもとにAIが人物や舞台を作る。日本での提供は未発表"
+     ]
+    },
+    {
+     "type": "p",
+     "text": "ウィル・ライト氏のGallium Studiosが、新作「MyMems」を発表しました。生成AIが利用者の記憶からゲーム世界を作ります。"
+    },
+    {
+     "type": "h",
+     "text": "記憶が遊ぶ材料になる"
+    },
+    {
+     "type": "p",
+     "text": "プレイヤーが文章で入力した記憶をもとに、生成AIが人物や場所を作ります。作られた人物はチームを組み、ゲーム世界の謎解きに挑みます。ライト氏は、次のような遊び方を挙げました。\n・祖母がセリーナ・ウィリアムズと試合したら、誰が勝つか\n・谷に橋をかけるなら、人生で出会った誰を3人選ぶか"
+    },
+    {
+     "type": "p",
+     "text": "記憶のテーマは、遊園地のエリアのような区画になります。スポーツ、休暇、けが、死などが、それぞれ遊ぶ場所のもとになります。家族や友人、同僚と共有した記憶から世界を作る方法も用意されます。"
+    },
+    {
+     "type": "h",
+     "text": "復活までの経緯"
+    },
+    {
+     "type": "p",
+     "text": "元の企画は、2018年に発表されたスマホ向けの「Proxi」です。Gallium Studiosは2024年後半に資金が尽き、大量の人員削減で先行きが不透明になりました。今回、AI基盤を手がけるArtificial Agencyと組んで再始動しました。"
+    },
+    {
+     "type": "p",
+     "text": "ライト氏は、この提携で「AI研究の会社にならずに」既製のAIを使えると説明しました。ライト氏はまた、この提携なら「とても高価」な最先端モデルより安く済み、性能も足りると述べました。"
+    },
+    {
+     "type": "h",
+     "text": "気になるデータの扱い"
+    },
+    {
+     "type": "p",
+     "text": "Artificial Agencyは、記憶から「個人の行動モデルと知識の関係図」を作ると説明しています。同社は、記憶を端末内（ローカル）で学び、本人の許可がある場合だけ使うとうたいます。Ars Technicaは、この仕組みが大手IT企業の監視を連想させると指摘しました。"
+    },
+    {
+     "type": "h",
+     "text": "発売時期と日本での提供"
+    },
+    {
+     "type": "p",
+     "text": "発売は来年の予定です。価格、対応機種、日本での提供や日本語対応は発表されていません。ライト氏は「Spore」（2008年発売）の後にEAを離れ、新作の話題は久しぶりです。"
+    },
+    {
+     "type": "stat",
+     "items": [
+      {
+       "value": "2018年",
+       "label": "元企画Proxiの発表年"
+      },
+      {
+       "value": "2024年後半",
+       "label": "資金が尽きた時期"
+      },
+      {
+       "value": "来年",
+       "label": "MyMemsの発売予定"
+      }
+     ]
+    },
+    {
+     "type": "point",
+     "items": [
+      "発売は来年の予定。価格と対応機種が出るまで、買う準備は不要。",
+      "遊ぶ前に、家族や友人についての記憶をどこに保存し、どう消せるかの説明を確認する。",
+      "日本語で遊べるかは未発表のため、続報を待つ。"
+     ]
+    },
+    {
+     "type": "rina",
+     "text": "自分の思い出を入力するゲームは、ふつうのAIチャットよりデータを預ける気持ちが重くなります。面白そうかより先に、保存先と削除のしかたが公開されるかを見たいところです。"
+    }
+   ],
+   "source_name": "Ars Technica",
+   "source_url": "https://arstechnica.com/gaming/2026/11/will-wrights-next-simulation-will-use-ai-to-mine-content-from-your-memories/",
+   "published": "2026-11-19",
+   "refs": [
+    {
+     "name": "Ars Technica",
+     "url": "https://arstechnica.com/gaming/2026/11/will-wrights-next-simulation-will-use-ai-to-mine-content-from-your-memories/"
+    }
+   ]
+  }
+ ]
+}
