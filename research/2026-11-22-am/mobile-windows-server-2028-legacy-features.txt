@@ -1,0 +1,621 @@
+===== https://www.techrepublic.com/article/news-windows-server-2028-preview-security/
+(status 403)
+
+
+===== https://theblackcloud.tech/blog/aimicrosoftignite2026day3announcements/
+(status 200)
+Microsoft Ignite 2026 - Day 3 announcements: Sovereign Private Cloud on Azure Local, Dynamic Desktop, the vMode roadmap, Hermes in Teams and more
+20 Nov, 2026
+Day 3 of Microsoft Ignite 2026 is done! As with 
+my day 2 post
+, there is some repetition, so I have marked it with 
+Repeat from day 1
+ or 
+Repeat from day 2
+ wherever it comes up, with links back to 
+my day 1 post
+ and the day 2 post. Some of the Azure Local news also confirms what I wrote about in October, so I have marked that with 
+Repeat from October
+ 😊
+Again, not everything below was announced on day 3 itself. Some of it was published on day 1 or day 2 (and one item is from October) but only caught my attention now, so I have included it here rather than leaving it out.
+TL;DR
+What is new in this post:
+Azure Local and Sovereign Private Cloud
+: 
+Foundry Local
+, 
+confidential VMs
+ (AMD SEV-SNP), 
+GitHub Enterprise Local
+, 
+SQL Server
+, and 
+Trusted Launch VM migration
+ are generally available on Azure Local. There is support for NVIDIA HGX B300 systems, the ability to move the Azure Local control plane, a new data plane for VMware migrations without VDDK, a sign-up form for the multitenancy preview, and a new Azure Local specialization for partners.
+Windows Server
+: 
+Dynamic Desktop
+ is back, plus the full list of what Windows Server 2028 deprecates and removes, the “next decade” roadmap and Hybrid Intelligence on Windows Server. The recordings of the “What’s new and what’s next for Windows Server” and “From VMware to Hyper-V” sessions are now on YouTube.
+Windows Admin Center
+: the 
+vMode v2 feature roadmap
+, targeting May 2027.
+Windows
+: individual passkey management on FIDO2 security keys and Intune Remote Lock are now in Windows Insider builds, and GitHub Copilot Fusion can use local models on developer PCs.
+Security
+: 
+Microsoft Entra Agent ID
+ for discovered agents, including Claude Code, is in preview.
+Copilot
+: 
+Send to Cowork
+ and 
+Agent 365 Business Analytics
+.
+Hermes Agent
+ from Nous Research comes to Microsoft Teams, the Microsoft Store and Azure.
+Developers
+: HTML previews in VSCode agent responses, the Bicep Ignite special, updates to the Durable Task Scheduler, and image generation in GitHub Copilot (from October, not Ignite).
+And what is a repeat, with some extra detail this time: Intune for Windows Server, vMode GA, PowerShell 7, Microsoft Perception, Autopilot, Today, Web IQ, the new MAI models, Microsoft versus OpenAI and Anthropic, and the Windows Ignite blog.
+Official announcement
+As before, the 
+Microsoft Ignite 2026 Book of News
+ is the best single place to check what was announced and its status. For Azure Local, the main official source is 
+What’s new with Sovereign Private Cloud at Microsoft Ignite 2026
+ on the Azure Arc blog.
+Microsoft also posted its own recap of day 1:
+View post by @Microsoft on X
+Technology that better understands what you’re working on, collaborates alongside you, takes on more of the complex stuff, while keeping you in control. That’s the bigger story behind the news from Day 1 of #MSIgnite. ⬇️
+Repeat from day 1
+, but a handy summary if you missed my day 1 post.
+Azure Local and Sovereign Private Cloud
+The biggest Azure Local news of the week was published on day 1, but it deserves the top spot here. Meena J Gowdar shared it on LinkedIn:
+Sovereign doesn’t have to mean making do with less.
+Organizations are adopting AI at a record pace. They also need to keep control of their data, their operations and who has access, even when they’re fully disconnected. At #MSIgnite today, we’re taking a big step forward with Sovereign Private Cloud, built on Azure Local.
+Our vision is simple: bring the power of Azure wherever customers need it, and let them run it on their terms.
+The full details are in 
+What’s new with Sovereign Private Cloud at Microsoft Ignite 2026
+:
+At Microsoft Ignite 2026, we’re building on that foundation with the general availability of Foundry Local, confidential virtual machines, and GitHub Enterprise Local, on Azure Local, along with public previews for agentic AI, connected to disconnected operations, and local data services.
+Repeat from October
+, partly: a lot of this was first announced in Paris in October, which I covered in 
+my post about multitenancy coming to Sovereign Private Cloud
+. Back then, several of these features were only “planned” for Ignite, so it is good to see them land as promised 😊
+Foundry Local is generally available on Azure Local
+Foundry Local is now generally available on Azure Local. Organizations can deploy and run AI models close to their data, enabling local inference in connected and disconnected environments while maintaining control over their infrastructure, data, and operations.
+Foundry Local is also being expanded beyond model inference into agentic AI:
+Model catalog
+: run AI models locally from an expanding catalogue.
+Agentic retrieval
+: local ingestion, indexing and search, plus agents, tool calling, an MCP server and a built-in chat experience.
+Agent service
+ (preview): build and orchestrate agents, even in fully disconnected environments.
+Guardrails
+ (preview): apply guardrails using the guardrail model of your choice.
+Azure Local is also adding support for 
+NVIDIA HGX B300 systems
+, for large-scale, multi-GPU inference and agentic workloads, with validated systems coming from Dell, HPE and Lenovo.
+NOTE
+There is no date for the HGX B300 systems yet. Microsoft only says:
+Validated systems from Dell, HPE, and Lenovo will give customers a choice of hardware for scaling AI in their own environments. We’ll share more details as these systems become available.
+Confidential VMs
+Confidential VMs powered by AMD SEV-SNP are now generally available on supported AMD EPYC processors, providing hardware-backed memory encryption and attestation to help protect sensitive workloads while running. We’re also expanding hardware choice with Intel TDX-based confidential VMs in preview on Intel Xeon processors.
+Repeat from October
+, with one correction to keep in mind: in October, the announcement just said that confidential VMs on Azure Local were generally available. Now it is clear that only the AMD SEV-SNP version is GA, and the Intel TDX version is in preview. My 
+day 2 post
+ also mentioned that confidential GPUs on Azure Local are coming “soon”.
+Thomas Maurer spent a lot of the week with Intel talking about exactly this:
+View post by @ThomasMaurer on X
+What an amazing week at Microsoft Ignite, and a great example of what strong collaboration between Microsoft and Intel can look like.
+I had the opportunity to work with the Intel and Microsoft teams across several activities around Microsoft Sovereign Cloud, Sovereign Private Cloud, Azure Local, Confidential Computing, and AI.
+A few highlights for me:
+Joining Rabail Abbas for a conversation at the Intel Business booth about Microsoft Sovereign Cloud and how Microsoft and Intel come together across the full technology stack.
+Taking the Intel booth theater stage together with Dona Mukherjee to talk about Sovereign Private Cloud with Azure Local and Intel, including SQL Server and Confidential Computing on Azure Local.
+Sitting down with Paul O’Neill from Intel for a deeper conversation about the sovereignty continuum and how organizations can find the right level of control for different workloads.
+Connecting with customers, partners, and the Intel team around the Intel Innovation Hub and the broader Sovereign Cloud opportunity.
+I really enjoyed seeing how our joint work turns technology such as Azure Local and Intel Xeon into practical solutions for customers that need greater control, resilience, security, and sovereignty.
+And I think we are only getting started.
+#MicrosoftIgnite #Microsoft #Intel #SovereignCloud #AzureLocal #SovereignAI #ConfidentialComputing
+Moving the control plane and going from connected to disconnected
+This one is new to me, and it sounds very useful:
+We’re enabling organizations to move their Azure Local management control plane without redeploying infrastructure, migrating data, or interrupting running workloads. Virtual machines, AKS clusters, applications, and storage remain in place while management transitions to a new control plane.
+The blog does not say whether moving the control plane is in preview or generally available, or when it will be available, so keep an eye out for the documentation before planning around it.
+Repeat from October
+: moving from connected to disconnected deployments is in preview, so you can move an existing Azure-connected deployment to a locally managed, disconnected environment.
+Data services and GitHub Enterprise Local
+Repeat from October
+:
+SQL Server
+ is generally available on Azure Local, in connected and disconnected environments.
+DocumentDB
+ is in preview on Azure Local.
+Blob Storage
+ is in preview on Azure Local.
+GitHub Enterprise Local
+ is generally available, as a prebuilt GitHub Enterprise Server virtual appliance on Azure Local. In connected environments, you can use GitHub Copilot with your locally hosted repositories, and in disconnected environments, Foundry Local gives you AI-powered development with locally hosted models.
+Multitenancy is still coming soon
+Repeat from October
+: multitenancy on Azure Local is still “coming soon”.
+Through logical isolation, organizations can consolidate workloads and use capacity more efficiently while maintaining separation across tenants, teams, and workloads. Initial access will be limited to qualified customers.
+The new bit is that you can now 
+sign up for the upcoming preview
+. The blog still does not answer the questions from 
+my multitenancy post
+, such as the tenant model and how networking and storage are separated, so hopefully the preview will 😉
+Migrating to Azure Local with Azure Catalyst
+Azure Local migrations are now part of Azure Catalyst, so you can discover, replicate and track VMware and Hyper-V migrations in one place. The highlights are:
+A new data plane for VMware migrations
+, built on VMware SCSI HotAdd, with a preview by the end of the year. It removes the dependency on the VMware Virtual Disk Development Kit (VDDK) for supported scenarios, and existing VDDK-based migration projects remain supported.
+Azure Arc-enabled server resources are preserved
+ when you migrate supported VMware and Hyper-V workloads to Azure Local, including RBAC assignments, policies, tags, monitoring configurations and extensions.
+Private endpoint support
+ for Azure Catalyst, with general availability targeted for Q1 CY2027.
+Trusted Launch VM migration is generally available
+, so eligible workloads can migrate directly into Trusted Launch configurations on Azure Local.
+Trusted Launch is worth watching across Azure Local. When I wrote about 
+Azure Site Recovery for Azure Local becoming generally available
+, Trusted Launch VMs were not supported yet, so it is good to see migration support for them at least.
+A new Azure Local specialization for partners
+Microsoft is launching the 
+Azure Local for Hybrid and Sovereign Private Cloud
+ specialization in the Microsoft Cloud Partner Program:
+The Hybrid and Sovereign Private Cloud Specialization currently includes ten partners: abtis, Acuutech, Dell, HCLTech, Impresoft 4ward, kloud klickers, Lenovo, NTT DATA, PulsivIT, and Twoday.
+Microsoft is also broadening the 
+Azure Local validated solutions
+ with independent software vendors and global systems integrators, across enterprise workloads, data platforms and sovereign AI.
+Windows Server
+The next Windows Server (BRK418)
+View post by @JamesvandenBerg on X
+at #MSIgnite Windows Server - The Next Decade 🚀
+#WindowsServer #Winserv #Hyperv #WindowsServer2028
+James shared a slide on where Windows Server is going over the next decade, with Windows Server 2028 as the next stop. It has four themes:
+Server Security
+: securing the world’s critical infrastructure on Windows.
+Azure, Everywhere
+: cloud-native value, available for Windows Server customers everywhere.
+Hybrid Intelligence Infrastructure
+: the right intelligence in the right place at the right cost.
+Modern Server
+: a modern Windows Server product with flexible, modern licensing.
+The recording of BRK418, “What’s new and what’s next for Windows Server”, with Neil Hinnant and Elden Christensen, is now on YouTube:
+From the session description:
+Join this demo-filled session for the latest release news and a preview of the next version of Windows Server. We’ll cover Hyper-V, Active Directory, Storage, and Networking, while showing how the next release raises the bar for security, performance, and AI.
+I listed this session in 
+my post about the Windows Server sessions at Ignite
+, so if you missed it live, now you can catch up 😊
+Dynamic Desktop is back
+View post by @JamesvandenBerg on X
+at #MSIgnite It’s Back Again!
+Dynamic Desktop 🚀
+#Winserv #WindowsServer #WindowsServer2028 #DynamicDesktop #ITPro #AzOps #WindowsServerCore #ITPro #MVPBuzz @windowsserver
+This is a big one, more features on demand, more Linux like Windows is what it should always have been about 🤣 Loving it! WS 2012 ideas are back 🤣 What is old is new again? 🤣🤣🤣 But honestly, it is an awesome feature regardless 😊
+According to the slide, Dynamic Desktop lets you:
+Dynamically transition from full Desktop to Server Core
+: add or remove the Desktop Experience, which now consists of Server Core plus a set of Features on Demand (FoDs).
+Pick exactly what you need
+: gradually add the features you want on top of Server Core, or remove the ones you do not want from the Desktop Experience, with five FoDs for granular control.
+Troubleshoot more easily
+: add the desktop back when you need a GUI to troubleshoot, then return the server to a minimal footprint once it is back in production.
+For those who do not remember, Windows Server 2012 and 2012 R2 let you switch between Server Core and the full GUI by adding or removing features, but Windows Server 2016 took that option away, and you had to choose at installation time.
+NOTE
+The only source I could find for Dynamic Desktop is this slide. It is not in 
+What’s new in Windows Server 2028 Preview
+ on Microsoft Learn yet, so it does not seem to be in a Windows Server Insider build yet, and the details may change.
+Retiring legacy components in Windows Server 2028
+View post by @JamesvandenBerg on X
+at #MSIgnite Making Windows Server more Secure ✅
+#WindowsServer2028 #Winserv #Security #AzOps #ITPro #SecOps #MVPBuzz
+The slide lists what Windows Server 2028 deprecates and removes, and it matches 
+Features removed or no longer developed in Windows Server
+ on Microsoft Learn:
+Deprecated
+ (still available): Windows Deployment Services (WDS), Windows PowerShell 5.1, BranchCache and Windows Sockets Direct.
+Removed
+: PCAT BIOS support (Windows Server 2028 requires UEFI and only runs in Generation 2 VMs), SMB1, the WINS Server role, WSUS, DirectAccess, PPTP and L2TP for remote access, VBScript, WMIC, MultiPoint Services, Shielded VMs, .NET Framework 3.5 (as an inbox component) and the AT Time Service.
+The WSUS removal will be the one that hurts the most, especially in disconnected environments. Microsoft Learn says:
+Microsoft recognizes the need to manage updates in disconnected and highly controlled environments. We’re invested in supporting for these scenarios and we’ll share more as the work progresses.
+NOTE
+Windows Server 2028 is in preview, so these lists can still change. WSUS is only removed from Windows Server 2028 itself. It remains available and supported in earlier releases, including Windows Server 2025, for the rest of their support lifecycle.
+PowerShell 7 is coming to Windows
+View post by @SoyITPro on X
+Translated from Spanish:
+🚨 Microsoft will remove PowerShell 5.1 from Windows in future versions, integrating #PowerShell 7 as its direct replacement.
+But first it has to resolve the limitations of version 7.7 as an MSIX package.
+https://www.youtube.com/watch?v=V5pezXJPOJY
+Repeat from day 1
+. Again, this is old news, but still a very crucial one.
+NOTE
+“Remove” is a bit strong for now. The Windows Server 2028 slide above says PowerShell 5.1 is “deprecated and now a FoD”, and Microsoft Learn says:
+Windows PowerShell 5.1 remains available side by side, so existing automation can continue to use it without a forced migration.
+So start testing your scripts with PowerShell 7, but there is no need to panic yet.
+Hybrid Intelligence on Windows Server
+View post by @JamesvandenBerg on X
+at #MSIgnite Hybrid Intelligence on Windows Server 🚀
+#Winserv #Hyperv #MXC #WSLc #WindowsServer @windowsserver
+View post by @JamesvandenBerg on X
+at #MSIgnite ONE System, from the Edge to the Cloud 🚀
+Hybrid Intelligence.
+#Windows11 #WindowsServer2028 #AI #Copilot #Azure #DGX
+#WindowsInsiders #MVPBuzz
+Repeat from day 1
+, partly: I covered Hybrid Intelligence and Microsoft Foundry on Windows Server 2028 in my day 1 post. James’s slides add a bit more detail on what Microsoft has in mind for Windows Server:
+Simplicity
+: easy to set up and deploy “token factories”, integrated with AD and Entra ID.
+Hybrid
+: highly available, with policy-based hybrid routing between local models and frontier models in the cloud, the Microsoft Foundry catalog, agent governance with Agent 365 and agent security with MXC.
+Cutting-edge platforms
+: inference platforms with AMD, Intel and NVIDIA.
+The “One system, from the edge to the cloud” slide puts Windows Server 2028 (“Your datacenter”) next to Azure, Windows 365 Cloud PCs, mini desktops for always-on agents, DGX Station for Windows, Copilot+ PCs and Builder PCs.
+Windows Server management in Intune
+Elden Christensen is very happy about this one, as he posted on LinkedIn:
+You asked for it, so here it is!!! InTune support for Windows Server 🎉🎉 I’m really excited about this one, it’s been a top customer ask for a long time, thrilled it’s coming!
+Repeat from day 1
+, but 
+What’s new in Windows Server 2028 Preview
+ on Microsoft Learn now has a bit more detail. Windows Server 2028 Preview can join Microsoft Entra ID through 
+Settings
+ > 
+Accounts
+ > 
+Access work or school
+, just like Windows 11, without needing Active Directory Domain Services, and you can then sign in with Microsoft Entra accounts. Intune and Azure Arc can work alongside each other on the same server, with Intune handling endpoint management and Arc handling infrastructure management, monitoring and governance. Server enrolment in Intune is still off by default and intended for non-production evaluation.
+Windows Admin Center Virtualization Mode (vMode)
+From VMware to Hyper-V
+View post by @JamesvandenBerg on X
+at #MSIgnite Windows Admin Center V-Mode Rocks 🚀
+Jeff made a Hyper-V Cluster in a view minutes
+https://techcommunity.microsoft.com/blog/windows-admin-center-blog/virtualization-mode-in-windows-admin-center-is-now-generally-available/4573651
+#Winserv #WindowsServer #WindowsAdminCenter #WAC #AzOps #ITPro #MVPBuzz #Hyperv
+Repeat from day 1
+: vMode is generally available, and according to James, Jeff built a Hyper-V cluster with it in a few minutes on stage.
+View post by @orinthomas on X
+From VMware to Hyper-V: Hyperscale virtualization in your datacenter 
+https://www.youtube.com/watch?v=ohNIlrQquT0
+The recording of BRK419, “From VMware to Hyper-V: Hyperscale virtualization in your datacenter”, with Philip Moss, Davanna White and Jeff Woolsey:
+From the session description:
+In this demo-filled session, we will show how Windows Admin Center (WAC) Virtualization Mode helps you build cost-effective, cloud-connected on-prem virtualization solutions with the Hyper-V hypervisor in Windows Server.
+The vMode v2 roadmap
+View post by @JamesvandenBerg on X
+At #MSIgnite Microsoft Feature Roadmap of Windows Admin Center Vmode V2 🚀
+#WindowsAdminCenter #WAC #Winserv #Hyperv #ITPro #MVPBuzz #HybridIT #WindowsSever
+According to the slide, vMode went GA on 16 November 2026, together with a Hyper-V Replica dashboard (preview) and the VM Conversion tool (private preview). The target for 
+vMode v2 is May 2027
+, and it is still “in planning”. It includes:
+VM Admin
+
+===== https://daily.windowsserver.admin.news/day/2026-11-18/
+(status 200)
+Windows Server 2028 Preview: New features
+Public preview
+A new article describes preview capabilities across identity, management, automation, security, recovery, storage, and virtualization, including PowerShell 7, SMB Policy Controller, and Microsoft Entra ID and Intune management. It identifies the first Insider Preview build for each capability.
+
+===== https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server?tabs=ws28-preview
+(status 200)
+Table of contents 
+Exit editor mode
+Ask Learn
+Ask Learn
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+						Access to this page requires authorization. You can try 
+signing in
+ or 
+changing directories
+.
+						Access to this page requires authorization. You can try 
+changing directories
+.
+Features removed or no longer developed in Windows Server
+Applies to: ✅ 
+Windows Server 2028 Preview
+, ✅ 
+Windows Server 2025
+, ✅ 
+Windows Server 2022
+, ✅ 
+Windows Server 2019
+, ✅ 
+Windows Server 2016
+Feedback
+						Summarize this article for me
+Each release of Windows Server brings new features and improvements. Sometimes older features are removed to make room for better alternatives. This article details the features and functionalities removed or deprecated in Windows Server.
+Tip
+You can get early access to Windows Server builds by joining the 
+Windows Insider Program for Windows Server
+, which is a great way to test feature changes.
+Windows Server long-term servicing channel (LTSC) releases have a Fixed Lifecycle Policy that includes 5 years of mainstream support and 5 years of extended support for a total lifecycle of 10 years. To learn more, see:
+Fixed Lifecycle Policy
+Lifecycle Terms and Definitions
+This list is subject to change and might not include every affected feature or functionality.
+Features no longer in development
+We're no longer actively developing these features and might remove them from a future update. Some features were replaced with other features or functionality. Others are now available from different sources. 
+Deprecation
+ means that a feature, functionality, or service is no longer in active development. A deprecated feature might be removed in future releases. A deprecated component still ships in Windows Server, is supported for production deployments, and continues to receive security and quality updates per the product lifecycle.
+Windows Server 2028 (Preview)
+Windows Server 2025
+Windows Server 2022
+Windows Server 2019
+Windows Server 2016
+Important
+Windows Server 2028 is in preview. The feature deprecations in this tab don't mean that the features are absent from current preview builds. The features might still be available in current preview builds, and the deprecation plans can change before release.
+Feature
+Explanation
+BranchCache
+BranchCache is deprecated beginning with Windows Server 2028. Identify deployments that use BranchCache to cache content from file servers, web servers, or Background Intelligent Transfer Service (BITS), and plan a transition. For more information, see 
+BranchCache
+.
+Windows Deployment Services (WDS) server role
+The WDS server role is deprecated beginning with Windows Server 2028, including its role services, management tools, interfaces, and WDS-provided Preboot Execution Environment (PXE) functionality. You should inventory your WDS dependencies and plan a migration. If you use WDS-backed PXE with 
+Microsoft Configuration Manager
+, migrate to the Configuration Manager PXE responder without WDS. For more information, see 
+Windows Deployment Services deprecation in the next Windows Server release
+.
+Windows PowerShell 5.1
+Windows Server 2028 deprecates Windows PowerShell 5.1. Test existing scripts, modules, and management workflows with PowerShell 7, and use the results to plan your migration. Because PowerShell 7 and Windows PowerShell 5.1 have compatibility differences, assess dependencies before migrating. For guidance, see 
+Migrating from Windows PowerShell 5.1 to PowerShell 7
+.
+Windows Sockets Direct
+Windows Sockets Direct is deprecated. Beginning with Windows Server 2028, system area network (SAN) endpoint creation is disabled by default, and the feature will be removed in a later release. This change doesn't affect NetworkDirect, SMB Direct, or other Remote Direct Memory Access (RDMA) functionality. For more information, see 
+Windows Sockets Direct Architecture
+.
+Feature
+Explanation
+Computer Browser
+The Computer Browser driver and service are deprecated. The browser (browser protocol and service) is a dated and insecure device location protocol. This protocol, service, and driver were first disabled by default in Windows 10, with the removal of the SMB1 service. For more information on the CIFS Browser Protocol used by the Computer Browser drive and service, see 
+MS-BRWS Common Internet File System
+.
+Failover Clustering Cluster Sets
+The Failover Clustering Cluster Sets feature is no longer in active feature development and is deprecated.
+Network Load Balancing (NLB)
+NLB is no longer in active feature development and is deprecated. Consider using a Software Load Balancer (SLB) as an alternative. To learn more about SLB, see 
+What is Software Load Balancer (SLB) for SDN?
+NTLM
+NTLMv1
+ is removed. LANMAN and NTLMv2 are no longer under active feature development and are deprecated. NTLMv2 will continue to work but will be removed from Windows Server in a future release. Replace calls to NTLM with calls to 
+Negotiate
+, which tries to authenticate with Kerberos and only fall back to NTLM when necessary. For more information, see 
+The evolution of Windows authentication
+.
+Remote Mailslots
+Remote Mailslots are deprecated. The Remote Mailslot protocol, which was initially introduced in MS DOS, is a dated and simple IPC method that is both unreliable and insecure. This protocol was first disabled by default in 
+Windows 11 Insider Preview Build 25314
+. For more information on Remote Mailslots, see 
+About Mailslots
+ and 
+[MS-MAIL]: Remote Mailslot Protocol
+.
+TLS 1.0 TLS 1.1
+TLS versions 1.0 and 1.1 are deprecated per internet standards and regulatory bodies due to security concerns mentioned in 
+RFC 8996
+. These versions are disabled by default in Windows Server 2025. For more information on TLS deprecation, see 
+TLS 1.0 and TLS 1.1 deprecation in Windows
+.
+WebDAV Redirector service
+The WebDAV Redirector service is deprecated. The service isn't installed by default in Windows Server. For more information on the WebDAV Redirector service, see 
+WebDAV - Win32 apps
+.
+Windows Internal Database (WID)
+WID is used by several roles, including AD FS, AD RMS, IPAM, RD Connection Broker, and WSUS. Consider using a free or full version of SQL Server for these roles. WID will be removed from Windows in a future release. To learn more, see 
+SQL Server editions
+.
+Windows Management Instrumentation Command-line (WMIC)
+Beginning with Windows Server 2025, WMIC is available as a Feature on Demand (FOD). It can be added with the 
+DISM /Add-Capability
+ command. It will be removed from Windows in a future release.
+PowerShell for WMI
+ replaces the WMIC tool. Use PowerShell or programmatically query WMI as a replacement for WMIC. To learn more about WMIC deprecation, see 
+WMI command line (WMIC) utility deprecation: Next steps
+.
+VBScript
+VBScript is available as an FOD and preinstalled in Windows Server 2025, before its removal from the operating system in a later release. As a replacement for VBScript, use PowerShell for automating tasks, custom actions, or scripts. To learn more about migrating to PowerShell, see 
+The VBScript-to-Windows PowerShell Conversion Guide
+.
+ If you're using VBScript within your webpage, functionality is currently limited to browsers predating Internet Explorer 11. We recommend migrating your webpages to JavaScript, which provides cross-browser compatibility and modern browser support.
+Windows Server Update Services (WSUS)
+WSUS is no longer actively developed. All the existing capabilities and content continue to be available for your deployments.
+Rivest Cipher 4 (RC4) usage in Kerberos
+RC4 usage in the Kerberos authentication protocol is deprecated. RC4 is a weak algorithm that can be abused for stealing credentials. Stronger algorithms, like AES-SHA1, should be used instead. For more information, see 
+Detect and Remediate RC4 Usage in Kerberos
+.
+Feature
+Explanation
+Guarded Fabric and Shielded VMs
+Windows Server and Azure Local are aligning with Azure to take advantage of continuing enhancements to 
+Azure confidential computing
+ and 
+Azure Security Center
+. This alignment translates to more cloud security offerings being extended to customer datacenters on-premises.
+Microsoft continues to provide support for these features, but there's no further development on client versions of Windows as the Shielded VM RSAT feature is removed.
+Hyper-V Virtual Switch on LBFO
+The Hyper-V Virtual Switch no longer has the capability to be bound to an LBFO team. Instead, it must be bound via 
+Switch Embedded Teaming (SET)
+. This change only applies to Hyper-V. LBFO is still fully supported for other non-Hyper-V scenarios.
+Launching SConfig from a command prompt
+Starting with Windows Server 2022, 
+SConfig
+ is launched by default when you sign into a server running the Server Core installation option. Moreover, PowerShell is now the default shell on Server Core. If you exit 
+SConfig
+, you get to a regular interactive PowerShell window. Similarly, you can opt out from SConfig autolaunch. In this case, a PowerShell window pops up at sign-in. In either scenario, you can launch SConfig from PowerShell by running 
+SConfig
+.
+New EKUs for VBS enclaves
+VBS enclaves are supported on Windows Server 2025 and later. 
+Existing
+ enclaves with the EKU 1.3.6.1.4.1.311.76.57.1.15 signature are still supported on Windows Server 2022 as long as they remain unchanged and don't require re-signing.
+Windows Deployment Services (WDS) boot.wim image deployment
+The operating system deployment functionality of WDS is being partially deprecated. Workflows that rely on 
+boot.wim
+ from Windows Server 2022 installation media show a nonblocking deprecation notice, but the workflows aren't impacted.
+Windows 11 workflows and workflows for future versions of Windows Server that rely on 
+boot.wim
+ from installation media are blocked.
+Alternatives to WDS, such as 
+Microsoft Configuration Manager
+ or the 
+Microsoft Deployment Toolkit
+ (MDT), provide a better, more flexible, and feature-rich experience for deploying Windows images. We recommend that you use one of these solutions instead.
+WDS PXE boot isn't affected. You can still use WDS to PXE-boot devices to custom boot images. You can also still 
+run setup from a network share
+. Workflows that use custom 
+boot.wim
+ images, such as with Configuration Manager or MDT, aren't impacted.
+Windows Internet Name Service (WINS)
+WINS is a legacy computer name registration and resolution service. You should replace WINS with Domain Name System (DNS). For more information, see 
+Windows Internet Name Service (WINS)
+.
+XDDM-based remote display driver
+Starting with this release, Remote Desktop Services uses a Windows Display Driver Model (WDDM) based indirect display driver (IDD) for a single-session remote desktop. Support for Windows 2000 Display Driver Model (XDDM) based remote display drivers will be removed in a future release. Independent software vendors that use XDDM-based remote display drivers should plan a migration to the WDDM driver model. For more information on implementing remote indirect display drivers, see 
+Updates for IddCx versions 1.4 and later
+.
+Feature
+Explanation
+Host Guardian Service Active Directory attestation mode
+We're no longer developing Host Guardian Service Active Directory attestation mode. Instead, a new attestation mode is added, 
+host key attestation
+. Host key attestation is simpler and as compatible as Active Directory-based attestation. This new mode provides equivalent functionality with a setup experience, simpler management, and fewer infrastructure dependencies than the Active Directory attestation. Host key attestation has no extra hardware requirements beyond what Active Directory attestation required, so all existing systems remain compatible with the new mode. To learn more about your attestation options, see 
+Deploy guarded hosts
+.
+IIS Digest Authentication
+This authentication method will be replaced. You should start using other authentication methods, like Client Certificate Mapping. To learn more, see 
+Configuring One-to-One Client Certificate Mappings
+ and 
+Application Settings
+.
+IIS 6 Management compatibility
+Specific features being considered for replacement are:
+IIS 6 Metabase Compatibility (Web-Metabase)
+IIS 6 Management Console (Web-Lgcy-Mgmt-Console)
+IIS 6 Scripting Tools (Web-Lgcy-Scripting)
+IIS 6 WMI Compatibility (Web-WMI)
+IIS 6 Metabase Compatibility acts as an emulation layer between IIS 6-based metabase scripts and the file-based configuration used by IIS 7 or newer versions. You should start migrating management scripts to target IIS file-based configuration directly by using tools such as the 
+Microsoft.Web.Administration
+ namespace.
+You should also start migrating from IIS 6.0 or earlier versions to the latest version of IIS, which is always available in the most recent release of Windows Server.
+Internet Storage Name Service (iSNS)
+The Server Message Block (SMB) feature offers essentially the same functionality with more features. See 
+Server Message Block Overview
+ for background information on this feature.
+IPv4/6 transition technologies
+6to4 is disabled by default since Windows 10 version 1607 (the Anniversary Update). ISATAP is disabled by default since Windows 10 version 1703 (the Creators Update). Direct Tunnels is disabled by default. Use native IPv6 support instead.
+Key Storage Drive in Hyper-V
+We're no longer working on the Key Storage Drive feature in Hyper-V. If you use generation 1 VMs, check out 
+Generation 1 VM Virtualization Security
+ for information about options. If you're creating new VMs, use generation 2 VMs with TPM devices for a more secure solution.
+New EKUs for VBS enclaves
+VBS enclaves are supported on Windows Server 2025 and later. Existing enclaves with the EKU 1.3.6.1.4.1.311.76.57.1.15 signature are still supported on Windows Server 2019 as long as they remain unchanged and don't require re-signing.
+OneSync service
+The OneSync service synchronizes data for the Mail, Calendar, and People apps. A sync engine to the Outlook app that provides the same synchronization was added.
+Remote Differential Compression API support
+Remote Differential Compression API support enabled synchronizing data with a remote source by using compression technologies, which minimized the amount of data sent across the network.
+RSA/AES Encryption for IIS
+We're considering replacing this encryption method because the superior Cryptography API: Next Generation (CNG) method is already available. To learn more, see 
+About CNG
+.
+Storage Spaces in a Shared configuration using a SAS fabric
+Deploy 
+Storage Spaces Direct
+ instead. Storage Spaces Direct supports the use of HLK-certified SAS enclosures, but in a nonshared configuration, as described in the 
+Storage Spaces Direct hardware requirements
+.
+Trusted Platform Module (TPM) management console
+The information previously available in the TPM management console is now available on the 
+Device security
+ page in 
+Windows Security settings
+.
+WFP lightweight filter switch extension
+The WFP lightweight filter switch extension enables developers to build 
+simple network packet filtering extensions for the Hyper-V Virtual Switch
+. You can achieve the same functionality by creating a full filtering extension. Therefore, we're removing this extension in the future.
+Windows PowerShell 2.0
+Migrate to Windows PowerShell 5.0 or later for the best features and performance. For more information, see 
+PowerShell Documentation
+.
+Windows Server Essentials Experience
+We're no longer developing the Essentials Experience role for the Windows Server Standard or Windows Server Datacenter SKUs. If you need an easy-to-use server solution for small-to-medium businesses, check out 
+Microsoft 365 for business
+, or use 
+Windows Server 2016 Essentials
+.
+MultiPoint Services
+We're no longer developing the MultiPoint Services role as part of Windows Server. MultiPoint Connector services are available through 
+Features on Demand
+ for both Windows Server and Windows 10. You can use 
+Remote Desktop Services
+, in particular the Remote Desktop Services Session Host, to provide RDP connectivity.
+Offline symbol packages
+ (Debug symbol MSIs)
+We're no longer making the symbol packages available as a downloadable MSI. Instead, 
+Microsoft symbol server is becoming an Azure-based symbol store
+. If you need the Windows symbols, connect to the Microsoft symbol server to cache your symbols locally, or use a manifest file with SymChk.exe on a computer with internet access.
+Software Restriction Policies
+ in Group Policy
+Instead of using Software Restriction Policies through Group Policy, you can use 
+AppLocker
+ or 
+Application Control for Windows
+. You can use AppLocker and Windows Defender Application Control to manage which apps users can access and what code can run in the kernel.
+Feature
+Explanation
+Configuration tools
+scregedit.exe
+ is deprecated. If you have scripts that depend on 
+scregedit.exe
+, adjust them to use 
+reg.exe
+ or PowerShell methods.
+NetCfg custom APIs
+Installation of PrintProvider, NetClient, and ISDN using NetCfg custom APIs is deprecated.
+Remote management
+WinRM.vbs
+ is deprecated. Instead, use functionality in the WinRM provider of PowerShell.
+Sconfig.exe
+Use 
+Sconfig.cmd
+ instead.
+SMB 2 and later over NetBT
+SMB 2 and later over NetBT is deprecated. Instead, implement SMB over TCP or RDMA.
+Features removed
+We're removing the following features and functionalities from the installed product image in Windows Server. Applications or code that depend on these features won't function in future releases unless you use an alternative method. Removal occurs when a feature or functionality is no longer available for use and is eliminated from a product or service. The removal of features and functionalities can take place in any release of Windows Server. Some features are deprecated but still ship in current versions of Windows Server. Components aren't removed from generally available supported versions that are within their product lifecycle.
+Windows Server 2028 (Preview)
+Windows Server 2025
+Windows Server 2022
+Windows Server 2019
+Windows Server 2016
+Important
+Windows Server 2028 is in preview. The feature removals in this tab aren't confirmation that the features are absent from current preview builds. The features might still be available in current preview builds, and the removal plans can change before release.
+Feature
+Explanation
+Windows Internet Name Service (WINS) server role
+WINS is removed in Windows Server 2028 after being no longer developed since Windows Server 2022. Migrate WINS-dependent clients and services to DNS-based name resolution. For more information, see 
+WINS removal: Moving forward with modern name resolution
+.
+DirectAccess
+DirectAccess is removed from Windows Server 2028. Migrate existing DirectAccess deployments to Always On VPN by using a side-by-side migration. For more information, see 
+Overview of the DirectAccess to Always On VPN migration
+ and 
+DirectAccess deprecation on future Windows Server releases
+.
+Point-to-Point Tunneling Protocol (PPTP) and Layer 2 Tunneling Protocol (L2TP) remote access
+Remote access through PPTP and L2TP is removed from Windows Server 2028. Migrate remote access connections to Internet Key Exchange version 2 (IKEv2) or Secure Socket Tunneling Protocol (SSTP). For more information, see 
+Configure VPN protocols
+ and 
+L2TP and PPTP removal
+.
+Server Message Block version 1 (SMBv1)
+Windows Server 2028 no longer includes SMBv1. Update dependent clients, servers, and devices to use SMBv2 or SMBv3. For more information, see 
+Stop using SMB1
+.
+VBScript
+Windows Server 2028 removes VBScript, so scripts and apps that depend on it stop working. Migrate administrative scripts to PowerShell and web scripts to JavaScript. For more information, see 
+VBScript deprecation: Timelines and next steps
+.
+Windows Management Instrumentation command-line utility (WMIC)
+Windows Server 2028 removes the Windows Management Instr

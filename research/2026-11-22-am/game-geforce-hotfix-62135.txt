@@ -1,0 +1,128 @@
+===== https://www.techpowerup.com/355072/nvidias-ssd-write-bug-gets-patched-in-geforce-hotfix-621-35-driver
+(status 403)
+403 - Access Denied
+Permission denied
+Status
+403
+Trace ID
+0HNQ72JDOEPS7:0000014C
+Your IP
+20.97.189.106
+Request Time
+2026-11-21 19:30:20.203 UTC
+
+===== https://videocardz.com/newz/nvidia-releases-geforce-621-35-hotfix-to-fix-excessive-ssd-writes
+(status 200)
+NVIDIA addresses SSD write bug in latest GeForce drivers
+NVIDIA has released GeForce Hotfix Driver 621.35 to address excessive SSD writes reported by users of recent Game Ready drivers. The company confirms that a background process may repeatedly write data to the nvlog.nvlgstg file. The issue was reported with drivers 621.14 and 621.24, with some users recording up to 30GB of unnecessary writes per hour.
+The new 621.35 hotfix targets this issue under bug reference 7116722. According to NVIDIA’s release notes, the driver is based on the latest GeForce Game Ready release and includes a targeted fix for excessive background writes. The update is available for Windows 10 and Windows 11.
+NVIDIA GeForce Hotfix Driver v621.35 is now available.   This update resolves the following:
+✅Excessive writes to file nvlog.nvlgstg may occur in background
+Click below to learn more: ⤵️
+https://t.co/1oI8isbzD9
+Download from: 
+https://t.co/AHyk9uLTHY
+— NVIDIA Customer Care (@nvidiacc) 
+November 20, 2026
+NVIDIA is not the only GPU manufacturer to encounter this problem. AMD was also forced to release an optional, non-WHQL Adrenalin Edition 26.11.1 driver on November 12 to address excessive system drive writes. AMD’s fix covers unnecessary disk activity while the system is idle or when users move and resize application windows.
+We encourage everyone experiencing this issue to download GeForce Hotfix Driver 621.35 rather than continue using an affected driver. NVIDIA notes that hotfix releases receive abbreviated testing and are considered optional beta drivers. The fix is expected to be incorporated into a future WHQL-certified release, which at the time of writing has no release date. 
+Share
+Set as Preferred Source
+Follow on Google
+Source: 
+NVIDIA Support
+
+===== https://www.notebookcheck.net/Nvidia-releases-hotfix-for-GeForce-driver-bug-that-hammered-SSDs-with-up-to-30-GB-of-writes-an-hour.1456096.0.html
+(status 200)
+Nvidia's GeForce Game Ready Driver 621.24, released on November 12, brings optimizations for the upcoming 
+Warhammer 40,000: Dawn of War IV
+ and 
+adds support
+ for the DLSS 5 update coming to 
+Where Winds Meet
+ and the DLSS 4.5 Dynamic Multi Frame Generation update for 
+Assetto Corsa Rally
+. However, like its predecessor, 621.14, it also carries an alarming bug that can eat into the rated lifespan of users' SSDs.
+A log file rewritten on a loop
+As 
+detailed by TroubleGrid
+ and corroborated by users on Reddit and Nvidia's forums, the NVDisplay.Container.exe process, which runs as the NVIDIA Display Container LS service, repeatedly rewrites a binary log file named nvlog.nvlgstg on the drive where Windows is installed. Users trace the regression to driver 621.14, released on November 4.
+The reported figures vary widely between systems. One user recorded 515 MB of writes after idling for five minutes on 621.14, another measured over 3 GB in ten minutes, and a third estimated roughly 30 GB an hour on 621.24. The same idle test on driver 621.01 produced less than 2 MB, which is the source of the widely quoted claim that writes are running 250 times higher than normal.
+How much damage could this do to an SSD?
+SSD endurance is rated in terabytes written (TBW), typically around 600 TBW for a 1 TB drive. The 250x figure describes the process's write activity rather than how quickly a drive wears out, however, since Windows process counters do not always reflect what physically reaches the NAND. In the same five-minute test, the entire C: drive logged only 270 MB of writes. Even so, by our own arithmetic, 30 GB an hour for eight hours a day would consume around 15% of a typical 1 TB drive's rated endurance every year.
+To check the process's activity, Reddit user "xCaliburghost" suggests running the following command in Windows PowerShell (code below):
+Get-CimInstance Win32_Process -Filter "Name='NVDisplay.Container.exe'" | 
+Select-Object ProcessId, 
+@{N='RAM_MB';E={[math]::Round($_.WorkingSetSize/1MB,1)}}, 
+@{N='Read_MB';E={[math]::Round($_.ReadTransferCount/1MB,1)}}, 
+@{N='Write_MB';E={[math]::Round($_.WriteTransferCount/1MB,1)}}
+The totals are cumulative since the process last started and cover all of its I/O, so comparing two readings taken a few minutes apart gives a clearer picture of how much is being written to on an (ideally) idle PC.
+Nvidia's hotfix and the earlier workarounds
+Nvidia has since acknowledged the issue as bug 7116722 and, on November 20, released 
+GeForce Hotfix Display Driver 621.35
+. Based on 621.24, it lists a single fix: "Excessive writes to file nvlog.nvlgstg may occur in background." As with all of Nvidia's hotfixes, it is an optional beta without WHQL certification, and the company says the safest option is to wait for the next certified driver.
+Before the hotfix, the most reliable workaround was rolling back to 621.01, though that brings back its video playback freezes and black screens on some RTX 50 series GPUs. Stopping the NVIDIA Display Container LS service and deleting the log file offers only temporary relief, while disabling the service outright prevents the Nvidia Control Panel and Nvidia app from opening.
+A familiar problem for AMD users
+The bug surfaced just days after AMD tackled 
+a similar problem, in which
+ its External Events Utility (atieclxx.exe) kept writing to the system drive at idle, at reported rates comparable to Nvidia's. AMD acknowledged the issue before shipping a fix for RX 7000 series cards and newer in 
+Adrenalin 26.11.1
+ on November 12, then extended it to older Radeon cards on Windows 10 on November 18.
+Nvidia, by contrast, stayed silent until its hotfix arrived 16 days after 621.14 shipped, though only days after the reports gained wider attention. Some Redditors have speculated that both companies are "vibe-coding" their drivers, but there is no evidence for this, and complaints about Nvidia's Display Container constantly rewriting its logs date back to at least 2021.
+Buy an Nvidia RTX 5060Ti on Amazon here
+Source(s)
+Wccftech
+ | 
+TroubleGrid
+ | 
+xCaliburghost on Reddit
+ | 
+NVIDIA forums
+⟨
+Previous article
+A star swallowed another star in the Andromeda galaxy
+Next article
+Acclaimed fantasy RPG with your own pirate ship drops below $5 on Steam
+⟩
+Add as a preferred source on Google
+ static version  
+load dynamic
+Loading Comments 
+ Comment on this article
+Related Articles
+Rahim Amir Noorali
+ - Tech Writer 
+ - 1197 articles published on Notebookcheck
+ since 2025
+I am a UAE-based tech writer who likes to build and benchmark PCs both professionally and as a hobby. I contribute to multiple tech publications, including TechRadar and Notebookcheck, as well as Game Rant, where I focus primarily on news, commerce, and buying guides.  When I'm not scouring the internet for the latest in tech stories, you will find me playing a game of Civilization or DotA with friends and frenemies alike while dropping recommendations for Apple TV+'s Foundation to everyone I come across.
+contact me via: 
+ LinkedIn
+> 
+Expert reviews and news on laptops, smartphones and tech innovations
+ >  
+News
+ >  
+News Archive
+ >  
+Newsarchive 2026 11
+ >  Nvidia releases hotfix for GeForce driver bug that hammered SSDs with up to 30 GB of writes an hour 
+Rahim Amir Noorali, 2026-11-21 (Update: 2026-11-21)
+
+===== https://automaton-media.com/articles/newsjp/20261121-480255/
+(status 200)
+
+
+===== https://nvidia.custhelp.com/app/answers/detail/a_id/5940/
+(status 403)
+Technical Difficulties
+ Site Accessed: 
+This site is experiencing a technical
+                difficulty. We are aware of the issue and are working as quickly as possible to correct the problem.
+We apologize for any inconvenience this may have caused.
+To speak with an Oracle sales representative: 
+1.800.ORACLE1
+To contact Oracle Corporate Headquarters from anywhere in the world: 
+1.650.506.7000
+To get technical support in the United States: 
+1.800.633.0738
+Incident Number: 0.ca00de17.1795289420.1dc4c5a7

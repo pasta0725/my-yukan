@@ -1,0 +1,741 @@
+===== https://syncon.jp/decision-model-choices-basic-2026-11-20/
+(status 200)
+PR
+Apple 製品を Amazon で選ぶ
+整備済みの Apple 製品
+文章を書かずに、前もって決めた選択肢か確率だけを返すAIが相次いで登場しています。
+審査や仕分けをAIに任せるとき、問われるのはAIの賢さより「選択肢を誰がどう決めるか」です。
+30秒でわかるポイント
+判断特化型AIは、人が決めた選択肢や評価尺度に沿って答えを返す
+米OpenAIが9月29日に発表。応答は約150ミリ秒で、通常の約1.6秒より速い
+任せる前に、選択肢の中身と、その設計を担う人を決める必要がある
+目次
+1分でわかる解説
+何が起きたの? — 「選ぶだけのAI」が相次ぐ
+「選択肢を返す」とはどういう仕組み?
+審査や仕分けの仕事はどう変わるの?
+SYNCONの視点 — 選択肢を決める人が判断を握る
+要点まとめ
+1分でわかる解説
+ふだんの生成AIは、答えを文章や画像として作ります。そのため、同じ質問でも出力の形が毎回変わる可能性があります。
+文章を生成するAI
+判断特化型AI
+返すもの
+文章や画像
+決めた選択肢か確率
+出力の形
+毎回変わりうる
+決めた形で返る
+想定される業務
+文書や画像の作成
+問い合わせの振り分け、内容の分類
+答えの形が決まっているので、結果をそのまま別のシステムに渡せます。日経クロステックは、形の決まっていないデータの処理を自動にする使い道を挙げています。
+ここから考えたい3つの問い
+あなたの職場で、答えの候補が決まっている判断はどれだけありますか?
+その選択肢を書き出し、見直す役目は誰が担いますか?
+AIの確信度が低いとき、人に戻す線をどこに引きますか?
+全文を読む(約4分)
+何が起きたの? — 「選ぶだけのAI」が相次ぐ
+日経クロステックは11月20日、用語解説で「判断特化型AI」を取り上げました。英語ではDecision Modelと呼ばれます。
+言葉による入力に対し、事前に決めた選択肢や評価尺度に沿って答えを返すAIです。文章は書かず、選択肢か確率を返します。
+同じ種類のAIは、この秋に相次いで発表されました。
+会社
+名前
+特徴
+TypeSafe
+Jev
+文章を作る機能を外し、確信度の精度を高めた。9月15日に発表
+米OpenAI
+Decisions API
+決めた回答の一覧から最も適切なものを選ぶ。画像も読み込める。9月29日に発表
+米Cloudflare
+Clef
+モデル本体を公開。米国時間10月1日に発表
+Liquid AI
+d1
+問いの形を3種類用意し、確率で答える
+OpenAIは、自社のシステムからAIの機能を呼び出す窓口(API)として、この仕組みを出しました。土台は軽量モデルのGPT-6 Lunaです。
+処理時間は約150ミリ秒です。同じモデルをふつうに呼び出すと約1.6秒かかり、大幅に速くなったとしています。今は限られた利用者向けの先行提供で、価格はまだ発表されていません。
+「選択肢を返す」とはどういう仕組み?
+判断特化型AIに渡すのは、質問と、答えの候補の一覧です。AIは文章を書かず、候補の中から答えを選びます。
+Liquid AIのd1は、問いの形を3種類に分けています。「はい・いいえ」の確率、選択肢ごとの確率、そして順序のある評価尺度のどこに当たるか、です。
+大事なのは、確率が当てになるかどうかです。天気予報の降水確率が信頼されるのは、予報どおりの割合で実際に雨が降るからです。AIの確信度も同じことが問われます。
+TypeSafeのJevは、出した確信度が実際の正解率と合うように作られています。一方、OpenAIの仕組みについては、確信度の正確さを裏付けるデータはまだ公開されていません。
+審査や仕分けの仕事はどう変わるの?
+これまでAIに判断を頼むと、答えは文章で返ってきました。人がそれを読み、結論を拾い直す手間がありました。
+これまで(文章を生成するAI)
+これから(判断特化型AI)
+答えの形
+毎回変わりうる文章
+決めた選択肢か確率
+次の処理
+人が読み、結論を拾う
+そのまま別のシステムに渡せる
+速さ(OpenAIの例)
+約1.6秒
+約150ミリ秒
+人の役目
+出力を読んで確かめる
+選択肢を設計し、確信度の低い案件を見る
+想定される用途は、問い合わせの振り分けや内容の分類のような定型の判断です。PC Watchは、AIの動きに歯止めをかける用途にも向くと伝えています。
+ビジネス+ITは、高度な推論を担う大きなモデルと、定型の判断を即座にこなすモデルを組み合わせる設計が焦点になると見ています。費用と応答の速さを全体で最適にするためです。
+SYNCONの視点 — 選択肢を決める人が判断を握る
+判断特化型AIは、選択肢の外の答えを出しません。裏を返せば、選択肢の作り方がそのまま判断の質になります。「承認」と「却下」だけにするか、「要確認」を足すかで、現場に戻る仕事の量が変わります。
+この設計は、IT部門だけでは決められません。審査の基準を知っているのは、業務の責任者だからです。選択肢を書き出し、見直す権限を誰が持つかを、導入の前に決めておく必要があります。
+もう一つは確信度の扱いです。確信度の低い案件を人に戻す線をどこに引くか。その確信度が当てになるかを自社のデータで確かめるのも、導入する側の仕事です。
+要点まとめ
+判断特化型AI(Decision Model)は、事前に決めた選択肢や評価尺度に沿って答えを返す
+TypeSafe、米OpenAI、米Cloudflare、Liquid AIが相次いで同じ種類のAIを発表
+OpenAIの仕組みは約150ミリ秒で応答。通常の呼び出しの約1.6秒より速い。価格は未発表
+答えの形が決まるので、結果をそのまま別のシステムに渡せる
+確信度が実際の正解率と合うかは製品によって違い、自社での確認が要る
+導入の前に、選択肢の設計と見直しを担う人を決めておく
+情報ソース:
+・日経クロステック「判断特化型AI（Decision Model）」(2026年11月20日)
+・ビジネス+IT「OpenAIが判断するAI「Decisions API」発表、TypeSafe「Jev」に対抗 定義した選択肢から一つを選ばせる分類やルーティングに特化」(2026年9月30日)
+・PC Watch「テキストを生成しない爆速AI「意思決定モデル」が続々。Clefなど3本まとめ」(2026年10月2日)
+AI・最新テックの動きを、毎日 X でお届けしています
+X で @SYNCONJP をフォロー
+PR
+Apple ストア on Amazon
+Apple 製品を、
+Amazon で選ぶ。
+iPhone、Mac、iPad、AirPods、Apple Watch。
+ラインアップをまとめて見られます。
+ストアを見る
+PR
+Amazon 整備済み品
+整備済みの Apple 製品を、
+手の届く価格で。
+検査と整備を経た Apple 製品の一覧です。
+仕事用の 2 台目にも。
+一覧を見る
+
+===== https://ciomonitor.com/articles/decision-models-land-in-the-enterprise-ai-stack-at-4-cents-per-million-tokens
+(status 200)
+Feed
+The rise of the AI decision model
+ — 
+PublicDomainPictures / pixabay
+Event log
+TypeSafe's Jev costs about 4 cents per million input tokens with no output-token charge
+Jev launched September 2026; Google's Gemini Decisions API followed in November
+Decision models respond in under a second and return probabilities for every allowed option
+At 1 million decisions per day, a 1% error rate means 10,000 mistakes
+The EU AI Act requires human oversight of certain high-risk AI decisions
+A judgment call that used to cost a large language model several cents now costs 0.000004 dollars. TypeSafe's Jev, a hosted decision model priced at about 4 cents per million input tokens with free output tokens, is pulling an entire category into the enterprise AI stack — and by November 2026, OpenAI, Google, Microsoft, Databricks, Snowflake, Cloudflare and AWS had all shipped rivals.
+Start with the scene where these models actually earn their keep: a supplier email about a delayed shipment lands in a procurement inbox. A decision model reads it and answers three narrow questions — does it specify a firm new delivery date, does the delay threaten a customer commitment, which escalation category applies. Conventional software then compares dates and stock levels, and procurement rules decide whether to expedite or find another supplier. Everything outside the judgment stays in code that teams can read, test and modify.
+What exactly is a decision model?
+It's a smart if-statement. You feed it input data — an email, customer record, document, sometimes an image or call recording — plus questions with predefined answer options. It returns an answer and a probability for every allowed option, in under a second. It generates no text.
+That matters because most AI in business processes is small judgment, not content generation: is this ticket about billing or a defect, does this invoice match the purchase order, should the agent send that email, which model should handle this prompt. Until now the default was querying an LLM and parsing a one-word answer — slow, costly at scale, and silent on confidence.
+Terminology varies. TypeSafe calls Jev a "system one model," after economist Daniel Kahneman's term for fast, intuitive thinking. Others say decision model or small judgment model (SJM).
+Isn't this just an ML classifier?
+In one sense, yes — spam filters and fraud models have classified inputs for decades. The difference is cost and ease. Traditional classifiers demand thousands of labeled examples, a data science team, a separate model per question and ongoing maintenance. Decision models take plain-language questions, accept documents in various formats, and one model serves scenarios from ticket routing to contract review. Jev's request format has become a de facto standard: users can often switch providers by changing an endpoint, not rewriting an application.
+A trained classifier still wins when a question is stable and labeled data is plentiful. Decision models shine when questions change frequently or no labeled data exists.
+Who's selling what?
+The landscape splits along two axes.
+By capability:
+General-purpose text and records:
+ TypeSafe Jev, OpenAI Decisions API, Microsoft-Decision-1
+Multimodal (images, audio, video):
+ Google Gemini Decisions API, Cloudflare Clef-omni, Liquid AI d1
+Longer reasoning:
+ Fastino GLiDE, Respan span
+Source-consulting with citations:
+ Parallel Decisions API, Perplexity Decider
+Industry-specific:
+ Superagent Security-One, Nace AI Drex Max Finance
+By delivery: major AI platforms (OpenAI, Google, Microsoft); data platforms reachable through SQL, such as Databricks ai_decide and Snowflake Decision; open-weight self-hosted models like Cloudflare Clef and AWS Strands Decider running via Ollama, vLLM or Hugging Face; and specialist APIs, some still on early-access terms with uneven enterprise support.
+The timeline compressed fast: TypeSafe launched Jev in September 2026, OpenAI, Databricks, Cloudflare and AWS followed quickly, Microsoft and Snowflake announced in October, and Google shipped the Gemini Decisions API in November.
+Where do they pay off?
+Use cases span nearly every function — routing tickets and flagging at-risk customers, matching invoices to purchase orders, holding payments when a customer appears coached by a scammer, fast-tracking straightforward insurance claims, scoring security alerts, routing prompts to the cheapest capable model, checking agent actions against permissions before execution, and identifying claim denials worth appealing. A growing pattern: a fraction-of-a-cent check before each AI agent action, reinforcing spending limits and approval rules. Look for decisions that are frequent, narrow, data-heavy, governed and time-sensitive.
+What are the risks?
+The uncomfortable arithmetic: a well-calibrated model at 90% confidence is still wrong one time in ten. At 1 million decisions a day, a 1% error rate means 10,000 mistakes. A structured answer isn't necessarily a correct one — structure makes errors easier to detect, not to eliminate.
+Other traps:
+Calibration varies by domain; test against your own labeled cases before setting thresholds
+The model sees only the inputs provided — missing records produce confident wrong answers
+High-stakes calls in credit, employment, housing, insurance, education, healthcare or legal rights need human oversight; the EU AI Act requires override capability for certain high-risk systems
+Practical next steps are unglamorous but proven: start with existing data-platform contracts, integrate through a common interface to avoid lock-in, demand vendor calibration results, and treat thresholds as versioned policy — checking whether 80%-confidence predictions actually prove right 80% of the time.
+A layer that answers narrow questions for fractions of a cent doesn't replace agents or LLMs — it decides when they should be trusted.
+via
+techtarget.com
+ (Source)
+Filed under
+decision-models
+ai-model-routing
+ai-governance
+enterprise-ai-costs
+human-oversight
+Share this article
+:
+X
+ / 
+Facebook
+ / 
+Telegram
+ / 
+VK
+ / 
+LinkedIn
+ / 
+WhatsApp
+Copy link
+More from Olivia Hart
+O
+Olivia Hart
+Show full bio
+News editor covering money, funding and market shifts around enterprise information technology and the leaders who run at CIO Monitor.
+215 articles
+The newsroom digest
+One email a day with the stories that matter. No noise.
+Cross-references
+Microsoft Ships Decision-1, a Cheaper AI Model Built for Verdicts, Not Prose
+October 13, 2026
+Microsoft Ships Decision-Decision Model as Category Hits 25% of Router Traffic
+November 18, 2026
+Jev and the Arrival of Model Tetris: Decision Models Get a Standard API
+November 12, 2026
+Agentic AI pricing splits three ways as buyers gain leverage
+November 18, 2026
+Enterprise AI Bills Set to Outpace Falling Model Costs
+October 10, 2026
+‹ 
+Previous article
+ · 
+Next article
+ ›
+
+===== https://dev.to/amananandrai/stop-paying-llm-prices-for-an-if-statement-a-field-guide-to-decision-models-in-late-2026-4d24
+(status 200)
+Speed claims face skepticism
+I keep coming back to one small question: why do we ask a model to write a paragraph when all our software wants is a yes, a no, or a number? This is my notebook on how Jev answered it, who answered back, and what I would try first. Written 19 November 2026.
+  The short version
+On 15 September 2026, TypeSafe AI released 
+Jev
+, a model that never writes text. You hand it some state (text or JSON) plus typed questions, and it hands back a choice, a score or a probability.
+What drew me in is how ordinary the problem is. Agent loops pay frontier-LLM prices, and wait seconds, for tiny calls like routing, gating and relevance checks that software then turns back into an 
+if
+ statement.
+In about eight weeks, Cloudflare, OpenAI, Microsoft, AWS, Google and PostHog shipped their own decision models or APIs, and at least seven open-source projects showed up.
+I also want to be fair about the numbers. The headline figures (up to 193.6x faster, 444.6x cheaper) come from TypeSafe's own four workflows. Outside checks are more modest, and one viral demo did not survive being measured. So I read them as a hypothesis to test, not a result.
+  Why this needed to exist
+Picture an agent harness as a loop: the model proposes, the harness checks, the model carries on. When I look at what the harness actually checks, it is all small stuff. Which skill should handle this? Is this bash command safe? Is that tool result relevant? Should a human see this? Is the agent really done?
+Each of those is a bounded judgment, and the usual answer was to ask a general LLM and parse whatever came back. Every decision then carries a model request, output parsing, recovery code for malformed answers, and waiting in line behind the previous call. LangChain's post on building a harness with Jev makes the same argument I find convincing: let the generative model plan and write, and move the small decisions somewhere cheaper.
+TypeSafe's founder, Diogo Almeida, is a former OpenAI researcher and co-author of the InstructGPT paper. His bet is that autoregressive text generation is an awkward fit for software that only needs an answer from a fixed menu. The company calls this class 
+System One models
+ and describes the product as a function call: unstructured state in, typed probabilistic decisions out. The name nods to the Jevons paradox, which I find charming: make a judgment cheap enough and people will start making it constantly.
+Most of what an agent harness asks a model is not "write me something". It is "which one?"
+This is the launch thread most explainers link to, with the 20-200x faster and 40-400x cheaper framing:
+  How Jev works, in plain words
+Input:
+ a state (any text or JSON) and a map of typed questions you define in code. Version 1.14 added image input.
+Output:
+ only values from the options you declared, so the answer can never come back malformed. It can still be wrong, and I will keep repeating that.
+Primitives:
+choice
+ (pick one of N), 
+score
+ (rate against an ordered rubric) and 
+noul
+ (the probability that a yes/no statement is true).
+Parallel, not sequential:
+ every candidate and every question in a request is evaluated together instead of token by token.
+Calibration:
+ TypeSafe says it trains with Reinforcement Learning for Calibrated Decisions (RLCD), so a stated 0.8 should be right about 80% of the time for that kind of question.
+Access:
+ a hosted API at 
+POST /v1/systemone
+, $0.042 per million input tokens, free output. The weights are not public.
+  The eight weeks that followed
+Eight weeks, six vendors and at least seven open-source projects. If you blinked in October, you missed three launches.
+Every launch, date by date
+Date (2026)
+Event
+15 Sep
+TypeSafe AI emerges from stealth with a reported $40M seed and releases Jev (v1.13) in early access.
+17-18 Sep
+LangChain publishes 
+Building a Harness with Jev
+ and ships 
+langchain-typesafe
+ with a guardrail middleware.
+23 Sep
+DataCamp roundup of seven open-source Jev alternatives: Laya, Nimble, Kev, SemIf, Rizzo Flow, Von, NanoJev.
+29 Sep
+OpenAI announces the Decisions API at DevDay. PostHog releases Jeeves, a 9B open model that reasons before it decides.
+1 Oct
+Cloudflare releases Clef (27B) and Clef-flash (9B) with Apache 2.0 weights and an RL fine-tuning service. AWS releases the open Strands Decider 2B.
+6 Oct
+OpenAI opens the Decisions API in public beta.
+9 Oct
+Microsoft-Decision-1 becomes available in Microsoft Foundry. Cloudflare adds Clef-omni.
+22 Oct
+OpenAI Decisions API generally available. TechCrunch reports TypeSafe is valued at $7.6B.
+11 Nov
+Google launches the Gemini Decisions API with Gemini Decision 1.
+  How the field answered
+1. The contract became the standard.
+ State plus typed questions, returning probabilities. Cloudflare's Clef is described as API-compatible with Jev. Google's codelab shows 
+djev-run
+, a server that reimplements Jev's 
+/v1/systemone
+ endpoint on top of the open DiffusionGemma model. Kev can run behind a local Jev-compatible server, and Pydantic AI added a 
+TypeSafeModel
+ so a decision agent can be swapped between Jev and an LLM.
+LangChain's day-zero support for Google's API shows how far the contract travelled: it shares a base class with its TypeSafe classifiers.
+2. Several recipes competed for the same dish.
+Purpose-built:
+ Jev.
+Small bidirectional encoders with a decision head:
+ Laya and Von, a few hundred million parameters, runnable locally.
+LLM fine-tunes with decision heads or LoRA:
+ Nimble, Kev, NanoJev, Microsoft-Decision-1.
+Pointer heads on a small LLM torso:
+ AWS Strands Decider 2B swaps the text head for a tiny scoring head. PostHog Jeeves does the same on a 9B model, with a reasoning chain first.
+Training-free wrappers reading option logits from an existing LLM:
+ SemIf and Rizzo Flow.
+A repurposed general model:
+ OpenAI's first Decisions API version constrained GPT-6 Luna to structured answers and tuned it for fast first output. Its team has credited Jev as the inspiration, which I think is a lovely thing to admit.
+3. The fight moved to benchmarks and fine-tuning.
+ Cloudflare reports Clef scoring highest on 7 of 10 decision benchmarks. Google reports Decision 1 beating Jev 1.14 on 5 of 7 shared benchmarks. Independent tracker Artificial Analysis paints a tighter picture: Decision 1 and Jev 1.14 tie at 66 on its Decision Index, and Jev was faster (about 92 ms vs 211 ms per task) and cheaper per million tasks in that run.
+Artificial Analysis shared that head-to-head on X:
+  Meet the challengers
+"Everyone copied Jev" is the lazy summary. When I read the launch notes one by one, each team made a different bet. Here they are in the order they shipped.
+  PostHog Jeeves: the one that thinks first (29 Sep)
+The bet:
+ think before you decide, and give the weights away.
+The model:
+ an open 9B model built on Qwen3.5-9B with a LoRA adapter and a pointer head. It credits Kev as its inspiration.
+The twist:
+ it writes a short reasoning chain for each question before scoring the options, then returns calibrated probabilities through a Jev-compatible API.
+Score (self-published):
+ 93.5% on the public JevBench tier, against 86.6% for Jev.
+The price of thinking:
+ roughly 0.3 seconds without reasoning, and a 3.3-second median (17.1 seconds at p90) with full reasoning chains.
+Openness:
+ Apache-2.0 weights, MIT code, and training code and data in the repo. You will need a CUDA GPU.
+  OpenAI Decisions API (announced 29 Sep, beta 6 Oct, GA 22 Oct)
+The bet:
+ you already have a giant model, so teach it to answer like a small one.
+How it was built:
+ it runs on GPT-6 Luna. OpenAI's API product lead has said it was not on the roadmap four weeks before release. The first version used Luna without extra training: constrained to structured answers, answering several questions at once and tuned to return the first decision faster. He credited Jev with inspiring it.
+What you get:
+ text and image input, preset options, true/false conditions and scores. Latency is reported at 100-180 ms, down from 1-3 seconds, and up to 10x faster than calling Luna through the Responses API. Input is $0.10 per million tokens and output is not charged.
+Who tried it:
+ early customers included Box, Datadog, Ramp and Speak. Speak's CTO said the time between actions fell from 1.4 seconds to 0.13 seconds.
+How it stacks up:
+ at its October launch, TechCrunch reported Jev ranking 3rd and OpenAI's model 14th on the Artificial Analysis Decision Index, so the pitch is speed and multimodality more than raw accuracy.
+For scale:
+ Vercel said nearly 13% of its paid teams tried Jev within a day of it reaching AI Gateway.
+OpenAI's developer account announcing general availability (it quotes the earlier beta post):
+  Cloudflare Clef and Clef-flash (1 Oct)
+The bet:
+ the same API as Jev, open weights, and a way to fine-tune on your own traffic.
+The models:
+ the first models trained by the Workers AI team, at 27B (Clef) and 9B (Clef-flash), built on frozen Qwen backbones. Weights are Apache 2.0 on Hugging Face and both run on Workers AI.
+Same API as Jev:
+ switching means changing the endpoint and model name. Clef takes up to 64 questions per call, a 64K context (Jev's is 32K) and up to 4 images in the request.
+Speed and price (vendor-reported):
+ median latency of 209.3 ms for Clef and 38.8 ms for Clef-flash, against 524.1 ms for hosted Jev including network. Clef costs $0.24 per million input tokens and Clef-flash $0.09, versus Jev's $0.042.
+Benchmarks (vendor-reported):
+ a Clef model leads on 7 of 10 decision benchmarks, while Jev wins on When2Call and BRIGHT. On Cloudflare's Decision Index, Clef scores 61.21 to Jev's 57.91.
+A real use:
+ Cloudflare's threat intelligence team classifies domains with Clef and Browser Run in 2.2 seconds, versus 4.7 seconds for gpt-oss-120b, which returned only two categories.
+The bigger idea:
+ an RL fine-tuning service. AI Gateway captures your traffic, Workers AI runs rollouts, Containers act as sandboxes, a new Trainer updates the weights and bring-your-own-model redeploys the result. It starts with forward-deployed engineers.
+Caveats:
+ the numbers are vendor-reported, no calibration figures have been published for Clef, and it costs more per token than Jev. Clef-omni and cheaper, faster variants followed around 9 Oct.
+Cloudflare's own launch post for Clef:
+  AWS Strands Decider 2B (1 Oct)
+The bet:
+ small enough for a laptop, with everything open.
+The model:
+ a roughly 2B open model on a Qwen3.5-2B torso. The text-generating head is removed and replaced by a pointer head of about 1M parameters that scores the answer options. Later checkpoints added Gemma 4 models up to 26B.
+Where it runs:
+ locally only, with no hosted API. About 106-115 ms median on an RTX 3090 and about 153 ms on an M3 MacBook for small tasks.
+How it scores:
+ 72.3% of 231 public JevBench tasks, with documented weaknesses on long multi-step documents and unfamiliar scoring rubrics. A rival open model, Mapika decider-2b, reportedly scored 76% on the same benchmark.
+Openness:
+ Apache 2.0, with weights, training data and scripts released.
+The demo I like:
+ before an agent calls a weather tool, Decider notices the location is missing, so the agent asks instead of guessing. AWS calls this "hybrid agents": a decision model chooses and an LLM reasons.
+The AWS developer account introducing it:
+  Microsoft Decision-1 (9 Oct)
+The bet:
+ Jev's price, inside Azure, with your data kept in region.
+The model:
+ Qwen3.5-9B, post-trained by Microsoft for fast, single-pass decision scoring. It returns choices, scores and yes-probabilities with confidence.
+Where it runs:
+ Microsoft Foundry on Azure, with an option to keep processing inside a data zone. OpenRouter listed it the same day with a 32K context.
+Price and inputs:
+ $0.042 per million input tokens like Jev, with free output. Text or JSON only, no images.
+Claims (Microsoft's own):
+ top accuracy in a 36-benchmark comparison of nearly 150,000 questions, an 85 ms median, and 4.5x faster than the runner-up. One independent JevBench ranking shared on X put it sixth among API-offered decision models, two places behind Jev.
+My read:
+ the "already on Azure, keep my data where it is" option.
+Microsoft Developer's launch thread (the benchmark figures in it are Microsoft's own):
+  Google Gemini Decision 1 (11 Nov)
+The bet:
+ send it anything, and ask a thousand questions at once.
+Inputs:
+ the most multimodal of the bunch: text, image, audio, video and PDF.
+Scale per call:
+ up to 1,000 questions per request, up to 255 multiple-choice options and a 256K context.
+Speed and price (vendor):
+ 150-250 ms end to end, $0.10 per million input tokens, no output charge.
+Origin:
+ a DeepMind prototype that a small team shipped about six weeks later.
+Benchmarks:
+ Google says it beats Jev 1.14 on 5 of 7 shared benchmarks. Artificial Analysis found a tie at 66 on its Decision Index, with Decision 1 averaging 211 ms per task against Jev's 92 ms and costing more per million tasks ($345 vs $156).
+Sundar Pichai announced it on launch day:
+  What I take from the lineup
+Hosted or open, text-only or multimodal, tiny local model or giant repurposed one: the real choice is about where your data and your agents already live. If you run on Azure, Cloudflare or Google, there is now a native option. If you want to own the weights, AWS, PostHog and Cloudflare each ship them. And if you just want the cheapest typed answer, the launch prices still favor Jev and Microsoft.
+  Open-weight challengers at a glance
+Model
+Released
+Base
+Size
+License
+Notable
+Clef / Clef-flash (Cloudflare)
+1 Oct
+Frozen Qwen backbones
+27B / 9B
+Apache 2.0
+Jev-compatible API, RL fine-tuning service
+Strands Decider 2B (AWS)
+1 Oct
+Qwen3.5-2B
+~2B
+Apache 2.0
+Pointer head, runs locally, training data released
+Jeeves (PostHog)
+29 Sep
+Qwen3.5-9B
+9B
+Apache 2.0 weights, MIT code
+Reasons before it decides
+  Side by side
+Here are the five hosted options in one table. The open-weight ones are in the table just above.
+Jev (TypeSafe)
+Clef / Clef-flash (Cloudflare)
+Decisions API (OpenAI)
+Gemini Decision 1 (Google)
+Microsoft-Decision-1
+Released
+15 Sep
+1 Oct
+Announced 29 Sep, GA 22 Oct
+11 Nov
+9 Oct
+Base
+Purpose-built, RLCD
+Open models, 27B and 9B
+GPT-6 Luna, adapted
+Not disclosed
+Qwen3.5-9B, post-trained
+Inputs
+Text, JSON; images from 1.14
+Text, images
+Text, images, JSON
+Text, image, audio, video, PDF
+Text, JSON (no images)
+Questions per call
+Not stated
+Up to 64
+Up to 400
+Up to 1,000
+Not stated
+Price per 1M input tokens
+$0.042
+$0.24 (Clef), $0.09 at launch (Clef-flash)
+$0.10 ($0.01 cached)
+$0.10
+$0.042
+Reported latency
+70-500 ms (vendor)
+38.8 ms median, Clef-flash (vendor)
+~150-180 ms (launch coverage)
+150-250 ms (vendor)
+85 ms median (vendor)
+Openness
+Hosted, closed
+Open weights, Apache 2.0
+Hosted
+Hosted
+Hosted on Azure
+Speed is messier, because everyone measures it differently:
+Prices and latencies come mostly from launch posts and change quickly, so check current docs. If I were choosing, I would also weigh the open options (Laya, Von, NanoJev): they give up some accuracy on hard cases in exchange for local control, zero per-call cost and serving you can tune yourself.
+  What it changed for harnesses
+The pattern I see in working setups is almost a mantra: 
+code builds the options, the decision model picks, code acts.
+ The model is a stateless judge with no memory, tools or text output, so the harness supplies everything else. These are the seats where it shows up:
+Router:
+ choose which model or agent handles a request.
+Gate:
+ score a tool call, such as a bash command, before it runs. LangChain's 
+AutoModeMiddleware
+ packages this.
+Selector:
+ pick the next tool, skill or browser action from a menu rebuilt after every step.
+Verifier:
+ check whether the agent really finished, at the claimed "done" point rather than every turn.
+Triage:
+ send low-confidence cases to a human or a larger model.
+Lessons I would borrow from people who have built these:
+Always include a "none of these" option, because the model will otherwise pick something.
+Put facts it cannot know into the state. One builder reports that adding the current date moved an answer from 0.35 to 0.94.
+Batch independent questions in one call, but run dependent ones first.
+Decide what "unsure" means before you ship.
+Benchmark against a dumb baseline, such as a constant answer. It is humbling and useful.
+Of all of these, deciding what "unsure" means is the one I would settle first. Builders have shared a few starting points:
+Field note:
+ a concrete example from Cloudflare's AI Engineer talk: in its build-failure demo, decision models handle tool selection and log extraction while a large reasoning model only diagnoses. That cut six LLM calls to one and about 40K tokens to 1.8K. It is a vendor demo, but it shows the division of labor I find most sensible.
+  Where I stay skeptical
+I like this idea a lot, which is exactly why I want to be careful with it.
+TypeSafe's launch claims were 20-200x faster and 40-400x cheaper, best case 193.6x and 444.6x across four of its own workflows. Several analysts note these are the high end of selected evaluations.
+An academic evaluation (Deußer et al., cited in the DICE paper) tested Jev on 37 datasets: strong zero-shot performance and well-calibrated choice probabilities, but boolean outputs may need per-task threshold tuning and fine-grained classification and rubric judging remain hard.
+A widely viewed Jev-as-context-compaction demo (a repost claimed a session fell from nearly 1M tokens to 86K) was measured by Teknium on Nous's compaction eval. At the same budget it tied simple recency. The criticism targeted the compaction strategy more than Jev, but the lesson stays with me: a demo that looks identical whether or not the scoring works proves nothing.
+One Vercel engineer's swap of an OpenAI model behind a command-safety classifier for Jev was reported as 5-18x faster with better accuracy. I only found this in a secondary write-up, so verify before repeating it.
+  Open-source repos worth a look
+I have not checked star counts or licenses (the DataCamp roundup lists none for most), so please verify before depending on any of them.
+Project
+Repo
+Approach
+Laya
+github.com/NandhaKishorM/laya
+ModernBERT-large (mmBERT for multilingual), 322M-421M params, one forward pass
+Nimble
+github.com/bespokelabsai/nimble
+Qwen3.5-9B with rank-16 LoRA, training recipe released
+Kev
+github.com/jaredpalmer/kev
+Qwen3.5 + LoRA + pointer head, 0.8B/4B/9B, Jev-compatible local server
+SemIf
+github.com/TheoLeeCJ/SemIf
+No fine-tuning: reads option logits from an existing open LLM
+Rizzo Flow
+github.com/Rizzo-AI-Academy/rizzo-flow
+Local-first, llama.cpp serving, 1.7B-4B models
+Von
+github.com/wfzyx/von
+~395M bidirectional ModernBERT, calibrated
+NanoJev
+github.com/TianyuCodings/NanoJev
+Qwen3-0.6B with decision heads, small trainable replica
+Clef
+Hugging Face 
+Cloudflare/clef
+Apache 2.0 weights, also on Workers AI
+The same list by size, which is the first thing I check before trying one locally:
+Harness and framework support: 
+langchain-typesafe
+ (LangChain), 
+TypeSafeModel
+ (Pydantic AI), 
+Asymptote-Labs/agent-beacon
+ (cross-harness agent memory), 
+VersusControl/devops-ai-guidelines
+ (agent eval tutorial), and Google's "Getting started with Discriminative models" codelab.
+  How to start without fooling yourself
+Pick one bounded fork in your harness: a router, a gate or a done-check.
+Build a small golden set of real cases with labels you trust.
+Run it through a decision model, your current LLM and a trivial baseline.
+Define an escalation threshold and send everything below it to a larger model or a person.
+Measure end-to-end latency, cost and cache behavior, not only single-call numbers.
+Keep irreversible actions behind deterministic code. A typed probability is evidence, not authority.
+The takeaway:
+ a reasoning model plans and writes, a decision model judges at every bounded fork, and plain code holds the authority to act.
+If you have wired a decision model into your own harness, I would lo
+
+===== https://typesafe.ai/blog/introducing-system-one-models-and-jev
+(status 200)
+TypeSafe AI
+Enterprise
+Thoughts
+Company
+Docs
+API console
+Contact us
+API console
+Docs
+Menu
+‚àµ 
+Back
+Company News
+Company News
+Introducing System One Models & Jev
+Sep 15, 2026
+Sep 15, 2026
+Sep 15, 2026
+Diogo Almeida, founder, TypeSafe
+Models have been superhuman at chat for years, so where is all the automation?
+This has been my driving question for the last four years. At OpenAI, I helped build the methods that made language models useful at following instructions and talking with people. That work ended up as the research behind ChatGPT.  At the time, I thought maybe chat models would lead to AGI, but despite the hype it became obvious to me that there was something really big missing.
+After two years in stealth, countless technical challenges, and research breakthroughs‚Ä¶ I am beyond excited to announce that today, TypeSafe AI is releasing our first 
+System One Model
+: a new class of frontier models built to make fast, structured decisions that software can use directly.
+We built a new stack entirely focused on automation: with a new model architecture, parallel sampler for maximum efficiency, and training method we call Reinforcement Learning for Calibrated Decisions (RLCD).
+Our first public model is 
+Jev
+, available today in early access. Jev achieves similar levels of intelligence on System One tasks compared to existing LLMs, while being two orders of magnitude faster and more efficient. While Jev gives up string generation, it‚Äôs optimized for structured outputs and 
+can‚Äôt
+ hallucinate. 
+Think of Jev as a frontier-intelligence function call: unstructured state in, typed probabilistic decisions out. 
+Extraordinary claims require extraordinary evidence so see below for the receipts. üíÖ
+Frontiers, Old and New
+Existing LLMs
+System One + Jev
+Optimized with
+Reinforcement Learning with Human Feedback (RLHF) / Reinforcement Learning with Verifiable Rewards (RLVR)
+Reinforcement Learning for Calibrated Decisions (RLCD)
+Optimizes for
+Human preference: writeups and chat responses that human raters prefer.
+Verifiable rewards: outputs that can be programmatically verified.
+Calibrated decisions: answers with epistemically honest probabilities on System One tasks.
+Inputs
+Unstructured data (e.g. text) with an emphasis on 
+sequential messages
+.
+Unstructured data (e.g. text) with an emphasis on 
+structured program state
+.
+Outputs
+Strings / generated text.
+ Strings are flexible and can be anything: chat responses, code, hallucinations, refusals, or even type-safe structured values. To be used by software, responses need to be parsed + validated. There is also always some risk that the AI goes off the rails.
+Type-safe structured values.
+ Possible outputs and structure are 
+defined in advance
+. The model never makes type errors. All answers are accompanied with calibrated probabilities and confidence scores.
+Sampling
+Sequential.
+ Generates one token at a time, each conditioned on the last.
+Parallel.
+ Generates all outputs in a single query. Incredibly efficient and hardware-aware.
+Cost
+Input tokens: from $0.20 to $10 / MTok.
+Output tokens: ~5x more expensive than input tokens.
+Input tokens: $0.042 / MTok ($42 per billion tokens).
+Output tokens: FREE (too cheap to meter).
+Speed
+End-to-end response time is 
+3 to 329 seconds
+for frontier models.  Fast enough for interfacing with humans, but a big bottleneck when integrated in code.
+End-to-end response time is 70ms-500ms
+ for TypeSafe. This can range from 40x-200x faster for the same levels of frontier intelligence for System One shaped queries.
+Confidence
+Even if prompted for a confidence estimate, models tend to be overconfident and inconsistent. If a model can do a task 95% of the time but doesn‚Äôt say when it‚Äôs in the 5%, it can‚Äôt automate that task.
+Always communicates confidence and uncertainty with every output. Calibrated: higher confidence means higher accuracy. More consistent: returns similar answers for similar inputs.
+Use cases
+Human-in-the-loop tasks (chatbots, copilots, coding agents).
+ General and powerful, but requires human oversight because their freedom also means they might go off the rails.
+Verifiable problems (math proofs, kernel optimization).
+ When correctness can be checked cheaply and automatically, LLMs can generate, test, and iterate until they find something that works.
+Demos.
+ The flexibility of strings allows it to be incredible for quickly making prototypes that only work sometimes.
+AI-Powered Workflows / smart if-statements.
+ Structured outputs slot into ordinary software as fuzzy decision rules: classify, route, score, extract, or branch where hand-written logic is too brittle. The surrounding code constrains their freedom, making them easier to compose into reliable systems.
+Map-reducing
+over big data. 
+Turn petabytes of data into features and insights.
+Real-time applications. 
+100ms speeds means you can use AI in your applications where UX is critical.
+Verify everything. 
+Score, judge, verify, guardrail, and detect jailbreaks of LLM prompts, reasoning traces, and/or outputs.
+Evidence / Technical Results
+We love skeptics, and are skeptics ourselves.
+There are some claims you can easily verify:
+Speed per call:
+ We truly are that fast, though our published evals are generally run from our laptops on the West Coast (this is where our service is currently based).
+Cost per call:
+ We make our pricing transparent. We can‚Äôt prove it isn‚Äôt subsidized; we‚Äôll need the long-term to prove the sustainability of our pricing (which we expect to go down, not up).
+No type errors
+: This would be an easy thing to falsify with just a single counter-example, but it is mathematically impossible.
+For our bolder claims, we want to provide as much nuance as we can.
+Side-by-side demonstration
+Our side-by-side demo shows a key difference between our models and LLMs: Jev outputs all probabilities in parallel instead of autoregressively generating by token. Strings are extremely powerful and general, but costly. ‚ÄúGiving up‚Äù strings actually gives us a lot of superpowers!
+Nuance
+For people with early access to TypeSafe, here is the 
+actual query
+.
+The query is highly simplified and 
+questions
+ were chosen to have descriptive, human-readable keys so that the output on the screen is understandable.
+The 
+state
+ is also a short, dense, and detailed paragraph, to emphasize the difference in sampling methodology. The relatively shorter input paints our model in an advantageous light.
+For the keen eyed, for the recorded run, the only disagreement with GPT-5.6 Terra is on ‚ÄúChurn likelihood level‚Äù. The actual answer seems genuinely ambiguous to us.
+We used GPT-5.6 Terra with default reasoning for this example, because we‚Äôve found it to be the most comparable at intelligence to Jev on average.
+Fun fact: a similar demo was what convinced us to go all-in in the direction of System One Models!
+Workflow evals
+We made a new type of evaluation to measure how well AI works within code. We don‚Äôt optimize for a ground truth classification or allow the harness and model to change (potentially allowing for overfitting via harness engineering). Instead, we assume there is a correct compute graph (a ‚Äúworkflow‚Äù represented in code) and use the predictions of the largest, smartest, and most expensive external models as reference probabilities.
+Rephrased: every model gets the same workflow. We test how they compare to the average of the smartest models (in this case, Astra and Fable).
+Jev is off the charts ‚Äì owning the Pareto frontier for almost 2 orders of magnitude. We also compare to models with a generated prompt doing all the logic in their chain-of-thought, but this tends to do significantly worse than using the workflow itself.
+Note that the calls here are significantly more complex than the side-by-side demonstration above. That‚Äôs because they‚Äôre more representative of the types of production workloads needed for true business automation. Below is the simplest of the 4 workflows we‚Äôre publishing:
+The most reliable real-world workflows tend to have many independent, decomposed questions, with fine-grained behavior that‚Äôs dependent on probabilities instead of discrete decisions. The end result is discrete branching, but how we get to a final answer involves a lot of domain-specific engineering that needs to be done highly consistently.
+See 
+our workflow evals site
+ for all the details: examples, disagreements, full queries, and each workflow.
+Nuance
+This is where the claims of 193.6x faster, 444.6x cheaper on our home page come from, and we expect that these are on the higher end of real world gains.
+The content of these workflows was not deliberately chosen nor constructed to make our model look good, and is not in our training distribution. However, they were made by individuals on our model capabilities team, so some bias could exist.
+We use the average of GPT-6 Astra and Fable 5.1 as the reference answer, which biases answers towards OpenAI and Anthropic‚Äôs models. We likely underestimate the relative performance of our model and DeepSeek‚Äôs models.
+The LLMs use our 
+System One LLM
+ wrapper, which constrains LLMs to output structured decisions compatible with our API. We have found this to be the most accurate way to get decisions from LLMs, but this tends to be slower and more expensive than giving decisions without probabilities.
+Hallucination and Type-safety
+Hallucination and type-safety are intrinsically related, and we think the latter is table stakes for automation. Having a hallucinated tool call is inconvenient in an agent, but is an absolute deal-breaker if it‚Äôs part of a system with latency guarantees or it‚Äôs buried several layers deep in a dependency chain. Existing models, 
+no matter how smart
+, still hallucinate and have type errors.
+Nuance
+The numbers for LLMs are from OpenRouter i.e., there almost certainly is bias here: more complex queries might be routed to better models.
+Our number is not empirical. Schema matching is guaranteed, thus we can confidently add 0% into the plots.
+Fun Demos
+Perhaps the most exciting part of our work is enabling new use cases. We have a lot more to show you, but here are a couple of the team‚Äôs favorites:
+Doom
+We love how this doomo doomonstrates real-time intelligence and what can be doone with code + AI. The engineer behind it was worried about making 10 queries a second (which ends up costing ~$7/hour), but the rest of us agreed that was lower than expected! This is so fun we intend to not only release an in-depth walkthrough, but also host some events to hack on this.
+Nuance
+The demo is on structured state as a data structure with text, not on images (yet‚Ä¶)
+A non-AI doom bot could play better, but we wanted a bot that was reactive to different representations of game state, and most importantly‚Ä¶ following instructions was cool as heck!
+Wikiracing
+The objective of the game is to start on one Wikipedia page and reach a specific other Wikipedia page using only links you come across while traversing. Each step can mean choosing between hundreds to thousands of links! It‚Äôs a great playground for demonstrating not just intelligence-per-second, but also the compounding benefits of not hallucinating with high-cardinality choices.
+Nuance
+As far as we know, it was completely random that both the 2nd and 3rd challenges started with ‚ÄúRubber Duck.‚Äù The author only noticed when the team pointed it out.
+Our speedups here tend to be a lot less than in previous demos. That‚Äôs because this is against the non-reasoning modes of the models (except Astra which was set to the lowest reasoning setting). This is also why Jev tended to finish in fewer steps (a sign of greater intelligence). This was to make the demo more bearable to watch. The LLMs look much worse at this task than with reasoning enabled.
+Jev supports a cardinality up to 255. For the higher cardinality choices, we do a two-stage system of scoring independently then making an explicit choice, hence the occasional slowdown.
+What‚Äôs next
+We‚Äôre still in Jev‚Äôs early days. We have a lot more in the pipeline and are so excited to keep on shipping üî•.
+Today, we are opening 
+early access
+ and bringing developers off the waitlist as quickly as we can. We want to hear which decisions you need to automate, where Jev works, and where it falls short. Tell us what sci-fi you want to build!!
+We started TypeSafe because we believe that AI needs an interface software could depend on. We can't wait to see new use cases 
+continuously diffuse
+ through the community and economy.
+We Give A FAQ
+Where do the names ‚ÄúSystem One Models‚Äù and ‚ÄúJev‚Äù come from?
+We were inspired by Daniel Kahneman, 
+Thinking, Fast and Slow
+. The model class name draws on the distinction between fast, intuitive System 1 thinking and slow, deliberate System 2 reasoning.
+‚ÄúSystem 1 thinking‚Äù has also implied error-prone. For reasons we will get into in the future, we believe System One Models can be made more reliable than their alternatives.
+We named Jev after William Stanley Jevons. We expect machine intelligence to follow a similar path to coal, after steam-engine efficiency led to an increase in demand. Every order of magnitude drop in the cost of intelligence unlocks orders of magnitude more use cases.
+Why was a new training algorithm needed?
+What use cases is Jev good for?
+Is Jev just a smaller LLM?
+How does Jev perform against public benchmarks?
+Where does our training data come from?
+These results are kinda crazy - how is it possible?
+‚àµ ‚©Ü
+‚©Ü ‚àµ
+TypeSafe AI ¬© 2026
+Contact
+Terms of Use
+Privacy Policy
+Acceptable Use Policy
+Accessibility
+LinkedIn
+X
+TypeSafe AI ¬© 2026
+Contact
+Terms of Use
+Privacy Policy
+Acceptable Use Policy
+Accessibility
