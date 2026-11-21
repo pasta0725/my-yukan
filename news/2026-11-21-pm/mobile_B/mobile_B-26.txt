@@ -1,0 +1,53 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2158261.html
+TITLE: 「Windows Server 2028」で「WSUS」や「SMB 1.0」、「VBScript」などが削除へ／「Windows PowerShell 5.1」「WDS」は非推奨に、レガシーBIOSでの起動も不可
+SITE: 窓の杜
+PUBLISHED: 2026-11-20 19:05 (page: 2026-11-20T19:05:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2158/261/windows_server.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/261/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0FQJNHCM9.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「Windows Server 2028」で「WSUS」や「SMB 1.0」、「VBScript」などが削除へ
+「Windows PowerShell 5.1」「WDS」は非推奨に、レガシーBIOSでの起動も不可
+樽井 秀人
+2026年11月20日 19:05
+「Microsoft Learn」のドキュメント「Features removed or no longer developed in Windows Server」
+先日パブリックプレビューが始まった
+次期サーバーOS「Windows Server 2028」には、削除・非推奨となる機能がある。米Microsoftが自社のドキュメントサイトで明らかにしている。
+削除される機能
+「Windows Server 2028」で削除される主な機能は、以下の通り。
+「WINS」（Windows Internet Name Service）
+サーバーの用途：DNSベースの名前解決へ移行
+「DirectAccess」
+：「Always On VPN」へ移行
+PPTP/L2TPプロトコル
+によるリモートアクセス：IKEv2またはSSTPへ移行
+「SMB 1.0」
+：「SMB 2.0/3.0」へ移行
+「VBScript」
+：管理スクリプトは「PowerShell」、Webのスクリプトは「JavaScript」へ移行
+「WMIC」（Windows Management Instrumentation Command-line）ユーティリティ
+：WMI自体は削除されない。「PowerShell」やプログラムからのWMIクエリへ置き換え
+「Windows Server Update Services」（WSUS）
+サーバーの用途
+PC/AT（PCAT）とレガシーBIOSによる起動：UEFIが必須に。「Hyper-V」でWindows Server 2028を動かすゲストVMも第2世代が必要。旧OSを動かす第1世代VMのサポートには影響しない
+「MultiPoint Services」：「リモート デスクトップ サービス」へ移行
+「Shielded VMs」：要件を満たす場合は「Trusted VMs」へ移行（ただし、プレビュー段階の「Trusted VMs」はフェイルオーバークラスターや「Hyper-V レプリカ」に未対応）
+「AT Time Service」（ATSVC）と「at.exe」：「schtasks」を利用
+「.NET Framework 3.5」
+のオプションコンポーネント：スタンドアロンインストーラーでは引き続き入手可能
+影響が大きそうなのはWSUSだ。ただし、削除は「Windows Server 2028」に限られ、「Windows Server 2025」など旧版では各製品のサポート期間中、引き続き利用できる。Microsoftは、閉域網などでの更新管理についても今後情報を共有するとしている。
+非推奨となる機能
+また、以下の機能は「Windows Server 2028」から非推奨となる。非推奨の機能は引き続き製品に含まれ、本番環境での利用もサポートされるが、新機能の開発は行われない。将来のリリースで削除される可能性もあるため、できるだけ早く後継製品や代替製品への移行を計画しておきたい。
+「BranchCache」
+「Windows 展開サービス」（WDS）
+サーバーの用途：WDSが提供するPXE機能を含む。「Configuration Manager」でWDS経由のPXEを利用している場合は、WDS不要のPXEレスポンダーへ移行
+「Windows PowerShell 5.1」
+：「PowerShell 7」への移行を計画するよう案内されている
+「Windows Sockets Direct」：SANエンドポイントの作成が既定で無効化される。NetworkDirectやSMB DirectなどのRDMA機能には影響しない
+なお、「Windows Server 2028」はまだプレビュー段階だ。現在のプレビュービルドにはこれらの機能が残っている場合がある。また、計画はリリースまでに変更される可能性もある。
+Amazonで購入
+「Windows Server」関連商品
+Amazonで購入

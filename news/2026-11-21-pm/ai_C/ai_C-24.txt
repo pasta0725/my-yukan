@@ -1,0 +1,137 @@
+URL: https://openai.com/index/research-acceleration-jagged-frontier
+TITLE: Research acceleration: The jagged frontier
+SITE: OpenAI
+PUBLISHED: 2026-11-18 17:00 (page: 2026-11-20)
+OG_IMAGE: https://images.ctfassets.net/kftzwdyauwt9/2YS8yWiGpKflhlEnAkcLU/f51ead4391706f6c3198f0d61a0f147a/research-acceleration-the-jagged-frontier-social.png
+IMAGES:
+- https://images.ctfassets.net/kftzwdyauwt9/4GWchdof3kw2l5OtMIvGt4/56144e08b813d6af76ae93adc2cefc1b/introducing-medchembench-cover.png?w=3840&q=90&fm=webp | MedChemBench: Benchmarking AI for medicinal chemistry — Cover
+- https://images.ctfassets.net/kftzwdyauwt9/2wgLGyEPUNlB5pI0rK8Pld/a33fa3e03c8833d03b3876d6cf91d0ac/managing-frontier-ai-risk-cover.png?w=3840&q=90&fm=webp | Managing frontier AI risk: From training to deployment — Cover
+- https://images.ctfassets.net/kftzwdyauwt9/26PM7LFgxizTM4FHqNoROC/edaf9f939eb1f1b834bc9f4007e199aa/advancing-chip-design-cover.png?w=3840&q=90&fm=webp | Advancing chip design with OpenAI models — article card
+
+TEXT:
+November 18, 2026
+Research
+Publication
+Safety
+Research acceleration: The jagged frontier
+Introduction
+Over the course of this year, AI systems have become increasingly capable, potentially increasing their ability to contribute to AI research and development themselves. Today, we’re providing an update on the state of research acceleration at OpenAI, based on internal measurements of how coding agents have accelerated and changed the AI development cycle.
+Our biggest takeaways:
+Agents now complete nearly half of two-to-four-hour research tasks on their own. But humans are still central to AI development.
+From March to October, estimated success rose from 23% to 46% for tasks estimated to require two to four hours of human work, and rose from 13% to 35% for tasks estimated to require four to eight hours. But the kind of work matters. For example, in a task-level breakdown, the autonomous agent success rate was 79% for monitoring training runs, 35% for launching training runs, and 25% for writing code for inference and serving stacks. Overall, uplift is jagged, and humans remain a core part of the AI research loop.
+Agent use is surging, and the heaviest users are pulling further ahead.
+At API list prices, the median researcher’s daily usage reached $2,400 in October, up 62% from September. At the 90th percentile it reached $23,000, up 105% from September. A survey gives us another indication of how much researchers value these tools. Asked what they would trade to keep frontier coding agents for three months, the median answers were 30% of team compute or, in a separate question, 40% of team headcount.
+Researchers are devoting increasing human effort to Safety and Alignment
+, which saw the largest absolute increase in documented research efforts across all of OpenAI’s major research areas. Safety and Alignment’s documented workweeks increased by 77% from January to September due to both new hires and existing researchers shifting towards these workstreams. Growth picked up significantly following our response to the
+Hugging Face incident
+⁠
+in July 2026.
+This report builds on our September blog post on
+research acceleration at OpenAI
+⁠
+, adding new quantitative and qualitative measures of (1) AI uplift across research domains and (2) how humans remain involved in the research process. Overall, we believe this update provides a broader, though still partial, picture of how research at OpenAI is changing.
+We are sharing this work because, as we wrote in our
+frontier policy blueprint
+⁠
+⁠ and reiterated in our first
+research acceleration report
+⁠
+, we believe that AI labs should be required to track and publicly report indicators of recursive self-improvement (RSI)—the process by which AI accelerates the development of future AI systems.
+As capabilities improve and dramatic AI-driven research acceleration becomes increasingly possible, we will need to solve novel technical and governance issues to maintain human oversight and
+safely scale AI systems
+⁠
+. Transparency about indicators of RSI is therefore essential to inform a public discussion of the capabilities, risks, and required safeguards for increasingly powerful AI; however, our reporting should not be read as an intention to pursue full RSI. We have been heartened to see that several other organizations have recently contributed to the growing body of work measuring AI R&D acceleration
+1
+. Our hope is that this expanded report will help sustain and advance these shared measurement norms across the industry.
+We structure this report in three sections, each focused on a different aspect of AI research:
+The
+inputs
+to AI research (we focus on coding agents; other inputs include data, human labor, and compute)
+The
+process
+by which researchers convert those inputs into model capabilities (AI research)
+The
+outputs
+we see from the AI research process (improvements in model capabilities).
+We believe organizing the results in this way provides a useful framework for reasoning about how AI is used in research and how that use might contribute to improvements in model capabilities.
+Inputs
+AI research uses several inputs, including data, AI tools (e.g., coding agents), human labor, and compute. In this report, we focus on AI tools as an input to research. Specifically, we document how the intensity of coding-agent use varies across teams and changes over time. Further, while we do not directly report changes in labor costs, we examine how the share of spending on research labor has changed relative to spending on other factors over time.
+Internal agent usage
+Since
+our first report
+⁠
+, agentic AI usage within the research organization has continued to increase exponentially. At API list prices, the median researcher now uses around $2,400 USD per day on agentic AI tools, and the 90th percentile researcher now around $23,000 USD per day, up 62% and 105% respectively from $1,500 and $11,000 in September.
+2
+This trend in increased agentic usage captures a wide variety of changes including increased activity, shifts to more expensive models, and changes to model behavior and agentic harnesses.
+View methods
+Agent workdays
+We next turn to the average number of “agent workdays” per researcher per day, where we define every eight hours of agent use as one agent workday. In contrast to agentic spend, agent workdays better capture the amount of “wall clock time” agents spend working, but do not account for changes in model capabilities or pricing.
+Overall, agent workdays per researcher have risen from 0.5 agent workdays per researcher to 5.7 agent workdays per researcher, an elevenfold increase, with the largest increase in teams focused on pretraining and posttraining. On those teams, agent runtime averaged roughly eight workdays per researcher per calendar day. In scaling and infrastructure, the average was roughly four. We note that this workday metric generally includes interactive use only, so it may undercount automations.
+View methods
+Concurrent agent use
+Our
+September analysis
+⁠
+highlighted increasing use of concurrent agents by researchers, including subagents and multiple sessions. We extend this analysis further in time and provide more granular bucketing. By mid-October, more than two-thirds of included researchers averaged a daily peak of at least four agents working concurrently and more than 10% averaged at least sixteen concurrent agents.
+View methods
+Internal agent usage relative to human labor costs
+We next compare monthly API-equivalent spending on agentic AI use with monthly non-equity compensation for human researchers. We track this ratio to see how the allocation between agent and human labor changes as models become more capable. Although the ratio we report excludes equity, which generally accounts for 70 to 80% of target compensation for researchers at OpenAI, we believe it still provides a partial yet informative view of this spending allocation.
+As of September 2026, the API-equivalent value of agentic AI use in OpenAI’s research organization was about twice its non-equity compensation, with higher ratios in pretraining and posttraining than in other parts of the research organization. Despite this, internal deployment, which combines internal Codex, ChatGPT, and API usage, accounts for only 2% of total research compute.
+Labor costs include salary, overtime, bonuses, benefits, and employer taxes.
+Equity, which generally accounts for 70 to 80% of target compensation for
+researchers, is excluded.
+View methods
+Where researchers allocate their time
+Finally, we examine how researchers allocate their time across research areas. We first collected individual-level contributions from researchers in the form of company-public Slack posts, pull requests, and internal documents from January through September 2026. We then used classifiers to group these contributions into research areas, and each researcher-week was divided equally across that researcher’s verified projects for the week. This provides a proxy for where researchers were directing their attention.
+Importantly, unlike our other analyses,
+the “research area” we classify here does not correspond to formal reporting lines
+. For example, a researcher on a posttraining team who spends half their time on infrastructure improvements would be estimated as contributing half a workweek to Scaling / Infrastructure Contributions and half to Posttraining Contributions. This allows us to create a robust measurement of where researchers are actively spending time even if they do not formally shift teams.
+We find that the amount of researcher time dedicated to each of the areas we identify has grown over the course of 2026. Notably, using this methodology, we find that Safety & Alignment saw the largest absolute increase across any research area, almost doubling in documented workweek contributions since the start of the year due to a combination of new hires and existing researchers shifting their focus toward safety projects. This research area covers workstreams such as alignment evals, monitorability, and reward hacking research. A notable inflection point that we measure in the growth of Safety & Alignment coincides with the aftermath of the
+Hugging Face incident
+⁠
+in July, and OpenAI’s subsequent work to
+develop and improve safety cases for frontier AI training
+⁠
+.
+We note that the distinction between research areas, and especially posttraining versus safety and alignment, is nontrivial and we may iterate on the definition over time. The methods section below describes examples of high-level workstreams.
+View methods
+Process
+To better understand how agent use might affect research productivity, we next examine how the process of conducting AI research at OpenAI is changing. The productivity gains from new technologies depend in part on how work is reorganized around them. As agents improve, researchers may change which tasks they delegate to AI, how they oversee and coordinate agents’ work, and which projects they pursue. Below, we report both quantitative and qualitative measures of how AI is changing the process of conducting AI research at OpenAI. Together, these different types of data contribute to a (partial) view of how researchers are reorganizing their work around agents and how researchers remain in the loop today.
+Measures of research activity
+Tasks delegated to models and success rates
+Our
+September analysis
+⁠
+showed that agents became more likely to complete tasks successfully without human intervention, including tasks estimated to require several hours of human work. Using an updated methodology (see the methods section below), we find that this trend has generally continued. Importantly, as agents have become more capable, researchers may also have changed the types of tasks delegated within each duration bucket. As a result, changes in zero-intervention success rates within these buckets may reflect both capability improvements and researchers’ changing choices about when and how to use agents.
+View methods
+Alongside these trends by estimated duration, we also examine how success varies across the different types of tasks researchers might choose to delegate. We report estimated success rates by category and task, using the
+O*NET AI R&D taxonomy
+⁠
+(opens in a new window)
+developed by Epoch AI. Unsurprisingly, our results suggest that models are not equally good across all task categories: for instance, from August 1, 2026 through October 18, 2026, estimated success rates without human intervention was higher for Communicate (69%) and Analyze (58%) than for Build (43%). Similarly at the task level, estimated success rates were higher for tasks such as monitoring runs for issues (79%) and answering technical questions (72%), whereas they were lower for writing code for inference and serving stacks (25%) and building evaluation, reinforcement-learning, and agent environments (29%). So long as model performance on AI R&D-related tasks is heterogeneous, lower-performing categories and tasks could become bottlenecks to high overall uplift.
+View methods
+View methods
+What tasks researchers use agents for
+Our
+September analysis
+⁠
+reported how research employee AI use was split across output tokens using the same
+O*NET AI R&D taxonomy
+⁠
+(opens in a new window)
+. Below, we report how often researchers used coding agents for individual tasks. This puts relatively higher weight on short tasks such as answering technical questions compared to token-intensive tasks such as launching and monitoring a training run or implementing a complex feature.
+View methods
+Researchers’ perspectives on AI use
+We next turn to researchers’ own assessments of how AI is changing their work. Through surveys and interviews, we examine how researchers value coding agents, how they come up with research ideas, and how they have adapted their workflows.
+Self-reported value of coding agents
+From late August to early September 2026, we conducted a survey of 101 research staff to understand AI uplift, centered around the following hypothetical: “Suppose your team’s access to all coding agents better than GPT-5.2 was revoked for the next 3 months. How much would you trade to restore frontier coding agents?” The median researcher reported being willing to trade:
+40% of team headcount
+30% of current team compute
+50% of team compute if the question were asked in January 2027 (given their expectation of how models would improve by 2027)
+Researchers also reported that their team would need a median of three months to complete work of equal value to their last month of work if they were not allowed to use coding agents (i.e., if they were only allowed to use GitHub Copilot + ChatGPT). While it is important to note potential issues with the accuracy of self-reports, as well as the ad-hoc nature of our survey sampling strategy, these results are consistent with researchers attributing significant value to AI uplift in their work.
+Bars show the weighted share of answers in each range. Dashed lines mark the
+weighted medians.
+View methods
+In a separate survey in late October, we also asked whether respondents expected to be more productive in their daily work with our latest internal model or with help from both a mid-career human research engineer and a 2024 model such as o1-preview. 27 of the 28 respondents chose or leaned toward the latest internal model. The remaining respondent did not choose between the two options as posed and said they would pick GPT-6 Astra over the human-assisted option.
+Where big ideas come from
+We are also interested in tracking progress in AI-driven idea generation, since the ability to develop and vet conceptual research ideas (research taste) may be a bottleneck for recursive self-improvement. To measure this, we asked one to four researchers who made key contributions in each of three areas (pretraining, posttraining, and safety monitoring) to name one to three ideas they considered most important to the GPT-6 Astra a

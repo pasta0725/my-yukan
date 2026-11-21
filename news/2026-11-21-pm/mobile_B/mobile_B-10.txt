@@ -1,0 +1,20 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2158179.html
+TITLE: Windows 11のロック画面をナレーターで突破できる脆弱性。BitLocker環境も対象
+SITE: PC Watch
+PUBLISHED: 2026-11-20 13:53 (page: 2026-11-20T13:53:24+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2158/179/1.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2158/179/1_l.png | 
+
+TEXT:
+ニュース
+Windows 11のロック画面をナレーターで突破できる脆弱性。BitLocker環境も対象
+劉 尭
+2026年11月20日 13:53
+BitLockerで保護し、画面をロックしておけば安心、とはいかなさそうだ。セキュリティ研究者のNightmare Eclipse氏は11月19日(現地時間)、Windows 11のロック画面をナレーター経由で突破できるとするゼロデイ脆弱性「FastUnlock」をGitHubで公開した。現時点ではMicrosoftによる修正パッチは提供されていない。
+同氏によれば、脆弱性はロックされたアカウントでナレーターがUIを扱う処理にある。サインイン画面から開くMicrosoftアカウントの回復画面でナレーターを操作すると、本来はサインイン前に使えない設定画面などに到達できる。そして悪用に成功すると、ロック画面用のアカウント「WsiAccount」の権限でコードを実行でき、BitLockerで暗号化されたPCでも保護を回避できるとしている。
+同氏は11月の更新プログラムを適用したWindows 11 26H2で動作を確認し、試したすべてのマシンで安定して再現できたという。Windows 10などほかのバージョンでは検証していない。
+また、悪用には、PCへの物理的なアクセスが必要。さらに、PC上の少なくとも1つのアカウントがオンラインのMicrosoftアカウントにひも付いていることが条件だという。
+物理アクセスが前提とはいえ、盗難に遭うと影響を受ける可能性がある。修正が提供されるまでの間、くれぐれもPCの物理的な管理を徹底したい。
+Windows 11 Home
+Windows 11 Pro
