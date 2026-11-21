@@ -1,0 +1,168 @@
+{
+ "id": "ai-openai-anti-distillation",
+ "category": "ai",
+ "title": "OpenAI、AIの途中の考えを守る対策を強化",
+ "summary": "社内試験では、過去の質問での抜き取り成功率が54.0%から0.2%に下がりました。",
+ "image": {
+  "src": "https://images.ctfassets.net/kftzwdyauwt9/5SUtPGdssrttC7LfP1yoJ1/b6b000846ab3576c1735c29534ab20b0/combatting-adversarial-distillation-social.png?w=1600&h=900&fit=fill",
+  "kind": "press",
+  "credit": "OpenAI",
+  "page": "https://openai.com/index/combatting-adversarial-distillation"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "AIの安全対策"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "OpenAIは、途中の考えを抜き取られにくくする対策を、2種類のAIで強めました。",
+    "社内試験で、GPT-6.2 Astraの抜き取り成功率は、過去とその場の質問のどちらも1%未満でした。",
+    "OpenAIに代わるAIの開発には利用上の制限があります。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは11月20日、GPT-6.2 AstraとSolでAIの途中の考えを守る対策を強めたと発表しました。AIの能力を無断でまねるのを防ぐ狙いです。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/v3SwlCju2INrQ6LXdq8eB/d0aca54aed53ede3aee7ffc0c40b0646/combatting-adversarial-distillation-diagram-light.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "OpenAIの蒸留対策の図。AIの訓練、検出器、APIでの制限という1回ごとの守りと、集団を見つける守りの2層",
+   "page": "https://openai.com/index/combatting-adversarial-distillation"
+  },
+  {
+   "type": "h",
+   "text": "蒸留が安全上の問題になる理由"
+  },
+  {
+   "type": "p",
+   "text": "蒸留とは、あるAIの回答や考え方を使って、別のAIに学習させる手法です。学習したAIは、元のAIの安全対策まで引き継ぐとは限りません。OpenAIは、元のAIなら断るサイバー攻撃の手助けを、別のAIがする恐れを挙げました。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIが特に守るのは、AIが答えを出すまでに組み立てた途中の考えです。これを「保護された推論」と呼びます。最終的な答えに出ない情報を含むため、別のAIの学習に役立ちます。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、サイバー分野の能力が別のAIにどれだけ移るかを社内で調べました。途中の考えをそのまま使った方が、要約を使った場合より高い成績を出す条件がありました。試験の条件によっては、要約を使った方が高得点でした。"
+  },
+  {
+   "type": "h",
+   "text": "1回ごとと集団への2段構え"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、1回ごとのやり取りと、複数のアカウントにまたがる動きの両方を見ます。途中の考えを聞き出そうとする依頼を断るよう、AIを訓練しました。ふだんの質問には、引き続きAIが答えます。質問や回答を調べる仕組みでも、抜き取りや漏れを防ぎます。"
+  },
+  {
+   "type": "p",
+   "text": "AIが別の機能を使うときは、その機能へ送る指示も調べます。答えに現れない情報の漏れも、外に届く前に止められます。"
+  },
+  {
+   "type": "p",
+   "text": "API（外部のソフトからAIを使う窓口）にも制限を加えました。GPT-6.2 AstraとSolでは、途中の考えを元の会話に結び付けます。質問を付け足すと、AIはそれまでの考えを引き継げます。過去のメッセージを書き換えると、その後の考えは捨てられます。"
+  },
+  {
+   "type": "p",
+   "text": "対策の弱い一部の古いAIは、両モデルの途中の考えを読み取れません。OpenAIの開発者向けの説明では、会話を書き換えてAIが考え直すと、料金が増える場合があります。回答を待つ時間が長くなることもあります。"
+  },
+  {
+   "type": "h",
+   "text": "抜き取り成功率が1%未満に"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、実際の利用に近い条件で、AI同士を使った抜き取りの試験を行いました。攻撃役に見せたのは、外部の利用者が見られる情報だけです。攻撃役のAIは、返答に合わせて質問の仕方を変えました。成功率は、6種類の攻撃役で試した結果の平均です。"
+  },
+  {
+   "type": "p",
+   "text": "当初の対策で試したGPT-6 Astraは、過去の質問からの抜き取り成功率が54.0%でした。対策を強めたGPT-6.2 Astraでは、0.2%に下がりました。その場の質問から抜き取れた割合も、22.9%から0.9%に下がりました。OpenAIは、改善の一部をGPT-6 Astraにも取り入れています。"
+  },
+  {
+   "type": "p",
+   "text": "AB通信は、同じ方法で試したGPT-6.2 Solの結果も、OpenAIの説明資料をもとに紹介しました。成功率は過去の質問で0.5%、その場の質問で0.8%でした。"
+  },
+  {
+   "type": "h",
+   "text": "アカウント停止と法整備"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、質問の傾向やアカウントの動きから、集団での悪用を探します。違反がわかれば、関係するアカウントに利用停止などの措置を取ります。今年は複数の動きがあり、毎週の対応は数千から数万アカウントに及びました。夏には対応件数が大きく増えました。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、調査で見つけた手口を対策の訓練や試験に使います。不正を見分ける手掛かりは、ほかのAI提供会社とも共有します。同社のAIを提供する提携先とは、同じ水準の対策を取り、違反に連携して対応します。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは9月30日、組織的な抜き取りの動きを止めたと発表しました。同社の当時の集計では、7月24日と25日に計1万6000件の試みがありました。関わった利用者は4000を超えました。一連の試みの中心には、Kimiを開発したMoonshot AIに関係する人物がいたとみています。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは2月、DeepSeekが米国の先端AIを蒸留しようとした兆候を米議会に説明しました。米国のAIの能力を無断でまねた外国の組織を特定し、制裁しやすくする法案も支持しています。最近止めた事例も近く公表する予定です。"
+  },
+  {
+   "type": "h",
+   "text": "モデル開発の利用ルール"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIの新しい利用方針は11月20日から適用されたと、AB通信が報じました。同社のAIやサービスに代わるAIを作る目的で、OpenAIの回答を学習に使ったり渡したりする行為を禁じます。回答に付けた点数を学習に使う場合も対象です。途中の考えを無断で取り出そうとする行為も禁止です。"
+  },
+  {
+   "type": "p",
+   "text": "利用条件の範囲内なら、研究やAIの性能を調べるためにも使えます。契約で明示的に認められた使い方は例外です。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "54.0%→0.2%",
+     "label": "過去の考えの抜き取り成功率"
+    },
+    {
+     "value": "22.9%→0.9%",
+     "label": "その場の考えの抜き取り成功率"
+    },
+    {
+     "value": "数千〜数万",
+     "label": "毎週対処するアカウント数"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "ふだんChatGPTを使う人は、今のところ特にすることはありません。",
+    "OpenAIの回答を別のAIの学習に使う企業は、使う前に利用方針と契約を確認してください。",
+    "AstraやSolをAPIで使う人は、履歴を書き換える前に料金や待ち時間への影響を確認してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "過去の質問から抜き取られる割合が下がったのは、守りが一歩進んだ目安です。ほかのモデルでも同じように守れるか、外部の試験で確かめられると判断しやすくなります。"
+  }
+ ],
+ "source_name": "OpenAI",
+ "source_url": "https://openai.com/index/combatting-adversarial-distillation",
+ "published": "2026-11-20",
+ "refs": [
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/combatting-adversarial-distillation"
+  },
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/combatting-adversarial-distillation/"
+  },
+  {
+   "name": "AB通信",
+   "url": "https://markenote.jp/article/10048"
+  }
+ ]
+}

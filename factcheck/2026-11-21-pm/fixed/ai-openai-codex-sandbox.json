@@ -1,0 +1,176 @@
+{
+ "id": "ai-openai-codex-sandbox",
+ "category": "ai",
+ "title": "OpenAI、Codexの作業範囲を限る仕組みを解説",
+ "summary": "読ませたくないファイルは、設定で読み取りを禁止できます。",
+ "image": {
+  "src": "https://images.ctfassets.net/kftzwdyauwt9/1PnylD7lJwgUw7jYNP8wLh/7fa5553001136f3982e8d4db44146de3/inside-the-codex-sandbox-social.png?w=1600&h=900&fit=fill",
+  "kind": "press",
+  "credit": "OpenAI",
+  "page": "https://openai.com/index/inside-the-codex-sandbox"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "Codexの安全"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "OpenAIは、Codexが手元のパソコンでできる作業を制限する仕組みを解説しました。",
+    "標準では書き込み先が作業フォルダ内に限られ、ネット接続も止まります。",
+    "ダウンロードが要るときは、通信先を必要な配布元に絞って許可できます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは11月18日、コード生成AI「Codex」のサンドボックスを技術ブログで解説しました。手元のパソコンでAIが触れる範囲を限る仕組みです。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/7phvBtHTMSTY6vHJx9YL9L/0a4cf5a80f25882a663681872f648617/codex-sandbox-command-desktop-light.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "設定や管理者の要件から、実行時の許可が決まるまでの流れ図",
+   "page": "https://openai.com/index/inside-the-codex-sandbox"
+  },
+  {
+   "type": "h",
+   "text": "サンドボックスの役割"
+  },
+  {
+   "type": "p",
+   "text": "サンドボックスは、動いているプログラムが触れる範囲を限る仕組みです。写真を整理させるなら、写真フォルダの読み書きだけ認めて、ネットへの送信を止められます。コードの確認では、ネット上の説明書を読めるようにし、元のファイルは読み取り専用にできます。"
+  },
+  {
+   "type": "h",
+   "text": "標準設定でできること"
+  },
+  {
+   "type": "p",
+   "text": "標準の「:workspace」では、書き込みは作業フォルダ内に限られます。通常のコード編集に、そのつどの承認は要りません。Codexは作業フォルダの外のファイルも、利用者の権限の範囲で幅広く読めます。外にある開発用の道具や部品を使うためです。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIが示した標準設定では、作業フォルダ直下の4か所を読み取り専用にします。「.git」は作業の履歴を管理するGitのフォルダで、「.codex」にはCodexの設定が入ります。「.agents」と「.aws」も、存在すれば中のファイルまで読み取り専用です。"
+  },
+  {
+   "type": "p",
+   "text": "標準ではネット接続が止まり、ファイルを外部サービスに直接送れません。開発用の部品をダウンロードするにも、追加の許可が要ります。"
+  },
+  {
+   "type": "p",
+   "text": "ネット接続を許す場合、接続先を確かめる中継機能で通信先を絞れます。許可した接続先への通信は、そのつどの承認が要りません。許可と禁止の両方に当てはまる接続先は、禁止が優先です。中継機能を使わずに通信を有効にすると、接続先の制限はかかりません。"
+  },
+  {
+   "type": "h",
+   "text": "標準設定でも残る弱点"
+  },
+  {
+   "type": "p",
+   "text": "読み取りの範囲が広いため、秘密の情報まで読める場合があります。外部サービスの利用に使う鍵（APIキー）を保存した設定ファイルも、その一例です。設定を変えれば、こうしたファイルの読み取りも禁止できます。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、コードの体裁を整えるツール「Prettier」の例を挙げました。AIがこのツールに悪いコードを混ぜても、Gitの変更一覧に出ない場合があります。編集ソフトが保存時にこのツールを使うと、悪いコードが制限の外で動きます。OpenAIは危険を減らすため、AIの訓練も組み合わせています。"
+  },
+  {
+   "type": "h",
+   "text": "手元の環境を使う理由"
+  },
+  {
+   "type": "p",
+   "text": "Codexは、別の作業環境を作る「Docker」などを使わず、手元の環境で動きます。macOS、Windows、Linuxの3つのOS（基本ソフト）が持つ仕組みで、作業の範囲を限ります。Dockerの中では、Mac上でのiOSアプリ開発に必要な道具やiPhoneの動きを再現するソフトを使えないためです。"
+  },
+  {
+   "type": "p",
+   "text": "この制限は、Codexの指示から呼び出された別のプログラムにも引き継がれます。元のプログラムが終わっても、動き続けるプログラムの制限は残ります。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/1fI91cZrglfbUhn7ZFs0bS/6ccf3d41b7c58fffbc20ca2baaf424a5/creating-sandbox-diagram-desktop-light.svg?w=3840&q=90",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "サンドボックスを作り、コマンドを起動する流れの図",
+   "page": "https://openai.com/index/inside-the-codex-sandbox"
+  },
+  {
+   "type": "h",
+   "text": "利用者と企業の設定方法"
+  },
+  {
+   "type": "p",
+   "text": "利用者は設定ファイル「config.toml」に、許可の組み合わせを保存できます。OpenAIは、この組み合わせを「許可プロファイル」と呼んでいます。標準設定を土台に一部だけを変え、その設定を別の作業でも使えます。"
+  },
+  {
+   "type": "p",
+   "text": "制限の外で作業する場合、Codexは設定に応じて承認を求めます。利用者本人が確かめるか、自動審査に回るかは設定しだいです。Sulat AI & Tech Newsは、自動審査を別のAIが担当すると報じました。却下されると、Codexはより安全な手段を探すか、利用者に確認します。"
+  },
+  {
+   "type": "p",
+   "text": "企業の管理者は「requirements.toml」で、従業員が選べる設定を絞れます。たとえば、制限のない設定を禁止し、読み取り専用を初期設定にできます。AI Insidersは、企業がネット経由で配るルールが端末側の管理ルールより優先されると報じました。"
+  },
+  {
+   "type": "p",
+   "text": "許可プロファイルは試験段階で、今後変わる場合があります。以前の方式とは併用できません。古い設定が残っている場合はそちらが優先されると、DotAIは説明しています。"
+  },
+  {
+   "type": "p",
+   "text": "開発者は「codex sandbox」コマンド（実行の指示）で、同じ制限を自分のツールに組み込めます。用意した設定で何が止まるかも、このコマンドで確かめられます。"
+  },
+  {
+   "type": "p",
+   "text": "この仕組みの利用にかかる料金や日本での提供条件は、今回の発表では明らかにされていません。日本語対応についても新たな発表はありません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "3種類",
+     "label": "対応するOS"
+    },
+    {
+     "value": "4か所",
+     "label": "標準で書き込みを防ぐ場所"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "部品のダウンロードが必要な人は、作業前に配布元への接続だけを許可しましょう。",
+    "会社で使う人は、設定を変える前に管理者が認めている範囲を確かめましょう。",
+    "APIキーを保存している人は、作業を任せる前にそのファイルの読み取りを制限しましょう。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "まず標準設定で試し、作業に必要な許可を少しずつ足すのが安心です。ファイルの確認だけを頼むときは、読み取り専用でも足りそうです。"
+  }
+ ],
+ "source_name": "OpenAI",
+ "source_url": "https://openai.com/index/inside-the-codex-sandbox",
+ "published": "2026-11-18",
+ "refs": [
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/inside-the-codex-sandbox"
+  },
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/inside-the-codex-sandbox/"
+  },
+  {
+   "name": "Sulat AI & Tech News",
+   "url": "https://news.sulat.com/2026/11/19/codex-sandbox/"
+  },
+  {
+   "name": "AI Insiders",
+   "url": "https://aiinsiders.net/article/openai-details-how-codex-runs-commands-inside-limits-users"
+  },
+  {
+   "name": "DotAI",
+   "url": "https://dotai.jp/times/articles/2276"
+  }
+ ]
+}
