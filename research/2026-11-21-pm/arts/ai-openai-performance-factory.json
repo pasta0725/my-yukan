@@ -1,0 +1,184 @@
+{
+ "id": "ai-openai-performance-factory",
+ "category": "ai",
+ "title": "OpenAI、ChatGPTの速度低下をCodexが調べる仕組み",
+ "summary": "原因探しから修正案まで自動化。3か月余りで600件超の原因を特定した。",
+ "image": {
+  "src": "https://images.ctfassets.net/kftzwdyauwt9/1GmNPxrS3qwhYU0t43dsaa/0df53811b9acf8f9699ace630362f112/performance-factory-social.png?w=1600&h=900&fit=fill",
+  "kind": "press",
+  "credit": "OpenAI",
+  "page": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+ },
+ "visual": {
+  "icon": "chip",
+  "kicker": "社内の仕組み"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "OpenAIが、ChatGPTなどの速度低下をAIで調べる社内の仕組みを紹介しました",
+    "3か月余りで1700件超の調査を扱い、600件超で原因を突き止めました",
+    "修正後も遅さが一部残るときは、AIが別の調査で原因を追います"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは11月19日、社内の「Performance Factory」を紹介しました。AIがChatGPTなどの速度低下を調べ、修正案を作ります。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/4GVsirng1kgJ1GzSsQ9Iof/f21a0b8682d456132be1ef8e1b9ce0ed/performance-factory-orchestrator-architecture-light.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "Performance Factoryの流れ。警報、技術者、AIの間で作業が受け渡される",
+   "page": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+  },
+  {
+   "type": "h",
+   "text": "AIが作業を引き継ぐ仕組み"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、プログラムを書けるAI「Codex」を使います。AIは、ネット経由で使えるコンピューター（クラウド）で動きます。複数のAIが、技術者の手順書に沿って仕事を分け合います。進み具合を管理表に残すので、別のAIや技術者も引き継げます。"
+  },
+  {
+   "type": "p",
+   "text": "仕組みは、次の段階に進める作業がないか定期的に調べます。技術者が修正案にコメントすると、AIが作業を再開します。AIができる操作には制限があり、どの操作をしたかもたどれます。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、ほかのチームにもこの運用を役立ててほしいと考えています。社外への提供は発表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "警報から回復確認まで"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、速度低下に対応する最初の手順を「Regression Workflow」と呼びます。警報が出ると、仕組みは調査を1件登録します。AIは調査結果を記録し、修正案を作ります。技術者が修正を反映したあとは、別のAIが元の速さに戻ったかを確かめます。"
+  },
+  {
+   "type": "p",
+   "text": "速度低下は、警報の何時間も前から始まっている場合があります。AIは記録をさかのぼり、遅くなり始めた時刻と影響を受けた処理を調べます。時間のかかる処理が増えたために、全体が遅く見えていないかも確かめます。プログラムや設定の変更は、実際の処理記録と照らし合わせます。"
+  },
+  {
+   "type": "p",
+   "text": "元の速さに戻れば、AIは調査を終えます。一部だけ改善した場合は、残った遅さを別の調査として登録します。改善しなければ、同じ問題の原因を調べ直します。"
+  },
+  {
+   "type": "h",
+   "text": "3か月余りの調査実績"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIの集計では、3か月余りで1700件超の調査を扱いました。そのうち600件超で原因を突き止めました。1日あたり17件の自動調査にあたります。"
+  },
+  {
+   "type": "p",
+   "text": "以前は技術者が手作業で原因を調べていました。ChatGPTの回答が出始めるまでの時間が延びるなど、よく起きる問題に備え、30を超える専用の道具を作りました。"
+  },
+  {
+   "type": "p",
+   "text": "その後は、技術者がCodexに指示を出しながら一緒に原因を調べました。調査が自動で始まるようになっても、修正案作りや回復の確認は技術者が担っていました。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/581rKVIvguLraKii21zIgr/83deca5cdcec639b656a9a5ec1954f4b/performance-factory-evolution-light.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "性能調査の進化。手作業から、道具の整備、Codexとの共同作業、自動化へ",
+   "page": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+  },
+  {
+   "type": "h",
+   "text": "AI同士で間違いを減らす"
+  },
+  {
+   "type": "p",
+   "text": "初期のAIは、もっともらしい説明を見つけると、調査を切り上げることがありました。誤った診断を減らすため、別のAIが説明に矛盾がないか確かめます。たとえば、原因とみられる変更を元に戻すと速度も回復するか、記録を調べます。"
+  },
+  {
+   "type": "p",
+   "text": "ある調査でAIは、画像を読み込めないせいで、ChatGPTの会話にエラーが出たと判断しました。ファイルを探す社内の仕組みが復旧しても、画像は読み込めないままでした。確認役のAIは説明が足りないと判断し、調査を再開しました。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIが原因の提案100件を人の目で確かめたところ、70%が正確でした。残る30%は追加の調査が必要か、遅さとのつながりを示しきれていませんでした。"
+  },
+  {
+   "type": "p",
+   "text": "GameBusinessによると、OpenAIは手順や使うAIを変える前に、過去の障害で試し直しています。調査に使う道具が故障していないかは、別のAIが毎日点検します。道具を使う許可に問題があれば、直す作業も登録するとDXマガジンが報じました。"
+  },
+  {
+   "type": "h",
+   "text": "修正案の確認と次の計画"
+  },
+  {
+   "type": "p",
+   "text": "原因を確認できると、AIは修正用のプログラムを書き、技術者に確認を頼みます。報告に添えられたグラフで、技術者は速度の変化を確かめられます。AIの案を手直しするか、原因の説明をもとに自分で直すこともできます。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、原因を探すより、正しく直すほうが難しかったと述べています。AIの案は必要以上に複雑だったり、別の不具合を生んだりしました。修正案も別のAIが確かめます。"
+  },
+  {
+   "type": "p",
+   "text": "判断が難しい修正は技術者が見ます。たとえばデータの一時保存（キャッシュ）を使うと、動作が速くなる場合があります。古いデータが残る恐れもあります。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、修正案が効くかを事前に試す模擬テストを準備しています。AIの提案と技術者が採用した修正を比べ、提案の改善に役立てます。警報が出ない小さな速度低下をAIで見つける仕組みも検討中です。不具合を起こす恐れが小さい修正は、人の確認を省けるか探っています。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "1700件超",
+     "label": "3か月余りの調査件数"
+    },
+    {
+     "value": "600件超",
+     "label": "原因を特定した件数"
+    },
+    {
+     "value": "70%",
+     "label": "原因提案100件の正確率"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "ChatGPTを使う人は、設定変更や手続きをせず、これまでどおり使えます。",
+    "ChatGPTがどれだけ速くなったかは、まだ発表されていません。",
+    "職場でAIの導入を考える人は、手順書で作業を分け、確認役を置く仕組みを参考にできます。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "遅さが一部だけ解消したときに、残りを別に調べる設計なら、まだ困っている人の問題を追いやすくなりそうです。原因が見つかった件数とあわせて、元の速さまで戻った件数も知りたいです。"
+  }
+ ],
+ "source_name": "OpenAI",
+ "source_url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast",
+ "published": "2026-11-19",
+ "refs": [
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast"
+  },
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast/"
+  },
+  {
+   "name": "GameBusiness.jp",
+   "url": "https://www.gamebusiness.jp/article/2026/11/21/28804.html"
+  },
+  {
+   "name": "DXマガジン",
+   "url": "https://dxmagazine.jp/news/ytoda2650-37/"
+  }
+ ]
+}

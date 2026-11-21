@@ -1,0 +1,156 @@
+{
+ "id": "ai-openai-medchembench",
+ "category": "ai",
+ "title": "OpenAIが薬の研究力を測るAI試験を公開",
+ "summary": "過去の実験を読み解く力と、次に試す薬の候補を選ぶ力で成績に差が出ました。",
+ "image": {
+  "src": "https://images.ctfassets.net/kftzwdyauwt9/6kbw4PSOhEqlbbiM3ZYhOb/1c770a466f57e0117f970cb124b921ee/introducing-medchembench-header-poster-4k.png?w=3840&q=50&fm=webp",
+  "kind": "press",
+  "credit": "OpenAI",
+  "page": "https://openai.com/index/introducing-medchembench"
+ },
+ "visual": {
+  "icon": "chart",
+  "kicker": "AIの試験"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "OpenAIが、薬の候補を探す研究を題材にしたAI試験を公開しました。",
+    "99問で最新モデルは84.5%。候補選びではGPT-6 Astraが50.42%でした。",
+    "研究者は、AIが薬の研究でどんな作業を得意とするかを、採点項目ごとに見比べられます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは11月20日、薬の研究を読み解くAIの力を測る試験「MedChemBench」を公開しました。最新モデルの得点率は84.5%でした。"
+  },
+  {
+   "type": "h",
+   "text": "薬の候補を探す試験の中身"
+  },
+  {
+   "type": "p",
+   "text": "MedChemBenchは、薬の候補を探す初期の研究を題材にした試験です。OpenAIは公開済みの論文と特許117本から99問を作りました。問題には分子（物質を形づくる小さな粒）の構造が761種類登場します。"
+  },
+  {
+   "type": "p",
+   "text": "多くの問題で、AIには研究のねらいと途中までの実験結果が渡されます。後で得られた結果は伏せておき、採点のときにAIの答えと照らし合わせます。"
+  },
+  {
+   "type": "h",
+   "text": "試験で採点する4つの力"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは次の4つの力を採点します。\n・図をもとに分子の構造を組み立てる力\n・実験結果を根拠に説明する力\n・次に試す候補を選び、順位をつける力\n・分子の性質を数値や区分で予測する力\n数値の予測は、実験値に近ければ部分点が付きます。"
+  },
+  {
+   "type": "p",
+   "text": "薬の候補は、効き目が強くても体内で分解されやすい場合があります。がんの薬の候補を扱う問題では、細胞での効き目と分解されやすさを同時に予測します。実験では、細胞でよく効いた候補と、分解されにくかった候補が別々でした。"
+  },
+  {
+   "type": "h",
+   "text": "最新GPTと前のモデルの成績"
+  },
+  {
+   "type": "p",
+   "text": "GPT-6.2 Astraは、深く考える設定（xhigh）で84.5%を取りました。EconoTimesは、このモデルが11月17日に公開されたと報じました。"
+  },
+  {
+   "type": "p",
+   "text": "前のモデルの得点率は、同じ設定で次のとおりです。\n・GPT-6 Astraは83.3%\n・GPT-6.1 Solは82.0%\n・GPT-6.1 Terraは75.1%\n・GPT-5.6 Solは58.2%\nGPT-6 Astraは、さらに深く考える設定で83.8%まで上がりました。"
+  },
+  {
+   "type": "p",
+   "text": "Unite.AIが紹介した論文では、最新モデルを除く11種類を比べています。モデルと設定の組み合わせは61通りで、採点した回答は計6万390件です。"
+  },
+  {
+   "type": "p",
+   "text": "GPT-6 Astraは、分子の構造を組み立てる課題で95.4%を取りました。論文では実験結果の説明で91.05%、薬の候補選びで50.42%でした。数値の予測は47.02%にとどまりました。満点に占める割合は、構造の組み立てが37.49%、実験結果の説明が35.78%です。"
+  },
+  {
+   "type": "h",
+   "text": "分子の再現で差が出た"
+  },
+  {
+   "type": "p",
+   "text": "ある問題では、中心の構造と2つの部品をつなぎ、18個の原子の輪を保った分子を作ります。GPT-6 Astraは10回すべて成功し、GPT-5.6のSolとLunaは全10回で失敗しました。図の例では、Solは15個の原子の輪を作りました。Lunaの答えは2つの断片に分かれていました。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/1VTqzHLMhkmIYnsS9nSqau/bff555251736290c430519e004502198/introducing-medchembench-structure-comparison.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "同じ問題への3つの答えの比較。正しい分子、輪が小さくなった分子、2つに分かれた分子",
+   "page": "https://openai.com/index/introducing-medchembench"
+  },
+  {
+   "type": "h",
+   "text": "試験でまだわからないこと"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、新薬の発見や実際の研究の判断にAIが役立つかは、この試験ではわからないと説明しました。AIは道具や新しい実験を使わずに答えました。助言を受けたり、答えを出し直したりする機会もありませんでした。"
+  },
+  {
+   "type": "p",
+   "text": "AIが公開済みの資料を学習していた可能性は残ります。論文では、実験結果が出る前にAIが予測する試験を今後の案に挙げています。模範解答と異なる答えを専門家が判定する方法も提案されています。"
+  },
+  {
+   "type": "p",
+   "text": "ChatGPTの新機能としての提供や、料金を含む日本での利用条件は発表されていません。日本語への対応も未発表です。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "84.5%",
+     "label": "GPT-6.2 Astraの得点率"
+    },
+    {
+     "value": "99問",
+     "label": "試験の問題数"
+    },
+    {
+     "value": "58.2%",
+     "label": "GPT-5.6 Solの得点率"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "ChatGPTを使う人は、今回の発表を受けて設定を変える必要はありません。",
+    "薬についてAIに相談する人は、回答の確かさをこの得点からは判断できません。",
+    "試験の採点方法を知りたい人は、OpenAIが公開した査読前の論文で確認できます。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "84.5%という総合点より、薬の候補を選ぶ問題で何点取れたかが気になります。新しい実験でも候補をうまく絞れるかが、次に見たいところです。"
+  }
+ ],
+ "source_name": "OpenAI",
+ "source_url": "https://openai.com/index/introducing-medchembench",
+ "published": "2026-11-20",
+ "refs": [
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/introducing-medchembench"
+  },
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/introducing-medchembench/"
+  },
+  {
+   "name": "Unite.AI",
+   "url": "https://www.unite.ai/ja/openai-introduces-medchembench-for-medicinal-chemistry-reasoning/"
+  },
+  {
+   "name": "EconoTimes",
+   "url": "https://econotimes.com/OpenAI-s-GPT-6-2-Astra-Leads-MedChemBench-With-84-5-Score-1780479"
+  }
+ ]
+}

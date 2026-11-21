@@ -1,0 +1,164 @@
+{
+ "id": "ai-ms-perception",
+ "category": "ai",
+ "title": "Microsoft、3チームのAIで攻撃に対抗",
+ "summary": "赤・青・緑の3チームのAIが、攻撃の発見から修復まで担う。",
+ "image": {
+  "src": "https://www.itmedia.co.jp/news/article/ogp/2611/20/2000003368/10012681/2048",
+  "kind": "ogp",
+  "credit": "ITmedia AI+（Publickey転載）",
+  "page": "https://www.itmedia.co.jp/news/article/2611/20/2000003368/"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "MS新サービス"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Microsoftが、AIを使った攻撃に備える企業向けサービスの正式提供を始めました。",
+    "3チームのAIが弱点探しから修復まで分担します。一部の機能は試験提供です。",
+    "影響の大きい操作は企業の担当者が承認します。一般の利用者が設定を変える必要はありません。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは11月17日（米国時間）、AIで企業を守るサービスが正式に使えると発表しました。名称は「Microsoft Perception」です。"
+  },
+  {
+   "type": "h",
+   "text": "正式提供までの流れと背景"
+  },
+  {
+   "type": "p",
+   "text": "発表の場は、年次イベント「Microsoft Ignite 2026」です。QESは正式提供が始まった日を11月18日（現地時間）と伝えています。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは7月に「Project Perception」の名前で計画を発表しました。SecurityWeekによると、8月に対策製品「Microsoft Defender」で試験公開が始まりました。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは、AIで攻撃先を見つけてから実際に攻撃するまでの時間が短くなったと説明します。同社が比べた事例では、攻撃にかかった時間が約14日から85分に縮まりました。狙われた人数も10人から3000人に増えました。人の操作だけでは追いつきにくく、守る側もAIで対応を速める必要があるとしています。"
+  },
+  {
+   "type": "h",
+   "text": "3つのチームの役割と提供状況"
+  },
+  {
+   "type": "p",
+   "text": "作業を任せられるAI（AIエージェント）が、3つのチームに分かれて動きます。\n・レッドチームは、攻撃する側の目線で弱点を探します。\n・ブルーチームは、攻撃の発見から被害への対応までを担います。\n・グリーンチームは、弱点や不具合を直して被害の恐れを減らします。"
+  },
+  {
+   "type": "p",
+   "text": "レッドチームでは、弱点を事前に調べるAIが正式に使えます。ウェブアプリの安全性を試す機能は、試験提供の段階です。"
+  },
+  {
+   "type": "p",
+   "text": "ブルーチームでは、役割の異なる4つのAIが正式に使えます。\n・警告を仕分ける\n・攻撃の経緯を調べる\n・攻撃を見つけるルールを作る\n・新たな攻撃の情報を整理する\n警告を仕分けるAIは、判断の理由も示します。"
+  },
+  {
+   "type": "p",
+   "text": "MicrosoftはDefenderの警告約800万件を調べ、約8割が仕分けの対象になると見積もりました。実際の割合は、企業が受ける警告の内容によって変わります。"
+  },
+  {
+   "type": "p",
+   "text": "グリーンチームでは、どの弱点から直すべきかを示すAIが正式提供です。被害の恐れを減らす対策を提案するAIは試験提供です。すぐには直せない弱点を一時的に守る方法も提案します。"
+  },
+  {
+   "type": "h",
+   "text": "自動で動く条件と人の判断"
+  },
+  {
+   "type": "p",
+   "text": "3つのチームは「プレイブック」と呼ぶ手順書に沿って連携します。攻撃を防ぎ、被害が出たときにすばやく対応するためです。担当者が決めた条件を満たすと、作業が自動で始まります。影響の大きい操作には担当者の承認が必要です。"
+  },
+  {
+   "type": "p",
+   "text": "担当者は、AIとのチャットで必要な作業を伝えることもできます。作業の進み具合と結果は同じ画面で確認できます。企業が使っている監視ツールから作業を始める連携も試験提供です。"
+  },
+  {
+   "type": "h",
+   "text": "対応するクラウドの範囲"
+  },
+  {
+   "type": "p",
+   "text": "グリーンチーム用に、新しい手順書が2つ加わりました。どちらも次の3社のクラウド（ネット経由で使うシステム）に対応します。\n・Microsoft\n・AWS\n・Google Cloud"
+  },
+  {
+   "type": "p",
+   "text": "攻撃の調査には、AWSやログインを管理するOktaの情報も使えます。Microsoftは今後数カ月で、調査などに使える外部サービスを増やす予定です。"
+  },
+  {
+   "type": "h",
+   "text": "企業の利用状況と費用"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは、BNYが社内の守りを強めるために機能の活用を検討していると紹介しました。TÜV SÜDの担当者は、警告への対応を判断しやすくなったと評価しています。"
+  },
+  {
+   "type": "p",
+   "text": "企業の担当者は、AIの利用状況や支出を画面で確認できます。費用を事前に見積もる機能もあります。無料で使えるかや具体的な料金は、まだ発表されていません。日本での提供時期や日本語への対応も未発表です。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "3チーム",
+     "label": "赤・青・緑のAIエージェント"
+    },
+    {
+     "value": "3社",
+     "label": "グリーンチームの手順書が対応するクラウド"
+    },
+    {
+     "value": "約8割",
+     "label": "Defenderで仕分けの対象になる警告の割合"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "クラウドを管理する担当者は、導入前に自社で使うサービスの対応状況を確かめましょう。",
+    "導入を考える企業は、使いたい機能の提供状況と費用を確認しましょう。",
+    "一般の利用者がすることは、今のところ特にありません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "警告の仕分けをAIに任せれば、担当者は被害の大きい案件に時間を使いやすくなりそうです。判断の理由をすぐ確認できるかも、現場での使い勝手を左右します。"
+  }
+ ],
+ "source_name": "ITmedia AI+",
+ "source_url": "https://www.itmedia.co.jp/news/article/2611/20/2000003368/",
+ "published": "2026-11-20",
+ "refs": [
+  {
+   "name": "ITmedia AI+",
+   "url": "https://www.itmedia.co.jp/news/article/2611/20/2000003368/"
+  },
+  {
+   "name": "SecurityWeek",
+   "url": "https://www.securityweek.com/microsoft-takes-perception-agentic-security-platform-out-of-preview/"
+  },
+  {
+   "name": "ITトレンド",
+   "url": "https://it-trend.jp/news/01-335"
+  },
+  {
+   "name": "Microsoft（公式発表）",
+   "url": "https://news.microsoft.com/source/2026/11/17/microsoft-ignite-2026-empowering-human-ambition-intelligence-and-trust/"
+  },
+  {
+   "name": "QES",
+   "url": "https://www.qes.co.jp/media/microsoft/ignite/26inv642"
+  },
+  {
+   "name": "Microsoft Perception Blog",
+   "url": "https://techcommunity.microsoft.com/blog/perception-blog/whats-new-with-microsoft-perception-at-ignite-2026/4571834"
+  }
+ ]
+}
