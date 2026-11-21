@@ -31,7 +31,7 @@
 - 選んだ理由（点数の内訳）を作業メモに残し、通知に1行で書く。
 
 ## 2. 作る
-- 順番（2026-11-10 Issue #4）：台本 → **事実確認（下の「人の代わりの確認」3、codex-short-factcheck.yml）を読み上げの前に通す** → 読み上げ → 画面。夕刊の言い回しや「りなの見方」をそのまま台本や締めに使わない（言い過ぎ・誤解が残りやすい）。つかみは25字前後まで（Leda の速さで約4秒）。つかみの作り方は shorts_rules.md の構成1（問いで始めて答えは3秒より後・0秒は本物の画像＋大きいりなの顔＋特大テロップ・声は0.2秒以内）。
+- 順番（2026-11-10 Issue #4）：台本 → **事実確認（下の「人の代わりの確認」3、codex-short-factcheck.yml）を読み上げの前に通す** → 読み上げ → 画面。夕刊の言い回しや「りなの見方」をそのまま台本や締めに使わない（言い過ぎ・誤解が残りやすい）。つかみは25字前後まで（Leda の速さで約4秒）。shorts_rules.md の構成1に沿って、資料で確かめられる意外な事実を短く言い切り、理由や正体は詳しい要約で明かす。
 - rina-shorts スキルの手順どおり（構成・吹き出し・声 Leda・息継ぎなし）。
 - **short.html は必ずひな形 shorts/_template/short.html をコピーして始め、場面（scenes）だけ書き足す**（2026-11-18：字幕の改行の決まり・特大テロップ bigTelop・縁取りはひな形にだけ入っている。前のショートの short.html を丸ごとコピーすると古い作りのままになる）。構成の見本は shorts/rina_gpt62（spec.json・short.html の場面）。ただし「1分でまとめます」の大きさと背景は shorts_rules.md の構成2が正（gpt62 は直す前の近い構図・頭の上のロゴ）。shorts/rina_newfmt_trial は 11-16 の古い試作（0秒に顔）なので見本にしない。
   - 流れは「掴みの強い事実の言い切り → 大きいりなの「このニュース、1分でまとめます」（指1本のポーズの使い回し・前の大きさ。背景は一面にニュースの関連映像、りなの頭の上には何も出さない）→ 詳しい要約 → ネット上の声（data/x/ED.json のその記事の分から2〜3件を要約、名前は出さない。無ければ省く）→ 冒頭につながる締め」（2026-11-17 ユーザー決定。shorts_rules.md 構成）。宣言は指1本のポーズの使い回し（spec の行に "fixed_wav": "channel/rina_intro/60s.wav"、2026-11-17 ユーザー）。{SEC} の計算はしない。
@@ -39,6 +39,7 @@
   - 最後は冒頭につながる一言で締め、spec に "tail_logo": 0（ロゴ画面なし、声が終わって0.15秒で終わる）。動画全体は55秒前後・最大60秒（超えると short_plan.py が終了コード4、"whole": true。台本を削る）。
   - longcat/jobs.json は hook と verdict の2つ（hook＝2文目は表情を変える言葉を入れる。例 "She leans slightly toward the camera with a curious, playful look, eyebrows raised, as if asking the viewer a riddle."）。
 - 事実は夕刊の記事・research/<号>/<id>.txt・factcheck/<号>/<id>.txt の本文で確かめる（ウェブは開かない。足りなければ fetch-to-branch.yml で取ってくる）。数字は2つ以上の記事で裏を取る。
+- 台本ができたら読み上げの前に `python3 tools/short_plan.py --check-captions shorts/<名前>/spec.json` を実行する。吹き出しで改行されそうな言葉が出たら、短い言い回しにできるか確かめる。実際の改行は書き出し前に check_fit で確かめる。
 - 読み上げは台本全部を1回でまとめて作り（15文を超えるときだけ2回）、split_tts.py で分け、check_split.py で1文ずつ文字起こしして切れ目を確かめる（short-voice.yml が自動で行う。2-2）。1文だけの作り直しは前後の文と一緒に頼む。読み直しを入れても1本3回まで（Gemini の無料枠は1モデル1日10回。2026-11-12 の試験で12文を1回で作って正しく分けられた）。モデルは gemini-3.8-flash-tts だけを使い、別のモデルに切り替えない（声の感じが変わるため。2026-11-12 ユーザー決定）。読み間違えやすい数字はひらがな。
 - つかみと締めの話す動画は longcat-colab.yml（Colab を最大20分借り直し、だめなら自動で Modal）。**必ず Colab から**（ユーザーの決まり、2026-11-16 再確認）：longcat_wait / wait は既定の20のまま動かし、0（Modal だけ）にしない。0にしてよいのは、同じ動画づくりの中で Colab の段が実際に止まった（30分以上進まない、Issue #23）ときの作り直しだけ。
 - **素材の置き場（2026-11-12〜、ユーザー決定）**：音声・画像・動画は main に入れず、使い捨てのブランチ work に置く（main の履歴は消えずに1日約18MBずつ増えていたため）。読み上げ（tts.yml）と公式画像（fetch-media.yml）の結果は自動で work に入る。手元に取るのは `python3 tools/work_branch.py get narration/<名前> media/<名前>`、自分で作った音声・画像（longcat の入力、サムネなど）を置くのは `python3 tools/work_branch.py put <ファイルやフォルダ>`。longcat-colab.yml と youtube-upload.yml は work からも読む。main の .gitignore がこれらを main に入れないようにしている。台本・spec.json・short.html・lines.json・urls.txt など文字のファイルは今までどおり main。

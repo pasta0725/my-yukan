@@ -15,6 +15,10 @@ Task: check EVERY fact in video.txt against refs.txt:
 - every proper name (company, product, service, person, role/title, outlet, place, country);
 - who did what, from when, for whom, where; "reported" vs "announced" vs "confirmed" (a report must not be told as a fact,
   a denial or condition must not be dropped if the video states the claim), and words such as 初・最大・即日・一時.
+
+冒頭は tools/shorts_rules.md の構成1に合わせる。冒頭で結果だけを言い、理由・仕組み・正体を詳しい要約で明かす形は、冒頭の言葉だけでも資料と合っていれば、答えを伏せたことだけでは LOOK にしない。
+肩書きなどを短くした結果、冒頭の声や字幕だけでは意味が変わるときは LOOK にする。たとえば資料がAIの宣伝役を指す場合、「ドンキの宣伝役」と言って正体を後で明かせる。
+
 Report a problem (LOOK) when:
 1. a reference contradicts it (give the right value from the reference);
 2. no reference contains it (correct = 「資料に記載なし」), unless it is plain common knowledge that cannot be wrong

@@ -1,5 +1,6 @@
 """Assemble the timing plan and the final audio for a news Short.
 usage: python3 tools/short_plan.py <spec.json> <work_dir>
+読み上げ前の字幕の確認: python3 tools/short_plan.py --check-captions <spec.json>
 spec.json: {"wav_dir": "...", "lines": [{"say": "...", "show": "...", "scene": "hook", "puppet": false, "se": "don"}, ...],
             "speed": 1.15, "gap": 0.03, "period_pause": 0.04, "comma_max": 0.30, "tail_logo": 2.0, "sfx_dir": "...", "lipsync": "path/to/python-with-pyopenjtalk"}
 period_pause / comma_max: the pause at 「。」 inside a line is cut to period_pause (no breath, like 岡野タケシ),
@@ -31,6 +32,46 @@ def mark_period_pauses(runs, say, windows, win):
             spoken += 1
 
 
+def chunks(s):
+    parts = [p for p in re.split(r"(?<=[、。！？])", s) if p.strip()]
+    out = []
+    for p in parts:
+        p = p.strip()
+        while len(p) > 15:
+            inq = lambda j: (p[:j].count("『") + p[:j].count("「")) > (p[:j].count("』") + p[:j].count("」"))
+            # cut after a particle or just before a quote, never inside 『』「」 (it split 『ゼルダの|伝説』, 2026-11-09)
+            c = [m.end() for m in re.finditer(r"[をにはがでとのもへや]", p[:15]) if not inq(m.end()) and p[m.end():m.end() + 1] not in "りるれろっまんいうえ" and not (re.match(r"[ぁ-ん]", p[m.start() - 1:m.start()] or "x") and re.match(r"[ぁ-ん]", p[m.end():m.end() + 1] or "x"))] + [m.start() for m in re.finditer(r"[『「]", p[:15])]  # not inside a verb such as 下が|りました (2026-11-10)
+            c = [j for j in c if j >= 4 and len(re.sub(r"[、。]", "", p[j:])) > 3]   # no tiny leftover such as 「演奏で|きます」
+            if not c and len(p) <= 18: break
+            cut = max(c or [12])
+            while cut > 4 and re.match(r"[A-Za-z0-9. ]", p[cut - 1]) and re.match(r"[A-Za-z0-9. ]", p[cut]): cut -= 1  # never inside a Latin name such as Opu|s 5.5 (2026-11-10)
+            out.append(p[:cut]); p = p[cut:]
+        if p:
+            if len(re.sub(r"[、。]", "", p)) <= 3 and out and len(out[-1]) + len(p) <= 18: out[-1] += p  # no tiny leftovers
+            else: out.append(p)
+    return out
+
+
+def caption_warnings(lines):
+    polite_phrase = re.compile(r"[一-龯々ぁ-ゖァ-ヶー]+(?:ます|ました|ません)")
+    particle_break = re.compile(r"[をにはがでとのもへや][一-龯々ァ-ヶ]")
+    for i, line in enumerate(lines, 1):
+        if line.get("big") or line.get("scene") in ("open", "intro", "verdict"):
+            continue
+        for piece in chunks(line["show"]):
+            text = re.sub(r"[、。]$", "", piece)
+            if len(text) >= 7 and polite_phrase.fullmatch(text) and not particle_break.search(text[1:]):
+                yield i, text
+
+
+if len(sys.argv) == 3 and sys.argv[1] == "--check-captions":
+    with open(sys.argv[2], encoding="utf-8") as f:
+        lines = json.load(f)["lines"]
+    for i, text in caption_warnings(lines):
+        print(f"台本{i}行目「{text}」は吹き出しで言葉の途中に改行が入ることがあります。")
+    sys.exit(0)
+
+
 if sys.argv[1:] == ["--selftest"]:
     with open("narration/rina_ff7sale/lines.json", encoding="utf-8") as f:
         hook = json.load(f)["lines"][0].splitlines()[0]
@@ -39,6 +80,11 @@ if sys.argv[1:] == ["--selftest"]:
     assert [r[2] for r in pauses] == ["comma", "period"]
     mark_period_pauses(pauses[:1], hook, 130, 0.01)
     assert pauses[0][2] == "comma"
+    with open("shorts/rina_donki_ai/spec.json", encoding="utf-8") as f:
+        line = next(line for line in json.load(f)["lines"] if line["scene"] == "what")
+    original = {**line, "show": line["show"].replace("作りました", "生み出しました")}
+    assert list(caption_warnings([original])) == [(1, "生み出しました")]
+    assert not list(caption_warnings([line, {**original, "big": True}]))
     sys.exit(0)
 
 import numpy as np
@@ -135,24 +181,6 @@ for ln in lines:
         spec["fingers"] = 1 if sec == 60 else sec // 10
 
 # 3) telop chunks: split the shown text into 5-15 character pieces, timed by length
-def chunks(s):
-    parts = [p for p in re.split(r"(?<=[、。！？])", s) if p.strip()]
-    out = []
-    for p in parts:
-        p = p.strip()
-        while len(p) > 15:
-            inq = lambda j: (p[:j].count("『") + p[:j].count("「")) > (p[:j].count("』") + p[:j].count("」"))
-            # cut after a particle or just before a quote, never inside 『』「」 (it split 『ゼルダの|伝説』, 2026-11-09)
-            c = [m.end() for m in re.finditer(r"[をにはがでとのもへや]", p[:15]) if not inq(m.end()) and p[m.end():m.end() + 1] not in "りるれろっまんいうえ" and not (re.match(r"[ぁ-ん]", p[m.start() - 1:m.start()] or "x") and re.match(r"[ぁ-ん]", p[m.end():m.end() + 1] or "x"))] + [m.start() for m in re.finditer(r"[『「]", p[:15])]  # not inside a verb such as 下が|りました (2026-11-10)
-            c = [j for j in c if j >= 4 and len(re.sub(r"[、。]", "", p[j:])) > 3]   # no tiny leftover such as 「演奏で|きます」
-            if not c and len(p) <= 18: break
-            cut = max(c or [12])
-            while cut > 4 and re.match(r"[A-Za-z0-9. ]", p[cut - 1]) and re.match(r"[A-Za-z0-9. ]", p[cut]): cut -= 1  # never inside a Latin name such as Opu|s 5.5 (2026-11-10)
-            out.append(p[:cut]); p = p[cut:]
-        if p:
-            if len(re.sub(r"[、。]", "", p)) <= 3 and out and len(out[-1]) + len(p) <= 18: out[-1] += p  # no tiny leftovers
-            else: out.append(p)
-    return out
 tel = []
 for ln in lines:
     cs = chunks(ln["show"]); w = [max(3, len(re.sub(r"[、。]", "", c))) for c in cs]; tot = sum(w); s = ln["start"]

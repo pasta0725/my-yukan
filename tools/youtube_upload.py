@@ -11,15 +11,40 @@ usage: python3 tools/youtube_upload.py <name> <video.mp4> [--comment TEXT] [--pr
     status:<id>  print privacy and publish time   banner:<path> replace the channel banner (2560x1440 jpg in the repo)
 uses channel/meta/<name>.json (title, description, tags, title_en, description_en),
      channel/thumbs/<name>.jpg (if present), channel/captions/<name>_ja.srt (if present).
+AIの使用を「はい」にするときは、meta に "ai_use": true を入れる。
 Uploads go public right away (checked 2026-11-10), so use --publish-at when nobody has looked at the video yet.
 """
 import json, os, sys, argparse
-from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PLAYLIST = "毎日1分AIニュース"
+
+
+def upload_status(meta, privacy):
+    ai_use = meta.get("ai_use", False)
+    if not isinstance(ai_use, bool):
+        sys.exit("channel/meta の ai_use は true か false で書いてください")
+    return {"privacyStatus": privacy, "selfDeclaredMadeForKids": False, "containsSyntheticMedia": ai_use,
+            "license": "youtube", "embeddable": True, "publicStatsViewable": True}
+
+
+if sys.argv[1:] == ["--selftest"]:
+    with open(os.path.join(ROOT, "channel", "meta", "rina_donki_ai.json"), encoding="utf-8") as f:
+        meta = json.load(f)
+    meta.pop("ai_use", None)
+    for settings, expected in ((meta, False), ({**meta, "ai_use": False}, False), ({**meta, "ai_use": True}, True)):
+        assert upload_status(settings, "private")["containsSyntheticMedia"] is expected
+    try:
+        upload_status({**meta, "ai_use": "false"}, "private")
+    except SystemExit:
+        pass
+    else:
+        raise AssertionError("ai_use が文字列でも投稿できてしまいます")
+    sys.exit(0)
+
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
 
 ap = argparse.ArgumentParser()
 ap.add_argument("name"); ap.add_argument("video")
@@ -86,8 +111,7 @@ meta = json.load(open(os.path.join(ROOT, "channel", "meta", f"{a.name}.json"), e
 body = {
     "snippet": {"title": meta["title"], "description": meta["description"], "tags": meta.get("tags", []),
                 "categoryId": "28", "defaultLanguage": "ja", "defaultAudioLanguage": "ja"},
-    "status": {"privacyStatus": a.privacy, "selfDeclaredMadeForKids": False, "containsSyntheticMedia": False,
-               "license": "youtube", "embeddable": True, "publicStatsViewable": True},
+    "status": upload_status(meta, a.privacy),
 }
 if a.publish_at:   # scheduled: YouTube needs private + publishAt (UTC)
     from datetime import datetime, timezone

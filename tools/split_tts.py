@@ -9,18 +9,8 @@ listen to it / compare with the voice check). Exit code 3 if any CHECK (2026-11-
 import json, os, re, sys, wave
 
 
-def select_gaps(gaps, weights, first, last):
-    # Each window is 10 ms. A long pause may still be within a line, so
-    # also check that the proposed cuts give plausible lengths for the lines.
-    long_gaps = [gap for gap in gaps if gap[1] - gap[0] >= 50]
+def nearest_gaps(gaps, weights, first, last):
     total = sum(weights)
-    if len(long_gaps) == len(weights) - 1 and long_gaps:
-        bounds = [first] + [(start + end) // 2 for start, end in long_gaps] + [last]
-        rate = (last - first) / total
-        if all(weight < 6 or 0.6 < (end - start) / weight / rate < 1.7
-               for start, end, weight in zip(bounds, bounds[1:], weights)):
-            return long_gaps
-
     used = set()
     for k in range(1, len(weights)):
         want = first + (last - first) * sum(weights[:k]) / total
@@ -30,11 +20,27 @@ def select_gaps(gaps, weights, first, last):
     return sorted(used)
 
 
+def select_gaps(gaps, weights, first, last):
+    # 0.5秒以上の間を先に試し、文ごとの長さが自然なときに採用する。
+    long_gaps = [gap for gap in gaps if gap[1] - gap[0] >= 50]
+    cut_count = len(weights) - 1
+    if cut_count and len(long_gaps) >= cut_count:
+        cuts = nearest_gaps(long_gaps, weights, first, last)
+        bounds = [first] + [(start + end) // 2 for start, end in cuts] + [last]
+        rate = (last - first) / sum(weights)
+        if all(weight < 6 or 0.6 < (end - start) / weight / rate < 1.7
+               for start, end, weight in zip(bounds, bounds[1:], weights)):
+            return cuts
+    return nearest_gaps(gaps, weights, first, last)
+
+
 if sys.argv[1:] == ["--selftest"]:
     short_pause, first_end, second_end = (190, 210), (260, 310), (420, 480)
     assert select_gaps([short_pause, first_end, second_end], [10, 10, 10], 0, 600) == [first_end, second_end]
     assert select_gaps([short_pause, second_end], [10, 10, 10], 0, 600) == [short_pause, second_end]
     assert select_gaps([(40, 100), short_pause, second_end], [10, 10, 10], 0, 600) == [short_pause, second_end]
+    comma, first_end, second_end, extra_pause = (285, 315), (400, 480), (610, 690), (720, 780)
+    assert select_gaps([comma, first_end, second_end, extra_pause], [10, 10, 10], 0, 900) == [first_end, second_end]
     sys.exit(0)
 
 import numpy as np
