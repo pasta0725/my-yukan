@@ -3,6 +3,7 @@
 ユーザーの確認なしで毎日1本。夕刊（data/<今日>-pm.json）の記事から選んで作り、21:00 に予約公開する。
 予約公開までの間にユーザーが止められるよう、アップロードしたら必ず通知する。手で「この記事を動画にして」と頼まれたときも、選ぶ手順以外は同じ。
 作り方の決まりは rina-shorts / rina-youtube-publish スキルと tools/shorts_rules.md・metadata_rules.md・thumbnail_rules.md がもと。この文書は「自動でやるときの順番と、人の代わりの確認」。
+**毎回、最初に tools/learning/shorts/next.md（次の1本で守る改善）を読み、投稿のあとに振り返りを書く**（下の 4-2。自動でも手作りでも省かない。2026-11-21 ユーザーの依頼）。
 
 ## 時間割（日本時間）
 | 時刻 | やること |
@@ -78,6 +79,12 @@
   「今日の自動ショート：<タイトル>（<選んだ理由1行>）。21:00に公開されます。https://youtube.com/shorts/<ID>　止めたいときは Claude に『動画止めて <ID>』と言うか、YouTube Studio アプリで非公開にしてください。」
 - 止める：youtube-upload.yml の video=stop:<ID>。すぐ出す：video=go:<ID>。状態：video=status:<ID>。予約の時刻を変える：video=at:<ID> と publish_at（2026-11-19〜）。変えたら、待っている after-public.yml の実行を止めて、新しい時刻で after-public.yml を動かし直す（古い時刻のままだとコメントが二重になる）。
 - channel/shorts_log.csv の1行は short-upload.yml の log で足される（動かなかったときは手で足す）。完成動画と素材のドライブへの移動は、youtube-upload.yml が公開を確かめたあと drive-store.yml を自動で動かす（動いていなければ name=<名前> で手で動かす。media の名前が rina_ を外した名前と違うときは extra=media/<名前>）。
+
+## 4-2. 振り返り（毎回、通知と HANDOFF の前。2026-11-21〜）
+- `python3 tools/short_record.py <名前> --write` で時間・自動作業の回数と失敗・書き出しと読み上げの回数・Claude の使った量を tools/learning/shorts/<名前>.md に入れる（自分で数え直さない）。
+- 残り（やり直し・つまずき・品質・次の改善1〜3個）を短く書き、next.md を書き換える（効いた改善は決まりの文書へ移して消す。5つまで）。手順は tools/learning/shorts/README.md。
+- 通知の最後に「今回の振り返り：<一番大きい改善1行>」を足す。
+- 投稿しなかった日も、止まった理由を記録に書く（数字は同じ道具で取れる）。
 
 ## 5. うまくいかないとき
 - 号ができていない／候補が選べない／確認が20:30までに通らない → 投稿しない。理由を通知する。
