@@ -66,7 +66,55 @@ def history(name, frm, to):
     """そのショートのコミットの一覧（何をいつ直したか）。"""
     paths = [f"shorts/{name}", f"narration/{name}", f"narration/{name}_fix1", f"narration/{name}_fix2", f"narration/{name}_fix3", f"channel/meta/{name}.json"]
     out = sh("git", "log", "--reverse", f"--since={frm.isoformat()}", f"--until={to.isoformat()}", "--format=%cI\t%s", "--", *paths)
-    return [f"{parse(t).astimezone(JST):%H:%M} {m[:100]}" for t, m in (l.split("\t", 1) for l in out.splitlines())]
+    return [(parse(t), m) for t, m in (l.split("\t", 1) for l in out.splitlines())]
+
+
+# 工程の順番：(工程, 使う自動作業の name, 道具・機械)。台本と画面の設計は Claude（自動作業の合間の時間）
+STEPS = [
+    ("素材（公式の画像・元記事）", ("fetch-media", "fetch-to-branch"), "GitHub（取り込み）"),
+    ("事実確認", ("codex-short-factcheck",), "Codex gpt-6.2-sol"),
+    ("声（読み上げ・切り分け）", ("narration", "short-voice"), "Gemini 読み上げ（Leda）＋文字起こし"),
+    ("サムネ", ("codex-images", "short-thumb-check"), "Codex の画像づくり・公開後の確認"),
+    ("書き出しと確認（画面・字幕・声・話す動画）", ("short-build", "codex-frame-check", "voice-check", "longcat-colab"), "GitHub で書き出し＋Codex の画面確認＋Colab/Modal"),
+    ("投稿", ("short-upload", "youtube-upload", "after-public"), "YouTube（予約・サムネ・固定コメント）"),
+]
+
+
+def steps_table(rs, hist, frm, to):
+    L = ["  | 工程 | 道具・機械 | 回数 | やり直し | 分 | やり直しの前に直したこと |", "  |---|---|---|---|---|---|"]
+    busy = []
+    for title, wfs, tool in STEPS:
+        mine = sorted([r for r in rs if r[0] in wfs and r[0] not in ("after-public", "short-thumb-check", "voice-check", "codex-frame-check") or (r[0] in wfs and len(wfs) == 1)], key=lambda r: r[2])
+        allr = [r for r in rs if r[0] in wfs]
+        if not allr:
+            continue
+        main_r = [r for r in allr if r[0] == wfs[0]] or allr
+        mins = sum(max(0, (e - s).total_seconds() / 60) for n, c, s, e in allr if n not in ("after-public", "short-thumb-check"))
+        busy += [(s, e) for n, c, s, e in allr if n not in ("after-public", "short-thumb-check")]
+        why = []
+        for n, c, s, e in sorted(main_r, key=lambda r: r[2])[1:]:
+            before = [m for t, m in hist if t <= s and not m.startswith("ショート自動")]
+            why.append(before[-1][:60] if before else "？")
+        fails = sum(c not in ("success", "skipped", "running") for n, c, s, e in main_r)
+        L.append(f"  | {title} | {tool} | {len(main_r)} | {len(main_r) - 1}（要確認・失敗{fails}） | {mins:.0f} | {' / '.join(why) or '-'} |")
+    # Claude の作業時間＝自動作業が動いていない時間（台本・場面の設計・直し・判断）
+    busy.sort()
+    used, cur = 0.0, None
+    for s, e in busy:
+        s, e = max(s, frm), min(e, to)
+        if e <= s:
+            continue
+        if cur and s <= cur[1]:
+            cur[1] = max(cur[1], e)
+        else:
+            if cur:
+                used += (cur[1] - cur[0]).total_seconds()
+            cur = [s, e]
+    if cur:
+        used += (cur[1] - cur[0]).total_seconds()
+    claude = ((to - frm).total_seconds() - used) / 60
+    L.insert(2, f"  | 台本・場面の設計と直し | Claude（親） | - | - | {claude:.0f}（自動作業が何も動いていない時間。待ちの間の作業は含まない） | 下の「直した履歴」 |")
+    return L
 
 
 def runs(frm, to):
@@ -128,24 +176,16 @@ def main():
     rs = runs(frm, to)
     mins = (to - frm).total_seconds() / 60
     L = [MARK_A, f"- かかった時間：{frm.astimezone(JST):%m/%d %H:%M}〜{to.astimezone(JST):%H:%M}（日本時間）＝約{mins:.0f}分"]
-    by = {}
-    for n, c, s, e in rs:
-        b = by.setdefault(n, [0, 0, 0.0])
-        b[0] += 1
-        b[1] += c not in ("success", "skipped", "running")
-        b[2] += max(0, (e - s).total_seconds() / 60)
-    L.append(f"- 自動作業：合計{len(rs)}回（うち失敗・要確認{sum(v[1] for v in by.values())}回）")
-    L.append("  | 作業 | 回数 | 失敗・要確認 | 合計分 |")
-    L.append("  |---|---|---|---|")
-    for n, (k, f, m) in sorted(by.items(), key=lambda x: -x[1][2]):
-        L.append(f"  | {n} | {k} | {f} | {m:.0f} |")
-    L.append(f"- 書き出し（short-build）{by.get('short-build', [0])[0]}回・読み上げ（narration）{by.get('narration', [0])[0]}回")
+    h = history(a.name, frm, to)
+    L.append("- 工程ごと（回数は主な自動作業の回数。分は待ちも含む）：")
+    L += steps_table(rs, h, frm, to)
     tk = talking(frm, to)
+    i = next((k for k, x in enumerate(L) if x.startswith("  | 書き出しと確認")), len(L))
+    L.insert(i, f"  | 話す動画（つかみ・締め） | LongCat：{'・'.join(x.split(' ', 2)[2] for x in tk) if tk else 'この時間に作っていない（前のものを使った）'} | {len(tk)} | {max(0, len(tk) - 1)} | （書き出しの分に含む） | 下の「話す動画」 |")
     L.append("- 話す動画（つかみ・締め）：" + ("なし（作らなかった／前のものを使った）" if not tk else ""))
     L += [f"  - {x}" for x in tk]
-    h = history(a.name, frm, to)
     L.append(f"- 直した履歴（コミット{len(h)}件）：")
-    L += [f"  - {x}" for x in h[:25]]
+    L += [f"  - {t.astimezone(JST):%H:%M} {m[:100]}" for t, m in h[:25]]
     tp = a.transcript
     if not tp:
         c = sorted(glob.glob(os.path.expanduser("~/.claude/projects/*/*.jsonl")), key=os.path.getmtime)
