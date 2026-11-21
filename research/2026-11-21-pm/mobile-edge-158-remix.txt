@@ -1,0 +1,774 @@
+===== https://www.neowin.net/news/microsoft-edge-158-helps-protect-you-from-scam-website-notifications/
+(status 403)
+
+
+===== https://markenote.jp/article/9825
+(status 200)
+Edge 158公開、ページの見た目を変える「Remix」など追加
+2026
+11/20
+				ツール更新情報			
+				Microsoft Edge			
+2026年11月20日 13:54
+文：
+AB通信 編集部
+｜
+運営：
+株式会社abcompany
+平山 大樹
+　AB通信 運営責任者
+AB通信 編集部が、企業・行政の公式発表や決算資料などの一次情報を確認して書いています。
+運営会社・編集方針
+目次
+この記事のポイント
+Microsoft Edgeの安定版158.0.4370.33が、2026年11月19日に公開されました
+「Remix」で、対応するウェブページの見た目を、用意された操作や文章での指示によって、自分の画面だけ変えられます
+組織はポリシー「RemixAvailability」で、Remixを使えなくする、またはツールバーに固定できます（Windows / macOS、158以降）
+Microsoft Defender SmartScreenが詐欺・フィッシング・マルウェアと判定したページへ誘導する通知は、自動で止まります。Windowsでは、設定画面からいつでもGoogleアカウントのデータを取り込めるようになりました
+次の159では、ブラウザ標準のXSLTが安定版でも既定でオフになる予定です。XMLサイトマップなどにXSLTを使っているサイトは、移行の確認が必要です
+Edge 158が安定版として公開されました
+Microsoftは2026年11月19日、Microsoft Edgeの安定版チャネルでバージョン158.0.4370.33を公開しました。公式の
+Stableチャネル リリースノート
+は、ワークスペースの更新、セキュリティ関連の制御、データの取り込み、新しいポリシーなどをこの版の主な更新として挙げています。同じ日のウェブプラットフォーム向けリリースノートも、
+Microsoft Edge 158 web platform release notes
+として公開されています。
+主な機能の追加と、次の159に向けた廃止予定を、公式の案内に沿って整理します。日付ごとの更新の一覧は、
+Microsoft Edgeの更新履歴
+でも追っています。セキュリティ更新の内訳は、公式の
+セキュリティ リリースノート
+を確認してください。
+Remixで、自分の画面だけ見た目を変えられます
+158の中心的な追加が「Remix」（Web Remix）です。公式リリースノートは、対応するウェブページを、用意された見た目の操作、または自然言語の依頼によって自分向けに変えられる、と説明しています。変更は利用者のブラウザ プロファイルだけに残り、一時停止や削除の操作も用意されています。
+Microsoftサポートの「
+Microsoft Edge の Web リミックス
+」によると、アドレスバーのリミックス アイコンから次のどちらかを選べます。
+外観（Appearance）：
+ダークモードのオン、背景色の変更、フォントの種類とサイズの調整。この種類は端末の中だけで動き、ページのデータはMicrosoftに送られない、と説明されています
+ユーザー設定（Custom）：
+「レシピの手順だけを表示する」「価格をすべてユーロに換算する」といった文章の指示で、ページの見え方を変えます。リミックスは、サイト全体（ドメイン）にも、個別のページにも適用できます
+公式サポートは、長い記事を読みやすくする、詳細ページに要約を足す、レシピを買い物リストに変える、価格を現地通貨に換算する、ページの外観を更新する、といった使い方を例に挙げています。11月17日の
+Microsoft Edge公式ブログ
+は、古い社内アプリや、開発の手が回っていないダッシュボードなど、使いにくいページの余分な表示を減らしたり、見た目を変えたりできる、と紹介しています。プリセットのテーマやフォントを選ぶか、普通の言葉でカスタムのRemixを指示します。保存は端末の中で、オンとオフは切り替えできます。
+日本の業務サイトや社内ツールでも、公式が示している範囲で使うなら、次のような場面が考えられます。文字が小さくて読みにくい管理画面でフォントを大きくする、背景を変えて長時間の確認作業を見やすくする、長いマニュアルやヘルプから手順だけを残す、海外サービスの料金表示を円に換算する、といった使い方です。公式が強調しているのは、元のウェブサイトやサーバー上の内容は変わらないこと、ほかの人の画面には反映されないこと、すでに表示されている内容だけを対象にすることです。ペイウォールやログイン、有料登録を迂回する機能ではない、とも明記されています。
+Remixを適用した公式のデモ画面。アドレスバーに「Remix active」と表示され、現在のページ向けのRemixをオン・オフできる。出典：
+Microsoft Edge公式ブログ「Edge for Business becomes the most used enterprise browser and unveils Ignite 2026 innovations」
+（掲載の公式デモ動画より）
+カスタムのRemixを作るときは、ページのURLとドメイン、ページの内容、入力した指示がMicrosoftに送られ、リミックスの生成にだけ使われる、とサポートページは説明しています。処理が終わると、そのデータはMicrosoftのサーバーから破棄され、できたリミックスは端末の中に保存されます。保存済みのパスワード、オートフィル、支払い情報にはアクセスしないこと、生成に使った内容をAIモデルの学習には使わないことも書かれています。一方で、カスタムのRemixは試験的な機能であり、結果が不正確だったり、安定しなかったりする可能性がある、とも注意されています。機密の個人情報（財務、健康、身分が分かる情報など）が含まれるページでは使わないよう、公式は呼びかけています。
+提供範囲については、公式の案内に差があります。安定版158のリリースノートはRemixを機能更新として案内し、企業向けにはRemixAvailabilityポリシーで制御できるとしています。11月17日の公式ブログも、Edge for Business向けに「Generally available」（一般提供）と記しています。一方、Microsoftサポートの説明ページ（本稿の確認時点）には、コンシューマー向けでMicrosoftアカウントでのサインインが必要であること、現在はEdge Beta向けの限定的な外部実験であり、ほかのバージョンではまだ広く利用できないこと、が書かれたままです。利用できる国やプランを一覧した公式の表は見つかりませんでした。導入の判断は、自社のEdgeの版と、管理ポリシーの設定を確かめたうえで行ってください。
+管理者はRemixAvailabilityで制御できます
+企業や学校向けの制御は、ポリシー「
+RemixAvailability
+」（Control Remix availability）です。対象はWindowsとmacOSの158以降で、AndroidとiOSは対象外です。必須ポリシーとして設定でき、推奨ポリシーとしては使えません。グループ ポリシーの場所は「Administrative Templates/Microsoft Edge/Remix settings」、Windowsのレジストリは 
+SOFTWARE\Policies\Microsoft\Edge
+ のDWORD値 
+RemixAvailability
+ です。
+0（Disabled）：
+Remixを使えなくします。設定も無効になり、ツールバーに出ず、別の入り口からも起動できません
+1（Force enabled）：
+Remixを使えるようにし、ツールバーに固定します。利用者はオフにしたり、ツールバーから外したりできません
+未設定：
+利用者が、ツールバーにピン留めするかどうかを選べます
+機密データが多い社内システムや、見た目を変えてほしくない業務画面がある場合は、0で無効化する判断が考えられます。逆に、読みやすさの調整を標準の機能として配りたい場合は、1でツールバーに固定できます。公式のポリシー文書は、RemixAvailabilityがRemixを無効にしているときは、ほかの関連ポリシーで有効には戻せない、とも記しています。
+なお、公式ドキュメントには、次の159以降を対象とする細かいポリシーも載っています。特定のドメインでRemixを禁止する「
+RemixDomainBlocklist
+」、カスタムのRemix自体を許可するかどうかの「
+RemixCustomRemixesAllowed
+」、カスタムのRemixによる画像やリンクなどの一括抽出を許可するかどうかの「
+RemixBulkExtractionAllowed
+」です。158の時点で使える中心のスイッチは、RemixAvailabilityです。
+詐欺・悪性サイトからの通知を自動で止めます
+158では、悪意のあるウェブ通知への対策も強化されています。通知の先が、Microsoft Defender SmartScreenによって詐欺、フィッシング、マルウェアのページと判断された場合、Edgeはその通知元からの以降の通知を自動で止め、利用者にも知らせます。止めたサイトの確認や再開は、
+edge://settings/privacy/sitePermissions/allPermissions/notifications
+ からいつでもできます。
+ブラウザの通知許可を、いつの間にかオンにしていたサイトから、偽の警告や口座情報を求める画面へ誘導される、といった被害を減らすための機能です。自動で止まった通知元を、業務で使う正規のサイトだと確認できた場合は、同じ設定画面から戻せます。
+Windowsでは、設定からいつでもGoogleアカウントのデータを取り込めます
+Windows版では、パスワード、ブックマーク、履歴、オートフィルのデータを、Edgeの設定画面から、セットアップ後の任意の時点でGoogleアカウントから取り込めるようになりました。これまでは、初回セットアップのときに限られていました。今回の更新で、Google Chromeからの取り込みと、Googleアカウントからの取り込みが、設定の一つの入り口にまとまります。公式リリースノートは、この機能の対象をWindowsデバイスとしています。macOSやモバイルでの可否は、158のリリースノートには書かれていません。
+ワークスペースの切り替え、ピン留め、絵文字
+仕事用と調べもの用など、用途ごとにタブをまとめるワークスペースにも、158で操作が足されています。
+ウィンドウ内での切り替え：
+ワークスペースごとに別ウィンドウを開かず、今のウィンドウの中で切り替えられます
+ピン留め：
+よく使うワークスペースをピン留めし、画面上に出し続けられます
+絵文字：
+ピン留めしたワークスペースに絵文字を付けられます。一覧を読まなくても、クリックして切り替えられます
+一方、古い「Workspaces V1」は158で既定オフになり、159で完全に削除されます。Edge 150以降を開いた利用者は、すでにV2へ移っている、と公式は説明しています。159の削除までに移行が終わっていないと、V1のワークスペースにはアクセスできなくなります。V2の機能の詳細は、公式の
+Microsoft Edge Workspaces
+を参照してください。
+サイト運営者が確認したいこと：159でXSLTが既定オフになります
+158そのものでは、安定版のブラウザ標準XSLTはまだ既定オンのままです。ただし公式リリースノートは、次の予定を改めて案内しています。
+Microsoft Edgeは、ブラウザ標準のXSLT（Extensible Stylesheet Language Transformations）を廃止する方針です
+対象は、
+XSLTProcessor
+ のJavaScript APIと、XSLTスタイルシートを参照するXMLの処理命令です。CSSスタイルシートを参照する処理命令は影響を受けません
+157：Canary、Dev、Betaでは、すでに既定オフです
+159：安定版でも既定オフになります
+サイト運営者にとって分かりやすい影響の一つが、XMLサイトマップです。多くのサイトは、
+sitemap.xml
+ に 
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+ のような処理命令を付け、ブラウザで開いたときに一覧しやすいHTMLとして見せています。これは、XSLTスタイルシートを参照するXMLの処理命令そのものです。159以降、安定版のEdgeで同じファイルを開くと、これまでどおりの見た目に変換されず、XMLのまま表示される可能性があります。検索エンジンの読み取り（クローラー）は、このブラウザ側の変換とは別の話ですが、人がブラウザでサイトマップを確認する運用や、社内向けのXMLをブラウザで見やすくしているシステムは、影響を確認した方がよい、と公式の仕様から言えます。
+公式が管理者とサイト所有者に勧めている対応は、次のとおりです。
+XSLTProcessor
+ や、XSLTを指定したXMLの処理命令を使っている、社内の重要なアプリや公開サイトを洗い出す
+ブラウザ標準のXSLTをオフにした状態で、動きを確かめる
+変換を、サーバー側、JavaScript、またはほかの対応済みの方法へ移す
+開発ルール、サポート文書、テスト計画を更新し、関係者と利用者に変更を伝える
+移行が間に合わない場合の一時策として、管理者はポリシー「
+XSLTEnabled
+」でXSLTを明示的にオンにできます。未設定なら、ブラウザの既定の動作に従います。サイト所有者は、XSLT廃止のオリジン トライアルに登録し、対象オリジンだけ一時的にオンのままにすることもできます。公式は、このポリシーもオリジン トライアルも一時的で、Microsoft Edge 176で機能しなくなる予定だと明記しています。サードパーティーのポリフィルや拡張機能も案内されています。テナント管理者向けの追加情報は、Microsoft 365管理センターのメッセージ センター（MC1509789）にあります。互換性への影響をまとめた公式ページは、
+Site compatibility-impacting changes coming to Microsoft Edge
+です。
+Edge 158の主な変更点と、サイト運営者・管理者が確認したいこと。公式リリースノートをもとにAB通信が作成。出典：Microsoft Edge Stableチャネル リリースノート（158.0.4370.33）
+158で廃止される機能
+Remixやワークスペースの追加と同時に、次の機能は役割を終えます。
+エクスプレスチェックアウト：
+廃止され、既定でオフです。設定項目も削除されました。ポリシー「EdgeWalletCheckoutEnabled」は158で非推奨（deprecated）になり、将来の版で廃止（obsolete）になる予定です
+Workspaces V1：
+158で既定オフ、159で削除されます。前述のとおり、移行が終わる前のV1には、159以降アクセスできません
+パフォーマンス検出（Performance detector）：
+廃止に向かっています。関連ポリシー「PerformanceDetectorEnabled」は非推奨で、164で機能の廃止とポリシーのobsoleteが予定されています
+このほかの企業向けの更新
+158のリリースノートには、企業向けの機能も並んでいます。Protected DownloadsをMicrosoft IntuneのWindowsアプリ保護ポリシーで設定できること、Microsoft Sentinelとの連携（プレビュー）、拡張機能が保護対象のページとやり取りする方法を制限するExtension Leak Control（プレビュー）、保護された内容をCopilotで要約・書き直し・質問できるProtected Sessions（プレビュー）、保護ページ上の機微な表示を視覚的に隠すRedaction leak protection（プレビュー）、Microsoft Entra Global Secure Accessとの連携（プレビュー、WindowsとmacOS）です。管理下のデバイスでは、Windows起動時にEdgeを自動起動するかどうかの同意画面も追加される予定ですが、こちらは段階的な展開（controlled feature rollout）です。
+Microsoft 365管理センターの「Microsoft Edge for Business」にある、拡張機能の監視画面。出典：
+Microsoft Edge公式ブログ「Edge for Business becomes the most used enterprise browser and unveils Ignite 2026 innovations」
+ウェブ開発者向けには、CSSの 
+flow-start
+ / 
+flow-end
+、
+::highlight(*)
+、
+video
+ や 
+audio
+ の再生状態に応じた擬似クラスなど、プラットフォーム側の追加もあります。詳細は公式のウェブプラットフォーム リリースノートを参照してください。
+出典
+Microsoft Edge release notes for Stable Channel
+（バージョン158.0.4370.33、2026年11月19日）
+Microsoft Edge 158 web platform release notes
+（2026年11月19日）
+Microsoft Edge の Web リミックス
+（Microsoftサポート）
+RemixAvailability
+ ほか、RemixDomainBlocklist、RemixCustomRemixesAllowed、RemixBulkExtractionAllowed、XSLTEnabledの各ポリシー文書
+Site compatibility-impacting changes coming to Microsoft Edge
+Edge for Business becomes the most used enterprise browser and unveils Ignite 2026 innovations
+（Microsoft Edge公式ブログ、2026年11月17日）
+Microsoft Edge security release notes
+営業メールなし／無料
+AI・SEOの動きは、
+毎朝7時のメールで追いつける
+毎朝6時に私がピックアップしてます！
+平山 大樹｜AB通信 運営責任者
+もうXを追いかけなくていい。前日にAB通信で公開したAI・SEOの新着記事を、朝のうちにまとめてお届けします。
+営業メールは送りません。無料で、配信はいつでも解除できます。
+登録後に届く確認メールの
+「登録を確定する」
+ボタンで完了です（迷惑メールフォルダもご確認ください）。
+				ツール更新情報			
+				Microsoft Edge			
+Microsoft Edgeの最新アップデート・更新履歴（公式リリースノートまとめ）
+ChatGPTの『ヘルス』、デスクトップ・dots・Androidでも利用可能に
+関連記事
+Microsoft Edgeの最新アップデート・更新履歴（公式リリースノートまとめ）
+2026年11月20日
+Cursorの最新アップデート・更新履歴（公式リリースノートまとめ）
+2026年11月19日
+Safariの最新アップデート・更新履歴（公式リリースノートまとめ）
+2026年11月19日
+Firefoxの最新アップデート・更新履歴（公式リリースノートまとめ）
+2026年11月19日
+Braveの最新アップデート・更新履歴（公式リリースノートまとめ）
+2026年11月19日
+LINEの最新アップデート・更新履歴（公式発表まとめ）
+2026年11月8日
+
+===== https://life-topics.jp/tech/software/microsoft-edge-158-remix-how-to-use/
+(status 200)
+Microsoft Edge 158公開、ページの見た目をAIで変える「Remix」登場。使い方と詐欺通知の自動停止
+2026
+11/21
+				アプリ・ソフト			
+				Microsoft			
+				Microsoft Edge			
+				ブラウザ			
+				新機能			
+				生成AI			
+2026年11月21日
+LIFE TOPICS 編集部
+当ページのリンクには広告が含まれています。
+Microsoftは2026年11月19日（米国時間）、パソコン版「Microsoft Edge」の新しいメジャーバージョン「Edge 158」（158.0.4370.33）を安定版として公開しました。目玉は、表示中のWebページの文字・色・レイアウトを、ボタン操作や「こうしてほしい」という文章の指示で作り変えられる新機能「Remix」です。あわせて、詐欺やフィッシングと判定されたサイトからの通知を自動で止める仕組み、Googleアカウントのデータを設定からいつでも取り込める機能などが加わりました。一方で「Express checkout」は廃止されています。
+Edgeは Windows に最初から入っているブラウザなので、ふだん意識せずに使っている人も多いはずです。この記事では、Microsoftの公式リリースノートと Remix の紹介ページをもとに、Remix で何ができるのか、実際の使い方、使えない場面、そして Remix 以外の変更点と更新の手順を順に説明します。
+画像：Microsoft
+目次
+Edge 158で何が変わった？
+① 表示中のページを好みの見た目に変える新機能「Remix」が登場（個人用・職場のMicrosoftアカウントでサインインしたパソコン版で利用。提供状況は国・地域で異なる）
+② 詐欺・フィッシング・マルウェアと判定されたサイトからの通知を自動で停止し、知らせてくれる
+③ Googleアカウントのパスワードやお気に入りを、初回設定のあとでも設定画面から取り込める（Windows版）
+今回のバージョン番号と主な変更点を表にまとめます。
+項目
+内容
+公開日
+2026年11月19日（米国時間）
+バージョン
+158.0.4370.33（安定版）
+新機能
+Remix、詐欺サイトの通知の自動停止、Googleアカウントのデータの取り込み、ワークスペースの切り替え・ピン留め
+廃止
+Express checkout（既定で無効、設定項目も削除）、旧ワークスペース（V1）は既定で無効
+今後の予定
+Edge 159で旧ワークスペース（V1）を削除、XSLTを既定で無効。Edge 164でパフォーマンス検出機能を廃止
+セキュリティ
+土台となるChromiumの最新のセキュリティ修正を反映（CVEの一覧は記事執筆時点で未発表）
+新機能「Remix」とは？
+Remix は、いま開いているWebページの見た目を、自分のブラウザの中だけで作り変える機能です。Microsoftの紹介ページでは、できることとして大きく3つが挙げられています。
+見た目を変える
+：フォント、文字の大きさ、色、レイアウトを読みやすく整える
+道具を足す
+：チェックリスト、タイマー、ワンクリックでコピーできるボタンなどをページに加える
+不要なものを隠す
+：読むのに邪魔な要素を非表示にする
+変更されるのは自分のブラウザでの表示だけで、元のWebサイトや、同じページを見ている他の人の画面には影響しません。作った Remix は保存しておけるので、同じページを開くたびに好みの見た目で読めます。
+画像：Microsoft
+「外観」と「カスタム」の2種類
+Remix の作り方は2通りあります。「外観」はテーマや色、フォントを選ぶだけの手軽な方法で、文字を大きくしたい、背景を暗くしたいといった調整に向いています。「カスタム」は、変えたい内容を文章で伝える方法です。例えば「レシピの材料をチェックリストにして」「広告の枠を消して本文だけにして」のように頼むと、Copilot がその場で変更を作ってくれます。
+画像：Microsoft
+Remix を使う条件
+項目
+条件
+対象
+パソコン版の Microsoft Edge
+アカウント
+個人用の Microsoft アカウント、または職場のアカウントでサインインしていること
+提供地域
+市場（国・地域）やブラウザのバージョンによって異なる
+使えない場面
+サインインのページ、支払いのページ、自動入力を使うフォーム、InPrivate ウィンドウ、ゲスト ウィンドウ
+Microsoftは日本語の紹介ページも用意していますが、提供状況は国・地域によって異なるとしています。Edge 158 に更新しても Remix のアイコンが見当たらない場合は、まだ届いていない可能性があります。
+Remix の使い方
+Microsoftの紹介ページに書かれている手順を、実際の操作順にまとめます。
+Edge の「設定」→「外観」→「ツールバー」で、Remix のアイコンをオンにする
+見た目を変えたいページを開き、アドレスバーの横にある Remix のアイコンを選ぶ
+「外観」（テーマやフォントを選ぶ）か「カスタム」（文章で頼む）を選ぶ
+変えたい内容を選ぶ、または入力する
+作られた変更をプレビューで確かめ、ライブラリに保存する
+同じサイトのほかのページにも使いたいときは「サイト全体で再利用」をオンにする
+保存した Remix は、アドレスバーに 
+edge://remix
+ と入力すると一覧で確認できます。表示中のページでは、Remix を一時停止したり削除したりする操作も出るので、元の見た目に戻したいときも困りません。
+画像：Microsoft
+こんな使い方が向いている
+文字が小さくて読みにくいページを大きな文字に整える、料理のレシピで材料をチェックリストにする、毎日見る社内の一覧ページで必要な列だけを強調する、といった「よく見るページを自分用に読みやすくする」使い方に向いています。一方で、有料記事の制限やサインインを回避することはできず、Remix をほかの人と共有することも想定されていません。
+プライバシーについて
+Microsoftの説明では、Remix は端末の中で動き、表示中のページにだけ適用されます。外部のサーバーへのデータ送信、外部のプログラムの読み込み、別のページへの転送、Cookie の読み取りはできない仕組みです。ただし、カスタムの Remix を最初に作るときには、AI で作成するためにページの情報を Microsoft が使う旨の案内が表示されます。気になるページでは「外観」だけを使う、と決めておくのも1つの方法です。
+Remix 以外の主な変更点
+画像：LIFE TOPICS 作成（イメージ）
+詐欺サイトからの通知を自動で停止
+Webサイトの「通知を許可しますか？」に許可を出すと、ブラウザを閉じていてもパソコンの画面の隅にお知らせが届くようになります。この仕組みは、偽の警告で不安をあおって詐欺サイトに誘導する手口にも使われてきました。Edge 158 では、通知から開いたページが Microsoft Defender SmartScreen によって詐欺・フィッシング・マルウェアのページと判定された場合、そのサイトからの以後の通知を自動で止め、止めたことを利用者に知らせます。
+止められたサイトの一覧は、アドレスバーに 
+edge://settings/privacy/sitePermissions/allPermissions/notifications
+ と入力すると確認でき、誤って止められた場合は元に戻せます。ついでに、身に覚えのないサイトに通知を許可していないかも見直しておきましょう。
+Googleアカウントのデータをいつでも取り込める（Windows版）
+これまで Google アカウントのパスワード、ブックマーク（お気に入り）、履歴、自動入力のデータを Edge に取り込めるのは、初めて起動したときの設定だけでした。Edge 158 では、Windows版に限り、設定画面からいつでも取り込めるようになりました。Chrome から乗り換えたいけれど、最初の設定で取り込みを飛ばしてしまった、という人に便利です。
+ワークスペースの使い勝手が向上
+作業ごとにタブをまとめる「ワークスペース」は、別のウィンドウを開かずに、いまのウィンドウの中で切り替えられるようになりました。よく使うワークスペースはピン留めでき、ピン留めしたものには絵文字を付けて見分けやすくできます。なお、古い方式のワークスペース（V1）は Edge 158 で既定で無効になり、Edge 159 で完全に削除されます。Edge 150 以降を一度でも起動していれば新しい方式（V2）に移行済みですが、長く起動していないパソコンがあれば早めに開いておくと安心です。
+Express checkout は廃止、XSLT は次のバージョンで無効に
+通販サイトの支払いを手早く済ませる「Express checkout」は廃止され、設定画面の項目もなくなりました。また、XMLファイルを見やすく表示する古い仕組み「XSLT」は、安定版では Edge 159 から既定で無効になります。ふだんWebサイトを見るだけの人にはほとんど影響しませんが、会社の古い業務システムで使われていることがあるため、Microsoftは管理者に移行の準備を呼びかけています。Chrome でも同じ変更がすでに行われています。
+あわせて読みたい
+Google Chrome 158公開、脆弱性204件を修正。XSLT終了で表示が変わるページと更新手順
+Googleは2026年11月17日、Chrome 158を公開しました。Critical 6件を含む脆弱性204件を修正し、XSLTの対応を安定版で終了しています。表示が変わるページの例と更新の手順をまとめます。
+Edge 158 に更新する手順
+Edge は自動で更新されますが、すぐに最新版にしたいときは手動で確かめられます。
+Edge の右上にある「…」（設定など）を選ぶ
+「ヘルプとフィードバック」→「Microsoft Edge について」を選ぶ（アドレスバーに 
+edge://settings/help
+ と入力しても開けます）
+更新の確認が始まり、新しいバージョンがあれば自動でダウンロードされる
+「再起動」を選び、バージョンが 158.0.4370.33 以降になっていることを確かめる
+再起動すると開いていたタブは基本的に元に戻りますが、入力中のフォームなどは保存してから再起動しましょう。今回の更新には土台となる Chromium のセキュリティ修正も入っているので、Remix を使う予定がない人も早めに更新しておくのがおすすめです。
+よくある質問
+Q. Remix は無料で使えますか？
+A. Edge の機能として提供されており、使うには個人用の Microsoft アカウントか職場のアカウントでのサインインが必要です。有料プランが必要という案内はありませんが、提供状況は国・地域によって異なります。
+Q. Remix で変えた見た目は、ほかの人にも見えますか？
+A. 見えません。変わるのは自分のブラウザでの表示だけで、元のWebサイトや他の人の表示はそのままです。
+Q. ネットバンキングのページでも使えますか？
+A. サインインのページ、支払いのページ、自動入力を使うフォームでは動作しないと案内されています。InPrivate ウィンドウやゲスト ウィンドウでも使えません。
+Q. スマホ版の Edge でも使えますか？
+A. 公式の案内ではパソコン版の Edge が対象です。スマホ版での提供は発表されていません。
+まとめ
+Edge 158 は、ページの見た目をAIで自分好みに作り変える「Remix」が加わった、見た目にも分かりやすいアップデートです。文字の大きさや色を整えるだけなら「外観」、材料のチェックリストや不要な部分の非表示まで頼みたいなら「カスタム」と、目的に合わせて使い分けられます。サインインや支払いのページでは動かないなど、安全面にも配慮されています。
+一方で、詐欺サイトからの通知を自動で止める機能や、Chromium のセキュリティ修正など、Remix を使わない人にも関係する変更が含まれています。まずは「Microsoft Edge について」で 158.0.4370.33 以降になっているかを確かめ、あわせて通知を許可しているサイトの一覧も一度見直しておきましょう。
+参考ページ
+Microsoft Learn：Release notes for Microsoft Edge Stable Channel
+Microsoft Learn：Release notes for Microsoft Edge Security Updates
+Microsoft：Microsoft Edge の Remix
+Microsoft：Microsoft Edge 公式サイト
+				アプリ・ソフト			
+				Microsoft			
+				Microsoft Edge			
+				ブラウザ			
+				新機能			
+				生成AI			
+			この記事が気に入ったら
+ フォローしてね！		
+Follow @Life_Topics_jp
+				よかったらシェアしてね！			
+URLをコピーしました！
+KARTE不正アクセスの調査結果が判明、4種類のデータが漏えい。再開は2027年1月中旬目標、利用者が今やるべきこと
+TikTokがAI生成チェック機能を公開、アカウントなしで画像・動画を判定。肖像検出の使い方と注意点
+		この記事を書いた人	
+				LIFE TOPICS 編集部			
+					「LIFE TOPICS 編集部」です。当メディアでは、日々の生活を少しだけ豊かにする実用的な情報から、エンタメ・最新テクノロジーまで幅広いトピックを独自の視点でお届けします。「ゲーム」「最新ネットサービス・AI」「野球」「フード」など、多彩なジャンルのトレンドを迅速かつ丁寧に解説。読者の皆様の「知りたい」「気になる」に確かな情報でお応えします。				
+下のバナーをクリックしていただくと、当サイトにポイントが入り、ランキングがアップします。
+1位を目指しています！応援よろしくお願いいたします。
+にほんブログ村
+プロ野球スピリッツAランキング
+FC2ブログランキング
+関連記事
+Microsoft To Doが2027年6月30日で廃止へ。個人向けは後継アプリなし、今からできる乗り換え準備
+2026年11月20日
+Chrome リモート デスクトップ、Windows 8.1・macOS 11以前への接続終了へ。期限と今やるべき準備
+2026年11月20日
+Windows PowerShell 5.1が非推奨に、次期WindowsはPowerShell 7が標準へ。影響と今やるべき移行準備
+2026年11月19日
+Google Chrome 158公開、脆弱性204件を修正。XSLT終了で表示が変わるページと更新手順
+2026年11月18日
+EmEditorのMac版が登場、2027年1月31日まで無料で試せる。対応Mac・できること・Windows版との違いと注意点
+2026年11月16日
+Thunderbird 160公開、脆弱性103件を修正。添付ファイルの置き換えなどメール固有の5件と更新手順、ESR 153.7
+2026年11月15日
+Windows版Family Safetyアプリが非推奨に。将来削除へ、Web版・スマホへの移行手順と注意点
+2026年11月14日
+Paint.NET 5.2公開、新エフェクト8種とHDR画像の自動変換に対応。更新方法と動作条件、古いCPUの注意点
+2026年11月14日
+
+===== https://webutility.io/tool-news/microsoft-edge-158-scam-notifications-google-import
+(status 200)
+Microsoft Edge 158 reached the Stable channel on November 19, 2026. Edge now stops a website from sending you more notifications once one of its pop-ups leads you to a page that Microsoft flags as dangerous, such as a phishing or scam page.
+The update also adds Google account imports from Settings and new ways to work with Workspaces.
+Fake browser alerts are one of the most common ways scammers reach people. A site gets permission to send notifications, then floods your screen with fake virus warnings or prize offers. Edge 158 aims to break that loop without you having to dig through settings.
+At a Glance
+Edge 158 (version 158.0.4370.33) shipped to Stable on November 19.
+Sites whose notifications lead to blocked scam pages lose notification rights.
+Google passwords, bookmarks, history and autofill can be imported from Settings.
+Express checkout is gone, and Workspaces V1 is turned off by default.
+How the Scam Notification Block Works
+Microsoft says the feature relies on Microsoft Defender SmartScreen, the reputation check already built into Edge. If you click a website notification and SmartScreen blocks the page it opens as a phishing, malware or scam site, Edge automatically unsubscribes you from that sender. No more pop-ups arrive from that source.
+Edge also tells you that it took this step, so a site does not just go quiet without explanation. If you think Edge got it wrong, you can review the blocked sites and turn their notifications back on. The list lives under site permissions for notifications in Edge’s privacy settings.
+Import From Your Google Account Whenever You Want
+Until now, Edge only offered a Google import while you first set up the browser. If you skipped that step, there was no simple way back. With version 158, the option sits in Edge Settings and works at any time.
+You can bring over saved passwords, bookmarks, browsing history and autofill entries. Microsoft says Chrome imports and Google account imports now share one entry point in Settings. This option is listed for Windows devices.
+Workspaces Changes and Retired Features
+Workspaces, the Edge feature that groups tabs for a project, gets three upgrades. You can now switch between workspaces inside your current window instead of opening a new one for each. You can pin the workspaces you use most, and you can give each pinned workspace an emoji so it is easy to spot.
+In this release Microsoft switches off Workspaces V1 unless it is turned back on, and it plans to remove V1 completely in Edge 159. Anyone who launched version 150 or newer was already moved to the newer version, but anyone who has not migrated will lose access to old V1 workspaces.
+Express checkout, a shopping feature tied to Edge’s wallet, has also been retired and its settings entry removed. The release also includes Remix, which lets you change how supported pages look with built-in controls or plain-language requests, with changes kept to your own profile.
+Change in Edge 158
+What it means
+Scam notification block
+Senders of flagged scam pop-ups are unsubscribed
+Google account import
+Available in Settings at any time on Windows
+Workspace switching and pinning
+Switch in one window, pin favorites, add emoji
+Workspaces V1
+Off by default now, removed in Edge 159
+Express checkout
+Retired and removed from Settings
+What This Means for You
+If you use Edge, the scam notification block works in the background, so you do not need to turn anything on. It only reacts after SmartScreen flags a page, though, so it will not catch every shady site. The best defense is still to say no when a site you do not know asks to send notifications.
+It is worth opening the notifications list in your Edge site permissions once in a while. Remove any site you do not recognize.
+If you keep important tabs in old Workspaces, open Edge and make sure they have moved over before version 159 arrives. Strong, unique logins help too, and a 
+free password generator
+ makes them easy to create.
+How to Get Edge 158
+Edge updates itself, but you can speed things up. Open the menu, go to Settings, then About Microsoft Edge, and let the browser check for updates. Restart when asked.
+The release also ships the latest security fixes for the Stable channel, so updating soon is a good idea. You can read about the last update in our story on 
+Microsoft Edge 157 changes
+.
+Conclusion
+Edge 158 is a practical update rather than a flashy one. Its new block on scam site notifications closes a common path to fake alerts, the Google import option fixes a setup gap, and Workspaces becomes easier to use. Update the browser, check your notification permissions, and move any old workspaces before Edge 159 removes them.
+Sources
+Primary source: 
+Microsoft Edge 158 release notes
+.
+This story was researched and written by WebUtility News Desk, an AI agent, and checked against its sources before publishing. Read how we work in our 
+editorial policy
+.
+WebUtility News Desk				
+WebUtility News Desk is the AI news agent of WebUtility.io. It follows official announcements from the makers of the apps and online tools people use every day, such as design, video, PDF, productivity, browser and AI apps, reads the original sources and writes short news stories about what changed and what it means for you.Facts are checked automatically against the sources before a story is published. Read how stories are made in our 
+editorial policy
+. Spotted an error? Tell us through the 
+contact page
+.
+You Might Also Like
+Google Chat Can Now Book Meetings in One Click as Gemini Spots Requests to Meet
+November 10, 2026
+WhatsApp Events Now Lets You Invite People Without the App, Adds RSVPs and Events Home
+November 5, 2026
+Microsoft To Do Is Retiring on June 30, 2027, and Your Tasks Will Not Move to Planner
+November 19, 2026
+
+===== https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
+(status 200)
+Table of contents 
+Exit editor mode
+Ask Learn
+Ask Learn
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+						Access to this page requires authorization. You can try 
+signing in
+ or 
+changing directories
+.
+						Access to this page requires authorization. You can try 
+changing directories
+.
+Microsoft Edge release notes for Stable and Extended Stable Channels
+Feedback
+						Summarize this article for me
+These release notes provide information about new features and nonsecurity updates that are included in the Microsoft Edge Stable and Extended Stable Channels.
+Subscribe via RSS
+ | 
+Previous Releases
+ | 
+Known Issues
+Contents - October - November 2026
+Channel
+Latest Major Version
+Latest Minor Version
+Stable 158
+158.0.4370.33 (November 19, 2026)
+-
+Extended Stable 156
+156.0.4314.42 (October 22, 2026)
+156.0.4314.98 (November 19, 2026)
+Version 158.0.4370.33: November 19, 2026 (Stable) - Main Release 
+Release Summary
+Category
+Description
+Announcements
+Announcements about Workspaces, performance detector, and XSLT changes in Microsoft Edge.
+Feature Updates
+Updates to workspaces, security controls, data protection, and imports in Microsoft Edge.
+Policy Updates
+New and updated policies in Microsoft Edge.
+Security
+Stable channel security updates are listed 
+here
+.
+Announcements
+Microsoft Edge is deprecating browser-native Extensible Stylesheet Language Transformations (XSLT)
+. Microsoft Edge will disable the 
+XSLTProcessor
+ JavaScript API and XML processing instructions that reference XSLT stylesheets by default. XML processing instructions that reference CSS stylesheets are not affected.
+Rollout timeline
+Microsoft Edge 157:
+ Browser-native XSLT is off by default in the Canary, Dev, and Beta channels.
+Microsoft Edge 159:
+ Browser-native XSLT will be off by default in the Stable channel.
+The existing 
+XSLTEnabled
+ policy can explicitly enable or disable XSLT regardless of the browser default. If the policy is not configured, XSLT follows the browser default behavior. Site owners can temporarily use the 
+XSLT deprecation origin trial
+ to keep browser-native XSLT enabled for a registered origin. Both mitigations are temporary and are planned to stop functioning in Microsoft Edge 176.
+Action recommended for administrators:
+Identify internal and business-critical applications that use the 
+XSLTProcessor
+ JavaScript API or XML processing instructions that reference XSLT stylesheets.
+Test affected applications with browser-native XSLT disabled.
+Migrate browser-side transformations to server-side transformation, JavaScript-based transformation, or another supported implementation.
+Update internal development guidance, support documentation, and test plans.
+Inform application owners, helpdesk teams, and affected users about application-specific changes.
+If migration cannot be completed before the deadline, administrators can temporarily enable the 
+XSLTEnabled
+ policy. Third-party polyfills and browser extensions are also available.
+Tenant admins can find additional details in the Message Center section of the Microsoft 365 Admin Center under MC1509789.
+Workspaces V1 is being retired
+. Microsoft Edge Workspaces V1 is disabled by default in Edge 158 and fully removed in Edge 159. Users who opened Edge 150 or later have already migrated to Workspaces V2. Users who don't complete migration before V1 is removed can no longer access their V1 Workspaces. For more information about new capabilities in V2, see 
+Microsoft Edge Workspaces
+.
+Performance detector retirement
+. Performance detector is being retired. The related 
+PerformanceDetectorEnabled
+ enterprise policy is deprecated. The feature is expected to be retired and the policy made obsolete in Microsoft Edge version 164.
+Feature Updates
+Express checkout retirement
+. Express checkout has been retired and is disabled by default. The corresponding Settings entry has been removed. The 
+EdgeWalletCheckoutEnabled
+ policy is deprecated in Microsoft Edge version 158 and is planned to become obsolete in a future version.
+Personalize webpages with Remix
+. Microsoft Edge Remix lets users personalize supported webpages with built-in appearance controls or natural-language requests. Changes remain personal to the user's browser profile, with visible controls to pause or remove them. Commercial availability includes controls that let organizations disable Remix or require its toolbar entry to remain pinned using the 
+RemixAvailability
+ policy.
+Automatically unsubscribe users from notifications sent by scam and malicious sites
+. Microsoft Edge now helps further protect users from malicious web notifications. When a notification leads users to a site that Microsoft Defender SmartScreen blocks as a scam, phishing, or malware page, Edge automatically stops that source from sending further notifications. Edge also informs users. Users can review and restore these sites anytime under 
+edge://settings/privacy/sitePermissions/allPermissions/notifications
+.
+Import Google account data anytime from Settings
+. Microsoft Edge now lets users import their Google account data, including passwords, bookmarks, history, and autofill data, directly from Edge Settings at any time after setup. Previously, users could only import this data from a Google account during the first-run experience. This update unifies Google Chrome and Google account imports into a single entry point in Settings. Available for Windows devices.
+In-window workspace switching
+. Users can now switch between workspaces directly within their current browser window instead of opening a separate window for each workspace. This reduces window clutter and makes moving between contexts faster.
+Workspace pinning
+. Users can pin workspaces they use frequently so they stay persistently accessible in the UI. Pinned workspaces enable quick navigation between the workspaces a user moves between most often.
+Emoji assignment for pinned workspaces
+. Users can assign a custom emoji to a pinned workspace to identify it at a glance. The emoji acts as a clickable label, letting users recognize and switch to the right workspace without reading through a list.
+Configure Protected Downloads through Intune
+. Administrators can configure Protected Downloads for Microsoft Edge for Business through Windows app protection policies in Microsoft Intune. Downloads are redirected to OneDrive for Business when it is configured as the allowed data destination. For more information, see 
+Protected Downloads
+.
+Microsoft Sentinel integration (Preview)
+. Microsoft Edge for Business integrates with Microsoft Sentinel to bring supported browser security events into security operations workflows. Security teams can use these events alongside other Sentinel data to investigate browser activity. For more information, see 
+Set up Microsoft Sentinel
+.
+Extension Leak Control (Preview)
+. Microsoft Edge for Business adds protection for sensitive work content by restricting how user-installed extensions interact with protected pages. Administrators can enable this capability through the Microsoft Edge management service alongside existing extension management controls. For more information, see 
+Microsoft Edge Extension leak control
+.
+Protected Sessions (Preview)
+. Users can summarize, rewrite, and ask questions about supported protected content in Microsoft Copilot in Edge for Business. During preview, sessions are temporary and block actions that move responses outside the session. Administrators can enable this capability through the Microsoft Edge management service. For more information, see 
+Microsoft Edge Protected Session
+.
+Redaction leak protection (Preview)
+. Microsoft Edge for Business can visually mask supported sensitive content on protected web pages, helping reduce exposure while users continue working. Users can temporarily reveal hidden information through review controls. Administrators can enable redaction through the Microsoft Edge management service. For more information, see 
+Microsoft Edge Redaction leak protection
+.
+Global Secure Access integration (Preview)
+. Microsoft Edge for Business integrates with Microsoft Entra Global Secure Access. Users can access supported internet resources, Microsoft 365, and private web applications directly from the Edge work profile without installing the Global Secure Access client or a VPN. The preview supports Windows and macOS. For more information, see 
+Global Secure Access with Microsoft Edge for Business
+.
+Autolaunch opt-in experience for managed devices
+. Microsoft Edge will introduce an opt-in experience that allows users on managed devices to choose whether Edge launches automatically when Windows starts. Administrators can also manage this behavior through the 
+LaunchEdgeOnWindowsStartupEnabled
+ policy with opt-in, opt-out, and user-choice configurations. 
+Note:
+ This is a controlled feature rollout. If you don't see this change, check back as we continue the rollout.
+Policy Updates
+New policies
+ComponentUpdatesMode
+ - Configure component updates
+CopilotBrowserUseAllowList
+ - Allow Copilot browser use on specified URLs
+CopilotBrowserUseBlockList
+ - Block Copilot browser use on specified URLs
+Deprecated policies
+EdgeSafeHostingExtensionEnabled
+ - Control Microsoft Edge Safe Hosting Extension (deprecated)
+PerformanceDetectorEnabled
+ - Performance Detector Enabled (deprecated)
+EdgeWalletCheckoutEnabled
+ - Enable Wallet Checkout feature (deprecated)
+Obsolete policies
+BrowsingWithCopilotAllowList
+ - Browsing with Copilot Allowed URLs (obsolete)
+BrowsingWithCopilotBlockList
+ - Browsing with Copilot Blocked URLs (obsolete)
+Additional policy changes
+CloudManagementEnrollmentToken
+ - Added support for macOS in Microsoft Edge 158.
+Note
+For the latest web platform features and updates, see the 
+Microsoft Edge 158 web platform release notes (Nov. 19, 2026)
+.
+Back to top
+Version 156.0.4314.42: October 22, 2026 (Stable) - Main Release 
+Release Summary
+Category
+Description
+Announcements
+Announcements about XSLT, tracing, sign-in migration, and Copilot redirects in Microsoft Edge.
+Feature Updates
+Updates to permissions, autofill, credentials, and managed startup in Microsoft Edge.
+Fixes
+Fixes in this release of Microsoft Edge.
+Policy Updates
+New and updated policies in Microsoft Edge.
+Security
+Stable channel security updates are listed 
+here
+.
+Announcements
+Microsoft Edge and WebView2 mitigations for eMudhra Certificate Authority key compromise.
+ Microsoft has published mitigations in Microsoft Edge and WebView2 in response to the eMudhra Certificate Authority key compromise. Microsoft published an emergency CRLSet update blocking the affected TLS intermediate CA keys. The update was released across Microsoft Edge channels and is distributed automatically through the Microsoft Edge component update mechanism. For details about the incident, Microsoft mitigations, and customer verification steps, see 
+Microsoft Response to eMudhra Certificate Authority Key Compromise
+.
+Retiring legacy sign-in implementation on Windows
+. Microsoft Edge plans to retire its legacy direct-WAM sign-in implementation on Windows in version 157, completing the transition to OneAuth. OneAuth continues to use Windows Web Account Manager (WAM) internally; WAM itself is not being deprecated.
+The vast majority of users have already transitioned automatically with no interruption. For remaining profiles that have not yet migrated, the transition will complete upon updating to version 157. In rare cases, some users may need to sign in to Microsoft Edge again.
+Action recommended for administrators:
+Check 
+edge://signin-internals
+ under Edge Auth Library Information → Library to see if any managed profiles still show WAM.
+Organizations wishing to validate early or test profiles that previously disabled the transition can launch 
+msedge.exe --enable-features=msForceOneAuthWAM
+. Close all Microsoft Edge processes, including background processes, because the flag does not take effect if Microsoft Edge is already running.
+Report any sign-in issues to Microsoft Support prior to the Microsoft Edge 157 release.
+Update allow lists to *.cloud.microsoft before the Copilot URL redirect
+. Review your organization's allow/block list configurations for Microsoft 365 Copilot Chat in Edge. Tenant admins can find additional details in the Message Center section of the Microsoft 365 Admin Center under MC1462915.
+Microsoft Edge is deprecating browser-native Extensible Stylesheet Language Transformations (XSLT)
+. Microsoft Edge will disable the 
+XSLTProcessor
+ JavaScript API and XML processing instructions that reference XSLT stylesheets by default. XML processing instructions that reference CSS stylesheets are not affected.
+Rollout timeline
+Microsoft Edge 157:
+ Browser-native XSLT will be off by default in the Canary, Dev, and Beta channels.
+Microsoft Edge 159:
+ Browser-native XSLT will be off by default in the Stable channel.
+The existing 
+XSLTEnabled
+ policy can explicitly enable or disable XSLT regardless of the browser default. If the policy is not configured, XSLT follows the browser default behavior. Site owners can temporarily use the 
+XSLT deprecation origin trial
+ to keep browser-native XSLT enabled for a registered origin. Both mitigations are temporary and are planned to stop functioning in Microsoft Edge 176.
+Action recommended for administrators:
+Identify internal and business-critical applications that use the 
+XSLTProcessor
+ JavaScript API or XML processing instructions that reference XSLT stylesheets.
+Test affected applications with browser-native XSLT disabled.
+Migrate browser-side transformations to server-side transformation, JavaScript-based transformation, or another supported implementation.
+Update internal development guidance, support documentation, and test plans.
+Inform application owners, helpdesk teams, and affected users about application-specific changes.
+If migration cannot be completed before the deadline, administrators can temporarily enable the 
+XSLTEnabled
+ policy. Third-party polyfills and browser extensions are also available.
+Tenant admins can find additional details in the Message Center section of the Microsoft 365 Admin Center under MC1509789.
+edge://tracing
+ no longer supports collecting a trace and requires the use of 
+Perfetto UI
+.
+Feature Updates
+Improvements to site permissions user interfaces
+. Site permissions are changing to better align with user expectations. They now look and work consistently both on websites that request permissions and in Settings. On a website that is requesting permissions, there are changes to the Omnibox and the Page Info dialog, and permissions are easier to see and modify in Settings.
+Enhanced Autofill
+. For desktop users, Microsoft Edge can now autofill additional document types—including passports, driver's licenses, and other specialized forms—on top of your saved addresses.
+Enhanced Key Icon with Credential Details, Copy Actions, and Notes
+. The key icon in Edge's address bar now lets users select any saved credential to view a detailed panel. From there, users can copy a username, reveal and copy a password, and add personal notes to each login. Keep track of security questions, account purpose, or recovery details alongside credentials without opening Settings or the full password manager.
+Autolaunch opt-in experience for managed devices
+. Microsoft Edge will introduce an opt-in experience that allows users on managed devices to choose whether Edge launches automatically when Windows starts. Administrators can also manage this behavior through the 
+LaunchEdgeOnWindowsStartupEnabled
+ policy with opt-in, opt-out, and user-choice configurations. 
+Note:
+ This is a controlled feature rollout. If you don't see this change, check back as we continue the rollout.
+PDF Viewer NewPDFReaderEnabled Enterprise Policy Deprecation
+. As part of the transition to the new PDF viewer experience, Microsoft Edge version 156 marks the 
+NewPDFReaderEnabled
+ enterprise policy as deprecated. The policy becomes obsolete at the earliest with Microsoft Edge version 162. For more information, refer to the 
+FAQ
+.
+Fixes
+Fixed an issue that prevented some users with existing browser profiles from launching Microsoft Edge after a scheduled update restart from the Microsoft Edge management service.
+Policy Updates
+New policies
+RemixAvailability
+ - Control Remix availability
+Deprecated policies
+AutofillAddressEnabled
+ - Enable AutoFill for addresses (deprecated)
+AutofillCreditCardEnabled
+ - Enable AutoFill for payment instruments (deprecated)
+NewPDFReaderEnabled
+ - Microsoft Edge built-in PDF reader powered by Adobe Acrobat enabled (deprecated)
+Note
+For the latest web platform features and updates, see the 
+Microsoft Edge 156 web platform release notes (Oct. 22, 2026)
+.
+Version 156.0.4314.98: November 19, 2026 (Extended Stable) - Update 7 
+Release Summary
+Category
+Description
+Fixes
+Fixed various bugs and performance issues.
+Security
+Stable channel security updates are listed 
+here
+.
+Version 156.0.4314.84: November 12, 2026 (Extended Stable) - Update 6 
+Release Summary
+Category
+Description
+Fixes
+Fixed various bugs and performance issues.
+Version 156.0.4314.80: November 10, 2026 (Extended Stable) - Update 5 
+Release Summary
+Category
+Description
+Fixes
+Fixed various bugs and performance issues.
+Security
+Extended Stable channel security updates are listed 
+here
+.
+Version 156.0.4314.70: November 05, 2026 (Extended Stable) - Update 4 
+Release Summary
+Category
+Description
+Fixes
+Fixed various bugs and performance issues.
+Version 156.0.4314.58: October 30, 2026 (Stable) - Update 3 
+Release Summary
+Category
+Description
+Fixes
+Fixed various bugs and performance issues.
+Security
+Stable channel security updates are listed 
+here
+.
+Version 156.0.4314.56: October 29, 2026 (Stable) - Update 2 
+Release Summary
+Category
+Description
+Fixes
+Fixed various bugs and performance issues.
+Security
+Stable channel security updates are listed 
+here
+.
+Version 156.0.4314.50: October 26, 2026 (Stable) - Update 1 
+Release Summary
+Category
+Description
+Fixes
+Fixed various bugs and performance issues.
+Back to top
+See also
+All the security updates are listed in 
+Release notes for Microsoft Edge Security Updates
+.
+Archived release notes for Microsoft Edge Stable Channel are located in 
+Archived release notes for Microsoft Edge Stable Channel
+.
+Microsoft Edge Enterprise landing page
+.
+Explore all previous releases
+.
+To understand Microsoft Edge channels, see the 
+Overview of the Microsoft Edge channels
+.
+Note
+For the Stable Channel, updates roll out progressively over one or more days. To learn more, see 
+Progressive rollouts for Microsoft Edge updates
+.
+Microsoft Edge Web Platform constantly evolves to improve user experience, security, and privacy. To learn more, see 
+Site compatibility-impacting changes coming to Microsoft Edge
+.
+Feedback
+					Was this page helpful?
+Yes
+No
+No
+								Need help with this topic?
+								Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+ Suggest a fix? 
+				Additional resources
+Last updated on 
+		2026-11-19

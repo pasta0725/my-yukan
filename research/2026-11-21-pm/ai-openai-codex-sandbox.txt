@@ -1,0 +1,1306 @@
+===== https://news.sulat.com/2026/11/19/codex-sandbox/
+(status 200)
+At a glance
+OpenAI says Codex constrains commands with OS-level sandboxing in your existing environment instead of moving them into a separate container, and posted the design on X on 19 November NZ time.
+In a Git workspace, the default profile lets Codex edit source files without approval but blocks writes to the root .git and .codex folders, OpenAI says; the docs add .agents and .aws.
+The default profile disables network access, and a command that asks for it goes to you or to auto-review; allowing a registry's domain in a permission profile skips the prompt.
+macOS enforces the sandbox with Seatbelt, Linux with bubblewrap plus seccomp, and Windows with MXC, and Codex refuses to run a command on macOS if the platform can't enforce the policy.
+With approvals_reviewer set to auto_review, a separate reviewer agent decides eligible approval requests, and a denial tells the main agent to find a materially safer path or ask you.
+OpenAI says Codex runs your commands inside an operating-system sandbox on your own machine instead of a separate container, and that the default profile keeps network access off. OpenAI Developers laid out the design in a thread on X on 19 November NZ time, with a link to an OpenAI post titled 
+Inside the Codex sandbox
+.
+The thread’s first post gives the reason: as models get more capable, limits on what they can reach matter more. OpenAI’s example is that a command editing your repo shouldn’t automatically get network access.
+As models become more capable, limits on what they can access matter more. A command editing your repo shouldn’t automatically be allowed network access.
+The Codex sandbox lets Codex run commands in your existing environment within the filesystem and network limits you control.
+— OpenAI Developers (@OpenAIDevs) 
+November 18, 2026
+What the default profile allows
+When a Git repository is the workspace for a Codex session, the default permission profile lets Codex edit source files without asking, but blocks writes to the root .git and .codex folders, OpenAI says. It also allows broad reads across the filesystem. The 
+approvals and security docs
+ add that .agents and .aws get the same protection when they exist, and that it’s recursive, so everything under those folders is read-only.
+The default profile lets Codex edit your code and keeps .git, .codex and the network closed.
+A permission profile is a named policy that pairs filesystem rules with network rules. Codex ships three built-in ones: 
+:read-only
+, 
+:workspace
+ and 
+:danger-full-access
+, which removes the local sandbox restrictions. You can write your own under 
+[permissions.<name>]
+, or start from a built-in with 
+extends = ":workspace"
+ so the protected paths stay read-only unless you override them. The 
+permissions page
+ labels profiles a beta, and says a config uses either profiles or the older 
+sandbox_mode
+ setting, never both.
+Why it uses the OS and not a container
+Instead of moving the work into a separate container, Codex has the operating system constrain each command in the environment you already use, OpenAI says. Its example is building an iOS app on a Mac with Codex. The sandbox covers spawned commands, not only Codex’s own file operations, so git, package managers and test runners inherit the same limits, according to the 
+sandbox docs
+.
+Each operating system does the enforcing its own way. On macOS, Codex uses Seatbelt, Apple’s built-in sandbox, and runs commands through 
+sandbox-exec
+. On Linux it uses bubblewrap (bwrap) plus seccomp, a Linux feature that filters which system calls a process can make. Windows uses MXC, with elevated and unelevated modes kept as legacy fallbacks, and WSL2 uses the Linux version.
+Each operating system enforces the same boundary with its own tool.
+On macOS, if the platform sandbox can’t enforce the selected policy, Codex refuses to run the command instead of running it unsandboxed, the permissions docs say. Linux users install bubblewrap first. Codex uses the first 
+bwrap
+ it finds on the path and otherwise falls back to a bundled helper, which needs support for unprivileged user namespaces.
+OpenAI wrote up the Windows side on 13 May in 
+Building a safe, effective sandbox to enable Codex on Windows
+. It says Windows doesn’t provide this kind of isolation out of the box, so OpenAI built its own, and that every Codex command is sandboxed from the start with every descendant process staying inside the same boundary.
+Network access stays off until you open it
+The default profile disables network access. When a command asks for it, Codex can prompt you directly or route the request to auto-review, OpenAI says. If your build regularly downloads from a package registry, you can allow that registry’s domain in a permission profile and skip the prompt.
+A blocked network request goes to you or auto-review, unless a profile already allows the domain.
+Two settings do the work. 
+network.enabled = true
+ in a profile lets commands reach the network, and 
+features.network_proxy = true
+ makes Codex enforce the profile’s domain rules. With the network on and the proxy off, commands connect directly with no domain limits. In the domain list, 
+"example.com"
+ matches that exact host, 
+"*.example.com"
+ matches subdomains only, 
+"**.example.com"
+ matches the apex and its subdomains, and a deny rule beats an allow rule.
+OpenAI’s permissions docs show a profile that builds on 
+:workspace
+, keeps matching .env files denied and allows one API domain:
+Code
+Copy
+default_permissions = "project-edit"
+[features]
+network_proxy = true
+[permissions.project-edit]
+description = "Project editing with OpenAI API access."
+extends = ":workspace"
+[permissions.project-edit.filesystem.":workspace_roots"]
+"**/*.env" = "deny"
+[permissions.project-edit.network]
+enabled = true
+[permissions.project-edit.network.domains]
+"api.openai.com" = "allow"
+Auto-review answers the prompts
+Auto-review
+ picks who answers an approval prompt, and it doesn’t move the sandbox boundary. With 
+approvals_reviewer = "auto_review"
+, Codex sends eligible approval requests to a separate reviewer agent instead of stopping for you. If the reviewer approves, the command runs. If it denies, the main agent is told to find a materially safer path or stop and ask you. Actions the profile already allows run without review.
+The docs list what triggers a review: requests for escalated sandbox permissions, commands that match a rule set to prompt, network requests to destinations that need approval, file edits outside the writable roots, and MCP or app tool calls that need approval. The reviewer is built to block sending private data, secrets or credentials to untrusted destinations, probing for credentials, tokens or cookies, broad or lasting security weakening, and destructive actions that risk irreversible damage.
+OpenAI applies the same limits to its own deployment. In its 8 May post 
+Running Codex safely at OpenAI
+, it says it doesn’t give Codex open-ended outbound access: its managed network policy allows expected destinations, blocks others and requires approval for unfamiliar domains.
+Test a profile before you rely on it
+The Codex CLI has a 
+sandbox
+ command that runs a command under a profile so you can see what gets blocked. It’s also available as 
+codex debug
+, and the macOS version also takes a 
+--log-denials
+ flag.
+Code
+Copy
+# macOS
+codex sandbox macos [--permissions-profile <name>] [--log-denials] [COMMAND]...
+# Linux
+codex sandbox linux [--permissions-profile <name>] [COMMAND]...
+# Windows
+codex sandbox windows [--permissions-profile <name>] [COMMAND]...
+The full profile syntax, including filesystem globs and the managed settings for organisations, is on the 
+permissions page
+.
+Disclosure: I’m an OpenAI, Firecrawl and Devin ambassador.
+Discover more from Sulat AI & Tech News
+Subscribe to get the latest posts sent to your email.
+#Codex
+#OpenAI
+#Sandboxing
+
+===== https://aiinsiders.net/article/openai-details-how-codex-runs-commands-inside-limits-users
+(status 200)
+Home
+/
+Agents
+/
+OpenAI details how Codex runs commands inside li…
+AGENTS
+OpenAI details how Codex runs commands inside limits users set
+Michael Bolin's engineering post explains a sandbox built on each operating system's own tools, with file and network rules that users and administrators control.
+AI Insiders Staff
+EDITED BY  
+ALESSANDRO BENIGNI
+PUBLISHED  
+ NOV 19, 2026 
+3 MIN READ
+Follow on Google
+YESTERDAY
+OpenAI published a detailed account on 18 November of how its Codex coding agent runs commands on a user’s own computer without free rein. Michael Bolin, a member of technical staff at OpenAI, wrote the engineering post, titled “Inside the Codex sandbox.” The short version: every command the agent launches sits inside rules about which files it may touch and which servers it may reach.
+A sandbox is a restricted room for a running program. The program can only use what the room’s rules allow. Bolin’s example is a photo-sorting job, where commands may change files in ~/Pictures while the network stays off, so nothing can be uploaded. A code review might instead get online documentation but leave source files untouchable. Users write these rules as permission profiles.
+The built-in 
+ profile is deliberately cautious. Commands can write inside the project folder, but directories such as .git and .codex stay read-only, so the agent cannot quietly rewrite Git hooks or its own configuration. Reads are broad across the machine, because compilers and build tools need libraries that live outside the repository. The network is off. That blocks uploads, and it also blocks downloading dependencies.
+OpenAI is candid about the gaps. Broad reads mean config files holding API keys may remain visible to a command. Bolin also describes an attack the sandbox does not stop: an agent could plant malicious code in node_modules/prettier, a folder Git often ignores. If the user’s editor then runs Prettier on save, the code executes outside the sandbox. OpenAI’s answer is defense in depth, pairing the sandbox with training and alignment of the model.
+OpenAI chose not to use virtual machines or containers. In Bolin’s example, running Codex inside Docker would stop it from using the iOS build toolchain of native Mac programs or launching the iPhone simulator. So Codex leans on each operating system’s own enforcement instead. Child processes inherit the sandbox, which means the limits hold across everything a command spawns.
+Network control runs through a proxy. A profile can block all traffic, allow all of it, or send requests through a proxy that checks domain rules. One example allows *.openai.com and localhost while denying evil.example, and a deny always beats an allow. A request to an unlisted domain can pause for approval from the user or from auto-review. The proxy looks up a hostname only after approving it, since even a DNS lookup can leak data encoded in the name. OpenAI notes that very broad wildcards, or access to DNS services, can still allow that kind of leak.
+Enforcement differs by platform. On macOS, Codex uses Seatbelt through the sandbox-exec command, which Apple’s manual page labels deprecated; OpenAI says it will keep using it, noting that Google Chrome and Chromium rely on it too. On Linux, Codex combines bubblewrap with seccomp-bpf, a kernel filter for system calls. On Windows, OpenAI is replacing its earlier sandbox with one built on MXC (Microsoft eXecution Container), citing the old design’s need for admin access during setup and slow permission checks.
+Enterprises get a lever of their own. Administrators can set requirements.toml to limit which profiles employees may choose, for instance allowing 
+ while forbidding 
+. Cloud requirements outrank the system file at /etc/codex/requirements.toml.
+Developers outside OpenAI can reuse the machinery. The codex sandbox command wraps any command in a profile. Bolin shows it confining the memory MCP server, pinned at version 1.0.0, so it writes only to the npm cache and its data folder, with no network.
+All of this comes from OpenAI’s own description, and the post cites no independent testing. The candid part is the useful part: reads are wide open by default, and writes are where the guardrails sit. Before letting any agent loose on a laptop, list the secrets it could read and the folders it could poison, then write profile rules for those first.
+Based on “Inside the Codex sandbox” by Michael Bolin, published by OpenAI on 18 November 2026.
+▣ The Newsletter
+The morning brief for people inside the AI industry.
+One email a day, Tuesday through Saturday. We read 400 papers, 60 cap-tables,
+        and every regulator's docket so you don't. The site you're on is the archive,
+        the newsletter is the product.
+  14,224 
+Subscribers
+21.1%
+Open rate
+Free
+Forever
+AI Insiders lives on LinkedIn. Open the newsletter and tap subscribe —
+        new issues land in your LinkedIn feed and inbox.
+Subscribe on LinkedIn →
+Subscribe on Substack →
+Free, forever
+Unsubscribe in one click
+14,224 already in
+Subscribe on LinkedIn, or get the same daily brief by email on Substack.
+More in Agents
+All Agents →
+Agents
+/
+Aug 31
+OpenAI opens a research preview of a workbench for scientists
+By 
+AI Insiders Staff
+Agents
+/
+Sep 30
+Perplexity says AI agents can break security rules with no attacker involved
+By 
+AI Insiders Staff
+Agents
+/
+Sep 11
+OpenAI rents out the Codex harness as a standalone Agents API
+By 
+AI Insiders Staff
+Agents
+/
+3 days ago
+ChatGPT Wallet lets agents pay with tokens, not card numbers
+By 
+AI Insiders Staff
+Agents
+/
+Aug 27
+ChatGPT Can Now Call a Website's Own Tools Instead of Clicking
+By 
+AI Insiders Staff
+Agents
+/
+Nov 10
+GitHub Next's Ace puts a team and its AI agents in one shared workspace
+By 
+AI Insiders Staff
+
+===== https://dotai.jp/times/articles/2276
+(status 200)
+ニュース
+2026年11月20日
+OpenAIの「Codexサンドボックス」とは？OSネイティブで自律実行を安全に
+監修者
+室谷東吾
+株式会社MYUUU 代表取締役 / 「DotAI」創設者
+日本最大級AIコミュニティ「DotAI」を創設（累計2,000名超）。電通グループと資本業務提携。著書『Dify活用』はぱる出版で3刷。
+監修者
+テキトー教師
+DotAI 認定講師 / 教育×AIの専門家
+累計300名以上にAI活用を指導してきた実践派講師。「テキトーに学ぶ」をモットーに、初心者にもやさしく解説。
+Codexサンドボックスは、OpenAIが2026年11月18日に公開したエンジニアリング記事で明らかにした、コーディングエージェント「Codex」の実行境界の仕組みです。ユーザーの既存環境のままコマンドを走らせつつ、ファイルシステムとネットワークへのアクセスを制限できます。
+室谷
+代表取締役
+Codexサンドボックスの話、最初に見たときは「またコンテナ隔離の話か」と思ったんですよね。でも読んでみたら真逆で、Dockerに閉じ込めない設計をわざわざ選んでいる。
+そこが面白いなと。
+テキトー教師
+DotAI 認定講師
+そうなんですよ。単に「サンドボックスを作りました」な話じゃないんです。
+OpenAIがなぜOSネイティブという選択をしたのか、その思想まで含めて設計が語られている。講座でもエージェントの権限設計は必ず触れるテーマなので、これは受講生さんに共有したい内容です。
+Codexサンドボックスとは？何が発表されたのか
+Codexサンドボックスの要点
+サンドボックスの役割
+プログラムが実行中にアクセスできる範囲を制限する仕組み
+設定例（写真整理）
+~/Picturesの読み書きは許可しつつ、ネットワークを遮断してアップロードを防ぐ
+設定例（コードレビュー）
+オンラインドキュメントへのアクセスは許可し、ソースファイルは読み取り専用にする
+パーミッションプロファイル
+Codexでは名前付きポリシーとして権限を管理する
+実行構造
+モデルが生成したツール呼び出し（主にシェルコマンド）を「ハーネス」が実行し、その実行部分にサンドボックスを噛ませた
+発表元と執筆者
+発表はOpenAI。記事はOpenAIのMichael Bolin氏（Member of Technical Staff）が執筆
+問題意識
+リポジトリを編集するコマンドに自動でネットワークアクセスを許すべきではない。モデルが高機能になるほどアクセス制限が重要になる
+室谷
+代表取締役
+まず前提を揃えておくと、サンドボックスはプログラムが実行中にアクセスできる範囲を制限する仕組みです。OpenAIの記事では写真整理タスクの例が出ていて、
+~/Pictures
+の読み書きは許可しつつネットワークを遮断してアップロードを防ぐ、といった設定ができると。
+テキトー教師
+DotAI 認定講師
+コーディングの現場だと、コードレビューのときにオンラインドキュメントへのアクセスは許すけれど、ソースファイルは読み取り専用にしておく、みたいな使い方ですね。これをCodexでは「パーミッションプロファイル」という名前付きポリシーで管理します。
+室谷
+代表取締役
+発表の主語はOpenAIです。Codexはモデルが生成したツール呼び出し、主にシェルコマンドを「ハーネス」が実行する構造になっていて、その実行部分にサンドボックスを噛ませたと。
+テキトー教師
+DotAI 認定講師
+記事を書いたのはOpenAIのMichael Bolinさんで、Member of Technical Staffですね。公式スレッドでも「モデルが高機能になるほど、何にアクセスできるかの制限が重要になる」と述べられています。
+リポジトリを編集するコマンドに自動でネットワークアクセスを許すべきではない、という問題意識が起点です。
+室谷
+代表取締役
+ここ大事なんですよね。能力が上がるほど、権限設計の比重が上がる。
+MYUUUでもエージェントに何を触らせるかの線引きはいつも議論になります。
+Codexサンドボックスでできること――ファイル制限とネットワーク制御
+Codexサンドボックスの制御: ファイルシステムとネットワーク
+ファイルシステム
+既定プロファイル :workspace はワークスペース内の書き込みを許可
+`.git` と `.codex` は読み取り専用に保つ
+`.codex/config.toml` や `.git/hooks` を直接いじれず、設定やGitフックの書き換え事故を防ぐ
+ソースコードの編集は承認なしで進められ、作業テンポが落ちない
+読み取りは広めに許可(ユーザーの既存OS権限の範囲内)
+リポジトリ外のSDK・ライブラリ・設定に依存するため、読み取りをワークスペースに閉じるとワークフローが壊れる
+マシン上の機密ファイル(APIキーを含む設定ファイル等)も読める可能性がある
+ネットワーク
+既定で無効
+外部サービスへの直接アップロード(コマンドが読めるデータの持ち出し)を防ぐ
+依存関係のダウンロードなど正当な操作も止まるため、追加の許可が必要
+子プロセスは親の制約を継承し、プロセスツリー全体に適用
+元のプロセスが終了した後も生き残る子孫にまで効く
+テキトー教師
+DotAI 認定講師
+できることを整理すると、ファイルシステムとネットワークの2軸です。まずファイル側。
+Gitリポジトリをワークスペースにした場合の既定プロファイル
+:workspace
+は、ワークスペース内の書き込みを許可しつつ、
+.git
+や
+.codex
+は読み取り専用に保ちます。
+室谷
+代表取締役
+これ地味に効くやつですよね。
+.codex/config.toml
+や
+.git/hooks
+を直接いじられないので、設定やGitフックを勝手に書き換えられる事故を防げる。
+ソースコードの編集は承認なしで進められるから、作業テンポも落ちない。
+テキトー教師
+DotAI 認定講師
+読み取りは広めに許可されます。ただしこれはユーザーの既存OS権限の範囲内という条件付きです。
+コンパイラやランタイム、ビルドツールはリポジトリ外のSDKやライブラリ、設定に依存するので、読み取りをワークスペースに閉じると普通のワークフローが壊れてしまう。
+室谷
+代表取締役
+そのトレードオフは正直に書かれていて、マシン上の機密ファイル、たとえばAPIキーを含む設定ファイルも読めてしまう可能性があると。ここは運用でカバーする話ですね。
+テキトー教師
+DotAI 認定講師
+ネットワークは既定で無効です。外部サービスへの直接アップロード、つまりコマンドが読めるデータの持ち出しを防ぎます。
+その代わり依存関係のダウンロードのような正当な操作も止まるので、追加の許可が要ります。
+室谷
+代表取締役
+子プロセスは親の制約を継承して、プロセスツリー全体に適用されるのもポイントです。元のプロセスが終わった後も生き残る子孫にまで効く。
+ここは設計としてかなり踏み込んでいます。
+Codexサンドボックスの使い方・設定方法（権限プロファイルとネットワークプロキシ）
+まとめ
+Codexサンドボックス設定の要点
+権限プロファイルはconfig.tomlの[permissions]で定義。組み込みは:read-only、:workspace、:danger-full-accessの3種類
+extendsで既存プロファイルを継承し、差分だけ追加するのが基本（例: :workspaceを継承したproject-editで**/*.envをdeny、api.openai.comをallow）
+ファイルアクセス値はread/write/denyの3つ。具体的なエントリが広いエントリを上書きし、同じパスならdeny>write>readの優先順
+ネットワークは全部無効・全部直接許可・プロキシ経由のドメイン規則の3択。プロキシ利用時はfeatures.network_proxy = trueが必須（無いとドメイン規則が効かない）
+ドメイン規則は完全一致とワイルドカードに対応し、denyがallowより優先。許可済みドメインは毎回の承認が不要
+codex sandboxコマンドでサンドボックス付きコマンド実行を自分のツールに組み込める（MCPサーバーのサンドボックス化例あり）
+設定は階層化され組織設定と個人設定をマージ。テーブルは再帰マージ、配列は丸ごと置き換え
+管理者はmanaged requirementsでユーザーが選べるプロファイルを制限可能。権限プロファイルはベータ扱いで変更の可能性あり
+テキトー教師
+DotAI 認定講師
+設定は
+config.toml
+の
+[permissions]
+でプロファイルを定義します。組み込みは
+:read-only
+、
+:workspace
+、
+:danger-full-access
+の3種類。
+extends
+で既存プロファイルを継承できるので、ゼロから書かずに差分だけ足すのが基本です。
+室谷
+代表取締役
+公式ドキュメントの例だと、
+:workspace
+を継承した
+project-edit
+を作って、
+**/*.env
+をdeny、
+api.openai.com
+をallowにする、みたいな形ですね。
+テキトー教師
+DotAI 認定講師
+ファイルのアクセス値は
+read
+、
+write
+、
+deny
+の3つです。より具体的なエントリが広いエントリを上書きし、同じパスならdenyがwriteより、writeがreadより優先される。
+だからワークスペース全体を書き込み可にしつつ、
+.env
+だけdenyでくり抜く、という書き方ができます。
+室谷
+代表取締役
+ネットワークは3択なんですよね。全部無効、全部直接許可、プロキシ経由でドメイン規則に従う。
+プロキシを使うなら
+features.network_proxy = true
+も必要で、これが無いとドメイン規則は効かない。ここはハマりどころです。
+テキトー教師
+DotAI 認定講師
+ドメイン規則は完全一致とワイルドカードに対応し、denyがallowより優先されます。許可済みドメインへのリクエストは毎回の承認が不要になるので、パッケージレジストリからの定期ダウンロードがあるビルドでは効いてきます。
+室谷
+代表取締役
+あと地味に嬉しいのが
+codex sandbox
+コマンドで、サンドボックス付きのコマンド実行を自分のツールに組み込める。MCPサーバーをサンドボックス化する例も記事にあります。
+テキトー教師
+DotAI 認定講師
+設定は階層化されていて、組織のベース設定と個人設定をマージできます。テーブルは再帰的にマージされ、配列は丸ごと置き換え。
+だからチームが個別エントリだけ追加・上書きして、他の項目は組織の設定変更を自動で受け継げる。
+室谷
+代表取締役
+管理者側は
+managed requirements
+でユーザーが選べるプロファイルを制限できる。企業展開ではここが効きますね。
+ちなみに権限プロファイルはベータ扱いで、変更の可能性があると明記されています。
+なぜDockerではなくOSネイティブなのか――既存環境で動かす設計思想
+テキトー教師
+DotAI 認定講師
+ここが記事の核心です。サンドボックスの一般手段はVMやDockerコンテナですが、Codexは計算を別環境に移さず、各プラットフォームのサンドボックス機能で既存環境のコマンドを制約する道を選びました。
+室谷
+代表取締役
+理由がすごく実務的で。開発者のノートPCは個別カスタマイズされた環境で、コンテナで再現するのは手間がかかる。
+しかもホストでしか動かないツールもある。
+テキトー教師
+DotAI 認定講師
+記事のiOSアプリの例が分かりやすいですね。MacでiOSアプリを開発するとき、Docker内のCodexはネイティブMac実行ファイルで構成されるiOSビルドツールチェーンを動かせず、iPhoneシミュレータも起動できない。
+ホストに処理を委譲すると、それはサンドボックスの外での実行になって別途制限が必要になる。
+室谷
+代表取締役
+だったらOS側の仕組みに投資して、タスクに最適な環境でそのまま動かす方がシンプルだよね、という判断です。ハーネスはmacOS、Windows、LinuxのOS固有機能を共通APIで扱う。
+spawn_command_under_sandbox()
+にコマンドと権限プロファイルを渡し、ネットワーク制限がある場合はプロキシも渡す形です。
+テキトー教師
+DotAI 認定講師
+ちなみにWindowsサンドボックスの変遷については
+Codex Windowsサンドボックスとは？OpenAIがMXCベースの新モード投入
+で解説しているので、環境別の話と合わせて読むと理解が深まります。
+室谷
+代表取締役
+Codex CLI全体の刷新については
+OpenAI、Codex CLI大型刷新 並列エージェントと音声
+にまとまっています。製品の位置づけから確認したい人は
+Codexロゴのすべて：デザインから正しい使い方・製品概要まで
+もどうぞ。
+既定の権限プロファイルと制約で困る点・注意すべきセキュリティリスク
+室谷
+代表取締役
+ここは正直に話しておきたいところ。既定の
+:workspace
+はネットワーク無効なので、依存関係のダウンロードが必要なビルドはそのままでは通りません。
+プロキシを有効にしてレジストリのドメインを許可するのが公式の対処です。
+テキトー教師
+DotAI 認定講師
+読み取りが広いのも諸刃の剣です。APIキーを含む設定ファイルが読める可能性がある。
+だから
+deny
+で
+**/*.env
+や
+secrets
+をくり抜く。
+~/.ssh
+のような安定した場所は完全パスで、リポジトリごとに場所が変わるものはglobで守る、という使い分けが案内されています。
+室谷
+代表取締役
+一番怖いのは、サンドボックスだけでは防げない行為があるとOpenAI自身が認めている点です。たとえば
+node_modules/prettier
+のようなローカルにインストールされたパッケージへ悪意あるコードを注入するケース。
+node_modules
+はGitで無視されることが多いので
+git status
+に出ない。
+テキトー教師
+DotAI 認定講師
+そしてユーザーのエディタが保存時にそのPrettierを実行すると、ファイルを保存しただけでサンドボックスの外で悪意あるコードが走る。だからOpenAIは訓練・アラインメントとサンドボックスを組み合わせた多層防御を採ると説明しています。
+室谷
+代表取締役
+サンドボックスは万能じゃない、という前提で使うのが正解ですね。境界の内側で自律実行させ、外に出るときは承認フロー、という役割分担です。
+テキトー教師
+DotAI 認定講師
+承認とサンドボックスは別の制御だ、という整理も公式ドキュメントにあります。サンドボックスが技術的な境界、承認ポリシーがそれを越えるときに止まって聞くかどうか。
+on-request
+と
+never
+が代表的なポリシーで、
+never
+は承認プロンプトで止まりません。
+室谷
+代表取締役
+低リスクなローカル自動化のプリセットとしては
+workspace-write
+と
+on-request
+の組み合わせが案内されています。
+danger-full-access
+と
+never
+の組み合わせはフルアクセスなので、意図して使うときだけ、と。
+macOS・Linux・Windowsでの実装の違い
+テキトー教師
+DotAI 認定講師
+実装はOSごとに異なります。macOSはSeatbelt、Linuxはbubblewrap、Windowsはネイティブのサンドボックスです。
+WSL2ではLinux実装が使われます。
+室谷
+代表取締役
+macOSは追加インストールなしで動くのが楽ですね。LinuxとWSL2はbubblewrapをパッケージマネージャで入れる必要がある。
+Ubuntu 24.04ではインストール後もユーザー名前空間が作れない警告が出ることがあり、追加のAppArmorプロファイルを読み込む手順が案内されています。
+テキトー教師
+DotAI 認定講師
+ネットワークプロキシは面白い構造で、要求処理とポリシーロジックの核心部分は3つのOSで共通、プロキシのセットアップとサンドボックス統合だけがOS固有です。Linuxではコマンドが分離された名前空間内のリスナーに接続し、サンドボックス外のプロセスがその接続を設定済みプロキシへ中継します。
+室谷
+代表取締役
+共通化できるところは共通化して、OS依存の部分だけ分ける。設計としてきれいですよね。
+テキトー教師
+DotAI 認定講師
+なお、権限プロファイルはmacOS、Linux、WSL、ネイティブWindowsでサポートされています。古いサンドボックス設定とは併用できず、
+sandbox_mode
+が読み込まれるとそちらが優先される点も注意です。
+混在バージョンの企業展開では互換用の要件を一時的に残す選択肢が示されています。
+よくある質問
+室谷
+代表取締役
+最後に、よく聞かれそうな点を整理しておきます。
+テキトー教師
+DotAI 認定講師
+まず「Codexサンドボックスとは何か」。Codexがローカルでコマンドを実行するときに、ファイルシステムとネットワークのアクセス範囲を制限する技術的な実行境界です。
+承認ポリシーとは別の制御で、両方を組み合わせて使います。
+室谷
+代表取締役
+「なぜ必要なのか」は、マシンへの無制限アクセスを防ぎつつ自律性を確保するため。コマンドごとに承認を求める承認疲れを減らす狙いもあります。
+テキトー教師
+DotAI 認定講師
+「ネットワークを制限するには」は、既定の
+:workspace
+が無効です。特定ドメインだけ許可するならプロキシを有効にしてドメイン規則を設定します。
+network.enabled = true
+だけではプロキシは起動せず、ドメイン規則も効かない点に注意してください。
+室谷
+代表取締役
+「書き込みできない場所がある」というのもよくある話で、
+.git
+や
+.codex
+は既定で読み取り専用、
+.env
+などはdenyでくり抜く設定が例示されています。プロファイルの
+extends
+で差分だけ足すのがおすすめです。
+テキトー教師
+DotAI 認定講師
+「日本で使えるのか」については、公式ドキュメントに地域限定の記載は見当たりません。現時点では明らかにされていない、というのが正確なところです。
+料金についても今回の発表には含まれていません。
+室谷
+代表取締役
+権限プロファイルがベータで変更されうる点、サンドボックスだけでは防げないリスクがある点は、導入前に必ず押さえておきたいですね。
+
+===== https://my-best.ai/codex-sandbox-filesystem-network-limits/
+(status 200)
+AIデータセンターの電源は照明とEVが仕上げてきた。GaN・SiC・Siの蓄積がメガワット級ラックで合流する			
+			best		
+			2026年11月21日
+
+===== https://openai.com/index/inside-the-codex-sandbox/
+(status 200)
+November 18, 2026
+Engineering
+Inside the Codex sandbox
+How Codex runs commands on your machine with limits you control.
+By Michael Bolin, Member of Technical Staff
+Share
+At OpenAI, we take a 
+defense in depth
+⁠
+(opens in a new window)
+ approach when it comes to safeguarding agents. While our investments in training and alignment are fundamental to this effort, we also implement features in our agentic harness, 
+Codex
+⁠
+(opens in a new window)
+, to provide additional protections. Because one of the most common (and potentially risky) things Codex does is run commands on your computer, we built the 
+Codex sandbox
+ so Codex can work in your existing environment within filesystem and network limits you control.
+A
+⁠
+(opens in a new window)
+sandbox
+⁠
+(opens in a new window)
+ limits what a program can access while it runs. For a photo-organizing task, you might configure the Codex sandbox to let commands read and modify files in 
+~/Pictures
+ while blocking network access to prevent uploads. For code review, you might allow access to online documentation while keeping source files read-only. Users configure the Codex sandbox through
+⁠
+(opens in a new window)
+permission profiles
+⁠
+(opens in a new window)
+, which define the filesystem and network restrictions for a Codex session.
+In this article, we’ll start with the tradeoffs behind Codex’s sandbox defaults, then explain the sandbox’s design and how the harness uses it to run commands. We’ll show how end users and enterprises can tailor its permissions to their needs and how developers can reuse the sandbox in their own tools. Finally, we’ll examine how these restrictions are enforced on macOS, Linux, and Windows.
+Choosing the sandbox boundaries
+In Codex, our philosophy is to specify conservative defaults for the sandbox that still enable meaningful work. For example, with a Git repository as the workspace root, the built-in 
+:workspace
+ permission profile:
+Allows writes within the workspace, while keeping directories such as 
+.git
+ and 
+.codex
+ read-only.
+ This lets Codex edit source code without seeking permission for every change, while preventing direct changes to 
+.codex/config.toml
+ or Git hooks under 
+.git/hooks
+.
+Allows broad filesystem reads, subject to the user’s existing OS permissions.
+ Compilers, runtimes, and build tools depend on SDKs, libraries, and configuration outside the repository. Restricting reads to the workspace would break many ordinary workflows. The tradeoff is that sensitive files elsewhere on the machine may also remain readable (such as config files containing API keys).
+Disables network access.
+ This blocks direct uploads to external services, including attempts to exfiltrate data the command can read. It also prevents legitimate operations such as downloading dependencies, which require additional access.
+These restrictions prevent a large class of bad behavior, but harmful actions are still possible. For example, the agent could inject malicious code into a locally installed package such as 
+node_modules/prettier
+. Such a change might not appear in 
+git status
+ because 
+node_modules
+ is often ignored by Git. If the user’s editor runs that copy of Prettier on save, simply saving a file could execute the malicious code outside the Codex sandbox. This is why we take a defense in depth approach: the sandbox limits what commands can access, while training and alignment help the model use that access in accordance with the user’s intent.
+For guidance on tailoring sandbox permissions and combining them with other protections in an enterprise environment, see the
+Codex security cookbook
+⁠
+(opens in a new window)
+.
+Designing the s
+andbox
+Virtual machines and 
+containers
+⁠
+(opens in a new window)
+ are two popular mechanisms used for sandboxing, but we take a different approach with the Codex sandbox. Instead of moving computation to a separate environment to provide isolation, Codex uses each platform’s sandboxing facilities to constrain commands running in the user’s existing environment.
+For many developers, their laptop serves as a bespoke dev environment that they can change on a whim. Reproducing that environment in a Docker container can take work, and some workflows still depend on tools that run on the host.
+For example, consider using Codex to develop an iOS app on a Mac. If you decided to sandbox Codex by running it inside Docker, Codex would not be able to run the iOS build toolchain composed of native Mac executables, nor could it launch the iPhone simulator to run the code. A Docker-based workflow could delegate builds and simulator operations to the Mac host, but those operations would execute outside the container’s sandbox and would need their own restrictions. For Codex, we prefer to keep things simple by investing heavily in OS-specific sandboxing so Codex can run in the environment that is most appropriate to the task at hand.
+The harness exposes these OS-specific sandboxing mechanisms through a common API across macOS, Windows, and Linux. This API takes a command and a permission profile. If the permission profile allows limited network access, the caller must supply a network proxy to enforce those limits:
+Python
+1
+# This is a simplified version of the actual API.
+2
+def
+spawn_command_under_sandbox
+(
+3
+    program_and_args: 
+list
+[
+str
+],
+4
+    cwd: Path,
+5
+    env: 
+dict
+[
+str
+, 
+str
+],
+6
+    permission_profile: PermissionProfile,
+7
+    network_proxy: NetworkProxy | 
+None
+,
+8
+) -> Child:
+This function starts the process 
+in a sandbox and returns a 
+Child
+ handle the harness can use to wait for it to finish. Each child process inherits its parent’s sandbox constraints, so those restrictions apply throughout the process tree
+ initiated by the
+ command
+, even to descendants that outlive the original process.
+The following diagram 
+shows how these pieces fit together, from configuration to running a sandboxed command. The sections that follow explain each stage.
+How the harness leverages the sandbox
+As explained in 
+Unrolling the Codex Agent Loop
+, the Codex harness is responsible for executing tool calls
+ generated by the model. For coding tasks, the most commonly used tool is a 
+shell tool
+, which runs commands much as a user would in an interactive shell such as Bash. Here we’ll examine the 
+one-shot 
+⁠
+(opens in a new window)
+exec_command
+⁠
+(opens in a new window)
+ shell tool
+⁠
+(opens in a new window)
+ to illustrate how the harness employs the sandbox to achieve the desired protections.
+This is a simplified version of how the 
+exec_command
+ tool call would be honored by the Codex harness 
+without sandboxing
+:
+Python
+1
+# Illustrative implementation of the exec_command tool call.
+2
+3
+class
+ExecCommandToolCall
+:
+4
+    cmd: 
+str
+5
+    workdir: 
+str
+ | 
+None
+ = 
+None
+6
+    shell: 
+str
+ | 
+None
+ = 
+None
+7
+    login: 
+bool
+ = 
+True
+8
+    timeout_ms: 
+int
+ = 
+10_000
+9
+10
+11
+def
+perform_exec_command
+(
+tool_call: ExecCommandToolCall
+):
+12
+    program_and_args = [
+13
+        tool_call.shell 
+or
+ os.environ.get(
+"SHELL"
+) 
+or
+"/bin/sh"
+,
+14
+"-lc"
+if
+ tool_call.login 
+else
+"-c"
+,
+15
+        tool_call.cmd,
+16
+    ]
+17
+    child = subprocess.Popen(
+18
+        program_and_args,
+19
+# workdir defaults to the turn's cwd, assumed here to be the process cwd.
+20
+        cwd=Path(tool_call.workdir 
+or
+"."
+).absolute(),
+21
+        stdout=subprocess.PIPE,
+22
+        stderr=subprocess.STDOUT,
+23
+    )
+24
+    output, exit_code = collect_output(child, timeout_ms=tool_call.timeout_ms)
+25
+return
+ {
+"output"
+: output, 
+"exit_code"
+: exit_code}
+To sandbox the command, the harness replaces the call to 
+subprocess.Popen()
+ with 
+spawn_command_under_sandbox()
+. The harness supplies the permission profile and, when needed, the network proxy:
+Python
+1
+# Honoring the exec_command tool call while enforcing sandbox constraints.
+2
+3
+def
+perform_exec_command_with_sandboxing
+(
+4
+    tool_call: ExecCommandToolCall,
+5
+    permission_profile: PermissionProfile,
+6
+    network_proxy: NetworkProxy | 
+None
+,
+7
+):
+8
+# ...build program_and_args as in the previous example...
+9
+    child = spawn_command_under_sandbox(
+10
+        program_and_args=program_and_args,
+11
+        cwd=Path(tool_call.workdir 
+or
+"."
+).absolute(),
+12
+        env=os.environ.copy(),
+13
+        permission_profile=permission_profile,
+14
+        network_proxy=network_proxy,
+15
+    )
+16
+    output, exit_code = collect_output(child, timeout_ms=tool_call.timeout_ms)
+17
+return
+ {
+"output"
+: output, 
+"exit_code"
+: exit_code}
+The 
+exec_command
+ tool also lets the model request different permissions for an individual command, but the harness decides whether to grant the request
+:
+Python
+1
+class
+ExecCommandToolCall
+:
+2
+# ...command-related fields...
+3
+4
+# Per-command sandbox override. Defaults to "use_default".
+5
+    sandbox_permissions: 
+Literal
+[
+6
+"use_default"
+,
+7
+"with_additional_permissions"
+,
+8
+"require_escalated"
+,
+9
+    ] = 
+"use_default"
+10
+11
+# User-facing approval question; only for "require_escalated".
+12
+    justification: 
+str
+ | 
+None
+ = 
+None
+13
+14
+# Expand network or filesystem access; only for "with_additional_permissions".
+15
+# AdditionalPermissions supports fine-grained options.
+16
+    additional_permissions: AdditionalPermissions | 
+None
+ = 
+None
+When 
+use_default
+ is specified, the harness uses the default sandbox config for the turn. 
+with_additional_permissions
+ requests expanded access within the sandbox, while 
+require_escalated
+ requests execution outside it. The harness evaluates the request based on the user’s preferences 
+before
+ executing the command. (For example, Codex may prompt the user directly, or it might route the request to 
+auto-review
+⁠
+(opens in a new window)
+.) If execution is authorized, Codex will pass the appropriate 
+permission_profile
+ and 
+network_proxy
+ to 
+perform_exec_command_with_sandboxing()
+ with the command arguments from the original 
+ExecCommandToolCall
+.
+The shell tool is the primary consumer of 
+spawn_command_under_sandbox()
+, and the harness also reuses its sandboxing infrastructure for operations such as reading and modifying local files. This reuse extends beyond the harness: the 
+codex sandbox
+ command lets you incorporate sandboxed command execution into your own tools, as we’ll see later. Next, we’ll look at how permission profiles are defined.
+Configuring the sandbox
+A named permission profile lets you reuse the same filesystem and network restrictions across projects. You can define your own profiles under 
+[permissions]
+ in 
+config.toml
+. For example, the following defines a profile named 
+dev
+ that 
+extends
+⁠
+(opens in a new window)
+ the built-in 
+:workspace
+ profile:
+TOML
+1
+# Use the dev profile by default.
+2
+default_permissions
+ = 
+"dev"
+3
+4
+[permissions.dev]
+5
+# This is displayed when /permissions is run in the Codex CLI.
+6
+description
+ = 
+"Development with extra read-only protections."
+7
+8
+# A profile can be derived from an existing profile.
+9
+# Profiles starting with ":" are provided by Codex.
+10
+extends
+ = 
+":workspace"
+11
+12
+[permissions.dev.filesystem]
+13
+"~/build-cache"
+ = 
+"write"
+14
+15
+[permissions.dev.filesystem.":workspace_roots"]
+16
+".devcontainer"
+ = 
+"read"
+17
+".vscode"
+ = 
+"read"
+18
+"**/*.env"
+ = 
+"deny"
+19
+"secrets"
+ = 
+"deny"
+The 
+dev
+ profile adds write access to 
+~/build-cache
+ and places additional restrictions on files in the workspace. Filesystem entries can grant read-only access (
+read
+), grant read and write access (
+write
+), or block access entirely (
+deny
+).
+The 
+:workspace_roots
+ table lets you define rules for paths relative to a project’s workspace roots. By default, the Codex CLI uses its working directory as its sole workspace root, while the ChatGPT desktop app uses the project’s source folders. Codex applies each rule to every root, so the 
+.vscode
+ entry in 
+dev
+ makes the 
+.vscode
+ directory read-only under each root.
+In addition to its own rules, 
+dev
+ inherits the following protections from 
+:workspace
+:
+TOML
+1
+[permissions.":workspace".filesystem.":workspace_roots"]
+2
+".agents"
+ = 
+"read"
+3
+".aws"
+ = 
+"read"
+4
+".codex"
+ = 
+"read"
+5
+".git"
+ = 
+"read"
+Network permissions
+When it comes to configuring the network for the sandbox in Codex, there are roughly three options:
+Disable all network access (default for the 
+:workspace
+ profile)
+Enable full, direct network access (default for the 
+:danger-full-access
+ profile)
+Restrict network access to a proxy, which decides what to let through based on the permission profile
+To give 
+dev
+ direct network access, set 
+permissions.dev.network.enabled = true
+ at the top level of 
+config.toml
+. This grants full network access when the network proxy is disabled.
+To restrict 
+dev
+ to a set of domains, enable the network proxy and configure its domain rules:
+TOML
+1
+[permissions.dev.network]
+2
+enabled
+ = 
+true
+3
+4
+[permissions.dev.network.domains]
+5
+"*.openai.com"
+ = 
+"allow"
+6
+# Allow requests to local services by hostname or by IPv4/IPv6 loopback address.
+7
+"localhost"
+ = 
+"allow"
+8
+"127.0.0.1"
+ = 
+"allow"
+9
+"::1"
+ = 
+"allow"
+10
+"evil.example"
+ = 
+"deny"
+11
+12
+[features]
+13
+# If neither local config nor managed requirements enable the proxy,
+14
+# this profile allows direct network access; domain rules are not enforced.
+15
+network_proxy
+ = 
+true
+Domain rules support exact names and wildcard patterns, with explicit deny rules taking precedence over allow rules. Requests to other domains require approval or are blocked, as described in 
+Network proxy
+ below.
+Layering configuration and enforcing limits
+Individual users can configure defaults that apply across projects and override them for a particular trusted project. Enterprise administrators may also want to configure defaults for their users and constrain which settings those users can change. Codex supports both through layered configuration and managed requirements.
+As described in 
+Configuration precedence,
+⁠
+(opens in a new window)
+ Codex merges settings from multiple 
+config.toml
+ files. Tables are merged recursively, with the higher-precedence source winning when values conflict. Arrays are replaced as a whole.
+This is why permission profiles use tables for filesystem paths and network domains. A team can add or override individual entries in its own configuration and automatically inherit changes to all other entries in the organization’s base configuration
+:
+TOML
+1
+[permissions.dev.filesystem.":workspace_roots"]
+2
+".idea"
+ = 
+"read"
+3
+4
+[permissions.dev.network.domains]
+5
+"example.com"
+ = 
+"allow"
+Administrators can also supply 
+managed requirements
+⁠
+(opens in a new window)
+ through 
+requirements.toml
+ to constrain users’ configuration choices. These requirements can come from multiple sources, including system files and cloud-provided policy. A common use case is to specify 
+allowed_permission_profiles
+ to constrain the set of permission profiles an enterprise user can select. For example, an administrator could specify these cloud requirements:
+TOML
+1
+default_permissions
+ = 
+":read-only"
+2
+3
+[allowed_permission_profiles]
+4
+":read-only"
+ = 
+true
+5
+":danger-full-access"
+ = 
+false
+The cloud requirements would take precedence over the system requirements file at 
+/etc/codex/requirements.toml
+, so an entry in that file cannot override the explicit 
+":danger-full-access" = false
+ above. Leaving 
+:workspace
+ unspecified allows another requirements layer to supply that entry. Profiles whose entries are 
+false
+ or absent from the final merged table are unavailable.
+This separation lets organizations enforce limits while users tailor their configuration within those limits. The resulting permission profiles can be used by the harness or applied directly to a command, as we’ll see next.
+Using the 
+codex sandbox
+ command
+The Codex CLI provides a 
+sandbox
+ command to facilitate running an arbitrary command under a permission profile defined in the Codex config. This is commonly used to test out the profile, ensuring that the sandbox prevents the behavior it was designed to block.
+For example, the following command attempts to configure VS Code to run a malicious auto-formatter on save. Assuming 
+.vscode
+ already exists, the 
+dev
+ profile defined above should block this write because that directory is read-only (
+codex sandbox
+ treats 
+cwd
+ as a workspace root by default):
+Bash
+1
+codex sandbox --permission-profile dev -- \
+2
+  bash -c 
+'cat > .vscode/settings.json'
+ <<
+'JSON'
+3
+{
+4
+"prettier.prettierPath"
+: 
+"./node_modules/evil-prettier"
+,
+5
+"[typescript]"
+: {
+6
+"editor.defaultFormatter"
+: 
+"esbenp.prettier-vscode"
+,
+7
+"editor.formatOnSave"
+: 
+true
+8
+  }
+9
+}
+10
+JSON
+Indeed, on macOS this fails with:
+Plain text
+1
+bash: .vscode/settings.json: Operation not permitted
+The 
+codex sandbox
+ command makes Codex’s sandboxing mechanism available independently of an agent session. You can use the same configuration language and platform-specific enforcement to constrain commands launched by your own tools.
+Example: sandboxing an MCP server
+For a stdio MCP server configured in 
+config.toml
+, the Codex harness does not attempt to sandbox the command used to start the server. Codex cannot reliably infer which files or network services that server needs, so applying a default sandbox profile could break an otherwise valid configuration.
+For example, the standard way to configure the 
+@modelcontextprotocol/server-memory
+⁠
+(opens in a new window)
+ MCP server for use with Codex is as follows:
+TOML
+1
+[mcp_servers.memory]
+2
+command
+ = 
+"npx"
+3
+args
+ = [
+4
+"-y"
+,
+5
+"@modelcontextprotocol/server-memory@1.0.0"
+6
+]
+7
+8
+[mcp_servers.memory.env]
+9
+MEMORY_FILE_PATH
+ = 
+"~/mcp-data/memory.jsonl"
+Because this 
+npx
+ command runs unsandboxed, it can write files and make network requests with the same permissions as the user running Codex, which is overly permissive. To lock it down, we can define a permission profile named 
+memory-mcp
+ and then wrap the original 
+npx
+ command with 
+codex sandbox --permission-profile memory-mcp
+ to limit where the server can write and to prevent it from accessing the network:
+TOML
+1
+[permissions.memory-mcp.filesystem]
+2
+# Allow broad reads for Node.js/npm dependencies and configuration.
+3
+":root"
+ = 
+"read"
+4
+"~/.npm"
+ = 
+"write"
+5
+"~/mcp-data"
+ = 
+"write"
+6
+7
+[permissions.memory-mcp.network]
+8
+enabled
+ = 
+false
+9
+10
+[mcp_servers.memory]
+11
+command
+ = 
+"codex"
+12
+args
+ = [
+13
+"sandbox"
+,
+14
+"--permission-profile"
+,
+15
+"memory-mcp"
+,
+16
+"--"
+,
+17
+"npx"
+,
+18
+"--offline"
+,
+19
+"@modelcontextprotocol/server-memory@1.0.0"
+20
+]
+21
+22
+[mcp_servers.memory.env]
+23
+MEMORY_FILE_PATH
+ = 
+"~/mcp-data/memory.jsonl"
+Before starting the server, create its data directory and populate the npm cache with the pinned package. That lets 
+npx --offline
+ launch the server under a profile that disables network access:
+Bash
+1
+# The sandbox can write to this folder, but it cannot create it.
+2
+mkdir
+ -p ~/mcp-data
+3
+4
+# Installing the MCP server requires network access.
+5
+npx -y --package=@modelcontextprotocol/server-memory@1.0.0 -c 
+true
+Once the package is cached, Codex can start the memory server without network access, with writes limited to the npm cache and the server’s data directory.
+Codex sandbox implementation
+The sandbox implementation turns a permission profile into restrictions enforced by the operating system. The network proxy’s core request-handling and policy logic is shared across all three major operating systems, while proxy setup and integration with the sandbox are OS-specific. We’ll examine the shared proxy first, followed by the implementations for macOS, Linux, and Windows.
+Network proxy
+To enforce a permission profile’s network restrictions, the harness starts a network proxy and configures the sandbox to allow connections to it while blocking direct connections to external hosts. The proxy checks each request against the profile’s domain rules to determine whether to forward it.
+In the Codex repo, the network proxy is implemented in the 
+codex-network-proxy
+⁠
+(opens in a new window)
+ crate, which the harness uses as a library, t
