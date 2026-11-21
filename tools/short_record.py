@@ -37,6 +37,38 @@ def first_commit(name):
     return parse(out.splitlines()[0]) if out else None
 
 
+def talking(frm, to):
+    """話す動画（LongCat）を Colab と Modal のどちらで作ったか。short-build / longcat-colab の記録から読む（2026-11-21）。"""
+    frm, to = frm.astimezone(dt.timezone.utc), to.astimezone(dt.timezone.utc)
+    q = f"repos/{REPO}/actions/runs?per_page=100&created={frm:%Y-%m-%dT%H:%M:%SZ}..{to:%Y-%m-%dT%H:%M:%SZ}"
+    ids = sh("gh", "api", "--paginate", q, "-q", '.workflow_runs[]|select(.name=="short-build" or .name=="longcat-colab")|.id').split()
+    out = []
+    for rid in reversed(ids):
+        js = sh("gh", "api", f"repos/{REPO}/actions/runs/{rid}/jobs", "-q",
+                r'.jobs[]|select(.name|test("longcat|run"))|select(.steps|map(.name)|index("run on Colab"))|"\(.id)\t\(.started_at)\t\(.completed_at)\t\(.conclusion)"')
+        for line in js.splitlines():
+            jid, a, b, c = line.split("\t")
+            log = [l[29:] for l in sh("gh", "api", f"repos/{REPO}/actions/jobs/{jid}/logs").splitlines() if "[36;1m" not in l and "##[" not in l]
+            pick = lambda pat: next((l.strip() for l in log if re.search(pat, l)), "")
+            if pick(r"^Colab made the clips"):
+                via, why = "Colab", ""
+            elif pick(r"^no clip from Colab"):
+                via = "Modal"
+                why = "・".join(x for x in (pick(r"^no Colab GPU after"), pick(r"giving up Colab"), pick(r"timeout|35 min|cut off"), pick(r"^missing:")) if x)
+            else:
+                via, why = "不明（記録に結果の行なし）", c
+            m = (parse(b) - parse(a)).total_seconds() / 60 if b and b != "null" else 0
+            out.append(f"{parse(a).astimezone(JST):%m/%d %H:%M} {via}（約{m:.0f}分）" + (f"：{why[:160]}" if why else ""))
+    return out
+
+
+def history(name, frm, to):
+    """そのショートのコミットの一覧（何をいつ直したか）。"""
+    paths = [f"shorts/{name}", f"narration/{name}", f"narration/{name}_fix1", f"narration/{name}_fix2", f"narration/{name}_fix3", f"channel/meta/{name}.json"]
+    out = sh("git", "log", "--reverse", f"--since={frm.isoformat()}", f"--until={to.isoformat()}", "--format=%cI\t%s", "--", *paths)
+    return [f"{parse(t).astimezone(JST):%H:%M} {m[:100]}" for t, m in (l.split("\t", 1) for l in out.splitlines())]
+
+
 def runs(frm, to):
     frm, to = frm.astimezone(dt.timezone.utc), to.astimezone(dt.timezone.utc)
     q = f"repos/{REPO}/actions/runs?per_page=100&created={frm:%Y-%m-%dT%H:%M:%SZ}..{to:%Y-%m-%dT%H:%M:%SZ}"
@@ -108,6 +140,12 @@ def main():
     for n, (k, f, m) in sorted(by.items(), key=lambda x: -x[1][2]):
         L.append(f"  | {n} | {k} | {f} | {m:.0f} |")
     L.append(f"- 書き出し（short-build）{by.get('short-build', [0])[0]}回・読み上げ（narration）{by.get('narration', [0])[0]}回")
+    tk = talking(frm, to)
+    L.append("- 話す動画（つかみ・締め）：" + ("なし（作らなかった／前のものを使った）" if not tk else ""))
+    L += [f"  - {x}" for x in tk]
+    h = history(a.name, frm, to)
+    L.append(f"- 直した履歴（コミット{len(h)}件）：")
+    L += [f"  - {x}" for x in h[:25]]
     tp = a.transcript
     if not tp:
         c = sorted(glob.glob(os.path.expanduser("~/.claude/projects/*/*.jsonl")), key=os.path.getmtime)
