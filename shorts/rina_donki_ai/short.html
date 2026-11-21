@@ -175,7 +175,7 @@ function tagI(s,x,y,k,fill,ink,size=56){if(k<=0)return;const sc=back(k);g.save()
 function person(x,y,s,col){g.save();g.translate(x,y);g.scale(s,s);g.fillStyle=col;g.beginPath();g.arc(0,-46,30,0,7);g.fill();g.beginPath();g.moveTo(-48,40);g.quadraticCurveTo(-48,-8,0,-8);g.quadraticCurveTo(48,-8,48,40);g.closePath();g.fill();g.restore();}
 const S={
  // 0 s (user 2026-11-17): only the real picture (Ai Kondo, full screen) and the huge telop of the first sentence, chunk by chunk.
- open(u,d,L){abs(()=>{fullPic('key',1.0+0.05*u/Math.max(1,d),0.475,0.42);creditAt(PP,1000,1640);
+ open(u,d,L){abs(()=>{fullPic('key',1.15+0.05*u/Math.max(1,d),0.475,0.36);creditAt(PP,1000,1640);
      const T=P.tel.filter(x=>x.start<L.start+d-0.01);let last=T[0].text,t0=0;for(const x of T){if(x.start-L.start<=u){last=x.text;t0=Math.max(0,x.start-L.start);}}
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // more of them are waiting backstage (hidden number)
@@ -191,7 +191,7 @@ const S={
  // 11/23 calendar
  debut(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'宣伝')),d-0.9);
    withEnter(enter(u,0),()=>{card(290,420,500,480,36,'#FFFFFF');rrect(290,420,500,120,36,C.warn);g.fillStyle=C.warn;g.fillRect(290,500,500,40);
-     text('11月',CX,482,64,'#FFFFFF','center',900,420);text('23',CX,700,240,C.acc,'center',900,420);text('勤労感謝の日',CX,850,44,C.sub,'center',900,420);});
+     text('11月',CX,482,64,'#FFFFFF','center',900,420);text('23',CX,730,260,C.acc,'center',900,420);});
    if(u>t2)stamp('正式デビュー',CX,1060,(u-t2)/0.3,C.brand,64,-0.05);},
  // the look: based on the mascot Donko, pink hair + ponytail
  look(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'ピンク')),d-0.9);
@@ -204,26 +204,25 @@ const S={
    tagI('7月から試験運用',CX,1040,(u-0.3)/0.3,C.acc,'#FFFFFF',56);},
  // cheap and fast: about a month -> about a week (the bar shrinks first, the label comes when it stops)
  fast(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.6,telHas(L,'ボード')),d-2.0),t3=Math.min(Math.max(t2+0.6,telHas(L,'1週間')),d-0.8);
-   withEnter(enter(u,0),()=>{tagI('安く',380,500,1,C.brand,'#FFFFFF',72);tagI('早く',700,500,1,C.acc,'#FFFFFF',72);});
+   if(u<=t2)withEnter(enter(u,0),()=>{tagI('安く',380,700,1,C.brand,'#FFFFFF',96);tagI('早く',700,700,1,C.acc,'#FFFFFF',96);});
    if(u>t2)withEnter(enter(u,t2),()=>{text('売り場のボード・ポスター',CX,650,52,C.text,'center',900,760);
      const X0=200,full=680;rrect(X0,720,full,100,22,C.bar);text('1か月ほど',X0+full-20,770,48,'#FFFFFF','right',900);
      const e=ease((u-t3)/0.7);if(u>t3){rrect(X0,880,Math.max(1,full-(full*0.77)*e),100,22,C.acc);if(e>0.95)text('1週間前後',X0+full*0.23+20,930,48,C.text,'left',900);}});},
  // about 18 months, about 40 people
  team(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'社内')),d-0.9);
-   withEnter(enter(u,0),()=>{text('開発',CX,470,56,C.sub,'center',900);});
-   bigNum('約1年半','',CX,640,ease((u-0.2)/0.3),C.acc,150);
-   if(u>t2){withEnter(enter(u,t2),()=>text('社内チーム',CX,860,56,C.sub,'center',900));bigNum('約40','人',CX,1030,ease((u-t2-0.2)/0.3),C.acc,170);}},
+   if(u<=t2){withEnter(enter(u,0),()=>{text('開発',CX,560,64,C.sub,'center',900);});bigNum('約1年半','',CX,760,ease((u-0.2)/0.3),C.acc,170);}
+   else{withEnter(enter(u,t2),()=>text('社内チーム',CX,560,64,C.sub,'center',900));bigNum('約40','人',CX,760,ease((u-t2-0.2)/0.3),C.acc,190);}},
  // but... (red stamp only here): the usual store POP uses little AI
  twist(u,d,L){bg(u);mini(u);
    const st=ease(u/0.25);g.save();g.translate(CX,430);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha*=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,62,'#FFFFFF');g.restore();
    const t2=Math.min(Math.max(1.4,telHas(L,'うちっぽさ')),d-1.0);
-   withEnter(enter(u,0.3),()=>{card(200,540,680,230,30);text('ふだんの店のPOP',CX,610,52,C.text,'center',900,620);text('生成AIはあまり使わない',CX,700,48,C.warn,'center',900,620);});
-   if(u>t2)withEnter(enter(u,t2),()=>{card(160,830,760,170,30);text('「うちっぽさが薄れる」',CX,915,58,C.brand,'center',900,700);});},
+   if(u<=t2)withEnter(enter(u,0.3),()=>{card(200,560,680,300,30);text('ふだんの店のPOP',CX,640,56,C.text,'center',900,620);text('生成AIはあまり使わない',CX,760,52,C.warn,'center',900,620);});
+   if(u>t2)withEnter(enter(u,t2),()=>{card(160,630,760,170,30);text('「うちっぽさが薄れる」',CX,715,58,C.brand,'center',900,700);});},
  // the core: about 20 candidates already backstage (silhouettes appear, the count runs up to 20)
  core(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'20')),d-1.0);
-   const n=u<t2?0:Math.min(20,Math.floor(20*ease((u-t2)/1.0))+1);
+   const n=u<t2?0:Math.min(20,Math.floor(20*ease((u-t2)/0.8))+1);
    for(let j=0;j<n;j++){const x=220+(j%5)*160,y=520+Math.floor(j/5)*150;person(x,y,0.95,j%2?C.brand:C.bar);}
-   if(u>t2){text('候補',CX,1150,52,C.sub,'center',900);bigNum('約'+Math.min(20,n),'人',CX,1270,1,C.acc,120);}},
+   if(n>=20){text('候補',CX,1150,52,C.sub,'center',900);bigNum('約20','人',CX,1270,1,C.acc,120);}},
  // the end: big rina talks to the end (LongCat). The opening picture sits above her and grows to the full screen (loop to 0 s).
  verdict(u,d,L){bg(u);const t2=Math.min(Math.max(1.0,telHas(L,'ドンキで')),d-0.8);const kz=ease((u-t2+0.1)/0.6);
    abs(()=>{const P0=[90,300,900,325],P1=[0,0,W,H];const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
