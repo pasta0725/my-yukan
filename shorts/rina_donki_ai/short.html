@@ -221,7 +221,7 @@ const S={
  // the core: about 20 candidates already backstage (silhouettes appear, the count runs up to 20)
  core(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'20')),d-1.0);
    const n=u<t2?0:Math.min(20,Math.floor(20*ease((u-t2)/0.8))+1);
-   for(let j=0;j<n;j++){const x=220+(j%5)*160,y=520+Math.floor(j/5)*150;person(x,y,0.95,j%2?C.brand:C.bar);}
+   for(let j=0;j<n;j++){const x=220+(j%5)*160,y=520+Math.floor(j/5)*150;person(x,y,0.95,C.brand);}
    if(n>=20){text('候補',CX,1150,52,C.sub,'center',900);bigNum('約20','人',CX,1270,1,C.acc,120);}},
  // the end: big rina talks to the end (LongCat). The opening picture sits above her and grows to the full screen (loop to 0 s).
  verdict(u,d,L){bg(u);const t2=Math.min(Math.max(1.0,telHas(L,'ドンキで')),d-0.8);const kz=ease((u-t2+0.1)/0.6);
