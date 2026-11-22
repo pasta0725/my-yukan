@@ -200,7 +200,7 @@ const S={
  win(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'86万')),d-0.9);
    ipic('cands',110,420,860,484,28,1.0,0.5,0.5);creditAt(TVA,955,885);
    g.save();g.globalAlpha*=0.55*ease(u/0.3);g.fillStyle='#FFFFFF';g.fillRect(110,500,300,404);g.fillRect(670,500,300,404);g.restore();
-   ring(540,735,165,(u-0.15)/0.5,C.acc);
+   ring(540,775,130,(u-0.15)/0.5,C.acc);
    if(u>t2){bigNum('約86万','票',CX,1030,ease((u-t2)/0.3),C.acc,120);tagI('半分超え',CX,1170,(u-t2-0.5)/0.3,C.brand,'#FFFFFF',56);}},
  // the judges were surprised: "the least safe choice"
  surprise(u,d,L){bg(u);mini(u);
@@ -209,7 +209,7 @@ const S={
  // the voices: "give the penguin back" -> lots of fan art
  net(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'ファンアート')),d-1.0);
    text('ネットの声（報道から）',CX,400,40,C.sub,'center',900);
-   if(u<=t2){withEnter(enter(u,0),()=>{ipic('peng',190,450,700,394,28,1.3,0.5,0.55);creditAt(TVA,875,825);});
+   if(u<=t2){withEnter(enter(u,0),()=>{ipic('peng',190,450,700,394,28,1.0,0.5,0.5);creditAt(TVA,875,825);});
      withEnter(enter(u,0.35),()=>{card(150,890,780,170,30);text('「ペンギンを返して」',CX,975,62,C.warn,'center',900,720);});}
    else{withEnter(enter(u,t2),()=>{ipic('poses',110,470,860,277,28,1.0,0.5,0.5);creditAt(JR,955,785);});
      tagI('ファンアートも',CX,930,(u-t2-0.2)/0.3,C.brand,'#FFFFFF',64);}},
@@ -227,10 +227,10 @@ const S={
    if(u>t2+0.3)stamp('無地に',CX,1010,(u-t2-0.3)/0.3,C.warn,72,-0.05);},
  // no new-character card; Mobile Suica: to be decided
  mobile(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'モバイル')),d-1.0);
-   withEnter(enter(u,0),()=>{rrect(150,500,340,214,22,'#D7D9DB');ipic('pose',260,520,120,130,16,1.0);text('新キャラのカード',320,780,40,C.text,'center',900,340);});
-   tagI('予定なし',320,880,(u-0.4)/0.3,C.warn,'#FFFFFF',50);
-   if(u>t2){withEnter(enter(u,t2),()=>{phone(620,420,220,400);text('モバイル',730,560,36,C.brand,'center',900,170);text('Suica',730,620,44,C.brand,'center',900,170);text('?',730,710,70,C.sub);});
-     tagI('今後検討',730,880,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',50);}},
+   if(u<=t2){withEnter(enter(u,0),()=>{rrect(250,450,580,365,30,'#D7D9DB');ipic('pose',450,500,180,200,16,1.0);});
+     stamp('予定なし',CX,920,(u-0.4)/0.3,C.warn,64,-0.05);}
+   else{withEnter(enter(u,t2),()=>{phone(410,400,260,470);text('モバイル',CX,560,40,C.brand,'center',900,200);text('Suica',CX,630,50,C.brand,'center',900,200);text('?',CX,740,80,C.sub);});
+     tagI('今後検討',CX,960,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',60);}},
  // nickname wanted until Dec 15
  name(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'12月')),d-0.9);
    withEnter(enter(u,0),()=>{ipic('banner',150,430,780,439,28,1.0,0.5,0.5);creditAt(JR,915,895);});
