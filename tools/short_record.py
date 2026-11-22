@@ -156,6 +156,77 @@ def usage(path, frm, to):
     return tot
 
 
+STEP_KEYS = [
+    ("記事選び", r"next_short|params\.json|data/\d{4}-\d\d-\d\d-(am|pm)\.json|shorts_log"),
+    ("素材", r"fetch-media|fetch-to-branch|work_branch\.py get|media/"),
+    ("事実確認", r"factcheck"),
+    ("声", r"narration|tts|short-voice|split_tts|check_split|lines\.json|--check-captions"),
+    ("話す動画", r"longcat"),
+    ("サムネ", r"thumb|codex-images"),
+    ("画面と字幕", r"preview\.js|check_fit|short\.html|plan\.js|spec\.json"),
+    ("書き出しと確認", r"short-build|frame-check|voice-check|build\.md"),
+    ("投稿", r"short-upload|youtube-upload|after-public|channel/meta"),
+]
+
+
+def step_of(text):
+    return next((k for k, pat in STEP_KEYS if re.search(pat, text)), "その他")
+
+
+def flow(path, frm, to):
+    """会話の記録から、何をどの順で行ったか（動かした作業と設定・道具・コミット・読んだファイル）を短く並べる。"""
+    files = [path] + glob.glob(os.path.join(path[:-6], "subagents", "*.jsonl"))
+    ev, reads = [], {}
+    for i, f in enumerate(files):
+        for l in open(f, encoding="utf-8"):
+            try:
+                d = json.loads(l)
+            except ValueError:
+                continue
+            if d.get("type") != "assistant" or "timestamp" not in d:
+                continue
+            t = parse(d["timestamp"][:19] + "+00:00")
+            if not (frm <= t <= to):
+                continue
+            for c in d["message"].get("content", []):
+                if not (isinstance(c, dict) and c.get("type") == "tool_use"):
+                    continue
+                n, x = c.get("name", ""), c.get("input", {})
+                who = "助手 " if i else ""
+                if n == "Bash":
+                    full = x.get("command", "")
+                    if re.search(r"python3? -\s*<<", full):
+                        ps = sorted(set(re.findall(r"""(?:p\s*=\s*|open\()['"]([\w./-]+\.\w+)['"]""", full)))
+                        if ps:
+                            ev.append((t, step_of(" ".join(ps)), who + "スクリプトで書き換え：" + "・".join(ps)[:160]))
+                    for cmd in re.split(r"\s*(?:&&|;|\n)\s*", x.get("command", "")):
+                        cmd = re.sub(r"\s+", " ", cmd).strip()
+                        cmd = re.sub(r"^(?:[A-Z_]+=\S+ )+", "", cmd).split(" | ")[0].split(" >")[0]
+                        if re.match(r"python3? (?:-I )?tools/short_record\.py", cmd):
+                            continue
+                        m = re.match(r"gh workflow run \S+.*|gh run watch.*|python3? (?:-I )?tools/\S+.*|node \S+.*|git (?:-c \S+ )*commit .*?-m ?[\"']([^\"'\n]{0,80})", cmd)
+                        if m:
+                            ev.append((t, step_of(cmd), who + (("コミット：" + m.group(1)) if m.group(1) else m.group(0)[:160])))
+                elif n in ("Read", "Edit", "Write", "NotebookEdit"):
+                    fp = x.get("file_path", "").split("my-yukan/")[-1]
+                    reads.setdefault((n, fp), []).append(t)
+                    if n != "Read":
+                        ev.append((t, step_of(fp), f"{who}{'書き換え' if n == 'Edit' else '新しく書く'}：{fp}"))
+                elif n == "Agent":
+                    ev.append((t, "その他", f"助手に任せた：{x.get('description', '')}（{x.get('model', '既定')}）"))
+    ev.sort()
+    out, last = [], None
+    for t, st, txt in ev:   # 同じ操作が続いたら1行にまとめる
+        if last and last[1] == st and last[2] == txt:
+            last[3] += 1
+            continue
+        last = [t, st, txt, 1]
+        out.append(last)
+    lines = [f"  {k}. {t.astimezone(JST):%H:%M}〔{st}〕{txt}" + (f" ×{r}" if r > 1 else "") for k, (t, st, txt, r) in enumerate(out, 1)]
+    again = [f"{fp}×{len(v)}" for (n, fp), v in reads.items() if n == "Read" and len(v) > 1]
+    return lines, again
+
+
 def man(n):
     return f"{n / 10000:.1f}万"
 
@@ -167,8 +238,24 @@ def main():
     ap.add_argument("--to")
     ap.add_argument("--transcript")
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--note", help="作りながら手順と判断を1行足す：'工程｜何を・どうやって（コマンド・設定）→結果｜なぜ'")
     a = ap.parse_args()
     now = dt.datetime.now(dt.timezone.utc)
+    if a.note:
+        p = f"tools/learning/shorts/{a.name}.md"
+        if not os.path.exists(p):
+            open(p, "w", encoding="utf-8").write(open("tools/learning/shorts/_template.md", encoding="utf-8").read().replace("<名前>", a.name))
+        s = open(p, encoding="utf-8").read()
+        head = "## 手順と判断（作りながら --note で足す）\n"
+        line = f"- {now.astimezone(JST):%m/%d %H:%M}｜{a.note.strip()}\n"
+        if head not in s:
+            s = s.replace("## 数字", head + "\n## 数字", 1)
+        i = s.index(head) + len(head)
+        j = s.find("\n## ", i)
+        j = len(s) if j < 0 else j
+        s = s[:j].rstrip("\n") + "\n" + line + s[j:] if s[i:j].strip() else s[:i] + line + s[i:]
+        open(p, "w", encoding="utf-8").write(s)
+        return
     frm = parse(a.frm) if a.frm else first_commit(a.name)
     if not frm:
         sys.exit("最初のコミットが見つかりません。--from を付けてください")
@@ -191,6 +278,11 @@ def main():
         c = sorted(glob.glob(os.path.expanduser("~/.claude/projects/*/*.jsonl")), key=os.path.getmtime)
         tp = c[-1] if c else None
     u = usage(tp, frm, to) if tp and os.path.exists(tp) else None
+    if u and u["tools"]:
+        fl, again = flow(tp, frm, to)
+        L.append(f"- 操作の流れ（会話の記録から自動。動かした作業と設定・道具・書き換えたファイル・コミットを順に。{len(fl)}行）：")
+        L += fl[:120] + (["  …（120行より後は省略）"] if len(fl) > 120 else [])
+        L.append("- 同じファイルを読み直した所（利用枠のむだの候補）：" + ("・".join(again) if again else "なし"))
     if u and u["tools"]:
         L.append(f"- Claude の使った量：新しく読んだ{man(u['new'])}・書いた{man(u['out'])}・読み直し（キャッシュ）{man(u['cache'])}・操作{u['tools']}回（うち助手{u['sub']}回）")
     else:
