@@ -169,7 +169,7 @@ function cnt(u,t0,dur,to){return Math.round(to*ease((u-t0)/dur));}
 const TVA='画像：テレビ朝日',JR='画像：JR東日本',IW='写真：Impress Watch';
 function fullPic(k,z,fx=0.5,fy=0.5,dim=0){const i=IMG[k];g.fillStyle='#0B1222';g.fillRect(0,0,W,H);if(!i)return;const s=Math.max(W/i.width,H/i.height)*z;const iw=i.width*s,ih=i.height*s;
   const x=clamp(W/2-iw*fx,W-iw,0),y=clamp(H/2-ih*fy,H-ih,0);g.drawImage(i,x,y,iw,ih);if(dim>0){g.fillStyle=`rgba(0,0,0,${dim})`;g.fillRect(0,0,W,H);}}
-function tagI(s,x,y,k,fill,ink,size=56){if(k<=0)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);pill(s,0,0,size,fill,ink);g.restore();}
+function tagI(s,x,y,k,fill,ink,size=56){if(k<=0.08)return;const sc=back(k);g.save();g.translate(x,y);g.scale(sc,sc);pill(s,0,0,size,fill,ink);g.restore();}
 // the penguin on the card (box in the card picture drawn at x150 y420 w780 h439) fades away
 const CARD=[150,420,780,439],PENG=[655,545,135,190];
 function cardPic(u,d,gone){ipic('card',CARD[0],CARD[1],CARD[2],CARD[3],28,1.0+0.04*u/Math.max(1,d));
@@ -179,7 +179,7 @@ function arrowR(x0,x1,y,col){g.strokeStyle=col;g.lineWidth=12;g.lineCap='round';
 function phone(x,y,w,h){rrect(x,y,w,h,44,'#1F2D4C');rrect(x+16,y+40,w-32,h-80,26,'#FFFFFF');}
 const S={
  // 0 s: only the real picture (the B plan figure, full screen) and the huge telop of the first sentence, chunk by chunk.
- open(u,d,L){abs(()=>{fullPic('key',1.08+0.05*u/Math.max(1,d),0.6,0.5);creditAt(IW,1000,1640);
+ open(u,d,L){abs(()=>{fullPic('key',1.08+0.05*u/Math.max(1,d),0.53,0.5);creditAt(IW,1000,1640);
      const T=P.tel.filter(x=>x.start<L.start+d-0.01);let last=T[0].text,t0=0;for(const x of T){if(x.start-L.start<=u){last=x.text;t0=Math.max(0,x.start-L.start);}}
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // the card Suica: the penguin disappears (why? hidden)
@@ -217,7 +217,7 @@ const S={
  start(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'ペンギン')),d-1.0);
    withEnter(enter(u,0),()=>{ipic('pose',570,450,360,400,28,1.0,0.5,0.5);});
    tagI('2027年4月',750,920,(u-0.3)/0.3,C.acc,'#FFFFFF',50);
-   if(u>t2){withEnter(enter(u,t2),()=>{ipic('peng',150,450,360,400,28,1.6,0.5,0.55);creditAt(TVA,505,830);arrowR(520,560,650,C.sub);});
+   if(u>t2){withEnter(enter(u,t2),()=>{ipic('peng',150,450,360,400,28,1.0,0.5,0.5);creditAt(TVA,505,830);arrowR(520,560,650,C.sub);});
      tagI('今年度末で卒業',330,920,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',44);}},
  // but... (red stamp only here): card Suica becomes plain
  twist(u,d,L){bg(u);mini(u);
@@ -238,8 +238,8 @@ const S={
    if(u>t2)tagI('12月15日まで',CX,1110,(u-t2)/0.3,C.acc,'#FFFFFF',60);},
  // a wallpaper for everyone, the name on March 31
  gift(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'名前は')),d-0.9);
-   if(u<=t2){withEnter(enter(u,0),()=>{phone(380,400,320,600);ipic('close',396,440,288,520,24,1.0,0.5,0.4);});
-     tagI('全員に壁紙',CX,1100,(u-0.3)/0.3,C.brand,'#FFFFFF',60);}
+   if(u<=t2){withEnter(enter(u,0),()=>{phone(400,400,280,500);ipic('close',416,440,248,420,24,1.0,0.5,0.4);});
+     tagI('全員に壁紙',CX,990,(u-0.3)/0.3,C.brand,'#FFFFFF',60);}
    else withEnter(enter(u,t2),()=>{card(290,420,500,480,36,'#FFFFFF');rrect(290,420,500,120,36,C.warn);g.fillStyle=C.warn;g.fillRect(290,500,500,40);
      text('2027年3月',CX,482,56,'#FFFFFF','center',900,440);text('31',CX,730,260,C.acc,'center',900,420);
      tagI('名前を発表',CX,1010,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',56);});},
