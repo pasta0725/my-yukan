@@ -74,7 +74,7 @@
    `gh api -X POST repos/pasta0725/my-yukan/actions/workflows/factcheck-pages.yml/dispatches -f ref=main -f 'inputs[edition]=<号のID>'`
    （tools/fetch_refs.py：各記事の source_url と refs を最大6本取得し、本文の文字だけを factcheck/<号のID>/<記事id>.txt にして、ブランチ factcheck に push。1〜2分）
    終わったら `git fetch origin factcheck && git archive origin/factcheck factcheck/<号のID> | tar -x -C <作業用フォルダ>` で取り出す。
-3. 点検役の Sonnet 4本（effort high）は、その .txt と記事を照らし合わせるだけ。WebFetch・WebSearch・curl は使わない。取得に失敗したページ（403 など）は、その記事の中だけで食い違いを点検し、確かめられない数字は出どころを付けるか削る。
+3. 点検役の Sonnet 4本（effort high）は、その .txt と記事を照らし合わせるだけ。WebFetch・WebSearch・curl は使わない。点検の判断は Codex と同じ（tools/codex/factcheck.md）。日本で使えるか、日本語に対応しているかは、記事に書かれた内容を一つずつ確かめる。どの参考記事も読めないときは、記事の中の食い違いだけを直す。
 4. 2026-11-14〜：2. を `-f 'inputs[check]=yes'` 付きで動かすと、ページの取得のあと Codex が点検まで行う（codex-factcheck.yml、全記事を8組で同時に、合わせて5〜8分）。結果はブランチ factcheck の factcheck/ED/fixed/<記事id>.json（検査に通って直した記事だけ）と fixed/report.md、直した点の一覧 factcheck/ED/changes.md。Claude は `python3 -I tools/research_pages.py import data/ED.json WORKDIR/factcheck/ED/fixed` で取り込み、changes.md を読み、数件を .txt と照らして確かめる。report.md で「却下」「未処理」の記事と、時間内に結果が出なかったときは、3. のやり方（Sonnet）で点検する。
 
 ## Codexの調査（手順5-0、2026-11-10〜：検索の上限を避けるため）
