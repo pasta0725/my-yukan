@@ -5,7 +5,7 @@
 ## 今の状態
 - 公開サイト「星餓りなのテックニュース」：朝刊と夕刊を毎日自動で作る（予定作業）。マイ夕刊は 2026-11-16 に止めた（GitHub Pages はリダイレクトだけ）。
 - ショート：毎日 17:36 に自動で1本（公開時刻は tools/learning/params.json の publish_time）。手作りはユーザーの頼みで。
-  - 直近：Microsoft To Do終了（qeaF3z1d_v0、11/24 12:15 予約・自動。締めは Colab が6回とも借りられず Modal、Issue #54 に追記。字幕の区切りの不具合は Issue #55）、Suicaの新キャラ（bpkQObW-5sg、11/23 07:00 予約・自動。締めは Colab が借りられず Modal、Issue #54）、ドンキのAI社員（kdGWGnDfXNM、11/22 07:00 予約・自動。「AIの使用」を Studio で「はい」にするようユーザーに依頼済み、Issue #52）、Anthropic上場（rfOKZyqoIfo、自動）、GTA6発売（8HWqjxuAyfI）、SwitchBot ハブ4（hfenkW2oE8M、手作り）。
+  - 直近：NVIDIAフアンCEO復帰（VVHlrt6ymdA、11/24 04:45 すぐ公開・手作り。ぱすたの選択で疑惑も詳しく。締めは Colab が借りられず Modal、Issue #54 に「1回の借り直しに約3分かかり20分で6回しか試せない」を追記）、Microsoft To Do終了（qeaF3z1d_v0、11/24 12:15 予約・自動。締めは Colab が6回とも借りられず Modal、Issue #54 に追記。字幕の区切りの不具合は Issue #55）、Suicaの新キャラ（bpkQObW-5sg、11/23 07:00 予約・自動。締めは Colab が借りられず Modal、Issue #54）、ドンキのAI社員（kdGWGnDfXNM、11/22 07:00 予約・自動。「AIの使用」を Studio で「はい」にするようユーザーに依頼済み、Issue #52）、Anthropic上場（rfOKZyqoIfo、自動）、GTA6発売（8HWqjxuAyfI）、SwitchBot ハブ4（hfenkW2oE8M、手作り）。
   - 予約の時刻を変える：youtube-upload.yml の video=at:<ID> と publish_at。そのあと古い after-public.yml の実行を止めて、新しい時刻で動かし直す（tools/auto_short.md）。
 - Codex（2026-11-19 ユーザーの決定。朝刊の途中で Codex の利用枠が尽きたため）：
   - モデルは GPT-6.2 Sol（gpt-6.2-sol）。調べ物・事実の点検・公式画像選びも Astra をやめて Sol。
@@ -21,4 +21,5 @@
 - 開いている Issue：#32（Colab）・#31・#30・#29・#28・#27・#26・#25・#24・#23・#19・#14。
 - もしもアフィリエイト（2026-11-20 夕）：サイトは楽天・Yahoo!ショッピング・Amazon すべて承認。Amazon の a_id だけ未設定（Chrome のもしもがログアウトしていて読めなかった。ユーザーが次にログインしたら promotion_id=170, shop_site_id=699950 のどこでもリンクから読み、site/config.json の moshimo.amazon に入れる）。YouTube は楽天だけ承認、Amazon は否認（横動画が増えたら申し込み直す）。サイト用リンクを YouTube に貼るのは規約違反なので不可、横動画の概要欄にはサイトの記事へのリンクを貼る。
 - 手を付けていない：Udemy の講座。ブランチ codex-dev の削除はユーザーの承認待ち。
+- 作業記録の仕組み（PR #53、tools/short_record.py・tools/learning/shorts/next.md）はまだ main に入っていない（11/24 時点で未マージ）。入るまでは shorts_log.csv のメモに反省を書く。
 - スキル（rina-shorts・rina-youtube-publish）の更新案は 11/18 に出した。保存されたかは同期されたスキルの中身で確かめる。
