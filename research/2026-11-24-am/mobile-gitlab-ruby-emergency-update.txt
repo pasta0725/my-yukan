@@ -1,0 +1,468 @@
+===== https://italerter.com/gitlab-19-6-1-19-5-8-19-4-10-ruby-cve-2026-132825/
+(status 200)
+Published 
+November 20, 2026 at 10:10 am GMT+0000
+ · 
+ Last updated 
+November 20, 2026 at 10:10 am GMT+0000
+GitLab released Community Edition and Enterprise Edition 19.6.1, 19.5.8 and 19.4.10 on November 20, 2026, as a critical security patch for self-managed installations. The 
+GitLab release notice
+ says the builds replace a vulnerable bundled Ruby runtime and address CVE-2026-132825, a heap buffer overflow in string case conversion. GitLab recommends that affected self-managed installations upgrade immediately. GitLab.com and GitLab Dedicated already run patched versions, according to the company.
+The patch has an important deployment distinction. Official GitLab Linux packages and container images include patched Ruby. A self-compiled GitLab installation must also rebuild the Ruby installation that runs GitLab, using Ruby 3.3.14 or 3.4.13 or a later release in the same minor series. Updating GitLab application files while leaving a vulnerable self-compiled Ruby interpreter in place would miss the runtime change the vendor calls out.
+Which GitLab versions are affected?
+GitLab lists the affected CE/EE ranges as all versions before 19.4.10, 19.5 releases before 19.5.8, and 19.6 releases before 19.6.1. The three November 20 builds are fixes on three separate release lines, not one combined version. An inventory should record the complete installed GitLab version, its release line, and its deployment method before selecting an update.
+For an installation on the 19.6 line, the named fixed patch is 19.6.1. For 19.5, it is 19.5.8; for 19.4, it is 19.4.10. A deployment older than those lines is within the affected range in the GitLab notice and needs a supported upgrade route. The wording does not establish that every affected instance is reachable by a remote attacker. It establishes that the vulnerable runtime is in those product versions and that GitLab has issued fixed builds.
+The patch follows the 
+November 16 GitLab security update
+. The version numbers should stay distinct in change records: 19.5.6, 19.4.8 and 19.3.9 addressed a different set of issues. The November 20 release is a new critical patch across the 19.6, 19.5 and 19.4 lines. A system updated to a November 16 build may still require the newer Ruby fix.
+What CVE-2026-132825 does
+The 
+Ruby security advisory
+ describes a one-byte heap buffer overflow during case conversion of strings in some single-byte encodings, including ISO-8859-1 and Windows-1252. Case conversion changes letter case, such as upper to lower, while processing a string. In the vulnerable path, Ruby can write one byte past the end of the output buffer. The advisory says proof-of-concept cases demonstrate remote code execution in some scenarios. It does not say that every use of case conversion is exploitable.
+GitLab says that, under certain conditions in GitLab, changing the case of a crafted string can produce an out-of-bounds heap write. GitLab assigns the release’s critical label using the Ruby security team’s severity rating; the GitLab notice separately says MITRE rates the CVE High with a 7.4 CVSS score. Those labels describe the same upstream defect from different assessments. They do not prove exploitation in a particular installation or establish an incident without system evidence.
+The upstream Ruby advisory lists fixed Ruby versions 3.3.14, 3.4.13 and 4.0.10. GitLab’s self-compiled instructions name the two Ruby minor series relevant to its supported build paths, 3.3 and 3.4. That difference is not a contradiction: the upstream project describes the language runtime broadly, while GitLab specifies the runtimes used to build its product. Self-compiled operators should follow GitLab’s build instructions for the deployed GitLab release rather than substitute an upstream Ruby version solely because it appears on the Ruby advisory.
+Packaged and self-compiled installations need different checks
+With GitLab’s official Linux package or container image, the November 20 patch includes the updated bundled Ruby. The useful verification is the running GitLab product version and the installed package or image version after deployment. In a self-compiled installation, the Ruby runtime is a separate part of the build. GitLab explicitly requires rebuilding it with Ruby 3.3.14 or 3.4.13, or a later release in the same minor series, to address CVE-2026-132825 and the other issues in the upstream Ruby advisory. Merely seeing GitLab 19.6.1 in an application checkout is not enough evidence that its interpreter was rebuilt.
+GitLab Dedicated has a separate history. The vendor says it previously used internal-only 19.5.7 and 19.4.9 releases with interim mitigations, and that the November 20 public builds include all fixes from those internal releases. Those internal numbers are not customer patch targets for ordinary self-managed installations. GitLab.com and Dedicated customers do not need to take action for this patch, according to the release notice.
+GitLab says these patches have no new database migrations and that multi-node deployments should not require downtime. It also notes that an Omnibus package upgrade normally stops services, runs migrations and starts them again by default, regardless of patch size. The two statements describe different parts of the upgrade process: the release carries no new migration, while the package’s standard service cycle still runs unless its behavior is changed under documented upgrade procedures. Change windows should follow the actual deployment topology and GitLab’s upgrade guidance, not a blanket claim of zero interruption.
+What to verify after applying the patch
+First, distinguish CE/EE self-managed systems from GitLab.com and Dedicated. For each self-managed instance, record the full version and whether it came from an official package, a container image, or a self-compiled build. Select 19.6.1, 19.5.8 or 19.4.10 as appropriate for the release line, or follow a supported upgrade path from an older version. A version string alone should not obscure an installation assembled from separately maintained components.
+After the update, confirm that the running service reports the intended GitLab release and, for self-compiled installations, that the Ruby interpreter used by GitLab is the rebuilt fixed version. Check routine service health, repository access, CI/CD jobs and integrations that matter to the installation under its normal change procedure. Those functional checks are ordinary upgrade verification; they do not determine whether the vulnerability was ever exploited. Where compromise is suspected, preserve relevant evidence and use the applicable incident process rather than treating a successful patch as a historical clean bill of health.
+The vendor states no fixed calendar deadline for all customers in the release notice. Its instruction is to upgrade affected self-managed installations as soon as possible. That recommendation reflects the critical patch and the upstream Ruby team’s demonstrated code-execution scenarios. The exact product version, deployment method and runtime build determine the concrete remediation path.
+CVE-2026-132825
+GitLab
+Ruby
+Security updates
+
+===== https://into-the-program.com/gitlab-ruby-cve-2026-132825-critical-patch/
+(status 200)
+Security
+脆弱性
+GitLabが同梱Rubyを緊急修正｜自前ビルドは本体とRubyの両方を更新
+公開日
+2026.11.21
+約8分で読めます
+※本ページのリンクにはプロモーションが含まれています。
+SHARE
+この記事のポイント
+脆弱性
+CVE-2026-132825
+深刻度
+CRITICAL
+対象
+GitLab CE／EE（自社運用）、Ruby（GitLabの実行環境）
+悪用状況
+不明
+推奨対応
+GitLab 19.6.1・19.5.8・19.4.10以降の対応版へ更新し、自前ビルドでは実行用Rubyも3.3.14または3.4.13以降の同系列版で再構築してください。
+公表日
+2026.11.18
+目次
+GitLabは2026年11月20日、Rubyの
+脆弱性
+CVE
+-2026-132825に対応する緊急
+パッチ
+19.6.1、19.5.8、19.4.10を公開しました。対象は自社運用のGitLab Community EditionとEnterprise Editionです。公式
+Linux
+パッケージ
+と公式コンテナは修正済みRubyを同梱します。ソースから組み立てた環境では、GitLabの更新に加えて、実際にGitLabを動かすRubyの再構築が必要です。
+クラウド
+で稼働していても、自社でGitLabを導入し管理しているなら、自社運用として確認してください。
+GitLabの11月20日付緊急パッチ告知
+によると、GitLab.comとGitLab Dedicatedは修正済みで、利用者に今回の更新作業は求められていません。自社運用の担当者は、最初に導入方式と現在の系列を調べ、配備済みの本体とRubyの両方を確認してください。特に、公式イメージを土台にしていても、独自
+ビルド
+でRubyを差し替えている構成は、公式イメージのタグだけで修正済みと判断できません。
+スポンサーリンク
+今回の脆弱性はGitLabが利用するRubyにある
+Rubyでは、文字列の大文字・小文字を変換する処理の一部で、確保したヒープ領域の外に書き込む問題が見つかりました。GitLabは一定の条件で細工された文字列を処理すると領域外書き込みが起き得ると説明しています。Ruby開発チームは、条件によって
+リモートコード実行
+につながり得ることを実証で確認したとしています。実証は、任意のGitLab構成で
+認証
+なしに攻撃できることや、実環境で侵害が発生したことを示すものではありません。今回読んだGitLabの告知からは、実環境での悪用は確認できませんでした。
+公表日も分けて読む必要があります。
+Rubyの11月18日付セキュリティ告知
+は文字列変換と正規表現に関する七つの問題を公表し、Ruby 4.0.10、3.4.13、3.3.14を案内しました。11月20日は、GitLabがそれらの修正を取り込んだ製品パッチを公開した日です。GitLabの告知にあるCriticalはRuby側の評価で、同じ告知が紹介するMITREの評価はHigh（
+CVSS
+ 7.4）です。どちらも主題のCVE-2026-132825に関する評価であり、同時に修正された七つ全体のスコアではありません。
+既存の
+GitLabのGitalyとGitのマージ処理に関する記事
+で扱った修正とは、確認する依存先が異なります。前回の
+Git
+の更新記録を使って今回のRubyを修正済みとは判定できません。更新台帳では、GitLab本体に紐づく項目としてCVE番号、修正パッチの適用先、実行するRuby、配備完了日を記録しておくと、よく似た更新通知を取り違えずに済みます。
+自社運用は使っている系列から更新先を決める
+GitLabが告知に記載した対象は、19.4.10未満、19.5系列の19.5.8未満、19.6系列の19.6.1未満です。19.4系列は19.4.10、19.5系列は19.5.8、19.6系列は19.6.1が今回の修正を含む最初の公開版です。この表記は各系列の修正到達点です。たとえば19.5.7は数値上19.4.10より大きくても、19.5系列の自社運用で指定された更新先には達していません。Dedicated向けの中間緩和版の説明を、手元の自社運用パッケージに流用しないでください。
+19.3以前から更新する場合は、目標バージョンを決めた後、
+GitLabの公式アップグレード経路ガイド
+で経由版を確認します。ガイドでは、必要な経由版に到達したらバックグラウンド移行が終わるのを待ち、次の版へ進みます。今回のパッチに新しい移行がないという説明は、その前に飛ばした版にも移行がないという意味ではありません。更新申請には最終到達版だけでなく、途中の版、移行完了の判定、停止が必要な構成かどうかを書いてください。
+公式の緊急告知は今回の複数ノード配備では停止が不要と見込む一方、Omnibusパッケージの既定の更新ではサービスを停止し、移行処理を行って再起動すると説明しています。停止できる時間帯を決める際は、リリースノートの一文だけを根拠にせず、自社の配備方式で採用している公式手順と照合します。単一ノードで停止する構成と複数ノードで切り替えられる構成では、利用者に案内する時間や作業順も異なります。
+スポンサーリンク
+公式配布物は配備先まで追う
+公式Linuxパッケージを使う場合は、修正を含むGitLabパッケージに更新します。ホストで普段使うRubyの更新だけを実行しても、GitLabパッケージ内の
+ランタイム
+を更新した証拠にはなりません。逆に、正しい公式パッケージを配備できたのに、管理者のシェルで別用途の古いRubyが表示されたという理由だけで、GitLabも未修正と判定する必要はありません。照合対象はGitLabの構成に属するランタイムです。
+公式コンテナでは、レジストリに新しいイメージがあることと、本番のコンテナがそのイメージで入れ替わったことを分けて確認します。取得したタグとダイジェストを配備記録に残し、稼働中のレプリカが意図した成果物を使っているかを点検します。旧レプリカを残したままロールアウトが止まっている場合は、更新が終わった扱いにしません。待機系や復旧用に保存したマニフェストも棚卸しし、切り替えや再配備で意図せず旧版に戻る経路を把握してください。
+Helmで導入している場合も、チャートの版とGitLab本体の版を分けます。GitLab公式の経路ガイドからチャートと本体の対応表を参照し、利用中のチャートでどのイメージが使われるかを確認してください。運用側が個別にイメージを指定している場合、チャートを更新しても、その指定が古いイメージを指し続けることがあります。運用上の確認として、設定した版と現在動いているワークロードのイメージを突き合わせると判断しやすくなります。
+自前ビルドは実行中のRubyを確認する
+ソースから構築したGitLabでは、GitLab側のパッチだけではRubyを入れ替えられません。GitLabは、自社ビルドで使っているRubyを3.3.14または3.4.13、もしくは現行の同じマイナー系列の後続版で再構築するよう案内しています。Ruby単体には4.0.10の修正もありますが、それを根拠にGitLabの実行環境を4.0系へ切り替えてよいとは判断できません。今回の更新ではGitLabが案内する系列の範囲で対応します。
+点検の出発点は、サービス定義、コンテナのビルド定義、起動ログにある実行環境です。運用端末で確認したRubyのバージョンをそのまま記録するのではなく、サービスを起動するユーザーやコンテナの環境と照合します。一つのホストに複数のRubyがある場合や、ビルド環境と実行環境を分けている場合、この確認が特に重要です。ビルド時に新しいRubyが確認できていても、最終イメージへ古いランタイムをコピーしていれば、本番では修正を使えません。
+更新後は、Web処理だけでなく、別イメージや別ノードで動くバックグラウンド処理にも同じ確認を行います。新しい成果物を取り込んだ後、稼働中のサービスが更新後の環境で起動しているかを見てください。プロセス起動日やイメージ識別子を確認しておけば、ディスク上のファイルだけが置き換わった状態や、一部のノードに配備が届かなかった状態を区別できます。
+自前ビルドの検証では、既存の正常系リクエストとジョブを使います。同じRuby系列内でも、再ビルドに伴ってネイティブ拡張の読み込み、依存ライブラリの解決、バックグラウンド処理の起動に差が出る可能性があります。
+ステージング
+で本番と同じ成果物を起動し、通常のプロジェクト閲覧、テスト用
+リポジトリ
+への操作、キューに積んだテストジョブの完了を確認します。脆弱な処理を再現する入力を本番へ送らなくても、実行環境と配備版の確認はできます。
+スポンサーリンク
+更新完了の証拠と異常調査を分ける
+運用上の完了条件は、①対象のインスタンスを特定した、②今回の修正を含むGitLab本体を配備した、③自前ビルドなら修正済みRubyで動作している、④通常の利用経路を確認した、の四つです。たとえばログインとプロジェクト表示は正常なのにキューだけ止まる場合、セキュリティパッチの適用と業務復旧の判定を分けて扱います。
+CI
+を利用するチームでは、テスト用ジョブの投入から結果反映までを見ておくと、更新作業の終了と利用再開を区別できます。
+また、パッチが入ったことは、過去に異常が起きなかったことの証明にはなりません。更新前に異常なプロセス終了や説明できない設定変更が見つかっているなら、時刻、該当ノード、リクエストログ、プロセス再起動の記録を保持してください。単発のエラーをこのCVEの悪用と決めつけず、通常の障害、更新に伴う再起動、その他の侵害兆候との関係を調べます。一般的な運用上の提案であり、GitLabがこのCVEに固有の検知条件として公表したものではありません。
+すぐ更新できない場合は、変更担当者と次に更新できる時間を特定し、外部から到達可能な環境を優先して扱います。アクセス制限を一時的に強めるなら、管理者用画面だけでなく、通常利用者や連携元の業務にも影響するため、残す経路を確認して実施してください。これで脆弱性の修正が完了するわけではありません。誤って旧版に戻した場合も同様で、業務を復旧できたかと、脆弱な構成へ戻ったかを別に判断し、再更新の条件を記録します。
+今回の更新で確認すべきなのは、手元に修正ファイルがあるかではなく、どの配布物とランタイムが実際に処理を担っているかです。公式配布物なら修正済みの製品パッチを配備する経路を、自前ビルドなら本体とRubyをそれぞれ更新する経路を選びます。両者を同じ完了票で扱う場合でも、Rubyの確認欄には「公式同梱」と「自前で再構築」のどちらで修正を受け取ったかを残しておくと、次の緊急更新で対象をすぐに判断できます。
+出典・一次情報
+本記事は以下の公開情報をもとに作成しています。最新の状況は各リンク先で確認してください。
+公式アドバイザリ
+GitLabの緊急パッチ告知
+公式アドバイザリ
+Rubyのセキュリティ告知
+SHARE
+この記事を書いた人
+Ryohei
+Webエンジニア / アプリ開発者 / 技術ブログ運営者
+福岡のWeb制作会社に勤務するWebエンジニアです。10年以上にわたりWeb制作・開発に携わり、ヒアリングや進行管理から、コーディング、CMSの構築、システム開発、サーバーの構築・保守・運用まで、Webサイト制作の工程を幅広く担当しています。Webサイトは、これまでに100以上の構築・保守を手がけてきました。
+個人でもWebサイトの制作・改修やWebアプリの開発・運用を行い、AIを活用した開発にも取り組んでいます。近年はWebセキュリティにも注力しています。
+2015年から技術メディア「Into the Program」を運営し、実務や開発で得た知識をもとに、プログラミングの実装方法やWebサイトの運用・セキュリティ情報を発信しています。
+主な分野
+Webサイト構築・保守・運用 / HTML/CSS / JavaScript / PHP / WordPress / サーバー構築・保守・運用 / アプリ開発 / セキュリティ対策
+資格・試験合格
+情報セキュリティマネジメント試験
+基本情報技術者試験
+AWS認定ソリューションアーキテクト アソシエイト
+PHP8技術者認定ウィザード
+メディア運営
+2015年〜
+記事の作成・更新について
+セキュリティ記事は、ベンダーの公式アドバイザリやCVE・JVNなどの一次情報を参照し、出典と情報確認日を記載します。実環境での検証を行った場合は、その環境と確認範囲を明示します。重要な追加情報や誤りを把握した場合は、内容を確認して追記・訂正します。
+@ry_apps
+@itp_media（更新情報）
+お問い合わせ
+RY-Apps
+
+===== https://security.qutori.jp/article/gitlab-ruby-critical-nov2026.html
+(status 200)
+GitLabはRubyの文字列変換にあるCVE-2026-132825などを修正した19.6.1、19.5.8、19.4.10を公開し、自己運用環境の速やかな更新を求めました。細工された文字列の処理により、条件次第でコード実行につながるおそれがあります。
+確認すること
+自己運用のGitLabを19.6.1、19.5.8、19.4.10以降の対応版へ更新する。ソースから構築した環境では、実行に使うRubyも公式指定版へ再構築する。
+GitLabの原文
+日本語要約・編集：バグマゲドン対策委員会。本記事公開：2026-11-22 / 本記事更新：2026-11-22 / 原文確認：2026-11-22。
+原文発行：GitLab / 原文公表：2026-11-20。
+対象と影響
+公式Linuxパッケージとコンテナーには修正済みRubyが含まれます。ソースから構築した環境はRuby 3.3.14、3.4.13または同じ系列の後続版への再構築も必要です。GitLab.comとGitLab Dedicatedは対応済みで、利用者の作業は不要とされています。
+確認の手順
+自己運用のGitLabを19.6.1、19.5.8、19.4.10以降の対応版へ更新する。ソースから構築した環境では、実行に使うRubyも公式指定版へ再構築する。
+対応の手順
+自己運用かを確認 → GitLabと実行用Rubyを更新 → 更新後の動作を確認
+防御の確認箇所：自己運用のGitLabを19.6.1、19.5.8、19.4.10以降の対応版へ更新する。ソースから構築した環境では、実行に使うRubyも公式指定版へ再構築する。
+優先度の考え方
+自己運用環境の更新優先。GitLabはRuby側のCritical評価を採用し、MITREのHigh・CVSS7.4と区別しています。公表本文は特定条件でのコード実行のおそれを示しており、実被害や全構成での成立を確認したという意味ではありません。
+優先度は編集上の判断です。公式CVSSや、自社への実際の影響の確定とは区別してください。
+原文で言及されたCVE
+CVE-2026-132825
+タイムラインで関連情報を探す
+報告の範囲
+公表主体の所在国・地域。攻撃者の所在や被害発生国を示しません。
+原文と確認箇所
+GitLab — GitLab Critical Patch Release: 19.6.1, 19.5.8, 19.4.10
+原典本文の公表日は2026-11-20。2026-11-22 10:36 JSTに本文を取得。11月16日公表の19.5.6等とは別の緊急更新で、記事の公式更新日は未確認のためnull。
+海外の公的機関・ベンダーの一次情報を確認し、日本の小規模企業向けに独自要約。全文翻訳ではありません。対策優先度と小規模企業への影響は編集上の判断で、公式CVSSとは区別しています。
+同じテーマを読む
+Rubyが文字列・正規表現の7件を修正。3.3.14・3.4.13・4.0.10へ更新
+ — CVE-2026-132825
+ニュース一覧
+出典・編集方針
+
+===== https://digidinos.com/introduction/35/gitlab-zeijakusei-2026-11?lang=ja
+(status 200)
+目次
+10
+2026年11月20日、GitLabは緊急の修正版
+GitLab 19.6.1・19.5.8・19.4.10
+を公開しました。GitLabが中で使っているプログラミング言語「Ruby」に、細工した文字列で
+外からプログラムを動かされるおそれ
+のある脆弱性（CVE-2026-132825）が見つかったためです。11月はこれで3回目のセキュリティ修正で、10日にも深刻度Criticalの修正、16日には37件の修正が出ています。
+この記事では、自社のサーバーでGitLabを動かしている会社と、ソースコードを開発会社のGitLabに預けている会社に向けて、11月の修正の中身、移る先の版、確かめることを説明します。10月の脆弱性（CVE-2026-97229）の対応は「
+GitLab脆弱性の対応
+」で説明しています。
+この記事のポイント
+自社のサーバーでGitLabを動かしている → 
+19.6.1・19.5.8・19.4.10以上
+に更新しましょう。
+GitLab.comとGitLab Dedicated（専用クラウド版）は、GitLab側で修正済みです。
+利用者の対応は不要
+です。
+11月20日の修正は
+19.6・19.5・19.4の3系統だけ
+です。19.3以前を使っている場合は、19.4.10以上への更新が必要です。
+公式パッケージ以外の方法でGitLabを入れている場合は、
+Rubyも3.3.14・3.4.13以上に
+入れ直す必要があります。
+3回
+11月のセキュリティ修正（10日・16日・20日）
+2件
+そのうち深刻度Criticalの脆弱性（gitとRuby）
+37件
+11月16日の定例の修正で直った脆弱性
+ことばの説明
+GitLab
+＝プログラム（ソースコード）を保管し、チームで共有したり、自動でテスト・公開したりするための仕組みです。自社のサーバーに入れて使う方法（セルフマネージド）と、クラウドで使う方法（GitLab.com）があります。
+Ruby（ルビー）
+＝GitLabを作っているプログラミング言語です。Ruby on Railsで作ったWebサービスでも使われています。
+Gitaly（ギタリー）
+＝GitLabの中で、リポジトリ（ソースコードの保管場所）を扱う部分です。
+KEV
+＝米国CISAが公開している「実際に悪用が確認された脆弱性」の一覧です。
+11月の3回の修正
+2026年11月10日
+緊急の修正（19.5.4・19.4.6・19.3.8）
+。GitLabに入っているgitの脆弱性 CVE-2026-105437（Critical）を修正。条件によっては、Gitalyの環境で好きなコマンドを動かされるおそれがありました。
+2026年11月16日
+定例の修正（19.5.6・19.4.8・19.3.9）
+。37件（High 4件、Medium 24件、Low 9件）を修正。
+2026年11月18日
+Rubyが修正版を公開
+。正規表現と文字列の処理の脆弱性7件を直したRuby 4.0.10・3.4.13・3.3.14。
+2026年11月19日
+GitLab 19.6を公開
+（毎月の新しい版）。
+2026年11月20日
+緊急の修正（19.6.1・19.5.8・19.4.10）
+。Rubyの脆弱性 CVE-2026-132825 ほかを、同梱のRubyの更新で修正。
+11月20日の修正：Rubyの脆弱性
+GitLabの発表によると、CVE-2026-132825は、Rubyで
+文字列の大文字・小文字を変換するときに、メモリの範囲外に書き込んでしまう
+問題です。細工した文字列を変換させると、条件によってはメモリが壊れます。Rubyの開発チームは、場合によっては
+外からプログラムを動かされる（リモートコード実行）
+おそれがあるとしています。
+深刻度は、Rubyの開発チームの評価がCritical、MITRE（CVE番号を管理する団体）の評価がHigh（CVSS 7.4）です。GitLabはRubyの評価にならってCriticalとしています。また、11月20日の版には、Rubyが11月18日に公表したほかの6件の修正も入っています。
+系統
+CVE-2026-132825の対象
+移る先
+19.6
+19.6.0
+19.6.1以上
+19.5
+19.5.7以前
+19.5.8以上
+19.4
+19.4.9以前
+19.4.10以上
+19.3以前
+すべての版
+この系統の修正版はありません。19.4.10以上へ
+※GitLabは、19.4.10より前のすべての版が対象としています。19.3の最新は11月16日の19.3.9ですが、Rubyの修正は入っていません。
+※GitLab Dedicatedには、社内向けの版（19.5.7・19.4.9）で先に対策が入っていました。19.5.7・19.4.9は一般には公開されていないため、セルフマネージドでは19.5.8・19.4.10を使います。
+GitLabを更新しても直らない場合があります
+今回の修正は、GitLabに同梱しているRubyの入れ替えです。GitLabの公式のLinuxパッケージとコンテナイメージには、修正済みのRubyが入っています。一方、
+ソースコードから自分で組み立てたGitLab
+では、GitLabを動かしているRubyを
+3.3.14・3.4.13以上
+（同じ系統のもっと新しい版でも可）で入れ直す必要があります。10月の脆弱性でも同じ注意がありました。
+11月10日・16日の修正
+11月10日の緊急の修正は、GitLabに同梱しているgitの脆弱性（CVE-2026-105437、Critical）を直したものです。GitLabによると、条件によってはメモリの範囲外に書き込まれ、Gitalyの環境で好きなコマンドを動かされるおそれがありました。対象はGitLab 16.2以降の、19.3.8・19.4.6・19.5.4より前の版です。GitLabは、悪用の試みを見つけるための検知ルールも公開しています。
+11月16日の定例の修正では、37件が直りました。深刻度がHighの4件は、どれも
+ログインした利用者
+が悪用するものです。
+脆弱性
+内容
+深刻度（CVSS）
+CVE-2026-105739
+Wikiのページで、見た人のブラウザで不正なプログラム（JavaScript）を動かされるおそれ
+8.7
+CVE-2026-108153
+エラー追跡（Error Tracking）の画面で、同じく不正なJavaScriptを動かされるおそれ
+8.7
+CVE-2026-18241
+CI/CDのジョブの権限の確認のすき（競合状態）で、保護されたCI/CD変数（本番の鍵など）を読まれるおそれ
+8.2
+CVE-2026-97187
+ワークスペース機能で、GitLabとつないだKubernetesの別の場所にある秘密情報（Secret）を読まれるおそれ
+7.6
+※19.6.1・19.5.8・19.4.10に更新すれば、10日と16日の修正もまとめて入ります。
+悪用の状況（2026年11月21日時点）
+11月の修正で直った脆弱性（CVE-2026-132825、CVE-2026-105437、11月16日の4件のHigh）は、CISAのKEV（11月20日版）に載っていません。GitLabの発表にも、悪用を確認したという記載は見当たりません。IPAとJPCERT/CCの注意喚起の一覧（11月21日確認）にも、GitLabやRubyの今回の脆弱性を扱ったものは見当たりません。
+ただし、Rubyの開発チームは、一部の脆弱性について
+リモートコード実行につながる実証コード（PoC）がある
+ことを把握しているとしています。また、10月のGitLabの脆弱性（CVE-2026-97229）は、修正版の公開から約2週間半でKEVに追加されました。早めの更新をおすすめします。
+確かめて、対応する5ステップ
+GitLabをどこで使っているか確認する
+自社のサーバーやクラウド（AWSなど）に入れているのか、GitLab.comを使っているのかを確かめます。ソースコードを開発会社に預けている場合は、その会社のGitLabかもしれません。
+版と入れ方を確認する
+GitLabにログインし、「ヘルプ」から版を確かめます。公式パッケージ（Omnibus）や公式のコンテナか、ソースコードから組み立てたものかも確認しましょう。
+使っている系統の最新版に更新する
+上の表の「移る先」まで上げます。19.3以前は19.4.10以上へ。大きく版を上げるときは、GitLabが決めている途中の版（アップグレードパス）を順に通る必要があります。
+ソースから組み立てた場合はRubyも更新する
+GitLabを動かしているRubyを3.3.14・3.4.13以上で入れ直します。
+あやしい動きがないか確かめる
+見覚えのないアカウント、管理者の権限の変更、CI/CDの変数やアクセストークンの作成、Gitalyのプロセスの異常終了がないかを見ます。あやしい点があれば、トークンや鍵を作り直しましょう。
+ソースコードを開発会社に預けている場合
+開発会社のGitLabに自社のソースコードや本番の鍵を預けている場合は、次のように聞いてみてください。
+「GitLabは11月20日の修正版（19.6.1・19.5.8・19.4.10）に更新済みですか？」
+「ソースコードから組み立てたGitLabなら、Rubyも更新していますか？」
+「CI/CDに保存している本番のパスワードや鍵は、だれが見られる設定ですか？」
+Rubyで動くほかのシステムも確認を
+今回のRubyの脆弱性は、GitLabだけの問題ではありません。Ruby on Railsなど
+Rubyで作った自社のWebサービス
+でも、Rubyを4.0.10・3.4.13・3.3.14以上に更新しましょう。Rubyの開発チームによると、
+Ruby 3.2以前はサポートが終わっていて、この修正は出ません
+。正規表現の脆弱性の一部は、利用者が入力した正規表現をそのまま使うアプリで特に危険です。
+放っておくと？ 対応すると？
+そのままにした場合
+ソースコードや本番の鍵を盗まれるおそれ
+CI/CDを通じて、本番の環境まで入り込まれるおそれ
+古い系統では、修正が届かないまま残る
+更新と点検をした場合
+11月の3回分の修正がまとめて入る
+CI/CDの変数や権限の整理ができる
+次の緊急の修正にも、すぐ対応できる体制になる
+Digi Dinosにおまかせください
+Digi Dinos（ディジダイノス）は、DX、セキュリティ、システムの運用・保守を支援する会社です。ISO 27001の認証を取得しており、GitLabなどの開発基盤やサーバーの運用、24時間365日の監視（NOC）にも対応しています。日本語ができるチームがご案内します。
+GitLabの更新
+：バックアップをとり、アップグレードパスを確かめてから更新します。
+権限と秘密情報の点検
+：CI/CDの変数、アクセストークン、管理者アカウントを見直します。
+運用の引き継ぎ
+：ほかの会社が管理していたGitLabやサーバーの運用も引き継げます。
+「うちのGitLabは大丈夫？」というご相談だけでも（相談無料）
+版の確認から更新の計画まで、日本語でご案内します。
+システム引き継ぎサービス
+お問い合わせ
+よくある質問
+GitLab.comだけを使っています。何かする必要はありますか？
+GitLabによると、GitLab.comとGitLab Dedicatedはすでに修正済みで、利用者の対応は不要です。ただし、自社で用意したRunner（CI/CDのジョブを動かすサーバー）は自社の管理です。Runnerのサーバーも、OSやソフトウェアを最新に保ちましょう。
+11月16日の19.5.6に更新しました。これで十分ですか？
+いいえ。19.5.6にはRubyの修正（CVE-2026-132825）が入っていません。19.5.8以上に更新してください。
+19.3を使っています。19.3.9で大丈夫ですか？
+19.3.9にはRubyの修正が入っていません。11月20日の修正版は19.6・19.5・19.4の3系統だけなので、19.4.10以上に更新してください。
+参考・出典（2026年11月21日確認）
+GitLab「GitLab Critical Patch Release: 19.6.1, 19.5.8, 19.4.10」（2026年11月20日）
+GitLab「GitLab Patch Release: 19.5.6, 19.4.8, 19.3.9」（2026年11月16日）
+GitLab「GitLab Critical Patch Release: 19.5.4, 19.4.6, 19.3.8」（2026年11月10日）
+Ruby「Security advisories: multiple vulnerabilities in Regexp and String case conversion」（2026年11月18日）
+CISA「Known Exploited Vulnerabilities Catalog」（2026年11月20日版）
+
+===== https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-1-released/
+(status 200)
+/ 
+GitLab Critical Patch Release: 19.6.1, 19.5.8, 19.4.10
+On November 20, 2026, we released versions 19.6.1, 19.5.8, 19.4.10 for GitLab Community Edition and Enterprise Edition.
+These versions contain important bug and security fixes, and we strongly recommend that all self-managed GitLab installations be upgraded to
+one of these versions immediately.
+GitLab.com and GitLab Dedicated are already running a patched version. GitLab.com and GitLab Dedicated customers do not need to take action.
+GitLab Dedicated was previously protected through internal-only releases 19.5.7 and 19.4.9, which contained interim mitigations for these vulnerabilities; all fixes from those releases are also included in 19.5.8 and 19.4.10.
+GitLab releases fixes for vulnerabilities in patch releases. There are two types of patch releases:
+scheduled releases and ad-hoc critical patches for high-severity vulnerabilities. Scheduled releases are released twice a month on the second and fourth Wednesdays.
+For more information, please visit our 
+releases handbook
+ and 
+security FAQ
+.
+You can see all of GitLab release blog posts 
+here
+.
+We are committed to ensuring that all aspects of GitLab that are exposed to customers or that host customer data are held to
+the highest security standards. To maintain good security hygiene, it is highly recommended that all customers
+upgrade to the latest patch release for their supported version. You can read more
+best practices in securing your GitLab instance
+ in our blog post.
+Recommended Action
+We 
+strongly recommend
+ that all installations running a version affected by the issues described below are 
+upgraded to the latest version as soon as possible
+.
+When no specific deployment type (omnibus, source code, helm chart, etc.) of a product is mentioned, it means all types are affected.
+Important guidance for self-compiled GitLab installations:
+ The fix for CVE-2026-132825 is a patch to Ruby. Official GitLab Linux packages and container images already include the patched Ruby. For self-compiled installations, you must rebuild the Ruby installation used to run GitLab with Ruby 3.3.14 or 3.4.13 (or a later release in the same minor series), which include the fixes for CVE-2026-132825 and the other vulnerabilities disclosed in the 
+Ruby security advisory
+, as described in 
+Ruby
+.
+Security fixes
+Table of security fixes
+Title
+Severity
+CVE-2026-132825 (vulnerability in 
+ruby
+)
+Critical
+The severity shown reflects the Critical rating assigned by the Ruby security team in 
+GHSA-34m4-m9fh-gqp5
+. MITRE rates 
+CVE-2026-132825
+ as High (CVSS 7.4). As this is a vulnerability in Ruby rather than in GitLab’s own code, the severity is taken from the upstream advisory.
+CVE-2026-132825 (vulnerability in 
+ruby
+)
+This release addresses the security issue 
+CVE-2026-132825
+ (
+GHSA-34m4-m9fh-gqp5
+), a heap-based buffer overflow in the case conversion of strings in 
+ruby
+, by updating the version of Ruby bundled with GitLab. This issue has been remediated on GitLab.com, and in GitLab CE/EE versions 19.4.10, 19.5.8, and 19.6.1.
+In GitLab, under certain conditions, changing the case of a crafted string can result in an out-of-bounds heap write. The Ruby security team has stated that this flaw may allow remote code execution in some scenarios.
+These versions also include fixes for all of the other vulnerabilities disclosed in the Ruby security advisory 
+Multiple vulnerabilities in Regexp and String
+.
+Impacted Versions:
+ GitLab CE/EE: all versions before 19.4.10, 19.5 before 19.5.8, and 19.6 before 19.6.1
+Bug fixes
+19.6.1
+[19.6] Restore Ruby 3.3.12 regexp patches
+[19.6] Bump Ruby to 3.3.14
+Backport 19.6 release notes to 19-6-stable-ee
+[19.6] Bump GITLAB_CNG_MIRROR_REF to restore Ruby 3.3.12 patches
+[19.6] Bump Ruby to 3.3.14 and 3.4.13
+19.5.8
+[19.5] Restore Ruby 3.3.12 regexp patches
+Backport of ‘Bump webauthn gem to 3.4.4’
+Backport of ‘Count Geo secondary registries in a single pass’
+[19.5] Bump GITLAB_CNG_MIRROR_REF to restore Ruby 3.3.12 patches
+Backport: Publish the Pulp repository if the uploaded RPM is not published (19-5)
+Backport 19.5 - Bump Postgres to 18.7, 17.12
+[19.5] Stop marking the smartcard NGINX server as default_server
+19.4.10
+[19.4] Restore Ruby 3.3.12 regexp patches
+Backport of ‘Bump webauthn gem to 3.4.4’
+Backport of ‘Count Geo secondary registries in a single pass’
+[19.4] Bump GITLAB_CNG_MIRROR_REF to restore Ruby 3.3.12 patches
+Backport: Publish the Pulp repository if the uploaded RPM is not published (19-4)
+Backport 19.4 - Bump Postgres to 18.7, 17.12
+[19.4] Stop marking the smartcard NGINX server as default_server
+Important notes on upgrading
+These versions do not include any new migrations, and for multi-node deployments, 
+should not require any downtime
+.
+Please be aware that by default the Omnibus packages will stop, run migrations,
+and start again, no matter how “big” or “small” the upgrade is. This behavior
+can be changed by adding a 
+/etc/gitlab/skip-auto-reconfigure
+ file,
+which is only used for 
+upgrades
+.
+Updating
+To update, check out our 
+update page
+.
+GitLab subscriptions
+Access to GitLab Premium and Ultimate features is granted by a paid 
+subscription
+.
+Alternatively, 
+sign up for GitLab.com
+to use GitLab’s own infrastructure.
+Was this page helpful?
+Yes
+No
