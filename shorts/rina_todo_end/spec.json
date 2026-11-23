@@ -1,0 +1,106 @@
+{
+ "note": "自動ショート（2026-11-23-pm service-ms-todo-end）。0秒はTo Doの公式画像を画面いっぱい＋特大テロップ、3文目で指1本の「1分でまとめます」（使い回し）。Xの声はその記事の分が無く省略。締めは冒頭の「スマホもパソコンも」に戻る。",
+ "speed": 1.2,
+ "gap": 0.03,
+ "period_pause": 0.04,
+ "comma_max": 0.2,
+ "tail_logo": 0,
+ "lipsync": "python3",
+ "lead": 0.1,
+ "lines": [
+  {
+   "scene": "open",
+   "say": "マイクロソフトのトゥードゥー、スマホもパソコンも、終わります。",
+   "show": "MicrosoftのTo Do、スマホもパソコンも終わります。",
+   "puppet": true,
+   "se": "don"
+  },
+  {
+   "scene": "tease",
+   "say": "しかも今のリスト、次のアプリには、自動で移りません。",
+   "show": "しかも今のリスト、次のアプリには自動で移りません。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "hook",
+   "say": "このニュース、1分でまとめます。",
+   "show": "このニュース、1分でまとめます。",
+   "puppet": true,
+   "se": "ding",
+   "big": true,
+   "fixed_wav": "channel/rina_intro/60s.wav"
+  },
+  {
+   "scene": "what",
+   "say": "マイクロソフトが、じゅういちがつじゅうはちにちに発表しました。",
+   "show": "Microsoftが11月18日に発表しました。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "date",
+   "say": "終わるのは、にせんにじゅうななねん、ろくがつさんじゅうにち。",
+   "show": "終わるのは2027年6月30日。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "apps",
+   "say": "ウェブ、ウィンドウズ、マック、アイフォーン、アンドロイド、全部です。",
+   "show": "Web、Windows、Mac、iPhone、Android、全部です。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "history",
+   "say": "元はワンダーリストのチームが作った、にせんじゅうななねんからのアプリです。",
+   "show": "元はWunderlistのチームが作った、2017年からのアプリです。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "work",
+   "say": "職場や学校の人は、後継のプランナーへ。新しいマイタスクは、じゅうにがつから順次です。",
+   "show": "職場や学校の人は後継のPlannerへ。新しいマイタスクは12月から順次です。",
+   "puppet": true,
+   "se": "ding"
+  },
+  {
+   "scene": "twist",
+   "say": "ただし、個人のアカウントでは、プランナーは使えません。",
+   "show": "ただし、個人のアカウントではPlannerは使えません。",
+   "puppet": true,
+   "se": "heavy"
+  },
+  {
+   "scene": "paid",
+   "say": "有料のマイクロソフト、さんびゃくろくじゅうごを契約していても、同じです。",
+   "show": "有料のMicrosoft 365を契約していても同じです。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "export",
+   "say": "書き出しの機能は出ますが、やり方はまだ未発表です。",
+   "show": "書き出しの機能は出ますが、やり方はまだ未発表です。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "alt",
+   "say": "代わりの候補は、アップルのリマインダーや、トゥドゥイストなどです。",
+   "show": "代わりの候補は、AppleのリマインダーやTodoistなどです。",
+   "puppet": true,
+   "se": "pop"
+  },
+  {
+   "scene": "verdict",
+   "say": "あなたのスマホのトゥードゥーも、終わる前に、大事なリストだけは控えておきましょう。",
+   "show": "あなたのスマホのTo Doも、終わる前に大事なリストだけは控えておきましょう。",
+   "puppet": true,
+   "se": "ding",
+   "big": true
+  }
+ ]
+}
