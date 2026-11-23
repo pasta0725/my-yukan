@@ -9,6 +9,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # the repo t
 SRC, DATE = sys.argv[1], sys.argv[2]
 if not re.fullmatch(r"20\d\d-\d\d-\d\d(-am|-pm)?", DATE): sys.exit("edition must be YYYY-MM-DD-am or YYYY-MM-DD-pm")
 SLOT = {"am": "朝刊", "pm": "夕刊"}.get(DATE[11:], "")
+edition_day = datetime.date.fromisoformat(DATE[:10])
 DROP = set(sys.argv[3:])
 WD = "月火水木金土日"
 
@@ -44,6 +45,15 @@ for f in sorted(glob.glob(f"{SRC}/*_[ABCD].json")):
         why = ("category " + str(cat)) if cat not in CATS else ("no https source_url" if not ok(u) else
               "dropped by id" if a.get("id") in DROP else "same id" if a["id"] in seen_ids else
               "same source_url in this edition" if u in seen_urls else "already published (used.txt)" if u in used else "")
+        if not why:
+            # 記事には日付だけを保存するため、codex_check.py と同じく日単位で確認する。
+            days = 7 if cat in ("ec", "future", "other") else 3
+            try:
+                published = datetime.date.fromisoformat(str(a.get("published", ""))[:10])
+                if not 0 <= (edition_day - published).days <= days:
+                    why = f"公開日 {published} が掲載期間外（{days}日以内）"
+            except ValueError:
+                why = "公開日が不明"
         if why:
             print("SKIP", os.path.basename(f), a.get("id"), "-", why, "-", str(a.get("title", ""))[:40]); continue
         # sanitize images: https only, no dup, news-site photos <= 2
@@ -87,9 +97,8 @@ for i in range(max(CATS.values())):
 for a in arts:   # the page shows the heading 「りなの見方」 itself, so drop it if a worker wrote it into the text (Issue #3)
     for b in a.get("body", []):
         if b.get("type") == "rina": b["text"] = re.sub(r"^\s*(?:【?りなの見方】?[：:]?)\s*", "", b.get("text", ""))
-dt = datetime.date.fromisoformat(DATE[:10])
 now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec="seconds")
-ed = {"date": DATE, "label": f"{dt.month}月{dt.day}日（{WD[dt.weekday()]}）の{SLOT or '号'}", "updatedAt": now, "articles": arts}
+ed = {"date": DATE, "label": f"{edition_day.month}月{edition_day.day}日（{WD[edition_day.weekday()]}）の{SLOT or '号'}", "updatedAt": now, "articles": arts}
 json.dump(ed, open(f"{REPO}/data/{DATE}.json", "w"), ensure_ascii=False, indent=1)
 eds = sorted(set(idx.get("editions", []) + [DATE]), reverse=True)[:20]
 json.dump({"editions": eds, "updatedAt": now}, open(idx_path, "w"), ensure_ascii=False, indent=1)
