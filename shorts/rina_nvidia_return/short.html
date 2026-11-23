@@ -184,7 +184,7 @@ const S={
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // the company said "no" only six days before
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'復帰')),d-0.9);
-   calCard(370,400,340,'11月',String(cnt(u,0.1,0.5,17)),enter(u,0));
+   calCard(370,400,340,'11月','17',enter(u,0));
    if(u>t2)stamp('復帰の意向なし',CX,1010,(u-t2)/0.3,C.warn,84,-0.06);},
  // "1分でまとめます" (reused pose clip): NVIDIA's head office sign behind her, a little darker
  hook(u,d,L){abs(()=>{fullPic('hq',1.15+0.08*u/Math.max(1,d),0.45,0.5,0.35);creditAt(IMP,1000,340);bigRina(HOOK_R);});},
@@ -195,7 +195,7 @@ const S={
    if(u>t2)tagI('ジェンスン・フアン',CX,1140,(u-t2)/0.3,C.acc,'#FFFFFF',60);},
  // Nov 12: resigned
  quit(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'辞め')),d-0.8);
-   calCard(340,400,400,'2026年11月',String(cnt(u,0.1,0.5,12)),enter(u,0));
+   calCard(340,400,400,'2026年11月','12',enter(u,0));
    if(u>t2)stamp('CEOを辞任',CX,1020,(u-t2)/0.3,C.warn,80,-0.06);},
  // admitted an affair; one partner reportedly suspected as a spy; China denies
  affair(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'スパイ')),d-1.2),t3=Math.min(Math.max(t2+0.8,telHas(L,'中国')),d-0.6);
