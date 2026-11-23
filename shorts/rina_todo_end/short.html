@@ -215,15 +215,13 @@ const S={
    if(u>t2)tagI('Plannerへ',CX,1100,(u-t2)/0.3,C.acc,'#FFFFFF',64);},
  // but: personal accounts cannot use Planner
  twist(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'Planner')),d-0.9);
-   const st=ease(u/0.25);g.save();g.translate(CX,420);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-140,-52,280,104,20,C.warn);text('ただし',0,0,66,'#FFFFFF');g.restore();
-   withEnter(enter(u,0.3),()=>{person(320,700,1.1,C.brand);text('個人',320,860,60,C.text,'center',900);});
+   withEnter(enter(u,0.1),()=>{person(320,700,1.1,C.brand);});
    if(u>t2)withEnter(enter(u,t2),()=>{arrowR(450,560,690,C.bar);card(600,600,300,180,30);text('Planner',750,690,58,C.text,'center',900,260);cross(750,690,70,(u-t2-0.2)/0.3);});
-   if(u>t2+0.4)tagI('使えない',CX,1020,(u-t2-0.4)/0.3,C.warn,'#FFFFFF',72);},
+   if(u>t2+0.4)tagI('使えない',CX,960,(u-t2-0.4)/0.3,C.warn,'#FFFFFF',72);},
  // paid Microsoft 365 too
  paid(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'同じ')),d-0.7);
-   withEnter(enter(u,0),()=>{card(190,430,700,400,40,C.card2);text('Microsoft 365',CX,580,76,'#FFFFFF','center',900,620);text('Personal・Family',CX,700,48,C.sub,'center',800,600);});
-   tagI('有料',780,450,(u-0.5)/0.3,C.acc,'#FFFFFF',54);
-   if(u>t2)tagI('Plannerは使えない',CX,960,(u-t2)/0.3,C.warn,'#FFFFFF',60);},
+   withEnter(enter(u,0),()=>{card(190,430,700,330,40,C.card2);text('Microsoft 365',CX,595,76,'#FFFFFF','center',900,620);});
+   if(u>t2)tagI('Plannerは使えない',CX,900,(u-t2)/0.3,C.warn,'#FFFFFF',60);},
  // export: coming, but how is unknown
  export(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'やり方')),d-0.9);
    withEnter(enter(u,0),()=>{card(330,400,420,520,30);for(let i=0;i<4;i++){g.strokeStyle=C.brand;g.lineWidth=8;g.beginPath();g.arc(410,500+i*110,22,0,7);g.stroke();rrect(455,488+i*110,i==3?170:240,24,12,C.bar);}});
@@ -240,7 +238,7 @@ const S={
    abs(()=>{const P0=[90,300,900,500],P1=[0,0,W,H];const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
      if(kz<1)glow(CX,1250,600,C.brand,0.32);
      g.save();g.beginPath();g.roundRect(R[0],R[1],R[2],R[3],28*(1-kz));g.clip();const i=IMG.key;if(i){const s=Math.max(R[2]/i.width,R[3]/i.height)*(1.06+0.0*kz),iw=i.width*s,ih=i.height*s;g.drawImage(i,clamp(R[0]+R[2]*0.5-iw*0.5,R[0]+R[2]-iw,R[0]),clamp(R[1]+R[3]/2-ih*0.5,R[1]+R[3]-ih,R[1]),iw,ih);}g.restore();
-     if(kz<0.05)creditAt(WC,975,775);else if(kz>0.95)creditAt(WC,1000,1640);
+     if(kz<0.05)creditAt(WC,975,340);else if(kz>0.95)creditAt(WC,1000,340);
      bigRina(VERD_R);});},
 };
 const BIGS=['hook','verdict'];
