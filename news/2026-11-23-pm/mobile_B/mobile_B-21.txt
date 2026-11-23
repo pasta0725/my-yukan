@@ -1,0 +1,56 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2158136.html
+TITLE: 「Microsoft Edge 158」が公開 ～Webページを好みに作り変える「Remix」を導入／詐欺サイト対策強化、「XSLT」は次期バージョンで既定無効に
+SITE: 窓の杜
+PUBLISHED: 2026-11-20 16:36 (page: 2026-11-20T16:36:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2158/136/microsoft_edge.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/136/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/136/image2_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/136/image5_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/136/image3_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/136/image4_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2157/314/list.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0D5VMQD1F.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「Microsoft Edge 158」が公開 ～Webページを好みに作り変える「Remix」を導入
+詐欺サイト対策強化、「XSLT」は次期バージョンで既定無効に
+樽井 秀人
+2026年11月20日 16:36
+「Microsoft Edge 158」が展開中
+窓の杜から
+ダウンロード
+米Microsoftは11月19日（現地時間）、デスクトップ向け「Microsoft Edge」v158.0.4370.33を安定（Stable）チャネルでリリースした。「Edge 157」に続くメジャーアップデートとなる。
+「Edge 158」では、対応するWebページを自分好みにカスタマイズできる
+「Remix」
+が導入された（提供状況は市場やブラウザーのバージョンなどによって異なる）。個人用Microsoftアカウントまたは職場アカウントでサインインしたデスクトップ版で利用可能で、フォント、色、レイアウトを簡単なプロンプトで調整してWebページを読みやすくしたり、不足しているツールを補って使いやすくしたり、不要なものを非表示にしてすっきりさせたりできる。
+「Remix」では、外観の変更と自然言語によるカスタマイズを選べる
+カスタムRemixの初回確認画面。AIによる作成時にページ情報をMicrosoftが使用する旨が案内される
+保存したリミックスは「edge://remix/」で一覧できる。Remixはデバイス上でローカルに実行され、変更されるのは自分のブラウザー上の表示だけ。元のWebサイトや他のユーザーの表示には影響しない。
+また、悪質なWeb通知への対策も強化された。通知から誘導されたサイトが詐欺やフィッシング、マルウェアのページとして「Microsoft Defender SmartScreen」にブロックされた場合、そのサイトからの通知を自動で停止し、ユーザーへ知らせてくれる。停止されたサイトは、設定画面（edge://settings/privacy/sitePermissions/allPermissions/notifications）でいつでも確認・復元できる。
+信頼できないサイトからの通知をブロック。通知から誘導されたサイトが「Microsoft Defender SmartScreen」にブロックされた場合も、すでに許可された通知を解除して、ユーザーに知らせてくれるようになる
+そのほかにも、初回セットアップ後でも、設定画面からいつでも「Google アカウント」のデータ（パスワード、お気に入り、履歴、自動入力データ）をインポートできるようになった（Windows版のみ）。「ワークスペース」は、ワークスペースごとに別ウィンドウを開かなくても、現在のウィンドウ内で切り替えられるようになったほか、よく使うワークスペースのピン留めや、ピン留めしたワークスペースへの絵文字の割り当てにも対応した。
+設定画面からGoogleアカウントのデータをインポートできる
+なお、旧バージョンの「Workspaces V1」は「Edge 158」で既定無効となり、「Edge 159」で完全に削除される。また、「Express checkout」が廃止されたほか、
+「Performance Detector」
+も「Edge 164」で廃止される予定。
+「XSLT」は「Edge 159」で既定無効に
+「Chrome 158」
+に続き、「Microsoft Edge」でもブラウザーネイティブの「XSLT」（Extensible Stylesheet Language Transformations）が廃止される。Canary/Dev/Betaチャネルでは「Edge 157」からすでに既定で無効になっており、安定版では「Edge 159」で既定無効となる予定。
+「XSLTEnabled」ポリシーやオリジントライアルを利用すれば一時的に有効化できるが、これらも「Edge 176」で機能しなくなる。Microsoftは、「XSLT」を利用する社内アプリケーションなどを洗い出し、サーバー側での変換やJavaScriptベースの変換などへ移行するよう、IT管理者に呼びかけている。
+開発者向け機能
+Webプラットフォームに関する新機能・改善としては、WebサイトからユーザーへWebアプリのインストールを促せる
+「Web Install API」
+（navigator.install()メソッド）と、そのHTML版である<install>要素が導入された。CSSでは、<audio>/<video>要素の再生状態にマッチする疑似クラス（:playing、:paused、:bufferingなど）や、すべてのカスタムハイライトにマッチする「::highlight(*)」セレクター、配置プロパティの「flow-start」「flow-end」キーワードなどが追加されている。
+セキュリティ関連の修正
+セキュリティ関連では、ベースとなっている「Chromium」の脆弱性修正が反映されているとのこと。執筆時現在、CVE番号のリストは公開されていないが、「Chrome 158」では204件の脆弱性が修正されている。できるだけ早いアップデートが望ましい。
+関連記事
+インターネット
+Webブラウザー
+Windows
+「Google Chrome 158」が公開 ～204件の脆弱性を修正、「XSLT」サポートが終了
+デスクトップ版「Microsoft Edge」はWindows/Mac/Linuxに対応しており、現在公式サイトから無償でダウンロードできる。すでに「Microsoft Edge」を利用中の場合、待っていれば自動で更新されるが、手動での更新も可能。画面右上のメニュー（［…］アイコン）から［ヘルプとフィードバック］－［Microsoft Edge について］画面（edge://settings/help）へアクセスするとよい。
+Amazonで購入
+「Microsoft Edge」関連商品
+Amazonで購入
