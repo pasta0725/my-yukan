@@ -32,7 +32,8 @@ Since 2026-11-10 there are two editions a day: 朝刊 (ready 7:00) and 夕刊 (r
   - game_A writes stories found on 4Gamer/GAME Watch; game_B those found on ファミ通/電撃 and the makers' own announcements. Big platform numbers (console sales, total units sold, company results) belong to game_A only (2026-11-12, Issue #12: both wrote the same two stories).
   - Rules or bans about AI made by a non-AI company (an airline, a bank, a school banning AI agents or AI use) are ai, not service or other. If the main source is English, ai_D takes it; otherwise ai_A (2026-11-12, Issue #14: ai_D, service_A and other_A all wrote the same airline story).
   - A new phone, tablet or PC model (e.g. a new iPad mini) is mobile_A's if it is on ITmedia Mobile/ケータイ Watch/Apple Newsroom, otherwise mobile_B's. mobile_B never writes a model that mobile_A's sites also cover; hands-on reviews of the same model are part of that one story.
-  - A change to a service or app (a support forum closing, a feature ending) is service, never other. other is only for results, leadership, lawsuits, regulation and leaks.
+  - A change to a service or app feature or availability (a support forum closing, a feature ending) is service. Security fixes for server software (e.g. a GitLab security update) belong to other_A.
+  - ec_A covers EC trade media and public agencies. ec_B covers online shops' and payment services' own announcements. When both workers find the same store or payment service announcement, ec_B takes it.
   - The same AI feature or API from one company is ONE story even if ITmedia, Impress and the official blog all cover it: ai_A takes it if ITmedia has it, else ai_B, and ai_C only when no news site covers it yet.
   - A story that continues something in used.txt from another angle (a new outlet or detail on the same event) is the same story: skip it unless there is a real new development.
 

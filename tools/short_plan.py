@@ -32,6 +32,15 @@ def mark_period_pauses(runs, say, windows, win):
             spoken += 1
 
 
+LATIN_CAPTION_CHAR = r"[A-Za-z0-9Ａ-Ｚａ-ｚ０-９.．\-_'’+&]"
+CAPTION_WORD = re.compile(rf"{LATIN_CAPTION_CHAR}+(?: +[0-9０-９]{LATIN_CAPTION_CHAR}*)*")
+CAPTION_NAME = re.compile(rf"{LATIN_CAPTION_CHAR}+(?: +{LATIN_CAPTION_CHAR}+)*")
+
+
+def crossing_word(pattern, text, cut):
+    return next((m for m in pattern.finditer(text) if m.start() < cut < m.end()), None)
+
+
 def chunks(s):
     parts = [p for p in re.split(r"(?<=[、。！？])", s) if p.strip()]
     out = []
@@ -44,7 +53,20 @@ def chunks(s):
             c = [j for j in c if j >= 4 and len(re.sub(r"[、。]", "", p[j:])) > 3]   # no tiny leftover such as 「演奏で|きます」
             if not c and len(p) <= 18: break
             cut = max(c or [12])
-            while cut > 4 and re.match(r"[A-Za-z0-9. ]", p[cut - 1]) and re.match(r"[A-Za-z0-9. ]", p[cut]): cut -= 1  # never inside a Latin name such as Opu|s 5.5 (2026-11-10)
+            name = crossing_word(CAPTION_NAME, p, cut)
+            if name:
+                if name.start() >= 4:
+                    cut = name.start()
+                else:
+                    cut = name.end()
+                    if cut > 18:
+                        # A long name can break between words, keeping model numbers with the preceding word.
+                        words = list(CAPTION_WORD.finditer(p, name.start(), name.end()))
+                        cut = max((w.end() for w in words if w.end() <= 18), default=words[0].end())
+                        while p[cut:cut + 1] == " ":
+                            cut += 1
+                    if cut < 18 and re.match(r"[をにはがでとのもへや](?![りるれろっまんいうえ])", p[cut:]):
+                        cut += 1
             out.append(p[:cut]); p = p[cut:]
         if p:
             if len(re.sub(r"[、。]", "", p)) <= 3 and out and len(out[-1]) + len(p) <= 18: out[-1] += p  # no tiny leftovers
@@ -58,17 +80,21 @@ def caption_warnings(lines):
     for i, line in enumerate(lines, 1):
         if line.get("big") or line.get("scene") in ("open", "intro", "verdict"):
             continue
-        for piece in chunks(line["show"]):
+        pieces = chunks(line["show"])
+        for left, right in zip(pieces, pieces[1:]):
+            if crossing_word(CAPTION_WORD, left + right, len(left)):
+                yield i, f"{left}｜{right}", "は英数字の途中で字幕が切れています。"
+        for piece in pieces:
             text = re.sub(r"[、。]$", "", piece)
             if len(text) >= 7 and polite_phrase.fullmatch(text) and not particle_break.search(text[1:]):
-                yield i, text
+                yield i, text, "は吹き出しで言葉の途中に改行が入ることがあります。"
 
 
 if len(sys.argv) == 3 and sys.argv[1] == "--check-captions":
     with open(sys.argv[2], encoding="utf-8") as f:
         lines = json.load(f)["lines"]
-    for i, text in caption_warnings(lines):
-        print(f"台本{i}行目「{text}」は吹き出しで言葉の途中に改行が入ることがあります。")
+    for i, text, message in caption_warnings(lines):
+        print(f"台本{i}行目「{text}」{message}")
     sys.exit(0)
 
 
@@ -83,8 +109,17 @@ if sys.argv[1:] == ["--selftest"]:
     with open("shorts/rina_donki_ai/spec.json", encoding="utf-8") as f:
         line = next(line for line in json.load(f)["lines"] if line["scene"] == "what")
     original = {**line, "show": line["show"].replace("作りました", "生み出しました")}
-    assert list(caption_warnings([original])) == [(1, "生み出しました")]
+    assert [(i, text) for i, text, _ in caption_warnings([original])] == [(1, "生み出しました")]
     assert not list(caption_warnings([line, {**original, "big": True}]))
+    with open("shorts/rina_todo_end/spec.json", encoding="utf-8") as f:
+        show = next(line["show"] for line in json.load(f)["lines"] if "Microsoft 365を" in line["show"])
+    assert chunks(show.replace("を、", "を")) == ["有料のMicrosoft 365を", "契約していても同じです。"]
+    assert chunks("このXbox Game Pass Ultimateを使っています。") == [
+        "このXbox Game Pass ", "Ultimateを", "使っています。",
+    ]
+    assert crossing_word(CAPTION_WORD, "有料のMicrosoft 365を", len("有料のM"))
+    assert crossing_word(CAPTION_WORD, "有料のMicrosoft 365を", len("有料のMicrosoft 3"))
+    assert not crossing_word(CAPTION_WORD, "有料のMicrosoft 365を", len("有料のMicrosoft 365"))
     sys.exit(0)
 
 import numpy as np
