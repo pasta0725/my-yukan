@@ -1,0 +1,242 @@
+===== https://forest.watch.impress.co.jp/docs/serial/yajiuma/2158241.html
+(status 200)
+やじうまの杜
+「httpS://」だと暗号化されず平文で送信……「PHP」に約20年潜んでいた脆弱性が解決
+ 問題はいたってシンプル、なんともはや…… 
+樽井 秀人
+2026年11月20日 18:17
+ 　「やじうまの杜」では、ニュース・レビューにこだわらない幅広い話題をお伝えします。 
+「PHP」のセキュリティアドバイザリ「GHSA-f6gg-rchx-xw8j」
+ 　スクリプト言語「PHP」で
+昨晩実施されたセキュリティアップデート
+では、20年以上も見逃されていた意外な欠陥が修正されていたとのこと。たとえばPHPコードの「file_get_contents()」などに渡すURLを「httpS://……」「HTTPS://……」などと書いてしまうと、暗号化されずに平文で送られてしまうのだそうです。 
+Oh boy … PHP sent clear text data when you used uppercased S in httpS:// in a protocol handler 🙈🙈
+file_get_contents('HTTPS://…') skipped TLS: tokens, POST bodies and FTPS logins went out unencrypted!
+Fixed today in 8.2.36, 8.3.37, 8.4.28, 8.5.13 & 8.6.0.
+pic.twitter.com/5axztDHUu0
+— m@ttias ⚡️ (@mattiasgeniar)
+November 19, 2026
+「GitHub」で公開されているアドバイザリ
+によると、「PHP」のHTTP/FTPストリームラッパーはURLのスキーム（「https」などの部分）を大文字・小文字の区別なく受け付けます。しかし、TLSで暗号化するかどうかは決まった位置に小文字の「s」があるかどうかで判定していたそうです。大文字は見逃してしまうわけです。 
+ 　そのため、「HTTPS://」「httpS://」「FTPS://」のようにURLスキーム末尾の「S」が大文字になっていると、暗号化なしのHTTP/FTPで通信してしまっていました。 
+ 　「file_get_contents()」や「fopen()」などでこうしたURLを開くと、パスワードや認証トークン、POSTで送るデータ、転送するファイルなどが暗号化されずにネットワークを流れます。リダイレクト先のURLも同様で、HTTPSの接続から307リダイレクトで大文字の「HTTPS://」へ飛ばされると、POSTのデータや、リダイレクト時に引き継がれた認証ヘッダーが平文で送られてしまいます。 
+ 　この脆弱性は
+「CVE-2026-128064」
+として追跡されており、深刻度の評価は4段階中上から2番目の「High」。悪用には、大文字を含むURLがストリームラッパーに渡ること、そして攻撃者が通信を盗み見られる立場にあることが必要ですが、パスワードや認証トークンなどが漏洩するおそれがあります。 
+ 　修正版はv8.6.0、v8.5.13、v8.4.28、v8.3.37、v8.2.36。すぐに更新できない場合は、ストリーム関数に渡す前にスキームを小文字にそろえること、自動リダイレクトを無効化してリダイレクト先を検証・正規化することが回避策として案内されています。 
+ 　この問題はとてもシンプルですが、アプリケーションが渡すURLについては「PHP 5.2.0」（2006年11月リリース）から、リダイレクトに至っては「PHP 4.3.0」（2002年12月リリース）から存在していたとのこと。なんともはや……。 
+Amazonで購入
+「PHP」関連商品
+Amazonで購入
+
+===== https://asec.ahnlab.com/en/96678/
+(status 200)
+Overview
+A security update addressing multiple vulnerabilities in PHP has been released. Affected Versions include PHP 8.2.0 through 8.2.35, 8.3.0 through 8.3.35, 8.4.0 through 8.4.27, and 8.5.0 through 8.5.12.
+Key Points
+The resolved vulnerabilities include a remote code execution vulnerability caused by a mismatch in PHP session serialization methods (CVE-2026-115560), a remote code execution vulnerability caused by partial overwriting of PHP session files (CVE-2026-126714), and a denial-of-service vulnerability (CVE-2026-127960) arising from the processing of PHP HTTP response headers.
+Additionally, a vulnerability involving the exposure of plaintext information during PHP’s processing of HTTPS and FTPS URLs (CVE-2026-128064), a vulnerability that allows signature verification to be bypassed due to a downgrade in the PHAR signing algorithm (CVE-2026-128090), and a use-after-free vulnerability occurring during the processing of PHP error trace information (CVE-2026-129182) have also been fixed.
+An HTTP request smuggling vulnerability (CVE-2026-129289) in PHP-FPM (High-Performance PHP Execution Environment), a local privilege escalation vulnerability caused by using the service after it has been disabled (CVE-2026-129291), and a cross-site scripting vulnerability occurring on the status page (CVE-2026-129292).
+In addition, there is an input validation vulnerability (CVE-2026-129438) occurring during PHP URI serialization processing, a remote code execution vulnerability (CVE-2026-129474) occurring during magic method error backtracing, a use-after-free vulnerability occurring during session termination processing (CVE-2026-129481), a remote code execution vulnerability caused by a use-after-free during time zone cache processing (CVE-2026-129496), a double-free vulnerability occurring during DOM XML serialization (CVE-2026-129501), a use-after-free vulnerability occurring in SOAP (Web Services Communication Specification) (CVE-2026-129506), an out-of-bounds memory read and write vulnerability occurring during PHP-CGI PATH_INFO processing (CVE-2026-129538), an information disclosure vulnerability in SOAP (CVE-2026-15353), and an integer overflow vulnerability in the uriparser library’s URI query processing (CVE-2026-48841) have been resolved.
+Response
+Updating to PHP 8.2.36 or later, 8.3.37 or later, 8.4.28 or later, or 8.5.13 or later will apply the Vulnerability Patch.
+Tags:
+CVE-2026-115560
+CVE-2026-126714
+CVE-2026-127960
+CVE-2026-128064
+CVE-2026-128090
+CVE-2026-129182
+CVE-2026-129289
+CVE-2026-129291
+CVE-2026-129292
+CVE-2026-129438
+CVE-2026-129474
+CVE-2026-129481
+CVE-2026-129496
+CVE-2026-129501
+CVE-2026-129506
+CVE-2026-129538
+CVE-2026-15353
+CVE-2026-48841
+PHP
+
+===== https://data-litmus.com/articles/software/2026-11-20-php-mixedcase-https-plaintext/
+(status 200)
+この記事には Amazon アソシエイトのリンクを含みます。
+PHPで外部のAPIからデータを取るとき、
+file_get_contents($url)
+と書くことがある。
+$url
+が
+https://
+で始まっていれば、通信は暗号化されると思っていないだろうか。自分もそう思っていた一人だ。
+ところが2026年11月19日、PHP開発チームが
+セキュリティアドバイザリ
+を公開した。スキームを
+HTTPS://
+や
+FTPS://
+のように大文字で書くと、暗号化されないまま通信していたことを明らかにしたのだ。影響は
+PHP 5.2.0(2006年11月リリース)
+まで遡る、約20年来の問題だった。
+気になるのは、同じ「https」という文字列なのに、なぜ大文字だけ暗号化が外れるのかだ。そして、なぜこれほど長く見過ごされてきたのか、という点でもある。
+見た目は同じでも中身は別
+自分の書いたURLの大文字小文字を、普段どれだけ気にしているだろうか。
+file_get_contents("https://example.com/")
+は、エラーにならずレスポンスを返す。
+file_get_contents("HTTPS://example.com/")
+も、見た目はまったく同じように動く。PHPのストリームラッパー(URLのスキームごとに通信方法を振り分ける内部の仕組み)が、スキームを大文字小文字の区別なく認識するからだ。
+書き方
+見た目の挙動
+実際の通信
+https://example.com/
+正常にデータを取得
+TLSで暗号化
+HTTPS://example.com/
+正常にデータを取得
+暗号化されない平文
+日本語では
+窓の杜のやじうまの杜
+が現象を紹介しているが、判定の中身までは踏み込んでいない。
+GitHub Security Advisoryの説明
+によれば、原因はTLSを有効にするかどうかの判定方法にある。ラッパーはスキームの受け付けこそ緩いが、TLSを有効にするかどうかは「決まった位置に小文字の
+s
+があるか」だけを見ていた。URLとして通るかどうかの判定と、鍵をかけるかどうかの判定が、別の基準で動いていたことになる。この条件がかみ合わなかった場合、トークンやCookie、POSTデータ、FTPのログイン情報、ファイルの中身までもが平文でネットワーク上を流れる。
+受付は緩く暗号化判定は厳格
+同じ「https」という文字列なのに、片方の処理は大文字小文字を気にしない。もう片方だけが、決まった位置の小文字を律儀に探す。設計として最初から統一されていたとは考えにくい。別の場所に実装された2つの判定ロジックが、たまたまずれていたという方が実情に近いはずだ。
+CVE-2026-128064
+として登録されたCVSSの評価を見ると、この脆弱性の性質がよく分かる。攻撃者にできること・できないことは、次のように分かれている。
+できる: 暗号化されるはずだった通信の中身を読み取る(機密性への影響)
+できない: データを書き換える、サービスを止める(完全性・可用性への影響は無い)
+ベーススコアは8.2(HIGH)、該当するCWEはCWE-319(平文での機微情報送信)だった。
+ただし、この脆弱性には攻撃の前提条件がある。攻撃者が通信の経路を観測できる立場にいることが条件で、同じネットワーク上の第三者や、経路上の通信事業者がこれに当たる。裏を返せば、観測できる立場にさえいれば、特別な技術や事前の認証情報なしに読み取れるということでもある。
+自分が引っかかったのは、ここまで基本的な処理に、これほど長く見過ごされた非対称性が残っていた点だ。URLの大文字小文字を区別しないという受け入れ方自体は、
+RFC 3986
+が定める標準的な扱いに沿っている。同文書は「スキームは大文字小文字を区別しない」「実装は大文字を小文字と同等に受け入れるべき」としている。
+暗号化の判定だけが、この標準的な緩さに追従していなかった
+。そこに違和感がある。
+普段、URLのスキームをわざわざ大文字で書くことはまずない。ただし、次のような経路では事情が違う。
+設定ファイルや環境変数に書かれたURLを、そのまま使う場合
+外部APIのレスポンスに含まれるURLを、そのまま使う場合
+こうした経路に、大文字のスキームが紛れ込んでいないとは言い切れない。
+リダイレクトでも抜け穴に
+自分でURLを大文字で書いていなくても、巻き込まれる経路がもう一つある。
+GitHub Security Advisory
+は、こうした経路も説明している。有効なHTTPS接続から307リダイレクトで、大文字の
+HTTPS://
+へ転送された場合も同じ問題が起きるという。
+307リダイレクトは、POSTボディやメソッドを保ったまま追従する仕様だ。そのため認証ヘッダーやフォームの送信内容まで保持されたまま、平文の接続へ送り出されてしまう。転送先のサーバーが平文の接続を拒否したとしても遅い。拒否される前に、データ自体は盗聴できる経路に乗ってしまっている。
+最初のケースと、リダイレクトのケースでは、防ぎ方が異なる。
+ケース
+URLを決めるのは誰か
+防ぐ方法
+自分で書いたURL
+自分
+スキームを小文字で書く
+リダイレクト先
+相手のサーバー
+リダイレクト先を検証・正規化する
+リダイレクトのケースでは、読み込み先のAPIが何らかの理由で大文字のLocationヘッダーを返すことがある。その場合、受け取る側は何も変えていないのに平文で送信することになる。外部のAPIやリンク先を自動で追跡する処理ほど、この経路にさらされやすい。
+影響範囲とすべきこと
+PHP公式ChangeLog
+と
+GitHub Security Advisory
+によると、影響を受けるバージョンと修正版は次のとおりだった。
+系統
+影響を受ける範囲
+修正バージョン
+8.2系
+8.2.36未満
+8.2.36
+8.3系
+8.3.0以上8.3.37未満
+8.3.37
+8.4系
+8.4.0以上8.4.28未満
+8.4.28
+8.5系
+8.5.0以上8.5.13未満
+8.5.13
+いずれも2026年11月19日付の定期セキュリティリリースで修正され、新系統の8.6.0にも同じ修正が反映されている。
+PHP公式ChangeLog
+を確認すると、8.6.0は数字が8.5から繰り上がった新系統の最初の安定版だ。今回の修正は、その初回リリースと同じ日に重なった形になる。
+窓の杜の記事
+によれば、同日のリリースではこの問題を含めて合計17件の脆弱性が修正された。内訳はCritical 7件・High 4件・Medium 6件で、今回の平文送信の問題はHighの扱いだった。Criticalの7件は別系統の問題で、リモートコード実行につながりうるものだという。
+HTTPだけでなくFTPのラッパーも同じ構造の判定を使っている。そのため
+FTPS://
+と大文字で書いた場合も、暗号化されたFTPSのつもりが平文のFTPになる。
+対応の基本は、該当バージョンへの更新になる
+。すぐに更新できない場合、アドバイザリは次の2つの緩和策を挙げている。
+スキームを
+https://
+や
+ftps://
+のように小文字で書く
+自動リダイレクトを無効にし、リダイレクト先のURLを自分で検証・正規化してから追従する
+最初のURLだけを小文字にしても、リダイレクトの追従先までは保護できない点には注意がいる。
+まとめ
+PHPは2026年11月19日のセキュリティリリースで、URLスキームの大文字小文字によってTLSが有効にならない問題を修正した。登録番号はCVE-2026-128064だ。スキームの受け付けは大文字小文字を区別しないのに、暗号化を有効にするかどうかの判定だけが、小文字の「s」を固定位置で探していた。この食い違いが、約20年にわたって残っていた。
+307リダイレクトを通じて、自分でURLを書いていなくても平文通信に巻き込まれる経路がある点も分かった。対象は8.2系から8.5系までの全系統で、8.2.36・8.3.37・8.4.28・8.5.13、またはこれらを含む8.6.0への更新で直る。更新までの間は、スキームを小文字で統一し、リダイレクト先を検証することで対応できる。
+この記事を共有
+Xで共有
+リンクをコピー
+TLSや暗号化通信の仕組みをもっと学びたい人向け
+この記事の山場である「暗号化するかどうかの判定」の中身を、プロトコルの標準から理解し直せる
+Amazonで探す
+特定の本を勧めるものではありません。検索結果から、いまの版と目次を確かめて選んでください。
+コメント
+気づきや感想をどうぞ
+記事への補足や、読んで考えたことをお寄せください。個人情報や、他の人を傷つける内容の投稿はお控えください。
+投稿にはGoogleログインが必要です。
+Googleでログイン
+投稿にはGoogleアカウントの表示名が公開されます。メールアドレスは取得・公開しません。
+コメントを読み込んでいます…
+もう一度読み込む
+以前のコメントを表示
+
+===== https://www.zend.com/php-security-center/CVE-2026-128064
+(status 200)
+CVE-2026-128064
+Uppercase S in scheme removes TLS encryption in stream functions
+Publication Date
+2026-11-19
+Severity
+Moderate
+Type
+Information Disclosure
+Affected PHP Versions
+7.2.0-7.2.34
+7.3.0-7.3.33
+7.4.0-7.4.33
+8.1.0-8.1.34
+8.2.0-8.2.35
+8.3.0-8.3.36
+8.4.0-8.4.27
+8.5.0-8.5.12
+Fixed Product Versions
+ZendPHP 7.2
+ZendPHP 7.3
+ZendPHP 7.4
+ZendPHP 8.1
+ZendPHP 8.2
+ZendPHP 8.3
+ZendPHP 8.4
+ZendPHP 8.5
+ZendServer 2021.4.10
+CVE Details
+PHP's HTTP and FTP stream wrappers can send data without encryption when an HTTPS or FTPS URL has an uppercase S in its scheme, for example 
+HTTPS://
+, 
+httpS://
+ or 
+FTPS://
+. Applications using 
+file_get_contents()
+, 
+fopen()
+ or other stream functions may therefore expose passwords, authentication tokens, request bodies or transferred files to an attacker able to observe the network traffic.
+Recommendations
+Normalize URLs provided to stream functions such that the scheme is all lowercase. If possible, update to a known patched version of PHP.
+Direct link to CVE-2026-128064 >
+< View all CVEs
