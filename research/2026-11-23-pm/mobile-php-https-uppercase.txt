@@ -1,0 +1,618 @@
+===== https://www.sans.org/newsletters/newsbites/xxviii-87
+(status 200)
+It’s important to note that the exploit is application specific, meaning this is going to take a bit of work to exploit. As Johannes said, this isn’t an INFOCON yellow or red alert — merely condition green, meaning the internet is in its usual “broken" state.  Work your normal 9-5 day, and what you need to do is make sure you’ve queued up the Java updates, particularly to your low-risk, auto-update patching tiers. Earlier versions of this alert indicated updates were not available yet; the November 20 CPU from Oracle includes the updated JVMs. A mitigation is to disable AVX-512 on 64 bit JVMs on X86-64 hosts _only_; as this is one of those where the mitigation works in certain configurations, I’d focus on updating the JVM instead. Then have your threat hunters check for the IoCs in the SentinelOne blog. You may wish to implement JVM behavioral monitoring to detect unusual activities conducted by your JVM. Don’t blow the weekend working this one.
+
+===== https://asec.ahnlab.com/en/96678/
+(status 200)
+Overview
+A security update addressing multiple vulnerabilities in PHP has been released. Affected Versions include PHP 8.2.0 through 8.2.35, 8.3.0 through 8.3.35, 8.4.0 through 8.4.27, and 8.5.0 through 8.5.12.
+Key Points
+The resolved vulnerabilities include a remote code execution vulnerability caused by a mismatch in PHP session serialization methods (CVE-2026-115560), a remote code execution vulnerability caused by partial overwriting of PHP session files (CVE-2026-126714), and a denial-of-service vulnerability (CVE-2026-127960) arising from the processing of PHP HTTP response headers.
+Additionally, a vulnerability involving the exposure of plaintext information during PHP’s processing of HTTPS and FTPS URLs (CVE-2026-128064), a vulnerability that allows signature verification to be bypassed due to a downgrade in the PHAR signing algorithm (CVE-2026-128090), and a use-after-free vulnerability occurring during the processing of PHP error trace information (CVE-2026-129182) have also been fixed.
+An HTTP request smuggling vulnerability (CVE-2026-129289) in PHP-FPM (High-Performance PHP Execution Environment), a local privilege escalation vulnerability caused by using the service after it has been disabled (CVE-2026-129291), and a cross-site scripting vulnerability occurring on the status page (CVE-2026-129292).
+In addition, there is an input validation vulnerability (CVE-2026-129438) occurring during PHP URI serialization processing, a remote code execution vulnerability (CVE-2026-129474) occurring during magic method error backtracing, a use-after-free vulnerability occurring during session termination processing (CVE-2026-129481), a remote code execution vulnerability caused by a use-after-free during time zone cache processing (CVE-2026-129496), a double-free vulnerability occurring during DOM XML serialization (CVE-2026-129501), a use-after-free vulnerability occurring in SOAP (Web Services Communication Specification) (CVE-2026-129506), an out-of-bounds memory read and write vulnerability occurring during PHP-CGI PATH_INFO processing (CVE-2026-129538), an information disclosure vulnerability in SOAP (CVE-2026-15353), and an integer overflow vulnerability in the uriparser library’s URI query processing (CVE-2026-48841) have been resolved.
+Response
+Updating to PHP 8.2.36 or later, 8.3.37 or later, 8.4.28 or later, or 8.5.13 or later will apply the Vulnerability Patch.
+Tags:
+CVE-2026-115560
+CVE-2026-126714
+CVE-2026-127960
+CVE-2026-128064
+CVE-2026-128090
+CVE-2026-129182
+CVE-2026-129289
+CVE-2026-129291
+CVE-2026-129292
+CVE-2026-129438
+CVE-2026-129474
+CVE-2026-129481
+CVE-2026-129496
+CVE-2026-129501
+CVE-2026-129506
+CVE-2026-129538
+CVE-2026-15353
+CVE-2026-48841
+PHP
+
+===== https://data-litmus.com/articles/software/2026-11-20-php-mixedcase-https-plaintext/
+(status 200)
+この記事には Amazon アソシエイトのリンクを含みます。
+PHPで外部のAPIからデータを取るとき、
+file_get_contents($url)
+と書くことがある。
+$url
+が
+https://
+で始まっていれば、通信は暗号化されると思っていないだろうか。自分もそう思っていた一人だ。
+ところが2026年11月19日、PHP開発チームが
+セキュリティアドバイザリ
+を公開した。スキームを
+HTTPS://
+や
+FTPS://
+のように大文字で書くと、暗号化されないまま通信していたことを明らかにしたのだ。影響は
+PHP 5.2.0(2006年11月リリース)
+まで遡る、約20年来の問題だった。
+気になるのは、同じ「https」という文字列なのに、なぜ大文字だけ暗号化が外れるのかだ。そして、なぜこれほど長く見過ごされてきたのか、という点でもある。
+見た目は同じでも中身は別
+自分の書いたURLの大文字小文字を、普段どれだけ気にしているだろうか。
+file_get_contents("https://example.com/")
+は、エラーにならずレスポンスを返す。
+file_get_contents("HTTPS://example.com/")
+も、見た目はまったく同じように動く。PHPのストリームラッパー(URLのスキームごとに通信方法を振り分ける内部の仕組み)が、スキームを大文字小文字の区別なく認識するからだ。
+書き方
+見た目の挙動
+実際の通信
+https://example.com/
+正常にデータを取得
+TLSで暗号化
+HTTPS://example.com/
+正常にデータを取得
+暗号化されない平文
+日本語では
+窓の杜のやじうまの杜
+が現象を紹介しているが、判定の中身までは踏み込んでいない。
+GitHub Security Advisoryの説明
+によれば、原因はTLSを有効にするかどうかの判定方法にある。ラッパーはスキームの受け付けこそ緩いが、TLSを有効にするかどうかは「決まった位置に小文字の
+s
+があるか」だけを見ていた。URLとして通るかどうかの判定と、鍵をかけるかどうかの判定が、別の基準で動いていたことになる。この条件がかみ合わなかった場合、トークンやCookie、POSTデータ、FTPのログイン情報、ファイルの中身までもが平文でネットワーク上を流れる。
+受付は緩く暗号化判定は厳格
+同じ「https」という文字列なのに、片方の処理は大文字小文字を気にしない。もう片方だけが、決まった位置の小文字を律儀に探す。設計として最初から統一されていたとは考えにくい。別の場所に実装された2つの判定ロジックが、たまたまずれていたという方が実情に近いはずだ。
+CVE-2026-128064
+として登録されたCVSSの評価を見ると、この脆弱性の性質がよく分かる。攻撃者にできること・できないことは、次のように分かれている。
+できる: 暗号化されるはずだった通信の中身を読み取る(機密性への影響)
+できない: データを書き換える、サービスを止める(完全性・可用性への影響は無い)
+ベーススコアは8.2(HIGH)、該当するCWEはCWE-319(平文での機微情報送信)だった。
+ただし、この脆弱性には攻撃の前提条件がある。攻撃者が通信の経路を観測できる立場にいることが条件で、同じネットワーク上の第三者や、経路上の通信事業者がこれに当たる。裏を返せば、観測できる立場にさえいれば、特別な技術や事前の認証情報なしに読み取れるということでもある。
+自分が引っかかったのは、ここまで基本的な処理に、これほど長く見過ごされた非対称性が残っていた点だ。URLの大文字小文字を区別しないという受け入れ方自体は、
+RFC 3986
+が定める標準的な扱いに沿っている。同文書は「スキームは大文字小文字を区別しない」「実装は大文字を小文字と同等に受け入れるべき」としている。
+暗号化の判定だけが、この標準的な緩さに追従していなかった
+。そこに違和感がある。
+普段、URLのスキームをわざわざ大文字で書くことはまずない。ただし、次のような経路では事情が違う。
+設定ファイルや環境変数に書かれたURLを、そのまま使う場合
+外部APIのレスポンスに含まれるURLを、そのまま使う場合
+こうした経路に、大文字のスキームが紛れ込んでいないとは言い切れない。
+リダイレクトでも抜け穴に
+自分でURLを大文字で書いていなくても、巻き込まれる経路がもう一つある。
+GitHub Security Advisory
+は、こうした経路も説明している。有効なHTTPS接続から307リダイレクトで、大文字の
+HTTPS://
+へ転送された場合も同じ問題が起きるという。
+307リダイレクトは、POSTボディやメソッドを保ったまま追従する仕様だ。そのため認証ヘッダーやフォームの送信内容まで保持されたまま、平文の接続へ送り出されてしまう。転送先のサーバーが平文の接続を拒否したとしても遅い。拒否される前に、データ自体は盗聴できる経路に乗ってしまっている。
+最初のケースと、リダイレクトのケースでは、防ぎ方が異なる。
+ケース
+URLを決めるのは誰か
+防ぐ方法
+自分で書いたURL
+自分
+スキームを小文字で書く
+リダイレクト先
+相手のサーバー
+リダイレクト先を検証・正規化する
+リダイレクトのケースでは、読み込み先のAPIが何らかの理由で大文字のLocationヘッダーを返すことがある。その場合、受け取る側は何も変えていないのに平文で送信することになる。外部のAPIやリンク先を自動で追跡する処理ほど、この経路にさらされやすい。
+影響範囲とすべきこと
+PHP公式ChangeLog
+と
+GitHub Security Advisory
+によると、影響を受けるバージョンと修正版は次のとおりだった。
+系統
+影響を受ける範囲
+修正バージョン
+8.2系
+8.2.36未満
+8.2.36
+8.3系
+8.3.0以上8.3.37未満
+8.3.37
+8.4系
+8.4.0以上8.4.28未満
+8.4.28
+8.5系
+8.5.0以上8.5.13未満
+8.5.13
+いずれも2026年11月19日付の定期セキュリティリリースで修正され、新系統の8.6.0にも同じ修正が反映されている。
+PHP公式ChangeLog
+を確認すると、8.6.0は数字が8.5から繰り上がった新系統の最初の安定版だ。今回の修正は、その初回リリースと同じ日に重なった形になる。
+窓の杜の記事
+によれば、同日のリリースではこの問題を含めて合計17件の脆弱性が修正された。内訳はCritical 7件・High 4件・Medium 6件で、今回の平文送信の問題はHighの扱いだった。Criticalの7件は別系統の問題で、リモートコード実行につながりうるものだという。
+HTTPだけでなくFTPのラッパーも同じ構造の判定を使っている。そのため
+FTPS://
+と大文字で書いた場合も、暗号化されたFTPSのつもりが平文のFTPになる。
+対応の基本は、該当バージョンへの更新になる
+。すぐに更新できない場合、アドバイザリは次の2つの緩和策を挙げている。
+スキームを
+https://
+や
+ftps://
+のように小文字で書く
+自動リダイレクトを無効にし、リダイレクト先のURLを自分で検証・正規化してから追従する
+最初のURLだけを小文字にしても、リダイレクトの追従先までは保護できない点には注意がいる。
+まとめ
+PHPは2026年11月19日のセキュリティリリースで、URLスキームの大文字小文字によってTLSが有効にならない問題を修正した。登録番号はCVE-2026-128064だ。スキームの受け付けは大文字小文字を区別しないのに、暗号化を有効にするかどうかの判定だけが、小文字の「s」を固定位置で探していた。この食い違いが、約20年にわたって残っていた。
+307リダイレクトを通じて、自分でURLを書いていなくても平文通信に巻き込まれる経路がある点も分かった。対象は8.2系から8.5系までの全系統で、8.2.36・8.3.37・8.4.28・8.5.13、またはこれらを含む8.6.0への更新で直る。更新までの間は、スキームを小文字で統一し、リダイレクト先を検証することで対応できる。
+この記事を共有
+Xで共有
+リンクをコピー
+TLSや暗号化通信の仕組みをもっと学びたい人向け
+この記事の山場である「暗号化するかどうかの判定」の中身を、プロトコルの標準から理解し直せる
+Amazonで探す
+特定の本を勧めるものではありません。検索結果から、いまの版と目次を確かめて選んでください。
+コメント
+気づきや感想をどうぞ
+記事への補足や、読んで考えたことをお寄せください。個人情報や、他の人を傷つける内容の投稿はお控えください。
+投稿にはGoogleログインが必要です。
+Googleでログイン
+投稿にはGoogleアカウントの表示名が公開されます。メールアドレスは取得・公開しません。
+コメントを読み込んでいます…
+もう一度読み込む
+以前のコメントを表示
+
+===== https://www.zend.com/php-security-center/CVE-2026-128064
+(status 200)
+CVE-2026-128064
+Uppercase S in scheme removes TLS encryption in stream functions
+Publication Date
+2026-11-19
+Severity
+Moderate
+Type
+Information Disclosure
+Affected PHP Versions
+7.2.0-7.2.34
+7.3.0-7.3.33
+7.4.0-7.4.33
+8.1.0-8.1.34
+8.2.0-8.2.35
+8.3.0-8.3.36
+8.4.0-8.4.27
+8.5.0-8.5.12
+Fixed Product Versions
+ZendPHP 7.2
+ZendPHP 7.3
+ZendPHP 7.4
+ZendPHP 8.1
+ZendPHP 8.2
+ZendPHP 8.3
+ZendPHP 8.4
+ZendPHP 8.5
+ZendServer 2021.4.10
+CVE Details
+PHP's HTTP and FTP stream wrappers can send data without encryption when an HTTPS or FTPS URL has an uppercase S in its scheme, for example 
+HTTPS://
+, 
+httpS://
+ or 
+FTPS://
+. Applications using 
+file_get_contents()
+, 
+fopen()
+ or other stream functions may therefore expose passwords, authentication tokens, request bodies or transferred files to an attacker able to observe the network traffic.
+Recommendations
+Normalize URLs provided to stream functions such that the scheme is all lowercase. If possible, update to a known patched version of PHP.
+Direct link to CVE-2026-128064 >
+< View all CVEs
+
+===== https://www.php.net/ChangeLog-8.php#8.5.13
+(status 200)
+PHP 8.6.0 Released!
+PHP 8 ChangeLog
+8.6
+ | 
+8.5
+ | 
+8.4
+ | 
+8.3
+ | 
+8.2
+ | 
+8.1
+ | 
+8.0
+Version 8.6.0
+19 Nov 2026
+Core:
+Fix potential ABI incompatibility when adding fields in patches by adding padding to globals.
+Fix function and constant imports in compile_to_ast and add support for grouping.
+Fixed bug 
+GH-24668
+ (zend_set_local_var() leaks the previous value of an existing CV).
+Fixed unmapping of an unrelated range when the aligned chunk mmap fails (Marti2203).
+Fixed bug 
+GH-25023
+ (ZEND_CONTAINER_OF() fails to compile with -std=c11).
+Fixed AST printing dropping final on class constants and properties, and abstract on properties.
+Fixed AST export of readonly anonymous classes dropping the readonly modifier.
+Fixed memory leak of a duplicate named argument in new in initializer.
+Fixed bug 
+GH-25061
+ ($x = $x - 1 on null is optimized to PRE_DEC).
+Fixed first-class callables to static methods in trait constant expressions resolving to the method of the first using class and bypassing visibility checks.
+Fixed bug 
+GH-24184
+ (System ID not being reinitialized after an Apache graceful restart, potentially causing incompatible OPcache file cache entries to be reused).
+Fixed memory leak when an exception already contains the pending exception in its previous chain.
+Fixed bug 
+GH-23979
+ (Nullsafe operator must not flush delayed oplines of an enclosing function).
+Fixed memory manager keeping a block reallocated to exactly the size of the next smaller bin in its larger bin, which efree_size() then freed into the wrong one.
+Fix throwing behaviour with recursive arrays in VM.
+Fixed skipped catch block when switching fibers during exception unwinding (Nicolas Grekas)
+Fix escape analysis for objects implementing ArrayAccess.
+Fixed 
+GH-23921
+ (Fibers start with error_reporting = 0 when the error_reporting INI directive is not set).
+Deprecated using "let" or "is" as the name of a class, function, or constant, and as an alias in class_alias() and use declarations.
+Deprecated using "_" as a constant name and as an alias for a class or constant in use declarations.
+Fixed incorrect internal pointer and foreach iterator positions when compacting arrays with holes.
+Fix handling of references to typed properties during unserialization of various internal classes.
+Fixed bug 
+GH-23752
+ (Use scoped diagnostic suppression for the global register declarations so the caller's -Wvolatile-register-var state is restored).
+Fixed OSS-Fuzz #538730793 (Assertion failure when returning by-ref from closure invoke).
+Fixed OSS-Fuzz #540904105 (ASSERT: ast->attr == T_CLASS_C).
+Calling is_a() or is_subclass_of() with a string as the first argument when $allow_string is false is now deprecated.
+Enabled the TAILCALL VM (--disable-gcc-global-regs) when building with GCC >= 16.
+Fixed 
+GH-10497
+ (Allow direct mutation of objects stored in constants or class constants via OBJ->prop = $val).
+Using the return statement in a finally block is now deprecated.
+Deprecated "namespace" as a class constant name.
+Changed run-tests.php to run in parallel by default, using up to 10 automatically detected workers. Pass -j1 for sequential execution.
+Allowed readonly properties to declare default values.
+Changed run-tests.php to run test subprocesses without a shell where possible.
+Fixed 
+GH-23121
+ (is_callable() wrongly accepts objects with no get_closure handler).
+Passing a 3rd argument to define() is now deprecated.
+Naming a function readonly is now deprecated.
+Added stateless closure cache.
+Implemented partial function application RFC.
+Compile array_map() into a foreach() loop when using Partial Function Application as callback.
+Fixed bug 
+GH-22263
+ (reset typed property default on every unserialize failure path).
+Fixed bug 
+GH-18847
+ (SEGV in zend_fetch_debug_backtrace() when the memory limit is reached while the tracing JIT enters a call frame).
+Sync Boost.Context assembly with 1.91.0.
+Fixed bug 
+GH-22387
+ (AST pretty-printing drops meaningful parentheses around RHS of instanceof).
+Fixed bug 
+GH-15672
+ and 
+GH-15911
+ (Stack overflow when an internal function recurses through zend_call_function, such as a self-attached SPL iterator).
+abort() instead of exit() on hard OOM.
+perf: ZTS: move AG and SCNG into native __thread storage.
+Added first-class callable cache to share instances for the duration of the request.
+It is now possible to use reference assign on WeakMap without the key needing to be present beforehand.
+Added `clamp()`.
+Fix OSS-Fuzz #429429090 (Failed assertion on unset() with uninitialized container).
+Fixed 
+GH-20564
+ (Don't call autoloaders with pending exception).
+Fixed bug 
+GH-20174
+ (Assertion failure in ReflectionProperty::skipLazyInitialization after failed LazyProxy initialization).
+Enabled the TAILCALL VM on Windows when compiling with Clang >= 19 x86_64.
+Deprecate specifying a nullable return type for __debugInfo().
+Fixed bug 
+GH-22046
+ (The unserialize function can lead to segfault when non-Serializable internal classes are serialized back with the C format).
+Fixed bug 
+GH-22292
+ (AST pretty printing does not correctly handle invalid variable names).
+Fixed bug 
+GH-22291
+ (AST pretty printing does not correctly handle braces in string interpolation).
+Fixed bug 
+GH-22373
+ (AST pretty-printing drops meaningful parentheses surrounding property access).
+Fixed 
+GH-22422
+ (zend_arena layout mismatch leaked memory in separately built extensions under AddressSanitizer).
+TSRM: use local-exec TLS in PIE executables.
+perf: make all static extensions use TSRMG_STATIC.
+Fixed bug 
+GH-22257
+ (type confusion in Exception::getTraceAsString()).
+TSRM: make CG, EG, SCNG and AG compile-time offsets.
+Deprecate returning values from __construct() and __destruct().
+base_convert, bindex, hexdec and octdec now raise a notice when they cannot precisely convert the given number.
+Added error_include_args INI option to make the display of function arguments consistent in error output.
+Fixed 
+GHSA-8mjj-2r7p-4hg2
+ (Use-after-free in magic method backtraces can lead to remote code execution). (CVE-2026-129474)
+Fixed 
+GHSA-2fjv-p558-g82m
+ (Use-after-free via repopulation of last_fatal_error_backtrace global after shutdown). (CVE-2026-129182)
+BCMath:
+Added NUL-byte validation to BCMath functions.
+Bz2:
+Passing an object for the Bzip2 {de}compression stream filter is now deprecated. Use get_object_vars() on the object instead.
+Reject oversized input in bzdecompress().
+Calendar:
+Fixed *tojd() functions and cal_to_jd() truncating arguments outside the int range instead of rejecting them.
+CGI:
+Fixed 
+GHSA-5j3f-64r7-f564
+ (PHP-CGI out-of-bounds read and write during PATH_INFO correction). (CVE-2026-129538)
+CLI:
+Fixed bug 
+GH-24697
+ (PHP_HTTP_PARSER_STRICT build option doesn't work).
+Fixed bug 
+GH-9670
+ (List -C and -q in the CLI help).
+Fixed bug 
+GH-23242
+ (PHP development server does not support Expect 100-continue flow control).
+COM:
+Fixed bug 
+GH-25008
+ (com_event_sink() and com_print_typeinfo() crash resolving an event source with no loaded typelib).
+Curl:
+Fix use-after-free of CURLOPT_STDERR stream on cloned curl handle.
+Fix UAF on clone due to callback data pointer mismatch.
+Set content length using CURLOPT_POSTFIELDSIZE_LARGE instead of CURLOPT_POSTFIELDSIZE. This makes it possible to post strings larger than 2GB on some platforms, e.g. Windows.
+Improved cURL option validation errors to include the option name.
+Raise a value error when the callback registered with CURLOPT_READFUNCTION returns an unexpected long.
+Fix bug 
+GH-16513
+ (curl: exceptions in callbacks do not abort the request).
+Added CURLOPT_SEEKFUNCTION and the CURL_SEEKFUNC_OK, CURL_SEEKFUNC_FAIL and CURL_SEEKFUNC_CANTSEEK constants, letting libcurl rewind a streamed request body to resend it on a redirect, multi-pass authentication or a retried reused connection.
+Add support for CURLINFO_SIZE_DELIVERED (libcurl >= 8.20.0).
+Date:
+Update timelib to 2026.03 (Derick)
+Fixed bug 
+GH-20503
+ (Assertion failure with ext/date DateInterval property hash construction).
+Fixed bug 
+GH-24350
+ (MINIT reads a stale external tz database after an in-process module restart).
+Added Time\Duration.
+Fixed bug 
+GH-11368
+ (idate() doesn't work for the year -1).
+Fixed 
+GHSA-gr4f-wgx5-jpfv
+ (Timezone cache use-after-free can lead to remote code execution). (CVE-2026-129496)
+DBA:
+Fixed bug 
+GH-24641
+ (ndbm backend never checks dbm_open() return value, NULL deref on first use after a failed open).
+DOM:
+Fixed a use-after-free when reflected attribute setters replace an attribute whose child still has a live wrapper.
+Fix error paths in dom_xml_serializing_a_document_node().
+Fixed reference cycles through DOMXPath and XSLTProcessor php:function callback arguments and return values not being collectable.
+Fixed a typo in the DOMException message for INUSE_ATTRIBUTE_ERR.
+Fixed bug 
+GH-22624
+ (use-after-free via DOMNameSpaceNode after DOMDocument::xinclude()).
+Fixed Dom\DtdNamedNodeMap integer dimension access so negative indexes return NULL and indexes outside the int range throw ValueError instead of returning the first entity or notation.
+Fixed bug 
+GH-22623
+ (use after free with namespace nodes from XSLTProcessor::registerFunctions())/ (David Carlier)
+Fixed bug 
+GH-22554
+ (use-after-free with XPath callback returning a node from a foreign document).
+Removed LIBXML_XINCLUDE from valid options for XMLDocument, as it was a no-op.
+Readonly DOM properties are now declared with asymmetric visibility (public private(set)). ReflectionProperty::isWritable() reports them correctly, and external writes raise "Cannot modify private(set) property" instead of the previous readonly modification error.
+Fixed Dom\Notation nodes missing tree connection, so that ownerDocument, parentNode, isConnected and baseURI now return correct values, and textContent returns NULL per the DOM specification.
+Fixed 
+GHSA-x8r7-mg3g-74hg
+ (Double free during DOM XML serialization). (CVE-2026-129501)
+Embed:
+Made php-cli functionality available in embed builds.
+Exif:
+Added support for reading EXIF metadata from WebP images (
+GH-19904
+).
+FFI:
+Fixed bug 
+GH-24582
+ (Memory leaks in ext/ffi parser when finalize_type() bails out).
+Fileinfo:
+Fixed bug 
+GH-24289
+ (finfo::file() reports the wrong argument number for an invalid $filename).
+Upgrade to file 5.48.
+Fixed bug 
+GH-20679
+ (finfo_file() doesn't work on remote resources).
+Fixed bug 
+#66095
+ (Hide libmagic dynamic symbols).
+FPM:
+Fixed crash and stack memory disclosure in the worker output logging with a pool name longer than the message prefix buffer or log_limit.
+Fixed 
+GHSA-jm4m-qfqx-967m
+ (PHP-FPM epoll use-after-free can lead to local privilege escalation). (CVE-2026-129291)
+Fixed memory leaks of the _GET string on the status page error and HEAD request paths.
+Fixed use-after-free of the scoreboard copy when logging invalid status values.
+Fixed null pointer dereference in fpm_get_status() when the scoreboard copy fails.
+Fixed bug 
+GH-24229
+ (fcgi_close() passes shutdown() a literal 1, which is SHUT_RD in WASI).
+Fixed 
+GHSA-qc49-hpvq-g2w6
+ (PHP-FPM request smuggling through an unread HTTP request body). (CVE-2026-129289)
+Fixed 
+GHSA-3mg3-cr28-46gc
+ (PHP-FPM status endpoint XSS via unescaped user and script fields). (CVE-2026-129292)
+FTP:
+Fix double free in ext/ftp data_accept() on accept failure.
+GD:
+Fixed imagetruecolortopalette() error message.
+Fixed imageaffinematrixget() to enforce the documented array|float type for the $options parameter.
+imagesetstyle()/imagefilter()/imagecrop() check array argument entries types.
+GMP:
+Added optional $definitely_prime output parameter to gmp_prevprime().
+Added gmp_powm_sec().
+Added gmp_prevprime().
+Fixed GMP power and shift operators to reject GMP right operands outside the unsigned long range instead of silently truncating them.
+Fixed GMP integer string parsing to reject strings containing NUL bytes instead of silently truncating them.
+Fixed GMP error messages that referenced outdated parameter names.
+Fixed bug 
+GH-22549
+ (Assertion failure / UB on a compound GMP power or shift assignment with a negative exponent).
+gmp_fact() reject values larger than unsigned long.
+gmp_pow/binomial/root/rootrem and shift/pow operators reject values larger than unsigned long.
+GMP exponentiation and shift operators now emit a deprecation warning when converting a float right operand to int loses precision.
+Hash:
+Fix GOST and Snefru digests of 512 MiB or more.
+Fixed hash_file() reporting argument #1 ($algo) instead of argument #2 ($filename) when the filename contains null bytes.
+Upgrade xxHash to 0.8.2.
+Intl:
+Fixed IntlDateFormatter parse functions truncating an $offset below INT_MIN.
+Fixed Collator::sortWithSortKeys() allocating fixed 2MiB buffers regardless of array size.
+Fixed Spoofchecker methods not recording the ICU error code when an ICU call fails.
+Fixed idn_to_ascii() and idn_to_utf8() reporting argument #2 ($flags) instead of argument #3 ($variant) for an invalid IDNA variant, and the domain length error message printing a literal "d" instead of the limit.
+Added static methods IntlDatePatternGenerator::getSkeleton() and IntlDatePatternGenerator::getBaseSkeleton().
+Fixed Collator::sort(), collator_sort(), Collator::asort(), and collator_asort() to report UTF-8/UTF-16 conversion errors through the intl error handler instead of emitting a warning and continuing with an empty string.
+Implemented 
+GH-20255
+ (Add a predefined calendar constant in IntlDateFormatter for the proleptic gregorian calendar).
+Added SpoofChecker::areBidiConfusable().
+Added SpoofChecker::getBidiSkeleton().
+Added SpoofChecker::getSkeleton().
+Fixed grammatical issues in Normalizer invalid form and IntlCalendar time zone offset error messages.
+Removed the dependency on the ICU IO library.
+Fixed NumberFormatter::parse() and NumberFormatter::parseCurrency() to reject offset values outside the 32-bit range instead of silently truncating them.
+IntlDateFormatter::parse()/datefmt_parse() and IntlDateFormatter::localtime()/datefmt_localtime() now raise TypeError when the offset argument is not of type int.
+Fixed malformed ResourceBundle::get() error message when fallback is disabled.
+Added Locale::getDisplayKeyword() and Locale::getDisplayKeywordValue(), with the alias of locale_get_display_keyword() and locale_get_display_keyword_value() respectively.
+Added IntlNumberRangeFormatter class to format an interval of two numbers with a given skeleton, locale, collapse type and identity fallback.
+Added grapheme_strrev (Yuya Hamada)
+Passing a non-stringable object as a time zone to Intl time zone argument handling now raises TypeError instead of Error.
+IntlBreakIterator::getLocale() now raises ValueError for invalid locale types.
+Fixed MessageFormatter::parse() and parseMessage() returning PHP_INT_MIN as float rather than int on 64-bit platforms.
+Fixed UConverter::transcode() silently truncating from_subst and to_subst option lengths greater than 127 bytes.
+Fixed IntlIterator::current() to return NULL instead of an undefined value when the iterator is not positioned on a valid element.
+IO:
+Added new polling API.
+JSON:
+Fixed json_encode() leaving the recursion guard set on objects with hooked properties after running out of memory while escaping a property name.
+Fixed json_encode() silently narrowing $depth values outside the int range, which wrapped to an unrelated depth.
+Fixed json_encode() continuing to encode after an array or object key failed to encode.
+Report unterminated JSON strings as syntax errors.
+Improve performance error position tracking during JSON decoding.
+Enriched JSON last error / exception message with error location.
+LDAP:
+Fix crash in ldap_exop_sync() when $response_data is omitted.
+MBString:
+Fixed negative mbstring.regex_stack_limit and mbstring.regex_retry_limit on 32bit platforms.
+Fixed bug 
+GH-23958
+ (truncated encoding names resolving to full names).
+Fixed out-of-bounds read in php_mb_rfc1867_getword() on a multibyte lead byte at the end of a multipart field name.
+Updated Unicode data tables to Unicode 18.0 (Yuya Hamada)
+Passing objects to mb_convert_variables() is now deprecated.
+ini_set() with mbstring.detect_order changes the order of mb_detect_order as intended, since mbstring.detect_order is an INI_ALL setting.
+Added GB18030-2022 to default encoding list for zh-CN.
+mbregex has been deprecated.
+MySQLi:
+The mysqli_get_charset() function and mysqli::get_charset() method are now deprecated.
+The mysqli_stmt_init() function and mysqli::stmt_init() method are now deprecated.
+Instantiation of mysqli_stmt without providing the $query parameter is now deprecated.
+Added mysqli_quote_string() and mysqli::quote_string().
+MySQLnd:
+Fixed bug 
+GH-24609
+ (OK packets without an info message rejected on x32 builds).
+Fixed bug 
+GH-24293
+ (Segfault on connect with an empty password to a MariaDB PAM account).
+ODBC:
+Fixed bug 
+GH-25036
+ (odbc_prepare() corrupts the heap when the driver cannot describe a parameter).
+odbc_error() and odbc_errormsg() now also report SQLColAttribute failures.
+Opcache:
+Fixed bug 
+GH-24397
+ (Assertion failure when dumping JIT IR).
+Fixed tracing JIT returning a wrapped integer instead of a float on integer overflow after an integer was compared with a float or numeric-string literal.
+Fixed use-after-free in JIT ASSIGN_DIM_OP when concatenating into an empty array element.
+Fixed bug 
+GH-24396
+ (Assertion failure in zend_jit_def_reg() "reg forwarding" with chained Pi nodes).
+Fixed JIT treating an array as packed after a string key write turned it into a hash.
+Fixed bug 
+GH-24436
+ (Tracing JIT: keep the SEND_VAL type guard after assigning to a reference).
+Fixed bug 
+GH-24745
+ (File cache loses attributes on constants on 32-bit builds).
+Fixed bug 
+GH-17733
+ (System entropy does not take into account function order, resulting in wrong functions possibly called in different configurations).
+Fixed bug 
+GH-24438
+ (Preserve indirect types in JIT side traces).
+Fixed bug 
+GH-24577
+ (CE-cache flag on interned class name visible before map_ptr offset).
+Fixed tracing JIT losing register-allocated CVs when an interrupt is handled at the end of a loop trace.
+Fixed bug 
+GH-24675
+ (function with >~1.7 MB of machine code corrupts JIT buffer accounting).
+Call orig_post_shutdown_cb().
+Fixed JIT segfault on switch over a string reference holding a non-string value.
+Fixed AArch64 JIT encoding of invalid logical immediates.
+Fixed JIT crashes when handling a VM interrupt with a stale saved opline in the tailcall VM.
+Fixed function JIT misinterpreting VM-enter results after an interrupt callback in the CALL and TAILCALL VMs.
+Fixed unsound shift_left_overflows range when shift wraps.
+Fixed bug 
+GH-23572
+ (Tracing JIT calls the wrong method for self::/parent:: static calls in trait methods shared by several classes).
+Fix block pass dropping ZEND_FAST_CALL OP2 definition.
+Fixed bug 
+GH-23626
+ (orphaned temporaries cause leaks and assertions).
+Fix preloaded functions JIT-compiled on load being overwritten after restart.
+Fix opcache.interned_strings_buffer being 0 in threads started later (ZTS).
+Fixed potential infinite recursion/hang (HYBRID/TAILCALL respectively) when zend_interrupt_function resets EG(vm_interrupt).
+Fix JIT losing the called scope of self::/parent:: calls in included files.
+Fixed preloaded functions not JIT-compiled again after OPcache restart.
+Fixed bug 
+GH-24988
+ (Incorrect opcode range check causes bugs with exceptions in function JIT).
+Fix opcache phar check.
+Fixed bug 
+GH-17626
+ (JIT corrupts an opline handler when blacklisting a root trace at the opcache.jit_max_root_traces limit, causing spurious "Too few arguments" errors and crashes).
+Fix type inference of ADD_ARRAY_UNPACK with integer keys.
+Fix too wide type inference for ASSIGN_DIM_OP.
+Fix OSS-Fuzz #568005340 (FETCH_DIM_FUNC_ARG partial conversion).
+Fix exception checks due to NAN warnings and object empty()'s.
+Fixed bug 
+GH-24270
+ (JIT loses the called scope of self:: and parent:: calls in closures).
+Fixed bug 
+GH-24337
+ (JIT: segfault when decrementing a non-numeric 
