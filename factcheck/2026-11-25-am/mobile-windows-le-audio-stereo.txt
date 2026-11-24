@@ -1,0 +1,210 @@
+===== https://forest.watch.impress.co.jp/docs/news/2158559.html
+(status 200)
+ニュース
+Bluetooth LE Audioでマイク使用中も高音質ステレオ、Windows 11 Insiderでテスト開始
+ よく連絡を取る相手にすばやくアクセスできるウィジェットも 
+樽井 秀人
+2026年11月24日 16:02
+「Windows Insider Blog」でのアナウンス
+ 　米Microsoftは11月20日（現地時間）、「Windows 11 Insider Preview」ビルドをアップデートした。今回はBetaとExperimentalチャネルの更新で、以下のビルドが展開中だ。 
+Beta（26H2）
+：
+Build 26320.10022
+Experimental（26H2）
+：
+Build 26340.10032
+Beta（26H1）
+：
+Build 28020.3562
+Experimental（26H1）
+：
+Build 28120.3571
+Experimental（Future Platforms）
+：
+Build 29712.1013
+（リリースノートの表記はBuild 29712.1000）
+ 　なお、Beta/ExperimentalチャネルからExperimental（Future Platforms）チャネルへの移動は再開されたとのこと。
+前回のビルド配信時
+に一時停止されていた。 
+ 　ただし、いったんExperimental（Future Platforms）チャネルへ移動すると、他のチャネルへ切り替えたり、「Windows Insider Program」から離脱したりするには、OSのクリーンインストールが必要になる点には注意。 
+「Bluetooth LE Audio」デバイスでマイク使用中もフルレンジのステレオ再生
+ 　Experimental（26H2）チャネルにおけるハイライトは、「Bluetooth LE Audio」サポートの強化だ。デバイスのマイクを使いながら、フルレンジのステレオ音質で再生できるようになり、ゲームのボイスチャットや音声通話、音声入力、「Copilot Chat」のボイスチャットといった場面でも、音質が損なわれにくくなる。 
+ 　利用には、超広帯域ステレオ（Super Wideband Stereo）対応のPCと、48kHz再生に対応する「LE Audio」デバイスが必要。［設定］の［システム］－［サウンド］－［出力］で対象デバイスを開き、マイク使用時の形式に「2 channels, 16 bit, 48000 Hz」を選択する。 
+「Bluetooth LE Audio」デバイスの出力設定（公式ブログより引用）
+連絡先にすばやくアクセスできる「People」ウィジェット
+ 　また、新しい「People」ウィジェットもExperimental（26H2）チャネルに導入された。サポートされているコミュニケーションアプリからよく連絡を取る相手を集めて表示し、ウィジェットボードから会話をすぐに再開できる。 
+ 　連絡先を表示するには、「スマートフォン連携」と「WhatsApp」のいずれか、または両方をセットアップしておく必要がある。 
+「People」ウィジェット（公式ブログより引用）
+そのほかの改善
+ 　Experimental（26H2）チャネルでは、そのほかにも以下の変更が加えられている。 
+先月から展開が始まった新しい「Windows Search」で、辞書の定義や通貨換算、一般的なWeb検索のリッチな結果を表示可能に
+Windowsの累積更新プログラムで「Windows 回復環境」（WinRE）の新しいサービス提供方式の展開を開始。累積更新プログラム適用済みのOSコンポーネントから回復環境を新たに構築するため、個別の「Safe OS」動的更新への依存が減る。「BitLocker」を利用するデバイスでは対応不要だが、そのほかのディスク暗号化ソリューションではWinREへのドライバー統合が必要な場合がある
+エクスプローラーの検索結果が多すぎる場合に、ファイルの種類や日付で絞り込めるクイックフィルターを追加
+クイック設定のモバイルデバイス機能や、入力切り替えの［Ctrl］＋［Shift］キーの信頼性を改善
+「Windows Search」に通貨換算、Web検索、辞書の定義のリッチな結果が表示される（公式ブログより引用）
+ 　Beta（26H2）チャネルにも、［設定］アプリで「Microsoft アカウント」の特典やサービスを確認する機能が導入される。 
+［設定］アプリで「Microsoft アカウント」の特典やサービスを確認できる（公式ブログより引用）
+ 　また、Experimental（Future Platforms）チャネルでは
+「PowerShell 7」が標準搭載される
+。 
+Amazonで購入
+「Bluetooth LE Audio」関連商品
+Amazonで購入
+
+===== https://www.bleepingcomputer.com/news/microsoft/microsoft-testing-fix-for-windows-11-bluetooth-audio-quality-drops/
+(status 200)
+Microsoft testing fix for Windows 11 Bluetooth audio quality drops
+                            By 
+Sergiu Gatlan
+November 23, 2026
+08:28 AM
+0
+Microsoft is working to fix a long-standing Windows issue that has been causing significant audio quality drops for Bluetooth headphone users.
+This is triggered when Windows automatically switches from the headphone (A2DP stereo) profile to the headset (hands-free, phone-call-like) profile when an app or game activates and uses the headset's microphone, because bandwidth is limited in two-way mode.
+After installing the preview builds released for the Beta and Experimental channels on Friday, Windows 11 Insiders with newer Bluetooth headsets can keep playing high-quality audio even after the OS switches between profiles.
+"Bluetooth LE Audio devices can now play at full-range stereo fidelity while also using the device's microphone, ensuring you continue to hear great audio quality when in game chat, in a voice call, using voice typing, or using voice chat in Copilot Chat," 
+said
+ Windows Insider communications lead Stephen Lines.
+"When using an LE Audio device with a PC that supports Super Wideband Stereo, choose the new 2 channels, 16 bit, 48000Hz option from Settings > System > Sound > Output > {Bluetooth device} > Output settings > Format when microphone is active."
+This new feature is available for all Bluetooth LE Audio devices that support 48kHz playback, such as headphones, earbuds, and speakers.
+Bluetooth LE Audio format settings (Microsoft)
+​Earlier this month, Microsoft 
+also fixed USB audio issues
+ that have plagued Windows users who installed security updates released since September.
+As it explained when it 
+acknowledged this known issue
+ days after the September 2026 Patch Tuesday, 
+USB Audio Class 1.0 devices
+ failed to start or produce audio on some systems after installing recent updates.
+Two years ago, Microsoft also 
+blocked Windows 24H2 upgrades
+ on systems with incompatible Intel Smart Sound Technology (SST) audio drivers due to blue screen of death (BSOD) issues and confirmed an issue that was 
+causing game audio to go full volume
+ when using USB DAC sound systems.
+In January 2025, Microsoft 
+addressed a bug
+ causing audio playback problems and Code 10 errors on Windows 11 24H2 systems with USB audio device drivers after installing the KB5050094 preview update.
+More recently, on Tuesday, Microsoft announced that it's testing a new feature that 
+lets IT admins remotely lock
+ stolen or lost enterprise Windows devices without wiping them.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Microsoft confirms Windows printing issues affecting Forcepoint users
+Microsoft confirms app installation, launch issues after hotpatch
+Microsoft pushes Windows emergency updates to fix activation failures
+Microsoft confirms Windows activation failures after November updates
+Microsoft says November security updates cause printing issues
+
+===== https://www.notebookcheck.net/Windows-11-fixes-muffled-Bluetooth-headset-audio-during-mic-use.1456773.0.html
+(status 200)
+Microsoft has released Windows 11 Insider Preview Build 26340.10032 to the Experimental channel, and its main change tackles a long-standing Bluetooth headset complaint. The November 20, 2026, build for Windows 11, version 26H2, lets compatible Bluetooth LE Audio headphones, earbuds, and speakers play full-range stereo at 48 kHz while their microphone is in use.             
+Microsoft lists game chat, voice calls, voice typing, and voice chat in Copilot Chat as the main use cases. Windows 11 already offered super wideband stereo during mic use on some version 24H2 systems running Build 26100.4484 or newer. The new build adds a higher-fidelity 2-channel, 16-bit, 48000 Hz option.             
+How to enable 48 kHz stereo playback
+Insiders
+ should first confirm that Use LE Audio when available is switched on under Settings > Bluetooth & devices > Devices. Next, open Settings > System > Sound, select the arrow beside the Bluetooth device under Output, and expand Output settings. The new option sits in the Format when the microphone is active dropdown.             
+Microsoft suggests switching back to Mono (1 channel) if a headset drops out or distorts in stereo. If the system-wide Mono audio toggle under Settings > Accessibility > Audio is enabled, Windows warns that stereo may not work correctly.             
+Hardware requirements and rollout
+The option needs a PC that supports Super Wideband Stereo, meaning the right Bluetooth adapter and driver stack, as well as an LE Audio-enabled accessory capable of 48 kHz playback. Basic Bluetooth headsets with no advanced codecs or profiles miss out, and Microsoft warns that a PC marketed with Bluetooth LE may still lack LE Audio. Without LE Audio on both ends, Windows still drops to mono when the mic activates.             
+The feature is arriving through Controlled Feature Rollout, so not every Insider will see it immediately. Microsoft has not announced when it will reach stable Windows 11 releases.             
+Other changes in Build 26340.10032
+The build also adds a People widget showing contacts from Phone Link or WhatsApp, one of which must be set up. Windows Search gains richer results for definitions, currency conversions, and web queries, and File Explorer search adds file type and date filters. WinRE will now be rebuilt from cumulative updates, with no changes needed on BitLocker devices.             
+Microsoft also released 
+Beta Build 26320.10022
+, 26H1 Beta Build 28020.3562, 26H1 Experimental Build 28120.3571, and Future Platforms Build 29712.1013. Moves into Future Platforms are open again after last week's pause, though leaving requires a full Windows reinstall. A known issue stops Task Manager's CPU speed readout from updating.
+Source(s)
+Windows 11 Insider Experimental Preview Build 26340.10032 - Windows Insider Program | Microsoft Learn
+Announcing new builds for 20 November 2026 | Windows Insider Blog
+⟨
+Previous article
+BMW to cut around 8,000 jobs globally by late 2027
+Next article
+China's 10-ton electric passenger plane completes first manned flight
+⟩
+Add as a preferred source on Google
+ static version  
+load dynamic
+Loading Comments 
+ Comment on this article
+Related Articles
+Darryl Linington
+ - Tech Writer 
+ - 666 articles published on Notebookcheck
+ since 2025
+I’m a tech editor and journalist with more than 20 years of experience covering smartphones, AI, gaming hardware, and emerging technology. I’m passionate about making complex topics clear, engaging, and relevant—especially when they shape how we live, work, and play.
+I’m also an author with a love for psychological thrillers, horror, and honest, emotionally driven storytelling. My books include Drowning, 3:33 a.m., The Midnight Murderer, Keystrokes of Vengeance, and Life’s Too Short For This Sh!t!.
+Whether I’m writing about technology or fiction, my goal is always to connect with readers, spark thought, and leave a lasting impression. Inspired by my daughters and shaped by years of media experience, I bring curiosity and purpose to everything I write.
+contact me via: 
+ @DarrylLinington
+, 
+ Facebook
+, 
+ DarrylLinington
+, 
+ LinkedIn
+> 
+Expert reviews and news on laptops, smartphones and tech innovations
+ >  
+News
+ >  
+News Archive
+ >  
+Newsarchive 2026 11
+ >  Windows 11 fixes muffled Bluetooth headset audio during mic use 
+Darryl Linington, 2026-11-22 (Update: 2026-11-24)
+
+===== https://blogs.windows.com/windows-insider/2026/11/20/announcing-new-builds-for-20-november-2026/
+(status 200)
+Announcing new builds for 20 November 2026
+							Written By
+								Stephen Lines
+							published
+							November 20, 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels.
+New builds this week
+Select your channel below to view its release notes:
+Beta: 
+Build 26320.10022
+Experimental: 
+Build 26340.10032
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+Beta (26H1): 
+Build 28020.3562
+Experimental (26H1): 
+Build 28120.3571
+Experimental (Future Platforms): 
+Build 29712.1013
+[Update: Some users may see a note to review license terms in Windows Update when taking the Experimental (Future Platforms) build. Reviewing terms will proceed to downloading the build as normal.]
+Insiders can resume moving from the Beta and Experimental channels to Experimental (Future Platforms) after last week’s channel movement pause. Remember that switching channels or leaving the Windows Insider Program out of Experimental (Future Platforms) will require a full reinstall of Windows as this build does not align to a retail version of Windows 11.
+Notable new features:
+[Bluetooth]
+Release channel: 
+Experimental
+Bluetooth LE Audio devices can now play at full-range stereo fidelity while also using the device’s microphone, ensuring you continue to hear great audio quality when in game chat, in a voice call, using voice typing, or using voice chat in Copilot Chat.
+When using an LE Audio device with a PC that supports Super Wideband Stereo, choose the new 
+2 channels, 16 bit, 48000Hz
+ option from 
+Settings > System > Sound > Output > {Bluetooth device} > Output settings > Format when microphone is active
+. This feature is available for LE Audio devices that support 48kHz playback, like headphones, earbuds, and speakers. If you encounter compatibility issues with the LE Audio device you’re using, let us know through Feedback Hub.
+Output settings for a Bluetooth LE Audio device with Format when microphone is active set to 2 channels, 16 bit, 48000Hz.
+[People widget]
+Release channel: 
+Experimental
+The new People widget provides a way to quickly get back to the people you communicate with from the Windows Widgets board. The widget brings together relevant contacts from supported communication apps, making it easier to see the people you connect with and quickly continue a conversation.
+To try it, open the Widgets board using 
+Windows key + W
+, select the 
++
+ button to open the widget picker, and add the 
+People
+ widget. Selecting a contact opens the appropriate conversation in the supported communication app.
+Prerequisite:
+ To see contacts in the widget, first set up Phone Link, WhatsApp, or both on your PC.
+The People widget with a list of contacts from supported communication apps.
+Thanks,
+Stephen and the Windows Insider Program team
+					Tags:
+Windows Insider Program
