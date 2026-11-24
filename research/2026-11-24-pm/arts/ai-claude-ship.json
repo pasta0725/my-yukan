@@ -1,0 +1,173 @@
+{
+ "id": "ai-claude-ship",
+ "category": "ai",
+ "title": "Claude Ship発表、AIがプログラムの変更を承認",
+ "summary": "開発チームは、定型的な変更の承認をAIに任せる範囲を選べます。",
+ "image": {
+  "src": "https://www.itmedia.co.jp/aiplus/article/ogp/2611/24/2000003404/10012801/2048",
+  "kind": "ogp",
+  "credit": "ITmedia AI+",
+  "page": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003404/"
+ },
+ "visual": {
+  "icon": "ai",
+  "kicker": "Claude新機能"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Claude Shipのβ版では、AIが変更を点検し、修正から承認まで進めます。",
+    "ClaudeのTeamとEnterprise向けで、料金は点検する変更の量などで変わります。",
+    "どんな変更ならAIが承認できるかを、チームで決めてから使い始められます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "米Anthropicは11月23日（現地時間）、「Claude Ship」をβ版で発表しました。AIがプログラムの変更申請を点検し、承認まで進めます。"
+  },
+  {
+   "type": "img",
+   "src": "https://www.itmedia.co.jp/aiplus/article/image/2611/24/2000003404/10012799/728",
+   "kind": "ogp",
+   "credit": "Anthropic（ITmedia AI+掲載）",
+   "caption": "Claude Shipでレビュー、修正、承認が進む流れの図（Anthropic提供）",
+   "page": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003404/"
+  },
+  {
+   "type": "h",
+   "text": "変更を点検して直す仕組み"
+  },
+  {
+   "type": "p",
+   "text": "Claude Shipは、変更を点検するCode Reviewなど3つの機能を組み合わせます。Code Reviewは3月に登場し、The Vergeによると10月に一般提供が始まりました。Livemintはこの点検機能を新機能と紹介しています。Anthropicが今回β版で加えたのは、PR StewardとClaude Approvalsです。"
+  },
+  {
+   "type": "p",
+   "text": "変更の取り込みを頼む申請を、PR（プルリクエスト）と呼びます。Code Reviewは、申請の変更を既存のプログラムと照らし合わせます。問題があれば、指摘の内容を確かめ直して申請に書き込みます。"
+  },
+  {
+   "type": "p",
+   "text": "PR Stewardは承認前の修正を担当し、自動テストの失敗や変更の衝突に対応します。他の点検ツールや同僚からの指摘も扱います。修正を送るたびに、変更点と元に戻す方法をコメントに残します。修正の指示は「@claude」、停止は「@claude stop」で出せます。"
+  },
+  {
+   "type": "h",
+   "text": "チームが決める承認ルール"
+  },
+  {
+   "type": "p",
+   "text": "Claude Approvalsは、チームが決めたルールに沿って申請を承認します。ルールは普段の言葉で書け、点検結果やチーム独自の判定を判断材料にできます。定型の変更をAIに任せ、特定の変更は人の承認を必須にできます。"
+  },
+  {
+   "type": "p",
+   "text": "Anthropicは、承認を出さずに判断だけを試す「観察専用モード」を勧めています。今ある取り込みルールや必須の確認項目も引き続き使えます。実際に変更を取り込めるかは、開発者の権限と保管場所のルールで決まります。"
+  },
+  {
+   "type": "h",
+   "text": "使えるチームと始め方"
+  },
+  {
+   "type": "p",
+   "text": "GitHubにプログラムを置くチームが対象で、ClaudeのTeamかEnterpriseの契約が必要です。開発者はClaude Codeを更新し、次の変更ができたら「/ship」で試せます。コードの送信から変更申請の作成、点検後の修正まで自動で進みます。「/ship」は発表当日から、Claude Codeとデスクトップアプリで順次使えるようになります。"
+  },
+  {
+   "type": "p",
+   "text": "管理者は、プログラムの保管場所（リポジトリ）ごとに点検と修正を有効にできます。Claude Shipが申請に自動で対応し、毎回の「/ship」の入力を省けます。点検の深さはQuickからDeepまでの3段階で、中間はStandardです。点検する時期を選び、Code ReviewとPR Stewardの月ごとの利用上限を決められます。"
+  },
+  {
+   "type": "p",
+   "text": "Claude Approvalsは、承認ルールを書いたファイルを置くと動きます。ファイルの置き場所は、接続したリポジトリの既定のブランチ（標準の作業先）です。管理者は必要に応じて停止できます。"
+  },
+  {
+   "type": "h",
+   "text": "導入で見えた効果と注意点"
+  },
+  {
+   "type": "p",
+   "text": "Claude Codeの開発チームでは、プログラムの大半をClaudeが書いています。人の確認や承認を待つ時間は、プログラムを速く書けても残ります。Anthropicは、その待ち時間を減らすためにClaude Shipを作りました。"
+  },
+  {
+   "type": "p",
+   "text": "このチームでは、取り込んだPRの数が6月から9月にかけて2倍以上になりました。同じ期間に、取り込み後に取り消したPRの割合は40％以上減りました。チームはCode Reviewを他の確認方法と組み合わせています。同社は、不具合や安全上の弱点をAIが見逃す可能性にも注意を促しています。"
+  },
+  {
+   "type": "p",
+   "text": "同社では、利用者の指摘を受け、AIに使い方の説明の修正案を作らせた例もあります。チームは人の確認も挟み、その日の夕方に修正を取り込みました。"
+  },
+  {
+   "type": "p",
+   "text": "発表で紹介された導入先では、人が確認する前にAIが問題を見つけ、修正を助けた例がありました。別の導入先は、試験中に指摘への対応にかける時間が減ったと話しています。"
+  },
+  {
+   "type": "h",
+   "text": "利用料金と対象外の条件"
+  },
+  {
+   "type": "p",
+   "text": "利用料は、AIが読み書きした量（トークン）に応じてかかります。費用は、変更申請の数と変更の大きさで変わります。どの深さで何度点検するかや、修正の作業量も費用に響きます。"
+  },
+  {
+   "type": "p",
+   "text": "Claude Approvalsに基本料金はかかりません。ルールに組み込んだ判定機能は、使った分だけ有料です。観察専用モードでも、ルールがCode Reviewを使えば料金がかかります。「/ship」の実行は、通常のClaude Codeの利用分に入ります。"
+  },
+  {
+   "type": "p",
+   "text": "条件を満たすEnterpriseの組織は、最低1万ドル分の利用枠を申請できます。申請は2027年1月15日までです。利用枠は申請から30日以内に使います。"
+  },
+  {
+   "type": "p",
+   "text": "データを保存しない契約（Zero Data Retention）の組織は対象外です。米国の医療情報を守る法律（HIPAA）に対応する設定でも使えません。データを暗号化する鍵を組織で管理している場合も対象外です。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "2倍以上",
+     "label": "6〜9月のPR取り込み数"
+    },
+    {
+     "value": "40％以上減",
+     "label": "取り消しPRの割合"
+    },
+    {
+     "value": "1万ドル",
+     "label": "申請できる最低クレジット"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "GitHubを使う開発チームが試すには、ClaudeのTeamかEnterpriseの有料プランが必要です。",
+    "導入するチームは、まず1つの保管場所で観察専用モードを使い、AIの判断を確かめてください。",
+    "対象のEnterprise組織は、2027年1月15日までに利用枠を申し込めます。",
+    "日本での提供状況や日本語への対応は、まだわかっていません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "確認待ちが重なるチームでは、下準備をAIに任せるだけでも人の手が空きそうです。変更が少ないチームなら、どれだけ待ち時間が減るかを利用料と見比べて決めたいところです。"
+  }
+ ],
+ "source_name": "ITmedia AI+",
+ "source_url": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003404/",
+ "published": "2026-11-24",
+ "refs": [
+  {
+   "name": "ITmedia AI+",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003404/"
+  },
+  {
+   "name": "The Verge",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1040134/anthropic-claude-ship-ai-pull-requests"
+  },
+  {
+   "name": "Livemint",
+   "url": "https://www.livemint.com/ai/anthropic-launches-claude-ship-to-help-ai-agents-review-fix-and-approve-code-changes-11795488911545.html"
+  },
+  {
+   "name": "Anthropic",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  }
+ ]
+}
