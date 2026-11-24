@@ -1,0 +1,314 @@
+===== https://www.itmedia.co.jp/aiplus/article/2611/24/2000003404/
+(status 200)
+Share
+印刷する
+Anthropic、PRのレビューから修正、承認までをAIで支援する「Claude Ship」公開
+公開
+2026年11月24日 10時21分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+　米Anthropicは11月23日（現地時間）、AIエージェントがプルリクエスト（PR）のレビューや修正を行い、チームが定めたポリシーに従って承認を判断する「Claude Ship」を発表した。
+3月に提供を始めたコードレビュー機能「Code Review」
+と、新たなAIエージェント「PR Steward」「Claude Approvals」で構成する。Claude Ship全体はβ版として提供する。
+（画像：Anthropic）
+　対象は「Claude」の「Team」「Enterprise」プランのユーザーで、GitHubのリポジトリで利用できる。エージェントをどこで稼働させるのかや、どの変更に人間の承認を必要とするかは、チーム側で設定できる。
+　既に一般提供しているCode Reviewは、複数の観点からPRを詳しくレビューする機能だ。見つけた問題を検証・分類した上で、PRにコメントとして投稿する。レビューの深さは、リポジトリごとに「Quick」「Standard」「Deep」の3段階から選べる。Anthropicによると、Claude Codeの開発チームでは、6月から9月にかけてマージしたPRの数が2倍以上に増え、マージ後に変更が取り消されたPRの割合は40％以上減少したという。ただし、同チームではCode Reviewを他のレビュー手段と併用している。
+　PR Stewardは、継続的インテグレーション（CI）の失敗やマージコンフリクト、レビューコメントに対応し、PRをマージ可能な状態に保つエージェントだ。承認やマージ自体は行わない。変更をプッシュするたびに、何を変更したかと、その変更を元に戻す方法をコメントに残す。開発者は「@claude」と書いて作業を指示でき、「@claude stop」で停止できる。
+　Claude Approvalsは、チームがリポジトリ内のファイルに記述した承認ポリシーに従って、PRを承認するかどうかを判断する。コードの担当者を指定する「CODEOWNERS」ファイルを拡張したような仕組みだ。ポリシーで許可すれば定型的な変更を自動承認でき、特定の変更には人間の承認を必須にできる。判断材料にはCode Reviewの指摘や、自然言語で定義した分類器を利用できる。
+　Anthropicは、まず承認せずに判断結果を確認する「観察専用モード」で試すことを推奨している。十分に信頼できると判断した段階で、ブランチ保護の設定によってClaude Approvalsの承認を必須にできる。
+Claude Shipでレビュー、修正、承認が進む流れ（画像：Anthropic）
+　開発者がClaude Codeで新コマンド「/ship」を実行すると、Claudeがコードのプッシュ、PRの作成、レビュー、指摘事項や失敗したチェックへの対応まで進める。マージできるかどうかは、開発者の権限とリポジトリのブランチルールによって決まる。/shipは同日から、Claude Codeとデスクトップアプリで順次提供する。
+　管理者がリポジトリ単位でClaude Shipを有効にすれば、開発者が/shipを実行しなくても、チームのPRに自動で適用される。管理者はレビューの深さや実行タイミング、月額の利用上限を設定できる。Claude Approvalsは、接続済みリポジトリのデフォルトブランチにポリシーファイルを配置すると動作を開始し、管理者が無効化することもできる。既存のブランチ保護や必須チェックとも併用可能だ。
+　料金はトークン使用量に応じた従量課金で、PRの数や規模、レビューの深さや頻度、PR Stewardの作業量によって変わる。Claude Approvals自体に基本料金はかからないが、ポリシー内の分類器にはトークン使用量に応じた料金が発生する。Claudeのレビューを呼び出すポリシーでは、観察専用モードでもCode Reviewの料金が発生する。/shipの実行は通常のClaude Codeの利用として扱う。
+　条件を満たすEnterpriseプランの組織は、最低1万ドル分のClaude Ship用クレジットを申請できる。申請期限は2027年1月15日で、申請から30日以内に利用する必要がある。
+　一方、データを保持しない契約条件である「Zero Data Retention」や、HIPAA（米国の医療情報保護法）対応構成を利用する組織、顧客管理の暗号鍵を利用する組織は対象外となる。
+　なお、AnthropicはClaude Shipについて、AIがバグやセキュリティ上の脆弱性などを見逃す可能性があると注意を促している。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+公式ブログ
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia AI＋メールマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+関連記事
+Anthropic、「Claude Code」に自動実行「ルーチン」導入　PCを閉じても開発を継続
+Claude Codeに「オートモード」登場　承認作業をAIで自動化
+「Claude Code」に新機能　“人間が見逃す”バグも自動検出
+Special
+PR
+こんなメディアも見られています
+        ITmedia AI＋に関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+ジェンスン・フアン氏退任は「NVIDIAバブル崩壊」の序章か？　どうなる今後の半導体業界
+ローカルLLM利用のクリニックを受診してみた　PCマニアの院長が自力で構築、その導入効果は？
+Special
+PR
+よく見られているカテゴリー
+意思決定支援
+研究動向
+アクセスランキング
+1
+CrowdStrike、Zscalerを約439億ドルで買収へ　狙いはAIエージェントの安全確保
+2
+なぜ中国はヒューマノイドを量産するのか　突き動かす「焦り」と足踏みの正体
+3
+「今日言うつもりはなかったが……」　孫正義氏が明かした「ロボット自動量産工場」の実態
+4
+伊藤忠が月1.3万時間削減、数千件の「二重業務」解消へ　AI推進で経営陣を動かした「定量の匂い」とは？
+5
+データセンター「迷惑施設」から“名誉挽回“なるか？　東大教授が「あとはやる気の問題」と指摘するワケ
+6
+AIモデリングもできる無償3D CAD「SolidCraft」を試してみた！
+7
+ジェンスン・フアン氏、NVIDIAのCEOに復帰　マスク氏「誤りは正された」　AI企業代表のコメントまとめ
+8
+ヒューマノイドからAIビジョンまで、三菱電機「Serendie Automation」の具体像
+9
+京大がAI依存チェックリスト公開　「当てはまるものあれば、しばらくAI触らないで」
+10
+Anthropicの数学者、「Claude」と共同で「リーマン予想」を証明したと主張　Leanコミュニティが「正しい」と認定
+ もっと見る 
+Special
+PR
+    ITmedia AI＋ SNS
+        @itm_aiplusをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmedia AI＋をフォロー
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
+
+===== https://www.theverge.com/ai-artificial-intelligence/1040134/anthropic-claude-ship-ai-pull-requests
+(status 200)
+AI
+News
+Tech
+Claude AI can review pull requests and ship fixes on its own now
+Anthropic is bringing new AI tools to software engineers with Claude Ship.
+Anthropic is bringing new AI tools to software engineers with Claude Ship.
+by
+Jay Peters
+Nov 23, 2026, 8:00 PM UTC
+Link
+Share
+Gift
+Image: The Verge
+Jay Peters
+is a senior reporter covering technology, gaming, and more. He joined The Verge in 2019 after nearly two years at Techmeme.
+Anthropic is launching some new Claude AI features to help software engineers ship code. As part of a new Claude Ship product being announced today, Claude now can review, fix, and approve pull requests.
+Engineers have already been able to take advantage of Claude’s code review capabilities thanks to the Code Review feature, which was announced 
+in March
+ and became generally available 
+in October
+. What’s new alongside Claude Ship are the PR Steward and Claude Approvals agents, which are launching in beta today.
+PR Steward “jumps in on failing CI checks, merge conflicts, and review feedback from Code Review, other review tools, or team members” and leaves comments on what it changed, according to Anthropic. Claude Approvals can approve routine changes if an organization’s policy allows it. “Teams can have Claude Approvals consider a variety of signals in its decision-making process, including Code Review findings or their own classifiers using natural language,” Anthropic says.
+Claude Ship is now available for Claude Team and Enterprise customers and works with repositories on GitHub.
+Follow topics and authors
+ from this story to see more like this in your personalized homepage feed and to receive email updates.
+Jay Peters
+AI
+Anthropic
+News
+Tech
+Most Popular
+Most Popular
+Jensen Huang is back as Nvidia’s CEO
+Kodak’s next collectible is a tiny digital photo frame that doubles as a tracker
+Take-Two requests subpoenas over GTA VI gameplay leaks
+Welcome to elite impunity, Jensen Huang
+The vibe-coding revolution is coming to all the gadgets
+Advertiser Content From
+This is the title for the native ad
+
+===== https://www.livemint.com/ai/anthropic-launches-claude-ship-to-help-ai-agents-review-fix-and-approve-code-changes-11795488911545.html
+(status 200)
+View Market Dashboard
+Anthropic launches Claude Ship to help AI agents review, fix and approve code changes
+Anthropic has launched Claude Ship, a new suite of AI agents that can review code, fix pull request issues and automatically approve routine code changes.
+Pragya Singha Roy
+Published
+24 Nov 2026, 08:41 AM IST
+Prefer Livemint
+on Google
+Anthropic has launched Claude Ship.
+(
+AFP
+)
+AI Quick Read
+Anthropic on Monday launched Claude Ship, a new suite of AI agents designed to automate code reviews, fix software development issues and approve routine code changes. The new offering will help development teams manage the increasing volume of code generated by AI tools and reduce the time they wait for software updates to be ready for release, said the company.
+Claude Ship integrates automated code reviews, pull request fixes, and AI-based code approvals for Claude Team and Enterprise subscribers who use GitHub repositories. With the launch, the company aims to change how it uses AI to assist with coding, this time extending automation not only to code creation but also to code review and approval processes before code goes live.
+Claude Ship introduces three AI-powered tools
+According to Anthropic's official announcement, 
+Claude 
+Ship consists of three key components: Code Review, PR Steward and Claude Approvals.
+A new feature, Code Review, evaluates proposed code changes and looks for issues. In the meantime, PR Steward and Claude Approvals are in beta.
+PR Steward is meant to address common problems in pull requests (PRs): failed continuous integration (CI) checks, merge conflicts and feedback during code reviews. The agent can also make corrections and post comments explaining what it changed and how developers can reverse those changes if necessary.
+Also Read
+|
+Meta AI chief warns superintelligence is coming; AI could soon surpass human
+Claude Approvals can approve code changes automatically
+The most significant new feature is 
+Claude 
+Approvals, which enables AI agents to approve code changes according to rules set by development teams.
+In software repositories, teams can develop approval policies in a file, Anthropic says. These policies may be written in natural language and may take into account various aspects such as code review results and the company's classifiers.
+This may reduce the amount of manual approval required for routine code changes from developers. However, teams can still decide which changes require human intervention and set rules for escalating more complicated decisions.
+Also Read
+|
+Alibaba launches Qwen4-Max AI model: Check features, coding scores and more
+Anthropic recommends starting with observe-only mode
+Since Claude Approvals is still in beta, 
+Anthropic 
+recommends that development teams initially use its observe-only mode. This will enable teams to evaluate the AI's decision-making before granting it full approval authority.
+There is also the option to start with one repository and set monthly budgets for use. Teams control where Claude operates and can choose from review settings such as Quick, Standard and Deep.
+Anthropic says Claude Ship is rolling out the Claude Team and Enterprise plans for GitHub repositories. PR Steward and Claude Approvals are still in beta, while Code Review is available.
+About the Author
+Pragya Singha Roy
+Pragya is a Technology reporter with over four years of experience in digital media and content writing. She holds a Master’s degree in Journalism and has covered a wide range of stories spanning space, smartphones, gadgets, artificial intelligence, emerging technologies and the ways technology is transforming everyday life. She focuses on breaking down complex technology and science developments into clear, engaging, and reader-friendly stories, with a keen interest in emerging trends and their real-world impact. Before joining her current newsroom, Pragya worked with News9Live, where she covered the technology beat extensively, reporting on smartphones, consumer technology, AI, space and science, while also contributing to video and visual content. Her experience includes breaking news, explainers, SEO-driven stories, product coverage, interviews, unboxing videos and live event reporting. She has also covered major technology and AI events, giving her experience in both newsroom and on-ground reporting. Beyond journalism, Pragya is an avid gamer and a passionate reader of fiction. She enjoys exploring immersive worlds through games and books, with a particular interest in stories that offer new perspectives, ideas, and experiences.
+Ai Matters
+Artificial Intelligence
+AI
+Get Latest real-time updates
+Catch all the
+Business News
+,
+Market News
+,
+Breaking News
+Events and
+Latest News
+Updates on Live Mint. Download The
+Mint News App
+to get Daily Market Updates.
+Home
+AI
+Anthropic launches Claude Ship to help AI agents review, fix and approve code changes
+More
+✕
+Wait for it…
+Log in to our website to save your bookmarks. It'll just take a moment.
+Yes, Continue
+✕
+Wait for it…
+Oops! Looks like you have exceeded the limit to bookmark the image. Remove some to bookmark this image.
+
+===== https://claude.com/resources/articles/introducing-claude-ship
+(status 200)
+Anyone who has opened a pull request knows how this goes. They start on the next thing, and then the review comes back. So they stop, dig back into the old code, push a fix, and wait for the review to run again. Then they go find someone to approve it.
+There's a good reason it works this way. Most teams want a person to approve every change, and that's easy to keep up with when people write every line. But a lot of developers build with agents now. On the Claude Code team, 
+Claude writes most of our code
+, and we wanted everything after the PR to move that fast too.
+That's why we built 
+Claude Ship
+, available today in beta. It can review PRs, fix them, and decide what's ready to merge based on policies each team sets. Teams stay in control of where it runs and which changes need a person. The goal: ship code as fast as teams write it.
+Eligible Claude Enterprise organizations can claim at least $10,000 in Claude Ship credits to use within 30 days of claiming. Claim by January 15, 2027. 
+Terms apply.
+How Claude Ship works: review, fix, and approve
+Claude Ship is made up of 
+Code Review
+, which is already generally available, and two new agents in beta: PR Steward and Claude Approvals. Together, they take a pull request through review, fixes, and an approval decision so teams don't have to manage each step manually.
+Code Review
+ performs an in-depth review of pull requests against the codebase through multiple lenses. It collects findings, adversarially verifies them, categorizes them, and posts them to a PR. On the Claude Code team, where Claude's review is one layer of a broader process, merged PRs 
+more than doubled
+ from June to September while the share reverted fell by more than 40%. Code Review gives teams fast reviews, clear findings, and a choice of Quick, Standard, or Deep review levels for each repository.
+PR Steward
+ works to keep a PR green, but is designed not to approve or merge pull requests. It jumps in on failing CI checks, merge conflicts, and review feedback from Code Review, other review tools, or team members. After every push, it comments with what it changed and how to undo it. Developers can comment 
+@claude
+ with an instruction to steer the work, or 
+@claude stop
+ to have it step back.
+From there, 
+Claude Approvals
+ applies an approval policy that the team writes as a file in the repository. Claude can approve routine changes on its own if the policy allows it, or can require deeper human sign-off for certain scenarios. It works like a smarter CODEOWNERS file. Teams can have Claude Approvals consider a variety of signals in its decision-making process, including Code Review findings or their own classifiers using natural language. For most customers, we recommend enabling this first in observe-only mode to build confidence before configuring branch protection to require Claude Approvals' green light.
+Two ways to get started
+For developers: 
+/ship
+ it from Claude Code
+Developers can try Claude Ship on their own pull requests with the new 
+/ship
+ command in Claude Code. When a change is ready, they run 
+/ship
+. Claude pushes it, opens the PR, reviews the change, and works on feedback and failing checks to help get it ready to merge. What can merge depends on the developer's permissions and the repository's branch rules.
+For admins and engineering leaders: set the rules, one repository at a time
+Turning Claude Ship on for an entire repository puts it to work across a team's pull requests automatically, under settings and an approval policy the team controls. Developers don't need to manually invoke the 
+/ship
+ command.
+Admins choose where
+it runs.
+ An admin turns on Code Review and PR Steward for each repository. Claude Approvals starts when a connected repository has a policy file on its default branch, and an admin can turn it off.
+Each
+repository gets the settings it needs.
+ Admins choose the review level (Quick, Standard, or Deep), choose when reviews run, and configure spend limits.
+Teams keep the tools they have.
+ Claude Ship works with existing branch protection and required checks.
+Teams set the pace. They can start with one repository, choose a review level and when reviews run, set a monthly spend limit, and run their approval policy in observe mode until they trust it.
+How the Claude Code team ships
+We run Claude Ship on many of our own pull requests. One of the biggest changes is who can act on customer feedback. For example, a product manager on the Claude Code team can now read a piece of feedback, talk through ideas and tradeoffs with Claude Tag, have it open a PR, and move on to the next thing while Claude Ship takes it through review, fixes, and an approval decision.
+Recently, a customer was confused because our Analytics API documentation implied an Admin key could pull Pro and Team usage. The PM asked Claude Tag whether a fix was in flight, and it opened one. Code Review found nothing blocking, a docs reviewer signed off, Claude Approvals passed, and the fix merged that same evening.
+What customers are saying
+“We have had numerous cases where Claude Code Review caught real issues before a human reviewer got to the pull request, and PR Steward helped the contributor fix them. Our reviewers were already using Claude Code to keep up with the volume, so having Code Review, PR Steward and Claude Approvals start automatically when a pull request opens makes that simpler. We keep a human in the loop, and the human’s time now goes to the changes that need it.”
+Vatsal Bhatt, Director of Engineering
+“PR Steward is helping teams in our pilot spend less time working through code review feedback and more time building. We can tailor it to our teams’ processes, including how it suggests changes and organizes feedback. That flexibility has made it a useful part of the development workflow.”
+Alex Devkar, Senior Vice President, Engineering and Analytics
+Availability
+Claude Ship is available on Claude Team and Enterprise plans for repositories on GitHub. Code Review is 
+generally available
+, and PR Steward and Claude Approvals are in beta.
+Claude Ship usage is billed on tokens, so turning it on can add to an organization’s costs. The amount depends on the number and size of pull requests covered, the review level, how often reviews run, and how much work PR Steward does. Admins can set spend limits for Code Review and PR Steward. Claude Approvals has no base charge, but classifiers in a policy are billed on the tokens they use, and a policy that uses Claude's review triggers a billed Code Review, even in observe mode. Running 
+/ship
+ counts as regular Claude Code usage.
+Claude Ship is not available to organizations with Zero Data Retention, the HIPAA configuration, or customer-managed encryption keys.
+Get started
+Developers can update Claude Code and run 
+/ship
+ on their next change. 
+/ship
+ is rolling out in Claude Code and the desktop app starting today.
+Teams already using Code Review can add PR Steward on a repository, and an approval policy in observe mode.
+Teams new to Code Review can read the 
+setup guide
+ to connect GitHub and turn on their first repository.
+Learn more in 
+documentation
+.
+Article
+Nov 23, 2026
+KPMG's Todd Lohr on AI when your data is also your clients' data
+Todd Lohr, KPMG US Vice Chair and Head of Client Technology & Innovation, on adopting frontier AI and building safeguards at the same time, and what that means for a firm that holds its clients' most sensitive data.
+Claude Enterprise
+Article
+Nov 23, 2026
+Zero data retention with Enterprise Frontier Safeguards is now in beta
+Claude Platform
+Article
+Nov 23, 2026
+The enterprise guide to securing coding agents
+How security and technical leaders can understand and bound risk as they scale Claude Code
+Claude Code
+Article
+Nov 17, 2026
+Linked billing on the Claude Platform
+Claude Platform
