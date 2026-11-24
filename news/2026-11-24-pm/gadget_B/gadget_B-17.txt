@@ -1,0 +1,70 @@
+URL: https://www.gizmodo.jp/article/2611-rohanarun_alpoge_rh_replay/
+TITLE: 長大なリーマン予想のLean証明、GitHubでみんなが整理中。ファイル数を68%も減らせた！
+SITE: GIZMODO JAPAN
+PUBLISHED: 2026-11-24 10:45 (page: 2026-11-24T10:45:00+09:00)
+OG_IMAGE: https://media.loom-app.com/loom/2026/11/24/790fc6ef-f696-49a0-adeb-2e8dd011da03/original.jpg?w=1200&h=630
+IMAGES:
+- https://media.loom-app.com/loom/2026/11/24/790fc6ef-f696-49a0-adeb-2e8dd011da03/original.jpg?w=1200 | 長大なリーマン予想のLean証明、GitHubでみんなが整理中。ファイル数を68%も減らせた！
+- https://media.loom-app.com/loom/2026/11/20/6fba0b3f-ad8b-4ea1-92b8-080311a7237b/original.png?w=240&h=180&f=jpg | Anthropicの人がClaudeと数学界のラスボス「リーマン予想」の証明を発見したらしい | ギズモード・ジャパン
+
+TEXT:
+長大なリーマン予想のLean証明、GitHubでみんなが整理中。ファイル数を68%も減らせた！
+Nov 24,2026 10:45
+4,421
+かみやまたくみ
+( GIZMODO編集部 / 残響言語文法論 )
+Google検索でギズモードを
+お気に入りに追加
+削除対象にならずに残ったモジュールのうち、Lean 4.36への移植が完了したものの累計数。11月22日時点で14,863件に対応、丸いアイコンは大きな変更箇所への貢献者を示しています。
+Image: Rohan Arun/X
+Anthropic所属の数学者Levent Alpöge氏がClaudeと数学界のラスボス「リーマン予想」の証明を見つけたと発表
+してから数日。
+本当にリーマン予想は証明されたのか？提出された証明は正しいのか？ そういったことを検証する試みがさまざま進んでいます。
+その中のひとつ、Rohan Arun氏がGitHubで始めた「
+公開されたLean証明を有志で分担して再検証するプロジェクト
+」がおもしろい進展を見せています。
+Advertisement
+Leanは、数学の証明をコンピューターで検証できる形で書けるプログラミング言語です。今回公開されたリーマン予想の証明も、Leanで書かれています。
+みんなで分担する都合上、17.5万個のモジュールを小分けにして、人・AIエージェントで分担しようとしていたのですが、
+新バージョンへの移植作業や膨大なファイルを整理しないと厳しそう
+ということで、有志が集まり最終定理の証明に不要な読み込みやファイルを取り除く変更や移植を始めました。
+11月24日にArun氏はXで
+元のファイル数14万9000を、4万7000まで減らせた！（67.9%減）
+と報告しています。最終的には
+コンパイル時間を25〜45%短縮
+できる可能性があるとのこと。
+RH optimization update: We found a massive refactor that reduces the original RH proof to 47k files from ~149k(-67.9%).
+
+However we need help to get it over the finish line!
+
+We're at about 98.6% Lake jobs and 80% modules compiling, so it still needs full verification, but it could optimize compile times by 25-45%.  
+
+Upstream has ported to Lean 4.37-rc1, so we redirected our efforts to optimizing the proof. 
+
+One problem we're solving: the way Lean transitive imports works uses a lot of RAM, so a big optimization is consolidating imports and files down to reduce processes and RAM. This makes it easier for smaller contributors to work on it in local machines. 
+
+You could be a part of history by helping, so please consider pointing your agent here: https://t.co/XvW3t64eMx
+
+My hope is after we consolidate and refactor the massive Lean proof, it will be easier for experts to find logical optimizations, understand the proof, and contribute by building it locally without a massive machine. We've been building it on four 128-vCPU machines
+
+Thank you to the 130+ who contributed to the Alpöge RH replay and the 47k-file consolidation! 🤯 
+
+@1337isnot1337, @emsi_kil3r, roy7, alectionary, HITEYY, @gledos_green, UnityChaos, @ch00ts, loremcdmx, Amahane-Hikari, RobertBarnettProjects, @aliromman, hipotures, ANdATIon, TomMoeras, zediir, dga471, @jjjhenriksen, mu-mei, JamCh01, @bgouldoak, BenCaunt, jasonyandell, f10etclawdbot, dhudakk, maugomez77, JanSimeonMetzger, @AntoineBouquet, rayy3535, florianmodel, gilad12-coder, jdenwood, galakurpi, dgahelper, surfyhou, amrehan, nico1996it, @WorldianAI, @pCwOrM, user42245, nicu-chiciuc, sp20262026, arxhr007, matiasm15, t-choudhury, CubeJerry, Sethumathavanpk, sderrow, egergerfg, brysontang, maxime-fleury, agi-for-my-llama, TheMrZZ, @maddoxjack, 21Z121Z1, @larryhaonlp, @jesuisfayaz, sat3n, misuadn-laplace, @haqtanefe, m4tthewdavis, gabeldev, jwr404, matan1905, shardmods, rahulsundar477-star, DanieleCorso, varo6, iAndyHD3, Mzzj114, MLEARNER701, yingluom, Mfweb, chriswilson413, juanfers1, certified-retart, @LakshyAAAgrawal, WilmervH, walkingsophie, Aurantium-47, YutoriKomeiji, jsnider3, mdpmcc, ADB991, drew2apps, @RhizoNymph, ThatOneShortGuy, Rafa-Ross, SeriousRising, Trefoiler, Sheape, Lv-00-ANI, aapolipponen, unhingedpanda, @tiwarishabh16, whitegrave1917-web, krisyotam, @lcfpl, aulafy, @plee314, TOTOGT, @twaldin, @introsp3ctor, MLTQ, 123454321bobbob-tech, heath-hunnicutt-ruach-tov, TVSuchty, Wronskode, dh5at, @SigomiAi, angusbarry, Genius-Cai-wen-zheng, jaykobdetar, mabdelazim, IlluminPhoenix, burbon, TimShakespeare, adamchugo, ChristosMaglaras, EF-Code, Ethan-prog-netizen, @coinvotecc, Brendon-Hablutzel, ealcarazsoto, keithadler, Nibroc6, @scanningwithsam, science-markets, Scratch-net, and @fahim_hakim_15. 🫡
+— Rohan Arun (@RohanArun)
+November 23, 2026
+この再検証やファイルの整理に協力した人は
+130人以上
+。Arun氏は「
+手伝ってもらえれば、歴史の一部になれるかもしれません
+」と述べています（参加したい人は
+まずこちらを読んでね
+とのこと）。
+このリーマン予想の証明の件は、数学界に大きな影響を与えると思われますし、他の分野に波及する可能性もあると思います。将来にどのような影響を与えるかはもはや想像が難しい。
+人間はAIが提出した証明を検証し、理解しきることができるのでしょうか？
+また何が起こるのでしょうか？
+何もかも不透明な中で、多くの人がそれについてできることがないかを探し、取り組んでいることがとても印象的でした。
+Anthropicの人がClaudeと数学界のラスボス「リーマン予想」の証明を発見したらしい | ギズモード・ジャパン
+Source:
+Rohan Arun
+,
+alpoge-rh-replay

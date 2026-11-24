@@ -1,0 +1,29 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2158660.html
+TITLE: StrataとMayaがInkling 2 Miniに対応。26.4BのMoEモデル
+SITE: PC Watch
+PUBLISHED: 2026-11-24 12:43 (page: 2026-11-24T12:43:49+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2158/660/01.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2158/660/01_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0H6W864Z6.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+StrataとMayaがInkling 2 Miniに対応。26.4BのMoEモデル
+宇都宮 充
+2026年11月24日 12:43
+メインメモリ、VRAM、ストレージを組み合わせることで、ゲーミングPCなどでも大型AIモデルを実用的に動作させられるツール「Strata」および「Maya」が、パラメータ数26.4B(264億)のMoE(Mixture-of-Experts)モデル「Inkling 2 Mini」を11月22日のアップデートで新たにサポートした。
+Inkling 2 Miniは、高速かつ強力な性能とノートPCでも動作する軽量さを兼ね備えるAIモデルで、オープンウェイト(モデルの重み)として11月20日にHugging Faceで公開された。Thinking Machines Labが開発したもので、総パラメータ数は26.4B、アクティブパラメータ数は3.4B(34億)、コンテキスト長は最大100万トークンで、テキストと画像の入力に対応する。
+6層×4ブロックあるTransformer層のうち、中央の2ブロックを3回繰り返して実行するループ設計が特徴。これにより、パラメータ数を増やすことなく計算の深さを増し、性能を引き上げられるという。ベンチマークでは、Gemma 4 31BやMuse Glimmer、Nemotron 3.5 Super VLといった競合モデルを多くの項目で上回った。Qwen3.8-27Bに対してはDeepSWE v1.1などで上回った一方、Terminal Bench v2.1やHLE-Diamondなどでは及ばなかったとしている。
+Strataでは、11月22日公開のバージョン0.2.19にてInkling 2 Miniにネイティブで対応。WindowsやmacOSのほか、Linux(Intel Arc GPUおよびNVIDIA DGX Spark搭載環境含む)でローカル実行が可能となっている。量子化パックはSQ-10、SQ-15、SQ-20の3種類を用意し、メインメモリと併用することで、VRAM 4GBの環境でも動作できるとしている。GeForce RTX 5090搭載環境ではプロンプトプレフィルで11,306tok/s、64件の同時リクエスト全体で4,089.7tok/sを実現したとする。
+加えて、GeForce RTX 50/40/30シリーズやAMDのRDNA 3 GPUを搭載する環境における「Qwen3.8-Flash-Next」の最適化を図った。GeForce RTX 5090+NVFP4の場合では、プレフィルが36%、デコードが15%高速化したという。
+This update is HUGE 👀  - Inkling 2 Mini is now supported in Strata 🥳 - 11,306 tokens/s on prefill and 4,087 tokens/s on output with RTX 5090 😨 - Qwen3.8-Flash-Next receives a 40% performance increase across all hardware we support 🥶  See more at: https://t.co/pRksU6D8T7 https://t.co/OgXbbGQQW1
+— Niko Veit (@coldniko)
+November 22, 2026
+Mayaでは、11月22日公開のバージョン1.1.72にて、実験プレビュー機能としてInkling 2 Miniのサポートを開始。この時点ではVRAM 24GB以上のNVIDIA製GPUを搭載するLinux環境を対象としていたが、続くバージョン1.1.73ではVRAM 8GB以上のNVIDIA製GPUでも実行が可能となった。
+あわせて、処理の高速化やInkling 2 Miniでのドラフト機能への対応、一部のデュアルGPU環境でHy4-Flash起動時に発生していたクラッシュバグの修正などを行なった。
+Project Maya v1.1.73 is out with more hardware support to Inkling 2 Mini 😊  ✅ Inkling 2 Mini now runs on NVIDIA cards from 8 GB: the experts that don't fit stay in RAM  ✅ Inkling 2 Mini also runs on V100 and RTX 20 cards, and on AMD on Linux (Radeon and Strix / Gorgon Halo)  ✅ Drafting for Inkling 2 Mini only where it is faster  ✅ Fixes: the VRAM reserve is kept, and Hy4-Flash runs on more two-GPU PCs  Full notes 👇 https://t.co/0J80u6sMW3
+— Peasant Smith (@PeasantSmith)
+November 22, 2026
+「ローカルLLM」関連書籍
+Amazonで購入

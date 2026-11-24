@@ -1,0 +1,96 @@
+URL: https://www.gizmodo.jp/article/2611-riemann-hypothesis-proof-joke-anthropic/
+TITLE: 「リーマン予想の証明、25万ページ超はジョーク」アンソロピックの数学者がしたごめんなさいを解説
+SITE: GIZMODO JAPAN
+PUBLISHED: 2026-11-24 13:15 (page: 2026-11-24T13:15:00+09:00)
+OG_IMAGE: https://media.loom-app.com/loom/2026/11/24/dbc5a01e-e56f-4e03-a608-5195ef5c52fe/original.png?w=1200&h=630
+IMAGES:
+- https://media.loom-app.com/loom/2026/11/24/dbc5a01e-e56f-4e03-a608-5195ef5c52fe/original.png?w=1200 | 「リーマン予想の証明、25万ページ超はジョーク」アンソロピックの数学者がしたごめんなさいを解説
+- https://media.loom-app.com/loom/2026/11/20/6fba0b3f-ad8b-4ea1-92b8-080311a7237b/original.png?w=240&h=180&f=jpg | Anthropicの人がClaudeと数学界のラスボス「リーマン予想」の証明を発見したらしい | ギズモード・ジャパン
+- https://media.loom-app.com/loom/2026/11/24/790fc6ef-f696-49a0-adeb-2e8dd011da03/original.jpg?w=240&h=180&f=jpg | 長大なリーマン予想のLean証明、GitHubでみんなが整理中。ファイル数を68%も減らせた！ | ギズモード・ジャパン
+
+TEXT:
+「リーマン予想の証明、25万ページ超はジョーク」アンソロピックの数学者がしたごめんなさいを解説
+Nov 24,2026 13:15
+かみやまたくみ
+( GIZMODO編集部 / 残響言語文法論 )
+Google検索でギズモードを
+お気に入りに追加
+Image: levent @__alpoge__
+11月24日（日本時間）、Alpöge氏は
+Xで「リーマン予想の証明が25万ページ超は冗談だった」と説明
+しました。
+Stupid things I did:
+1. 250,000+ pages was a joke guys!, I find big number extremely hilarious. I tried to make it clear by the level of pedantry of the reals total ordered statement in the main theorem, but people ran with it unfortunately and I didn’t feel like talking on social media in the days after the announcement, though I did have a good time with the memes. Sorry!!! (Similarly with our YM4 existence I found it extremely funny that we were slowly working through 60,000 pages of slop, though the committee asking for Lean made me feel dumb about wasting our time with that. But 60,000 funny.) Tao advises to not joke in papers, see also the Big Lebowski reference I shoehorned, I now understand why… I didn’t feel comfortable having any slop writeup attached to this problem, and I figured I can’t produce anything readable anyway, so I went off the Lean to lengthmaxx.
+2. The Lean is full of garbage obviously, but compiles, but all criticism of such garbage is totally reasonable and accepted, I should have cleaned it up but it was randomly difficult to for various strange reasons. Mea culpa…
+3. @scottnarmstrong clocked me, indeed even as a student there were theorems that took me the better part of a decade to write up, but with this one I should hopefully be more responsible. (I really was yoloing a lot in there, I bet most is unnecessary in the end, admittedly the lazy thing to do would be to wait because it’ll simplify massively…)
+4. I forgot to emphasize what I think is the point. Arguments like these, cool, but they are the raw inputs when interpolating definitions. We don’t have the / an “H^1 object” over number fields, and probably for a layperson the fact that we fight hard for these arguments for the purpose of definitions is not clear a priori (that’s at least my philosophy). Just like I knew I must fight for an utterly simple Weil / Deligne, I feel Riemann should be easy, and any real difficulty is an indication our setup is just dumb at the moment.
+— levent (@__alpoge__)
+November 23, 2026
+ところが、この説明自体がかなりわかりにくい。どういう意味なんでしょう？ 証明の価値に影響するのでしょうか？ そんなわけで、彼の主張をきちんと読んでみました。
+Advertisement
+まず、「冗談だ」と述べた部分がこちら。まだ関連する部分が続きますが、追々お見せします。
+僕がやらかしたこと：
+1.
+「25万ページ超」は冗談だよ、みんな！
+僕はやたらでかい数字がもうおかしくてしょうがない。主要な定理のところで、実数の大小関係をあそこまでくどくど書けば冗談だと伝わると思ったんだけど、残念ながら話はひとり歩きしてしまった。
+次に、このリーマン予想の証明が25万ページ超という話がどこから来たかを見てみましょう。以下が該当箇所で、Alpöge氏が「リーマン予想の証明をClaudeと見つけた」と発表したPDFの2ページ目脚注にあります。
+2.
+もちろん僕は面白がって、25万ページを超えるまでやった。Claudeはかわいらしく、それを一般化リーマン予想の…「本」と呼んだ。
+確かに「証明を文章にしたら25万ページを超えた」と書いてあり
+、ぼく自身、発表時にこの文書を読んだときにはそこに目がいきました。
+ところがよく見ると、
+その前に「I of course amused myself（遊んでいたら）」という一文がある
+んですね。実は
+Alpöge氏の力点はこちら
+にあったようなのです。
+そして、この注釈には続きがあります。こちらは
+Claudeの証明はかなり基本的なところから始まっていた
+といったことを言っているようです。
+定理1を見てみると、実数には大小の順序があるので、σが1/2と等しくなければ、σは1/2より大きいか小さいかのどちらかだ、というところから始まっていた。
+ここでAlpöge氏が述べたいのは、「25万ページ超はちゃんとした論文ではないよ」ということだと思われます。確かにリーマン予想の証明ではありますが、
+当たり前のことまでくどくどAIに書かせて意図的に25万ページ超まで膨らませた
+、ということのようです（実際、この25万ページは「駄文」とも呼ばれています）。そういう遊びだった、と。
+わかるわけないです。25万ページ超の原稿は本当にあって、そこまで長くしたこと自体がジョークだったなんて。
+Xの投稿では、Alpöge氏は
+他にもAIと難解な数学の証明に取り組んでいて、そちらでも膨大な量の下書きが生成された
+ことが明かされています。
+で、おもしろいのがどうも
+彼もうんざりしてた
+っぽいこと。
+僕たちが取り組んだ4次元のヤン＝ミルズ理論の存在証明でも、AIが吐き出した6万ページの駄文をちまちまと読み進めている状況が、僕にはおかしくてしょうがなかった。
+この辺りの背景を知っていたら、「冗談だったんだ」と言われて理解できたのかもしれません。
+でも、Alpöge氏は世紀の大発見を、世界に向けて主張した。
+ぼく自身そうですけど、彼のこの釈明を読んでなお、調べないとまったくわからなかった。彼のことをそもそもよく知らないんですから。
+さらにおもしろいのが、彼がちゃんとそのことを反省しているようで、
+自虐的に書いている
+こと。
+タオは論文に冗談を書くなと言ってる。僕が無理やりねじ込んだ『ビッグ・リボウスキ』ネタも参照。今ならその理由がわかる…。この問題にAIの駄文を添えて出す気にはなれなかったし、どうせ読めるものは書けないと思って、Leanのコードをもとに、いっそ長さの限界に挑んだんだ。
+この「タオ」は、フィールズ賞を受賞した著名な数学者テレンス・タオ氏と思われます。
+タオ氏は
+2009年のインタビュー
+で、
+初めて書いた論文に冗談を入れ、指導教員から「論文は30年後も残る。いま面白いことがそのときも面白いとは限らない」と諭された
+そうです。タオ氏はこれをいい助言だったと振り返っています。
+で、
+Alpöge氏も「論文に冗談は書くな」というタオ氏が受けた助言を知っていた
+ようなんです。
+それなのに、Alpöge氏は冗談を紛れこませてしまった。世紀の大発見を主張する文章の中に。世界中の人が見て、多くの人が意図を読み切れなかった。
+Alpöge氏はリーマン予想に真剣に向き合い、
+ちゃんとしたものを書きたいがとてもじゃないが難しい…となって開き直って長々書いてしまおうと思った
+と述べてはいますが、さすがにAlpöge氏が悪いと思います。
+でも、彼を非難する気にはなれません。
+Alpöge氏はたくさんの業績をもつ数学者で、おそらくは極めて優秀な人です。
+そんな人でもAIのクソ長い文章に辟易気味だった。そんな中でここぞという時に禁を侵してしまった。
+AIの長文を読んでると頭がおかしくなりそうになりませんか？ 彼はAnthropic所属の数学者で、ハーバード大にもいた。そんな人でもそうなるんだって。
+彼の投稿をちゃんと読んでよかったと思いました。
+AI科学の未来は地獄かもしれないけれど、人間味はあるのかもと思えたから。
+Alpöge氏が出したリーマン予想の証明については、各所で検証の試みが続いています。証明の本体はLeanという数学の証明用のプログラミング言語で書かれており、この25万ページ超の自然言語での証明はなくても問題ない可能性があるような状況です。
+Anthropicの人がClaudeと数学界のラスボス「リーマン予想」の証明を発見したらしい | ギズモード・ジャパン
+長大なリーマン予想のLean証明、GitHubでみんなが整理中。ファイル数を68%も減らせた！ | ギズモード・ジャパン
+Source:
+levent
+,
+remark.pdf
+,
+Gazette, Vol. 36, No. 5, p. 318
+2026年11月24日13:50修正：25万ページが結局のところ何であったかを説明する1節が脱落していたため、補いました。
