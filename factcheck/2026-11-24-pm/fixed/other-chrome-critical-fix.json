@@ -1,0 +1,138 @@
+{
+ "id": "other-chrome-critical-fix",
+ "category": "other",
+ "title": "Chromeの重大な弱点を修正、Androidも対象",
+ "summary": "AndroidでChromeを使う人も、Google Playで修正版を確認できます。",
+ "visual": {
+  "icon": "lock",
+  "kicker": "Chrome更新"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "GoogleがChromeの最も深刻な弱点を1件直しました。パソコンとAndroidが対象です。",
+    "修正版の番号は末尾がパソコン版で.88か.89、Android版で.92です。",
+    "パソコンはChromeのメニュー、AndroidはGoogle Playで更新を確かめられます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Googleは現地時間11月23日、重大な弱点を直したパソコン版Chromeを公開しました。Android版にも同じ修正が入ります。"
+  },
+  {
+   "type": "h",
+   "text": "今回直した弱点と深刻度"
+  },
+  {
+   "type": "p",
+   "text": "弱点があったのは「Variations」です。一部の人に新機能を先に試してもらう仕組みです（IT Picks）。受け取ったデータの確認に不備がありました。弱点の管理番号はCVE-2026-134401です。"
+  },
+  {
+   "type": "p",
+   "text": "Googleはこの弱点を最も深刻な「クリティカル」と評価しました。IT Picksが紹介したGoogleの説明では、悪用されると意図しないプログラムを動かされるおそれがあります。米国のサイバー対策機関CISAの評価は10点満点で9.6点です。"
+  },
+  {
+   "type": "p",
+   "text": "Googleは8月28日にこの弱点を報告しました。悪用が確認されたかどうかは公表していません。多くの人に修正版が届くまでは、弱点の詳しい情報を見られる人を限る場合があります。"
+  },
+  {
+   "type": "h",
+   "text": "パソコン版の番号と配布"
+  },
+  {
+   "type": "p",
+   "text": "WindowsとmacOSの修正版は158.0.8127.88と158.0.8127.89です。Linuxは158.0.8127.88です。Googleは数日から数週間かけて順に配ります。"
+  },
+  {
+   "type": "p",
+   "text": "会社などが使う「拡張安定版」は、更新の間隔が長い版です。IT Picksによると、WindowsとmacOS向けの修正版は156.0.8078.114です。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoft Edgeは、Chromeと共通の仕組みを使うブラウザです。11月24日時点で、Microsoftはこの弱点の影響や対応を明らかにしていません（IT Picks）。"
+  },
+  {
+   "type": "h",
+   "text": "スマホ版の修正と配布先"
+  },
+  {
+   "type": "p",
+   "text": "Android版にも同じ弱点の修正が入り、修正版は158.0.8127.92です。Googleは11月23日の発表から数日かけて、Google Playで配布します。HelenTechによると、動作の安定性や性能も改善しています。"
+  },
+  {
+   "type": "p",
+   "text": "iPhoneとiPadにも同日、158.0.8127.86が出ました（IT Picks）。Googleは動作の安定性と性能の改善を案内しています。この弱点を直したかは明らかになっていません。"
+  },
+  {
+   "type": "h",
+   "text": "初版から次の更新まで"
+  },
+  {
+   "type": "p",
+   "text": "Chrome 158の初版は11月17日に出ました（IT Picks）。番号は158.0.8127.36と158.0.8127.37です。この更新では弱点を204件直し、うち6件が最も深刻なものでした。今回の弱点は初版に残っています。"
+  },
+  {
+   "type": "p",
+   "text": "HelenTechは、次のChrome 159への更新は12月9日の予定だと報じました。管理者向けの変更点はすでに公開されています。"
+  },
+  {
+   "type": "h",
+   "text": "手元の版を確かめるには"
+  },
+  {
+   "type": "p",
+   "text": "パソコンでは、Chromeの右上のメニューから「ヘルプ」を開きます。「Google Chromeについて」で、版の番号と更新の有無がわかります。WindowsとmacOSでは、「再起動」を押すと新しい版に切り替わります。Linuxでは、アプリを管理する機能から更新します（IT Picks）。"
+  },
+  {
+   "type": "p",
+   "text": "Android版ChromeはAndroid 10以降で使えます（IT Picks）。Google PlayでChromeを開き、「更新」があれば押します。すぐに表示されないときは、時間をおいて確認してください。版の番号は「設定」から「Chromeについて」を開くと見られます。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "8月28日",
+     "label": "報告された日"
+    },
+    {
+     "value": "204件",
+     "label": "先の更新の修正数"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "パソコンでChromeを使う人は、今使っている版を確かめ、「再起動」が出たら押してください。",
+    "AndroidでChromeを使う人は、Google Playに「更新」が出たら押してください。",
+    "会社のパソコンを管理する人は、拡張安定版も含めて修正版の配布状況と適用の日程を確認してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "次のChrome 159を待つ間にも、今回の弱点は直せます。大きな更新を済ませたばかりの人は、あとから届く修正を見落としやすいかもしれません。"
+  }
+ ],
+ "source_name": "Security NEXT",
+ "source_url": "https://www.security-next.com/193218",
+ "published": "2026-11-24",
+ "refs": [
+  {
+   "name": "Security NEXT",
+   "url": "https://www.security-next.com/193218"
+  },
+  {
+   "name": "ASCII.jp",
+   "url": "https://ascii.jp/elem/000/004/454/4454088/?focus=1"
+  },
+  {
+   "name": "HelenTech",
+   "url": "https://helentech.jp/news-chrome-158-minor-update-261124-93983/"
+  },
+  {
+   "name": "IT Picks",
+   "url": "https://itpicks.dev/news/4622"
+  }
+ ]
+}

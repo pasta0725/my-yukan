@@ -1,0 +1,176 @@
+{
+ "id": "ai-devin-bots",
+ "category": "ai",
+ "title": "Cognition、Devin Botsの提供開始",
+ "summary": "目標を伝えるとBotが作業を分け、複数のAIが並行して開発します。",
+ "image": {
+  "src": "https://www.watch.impress.co.jp/img/ipw/list/2158/714/01.jpg",
+  "kind": "ogp",
+  "credit": "Impress Watch",
+  "page": "https://www.watch.impress.co.jp/docs/news/2158714.html"
+ },
+ "visual": {
+  "icon": "ai",
+  "kicker": "AI開発"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Cognitionが複数の開発AIをまとめる「Devin Bots」の提供を始めました。",
+    "同社では、Botに任せたDevinのAndroidアプリが44日でできました。",
+    "開発チームは、Botに任せる範囲や人の承認が必要な場面を決められます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Cognitionは米国時間11月17日（日本時間18日）に「Devin Bots」の提供を始めました。複数の開発AI「Devin」をまとめて動かせます。"
+  },
+  {
+   "type": "img",
+   "src": "https://asset.watch.impress.co.jp/img/ipw/docs/2158/714/02_s.jpg",
+   "kind": "ogp",
+   "credit": "Impress Watch",
+   "caption": "Devin Botsに関する記事掲載画像",
+   "page": "https://www.watch.impress.co.jp/docs/news/2158714.html"
+  },
+  {
+   "type": "h",
+   "text": "開発の調整役をAIが担う"
+  },
+  {
+   "type": "p",
+   "text": "人は各AIに指示を出し、作業の進み具合を確かめてきました。各AIの結果を取りまとめるのも人の役目です。AIが増えると、こうした調整に手間がかかります。Devin Botsでは、この役目をDevin Botに任せられます。"
+  },
+  {
+   "type": "p",
+   "text": "利用者が開発の目標を伝えると、Botが作業を細かく分けて各Devinに渡します。Botは進み具合を確かめ、結果をもとに次の作業を決めます。Cognitionの説明では、作業が途切れても前のやり取りを覚えています。"
+  },
+  {
+   "type": "h",
+   "text": "依頼から完成までの流れ"
+  },
+  {
+   "type": "p",
+   "text": "連絡アプリのSlackでの依頼や警告を受けると、Botが複数のDevinを呼び出します。各Devinはネット上の専用コンピューターで同時に動きます。Botは、プログラムの変更案（プルリクエスト）が取り込める状態になるまで見守ります。"
+  },
+  {
+   "type": "p",
+   "text": "作業中は「Devin Review」というAIがプログラムを点検します。ブラウザを使った自動テストも行います。人は個々のDevinの作業を開いて、どこまで進んだかを確かめられます。"
+  },
+  {
+   "type": "p",
+   "text": "人の判断が必要なときは、「Needs You」という受信箱1カ所に連絡が届きます。たとえば、実際のサービスに変更を公開するかどうかを確認できます。外部サービスを使うための合言葉（APIキー）の追加も、ここで知らせます。機能の仕様を決めるときも、Botが人に判断を求めます。"
+  },
+  {
+   "type": "p",
+   "text": "Cognitionは、成果を確かめる基準を人が決めるよう案内しています。たとえば、テストを速くするなら、省いてはいけない確認を決めます。チームは、Botが使えるシステムや変更できる範囲を決めます。支出や公開に人の承認が要るかも設定できます。"
+  },
+  {
+   "type": "h",
+   "text": "自動実行とBot同士の連携"
+  },
+  {
+   "type": "p",
+   "text": "決めた時刻や出来事をきっかけに、Botを自動で動かせます。たとえばSlackのサポート窓口に届く不具合報告に対応できます。プログラムを自動で試す仕組み（CI）が正常か、毎晩点検する使い方もあります。"
+  },
+  {
+   "type": "p",
+   "text": "テスト役のQA Botは、不具合を見つけると開発役のDeveloper Botに修正を頼めます。直った後の再テストまで自動で進められます。"
+  },
+  {
+   "type": "p",
+   "text": "1つのBotをチームで共有できます。SlackのグループやDevinのアプリから、同じBotに話しかけられます。iMessageなどのメッセージや電話でもやり取りできます。"
+  },
+  {
+   "type": "h",
+   "text": "アプリ開発と運用での実例"
+  },
+  {
+   "type": "p",
+   "text": "Cognitionの社内では、Botが44日でDevinのAndroid版を作りました。担当者は初めに方針を決め、開発中に183件のメッセージを送りました。アプリはGoogle Playで公開テスト中です。iPhone版に新機能が入るたびに、BotがAndroid版も更新します。"
+  },
+  {
+   "type": "p",
+   "text": "同社は、読み込み中にウェブ画面の表示がずれる問題にもBotを使いました。Botは3時間おきに画面を点検します。修正案には前後の録画を添え、人が違いを確認できるようにします。同社は3週間で159件の修正案を取り込みました。"
+  },
+  {
+   "type": "p",
+   "text": "同社が紹介したスマホゲームの制作スタジオでは、従業員1人と約20のBotが働きます。変更案は週約50件から1900件に増えました。ゲームは毎週更新されています。"
+  },
+  {
+   "type": "p",
+   "text": "Cognitionの発表では、先行利用したBiltがBotの成果を報告しました。Biltでは、Botが1週間で約1600件の変更案を取り込みました。計画から公開後の手直しまで任せられる点も評価しています。"
+  },
+  {
+   "type": "h",
+   "text": "企業向けの設定と利用条件"
+  },
+  {
+   "type": "p",
+   "text": "ORIENSによると、ひな型は6種類です。自分用のBotも作れます。\n・修正や改善（Software Factory）\n・Androidアプリ開発（Android Engineer、言語はKotlin）\n・進行役（Chief of Staff）\n・処理を速くする（Latency Optimizer）\n・機能開発（Product Engineer）\n・ブラウザでの試験（QA Engineer）"
+  },
+  {
+   "type": "p",
+   "text": "企業向けには、使える人を制限したり、操作の記録（監査ログ）を残したりできます。専用ネットワークとの接続にも対応します。セッション（作業の区切り）ごとに、ソフトで作る独立したコンピューター（仮想マシン）を使います。AIの仕組みを提供する会社とは、データを残さない「ゼロデータ保持」の取り決めがあります。"
+  },
+  {
+   "type": "p",
+   "text": "Fortuneが報じたCognitionの説明では、Botごとに予算を設定できます。定型作業では、速くて費用を抑えられるAIモデル（AIの仕組み）をBotが選びます。ボタンの色を変える程度の修正は、自動で承認して取り込む設定もできます。"
+  },
+  {
+   "type": "p",
+   "text": "利用窓口はDevinの公式サイトです。料金や使える契約プラン、利用の上限は発表されていません。日本で使えるか、日本語でやり取りできるかも未発表です。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "11月17日",
+     "label": "提供開始（米国時間）"
+    },
+    {
+     "value": "44日",
+     "label": "DevinのAndroid版を作った日数"
+    },
+    {
+     "value": "6種類",
+     "label": "すぐに使えるBotのひな型"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "開発チームで使う人は、任せる前にBotの成果をどう確かめるか決めてください。",
+    "チームの管理者は、Botを動かす前に使えるシステムや承認が必要な場面を決めてください。",
+    "利用を考えている人は、申し込む前にCognitionの案内で利用条件を確認してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "iPhone版とAndroid版の機能をそろえ続ける仕事は、Botに向いていそうです。人が確認に使った時間もわかると、任せる仕事を選びやすくなります。"
+  }
+ ],
+ "source_name": "Impress Watch",
+ "source_url": "https://www.watch.impress.co.jp/docs/news/2158714.html",
+ "published": "2026-11-24",
+ "refs": [
+  {
+   "name": "Impress Watch",
+   "url": "https://www.watch.impress.co.jp/docs/news/2158714.html"
+  },
+  {
+   "name": "Cognition",
+   "url": "https://devin.ai/blog/introducing-devin-bots"
+  },
+  {
+   "name": "ORIENS",
+   "url": "https://ai-oriens.com/news/devin-bots/"
+  },
+  {
+   "name": "Fortune",
+   "url": "https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/"
+  }
+ ]
+}

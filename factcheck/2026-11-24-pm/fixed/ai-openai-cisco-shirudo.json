@@ -1,0 +1,165 @@
+{
+ "id": "ai-openai-cisco-shirudo",
+ "category": "ai",
+ "title": "OpenAIとCisco、Shirudoを試験公開",
+ "summary": "正式版に先立ち、修正までの一時的な守りを試せます。",
+ "image": {
+  "src": "https://images.ctfassets.net/kftzwdyauwt9/bScTLq9smNJq5XAlaHIQW/fab0e70b1aab8ca8dffb70a747056fd7/guardian-agent-desktop-light.png?w=3840&q=90&fm=webp",
+  "kind": "press",
+  "credit": "OpenAI",
+  "page": "https://openai.com/index/introducing-shirudo"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "止めずに守る"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "サーバーなどで使う基本ソフト「Linux」を一時的に守る仕組みを、OpenAIとCiscoが公開しました。",
+    "実験では、開発支援AIのCodexが作った防御で、検索ソフトへの攻撃を再起動なしで防ぎました。",
+    "公開されたのは正式版の前の段階です。サーバーの管理者は試験用の環境で試せます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "OpenAIとCiscoは米国時間の11月23日、稼働中のLinuxを守る「Shirudo」を発表しました。コードは、共有サイトのGitHubで読めます。"
+  },
+  {
+   "type": "h",
+   "text": "修正が届くまでの備え"
+  },
+  {
+   "type": "p",
+   "text": "Shirudoは、中身を公開したオープンソースのソフトです。名前は日本語の「盾」にちなみます。弱点が見つかってから、修正プログラムを入れるまでの間に、一時的な守りを足せます。"
+  },
+  {
+   "type": "p",
+   "text": "修正プログラムは、試して入れるまでに数日から数週間かかることがあります。攻撃とふだんの利用が同じ処理を通る場合もあります。OpenAIは、その処理をまとめて止めるとサービスが止まりかねないと説明しています。"
+  },
+  {
+   "type": "p",
+   "text": "The Registerによると、2026年に報告されたソフトの弱点は10万件を超えました。修正を試す時間や、サービスを止めて作業できる時間の確保が課題です。"
+  },
+  {
+   "type": "h",
+   "text": "サーバーを守る仕組み"
+  },
+  {
+   "type": "p",
+   "text": "Shirudoは、基本ソフトの中心部で小さなプログラムを動かすLinuxの技術「eBPF」を使います。一時的な防御の部品を「シールド」と呼びます。サービスを動かしたまま不審な動きを見張り、シールドを入れられます。土台は、Cisco傘下のIsovalentが作った監視・防御ソフト「Tetragon」です。"
+  },
+  {
+   "type": "p",
+   "text": "AIは、弱点の調査やシールド作りを手伝います。攻撃への効き目や、ふだんの処理への影響を事前に試せます。どのシールドを入れるかは、セキュリティ担当者が決めます。"
+  },
+  {
+   "type": "p",
+   "text": "シールドを入れる前に、署名で作り手と改ざんの有無を確かめます。Linuxも、eBPFで動くシールドが安全のための規則に従っているか検査します。安全用の部品「TPM」には、防御を入れた記録と外した記録が残ります。管理者はその記録を後から確かめられます。"
+  },
+  {
+   "type": "h",
+   "text": "実験で防いだ攻撃と限界"
+  },
+  {
+   "type": "p",
+   "text": "両社は、Javaのプログラムを動かす仕組みに見つかった「Java4Shell」という弱点で試験しました。Codexは、文字を変換する前に入力を確かめるシールドを作りました。シールドを動作中の検索ソフト「Elasticsearch」に取り付けると、攻撃の入力をはじきました。検索ソフトは再起動なしで動き続けました。"
+  },
+  {
+   "type": "p",
+   "text": "Ciscoは、プログラムを書く言語のPHPでも、弱点を突く攻撃を試験で防いだと発表しました。実際の運用環境でも同じ効果が出るかは、まだ示されていません。"
+  },
+  {
+   "type": "p",
+   "text": "JPJJは、実験と公開中の標準手順では、Javaに防御を入れる方法が違うと報じました。配布中のJava向けシールドは起動時に読み込むため、すでに動いていれば再起動が必要です。"
+  },
+  {
+   "type": "h",
+   "text": "試験公開と利用前の条件"
+  },
+  {
+   "type": "p",
+   "text": "開発元の案内では、正式版はまだなく、実運用に使える段階に達していません。導入には、Linuxの中心部に手を加えた専用の開発版が必要です。Shirudoを動かすには、TPM 2.0という規格への対応も必要です。通信を管理するソフト「Cilium」とは、そのままでは併用できません。"
+  },
+  {
+   "type": "p",
+   "text": "コードはBSD 2-Clauseという利用条件で、自由に使えます。Linux側で動く小さな防御プログラムは、BSDとGPLから利用条件を選べます。"
+  },
+  {
+   "type": "p",
+   "text": "ITトレンドによると、企業向けサポートの有無は発表されていません。日本での提供条件や日本語の案内についても、両社から発表はありません。"
+  },
+  {
+   "type": "h",
+   "text": "試し方と今後の公開計画"
+  },
+  {
+   "type": "p",
+   "text": "仮想マシンで試す手順があります。仮想マシンとは、パソコンの中にソフトで作る別のコンピューターです。この方法なら、TPMもソフトで代用できます。Isovalentには、自分のペースで操作を学べる練習環境もあります。"
+  },
+  {
+   "type": "p",
+   "text": "12月15日には、仕組みを詳しく説明するオンライン講座が開かれます。OpenAIは、弱点の公表と同時に試験済みのシールドも出せるようにしたいとしています。同社のグレッグ・ブロックマン社長は、共通のソフトを使う組織が守り方を共有できると説明しました。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "数日〜数週間",
+     "label": "修正を入れるまでの目安"
+    },
+    {
+     "value": "10万件超",
+     "label": "2026年に報告されたソフトの弱点"
+    },
+    {
+     "value": "12月15日",
+     "label": "技術解説のオンライン講座"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "サーバーを管理する人は、試験用の仮想マシンで公開コードの動作を確かめられます。",
+    "Java4Shellへの対応が必要な管理者は、修正版の適用を優先してください。",
+    "ふだんアプリを使うだけの人が、いまやることはありません。",
+    "技術を詳しく知りたい人は、12月15日のオンライン講座で解説を聞けます。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "攻撃を防げても、ふだんの利用まで止まれば困ります。実際のサーバーに入れる前に、いつもの処理が通るか確かめられる点は、管理者の判断に役立ちそうです。"
+  }
+ ],
+ "source_name": "OpenAI",
+ "source_url": "https://openai.com/index/introducing-shirudo",
+ "published": "2026-11-24",
+ "refs": [
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/introducing-shirudo"
+  },
+  {
+   "name": "The Register",
+   "url": "https://www.theregister.com/security/2026/11/24/cisco-and-openai-pitch-ebpf-kernel-plugins-as-the-way-to-tame-the-patchpocalypse/5311795"
+  },
+  {
+   "name": "Impress Watch",
+   "url": "https://www.watch.impress.co.jp/docs/news/2158698.html"
+  },
+  {
+   "name": "ITトレンド",
+   "url": "https://front.it-trend.jp/news/01-345"
+  },
+  {
+   "name": "JPJJ",
+   "url": "https://jpjj.jp/articles/shirudo-openai-cisco-linux-runtime/"
+  },
+  {
+   "name": "Cisco",
+   "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m11/cisco-and-openai-launch-shirudo-a-new-project-to-safeguard-agentic-ai.html?source=rss"
+  }
+ ]
+}
