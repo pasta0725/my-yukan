@@ -1,14 +1,11 @@
 RESULT: LOOK
-- LOOK 台本1行目（say・show）／タイトル／英語タイトル｜「最大せんよんひゃくまんけん」「最大1400万件」「up to 14 million」は、上限自体が概数であることを省いています。｜最大約1400万件。｜マイ夕刊「銀行が示した漏えい件数の上限は約1400万件です。」
-- LOOK 台本1行目（say・show）／タイトル／概要欄1行目／英語タイトル／英語概要欄1文目｜「銀行の外から漏れました」「最大1400万件漏えい」「最大約1400万件漏えいしたと発表しました」「customer records leaked via KARTE」「up to about 14 million records of customer information leaked」は、件数の確度について資料間で表現が分かれています。｜三井住友銀行は顧客情報の漏えいについて発表しました。件数は最大約1400万件で、Impress Watchは漏えいの可能性がある範囲として報じています。｜Impress Watch「最大約1,400万件の情報漏えいの可能性があると発表した。」／CNET Japan「顧客情報が最大約1400万件漏えいしたと発表した。」
-- LOOK 台本2行目（say・show）｜「ジンズやしまむらも、漏えいを発表」「JINSやしまむらも漏えいを発表」は、両社が漏えいを確定したように聞こえます。｜JINSやしまむらも、同じ不正アクセスによる顧客情報の漏えいについて発表しました。JINSを展開するジンズホールディングスの発表は漏えいの可能性についてです。｜時事通信社（mixiニュース掲載）「ジンズホールディングスが最大約１８２９万件」「それぞれ顧客情報が漏えいした可能性があると同日までに発表した。」／Impress Watch「JINSやしまむら、RIZAPなどが、顧客情報の漏えいについて発表していた。」
-- LOOK 概要欄のポイント2項目目／英語概要欄3文目後半｜「丸井グループでは氏名やメールアドレスなど約883万件」「Marui Group reported about 8.83 million records including names and email addresses」では、約883万件が丸井グループ全体の件数にも読めます。｜約883万件は、マルイウェブチャネルと「マルイからのおトクな情報メール」の利用者に関する件数です。エポスカード利用者に関する約850万件も公表されています。｜Impress Watch「マルイウェブチャネルの利用者と「マルイからのおトクな情報メール」を利用していた人が約883万件」「エポスカードの利用者(退会者含む)は、顧客管理番号と性別の漏えいが約850万件」
-- LOOK 台本11行目（say・show）｜「カルテの再開は、にせんにじゅうななねん一月中旬が目標です」「KARTEの再開は、2027年1月中旬が目標です」は、段階的な再開という条件を省いています。｜KARTEの段階的な再開目標は2027年1月中旬です。｜Impress Watch「KARTEの段階的な再開目標を2027年1月中旬とすることを決定。」
-- LOOK 台本12行目（say・show）｜「パスワードを聞く連絡は、来ません」「パスワードを聞く連絡は来ません」は、資料が示す連絡手段の範囲を省いています。｜銀行は、この件に関連してメールや電話でパスワードの入力を求めることはないと説明しています。｜マイ夕刊「銀行はこの件で、メールや電話でパスワードの入力を求めることはありません。」
-- LOOK 英語概要欄1文目｜「Sumitomo Mitsui Banking Corporation」の正式な英語名表記を資料本文で確認できません。｜資料に記載なし｜日本時事新聞の出典欄「株式会社三井住友銀行」
-- LOOK 英語概要欄3・4文目｜「PLAID」の英字表記を資料本文で確認できません。｜資料に記載なし｜日本時事新聞の出典欄「株式会社プレイド」
+- LOOK 台本1行目（say・show）／字幕の冒頭／タイトル／概要欄1行目／英語タイトル・概要欄｜「最大約1400万件が銀行の外から漏れました」「最大約1400万件漏えい」「最大約1400万件漏えいしたと発表しました」「up to about 14 million records leaked」「up to about 14 million records of customer information leaked」は、約1400万件を漏えいした件数の上限としている。資料間で、この件数が漏えいした範囲か、漏えいの可能性がある範囲かの記述が異なる。｜三井住友銀行は顧客情報の漏えいを発表した。Impress Watchによると、漏えいの可能性がある範囲は最大約1400万件。｜マイ夕刊「銀行が示した漏えい件数の上限は約1400万件です。」／Impress Watch「最大約1,400万件の情報漏えいの可能性があると発表した」
+- LOOK 台本2行目（say・show）／字幕の該当箇所｜「JINSやしまむらも、漏えいの恐れを発表」のうち、しまむらが漏えいの『恐れ』として発表したかは確認できない。｜資料に記載なし｜Impress Watch「JINSやしまむら、RIZAPなどが、顧客情報の漏えいについて発表していた。」
+- LOOK 概要欄「▼ポイント」1項目目｜「ログインIDとパスワードは含まれない」は、資料が示すインターネットバンキングに限る条件を省いている。｜インターネットバンキングのログインIDやパスワードは含まれていない。｜CNET Japan「インターネットバンキングのログインIDやパスワードは含まれていない。」
+- LOOK タグ／英語タイトル・概要欄｜「SMBC」「Sumitomo Mitsui Banking Corporation」の略称・英語名は資料本文で確認できない。｜資料に記載なし｜日本時事新聞の出典欄「株式会社三井住友銀行」
+- LOOK 英語概要欄（運営元と再開目標の2箇所）｜「PLAID」という運営元の英字表記は資料本文で確認できない。｜資料に記載なし｜Impress Watch『顧客体験プラットフォーム「KARTE」を提供するプレイド』
 
-確かめた事実の数：60　/　漏えい件数の確度や対象範囲などに確認が必要です。
+確かめた事実の数：66　/　同じ事実の繰り返しは1件として数えました。
 
 事実確認（Codex gpt-6.2-sol・effort high）　対象：rina_smbc_leak
-照らした資料：マイ夕刊の記事 data/2026-11-24-am.json service-smbc-karte-data-leak（点検済みの記事。出典 CNET Japan）、research/2026-11-24-am/service-smbc-karte-data-leak.txt（元記事・参考記事のページ本文）、factcheck/2026-11-24-am/service-smbc-karte-data-leak.txt（元記事・参考記事のページ本文）、fetched:fetched/smbc_leak/1.txt、fetched:fetched/smbc_leak/2.txt、fetched:fetched/smbc_leak/3.txt
+照らした資料：マイ夕刊の記事 data/2026-11-24-am.json service-smbc-karte-data-leak（点検済みの記事。出典 CNET Japan）、research/2026-11-24-am/service-smbc-karte-data-leak.txt（元記事・参考記事のページ本文）、factcheck/2026-11-24-am/service-smbc-karte-data-leak.txt（元記事・参考記事のページ本文）、fetched/smbc_leak/1.txt（https://japan.cnet.com/article/35255263/）、fetched/smbc_leak/2.txt（https://www.watch.impress.co.jp/docs/news/2158411.html）、fetched/smbc_leak/3.txt（https://jpjj.jp/articles/smbc-karte-customer-data-leak/）
