@@ -1,0 +1,298 @@
+===== https://www.theregister.com/security/2026/11/24/cisco-and-openai-pitch-ebpf-kernel-plugins-as-the-way-to-tame-the-patchpocalypse/5311795
+(status 200)
+security
+    Cisco and OpenAI pitch eBPF kernel plugins as the way to tame the patchpocalypse
+        ‘Shirudo’ project promises to whip up compensating controls in a hurry
+Simon Sharwood
+Simon
+Sharwood
+Asia-Pacific Editor
+Published
+tue 24 Nov 2026 // 01:46 UTC
+Make us preferred on Google
+READ MORE
+Critical Cisco remote code execution bug under attack
+10 hours ago
+Old-school Linux desktops find fresh routes to Wayland
+17 hours ago
+Google claims last week’s critical VMware bug was under attack in September
+23 hours ago
+Flaws in VMware and KVM need attention, if you have time while fixing Java, PHP, and everything else
+4 days ago
+XXRI-OS explores the lowest end of the Linux desktop
+4 days ago
+Cisco and OpenAI have released an open-source tool called Shirudo to implement compensating controls in Linux, potentially improving security for users who can’t quickly patch newly discovered software flaws.
+Shirudo relies on eBPF, the technology that makes it possible to run sandboxed programs in the Linux kernel. eBPF programs are effectively kernel plug-ins but don’t get unrestricted access to system resources.
+Developers have mostly used eBPF to create network functions that enable things like the open source Kubernetes observability and security tool 
+Cilium
+, a Cloud Native Computing Foundation project.
+REG AD
+Cisco and OpenAI think eBPF can help organizations cope with the flood of 
+100,000-plus software flaws
+ reported this year, many after the debut of AI-powered bug finders.
+REG AD
+The increased volume of flaws, and patches to fix them, is a problem for many organizations which already struggle to test fixes or find change windows in which to implement them. That problem has seen greater interest in “compensating controls” – changes to applications or infrastructure that harden them against flaws or malware, without requiring a patch.
+With Shirudo, Cisco and OpenAI are suggesting two things:
+The privileges eBPF programs enjoy make them a fine way to implement compensating controls for Linux;
+Agents should scan your infrastructure for vulnerabilities, then use tools like OpenAI’s Codex to write compensating controls as eBPF programs at machine speed.
+“Shirudo” is apparently the Japanese word for “shield,” so Cisco and OpenAI have called the eBPF programs the tool creates “shields.” The two companies envision humans checking every shield Shirudo creates before putting it into production.
+Shirudo is open source and available 
+here
+. The two companies say they’ve already demonstrated it could mitigate the recently discovered flaws in 
+Java 
+without requiring downtime for an Elasticsearch implementation.
+Cisco and OpenAI are not alone in advocating for compensating controls. Third-party software maintenance outfits like Rimini Street have used them for years to protect software when their clients no longer have the right to access patches. VMware has introduced “virtual patching.” Palo Alto Networks and Rapid 7 also like this approach, and offer automation to develop controls.
+Where Cisco and OpenAI differ is their decision to make Shirudo 
+open source
+, and their ambition that other players adapt and advance it.
+That offer is not entirely altruistic, as if Shirudo takes off it could create more demand for Codex. Cisco’s angle comes from the fact it owns Isovalent, an early champion of eBPF and the creator of both Cilium and the Tetragon sub-project on which Shirudo is based. Switchzilla is using eBPF in other products, so normalizing its use through an open source project can’t hurt. ®
+security
+compensating controls
+cisco
+ebpf
+openai
+linux
+patches
+patch management
+Make us preferred on Google
+
+===== https://www.watch.impress.co.jp/docs/news/2158698.html
+(status 200)
+ニュース
+パッチ適用前にLinuxシステムを一時保護する「Shirudo」 OpenAIとCiscoが開発
+臼田勤哉
+2026年11月24日 13:30
+ OpenAIとCiscoは23日(米国時間)、セキュリティパッチを展開する間もLinuxシステムを保護できるオープンソースのランタイム「Shirudo」を発表した。GitHubでソースコードを公開している。 
+ セキュリティの脆弱性に対し、パッチを適用するまでの数日から数週間の期間において、システムを停止せずに保護するための仕組み。セキュリティパッチの適用は、不正アクセス対策にとって必須となるが、検証やテストを行なわずに適用するとサービスを止めたり、システムに障害をもたらす可能性もある。 
+ Shirudoでは、修正プログラムを構築・展開する間も、稼働を維持するため、不審な活動を監視し、稼働中のシステムに対して的を絞ったセキュリティ保護を適用する仕組み。Linuxの「eBPF」を活用し、OS内の特定のポイントで小さなプログラムを実行し、ガーディアンエージェントがeBPFを用いて稼働中のシステムを監視・保護する。 
+ OpenAIとCiscoは、リアルタイム保護、マシン速度での防御、信頼性の高いデプロイ、ハードウェアによる検証を重視し、Shirudoを設計。テストでは、Java4Shellの脆弱性に対し、パッチが準備されている間、ターゲットを絞ったシールドが実行中のアプリケーションを保護したという。 
+ シールドの英語の綴りはShieldだが、Shirudoは日本語の発音(シールド)にあわせた表記を採用している。 
+ OpenAIとCiscoは、Shirudoをオープンソース化して提供。BSD 2-Clauseライセンスで提供され、BPFプログラムはBSDおよびGPLのデュアルライセンスとなる。両社では、脆弱性の開示と同時に検証済みのシールドを提供し、運用担当者が恒久的なパッチを準備する間、一時的な保護策を評価・導入できる手段を提供することを目指すとしている。
+
+===== https://front.it-trend.jp/news/01-345
+(status 200)
+セキュリティ
+2026年11月24日
+OpenAIとCisco、Linuxの稼働中防御「Shirudo」をオープンソースで公開——パッチ適用までの間、再起動なしで攻撃を遮断
+OpenAIとCisco、Linuxの稼働中防御「Shirudo」をオープンソースで公開——パッチ適用までの間、再起動なしで攻撃を遮断
+（写真はイメージ）
+OpenAIとCiscoは2026年11月23日（現地時間）、Linuxシステムの保護を支援するオープンソースのランタイム「Shirudo」を
+発表した
+。パッチを展開している間も、稼働中のシステムを守ることが目的である。統制されたテストでは、Codexが生成したシールドがElasticsearchへの「Java4Shell」の攻撃を、再起動なしで遮断したという。
+背景には、パッチの検証と適用に数日から数週間かかることがある。その間にサービスを守ろうとしても、攻撃と正規のリクエストが同じLinuxの操作に依存する場合があり、その操作を丸ごと止めるとサービスが止まってしまう。Shirudoは、このジレンマに向き合うための仕組みだとOpenAIは説明している。
+Shirudoの仕組み：eBPFの「シールド」で脆弱なコードの経路を塞ぐ
+Shirudoは、OSの内部で小さなプログラムを動かせるLinuxの技術「eBPF」を使う。これにより、不審な動きを観察しながら、稼働中のシステムに的を絞った保護を適用できる。名前は日本語の「盾」に由来する。
+運用の流れは次のとおりである。まず、一時的な防御策である「シールド」が、脆弱性につながる挙動を止めつつ正規のリクエストを通すかをテストする。運用者が承認したら、サービスを動かしたままシールドを展開する。実際に適用する前に、そのシールドがアプリケーションにどう影響するかを監視できる点も特徴である。
+4つの設計方針：ライブ保護、機械速度の防御、署名と検証、TPMによる証跡
+OpenAIとCiscoは、Shirudoを4つの機能を軸に設計している。1つ目は再起動なしのライブ保護である。2つ目は機械速度での防御で、エージェントが脆弱性を調べ、的を絞ったシールドを作り、攻撃や実際のワークロードに対する有効性を検証できるようにする。ただし、何を展開するかはセキュリティチームが管理する。
+3つ目は信頼できる展開である。シールドは暗号署名され、読み込み前に検証される。さらにLinuxのeBPF検証機構が安全規則に照らして確認し、カーネルのセキュリティ制御が不正な変更を制限する。4つ目はハードウェアによる検証で、TPM（Trusted Platform Module）を使い、保護の読み込みや解除の検証可能な記録を残す。運用者はこの記録を、システムが自社の要件を満たしているかの確認に使える。
+Java4Shellでの実演：Elasticsearchを止めずに攻撃を拒否
+公式が示した例は、Java4Shellの脆弱性である。チームはOpenAIのCodexを使い、JavaのBase64デコーダーに入力チェックを加えるシールドを生成した。これを、動作中のElasticsearchのプロセスに直接取り付けている。
+悪用を試みると、シールドが悪意ある入力を拒否し、Elasticsearchは動き続けたという。なお、これは統制されたテストでの結果である。実際の運用環境で同じ効果が得られるかまでは、公式には示されていない。
+オープンソースで公開：ライセンスと試し方
+OpenAIとCiscoはShirudoをオープンソースとして公開し、開発者、セキュリティ研究者、インフラ運用者に、コードの確認、保護のテスト、開発への参加を呼びかけている。ライセンスはBSD 2-Clauseで、BPFプログラムはBSDとGPLのデュアルライセンスである。
+試す方法としては、署名・読み込み・検証をたどる「VM quickstart」と、Isovalentの自習型ラボが案内されている。12月15日には技術解説のウェビナーも予定されている。公式は将来的に、脆弱性の開示と並べて検証済みのシールドを提供する構想も掲げている。
+日本企業への示唆
+情シスやセキュリティ担当者にとって、まず確認したいのは自社のLinuxサーバーの棚卸しである。パッチの適用に時間がかかるシステムはどれか、再起動を許せないサービスはどれかを整理しておくと、こうした一時防御策の価値を判断しやすくなる。
+次に、運用の統制を確認したい。公式は、展開するシールドはセキュリティチームが管理するとしているため、誰が承認し、どの記録を残すかを社内ルールとして決めておく必要がある。TPMによる証跡を、監査や取引先への説明にどう使えるかも論点になる。
+なお、対応するLinuxのディストリビューションやカーネルの条件、商用サポートの有無は、公式の発表では示されていない。導入を検討する場合は、公開されているドキュメントとリポジトリで事前に確かめたい。
+ITトレンドで脆弱性対策についてチェック！[
+【ランキング】セキュリティ診断サービスおすすめ19選比較！料金相場
+]
+OpenAIのセキュリティ施策はこちらもチェック！[
+OpenAI、サイバーセキュリティ特化の「GPT-6 Cyber」を発表——範囲を守る力を高め、Firefoxの未知の脆弱性81件を発見
+]
+まとめ
+Shirudoは、パッチ適用までの空白期間を、eBPFのシールドで埋めるためのオープンソースのランタイムである。OpenAIとCiscoは、署名と検証、TPMによる証跡を組み合わせ、運用者が承認したものだけを展開する形を目指している。
+公式の実演は、統制されたテストでのJava4Shell対策である。自社環境への適合は、公開されたドキュメントとクイックスタートで確かめるのが現実的だろう。
+
+===== https://jpjj.jp/articles/shirudo-openai-cisco-linux-runtime/
+(status 200)
+テクノロジー
+OpenAIとシスコ、Linuxを止めずに守る「Shirudo」公開　正式版前で実運用は「まだ」
+2026年11月24日 10:13
+通信機器につながるケーブル（撮影時期不明の資料写真。イメージ写真で、本記事の場面の写真ではありません）
+SNS等の共有画像は、この写真を本紙が加工し見出しを重ねたもの
+出典：jarmoluk／Pixabay（
+https://pixabay.com/photos/cyberspace-data-wire-electronic-2784907/
+）
+利用条件: 
+Pixabay Content License
+シェア
+X
+Facebook
+LINE
+はてブ
+リンクをコピー
+この記事の要点
+OpenAIとシスコ、修正前のLinuxを動かしたまま守るソフトを公開
+AIのCodexが作った防御用プログラムが、Java4Shellの攻撃を試験で遮断した
+正式版の前の段階で、実運用への準備は「まだ」と開発元が文書に明記した
+米OpenAIと米シスコは米国時間の23日、欠陥の見つかったLinuxサーバーを、修正プログラムを当てるまでの間、動かしたまま守るソフト「Shirudo」をオープンソースで公開した。対話型AI「ChatGPT」を手がけるOpenAIの開発支援AI「Codex」に防御用のプログラムを作らせ、Javaの欠陥「Java4Shell」を突く攻撃を試験で退けたという。ソースコードの説明書きは、現在を正式版の前（プレリリース）の段階と明記しており、実際のサーバーで使うには開発途中のLinuxカーネルなどの条件がある。
+修正が届くまでの時間を「盾」で埋める
+名称は日本語の「シールド（盾）」から取った。説明書きにはカタカナで「シールド」と添えられている。
+欠陥が公表されても、修正プログラムの試験と配布には数日から数週間かかることがある。その間に攻撃だけを止めるのは難しい。OpenAIは、攻撃と正規の利用が同じLinuxの処理を通る場合があり、その処理を丸ごと塞ぐとサービスが止まりかねないと説明する。
+Shirudoでは、欠陥の原因になる動きだけを止める小さなプログラム（シールド）を作り、正規の処理が通るかを試したうえで、管理者が承認すれば動作中のサーバーへ入れる。土台にしたのは「eBPF」と呼ぶLinuxの機能だ。基本ソフトの中心部であるカーネルの決まった場所で小さなプログラムを動かす仕組みで、カーネルが読み込みの前に安全性を検査する。シスコ傘下のIsovalent（アイソベイレント）は、ブラウザーを更新せずに機能を足せるJavaScriptになぞらえている。
+入れるプログラムには電子署名が要る。読み込みや取り外しの記録は、サーバーの基板などに載る「TPM」（暗号の処理や改ざんの検知を担う部品）に残し、管理者が後から検証できる。配布の形は、サーバー側が登録先から取りに行く方式で、待ち受ける通信口も常駐プログラムも置かない。
+Isovalentによると、Shirudoは同社が2022年に公開した監視・防御ソフト「Tetragon」を、AIエージェントが扱う前提で書き直したものだ。人が読むための設定言語をあえて設けず、AIに防御のプログラムそのものを書かせる。開発者2人は10月6日、プラハで開かれた技術者会議「Linux Plumbers Conference」でこの構想を先に発表していた。
+Java4Shellの攻撃、0.02秒後に拒否の記録
+両社が実例に挙げたのが、Javaの実行環境OpenJDKで11月17日（米国時間）に公表された欠陥「Java4Shell」（CVE-2026-114938）だ（
+Javaの実行環境OpenJDKに欠陥「Java4Shell」　細工した文字列でコード実行のおそれ
+）。文字列を元のデータに戻すBase64の復号処理に誤りがあり、細工した入力でメモリーの内容を壊される。
+試験では検索ソフト「Elasticsearch」の9.5.5を動かし、Codexが作ったシールドを動作中のプロセスに取り付けた。復号の前に入力を検査する処理を足すもので、eBPFではなく、Javaのプログラムを実行時に書き換える形をとる。Isovalentは、eBPFでは防ぎにくい種類の欠陥に対する方法だとしている。
+公開された動作記録には、日本時間18日21時14分43秒に検査処理が入り、約0.02秒後に長さ65文字、末尾の記号が1つの入力を拒んだと残っている。欠陥を見つけた米Califが公開した再現用の入力も、「A」64個と「=」1個の65文字だ。攻撃は成立せず、Elasticsearchは動き続けたという。
+ただし、この結果は開発元が管理した環境での試験によるもので、Isovalentの表現も、悪用を防ぐのに「効果があるようにみえる」という慎重なものだ。ほかの製品や、別の手順の攻撃で試した結果は示されていない。Califは製品ごとに専用の攻撃手順が要り、共通の攻撃方法は無いとしている。
+公開中の手順書では、Javaは再起動の後に有効
+公開された文書を読むと、発表の実例と、いま用意されている標準の手順には違いがある。
+文書によると、Java向けの防御は、Javaの起動時に読み込む部品として配られる。Javaは起動時に設定を読むため、「すでに動いているものは、再起動するまで起動時の部品のまま」と書かれている。システムの常駐サービスやコンテナとして動くJavaには自動では届かず、それぞれの起動設定に書き足す必要がある。発表の試験のように、動作中のJavaへ取り付ける手順は、この文書には書かれていない。
+防御の強さも、カーネルに入れるものとJavaに入れるものとで異なる。カーネル側は、サーバーの最高権限（root）を奪われても、署名用の鍵が無ければ外せないように設計されている。一方、Java側は「アプリの内側での緩和策であり、カーネルが強制する境界ではない」とし、rootやJavaを起動する利用者は、防御なしで起動できると認めている。
+少なくともJavaについては、再起動なしに守れるかどうかは取り付け方で変わることになる。
+使う前に確かめたい条件
+正式版の前であることや必要なカーネルは、両社の発表文には書かれておらず、ソースコードに付いた説明書きと文書に載っている。主な条件は次のとおりだ。
+項目
+文書の説明
+公開の段階
+正式版も、保守の対象となる安定版も無い。実運用には「まだ」
+カーネル
+開発中の「bpf-next」に、独自の修正を加えたもの。古い版への対応は無い
+TPM
+TPM 2.0が必須。無しで動かす方式は無い
+CPU
+x86-64は自動試験の対象。arm64は一部の試験のみ、riscv64は起動の実績なし
+併用
+Cilium、Falco、bpftraceはそのままでは動かない
+署名
+耐量子暗号の「ML-DSA-87」だけ。手持ちの鍵は使えない
+Shirudoを使うための主な条件（2026年11月23日時点の文書）
+出典: Shirudoの説明書き（README）、FAQ、System requirements
+カーネルの条件は、導入できる環境を限る。文書は、前提とする機能の一群について本家のLinuxには「どれも無い」とし、専用に組み立てたカーネルを使う。試験に使うものは「7.4.0-rc1-bpf-next+」と名乗る開発版だ。一般の企業が使う配布版のLinuxに、そのまま足せるものではない。
+併用できない製品には、コンテナ基盤で使われる「Cilium」も含まれる。CiliumはIsovalentが手がける通信制御ソフトで、eBPFを使う。Shirudoは署名の無いeBPFを全て拒むため、自前でプログラムを読み込むソフトは最初の段階で失敗する。文書は、同じ処理を署名付きの形に作り直せば使えるとしている。
+試すだけなら、手元の仮想マシンで動かす手順が用意されており、TPMもソフトウエアで代用できる。両社は12月15日に開発者による解説のオンライン講座も開く。
+修正プログラムの代わりにはならない
+文書は、Shirudoがカーネルの更新に取って代わるものではなく、修正版に入れ替えるまでの期間を受け持つものだと繰り返している。署名が証明するのは作り手と改ざんの有無だけで、防御の中身が正しいかどうかは作り手の責任だとする。カーネル自体が乗っ取られた場合は守れない。
+従来からある「ライブパッチ」との違いも説明されている。ライブパッチはカーネルの関数を差し替え、修正そのものを再起動なしに入れる。Shirudoのカーネル向けの防御は関数を差し替えられず、危険な呼び出しを入り口で断る。その代わり、カーネルの検査を通ったものだけが動き、1つのプログラムを複数の版のカーネルで使える。ライブパッチが届くまでShirudoで塞ぎ、届いたら外すという組み合わせを文書は挙げている。
+Isovalentは背景として、AIが欠陥を見つけて攻撃に使う能力が高まり、公表前に悪用される欠陥が増えていることを挙げる。Java4Shellも、Califが10月にCodexを使って独自に見つけたものだ。OpenAIのグレッグ・ブロックマン社長は「今日欠陥が見つかっても、明日すべてのシステムを直せるわけではない」と述べ、ある組織が見つけた守り方を他の組織も使えるように公開で開発するとしている。将来は、欠陥の公表と同時に試験済みのシールドを配ることを目指す。
+いまJava4Shellへの対応が要る利用者にとって、優先するのは修正版への更新だ。JPCERTコーディネーションセンター（JPCERT/CC）は、すぐに更新できない場合の回避策として、Javaの起動時に「-XX:-UseBASE64Intrinsics」を付けてBase64の高速化を止めるか、x86-64の環境に限って「-XX:UseAVX=2」を付ける方法を紹介している。どちらもJavaを起動し直す必要があるが、正式版の前のソフトや専用のカーネルを入れずに済む。
+出典
+OpenAI and Cisco introduce Shirudo
+（
+OpenAI
+）
+Cisco and OpenAI introduce Shirudo
+（
+Isovalent（シスコ）
+）
+shirudo（README）
+（
+Shirudoプロジェクト
+）
+FAQ
+（
+Shirudoプロジェクト
+）
+System requirements
+（
+Shirudoプロジェクト
+）
+Versions and compatibility
+（
+Shirudoプロジェクト
+）
+What is shirudo
+（
+Shirudoプロジェクト
+）
+How shirudo compares
+（
+Shirudoプロジェクト
+）
+Java agent upatches
+（
+Shirudoプロジェクト
+）
+Threat model
+（
+Shirudoプロジェクト
+）
+shirudo: BPF live-patching infra for the agentic era
+（
+Linux Plumbers Conference 2026
+）
+The Future of Self-Defending Systems: Deep Dive into Shirudo
+（
+Isovalent（シスコ）
+）
+Java4Shell: Write once, RCE everywhere
+（
+Calif
+）
+OpenJDKにおけるリモートコード実行につながる脆弱性（CVE-2026-114938）について
+（
+JPCERT/CC
+）
+本記事は、上記の一次情報との照合を経て、編集責任者の責任で公開しています（
+運営者情報
+）。
+タグ
+サイバーセキュリティ
+脆弱性
+OpenAI
+オープンソース
+Linux
+AIエージェント
+シェア
+X
+Facebook
+LINE
+はてブ
+リンクをコピー
+
+===== https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m11/cisco-and-openai-launch-shirudo-a-new-project-to-safeguard-agentic-ai.html?source=rss
+(status 200)
+An industry-first open source project, Shirudo, helps systems defend themselves at machine speed
+News Summary
+Defenders can start protecting systems before a permanent patch is in place.
+ Cisco and OpenAI are making that possible through an open source effort to build infrastructure that is secure by default and defends itself.
+Shirudo, an open source project built on industry-leading eBPF
+, helps protect running Linux systems without a reboot while teams roll out a patch.
+This marks a shift from human-paced policy updates to self-defending, agent-driven security.
+ AI agents do the legwork across the full stack, from models and data to the kernel and hardware, while people keep the keys and set the boundaries.
+SAN JOSE, Calif., November 23, 2026 
+– Cisco (NASDAQ: CSCO) and OpenAI today launched an open source effort to make infrastructure secure by default and able to defend itself against today’s sophisticated cyber attacks. For too long, security has been a coat of paint. Cisco builds protection into the infrastructure itself, drawing on decades of building and protecting the systems the world depends on. OpenAI brings leading frontier AI research and insight into the attacks coming next. Together, they combine their insight to help anticipate AI-driven threats with the control to stop them.
+Defenders must protect every part of their infrastructure, all the time. Attackers only need one machine that hasn't been patched. Shirudo is an important step toward closing that gap. The goal is infrastructure that is hardened from the moment it is built, keeps getting harder to attack, and can be restored to a known-good state if it is compromised.
+“There is nothing more important than giving security teams the tools they need to match the speed of the AI-driven threats they are facing. We need self-defending infrastructure that acts at the speed of code, learns in real time, and shields itself until patches are safely rolled out,” said Jeetu Patel, Cisco President and Chief Product Officer. “Today, we’re proud to announce Shirudo with OpenAI, an important step towards that vision as we continue to collaborate with the wider community to solve the unique challenges of AI safety and security.”
+“We’re giving defenders better models and tools to find and fix vulnerabilities faster, but finding a bug today doesn’t mean you can patch every system tomorrow,” said Greg Brockman, President and Co-founder of OpenAI. “We are partnering closely with Cisco on Shirudo to help teams protect the systems they need to keep running while they build and roll out a fix. So many teams rely on the same software that it makes sense to build these tools in the open. Now when one team finds a better way to protect a system, others don’t have to start from scratch.”
+Shirudo: An Open Source Project from Cisco and OpenAI
+Shirudo, Japanese for “shield,” uses eBPF, a technology that runs small, custom programs inside the operating system kernel without changing its source code. With it, AI agents can find a vulnerability, build a shield, and test that it stops the attack without disrupting the service. Shields go live only when the evidence says they are safe. Every shield is cryptographically signed, so the host can verify it before it runs, even if an attacker has gained administrator access.
+In testing against recent critical vulnerabilities “Java4shell” and the PHP flaw, Shirudo was able to write code that detected and blocked attempts to exploit both threats. By utilizing an agentic framework, Shirudo matches the speed of AI-driven attacks as soon as a vulnerability is identified. Learn more about Shirudo 
+here
+.
+Cisco and OpenAI are inviting developers, researchers, and enterprises to help shape what comes next. Contribute a test that reproduces a vulnerability, run a shield against a kernel build you use, or show us where it breaks legitimate traffic. To learn more about Shirudo, visit: 
+https://github.com/shirudo-dev/shirudo.
+Read more:
+Cisco Blog: 
+Expanding the Defender’s Window with Self-Defending Infrastructure
+Cisco Blog: 
+Cisco and OpenAI Launch Shirudo
+OpenAI Blog: 
+OpenAI and Cisco Introduce Shirudo
+Shirudo on GitHub
+Join us for a deep dive webinar on December 15, 
+register here
+.
+About Cisco
+Cisco (NASDAQ: CSCO) is the worldwide technology leader that is revolutionizing the way organizations connect and protect in the AI era. For more than 40 years, Cisco has securely connected the world. With its industry leading AI-powered solutions and services, Cisco enables its customers, partners and communities to unlock innovation, enhance productivity and strengthen digital resilience. With purpose at its core, Cisco remains committed to creating a more connected and inclusive future for all. Discover more on 
+The Newsroom
+ and follow us on X at 
+@Cisco
+.
+Cisco and the Cisco logo are trademarks or registered trademarks of Cisco and/or its affiliates in the U.S. and other countries. A listing of Cisco’s trademarks can be found at 
+http://www.cisco.com/go/trademarks
+. Third-party trademarks mentioned are the property of their respective owners. The use of the word ‘partner’ does not imply a partnership relationship between Cisco and any other company.
+About OpenAI
+OpenAI
+ is an AI research and deployment company with a mission to ensure that artificial general intelligence benefits all of humanity. We work toward that mission by developing more capable AI systems and making them available through products like ChatGPT and our API. People use these tools to learn, create and solve problems, while businesses and developers use them to build products and improve how they work.
+      Media Contacts
+            Meredith Corley
+corleym@cisco.com
+Share on social

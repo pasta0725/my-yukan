@@ -1,0 +1,208 @@
+===== https://www.windowslatest.com/2026/11/20/windows-11-could-soon-turn-your-android-phone-into-a-second-monitor-something-apples-sidecar-cant-do-with-an-iphone/
+(status 200)
+Home
+Windows 11
+Windows 11
+Link to Windows Extend display feature could turn an Android phone into a second monitor for a Windows 11 PC (illustration)
+Microsoft is working on an “Extend display” feature for its 
+Link to Windows
+ app, which would let you use your Android phone and likely, tablet as a second monitor for your Windows 11 PC. Windows Latest found the feature’s interface strings, icons, and code for a dedicated 
+“Phone as Display”
+ system inside a recent version of the Android app.
+If the software giant ships this feature, the old Android tablet gathering dust in your drawer could become a portable second screen for your laptop (no need to install a third-party app). I’m really excited about this because many of us have Android phones with gigantic 6.5-to-6.9-inch screens, which could be a handy extended monitor setup for work. Also, if you think an iPhone and Mac can do this natively, know that Apple’s Sidecar 
+works only with iPads
+.
+Microsoft could let you extend your Windows 11 desktop onto an Android phone
+Extend display gets its own page in Link to Windows, based on these strings that Windows Latest obtained:
+Strings mentioning Extend Display feature coming to Link to Windows app. Credit: Windows Latest
+The “%1$s” placeholder will most likely show your PC’s name, and you also get display controls, a Stop button, and the option to tap Back twice to end the session.
+We also found two icons. 
+feature_extend_display.xml
+ shows a small screen overlapping a larger display, and 
+ic_display_monitor.xml
+ is a plain monitor. Keep in mind that these are only icon files from the app.
+Extend display icon resources found inside the Link to Windows app for Android. Credit: Windows Latest
+In case you’re unaware, Phone Link already supports screen mirroring and streaming apps from your Android phone to your PC, and we also first revealed that Microsoft is now testing a way to let you 
+open Android apps from the taskbar Search
+, streamed from your phone. Extend display goes the other way, with Windows sending part of its desktop to your phone as an extra screen.
+Bluesky running on phone and mirrored. Credit: Windows Latest
+Using an Android tablet as a second monitor makes far more sense than a phone
+A few months back, I tried Chrome Remote Desktop on my Android phone and gave up soon after, as Windows on a phone screen is all squinting and zooming. A tablet is a whole different ballpark.
+I know a ton of people with old budget tablets that are too slow for anything practical now, but their screens work just fine, and one could keep Teams or a reference document open next to your laptop. On a regular phone, you’d fit a chat window and not much else, though foldables have a better shot.
+Of course, Samsung’s 
+Second Screen
+ already does this on select Galaxy tablets, and 
+spacedesk
+ needs its own driver on your PC. But as it is built into Link to Windows, Extend display would be far easier to set up.
+Just don’t assume it’ll be wireless like Phone screen, which 
+needs both devices on one Wi-Fi network
+, as the code doesn’t say whether Extend display uses Wi-Fi, USB or both.
+Link to Windows code reveals H.264, HEVC and adjustable display settings
+Extend display runs on a dedicated package called 
+phone_as_display.v1
+, and its PhoneAsDisplayInitiator class lists two ways to start a session:
+.field public static final enum LTW:Lcom/microsoft/appmanager/display/api/PhoneAsDisplayInitiator;
+.field public static final enum PC:Lcom/microsoft/appmanager/display/api/PhoneAsDisplayInitiator;
+LTW is Link to Windows, and PC is, well, your PC. So, you could start Extend display from either device, although we can’t confirm that both work yet.
+The code also references the H.264 and HEVC (Main, 8-bit) video codecs, along with a descriptor that tracks width, height and refresh rate.
+const-string v1, “H264”
+const-string v1, “HEVC_MAIN8”
+.field private final heightPx:I
+.field private final refreshRateHz:I
+.field private final widthPx:I
+Your PC will likely encode its desktop as video for the phone to decode, at a resolution and refresh rate both devices agree on. We didn’t find which ones are supported, though.
+An experimental setting called 
+ENABLE_PHONE_AS_DISPLAY
+ controls whether the app advertises the feature, and parts of the display receiver and session setup code look incomplete in the version we examined.
+Microsoft could stop a second-display session when your PC locks or loses connection
+The 
+PhoneAsDisplayStopReason
+ class lists three reasons for ending a session:
+const-string v1, “PC_LOCKED”
+const-string v1, “RECEIVER_FAILED”
+const-string v1, “CONNECTION_LOST”
+Basically, the session stops if your PC locks, the phone’s display receiver fails, or the connection drops, and there’s a 60-second timeout if the first video frame doesn’t appear. CONNECTION_LOST will get a proper workout, considering 
+Phone Link still loses your Android phone after sleep
+.
+Microsoft’s biggest challenge could be Android phone compatibility
+I use a Motorola phone, and even with every permission enabled in Link to Windows and Phone Link, I don’t get the phone screen mirroring feature or the option to open my phone’s apps on my PC.
+Microsoft’s 
+supported devices page
+ limits Phone screen to select Samsung, HONOR, OnePlus, OPPO, Realme, ASUS, vivo, iQOO, and Xiaomi devices. Motorola and Google Pixel aren’t listed, even though Motorola had 11% of US smartphone shipments in Q2 2026 and Pixel 3%, according to 
+Counterpoint Research
+.
+I’m not sad, though, as my Motorola streams apps to my Lenovo IdeaPad every day through Lenovo’s 
+Smart Connect
+, which is much more powerful than Phone Link.
+Lenovo Smart Connect app on Phone and PC. Credit: Windows Latest
+With Google busy pushing its Googlebook laptops, I wouldn’t hold my breath for Pixel support. Still, Microsoft needs more partners than Samsung if Extend display is to become a real Windows and Android advantage.
+The team has been quietly at work as Link to Windows can now 
+remove ghost PCs
+, and Windows 11 can 
+resume WhatsApp chats from Android
+. Microsoft hasn’t announced Extend display, its supported devices, connection requirements, or a release date.
+Would you use an old Android tablet as a second monitor? Tell us in the comments below.
+About The Author
+Abhijith M B
+Abhijith is a contributing editor for Windows Latest. At Windows Latest, he has written on numerous topics, ranging from Windows to Microsoft Edge. Abhijith holds a degree in Bachelor's of Technology, with a strong focus on Electronics and Communications Engineering. His passion for Windows is evident in his journalism journey, including his articles that decoded complex PowerShell scripts.
+RELATED ARTICLES
+MORE FROM AUTHOR
+Microsoft admits one failed driver can bring down your PC, so it’s replacing the ones for printers, audio and cameras with its own wherever...
+Microsoft built a near-perfect native WinUI Search for Windows 11, but it ignores your moved taskbar, and its design VP says a fix is...
+32-bit apps’ days are numbered as Microsoft strips support bit by bit, starting with Windows Server 2028, but Windows 11 is safe for now
+One broken Wi-Fi driver can still blue-screen your entire Windows 11 PC, and Microsoft is fixing it by moving Wi-Fi drivers out of Windows’...
+Windows 11 will stop making your headphones sound like a phone call when you use the mic, after years of complaints, but only on...
+After a bad security update blue-screened millions of PCs, Microsoft now lets antivirus run outside the Windows kernel, and Windows 11 can recover if...
+Windows 11
+Microsoft admits one failed driver can bring down your PC, so it’s replacing the ones for printers, audio and cameras with its own wherever...
+Mayank Parmar
+-
+November 24, 2026
+0
+Microsoft built a near-perfect native WinUI Search for Windows 11, but it ignores your moved taskbar, and its design VP says a fix is...
+November 23, 2026
+32-bit apps’ days are numbered as Microsoft strips support bit by bit, starting with Windows Server 2028, but Windows 11 is safe for now
+November 23, 2026
+One broken Wi-Fi driver can still blue-screen your entire Windows 11 PC, and Microsoft is fixing it by moving Wi-Fi drivers out of Windows’...
+November 23, 2026
+Windows 11 will stop making your headphones sound like a phone call when you use the mic, after years of complaints, but only on...
+November 22, 2026
+Windows 10
+Hate Windows 11 changes? Windows 10 has 11 months left, and Microsoft is now offering the faster update that barely changes anything
+Mayank Parmar
+-
+November 3, 2026
+0
+Microsoft killed Windows 10 to push Windows 11, but Windows sales crashed 27% as holdouts still refuse to switch
+October 29, 2026
+Microsoft extended Windows 10, but Nvidia just made the extension meaningless for gamers
+September 1, 2026
+Microsoft is limiting Microsoft 365 & OneDrive on Windows 10 to push holdouts to Windows 11
+August 13, 2026
+Windows 10 KB5120249 keeps the OS protected, direct download links for offline installer (.msu)
+August 12, 2026
+
+===== https://www.androidauthority.com/link-to-windows-extend-display-3737779/
+(status 403)
+
+
+===== https://betanews.com/article/microsoft-android-phone-second-display-windows/
+(status 200)
+Share
+Android users who have been jealous of Apple’s Sidecar feature – which lets you extend the macOS desktop on an iPad screen – could soon have a Windows version of their own. Code for the Link to Windows app appears to show that Microsoft is working on a way to extend the Windows desktop onto the display of an Android smartphone.
+Fast facts:
+Microsoft is working on a way to extend the Windows desktop to Android screens
+The feature mimics Apple’s Sidecar
+Code has been spotted in the Link to Windows app
+The Link to Windows app has come quite a long way in recent years, but the capability of using a phone as a second display is something that has been lacking. This looks set to change, however. Spotted in the code for the app are references to “Phone as Display” – as reported by 
+Windows Latest
+ – suggest that Microsoft is working on, and could be close to releasing, an update to Link to Windows that transforms an Android phone into a second small monitor.
+While there are various third-party apps available for Android and Windows that allow for this type of display extension, to have something from Microsoft is appealing to many people.
+As Windows Latest notes, it is already possible to use the Link to Windows app for screen mirroring, but the option to extend the Windows desktop onto a smaller screen opens up further possibilities. There are certainly uses for mirroring the display of a Windows device on the screen of an Android phone, but using it as a separate display entirely means that it could be used to show the contents of a single window rather than the entire desktop.
+With Apple, the desktop extension feature of Sidecar can only be used in conjunction with an iPad, not an iPhone. At the moment, it is not clear whether or not Microsoft will limit Windows desktop extension to larger screened Android devices (i.e. Android tablets), nor do we know quite when the company might be ready to release such a feature ready for people to try out.
+Image credit:
+dlxmedia.hu
+ / 
+Unsplash
+Category
+Article
+Topics
+Android
+Link to Windows
+Microsoft
+Windows
+Written by
+Sofia Elizabella Wyciślik-Wilson
+Sofia Wyciślik-Wilson is a queer, transgender journalist based in Poland. She has been writing about technology for more than two decades, and after years working for magazines, her writing moved online. She is fueled by literature, music, nature, and vegetables.
+She is currently training to be an LGBTQ+ affirmative psychotherapist.
+You can find her on 
+Bluesky
+ and 
+Mastodon
+.
+If you like what you read, you can
+Buy her a Coffee
+!
+All articles by Sofia Elizabella →
+Discussion
+
+===== https://smhn.info/202611-microsoft-link-to-windows-extend-display-android-second-screen
+(status 200)
+AndroidスマホがWindows PCのサブ画面に？マイクロソフトが新機能
+掲載日時: 2026/11/22(日) 21:12
+          文:
+            會原          
+Extend displayのイメージ。画像出典：
+Windows Latest
+　MacにはiPadを2台目の画面にする「
+Sidecar
+」（iPhoneは非対応）があり、Samsungも一部のGalaxyタブレットをWindows PCにつなぐ「Second Screen」を提供しています。便利なんですよね。
+　でもMicrosoft自身のスマホ連携の機能には、こうした機能が不在でした。
+　そんな中、MicrosoftはAndroid向けアプリ「Link to Windows」（日本語名「Windows にリンク」）に「Extend display」（画面の拡張）機能を開発中であることがわかりました。
+　AndroidスマホやタブレットをWindows 11 PCの2台目のディスプレイとして使える機能とみられます。
+　Windows Latestは最近のバージョンのアプリ内から、画面の文字列やアイコン、専用の「Phone as Display」のコードを見つけたとしています。実現すれば、使わなくなった古いAndroidタブレットも他社製アプリを入れずにノートPCの持ち運べる2台目の画面にできるかもしれないと伝えています。
+　既存の「スマートフォン連携」（Phone Link）とLink to Windowsには、スマホ画面をPCに映す「Phone screen」（画面のミラーリング）や、スマホアプリをPCで使う機能があります。
+　一方、Extend displayはその逆で、
+Windowsのデスクトップの一部をスマホへ送って追加の画面にします
+。
+　アプリ内で見つかった文字列には、機能名の「Extend display」や、接続中のPC名が入るとみられる「Extend display · %1$s」があります。Link to Windows内にExtend display専用のページができるとみられます。
+　加えて、操作用の文字列として「Show display controls」（表示コントロールを表示）と「Stop」（停止）も存在。「Tap Back again to stop the second display」（もう一度「戻る」をタップすると2台目のディスプレイを停止）という案内も見つかっています。
+アプリ内で見つかったExtend displayの文字列。画像出典：
+Windows Latest
+　また、アイコンのファイルも2つ見つかりました。大きな画面に小さな画面が重なった絵の「feature_extend_display.xml」と、普通のモニターを描いた「ic_display_monitor.xml」です。
+　この機能は「phone_as_display.v1」という専用パッケージで動作。開始する側として「LTW」（Link to Windows）と「PC」の2つが定義されています。そのため、スマホ側とPC側のどちらからでも始められる可能性がありますが、両方が動くかはまだ不明です。
+　さらに、コードには動画の圧縮方式であるH.264とHEVC（Main、8bit）や、画面の幅・高さ・リフレッシュレートを扱う項目も記述。対応する解像度やリフレッシュレートは見つかっていないものの、PCがデスクトップ画面を動画として圧縮してスマホへ送り、スマホ側で再生するものとみられます。無線接続ですかね？
+　既存のミラーリング機能「Phone screen」でさえSamsungなどの一部メーカーに限られている状況。使わなくなった古いAndroidタブレットや手元のスマホが、他社製アプリなしでWindows PCのサブ画面になるなら実にありがたい話。せっかくの拡張ディスプレイ機能ですから、幅広いAndroid端末で使えるようになって欲しいところです。
+    Surface/Microsoft製品を購入
+[AD]
+    マイクロソフト公式Amazonストア
+情報元
+Windows Latest
+Microsoft
+Samsung
+詳しく読む
+Android
+Link to Windows
+Microsoft
+Windows 11
+スマートフォン連携

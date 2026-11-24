@@ -1,0 +1,557 @@
+===== https://fortune.com/2026/11/17/exclusive-cognition-bets-on-devin-bots-coding-agents-in-challenge-to-anthropics-duet-and-openais-dots/
+(status 200)
+Cognition’s AI coder just got promoted. The startup, currently valued at $48 billion, helped kick off the race to build coding agents with its viral product Devin. Now it is trying to get back to the front of the pack by debuting Devin Bots, a persistent coding tool that acts as a manager for teams of Devin agents that can manage a complex project over days or even weeks. 
+In the past few months, several AI companies have rolled out always-on agents that are designed to be general-purpose, but can be used for coding tasks. OpenAI has unveiled Dots, an always-on proactive agent that integrates with its Codex product to run teams of agents handling software development tasks. Anthropic has unveiled a similar product called Duet that can integrate with its Claude Code product.
+But Cognition’s Devin Bots are some of the first to be designed specifically for software development. 
+Tell a Bot to build an Android version of your iPhone app, and it will divide up the work, assign it to Devin agents and keep the Android app updated as the iPhone version changes. “Self-driving software is, I think, the direction that it’s going,” CEO 
+Scott Wu
+ told 
+Fortune
+ at the company’s office in San Francisco’s SoMa neighborhood. “But of course, it’s always up to the human where we’re driving to.”
+Recommended Video
+Devin Bots is Wu’s bet that the smarter AI models get, the more the product built around them matters. His argument addresses a broader Silicon Valley debate over whether advances in AI models will squeeze out the companies building products on top of them. Wu disagrees with the idea that AI will eventually become so capable that, as he put it, “nothing else will matter at all.”
+When Cognition unveiled Devin in March 2024, calling it the first AI software engineer, it was among the early startups trying to get AI to write and ship code on its own. The launch video went 
+viral
+.
+Two and a half years later, coding is one of AI’s biggest businesses. OpenAI and Anthropic have both put heavy resources behind their coding agents. In August, SpaceX acquired Anysphere, the parent company of AI coding tool Cursor, in a transaction that valued the company at $60 billion.
+For Cognition, the model companies are both suppliers and competitors. Their advances can make Devin more capable, while improvements to Codex and Claude Code could give customers less reason to pay for Devin as well.
+Wu argues that as models become more capable, engineers need more ways to direct them and inspect the results. GitHub Copilot began by suggesting code that programmers could accept or ignore. An engineer working with a Devin Bot, he said, might tell it what to optimize, how to use the team’s project board and when to send updates, or ask for a video of it testing its work.
+He compares this to how colleagues work together on a team. “Even here in this office, as you can see, we have whiteboards, we have scratch paper,” he said. Engineers discuss requirements, look at diagrams and try what has been built. In his view, the more AI can do, the more ways people need to communicate with it.
+A Devin Bot joins a team’s Slack as its own member, remembers context across weeks and contacts people when it is blocked or needs a decision, according to the company. Several colleagues can work with the same Bot, including over iMessage. The product incorporates technology from the Interaction Company, the startup behind AI assistant Poke, which Cognition acquired in July.
+OpenAI and Anthropic are also building agents that work across connected apps and act proactively. Wu said Cognition’s one advantage is that it isn’t tied to a single lab’s models. A Bot selects suitable models for planning, design, computer use and other parts of a project, using faster, cheaper ones for routine code. “Developers will especially want to optimize cost as they use products like Devin Bots that do way more work than before,” he said.
+Each Bot can be given its own budget, measured against the results it delivers. Cognition also trains its own models, which Wu said are designed to perform software engineering and code review at lower cost than frontier models. Devin combines them with models from outside labs. 
+Cognition said usage of Bots across dozens of early-access customers, including Decagon, Fireworks AI and Reducto, grew tenfold in two weeks. 
+The company announced its annualized revenue run rate passed $1 billion in September. Its existing Devin product is used by 14,000 engineers at Citigroup, CEO Jane Fraser said on the bank’s Oct. 13 earnings call. She said Devin made in-house development more efficient, adding, “We’ve been in-sourcing work and have reduced our tech vendor spend by 30% year-over-year as a consequence.”
+Handing a Bot a project also means deciding which systems it can access and which changes it can make without approval. Cognition runs Bots on separate cloud computers, keeping them away from passwords and keys stored on engineers’ laptops, Wu said. Administrators set which code repositories and tools each Bot can access. Network controls are intended to prevent unauthorized data transfers, including if a model follows malicious instructions hidden in content it reads.
+Wu said Bots run their code through the same tests used for human-written code. Teams decide which changes require human review and can configure low-risk edits, such as changing a button’s color, for automatic approval and merging. The safeguards, he said, rely on rules companies set and monitor, “rather than relying on models themselves being smart enough to recognize a risky or malicious prompt.”
+Wu said his aim is to keep making Devin more autonomous as models improve. He wants Cognition positioned so that “we are happy when the frontier capabilities continue to improve, not sad.”
+Fortune Daily
+ breaks the traditional barrier between audience and newsroom. The show transforms 
+Fortune
+’s trusted reporting into actionable, conversational, and entertaining insights for an emerging class of business leaders. 
+Watch here.
+
+===== https://ai-oriens.com/news/devin-bots/
+(status 200)
+記事の内容をもとにORIENSがAIで作成した画像。
+作業ではなく目標を任せるエージェント
+AIプログラマー「Devin」を手がける米Cognitionは11月17日（日本時間18日）、「Devin Bots」を発表した。Devin Botは、利用者から目標を任され、複数のDevinのチームを率いて成果を出すエージェントだと同社は説明している。公式ブログは、Botを記憶とツールを持つ常駐型のエージェントと位置づけ、複数のDevinを並列に動かせるとした。
+Meet Devin Bots. From writing firmware to merging thousands of PRs a week, a Devin Bot leads a team of agents to get the job done.
+@cognition · 
+2026年11月18日
+訳：Devin Botsを紹介します。ファームウェアを書くことから、週に数千件のPRをマージすることまで、Devin Botはエージェントのチームを率いて仕事をやり遂げます。
+発表は11月17日付の公式ブログと、公式Xの投稿（日本時間18日午前2時3分）で行った。ブログによると、Botは大きなプロジェクトや継続する目標を受け持ち、自分で調べ、作業を割り振り、結果を評価して次に取り組むことを決める。作業の区切り（セッション）をまたいで文脈を保ち、人の判断が要る事柄だけを利用者に持ってくるという。
+同社はこれまで、Devinが個々の作業を受け持つ形で機能を広げてきた。11月にはコードを点検する「
+Devin Review 2.0
+」や、Devinが作ったWebアプリを社内で共有できる「
+Devin Apps
+」を発表し、チーム向けの「
+Teams
+」プランも刷新した。ブログは、これまでコーディングエージェントに任せられたのは決まった作業で、問題に気づき、方法を選び、結果を確かめ、次を決める調整役は技術者に残っていたと書いている。Devin Botsは、この調整役の部分を引き受ける製品と位置づけた。
+ブログは任せ方の違いを3つの例で示した。「この機能をAndroidに移植する」という作業に対し、Botには「AndroidをiOSと同等に保つ」という責任を任せる。同じように「画面のずれを直す」は「変更が続いてもWebアプリを滑らかに保つ」に、「このオンボーディングのエラーを直す」は「新しい利用者に初期設定を最後まで済ませてもらう」になるという。Botに任せる例として、オープンソースのリポジトリの保守、リリースの管理、サーバーでの推論の最適化も挙げた。
+社内事例では44日でAndroidアプリ
+ブログは、同社が社内でBotに任せた3つの事例を紹介した。数字はいずれもCognition自身の公表で、第三者の検証はない。
+1つ目はDevinのAndroidアプリの開発だ。同社によると、DevinにはiOSアプリとその担当者がいたが、Androidの技術者も計画もなかった。2026年9月28日に社員のSamyok氏が「Android Bot」を作り、Androidアプリを製品として管理し、自律的に全体を作るよう指示した。Botはまず、コードの置き場所やAndroid版の試験の方法、変更のマージの仕方といった障害を挙げ、Samyok氏が方向と制約を決めた。その後はBotがチケットを作り、チケットごとにDevinのセッションを立ち上げ、CI（自動の試験）と「Devin Review」を通ったプルリクエスト（コードの変更の提案）をマージした。毎日、画面の録画付きの報告をSlackに投稿したという。
+44日後、DevinのAndroidアプリができた。同社によると、この間にマージしたプルリクエストは1,134件、Kotlinのコードは344,651行、スクリーンショットのテストは2,841件、閉じたチケットは1,217件だった。アプリはGoogle Playで公開テストに入っており、iOS版に新機能が入るたびにBotが更新している。
+人の関与も残っている。Samyok氏が44日間にBotへ送ったメッセージは183件で、マージしたプルリクエスト約6件に1件の割合だった。22日間は1件も送らなかった。メッセージの多くは、セキュリティの点検が要るプルリクエストのように、人の判断が必要な事柄への返答だったと同社は説明している。
+画面のずれ対策やゲーム開発にも
+2つ目の事例は、DevinのWebアプリで読み込みの遅れから画面の要素が動く「レイアウトシフト」の対策だ。同社は「Layout Bot」を作り、ずれを見つけて直す責任を任せた。ブログによると、Botは3時間ごとにmainブランチの最新のコードを本番と同じ形でビルドし、初めての訪問や再訪問、一部の通信をわざと遅らせた読み込みを記録する。前回まで通っていた確認が失敗すると、どのプルリクエストで起きたかを突き止め、Devinのセッションで修正を作り、変更前と変更後の録画を付けて技術者の点検に回す。
+Cognitionは週に2,000件を超えるプルリクエストをマージしているという。同社によると、Layout Botが動いた3週間で、Botによる159件のプルリクエストがマージされ、画面の遅延（lag）は70%減った。70%の減少が何の指標で、どの値からどの値に下がったかは示していない。
+3つ目は、同社の社員Jenny Xu氏が運営するモバイルゲームのスタジオだ。ブログによると、人の従業員はXu氏1人で、約20のBotが開発、Unity、リリース、UI、iOS、Android、実機での試験などを1つずつ受け持つ。その上に立つ「Super Jenny Bot」が、ほかのBotが求める判断を1日4回、1つのSlackのスレッドにまとめ、Xu氏は絵文字で答える。スタジオのプルリクエストは週約50件から1,900件に増え、毎週リリースを出しているという。
+ブログには、Botを先行して使った利用企業のコメントも載っている。米Biltの技術担当幹部は「Last week, our Devin Bots merged about 1,600 PRs.」（先週、Devin Botsは約1,600件のPRをマージした）と述べた。いずれも同社が選んで掲載したコメントだ。
+成功の基準と権限は人が決める
+ブログは、Botを使う前提として、任せる範囲で何を成功とするかを技術者が決める必要があると書いている。例えばCIを速くするBotには、残すべき確認や、計算資源への支出を増やしてよいかを伝える必要がある。Botが自分の作業を評価する仕組みも技術者が作る。開発中ならテストやベンチマーク、利用者の操作の再現、公開後なら本番での動き、利用状況、顧客の声がそれにあたるという。
+Botがどのシステムに触れ、何を変えてよいか、支出やリリースに承認が要るかも、技術者が決める。Botは報告や試験の録画を自ら共有し、判断が要る事柄は「Needs You」という受信箱に届く。個々のDevinのセッションを開いて詳しく確かめることもでき、Botはチームで共有できる。複数のBotを置けば、Bot同士が連携して報告や判断をまとめるという。
+同日提供開始、料金は示さず
+ブログは「Devin Bots are available today at devin.ai/bots.」とし、発表と同時に提供を始めた。ブログと製品ページは、料金、使えるプラン、利用の上限を示していない。
+ブログによると、Botとのやり取りはSlack、iMessage、Devinのアプリでできる。製品ページは、メッセージや電話、グループチャットでの利用も挙げた。Slackの問い合わせの監視、夜間のCIの確認、Linearでの作業の滞りの監視のように、予定や条件を決めて自動で動かすこともできる。製品ページによると、BotはDevinの機能をそのまま使い、コードベースの理解、エージェントごとのクラウドのコンピューター、コードの点検、自動の試験を備える。
+製品ページは、すぐに使える6つのひな形（テンプレート）を用意した。小さな改善のプルリクエストを出し続ける「Software Factory」、Androidの機能を作る「Android Engineer」、チームの進行役の「Chief of Staff」、遅いAPIを速くする「Latency Optimizer」、機能開発と不具合の修正を担う「Product Engineer」、プルリクエストを実際のブラウザで試す「QA Engineer」だ。企業向けには、SOC 2やISO 27001、FedRAMPの表示に加え、モデルの事業者とのゼロデータ保持、監査ログ、セッションごとの専用の仮想マシン、シングルサインオンなどを掲げている。
+共有
+出典を見る
+印刷
+関連ニュースをもっと見る
+Antigravity、有料のProでも「Gemini 4 Carbon」を利用可能に Hydrogenは全利用者へ、Geminiの利用枠も再びリセット モハン氏が投稿、料金ページと変更履歴は未反映
+2026/11/24
+Antigravity、全利用者のGeminiの利用枠をリセット モハン氏が投稿、キャッシュの改善で枠内でこなせる作業量は22%増 対象プランや測り方は示さず、公式ブログと変更履歴に記載なし
+2026/11/21
+Perplexity、「Computer」と「teammates」に作業レベル「Multiagent」 異なるフロンティアモデルのエージェントが分担 MaxとEnterprise Max向けにWebで開始
+2026/11/18
+Perplexity、研究部門「Perplexity Frontier Research」を発足 自律的に研究するシステムを目標に、1万基超のGPUで論文やモデルを公開へ
+2026/11/17
+Antigravity、Gemini 4の3モデルで一度に読める量を2倍に モハン氏が投稿、会話の圧縮は「1ターン当たり3.5分の1」 トークン数や対象プランは示さず
+2026/11/16
+Google、Antigravityの「/teamwork」で数学や化学の未解決問題に成果 情報理論の予想をLean 4の5000万行で証明 研究者1万人に最上位枠を6カ月無料
+2026/11/15
+
+===== https://hashout.jp/ai/14531/
+(status 200)
+エンジニアが9月28日、1つのAIエージェントに「Androidアプリのプロダクトマネージャーをやって」と頼みました。
+本人がその後にしたことは、44日間で183回メッセージを送っただけ。
+その間にAIは1,134件のプルリクエストをマージし、34万行以上のKotlinコードを書き、アプリを完成させていました。
+AIにコードを書かせている人、チームにAIエージェントを導入しようとしている人にとっては、見過ごせない話だと思います。
+米Cognitionが11月17日に発表した新機能「Devin Bots」が、これを実現している仕組みです。
+先に結論をまとめると：
+– Cognitionが11月17日、AIコーディングエージェント「Devin」に複数のDevinを指揮させる新機能「Devin Bots」を発表した
+– 1つのBotが数週間にわたり1つの目標を持ち続け、必要なときだけ人に判断を求める仕組み
+– 実例ではPR数が週50件から1,900件に増えたケースもあるが、品質チェックの詳細や利用者数の伸びの検証方法は公表されていない
+Cognitionが発表した「Devin Bots」とは
+AIコーディングエージェント「Devin」を手がける米Cognition（企業価値480億ドル）は11月17日、Devinに複数のAIエージェントを指揮させる新機能「Devin Bots」を発表しました。
+公式X（旧Twitter）アカウントは次のように投稿しています。
+（日本語訳：「Devin Botsを紹介します。
+ファームウェアの開発から、週に数千件のプルリクエストをマージするところまで。
+1つのDevin Botがエージェントのチームを率いて、仕事を終わらせます」）
+Meet Devin Bots.
+From writing firmware to merging thousands of PRs a week, a Devin Bot leads a team of agents to get the job done. 
+pic.twitter.com/MWfo3Csr6O
+— Cognition (@cognition) 
+2026年11月17日
+Devin自身のXアカウントも同じ日に「今日は大きな日」と投稿し、Devin Botsの”新しい軍団”を披露しました。
+（日本語訳：「こんにちは。
+今日は僕にとって大きな日！新しいDevin Botsの軍団をチェックしてみて」）
+Hello 👋 🤗
+Today's a big day for me! Check out my new army of Devin Bots: 
+https://t.co/FGoFobI1S8
+— Devin (@DevinAI) 
+2026年11月17日
+従来のDevinは1つの指示に対して1つの作業をこなすエージェントでしたが、Devin Botsは記憶を持ち続け、数日から数週間かけて1つの目標そのものを担当します。
+人間のエンジニアが普段使うパソコン（パスワードや認証情報が保存されている）ではなく、Cognitionが用意した別のクラウド上でBotを動かすことで、情報が漏れるリスクを抑えているとのことです。
+ただ、ここまでの説明だけでは、実際にどれくらいの仕事をこなせるのか分かりません。
+そこで公開されている具体的な事例を確認してみました。
+実際にどれくらいの仕事をこなしたのか
+最も詳しく公開されているのが、先ほどの「Android Bot」の事例です。
+エンジニアが9月28日にこのBotを作り、Androidアプリのプロダクトマネージャー役を任せたところ、44日後にはアプリが完成していました。
+この間の実績は次の通りです。
+マージしたプルリクエスト：1,134件
+書いたKotlinコード：344,651行
+作成したスクリーンショットテスト：2,841個
+クローズしたチケット：1,217件
+エンジニアがBotに送ったメッセージはわずか183件、PR6件につき1件のペースでした
+。
+その内容も、セキュリティレビューが必要なPRのように、人間の判断が要る場面に絞られていたそうです。
+別の事例では、1人の人間が約20個のBotを束ねるゲームスタジオが登場します。
+それまで週50件だったプルリクエスト数が、Devin Botsの導入後に週1,900件まで増え、毎週リリースを出し続けられるようになったといいます。
+似た例として、レイアウトの崩れを検証する「Layout Bot」は3週間で159件のPRをマージし、表示の遅延を70%減らしました。
+3時間おきに自動でレイアウトを点検する仕組みだそうです。
+Cognition自身も社内で週2,000件以上のPRをBotたちに処理させているとしており、開発チームの生産量を決めるのが「人数」より「Botの数」になる場面が、少しずつ現実になってきているのかもしれません。
+一方で、数字の大きさばかりが目立つ発表には、気になる点も残っています。
+品質とセキュリティは大丈夫なのか
+Cognitionは、ボタンの色を変える程度の「低リスクな編集」に限り、人の承認なしで自動マージできる仕組みを用意しています。
+会社側は「モデル自身の判断ではなく、あらかじめ決めたルールに従って動かす」と説明していますが、見た目では分からない不具合まで防げるかは今のところはっきりしません。
+週1,900件のPRのうちどれだけが適切にレビューされ、どれだけバグを含んでいたかは、Cognition・米Fortuneの報道いずれにも公表されていません。
+「2週間で利用者が10倍」「年間売上が10億ドル超」といった発表も、具体的な算出方法までは示されていないようです。
+OpenAIやAnthropicとはどう違うのか
+似たような「常時稼働するAIエージェント」は、OpenAIの「Dots」やAnthropicの「Duet」も手がけています。
+Cognitionはソフトウェア開発に特化した設計を強みとして打ち出していて、自社開発モデルと外部ラボのモデルを組み合わせて使う柔軟さも特徴のひとつです。
+AI開発ツール同士の競争は、1つひとつのモデルの性能比べから、「チームをどう動かすか」という一段上の戦いに移りつつあるようです。
+Shiritomo編集部の考察
+ここで気になるのは、Botに任せる範囲の線引きです。
+44日間で183件のメッセージというと、1日あたり4件に満たない関与度になります。
+人間が見ているのは「結果」であって、作業の「過程」ではなくなっているということでしょう。
+SNS運用や記事執筆の現場でも、AIに下書きや分析を任せる場面は増えていますが、
+最終的に公開するかどうかの判断は人が握っておく
+。
+この「任せる範囲」と「握っておく範囲」のバランスをどこで引くかは、Devin Botsに限らず、どのAIエージェントを導入するときにも必ず出てくる問いになりそうです。
+まとめ
+Cognitionの「Devin Bots」は、AIエージェントに数週間単位の目標そのものを預ける新しい試みです。
+実例の数字は驚くほど大きいものの、品質やセキュリティの検証は始まったばかりと言えそうです。
+さらに深掘りしたい方へ
+Devin Bots公式ブログ「Introducing Devin Bots: from tasks to outcomes」
+Fortune「Cognition bets on Devin Bots coding agents」
+関連記事
+        AI最新情報      
+「nice ガイな同期ってイメージ」──Cognitionの新AI「SWE-2」、フロンティア級を64%安く出した理由
+「nice ガイな同&#263…
+SA
+        Shiritomo編集部
+2026.09.11
+読了 7 分
+        AI最新情報      
+「これはマジでえぐい笑笑」――Devinのコーディングモデル「SWE-2」、Pro・Max・Teamsで永久無料に
+「これはマジ&#…
+SA
+        Shiritomo編集部
+2026.11.14
+読了 6 分
+        ChatGPT      
+「いいね〜はじまってるね」――ChatGPTの有料プラン、そのままDevinでも使えるように
+Devinの設定画面&#123…
+SA
+        Shiritomo編集部
+2026.10.11
+読了 8 分
+        AI最新情報      
+人間の指示待ちをやめたAIエージェント――Orca Bots、GitHubの更新やメール受信で自動的に起動する
+「AIエージェン…
+SA
+        Shiritomo編集部
+2026.11.22
+読了 6 分
+        AI最新情報      
+AI学習だけ拒否、クロールは止めない――OpenAI・Googleなど4社がrobots.txtの共通ルールを支持
+robots.txt（検索エン…
+SA
+        Shiritomo編集部
+2026.11.01
+読了 7 分
+        週次まとめ      
+日次マージ3万件、集計ズレは7,393円——Claude Codeがこの1ヶ月で引いた「任せる境界線」【編集部まとめ】
+ウォークスル&#…
+SA
+        Shiritomo編集部
+2026.10.26
+読了 14 分
+              さらに最新記事をチェックしたい方は、
+「AI最新情報」カテゴリ一覧
+              もご覧ください。
+SNSマーケティングの最新記事
+        X-Twitter      
+いいねより「買いたいもの」のリプライが多かった――PayPayのXキャンペーン、24時間で2万件超が書き込んだ一言
+いいね24,697件に&#23…
+SA
+        Shiritomo編集部
+2026.11.24
+読了 6 分
+        SNS運用Tips      
+タイの人気女優ナムタン・ティップナリーを初起用、BRAND’Sのライブは最大15%オフ＋サイン入りポラロイド
+「ครั้งแ…
+SA
+        Shiritomo編集部
+2026.11.24
+読了 9 分
+        X-Twitter      
+「本当に助けてください」――Xのセンシティブ誤判定、異議申し立てが通らない
+「本当に助け&#…
+SA
+        Shiritomo編集部
+2026.11.23
+読了 6 分
+「SNSマーケティングの最新記事」の一覧を見る
+ゲームの最新記事
+        Nintendo Switch      
+ゲームキューブ『ウェーブレース ブルーストーム』追加、遊べるのはSwitch 2専用
+2001年にゲーム&#1246…
+SA
+        Shiritomo編集部
+2026.11.24
+読了 5 分
+        モバイルゲーム      
+エンドフィールド新バージョン11月25日開始、ログインだけで★5オペレーター無料入手も
+キノコに覆わ&#…
+SA
+        Shiritomo編集部
+2026.11.24
+読了 5 分
+        ゲーム業界      
+「なんとか白銀を体験していただきたい」――FF14史上最長30日間の無料ログイン、新拡張直前の復帰支援
+『FF14』を半年&#2019…
+SA
+        Shiritomo編集部
+2026.11.24
+読了 5 分
+「ゲームの最新記事」の一覧を見る
+ガジェットの最新記事
+        オーディオ      
+HUAWEI FreeBuds Neo、日本は17,380円で発売中、タイでは卵型と呼ばれる
+17,380円。 これが&#1…
+SA
+        Shiritomo編集部
+2026.11.24
+読了 6 分
+        ウェアラブル      
+レイバンメタ、視覚障害者を支えるAIスマートグラス――盗撮問題と7万円台という壁
+Metaは自社が売&#1242…
+SA
+        Shiritomo編集部
+2026.11.24
+読了 7 分
+        ガジェット全般      
+たまごっち×デジモン、30周年の記念セットが予約開始――価格8,800円、発送は2027年6月
+1996年11月23日に発&#…
+SA
+        Shiritomo編集部
+2026.11.23
+読了 6 分
+「ガジェットの最新記事」の一覧を見る
+アニメの最新記事
+        マンガ・原作      
+魔法使いの夜、コミカライズ連載とPOP UP SHOPが決定 公開まで残り16日
+「公開まで残&#…
+SA
+        Shiritomo編集部
+2026.11.05
+読了 7 分
+        新作・発表      
+ビリーと魔法のはじまり、日本版本予告解禁「わくわくしますね」――12月4日公開
+マントを広げ&#…
+SA
+        Shiritomo編集部
+2026.11.05
+読了 6 分
+        劇場アニメ      
+チェンソーマンレゼ篇、グラニフ新コラボ11月3日発売――マキマのコスプレが1400いいね超を集める
+赤い髪に、橙&#…
+SA
+        Shiritomo編集部
+2026.11.04
+読了 6 分
+「アニメの最新記事」の一覧を見る
+SNS分析を実務で進めたい方へ
+          記事で紹介したようなSNSトレンド検証を、日次レポートとして定常運用したい場合は Social Report が便利です。
+          ハッシュタグ分析や競合比較をまとめて確認できます。
+Social Reportの詳細を見る
+
+===== https://newruntime.com/posts/introducing-devin-bots-from-tasks-to-outcomes-ffed82/
+(status 200)
+In one minute
+Cognition has introduced Devin Bots, persistent engineering agents that can own a goal, delegate work to multiple Devin sessions, and return decisions for human review. The launch matters because it moves the product’s assignment unit from a ticket to an ongoing outcome, while putting evaluation, permissions, and approval boundaries at the center of how teams use agents.
+What happened
+Cognition says Devin Bots are persistent agents with their own memory and tools. A user gives a Bot a large project or ongoing responsibility; it investigates, delegates work to multiple Devin instances, evaluates results, and decides what to pursue next. It retains context between sessions and surfaces decisions that require human judgment. Cognition gives examples such as maintaining an open-source repository, keeping Android at parity with iOS, managing releases, and optimizing server inference. Bots are available at devin.ai/bots. The announcement does not state pricing or plan eligibility.
+The launch announcement describes three internal deployments. For an Android app, Cognition engineer Samyok created an “Android Bot” on September 28, 2026, and asked it to product-manage the app while identifying what would block autonomous development. The Bot surfaced questions about where the code should live and how builds would be tested and merged. After Samyok set direction and constraints, it filed tickets, started Devin sessions, and merged pull requests that passed CI and Devin Review. It posted daily Slack reports with screen recordings. Cognition says that in 44 days it closed 1,217 tickets, merged 1,134 pull requests, wrote 344,651 lines of Kotlin, and produced 2,841 screenshot tests. Samyok sent 183 messages, including 22 days with none. The app is in open testing on 
+Google
+ Play and the Bot continues to update it alongside iOS changes.
+A “Layout Bot” checks the Devin web app every three hours. It builds the production version of the latest main branch and runs it on its own machine, simulating first visits, repeat visits, and loads where individual requests are delayed. When a check fails, it can rerun it to distinguish timing noise, trace the regression to a pull request, and open a fix with before-and-after recordings for review. Cognition says that in three weeks the Bot’s 159 merged pull requests fixed layout shifts and cut lag by 
+70%
+.
+The third example is a mobile game studio run by one human employee and about 20 Bots, each responsible for a job such as development, releases, UI, or testing on real devices. A “Super Jenny” Bot collects decisions from the other Bots into one Slack thread four times a day. Cognition says the studio’s weekly pull request volume rose from about 50 to 1,900, and it ships a release every week. The company describes these as deployments at Cognition and does not present them as independently audited results.
+What the archive adds
+New Runtime’s earlier coverage includes Cognition’s Devin Apps, private web applications hosted on Devin’s cloud VM with stable URLs, team access controls, and scheduled updates (
+November 13, 2026
+). That was a product announcement in the same Devin ecosystem, not this launch. Devin Bots is a new event: it adds persistent goal ownership and coordination of multiple coding-agent sessions, rather than another way to host an application.
+Trend signal
+This supports 
+goal-scoped loops replace manual continuation
+. Cognition’s examples describe agents repeatedly checking an external condition, initiating work when it changes, and reporting evidence or decisions to a human. The pattern is clearest in the Layout Bot’s scheduled checks and the Android Bot’s continuing parity work. The announcement is a vendor account, however; it does not establish how reliably these loops work outside Cognition or how much oversight they require in other teams.
+Why now
+Cognition frames the launch as a response to a coordination burden that remains even when a coding agent can finish assigned tasks: people still have to spot the next problem, choose an approach, and determine whether the change helped. Its examples suggest a product bet that persistent responsibilities and recurring checks can keep work moving between human prompts. The announcement gives no broader market or adoption data to establish why this launch is timed now.
+Connections to other events
+Cognition’s earlier Devin Apps launch also expanded what teams could do within Devin’s environment, but focused on building and hosting private web applications. Devin Bots shifts the emphasis from the output of a coding session to ongoing engineering ownership. The two announcements point to a broader product direction within Devin, but Cognition does not say that Bots depend on Devin Apps or that the products are technically integrated.
+Why it matters
+For a team, the useful change is not simply that more coding sessions can run at once. A Bot takes responsibility for noticing work, selecting the next action, and checking the result. That can reduce the handoffs between monitoring, ticket writing, implementation, and follow-up—especially for recurring maintenance that otherwise loses priority.
+But the examples also show why goal-level delegation is an engineering design problem. Teams must define what success means, build a trustworthy feedback loop, and decide which changes may proceed automatically. Cognition describes CI and Devin Review as gates for Android pull requests, and human review for fixes with evidence such as recordings. The product’s promise is therefore tied to the quality of these constraints and review signals, not merely to the number of agents a team can start.
+Limits and uncertainty
+The results in the announcement are Cognition’s own accounts of its deployments. It does not provide independent verification, a comparison against the teams’ prior output quality, or enough detail to assess the cost of the work. For example, the reported increases in pull request volume do not establish how many changes required rework or how much reviewer time they consumed. The stated 
+70%
+ reduction in lag is not accompanied by a measurement method or baseline definition. Cognition also does not specify pricing, plan access, quotas, or the controls available for every type of Bot action. Whether teams can reproduce these outcomes in different codebases and operating environments remains untested by the announcement.
+Reader takeaway
+Devin Bots makes persistent engineering responsibility—not an individual coding task—the product’s core unit. For builders considering this model, the crucial work is defining a measurable outcome, giving the agent a repeatable way to test it, and setting explicit access and approval limits. The internal examples are worth examining as workflows, but their reported scale and productivity gains should not be treated as proof that the same results will transfer to another team.
+Editor
+Andrey Reshetnikov
+, AI product and AI engineering
+Related notes
+Nov 20, 2026
+Gemini 4 Neon's model card says it is adapted from Carbon; 'builds on Hydrogen' is Vertex listing copy
+google
+Nov 20, 2026
+Mercury Agent v1.5.4 adds phone-based voice key setup and fewer approval prompts
+google
+Nov 19, 2026
+An orbital TPU ran a model, but Suncatcher is still a research test
+google
+Patterns this supports
+Goal-scoped loops replace manual continuation
+Evidence / sources
+1
+devin.ai
+/blog/introducing-devin-bots
+All Field Notes
+
+===== https://devin.ai/blog/introducing-devin-bots
+(status 200)
+Today, we’re introducing 
+Devin Bots
+: engineering teammates that own your goals and lead teams of Devins to deliver them.
+Watch at https://vimeo.com/1247688199/7f3dfe173e
+A coding agent can finish every task you give it while still leaving you responsible for moving the project forward. Someone has to identify the next problem, investigate possible solutions, and check whether the changes actually helped.
+We built Devin Bots to take on more of that responsibility. A Bot is a persistent agent with its own memory and tools that can lead multiple Devins in parallel. You can give it a large project or an ongoing goal. It investigates, delegates work, and evaluates the results to decide what to pursue next. It retains context across sessions and brings you only the decisions that need your judgment.
+You can ask a Devin Bot to maintain your open-source repo, keep Android at parity with iOS, manage your releases, or optimize server inference. A Devin Bot can own an outcome end-to-end.
+Fireworks AI
+Reducto
+Decagon
+Bilt
+OpenRouter
+Devin Bots has tripled my productivity overnight. I’m very impressed so far.
+This is by far the most effective persistent agent I’ve used. It defaults to real engineering work, instead of just summarizing my calendar and emails. I love that it works out of the box, with the same integrations and permission-ing I've already set up.
+Using a Devin Bot feels like having my own technical lead. Every morning it gives me an update and prioritizes the decisions I need to make. Because it’s built for engineering, beyond just summarizing slack, it’s able to flag incidents that happened overnight, stay on top of PRs and reviews, and any bug reports or feedback from customers too.
+Last week, our Devin Bots merged about 1,600 PRs. They make us a lot more productive because they can own projects end to end. From coming up with a plan, to following up on tasks that are stuck, to running QA and fixing regressions after each deploy, Bots are able to stay coherent over long periods of time.
+I was using Bots in beta and found myself forgetting it wasn’t publicly available. The product is super polished and blew past anything I was expecting. Massive props to the Cognition team!
+01
+ /
+05
+Putting Devin Bots to work
+Over the past few weeks, we’ve been putting Devin Bots to work at Cognition. Here are three of the responsibilities we’ve given them, and what working with them has looked like.
+1. Building Devin’s Android App
+Devin has an 
+iOS app
+ and a team of iOS engineers behind it. We had no Android engineers and no plan for Android. On September 28, 2026, Samyok, an engineer on the Bots team, created “Android Bot” and sent it this:
+your job is to product manage the android app. Basically, you’re going to autonomously create the entire thing, but we need to figure out what the blockers are for you doing that first
+44 days later,
+Devin has an
+Android app.
+A Devin Bot built it. These clips are its own daily reports from Slack.
+The Bot’s daily report in Slack · Sep 30
+Day
+1
+Sep 29, 2026
+Pull requests so far
+0
+Merged per day
+#89239
+Transcript: images and file attachments
+Merged that day
+18
+Messages from Samyok
+32
+“show me a video about how impressive it is that we got you to make an android app almost entirely autonomously”
+The Bot began by surfacing blockers, like where the code would live, how to test an Android build, and how changes would merge. Samyok set the direction and constraints, and the Android Bot started building. It filed tickets, started a Devin session for each one, and merged the pull requests that passed CI and Devin Review. Each day, it posted a report in Slack with a screen recording of what had changed.
+pull requests merged
+1,134
+lines of Kotlin
+344,651
+screenshot tests
+2,841
+tickets closed
+1,217
+Over those 44 days Samyok sent the Bot 183 messages, about one for every six pull requests it merged. On 22 of the days he sent none. Most of Samyok’s messages addressed something the Bot needed a human decision on, like a PR that needed a security review. Other messages simply encouraged the Android Bot or set its direction, like “be more ambitious”.
+The app is now in open testing on Google Play, and the Android Bot owns the development process end-to-end. It updates the app every time a new feature lands on our iOS project, and addresses any issue we and our users catch in early beta testing.
+2. Keeping the Devin app from jumping
+The Devin web app loads different parts of a page through separate requests. When content arrives late, especially when streaming from the agent, it can move different elements on the screen. These layout shifts can be hard to catch in code review: they depend on request timing,
+connection speed, and whether you’ve visited the page before. Even after one shift is fixed, a new component or request can introduce another.
+We created the “Layout Bot” and gave it the responsibility for finding and fixing these shifts:
+your job is to keep the webapp’s UI from shifting or lagging. Watch #alerts-bots, where a layout check posts every 3 hours. Take over that check and keep it working as the UI changes. When something regresses, find the cause and open a fix with a before and after video.
+Every three hours, it builds the production version of the latest code on main and runs the full stack on its own machine. It simulates production loading conditions by recording first visits, repeat visits, and loads with individual requests deliberately delayed.
+Layout Bot
+Layout Bot
+The layout check on main found a new shift. One row in the sidebar arrives up to 0.9 seconds after the rest and pushes the list down. I traced it to a pull request merged today.
+I started a session and the fix is open for review. Here is the before-and-after comparison:
+Before and after the layout fix
+Recreated side-by-side comparison. On the left, a late Android Bot row pushes Layout Bot and Sessions down, outlined in red with a dashed original position. On the right, both rows load together and the green outline stays in place.
+Before
+Late row pushes content down
+Bots
+Sessions
+Working
+ 0
+In review
+ 0
+After
+Both rows load. Nothing shifts.
+Bots
+Sessions
+Working
+ 0
+In review
+ 0
+0:00
+ / 
+0:06
+Ask Layout Bot to build features, fix bugs, or work on your code
+Normal
+When a previously passing check fails, the Bot can rerun it to rule out timing noise and trace the regression to the pull request that introduced it. It then starts a Devin session to investigate and open a fix, with before-and-after recordings for an engineer to review.
+One evening, the Bot traced a new layout shift to a PR merged two hours earlier. By the time someone asked about it, the Bot was already working on a fix. When an engineer asked who had requested another fix, it answered:
+Nobody asked. My scheduled layout check flagged main’s tall grey block on first visit because it doesn’t match what replaces it.
+At Cognition, we merge more than 2,000 PRs a week. The Bot owns keeping page loads and interactions smooth as the web app changes. In the three weeks it has been active, we have merged 159 pull requests from the Layout Bot, fixing shifts and cutting lag by 70%.
+3. Running a game studio 24/7
+Our colleague, Jenny Xu, runs a mobile game studio. We proposed a challenge - what if your game studio could run completely on Devin Bots?
+Today, Jenny is the studio’s only human employee, and has about 20 Bots
+, each of which owns one job end-to-end: development, Unity, releases, UI, iOS, Android, testing on real devices, and more. Above them is the Super Jenny Bot, and it is the only one she talks to. Four times a day, Super Jenny collects the decisions the other Bots need from her into one Slack thread, and she answers with emoji.
+The studio went from about 50 pull requests a week to 1,900, and it ships a release every week.
+Since her game studio now runs autonomously with Devin Bots, Jenny was able to join the team at Cognition full time.
+Watch at https://vimeo.com/1247521630/4276fae341
+Give your Devin Bot a goal, not a backlog
+Until now, working with coding agents has meant delegating specific tasks. The agent handles the implementation, but the engineer is still responsible for coordination: noticing a problem, choosing an approach, writing the task, checking the result, and deciding what comes next.
+A Devin Bot takes on a responsibility or scope instead. You can see the difference in how the assignment is written:
+A task to complete
+A responsibility to own
+Port this feature to Android.
+Keep Android at parity with iOS.
+Fix the layout shift
+Keep the web app smooth as it changes.
+Fix this onboarding error.
+Get new users through setup successfully.
+A task describes the change you want. A responsibility describes the outcome and leaves the Devin Bot to figure out how to achieve it. Samyok did not file the 1,217 tickets behind the Android app. He gave the Devin Bot the job, and the Bot decided what to build next, coming back to Samyok only for decisions that needed a human.
+This also means a Devin Bot can find work you would never have assigned. An agent that owns the goal watches everything that affects it, including the parts no one is looking at.
+We think this is the next change in how software gets built with AI. Engineers will spend less time specifying work and more time deciding what is worth owning, setting the bar for it, and building systems to track the metrics they care about.
+Engineering with Devin Bots
+Working with Devin Bots starts with defining what success means for the scope you give them. A Devin Bot responsible for making CI faster, for example, needs to know which checks must remain and whether spending more on compute is acceptable. Those decisions determine which improvements are worth pursuing.
+Additionally, a Devin Bot needs a way to evaluate its work, and engineers are responsible for building this feedback. In the lab, while building a product, that means tests, benchmarks, and running through user flows. In the wild, with real users, it means production behavior, usage, and customer feedback. Choosing what to measure, under which conditions, and what the results actually establish remains important engineering work.
+Engineers also define how independently a Devin Bot can act: which systems it can access, what it can change, and when spending or releases require approval.
+We built Devin Bots to support this way of working. Bots proactively share reports and test recordings, and use memory to adapt to how you prefer to review the evidence for their work. Decisions that need your input land in the Needs You inbox. You can open individual Devin sessions whenever you want to dig into a specific workstream. You can share your bots with your team to collaborate on challenging projects. As you add more Bots, they can coordinate with one another to bring their updates and decisions together, and meet you where you are - on Slack, iMessage, or right in the Devin app.
+Your new Needs You inbox
+Dive deep with child sessions
+Manage a team of Devin Bots, in Slack
+Your new Needs You inbox
+Search has felt slow since last week. Find where the time goes and fix it.
+I traced search in production. Three things account for it: an unindexed filter, repeated permission lookups and an uncached ranking call.
+I started a session for each fix. A review, a decision and the report are in your inbox.
+Ask Latency Bot to build features, fix bugs, or work on your code
+Latency Bot
+3 need you
+Needs you
+1
+/
+3
+Review the fix for the permission lookups
+12 minutes ago
+Search checked permissions once per result, about 40 queries a request. This PR fetches them in one batched query. It changes shared permission code, so it needs your review.
+Batch the permission lookups
+api#4127
+•
++38
+−12
+•
+devin-ai-integration[bot]
+Dismiss
+Approve
+Pick how to cache ranking responses
+1 hour ago
+Search calls the ranking model on every request, and nothing caches the response. Both options work. Which one should I ship?
+A
+Cache for five minutes per query
+ · Recommended
+B
+Cache until the index changes
+C
+Other
+Dismiss
+Confirm
+Search latency report is ready
+3 hours ago
+Search p95 is down from 1.4 s to 520 ms now that the index for the workspace filter is merged. The other two fixes should bring it back to 310 ms.
+Dismiss
+Got it
+Dive deep with child sessions
+Latency Bot
+Latency Bot
+The latency check on main is clean. No endpoint slowed down overnight.
+Ask Latency Bot to build features, fix bugs, or work on your code
+Normal
+Manage a team of Devin Bots, in Slack
+#
+eng-onboarding
+Onboarding QA
+APP
+Mon 9:00 AM
+This week’s onboarding QA report is ready. The biggest drop-off is still between connecting repos and starting a first session.
+1
+.
+Nothing guides people after they connect a repo
+2
+.
+The first-session prompt box starts empty
+3
+.
+Setup errors don’t say how to fix them
+@Onboarding Eng
+ forwarding these to you.
+Weekly onboarding QA report
+Report
+Thread
+#
+ eng-onboarding
+More of the work worth doing can now have an owner
+Every engineering team has worthwhile work that loses momentum between urgent projects. Other projects never start, because taking them on means committing to more than the initial build. Someone has to keep improving them, respond when things break, and adapt them as requirements change.
+We think Devin Bots can change which projects teams can realistically take on. A Bot can keep a responsibility moving without an engineer having to reconstruct the context and initiate every next step. Work that repeatedly loses priority can receive sustained attention, and projects that once seemed impossible to maintain can become worth starting.
+Devin Bots are available today at 
+devin.ai/bots
+.
+What would you give a Devin Bot to own?
