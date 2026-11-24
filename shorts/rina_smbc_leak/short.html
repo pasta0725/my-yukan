@@ -186,13 +186,12 @@ const S={
  tease(u,d,L){bg(u);mini(u);const q=Math.max(0.5,(d-0.6)/3);
    withEnter(enter(u,0),()=>{cloud(CX,520,1.3,C.card2);text('KARTE',CX,560,70,'#FFFFFF','center',900,300);});
    bolt(790,420,1.0,(u-0.25)/0.3);
-   ['三井住友銀行','JINS','しまむら'].forEach((s,i)=>{const k=enter(u,0.3+i*q);if(k>0)withEnter(k,()=>{card(250,700+i*165,580,135,30);text(s,CX,768+i*165,66,C.brand,'center',900,520);});});
-   tagI('同じ攻撃',CX,1230,(u-0.3-2*q)/0.3,C.warn,'#FFFFFF',64);},
+   ['三井住友銀行','JINS','しまむら'].forEach((s,i)=>{const k=enter(u,0.3+i*q);if(k>0)withEnter(k,()=>{card(250,700+i*165,580,135,30);text(s,CX,768+i*165,66,C.brand,'center',900,520);});});},
  // "1分でまとめます" (reused pose clip): the same app photo behind her, a little darker
  hook(u,d,L){abs(()=>{fullPic('large',1.3+0.08*u/Math.max(1,d),0.55,0.4,0.35);creditAt(SM,1000,340);bigRina(HOOK_R);});},
  // the outside service: PLAID's notice
  what(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'KARTE')),d-0.9);
-   withEnter(enter(u,0),()=>{ipic('k01',130,420,820,560,28,1.35+0.04*u/Math.max(1,d),0.5,0.36);creditAt(PL,935,960);});
+   withEnter(enter(u,0),()=>{ipic('k01',130,420,820,560,28,1.0+0.03*u/Math.max(1,d),0.5,0.5);creditAt(PL,935,960);});
    if(u>t2)tagI('お知らせ配信のサービス',CX,1090,(u-t2)/0.3,C.brand,'#FFFFFF',56);},
  // the date (no counting up)
  date(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'11月')),d-0.9);
@@ -203,16 +202,15 @@ const S={
    ['生年月日','年齢層','性別'].forEach((s,i)=>item(s,270,450+i*190,540,enter(u,0.1+i*q)));},
  // but: no names, account numbers, PINs
  twist(u,d,L){bg(u);mini(u);const q=Math.max(0.4,(d-0.6)/3);
-   ['名前','口座番号','暗証番号'].forEach((s,i)=>{item(s,270,450+i*190,540,enter(u,0.05+i*q*0.6));cross(740,510+i*190,40,(u-0.3-i*q*0.6)/0.3);});
-   tagI('含まれていない',CX,1110,(u-0.2-2*q*0.6)/0.3,C.warn,'#FFFFFF',62);},
+   ['名前','口座番号','暗証番号'].forEach((s,i)=>{item(s,270,450+i*190,540,enter(u,0.05+i*q*0.6));cross(740,510+i*190,40,(u-0.3-i*q*0.6)/0.3);});},
  // the bank says no one can be identified
  bank(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.8,telHas(L,'特定')),d-0.8);
    withEnter(enter(u,0),()=>{card(330,400,420,500,40);person(CX,700,1.3,C.card2);});
    if(u>t2){const k=back((u-t2)/0.3);g.save();g.translate(CX,600);g.scale(k,k);text('？',0,0,200,C.brand);g.restore();tagI('個人は特定できない',CX,1030,(u-t2-0.15)/0.3,C.brand,'#FFFFFF',56);}},
  // PLAID's table: 570 companies
  wide(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'570')),d-0.9);
-   withEnter(enter(u,0),()=>{ipic('k02',150,400,780,500,28,2.0+0.05*u/Math.max(1,d),0.7,0.2);creditAt(PL,915,880);});
-   if(u>t2)bigNum('570','社分',CX,1040,(u-t2)/0.3,C.acc,170);},
+   withEnter(enter(u,0),()=>{cloud(CX,560,1.5,C.card2);text('KARTE',CX,605,80,'#FFFFFF','center',900,340);});
+   if(u>t2)bigNum('570','社分',CX,960,(u-t2)/0.3,C.acc,190);},
  // Marui: names and e-mail too
  marui(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'883')),d-0.9);
    withEnter(enter(u,0),()=>{card(240,400,600,170,36,C.card2);text('丸井グループ',CX,485,72,'#FFFFFF','center',900,520);});
