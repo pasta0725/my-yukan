@@ -186,7 +186,7 @@ const S={
  tease(u,d,L){bg(u);mini(u);const q=Math.max(0.5,(d-0.6)/3);
    withEnter(enter(u,0),()=>{cloud(CX,520,1.3,C.card2);text('KARTE',CX,560,70,'#FFFFFF','center',900,300);});
    bolt(790,420,1.0,(u-0.25)/0.3);
-   ['三井住友銀行','JINS','しまむら'].forEach((s,i)=>{const k=enter(u,0.3+i*q);if(k>0)withEnter(k,()=>{card(250,700+i*165,580,135,30);text(s,CX,768+i*165,66,C.brand,'center',900,520);});});},
+   ['JINS','しまむら'].forEach((s,i)=>{const k=enter(u,0.6+i*q*1.2);if(k>0)withEnter(k,()=>{card(250,720+i*190,580,150,30);text(s,CX,795+i*190,72,C.brand,'center',900,520);});});},
  // "1分でまとめます" (reused pose clip): the same app photo behind her, a little darker
  hook(u,d,L){abs(()=>{fullPic('large',1.3+0.08*u/Math.max(1,d),0.55,0.4,0.35);creditAt(SM,1000,340);bigRina(HOOK_R);});},
  // the outside service: PLAID's notice
