@@ -37,7 +37,10 @@ def when(s):
             return d if d.tzinfo else d.replace(tzinfo=JST)
         except Exception: pass
     m = re.search(r"(20\d\d)[-/.年](\d{1,2})[-/.月](\d{1,2})", s)
-    return dt.datetime(int(m[1]), int(m[2]), int(m[3]), 12, tzinfo=JST) if m else None
+    if m:
+        try: return dt.datetime(int(m[1]), int(m[2]), int(m[3]), 12, tzinfo=JST)
+        except ValueError: pass
+    return None
 
 
 def from_feed(text):
@@ -141,14 +144,26 @@ with cf.ThreadPoolExecutor(16) as ex: pages = dict(zip(urls, ex.map(page, urls))
 for w, rows in picked.items():
     d = os.path.join(OUT, w); os.makedirs(d, exist_ok=True)
     idx = [f"# {w} の候補（{ED}、GitHub で取得済み。ページを開かずにこのフォルダのファイルを読む）", "id | 公開 | サイト | 見出し | URL"]
-    for n, r in enumerate(rows, 1):
-        p, sid = pages[r["url"]], f"{w}-{n:02d}"
+    cut_day = (NOW - dt.timedelta(hours=CFG[w]["period_h"])).astimezone(JST).date()
+    n, expired = 0, 0
+    for r in rows:
+        p = pages[r["url"]]
+        if not r["date"]:
+            # 時刻がない公開日もあるので、境目の日は候補に残す。
+            published = when(p.get("pub"))
+            if published and published.astimezone(JST).date() < cut_day:
+                expired += 1
+                continue
+        n += 1
+        sid = f"{w}-{n:02d}"
         pub = r["date"].astimezone(JST).strftime("%Y-%m-%d %H:%M") if r["date"] else (p.get("pub") or "?")
         idx.append(f"{sid} | {pub} | {r['site']} | {r['title']} | {r['url']}" + ("" if p["ok"] else " | （本文なし）"))
         with open(os.path.join(d, sid + ".txt"), "w", encoding="utf-8") as f:
             f.write(f"URL: {r['url']}\nTITLE: {r['title']}\nSITE: {r['site']}\nPUBLISHED: {pub} (page: {p.get('pub', '')})\nOG_IMAGE: {p.get('og', '')}\nIMAGES:\n"
                     + "".join(f"- {x}\n" for x in p.get("imgs", [])) + "\nTEXT:\n" + p["text"] + "\n")
     open(os.path.join(d, "index.md"), "w", encoding="utf-8").write("\n".join(idx) + "\n")
+    if expired:
+        report.append(f"- {w}: 記事ページで公開日が期間外と分かった候補を{expired}本除外")
 
 ok = sum(1 for p in pages.values() if p["ok"])
 report += ["", f"記事ページ {ok}/{len(urls)} 本の本文を取得。{time.time() - t0:.0f}秒"]
