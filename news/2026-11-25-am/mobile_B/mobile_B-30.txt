@@ -1,0 +1,25 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2158558.html
+TITLE: 画像アップロードだけでサーバー乗っ取り？ 「Ghostscript」の脆弱性「Upload2Shell」／「WordPress」「Roundcube」などで攻撃成立、対策版への更新を
+SITE: 窓の杜
+PUBLISHED: 2026-11-24 14:31 (page: 2026-11-24T14:31:48+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2158/558/image_top.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/558/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0HJTFM6F2.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+画像アップロードだけでサーバー乗っ取り？ 「Ghostscript」の脆弱性「Upload2Shell」
+「WordPress」「Roundcube」などで攻撃成立、対策版への更新を
+樽井 秀人
+2026年11月24日 14:31
+「Upload2Shell」の解説ページ
+PostScript/PDFインタープリター「Ghostscript」に潜んでいた脆弱性「Upload2Shell」（CVE-2026-125396）の詳細が、11月21日（米国時間）に公開された。深刻度は「CVSS 4.0」の基本値で「8.5」（High）と評価されている。
+この脆弱性は「Type 1」フォントの読み込み処理における解放後メモリ使用（use-after-free）に起因するもので、細工した文書を読み込ませるだけで「Ghostscript」のサンドボックス（-dSAFER）を抜け出し、「Ghostscript」を動かすプロセスの権限で任意のコマンドを実行できてしまうという。
+厄介なのは、「Ghostscript」が印刷やメール、ファイルのアップロード、プレビューといったさまざまな処理の裏方として使われていること。攻撃者がJPEGやPNGといった一見無害そうな画像ファイルに偽装した場合も、変換の過程で「Ghostscript」に渡り、脆弱性を悪用できてしまう可能性がある。
+発見者の「pwn.ai」によると、本脆弱性を悪用した攻撃が「Debian 13」の印刷システム「CUPS」、Webメール「Roundcube」、「WordPress」のプラグイン「Forminator」「Essential Addons for Elementor」、「MediaWiki」、「DokuWiki」などで成立したとのこと。ネイティブメモリの書き換えを実証する概念実証（PoC）コードも公開されている。
+攻撃の成立には脆弱な「Ghostscript」に処理が渡る構成が必要で、アプリの設定にも左右されるが、Googleの画像・文書処理でも、ログインしていない状態のリクエストから「Ghostscript」のレンダラーに到達できたという（11月10日に対策済み）。
+本脆弱性は、9月8日にリリースされた「Ghostscript 10.08.0」ですでに修正済み。各種Linuxディストリビューションで修正パッケージが提供されているほか、「WordPress」（CVE-2026-65640）や「Roundcube」（CVE-2026-114727）など、アプリ側でも対策が講じられている。サーバーの運営者は今一度、ソフトウェアが対策済みバージョンになっているかを確認しておきたい。
+Amazonで購入
+「PDF」関連商品
+Amazonで購入

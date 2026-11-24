@@ -1,0 +1,29 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2158757.html
+TITLE: Z.ai、750Bで2T～3T級並みをうたう「GLM-5.4」発表
+SITE: PC Watch
+PUBLISHED: 2026-11-24 16:49 (page: 2026-11-24T16:49:37+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2158/757/001.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2158/757/001_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0H6W864Z6.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+Z.ai、750Bで2T～3T級並みをうたう「GLM-5.4」発表
+稲津 定晃
+2026年11月24日 16:49
+Z.aiは11月23日、Loop Transformerによるパラメータ数を抑えながら性能を高めたフラグシップAIモデル「GLM-5.4」を発表した。Z.ai Chat、ZCode、サブスクリプションのGLM Coding Planで提供する。APIは安全性評価後に提供し、オープンウェイト(モデルの重み)も安全対策を実施した上で公開する予定。
+GLM-5.4は、同社のフラグシップモデルとして初めてLoop Transformerを採用。GLM-5のベースモデルの28層を2回繰り返し実行することで、パラメータ数を増やさずにネットワークを実質的に深くする。750B(7,500億)規模ながら、2～3T(2～3兆)規模のモデル並みの性能を実現したとしている。
+事前学習済みモデルへの継続学習によって開発し、各反復でトークンごとの更新幅を調整する仕組みを採用。2回目のループでは1回目のKVキャッシュやアテンションのインデックスを再利用し、長文処理時のコストや追加負荷を抑えている。
+30B(300億)モデルでループの有無を比較した検証では、パラメータ数を変えずに学習計算量を約10%増やすことで、数学や科学的推論、長文処理の性能が向上。GPQA-DiamondやMMLU-Proなど多くのベンチマークでは、平均出力トークン数が10～14%減少したという。GLM-5.4の生成速度はオフピーク時に最大200トークン/s、ピーク時に70～80トークン/sとする一方、過度に長い思考ループに陥りやすいという制約もある。
+視覚能力も備え、同社では従来のソフトウェア開発にとどまらないタスクにも対応する「Generalized Coding」を掲げる。応用例として、ナレーション入りのミュージックビデオ制作やFreeCADを用いた6軸ロボットアームの設計、ゲームの生成、カスタムシェーダーを使った対話型3D表現を紹介している。
+Introducing GLM-5.4: Generalized Coding with Our First Loop Transformer.
+- Loops existing layers in the GLM-5 base model for deeper reasoning
+- Pushes beyond traditional coding to video, games, 3D shaders, and CAD modeling
+- Adds vision capabilities for stronger visual coding
+API access will open after safety evaluation. Model weights will be released responsibly.
+Tech Blog: https://t.co/dQrbKoamcN
+— Z.ai (@Zai_org)
+November 23, 2026
+「ローカルLLM」関連アイテム
+Amazonで購入

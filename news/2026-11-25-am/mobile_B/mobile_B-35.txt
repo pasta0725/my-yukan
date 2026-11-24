@@ -1,0 +1,51 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2158479.html
+TITLE: 「PHP 8.6」が正式リリース、関数型っぽく書ける「Partial Function Application」などを導入／経過時間を表す「Duration」クラスや「clamp()」関数も。2030年末までサポート
+SITE: 窓の杜
+PUBLISHED: 2026-11-24 10:15 (page: 2026-11-24T10:15:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2158/479/php.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/479/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2158/479/image2_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0HPNK12NC.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「PHP 8.6」が正式リリース、関数型っぽく書ける「Partial Function Application」などを導入
+経過時間を表す「Duration」クラスや「clamp()」関数も。2030年末までサポート
+樽井 秀人
+2026年11月24日 10:15
+「PHP 8.6.0」のリリース告知
+スクリプト言語「PHP」の開発チームは11月19日（協定世界時）、「PHP 8.6」をリリースした。新しい構文、性能の向上、そして型安全性の改善を図ったメジャーアップデートとなっている。
+「PHP 8.6」の目玉は、「Partial Function Application」（部分関数適用）が導入されたことだ。引数の一部を先に指定し、後から渡す引数を「?」や「...」のプレースホルダーで示すことで、残りの引数を受け取るクロージャー（Closure）を作れる。関数型プログラミング言語のような記述が可能となる。提案書でも、部分適用は多くの関数型言語の中核機能だと説明されている。
+「Partial Function Application」（部分関数適用）の例
+そのほかにも、以下の要素が導入される。
+「TimeDuration」クラス：ストップウォッチで測ったような経過時間を表すクラス。時刻やタイムゾーンに依存せず、ナノ秒の精度で250年以上の範囲を表現できる。タイムアウトやベンチマークの計測値などを表すのに便利
+ポーリングAPI（IoPoll）：epoll、kqueue、event ports、WSAPollなど、プラットフォームごとに最適な仕組みを使って多数のストリームを効率よく監視する。「stream_select()」のようなスケーラビリティの制限がなく、「ReactPHP」「AMPHP」といったイベントループライブラリの共通基盤となる
+ストリームのエラー処理：ストリーム操作で警告を出す代わりに、「StreamException」を投げたり、何も出さずに失敗させたりできる。エラーは構造化された「StreamError」オブジェクトとして報告される
+「clamp()」関数：値が指定した範囲に収まるようにし、範囲外なら近い方の境界値を返す
+「SortDirection」列挙型：並べ替えの順序（昇順・降順）を型安全に表す標準の列挙型。ライブラリごとにばらばらだった表現を統一できる
+関数のパラメーターごとのDocComment：パラメーターに個別のDocCommentを付け、「ReflectionParameter::getDocComment()」で取得できる
+「ReflectionProperty::isReadable()」「ReflectionProperty::isWritable()」メソッド：プロパティの読み取り・書き込みが可能かを、可視性や初期化状態などを考慮して判定する
+readonlyプロパティの既定値：readonlyプロパティにも既定値を宣言できるようになった
+「array_map()」の最適化や「printf()」の高速化、JSONエンコードの高速化といったパフォーマンスの改善も図られている。
+一方で、非推奨となる要素もいくつかある。たとえば「finally」ブロック内での「return」、「mb_ereg()」「mb_split()」など「mbstring」の正規表現関数（基盤の「Oniguruma」ライブラリがメンテナンスされていないため）、「is_double()」「is_long()」「is_integer()」「doubleval()」といったエイリアス、「spl_object_hash()」などだ。アップグレードの際は、
+移行ガイド
+で後方互換性のない変更を確認しておきたい。
+なお、v8.6.0には、
+他のバージョンで実施された17件の脆弱性修正
+も含まれている。
+「PHP」は、Webアプリケーションの開発に広く使われているオープンソースのスクリプト言語。ソースコードとWindows向けのバイナリは、「php.net」のダウンロードページから入手可能。
+「PHP 8.6」のアクティブサポートは2028年12月31日まで、セキュリティサポートは2030年12月31日まで提供される予定。
+Amazonで購入
+「PHP」関連商品
+Amazonで購入
+ソフトウェア情報
+「PHP」
+【著作権者】
+The PHP Group
+【対応OS】
+Windows/Mac/Linuxなど
+【ソフト種別】
+フリーソフト
+【バージョン】
+8.6.0（26/11/19）
