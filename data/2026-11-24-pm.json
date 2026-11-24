@@ -9,10 +9,13 @@
    "title": "Claude Ship発表、AIがプログラムの変更を承認",
    "summary": "開発チームは、定型的な変更の承認をAIに任せる範囲を選べます。",
    "image": {
-    "src": "https://www.itmedia.co.jp/aiplus/article/ogp/2611/24/2000003404/10012801/2048",
-    "kind": "ogp",
-    "credit": "ITmedia AI+",
-    "page": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003404/"
+    "src": "https://assets.claude.com/2a72b687af32e0d798bd2859b12576be1f607f13.png",
+    "kind": "press",
+    "credit": "Claude",
+    "page": "https://claude.com/ja/resources/articles/introducing-claude-ship",
+    "w": 3000,
+    "h": 1530,
+    "caption": "Claude Shipで変更を点検、修正、承認する流れ"
    },
    "visual": {
     "icon": "ai",
@@ -48,12 +51,32 @@
      "text": "Claude Shipは、変更を点検するCode Reviewなど3つの機能を組み合わせます。Code Reviewは3月に登場し、The Vergeによると10月に一般提供が始まりました。Livemintはこの点検機能を新機能と紹介しています。Anthropicが今回β版で加えたのは、PR StewardとClaude Approvalsです。"
     },
     {
+     "type": "img",
+     "src": "https://assets.claude.com/c6832086d36407567641b1b4de4d705f79ef3fca.png",
+     "kind": "press",
+     "credit": "Claude",
+     "caption": "PR Stewardが修正内容を報告した変更申請画面",
+     "page": "https://claude.com/ja/resources/articles/introducing-claude-ship",
+     "w": 3000,
+     "h": 2625
+    },
+    {
      "type": "p",
      "text": "変更の取り込みを頼む申請を、PR（プルリクエスト）と呼びます。Code Reviewは、申請の変更を既存のプログラムと照らし合わせます。問題があれば、指摘の内容を確かめ直して申請に書き込みます。"
     },
     {
      "type": "p",
      "text": "PR Stewardは承認前の修正を担当し、自動テストの失敗や変更の衝突に対応します。他の点検ツールや同僚からの指摘も扱います。修正を送るたびに、変更点と元に戻す方法をコメントに残します。修正の指示は「@claude」、停止は「@claude stop」で出せます。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.claude.com/a30243fe61e4cc224ebfdcdb8d693b69c125b060.png",
+     "kind": "press",
+     "credit": "Claude",
+     "caption": "Code Reviewが変更箇所に指摘を書き込んだ画面",
+     "page": "https://claude.com/ja/resources/articles/introducing-claude-ship",
+     "w": 3000,
+     "h": 2127
     },
     {
      "type": "h",
@@ -68,6 +91,13 @@
      "text": "Anthropicは、承認を出さずに判断だけを試す「観察専用モード」を勧めています。今ある取り込みルールや必須の確認項目も引き続き使えます。実際に変更を取り込めるかは、開発者の権限と保管場所のルールで決まります。"
     },
     {
+     "type": "img",
+     "src": "https://www.itmedia.co.jp/aiplus/article/ogp/2611/24/2000003404/10012801/2048",
+     "kind": "ogp",
+     "credit": "ITmedia AI+",
+     "page": "https://www.itmedia.co.jp/aiplus/article/2611/24/2000003404/"
+    },
+    {
      "type": "h",
      "text": "使えるチームと始め方"
     },
@@ -76,12 +106,32 @@
      "text": "GitHubにプログラムを置くチームが対象で、ClaudeのTeamかEnterpriseの契約が必要です。開発者はClaude Codeを更新し、次の変更ができたら「/ship」で試せます。コードの送信から変更申請の作成、点検後の修正まで自動で進みます。「/ship」は発表当日から、Claude Codeとデスクトップアプリで順次使えるようになります。"
     },
     {
+     "type": "img",
+     "src": "https://assets.claude.com/635a1675ea125007f1d5f686db25959d8485d5fc.png",
+     "kind": "press",
+     "credit": "Claude",
+     "caption": "Claude Approvalsが変更申請を承認した画面",
+     "page": "https://claude.com/ja/resources/articles/introducing-claude-ship",
+     "w": 3000,
+     "h": 2664
+    },
+    {
      "type": "p",
      "text": "管理者は、プログラムの保管場所（リポジトリ）ごとに点検と修正を有効にできます。Claude Shipが申請に自動で対応し、毎回の「/ship」の入力を省けます。点検の深さはQuickからDeepまでの3段階で、中間はStandardです。点検する時期を選び、Code ReviewとPR Stewardの月ごとの利用上限を決められます。"
     },
     {
      "type": "p",
      "text": "Claude Approvalsは、承認ルールを書いたファイルを置くと動きます。ファイルの置き場所は、接続したリポジトリの既定のブランチ（標準の作業先）です。管理者は必要に応じて停止できます。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.claude.com/6beae6085c1dc6bb43a62e6acf1f5563a14f4238.png",
+     "kind": "press",
+     "credit": "Claude",
+     "caption": "Claude Approvalsの承認ルールを記したファイル",
+     "page": "https://claude.com/ja/resources/articles/introducing-claude-ship",
+     "w": 3000,
+     "h": 2358
     },
     {
      "type": "h",
@@ -118,6 +168,16 @@
     {
      "type": "p",
      "text": "条件を満たすEnterpriseの組織は、最低1万ドル分の利用枠を申請できます。申請は2027年1月15日までです。利用枠は申請から30日以内に使います。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.claude.com/3b5fa6d188937030373792607c2cc73fc01e52b1.png",
+     "kind": "press",
+     "credit": "Claude",
+     "caption": "Claude Codeで「/ship」を実行した画面",
+     "page": "https://claude.com/ja/resources/articles/introducing-claude-ship",
+     "w": 3000,
+     "h": 969
     },
     {
      "type": "p",
@@ -182,10 +242,13 @@
    "title": "ドコモ、Apple Watchを最大2万7500円引き",
    "summary": "個人名義のドコモ回線が対象で、SE 3は店頭の9商品に限られます。",
    "image": {
-    "src": "https://k-tai.watch.impress.co.jp/img/ktw/list/2158/629/main.png",
-    "kind": "ogp",
-    "credit": "ケータイ Watch",
-    "page": "https://k-tai.watch.impress.co.jp/docs/news/2158629.html"
+    "src": "https://www.docomo.ne.jp/campaign_event/26aw_otokuwari_applewatch/images/img_main_smt.png?ver=1795482015",
+    "kind": "press",
+    "credit": "docomo.ne.jp",
+    "page": "https://www.docomo.ne.jp/campaign_event/26aw_otokuwari_applewatch/",
+    "w": 676,
+    "h": 280,
+    "caption": "ドコモの割引対象のApple Watchと割引額"
    },
    "visual": {
     "icon": "phone",
@@ -223,6 +286,13 @@
     {
      "type": "p",
      "text": "ドコモの回線を個人名義で契約している人が対象です。Xiや5Gの契約に加え、ahamoでも割引を受けられます。"
+    },
+    {
+     "type": "img",
+     "src": "https://k-tai.watch.impress.co.jp/img/ktw/list/2158/629/main.png",
+     "kind": "ogp",
+     "credit": "ケータイ Watch",
+     "page": "https://k-tai.watch.impress.co.jp/docs/news/2158629.html"
     },
     {
      "type": "h",
@@ -357,10 +427,13 @@
    "title": "ソニーの新型液晶BRAVIA 9 II、映り込みを抑える",
    "summary": "ソファの端からでも映像が見やすく、家族で見るときに座る場所を選びやすくなります。",
    "image": {
-    "src": "https://kaden.watch.impress.co.jp/img/kdw/list/2155/989/014.jpg",
-    "kind": "ogp",
-    "credit": "家電 Watch（ソニーマーケティング提供）",
-    "page": "https://kaden.watch.impress.co.jp/docs/topic/special/2155989.html"
+    "src": "https://www.sony.jp/bravia/special/top/2026/images/xr90m2_hr_img.png",
+    "kind": "press",
+    "credit": "ソニー製品情報・ソニーストア",
+    "page": "https://www.sony.jp/bravia/special/bravia9m2_XR90M2/",
+    "w": 740,
+    "h": 462,
+    "caption": "宇宙服のヘルメットを映したBRAVIA 9 II"
    },
    "visual": {
     "icon": "tv",
@@ -386,6 +459,13 @@
     {
      "type": "p",
      "text": "WIREDによると、米国では65インチをソニーとBest Buyが3600ドルで販売しています。税込みか税別かは明らかになっていません。"
+    },
+    {
+     "type": "img",
+     "src": "https://kaden.watch.impress.co.jp/img/kdw/list/2155/989/014.jpg",
+     "kind": "ogp",
+     "credit": "家電 Watch（ソニーマーケティング提供）",
+     "page": "https://kaden.watch.impress.co.jp/docs/topic/special/2155989.html"
     },
     {
      "type": "h",
@@ -638,7 +718,14 @@
      "name": "404 Media",
      "url": "https://www.404media.co/google-wants-to-make-a-24-7-ai-tv-channel-youll-be-the-main-character/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/service-google-ai-channel.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "game-gc-classics-waverace",
@@ -646,10 +733,13 @@
    "title": "Switch 2にウェーブレース ブルーストーム配信",
    "summary": "追加パック加入者は、天気で波が変わる水上レースを追加料金なしで遊べます。",
    "image": {
-    "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2158/625/0_l.jpg",
-    "kind": "ogp",
-    "credit": "GAME Watch",
-    "page": "https://game.watch.impress.co.jp/docs/news/2158625.html"
+    "src": "https://assets.topics.apps-jp.nintendo.com/image/2026/11/16091730291823/1280/1c887bca51894240b574810845032c06.jpg",
+    "kind": "press",
+    "credit": "任天堂ホームページ",
+    "page": "https://www.nintendo.com/jp/topics/article/8cf1e987-b681-4b53-a68e-483b8d455ee7",
+    "w": 1280,
+    "h": 720,
+    "caption": "ウェーブレース ブルーストームのパッケージと専用コントローラー"
    },
    "visual": {
     "icon": "game",
@@ -679,6 +769,13 @@
     {
      "type": "p",
      "text": "遊べる機種はNintendo Switch 2に限られます。任天堂の有料サービス「Nintendo Switch Online + 追加パック」への加入が必要です。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/gmw/docs/2158/625/0_l.jpg",
+     "kind": "ogp",
+     "credit": "GAME Watch",
+     "page": "https://game.watch.impress.co.jp/docs/news/2158625.html"
     },
     {
      "type": "h",
@@ -727,6 +824,16 @@
     {
      "type": "p",
      "text": "専用コントローラーは「Nintendo Switch Online」の加入者が買えます。購入は1人4点までです。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.topics.apps-jp.nintendo.com/image/2026/09/03103218715499/1280/f15411b0aba246fb8b6247599fa47859.webp",
+     "kind": "press",
+     "credit": "任天堂ホームページ",
+     "caption": "箱に入ったゲームキューブの専用コントローラー",
+     "page": "https://www.nintendo.com/jp/topics/article/8cf1e987-b681-4b53-a68e-483b8d455ee7",
+     "w": 1280,
+     "h": 720
     },
     {
      "type": "stat",
@@ -910,7 +1017,14 @@
      "name": "ボストン コンサルティング グループ",
      "url": "https://www.bcg.com/ja-jp/press/12november2026-the-future-of-agentic-commerce"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/ec-bcg-agentic-commerce.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "future-bepicolombo-mercury-orbit",
@@ -947,6 +1061,16 @@
      "text": "水星を回る軌道に入った探査計画は、今回が史上2例目です。Space.comによると、最初は米航空宇宙局（NASA）の探査機メッセンジャーです。メッセンジャーは2011年3月から2015年4月まで水星を回りました。"
     },
     {
+     "type": "img",
+     "src": "https://media.esa.int/legacy/web/images/esa_multimedia/images/2018/03/mercury_transfer_module_separation3/17405481-1-eng-GB/208235/image-thumb__208235__fit_large/Mercury_Transfer_Module_separation~-~media--92aa2fb2--query@2x.29347220.webp",
+     "kind": "press",
+     "credit": "ESA",
+     "caption": "水星を背にしたベピ・コロンボの機体",
+     "page": "https://www.esa.int/articles/about-us/directorates/science/bepicolombo/latest-updates-bepicolombo-s-arrival-at-mercury",
+     "w": 1536,
+     "h": 864
+    },
+    {
      "type": "h",
      "text": "噴射が早く終わった理由"
     },
@@ -965,6 +1089,16 @@
     {
      "type": "p",
      "text": "探査機は水星に近づくと、太陽の強い引力で速くなります。水星を回る軌道に入るには、大きく減速する必要があります。探査機は地球のそばを1回、金星のそばを2回通り、引力を借りて進路を変えました。軌道に入るまでに、水星のそばも6回通りました。"
+    },
+    {
+     "type": "img",
+     "src": "https://media.esa.int/legacy/web/images/esa_multimedia/images/2018/03/mercury_transfer_module_separation2/17405444-1-eng-GB/208225/image-thumb__208225__fit_medium/Mercury_Transfer_Module_separation@2x.130407c9.webp",
+     "kind": "press",
+     "credit": "ESA",
+     "caption": "ベピ・コロンボの機体と切り離された装置",
+     "page": "https://www.esa.int/articles/about-us/directorates/science/bepicolombo/latest-updates-bepicolombo-s-arrival-at-mercury",
+     "w": 1640,
+     "h": 922
     },
     {
      "type": "p",
@@ -993,6 +1127,16 @@
     {
      "type": "p",
      "text": "ESAは、水星の大きな鉄の核など、内部のつくりを調べる計画です。水星に磁石のような力がある理由も探ります。太陽から飛んでくる粒が、その力の及ぶ範囲にどう影響するかも調べます。観測データは、太陽に近い惑星の成り立ちを知る手がかりになります。"
+    },
+    {
+     "type": "img",
+     "src": "https://media.esa.int/legacy/web/images/esa_multimedia/images/2018/10/bepicolombo_science_themes/17772430-2-eng-GB/216201/image-thumb__216201__fit_large/BepiColombo_science_themes~-~media--92aa2fb2--query@2x.704ceabf.webp",
+     "kind": "press",
+     "credit": "ESA",
+     "caption": "水星の内部や磁場などの観測対象を示す図",
+     "page": "https://www.esa.int/articles/about-us/directorates/operations/bepicolombo-safely-in-mercury-orbit-despite-unexpected-challenge",
+     "w": 1536,
+     "h": 864
     },
     {
      "type": "stat",
@@ -1041,7 +1185,16 @@
      "name": "Space.com",
      "url": "https://www.space.com/space-exploration/missions/esa-jaxa-bepicolomobo-mission-mercury-orbit-arrival"
     }
-   ]
+   ],
+   "image": {
+    "src": "https://media.esa.int/legacy/web/images/esa_multimedia/images/2018/10/bepicolombo_arrival_at_mercury_timeline/17772651-2-eng-GB/216282/image-thumb__216282__fit_large/BepiColombo_arrival_at_Mercury_timeline~-~media--92aa2fb2--query@2x.497836ad.webp",
+    "kind": "press",
+    "credit": "ESA",
+    "page": "https://www.esa.int/articles/about-us/directorates/science/bepicolombo/latest-updates-bepicolombo-s-arrival-at-mercury",
+    "w": 1536,
+    "h": 864,
+    "caption": "軌道入りや観測開始の日程を示す図"
+   }
   },
   {
    "id": "other-chrome-critical-fix",
@@ -1179,7 +1332,14 @@
      "name": "IT Picks",
      "url": "https://itpicks.dev/news/4622"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/other-chrome-critical-fix.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "ai-grok-states-sue",
@@ -1367,7 +1527,14 @@
      "name": "バージニア州司法長官室",
      "url": "https://oag.state.va.us/media-center/news-releases/jay-jones/3162-attorneys-general-jones-and-rayfield-file-suit-against-spacex-parent-company-of-x-xai-and-grok-over-creation-and-promotion-of-child-exploitation-and-non-consensual-images-on-platform"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/ai-grok-states-sue.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "mobile-windows-sidecar-android",
@@ -1375,10 +1542,13 @@
    "title": "AndroidをWindowsの副画面にする機能が浮上",
    "summary": "他社製アプリを足さずに、手元のAndroidをパソコンの2つ目の画面にできる可能性があります。",
    "image": {
-    "src": "https://image.itmedia.co.jp/pcuser/articles/2611/24/ht1124_ya02.jpg",
-    "kind": "ogp",
-    "credit": "ITmedia PC USER",
-    "page": "https://www.itmedia.co.jp/pcuser/articles/2611/24/news036.html"
+    "src": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/MSFT-Phone-Link-window-with-call-on-PC-RW10U7P?scl=1",
+    "kind": "press",
+    "credit": "Windows",
+    "page": "https://www.microsoft.com/ja-jp/windows/sync-across-your-devices",
+    "w": 1040,
+    "h": 585,
+    "caption": "スマートフォン連携で通話中のパソコンとスマホ"
    },
    "visual": {
     "icon": "phone",
@@ -1422,6 +1592,13 @@
      "text": "映像のデータを小さくする方式が2種類記されています。画面の大きさや動きのなめらかさに関わる項目もあります。"
     },
     {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/pcuser/articles/2611/24/ht1124_ya02.jpg",
+     "kind": "ogp",
+     "credit": "ITmedia PC USER",
+     "page": "https://www.itmedia.co.jp/pcuser/articles/2611/24/news036.html"
+    },
+    {
      "type": "p",
      "text": "試験用の設定もプログラムに含まれています。映像を受け取る処理には、作りかけとみられる部分がありました。"
     },
@@ -1446,8 +1623,28 @@
      "text": "今は2つのアプリで、パソコンとスマホをつなぎます。パソコンではWindows 11標準の「スマートフォン連携」を使います。Android側で使うのは「Windowsにリンク」です。"
     },
     {
+     "type": "img",
+     "src": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/MSFT-Phone-Link-window-with-notifications-RW10JU0?scl=1",
+     "kind": "press",
+     "credit": "Windows",
+     "caption": "スマートフォン連携のSMSと通知の画面",
+     "page": "https://www.microsoft.com/ja-jp/windows/sync-across-your-devices",
+     "w": 1040,
+     "h": 585
+    },
+    {
      "type": "p",
      "text": "今の連携では、パソコンからスマホの機能の一部を使えます。たとえば、次のような操作ができます。\n・電話をかけたり受けたりする\n・SMS（ショートメッセージ）や通知を見る\n・写真やファイルを共有する"
+    },
+    {
+     "type": "img",
+     "src": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/MSFT-Phone-Link-windows-with-Outlook-notifications-and-photos-RW10U7Q?scl=1",
+     "kind": "press",
+     "credit": "Windows",
+     "caption": "スマートフォン連携で表示した写真の一覧",
+     "page": "https://www.microsoft.com/ja-jp/windows/sync-across-your-devices",
+     "w": 1040,
+     "h": 585
     },
     {
      "type": "p",
@@ -1456,6 +1653,16 @@
     {
      "type": "p",
      "text": "開発の手がかりが出た機能は、パソコンの作業画面をスマホ側へ広げる仕組みです。実現すれば、パソコンで文書を開いたまま、チャットを別画面に置けます。"
+    },
+    {
+     "type": "img",
+     "src": "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/MSFT-Phone-Link-windows-with-Outlook-email-notifications-RW10JU1?scl=1",
+     "kind": "press",
+     "credit": "Windows",
+     "caption": "スマートフォン連携に表示されたメール通知",
+     "page": "https://www.microsoft.com/ja-jp/windows/sync-across-your-devices",
+     "w": 1040,
+     "h": 585
     },
     {
      "type": "h",
@@ -1523,10 +1730,13 @@
    "title": "アンカー、100W出力で海外対応のUSB充電器を発売",
    "summary": "海外のコンセントに挿せて、4台同時に充電できる旅行向けの充電器です。",
    "image": {
-    "src": "https://asset.watch.impress.co.jp/img/avw/docs/2158/668/anker-7_s.jpg",
-    "kind": "ogp",
-    "credit": "アンカー・ジャパン（AV Watch掲載）",
-    "page": "https://av.watch.impress.co.jp/docs/news/2158668.html"
+    "src": "https://www.ankerjapan.com/cdn/shop/files/A140A111_1200x1200.jpg?v=1795080832",
+    "kind": "press",
+    "credit": "Anker Japan 公式オンラインストア",
+    "page": "https://www.ankerjapan.com/products/a140a?variant=49127726514337",
+    "w": 800,
+    "h": 800,
+    "caption": "ダークグレーのUSB充電器本体"
    },
    "visual": {
     "icon": "box",
@@ -1558,6 +1768,13 @@
      "text": "製品名はAnker Nano Universal Charger (4-in-1, 100W, Display)です。ダークグレーから販売が始まりました。シルバーは順次発売の予定です。"
     },
     {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/avw/docs/2158/668/anker-7_s.jpg",
+     "kind": "ogp",
+     "credit": "アンカー・ジャパン（AV Watch掲載）",
+     "page": "https://av.watch.impress.co.jp/docs/news/2158668.html"
+    },
+    {
      "type": "p",
      "text": "アンカーの保証は18カ月です。会員登録すると、保証が6カ月延びます。"
     },
@@ -1570,8 +1787,28 @@
      "text": "側面には角が丸いUSB-Cの差し込み口が3つあります。従来の四角いUSB-Aも1つ付いています。最大4台を同時に充電でき、スマホやノートパソコンの急速充電にも対応します。"
     },
     {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/A140A003.jpg?crop=center&height=582&v=1795055588&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "USB充電器で4台の機器を同時に充電する様子",
+     "page": "https://www.ankerjapan.com/products/a140a?variant=49127726514337",
+     "w": 582,
+     "h": 582
+    },
+    {
      "type": "p",
      "text": "USB-Cのうち2口は、1口だけ使うと最大100Wです。残るUSB-Cは最大15Wで、USB-Aは最大12Wです。複数の口を使うと、合計最大100Wの出力が機器ごとに分かれます。最大出力で長く使うと、過熱を防ぐために自動で出力が下がる場合があります。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/A140A002.jpg?crop=center&height=582&v=1795055588&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "最大100W出力の充電器でノートパソコンを充電",
+     "page": "https://www.ankerjapan.com/products/a140a?variant=49127726514337",
+     "w": 582,
+     "h": 582
     },
     {
      "type": "h",
@@ -1582,8 +1819,28 @@
      "text": "正面の画面で、充電の状態とコンセント側の電圧をその場で確認できます。電圧が高すぎるなどの異常も画面に出ます。"
     },
     {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/A140A004.jpg?crop=center&height=582&v=1795055588&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "充電の状態や電圧を確認できる正面の画面",
+     "page": "https://www.ankerjapan.com/products/a140a?variant=49127726514337",
+     "w": 582,
+     "h": 582
+    },
+    {
      "type": "p",
      "text": "アンカーは、電気製品の安全性に関するNRTL認証を取得したと案内しています。320Vの過電圧保護も備えています。異常に高い電圧を検知すると、つないだ機器への電気を自動で止める機能です。電流が流れすぎたときやショートしたときも、保護機能が働くとエルミタージュ秋葉原が報じました。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/A140A006.jpg?crop=center&height=582&v=1795055588&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "就寝中の充電を想定した保護機能のイメージ",
+     "page": "https://www.ankerjapan.com/products/a140a?variant=49127726514337",
+     "w": 582,
+     "h": 582
     },
     {
      "type": "h",
@@ -1594,12 +1851,32 @@
      "text": "A・C・Gの3タイプの変換プラグを内蔵し、200以上の国と地域に対応します。使える電圧は100〜275Vです。オーストラリアやニュージーランドのIタイプのコンセントには挿せません。"
     },
     {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/A140A001.jpg?crop=center&height=582&v=1795055588&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "A・C・Gの変換プラグを内蔵したUSB充電器",
+     "page": "https://www.ankerjapan.com/products/a140a?variant=49127726514337",
+     "w": 582,
+     "h": 582
+    },
+    {
      "type": "p",
      "text": "変換プラグは一度に1つだけ引き出せる仕組みです。使わないプラグは固定されたままです。本体はコンセントに直接挿す作りで、ケーブルをつないでも抜け落ちにくくなっています。"
     },
     {
      "type": "p",
      "text": "本体は約95×50×40mmです。重さは約262gあります。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/A140A005.jpg?crop=center&height=582&v=1795055588&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "壁のコンセントに直接挿したUSB充電器",
+     "page": "https://www.ankerjapan.com/products/a140a?variant=49127726514337",
+     "w": 582,
+     "h": 582
     },
     {
      "type": "stat",
@@ -1798,7 +2075,14 @@
      "name": "jpjj.jp",
      "url": "https://jpjj.jp/articles/mcdonalds-app-unauthorized-access/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/service-mcd-app-breach.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "game-gta6-patch-1123",
@@ -1957,7 +2241,14 @@
      "name": "グランド・セフト・オートVI",
      "query": "グランド・セフト・オートVI PS5"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/game-gta6-patch-1123.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "ec-mlit-okihai-guideline",
@@ -2130,7 +2421,14 @@
      "name": "e-Gov",
      "url": "https://public-comment.e-gov.go.jp/pcm/detail?id=155260941"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/ec-mlit-okihai-guideline.png",
+    "kind": "diagram",
+    "caption": "図解：時系列で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "timeline"
+   }
   },
   {
    "id": "future-spacex-nrol-136",
@@ -2256,7 +2554,14 @@
      "name": "朝鮮ビズ",
      "url": "https://biz.chosun.com/jp/jp-science/2026/11/23/U2F7P7CRDNAEJO34GJKEOZIMGE/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/future-spacex-nrol-136.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "other-rakuten-bond-consent",
@@ -2366,7 +2671,14 @@
      "name": "楽天グループ",
      "url": "https://corp.rakuten.co.jp/news/press/2026/1116_11.html"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/other-rakuten-bond-consent.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "ai-sumitomo-chatgpt",
@@ -2519,7 +2831,14 @@
      "name": "OpenAI",
      "url": "https://openai.com/business/customer-stories/sumitomo-life/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/ai-sumitomo-chatgpt.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "mobile-uq-wimax-l14-x13",
@@ -2527,10 +2846,13 @@
    "title": "UQ WiMAX、5Gルーター2機種を12月発売",
    "summary": "家用L14は3万3220円（税込み）、持ち歩き用X13は2万5080円（税込み）です。",
    "image": {
-    "src": "https://asset.watch.impress.co.jp/img/ktw/docs/2158/681/cont11_l.png",
-    "kind": "ogp",
-    "credit": "ケータイ Watch",
-    "page": "https://k-tai.watch.impress.co.jp/docs/news/2158681.html"
+    "src": "https://prcdn.freetls.fastly.net/release_image/136/5610/136-5610-50fe294da00df149cb9309f99ca6ea8d-2400x1260.png?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
+    "kind": "press",
+    "credit": "GMOインターネットグループ",
+    "page": "https://prtimes.jp/main/html/rd/p/000005610.000000136.html",
+    "w": 2400,
+    "h": 1260,
+    "caption": "家庭用L14と持ち歩き用X13の本体"
    },
    "visual": {
     "icon": "chip",
@@ -2562,6 +2884,16 @@
      "text": "L14は11月24日10時から11月30日まで、電話で先行予約できます。個人は新規申込相談窓口の0120-959-001で申し込めます。受付時間は毎日9時から20時までです。"
     },
     {
+     "type": "img",
+     "src": "https://www.uqwimax.jp/wimax/products/ztr04/images/ztr04_kv_1.webp",
+     "kind": "press",
+     "credit": "UQコミュニケーションズ",
+     "caption": "持ち歩き用X13の白い本体の正面",
+     "page": "https://www.uqwimax.jp/wimax/products/ztr04/",
+     "w": 720,
+     "h": 720
+    },
+    {
      "type": "h",
      "text": "家庭用L14の性能と大きさ"
     },
@@ -2570,12 +2902,42 @@
      "text": "「Speed Wi-Fi HOME 5G L14」は、ZTE製の家庭用ルーターです。回線工事は不要で、コンセントにつないで使います。"
     },
     {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/136/5610/136-5610-e4f9c8c9fb54541c901b0dfd73416056-2400x1260.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "GMOインターネットグループ",
+     "caption": "家庭用L14の前面と背面の差し込み口",
+     "page": "https://prtimes.jp/main/html/rd/p/000005610.000000136.html",
+     "w": 1950,
+     "h": 1024
+    },
+    {
      "type": "p",
      "text": "GMOとくとくBBによると、L14では無線の規格が前のL13のWi-Fi 6からWi-Fi 7に変わります。受信の速さは、最大4.2Gbpsから最大4.4Gbpsに上がります。Gbpsは1秒あたりの通信量を表す単位です。Wi-Fiで同時につなげる機器は、最大32台から最大128台に増えます。"
     },
     {
+     "type": "img",
+     "src": "https://www.uqwimax.jp/wimax/products/ztr03/images/ztr03_fea1_img_2.webp",
+     "kind": "press",
+     "credit": "UQコミュニケーションズ",
+     "caption": "ノートパソコンの横に置いた家庭用L14",
+     "page": "https://www.uqwimax.jp/wimax/products/ztr03/",
+     "w": 980,
+     "h": 588
+    },
+    {
      "type": "p",
      "text": "本体は約100×191×100mmで、重さは約528gです。前のL13より約107g軽く、高さは約16mm低くなりました。ケーブルで機器をつなぐ差し込み口は2つあり、どちらも最大2.5Gbpsに対応します。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.uqwimax.jp/wimax/products/ztr03/images/ztr03_fea1_img_3.webp",
+     "kind": "press",
+     "credit": "UQコミュニケーションズ",
+     "caption": "テレビの前のテーブルに置いた家庭用L14",
+     "page": "https://www.uqwimax.jp/wimax/products/ztr03/",
+     "w": 980,
+     "h": 588
     },
     {
      "type": "h",
@@ -2588,6 +2950,16 @@
     {
      "type": "p",
      "text": "両機種とも、5G専用の設備を使う通信方式の5G SAに対応します。この方式が使えるのは一部の地域です。通常の5Gや、その前の世代の4G LTEでも通信できます。WiMAX 2＋（UQの通信回線）にも対応します。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.uqwimax.jp/wimax/products/ztr03/images/ztr03_fea1_img_1.webp",
+     "kind": "press",
+     "credit": "UQコミュニケーションズ",
+     "caption": "L14の画面に表示されたWi-Fi接続用QRコード",
+     "page": "https://www.uqwimax.jp/wimax/products/ztr03/",
+     "w": 980,
+     "h": 588
     },
     {
      "type": "h",
@@ -2628,6 +3000,13 @@
     {
      "type": "p",
      "text": "ワイヤレスゲートで新規に契約する人は、ヨドバシカメラなどの取り扱い店で申し込めます。ヨドバシ・ドット・コムでも受け付けます。すでに契約している人の窓口は、ワイヤレスゲートのサポートセンターです。"
+    },
+    {
+     "type": "img",
+     "src": "https://asset.watch.impress.co.jp/img/ktw/docs/2158/681/cont11_l.png",
+     "kind": "ogp",
+     "credit": "ケータイ Watch",
+     "page": "https://k-tai.watch.impress.co.jp/docs/news/2158681.html"
     },
     {
      "type": "p",
@@ -2696,10 +3075,13 @@
    "title": "アンカーが窓に貼る防犯カメラ、9990円で登場",
    "summary": "ネジ穴を開けずに窓の内側へ付けられ、月額料金なしで使える防犯カメラです。",
    "image": {
-    "src": "https://media.loom-app.com/loom/2026/11/21/9b616a93-b7ee-4af6-8371-d12bf5bd52fd/original.jpg?w=1200",
-    "kind": "ogp",
-    "credit": "アンカー・ジャパン（GIZMODO JAPAN掲載）",
-    "page": "https://www.gizmodo.jp/article/2611-anker-eufy-window-camera-e10/"
+    "src": "https://www.ankerjapan.com/cdn/shop/files/T8404521_1200x1200.jpg?v=1795144035",
+    "kind": "press",
+    "credit": "Anker Japan 公式オンラインストア",
+    "page": "https://www.ankerjapan.com/products/t8404",
+    "w": 800,
+    "h": 800,
+    "caption": "窓用防犯カメラ「Eufy Window Camera E10」の本体"
    },
    "visual": {
     "icon": "camera",
@@ -2743,6 +3125,13 @@
      "text": "タッチラボによると、11月24日12時台のAmazonの価格は9990円（税込み）でした。20%にあたる1998ポイントが付き、実質7992円です。楽天市場の公式店は9990円（税込み）で、初回特典の表示はありませんでした。"
     },
     {
+     "type": "img",
+     "src": "https://media.loom-app.com/loom/2026/11/21/9b616a93-b7ee-4af6-8371-d12bf5bd52fd/original.jpg?w=1200",
+     "kind": "ogp",
+     "credit": "アンカー・ジャパン（GIZMODO JAPAN掲載）",
+     "page": "https://www.gizmodo.jp/article/2611-anker-eufy-window-camera-e10/"
+    },
+    {
      "type": "p",
      "text": "保証は18か月です。アンカーで会員登録すると6か月延び、最長24か月になります。"
     },
@@ -2755,12 +3144,32 @@
      "text": "付属のステッカーを窓ガラスの内側に貼り、カメラを固定します。穴あけや配線工事がいらず、賃貸でも玄関先やベランダを見守れます。屋内に置くので、本体が雨にさらされずに済みます。"
     },
     {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/T8404002.jpg?crop=center&height=582&v=1795144037&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "ステッカーを窓ガラスに貼ってカメラを固定する手順",
+     "page": "https://www.ankerjapan.com/products/t8404",
+     "w": 582,
+     "h": 582
+    },
+    {
      "type": "p",
      "text": "付属の3mの電源ケーブル（USB-C）と充電器を使います。電源はコンセントから取るため、電池切れの心配はありません。Wi-Fiは、遠くまで届きやすい2.4GHzと通信が速い5GHzの両方に対応します。"
     },
     {
      "type": "p",
      "text": "カメラはガラスに密着し、室内の照明などの写り込みを抑えます。反射を抑えるステッカーも付属します。二重窓や厚いガラスでは反射が残る場合があると、タッチラボは伝えています。街灯や車のライトが強く当たる場合も同様です。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/T8404001.jpg?crop=center&height=582&v=1795144037&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "窓ガラスに取り付けたEufy Window Camera E10",
+     "page": "https://www.ankerjapan.com/products/t8404",
+     "w": 582,
+     "h": 582
     },
     {
      "type": "p",
@@ -2771,12 +3180,32 @@
      "text": "アンカーが同日に発売した「Eufy SoloCam E50」は屋外に取り付けるタイプです。電池を内蔵し、付属の太陽光パネルで充電できます。"
     },
     {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/T8404003.jpg?crop=center&height=582&v=1795144037&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "125度の視野と玄関先やベランダでの使用例",
+     "page": "https://www.ankerjapan.com/products/t8404",
+     "w": 582,
+     "h": 582
+    },
+    {
      "type": "h",
      "text": "夜の映像と写せる範囲"
     },
     {
      "type": "p",
      "text": "カメラに映る範囲は125度です。取り付けたあとも、手で下向きに25度まで角度を変えられます。2階の窓から庭や駐車場を見下ろせます。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/T8404005.jpg?crop=center&height=582&v=1795144037&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "夜の住宅街をカラーで撮影した映像と明るさ補正なしの比較",
+     "page": "https://www.ankerjapan.com/products/t8404",
+     "w": 582,
+     "h": 582
     },
     {
      "type": "p",
@@ -2787,12 +3216,32 @@
      "text": "本体にはマイクが付いています。窓の外の音は録音できません。"
     },
     {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/T8404004.jpg?crop=center&height=582&v=1795144037&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "2K映像の一部を8倍に拡大した例",
+     "page": "https://www.ankerjapan.com/products/t8404",
+     "w": 582,
+     "h": 582
+    },
+    {
      "type": "h",
      "text": "通知する対象と範囲の設定"
     },
     {
      "type": "p",
      "text": "スマホのアプリで映像を見られます。カメラ内のAIが映像を調べ、人や車を見分けます。ペットは犬と猫が対象です。アプリで通知の対象や範囲を絞ると、不要な通知を減らせます。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/T8404007.jpg?crop=center&height=582&v=1795144037&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "窓ガラスの写り込みを一般的な防犯カメラと比べた映像",
+     "page": "https://www.ankerjapan.com/products/t8404",
+     "w": 582,
+     "h": 582
     },
     {
      "type": "h",
@@ -2805,6 +3254,16 @@
     {
      "type": "p",
      "text": "電源につないだまま、24時間365日続けて録画できます。Corrienteによると、256GBのカードに残せる映像は最大480時間分です。保存できる時間は画質や検知の回数で変わります。容量がいっぱいになると古い映像から上書きします。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.ankerjapan.com/cdn/shop/files/T8404006.jpg?crop=center&height=582&v=1795144037&width=582",
+     "kind": "press",
+     "credit": "Anker Japan 公式オンラインストア",
+     "caption": "朝、昼、夕方、夜の連続録画の例",
+     "page": "https://www.ankerjapan.com/products/t8404",
+     "w": 582,
+     "h": 582
     },
     {
      "type": "p",
@@ -2878,10 +3337,13 @@
    "title": "モバイルSuicaを「スターレイル」柄に 抽選20万人",
    "summary": "2500円以上の買い物で応募でき、当選するとアプリのカードを着せ替えられます。",
    "image": {
-    "src": "https://japan.cnet.com/storage/2026/11/23/654084aba41bfe0dbda0ea14a23f4547/large.jpg",
-    "kind": "ogp",
-    "credit": "CNET Japan",
-    "page": "https://japan.cnet.com/article/35255301/"
+    "src": "https://prcdn.freetls.fastly.net/release_image/17557/1577/17557-1577-7d0c9ab35651a15cffdc4a5c72d02a1b-690x696.png?width=1950&height=1350&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "東日本旅客鉄道株式会社",
+    "page": "https://prtimes.jp/main/html/rd/p/000001577.000017557.html",
+    "w": 690,
+    "h": 696,
+    "caption": "「星神★アッハ」柄のモバイルSuica画面"
    },
    "visual": {
     "icon": "yen",
@@ -2921,6 +3383,13 @@
      "text": "JR東日本は、専用ページで応募してから買い物をするよう案内しています。マイナビニュースは、買い物を済ませてから応募する手順を伝えています。"
     },
     {
+     "type": "img",
+     "src": "https://japan.cnet.com/storage/2026/11/23/654084aba41bfe0dbda0ea14a23f4547/large.jpg",
+     "kind": "ogp",
+     "credit": "CNET Japan",
+     "page": "https://japan.cnet.com/article/35255301/"
+    },
+    {
      "type": "p",
      "text": "買い物は、全国でSuicaなどの交通系電子マネーが使える店やサービスが対象です。電車やバスの運賃は対象外です。"
     },
@@ -2931,6 +3400,16 @@
     {
      "type": "p",
      "text": "デザインは「星神★アッハ」と「青天航路もふもふ号」の2種類です。応募時に好きな方を選べます。どちらもiPhoneとAndroidスマホのモバイルSuicaに対応します。JR東日本の案内では、絵柄が変わる場合もあります。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/17557/1577/17557-1577-e461ddfdc6d4cfa64dca64fe562a71c8-690x696.png?width=1950&height=1350&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "東日本旅客鉄道株式会社",
+     "caption": "「青天航路もふもふ号」柄のモバイルSuica画面",
+     "page": "https://prtimes.jp/main/html/rd/p/000001577.000017557.html",
+     "w": 690,
+     "h": 696
     },
     {
      "type": "h",
@@ -2953,6 +3432,16 @@
      "text": "マイナビニュースは、館内での1回の会計がこの金額以上なら1枚もらえると報じました。電撃オンラインも館内での買い物が対象と案内しました。"
     },
     {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/17557/1577/17557-1577-30f040cec4047515cc2b3bca365cbdde-886x608.jpg?width=1950&height=1350&quality=85&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "東日本旅客鉄道株式会社",
+     "caption": "秋葉原の期間限定ショップでもらえる記念カード2種類の表と裏",
+     "page": "https://prtimes.jp/main/html/rd/p/000001577.000017557.html",
+     "w": 886,
+     "h": 608
+    },
+    {
      "type": "p",
      "text": "カードの絵柄は「星神★アッハ」と「列車組 青天航路もふもふ号」です。絵柄はランダムで、どちらを受け取るかは選べません。"
     },
@@ -2965,16 +3454,56 @@
      "text": "シャン・ド・エルブでは、カードを入れるカバーがもらえます。ゲームの関連商品を含めて、モバイルSuicaで2500円（税込み）払うごとに受け取れます。カバーは全7種類です。電撃オンラインによると、絵柄はランダムに配られます。"
     },
     {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/17557/1577/17557-1577-4b8cce12c0264a22ef0db8fd2fb57afa-2400x908.png?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
+     "kind": "press",
+     "credit": "東日本旅客鉄道株式会社",
+     "caption": "モバイルSuicaと「崩壊：スターレイル」の着せ替え企画",
+     "page": "https://prtimes.jp/main/html/rd/p/000001577.000017557.html",
+     "w": 2400,
+     "h": 908
+    },
+    {
      "type": "p",
      "text": "カバーの配布は11月23日に始まりました。電撃オンラインは11月30日までと案内しました。JR東日本による対象11店舗の締め切りは次のとおりです。\n・11月29日まで　取手店\n・11月30日まで　上野店、新浦安店、恵比寿店、大森店、田端店、西船橋店、大船店、武蔵浦和店、竹芝店\n・12月6日まで　川崎店"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/17557/1577/17557-1577-c2e8e2be18ddface964b722f17f0dd9c-3900x1617.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "東日本旅客鉄道株式会社",
+     "caption": "カード用カバーの裏面の絵柄全7種類",
+     "page": "https://prtimes.jp/main/html/rd/p/000001577.000017557.html",
+     "w": 1950,
+     "h": 809
     },
     {
      "type": "p",
      "text": "マイナビニュースによると、全国のアニメイトでは「星神★アッハ」の登場を記念するフェアにも特典が付きます。特典はICカード風のシールで、絵柄は2種類です。店頭の特典はどれも、なくなった店から配布を終えます。"
     },
     {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/17557/1577/17557-1577-dd4fe96e7e79c28830350c42cf4183b5-2268x1553.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "東日本旅客鉄道株式会社",
+     "caption": "カード用カバーの使用例",
+     "page": "https://prtimes.jp/main/html/rd/p/000001577.000017557.html",
+     "w": 1950,
+     "h": 1335
+    },
+    {
      "type": "p",
      "text": "JR東日本グループは、ゲームなどをきっかけに都市と地方を行き来する人を増やす考えです。今回の企画もその取り組みの1つです。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/17557/1577/17557-1577-1d290bb27ea841ab90a2770a10365825-2268x1553.png?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "東日本旅客鉄道株式会社",
+     "caption": "カード用カバーの表面のデザイン",
+     "page": "https://prtimes.jp/main/html/rd/p/000001577.000017557.html",
+     "w": 1950,
+     "h": 1335
     },
     {
      "type": "stat",
@@ -3035,10 +3564,13 @@
    "title": "「仁王3」DLC第2弾「天草大乱」が12月17日に配信",
    "summary": "完結編のDLC配信日が決定。全部入りのComplete Editionは2027年1月28日発売。",
    "image": {
-    "src": "https://www.4gamer.net/games/060/G106063/20261124012/SS/001.jpg",
-    "kind": "ogp",
-    "credit": "4Gamer.net",
-    "page": "https://www.4gamer.net/games/060/G106063/20261124012/"
+    "src": "https://teamninja-studio.com/nioh3/assets/img/dlc/dlc2_0104.jpg",
+    "kind": "press",
+    "credit": "仁王３",
+    "page": "https://teamninja-studio.com/nioh3/jp/dlc/",
+    "w": 1200,
+    "h": 675,
+    "caption": "「天草大乱」で赤い光の下に広がる荒れた地形"
    },
    "visual": {
     "icon": "game",
@@ -3070,6 +3602,16 @@
      "text": "第1弾も単体で買え、価格は2750円（税込み）です。2作をまとめたシーズンパスは5500円（税込み）です。シーズンパスには小物「千々古の根付」が付きます。パスで追加分を遊ぶには、本編をある程度進める必要があります。"
     },
     {
+     "type": "img",
+     "src": "https://teamninja-studio.com/nioh3/assets/img/dlc/dlc2_0101.jpg",
+     "kind": "press",
+     "credit": "仁王３",
+     "caption": "青白い岩場で身を低く構える侍",
+     "page": "https://teamninja-studio.com/nioh3/jp/dlc/",
+     "w": 1200,
+     "h": 675
+    },
+    {
      "type": "p",
      "text": "「Digital Deluxe Edition」にも2作のDLCが入っています。シーズンパスと単体のDLCで遊べる内容は同じです。"
     },
@@ -3086,6 +3628,16 @@
      "text": "舞台は1638年の島原です。主人公の竹千代は、エスパーニャ（スペイン）の錬金術師を追っています。由井正雪が恨みを抱いた理由を探るため、白鴉に導かれて再び時を超えます。"
     },
     {
+     "type": "img",
+     "src": "https://teamninja-studio.com/nioh3/assets/img/dlc/dlc2_0103.jpg",
+     "kind": "press",
+     "credit": "仁王３",
+     "caption": "丸い盾を構える人物と背後で翼を広げる守護霊",
+     "page": "https://teamninja-studio.com/nioh3/jp/dlc/",
+     "w": 1200,
+     "h": 675
+    },
+    {
      "type": "p",
      "text": "島原では、地元の領主に反発した一揆衆が幕府軍と戦っています。天草四郎が率いる一揆衆には、錬金術師や妖怪も加わります。戦いが繰り広げられる城下町のほか、雲仙岳の地下洞窟も探索できます。一揆衆の拠点である原城にも向かいます。"
     },
@@ -3096,6 +3648,16 @@
     {
      "type": "p",
      "text": "新たな妖怪が登場します。主人公に力を貸す守護霊も増え、過去に登場した守護霊もいます。"
+    },
+    {
+     "type": "img",
+     "src": "https://teamninja-studio.com/nioh3/assets/img/dlc/dlc2_0105.jpg",
+     "kind": "press",
+     "credit": "仁王３",
+     "caption": "「天草大乱」で向かい合う二人の武将",
+     "page": "https://teamninja-studio.com/nioh3/jp/dlc/",
+     "w": 1200,
+     "h": 675
     },
     {
      "type": "p",
@@ -3112,6 +3674,13 @@
     {
      "type": "p",
      "text": "地図では、戦域のボスの種類や戦場効果の一部を確認できます。どの戦域から攻略するかは自由です。階層のボスに挑むタイミングも選べます。第5階層以降に進むには、DLCの第1弾と第2弾の両方が必要です。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.4gamer.net/games/060/G106063/20261124012/SS/001.jpg",
+     "kind": "ogp",
+     "credit": "4Gamer.net",
+     "page": "https://www.4gamer.net/games/060/G106063/20261124012/"
     },
     {
      "type": "p",
@@ -3234,10 +3803,13 @@
    "title": "Qoo10が原宿に体験館 12月2日まで記念イベント",
    "summary": "コスメを手に取って試せる予約制の常設館。イベントはQoo10会員が対象です。",
    "image": {
-    "src": "https://netshop.impress.co.jp/sites/default/files/styles/1200x630/public/images/news/2026/news-node17077--ogp.jpeg?itok=_tzy09Vj",
-    "kind": "ogp",
-    "credit": "ネットショップ担当者フォーラム",
-    "page": "https://netshop.impress.co.jp/n/2026/11/24/17077"
+    "src": "https://prcdn.freetls.fastly.net/release_image/22933/1026/22933-1026-7c6eae4bbe4d1ff5bd646630e8f99fad-654x540.png?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
+    "kind": "press",
+    "credit": "eBay Japan合同会社",
+    "page": "https://prtimes.jp/main/html/rd/p/000001026.000022933.html",
+    "w": 654,
+    "h": 540,
+    "caption": "駅舎を描いたMEGA POPUPの記念イベント画像"
    },
    "visual": {
     "icon": "cart",
@@ -3267,6 +3839,13 @@
     {
      "type": "p",
      "text": "館内はブランドが商品を展示し、来場者と交流する場です。Qoo10と連動した動画の生配信でも商品を販売します。SNS（交流サイト）でも商品を紹介します。"
+    },
+    {
+     "type": "img",
+     "src": "https://netshop.impress.co.jp/sites/default/files/styles/1200x630/public/images/news/2026/news-node17077--ogp.jpeg?itok=_tzy09Vj",
+     "kind": "ogp",
+     "credit": "ネットショップ担当者フォーラム",
+     "page": "https://netshop.impress.co.jp/n/2026/11/24/17077"
     },
     {
      "type": "p",
@@ -3362,10 +3941,13 @@
    "title": "Uber、運転を録画する配車を米4都市で試験",
    "summary": "運転手のスマホで走行中を録画する予約方法を、米国で試しています。",
    "image": {
-    "src": "https://techcrunch.com/wp-content/uploads/2026/07/uber-getty.jpg?resize=1200,800",
-    "kind": "ogp",
-    "credit": "TechCrunch",
-    "page": "https://techcrunch.com/2026/11/23/uber-now-lets-you-book-rides-that-record-the-drive-by-default/"
+    "src": "https://tb-static.uber.com/prod/udam-assets/ed74d866-94cf-4242-89e3-d51965912bcd.jpeg",
+    "kind": "press",
+    "credit": "Uber",
+    "page": "https://www.uber.com/us/en/newsroom/making-recording-easier/",
+    "w": 1919,
+    "h": 1280,
+    "caption": "車内に取り付けた運転手のスマホ"
    },
    "visual": {
     "icon": "car",
@@ -3395,6 +3977,13 @@
     {
      "type": "p",
      "text": "CNETによると、録画付きの配車を選んでも運賃は変わりません。通常の配車でも、運転手が別に取り付けたカメラで車内を撮る場合があります。"
+    },
+    {
+     "type": "img",
+     "src": "https://techcrunch.com/wp-content/uploads/2026/07/uber-getty.jpg?resize=1200,800",
+     "kind": "ogp",
+     "credit": "TechCrunch",
+     "page": "https://techcrunch.com/2026/11/23/uber-now-lets-you-book-rides-that-record-the-drive-by-default/"
     },
     {
      "type": "h",
@@ -3667,7 +4256,14 @@
      "name": "マイナビニュースTECH+",
      "url": "https://news.mynavi.jp/techplus/article/20261124-5396173/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/other-crowdstrike-zscaler.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "ai-muse-vs-apple-google",
@@ -3675,10 +4271,13 @@
    "title": "Museが先行、アップルとGoogleは追う側と西田氏",
    "summary": "ストア1位のMuse。スマホ2社のAIは新機能が知られにくいと筆者は見ます。",
    "image": {
-    "src": "https://www.watch.impress.co.jp/img/ipw/list/2158/551/m08.jpg",
-    "kind": "ogp",
-    "credit": "Impress Watch",
-    "page": "https://www.watch.impress.co.jp/docs/series/nishida/2158551.html"
+    "src": "https://www.apple.com/jp/os/images/ios/highlights/visual_intelligence__fqj40a8fwvqu_large.jpg",
+    "kind": "press",
+    "credit": "Apple（日本）",
+    "page": "https://www.apple.com/jp/os/ios/",
+    "w": 1260,
+    "h": 680,
+    "caption": "クリケットボールの写真について日本語で答えるSiri AI"
    },
    "visual": {
     "icon": "ai",
@@ -3718,6 +4317,13 @@
      "text": "Metaの10月21日の決算発表時点で、Museの利用者は1000万人を超えていました。西田氏の執筆時点では、日本のApp Storeの無料アプリで1位でした。Google Playの無料アプリでは2位です。どちらもChatGPTやGeminiより上でした。"
     },
     {
+     "type": "img",
+     "src": "https://www.watch.impress.co.jp/img/ipw/list/2158/551/m08.jpg",
+     "kind": "ogp",
+     "credit": "Impress Watch",
+     "page": "https://www.watch.impress.co.jp/docs/series/nishida/2158551.html"
+    },
+    {
      "type": "h",
      "text": "アップルとGoogleのAI"
     },
@@ -3728,6 +4334,16 @@
     {
      "type": "p",
      "text": "西田氏は、同じGmailとGoogleカレンダーを使い、来週のフライトを両方に尋ねました。Siri AIはカレンダーの予定から答えました。Pixel 11のGeminiは答えられませんでした。西田氏は、GoogleもスマホのAIでは苦戦しているとみています。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.apple.com/jp/os/images/ios/highlights/siri__mfeve50fboii_large.jpg",
+     "kind": "press",
+     "credit": "Apple（日本）",
+     "caption": "iPhoneの画面上部に表示されたSiri AIの吹き出し",
+     "page": "https://www.apple.com/jp/os/ios/",
+     "w": 1260,
+     "h": 680
     },
     {
      "type": "h",
@@ -3996,7 +4612,14 @@
      "name": "LIBMO",
      "url": "https://www.libmo.jp/campaign/oppo-fes-2026-11"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/mobile-libmo-oppo-matsuri.png",
+    "kind": "diagram",
+    "caption": "図解：誰に関係するか",
+    "credit": "星餓りなのテックニュース",
+    "type": "who"
+   }
   },
   {
    "id": "gadget-doraemon-heater-plush",
@@ -4004,10 +4627,13 @@
    "title": "CCP、ドラえもんのヒーター内蔵ぬいぐるみを予約開始",
    "summary": "背中が約42〜46℃に温まるので、膝にのせたり抱えたりして暖を取れます。",
    "image": {
-    "src": "https://kaden.watch.impress.co.jp/img/kdw/list/2158/657/top.jpg",
-    "kind": "ogp",
-    "credit": "家電 Watch",
-    "page": "https://kaden.watch.impress.co.jp/docs/news/2158657.html"
+    "src": "https://img07.shop-pro.jp/PA01433/918/product/193496991_o6.png?cmsp_timestamp=20261113121344",
+    "kind": "press",
+    "credit": "CCP公式オンラインショップ",
+    "page": "https://ccp-otasuke.jp/?pid=193496991",
+    "w": 550,
+    "h": 550,
+    "caption": "あったかぬいぐるみ ドラえもんの正面"
    },
    "visual": {
     "icon": "appliance",
@@ -4035,12 +4661,32 @@
      "text": "予約はCCP公式オンラインストアで受け付けています。同店では12月18日以降に発送する予定です。送料は全国無料です。12月中旬からは通販サイトや雑貨店などで順次販売します。"
     },
     {
+     "type": "img",
+     "src": "https://img07.shop-pro.jp/PA01433/918/product/193496991_o7.png?cmsp_timestamp=20261113121344",
+     "kind": "press",
+     "credit": "CCP公式オンラインショップ",
+     "caption": "両手で持ったあったかぬいぐるみ ドラえもん",
+     "page": "https://ccp-otasuke.jp/?pid=193496991",
+     "w": 550,
+     "h": 550
+    },
+    {
      "type": "h",
      "text": "背中の温度と自動停止"
     },
     {
      "type": "p",
      "text": "本体のUSBケーブルをパソコンなどにつなぐと、背中側が約30秒で約42〜46℃に温まります。約60分で電源が自動で切れるタイマー付きです。"
+    },
+    {
+     "type": "img",
+     "src": "https://img07.shop-pro.jp/PA01433/918/product/193496991_o1.png?cmsp_timestamp=20261113121344",
+     "kind": "press",
+     "credit": "CCP公式オンラインショップ",
+     "caption": "USBで温まるドラえもんの背中を示した図",
+     "page": "https://ccp-otasuke.jp/?pid=193496991",
+     "w": 550,
+     "h": 550
     },
     {
      "type": "img",
@@ -4063,12 +4709,43 @@
      "text": "報道各社が示す消費電力は4.5Wです。直営店は3.0Wと案内しています。"
     },
     {
+     "type": "img",
+     "src": "https://kaden.watch.impress.co.jp/img/kdw/list/2158/657/top.jpg",
+     "kind": "ogp",
+     "credit": "家電 Watch",
+     "page": "https://kaden.watch.impress.co.jp/docs/news/2158657.html"
+    },
+    {
      "type": "h",
      "text": "ぬいぐるみの大きさと使い方"
     },
     {
      "type": "p",
      "text": "高さは約32cmで、手触りはふわふわです。デスクで作業するときは膝にのせて使えます。ソファでくつろぐときは、抱きかかえて温まれます。キャラクター家電ブランド「きゃらニクス」の商品です。"
+    },
+    {
+     "type": "gallery",
+     "title": "",
+     "items": [
+      {
+       "src": "https://img07.shop-pro.jp/PA01433/918/product/193496991_o2.png?cmsp_timestamp=20261113121344",
+       "kind": "press",
+       "credit": "CCP公式オンラインショップ",
+       "caption": "デスクでドラえもんを膝にのせて使う様子",
+       "page": "https://ccp-otasuke.jp/?pid=193496991",
+       "w": 550,
+       "h": 550
+      },
+      {
+       "src": "https://img07.shop-pro.jp/PA01433/918/product/193496991_o3.png?cmsp_timestamp=20261113121344",
+       "kind": "press",
+       "credit": "CCP公式オンラインショップ",
+       "caption": "ソファでドラえもんを抱きかかえる様子",
+       "page": "https://ccp-otasuke.jp/?pid=193496991",
+       "w": 550,
+       "h": 550
+      }
+     ]
     },
     {
      "type": "stat",
@@ -4130,10 +4807,13 @@
    "title": "郵便局のタブレットでローソン商品を注文 石川・福井",
    "summary": "店頭より2〜3割高く、届くまで3〜7日。近くに店が少ない地域向けの実験です。",
    "image": {
-    "src": "https://japan.cnet.com/storage/2026/11/23/f6bef02e7624ab102495a2af3d07273a/large.jpg",
-    "kind": "ogp",
-    "credit": "CNET Japan",
-    "page": "https://japan.cnet.com/article/35255300/"
+    "src": "https://www.lawson.co.jp/company/news/detail/__icsFiles/artimage/2026/11/20/cj310701/post1.png",
+    "kind": "press",
+    "credit": "lawson.co.jp",
+    "page": "https://www.lawson.co.jp/company/news/detail/1534611_2504.html",
+    "w": 1671,
+    "h": 549,
+    "caption": "タブレットに表示されたローソン商品の案内と注文画面"
    },
    "visual": {
     "icon": "cart",
@@ -4167,6 +4847,13 @@
     {
      "type": "p",
      "text": "郵便局のネット注文サービス「ぽすたるまーけっと」を使います。対象の局では、窓口のタブレットで商品を選べます。ネット注文に不慣れな高齢者などには、局員が操作を手伝います。商品は注文から3〜7日程度で、自宅など指定した届け先にゆうパックで届きます。"
+    },
+    {
+     "type": "img",
+     "src": "https://japan.cnet.com/storage/2026/11/23/f6bef02e7624ab102495a2af3d07273a/large.jpg",
+     "kind": "ogp",
+     "credit": "CNET Japan",
+     "page": "https://japan.cnet.com/article/35255300/"
     },
     {
      "type": "h",
@@ -4275,10 +4962,13 @@
    "title": "「Mahjong Kart」Steamで1月8日発売へ",
    "summary": "1台のパソコンで画面を分けて、最大4人で麻雀牌を取り合えます。",
    "image": {
-    "src": "https://www.4gamer.net/games/060/G106060/20261124011/SS/001.jpg",
-    "kind": "ogp",
-    "credit": "4Gamer.net",
-    "page": "https://www.4gamer.net/games/060/G106060/20261124011/"
+    "src": "https://hirohasu.com/press/mahjong-kart/assets/ss02.jpg",
+    "kind": "press",
+    "credit": "hirohasu.com",
+    "page": "https://hirohasu.com/Mahjong_Kart/",
+    "w": 1920,
+    "h": 1080,
+    "caption": "画面を4つに分けて麻雀牌を走らせる対戦"
    },
    "visual": {
     "icon": "game",
@@ -4310,6 +5000,13 @@
      "text": "Steamでは発売前に、ウィッシュリスト（欲しいゲームの一覧）に登録できます。予約の開始日はまだ発表されていません。"
     },
     {
+     "type": "img",
+     "src": "https://www.4gamer.net/games/060/G106060/20261124011/SS/001.jpg",
+     "kind": "ogp",
+     "credit": "4Gamer.net",
+     "page": "https://www.4gamer.net/games/060/G106060/20261124011/"
+    },
+    {
      "type": "h",
      "text": "牌を運んで点数を競う"
     },
@@ -4318,8 +5015,28 @@
      "text": "麻雀とカートレースを組み合わせた、最大4人の対戦ゲームです。手元の牌（手牌）は0枚から始まります。積み上げた山から出る牌を1枚ずつ走らせ、自分の陣地まで運びます。陣地に届けた牌は手牌に加わり、欲しい牌は早い者勝ちです。"
     },
     {
+     "type": "img",
+     "src": "https://hirohasu.com/press/mahjong-kart/assets/ss01.jpg",
+     "kind": "press",
+     "credit": "hirohasu.com",
+     "caption": "卓上の麻雀牌の周りに光が広がる対戦画面",
+     "page": "https://hirohasu.com/Mahjong_Kart/",
+     "w": 1920,
+     "h": 1080
+    },
+    {
      "type": "p",
      "text": "対局は短めの東風戦か、長めの半荘から選べます。牌をそろえて、あがりを目指します。順位を決めるのは、対局が終わった時点の点数です。"
+    },
+    {
+     "type": "img",
+     "src": "https://hirohasu.com/press/mahjong-kart/assets/key-art.png",
+     "kind": "press",
+     "credit": "hirohasu.com",
+     "caption": "卓上を走る麻雀牌を描いたMahjong Kartのタイトル画像",
+     "page": "https://hirohasu.com/Mahjong_Kart/",
+     "w": 920,
+     "h": 430
     },
     {
      "type": "h",
@@ -4334,6 +5051,16 @@
      "text": "卓上の捨て牌や手牌が、走るときの障害物です。山の牌が減るにつれ、走れる道が変わります。終盤は、弾がどこへ跳ね返るかも読みづらくなります。"
     },
     {
+     "type": "img",
+     "src": "https://hirohasu.com/press/mahjong-kart/assets/ss03.jpg",
+     "kind": "press",
+     "credit": "hirohasu.com",
+     "caption": "牌の山や手牌が並ぶ卓を見下ろした画面",
+     "page": "https://hirohasu.com/Mahjong_Kart/",
+     "w": 1920,
+     "h": 1080
+    },
+    {
      "type": "h",
      "text": "対戦相手の選び方と練習"
     },
@@ -4344,6 +5071,16 @@
     {
      "type": "p",
      "text": "友だちとは、1台のパソコンの画面を分けて対戦できます。離れた相手とはオンラインで遊べます。参加者が4人未満なら、空席を埋めるのはコンピューターです。"
+    },
+    {
+     "type": "img",
+     "src": "https://hirohasu.com/press/mahjong-kart/assets/ss04.jpg",
+     "kind": "press",
+     "credit": "hirohasu.com",
+     "caption": "牌の山のそばで青い光が弾ける対戦画面",
+     "page": "https://hirohasu.com/Mahjong_Kart/",
+     "w": 1920,
+     "h": 1080
     },
     {
      "type": "p",
@@ -4399,10 +5136,13 @@
    "title": "ZOZOCOSMEの巾着、抽選300人・12月4日まで",
    "summary": "お気に入り登録2点以上で応募できる、抽選のキャンペーンです。",
    "image": {
-    "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17078-1.jpg",
-    "kind": "ogp",
-    "credit": "ネットショップ担当者フォーラム",
-    "page": "https://netshop.impress.co.jp/n/2026/11/24/17078"
+    "src": "https://corp.zozo.com/news/files/images/Freada_campaign_kintyaku.jpg",
+    "kind": "press",
+    "credit": "株式会社ZOZO",
+    "page": "https://corp.zozo.com/news/20261119-007697/",
+    "w": 1600,
+    "h": 900,
+    "caption": "Freadaの限定巾着全5種類"
    },
    "visual": {
     "icon": "cart",
@@ -4432,6 +5172,13 @@
     {
      "type": "p",
      "text": "Freadaは、デイトナ・インターナショナルが展開する「FREAK'S STORE」の自社ブランドです。古着を手本にした服を扱っています。カーテンやテーブルクロスの生地を服に仕立て直す「アップサイクル」にも取り組んでいます。古いデニムも仕立て直す素材です。"
+    },
+    {
+     "type": "img",
+     "src": "https://netshop.impress.co.jp/sites/default/files/images/news/2026/news-node17078-1.jpg",
+     "kind": "ogp",
+     "credit": "ネットショップ担当者フォーラム",
+     "page": "https://netshop.impress.co.jp/n/2026/11/24/17078"
     },
     {
      "type": "h",
@@ -4621,7 +5368,14 @@
      "name": "ITmedia ビジネスオンライン",
      "url": "https://www.itmedia.co.jp/business/articles/2611/24/news007.html"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/other-dc-community-dc750v.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "ai-openai-cisco-shirudo",
@@ -4678,6 +5432,16 @@
     {
      "type": "p",
      "text": "AIは、弱点の調査やシールド作りを手伝います。攻撃への効き目や、ふだんの処理への影響を事前に試せます。どのシールドを入れるかは、セキュリティ担当者が決めます。"
+    },
+    {
+     "type": "img",
+     "src": "https://images.ctfassets.net/kftzwdyauwt9/bScTLq9smNJq5XAlaHIQW/fab0e70b1aab8ca8dffb70a747056fd7/guardian-agent-desktop-light.png?w=3840&q=80&fm=webp",
+     "kind": "press",
+     "credit": "OpenAI",
+     "caption": "ShirudoがeBPFで監視と防御を行う仕組み",
+     "page": "https://openai.com/index/introducing-shirudo/",
+     "w": 1200,
+     "h": 728
     },
     {
      "type": "p",
@@ -4931,7 +5695,14 @@
      "name": "Windows Report",
      "url": "https://windowsreport.com/microsoft-expands-windows-11-26h2-rollout-no-manual-update-check-needed/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/mobile-win11-26h2-auto.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "gadget-tokaiz-glass-fryer",
@@ -5078,7 +5849,14 @@
      "name": "TOKAIZ 多機能フライヤー TMF-Choice1",
      "query": "TOKAIZ TMF-Choice1"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/gadget-tokaiz-glass-fryer.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "game-tetris99-pikmin4-cup",
@@ -5119,6 +5897,16 @@
     {
      "type": "p",
      "text": "ニンテンドードリームWEBが紹介した日本の日程は、初日と最終日を含めて5日間にまたがります。任天堂の米国向け案内では、同じ期間が太平洋時間の11月26日午後11時から11月30日午後10時59分までです。"
+    },
+    {
+     "type": "img",
+     "src": "https://assets.topics.apps-jp.nintendo.com/image/2026/10/29084538746149/1280/daeec42a9cb64617ba519c62dd69f186.webp",
+     "kind": "press",
+     "credit": "任天堂ホームページ",
+     "caption": "ピクミン4の特別テーマで対戦する『テトリス 99』の画面",
+     "page": "https://www.nintendo.com/jp/topics/article/50c12352-5a94-4241-b91b-968a01aab5b2",
+     "w": 1280,
+     "h": 720
     },
     {
      "type": "h",
@@ -5262,6 +6050,16 @@
      "text": "本やゲームなど数千点がそろう子ども向け定額サービス「Amazon Kids+」が付きます。購入後の1年間は追加料金がかかりません。その後は有料に自動で切り替わります。"
     },
     {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/120/1518/120-1518-7028155ed49da1ea049218d2e5ab5c42-854x390.png?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
+     "kind": "press",
+     "credit": "株式会社ベネッセコーポレーション",
+     "caption": "Amazon キッズ タブレット 8 しまじろう エディションの表と裏",
+     "page": "https://prtimes.jp/main/html/rd/p/000001518.000000120.html",
+     "w": 854,
+     "h": 390
+    },
+    {
      "type": "p",
      "text": "Impress Watchによると、月額は980円で、Amazonのプライム会員は780円です。年払いも選べます。料金が税込みか税別かは不明です。"
     },
@@ -5381,10 +6179,13 @@
    "title": "Jパワーと日立、送電線点検ドローン向けAI基盤を検討",
    "summary": "送電線点検を手始めに、機械が現場で判断できる仕組みを3社で検討します。",
    "image": {
-    "src": "https://image.itmedia.co.jp/ee/articles/2611/24/tm_261124hitachi02.jpg",
-    "kind": "ogp",
-    "credit": "EE Times Japan（出所：日立ほか）",
-    "page": "https://eetimes.itmedia.co.jp/ee/articles/2611/24/news017.html"
+    "src": "https://www.macnica.co.jp/public-relations/news/6f21e4973158f8ea821e4c56f10a2470_10.png",
+    "kind": "press",
+    "credit": "株式会社マクニカ",
+    "page": "https://www.macnica.co.jp/public-relations/news/2026/150808/",
+    "w": 684,
+    "h": 282,
+    "caption": "送電線点検ドローンの撮影から報告までの流れ"
    },
    "visual": {
     "icon": "chip",
@@ -5424,6 +6225,13 @@
      "text": "NVIDIAは、電力設備の点検や保守にこの技術を使う効果を挙げました。人手不足を和らげ、作業の安全性を高められるとみています。"
     },
     {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/ee/articles/2611/24/tm_261124hitachi02.jpg",
+     "kind": "ogp",
+     "credit": "EE Times Japan（出所：日立ほか）",
+     "page": "https://eetimes.itmedia.co.jp/ee/articles/2611/24/news017.html"
+    },
+    {
      "type": "h",
      "text": "仮想の設備で学ぶ仕組み"
     },
@@ -5434,6 +6242,16 @@
     {
      "type": "p",
      "text": "仮想空間での試験には、NVIDIAの「Omniverse」などを使う案があります。現場の情報をまとめるため、日立の「HMAX Data Fabric」を組み合わせる考えです。AIの動作を見守る日立の「HMAX AI Operations」も候補です。外に出せない設備の情報も安全に管理できるようにする狙いです。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.hitachi.com/adobe/dynamicmedia/deliver/dm-aid--a54e865e-a907-4dcb-9201-161e9daeed62/1119-1.png?quality=82&preferwebp=true",
+     "kind": "press",
+     "credit": "Hitachi Global",
+     "caption": "AI Factoryで現場データを学習に生かす流れ",
+     "page": "https://www.hitachi.com/ja-jp/press/articles/2026/11/1119/",
+     "w": 584,
+     "h": 601
     },
     {
      "type": "p",
@@ -5657,10 +6475,13 @@
    "title": "ファーウェイ、文庫本サイズのWi-Fiルーター発売",
    "summary": "白の2台セットは1万4960円（税込み）で、家の複数の部屋に電波を広げられます。",
    "image": {
-    "src": "https://image.itmedia.co.jp/pcuser/articles/2611/24/yk30028_01_Mesh3p.jpg",
-    "kind": "ogp",
-    "credit": "ITmedia PC USER",
-    "page": "https://www.itmedia.co.jp/pcuser/articles/2611/24/news055.html"
+    "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-fb021b46f672da3c8cfc8896eafed91b-2000x2000.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "華為技術日本株式会社",
+    "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+    "w": 1350,
+    "h": 1350,
+    "caption": "棚に置いたHUAWEI WiFi Mesh 3＋と本体の寸法"
    },
    "visual": {
     "icon": "globe",
@@ -5700,12 +6521,43 @@
      "text": "楽天市場とYahoo!にもファーウェイの公式店があります。TikTokの公式店も販売先の一つです。店によって販売開始日が異なる場合があります。予約開始日の案内はありません。"
     },
     {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/pcuser/articles/2611/24/yk30028_01_Mesh3p.jpg",
+     "kind": "ogp",
+     "credit": "ITmedia PC USER",
+     "page": "https://www.itmedia.co.jp/pcuser/articles/2611/24/news055.html"
+    },
+    {
      "type": "h",
      "text": "文庫本サイズの小型本体"
     },
     {
      "type": "p",
      "text": "本体は幅約60mm、奥行き約110mm、高さ約150mmで、文庫本ほどの大きさです。前の「HUAWEI WiFi Mesh 3」に比べ、体積が約24％小さくなりました。重さは約37％減って約260gです。外付けのアンテナを省いた形です。"
+    },
+    {
+     "type": "gallery",
+     "title": "",
+     "items": [
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-acccb91048debe029a1818761eab10db-3900x1950.jpg?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260",
+       "kind": "press",
+       "credit": "華為技術日本株式会社",
+       "caption": "白のHUAWEI WiFi Mesh 3＋の2台セット",
+       "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+       "w": 2400,
+       "h": 1200
+      },
+      {
+       "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-2264be6a8f701261a64b8dcefbafd9d5-1464x1306.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+       "kind": "press",
+       "credit": "華為技術日本株式会社",
+       "caption": "白と黒のHUAWEI WiFi Mesh 3＋と仕様表",
+       "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+       "w": 1464,
+       "h": 1306
+      }
+     ]
     },
     {
      "type": "h",
@@ -5718,6 +6570,16 @@
     {
      "type": "p",
      "text": "光回線を混雑しにくい経路で使う接続方式にも対応します。対象はIPv6（IPoE）とIPv4 over IPv6で、v6プラスやクロスパスなどが使えます。対応する回線の接続方式は自動で見分けますが、利用環境によっては手動設定が必要です。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-64d6a42750a4dfab3c736769bd18dc74-600x450.jpg?width=1950&height=1350&quality=85&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "華為技術日本株式会社",
+     "caption": "5GHz帯と2.4GHz帯の最大通信速度を示すグラフ",
+     "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+     "w": 600,
+     "h": 450
     },
     {
      "type": "p",
@@ -5736,8 +6598,28 @@
      "text": "ファーウェイの測定では、1台で約90平方メートルに電波が届きます。2台なら3〜4部屋、3台なら4〜6部屋が目安です。実際に届く範囲は建物の造りやルーターの置き場所によって変わります。"
     },
     {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-37c35f1e7e558fa92438d175430e7574-600x450.jpg?width=1950&height=1350&quality=85&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "華為技術日本株式会社",
+     "caption": "複数の部屋にメッシュWi-Fiの電波が広がる図",
+     "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+     "w": 600,
+     "h": 450
+    },
+    {
      "type": "p",
      "text": "マイナビニュースが報じた目安は、1台なら3LDK（居間や台所のほかに3部屋）までです。2台なら4〜5LDK、3台なら戸建て全体としています。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-deadde8be4a3cbabea6958eedf09e944-2000x2500.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "華為技術日本株式会社",
+     "caption": "ルーター背面の差し込み口と接続手順",
+     "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+     "w": 1080,
+     "h": 1350
     },
     {
      "type": "p",
@@ -5752,8 +6634,28 @@
      "text": "専用アプリ「HUAWEI AI Life」で、スマホからWi-Fiの設定を変えられます。基本ソフトがAndroidかiOSなら使えると、ASCIIが報じました。間取り図を登録すると、部屋ごとの電波の強さを色分けして見られます。外出先からルーターの状態を確かめ、再起動もできます。"
     },
     {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-0ba6779f5c6ba4275e1f693b73d6e2d3-2000x2500.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "華為技術日本株式会社",
+     "caption": "HUAWEI AI Lifeで部屋ごとの電波の強さを示す画面",
+     "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+     "w": 1080,
+     "h": 1350
+    },
+    {
      "type": "p",
      "text": "「HUAWEI HomeSec」は、通信の中身を暗号で守るなど、不正な接続を防ぐ機能です。子どものネット利用時間や、見られるサイトも制限できます。来客には別のWi-Fiを用意でき、自宅用のパスワードを教えずに済みます。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/24671/644/24671-644-52e8968dd29edf5d111ea80be8bb1f09-2000x2000.jpg?width=1950&height=1350&quality=85%2C65&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "華為技術日本株式会社",
+     "caption": "子どものネット利用時間やサイトを制限する設定画面",
+     "page": "https://prtimes.jp/main/html/rd/p/000000644.000024671.html",
+     "w": 1350,
+     "h": 1350
     },
     {
      "type": "stat",
@@ -5820,10 +6722,13 @@
    "title": "家電大賞 2026-2027の投票開始、155製品から選べる",
    "summary": "投票者の抽選で、加湿器や炊飯器など22品目の家電が当たります。",
    "image": {
-    "src": "https://kaden.watch.impress.co.jp/img/kdw/list/2155/162/top.jpg",
-    "kind": "ogp",
-    "credit": "家電 Watch",
-    "page": "https://kaden.watch.impress.co.jp/docs/column_special/2155162.html"
+    "src": "https://prcdn.freetls.fastly.net/release_image/60318/1352/60318-1352-a927d5c96b9b1945a5f974184e3978e3-1000x679.jpg?width=1950&height=1350&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+    "kind": "press",
+    "credit": "株式会社ワン・パブリッシング",
+    "page": "https://prtimes.jp/main/html/rd/p/000001352.000060318.html",
+    "w": 1000,
+    "h": 679,
+    "caption": "投票者への抽選で当たる22品目の家電"
    },
    "visual": {
     "icon": "appliance",
@@ -5859,6 +6764,13 @@
      "text": "投票フォームでは、大賞にふさわしい製品を必ず1つ選びます。部門賞は、投票したい部門だけ選べます。締め切りは2027年1月4日（月）23時59分です。"
     },
     {
+     "type": "img",
+     "src": "https://kaden.watch.impress.co.jp/img/kdw/list/2155/162/top.jpg",
+     "kind": "ogp",
+     "credit": "家電 Watch",
+     "page": "https://kaden.watch.impress.co.jp/docs/column_special/2155162.html"
+    },
+    {
      "type": "h",
      "text": "候補155製品と新部門"
     },
@@ -5869,6 +6781,16 @@
     {
      "type": "p",
      "text": "大賞と22の部門賞は、投票の結果だけで決まります。ワン・パブリッシングが発表の本文で挙げた新部門は、次の3つです。\n・ハンディファン部門\n・コーヒー家電部門\n・ヘアケア家電部門\n同社は発表の要約では、追加は2部門と記しています。"
+    },
+    {
+     "type": "img",
+     "src": "https://prcdn.freetls.fastly.net/release_image/60318/1352/60318-1352-21928bc5b841dcd621eafb44876cc23c-1000x679.jpg?width=1950&height=1350&quality=85%2C75&format=jpeg&auto=webp&fit=bounds&bg-color=fff",
+     "kind": "press",
+     "credit": "株式会社ワン・パブリッシング",
+     "caption": "新設のハンディファン部門の候補製品",
+     "page": "https://prtimes.jp/main/html/rd/p/000001352.000060318.html",
+     "w": 1000,
+     "h": 679
     },
     {
      "type": "p",
@@ -5956,10 +6878,13 @@
    "title": "『進撃の巨人3』Steam版の必要容量は125GB",
    "summary": "PC版はWindows 11とメモリ16GBが必要です。",
    "image": {
-    "src": "https://cimg.kgl-systems.io/camion/files/94862/thumbnail_CYiJ.jpg?x=1280",
-    "kind": "ogp",
-    "credit": "ファミ通.com",
-    "page": "https://www.famitsu.com/article/202611/94862"
+    "src": "https://www.gamecity.ne.jp/shingeki3/assets/img/about_ss_02.webp?v=407ffb46",
+    "kind": "press",
+    "credit": "ゲーム「進撃の巨人３」",
+    "page": "https://www.gamecity.ne.jp/shingeki3/jp/",
+    "w": 1920,
+    "h": 1080,
+    "caption": "『進撃の巨人3』の夜の街に現れた巨人たち"
    },
    "visual": {
     "icon": "game",
@@ -6001,6 +6926,13 @@
     {
      "type": "p",
      "text": "TREASURE BOXは1万6830円（税込み）です。上位のSPECIAL TREASURE BOXは2万7830円（税込み）です。どちらもXbox版はありません。"
+    },
+    {
+     "type": "img",
+     "src": "https://cimg.kgl-systems.io/camion/files/94862/thumbnail_CYiJ.jpg?x=1280",
+     "kind": "ogp",
+     "credit": "ファミ通.com",
+     "page": "https://www.famitsu.com/article/202611/94862"
     },
     {
      "type": "p",
@@ -6047,12 +6979,32 @@
      "text": "公式サイトでは、立体機動装置で前作より自由に空中を飛び回れると案内しています。巨人の動きも多彩になりました。"
     },
     {
+     "type": "img",
+     "src": "https://www.gamecity.ne.jp/shingeki3/assets/img/movies_thumb_06.webp?v=d676ba2a",
+     "kind": "press",
+     "credit": "ゲーム「進撃の巨人３」",
+     "caption": "立体機動装置を身に着けた兵士たち",
+     "page": "https://www.gamecity.ne.jp/shingeki3/jp/",
+     "w": 1200,
+     "h": 675
+    },
+    {
      "type": "p",
      "text": "壁の外の調査は、得意分野の違う兵士を集めた班で進めます。物資を届けるための拠点も作れます。GameWithが挙げた新モード「壁外特務」も、班で挑む遊びです。"
     },
     {
      "type": "p",
      "text": "壁の内側では、アニメになかった兵士の日常も描かれます。登場人物と交流しながら、自分の班を運営できます。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.gamecity.ne.jp/shingeki3/assets/img/about_ss_01.webp?v=775e1a72",
+     "kind": "press",
+     "credit": "ゲーム「進撃の巨人３」",
+     "caption": "霧の中に見える骨格がむき出しの巨人",
+     "page": "https://www.gamecity.ne.jp/shingeki3/jp/",
+     "w": 1920,
+     "h": 1080
     },
     {
      "type": "p",
@@ -6085,6 +7037,16 @@
     {
      "type": "p",
      "text": "コーエーテクモゲームスは、前作のセーブデータを持つ人向けの特典も用意しました。対象は『進撃の巨人2』か『進撃の巨人2 -Final Battle-』のセーブデータです。前作の主人公と同じ名前で、特別な技能を持つ仲間が班に加わります。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.gamecity.ne.jp/shingeki3/assets/img/kv_movie_fallback.webp?v=737c42f4",
+     "kind": "press",
+     "credit": "ゲーム「進撃の巨人３」",
+     "caption": "蒸気に包まれた『進撃の巨人3』の巨人",
+     "page": "https://www.gamecity.ne.jp/shingeki3/jp/",
+     "w": 3290,
+     "h": 1851
     },
     {
      "type": "p",
@@ -6297,7 +7259,14 @@
      "name": "SIM Finder",
      "url": "https://sim-finder.com/ja/blog/softbank-ymobile-linemo-paypay-auto-charge-2026/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/ec-softbank-paypay-auto.png",
+    "kind": "diagram",
+    "caption": "図解：比べて見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "compare"
+   }
   },
   {
    "id": "other-onsemi-vertical-gan",
@@ -6305,10 +7274,13 @@
    "title": "オンセミ、縦型GaNの量産は2026年後半が目標",
    "summary": "onsemiが縦型と横型のGaN電力用半導体をそろえ、AI・EV向けに展開します。",
    "image": {
-    "src": "https://image.itmedia.co.jp/ee/articles/2611/24/ks261124_O02.jpg",
-    "kind": "ogp",
-    "credit": "EE Times Japan（出所：オンセミ）",
-    "page": "https://eetimes.itmedia.co.jp/ee/articles/2611/24/news030.html"
+    "src": "https://assets-us-01.kc-usercontent.com/9356d81c-702c-0042-524f-7fe8fac0d95f/30782746-e413-4c40-8c51-f183511d524c/vGaN-onsemi-GBG-1920x1080-01-A.jpg",
+    "kind": "press",
+    "credit": "onsemi",
+    "page": "https://www.onsemi.jp/solutions/technology/vertical-gan",
+    "w": 1920,
+    "h": 1080,
+    "caption": "オンセミの縦型GaNウエハー"
    },
    "visual": {
     "icon": "chip",
@@ -6348,6 +7320,16 @@
      "text": "林氏は、事業を支える3つの技術のうち、GaNと「Treo」の取り組みを紹介しました。Treoは、徐々に変わる電気信号を扱う回路の技術です。GaNは、高い電圧に耐える技術の1つです。もう1つの柱は、電力用半導体を組み合わせる「エンベデッドパワー」です。"
     },
     {
+     "type": "img",
+     "src": "https://www.onsemi.com/site/images/vgan-data-centers.jpg",
+     "kind": "press",
+     "credit": "onsemi",
+     "caption": "データセンターのサーバーラック",
+     "page": "https://www.onsemi.jp/solutions/technology/vertical-gan",
+     "w": 1000,
+     "h": 500
+    },
+    {
      "type": "h",
      "text": "縦型GaNの仕組みと製造"
     },
@@ -6362,6 +7344,13 @@
     {
      "type": "p",
      "text": "製造は、米ニューヨーク州シラキュースにある同社の工場で行います。同社が示す施設の広さは約6000平方メートルです。同社は縦型GaNに関する特許を130件以上持っています。"
+    },
+    {
+     "type": "img",
+     "src": "https://image.itmedia.co.jp/ee/articles/2611/24/ks261124_O02.jpg",
+     "kind": "ogp",
+     "credit": "EE Times Japan（出所：オンセミ）",
+     "page": "https://eetimes.itmedia.co.jp/ee/articles/2611/24/news030.html"
     },
     {
      "type": "p",
@@ -6406,6 +7395,16 @@
     {
      "type": "p",
      "text": "林氏は、電気自動車の充電時間を縮める用途を挙げました。電気を変える装置（インバーター）を小さくして、車体を軽くする狙いもあります。オンセミは、変換の効率が上がれば、1回の充電で走れる距離も伸ばせると説明します。外部から充電できるハイブリッド車も用途の1つです。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.onsemi.com/site/images/vgan-energy-storage.jpg",
+     "kind": "press",
+     "credit": "onsemi",
+     "caption": "太陽光発電パネルと電力設備",
+     "page": "https://www.onsemi.jp/solutions/technology/vertical-gan",
+     "w": 1000,
+     "h": 500
     },
     {
      "type": "p",
@@ -6613,7 +7612,14 @@
      "name": "NVIDIA",
      "url": "https://blogs.nvidia.co.jp/blog/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/ai-nvidia-huang-return.png",
+    "kind": "diagram",
+    "caption": "図解：時系列で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "timeline"
+   }
   },
   {
    "id": "mobile-acer-predator-atlas-8",
@@ -6774,7 +7780,14 @@
      "name": "Acer",
      "url": "https://www.acer.com/jp-ja/predator/handheld-gaming/predator-atlas/predator-atlas-8"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/mobile-acer-predator-atlas-8.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "gadget-king-classel-camera",
@@ -6936,7 +7949,14 @@
      "name": "King クラシックスタイルデジタルカメラ CLASSEL",
      "query": "浅沼商会 King CLASSEL デジタルカメラ"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/gadget-king-classel-camera.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "game-whos-null-steam",
@@ -7097,7 +8117,14 @@
      "name": "Steam",
      "url": "https://store.steampowered.com/app/5543250/Whos_NULL/"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/game-whos-null-steam.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   },
   {
    "id": "ec-aupay-amazon-cashback",
@@ -7182,6 +8209,16 @@
      "text": "may-moneyによると、本人確認後は銀行口座やセブン銀行・ローソン銀行のATMから入金できます。クレジットカードで入れた分は「au PAY マネーライト」になり、Amazonでは使えません。手持ちのPontaポイントからも入金できます。"
     },
     {
+     "type": "img",
+     "src": "https://media.gampla.jp/image/visual/7243/be4a543b-1cb7-4e67-9741-6bf82db76c00.png",
+     "kind": "press",
+     "credit": "Amazon.co.jp × au PAY キャンペーン",
+     "caption": "Amazonのアカウントサービスで支払い方法を選ぶ画面",
+     "page": "https://camp.auone.jp/campaign/a75f5fd95be7cbdd531e63a2",
+     "w": 670,
+     "h": 694
+    },
+    {
      "type": "p",
      "text": "Amazonのアカウントサービスで支払い方法を開きます。KDDIは「お客様の支払い方法」、may-moneyは「お客様のお支払い方法」と案内しています。「au PAYを追加」を選び、画面の案内に沿ってau IDを連携します。"
     },
@@ -7252,7 +8289,16 @@
      "name": "may-money",
      "url": "https://may-money.com/amazon-aupay-20261117/"
     }
-   ]
+   ],
+   "image": {
+    "src": "https://media.gampla.jp/image/visual/7247/6593bf16-071b-48a2-8eea-f15e409dd400.png",
+    "kind": "press",
+    "credit": "Amazon.co.jp × au PAY キャンペーン",
+    "page": "https://camp.auone.jp/campaign/a75f5fd95be7cbdd531e63a2",
+    "w": 670,
+    "h": 694,
+    "caption": "Amazon.co.jpとau PAYの連携確認画面"
+   }
   },
   {
    "id": "ai-devin-bots",
@@ -7260,10 +8306,13 @@
    "title": "Cognition、Devin Botsの提供開始",
    "summary": "目標を伝えるとBotが作業を分け、複数のAIが並行して開発します。",
    "image": {
-    "src": "https://www.watch.impress.co.jp/img/ipw/list/2158/714/01.jpg",
-    "kind": "ogp",
-    "credit": "Impress Watch",
-    "page": "https://www.watch.impress.co.jp/docs/news/2158714.html"
+    "src": "https://devin.ai/images/blog/introducing-devin-bots/cover.jpg",
+    "kind": "press",
+    "credit": "Devin",
+    "page": "https://devin.ai/blog/introducing-devin-bots",
+    "w": 1920,
+    "h": 1080,
+    "caption": "青いBotを中央に並べたDevin Botsのイメージ"
    },
    "visual": {
     "icon": "ai",
@@ -7301,6 +8350,13 @@
     {
      "type": "p",
      "text": "利用者が開発の目標を伝えると、Botが作業を細かく分けて各Devinに渡します。Botは進み具合を確かめ、結果をもとに次の作業を決めます。Cognitionの説明では、作業が途切れても前のやり取りを覚えています。"
+    },
+    {
+     "type": "img",
+     "src": "https://www.watch.impress.co.jp/img/ipw/list/2158/714/01.jpg",
+     "kind": "ogp",
+     "credit": "Impress Watch",
+     "page": "https://www.watch.impress.co.jp/docs/news/2158714.html"
     },
     {
      "type": "h",
@@ -7567,7 +8623,14 @@
      "name": "Amazon",
      "url": "https://www.aboutamazon.com/news/company-news/amazon-decart-ai-optimization"
     }
-   ]
+   ],
+   "diagram": {
+    "src": "data/diagrams/2026-11-24-pm/ai-amazon-decart.png",
+    "kind": "diagram",
+    "caption": "図解：数字で見る",
+    "credit": "星餓りなのテックニュース",
+    "type": "number"
+   }
   }
  ]
 }
