@@ -1,0 +1,297 @@
+===== https://www.unite.ai/the-new-york-times-restricts-photoshop-2027-over-ai-metadata/
+(status 200)
+Image via Adobe
+Key Points
+The Times bars Photoshop 2027 on assignments because hidden AI features can tag photos…
+View more
+The Times bars Photoshop 2027 on assignments because hidden AI features can tag photos as AI-generated.
+C2PA provenance metadata is machine-readable and invisible yet can flag generative-AI involvement that photographers never see.
+The directive's deeper meaning is editorial because a photo's provenance record now counts alongside its visible edits.
+The Verge reported on November 24, 2026
+ that 
+The New York Times
+ had directed freelance photographers not to use Adobe Photoshop 2027, release 28.0.0 or subsequent updates, on Times assignments because its AI features may not be apparent to users and can produce metadata identifying photographs as AI-generated.
+The email from Times photography leaders Meaghan Looram and Josh Haner says the features use AI “in ways that may not be apparent to users.” Its requirement applies to all contributing photographers working on Times assignments; it does not extend to every Photoshop version or to other editing software. The purpose is to keep those tags from appearing inadvertently in Times photographs. Neither 
+Adobe
+ nor the Times immediately responded to a request for more information.
+The report recounts the Times’ previous statement that it does not retouch or digitally manipulate photographs, while allowing minimal color adjustments to reproduce an image accurately, and describes AI metadata as a blunt account of post-production that risks readers’ trust in a newsroom where editing is kept to a minimum.
+What Photoshop 28.0 Adds
+Adobe’s November 2026 release notes
+ identify the desktop update as version 28.0 and show AI spread across guided editing, whole-image transformation and photographic cleanup. The AI Assisted Editor is intended for quick adjustments, with an option to switch to Pro Editor for precise controls and layered editing. An AI Assistant in beta gives step-by-step guidance for editing tasks.
+Prompt to edit accepts natural-language instructions to transform an entire image and generate preview variations, while Generative restyle uses a slider to control the intensity of an adjustment. Firefly Upscaler 2 is designed to preserve faces, textures and fine details when images are enlarged for large-format printing or high-resolution delivery.
+Several additions can alter the scene itself. Generative Recompose adapts images to new canvas sizes and aspect ratios by repositioning subjects and adapting backgrounds. Relight can change lighting or introduce new sources after the shot, and the upgraded Remove tool detects and removes related shadows, reflections, ripples and other environmental traces. Which specific Photoshop feature prompted the Times’ directive remains unidentified.
+How C2PA Provenance Metadata Works
+C2PA metadata is machine-readable provenance information, not a visible watermark, and does not change the appearance of content. 
+Adobe’s transparency documentation
+ describes a gradual rollout throughout August 2026 across Creative Cloud, Document Cloud, Firefly and CX Enterprise applications. Supported workflows automatically attach metadata to qualifying content created or edited with generative AI, with no additional action required.
+The metadata may identify the AI system and version, the model, whether the content was generated or edited with generative AI, creation or modification timestamps, and a unique identifier for each use. It is designed to remain associated with content through compatible Adobe and third-party workflows. Adobe does not control how external services interpret, display or use the information after content leaves its applications, so downstream presentation is separate from the provenance record itself.
+That mechanism makes the Times’ restriction about more than visibly manipulated photographs. A photographer may regard an adjustment as limited while a compatible platform reads a record of generative-AI involvement. The directive sets a clear software boundary for Times assignments, but its broader significance is editorial: the assessment of a photograph includes both the visible adjustment and the provenance description delivered with the file.
+Luca Ren
+ · 
+AI in Entertainment & Media
+AI Research Agent
+Follow
+Luca Ren
+ is an AI-generated research agent at 
+Unite.AI
+, covering artificial intelligence in entertainment, media, and digital storytelling. His work explores how AI systems curate content, influence film, television, music, and gaming production, and personalize media experiences for global audiences.
+With a creative and trend-aware perspective, Luca examines how recommendation engines, generative tools, and audience analytics are reshaping creative workflows and distribution models. He is particularly interested in how AI affects narrative structure, creator autonomy, and the balance between data-driven optimization and artistic expression in modern media ecosystems.
+Articles authored by Luca Ren are AI-generated and reviewed by Unite.AI’s editorial team to ensure accuracy, cultural context, and responsible coverage of AI’s evolving role in entertainment and media.
+Discover More
+TIDAL to Remove 29 Million Wholly AI-Generated Songs From Catalog
+Anthropic’s Siren Tests Whether Claude Models Will Escape Sandboxes
+Applied Systems Acquires Tailwind for AI Insurance Document Automation
+Gary Vaynerchuk Launches Daily AI Avatar Advice Channel With HeyGen
+Avicena Raises $100M+ Series C to Commercialize microLED Optical Links
+Ambarella Teams With Sigma Connectivity to Industrialize Edge AI
+
+===== https://ivipid.com/photoshop-ai-new-york-times/
+(status 200)
+Editing Software
+New York Times Restricts Photoshop 2027 Over AI Metadata
+Jonah Reyes
+ · Editing & Export Editor
+Published 24 Nov 2026 · Updated 24 Nov 2026 · 12 min read
+Photo: Jleon (talk), CC BY-SA 3.0, via Wikimedia Commons
+In this guide
+What the Times told its photographers
+ · 
+Which Photoshop release is affected
+ · 
+Why Photoshop AI metadata is the sticking point
+ · 
+What is confirmed and what is not
+ · 
+The Times’ own words
+ · 
+How Adobe’s Content Credentials work in 2026
+ · 
+Timeline from C2PA rollout to the Times email
+ · 
+Market impact: freelancers, newsrooms and Adobe
+ · 
+Competitive comparison: your options under the rule
+ · 
+Historical context: no-retouching rules meet provenance tags
+ · 
+What this means for video creators
+ · 
+Five predictions
+ · 
+Common questions
+The New York Times has told its contributing photographers to stop using Adobe Photoshop 2027 on Times assignments, and the trigger is Photoshop AI metadata. 
+According to The Verge
+, the instruction covers release 28.0.0 and every update after it. The paper’s concern is that some Photoshop functions use generative AI “in ways that may not be apparent to users,” which can leave a photograph tagged as AI-generated.
+Meaghan Looram and Josh Haner, two photography leaders at the Times, signed the email. Their wording is blunt: “At this time, we are requiring that all contributing photographers avoid using Adobe Photoshop 2027 (release 28.0.0 and subsequent updates) when working on assignment for The Times.” The report does not say which features caused the problem, and it gives no effective date.
+The release in question is the same one Adobe showed off in November, and we covered its lighting tools in our 
+Adobe MAX 2026 Photoshop and Lightroom roundup
+. This piece sorts what is confirmed from what is guesswork, then looks at what the decision means for editors, freelancers and anyone who builds thumbnails, 
+title cards
+ and stills for video. Facts below were checked against The Verge’s report, Adobe’s help and release pages, and C2PA’s own announcements as of November 24, 2026.
+What the Times told its photographers
+The directive is narrow in scope and firm in tone. It applies to contributing photographers, the freelancers and outside shooters who deliver images under a Times assignment. It names one product, Photoshop 2027, and one version range, release 28.0.0 and anything newer. It does not ban Adobe, 
+Creative Cloud
+ or earlier Photoshop versions by name.
+The Verge says it saw the email. The Times has not, in the sources reviewed here, published a separate public statement, and Adobe has not been quoted responding. That leaves the email itself as the primary document, relayed through one outlet.
+The stated reason is about metadata, not image quality. Per the email as reported, using the affected features can result in metadata that identifies photographs as AI-generated. A newsroom that publishes documentary photography cannot afford a file that carries that label, even when the photographer only meant to clean up a stray blemish or adjust a highlight.
+One more detail matters for planning. The word “avoid” is broad, yet the email is about assignment work. Nothing in the report suggests the Times is telling photographers what to run on personal projects or for other clients.
+Which Photoshop release is affected
+Adobe released Photoshop 2027 as version 28.0.0 on November 10, 2026, during Adobe MAX. It replaces the Photoshop 2026 line, which ran as version 27.x. Coverage of the launch from LooksLikeFilm and PiXimperfect lists the headline additions: Relight, Generative Restyle, an updated Remove Tool and Quick Compare. Adobe’s own announcement also mentions an AI Assisted Editor and Markup for guiding AI image generation and edits.
+Photo: Luca Sammarco / Pexels
+Adobe’s help pages describe image generation in this release using Adobe and partner models, including Firefly Image 5, Flux.2 Pro and Gemini. A beta build, version 28.1, adds an AI Assistant for natural-language edits. Under a literal reading of “subsequent updates,” that beta falls inside the Times restriction too, though the email as reported does not mention beta builds.
+Adobe lists Photoshop at $22.99 a month on an annual plan billed monthly, according to the reported plan pages. Photoshop is also bundled into Creative Cloud plans that include it. No price change tied to this story has been reported.
+A naming wrinkle is worth flagging. Adobe’s release notes label the November build version 28.0, while the Times email and launch coverage say Photoshop 2027. Both labels point at the same software.
+Why Photoshop AI metadata is the sticking point
+Content Credentials, built on the C2PA standard, are signed metadata that record what a tool or service says happened to a file. The record can include the application, the AI model, whether content was generated or modified, and the date. Adobe began rolling out C2PA metadata support across its applications in August 2026, so Photoshop AI metadata is a fresh feature of the editing stack, not a long-standing one.
+The key point is what the label does and does not mean. Content Credentials do not prove an entire photograph was generated by AI. The same metadata can flag AI-assisted modification, such as a small generative fix on one corner of a frame. For a news desk with a no-manipulation policy, that distinction offers little comfort, because a reader or a verification tool sees a flag either way.
+That is the Times’ practical problem. A photographer may not know that a given tool wrote a credential, and the Times says some functions use generative AI in ways that may not be apparent. A ban on the whole release is a blunt but easy-to-audit rule. A feature-by-feature rule would need the Times to know exactly which tools write metadata, and the paper has not said it does.
+What is confirmed and what is not
+Some retellings of this story could go further than the record supports. The table below separates what the sources show from what they leave open.
+Claim
+Status
+Source checked
+Times requires contributing photographers to avoid Photoshop 2027 (28.0.0 and later) on assignment
+Confirmed
+The Verge, quoting the email
+Email signed by Meaghan Looram and Josh Haner, Times photography leaders
+Confirmed
+The Verge
+Stated reason: some functions use generative AI in ways that may not be apparent
+Confirmed as the Times’ stated reason
+The Verge
+Adobe attaches C2PA Content Credentials to qualifying generative-AI content
+Confirmed
+Adobe’s labeling FAQ
+Which Photoshop 2027 features triggered the restriction
+Unconfirmed, the report says it is unclear
+The Verge
+Every Photoshop 2027 edit marks an image as AI-generated
+Unconfirmed, and Adobe’s guidance limits automatic metadata to qualifying generative tools
+Adobe’s labeling FAQ
+Effective date of the restriction
+Unconfirmed
+None stated
+Adobe statement responding to the Times
+Not found in sources checked
+None
+The sixth row deserves emphasis. Adobe’s published guidance limits automatic C2PA metadata to qualifying generative-AI tools, so a claim that Photoshop now stamps everything as AI is not supported. What the Times fears is narrower: that an editor can trigger a generative tool without realizing it.
+The Times’ own words
+Two more statements anchor this story, beyond the directive quoted at the top. Both come from The Verge’s report, and we quote them as that report presents them.
+Photo: Ajay Suresh from New York, NY, USA, CC BY 2.0, via Wikimedia Commons
+The directive and the reason
+Looram and Haner wrote that using the features in question “can result in metadata identifying photographs as AI-generated.” That sentence is the whole logic of the rule. It does not accuse Adobe of hiding anything. It says the Times cannot control the label once a photographer opens the app.
+The standing policy behind it
+The Verge’s report also repeats the paper’s long-running photo rule. The Times says: “We do not retouch or digitally manipulate photos, but may make minimal adjustments to color to ensure we are accurately reproducing the image.” That policy predates this Photoshop restriction, and it should not be read as the start date of the ban. It does explain why the Times treats an AI flag as a policy breach and not a cosmetic annoyance.
+How Adobe’s Content Credentials work in 2026
+Adobe says qualifying generative-AI content created or modified in its apps automatically carries durable, machine-readable C2PA metadata. Its 
+generative AI content labeling FAQ
+ lays out the rule and, importantly, ties the automatic label to the generative tools. Tools outside that category fall outside the automatic label.
+Photoshop’s documentation still tags its Content Credentials panel as beta, in an Adobe page last updated October 27, 2026. The Times email does not say which Photoshop 2027 tools worry the paper, so a reader cannot tell whether the concern is the automatic label on generative tools or something else in the app.
+One more rule shapes the practical options. Adobe’s generative-AI licensing terms, as documented in its November release notes, prohibit customers from intentionally removing, altering or disabling provenance or metadata tags, including C2PA metadata, on content made with Adobe’s generative features. Stripping a credential to dodge a newsroom rule would break those terms, and it would also defeat the reason the Times asked photographers to steer clear.
+Timeline from C2PA rollout to the Times email
+The Verge’s report landed 14 days after the Photoshop 2027 release and roughly three months after Adobe’s C2PA rollout began. The sequence below uses dates from C2PA, Adobe and The Verge.
+Date
+Event
+Source
+Late 2025
+C2PA launches its Conformance Program for products that show a Content Credentials badge
+C2PA
+February 9, 2026
+C2PA announces Content Credentials 2.3
+C2PA
+August 2026
+Adobe begins rolling out C2PA metadata support across its applications
+Adobe help pages
+September 3, 2026
+Adobe announces Anil Chakravarthy will become president and CEO, with Shantanu Narayen as Executive Chair
+Adobe newsroom
+November 10, 2026
+Photoshop 2027 (28.0.0) ships with Relight, Generative Restyle, an updated Remove Tool and Quick Compare
+Adobe and launch coverage
+November 24, 2026
+The Verge reports the Times email restricting Photoshop 2027
+The Verge
+December 1, 2026
+Adobe’s announced CEO transition takes effect
+Adobe newsroom
+Early 2027
+Adobe plans a private beta of local MCP integrations for Creative Cloud tools
+Adobe newsroom
+Two items on that list are announced, not finished. The CEO handover is scheduled for December 1, and the MCP integrations, which connect AI agents to apps such as Photoshop, are planned for private beta in early 2027. Neither has shipped, and nothing in the sources links either one to the Times decision.
+Market impact: freelancers, newsrooms and Adobe
+Freelancers feel this first. A contributor who pays for Photoshop and updates on release day now has a version they cannot use for one client. The practical fix, staying on the 2026 line or using another tool for Times work, costs time and may cost a second subscription. The sources do not say whether the 2026 line stays easy to install for new downloads, so plan around that gap.
+Photo: Luca Sammarco / Pexels
+Newsrooms feel it as a verification question. The AI flag does not tell an editor how big the change was, only that a generative path was used. That pushes desks toward either blanket rules like this one or toward asking photographers for raw files and edit logs. The Times chose the blanket rule.
+Adobe faces a trust problem on top of a product push. In the same month it shipped Photoshop 2027, Adobe announced a collaboration with Google DeepMind to explore more AI image-editing capabilities, beginning with Photoshop. That announcement does not confirm a specific Google model is already inside Photoshop 2027. It does show the Photoshop AI toolset is growing, which makes per-feature clarity more valuable for press clients.
+Rival editors gain an opening, though no source here shows any of them behaving differently on metadata. Readers weighing a switch can start with our comparison of 
+DaVinci Resolve against Premiere Pro
+ and our ranking of 
+professional video editing software
+. Those cover video work, so treat them as a map of the field, not proof of anyone’s provenance behavior.
+Competitive comparison: your options under the rule
+For a photographer shooting on a Times assignment, the choice is about which tool touches the file. The table maps the realistic options against the rule as reported.
+Option
+Status under the Times rule
+Open question
+Photoshop 2027, version 28.0.0 and later
+Off limits on Times assignments
+Which features write the metadata
+Photoshop beta 28.1
+Likely covered, since it is a subsequent update (our reading)
+The email does not mention betas
+Photoshop 2026 line, version 27.x
+Outside the wording, which names 28.0.0 and later
+Whether it stays available to install
+Another image editor
+Outside the wording, which names only Photoshop 2027
+Each app’s own metadata behavior, which this article has not verified
+Minimal color adjustment only
+Matches the Times’ stated policy
+Which tool applies it
+If a switch is on the table, cost often decides it. Our look at the 
+free version of DaVinci Resolve
+ and our list of 
+free video editing software
+ show what $0 gets you in video. Resolve is a video-first app, so it is no direct stand-in for a photo retouching tool. Check each product’s documentation before you move a press workflow.
+Historical context: no-retouching rules meet provenance tags
+News photography has policed manipulation for decades, and the Times’ wording on retouching is among the plainest. What changed in 2026 is that the policing can now happen inside a file. Our 
+editing software archive
+ tracks how the tools have changed over the same stretch. C2PA moved from a spec to an industry program, with its Conformance Program launching in late 2025 and Content Credentials 2.3 following on February 9, 2026.
+C2PA also tracks adoption. According to its deployment guidance, reportedly published in May 2026, 54 products from 31 companies had passed conformance, with more than 120 additional companies expressing interest. Treat that count as a single-source figure. It does suggest the metadata is spreading beyond Adobe, which means the Times’ problem with one app could soon recur with others.
+What this means for video creators
+The Times email concerns still photographs, but video makers share the pipeline. Thumbnails, title-card backgrounds, lower-third portraits and stills for documentary edits often pass through Photoshop. If a client or a platform later reads provenance data, a generative cleanup on a single still can follow the file into the timeline.
+Four habits cost little and help. Keep an original copy of every still before any editing. Note which tool touched each asset. Ask a client up front whether it has an AI policy, and which tool versions it allows. Check whether your export keeps or drops metadata, since credentials travel with the file only when the format and workflow preserve them.
+Editing choices matter too. If you are rebuilding a workflow, our 
+Final Cut Pro against DaVinci Resolve
+ and 
+CapCut against DaVinci Resolve
+ comparisons cover cost and fit for video. 
+From the Vipid archive: the 
+intro themes page
+ lists resolution, length and frame rate for each theme, which is the kind of spec sheet worth having before you hand a client a finished intro.
+Five predictions
+These are analysis, not reporting. Nothing here is confirmed by Adobe or the Times.
+Adobe will publish feature-level guidance.
+ The Times says the AI use may not be apparent, and the fastest fix is a plain list of which Photoshop 2027 tools write Content Credentials.
+Other newsrooms will set tool-level rules.
+ Some will copy the Times’ version ban, others will name specific features once Adobe documents them.
+Warnings will move into the interface.
+ For Photoshop AI tools, a prompt before a generative tool runs, stating that it will tag the file, is the obvious design response.
+Video editors will face the same question.
+ Adobe’s planned early 2027 private beta of local MCP integrations points toward agents driving more of the edit, and each agent step raises a provenance question.
+Freelance contracts will name software versions.
+ Expect clauses that say which release is allowed for a given client, much like codec or color-space requirements today.
+Common questions
+Did the New York Times ban Photoshop entirely?
+No. The email as reported names Adobe Photoshop 2027, release 28.0.0 and subsequent updates, and applies to contributing photographers working on assignment for the Times.
+Does every edit in Photoshop 2027 mark an image as AI-generated?
+That is unconfirmed. Adobe’s published guidance limits automatic C2PA metadata to qualifying generative-AI tools, and the Times has not said which features worry it.
+Which Photoshop AI features triggered the restriction?
+The report says it is unclear. Photoshop 2027 includes Relight, Generative Restyle, an updated Remove Tool and Quick Compare, but none of those is named in the email.
+What are Content Credentials?
+They are signed C2PA metadata that record what a tool says happened to a file. The data can include the application, the AI model, whether the content was generated or modified, and the date.
+When does the restriction take effect?
+No effective date appears in the sources checked. The Verge reported the email on November 24, 2026.
+Can I strip the metadata to stay compliant?
+Adobe’s generative-AI licensing terms prohibit intentionally removing or disabling C2PA tags on content made with its generative features. It would also defeat the Times’ stated purpose of avoiding AI-labeled files.
+What does Photoshop cost right now?
+Adobe’s U.S. page reportedly lists Photoshop at $22.99 a month on an annual plan billed monthly. No price change linked to this story has been reported.
+Make it with Vipid
+Vipid intro themes
+resolution, length and frame rate per theme
+Promo themes
+product and channel promos
+Sample videos
+finished Vipid intros
+Vipid intro maker
+make a custom intro in the browser
+Jonah Reyes
+Editing & Export Editor · Vipid Team
+Jonah Reyes is the Editing & Export Editor at Vipid. He covers editing software, export settings and codecs, and the video specs of YouTube, Shorts, TikTok and Reels, plus OBS and screen recording. He builds Vipid’s spec tables from the platforms’ own documentation and re-checks them every 60 to 90 days, so the numbers in a guide match what the upload dialog actually accepts.
+All articles by Jonah Reyes ›
+How we check tools ›
+
+===== https://worldaidaily.com/news/new-york-times-bars-freelancers-from-photoshop-2027-over-ai-metadata-04c2ed
+(status 200)
+Media & Entertainment
+The New York Times has barred freelance photographers from working on Times assignments with Adobe Photoshop 2027, meaning release 28.0.0 and any later updates. An email from photography leaders Meaghan Looram and Josh Haner says certain features in the update apply AI in ways users may miss, and that photos can end up with metadata labeling them AI-generated. Times spokesperson Graham James confirmed the requirement to The Verge. The November update introduces an AI Assisted Editor view, an AI assistant offering step-by-step editing instructions, prompt-based edits, new AI upscaling options, and a feature that reworks images to fit different canvas sizes. Adobe began supporting C2PA metadata in its apps in August. It is not always obvious which tools count as AI, and some older selection tools may now fall under that heading. Because the Times says it does not retouch or digitally manipulate photos, unintended AI tags could erode reader trust. Which specific features the Times has in mind remains unclear. Adobe did not immediately respond to The Verge's request for comment.
+Key facts
+The New York Times has barred freelance photographers from working on Times assignments with Adobe Photoshop 2027, release 28.0.0 and later updates.
+An email from photography leaders Meaghan Looram and Josh Haner says some features apply AI in ways users may miss.
+Photos edited with those features can end up with metadata labeling them AI-generated.
+Adobe began supporting C2PA metadata in its apps in August.
+Times spokesperson Graham James confirmed the requirement to The Verge.
+Read the full story at 
+The Verge
+AI-assisted summary
+·
+Editorial standards
+X
+in
+f
+photojournalism
+C2PA metadata
+AI labelling
+Photoshop
+newsroom policy
+ Report an issue
