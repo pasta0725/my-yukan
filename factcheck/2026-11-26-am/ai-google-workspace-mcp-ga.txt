@@ -1,0 +1,555 @@
+===== https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html
+(status 200)
+×
+「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+2026年11月26日
+Googleは、Google WorkspaceをAIエージェントが操作するためのインターフェイスとして「Google Workspace MCP Server」と「Google Workspace CLI」が
+正式版になったことを発表しました
+。
+下記は、Alphabet傘下でGoogleのAI研究開発を行っているGoogle Deepmind所属のPhilipp Schmid氏のポストです。
+Google Workspace MCP servers and gwscli are GA today. No Enterprise plan or billing card needed with the new 1-click Personal mode setup.
+- 8 servers: Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks
+- Free tier: 5,000 req/day per product
+- Built-in HITL for send & share
+You still have to go through Google Cloud, which is not optimal, but it is much better than the old OAuth consent screen and app review flow. Try it and leave feedback.
+— Philipp Schmid (@_philschmid) 
+November 24, 2026
+Workspace MCPサーバは、Googleがマネージドサービスとして提供するMCPサーバです。
+Google WorkspaceのGmail、Google Drive、Google Docs、Google Sheets、Google Slides、Google Calendar、Google Chat、Google Tasksの各サービスにAIエージェントから接続し操作できます。Google Keepもまもなく対応予定。
+Workspace CLIは、ユーザーやAIエージェントのローカルマシン環境からGoogle Workspaceの各サービスにコマンドラインインターフェイスで接続できる機能です。
+いずれもAIエージェントが操作することを前提に開発されており、Google Workspaceにアクセスする従来の手法として提供されていたRestful APIと比較してトークン効率が優れており、今後も継続的な開発が行われ、ユーザー確認機能、監査ログ、管理管理機能を備えたデフォルトでセキュアなインフラストラクチャなどによって企業に適した仕組みを備えています。
+Googleは今後、AIエージェントによるGoogle WorkspaceへのアクセスはMCP経由で行うことを求める方向性を明確にしており、Restful APIでのアクセスを利用しているAIエージェントは2027年2月までにMCPへの移行が求められることになります。
+あわせて読みたい
+Google Cloud
+Office
+クラウド
+業務アプリケーション
+機械学習・AI
+Google
+≫次の記事
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+≪前の記事
+AWS、DynamoDB互換データベースをローカルマシンで構築可能にするオープンソース「ExtendDB」がバージョン1.0に到達
+タグクラウド
+クラウド
+AWS
+ / 
+Azure
+ / 
+Google Cloud
+クラウドネイティブ
+ / 
+サーバレス
+クラウドのシェア
+ / 
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+ / 
+Java
+ / 
+.NET
+WebAssembly
+ / 
+Web標準
+開発ツール
+ / 
+テスト・品質
+アジャイル開発
+ / 
+スクラム
+ / 
+DevOps
+データベース
+ / 
+機械学習・AI
+RDB
+ / 
+NoSQL
+ネットワーク
+ / 
+セキュリティ
+HTTP
+ / 
+QUIC
+OS
+ / 
+Windows
+ / 
+Linux
+ / 
+仮想化
+サーバ
+ / 
+ストレージ
+ / 
+ハードウェア
+ITエンジニアの給与・年収
+ / 
+働き方
+殿堂入り
+ / 
+おもしろ
+ / 
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+ @Publickey
+Facebookで ：
+ Publickeyのページ
+RSSリーダーで ： 
+Feed
+最新記事10本
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+AWS、DynamoDB互換データベースをローカルマシンで構築可能にするオープンソース「ExtendDB」がバージョン1.0に到達
+jQuery 4.1正式版がリリース、内部実装をquerySelectorAllに統一でより高速に。jQuery 3.x系最後となるjQuery 3.8も同時リリース
+DHH氏が開発する「Omarchy 4.5」リリース。一般的なマルチウィンドウをサポート。最速7秒で導入、Appleシリコン対応、Webアプリ版MS Office用ランチャーなど新機能
+PostgreSQL 19正式リリース。ノンブロッキングなREPACKやI/Oワーカーのオートスケールなど新機能
+マイクロソフト、クラウドやオンプレミスのデータベースを一元管理する「Database Hub」正式リリース。AIエージェントによる運用監視の自動化も
+マイクロソフト、AIによるサイバー攻撃にAIエージェントで対抗する新サービス「Microsoft Perception」提供開始
+マイクロソフト、AIが生成したアプリを企業内で安全に実行するランタイム「Copilot Managed Runtime」正式リリース
+Windows Server 2028がパブリックプレビュー公開。Microsoft FoundryなどAIによる推論の実行基盤へと拡張
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて
+
+===== https://workspaceupdates.googleblog.com/2026/11/mcp-servers-cli-standardized-usage-tiers-now-available.html
+(status 429)
+About this page
+Our systems have detected unusual traffic from your computer network.  This page checks to see if it's really you sending the requests, and not a robot.  
+Why did this happen?
+This page appears when Google automatically detects requests coming from your computer network which appear to be in violation of the 
+Terms of Service
+. The block will expire shortly after those requests stop.  In the meantime, solving the above CAPTCHA will let you continue to use our services.
+This traffic may have been sent by malicious software, a browser plug-in, or a script that sends automated requests.  If you share your network connection, ask your administrator for help — a different computer using the same IP address may be responsible.  
+Learn more
+Sometimes you may be asked to solve the CAPTCHA if you are using advanced terms that robots are known to use, or sending requests very quickly.
+IP address: 20.102.103.119
+Time: 2026-11-25T19:45:08Z
+URL: https://workspaceupdates.googleblog.com/2026/11/mcp-servers-cli-standardized-usage-tiers-now-available.html
+
+===== https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise
+(status 200)
+Security & Identity
+Built for trust and control: Powering the next wave of AI agents across Google Workspace and Google Cloud
+November 24, 2026
+Chandu Thota
+VP, Engineering, Workspace
+Brad Calder
+President, Google Cloud Platform & SRE
+For over 20 years, we have protected 4 billion users and 13 million organizations in Workspace, and critical enterprise and government systems on Google Cloud. From personal and financial records to board materials, regulated workloads, applications, and AI models, those safeguards protect what matters most. Blocking >99.9% of spam, phishing, and malware, alongside encryption and data residency, follows one principle: your data is yours, and you should always know and decide who can access it.
+That trust has powered one of the world’s largest developer ecosystems. Workspace APIs now handle more than 2.8 trillion calls a month, and public Google Drive API traffic alone is more than two-and-a-half times the volume of 2022. More than 18 billion reads from Drive each day come from API callers. Traditional REST APIs were built for human-paced apps where a valid OAuth token implied user intent. As AI agents shift from reading information to acting autonomously at machine speed across email, documents, datasets, and cloud infrastructure, a valid token is no longer enough. Policy checks, data boundaries, and human confirmation have to live in the request path. 
+Today, Workspace MCP servers and the Workspace CLI are generally available alongside Google Cloud Agent Gateway and unified protections across Workspace and Google Cloud. Builders get modern, agent-ready interfaces, and organizations get the visibility and control to adopt AI agents with confidence.
+Purpose-built interfaces: Workspace MCP servers, Workspace CLI, and Cloud Agent Gateway
+To help developers build reliable agents faster without forcing security teams to compromise, we are bringing agent-native interfaces to Workspace and Google Cloud:
+Workspace MCP servers
+:
+ Now generally available, dedicated remote servers for Gmail, Google Drive, Docs, Sheets, Slides, Calendar, Chat, and Tasks. Builders get one standard interface with built-in permission and DLP checks, and native human-in-the-loop (HITL) confirmations for sensitive actions. They also reject non-agent OAuth clients and work with Model Armor, Google Cloud’s prompt-injection screening service.
+Workspace CLI
+:
+ Now generally available for local agents, terminal workflows, and automation, providing structured JSON outputs and scoped OAuth sign-in across Workspace services.
+Google Cloud Agent Gateway
+:
+ A protocol-native gateway for LLM, MCP, and Agent2Agent (A2A) traffic on Google Cloud. It verifies Agent Identities against Agent Registry, enforces IAM policies and default-deny outbound rules, and screens requests with Model Armor.
+Together, these interfaces give AI agents open, protocol-native paths built on standards like MCP and A2A. Permissions, confirmations, prompt screening, and audit logging happen automatically, while traditional apps continue to run on existing REST APIs.
+Consistent controls across every agent workflow
+Those interfaces sit on a unified security model across Workspace and Google Cloud, with core controls shipping today:
+Policy checks on every request:
+ Under our new 
+Workspace AI Tools Addendum
+, AI agents must use Workspace MCP servers or the Workspace CLI rather than existing REST APIs. Technical enforcement begins on February 1, 2027, giving builders time to transition. Every call is checked against your organization’s Workspace permissions, DLP rules, and classification labels. On Google Cloud, Agent Gateway enforces IAM and default-deny outbound rules at the protocol layer and routes custom checks through Service Extensions to Identity-Aware Proxy, your own policy engine, or third-party security tools.
+Separate agent identities and limits:
+ Admins and users need to tell an AI agent apart from a traditional app or a person, and cap what it can do. Agents connecting to Workspace must use dedicated 
+OAuth client IDs
+, paired with least-privilege scopes, time-limited approvals (coming soon), and 
+usage quotas
+ (billing begins on April 1, 2027). On Google Cloud, agents receive their own Agent Identity in Agent Registry with no shared or long-lived keys, bounded by IAM policies and organization, folder, and project quotas. Those identities can also carry user-delegated authorization into Workspace when accessing mail or files.
+People stay in charge of high-impact actions:
+ Routine work like creating drafts or summarizing documents runs autonomously, while critical changes require a person to sign off. In Workspace, MCP servers and the CLI enforce explicit user confirmation before agents send email, change Drive sharing permissions, or make bulk edits. On Google Cloud, policy can require multi-factor authentication or human approval before reading sensitive Cloud Storage buckets, changing IAM permissions, or modifying production infrastructure.
+Clear visibility and revocation:
+ A one-time consent screen is not enough when agents run continuously. Workspace administrators can view, audit, and revoke AI agents in the 
+admin console
+, and users will soon be able to view agent activity and revoke access to their emails and files. On Google Cloud, Security Command Center, Agent Observability, Cloud Audit Logs, and Wiz surface unusual behavior. Revoking a Cloud Agent Identity or OAuth grant stops access immediately.
+Boundaries for your most sensitive data:
+ Coming soon in Workspace, AI access restrictions extend Workspace DLP and client-side encryption protections to agents. This will allow admins and users to block agents from accessing messages in Gmail and specific files and folders in Drive. On Google Cloud, VPC Service Controls, Principal Access Boundaries, and Context-Aware Access keep sensitive data inside designated perimeters and verified devices.
+Strict rules on your data afterward:
+ Our new 
+Workspace AI Tools Addendum
+ sets clear boundaries for AI tools using Workspace APIs. It does not allow permanent raw storage, model training, extended retention of derived data, or API scraping. Derived and user data are removed within a defined window and when a user disconnects. On Google Cloud, Sensitive Data Protection masks sensitive fields before data leaves, and customer-managed or external encryption keys let you cut off access to Cloud agent memory stores immediately.
+Getting started
+Workspace developers:
+ Start building with the 
+Workspace MCP and CLI configuration guide
+, implement 
+user confirmations via MCP
+ and prompt-injection protection such as Model Armor, and review the 
+Workspace AI Tools Addendum
+.
+Workspace administrators:
+ Review connected apps and agents, configure DLP policies for your users, and monitor OAuth activity logs in the 
+admin console
+.
+Google Cloud customers:
+ Register Agent Identities in Agent Registry, place Agent Gateway and Model Armor in front of agents and MCP servers, configure MFA or human approval for sensitive actions, and review IAM, VPC Service Controls, and quota limits.
+With Workspace MCP servers and the Workspace CLI generally available alongside Google Cloud’s agent protections, developers have an open, modern platform to build on. Organizations get the visibility and control to scale AI agents with confidence.
+Posted in
+Security & Identity
+AI & Machine Learning
+Productivity & Collaboration
+Related articles
+Security & Identity
+Google is named a Leader in the 2026 Gartner® Magic Quadrant™ for SIEM
+By Arie Zilberstein • 4-minute read
+Databases
+How Spanner Graph detects ads fraud and abuse at Google at multi-billion node scale
+By Pramod Doguparty • 7-minute read
+Security & Identity
+How to simplify cloud access with Unified Access Policies, now in preview
+By Siddharth Deekshit • 6-minute read
+Startups
+Building Sovereign AI in Europe, With Europe: Our New Startup Accelerator
+By Giorgia Abeltino • 4-minute read
+
+===== https://news.sulat.com/2026/11/25/google-workspace-mcp/
+(status 200)
+At a glance
+Google made the Workspace MCP servers and its gwscli command-line tool generally available on 24 November US time. Philipp Schmid of Google DeepMind posted the news, and Google's Workspace Updates blog carries the announcement.
+Standard tier use costs nothing. Google's Calendar MCP page caps GA MCP servers at 5,000 requests a day per project, where Schmid's post says per product.
+AI agents must use MCP instead of REST from 1 February 2027, and Scaled tier billing starts on 1 April 2027.
+Approval prompts cover sending messages, sharing externally, trashing and deleting. Other writes run without asking once scopes are granted, and gwscli sends usage telemetry by default.
+Google's MCP setup guide, last updated 19 November, still shows a Developer Preview banner next to the GA announcement.
+Google made its Workspace MCP servers and its 
+gwscli
+ command-line tool generally available on 24 November US time. Philipp Schmid, whose X bio lists agents and the Gemini API at Google DeepMind, posted the news with a one-click Personal mode setup as the hook. Google’s 
+Workspace Updates blog
+ carries the full announcement, and Google’s docs add what the post leaves out: a free tier capped at 5,000 requests a day, a rule that AI agents must use MCP from 1 February 2027, and paid billing from 1 April 2027.
+I read the blog post, the MCP and CLI guides and the quota pages, then checked each line of Schmid’s post against them. Most of it holds. Two lines need the context below.
+Google Workspace MCP servers and gwscli are GA today. No Enterprise plan or billing card needed with the new 1-click Personal mode setup.
+– 8 servers: Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks
+– Free tier: 5,000 req/day per product
+– Built-in HITL for send &… 
+pic.twitter.com/JmFMPoXXXE
+— Philipp Schmid (@_philschmid) 
+November 24, 2026
+Philipp Schmid’s post on the Workspace MCP and CLI launch, 24 November 2026 US time.
+8
+products with a Workspace MCP server in Google’s GA post
+5,000
+free requests a day per project, on the Calendar MCP page
+99%
+of active developers Google says stay inside the free Standard tier
+1 Feb 2027
+when AI agents must use MCP instead of REST
+Schmid’s post, checked against Google’s docs
+Schmid says
+What Google’s pages say
+MCP servers and gwscli are GA today
+The 24 November blog post says Google is “making Workspace Model Context Protocol (MCP) servers and the official Workspace CLI generally available”. The MCP setup guide, last updated 19 November, still carries a Developer Preview banner and lists Preview Program membership as a prerequisite.
+8 servers: Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks
+The blog post names the same eight and says Keep is coming soon. The setup guide’s server table also lists People, Classroom and a Universal Search server, and doesn’t list Tasks.
+Free tier: 5,000 req/day per product
+Google’s Calendar MCP page says Standard tier GA MCP servers are “capped at 5,000 no-cost requests per day, per project”. The Gmail and Drive quota pages I read list per-minute limits only.
+Built-in human-in-the-loop for send and share
+The CLI guide says approval prompts cover sending messages, sharing content externally, trashing items and deleting data. Other write actions run without asking once scopes are granted.
+1-click Personal mode, no Enterprise plan or billing card
+Personal mode makes a single-user OAuth client and skips consent screen setup and app verification. Google’s Standard tier “never produces charges”. The setup steps in the guides don’t ask for a billing account, which only the paid Scaled tier needs.
+Sources: Google Workspace Updates blog, 24 November 2026; Google for Developers MCP, CLI and Calendar quota pages, read 25 November 2026.
+You still have to go through Google Cloud, which is not optimal, but it is much better than the old OAuth consent screen and app review flow.
+Philipp Schmid, on X
+Two ways in
+Google describes two managed routes to Workspace data. The MCP servers are Google-hosted and suit cloud and web agents, with one URL per product such as 
+https://gmailmcp.googleapis.com/mcp/v1
+. 
+gwscli
+ is a binary for developer terminals, VMs and containerised sandboxes, and it ships with packaged agent skills. It covers Calendar, Chat, Docs, Drive, Gmail, Sheets, Slides and Tasks, plus People in Developer Preview.
+Same project, same sign-in, two routes. Pick by where your agent runs.
+Don’t confuse it with the 
+googleworkspace/cli
+ repository on GitHub. That one installs a tool called 
+gws
+, and its README says it isn’t an officially supported Google product. Google’s 
+gwscli
+ installs from dl.google.com, and the GA post calls it the official CLI. Google’s guide gives these steps for Personal mode:
+Code
+Copy
+curl -fsSL https://dl.google.com/workspace-cli/install.sh | bash
+gwscli auth setup
+gwscli auth login --bundle=readonly
+Before 
+auth setup
+, you open Personal mode in the Google Cloud console, create a project and download the client secret file. Google says the CLI discovers commands at runtime, so command shapes “might change without backward compatibility” and static scripts shouldn’t rely on them.
+What an agent can and can’t do
+Google’s quota pages list each server’s tools. Gmail has 
+create_draft
+, 
+search_threads
+, 
+get_thread
+, label tools and 
+list_drafts
+, and no send tool. Drive has search, read, download, create, copy, metadata and 
+get_file_permissions
+, and no share tool. Calendar can create, update, delete and respond to events and suggest times. Chat gained 
+search_messages
+ and 
+send_message
+ in May, but sending needs a Workspace account and a configured Chat app, and the CLI guide says it isn’t supported for personal Google Accounts.
+The approval gate covers four actions. Everything else is down to the scopes you grant.
+In an organisation, admins get more. The Admin console’s Security, API Controls page manages external AI tools, the MCP servers and the CLI, sets confirmation rules and shows agent audit logs. Existing data loss prevention rules apply to agent use automatically. Since 11 November, Google’s release notes say, the MCP servers reject OAuth clients that aren’t marked “Use this client for an AI-powered agent”.
+The free tier, and what changes in 2027
+The Standard tier costs nothing and never produces a Google Cloud charge. Google says over 99% of active developers sit inside it. The 5,000 a day is a request count, so an agent that searches mail and then reads three threads to answer one question spends four of them. That sum puts the ceiling near 1,250 questions a day per project.
+The cap counts requests, not questions, so chatty agents reach it sooner.
+Projects that need more can enrol in the Scaled tier, and Google’s Calendar page says Scaled Calendar MCP usage is charged from the first request, with no daily allowance, from 1 April 2027. Projects that already have higher limits keep them until 1 April 2027, then drop to Standard limits unless they switch to Scaled or an admin marks them internal. After 1 February 2027, agents calling REST directly are held to Standard limits whatever their tier. A new Workspace AI Tools Addendum also bars using agents to scrape Workspace APIs or to store certain derived data for long periods.
+From 1 February 2027, Google says agents must use MCP instead of REST. Illustration: Sulat. Source: Google Workspace Updates blog.
+The switch from REST to MCP lands on 1 Feb 2027. Illustration: Sulat.
+Three dates from Google’s post. The first has passed.
+Security and telemetry
+Google’s setup guide has a prompt injection warning: an agent that reads a hostile email or shared file can be steered into changing or deleting data. It says users must screen prompts and responses with Model Armor or a documented alternative, start read-only and review every action. The CLI guide adds that 
+auth login
+ blocks forever in unattended jobs, so headless setups should pass a token with 
+--oauth_token
+.
+A hostile email or shared file can steer an agent, so start read-only. Illustration: Sulat. Source: Google’s setup guide.
+gwscli
+ also sends usage telemetry by default. Per the guide it records the service and action, flag names, CLI version, operating system, status codes and crash traces, and never flag values, tokens, queries, document IDs or addresses. 
+gwscli logging off
+ or 
+GWSCLI_TELEMETRY_ENABLED=0
+ turns it off. We 
+covered another developer tool’s default telemetry
+ earlier today.
+How it compares
+Vendor
+What agents connect to
+Who approves access
+Fine print
+Google Workspace
+One server per product, plus the gwscli binary
+OAuth client marked as an agent; admins manage it under API Controls
+5,000 free requests a day per project; Scaled tier billing from 1 April 2027
+Microsoft 365
+Work IQ MCP: one endpoint with 10 generic tools that find operations at runtime
+The Tools registry in the Microsoft 365 admin center
+Microsoft Learn calls the older Mail, Calendar, Teams, SharePoint, OneDrive and Word servers a legacy experience kept for testing and backward compatibility
+Slack
+One hosted server at mcp.slack.com, GA since 17 February 2026
+Workspace admins approve each client app
+Only directory-published or internal Slack apps may use it
+Notion
+One hosted server at mcp.notion.com
+The signed-in person’s OAuth consent, with workspace admin controls
+Notion says its open-source server is no longer actively maintained
+Sources: Google, Microsoft Learn (18 November), Slack and Notion documentation, read 25 November 2026.
+Google’s design is the most fragmented of the four: a server per product, a separate CLI, a quota that differs by page. Microsoft is betting on one generic endpoint and runtime discovery, and Slack and Notion each run a single server. That’s my read, not a Google or Microsoft claim, but it’s why Google’s per-product quota pages are worth reading before you plan a workload.
+What a developer can do now
+Use Personal mode for your own account, and sign in with 
+--bundle=readonly
+ first.
+If an agent already calls Workspace REST APIs, give it its own OAuth client marked as an AI agent and plan the move to MCP before 1 February 2027.
+Check the Workspace API usage dashboard in the Google Cloud console against the Standard limits.
+Turn off 
+gwscli
+ telemetry if your policy needs it off.
+Don’t point an agent at mail or documents from unknown senders.
+More on the people behind it: Schmid’s 
+frontend design skill post
+ and his 
+Gemini function results announcement
+ are covered here, and our explainer on 
+code execution with MCP
+ shows why returning summaries instead of raw data matters for agent costs.
+Read Google’s announcement
+gwscli guide
+The 5,000-a-day figure appears on Google’s Calendar MCP page. Keep isn’t available yet.
+Discover more from Sulat AI & Tech News
+Subscribe to get the latest posts sent to your email.
+#Google
+#Google Cloud
+#Google DeepMind
+#Google Drive
+#MCP
+#Microsoft 365
+#Philipp Schmid
+#Slack
+
+===== https://menext.jp/news/google-workspace-mcp-servers-ai-agent-admin-controls
+(status 200)
+その他
+運用
+2026年11月24日
+Google Workspace MCPサーバーが一般提供──社外AIをGmail・ドライブにつなぐ前に管理者が決めること
+提供元の発表ページ
+（出典：
+Google Workspace Updates
+）
+Googleが米国時間2026年11月24日、ClaudeなどGoogle以外のAIエージェントがGmail・ドライブ・カレンダーなどに接続するための「Workspace MCPサーバー」を一般提供にしたと発表しました。あわせて、管理者がどのAIを通すか、共有など重い操作の前に本人の確認を挟むか、AIが何をしたかの記録をどう見るかを、管理コンソールで決められるようになります。2027年2月1日からはAIエージェントの接続方法にルールも入ります。コマンドの話は抜きにして、会社のGoogle Workspaceを預かる管理担当者が何を決めておけばいいかを整理します。
+何が変わったか
+MCP（Model Context Protocol）は、AIが社外のサービスとやり取りするための共通の接続方式です。Googleは、AIエージェント（指示を受けて自分で操作まで進めるAI）がGoogle Workspaceのデータを扱うための「Workspace MCPサーバー」と、開発者向けの「Workspace CLI」を一般提供にしたと発表しました。MCPサーバーで扱えるのは Gmail・ドライブ・ドキュメント・スプレッドシート・スライド・カレンダー・Chat・ToDoリスト（Tasks）で、Keepは「近日対応」とされています。
+管理担当者にとっての本題は、管理コンソールの「セキュリティ」>「APIの制御」で次の3つを扱えるようになる点です。
+●
+どのAIを通すか：社外のAIエージェントはOAuth（Googleアカウントでのログイン許可の仕組み）で自分がAIエージェントだと名乗り、MCPサーバー経由で接続する。管理者は従来のアプリと同じように、管理コンソールで接続の可否を管理できる
+●
+重い操作の前に本人の確認を挟むルール：下書き作成のような日常の操作はそのまま通し、社外のファイルを読む・データを共有するといった操作の前にユーザーへ確認を出すルールを管理者が設定できる
+●
+エージェントの監査ログ：AIエージェントが行った操作と、ユーザーが確認した記録が管理者の監査ログに残る。ユーザー単位で設定済みのDLP（情報漏えい防止）ルールも、AIエージェント経由の操作に適用される
+もう1つ、期限のある変更があります。Googleは、AIエージェントはWorkspaceのREST API（プログラムから直接データを読み書きする窓口）を直接呼ぶのではなくMCPを使わなければならないとし、
+2027年2月1日から技術的に強制する
+と発表しています。
+利用量にも枠が設けられました。無料で決められた上限まで使える「Standard」と、上限を超えて使う「Scaled」の2段階で、まずGmail・ドライブ・カレンダーから適用されます。Scaledを選んだ場合、2027年4月1日から1日の無料分を超えた利用に課金が始まります。Googleは、利用中の開発者の99%以上はStandardに収まり追加費用はかからないとしています。社内だけで使う仕組みは「社内用」として登録すれば、高い上限もWorkspaceの契約に含まれると説明しています。
+対象は「すべてのGoogle Workspaceのお客様と開発者」と発表されており、エディション別の区別は書かれていません。国や言語による制限は発表文に記載がなく、
+日本の管理コンソールにいつ表示されるかは未確認
+です。提供は即時リリース・計画的リリースのどちらのドメインも「2週間で」全体に展開するとされているため、まだ画面に項目が出ていなくても設定の誤りとは限りません。
+日本での提供状況について
+2026年11月25日時点で、この発表を伝える日本語の報道は見つけられませんでした。本記事はGoogleの英語の発表文と公式ヘルプをもとにしています。画面上の項目名は英語の発表文を訳したもので、日本語の管理コンソールで実際にどう表示されるかはミーネクストでは確認できていません。
+業務での使いどころ
+社員が「ClaudeにGmailを読ませたい」「AIにカレンダーの空きを探させたい」と言い出したとき、これまでは許可するか禁止するかの二択になりがちでした。今回の管理機能で、
+「つなぐのはいいが、共有の前には本人に確認させる」
+という中間の決め方ができるようになります。たとえばClaudeについては、Googleの開発者向けガイドに接続手順が載っており、Claude側はEnterprise・Pro・Max・Teamのいずれかのプランが必要と書かれています。なお発表文自体は、特定のAIサービス名を挙げていません。
+1
+社内で使われている、または使いたいと声が出ている社外AIを書き出す（AIサービス名・使う人・つなぎたいデータ）
+2
+管理コンソールの「セキュリティ」>「アクセスとデータ管理」>「APIの制御」で、どのアプリがすでに社内データにアクセスしているかを確認する
+3
+許可するAIと、確認を挟む操作（社外への共有・社外ファイルの読み込みなど）を決める
+4
+新しい設定項目が表示されたら、決めたルールを入れ、監査ログでAIの操作が記録されているかを1度確かめる
+5
+外部のAIツールやアドオンを業者経由で使っている場合は、2027年2月1日以降もそのまま使えるか（MCP経由に対応するか）を問い合わせる
+3つ目の「何を許可し、何に確認を挟むか」の叩き台は、AIに作らせると早く進みます。社内の実情を書き込んでから使ってください。
+社外AIをGoogle Workspaceにつなぐときの社内ルール案を作るプロンプト
+あなたは中小企業の情報システム担当の相談役です。
+当社では Google Workspace（Gmail・Googleドライブ・Googleカレンダー）を使っています。
+社員から、Google以外のAI（例：Claude）をGmailやドライブにつなぎたいという要望が出ています。
+以下の情報をもとに、社内ルールの案を作ってください。
+【当社の状況】
+・社員数：（ここに記入）
+・扱う情報で特に注意が必要なもの：（例：顧客の個人情報、見積・契約書）
+・つなぎたいAIと目的：（例：Claudeでメールの下書き、会議日程の調整）
+【作ってほしいもの】
+1. 接続を許可するAIの条件（どんな条件を満たせば許可するか）
+2. AIが操作する前に、本人の確認を必ず挟むべき操作の一覧（例：社外への共有、社外ファイルの読み込み）と、その理由
+3. 確認なしで通してよい日常的な操作の一覧
+4. 管理者が月に1回、監査ログで見るべき点
+5. 社員向けに周知する文面（300字以内）
+・Google Workspace の具体的な設定画面の名前や手順は書かないでください（画面は管理者が実物で確認します）
+・判断に迷う点は「要検討」と書き、理由を添えてください
+最後の2行が効きます。AIに管理コンソールの項目名まで書かせると、存在しない名前を書くことがあります。ルールの中身だけをAIに作らせ、画面の操作は管理者が実物を見て行う、という役割分担にしておくのが安全です。
+試すときに気をつけること
+2027年2月1日の期限は、使っているAIツールの業者にも確認を
+「AIエージェントはMCP経由が必須」という変更は、主にAIツールを作る側に対応を求めるものです。ただ、社内で使っている外部のAIツールやアドオンが今どの方式でGmailやドライブにつないでいるかは、使う側からは見えません。期限が近づいてから動かなくなるのを避けるため、
+業者に対応予定を早めに確認
+しておくのが確実です。
+●
+新しい管理機能は順次提供のため、管理コンソールにまだ項目が出ていないことがある。出ていなくても設定の誤りとは限らない
+●
+既定でオンかオフか（何も設定しないと社外AIの接続が通るのか）は発表文に書かれていない。表示されたら最初に現状の設定を確認する
+●
+Googleは、AIエージェントに関するより細かい管理項目を「今後数か月で」追加するとしている。ルールは一度で固めず、見直す前提で作る
+●
+利用量の枠（Standard / Scaled）の判断は、自社で仕組みを作っている場合に関係する。社内で開発していなければ、まずは上の3つの管理項目の確認を優先する
+出典
+Google Workspace Updates「Simplifying agent access while keeping organizations in control: MCP servers, CLI, standardized usage tiers, and admin policies」
+（
+2026年11月24日
+）
+Google Workspace Admin Help「Control which third-party & internal apps access Google Workspace data」
+Google for Developers「Configure the Google Workspace MCP servers」
+この記事に関連するレシピ
+「
+運用
+」の業務を生成AIで進める手順を、動画で確認できます。
+▶
+0
+:
+47
+Geminiのタスクモードの使い方｜出張の新幹線と行き方を下調べ
+1日前
+▶
+無料
+0
+:
+35
+PDFをエクセルに変換するAI｜Geminiで単価表の値上げ額までコピペで
+47
+回視聴
+· 
+1週間前
+▶
+無料
+0
+:
+35
+アンケート集計をAIで｜Googleフォームの回答をGeminiが分析
+2週間前
+▶
+無料
+0
+:
+39
+GemをGeminiのスキルに移行｜11月17日までに指示文とPDFを移す手順
+27
+回視聴
+· 
+3週間前
+▶
+無料
+0
+:
+41
+Excelの名寄せをGeminiで｜取引先リストの重複を直して1社1行の一覧に
+16
+回視聴
+· 
+1か月前
+▶
+無料
+0
+:
+39
+ChatGPT in Chromeの使い方｜コピペなしで見積比較とフォーム入力
+18
+回視聴
+· 
+1か月前
+社内で使えるようにしたい方へ
+記事の内容を自社の業務に合わせて落とし込む、生成AIの研修も実施しています。 業種・職種に合わせた内容でご相談いただけます。
+研修について相談する
+他のAIニュース
+Gemini Notebook
+研修
+2026年11月24日
+Gemini Notebookのフラッシュカードに画像とストップウォッチ──社内マニュアルで研修カードを作る手順と確認点
+Gemini Notebookのフラッシュカード（暗記カード）に、資料からの画像の自動挿入・ストップウォッチ・スマホの復習リマインダーが加わりました。対象プランと日本での提供状況、新人研修や資格対策のカードを作る手順、人が確かめるべき所を整理します。
+Claude
+運用
+2026年11月24日
+Claudeの月次まとめ（Reflect）が正式版に──Claude Code・Coworkも集計、削除方法と仕事で使う時の注意
+Claudeの月次まとめ（Reflect）がベータを終了。Claude CodeやCoworkのクラウド作業も集計対象になり、保存されたまとめを削除できるようになりました。対象プラン、入るもの・入らないもの、個人アカウントで仕事を振り返る時の注意点を整理しました。
+Claude
+障害
+2026年11月24日
+ExcelからClaudeのアドインが消えた──個人アカウントで起きる障害の確認方法と代わりの使い方
+Excel・Word・PowerPointからClaude for Microsoft 365のアドインが消える障害を、Anthropicが公表しました。対象は個人のMicrosoftアカウントでOfficeにサインインしている人。アカウントの見分け方、公式ステータスでの確認、復旧までclaude.aiで作業を続ける手順をまとめました。
+Claude
+新機能
+2026年11月24日
+Claudeのコネクタがスキル対応、確認画面も正式提供──対象プランと承認前に見る点
+AnthropicがClaudeのコネクタ（MCP）でスキルを一緒に届ける「Skills over MCP」をベータ公開し、お金を使う・データを消す前に人の確認を求める「Elicitation」を正式提供しました。対象プラン、Teamでの有効化、確認画面で何を見て承認するかを整理しました。
+その他
+のニュースをまとめて見る
+AIニュース一覧を見る

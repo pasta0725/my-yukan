@@ -1,0 +1,416 @@
+===== https://atmarkit.itmedia.co.jp/ait/articles/2611/25/news002.html
+(status 200)
+メディア
+連載一覧
+連載まとめ読み＠IT eBook
+記事ランキング
+＠IT Special
+セミナー
+ホワイトペーパー
+クラウド
+AI IoT
+アジャイル/DevOps
+セキュリティ
+キャリア&スキル
+Windows
+初・中級者向けAI
+その他
+Server & Storage
+HTML5 + UX
+Smart & Social
+Coding Edge
+Java Agile
+Database Expert
+Linux ＆ OSS
+Master of IP Network
+Security & Trust
+Test & Tools
+Insider.NET
+ブログ
+情報漏えい“その先の危機”
+AIを作り動かし守り生かす
+クラウドネイティブ
+Microsoft&Windows
+その他の特集
+＠IT
+AI IoT
+Deep Insider
+「ソフトウェアファクトリー」とは結局何か　OpenAIもUberもfreeeも始めたAIエージェントの「工場」の中身
+：
+Deep Insider Brief ― 技術の“今”にひと言コメント
+AIコーディングエージェントを個別に使う段階から、工程全体を「工場」として組む段階へ。OpenAI、Uber、freeeなどの取り組みを手掛かりに、この言葉が指す仕組みと、人間に残る仕事を整理する。
+»
+2026年11月25日 05時00分 公開
+[
+一色政彦
+，
+デジタルアドバンテージ
+]
+この記事は会員限定です。
+会員登録（無料）
+すると全てご覧いただけます。
+連載目次
+　2026年、「ソフトウェアファクトリー（Software Factory）」という言葉を、AIによるソフトウェア開発の文脈で見掛けるようになった。OpenAIやUberに加え、国内ではfreeeも取り組みを公開した。6月末のAI Engineer World’s Fair（米国サンフランシスコで毎年開かれるAI開発者向けカンファレンス）では、同名の講演トラックも設けられた。
+　各社に共通するのは、開発者がAIエージェントに作業を一つずつ頼んで結果を確認する使い方ではなく、仕事の割り当てから実装、検証までを一連の工程としてつなぎ、人が見ていなくても回る仕組みにする発想だ。工場が作るのは、アプリ丸ごとというより、機能追加や不具合修正といった「変更」である。
+AIエージェントの「ソフトウェアファクトリー」の基本構造。チケットから仕事を取り出し、専用の作業環境で変更を作り、検証・承認を経て本番へ届ける。本番の監視結果も次の仕事に戻し、人間が工程全体を管理する（本記事オリジナル）
+　よく引かれる定義を示したのが、Googleでの開発者向け活動で知られ、現在はAnthropicでClaude Codeに携わるアディ・オスマニ（Addy Osmani）氏だ。7月20日のブログで、ソフトウェアファクトリーを「多数のハーネス化されたループが同時に走り、作業のキューから供給され、レビューゲートを通って本番へ排出されるもの。人間はその全体を上から所有する」と説明している。「賢いエージェント1本のことではなく、ループでできた組織図のようなものだ」とも。
+　鍵になるのが「ループ」と「ハーネス」だ。ループは、エージェントが情報収集、実行、結果確認を繰り返して1つの仕事を進める動作。ハーネスは、そのループを囲む環境で、作業場所、ツール、記憶、完了の条件を定める。
+　この名称には歴史がある。日本のメーカーは1970年前後から「ソフトウェア工場」で標準化と品質管理を進め、2004年にはMicrosoft発の「Software Factories」構想が提唱された。今の用法との違いは筆者のコメントで振り返り、その後、工場の部品、各社の事例、検証の課題を見ていく。
+――ここからは『Deep Insider Brief』恒例の“ひと言コメント”として筆者の考えを述べた上で、ソフトウェアファクトリーの中身を整理していく。
+　Deep Insider編集長の一色です。こんにちは。
+　「ソフトウェアファクトリー」という言葉には、個人的な思い出があります。21年前の2005年、私は＠ITで
+「次世代開発基盤技術“Software Factories”詳解」という連載
+を担当していました。当時Microsoftにいた萩原正義氏が、全8回で構想を解説したものです。
+　当時の構想を大づかみに言えば、似たアプリの一群に共通する「型」を作るものでした。共通部分と可変部分を整理し、DSL（ドメイン特化言語）やフレームワーク、テンプレートを用意する。個々のアプリは、その資産を組み合わせて作ります。連載には、既製の部品で対応できる要求が対象で、そこに収まらないカスタム要求はアジャイル開発など別の方法で、とはっきり書いてありました。
+　正直なところ、当時は夢物語に近い印象でした。考え方には納得できても、型を用意する最初の投資が重く、現場に広く採用されるまでには距離があるな、と。開発の工業化や自動化には可能性を感じつつも、やはり人にはかなわない、という感覚もありました。
+　今の工場は、製品ごとの型を先に用意することが前提ではありません。LLMが個別の要求に応じてコードを書けるので、以前は型の外にあった仕事も扱えるようになった。重心が「製品の型」から「変更を作って確かめる工程」に移った。これが一番大きな違いだと思います。
+　同じ名前ですが、21年前の構想がそのまま実現したというより、LLMによるコード生成を前提に、開発全体の組み立て方を問い直している。これが私の理解です。
+　それでは、ソフトウェアファクトリーの中身を順に見ていく。
+工場とは、エージェントの周りの仕組み
+　エージェントに仕事を渡し、専用の環境で実行させ、結果を検査し、次の仕事につなぐ。本稿では、各社の取り組みを比べるために、工場を支える仕組みを次の4つに整理する。
+キュー：
+ 着手待ちの仕事と優先順位を管理する。LinearやGitHub Issuesなどのチケットを使い、どの仕事をいつエージェントに渡すかを決める
+作業環境：
+ チケットごとに作業用のコピーや開発環境を用意し、並列実行の干渉を防ぐ。ファイルを分けるだけでなく、実行権限やネットワーク接続の制限も要る
+ループ：
+ 情報収集、変更、テスト、修正を繰り返す。中断時の再試行や、人に判断を戻す条件も決めておく。人が毎回指示する使い方から、目標を与えて任せる使い方へ移る
+ゲート：
+ テスト、セキュリティ検査、レビューで、次の工程に進めてよいかどうかを判定する。機械で判定できる項目と、人の判断が要る項目を分ける
+　4つは必ずしも別々の製品ではなく、組み合わせ方も各社で異なる。例えばOpenAIのSymphonyの仕様が定めるのは、チケットの監視、作業場所の用意、エージェント実行の管理が中心で、PRの作成やレビューへの対応は、別途定めるワークフローに委ねられる。
+作るのは「アプリ」ではなく「変更」
+　工場に入るのは、機能追加や不具合修正などの要求だ。そこから設計、コード、テストが作られ、確認を通った変更がリポジトリに取り込まれ、デプロイを経て利用者に届く。新しいアプリを作る場合も、この変更の積み重ねで開発が進む。「人間が寝ている間も動く」という言い方は、人が対話のたびに指示するのではなく、仕事の割り当てと実行が止まらない仕組みを指している。
+　人がコードを読まず、機械の検証だけで出荷する形は「ダークファクトリー」と呼ばれる。製造業の、照明が要らない無人の「消灯工場」になぞらえた言葉だ。オスマニ氏は、人が読むのをやめれば、ソフトウェアを理解するのもやめることになる、と警告している。
+事例：各社の「工場」
+OpenAI：
+ 4月27日の公式記事で「Symphony」を紹介。公開された仕様と実験的な参照実装は、Linearのチケットごとに隔離された環境でCodexを動かし、PRに加えてCIの結果やレビューの指摘など「作業の証拠」を届ける。さらに11月19日には、本番の監視データから性能劣化を見つけて修正案を出す社内システム「Performance Factory」の仕組みを公式ブログで公開した。タスクの状態管理、ディスパッチループ、クラウド上のCodex、イベントによる再開の4要素から成り、3カ月余りで1700件超の調査を自動で行った。OpenAIはこれを「エージェントファクトリー」というパターンの一例と呼び、修正のマージ判断は今もエンジニアが担うが、「その待ち時間がボトルネックかもしれない」として、エージェント自身に行わせる検討を始めたとしている
+Uber：
+ 講演で6つの構成要素を紹介。モデルへの接続窓口、MCPによるツール接続、エージェント用の開発環境、スキルの共有基盤、社内情報の関係を結ぶコンテキストグラフ、AIアシスタント。12拠点の数千人のエンジニアを支え、グラフは4000万件の情報を持つという
+Factory：
+ 6月15日の「Factory 2.0」で、個人のコーディング支援から、組織全体の開発をつなぐ仕組みへの移行を打ち出した
+GitLab：
+ 10月6日、各工程を共通のID、ポリシー、実行履歴でつなぐ「Governed Software Factory」の基盤を発表。生成だけでなく、検査、承認、デプロイまでを組織のルールに従って進めることを重視する
+freee：
+ 10月16日、CAIO（最高AI責任者）の横路隆氏が「freeeにおける大規模ソフトウェアファクトリーの実践」と題して講演。知識を共有する「ナレッジ基盤」、生成と検証を回す「ハーネス」、「人のレビュー」の3つを柱に、要件定義から実装・テストまでをつなぐ
+　freeeは、2026年9月のPR数が前年同月比1.90倍、変更行数が3.95倍、AIが生成したコードの割合が89.6％になったと公表している。ただし、これは同社のAI活用全体の実績で、ファクトリー単独の効果ではない。工場に取り組む動機として、AI活用の差が「環境づくりがうまい人」とそうでない人の間で開いたことを挙げ、個人の工夫ではなく全社の仕組みで埋めようとしている。目指すのは、人が判断する箇所を選ぶ「Selective Dark Factory」で、次の目標に全チームへの標準化と24時間稼働を掲げる。資料は、既存仕様や業務ルールが明文化された領域で工場が有効だとも説明している。
+　各社が整えているのは、モデルの性能ではない。仕事を渡す入口、実行に必要な情報と環境、結果を確かめる出口を、一連の工程としてつなぐ仕組みである。
+何が変わったか：型から工程へ
+　Microsoft発の2004年の構想は、製品群に共通する特徴を分析し、再利用できる設計や部品、開発環境を用意することに重心があった。DSLやモデル駆動型開発も、その資産から個々の製品を作るための技術だった。
+　今の工場は、製品ごとの型に頼らず、LLMが個別の要求に応じたコードを生成し、その出力をテストやレビューの工程で確かめる。標準化と自動化の重心が、製品の構造から、変更を作って届ける工程へ移った。もちろん以前の構想も工程を扱い、今の工場もテンプレートや既存部品を使う。何を共通化し、どこを自動化するかの違いとして捉えると分かりやすい。
+ボトルネックは「作る」から「検証する」へ
+　変更の量が増えていることは、GitHubのOctoverse 2026で確認できる。9月には、最初の案をエージェントが作ったPRが全体の40％を超え、3月の17％から倍増した。年間のマージPRは13億件で、2年前の3倍超になった。ただし、この伸びの全てがAIの効果というわけではない。
+　量が増えても、利用者へ速く安全に届けられるとは限らない。AI活用と開発成果の関係を調べた研究でも、その難しさが見える。
+DORA 2024：
+ AI活用度が25％高まることと、コードレビュー速度の3.1％向上、スループットの1.5％低下、安定性の7.2％低下との関連を推定した
+DORA 2025：
+ スループットとの関連はプラスに転じたが、安定性とのマイナスの関連は2年連続で確認された
+Faros AI（2025年版）：
+ 1万人超の開発者、1255チームのデータで、AI活用度の高いチームはマージPR数が98％増える一方、平均PRサイズは154％増、レビュー時間は91％増だった。2026年第3四半期版では、デプロイ頻度の回復とともに、レビューを経ないマージの増加やQA工程への負荷を挙げている
+OpenAI：
+ Performance Factoryでも、修正PRをエンジニアがレビューしてマージするまでの待ち時間がボトルネックになり得る、と自ら述べている
+freee：
+ AIレビューツールで負担は減ったが、人間のレビューは依然として大きなボトルネックの一つだと説明している
+　オスマニ氏はこれを「バックプレッシャー」で説明する。ループに渡せる自律性は、安く確実に検証できる範囲までで、それ以上は渡せない。工場は回り始めたが、検品が追い付いていない。エージェントを何本走らせるかと同時に、結果をどれだけ確かめられるかを設計する必要がある。
+誰に関係する話か：工場を作る人、工場で働く人
+　ソフトウェアファクトリーは、一部の大企業だけの話ではない。工場を「作る」側と、工場の「中で働く」側では関係の仕方が違うので、立場ごとに整理する。
+開発者：
+ 自分で工場を作らなくても、所属する組織が工場を作れば、その中で働くことになる。仕事の内容は、コードを書くことから、チケットに目的と完了条件を書く、エージェントの出力を検証する、マージを承認する、へと移る。どの判断が自分に残るのかを、早めに知っておきたい
+中規模以上の開発組織：
+ 工場を「作る」側になる。共通の実行環境、権限管理、検証の仕組み、運用を誰が整えるかが課題で、プラットフォームチームや開発生産性チームの仕事になりやすい。Uberやfreeeの事例は、この立場の参考になる
+小規模チーム：
+ 工場にするかどうかは、継続して任せられる仕事の量で決まる。バックログが小さければ、エージェントを対話的に使う方が効率がよい。Symphonyのようなオープンソースで、用途を絞って試す選択肢もある
+経営者と管理者：
+ 工場を入れると、コードの行数やPR数は簡単に増える。それを成果と見なすと、量は増えたのに利用者に届く速さや品質が変わらない、という状況を見逃す。本節の前に見たDORAやFaros AIの数字が、その例だ。評価の指標を、要求が利用者に届くまでの時間と安定性に置き直す必要がある
+読むときの注意点
+「ソフトウェアファクトリー」に業界標準の定義はない。本稿の4分類は事例を比べるための整理で、共通仕様ではない
+各社の成果は自社発表で、測定対象や期間、導入段階が異なる。第三者による検証は限られる
+DORAとFaros AIは工場だけを対象にした調査ではなく、観察された関連から因果を断定することもできない
+24時間稼働や完全自動化は、企業によって実施中の範囲と将来の目標が異なる。Symphonyも、信頼できる環境で試すための実験的な公開と位置付けられている
+まとめ
+　「ソフトウェアファクトリー」とは結局、エージェントへの仕事の割り当て、実行、検証、出荷をつなぐ仕組みだ。コードを個別に書かせる使い方から、変更を継続的に届ける工程全体へと、設計の対象が広がっている。
+　名前が定着するかどうかは分からない。だが、何を任せ、何をもって完了とし、どこで人が判断するかは、エージェントを使う開発者に共通する課題である。工場を作る側になるのか、工場の中で働く側になるのか。どちらにしても、自分に残る判断が何かは、知っておいた方がよい。
+情報元
+Addy Osmani氏：Software Factories, Light and Dark（2026年7月20日）
+Addy Osmani氏：公式プロフィール
+AI Engineer World's Fair 2026：公式プログラム
+OpenAI：ChatGPTの速さを支えるOpenAIのPerformance Factory（2026年11月19日）
+OpenAI：An open-source spec for Codex orchestration: Symphony（2026年4月27日）
+GitHub：openai/symphony（仕様・実験的な参照実装）
+The Pragmatic Engineer：Inside OpenAI's agentic software factory（2026年9月15日）
+AI Engineer：Agentic SDLC at Uber - Building Blocks for Uber's Software Factory（講演・内容紹介）
+Factory：Factory 2.0: From coding agents to software factories（2026年6月15日）
+GitLab：GitLab Announces the Foundation for the Governed Software Factory（2026年10月6日）
+Speaker Deck：freeeにおける大規模ソフトウェアファクトリーの実践（2026年10月16日講演、19日資料公開）
+freee公式note：AI×開発組織Summit 2026 freee CAIO横路の登壇レポート（2026年10月28日）
+GitHub：Octoverse 2026（2026年10月28日公開、11月6日更新）
+Google Cloud：Announcing the 2024 DORA report（公式解説）
+Google Cloud：Announcing the 2025 DORA Report（公式解説）
+Faros AI：The AI Productivity Paradox Report 2025（結果・調査方法）
+Faros AI：The Speed Trap（2026年第3四半期版）
+Faros AI：AI is moving your bottleneck, not removing it（The Speed Trapの公式解説）
+日立：ソフトウェア事業のあゆみ（1969年のソフトウェア工場設立）
+@IT：次世代開発基盤技術“Software Factories”詳解（萩原正義氏、2005年、全8回）
+BIPROGY：Software Factories、現状と将来（萩原正義氏、UNISYS TECHNOLOGY REVIEW 第93号、2007年）
+「
+Deep Insider Brief ― 技術の“今”にひと言コメント
+」
+AIで、仕事をもっと楽にしよう
+導入する・自動化する・分析する・作る ― AI活用を始めよう
+　＠ITのDeep Insiderで
+Copyright© Digital Advantage Corp. All Rights Reserved.
+Special
+PR
+アイティメディアからのお知らせ
+キャリア採用の応募を受け付けています
+スポンサーからのお知らせ
+PR
+Special
+PR
+＠IT eBook
+AIに「絶対するな」は通じない、Anthropicが明かすClaude Code使いこなし術まとめ
+ 5大コーディングエージェントを検証　バイブコーディング時代のリスクと対策
+ “応用情報が消える”って本当？　「生成AIパスポート」って何？　IT資格の今を読む
+「光ファイバーはもう古い」「2035年宇宙の旅」　実運用へ向かうデータセンター新技術
+» 
+一覧ページへ
+注目のテーマ
+システム開発ノウハウ 【発注ナビ】
+PR
+編集部からのお知らせ
+ロケスタ長谷川秀樹氏登壇！【視聴無料／視聴条件を満たした方にAmazonギフト券進呈!】
+“AIで揺らぐ統制”への対処法を知る【登録無料／視聴条件を満たした方にAmazonギフト券進呈】
+あなたにおすすめの記事
+PR
+@ITについて
+お問い合わせ
+広告について
+採用広告について
+利用規約
+著作権・リンク・免責事項
+サイトマップ
+RSSについて
+＠ITのRSS一覧
+アイティメディアIDについて
+アイティメディアIDとは
+メールマガジン登録
+＠ITのメールマガジンは、 もちろん、すべて無料です。ぜひメールマガジンをご購読ください。
+申し込みページへ
+ITmediaはアイティメディア株式会社の登録商標です。
+メディア一覧
+ | 
+公式SNS
+ | 
+広告案内
+ | 
+お問い合わせ
+ | 
+プライバシーポリシー
+ | 
+RSS
+ | 
+運営会社
+ | 
+採用情報
+ | 
+推奨環境
+
+===== https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast/
+(status 200)
+November 19, 2026
+Engineering
+How OpenAI’s Performance Factory keeps ChatGPT 
+fast
+Our Codex-powered system automates finding and fixing performance issues.
+By Okay Zed and Cyrus Forbes, Members of Technical Staff
+Share
+The staggering pace of agentic development has made traditional approaches to performance engineering unsustainable. To keep up, we built the Performance Factory, an autonomous system that uses the full capabilities of Codex and our models to find and fix regressions at an unprecedented speed. The Performance Factory, which runs in the cloud and automates investigating and resolving performance problems, enables us to keep pace with the ambition of our roadmap.
+In the Performance Factory, our engineers define workflows for recurring jobs and write instructions for the Codex agents that carry them out. In particular, the Regression Workflow opens a task when a performance alert fires. An agent investigates the slowdown, records its findings in the task, and proposes a fix for an engineer to review. After deployment, another agent picks up the same task to check whether performance has returned to baseline. From investigating to authoring the fix to verifying mitigation, this first workflow in the Performance Factory has automated the entire process of fixing regressions. In just over three months, the Regression Workflow tracked more than 1,700 investigations and root caused over 600 cases. That’s 17 automated investigations every day.
+Here, we’ll share how our use of Codex evolved into what’s now the Performance Factory, walk through our first running workflow, and share early lessons from building and running agent workflows in production.
+The path from manual investigations to automated workflows
+As we used Codex for more of our performance work, we noticed a progression in how our team worked. We hope other service teams can learn from our process as they adopt agentic workflows in other domains.
+Software work evolves from manual labor to partnering with machines to agent factories.
+1. Pre-Codex
+.
+Before Codex, engineers manually examined metrics and logs, compared traces, debugged live machines, and read code to investigate a slowdown. This work was time consuming, and knowing where to look often required deep knowledge of the service. Relevant signals were easy to miss. When we encountered the same kinds of problems repeatedly—like regressions in ChatGPT’s first token latency—we built advanced tools, like CPU and allocation profilers, to make those investigations easier. Over time, we accumulated more than 30 performance tools.
+2. Codex as a partner
+. Once we had
+Codex as a partner, engineers could ask, “Why did this get slower?” and work with Codex to investigate, even in an unfamiliar system. Codex could search large codebases, find relevant metrics and traces, follow interactions across services, and do appropriate profiling to piece together what had happened. But engineers still had to steer the process, knowing which performance tools to use and how to guide the investigation. Difficult investigations were more debuggable for more people, with less expertise and time required.
+3. Reusable skills
+. To automate further, we captured our performance team’s investigation process in a shared skill called 
+perf-forensics
+. It tells Codex which tools are available, when to use them, and how to work through a slowdown so Codex can try to resolve the problem from a few angles:
+Find when the slowdown began
+Identify the affected requests
+Investigate whether deployments or configuration changes could explain it
+We tested and refined the 
+perf-forensics
+ skill using evals based on past regressions. For the types of regressions we focused on (for example, ChatGPT latency and availability drops), we could now give Codex an alert and get back a diagnosis in a single run, without guiding it through each step.
+4. The human proxy
+. As we added and refined perf-related Codex skills like 
+perf-forensics
+, we started to feel like a proxy between our alerts and Codex. An alert would fire, and an engineer would simply copy and paste it into Codex with the right skill, then paste the findings back into Slack.
+5. Automated investigations
+. Next, we moved investigations to the cloud so an alert could start a Codex session automatically. Codex investigated the slowdown and posted its findings in the Slack thread, but the automation ended with that reply. An engineer still had to pick up the diagnosis, develop a fix, and check whether it worked after deployment. As alerts accumulated, even figuring out which regressions needed attention meant sifting through Slack threads.
+6. The factory
+. We built the Performance Factory to run end-to-end agentic performance engineering workflows. It tracks what each active task needs next and assigns an agent when that step is ready. Each task keeps its state and findings, so work can pass between agents and engineers and resume after a code review or deployment. For a regression, the work starts with investigating an alert and ends with verifying recovery in production. We can turn common optimizations into workflows that run regularly across our services. A workflow that spots a potential optimization can open a task in another workflow to test and implement it.
+The Performance Factory system’s four parts
+The Performance Factory is made up of four components: a task tracker with configurable workflows, a dispatch loop that assigns ready work to agents, an API that runs Codex in the cloud, and subscriptions that wake agents when something changes (such as a GitHub review comment posting or a deployment completing).
+Performance Factory consists of a task service, dispatch loop, cloud execution, and subscriptions.
+Task service with configurable workflows
+The task service is where engineers define workflows by adding configuration files and prompts for the agents to follow, written in Markdown. The configuration lists the states a task can move through, the allowed transitions, and which steps need an engineer. Separate prompts tell agents what to do at each step.
+Plain text
+1
+code-change/
+2
+├── config.toml
+3
+└── work/
+4
+    ├── implementing.md
+5
+    └── reviewing.md
+A code change task contains a configuration file, along with Markdown prompts for implementing and reviewing.
+Each piece of work becomes a task in a workflow, and all workflows are visible in a UI. Engineers can see what’s open, follow progress, and share a task with a teammate who might have more context or be able to help with the next step.
+Dispatch loop that assigns work
+A
+ dispatch loop periodically checks which tasks are ready for the next step. It assigns an agent to each task by starting a Codex turn with the instructions for the task’s current state. The agent records its progress on the task and moves it to the next state if it completes the step.
+Codex in the cloud
+Once a task is assigned, the agent needs a place to do the work, with access to the same tools an engineer would use. We built an internal API to programmatically invoke a Codex turn in the cloud. The Codex turn runs on an 
+environment inside our network, with access to our code repositories and the observability tools our engineers use, such as metrics, logs, traces, CPU profiles, and memory snapshots.
+The agent runs under a service identity, so we can scope its permissions and see which actions came from our performance agents. Moving agentic work to the cloud lets us run work in parallel without relying on engineers’ laptops being open or manually managing individual cloud development boxes.
+Subscriptions that wake the agent when something changes
+Some work has to wait for a person or a deployment; an agent shouldn’t have to keep running in the meantime. When a task needs to wait, it can subscribe to events like review comments or failed CI checks on a GitHub pull request to get notified when it’s time to pick the work back up. 
+When an incoming event matches the subscription, the task becomes ready again and the dispatch loop can then assign an agent to continue the work.
+The first workflow: from alert to recovery
+Finding, root causing, and solving regressions is the first workflow we built inside the Performance Factory. We call it the Regression Workflow. 
+A performance regression moves through several stages: 
+needs investigation
+, 
+root caused
+, 
+fix proposed
+, and 
+resolved
+, so we built the automated workflow to reflect and move a task through those same stages.
+When one of its configured performance alerts fires, the Regression Workflow opens a task that agents pick up and move across these stages. The task records its status and key findings outside of any one agent’s context so that other agents or engineers can pick up the work. Engineers can follow the work in Slack or the Regression Workflow UI, add context, and review proposed changes. After a fix is deployed, an agent checks whether the performance has recovered to its original state before resolving the task.
+Z
+Z
+Detected
+System
+Find root cause
+Agent
+Propose fix
+Agent
+Review & deploy
+Engineer
+Verify recovery
+Agent
+Resolved
+Active stage: Detected
+The Regression Workflow’s steps include finding the root cause, proposing a fix, reviewing and deploying, and verifying recovery.
+Agents find the root cause
+Finding the root cause (or causes) is the first major step in the workflow. The agent starts by figuring out which metrics got worse, when they started to change, and which service requests were affected. The 
+perf-forensics
+ skill gives Codex access to the tools our performance engineers use and a playbook for working through those questions.
+An alert fires when a metric crosses a threshold, but the regression may have started hours earlier. The agent looks back through the data to find when the metric first got worse. It then compares groups of requests: did similar requests actually get slower, or were we serving more requests that were already slow? Those findings point to different causes.
+Once it knows when and where to look, the agent examines deployments and feature flag changes, then reads the relevant code. It checks when a change actually reached the affected requests and uses logs or traces to test whether the code could explain what happened.
+Adversarial review strengthens the diagnosis
+Early on, agents sometimes stopped at the first plausible explanation they found, and some of those diagnoses turned out to be wrong. To catch these mistakes, we added an adversarial review: a separate Codex session that tries to disprove the proposed diagnosis. The reviewer rechecks the assumptions and tests counterfactuals. If a rollout caused the slowdown, did similar requests that weren’t exposed stay healthy? If the suspected change was rolled back, did the affected metric recover?
+In one investigation, an agent traced failing ChatGPT conversations to errors in image downloads and marked the cause as found. The Codex reviewer noticed that the internal service responsible for locating files had already recovered while image requests were still failing. The diagnosis did not explain the continuing failures, so the AI reviewer reopened the investigation and recorded what still needed to be established.
+We’ve had success breaking larger jobs into focused Codex turns. In a manual review of 100 root cause suggestions, we graded 70% as accurate, with 30% needing further refinement or not fully establishing causality. In the Regression Workflow, different turns investigate regressions, challenge diagnoses, and propose fixes to increase accuracy numbers through checks and balances.
+Fixing the regression is the hard part
+Once the diagnosis passes adversarial review, the workflow asks Codex to implement a fix and open a pull request. An engineer reviews the PR and decides whether to merge it. We’ve put a significant amount of work into making this handoff as easy as possible. Each task has a report with an automatically generated summary of the regression, its impact, the root cause, and the proposed fix. We’ve tuned these summaries to be easy to scan, including metrics time series, CPU flame graphs, and traces to help engineers quickly understand the findings and inspect the evidence. Engineers can edit the PR directly or use the diagnosis to write their own fix. If they leave comments on the PR, the workflow wakes an agent to address them.
+An example task report for a regression shows key details, root cause, and proposed fix.
+After an engineer deploys the fix, the workflow wakes an agent to check whether performance has returned to its earlier baseline. If it has, the agent marks the task as resolved. If performance has only partially recovered, the agent resolves the original regression and opens a new task for the remaining slowdown, which may have a different cause. If there’s no improvement, the agent records what happened and sends the regression back for investigation.
+Getting fixes right has been harder than finding the cause. For example, we’ve seen cases where the agent-proposed changes are more complicated than necessary or introduce new issues. Similar to the root cause step, we added an adversarial review of each proposed fix to check whether they address the root cause and help catch bugs or unintended consequences. Some fixes also require higher level architectural decisions. For example, adding a cache might improve performance but introduce stale data. Changes like these benefit from guidance from an engineer who knows the service and can weigh the tradeoffs.
+We’re building an evaluation and improvement loop using these cases. By comparing the fixes agents propose with the changes engineers ultimately merge, we can better understand where proposals fall short, build evals, and improve the workflow. We’re also working on using synthetic performance tests so agents can measure proposed fixes and revise them before asking an engineer for review. We’re also exploring how agents could use our other agentic review tools to identify low-risk changes and eventually ship those fixes without a human in the loop.
+What we learned
+Building and running the Performance Factory has taught us a lot about developing and operating agent workflows in production. Here are some lessons for teams building their own agentic workflows.
+Protect engineers’ attention
+The raw output from a Codex investigation can be a wall of text that’s hard to parse. It takes effort to figure out what the agent is claiming and track down the graphs to see whether the data backs it up. We want engineers to spend their attention on decisions rather than reconstructing the agent’s work.
+Agents can investigate more regressions than a team has time to read about. Our first version gave engineers a UI full of findings, but someone still had to decide which information mattered. One regression can also appear as several incidents across alerts, monitors, and channels. The workflow now links related incidents, groups them by the metrics teams care about, and ranks their estimated impact. Engineers can focus on adding context, weighing tradeoffs, and deciding what to ship.
+Evaluate changes to your agents
+Updating an investigation skill or upgrading the model can make the agent better at diagnosing some cases and worse at others, so we nee
+d to test 
+their impact before updating them
+. W
+e test two things separately: 1) how well the agent investigates and 2) how useful its summaries are to engineers.
+Evaluating investigations
+For investigations, we backtest against past production incidents. We turn those incidents into a suite of test cases we can rerun when we change the skill. A Codex agent attempts to investigate and resolve the incident, and we compare the agent’s behavior to the actual past resolution data. Each case starts with a fresh Codex investigator and the original signal, stripped of details that might give away the answer.
+Historical tests need care. Metrics and traces expire, while evidence collected after recovery can give away the cause. A test is only useful if we understand what evidence the investigator could see. 
+The agent can inspect code and query production telemetry within set limits. It cannot use saved memories (notes from earlier investigations), read the incident writeup, or see results from previous runs. We also inspect its transcript afterward for information that might have spoiled the test.
+We score when the problem began, how large it was, and which requests were affected. We also evaluate how the agent uses evidence to rank possible causes and explain what remains uncertain. An agent can get the timing right and still blame the wrong deployment, so we score those separately.
+Evaluating agent-to-engineer handoffs
+We evaluate task summaries using snapshots of saved tasks. These make particularly good backtests because summarization does not depend on external metrics or traces that expire. A separate grader checks whether an engineer unfamiliar with the system can understand what happened and why it matters, whether useful charts were kept, and whether the proposed next step is supported by the evidence.
+Turn recurring failures into self-repair
+Lastly, our agents need monitoring just as much as the services they investigate. A broken profiler or a missing permission can keep an agent from verifying what caused a slowdown. Those failures can be hard to spot in the final report, so we run an agent every day to look through messages and logs from recent runs for tool failures and access errors.
+We use the Performance Factory to self-repair and fix the problems this check uncovers. When the same tool error blocks several investigations, the agent creates a task to fix it. If the cause is clear, an agent proposes a fix, and an engineer reviews the change and decides whether to merge it. After merging changes like this, we also use evals to check whether agents can get past the step that previously blocked them.
+What’s next: broader applications, proactive monitoring
+The Regression Workflow is just one instance of the agent factory pattern that moves tasks through explicit states. Agents advance the task when more work is ready; separate reviewers challenge the conclusions; engineers step in when the next decision requires judgment. Other workflows can reuse the same machinery with different states, instructions, and events.
+From one workflow to many. The Performance Factory can coordinate agents across workflows, with agents in one workflow creating tasks for another.
+Currently, our Regression Workflow starts when an alert fires. However, we’re working on more proactive ways for the Performance Factory to find slowdowns and optimizations even when no alert fires. We want agents to use the large amount of fine-grained performance data we already collect to spot regressions our alerts miss or discover optimizations. By comparing different kinds of data (batches of CPU and memory profiles, heap dumps, and request traces across releases), an agent might notice a small increase in CPU for a given request. It can then open a task in the Regression Workflow to trace the increase to its cause, implement a fix, and open a PR for an engineer to review.
+In cases where we already know what to look for, we’re working to encode known signals into more Performance Factory workflows. Our service rightsizing skill, for example, helps agents spot autoscaling settings that keep more replicas running than a service needs. When we learn to recognize a pattern like that, we want to build and regularly run a workflow for it across all our services, constantly optimizing in a rapidly changing environment. With the Performance Factory, what an engineer learns from one slowdown can shape how we investigate and fix the next one, even months later in a different service.
+Next time you’re using ChatGPT and notice a slowdown, there’s a good chance the Performance Factory is already figuring out why. Today, the bottleneck may be 
+
+===== https://gigazine.net/news/20261120-openai-chatgpt-performance-factory/
+(status 200)
+▼サーバー運営を助ける支援をお願いします
+  ▲サーバー運営を助ける支援をお願いします
+毎月
+825円(税込)
+900円
+(うち手数料33円)
+毎月
+1回
+    親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！
+    ・
+これまでGIGAZINEを支援してくれたメンバーのリスト
+2026年11月20日 17時09分
+AI
+「Codexを用いてChatGPTの高速性を維持する方法」をOpenAIが解説、AIエージェントで工場システムを構築して自律的に改善作業を進める
+OpenAIはChatGPTなどの自社製品の開発にCodexを活用しています。新たに「Codexを用いてChatGPTの高速性を維持する方法」という解説記事が公開されました。
+How OpenAI’s Performance Factory keeps ChatGPT fast | OpenAI
+https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast/
+Codex already helps us build ChatGPT faster. Now it’s helping us keep ChatGPT fast.
+We built the Performance Factory to coordinate agents that investigate regressions, propose fixes for engineers to review, and check if those fixes work in production. 
+pic.twitter.com/zUEAO4wjoI
+— OpenAI Developers (@OpenAIDevs) 
+November 19, 2026
+OpenAI社内の開発体制の推移を示した図が以下。初期は人間のエンジニアが手作業で問題の調査や対策を実施していました。その後Codexをパートナーとして活用するようになりましたが、導入当初は作業全体を人間が主導する必要がありました。AIの性能向上やスキルの整備によってCodexが自律的に作業をこなせるようになり、「アラートが発生したらCodexセッションが自動的に始まり、調査結果をSackに投稿する」というシステムが完成。さらにシステムが洗練され、記事作成時点では必要なタスクの特定やエージェントの割り当て、テストの実行、本番環境までのデプロイまでを自律的に進行できる「エージェントファクトリー」が稼働しています。
+OpenAIはChatGPTの高速性維持を担うエージェントファクトリーを「パフォーマンスファクトリー」と名付けています。パフォーマンスファクトリーはタスクの構成を担う「タスクサービス」、準備完了したタスクをエージェントに割り当てる「ディスパッチループ」、タスクを実行する「クラウドCodex」、何らかの変更が発生した際にエージェントを起動する「サブスクリプション」という4つのコンポーネントで成り立っています。
+パフォーマンスファクトリーは3カ月で1700件上の調査を実施し、600件以上のケースで根本原因を特定することに成功したとのこと。
+記事作成時点ではパフォーマンスファクトリーはChatGPTの速度低下に関するアラートの発生時に動作しています。OpenAIはアラートが発生していないときでもパフォーマンス低下や最適化可能領域を積極的に見つけられるようにシステムを改善するべく取り組んでいるとのことです。
+Google
+優先ソースに設定
+Clipboard
+記事タイトルとURLをコピー
+X
+Facebook
+Bluesky
+Discord
+Threads
+・関連記事
+OpenAIが「GPT-6.2 Astra」「GPT-6.2 Sol」をリリース、資料作成やPC操作が進化＆少ないトークンで複雑な業務を処理可能に - GIGAZINE
+OpenAI研究者の上位1割は1日当たり367万円分のAIを使用、AI開発の中核は人間が担いつつ「AIによるAIの開発」の実現に向けて加速中 - GIGAZINE
+OpenAIがAIを用いてAMD製GPUや独自開発AIチップの改善に成功、半導体設計の専用AIモデルも開発 - GIGAZINE
+ChatGPTのチャット内でクレカ決済できる「ChatGPT Wallet」が登場 - GIGAZINE
+・関連コンテンツ
+OpenAIがClaude Code用のCodexプラグインをリリース、ユーザーはClaude Code内からCodexを呼び出してコードレビューやタスクの委任を実行可能に
+AnthropicがClaude Codeの使用制限をユーザーに通知なしで勝手に厳しくしたと騒ぎに
+Codexに「プログラマー以外にも役立つ業務改善プラグイン」が追加される、Codexの週間アクティブユーザーは500万人超え
+Codexと同じハーネスを使ってAIエージェントを作れる「Agents API」が登場
+OpenAIが音声会話AI「GPT-Live-1」のAPIをリリース
+Claude DesignとClaude Codeの連携が強化されてコーディングからデザインまでAIをバリバリ活用可能に
+RedditがAPI有料化に伴う抗議の影響で3時間にわたってサーバーがダウン
+Anthropicがプルリクエストのバグを自動検出する「Code Review」を発表、1回あたりのトークン使用量は平均2400円分から
+2026年11月20日 17時09分00秒
+ in  
+AI
+,  Posted by log1o_hf
+You can read the machine translated English article 
+OpenAI explains 'How to maintain ChatGPT…
+.
+お邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。
+×
+いいえ、後で時間があれば
+はい、寄付します
+←

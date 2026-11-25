@@ -1,0 +1,431 @@
+===== https://www.gizmodo.jp/article/2611-flipper-one-network-hacking-tool/
+(status 200)
+イルカ印のハッカーツール、新型「Flipper One」登場。ヤバいことできそう？
+Nov 25,2026 19:30
+金本太郎
+ ( GIZMODO編集部 / 将来の夢はコールドスリープ )
+Google検索でギズモードを
+お気に入りに追加
+Image: Flipper R&D /YouTube
+今度の遊び場は……ネットワークだ！
+各種の電波や赤外線など、さまざまな無線信号を受信・送信できる、キーホルダーサイズのコンピューター「
+Flipper Zero
+（フリッパー ゼロ）」。
+NFCやRFID、赤外線リモコンなど、身近な電子機器で使われている通信を解析できることから、エンジニアの絶好のおもちゃになったり、悪いハッカーたちに悪用されたり。何かと話題になったガジェットです。
+Advertisement
+そんないたずら好きのイルカに、新たな兄弟機が登場しました。
+その名は「
+Flipper One（フリッパー ワン）
+」。現在Kickstarterでクラウドファンディング中です。
+ハックの対象はネットワークへ
+Flipper Zeroのカバー範囲は、NFCやRFID、赤外線、Sub-GHz帯の無線通信など。Bluetooth LEにも対応しており、身の回りの家電やリモコン、ガジェットで使われている通信を得意としていました。
+一方、Flipper Oneがターゲットとするのは、もっと複雑なコンピューターのネットワーク。メインとなるのはWi-Fiや有線LANで、小さなメガネケースくらいのサイズの本体にはWi-Fi 6Eと、2基の有線LAN（ギガビットEthernet）ポートを搭載しています。
+さらに、モジュールを追加すれば、遠距離・省電力通信のLoRaや、電波をソフトウェアで解析するSDR（Software Defined Radio／ソフトウェア無線）、携帯電話の5G通信などにも対応できます。
+Image: Flipper R&D /YouTube
+てきることは「
+ネットワーク上でどんな通信が行なわれているのかの解析
+」。
+たとえば、2基のLANポートにケーブルを挿せば、ケーブルを通過する通信を記録・解析できます。Wi-Fiでは、周囲を飛び交うWi-Fiデータを観測する「モニターモード」に対応。
+さらに、自分で作ったデータをネットワークに送信する「
+パケットインジェクション
+」もできます。
+うまく使えば、自宅のネットワークでどんな機器が通信しているのかを調べたり、ルーターが不正な通信にどう反応するのかを検証したりできます。
+パケットインジェクションのほうは、まあ、Wi-Fi越しの攻撃にも使えちゃったりします。もちろん、使うなら自分が管理するネットワークで。
+ふつうにLinuxコンピューター
+Image: Flipper R&D /YouTube
+解析する対象が複雑なネットワークになったこともあって、Flipper Oneの処理能力はZeroから大幅にアップ。
+OSにはLinuxを採用、本格的なコンピューターと呼べるレベルで、ディスプレイやキーボードを接続すれば、普通のLinux PCとして使うこともできます。
+チップには6 TOPSのNPUまで搭載。小型のAIモデルをローカルで動かすことも想定されています。
+ポケットに入るLinuxコンピューターであり、ネットワーク解析ツールであり、TVのビデオボックスになったり、モジュール次第では無線テスト機にもなる。このマルチツールぶりは、Flipper Zeroから共通したキャラクターですね。
+Flipper OneのKickstarter価格は399ドル（約6万3000円）から。2027年7月の出荷開始を予定。
+現時点で日本での展開は不明です。ただFlipper Zeroは日本の技適に対応していたので、期待していいと思います。
+■開発者インタビューはこちら
+何かと話題のマルチツール端末「Flipper Zero」新モデルが開発中 | ギズモード・ジャパン
+Source: 
+Flipper One
+, 
+Kickstarter
+
+===== https://www.bleepingcomputer.com/news/hardware/flipper-devices-launches-399-flipper-one-linux-based-multi-tool/
+(status 200)
+Flipper Devices launches $399 ‘Flipper One’ Linux-based multi-tool
+                            By 
+Bill Toulas
+November 17, 2026
+11:00 AM
+0
+Flipper Devices, the company behind the popular Flipper Zero pentesting device, has launched a crowdfunding campaign for Flipper One, a portable Linux computer and networking multi-tool.
+Despite global RAM shortages and unpredictable price fluctuations, the company said Flipper One will 
+launch at $399
+, a price that reportedly covers production costs and leaves no profit margin.
+Flipper Devices said the device’s RAM and UFS storage account for half of the total hardware cost, but after years of development, they decided not to hold back now.
+“Instead of waiting for perfect market conditions or raising the price, we’re moving forward with the Kickstarter campaign,” reads the press release Flipper Devices shared with BleepingComputer.
+“We aim to make Flipper One as accessible as possible without building a profit margin into the hardware's price.”
+Flipper One is a portable computer that runs a Debian-based system called 
+Flipper OS
+, and features built-in Wi-Fi 6E, Gigabit Ethernet, and an eSIM.
+Source: Flipper Devices
+It can manage up to five network uplinks, act as a hotspot, run VPNs and firewalls, and connect to an external display over USB-C.
+It is a separate product from 
+Flipper Zero
+, focused on IP networking and on-device computing.
+In May, Flipper Devices asked the community 
+to help build it
+, highlighting the project's complexity and listing several ambitious goals.
+Development appears to have progressed at a good pace since then, and the company is now preparing to build the first actual units of the Flipper One.
+The company says that Flipper One already runs on the mainline Linux kernel, while USB-C DisplayPort patches are under review for inclusion in the mainline Linux.
+Work continues on memory power efficiency and removing the remaining closed-source boot components.
+The campaign also offers LoRa (support for MeshCore, Meshtastic, Reticulum, and walkie-talkie mode), a 5G modem, and software-defined radio expansion modules (full specifications to be disclosed).
+Source: Flipper Devices
+The Kickstarter campaign for Flipper One will run between November 17 and December 17, with the goal of funding the first production run.
+Device shipment for the first buyers is estimated for July 2027, and the package will include the device and a USB-C cable.
+Flipper Devices also relied on Kickstarter to launch its iconic Flipper Zero in 2020, since then selling over 1 million devices.
+Flipper Zero reached its funding goal within eight minutes and raised $4.8 million from crowdfunding in 30 days.
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+New Spectre v2 attack variant leaks Linux root password hash in minutes
+New Shirudo tool uses AI to shield unpatched Linux systems from exploits
+Hackers plant GSocket on Linux servers for persistent access
+QNAP says hackers breaching NAS devices in Plex2Shell attacks
+Veeam warns of Software Appliance boot failures on AMD EPYC hosts
+
+===== https://itsfoss.com/news/flipper-one-crowdfunding/
+(status 200)
+I own a Flipper Zero. It's a fun little device for anyone with a hacker mindset, the kind of gadget you poke at NFC tags, IR remotes and Sub-GHz signals with just to see what happens.
+So when Flipper Devices first showed off the Flipper One, I expected it to be just a spec bump. It isn't one. 
+As we noted when the 
+Flipper One was first announced
+, this is a pocket-sized Linux computer that also happens to be a serious network tool. In short, it's a lot more capable device than its predecessor.
+And now it's official. The Flipper One Kickstarter campaign is live now, priced at 
+$399
+. That's double what a Flipper Zero costs, and you can blame the steep increase on the chip shortage in this age of AI.
+Key Specifications
+Price:
+ $399 (Kickstarter)
+SoC:
+ Rockchip RK3576 (8 cores) + Raspberry Pi RP2350 co-processor
+Memory/storage:
+ 8 GB LPDDR5 RAM, 64 GB UFS
+Connectivity:
+ Wi-Fi 6E, Gigabit Ethernet, built-in eSIM
+Expansion:
+ M.2 and GPIO modules (5G, LoRa, SDR)
+Estimated shipping:
+ July 2027
+The Flipper One costs $399 on Kickstarter. Folks who bought the $20 pre-order coupon earlier were promised a $379 price.
+Flipper Devices is also clear on the fact that this is not a successor to the Flipper Zero. The Zero works offline, interacting directly with physical stuff like NFC, RFID, infrared and Sub-GHz radio. Flipper One moves up the stack into networked computing: high-speed connectivity, data processing and real on-device compute.
+Under the hood, it uses a dual-processor setup. The 
+Rockchip RK3576
+ octa-core chip runs Linux, networking, USB 3 and video output. A low-power 
+Raspberry Pi RP2350
+ handles the small 
+256x144 grayscale display
+, buttons and power. That means the screen and buttons keep working even when the main Linux OS is not used.
+The networking side is where things get interesting. It can juggle up to five uplinks, act as a hotspot, run VPNs and firewalls, scan wired and wireless networks, and analyze Wi-Fi traffic. The built-in 
+eSIM
+ comes with a Flipper SIM data plan.
+It also doubles as a battery monitor, keeping tabs on its own power and whatever you plug into it. 
+Plug it into a monitor over USB-C DisplayPort Alt Mode and it becomes a desktop computer. Or hook it up to a TV and use it as a media box. It is a versatile device.
+Flipper OS and the mainline kernel
+I like the fact that they have put in effort for a custom OS called Flipper OS, a Debian-based system where you switch between preconfigured profiles for different jobs: network router, radio lab, desktop, TV media box.
+Each profile has its own settings, kernel and apps. You pick one from a boot menu before Linux even loads. Your changes live in an overlay layer, so you can wipe a profile back to default if you mess it up. Experiment freely, as they say.
+Flipper Devices has also partnered with Collabora to get the RK3576 into the mainline Linux kernel. The device already runs on mainline, and the DisplayPort Alt Mode patches are under review. The goal is an ARM computer with no binary blobs. Anyone who has fought with a vendor BSP on an ARM board will appreciate that.
+There's still some work left. The team is working on dynamic memory frequency scaling for better power efficiency, and on removing the few closed-source bits remaining in the boot process. All of this is in public knowledge, available on the 
+Flipper Developer Portal
+.
+$399 price tag with no profit margin!
+The global RAM shortage has made memory prices volatile (or should I say hostile). Flipper says RAM and UFS storage now account for more than half of the total hardware cost of the Flipper One.
+Instead of waiting or raising the price, they are selling the hardware at cost and betting on the community to fund the first production run. Bold move, or a sign of how bad memory pricing has gotten? Probably both.
+The track record helps. Flipper Zero raised $4.8 million on Kickstarter, hit its goal in eight minutes, and the company has sold over a million devices since 2020.
+Pre-order is open now
+The Flipper One Kickstarter campaign runs from November 17 to December 17, 2026. You can back the campaign on Kickstarter.
+Flipper One on Kickstarter
+The device costs 
+$399
+, and the box includes the Flipper One and a USB-C cable. Estimated shipping is 
+July 2027
+. 
+As with any crowdfunding campaign, treat the timeline as an estimate. Back it because you want to support the project, not because you're counting on the ship date.
+Three expansion modules are also available through the campaign:
+LoRa module:
+ works with Meshtastic, MeshCore and Reticulum mesh networks, and doubles as a walkie-talkie.
+5G modem:
+ an M.2 module that replaces the back cover, with four SMA antenna ports and support for both the built-in eSIM and external SIM cards.
+SDR module:
+ a software-defined radio module, full specs to be announced later.
+The modules cost extra.
+As an owner of Flipper Zero, I am excited for Flipper One launch. In normal times, this would have been a sub $200 device but we live in the times where hobbyist gadgets are getting expensive because Big Tech has disrupted the supply chain for their AI obsession.
+Enjoyed this update? Support independent Linux news coverage
+      It's FOSS has been helping people use Linux for the past 14 years. Help us stay independent from big tech. Become a Plus member, enjoy ad-free reading and get 5 eBooks.
+Plus yearly
+Ad-free, FREE ebooks
+Join yearly
+Best value
+Plus lifetime
+Pay once, Enjoy forever
+Go lifetime
+Buy us a coffee
+Any amount, no commitment
+Support on Ko-fi
+Skip the AI slop and SEO spam in your Google results
+      Tell Google you prefer It's FOSS, and it will show our Linux news and tutorials, created by experienced Linux users, more often when you search. It takes just a click.
+Set as preferred source
+🐧 Play today's Tuxdle — the daily Linux word puzzle →
+Get FOSS Weekly in your inbox
+      A wholesome Linux newsletter with the latest releases, relevant news, tips and tutorials, trivia and memes, quizzes and deals for desktop Linux users. Free, every week.
+
+===== https://www.zdnet.com/tech/flipper-one-cost-features-linux-computer-kickstarter/
+(status 200)
+Flipper
+ZDNET’s key takeaways
+Flipper One raised $13M+ from 24,000+ backers — over 40x its goal.
+It’s a $399 pocket Linux computer for networking, not a Zero upgrade.
+Add-on modules raise the price: The full LoRa, SDR, and 5G bundle is $759.
+The 
+Flipper One crowdfunding campaign
+ has broken the $13-million mark, smashing the funding raised for previous Flipper devices and demonstrating strong interest in the successor to the Flipper Zero. The $399 Flipper One is a pocket Linux computer focused on networking, with delivery estimated for July 2027. But it isn’t simply an updated version of the Flipper Zero. It’s a very different animal and a much more serious bit of kit.
+Flipper One vs. Flipper Zero: What’s different?
+The thing that made the Flipper Zero so popular was how easy it was to use. You could fire it up and turn the volume down on the TV at your parents’ place, see the radio waves coming from your car’s key fob, and copy hotel room key cards.
+Also: 
+The Flipper One may be the ultimate Linux PC for hackers in 2026 – and I’m excited
+More from ZDNET
+It could do a lot, there wasn’t a steep learning curve, and you didn’t need to buy anything else. Did the fake videos on TikTok from people claiming they could change the prices at gas stations (I wish!) or start cars remotely help make the Zero more popular?
+Unfortunately, yes. But what made it successful was that it packed a lot of power into a package that was small, fun, affordable, and easy to use.
+If the Flipper Zero, with its NFC, RFID, sub-GHz, and IR, was kindergarten, the Flipper One is a college degree: a pocket Linux computer focused on networking.
+This is reflected in the price. You can pick up a 
+Zero for $169
+, while the Flipper One is $399.
+		Trending Now	
+						I’ve tested countless Linux distros, and Pond is unlike anything I’ve tried – here’s why					
+11/19/2026
+						How I make GNOME more MacOS-like – with free dock extensions					
+11/23/2026
+						I tried the new Arch-like Devario OS – and quickly became a fan					
+11/25/2026
+What this buys you is the Flipper One base computer with a 256 × 144 grayscale LCD, Rockchip RK3576 8-core ARM SoC with NPU, a low-power MCU for handling the LCD and user interface, 8GB of LPDDR5 RAM, 64GB of UFS 2.2 storage, and a microSD slot.
+Is the Flipper One worth $399?
+If that $399 feels like a lot, it’s worth keeping in mind that, according to Flipper, the price only covers production costs and that the RAM and UFS storage account for at least half of the total hardware cost.
+If you think this is a lot, you could spend a lot more. Adding a LoRa, SDR, or 5G module will push the total up a lot higher. And if you want all three modules, you’re looking at $759 for the Flipper One Ultimate Bundle.
+Also: 
+The Flipper One is the Linux cyberdeck I wish my Raspberry Pi could be
+The reception has been strong enough that pledges have flown past the $300,000 goal that Flipper initially set, with over 24,000 backers pledging over $13 million. Close to 5,300 backers have gone for the Ultimate Bundle, compared to just over 4,300 choosing the bare Flipper One.
+This suggests that backers really want the radio capabilities that this new platform offers.
+The Flipper One Ultimate Bundle adds an SDR, 5G module, and LoRa mesh networking.
+Flipper
+If you want one, this crowdfunding run is a good time to get one because it’s a Kickstarter Special slashing 25% off an estimated retail price of $550.
+The response over on Reddit has been a little more subdued, with some being taken aback by the price of the Zero’s bigger sibling.
+Also: 
+7 useful things I can do with my Flipper Zero – as someone who’s used it for years
+As someone who homebrews a lot of electronics, I’m going to say that the price is justified, and this project goes far beyond something you could put together with a Raspberry Pi and some code.
+When will the Flipper One ship? Kickstarter delivery timeline
+The Flipper One 
+campaign
+ runs until Dec. 17, 2026, with delivery estimated for July 2027.
+Keep in mind that this is a Kickstarter pledge, not a purchase, and that rewards aren’t guaranteed. Flipper also says on the Kickstarter page that component shortages are the biggest risk to the project and that they “could cause significant delays to production and delivery.” It also says that if RAM prices continue to rise, it cannot “rule out adjusting some product specifications, including reducing the amount of RAM.”
+Also: 
+Is the Flipper Zero the best multi-tool for hacking?
+And the good news here is that I’ve seen several analysts predicting that RAM prices will begin to go down in 2027 as demand eases off.
+Show Comments
+					Log In to Comment				
+								Log Out							
+						Community Guidelines					
+Please accept cookies to view the comments powered by Disqus.
+Adrian Kingsley-Hughes
+							Senior Contributing Editor						
+Adrian Kingsley-Hughes is an internationally published technology author who has devoted over two decades to helping users get the most from technology -- whether that be by learning to program, building a PC from a pile of parts, or helping them get the most from their new MP3 player or digital camera. Adrian has authored/co-authored technical books on a variety of topics, ranging from programming to building and maintaining PCs. His most recent books include 'Build the Ultimate Custom PC', 'Beginning Programming' and 'The PC Doctor's Fix It Yourself Guide'. He has also written training manuals that have been used by a number of Fortune 500 companies.
+						See full bio					
+						The Latest from Adrian					
+									I swapped my Apple Watch Ultra for a sub-$250 outdoor watch – here’s what I gained (and lost)								
+									Flipper Zero vs. Flipper One: Why the new model isn’t an upgrade								
+									Heat from your charger could be killing your battery – I found one that stays cool								
+/ latest
+You can turn Claude artifacts into Windows and Mac apps now – here’s how
+Get a free iPhone 18 Pro at AT&T for Black Friday – here’s how
+This Hatch alarm clock can track your sleep, and it’s 25% off right now
+Gen Z is the least interested in AI at work – and it’s not even close
+
+===== https://www.techradar.com/tech/why-did-the-flipper-one-just-raise-usd15-million-on-kickstarter-heres-what-the-pocket-gadget-does-and-how-it-compares-to-the-flipper-zero
+(status 200)
+The Flipper One can work as a desktop computer, or a 5G hotspot
+(Image credit: Flipper)
+Jump To:
+Flipper One vs Flipper Zero: what is it?
+What can you do with it?
+Should we be worried (again)?
+Copy link
+Facebook
+X
+Whatsapp
+Reddit
+Pinterest
+Flipboard
+Threads
+Email
+Instagram
+Share this article
+0
+Join the conversation
+Follow us
+Add us as a preferred source on Google
+Newsletter
+Subscribe to our newsletter
+Its makers are insisting it's not a direct successor to 
+the Flipper Zero
+, but there's a new pocket-sized, mini-computer on the market that's going to appeal to tinkerers, hackers, and tech enthusiasts: the Flipper One.
+A Kickstarter crowdfunding campaign for the device just went live: it raised $13 million on the first day, and currently stands at more than $14.5 million at the time of writing (and continues to go up rapidly).
+Given that kind of financial backing and widespread interest, you might be wondering what the Flipper One is, what it can do, and whether it's going to cause as many security headaches as the Flipper Zero. Here's what you need to know.
+Latest Videos From
+TechRadar
+Watch full video here: 
+Flipper One vs Flipper Zero: what is it?
+The Flipper Zero, which launched in 2020 
+(Image credit: Flipper)
+Before we get to the Flipper One, it's probably helpful to do a quick Flipper Zero recap. Launched in 2020, the Flipper Zero is a tiny gadget that's 
+still on sale
+ and which can interact with a whole host of fundamental, low-level tech protocols: think Bluetooth, RFID, NFC, and the like. It can analyze and control devices like key cards, fobs, TV remotes, and electronic access points.
+That's led to numerous 
+security scare stories
+ down the years, but it's not quite the hacker's dream that it's sometimes portrayed as — it can't really get into devices or systems that are competently protected. It's more for geeks and tech enthusiasts who are interested in customizing their gadgets and experimenting with electronics, which does admittedly include testing security vulnerabilities.
+And so to the Flipper One. The two devices are "completely different projects built for different tasks" according to the team at Flipper. The Flipper One is a similar, compact size, but it runs regular software (Linux) and taps into more consumer-friendly technologies — so Wi-Fi and 5G rather than RFID and NFC.
+The Flipper One is more powerful and is capable of running more complex software, but it doesn't tap into the raw wireless and wired signals that the Flipper Zero does. It's more interested in Wi-Fi networks, routers, and internet-connected devices — so, for example, the Flipper Zero could mimic a wireless garage door opener but the Flipper One can set up a VPN on a network.
+Get daily insight, inspiration and deals in your inbox
+Sign up for breaking news, reviews, opinion, top tech deals, and more.
+What can you do with the Flipper One?
+The Flipper One will analyze your network for you 
+(Image credit: Flipper)
+So just how capable is this device? What's so appealing that over 27,000 (and counting) people have pledged money to bring it into being? The Flipper One's Kickstarter page lists many different things you can do with the device — and while it's not suitable for complete beginners, it should be accessible enough for anyone who's reasonably tech-savvy.
+You can use it to set up a VPN on your network, as already mentioned, and it can act as both a Wi-Fi client and hotspot (with an Ethernet port, it'd work as a travel router in a hotel room). It's able to monitor Wi-Fi networks, so you could check up on the devices connected to your network and check for any security issues, and there's also eSIM capabilities so it can get on cellular networks without any other help.
+It's helpful for analyzing traffic between smart home devices, and controlling them using custom configurations too. As it's actually a complete mini computer, you can use it as a portable TV media box, and it'll work as an actual desktop computer with the right peripherals attached — just don't expect too much in terms of performance.
+There's also a lot of scope for expansion with the Flipper One, too. There are already add-ons for connecting to radio signals, so you could use it as a radio scanner, and off-grid communication protocols — the device can work as an off-grid walkie-talkie, for example. Of course, once the developer community gets access to the gadget, we can expect much more functionality to become available.
+Should we be worried (again)?
+With the right add-on, you can use the Flipper One as a walkie-talkie 
+(Image credit: Flipper)
+We've already touched on some of the hacking concerns that have emerged around the Flipper Zero down the years, and they're not without merit. This is a compact device that's able to directly interface with electronics like access cards and key fobs, and test security protocols at basic levels.
+Perhaps the most concerning capability of the Flipper Zero is its ability to intercept and repeat wireless signals — with a 
+car key fob
+, for example. However, these kind of hacks have been 
+largely exaggerated
+, and the Flipper Zero is far from being a magic hacking toy. The majority of systems will have enough security in place to keep it out.
+The Flipper One can also be used as a hacking device, but in a different sort of way. It's more for prodding and pushing full computer systems and networks: you could test vulnerabilities in your Wi-Fi network or a web server, or even simulate some aspects of cyberattack. On the flip side, it can also be used as a honeypot, a way of trying to lure in and expose other hackers and malware.
+As with the Flipper Zero though, there's no need to panic about the Flipper One. Its security testing and hacking prowess is not significantly different to a laptop or a Raspberry Pi system — it doesn't suddenly unlock security vulnerabilities in other systems and devices that weren't there before, and could be exposed in other ways.
+Follow TechRadar on Google News
+ and
+add us as a preferred source
+ to get our expert news, reviews, and opinion in your feeds.
+David Nield
+Freelance Contributor
+Dave is a freelance tech journalist who has been writing about gadgets, apps and the web for more than two decades. Based out of Stockport, England, on TechRadar you'll find him covering news, features and reviews, particularly for phones, tablets and wearables. Working to ensure our breaking news coverage is the best in the business over weekends, David also has bylines at Gizmodo, T3, PopSci and a few other places besides, as well as being many years editing the likes of PC Explorer and The Hardware Handbook.
+View More
+You must confirm your public display name before commenting
+Please logout and then login again, you will then be prompted to enter your display name.
+Logout
+LATEST ARTICLES
+1
+Best Black Friday MacBook deals: MacBook Neo, MacBook Air M5, MacBook Pro M6, and even the new MacBook Pro PROLED M5 Pro get price cuts
+2
+T-Mobile's Black Friday deals are here — I've found the 8 biggest discounts on the iPhone Duo, Galaxy S26 Ultra, Pixel 11, and more
+3
+It's back! Apple AirPods Pro 3 just crashed to their lowest-ever US price at Amazon (now just $149 — previous low $169) and I'm livid because I live in the UK
+4
+Amazon Black Friday deals live: AirPods, Fire TV Sticks, LG OLED TV, iPad Philips Hue, PS5 DualSense, Nespresso, Dyson AirWrap and much more!
+5
+Massive data breach exposes 2 billion credentials — email addresses, login names, passwords, and more all leaked online in major database breach
+
+===== https://flipper.net/pages/flipper-one
+(status 200)
+FLIPPER ONE
+Open Linux Multi-tool based on a powerful ARM processor. Network toolkit with built-in Wi-Fi 6E and Gigabit Ethernet. Expandable via M.2 modules: 5G cellular modem, SDR radio and more.
+LIVE ON
+Follow progress at the 
+Developer Portal >>
+OPEN LINUX PLATFORM
+Flipper One runs on completely open-source Linux firmware with a mainline kernel. This means ultimate compatibility with bleeding-edge kernel versions, free from vendor-specific BSP limitations and binary blobs. Our goal is to create a fully upstream-supported ARM computer that never becomes outdated, and a well-documented platform giving the community maximum freedom to customize:
+Full mainline Linux kernel support
+No binary blobs
+No vendor-locked BSP
+          Making things open together
+We have partnered with the Collabora team, who are actively working on bringing the RK3576 SoC into the mainline kernel, to make Flipper One fully upstream-supported and free from binary blobs. 
+Read Collabora blog post
+CO-PROCESSOR ARCHITECTURE
+Two independent processors work together in parallel, each controlling different sub-systems of Flipper One. 
+ This architecture allows you to 
+control the Linux sub-system directly from the built-in LCD display
+, without losing access to the device even when the Linux kernel is not yet ready or turned off.
+Why 2 processors?
+Low-power MCU (Raspberry Pi RP2350)
+ — an energy-efficient microcontroller responsible for core device control. It drives the LCD display, physical buttons, and status LEDs. It manages the power sub-system and controls the Linux OS boot parameters when the Linux sub-system is off. 
+More about MCU Firmware >>
+High-performance CPU (Rockchip RK3576)
+ — a powerful 8-core ARM system-on-chip that runs the Linux operating system. It executes user applications, controls all networking interfaces such as Wi-Fi and Ethernet, and manages high-speed peripherals including USB3 and PCIe. It also integrates an NPU for AI acceleration and a GPU for graphics output via HDMI and DisplayPort. 
+More about Linux sub-system >>
+ONE CABLE FOR EVERYTHING
+Get SSH access and charge the device via a single USB cable! No extra adapters needed for Linux console access or powering the device — Flipper One can simultaneously emulate a virtual network adapter, a serial adapter (COM port), and a mass-storage device.
+No drivers required on macOS, Linux, Windows, iOS, or Android.
+NETWORK MULTI‑TOOL
+Multi-WAN network toolkit — connect up to 5 uplinks. Configure dynamic routing, failover, load balancing, and firewall rules. Use it simultaneously as a Wi‑Fi hotspot and client. Tunnel traffic through a VPN and multiple gateways.
+NETWORK SCANNER
+Analyze wired and wireless IP networks. Flipper One helps you map network topology, discover active hosts, and scan for open ports and services. It can also act as a passive sensor to detect network attacks and report anomalies.
+POWER METER
+The power consumption meter works like a wattmeter, showing in real time how much power the entire system uses, including the CPU and peripherals. It helps you understand what is happening under the hood: whether the system is idle or actively working.
+M.2 MODULES
+The core idea of Flipper One is an expandable hardware platform. Create your own specialized tool with a high-speed M.2 expansion module that installs inside the device, under the back plate. It supports almost any type of module — cellular or satellite modems, SDR modules, AI accelerators, SSDs (NVMe or SATA), and Wi-Fi cards via adapters.
+M.2 tech specs
+Read full 
+M.2 Port specification
+ in docs.
+M.2 type: Key-B
+Supported sizes:  2230 (via extender), 2242, 3042, 3052
+Supported thickness: up to D3 (double-sided modules)
+Interfaces: PCIe 2.1 ×1 / USB 2.0 / USB 3.1 / SATA3 / SIM card + eSIM
+Extra interfaces:  Serial Audio / UART / I²C
+Open source mounting system
+All mechanical parts for module mounting are 
+completely open source.
+ You can design your own antennas, cooling system, and mounting solutions for additional accessories.
+GPIO MODULES
+DIY modules can be connected via the GPIO connector using standard 2.54 mm pin headers. To make the assembled device easier to carry around, the GPIO module is positioned along the device body and can be covered with a protective cover.
+Check out 
+GPIO technical specification
+ and 
+examples of GPIO modules
+.
+Desktop Mode
+Connect Flipper One to an external display with a single USB-C cable for a full desktop experience. Support for DisplayPort Alt Mode allows one cable to deliver power, transmit video, and connect USB peripherals such as a keyboard and mouse simultaneously.
+TV Media Box
+Personal Media Box with no limits for your private media library. Stream anything with Kodi or Plex. Connect to TV via full-size HDMI port 4K@120Hz + CEC support.
+Satellite NTN Modem
+          Satellite modem
+NTN 
+(Non-Terrestrial Networks)
+ — is a satellite communication technology, a low-speed connection designed for IoT devices, standardized by 3GPP as part of the 5G and LTE specifications. It uses the standard cellular stack, including SIM/eSIM authentication, roaming, and regular IP traffic.
+We want to add NTN satellite connectivity support to Flipper One to help popularize this technology and give engineers and enthusiasts a chance to work with real satellite infrastructure. 
+To make this happen, we're looking for a partner company like 
+Skylo
+ that's ready to work with us to add support for their satellite network to our eSIM module and help us choose a specific 
+NTN M.2 module
+ that we can officially support. 
+ Read more on the 
+Modules → Satellite modem
+ page.
+Built-in Advanced Wi-Fi Chip
+        Built-in Wi-Fi Chip
+We want to build the most versatile integrated Wi-Fi into Flipper One — it needs to support all the features required for Wi-Fi network analysis, including monitor mode and packet injection. For now, we've settled on the popular Mediatek MT7921U chipset. It's modern enough, supports three frequency bands, and ticks just about every box. We're actively testing this chip right now and 
+we'd love you to join in
+.
+Why MT7921AUN?
+The same chipset is used in the popular ALFA AWUS036AXML adapter, and there's a sizeable community around the open-source MT7921U driver. The main strengths of this chipset:
+Modern Wi-Fi 6E: 802.11ax, 2x2 MIMO
+Frequencies: 2.4 / 5 / 6 GHz bands
+Open mainline Linux driver: mt7921u
+Monitor mode support
+Integrated Bluetooth 5.2
+BUILT-IN eSIM
+Flipper One has a built-in eSIM chip that comes pre‑provisioned with a Flipper SIM data plan.
+To use the eSIM data plan, you need to install a 5G modem in the M.2 slot. You can also switch between the built-in eSIM and a physical SIM card.
+What is Flipper SIM?
+We're working on an experimental connectivity project for network geeks. Flipper SIM is a universal SIM card for routers, phones, and IoT devices, with advanced features such as always-on connectivity, outage-proof, traffic filtering, and network management tools. We'll share more details soon!
+Coming soon
+Tech Specs
