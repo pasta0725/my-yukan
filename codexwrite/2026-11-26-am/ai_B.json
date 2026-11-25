@@ -1,0 +1,214 @@
+[
+ {
+  "id": "ai-claude-skills-over-mcp",
+  "category": "ai",
+  "title": "Claude、外部ツールの操作手順を自動で取得",
+  "summary": "外部ツールの機能が変わっても、AIが必要な手順をその場で受け取れます。",
+  "image": {
+   "src": "https://www.publickey1.jp/2026/skills-over-mcp-beta.png",
+   "kind": "ogp",
+   "credit": "Publickey（図はAnthropic）",
+   "page": "https://www.publickey1.jp/blog/26/mcpskills_over_mcpmcp.html"
+  },
+  "visual": {
+   "icon": "ai",
+   "kicker": "操作手順"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "Claudeが外部ツールに接続した際、ツール側が用意した操作手順を受け取れるように",
+     "公開ベータ版はClaudeとClaude Codeの対象3プランで初めから有効",
+     "チームで使うツールが更新されたとき、AIに古い手順が残るのを防ぎやすくなる"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Publickeyは11月26日、AnthropicがClaudeの新機能の試験提供を始めたと報じました。「Skills over MCP」です。"
+   },
+   {
+    "type": "h",
+    "text": "外部ツールを操作する仕組み"
+   },
+   {
+    "type": "p",
+    "text": "MCPは、指示を受けて作業するAIと外部ツールをつなぐ共通の決まりです。AIはこの仕組みで共有カレンダーに会議を登録できます。データの集計を頼まれたときは、データベースにも接続できます。"
+   },
+   {
+    "type": "h",
+    "text": "手順をツール側から取得"
+   },
+   {
+    "type": "p",
+    "text": "従来、ツールの操作手順はAIを動かす環境に別のファイルで用意していました。ツールに機能が増えても、手順の更新が追いつかない場合がありました。新機能では、ツール側がMCP経由で最新の手順を渡せます。"
+   },
+   {
+    "type": "h",
+    "text": "必要な手順だけ読み込む"
+   },
+   {
+    "type": "p",
+    "text": "AIが手順を読み込むのは、そのツールを使うときです。先に多くのツールの手順を抱える場合に比べ、AIが一度に処理する情報を減らせます。"
+   },
+   {
+    "type": "h",
+    "text": "初めから有効なプラン"
+   },
+   {
+    "type": "p",
+    "text": "Anthropicが対応を始めたのはClaudeとClaude Codeの2製品です。ProとMaxでは、公開ベータ版の機能が初めから有効になります。Ultraも対象で、計3プランです。"
+   },
+   {
+    "type": "p",
+    "text": "無料プランで使えるかは明らかにされていません。日本での利用可否と日本語対応も未発表です。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "2製品",
+      "label": "試験提供の対応製品"
+     },
+     {
+      "value": "3プラン",
+      "label": "初めから有効な契約"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "対象プランで外部ツールを使う人は、次に接続するときにツール側の対応を確認してください。",
+     "手順を別ファイルで管理する人は、次にツールを更新するときに手順の配り方を確認してください。",
+     "無料プランで使いたい人は、対象プランが広がるか確認してください。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "予約や集計のたびに操作方法を指示し直しているなら、手間が減るかもしれません。よく更新されるツールほど、操作手順も同じ窓口から受け取れる利点がありそうです。"
+   }
+  ],
+  "source_name": "Publickey",
+  "source_url": "https://www.publickey1.jp/blog/26/mcpskills_over_mcpmcp.html",
+  "published": "2026-11-26",
+  "refs": [
+   {
+    "name": "Publickey",
+    "url": "https://www.publickey1.jp/blog/26/mcpskills_over_mcpmcp.html"
+   }
+  ]
+ },
+ {
+  "id": "ai-google-workspace-mcp-ga",
+  "category": "ai",
+  "title": "Google、GmailのAI接続を正式提供",
+  "summary": "個人も企業向け契約なしで、メールや予定表をAIから扱えるようになります。",
+  "image": {
+   "src": "https://www.publickey1.jp/2026/HX6RoD8WUAAqFeu.jpg",
+   "kind": "ogp",
+   "credit": "Publickey",
+   "page": "https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html"
+  },
+  "visual": {
+   "icon": "ai",
+   "kicker": "業務アプリ"
+  },
+  "body": [
+   {
+    "type": "keys",
+    "items": [
+     "GoogleがGmailやカレンダーなどをAIで操作するための接続機能を正式提供",
+     "個人にはサービスごとに1日5000回の無料枠があり、支払い用カードの登録は不要",
+     "メールを送ったり資料を共有したりする前に、利用者が確認する仕組みがあります"
+    ]
+   },
+   {
+    "type": "p",
+    "text": "Googleは11月24日、業務アプリ群WorkspaceをAIから操作する2つの接続手段を正式版にしました。"
+   },
+   {
+    "type": "h",
+    "text": "AIで操作できるサービス"
+   },
+   {
+    "type": "p",
+    "text": "Googleが運用するGoogle Workspace MCP Serverは、AIと外部ツールをつなぐ窓口です。AIにGmailのメールを扱わせたり、カレンダーの予定を操作させたりできます。"
+   },
+   {
+    "type": "p",
+    "text": "対象は計8サービスです。Gmailとカレンダーのほか、GoogleドライブやGoogleドキュメントも使えます。スプレッドシートとスライド、ChatとTasksにも対応します。メモアプリのGoogle Keepは今後加わる予定です。"
+   },
+   {
+    "type": "h",
+    "text": "手元のパソコンから操作"
+   },
+   {
+    "type": "p",
+    "text": "Google Workspace CLIは、手元のパソコンで文字の命令を入力してつなぐ仕組みです。この方法なら、AIも利用者本人もWorkspaceを操作できます。"
+   },
+   {
+    "type": "h",
+    "text": "個人で使う際の無料枠"
+   },
+   {
+    "type": "p",
+    "text": "GoogleのAI研究部門に所属するPhilipp Schmid氏が、個人向けの無料枠を案内しました。1サービスにつき1日5000回まで呼び出せます。企業向けの契約も支払い用カードの登録も要りません。個人向けの設定にはGoogle Cloudを使います。"
+   },
+   {
+    "type": "h",
+    "text": "送信や共有の前に確認"
+   },
+   {
+    "type": "p",
+    "text": "AIがメールを送信したり資料を共有したりする際は、利用者が確認できます。企業向けには、操作の履歴を確認する機能や管理者向けの設定も備えます。日本での利用可否と日本語対応は明らかにされていません。"
+   },
+   {
+    "type": "h",
+    "text": "従来の接続からの移行"
+   },
+   {
+    "type": "p",
+    "text": "これまでは、ソフトがWorkspaceを操作する接続口としてREST APIも使われてきました。GoogleはAIからの接続をMCP経由に切り替える方針です。従来の方法でつないでいるAIは、2027年2月までに移行が必要です。"
+   },
+   {
+    "type": "stat",
+    "items": [
+     {
+      "value": "8サービス",
+      "label": "MCP接続の対象"
+     },
+     {
+      "value": "1日5000回",
+      "label": "サービスごとの無料枠"
+     },
+     {
+      "value": "2027年2月",
+      "label": "従来方式からの移行期限"
+     }
+    ]
+   },
+   {
+    "type": "point",
+    "items": [
+     "個人で試す人は、利用を始める前にGoogle Cloudで個人向けの設定を確認してください。",
+     "AIでメールを扱う人は、送信前に宛先と本文を確認してください。",
+     "従来の接続方法を使うチームは、2027年2月までにAIの接続を切り替えてください。"
+    ]
+   },
+   {
+    "type": "rina",
+    "text": "無料枠で試すなら、自分の予定表を見るといった作業から始めやすそうです。送信や共有まで任せるかは、下書きの出来を見てから決められます。"
+   }
+  ],
+  "source_name": "Publickey",
+  "source_url": "https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html",
+  "published": "2026-11-26",
+  "refs": [
+   {
+    "name": "Publickey",
+    "url": "https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html"
+   }
+  ]
+ }
+]
