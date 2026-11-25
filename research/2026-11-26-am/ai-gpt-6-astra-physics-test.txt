@@ -1,0 +1,653 @@
+===== https://the-decoder.com/gpt-6-astra-solves-49-of-50-physics-research-problems-at-2-40-apiece/
+(status 200)
+GPT-6-Astra solves 49 of 50 physics research problems at $2.40 apiece
+NBPro prompted by THE DECODER
+A new benchmark shows the best AI agents can solve theoretical physics calculations as accurately as leading specialists in each subfield. The researchers behind it say a missing sense of "taste" is one reason breakthroughs haven't followed yet.
+Thirty-five researchers from institutions including the International Centre for Theoretical Sciences (ICTS), Harvard University, KU Leuven, and Google DeepMind have released 
+TheoPhysEval
+. The benchmark contains 50 unpublished research problems in theoretical physics with verifiable answers. According to the authors, a leading expert in the relevant subfield would need about a day or less to solve a typical problem without AI help. Specialists from neighboring fields would take much longer.
+THE DECODER+
+Continue reading with THE DECODER+
+Every Plus article and the full archive
+No ad banners
+Frontier Radar: 6 deep dives a year
+What is included 
+→
+First month −50%
+Monthly
+$4.99 
+for the first month
+Then $9.99 a month. Cancel any time.
+Subscribe monthly
+Best value
+Yearly
+$8.25 a month
+$99 once a year.
+Subscribe yearly
+Already a subscriber? 
+Sign in
+Back to the homepage
+
+===== https://www.suvratraju.net/blog/2026-10-14-evaluating-agents-on-unpublished-research-problems/
+(status 200)
+This 
+paper
+ announces the results of a large study to evaluate the ability of AI agents to solve unpublished research-level problems in theoretical physics. If you are at all interested in physics, please take a look.
+The abstract should be self explanatory. I’ve been thinking about these models quite closely for a while. But, frankly, I wasn’t expecting this day to come as soon as it has. After we found these results, I couldn’t sleep properly for a couple of nights.
+Let me add some back story since the timeline is revealing.
+About 6 months ago, just for fun, I prompted a frontier agent with an unpublished problem whose answer I had worked out. The agent got the answer wrong but it was impressive that it managed to make any progress at all, and could solve the problem after a few hints.
+Praneeth suggested it might be fun to collect a suite of such problems along the lines of the mathematicians’ First Proof assessment. Soon we had a small core group and started requesting experts across the world to contribute problems. Problem collection was a slow process, since we were making a significant ask of contributors. We wanted unpublished problems, with clean verifiable answers. So, our contributors had to either sacrifice potential publication elsewhere, or else undertake a small research project just for us.
+Even as problems started coming in, the agents started improving as newer models were released. We kept urging people to push up the difficulty of their problems. But, there is a ceiling to this difficulty since even world experts have only so-many problems lying about whose answers they know and haven’t published.
+I don’t know of any individual who can solve any significant fraction of our final collection of problems without AI assistance. For instance, I can solve the problems I contributed myself and understand a few others. Most problems don’t even make sense to me.
+Our initial evaluation suggested that GPT-6-Astra’s score was in the late eighties followed closely by Opus 5.5
+But, as we started to investigate the mistakes that the models might have made, the models, especially Astra, insisted that they were right and that it was the expert-supplied answers that were erroneous. When we went back to the experts it turned out, in multiple instances, that that the experts found some subtle errors buried deep inside their calculations. As they revised their answers, Astra’s score started to inch up and it finally ended up with 98% (49/50).
+The one problem it doesn’t solve is not because it makes a “mistake”. This is a trick-prompt, and requires the model to make an inspired guess, and then bend the rules a little. It can’t do that yet.
+We comment a little on the broader implications in our conclusions. Clearly, these agent are enormously powerful tools that will accelerate discovery in the short run. They also raise serious structural concerns about access, equity and pedagogy.
+
+===== https://www.itechguides.com/gpt-6-astra-solved-49-of-50-theoretical-physics-problems-what-the-result-actually-shows/
+(status 200)
+iTechGuides is reader-supported. When you buy through links on our site, we may earn an affiliate commission. As an Amazon Associate I earn from qualifying purchases. 
+Learn more
+Yes—according to a TheoPhysEval arXiv paper submitted on October 9, 2026, GPT-6-Astra, running in Codex with literature-search and coding tools, produced accepted final answers for 49 of 50 unpublished theoretical-physics problems. That is 98% accuracy. The primary paper puts the average cost below $3 per problem; a contemporaneous Decoder report estimates approximately $2.40 per problem and just under $116 for all 50. The score is impressive evidence of reliable, checkable calculation, not proof that an AI independently chooses important questions or makes major physics discoveries.
+What the 49-of-50 result means
+The claim comes from 
+TheoPhysEval: Assessing AI agents at autonomous theoretical physics problem solving
+, an arXiv paper submitted October 9, 2026. TheoPhysEval contains 50 unpublished problems with verifiable answers across 11 theoretical-physics subfields. Examples span fluid flows, biological processes, particle physics, cosmology and black-hole research.
+#
+Preview
+Product
+Price
+1
+Theoretical Physics (Dover Books on Physics)                    
+$36.02
+Buy on Amazon
+2
+Quantum Mechanics: The Theoretical Minimum                    
+$11.48
+Buy on Amazon
+3
+Statistical Physics, Third Edition, Part 1: Volume 5 (Course of Theoretical Physics, Volume 5)                    
+$67.97
+Buy on Amazon
+4
+The Theoretical Minimum 4-Book Set: The Theoretical Minimum, Quantum Mechanics, Special Relativity...                    
+$66.99
+Buy on Amazon
+5
+A Complete Course on Theoretical Physics: From Classical Mechanics to Advanced Quantum Statistics...                    
+$49.20
+Buy on Amazon
+Measure
+Reported result
+Qualification
+Final answers
+49 of 50
+Authors’ 2026 result for GPT-6-Astra harnessed in Codex with realistic tools
+Accuracy
+98%
+Equivalent to 49 accepted answers out of 50
+Average cost
+Under USD 3 per problem
+Primary paper’s figure
+Estimated cost
+About $2.40 per problem; just under $116 total
+Approximate figures reported by The Decoder on October 15, 2026
+Coverage
+50 tasks in 11 subfields
+Unpublished, checkable theoretical-physics calculations
+A 98% score means the agent’s submitted final results matched the benchmark’s accepted answers on 49 tasks. It does not mean every intermediate derivation was error-free, that the system can handle any physics problem, or that it solved 98% of all research in physics.
+What TheoPhysEval actually tests
+Concrete calculations based on known methods
+The benchmark deliberately focuses on questions that apply established techniques to modified situations. The authors describe a typical problem as work a world expert could complete in about a day or less without AI, while a specialist from a neighboring field might need considerably longer. These are demanding research-grade calculations, but they are closer to advanced “turn-the-crank” work than to proposing a new theory.
+Popular on Amazon
+Sale
+            Theoretical Physics (Dover Books on Physics)        
+$36.02
+Buy on Amazon
+Why unpublished tasks matter
+Contributors generally changed numerical values or conditions from calculations in their own papers. That makes copying a published answer harder while preserving a verifiable target. “Unpublished” therefore describes the benchmark questions, not a guarantee that no related method or equation appeared anywhere in the literature.
+The realistic-tool setting
+In the headline condition, Astra could search the literature and write scripts for numerical and symbolic work. That setup is intended to resemble how a capable researcher works with software and references, rather than testing a model in a text-only box.
+Also popular on Amazon
+Sale
+            Quantum Mechanics: The Theoretical Minimum        
+$11.48
+Buy on Amazon
+Is the $2.40-per-problem figure real?
+It is a secondary estimate, not the paper’s exact headline number. The authors state an average cost below $3 per problem. The Decoder’s October 15 report gives a more precise approximation of $2.40 per problem and just under $116 for the 50-problem set. Because $2.40 is rounded and the two sources report different levels of precision, it should be presented as an approximate operating cost, not a fixed price or a consumer rate card.
+The figure covers the benchmark run described in the report. It is not a quote for a guaranteed answer to a new physics question, and it does not include a human’s time to inspect assumptions, reproduce calculations or correct an answer.
+Also popular on Amazon
+Sale
+            Statistical Physics, Third Edition, Part 1: Volume 5 (Course of Theoretical Physics, Volume 5)        
+Used Book in Good Condition
+$67.97
+Buy on Amazon
+How Astra compares with other agents
+The Decoder also reported results for other agents on the same 50-task comparison. These numbers are secondary reporting and should not be treated as definitive until independently checked against the paper’s full evaluation details.
+Agent
+Reported accuracy
+How to read it
+GPT-6-Astra
+98% (49/50)
+Top result reported in the realistic-tool condition
+Opus 5.5
+92%
+Secondary report; condition and grading details should be verified
+Gemini 3.8 Flash
+68%
+Secondary report
+DeepSeek-V4.1-Flash
+54%
+Secondary report
+GLM 5.3
+42%
+Secondary report
+A fair comparison requires more than ranking percentages. Check whether every agent saw the same 50 tasks, had equivalent web and coding access, incurred comparable limits and costs, and was graded against the same independently checked references.
+Also popular on Amazon
+Sale
+            The Theoretical Minimum 4-Book Set: The Theoretical Minimum, Quantum Mechanics, Special Relativity and Classical Field Theory, General Relativity        
+$66.99
+Buy on Amazon
+Why 98% does not prove autonomous physics research
+Solving a specified problem is different from selecting a problem
+The benchmark supplies the question, the relevant physical context and a checkable target. Real research also requires deciding which question is worth pursuing, identifying a tractable path, recognizing when an assumption is physically wrong and judging whether a result is important. TheoPhysEval does not measure those choices.
+The result is not evidence of a new theory or major discovery
+The tasks exclude major open questions and emphasize known methods applied to altered inputs. A system can be excellent at deriving a requested quantity without inventing a useful framework, finding an unexplained phenomenon or deciding that an unexpected result deserves experimental follow-up.
+Also popular on Amazon
+Sale
+            A Complete Course on Theoretical Physics: From Classical Mechanics to Advanced Quantum Statistics (Undergraduate Lecture Notes in Physics)        
+$49.20
+Buy on Amazon
+Tool ablation hints at memorized literature, but does not isolate the cause
+The paper reports only small average accuracy changes when agents are denied web search and background papers. The authors interpret that pattern as evidence of substantial literature memorization. It is suggestive, not a clean separation of memorization, internal reasoning and tool use: removing a tool can change workflow, prompting and error checking at the same time.
+Independent reader support
+Your contribution helps us test, update, and keep practical guides available for everyone.
+Support on Ko-Fi
+How reliable is the 49-of-50 grading?
+One task defeated every model
+The report says one problem stumped all evaluated systems. That is a reminder that the 98% figure is an aggregate over a small, selected set; it does not establish a uniform success rate across subfields or difficulty levels.
+Reference answers were revised after expert review
+Expert follow-up found subtle errors in several reference answers. After those corrections, Astra’s responses were judged correct on the affected cases. The revisions improve the final assessment, but they also show why benchmark quality and independent checking are part of the result—not administrative details to ignore.
+What a robust replication should publish
+The exact 50 prompts, assumptions and permitted tools.
+Per-problem results rather than only the aggregate percentage.
+Reference solutions checked by independent domain experts.
+Separate scores for tool-enabled and tool-disabled conditions.
+Token, compute and human-review accounting behind the cost estimate.
+What readers should conclude
+The strongest defensible conclusion is narrow but significant: in a realistic software-and-literature workflow, GPT-6-Astra can produce correct answers to a broad sample of difficult, concrete theoretical-physics calculations at a reported average cost below $3 each. That makes it a potentially powerful assistant for derivations, numerical checks and literature-grounded problem solving.
+The evidence stops short of showing autonomous science. TheoPhysEval does not test research taste, question selection, experimental design, theory invention or responsibility for deciding whether an answer is physically meaningful. Anyone using Astra for real work should still reproduce the mathematics, inspect units and assumptions, and have a domain expert review consequential conclusions.
+Quick Recap
+Sale
+Bestseller No. 1
+Theoretical Physics (Dover Books on Physics)
+$36.02
+Sale
+Bestseller No. 2
+Quantum Mechanics: The Theoretical Minimum
+$11.48
+Sale
+Bestseller No. 3
+Statistical Physics, Third Edition, Part 1: Volume 5 (Course of Theoretical Physics, Volume 5)
+                Used Book in Good Condition            
+$67.97
+Sale
+Bestseller No. 4
+The Theoretical Minimum 4-Book Set: The Theoretical Minimum, Quantum Mechanics, Special Relativity and Classical Field Theory, General Relativity
+$66.99
+Sale
+Bestseller No. 5
+A Complete Course on Theoretical Physics: From Classical Mechanics to Advanced Quantum Statistics (Undergraduate Lecture Notes in Physics)
+$49.20
+Product prices and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply. Prices as of November 25, 2026 1:38 am GMT.
+Spot an error? Send a correction
+Leave a note 
+Cancel reply
+
+===== https://traictory.com/news/2026-10-16-theophyseval-physics-benchmark
+(status 402)
+Payment required
+DEPLOYMENT_DISABLED
+pdx1::9dmhx-1795635073364-a2ba41eb4e29
+
+===== https://arxiv.org/html/2610.16733v1
+(status 200)
+TheoPhysEval
+: Assessing AI agents at autonomous theoretical physics problem solving
+A. Ramesh Chandra
+Affiliation: 
+International Centre for Theoretical Sciences
+Aaghaz Mahajan
+Affiliation: 
+Tata Institute of Fundamental Research
+Ainesh Sanyal
+Affiliation: 
+University of Texas at Austin
+Mianqi Wang
+Affiliation: 
+Kavli IPMU (WPI), The University of Tokyo
+Shubhadeep Chakraborty
+Affiliation: 
+International Centre for Theoretical Sciences
+Sudip Chakraborty
+Affiliation: 
+Harish-Chandra Research Institute
+Affiliation: 
+Homi Bhabha National Institute
+Shailesh Chandrasekharan
+Affiliation: 
+Duke University
+Rama Govindarajan
+Affiliation: 
+International Centre for Theoretical Sciences
+Akshit Goyal
+Affiliation: 
+International Centre for Theoretical Sciences
+Jonathan J. Heckman
+Affiliation: 
+University of Pennsylvania
+Yasir Iqbal
+Affiliation: 
+Indian Institute of Technology Madras
+Divya Jaganathan
+Affiliation: 
+Harvard University
+Saumav Kapoor
+Affiliation: 
+International Centre for Theoretical Sciences
+Andreas Karch
+Affiliation: 
+University of Texas at Austin
+Pushkar Khandare
+Affiliation: 
+Jawaharlal Nehru Centre for Advanced Scientific Research
+Sandeep Krishna
+Affiliation: 
+Tata Institute of Fundamental Research
+Anupam Kundu
+Affiliation: 
+International Centre for Theoretical Sciences
+Alok Laddha
+Affiliation: 
+Chennai Mathematical Institute
+Tongyan Lin
+Affiliation: 
+University of California, San Diego
+Swarnendu Maity
+Affiliation: 
+Jawaharlal Nehru Centre for Advanced Scientific Research
+Nilmani Mathur
+Affiliation: 
+Tata Institute of Fundamental Research
+Shani Nadir Meynet
+Affiliation: 
+University of Pennsylvania
+Alessandro Mininno
+Affiliation: 
+University of Wisconsin–Madison
+Abhijeet Mishra
+Affiliation: 
+Harish-Chandra Research Institute
+Affiliation: 
+Homi Bhabha National Institute
+Vidur Niranjan
+Affiliation: 
+Monash University
+Abhishodh Prakash
+Affiliation: 
+Harish-Chandra Research Institute
+Affiliation: 
+Homi Bhabha National Institute
+Pratik Rath
+Affiliation: 
+Tata Institute of Fundamental Research
+Durbar Roy
+Affiliation: 
+International Centre for Theoretical Sciences
+Debargha Sarkar
+Affiliation: 
+Jawaharlal Nehru Centre for Advanced Scientific Research
+Srikanth Sastry
+Affiliation: 
+Jawaharlal Nehru Centre for Advanced Scientific Research
+Gary Shiu
+Affiliation: 
+University of Wisconsin–Madison
+Aninda Sinha
+Affiliation: 
+Indian Institute of Science
+Affiliation: 
+University of Calgary
+Thomas Van Riet
+Affiliation: 
+KU Leuven
+Praneeth Netrapalli
+Affiliation: 
+Google DeepMind
+Suvrat Raju
+Affiliation: 
+International Centre for Theoretical Sciences
+Abstract
+We present a suite of 50 unpublished research-level theoretical physics problems with verifiable answers. Without AI assistance, a typical problem in our collection could be solved by a world expert in about a day or less but would take considerably longer for experts in adjacent specialties. We test the ability of off-the-shelf AI agents to tackle these problems autonomously, without human hints. When given access to tools available in a realistic setting, including the ability to search the literature and write scripts for numerical and symbolic work, the best-performing agent, GPT-6-Astra harnessed in Codex, obtains the final answers with a near-perfect accuracy of 98% at an average cost under USD 3 per problem. On average, agents show only small changes in accuracy when denied web search and access to background research papers, suggesting significant memorization of the literature. These results suggest that state-of-the-art agents can accurately perform concrete calculations required across theoretical physics research. We comment on the broader implications of these findings and discuss possible explanations for the current lack of agent-led breakthroughs in theoretical physics despite their outstanding problem-solving abilities.
+I 
+Introduction
+In the past few months, AI agents — by which we refer to a combination of a Large Language Model (LLM) and a harness that gives it access to tools — have developed the ability to perform a variety of scientific tasks with little or no human supervision. This impact is most visible in mathematics, where important open problems 
+[
+1
+, 
+2
+, 
+3
+, 
+4
+]
+, including the Navier–Stokes Millennium Prize problem 
+[
+5
+]
+ and the “dying percolation conjecture” 
+[
+6
+]
+, have been solved by AI agents. In some cases, the agents were prompted by humans with no formal mathematical expertise themselves 
+[
+7
+]
+.
+So far, autonomous agents have had a less significant impact on theoretical physics and have not achieved a notable breakthrough. But they have rapidly become important in research. Experts have used agents in their research 
+[
+8
+, 
+9
+, 
+10
+]
+, and agents have autonomously solved mathematically well-defined problems 
+[
+11
+]
+. Moreover, many researchers use agents to discuss ideas, perform calculations, search the literature and draft manuscripts. The objective of this paper is to scientifically evaluate one aspect of this progress at the current time — the ability of AI agents to solve well-posed and verifiable problems autonomously.
+To this end, we present a suite of problems drawn from current research and sourced from world experts in a range of areas in theoretical physics. This collection does not include any important open research problems, since we advised potential contributors to prioritize direct publication of such results. The problems in our collection can be best thought of as “turn-the-crank” research problems, where known techniques are used to generalize an extant result. The result of each problem is, strictly speaking, novel, and sometimes even publishable, but not pathbreaking.
+All our problems have verifiable solutions, either in the form of a symbolic expression or a numerical answer that cannot be guessed. To the best of our knowledge, at the time of our evaluation, none of the answers to our problems were available publicly. However, we expect that solutions to some problems will appear in the literature in the near future, and one such solution (see 
+§
+10A.10.1
+) was published after completion of the experiments described in this paper. Moreover, the problems do not meet a stricter criterion of being “untouched by AI.” In some cases, human experts used AI tools for assistance in solving the problems, and so we cannot rule out data leakage.
+Our problems are presented in Appendix 
+A
+ of this paper, and we strongly urge readers to glance over them.
+It is nontrivial to construct problems that are relevant to research, are not significant in their own right, and have a solution that is verifiable, cannot be guessed, and is not publicly available. We asked experts to come up with the hardest possible problems in their respective areas. However, we did not reject problems merely because they were soluble by AI agents. Therefore, our evaluation suite aims to be representative of problems in theoretical physics, rather than an adversarial benchmark.
+We evaluated agents on two tracks, which we term the “isolated track” and the “realistic track.” These are distinguished by whether or not the agent is allowed to access the internet.
+In our experiments we found that, in the realistic track, GPT-6-Astra with Codex (Astra) achieved a near-perfect accuracy of 98%, and both Astra and Opus 5.5 with Claude Code CLI (Opus) achieved an accuracy of 92% in the isolated track. The average change in accuracy for most agents between the two tracks was quite small. Since many of our problems rely on formulas from the literature, this indicates that leading LLMs have effectively memorized large parts of the theoretical physics literature.
+Our results indicate that some frontier models may have already surpassed the best human researchers in their ability to perform concrete calculations, even in specialized topics. This is a significant milestone, with implications for education and research in theoretical physics.
+The ability to solve concrete problems has traditionally been highly valued in theoretical physics. Problem solving is central to physics education 
+[
+12
+, 
+13
+]
+. Students are evaluated through high school competitions such as the International Physics Olympiad 
+[
+14
+]
+, examinations used in graduate admissions 
+[
+15
+]
+, and graduate qualifying exams 
+[
+16
+]
+.
+However, problem-solving abilities are only one of the skills that theoretical physicists require. The main aim of the field is to construct theories of the physical world. Second, it is necessary to ask the “right” high-level questions of the theory. Third, it is necessary to convert these questions into concrete calculations. Therefore, it is only at a late stage in the scientific process that one is faced with a concrete calculation with a verifiable answer.
+As a corollary, the excellence of AI agents at problem solving does not immediately imply their all-round excellence at autonomous physics research. Human experts are required in the loop. Autonomous excellence at research might emerge in the near future but will require more than problem-solving ability.
+We hope that the assessment presented in this paper will aid discussions in the theoretical physics community on the evolution of pedagogical and research practices. Similar discussions are underway in the mathematical community 
+[
+17
+, 
+18
+]
+. It is desirable for the theoretical physics community to have these discussions in advance, before AI has a significantly disruptive impact.
+Several agents included in this study do not yet saturate our evaluation. For example, among open-weight models, DeepSeek-V4.1-Flash (DeepSeek) harnessed in Codex scored 54% and 50% on the realistic and isolated tracks, respectively. We hope that our collection of problems will be useful for model developers. It might serve as a method of measuring the abilities of agents to assist theoretical physicists in their research.
+I.1 
+Previous work
+There has been considerable previous work on benchmarking the abilities of LLMs on school 
+[
+19
+, 
+20
+]
+, competition 
+[
+21
+, 
+22
+]
+, and undergraduate physics 
+[
+23
+]
+. Benchmarks such as TPBench 
+[
+24
+]
+, SciCode 
+[
+25
+]
+, FrontierScience 
+[
+26
+]
+, PRL-Bench 
+[
+27
+]
+, QMBench 
+[
+28
+]
+ and notably CritPt 
+[
+29
+]
+ include research-level problems in addition to simpler problems. Our paper adds to this literature but is distinguished by its exclusive focus on modern research-level problems. Our evaluation methods are also different since most other evaluations do not usually allow agents to access the full range of tools that they would have access to in the real world.
+Terminal-Bench-Science 
+[
+30
+]
+ is broader in its coverage than this assessment, which is focused on theoretical physics and provides deeper coverage within that field. Moreover, since we seek to evaluate agents on realistic problems that physicists would encounter, we do not discard problems simply because they can be solved by agents.
+Our evaluation is roughly comparable to the “First Proof” challenge in mathematics 
+[
+31
+, 
+32
+, 
+33
+, 
+34
+]
+ in the sense that it involves unpublished research-level problems. However, while First Proof involves human assessment of proofs, our evaluation is automated and only based on the final answers.
+This paper is organized as follows. In Section 
+II
+ we explain the class of problems included in our collection. In Section 
+III
+ we describe the procedure used to evaluate agents on this collection. In Section 
+IV
+, we provide a summary of the quantitative and qualitative conclusions of our evaluation. We conclude with some discussion in Section 
+V
+. The appendices provide details. In particular, Appendix 
+A
+ contains a full list of our problems.
+Example problem
+Consider a black-string background with two branes at equal angles, 
+π
+/
+10
+\pi/10
+, from the vertical in 
+AdS
+4
+\mathrm{AdS}_{4}
+. By comparing minimal surfaces that extend from the defect to the brane to minimal surfaces that extend from a defect on one side of the horizon to the other, find the Page time for this configuration in units where the temperature is 
+1
+/
+(
+2
+​
+π
+)
+1/(2\pi)
+.
+Expected answer flow
+Step 1:
+ Locate 
+arXiv:2012.04671
+[
+35
+]
+ that discusses a similar problem in AdS
+5
+.
+Step 2:
+ Adapt the equations derived there to 
+d
+=
+3
+d=3
+.
+Step 3:
+ Write a numerical script to solve the resultant differential equations, while being careful about singularities at the end points.
+Step 4:
+ Analyze the solutions and obtain the answer.
+(a) 
+Black-string Page time.
+Example problem
+Consider one-dimensional class D fermionic systems, with no microscopic symmetries other than fermion parity. Restrict to the trivial phase and to free-fermion models. Using the suspension construction, construct a two-parameter Hamiltonian corresponding to a fermion parity pump. What is the central charge of the critical theory at the diabolical point? Under free-fermion perturbations, what does the diabolical point destabilize to?
+Expected answer flow
+Step 1:
+ Use the suspension construction of 
+arXiv:2605.20339
+[
+36
+]
+.
+Step 2:
+ Start with an odd-parity 
+0
+​
+d
+0d
+ ground state whose phase is self-inverse under stacking.
+Step 3:
+ Arrange copies along a chain and deform each to even parity using two nearest-neighbor dimerizations.
+Step 4:
+ Identify an instability of the diabolical point and determine its effect.
+(b) 
+Fermion parity pump.
+Example problem
+A fluid is flowing in the 
+x
+x
+ direction over a flat plate of length 
+L
+L
+. The fluid approaches the flat plate at free stream velocity 
+U
+0
+U_{0}
+. The Reynolds number based on 
+L
+L
+ and 
+U
+0
+U_{0}
+ is 
+R
+​
+e
+=
+160000
+Re=160000
+. Calculate the spanwise normalized length scale (
+L
+s
+/
+L
+L_{s}/L
+) of the 
+dominant initial
+ streamwise spatial perturbation velocity structures that develop on a horizontal plane at a vertical height of 
+y
+/
+L
+=
+0.01
+y/L=0.01
+ from the plate. Assume spanwise to be periodic with length-scale 
+L
+L
+.
+Expected answer flow
+Step 1:
+ Set up the 3d computational domain for the flat-plate configuration.
+Step 2:
+ Solve the unsteady incompressible Navier–Stokes equations numerically.
+Step 3:
+ Extract the velocity data at the required horizontal plane.
+Step 4:
+ Analyze the extracted field and compute the length scales required.
+(c) 
+Flat-plate boundary layer.
+Box 1: 
+Three example problems and their expected solution trajectories.
+II 
+Problems 
+The problems in our collection were obtained by soliciting world experts from different areas of theoretical physics.
+We asked experts to contribute problems that met the following three criteria.
+1.
+Problems related to current physics research;
+2.
+A known solution that was simple to verify but difficult to guess;
+3.
+A solution that could not be looked up in the published literature or elsewhere.
+We also requested that contributors not publish their solutions in the
+near future, to avoid contamination of the evaluation.
+These criteria are quite restrictive. In particular, they exclude problems from ongoing research that the experts intended to publish in the near future.
+One pathway for contributors to satisfy these criteria was to give us a problem from their research notes that they had worked out but not taken the trouble to publish.
+A more common alternative was for contributors to adapt a problem solved in one of their recent papers. By changing some parameters in a physics calculation, it is often possible to obtain a new problem with an answer that cannot be guessed from the old answer. Problem contributors could solve such a problem by modifying their existing code or calculations. But another expert human, or an AI agent, would need to locate and understand the original solution; reconstruct the calculation in detail; and then adapt it to the modified problem.
+Such an exercise is often assigned to graduate students who are starting research, since it helps them survey the literature and master the relevant techniques. This method is also sometimes used by researchers to write “incremental papers.”
+Therefore, none of the problems in our dataset constitute breakthrough open problems. Solving them does not require great originality or the ability to construct new physical theories. However, it does require familiarity with current research, and the ability to understand and accurately adapt cutting-edge calculational techniques.
+II.1 
+Example problems
+Box 
+1a
+ shows an example of such a problem and the expected solution trajectory. The problem statement there is closely related to a problem solved in a paper that appeared on the hep-th arXiv 
+[
+35
+]
+. The statement of the problem is deliberately terse and it requires a deep understanding of recent developments in holography to decipher the statement.
+A human attempting this problem would presumably start by locating this paper. This would help them understand the terms and the scope of the problem. The setup of 
+[
+35
+]
+ involved a five-dimensional spacetime, and the next step would be to generalize the equations there to a four-dimensional spacetime as asked in the problem. This is a straightforward step but requires some care.
+The resulting equations cannot be solved analytically. They give rise to a singular boundary-value problem. One must solve the equations in a series expansion near the singular points and then use a “shooting” routine 
+[
+37
+]
+ to obtain the full solution.
+When presented as above, the individual steps in the solution might seem straightforward. However, the solution requires several components including a familiarity with the relevant literature and also a familiarity with numerical techniques. It took an author of the previous paper (SR) about a day to adapt the original calculations and perform the new calculation accurately. We estimate that before the advent of modern agents, only a small number of experts would have had both the physics background and familiarity with the relevant numerical techniques to solve the problem; moreover, it would have taken these experts several days to reconstruct the old calculation and perform the new one.
+A human expert working with a frontier AI agent can now solve this problem both accurately and rapidly with ease. This might require the human to provide hints to the agent, or perhaps provide the agent with the high-level algorithm above. Our assessment seeks to determine whether agents can solve this problem entirely autonomously by performing all the steps in the answer flow with no hints beyond the given prompt.
+Box 
+1b
+ presents a second example, involving a class D fermion parity pump, together with a sketch of the solution. Box 
+1c
+ presents a third example, involving flat-plate boundary-layer perturbations, together with a numerical solution sketch.
+These problems are a small subset of our larger collection. But specialists in the area of one of these problems are unlikely to be familiar with the terminology of the other two problems. And, given the specialized nature of research, most physicists would find all three problems challenging to tackle autonomously. Therefore, the fact that agents are able to attempt these problems at all is already noteworthy.
+II.2 
+Distribution of problems
+We obtained a total of 50 problems spanning a range of areas of theoretical physics. Table 
+1
+ summarizes their distribution by theme. These themes cover a large number of topics. We do not believe that any physicist would have the expertise to attempt more than a fraction of these problems. Given the level of specialization in modern physics, it might often be difficult for a single expert to attempt all problems in a given thematic class.
+Our problems do not provide an exhaustive survey of all areas of theoretical physics. The distribution of problems is partly influenced by network effects, since the coordinators and moderators invited experts they knew. However, there is also an intrinsic scientific influence on the distribution. While some fields, such as quantum field theory, naturally lend themselves to a number of hard calculations with verif
