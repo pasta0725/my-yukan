@@ -1,0 +1,180 @@
+{
+ "id": "ai-gpt6-protein-design",
+ "category": "ai",
+ "title": "OpenAI、GPT-6でたんぱく質の設計を検証",
+ "summary": "AIが形を考えた候補のうち、実験で35個が狙った相手にくっつきました。",
+ "image": {
+  "src": "https://images.ctfassets.net/kftzwdyauwt9/Eg5mCwwaA3KqnznOVCh0n/8e6deaef25fd508d9853ff86a95187c1/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities-social.png?w=1600&h=900&fit=fill",
+  "kind": "press",
+  "credit": "OpenAI",
+  "page": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
+ },
+ "visual": {
+  "icon": "ai",
+  "kicker": "AIと科学"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "GPT-6シリーズがたんぱく質の形や部品の並びを設計できると、OpenAIが発表しました",
+    "実験で322個を試し、35個（10.9%）が狙った相手にくっつきました",
+    "研究段階で、ふだんのChatGPTに新機能が加わるとの発表はありません"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは11月24日、GPT-6シリーズが専用AIなしでたんぱく質を設計できたと公表しました。論文は専門家による審査前です。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/4u7ogWwVXuqX5GRdnZxsLM/23d72378f6fea65debd91c914f32fb54/protein-workflows-intrinsic-desktop-light.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "言語モデルが専用ツールを使い分ける方式と、1つのモデルで設計する方式の比較図",
+   "page": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
+  },
+  {
+   "type": "h",
+   "text": "たんぱく質を設計する理由"
+  },
+  {
+   "type": "p",
+   "text": "たんぱく質は、体の中で化学反応を進めたり、酸素を運んだりします。アミノ酸と呼ばれる部品が鎖のようにつながってできています。その並びに応じて折りたたまれ、できあがった形が働きを左右します。"
+  },
+  {
+   "type": "p",
+   "text": "薬の候補を作るには、狙った働きに合う形を考える必要があります。従来は作業ごとに専用AIを使い分ける知識が必要でした。新しい条件に合わせるには、ソフトの手直しやAIの追加学習が必要な場合もあります。"
+  },
+  {
+   "type": "h",
+   "text": "言葉で形や位置を指定"
+  },
+  {
+   "type": "p",
+   "text": "GPT-6シリーズは、設計に必要な手順を考えてプログラムを書きました。OpenAIの研究では、専用AIなしでたんぱく質の形やアミノ酸の並びを設計できました。"
+  },
+  {
+   "type": "p",
+   "text": "研究者は、小さなたんぱく質をどこにくっつけたいかを文章で指定できます。社内の研究用モデルは、らせん状や板状の部分の数もほぼ指示どおりに設計しました。指示を書き換えるだけで、分子がくっつく位置を予測する別の課題にも切り替えられました。"
+  },
+  {
+   "type": "h",
+   "text": "コンピューター上の成績"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、たんぱく質に関する14種類の課題でモデルを比べました。新しい世代では、以前より成績が上がった課題が多くありました。最新のモデルは多くの課題で専用AIと同等以上でした。"
+  },
+  {
+   "type": "p",
+   "text": "化学反応を進めるたんぱく質を酵素と呼びます。酵素などの働く部分の形を保ち、その周りを設計する課題は30件ありました。部分と全体の形が狙いに合うかを、コンピューターで確かめました。成功率は、社内モデルが43.7%、専用AIのRFdiffusionが27.8%でした。"
+  },
+  {
+   "type": "p",
+   "text": "アミノ酸の並びからたんぱく質全体の形を当てる課題は、弱点として残りました。形の一致度を1点満点で測ると、最新の社内モデルは平均0.38点でした。形の予測に特化したAIの平均は0.93点でした。"
+  },
+  {
+   "type": "h",
+   "text": "実験室で確かめた結合"
+  },
+  {
+   "type": "p",
+   "text": "共同研究先のOnavaは、公開前のGPT-6.2が考えた形をもとに小さなたんぱく質を作りました。アミノ酸の並びを考える作業と、試す候補の絞り込みには専用AIも使いました。"
+  },
+  {
+   "type": "p",
+   "text": "Onavaが322個を試すと、35個（10.9%）で狙った相手に結合する反応が見られました。相手に選んだ5種類すべてで、少なくとも1個が結合しました。結合した数はIL-17A向けが18個、VEGF-A向けが8個でした。PD-L1向けは5個でした。"
+  },
+  {
+   "type": "img",
+   "src": "https://images.ctfassets.net/kftzwdyauwt9/77JrLamL248By3sCY9fZqj/7537b78d13de9641b56233de8216a606/wet-lab-desktop-light.png?w=3840&q=90&fm=webp",
+   "kind": "press",
+   "credit": "OpenAI",
+   "caption": "たんぱく質の設計から実験室での検証までの流れを示した図",
+   "page": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
+  },
+  {
+   "type": "p",
+   "text": "RFdiffusionを使った元の研究では、候補が結合した割合は今回より高く出ました。OpenAIは、候補の絞り方や結合の判定基準で割合は大きく変わると説明しています。"
+  },
+  {
+   "type": "p",
+   "text": "別の実験では、GPT-6.2が小さなたんぱく質の形をもとにアミノ酸の並びを考え直しました。5種類の相手に対して、計123個で結合が確かめられました。未公開の形をもとにした分では、107個のうち14個が結合しました。OpenAIは、未公開の形で並びも大きく変わった点から、記憶だけでは説明しにくいとみています。"
+  },
+  {
+   "type": "p",
+   "text": "抗体は、特定の相手にくっつくたんぱく質です。GPT-6.2は小型抗体6種で、相手をつかむ3つの輪を作り直しました。182個のうち128個（70%）に結合の兆候がありました。治療用抗体5種では、272個の断片のうち179個（66%）が元の相手に結合しました。"
+  },
+  {
+   "type": "h",
+   "text": "研究の限界と実用化の課題"
+  },
+  {
+   "type": "p",
+   "text": "結合した候補が酵素などとして狙いどおりに働くかは、まだ確かめられていません。薬にするには、効き目や安全性も確かめる必要があります。"
+  },
+  {
+   "type": "p",
+   "text": "GIGAZINEが紹介した学術誌Natureの報道では、幅広い用途のAIがいずれ専用AIを超えるとみる研究者もいます。AIがたんぱく質の性質をどこまで理解しているかには、疑問の声もあります。学習に使った生物学のデータは未公開で、覚えた例を使っただけか見分けにくいとも報じられました。"
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは、相手にくっついた後に起きる変化まで考えて設計する研究を進める方針です。AIによる分子の設計が悪用される危険性も調べ、安全対策を進めます。"
+  },
+  {
+   "type": "p",
+   "text": "社内の研究用モデルは、一般向けの提供も利用料金も未発表です。日本で使えるか、日本語で指示できるかもわかっていません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "35/322個",
+     "label": "実験で狙った相手に結合"
+    },
+    {
+     "value": "70%",
+     "label": "抗体の再設計で結合"
+    },
+    {
+     "value": "43.7%",
+     "label": "設計の成功率（専用27.8%）"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "薬の開発や生き物の研究に関わる人は、AIが設計した候補を実験で確かめた段階だと押さえておけます。",
+    "一般の利用者が今すぐすることはありません。",
+    "研究の続報を追うときは、専門家の審査や、別のチームで同じ結果が出るかが手がかりです。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "AIが考えた形から、相手にくっつくたんぱく質ができたのは一歩前進です。次の報告では、くっついた後に狙いどおりの働きをするかを見たいところです。"
+  }
+ ],
+ "source_name": "OpenAI",
+ "source_url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities",
+ "published": "2026-11-24",
+ "refs": [
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
+  },
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/"
+  },
+  {
+   "name": "GIGAZINE",
+   "url": "https://gigazine.net/news/20261125-openai-gpt-6-protein/"
+  },
+  {
+   "name": "Unite.AI",
+   "url": "https://www.unite.ai/ja/openai-reports-gpt-6-designs-proteins-with-reasoning-and-code/"
+  }
+ ]
+}

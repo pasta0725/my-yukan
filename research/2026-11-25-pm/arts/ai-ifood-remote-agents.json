@@ -1,0 +1,152 @@
+{
+ "id": "ai-ifood-remote-agents",
+ "category": "ai",
+ "title": "iFood、1万5000超の保管庫でAIがコード修正",
+ "summary": "AIに定型作業を任せ、社内のソフトの弱点を直した件数が2倍超になりました。",
+ "image": {
+  "src": "https://images.ctfassets.net/kftzwdyauwt9/4Ts7RsLLSU4iEOxQwBkGgg/cbf56c075004a9ae2c41af4d5f7b428b/ifood-customer-story-social.png?w=1600&h=900&fit=fill",
+  "kind": "press",
+  "credit": "OpenAI",
+  "page": "https://openai.com/business/customer-stories/ifood"
+ },
+ "visual": {
+  "icon": "chip",
+  "kicker": "AI導入事例"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "ブラジルの料理配達会社iFoodが、ソフトを動かすコードの修正をAIに任せています。",
+    "AIの処理費は1回平均0.04米ドルで、作業は2万5000回を超えました。",
+    "iFoodの開発チームが社内で使う仕組みで、料理を注文する人に必要な手続きはありません。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "OpenAIは11月24日、iFoodがコードの確認や修正をAIに任せる事例を公開しました。開発者は作業を頼み、あとで結果を確認できます。"
+  },
+  {
+   "type": "h",
+   "text": "なぜ共通の仕組みが要るか"
+  },
+  {
+   "type": "p",
+   "text": "iFoodは、1万5000超のコード保管庫（リポジトリ）を持っています。保管庫にはコードと変更の記録が入っています。コードが社内の基準に合うか、保管庫ごとに定期的に確認します。弱点が見つかった部品の更新も必要です。"
+  },
+  {
+   "type": "p",
+   "text": "以前は各チームがばらばらに対策していました。1つずつなら難しくない作業でも、全社の保管庫に広げると手が回りません。AIに作業させる共通の環境がなかったため、どのチームも同じところで行き詰まっていました。"
+  },
+  {
+   "type": "h",
+   "text": "AIに作業を頼む仕組み"
+  },
+  {
+   "type": "p",
+   "text": "iFoodは「Remote Agents Platform」という社内の仕組みを作りました。各チームは共通の窓口（API）から、作業の指示と必要な環境を伝えます。AIは、ほかの作業と切り離した環境でコードを確認したり直したりします。"
+  },
+  {
+   "type": "p",
+   "text": "基盤が保管庫をコピーし、決められた手順で作業場所を用意します。AIが使う手順も先に読み込みます。基本ソフトはUbuntuで、社内で使う複数のプログラミング言語に対応します。作業後は、変更の取り込み依頼（マージリクエスト）と、作ったファイルなどを基盤が返します。"
+  },
+  {
+   "type": "p",
+   "text": "iFoodはすべての作業でGPT-5.6 Lunaを使います。iFoodの技術者Victor Coelho氏は、候補の処理の速さと効率を比べたと説明しました。指示をこなす力も含め、バランスを見て選びました。"
+  },
+  {
+   "type": "p",
+   "text": "手本は、一括処理用のBatch APIと、AIに作業を任せるAgents APIです。どちらもOpenAIの仕組みで、iFoodは依頼の受け付け方や結果をあとで返す流れを参考にしました。"
+  },
+  {
+   "type": "h",
+   "text": "ソフトの弱点対策と成果"
+  },
+  {
+   "type": "p",
+   "text": "まず本格的に使い始めたのは、社内の安全対策を担うチームです。対策ツールは、コードの保管庫から弱点（脆弱性）のある部品を探します。見つけた部品の修正は、共通の窓口からAIに頼みます。OpenAIの発表では、切り替え後に修正の正確さと直した件数がともに2倍超になりました。"
+  },
+  {
+   "type": "p",
+   "text": "完了した作業は全体で2万5000回超です。AIが読み書きした量は、文章の細かい区切り（トークン）で数えると270億を超えました。AIの処理費は、作業1回あたり平均0.04米ドルです。"
+  },
+  {
+   "type": "h",
+   "text": "結果の確認と人の役割"
+  },
+  {
+   "type": "p",
+   "text": "作業後は、OpenAIの「Structured Outputs」で返事の形をそろえます。成功と失敗のどちらでも同じ形で返るので、仕組みが作業の成否を自動で判定できます。取り込み依頼が届いたら、人が変更を確かめてから取り込めます。"
+  },
+  {
+   "type": "p",
+   "text": "開発者は、作業がどこまで進んだかをその場で確認できます。会議中に、コード修正やソフトの動く速さの調査を頼んでおけます。作業を見張る時間が省ける点に価値があると、Coelho氏は説明しています。"
+  },
+  {
+   "type": "h",
+   "text": "先行紹介と今後の計画"
+  },
+  {
+   "type": "p",
+   "text": "iFoodの技術者は、事例が公開される前にイベントでこの仕組みを披露しました。OpenAI DevDays São Pauloで紹介したとexplainx.aiが報じました。"
+  },
+  {
+   "type": "p",
+   "text": "iFoodは今後、この仕組みを使う社内製品を増やす計画です。どこまで広げられるかは、作業1回あたりの費用が左右するとしています。対象を広げる時期は発表されていません。"
+  },
+  {
+   "type": "p",
+   "text": "利用はiFoodの社内に限られます。日本語への対応は発表されていません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "1万5000超",
+     "label": "対象のコード保管庫数"
+    },
+    {
+     "value": "2万5000回超",
+     "label": "これまでの実行回数"
+    },
+    {
+     "value": "0.04米ドル",
+     "label": "1回あたりの平均AI処理費"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "職場でAIに修正を任せる場合は、変更を取り込む前に内容を確認してください。",
+    "一般の利用者がすることは、今のところ特にありません。",
+    "導入を考える企業は、iFoodの数字を参考に自社の作業1回あたりの費用を見積もってください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "会議の間に修正を進められるなら、開発者は判断が必要な仕事に時間を回せそうです。どこまで広げられるかは、1回ごとの費用に加え、結果を確認する手間でも変わりそうです。"
+  }
+ ],
+ "source_name": "OpenAI",
+ "source_url": "https://openai.com/business/customer-stories/ifood",
+ "published": "2026-11-24",
+ "refs": [
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/business/customer-stories/ifood"
+  },
+  {
+   "name": "KEN TECH TIMES",
+   "url": "https://kentechtimes.com/articles/2026-11-25-ifood-remote-agents-platform-gpt-5-6-luna-15000-repositories/"
+  },
+  {
+   "name": "explainx.ai",
+   "url": "https://www.explainx.ai/blog/ifood-remote-agent-platform-15000-repos-openai-november-2026"
+  },
+  {
+   "name": "OpenAI",
+   "url": "https://openai.com/business/customer-stories/ifood/"
+  }
+ ]
+}

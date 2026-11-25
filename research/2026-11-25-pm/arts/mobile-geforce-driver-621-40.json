@@ -1,0 +1,124 @@
+{
+ "id": "mobile-geforce-driver-621-40",
+ "category": "mobile",
+ "title": "GeForce 621.40でSSDの過剰書き込み修正",
+ "summary": "緊急修正版を入れた人も、ゲーム向けと制作向けの通常版で対策できます。",
+ "image": {
+  "src": "https://asset.watch.impress.co.jp/img/pcw/docs/2159/016/01_l.jpg",
+  "kind": "ogp",
+  "credit": "PC Watch",
+  "page": "https://pc.watch.impress.co.jp/docs/news/2159016.html"
+ },
+ "visual": {
+  "icon": "chip",
+  "kicker": "GeForce"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "GeForceの通常版ドライバで、SSDへの過剰な書き込みを修正",
+    "ゲーム向けと制作向けの両方を更新。対象は64ビット版のWindows 10と11",
+    "緊急修正版の621.35でも再発の報告があり、入れた人も通常版へ更新を"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "NVIDIAは11月24日（現地時間）、GeForceを動かすソフト「621.40」を公開しました。SSD（データの保存先）への過剰な書き込みを直す更新です。"
+  },
+  {
+   "type": "h",
+   "text": "SSDに何が起きたのか"
+  },
+  {
+   "type": "p",
+   "text": "画面には見えないところで、ドライバが動作の記録を何度も書き直す不具合です。PC Watchは、621.14と621.24で発生したと報じました。1時間に最大30GBを書き込んだ例もありました。書き込みが続くと、SSDの寿命に影響するおそれがあります。"
+  },
+  {
+   "type": "p",
+   "text": "NVIDIAは今回の更新で、発生条件や影響を受ける旧版の範囲を明らかにしていません。実際の書き込み量や、不具合が起きた原因も示していません。"
+  },
+  {
+   "type": "h",
+   "text": "緊急修正版でも再発の報告"
+  },
+  {
+   "type": "p",
+   "text": "NVIDIAは、先に出した緊急修正版の621.35で修正を案内しました。エルミタは、公開日を11月20日と報じました。PC Gamerは、再起動からしばらくすると過剰な書き込みが再発した例を伝えています。同誌が問題の起きていない旧版として挙げたのは、621.01です。"
+  },
+  {
+   "type": "h",
+   "text": "通常版の対象と修正の結果"
+  },
+  {
+   "type": "p",
+   "text": "エルミタによると、通常版の621.40ではゲーム向けと制作向けの両方に対策が入りました。ゲーム向けの名前は「GeForce Game Ready Driver」です。制作向けは「NVIDIA Studio Driver」です。どちらも64ビット版のWindows 10と11に対応します。"
+  },
+  {
+   "type": "p",
+   "text": "PC Gamerが取り上げた利用者の確認では、621.40で過剰な書き込みが止まりました。好みに変えたマウスの矢印が灰色になる問題も直っていました。"
+  },
+  {
+   "type": "h",
+   "text": "動画の色と映像制作の修正"
+  },
+  {
+   "type": "p",
+   "text": "Windowsのフォトやメディアプレーヤーで、動画の色が正しく出ない問題が直りました。対象はD-Log H.265形式の動画です。映像制作ソフトの「Chaos Vantage」でも、高解像度での不具合が直りました。映像のざらつきを抑える「NVIDIA OptiX Denoiser」が正しく働くようになります。"
+  },
+  {
+   "type": "h",
+   "text": "ゲームごとの対応内容"
+  },
+  {
+   "type": "p",
+   "text": "PC Gamerが紹介したNVIDIAの発表には、ゲームごとの変更もあります。「Warhammer 40,000: Dawn of War IV」向けに動作を調整しました。「Assetto Corsa Rally」も調整の対象です。「Where Winds Meet」には、立体の形をもとにAIで映像を描く「DLSS 5」が加わります。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "最大30GB",
+     "label": "1時間の書き込み報告"
+    },
+    {
+     "value": "621.40",
+     "label": "修正が入った通常版"
+    },
+    {
+     "value": "621.35",
+     "label": "先に出た緊急修正版"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "621.14、621.24、621.35を使っている人は、621.40に更新してください。",
+    "更新するときは、NVIDIAの公式サイトで今使っている種類を選んでください。",
+    "ほかの修正点は、NVIDIAの更新案内で確認できます。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "画面に出ない書き込みは、普段どおりに使えているときには気づきにくいものです。パソコンを長時間つけたままにする人ほど、SSDへの負担を抑える意味がありそうです。"
+  }
+ ],
+ "source_name": "PC Watch",
+ "source_url": "https://pc.watch.impress.co.jp/docs/news/2159016.html",
+ "published": "2026-11-25",
+ "refs": [
+  {
+   "name": "PC Watch",
+   "url": "https://pc.watch.impress.co.jp/docs/news/2159016.html"
+  },
+  {
+   "name": "PC Gamer",
+   "url": "https://www.pcgamer.com/hardware/graphics-cards/nvidia-patch-finally-eradicates-the-ssd-hammering-bug-its-last-hotfix-didnt-actually-fix/"
+  },
+  {
+   "name": "エルミタ",
+   "url": "https://www.gdm.or.jp/pressrelease/2026/1125/661816"
+  }
+ ]
+}
