@@ -1,0 +1,246 @@
+===== https://openai.com/index/searching-for-distant-planets-with-astra
+(status 200)
+An illustrated view of HD 164604 b zooms out to the Milky Way. Boxes mark a selection of systems with confirmed exoplanets. Distances are scaled to the zoom and show the distance from Earth at the widest view. Hover over or tap a box to read its label. Use the arrow keys to browse labels and Escape to dismiss them.
+November 24, 2026
+Science
+Searching for distant planets with Astra
+Two amateur astronomers used Codex and Astra to look for signs of planets in public telescope data. Now they’ve given professional astronomers a few places to look more closely.
+Share
+Astronomers have confirmed more than 
+6,400 planets beyond our solar system
+⁠
+(opens in a new window)
+ since the 
+first ones were announced in 1992
+⁠
+(opens in a new window)
+. A worldwide community of amateur astronomers has long been part of that search. Some comb through public telescope data for small, repeated dips in a star’s brightness that could signal an orbiting planet. Others use their own telescopes to watch for the next dip and share what they see with researchers.
+*Data from the NASA Exoplanet Archive’s 
+Planetary Systems Composite Parameters table
+⁠
+(opens in a new window)
+. 2026 data are year to date through November 24, 2026.
+How astronomers discover exoplanets
+Astronomers have used AI in this search for years. In 2017, researchers trained a neural network on 15,000 signals from NASA’s 
+Kepler Space Telescope
+⁠
+(opens in a new window)
+ that astronomers had already examined. From those examples, the model learned to recognize which patterns in starlight were most likely to come from a planet. When the researchers used it to examine weaker signals, one led them to an 
+eighth planet orbiting a star called Kepler-90
+⁠
+(opens in a new window)
+.
+Now, tools like Astra are helping amateur astronomers design and run searches of their own, often on data that has already yielded the more obvious exoplanet signals. 
+Kevin Bond, an engineer at OpenAI, came to astronomy through his love of photographing the night sky. He used Codex to search observations of about 100,000 stars from the Kepler telescope, a planet-hunting mission that ran from 2009 to 2018. Ethan Byrd, founder of the email infrastructure start-up Primitive, has always loved astronomy. Working independently of Bond, he tried several AI models before choosing Astra to help him analyze telescope data from about 19 million stars.
+Both searches identified potential exoplanets. Bond and Byrd have now turned to astronomers for an independent assessment of their results. Bond contacted an astronomer at the SETI Institute, who ran an independent search and found two of the same signals in the Kepler data. Byrd sent one of his strongest candidates to researchers working on NASA’s Transiting Exoplanet Survey Satellite (TESS) mission. It’s in line for further analysis, and two more candidates are awaiting submission. 
+Looking for dips in starlight
+One of the most common ways to find an exoplanet is to watch the star it orbits. When a planet passes in front of its star from our point of view on Earth, it blocks a tiny amount of starlight. Astronomers call that crossing a transit. On a graph of the star’s brightness over time, known as a light curve, a transit shows up as a dip. If the dip keeps coming back at regular intervals, astronomers know when to watch for it again.
+Searching for that pattern across thousands of stars is partly a coding problem. Astronomers have published methods for picking out faint, recurring dips in years of measurements. Bond used Codex to compare those methods, combine them in a search program, and test whether changes to the code improved the search. One AI agent scanned the light curves for promising signals. Another ran more detailed checks on the candidates the first one flagged.
+Bond ran the program on public data from the Kepler Space Telescope. The search flagged more than 200 signals, including 10 from previously confirmed planets. Finding those known planets gave Bond confidence that the program could pick out the kinds of signals he was looking for.
+Two stars stood out. The first, KIC 5689121, is a relatively cool star about half the size of our sun in the constellation Lyra. The Codex search found a dip in brightness every 13.8 days. If a planet is causing it, the amount of light it blocks suggests it could be about 2.4 times Earth’s diameter.
+These four curves show the same Kepler observations aligned on a 13.77-day cycle.
+The second star, KIC 6691030, is faint and lies in the northern sky. The Codex search found a dip in its brightness every 4.8 days, consistent with a planet smaller than Neptune. These were the two signals the SETI Institute astronomer found independently. Confirming what caused them could take months or years.
+“Kevin’s work shows how citizen scientists, equipped with AI, can help astronomers explore the Kepler Bonus Catalog—a vast collection of stars beyond Kepler’s original targets. His pipeline has surfaced promising candidates in data traditional searches may have missed. Our initial checks are encouraging, and follow-up observations will tell us more.”
+Vishal Gajjar, associate director for international SETI programs at the SETI Institute
+Byrd used Astra to design two searches. One looked broadly for exoplanet candidates. The other focused on stars’ habitable zones. A habitable zone is the range of distances from a star where a planet with a suitable atmosphere could support liquid water on its surface.
+Byrd then asked Astra to review published methods, build the search software, and run initial checks on promising signals. His searches drew on observations from TESS, which NASA launched in 2018, and from other public telescope archives.
+Kepler watched one field for four years. TESS surveyed both hemispheres in its first 26 sectors, from 2018 to 2020. The star field comes from 
+NASA’s TESS mosaic through September 2025
+⁠
+(opens in a new window)
+, clipped to that original survey footprint. The wider gap shows where TESS pointed farther north during six observing sectors. The inset marks 
+KIC 5689121
+⁠
+(opens in a new window)
+ in the original 
+Kepler field
+⁠
+(opens in a new window)
+. See 
+NASA’s final prime-mission coverage maps
+⁠
+(opens in a new window)
+ and its 
+earlier field-of-view animation
+⁠
+(opens in a new window)
+.
+The first pass through the data turned up 49 candidates. Byrd sent one of his strongest candidates to researchers working on the TESS mission, where it is awaiting further analysis. His search is still running.
+What does it take to confirm a planet?
+When astronomers see a star dim, they have to consider what else might explain it. Two stars passing in front of one another can produce a similar dip. Even a change in temperature aboard a telescope can affect its instruments enough to make a star appear to dim.
+Astronomers can use statistics to show that an exoplanet is the most likely explanation for a series of dips. They can also collect more observations, sometimes using a different method. For example, an orbiting planet’s gravity tugs on its star, causing it to move slightly toward and away from us. That motion, called radial velocity, shows up as tiny shifts in the color of the star’s light. Astronomers then publish their findings in a peer-reviewed journal so others can examine the evidence.
+For Bond and Byrd, each candidate is a question that can be tested. If a planet is passing in front of the star in Lyra every 13.8 days, astronomers can watch for the next crossing. Further observations can help establish whether the dip repeats as expected, while additional checks can help determine what is causing it.
+Photographs by Kevin Bond
+Taking part in the search
+You can contribute without owning a telescope. NASA’s 
+Exoplanet Watch
+⁠
+(opens in a new window)
+ lets you request data and learn to plot a light curve yourself. Its broader 
+exoplanet citizen science programs
+⁠
+(opens in a new window)
+ offer other ways to participate.
+If you have access to a telescope, Exoplanet Watch walks users through how to collect data on transiting exoplanets and participate in observation campaigns. 
+AAVSO’s Exoplanet Observing Program
+⁠
+(opens in a new window)
+ can show you how to measure a dip in starlight and share your observations with the researchers studying that planet. And the 
+Unistellar Network Investigating TESS Exoplanets
+⁠
+(opens in a new window)
+ coordinates volunteers around the world with a certain type of telescope to observe the same star, helping astronomers catch transits that can last longer than a single night.
+Astronomy has a long history of people around the world following their curiosity and sharing what they find. Bond and Byrd are part of that tradition. Their searches are still open, but they turned a love of the night sky into leads that other astronomers can investigate. We want more people to have that opportunity, in astronomy and across science.
+If you want to follow along with new findings, practical guidance, and perspectives from researchers using AI to advance science 
+check out the OpenAI science blog
+⁠
+.
+2026
+Author
+OpenAI
+About the visualization
+The opening animation uses planet names and host star positions from the 
+NASA Exoplanet Archive
+⁠
+(opens in a new window)
+, operated by Caltech for NASA’s Exoplanet Exploration Program. The catalog snapshot was retrieved on November 19, 2026. The planet and galaxy are illustrations. As the view widens, the distance labels increase until they reach the catalog values.
+Keep reading
+View all
+GPT-6 models demonstrate intrinsic protein-design capabilities
+Science
+Nov 24, 2026
+MedChemBench: Benchmarking AI for medicinal chemistry
+Research
+Nov 20, 2026
+Broadening access to AI for scientists
+Research
+Nov 16, 2026
+
+===== https://openai.com/index/searching-for-distant-planets-with-astra/
+(status 200)
+An illustrated view of HD 164604 b zooms out to the Milky Way. Boxes mark a selection of systems with confirmed exoplanets. Distances are scaled to the zoom and show the distance from Earth at the widest view. Hover over or tap a box to read its label. Use the arrow keys to browse labels and Escape to dismiss them.
+November 24, 2026
+Science
+Searching for distant planets with Astra
+Two amateur astronomers used Codex and Astra to look for signs of planets in public telescope data. Now they’ve given professional astronomers a few places to look more closely.
+Share
+Astronomers have confirmed more than 
+6,400 planets beyond our solar system
+⁠
+(opens in a new window)
+ since the 
+first ones were announced in 1992
+⁠
+(opens in a new window)
+. A worldwide community of amateur astronomers has long been part of that search. Some comb through public telescope data for small, repeated dips in a star’s brightness that could signal an orbiting planet. Others use their own telescopes to watch for the next dip and share what they see with researchers.
+*Data from the NASA Exoplanet Archive’s 
+Planetary Systems Composite Parameters table
+⁠
+(opens in a new window)
+. 2026 data are year to date through November 24, 2026.
+How astronomers discover exoplanets
+Astronomers have used AI in this search for years. In 2017, researchers trained a neural network on 15,000 signals from NASA’s 
+Kepler Space Telescope
+⁠
+(opens in a new window)
+ that astronomers had already examined. From those examples, the model learned to recognize which patterns in starlight were most likely to come from a planet. When the researchers used it to examine weaker signals, one led them to an 
+eighth planet orbiting a star called Kepler-90
+⁠
+(opens in a new window)
+.
+Now, tools like Astra are helping amateur astronomers design and run searches of their own, often on data that has already yielded the more obvious exoplanet signals. 
+Kevin Bond, an engineer at OpenAI, came to astronomy through his love of photographing the night sky. He used Codex to search observations of about 100,000 stars from the Kepler telescope, a planet-hunting mission that ran from 2009 to 2018. Ethan Byrd, founder of the email infrastructure start-up Primitive, has always loved astronomy. Working independently of Bond, he tried several AI models before choosing Astra to help him analyze telescope data from about 19 million stars.
+Both searches identified potential exoplanets. Bond and Byrd have now turned to astronomers for an independent assessment of their results. Bond contacted an astronomer at the SETI Institute, who ran an independent search and found two of the same signals in the Kepler data. Byrd sent one of his strongest candidates to researchers working on NASA’s Transiting Exoplanet Survey Satellite (TESS) mission. It’s in line for further analysis, and two more candidates are awaiting submission. 
+Looking for dips in starlight
+One of the most common ways to find an exoplanet is to watch the star it orbits. When a planet passes in front of its star from our point of view on Earth, it blocks a tiny amount of starlight. Astronomers call that crossing a transit. On a graph of the star’s brightness over time, known as a light curve, a transit shows up as a dip. If the dip keeps coming back at regular intervals, astronomers know when to watch for it again.
+Searching for that pattern across thousands of stars is partly a coding problem. Astronomers have published methods for picking out faint, recurring dips in years of measurements. Bond used Codex to compare those methods, combine them in a search program, and test whether changes to the code improved the search. One AI agent scanned the light curves for promising signals. Another ran more detailed checks on the candidates the first one flagged.
+Bond ran the program on public data from the Kepler Space Telescope. The search flagged more than 200 signals, including 10 from previously confirmed planets. Finding those known planets gave Bond confidence that the program could pick out the kinds of signals he was looking for.
+Two stars stood out. The first, KIC 5689121, is a relatively cool star about half the size of our sun in the constellation Lyra. The Codex search found a dip in brightness every 13.8 days. If a planet is causing it, the amount of light it blocks suggests it could be about 2.4 times Earth’s diameter.
+These four curves show the same Kepler observations aligned on a 13.77-day cycle.
+The second star, KIC 6691030, is faint and lies in the northern sky. The Codex search found a dip in its brightness every 4.8 days, consistent with a planet smaller than Neptune. These were the two signals the SETI Institute astronomer found independently. Confirming what caused them could take months or years.
+“Kevin’s work shows how citizen scientists, equipped with AI, can help astronomers explore the Kepler Bonus Catalog—a vast collection of stars beyond Kepler’s original targets. His pipeline has surfaced promising candidates in data traditional searches may have missed. Our initial checks are encouraging, and follow-up observations will tell us more.”
+Vishal Gajjar, associate director for international SETI programs at the SETI Institute
+Byrd used Astra to design two searches. One looked broadly for exoplanet candidates. The other focused on stars’ habitable zones. A habitable zone is the range of distances from a star where a planet with a suitable atmosphere could support liquid water on its surface.
+Byrd then asked Astra to review published methods, build the search software, and run initial checks on promising signals. His searches drew on observations from TESS, which NASA launched in 2018, and from other public telescope archives.
+Kepler watched one field for four years. TESS surveyed both hemispheres in its first 26 sectors, from 2018 to 2020. The star field comes from 
+NASA’s TESS mosaic through September 2025
+⁠
+(opens in a new window)
+, clipped to that original survey footprint. The wider gap shows where TESS pointed farther north during six observing sectors. The inset marks 
+KIC 5689121
+⁠
+(opens in a new window)
+ in the original 
+Kepler field
+⁠
+(opens in a new window)
+. See 
+NASA’s final prime-mission coverage maps
+⁠
+(opens in a new window)
+ and its 
+earlier field-of-view animation
+⁠
+(opens in a new window)
+.
+The first pass through the data turned up 49 candidates. Byrd sent one of his strongest candidates to researchers working on the TESS mission, where it is awaiting further analysis. His search is still running.
+What does it take to confirm a planet?
+When astronomers see a star dim, they have to consider what else might explain it. Two stars passing in front of one another can produce a similar dip. Even a change in temperature aboard a telescope can affect its instruments enough to make a star appear to dim.
+Astronomers can use statistics to show that an exoplanet is the most likely explanation for a series of dips. They can also collect more observations, sometimes using a different method. For example, an orbiting planet’s gravity tugs on its star, causing it to move slightly toward and away from us. That motion, called radial velocity, shows up as tiny shifts in the color of the star’s light. Astronomers then publish their findings in a peer-reviewed journal so others can examine the evidence.
+For Bond and Byrd, each candidate is a question that can be tested. If a planet is passing in front of the star in Lyra every 13.8 days, astronomers can watch for the next crossing. Further observations can help establish whether the dip repeats as expected, while additional checks can help determine what is causing it.
+Photographs by Kevin Bond
+Taking part in the search
+You can contribute without owning a telescope. NASA’s 
+Exoplanet Watch
+⁠
+(opens in a new window)
+ lets you request data and learn to plot a light curve yourself. Its broader 
+exoplanet citizen science programs
+⁠
+(opens in a new window)
+ offer other ways to participate.
+If you have access to a telescope, Exoplanet Watch walks users through how to collect data on transiting exoplanets and participate in observation campaigns. 
+AAVSO’s Exoplanet Observing Program
+⁠
+(opens in a new window)
+ can show you how to measure a dip in starlight and share your observations with the researchers studying that planet. And the 
+Unistellar Network Investigating TESS Exoplanets
+⁠
+(opens in a new window)
+ coordinates volunteers around the world with a certain type of telescope to observe the same star, helping astronomers catch transits that can last longer than a single night.
+Astronomy has a long history of people around the world following their curiosity and sharing what they find. Bond and Byrd are part of that tradition. Their searches are still open, but they turned a love of the night sky into leads that other astronomers can investigate. We want more people to have that opportunity, in astronomy and across science.
+If you want to follow along with new findings, practical guidance, and perspectives from researchers using AI to advance science 
+check out the OpenAI science blog
+⁠
+.
+2026
+Author
+OpenAI
+About the visualization
+The opening animation uses planet names and host star positions from the 
+NASA Exoplanet Archive
+⁠
+(opens in a new window)
+, operated by Caltech for NASA’s Exoplanet Exploration Program. The catalog snapshot was retrieved on November 19, 2026. The planet and galaxy are illustrations. As the view widens, the distance labels increase until they reach the catalog values.
+Keep reading
+View all
+GPT-6 models demonstrate intrinsic protein-design capabilities
+Science
+Nov 24, 2026
+MedChemBench: Benchmarking AI for medicinal chemistry
+Research
+Nov 20, 2026
+Broadening access to AI for scientists
+Research
+Nov 16, 2026
+
+===== https://www.techno-edge.net/article/2026/11/25/5809.html
+(status 200)
+OpenAIは11月24日、アマチュア天文家2人が同社のコーディングAI「Codex」とAIモデル「Astra」を用い、NASAの宇宙望遠鏡の公開データから太陽系外惑星の候補を検出した事例を発表しました。
+アマチュアによる系外惑星の探索は、以前から続いています。OpenAIによると、天文学者は1992年以降に6400個を超える系外惑星を確認しており、世界各地のアマチュアが公開データの解析や追観測でその探索に加わってきました。AIの利用も新しい話ではありません。2017年には研究者がケプラー宇宙望遠鏡の信号1万5000件でニューラルネットワークを訓練し、恒星Kepler-90を回る8番目の惑星を発見しています。
+今回の事例が従来と異なるのは、専用に訓練したAIではなく、汎用のAIが探索手法の設計と実装を担った点です。探索では、惑星が恒星の手前を横切る際に生じるわずかな減光（トランジット）を検出します。この減光が一定の周期で反復すれば、惑星が公転している可能性が生じます。
+1人目はOpenAIのエンジニア、Kevin Bond氏です。同氏はCodexを用いて、公表済みの検出手法を比較・統合した探索プログラムを構築し、コードの変更が探索精度を改善するかを検証しました。プログラムは2段階で動作します。1つ目のAIエージェントが光度の変化から有望な信号を抽出し、2つ目のエージェントがその信号を詳細に検査します。同氏はこのプログラムで、ケプラーが2009年から2018年にかけて観測した約10万個の恒星を解析し、200を超える信号を検出しました。このうち10個は確認済みの惑星に由来する信号で、同氏はこれをプログラムの妥当性を示す根拠としています。
+同氏が特に有望と判断した恒星は2つあります。こと座に位置し、太陽の約半分の大きさを持つ「KIC 5689121」は、13.8日周期で減光を示しました。原因が惑星であれば、その直径は地球の約2.4倍に相当します。「KIC 6691030」は4.8日周期で減光を示し、この値は海王星より小さい惑星の存在と整合します。同氏の連絡を受けたSETI研究所の天文学者は、独立に探索を実施し、同じデータからこの2つの信号を検出しました。
+2人目は、メール基盤のスタートアップPrimitiveを創業したEthan Byrd氏です。同氏は複数のAIモデルを試したうえでAstraを選択し、公表済みの手法の調査、探索ソフトウェアの構築、有望な信号の初期検査を任せました。TESSなどの公開データから約1900万個の恒星を解析し、最初の探索で49件の候補を得ています。同氏は最も有力な1件をTESSの研究チームに送付し、現在は追加の解析を待つ段階です。
+いずれの信号も、現時点では「候補」にとどまります。2つの恒星が互いの手前を通過する場合や、望遠鏡内部の温度変化も、同様の減光を引き起こすためです。確定には追加の観測と統計的な検証を要し、OpenAIは数か月から数年を要する可能性があると説明しています。
+公開データと公表済みの手法は以前から存在していましたが、それらを統合して大規模な探索を実行するには、相応のプログラミング能力と専門知識が必要でした。今回の事例は、汎用のAIがその障壁を下げつつあることを示しています。一方で、発表元はAIの提供企業自身であり、Bond氏は同社の社員です。成果の評価は、今後の追観測と査読を経た報告を待つ必要があります。

@@ -1,0 +1,219 @@
+===== https://techcrunch.com/2026/11/24/even-the-best-ai-agents-struggle-with-everyday-life/
+(status 200)
+AI companies have spent the last couple of months marketing personal AI agents as tools to take over the digital drudgery of human existence — and millions have been sold on the vision, handing over their shopping schedules, travel plans, and everyday responsibilities to AI assistants. But 
+new research 
+suggests that even the most advanced AI models struggle to reliably and safely navigate the messy details of people’s lives. 
+According to ShellBench, a new benchmark for everyday agent work, even the most advanced models from OpenAI, Anthropic, and Meta failed more than a third of the time. Across all models tested, 15.7% of attempts failed at least one safety requirement, often leading to unintended consequences. 
+ShellBench was developed in collaboration with researchers at The OpenClaw Foundation, Parsewave, Hugging Face, Red Hat, and UC Berkeley, drawing on more than 10 million anonymized, real-world AI agent interactions to see how agents perform on the everyday work people actually delegate to them. 
+The research comes as personal AI assistants are finding new popularity among developers, with Meta, OpenAI, and Anthropic all fighting for a piece of the market with Muse, 
+Dots
+, and 
+Claude Duet
+, respectively.
+In October, Meta said more than 
+10 million people 
+in the U.S. and Canada had set up its personal AI agent, Muse, within six weeks of launch, with about a quarter using it daily. That number is expected to grow as Meta implants 
+Muse directly into Instagram DMs
+. Despite growing popularity among consumers, we still have little evidence about how reliable AI personal assistant products actually are.
+ShellBench suggests that the unreliable nature of most everyday data sources still causes problems for many state-of-the-art systems. A successful agent should be able to navigate messy personal workspaces containing emails, calendar entries, spreadsheets, receipts, chat logs, outdated information, and phishing attempts, and figure out which information is relevant, what is private, and how to deliver the requested outcome without creating new problems. 
+It seems many of today’s AI agents are still not up to the task. Not only did even the highest-performing agents frequently fail to meet the requirements of a task, but they also lacked consistency. When researchers ran each task three times under identical conditions, OpenAI’s GPT-6 Astra, the highest-scoring model, nailed all three attempts less than half the time. 
+For autonomous assistants that are meant to run in the background without supervision, it’s a problem if users need to run an agent multiple times to get a result they trust.
+Additionally, about 10% of otherwise correct attempts failed at least one safety criterion. Across the models and harnesses tested, agents failed to, for example, adequately account for a child’s school pickup 79.5% of the time. When handling laptop custody records, agents failed a requirement to identify and withhold a sensitive bank upload token in 18.6% of attempts. In another task, agents recommended duplicate or incorrect invoice payments 40.3% of the time. 
+The findings highlight a major issue for users adopting consumer personal AI assistants, namely that there’s always a risk that an agent can create more headaches in the course of trying to fulfill an otherwise ordinary request.
+While AI benchmarks have largely focused on coding, professional work, or testing on specific tasks, ShellBench is attempting to evaluate how models perform on multi-step personal tasks within different agent harnesses — the software that controls how a model accesses information, uses tools, and takes actions. 
+While the researchers found model choice had a greater overall impact on performance than harness choice, among the more capable models, AI agent performance became more dependent on the harness.
+For example, OpenAI’s GPT-6 Astra outperformed Anthropic’s Claude Fable 5.2 when operating within the Pi harness, but it performed worse when both models were tested within Claude Code. 
+Meta’s Muse Wonder Full scored 56% in Pi, but only 38.1% in Claude Code. Meta’s Muse Wonder 1.0, meanwhile, averaged a success rate of 39.7% across the five harnesses tested.
+Notably, while the researchers tested models from Meta, OpenAI, and Anthropic, they didn’t evaluate them within the native harnesses of Muse, Dots, or Claude Duet, so the results may not be representative of the experience millions of consumers are having with the product today. 
+TechCrunch has reached out to Meta, OpenAI, Anthropic, and the researchers in the study.
+Topics
+AI
+, 
+AI agents
+, 
+Anthropic
+, 
+Commerce
+, 
+Hugging Face
+, 
+Meta
+, 
+muse
+, 
+OpenAI
+, 
+openclaw
+, 
+personal assistant
+When you purchase through links in our articles, 
+we may earn a small commission
+. This doesn’t affect our editorial independence.
+			Rebecca Bellan	
+Senior Reporter
+Rebecca Bellan is a senior reporter at TechCrunch where she covers the business, policy, and emerging trends shaping artificial intelligence. Her work has also appeared in Forbes, Bloomberg, The Atlantic, The Daily Beast, and other publications. 
+You can contact or verify outreach from Rebecca by emailing 
+[email protected]
+ or via encrypted message at rebeccabellan.491 on Signal.
+View Bio 
+2027
+San Francisco
+Get an Early Peek at the Next TechCrunch Disrupt
+Disrupt, Startup Battlefield, and more will return next year, and you can be at the front of the line.
+Sign up for our waitlist
+Register Now
+Most Popular
+Figma employee sues, alleging company forced her to confront harassers
+Dominic-Madori Davis
+Anthropic launches Claude Ship, letting AI agents review, fix, and approve code changes
+Sarah Perez
+A tale of two Nvidias
+Anthony Ha
+Startup sues Apple in India over tap-to-share contacts feature
+Jagmeet Singh
+AI claimed a solution to the 167-year-old Riemann hypothesis — and a human did, too
+Tim Fernholz
+Anthropic’s 7 founders cashed out nearly $2B in record-breaking IPO
+Julie Bort
+Microsoft CEO Satya Nadella explains why he asked 60K employees to quit
+Julie Bort
+
+===== https://openclaw.ai/blog/shellbench
+(status 200)
+Ask an AI agent to summarize a document, and it will probably do a decent job. Ask it to reconcile a handful of receipts against a spreadsheet, check which information is current, flag a suspicious payment request, and explain how it reached its answer? Maybe not so well.
+This kind of realistic test, one that expects an agent not just to find the right information but also to keep track of it along the way, is exactly what we’re launching ShellBench to evaluate.
+Shellbench is a new benchmark developed in collaboration with researchers at The OpenClaw Foundation, Parsewave, Hugging Face, Red Hat, and UC Berkeley. It draws on more than 10 million anonymized, real-world AI agent interactions to measure how AI agents perform on the everyday work people actually delegate to them.
+ShellBench evaluated twelve models: GPT-6 Astra, Claude Fable 5.2, GPT-6.1 Sol, Gemini 4 Carbon, Muse Wonder Full, Claude Opus 5.5, Muse Wonder 1.0, DeepSeek V4.1 Flash, Claude Sonnet 5.5, Kimi K3.1 Pro, DeepSeek V4 Pro, and GPT-6 Luna. These were tested across five agent harnesses: Claude Code, Codex, Hermes, OpenClaw, and Pi.
+We tested 100 tasks, with 53,100 graded runs in total.
+Testing agents on everyday work
+Most AI benchmarks are designed around clearly defined problems, like answering a question, solving a math problem, or writing test-passing code. But real requests from real people for their daily work are rarely so organized. More likely, you’re asking your agent to find the latest version of a document, reconcile expenses from dozens of sources, or prepare a reply based on a long email thread.
+ShellBench tests this kind of work.
+Each tested scenario starts with a short request (median of just 43 words across the 90 rubric-graded tasks) and a realistic workspace (median of 188 files across those tasks), including emails, calendar exports, spreadsheets, chat logs, receipts, saved web pages, and PDFs.
+Most tasks introduce a complication, like outdated records, similar-looking accounts, conflicting information, and even potentially malicious instructions.
+The agent has to find the right evidence, complete the request, avoid phishing traps, and produce a verifiable answer.
+Of those 100 tasks, 90 are rubric-graded against 721 criteria (including 381 safety criteria), and 10 are code-tested. For the rubric-graded tasks, every required criterion must pass for the task to count as complete.
+This is a demanding standard, and deliberately so. Let’s dig into the results.
+1. Even the strongest agents have a long way to go
+Averaged across harnesses, even the highest-performing models successfully completed only about six in ten tasks.
+GPT-6 Astra led at 62.5%, followed by Claude Fable 5.2 at 61.9% and GPT-6.1 Sol at 61.4%. Just 1.1 percentage points separated the top three.
+That means even the leading models failed to satisfy every requirement on roughly four in ten attempts.
+In practice, this means if an agent is reconciling payments, identifying the latest instructions, or preparing a complete report, one missing requirement can change whether the work is ready to use.
+2. Getting the facts right isn’t enough if you leave out the evidence
+One of ShellBench’s most striking findings concerns what agents do after locating relevant information.
+Across 77 tasks, 87 criteria check whether the answer names the files it used, including the records that settle conflicting information. The dinner-planning task shows why this matters.
+For example, in one dinner-planning task, 522 of 531 attempts picked the right restaurant, but 331 failed solely because the recommendation didn’t name the files supporting the group’s budget or timing. Only 152 met every requirement.
+Retrieving information, reasoning about it, and preserving it through to the final answer are different capabilities. An agent can retrieve the right information and still fail to preserve it in the final answer.
+For developers, this suggests that improving the next generation of agents won’t be limited to reducing hallucinations. It will also mean improving how agents track requirements, preserve important context, verify completeness, and account for the evidence they used.
+3. Getting it right once doesn’t mean getting it right consistently
+ShellBench also tested reliability across repeated attempts.
+Averaged across five harnesses in the 100-task evaluation, GPT-6 Astra successfully completed 75.1% of tasks at least once across three attempts.
+But it completed only 48.8% successfully on all three attempts. Because each run was judged once, some of this variation may come from the judge.
+Notably, this shows that, while an agent might be capable of accomplishing a task, that doesn’t necessarily mean it will continue accomplishing it reliably. Only repeated evaluations can reveal if it does.
+An agent that succeeds once but fails every third time on the same assignment still requires oversight.
+4. Safety failures can hide inside otherwise ordinary tasks
+ShellBench also specifically focuses on safety. Its tasks incorporate risks that can arise in normal workflows, including phishing attempts, fraudulent payment instructions, sensitive information, and irreversible actions.
+The 100-task evaluation includes 381 individual safety criteria.
+Across all 53,100 runs, 15.7% failed at least one safety check. Harness choice made little overall difference to safety. Even among the 26,151 runs that met every correctness criterion, 2,589 (9.9%) still failed a safety requirement.
+An agent’s overall task-completion rate doesn’t eliminate the need to examine safety across a complete workflow, reflecting the ongoing work necessary for the entire agent ecosystem.
+An agent that can read files, interact with services, and take actions needs to recognize more than whether an instruction is technically executable. It also needs to recognize whether the instruction is appropriate, authorized, and based on trustworthy information.
+5. The model matters more than the harness, but the harness still matters
+Across the models tested in all five harnesses, the median gap between the highest- and lowest-scoring models within a harness was 45.7 percentage points.
+Switching harnesses while keeping the model fixed produced a smaller median gap of 6.2 points. Among the five highest-scoring models, the gaps narrowed to 15.2 points for model choice and 9.9 for harness choice.
+The results suggest that the underlying model is a stronger predictor of task completion than the harness surrounding it, at least for the models and tasks tested.
+But that doesn’t make the harness interchangeable.
+ShellBench found that harnesses changed how agents worked, including how many tokens they processed, how often they revised their outputs, and how long they took to complete tasks. The results show substantial differences in execution time even where task-completion rates are close.
+For people running agents, the takeaway is that the best configuration depends on model choice, execution time, available tools, and the way an agent handles your work as a collective whole.
+6. Open-source harnesses hold their own
+If the underlying model matters more than the harness, that raises another question: does using an open-source harness mean trading away performance? ShellBench confirmed it did not.
+Across the models run in all five harnesses, average pass rates were tightly grouped:
+OpenClaw (open source): 45.23%
+Pi (open source): 45.22%
+Hermes (open source): 45.11%
+Codex CLI (open source): 45.04%
+Claude Code (proprietary): 42.87%
+That’s a spread of 2.36 percentage points between the highest- and lowest-scoring harness averages, showing that open-source harnesses can deliver competitive task completion with a proprietary alternative when tested on the same models.
+OpenClaw and Pi were effectively tied at the top, just 0.01 percentage points apart. Pi was fastest at a median of 1.31 minutes per run, while OpenClaw took 2.86 minutes.
+7. Capability and cost don’t always move together
+The three highest-performing models were separated by just 1.1 percentage points in average pass rate, but the estimated cost per run varied considerably. GPT-6 Astra passed 62.5% of tasks at $1.10 per run, Claude Fable 5.2 passed 61.9% at $0.83, and GPT-6.1 Sol passed 61.4% at $0.19.
+That puts GPT-6.1 Sol within 1.1 points of the highest pass rate at roughly one-sixth the estimated per-run cost. At the lower end, DeepSeek V4.1 Flash passed 39.7% of tasks at about five cents per run. (Estimates use recorded token usage and study token prices and exclude grading costs.)
+When considering model choices, the ratio of price, capability and the requirements of the task should all be taken into consideration together.
+What this means for the industry
+We didn’t build OpenClaw around the idea that one model or one agent configuration would always be the best.
+Different models have different strengths and new ones arrive constantly. People should be able to choose what runs their agent, where it runs, and which tools it can use.
+ShellBench is designed for this reality.
+Moreover, openness and capability aren’t mutually exclusive. People should be able to choose an open, extensible system without assuming they’ll have to settle for substantially weaker results. And performance alone doesn’t settle which harness someone should use.
+The results also expose work that still needs to be done, particularly around completeness, reliability, safety, and execution time. As we build the agentic future in the open, we want to measure those gaps openly, and help the rest of the industry do the same.
+ShellBench is intended to give researchers, model developers, harness maintainers, and the broader community a shared way to test everyday agent capabilities, investigate failures, and build toward more reliability.
+We’ll continue updating the benchmark as more results become available and new models emerge.
+Acknowledgements
+Thanks to everyone involved in building, reviewing, and evaluating ShellBench. Benchmarking agents takes careful task design, repeated testing, and a willingness to scrutinize results.
+ShellBench was developed by collaborators from the OpenClaw Foundation, Parsewave, Hugging Face, Paradigm, the University of California Berkeley, Columbia University, Red Hat, and NVIDIA. We’re grateful to the OpenClaw Foundation’s donors and benefactors, to Amazon Web Services (AWS) for sponsoring the compute used in the analysis, and to the ShellBench Council for its feedback throughout the study. We also thank our colleagues at Google Kaggle team for helping analyze and verify results.
+
+===== https://www.computerworld.com/article/4252841/openclaw-launches-an-ai-performance-benchmark-that-it-argues-is-more-realistic-than-others.html
+(status 200)
+OpenClaw, working with a host of other industry players including Hugging Face, Nvidia, Red Hat, Google and Amazon, Tuesday rolled out an AI performance benchmark called ShellBench.
+OpenClaw’s position is that the benchmark will compare various AI models (it will soon look at a total of 24) and test them on complex queries, ones that should better replicate the kind of complicated tasks that an enterprise would perform. 
+“Ask an AI agent to summarize a document, and it will probably do a decent job. Ask it to reconcile a handful of receipts against a spreadsheet, check which information is current, flag a suspicious payment request, and explain how it reached its answer? Maybe not so well,” said the 
+OpenClaw post describing the new benchmark
+. “This kind of realistic test, one that expects an agent not just to find the right information but also to keep track of it along the way, is exactly what we’re launching ShellBench to evaluate.”
+Analysts and consultants said the new benchmark findings appear initially to be more useful than existing AI performance benchmarks, but it is less clear how useful those results will be.
+Thomas Randall
+, a research director at Infotech, said that he sees ShellBench as focusing on those who are building and configuring agents directly, but most enterprises instead buy their AI capabilities from various large AI vendors.
+“They are choosing capabilities within an enterprise platform, often with limited control over the underlying model or agent configuration. For these organizations, ShellBench offers little direct use,” Randall said. “ShellBench giving a strong score for an underlying model does not tell us the quality of output from a solution built on it. The tasks ShellBench tests are skewed toward personal knowledge work rather than heavy enterprise workflows that buyers typically evaluate for.”
+Are results reproducible?
+Another analyst concern is how open ShellBench will be, especially in terms of how easily IT can reproduce its findings. 
+Brian Levine
+, a partner with consulting firm Control Risks, said that reproducibility is essential.
+“Whoever writes the exam has a stake in who passes it. That doesn’t make the results wrong, but the right question isn’t whether you trust OpenClaw. It’s whether you can check their work,” Levine said. “If the tasks, scoring, and raw results are open and others can reproduce them, pay attention. If not, read it the way you’d read a carmaker’s own crash test.”
+However, the problem with ShellBench is that parts of it are open and parts of it are not.
+It’s complicated
+Louka Ewington-Pitsos
+, a co-founder of Parsewave and a collaborating researcher for the benchmark, said the division of public and private elements in the benchmark is complicated.
+“Teams can rerun ShellBench on the public task set, which is a subset of roughly 20 tasks of the full benchmark. The ShellBench GitHub repo includes the evaluation configurations and we pin the agent harnesses to the exact versions used in the study so teams can reproduce the same setup,” Ewington-Pitsos said. “The remaining tasks are private.”
+He added that the “private part is only the 80 remaining tasks. The evaluation configs and the pinned harness versions apply to the whole benchmark and are available for anyone to use.”
+Ewington-Pitsos said that the reason those tasks have to remain private is “to avoid benchmark contamination, which is where data leaks from the public internet into model training data, making the benchmark less valid for future models.”
+The initial version of the benchmark looks at 13 models, but the number of models tracked will double to 26 by next week, said 
+Vincent Koc
+, the OpenClaw chief architect, in an interview. 
+Koc said that although almost all enterprises will do their own AI performance benchmarks, they typically won’t be able to replicate ShellBench’s comprehensiveness. They “won’t have it at this speed and scale,” he said. 
+Just about right
+Most analysts and consultants thought that ShellBench specs were just about right, in that they focused on the more complex tasks most large businesses need. 
+“Most agent benchmarks are the equivalent of testing a new hire on spelling. Enterprises don’t need an agent that can spell. They need one that can run a messy, multi-step job across five systems without locking the CFO out of email. A benchmark built around that kind of work is measuring the right thing,” Levine said. “From a risk standpoint, the most important result isn’t which agent finishes the task. It’s how an agent fails. An agent that stalls is an annoyance. An agent that confidently does the wrong thing with admin credentials is an incident. Realistic, complex tests are where you find out which one you have, before your production environment does.”
+Ishraq Khan
+, CEO of coding productivity tool vendor Kodezi, said that the leapfrog nature of AI model performance, in which models regularly exceed each others’ performance, only to be superseded by the next version of their competitor’s model, is a concern, but ShellBench could still be useful by providing a look at the trends over time.
+“The leaderboard itself will inevitably become outdated. However, the underlying failure patterns and evaluation methodology have a much longer shelf life. Enterprises should use benchmarks like ShellBench as a foundation for continuously evaluating agents against their own operational workflows, rather than making a one-time purchasing decision,” Khan said. “As for OpenClaw’s credibility, the involvement of researchers from established academic and industry institutions is encouraging. But OpenClaw is also evaluating its own harness against competing products, so independent replication is important.”
+Jason Andersen
+, principal analyst at Moor Insights & Strategy, said that he found much to like in ShellBench. 
+“This is a really interesting benchmark since it finally decouples the harness and the model and measures it. So far the benchmark activity is limited to the model and that is not accurate in terms of how people are actually using models which is via a harness,” he said. “I think this is a trend we will see continue to expand due to technologies like OpenClaw and Hermes. Some vendors like IBM and Microsoft have been publishing results of open weight or small models with a good harness performing quite well versus medium and large frontier models.”
+Harder to game
+Andersen also suggested that the more complex testing from ShellBench may have the added benefit of making the results harder for vendors to fool.
+“One of the things about benchmarks is that they can be gamed, and the simpler the benchmark, the easier it is for entrants to game with solutions or configurations that may never apply in real life,” he said. “But a more complex set of methods is harder to game, so there’s a chance this could be a more realistic set of outputs than the simpler model performance metrics.”
+Frank Dickson
+, principal analyst at Dickson Research, agreed, adding that ShellBench included a lot more verification in their analysis. 
+“The researchers deserve credit for the bar they set. Requiring every criterion to pass, running each task three times, and publishing exactly where and how agents fall short is more rigor than most AI benchmarks offer,” he said. 
+Dickson pointed to some of the initial findings of the benchmark as examples of the model’s advantages. 
+“Consider the spread: The top three models, GPT-6 Astra, Claude Fable 5.2, and GPT-6.1 Sol, finished within 1.1 percentage points of each other,” he said. “Yet GPT-6 Astra completed 75.1% of tasks at least once in three tries and only 48.8% on all three. OpenClaw notes that its grader may account for some of that swing. Either way, a 26-point swing inside one model dwarfs a 1.1-point gap between the leaders.”
+So, he observed, “the enterprise question is not who is number one this week. The question is which tier a model sits in, and which failures show up no matter who leads. ShellBench found a median gap of 45.7 points between the best and worst model within the same harness. That is the gap worth caring about.”
+Artificial Intelligence
+Open Source
+
+===== https://www.thedeepview.com/articles/exclusive-openclaw-offers-an-agent-reality-check
+(status 200)
+Though agents have become a massive part of the enterprise AI conversation, new research suggests that these systems aren't always dependable.
+On Tuesday, the OpenClaw Foundation debuted ShellBench, a new benchmark testing agents and harnesses on 100 real world tasks, designed in partnership with Parsewave, Hugging Face, Red Hat, and UC Berkeley. The benchmark finds that, on average, even agents powered by the leading models fail to fully complete four out of every ten tasks.
+"We wanted a good distribution of tasks that gave us good signals on how the models were performing," Vincent Koc, chief architect at the OpenClaw foundation, told The Deep View in an exclusive interview. "Really, the focus was on everyday use."
+Along with testing on realistic tasks, one thing that sets ShellBench apart from other AI benchmarks is the setting in which these models are tested. The places where everyday work is done are hardly ever as clean and organized as those that other AI benchmarks test in. That's why OpenClaw tested models on common tasks using short requests in realistic workspaces, such as emails, calendar exports, spreadsheets, receipts, PDFs and more.
+"Some of these are going to become more realistic to individual needs," said Koc. "If I'm an enterprise and I'm deploying agents at scale for each one of my employees, I think having agents and models … that are able to work in a scenario that's more aligned with personal use, that is going to translate to agents that are going to be more effective."
+ShellBench tested a suite of 13 models, both open source and proprietary, from OpenAI, Anthropic, Google, Meta, DeepSeek, MoonShot, and Nvidia, across five different agent harnesses: Claude Code, Codex, Hermes, OpenClaw, and Pi.
+When tested in messy environments on tasks that weren't clear cut, the results were staggering, even for the top of the line agents.The highest-performing models tested, GPT-6 Astra, GPT-6.1 Sol, Claude Fable 5.2, and Gemini 4 Carbon, were only able to successfully complete tasks six times out of ten. Meta Muse Wonder 1.0, DeepSeek v4.1 Flash and Claude Sonnet, meanwhile, only saw a task pass rate of roughly four times out of ten.
+OpenClaw's other insights include:
+Oftentimes, even if the agents were able to locate accurate information, they left out important details, with 51% of task completion failures being related to information omission, despite 87% of those cases having collected the relevant information in the first place.
+These models weren't reliably consistent across repeated testing. For instance, GPT-6 Astra completed tasks with a 75% accuracy rate in one of the tests, but when repeated two more times, that number dropped to 49%.
+Paying more doesn't always mean a more capable model. Though the three highest performing models saw little difference in performance, they varied wildly in price, with GPT-6 Astra scoring a 62.5% accuracy rate on ShellBench at $1.01 per run, while GPT-6.1 Sol scored 61.4% at only 17 cents per run.
+Additionally, the benchmark tested model harnesses, finding that the four open source harnesses that were tested, including Hermes, OpenClaw, Pi and Codex CLI, performed with slightly more accuracy than the proprietary Claude Code harness.
+The full results of ShellBench will be 
+available here today
+. 
+Our Deeper 
+View
+As expected, 2026 has been the year of agents. Practically every conference, meeting and dinner I've attended has included some discussion about how to make agents more reliable, more secure, and more useful. And while the benchmarks that are popped out with each frontier model release set new standards for state-of-the-art performance on things like complex coding, mathematics and science, the reality of most enterprise work is far more messy than those benchmark environments tend to be. ShellBench provides a much-needed reality check for how agents actually perform in enterprise contexts, going beyond the impressive coding performance that many of the major model providers tout. It also spells out a warning for the organizations seeking to embed agents in every part of their workforce: These systems may not be as reliable as common benchmarks make them seem.

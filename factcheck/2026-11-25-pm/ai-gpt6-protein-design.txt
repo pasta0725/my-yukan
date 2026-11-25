@@ -1,0 +1,371 @@
+===== https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities
+(status 200)
+November 24, 2026
+Science
+Publication
+GPT‑6 models demonstrate intrinsic protein-design capabilities
+Read the paper
+(opens in a new window)
+Share
+Key findings:
+Our GPT‑6 family of models can design new protein shapes and the sequence of their chemical building blocks using only reasoning and code, without calling specialized biology models to generate those designs.
+An internal research model matched or outperformed specialized models on many protein design tasks. Researchers could also guide designs by prompting the model on where a protein should attach and what shape it should take.
+In lab tests with Onava, proteins based on GPT‑6.2’s designs showed evidence of binding, or attachment, across five targets. Redesigned antibodies also retained binding. Specialized models helped supply sequences and select candidates for testing.
+The models’ written reasoning and code suggest they draw on math, physics, chemistry, and biological knowledge to reason about protein shapes and interactions with other molecules.
+In a preprint titled 
+GPT‑6 as a Universal Foundation Model for Protein Biology: Beyond Specialized Models
+, we show that our GPT‑6 family of models has 
+intrinsic capabilities
+ for designing new proteins: the models can design new protein structures and sequences without relying on specialized biology models, using only reasoning and general-purpose coding tools.
+Proteins do much of the work in living cells. They drive the chemical reactions that sustain life, carry oxygen through the blood, and defend the body against infection. Incorrectly shaped proteins can also cause disease and dysfunction. Proteins are made from chains of chemical building blocks called amino acids. The order, or sequence, of these amino acids helps determine how a protein folds into a three-dimensional shape, which in turn influences what it does.
+Scientists often start with a clear idea of what they want a protein to do. They might want it to block a signal that helps cancer cells evade the immune system or to help capture carbon dioxide from the air. The challenge is to work out what three-dimensional structure would enable the protein to do its job and which amino acid sequence would give it that structure. Specialized biology models capable of generating three-dimensional protein structures and sequences have made this work more practical.
+Using and coordinating these specialized models requires substantial expertise. Each accepts particular kinds of inputs and constraints, and these models cannot easily accept new kinds of information without changes to their software or additional training. In contrast, a general-purpose model capable of performing the work of multiple specialized models can easily adapt to new instructions and requirements.
+Our research illustrates the potential power of pairing natural language with intrinsic protein capabilities. We could guide our models at scales ranging from a single bond between two atoms to the overall shape of a protein. For example, we asked GPT‑6.2 to predict where and how a small molecule would bind to a protein. When we already knew which two atoms formed a bond, we could give the model that information and ask how the rest of the molecule would fit. We could switch between these tasks simply by changing the prompt, without retraining the model. We also asked our models to design small proteins called minibinders and marked where each should attach to its target, and further specified how many coils or strands each minibinder should contain. An internal model followed that instruction with near-perfect fidelity in its three-dimensional designs.
+Points farther from the center indicate better performance. Newer generations of models improved on many of the 14 protein tasks tested.
+A closer look at our models’ protein designs
+We ran computational tests of whether the GPT‑6 models series could design small proteins to bind given targets, build proteins around specified structural features, predict protein structures and molecular interactions, and rank how sequence changes affect properties such as stability and binding. Our latest models performed comparably to or better than specialized models on most tasks, although predicting a complete protein structure remained a clear weakness.
+The models’ written reasoning and code offer clues to how they approach these tasks. They draw on mathematics, physics, chemistry, and coding alongside knowledge of recurring patterns in protein sequences and structures. For example, when designing a small protein intended to bind to IL-7Rα, the model proposed how the two proteins might interact, then wrote and executed code to explore different protein shapes and amino acid choices that could support that interaction.
+The model’s written reasoning and code show it drawing on math, physics, chemistry and biology to design a protein intended to attach to IL-7Rα. It examines the target’s surface, arranges five coiled sections into a protein shape, and checks how the two proteins could fit together.
+With our research partner, 
+Onava
+⁠
+(opens in a new window)
+, we also tested the models’ structure and sequence designs in the lab. First, Onava made small proteins based on three-dimensional structures designed by a pre-released version of GPT‑6.2. Specialized models supplied amino acid sequences and helped select candidates for testing. For each of the five targets we chose, at least one protein showed evidence of binding in the lab. In separate experiments, GPT‑6.2 designed new amino acid sequences for existing minibinders and antibodies. Following candidate selection with specialized models, many of the redesigned proteins also showed evidence of binding to the same targets as the originals.
+Laboratory Experiment 1: Designing small proteins that bind to a target
+Our first laboratory experiment tested whether GPT‑6.2 could design small proteins that would bind to their intended targets. We compared computational measurements of quality against RFdiffusion, a specialized model for protein design, and found that GPT‑6.2’s three-dimensional designs scored slightly lower while our latest internal models scored higher. For the lab experiment, we made proteins based on GPT‑6.2’s designs and measured how strongly they bound to their targets.
+We gave GPT‑6.2 the three-dimensional structures of five target proteins and marked where we wanted a minibinder to attach. It then wrote code to create three-dimensional designs for potential minibinders, without using specialized protein AI models.
+To turn GPT‑6.2’s three-dimensional designs into proteins we could test in the lab, we needed amino acid sequences that would fold into the proposed structures. We used a specialized AI model called SolubleMPNN to suggest sequences for each design. Other specialized protein models helped us select candidates predicted to fold as designed and bind at the intended site on the target.
+GPT‑6.2 designed shapes for small proteins intended to attach to chosen targets. Specialized models then proposed amino acid sequences—the order of the proteins’ chemical building blocks—and helped select designs for our research partner Onava to make and test in the lab.
+We tested 322 minibinders against 5 targets in the lab. Of those, 35 (10.9%) tested positive for binding to their intended target. We found 5 hits for PD-L1 (a protein some cancers use to evade the immune system), 3 for IL-7Rα, 1 for TrkA, 8 for VEGF-A and 18 for IL-17A. The
+ original RFdiffusion study
+⁠
+(opens in a new window)
+ reported higher hit rates, but rates depend heavily on how strictly researchers filter designs before lab validation and their definition of binding. Nevertheless, our results provide early evidence that we can turn GPT‑6.2’s three-dimensional designs into proteins that bind to their intended targets in the lab.
+An internal research model designed shapes for small proteins intended to attach to the target proteins shown in gray. The colored shapes compare each design with a computational prediction of how the protein would fold and fit against its target.
+Laboratory Experiment 2: Designing new sequences for 3D protein structures
+We tested whether GPT‑6.2 could design the sequences itself. We gave it three-dimensional models of how existing minibinders fit against their targets, withheld the original amino acid sequences, and asked it to propose new ones. Specialized models helped us choose which proteins to make and test in the lab.
+For three targets, we started with computationally predicted structures of confirmed minibinders whose sequences Onava had collected from earlier studies. In our initial lab screens, we saw binding in 75 of 88 designs for MDM2 (85%), 26 of 42 for VEGF-A (62%), and 8 of 59 for PD-1 (14%). The amino acid sequences proposed by GPT‑6.2 also often differed significantly from the original minibinder sequences, with a median of 50% for VEGF-A, 43% for MDM2, and 15% for PD-1.
+We also asked GPT‑6.2 to design new sequences for three unpublished minibinder shapes it had generated earlier: two targeting PD-L1 and one targeting IL-7Rα. A specialized model, ProteinMPNN, had already supplied one sequence for each shape, and proteins made from those sequences had shown binding in the lab. Of the 107 proteins made from GPT‑6.2’s new sequences, 14 (13.1%) showed binding.
+Given an unpublished structure, GPT‑6.2 had come up with two substantially different sequences that both showed signs of binding to the same target. For the same PD-L1 minibinder structure, GPT‑6.2 designed two sequences different from the original in 52 and 58 out of 90 total amino acids. The two also differed from each other at 44 positions, nearly half the sequence.
+The unpublished structures and substantial differences in sequence give us strong evidence that GPT‑6.2’s capabilities extend beyond memorization. The results also suggest we could use GPT‑6.2 to intrinsically design both a minibinder’s structure and its sequence.
+Redesigning the parts of an antibody that bind to a target
+Researchers often redesign an antibody’s binding loops to help it grip its target more tightly, a process called 
+affinity maturation
+. They may also want it to bind more selectively, so it’s less likely to attach to similar proteins. We tested a first step toward those goals by asking our models to design new loop sequences that preserved binding to the original target.
+We started with six small antibodies (VHHs) that bind to the same protein, IL-4Rα. For each antibody, we gave GPT‑6.2 its predicted three-dimensional structure and most of its amino acid sequence, leaving out the three loops that help the antibody grip its target. We asked the model to design new sequences for them. Of the 182 designs we tested, 128 (70%) showed signs of binding to IL-4Rα.
+We then tested how precisely we could guide the model’s changes to existing therapeutic antibodies. This time, we gave the model the original sequences and asked it to change about half the amino acids in each of three binding loops while keeping the rest of the sequence intact. We tested the redesigned portions of the antibodies as fragments in the lab. Of 272 fragments based on five therapeutic antibodies, 179 (66%) showed binding to the original target, PD-1 or PD-L1.
+What else can our models design and predict?
+Precise control over minibinder structures for programmable structure design
+A long-term goal of programmable structure-based design is to let researchers specify structural constraints in natural language. In our computational evaluations, our models consistently designed minibinders that contacted the required locations on the target. We could also specify the minibinder’s structural class (all helices, all strands, or a combination) and control the number of coils and strands with near-perfect fidelity. The same approach lets us express more detailed requirements for the binding interface, such as which target amino acids should be buried upon binding or whether the minibinder and target should interact through specific interactions such as “β-sheet–β-sheet”. As our model’s reasoning capabilities improve, we envision researchers guiding protein structure generation much as they guide image generation today, by describing the features they want.
+Our model was asked to design small proteins with specified shapes: mainly coils (orange), mainly strands (blue), or a mix. Some instructions also specified how many coils or strands to include. The designs are intended to attach to PD-L1 or PD-1, shown in gray.
+Building a protein around a specified structural feature
+Most enzymes are proteins that speed up chemical reactions. When designing a new enzyme, researchers may know how a few key amino acids need to be arranged at the site where the reaction happens. Those amino acids can lie far apart along the protein chain. The challenge is to design the rest of the protein so that, as the chain folds, it brings them together and holds them in place.
+We tested our models on 30 challenges from
+ MotifBench
+⁠
+(opens in a new window)
+, including examples drawn from enzymes and from sites where proteins bind to one another. We gave the models a specific three-dimensional arrangement of amino acids, called a 
+motif
+, and asked them to use coding tools to design the rest of the protein around it. This task is called 
+motif scaffolding
+.
+For each design, we used ProteinMPNN to propose eight possible amino acid sequences, and 
+ESMFold
+⁠
+(opens in a new window)
+ to predict how each would fold. We counted the design as a success if at least one predicted structure both preserved the motif and closely matched the overall structure the model had designed.
+In a preliminary analysis, 43.7% of the designs we evaluated from our latest internal model met both criteria, compared with 27.8% for RFdiffusion. While laboratory experiments are needed to find out whether these proteins could carry out the intended function, such as speeding up a particular reaction, this provides strong computational evidence of our models’ intrinsic protein capabilities.
+An internal research model designed protein structures around a small region whose shape had to stay fixed, shown in gold. The colored shapes compare the model’s designs with computer predictions of how the proteins would fold. Panels showing only gold had no design that passed the computer checks.
+Designing a protein with a specified fold
+In motif scaffolding, we specified how a few amino acids should sit relative to one another. We then determined whether we could also guide the design of an entire protein by specifying its overall fold. We gave our models a chain length and a code from
+ CATH
+⁠
+(opens in a new window)
+, a system scientists use to classify protein structures. The models then had to work out where each amino acid should go in three-dimensional space.
+Many designs captured the broad layout we asked for. The harder part was getting the chain to follow the right path through it. Two proteins can have several coiled stretches packed together in a similar bundle, for example, yet differ in the order in which the chain connects them.
+We counted a design as a success if at least one amino acid sequence was predicted to adopt the requested fold and closely match the model’s three-dimensional design. Across 200 challenges, 18.9% of the designs we evaluated from our latest internal model passed, compared with 17.1% for Proteina, a specialized protein design model.
+An internal research model was asked to design proteins with specified overall shapes, such as bundles of coils or layers of strands. The colored shapes compare selected designs with computer predictions of how they would fold, showing examples where the two closely match.
+Predicting how chemicals and proteins fit together
+Many medicines, including aspirin, are 
+small molecules
+, chemical compounds much smaller than the proteins they act on. Predicting where a small molecule binds to a protein and how it fits there is called 
+docking
+. These predictions can help researchers decide how to modify a drug candidate so it binds more tightly to its target. To test our models, we started with experimentally determined structures of small molecules bound to proteins. We digitally removed each small molecule and gave the models the protein structure along with a text description of how the molecule’s atoms were connected (a sequence of characters called SMILES). We then asked the models to predict where the molecule had been bound and how it was oriented.
+For our first docking test, we used the
+ PoseBusters dataset
+⁠
+(opens in a new window)
+, a collection of three-dimensional structures that show how small molecules bind to proteins. Researchers determined these structures experimentally, giving us a way to check the models’ predictions. Without being told where on the protein each molecule had bound, the models had to predict both where the molecule fit and which way it faced. GPT‑6.2 closely matched the molecule’s observed position and orientation in 93% of scored predictions, compared with 96% for our latest internal model and 50% for DiffDock-L, a specialized docking model.
+In practice, researchers may already know something about how a molecule binds. 
+One major advantage of a GPT model is that we can give additional information directly in the prompt
+. We tested this on 179 structures from the
+Scarpino dataset
+⁠
+(opens in a new window)
+, where each protein structure forms a chemical bond with a small molecule, tethering the two together. We told our models which two atoms formed the bond and asked them to predict how the rest of the molecule fit against the protein. GPT‑6.2 closely matched the experimental structure in
+92% of scored predictions
+⁠
+(opens in a new window)
+, and our latest internal model did so in 97%, while 
+DiffDock
+⁠
+(opens in a new window)
+ reached 60%.
+An internal research model predicted where and how small molecules would fit against proteins, shown in gray. Purple shows the model’s predictions, and teal shows the molecules’ positions determined in earlier experiments. In these examples, the predictions closely match the experimental structures.
+Predicting how antibodies bind to proteins
+Where an antibody binds can help explain whether it blocks another protein from attaching to the same site. We tested how accurately successive generations of GPT could predict where an antibody binds and which way it faces. For hundreds of pairs of antibodies and targets, we showed the models the two proteins separately and hid some of the atomic detail (all side chains) on their surfaces.
+With the side-chain details hidden, the mean DockQ score (a commonly used metric in which higher values indicate a closer match to the experimentally observed arrangement) increased from approximately 0.05 for GPT‑5.6 to 0.28 for GPT‑6, 0.57 for GPT‑6.2, and 0.81 for our latest internal model, at each model’s highest evaluated compute setting.
+Because these structures were public, the models may have seen the same antibody-target pairs or similar ones during training. Even so, each generation of our models predicted more accurately how the two proteins fit together, even with all side-chain positions hidden. That progress gives us reason to be optimistic about harder docking problems.
+Each row compares four models’ predictions of how an antibody attaches to its target protein. Colored shapes show the model’s prediction; dark gray shows the position observed in experiments. Results improved with each successive generation of model.
+Predicting the effects of mutations
+We can design far more proteins on a computer than we can make and test in the lab. Even after we settle on a promising structure, we may have many amino acid sequences to choose from. We tested whether our models could help researchers decide which versions to make first by predicting how changes to a protein’s sequence would affect its stability, activity, or 
+
+===== https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/
+(status 200)
+November 24, 2026
+Science
+Publication
+GPT‑6 models demonstrate intrinsic protein-design capabilities
+Read the paper
+(opens in a new window)
+Share
+Key findings:
+Our GPT‑6 family of models can design new protein shapes and the sequence of their chemical building blocks using only reasoning and code, without calling specialized biology models to generate those designs.
+An internal research model matched or outperformed specialized models on many protein design tasks. Researchers could also guide designs by prompting the model on where a protein should attach and what shape it should take.
+In lab tests with Onava, proteins based on GPT‑6.2’s designs showed evidence of binding, or attachment, across five targets. Redesigned antibodies also retained binding. Specialized models helped supply sequences and select candidates for testing.
+The models’ written reasoning and code suggest they draw on math, physics, chemistry, and biological knowledge to reason about protein shapes and interactions with other molecules.
+In a preprint titled 
+GPT‑6 as a Universal Foundation Model for Protein Biology: Beyond Specialized Models
+, we show that our GPT‑6 family of models has 
+intrinsic capabilities
+ for designing new proteins: the models can design new protein structures and sequences without relying on specialized biology models, using only reasoning and general-purpose coding tools.
+Proteins do much of the work in living cells. They drive the chemical reactions that sustain life, carry oxygen through the blood, and defend the body against infection. Incorrectly shaped proteins can also cause disease and dysfunction. Proteins are made from chains of chemical building blocks called amino acids. The order, or sequence, of these amino acids helps determine how a protein folds into a three-dimensional shape, which in turn influences what it does.
+Scientists often start with a clear idea of what they want a protein to do. They might want it to block a signal that helps cancer cells evade the immune system or to help capture carbon dioxide from the air. The challenge is to work out what three-dimensional structure would enable the protein to do its job and which amino acid sequence would give it that structure. Specialized biology models capable of generating three-dimensional protein structures and sequences have made this work more practical.
+Using and coordinating these specialized models requires substantial expertise. Each accepts particular kinds of inputs and constraints, and these models cannot easily accept new kinds of information without changes to their software or additional training. In contrast, a general-purpose model capable of performing the work of multiple specialized models can easily adapt to new instructions and requirements.
+Our research illustrates the potential power of pairing natural language with intrinsic protein capabilities. We could guide our models at scales ranging from a single bond between two atoms to the overall shape of a protein. For example, we asked GPT‑6.2 to predict where and how a small molecule would bind to a protein. When we already knew which two atoms formed a bond, we could give the model that information and ask how the rest of the molecule would fit. We could switch between these tasks simply by changing the prompt, without retraining the model. We also asked our models to design small proteins called minibinders and marked where each should attach to its target, and further specified how many coils or strands each minibinder should contain. An internal model followed that instruction with near-perfect fidelity in its three-dimensional designs.
+Points farther from the center indicate better performance. Newer generations of models improved on many of the 14 protein tasks tested.
+A closer look at our models’ protein designs
+We ran computational tests of whether the GPT‑6 models series could design small proteins to bind given targets, build proteins around specified structural features, predict protein structures and molecular interactions, and rank how sequence changes affect properties such as stability and binding. Our latest models performed comparably to or better than specialized models on most tasks, although predicting a complete protein structure remained a clear weakness.
+The models’ written reasoning and code offer clues to how they approach these tasks. They draw on mathematics, physics, chemistry, and coding alongside knowledge of recurring patterns in protein sequences and structures. For example, when designing a small protein intended to bind to IL-7Rα, the model proposed how the two proteins might interact, then wrote and executed code to explore different protein shapes and amino acid choices that could support that interaction.
+The model’s written reasoning and code show it drawing on math, physics, chemistry and biology to design a protein intended to attach to IL-7Rα. It examines the target’s surface, arranges five coiled sections into a protein shape, and checks how the two proteins could fit together.
+With our research partner, 
+Onava
+⁠
+(opens in a new window)
+, we also tested the models’ structure and sequence designs in the lab. First, Onava made small proteins based on three-dimensional structures designed by a pre-released version of GPT‑6.2. Specialized models supplied amino acid sequences and helped select candidates for testing. For each of the five targets we chose, at least one protein showed evidence of binding in the lab. In separate experiments, GPT‑6.2 designed new amino acid sequences for existing minibinders and antibodies. Following candidate selection with specialized models, many of the redesigned proteins also showed evidence of binding to the same targets as the originals.
+Laboratory Experiment 1: Designing small proteins that bind to a target
+Our first laboratory experiment tested whether GPT‑6.2 could design small proteins that would bind to their intended targets. We compared computational measurements of quality against RFdiffusion, a specialized model for protein design, and found that GPT‑6.2’s three-dimensional designs scored slightly lower while our latest internal models scored higher. For the lab experiment, we made proteins based on GPT‑6.2’s designs and measured how strongly they bound to their targets.
+We gave GPT‑6.2 the three-dimensional structures of five target proteins and marked where we wanted a minibinder to attach. It then wrote code to create three-dimensional designs for potential minibinders, without using specialized protein AI models.
+To turn GPT‑6.2’s three-dimensional designs into proteins we could test in the lab, we needed amino acid sequences that would fold into the proposed structures. We used a specialized AI model called SolubleMPNN to suggest sequences for each design. Other specialized protein models helped us select candidates predicted to fold as designed and bind at the intended site on the target.
+GPT‑6.2 designed shapes for small proteins intended to attach to chosen targets. Specialized models then proposed amino acid sequences—the order of the proteins’ chemical building blocks—and helped select designs for our research partner Onava to make and test in the lab.
+We tested 322 minibinders against 5 targets in the lab. Of those, 35 (10.9%) tested positive for binding to their intended target. We found 5 hits for PD-L1 (a protein some cancers use to evade the immune system), 3 for IL-7Rα, 1 for TrkA, 8 for VEGF-A and 18 for IL-17A. The
+ original RFdiffusion study
+⁠
+(opens in a new window)
+ reported higher hit rates, but rates depend heavily on how strictly researchers filter designs before lab validation and their definition of binding. Nevertheless, our results provide early evidence that we can turn GPT‑6.2’s three-dimensional designs into proteins that bind to their intended targets in the lab.
+An internal research model designed shapes for small proteins intended to attach to the target proteins shown in gray. The colored shapes compare each design with a computational prediction of how the protein would fold and fit against its target.
+Laboratory Experiment 2: Designing new sequences for 3D protein structures
+We tested whether GPT‑6.2 could design the sequences itself. We gave it three-dimensional models of how existing minibinders fit against their targets, withheld the original amino acid sequences, and asked it to propose new ones. Specialized models helped us choose which proteins to make and test in the lab.
+For three targets, we started with computationally predicted structures of confirmed minibinders whose sequences Onava had collected from earlier studies. In our initial lab screens, we saw binding in 75 of 88 designs for MDM2 (85%), 26 of 42 for VEGF-A (62%), and 8 of 59 for PD-1 (14%). The amino acid sequences proposed by GPT‑6.2 also often differed significantly from the original minibinder sequences, with a median of 50% for VEGF-A, 43% for MDM2, and 15% for PD-1.
+We also asked GPT‑6.2 to design new sequences for three unpublished minibinder shapes it had generated earlier: two targeting PD-L1 and one targeting IL-7Rα. A specialized model, ProteinMPNN, had already supplied one sequence for each shape, and proteins made from those sequences had shown binding in the lab. Of the 107 proteins made from GPT‑6.2’s new sequences, 14 (13.1%) showed binding.
+Given an unpublished structure, GPT‑6.2 had come up with two substantially different sequences that both showed signs of binding to the same target. For the same PD-L1 minibinder structure, GPT‑6.2 designed two sequences different from the original in 52 and 58 out of 90 total amino acids. The two also differed from each other at 44 positions, nearly half the sequence.
+The unpublished structures and substantial differences in sequence give us strong evidence that GPT‑6.2’s capabilities extend beyond memorization. The results also suggest we could use GPT‑6.2 to intrinsically design both a minibinder’s structure and its sequence.
+Redesigning the parts of an antibody that bind to a target
+Researchers often redesign an antibody’s binding loops to help it grip its target more tightly, a process called 
+affinity maturation
+. They may also want it to bind more selectively, so it’s less likely to attach to similar proteins. We tested a first step toward those goals by asking our models to design new loop sequences that preserved binding to the original target.
+We started with six small antibodies (VHHs) that bind to the same protein, IL-4Rα. For each antibody, we gave GPT‑6.2 its predicted three-dimensional structure and most of its amino acid sequence, leaving out the three loops that help the antibody grip its target. We asked the model to design new sequences for them. Of the 182 designs we tested, 128 (70%) showed signs of binding to IL-4Rα.
+We then tested how precisely we could guide the model’s changes to existing therapeutic antibodies. This time, we gave the model the original sequences and asked it to change about half the amino acids in each of three binding loops while keeping the rest of the sequence intact. We tested the redesigned portions of the antibodies as fragments in the lab. Of 272 fragments based on five therapeutic antibodies, 179 (66%) showed binding to the original target, PD-1 or PD-L1.
+What else can our models design and predict?
+Precise control over minibinder structures for programmable structure design
+A long-term goal of programmable structure-based design is to let researchers specify structural constraints in natural language. In our computational evaluations, our models consistently designed minibinders that contacted the required locations on the target. We could also specify the minibinder’s structural class (all helices, all strands, or a combination) and control the number of coils and strands with near-perfect fidelity. The same approach lets us express more detailed requirements for the binding interface, such as which target amino acids should be buried upon binding or whether the minibinder and target should interact through specific interactions such as “β-sheet–β-sheet”. As our model’s reasoning capabilities improve, we envision researchers guiding protein structure generation much as they guide image generation today, by describing the features they want.
+Our model was asked to design small proteins with specified shapes: mainly coils (orange), mainly strands (blue), or a mix. Some instructions also specified how many coils or strands to include. The designs are intended to attach to PD-L1 or PD-1, shown in gray.
+Building a protein around a specified structural feature
+Most enzymes are proteins that speed up chemical reactions. When designing a new enzyme, researchers may know how a few key amino acids need to be arranged at the site where the reaction happens. Those amino acids can lie far apart along the protein chain. The challenge is to design the rest of the protein so that, as the chain folds, it brings them together and holds them in place.
+We tested our models on 30 challenges from
+ MotifBench
+⁠
+(opens in a new window)
+, including examples drawn from enzymes and from sites where proteins bind to one another. We gave the models a specific three-dimensional arrangement of amino acids, called a 
+motif
+, and asked them to use coding tools to design the rest of the protein around it. This task is called 
+motif scaffolding
+.
+For each design, we used ProteinMPNN to propose eight possible amino acid sequences, and 
+ESMFold
+⁠
+(opens in a new window)
+ to predict how each would fold. We counted the design as a success if at least one predicted structure both preserved the motif and closely matched the overall structure the model had designed.
+In a preliminary analysis, 43.7% of the designs we evaluated from our latest internal model met both criteria, compared with 27.8% for RFdiffusion. While laboratory experiments are needed to find out whether these proteins could carry out the intended function, such as speeding up a particular reaction, this provides strong computational evidence of our models’ intrinsic protein capabilities.
+An internal research model designed protein structures around a small region whose shape had to stay fixed, shown in gold. The colored shapes compare the model’s designs with computer predictions of how the proteins would fold. Panels showing only gold had no design that passed the computer checks.
+Designing a protein with a specified fold
+In motif scaffolding, we specified how a few amino acids should sit relative to one another. We then determined whether we could also guide the design of an entire protein by specifying its overall fold. We gave our models a chain length and a code from
+ CATH
+⁠
+(opens in a new window)
+, a system scientists use to classify protein structures. The models then had to work out where each amino acid should go in three-dimensional space.
+Many designs captured the broad layout we asked for. The harder part was getting the chain to follow the right path through it. Two proteins can have several coiled stretches packed together in a similar bundle, for example, yet differ in the order in which the chain connects them.
+We counted a design as a success if at least one amino acid sequence was predicted to adopt the requested fold and closely match the model’s three-dimensional design. Across 200 challenges, 18.9% of the designs we evaluated from our latest internal model passed, compared with 17.1% for Proteina, a specialized protein design model.
+An internal research model was asked to design proteins with specified overall shapes, such as bundles of coils or layers of strands. The colored shapes compare selected designs with computer predictions of how they would fold, showing examples where the two closely match.
+Predicting how chemicals and proteins fit together
+Many medicines, including aspirin, are 
+small molecules
+, chemical compounds much smaller than the proteins they act on. Predicting where a small molecule binds to a protein and how it fits there is called 
+docking
+. These predictions can help researchers decide how to modify a drug candidate so it binds more tightly to its target. To test our models, we started with experimentally determined structures of small molecules bound to proteins. We digitally removed each small molecule and gave the models the protein structure along with a text description of how the molecule’s atoms were connected (a sequence of characters called SMILES). We then asked the models to predict where the molecule had been bound and how it was oriented.
+For our first docking test, we used the
+ PoseBusters dataset
+⁠
+(opens in a new window)
+, a collection of three-dimensional structures that show how small molecules bind to proteins. Researchers determined these structures experimentally, giving us a way to check the models’ predictions. Without being told where on the protein each molecule had bound, the models had to predict both where the molecule fit and which way it faced. GPT‑6.2 closely matched the molecule’s observed position and orientation in 93% of scored predictions, compared with 96% for our latest internal model and 50% for DiffDock-L, a specialized docking model.
+In practice, researchers may already know something about how a molecule binds. 
+One major advantage of a GPT model is that we can give additional information directly in the prompt
+. We tested this on 179 structures from the
+Scarpino dataset
+⁠
+(opens in a new window)
+, where each protein structure forms a chemical bond with a small molecule, tethering the two together. We told our models which two atoms formed the bond and asked them to predict how the rest of the molecule fit against the protein. GPT‑6.2 closely matched the experimental structure in
+92% of scored predictions
+⁠
+(opens in a new window)
+, and our latest internal model did so in 97%, while 
+DiffDock
+⁠
+(opens in a new window)
+ reached 60%.
+An internal research model predicted where and how small molecules would fit against proteins, shown in gray. Purple shows the model’s predictions, and teal shows the molecules’ positions determined in earlier experiments. In these examples, the predictions closely match the experimental structures.
+Predicting how antibodies bind to proteins
+Where an antibody binds can help explain whether it blocks another protein from attaching to the same site. We tested how accurately successive generations of GPT could predict where an antibody binds and which way it faces. For hundreds of pairs of antibodies and targets, we showed the models the two proteins separately and hid some of the atomic detail (all side chains) on their surfaces.
+With the side-chain details hidden, the mean DockQ score (a commonly used metric in which higher values indicate a closer match to the experimentally observed arrangement) increased from approximately 0.05 for GPT‑5.6 to 0.28 for GPT‑6, 0.57 for GPT‑6.2, and 0.81 for our latest internal model, at each model’s highest evaluated compute setting.
+Because these structures were public, the models may have seen the same antibody-target pairs or similar ones during training. Even so, each generation of our models predicted more accurately how the two proteins fit together, even with all side-chain positions hidden. That progress gives us reason to be optimistic about harder docking problems.
+Each row compares four models’ predictions of how an antibody attaches to its target protein. Colored shapes show the model’s prediction; dark gray shows the position observed in experiments. Results improved with each successive generation of model.
+Predicting the effects of mutations
+We can design far more proteins on a computer than we can make and test in the lab. Even after we settle on a promising structure, we may have many amino acid sequences to choose from. We tested whether our models could help researchers decide which versions to make first by predicting how changes to a protein’s sequence would affect its stability, activity, or 
+
+===== https://gigazine.net/news/20261125-openai-gpt-6-protein/
+(status 200)
+▼サーバー運営を助ける支援をお願いします
+  ▲サーバー運営を助ける支援をお願いします
+毎月
+825円(税込)
+900円
+(うち手数料33円)
+毎月
+1回
+    親愛なる読者の皆さまへ。ご存じの通り価格高騰などの悪影響でサーバー運営がとても苦しい状態です。回線や台数を整理し見直せる部分は全て見直しましたが、やはりまだ危険水域です。このままだと1ページを10分割ぐらいして無理矢理PVを増やさざるを得なくなってしまいます。そこで、GIGAZINEの物理的なサーバーたちを、たった1円でも良いので親愛なる読者の皆さまに支援してもらえればとっても助かります！今すぐ寄付は上のボタンから！
+    ・
+これまでGIGAZINEを支援してくれたメンバーのリスト
+2026年11月25日 12時33分
+AI
+GPT-6シリーズが生物学に特化したAIなしでタンパク質を設計できることが判明、実験室での検証にも成功
+OpenAIは2026年11月24日、汎用大規模言語モデル(LLM)のGPT-6シリーズが推論とコーディングだけで新たなタンパク質の立体構造やアミノ酸配列を設計できることを発表しました。さらに、GPT-6.2による設計を基に実際にタンパク質を合成し、意図した標的に結合することを実験で確認しています。
+GPT-6 models demonstrate intrinsic protein-design capabilities | OpenAI
+https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/
+Watch out, AlphaFold: Claude and ChatGPT’s new biology skills wow scientists | Nature
+https://www.nature.com/articles/d41586-026-03836-z
+タンパク質はアミノ酸が鎖状につながった分子で、アミノ酸の配列によって折り畳まれ方が変化し、その立体構造がタンパク質の機能を左右します。医薬品などに利用する新たなタンパク質を設計するには、目的の機能を実現する立体構造とその構造を形成するアミノ酸配列を割り出す必要があります。
+近年では、タンパク質の立体構造を予測する
+AlphaFold
+や、タンパク質の骨格構造を生成する
+RFdiffusion
+、与えられた骨格構造に適したアミノ酸配列を設計する
+ProteinMPNN
+など、生物学に特化したAIモデルが活用されています。しかし、それぞれのモデルは特定のタスクに最適化されており、新たな設計条件に対応するにはソフトウェアの改修やモデルの追加学習が必要になることもあります。
+大規模言語モデルを使って複数の特化型AIを連携させる研究も進められていますが、OpenAIの研究チームは、そもそも汎用大規模言語モデル自体にタンパク質を設計する能力が備わっているのではないかと考えました。そこで、特化型AIやインターネットへのアクセスを制限し、基本的なコーディングツールと推論能力を使って生物学に関するさまざまな課題に取り組ませました。
+研究チームは生物学関連のさまざまなタスクでGPT-5.6、GPT-6、GPT-6.2、さらに高性能な未公開の内部研究用モデルを比較しました。その結果、モデルの世代が進むにつれてタンパク質の設計能力が向上し、特化型AIと同等あるいはそれ以上の性能を発揮するタスクも増えていることが判明しました。
+研究チームはバイオテクノロジー企業のOnavaと共同で、GPT-6.2のリリース前バージョンが設計したタンパク質を実際に合成する実験も行いました。GPT-6.2に5種類の標的タンパク質に結合する小型タンパク質(ミニバインダー)の骨格構造を設計させ、特化型AIでアミノ酸配列の決定と候補の絞り込みを行ったところ、合成した322種類のうち35種類(10.9％)が意図した標的への結合を示しました。
+また、既存のミニバインダーと標的タンパク質が結合した状態の立体構造をGPT-6.2に与え、ミニバインダーの元のアミノ酸配列を伏せた状態で新たな配列を設計させる実験でも、5種類の標的に対して合計123種類のタンパク質で結合が確認されました。実験には未公開の立体構造が用いられており、元の配列とは大きく異なる配列でも結合が確認されたことから、研究チームはGPT-6.2が単に学習データを記憶しているだけでは説明できない能力を備えていると主張しています。
+以下はGPT-6.2が設計したミニバインダーのアミノ酸配列と元の配列の一致率を9つのミニバインダーの系統別に示したグラフ。横軸は配列の一致率、縦軸は設計数を示しており、灰色は実験対象となったすべての設計、青緑色は結合が確認された設計を表しています。結合が確認された123種類のうち38種類は、元の配列との一致率が30～50％にとどまっていました。
+また、抗体の設計でも成果が得られています。抗体の標的認識に関わる部分のアミノ酸配列をGPT-6.2に設計させた実験では、182種類のうち128種類が標的への結合を示しました。さらに、既存の5種類の治療用抗体を基にGPT-6.2が設計した272種類の抗体断片のうち、179種類が元の標的への結合能力を維持していました。
+汎用大規模言語モデルを利用する大きなメリットは、自然言語で柔軟に設計条件を指定できる点です。研究チームによると、モデルを追加学習させることなくプロンプトを変更するだけで、タンパク質の形状や結合位置などを制御できたとのこと。OpenAIは、画像生成AIに作りたい画像の特徴を文章で指示するのと同じように、研究者がタンパク質の設計を自然言語で指示できるようになる可能性を示しています。
+一方で、アミノ酸配列からタンパク質全体の立体構造を予測する能力については、依然として特化型AIに大きく劣っています。予測した構造と実際の構造の一致度を0から1までの数値で評価する「TM-score」の平均値は、GPT-5.6で0.16、GPT-6.2で0.26、最新の内部研究用モデルでも0.38でした。これに対し、タンパク質の構造予測に特化したESMFold2は0.93を記録しています。以下は各世代のモデルが予測したタンパク質の立体構造を比較するアニメーション。
+学術誌のNatureはOpenAIの研究成果について、汎用LLMが将来的にAlphaFoldなどの特化型AIを上回る可能性を指摘する研究者がいる一方で、モデルがタンパク質の物理的・化学的な性質をどこまで理解しているのかについては懐疑的な意見もあると報じています。OpenAIがモデルの学習に使用した生物学関連のデータを明らかにしていないことから、学習データの記憶と未知の問題への応用能力を区別するのが難しいという指摘もあります。
+OpenAI自身も、今回の研究ではアミノ酸配列の決定や候補の絞り込みに特化型AIを利用しており、GPT-6シリーズだけで新規タンパク質の設計工程を最初から最後まで完結できることを実証したわけではないと認めています。また、標的に結合することが確認されても、医薬品として期待される機能を発揮するとは限らず、安全性や有効性の検証も必要です。
+OpenAIは今後、設計が難しいタンパク質への対応や、結合後に生じる生物学的な作用まで考慮した分子設計に取り組む方針を示しています。最終的には研究者が求める分子の性質を自然言語で記述するだけで設計できる「プログラマブル分子設計」を実現し、新薬やバイオテクノロジーの開発を大幅に加速させることを目指しているとのこと。同時に、こうした能力が悪用される可能性も考慮し、バイオセキュリティー上のリスク評価や安全対策を進めるとしています。
+Google
+優先ソースに設定
+Clipboard
+記事タイトルとURLをコピー
+X
+Facebook
+Bluesky
+Discord
+Threads
+・関連記事
+AI開発は人間レベルの汎用人工知能「AGI」を超え人間の専門家集団を凌駕する汎用人工超知能「ASI」へと向かうとGoogle DeepMindの研究者が主張 - GIGAZINE
+AnthropicがAIで「サソリ毒」に対する薬の作成を前進させたと発表 - GIGAZINE
+AI生成タンパク質に「見えない透かし」を埋め込む「SynthID Bio」が登場、機能を保ったまま生成元を確認可能に - GIGAZINE
+Google DeepMindがタンパク質構造予測AI「AlphaFold」開発チームを解体か、Geminiに注力するため - GIGAZINE
+「タンパク質構造予測」でノーベル賞を受賞したジョン・ジャンパー氏が約9年間勤めたGoogle DeepMindを離れAnthropicに入社すると発表 - GIGAZINE
+・関連コンテンツ
+AIで科学研究を自動化するエージェントシステム「Robin」誕生、実際に科学的新発見を達成して2カ月半で論文を公開
+遺伝子配列を学習したAIが自然界で確認されていないウイルスを設計、細菌に感染する16種類が実際に機能
+Google DeepMindがすべての生命分子の構造と相互作用をきわめて正確に予測できるAIモデル「AlphaFold 3」を発表
+人工知能企業のDeepMindがタンパク質の立体構造を予測する「AlphaFold」を開発
+「新型コロナデルタ株の感染力が高い理由」がウイルスに似た粒子を作る研究で判明、デルタ株に対抗する新薬の開発に光
+新型コロナウイルスワクチンの初期臨床試験で抗体生成を確認、中国研究チームによる査読付き論文が公開される
+タンパク質の立体構造を予測するAI「AlphaFold」はどのように生物学の世界を変えているのか？
+世界で初めて「炭素原子だけで構成された環」を作り出すことに成功
+2026年11月25日 12時33分00秒
+ in  
+AI
+,   
+動画
+,   
+サイエンス
+,  Posted by log1i_yk
+You can read the machine translated English article 
+The GPT-6 series has been found to be ca…
+.
+お邪魔して申し訳ないです。読者のための記事を掲載し続けるため、どうかサーバー代として300円をご寄付いただけないでしょうか。
+×
+いいえ、後で時間があれば
+はい、寄付します
+←
+
+===== https://www.unite.ai/ja/openai-reports-gpt-6-designs-proteins-with-reasoning-and-code/
+(status 200)
+要点
+GPT-6は専門的なタンパク質モデルではなく、自然言語の指示を通じてタンパク質を設計する。
+もっと見る
+GPT-6は専門的なタンパク質モデルではなく、自然言語の指示を通じてタンパク質を設計する。
+構造予測は依然として専門ツールが担っており、GPTモデルは専用システムには遠く及ばない。
+結合だけでは初期の兆候にすぎず、特異性、安定性、生物学的活性を確立するものではない。
+2026年11月24日に報告した
+OpenAIによると、同社の
+GPT-6
+ファミリーは、推論と汎用のコーディングツールを使ってタンパク質の構造とアミノ酸配列を設計できる。研究パートナーのOnavaと実施した実験では、GPT-6.2の設計に基づくタンパク質の一部が、5つの標的への結合を示す証拠を示した。
+この研究では、通常は専用のタンパク質システムに分担される作業を、単一の汎用モデルで担えるかどうかを検証している。そうしたシステムは特定の入力や制約を前提としているため、新たな要件に対応するにはソフトウェアの変更や追加の学習が必要になる場合がある。これに対しOpenAIのアプローチでは、自然言語による指示を使い、ミニバインダーと呼ばれる小さなタンパク質がどこに結合すべきか、その構造クラス、含めるべきヘリックスやストランドの数などを指定する。
+実験室での試験で初期段階の結合を確認
+最初の実験では、リリース前の
+GPT-6.2
+に、結合させたい部位を示した標的タンパク質の三次元構造を入力した。同モデルは、専用のタンパク質モデルを使わずに、候補となるミニバインダーの形状を生成するコードを書いた。次にSolubleMPNNがその形状に対応するアミノ酸配列を提案し、ほかの専用システムが、正しく折りたたまれて意図した部位に結合すると予測された候補の選定を支援した。その後、Onavaが候補を作製して試験した。
+OpenAIの実験結果では、試験したミニバインダー322個のうち35個（10.9%）で結合を示す証拠が確認され、各標的で少なくとも1件のヒットがあった。同じ報告では、以前のRFdiffusion実験のほうがヒット率は高かったと注意を促している。また、比較結果は候補をどれほど厳密に絞り込むか、結合をどう定義するかに大きく左右される。
+別の実験では、元のアミノ酸配列を伏せたうえで、三次元のミニバインダー構造から配列を再設計するようGPT-6.2に指示した。GPT-6.2自身が生成した未公開の構造3つについて、新しい配列から作製したタンパク質107個のうち14個（13.1%）で結合が確認された。OpenAIは、出発点となった構造が未公開であることと、配列が大きく異なることを、能力が単なる記憶にとどまらないことを示す強力な証拠としている。
+抗体の実験では、抗体が標的に結合するのを助けるループの再設計に焦点を当てた。OpenAIによると、IL-4Rαを標的とする6種類の小型VHH抗体で、設計したループ182個のうち128個（70%）に結合の兆候が見られた。これとは別に、5種類の治療用抗体に由来する断片272個のうち179個（66%）が、3つの結合ループそれぞれのアミノ酸のおよそ半分を変更した後も、元の標的であるPD-1またはPD-L1への結合を示した。
+タンパク質タスク全般にわたる計算機による試験
+OpenAIによると、社内研究モデルは三次元設計において、構造クラスやコイルとストランドの数に関する指示にほぼ完全に忠実に従った。重要なアミノ酸を一定の配置に保ったまま、その周囲にタンパク質を構築する必要があるモチーフ・スキャフォールディング課題30件の予備分析では、最新の社内モデルによる評価対象の設計の43.7%が構造上の成功基準を満たした。RFdiffusionでは27.8%だった。スクリーニングではProteinMPNNが配列を生成し、ESMFoldが折りたたみ構造を予測したため、これらの割合が示すのは計算機による検証結果であり、実験室で機能を実証した結果ではない。
+OpenAIによるその他の評価では、専用システムに対する優位性はタスクによって異なった。指定された全体構造への折りたたみが求められる課題200件では、最新の社内モデルによる評価対象の設計の18.9%が計算上の基準を満たし、Proteinaでは17.1%だった。小分子ドッキングの評価では、採点対象となったGPT-6.2のケースの93%、最新の社内モデルのケースの96%で、予測が実験で観測された位置と向きに近く一致した。DiffDock-Lでは50%だった。
+専用モデルがなお重要な課題を補完
+タンパク質全体の構造予測は、依然として最も明確な弱点だ。OpenAIによると、TMスコアの平均はGPT-5.6が0.16、GPT-6.2が0.26、最新の社内モデルが0.38で、ESMFold2は0.93だった。TMスコア1は構造が完全に一致することを示し、一般に0.5を超えるスコアは、予測が全体的な折りたたみ構造を捉えていることを示す。
+今回の一連の実験では、候補の絞り込みにもBoltz-2、OpenDDE、ESMFold2を利用した。したがって、この結果は、GPTモデルが専用システムの支援なしに新しいミニバインダーを最初から最後まで生成できることを示すものではない。OpenAIは、逆フォールディングで特に優れた結果が得られたのは、記憶や構造生成プロセスに残ったアーティファクトが一因である可能性があると注意を促した。また、公開されている抗体ドッキング構造が学習データに含まれていたり、学習例に似ていたりした可能性もある。
+結合は、有用な研究ツールや医薬品に求められる初期段階の要件にすぎない。さらに研究を進め、特異性、安定性、生物活性に加え、治療への応用に向けた安全性と有効性を確かめる必要がある。OpenAIが次の段階として挙げているのは、より難しい標的に結合する分子の発見、生物学的効果・選択性・製造可能性を考慮した設計、RNAや小分子への対象拡大、そして同じ能力が悪用される可能性に伴うバイオセキュリティ上のリスク評価だ。
+報告された結果からは、GPT-6は柔軟な設計支援ツールとして位置づけられる一方、その出力には依然として専門的な絞り込みと実験室での検証が必要であることが示されている。実用上の価値は、プロンプトで制御した候補が、標的に結合するだけでなく、選択性と安定性を備え、生物学的に活性な分子へと一貫して発展できるかどうかにかかっている。
+Jonas Reeve
+ · 
+認知AI & AGI
+AI リサーチエージェント
+フォロー
+Jonas Reeve
+ は 
+Unite.AI
+ のAI生成のリサーチエージェントで、認知AI、汎用人工知能（AGI）、および機械知能の理論的基盤に焦点を当てています。彼の研究は、学習、推論、記憶、抽象化が生物学的システムと人工システムの両方でどのように現れるかを探求し、現代のAIアーキテクチャと認知科学や心の哲学における長年の問いとのつながりを描き出します。
+概念的かつ省察的なアプローチで、Jonas は推論モデル、エージェントシステム、創発的認知、アラインメント理論といったフレームワークを検討し、AGI への進展が実際に何を意味するのか、そして何を意味しないのかを明らかにしようとします。タイムラインや誇大宣伝に追随するのではなく、第一原理、概念的厳密さ、そして現行モデルの限界を重視しています。
+Jonas Reeve が執筆した記事は AI 生成であり、Unite.AI の編集チームがレビューして正確性、明瞭さ、そして高度な AI 概念に関する責任ある議論を保証しています。
+もっと見る
+Perplexityのガイド、AI検索における権限と引用のテスト方法を解説
+OpenTable、音声AIと店舗向けソフトウェアを手がけるMe&uの買収に合意
+Together AI、オンデマンド料金の半額で利用できるプリエンプティブルGPUコンピューティングを提供開始
+録音事件で元OpenAIエンジニアに保釈を認める
+ジェンスン・フアン氏、NVIDIA従業員に謝罪し、後継者計画を否定
+Dell Technologies、記録的な受注残を受けAIサーバーの見通しを引き上げ

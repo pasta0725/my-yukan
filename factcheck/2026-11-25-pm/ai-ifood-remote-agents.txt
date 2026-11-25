@@ -1,0 +1,840 @@
+===== https://openai.com/business/customer-stories/ifood
+(status 200)
+November 24, 2026
+How iFood scales coding agents across 15,000 repositories
+Contact sales
+Company size: 
+Enterprise
+Region: 
+Latin America
+Industry: 
+Technology
+Products: 
+API
+15,000
+code repositories at iFood
+25,000+
+runs completed by the platform
+US$0.04
+average inference cost per run
+2x+
+as many vulnerabilities fixed through the security platform
+Share
+The Remote Agents Platform turned engineering tasks into API calls: teams delegate the work, execution takes place in a remote sandbox, and the result comes back as a merge request. In the internal security platform, the number of vulnerabilities fixed more than doubled.
+The challenge isn’t the task—it’s the scale
+iFood maintains more than 15,000 code repositories. Each periodically needs specific tasks performed: validating code to ensure it meets internal standards, fixing vulnerable dependencies, or running an analysis.
+None of these tasks is difficult on its own. The challenge comes when those tasks multiply.
+“Solving this for one repository is easy. The challenge is solving it at scale,” says Victor Coelho, Senior Software Engineer at iFood. “The Remote Agents Platform is designed to make it possible to solve this at scale across all 15,000 repositories.”
+Before the platform, each team tackled the problem in its own way—and they all ran into the same obstacle.
+“Before, we had fragmented solutions. Imagine several teams at iFood trying to solve different problems, but without this layer, this agentic runtime, available to them. In the end, those solutions always ran into the same problem.”
+What was missing wasn’t intelligence or a use case. It was execution infrastructure. A dedicated 
+runtime
+.
+“Teams can focus on solving their business problems and delegate execution to our platform.”
+—Victor Coelho, Senior Software Engineer, iFood
+A coding agent in the cloud, accessible through an API
+The team describes the Remote Agents Platform as an API that launches a remote agentic coding task. The cycle has three steps: the user submits a prompt and environment requirements through a REST call; the platform processes the task on a dedicated remote runner inside an isolated sandbox; and the result is retrieved later.
+“The platform’s entry point, its interface, is a simple REST API. Users can use this API to create the runs they need. Internally, we handle and manage the entire lifecycle and delegate execution to isolated sandboxes,” he explains. Task progress can be monitored in real time.
+The runner’s internal design alternates between two different types of steps—and that combination makes the overall workflow predictable.
+Deterministic steps bookend the workflow: cloning the repository, importing the 
+skills
+ the agent can use, and setting up the working branch at the start; publishing the merge request and making the generated artifacts available at the end. In between is the agentic execution itself, running GPT‑5.6 Luna inside the sandbox.
+“It’s a combination of those two things: deterministic steps and agentic execution within the workflow.”
+The sandbox runs Ubuntu and includes the toolchains iFood’s ecosystem requires—Python, Java, Kotlin, C#, TypeScript, Rust, JavaScript, and Go—along with general-purpose tools. Beyond the sandbox, the agent can access Nexus, GitLab, Docker, Snyk, Kubernetes, and AWS.
+Why GPT‑5.6 Luna
+The model choice came down to three factors considered together, rather than just one.
+“We chose GPT‑5.6 Luna because, among models at the same checkpoint, the benchmarks showed it offered a great balance of intelligence, efficiency, and execution speed—how quickly it could complete tasks. Those three qualities together led us to choose GPT‑5.6 Luna.”
+That balance matters more for a platform built to scale than it would for a one-off use case. With tens of thousands of tokens being consumed, the average cost of four U.S. cents per run stops being a minor detail and becomes an architectural consideration.
+“Given our plans to scale the platform across many use cases at iFood, the balance of efficiency and intelligence that OpenAI’s model provides ensures we can scale sustainably.”
+—Victor Coelho, Senior Software Engineer, iFood
+How to tell whether the agent completed the task
+Delegating execution at scale creates a new challenge: automatically determining whether the agent did what it was supposed to do.
+iFood’s answer comes in the step after the session. Once execution is complete, the result is processed using OpenAI’s Structured Outputs, which requires the output to conform to a predefined contract.
+“We process the result using Structured Outputs, which ensures the response follows a predefined contract. From the agent’s session, we can identify the outputs within the response structure we expect. This helps reduce uncertainty and ensures we can always get a response from the agent’s session, whether positive or negative.”
+—Victor Coelho, Senior Software Engineer, iFood
+The first major user: security
+The platform already powers an internal iFood security product that scans the 15,000 repositories for vulnerable dependencies and attempts to fix them.
+The migration had a direct impact: “With our platform, the accuracy of those changes, those fixes, more than doubled,” says Coelho.
+This use case illustrates the idea behind the platform: the security team didn’t need to build its own agentic runtime or become experts in agent orchestration. It needed to call an API.
+Asynchronous execution gives developers their time back
+The team emphasizes what asynchronous execution frees developers to do, rather than replacement.
+Because the task is delegated and runs without supervision, the developer doesn’t have to stay focused on monitoring it.
+“While they’re in a meeting, they can launch a code fix, a performance analysis, or another task that’s a little more routine—something they can delegate without having to monitor it at that moment.”
+Routine work no longer competes for the team’s attention. That leaves time for problems that require judgment.
+“You can unlock those productivity gains without necessarily having to monitor the work as it happens.”
+—Victor Coelho, Senior Software Engineer, iFood
+Modeled on the APIs that inspired it
+The Remote Agents Platform was designed as an internal layer with similarities to the way OpenAI makes this type of task available to external customers.
+“The Remote Agents Platform drew a lot of inspiration from OpenAI’s APIs, both the Batch API and the Agents API, which is an even more recent OpenAI product. We built a platform that resembles those products, but is internal to iFood.”
+The inspiration went beyond the concept. It extends to the design of the interfaces, the organization of resources, and the approach to asynchronous execution with results retrieved later.
+“These products directly inspired how we built our solution.”
+—Victor Coelho, Senior Software Engineer, iFood
+Results at a glance
+The platform has completed more than 25,000 tasks, consuming more than 27 billion tokens, at an average cost of US$0.04 per run.
+After migrating to the Remote Agents Platform, the internal security platform more than doubled both the accuracy of its fixes and the number of vulnerabilities resolved.
+Coverage extends across iFood’s more than 15,000 code repositories.
+All runs use GPT‑5.6 Luna, chosen for its balance of intelligence, efficiency, and speed.
+Structured Outputs ensures that each session returns a result that follows a predefined contract, whether positive or negative.
+Product teams have moved from building fragmented solutions to delegating agentic execution through a REST API.
+Lessons for leaders
+The bottleneck is often the runtime, not the use case.
+ Several teams already knew what they wanted to automate; they lacked an environment in which to run it.
+Combine deterministic steps with agentic execution.
+ Cloning, publishing, and making artifacts available don’t require a model; the complex task in between does.
+Treat cost per run as an architectural decision.
+ At scale, the cost per task determines what is feasible to automate.
+Require outputs to follow a contract.
+ Without a structured response, there’s no way to know at scale whether the agent achieved its objective.
+Asynchronous execution is the real productivity gain.
+ The value lies in not having to monitor the work, rather than completing it faster while watching over it.
+Tips
+Expose agentic capabilities through an internal API so other teams can use them without rebuilding the infrastructure.
+Isolate each run in its own sandbox, with your ecosystem’s toolchains already installed.
+Choose a model by considering intelligence, cost, and speed together, rather than a single benchmark.
+Use structured outputs to classify success and failure automatically.
+Start with an internal user with a clear pain point and high volume—at iFood, that was the security platform.
+Next steps
+The team plans to bring the platform to many more use cases across iFood, expanding the range of internal products that delegate agentic execution to it—with cost per task determining whether that expansion can be sustained.
+Join the new era of work
+More than 1 million businesses around the world are achieving meaningful results with OpenAI.
+Contact sales
+Get OpenAI for Business updates
+Product updates, practical guides, upcoming events, and more.
+Keep reading
+Cisco and OpenAI redefine enterprise engineering with Codex
+May 27, 2026
+Rakuten fixes issues twice as fast with Codex
+Mar 11, 2026
+How Endava builds an agentic organization with Codex
+May 28, 2026
+
+===== https://kentechtimes.com/articles/2026-11-25-ifood-remote-agents-platform-gpt-5-6-luna-15000-repositories/
+(status 200)
+この記事を聴く
+音声は公式マスコット「ロボ」の声で、記事の要点を読み上げています。文字で読みたい方は、このまま下の本文をお読みください。
+読みやすさ:
+標準（原文）
+超やさしい
+「超やさしい」はAIが要点・ポイント・考察・用語解説・よくある質問・本文（見出しを含む）を噛み砕いて書き換え、分かりにくい言葉はWebで調べて出典つきで説明します（数字・固有名詞は原文のまま）。記事のタイトル・画像の説明・目次・表やグラフはまだ書き換えの対象外で、表示中は本文中の表・グラフと関連記事の案内が隠れます。
+シェア
+X
+LINEで友だち追加
+Facebook
+リンクをコピー
+YouTube
+TikTok
+＋ あとで読む
+この記事の根拠
+出典を明記
+公式発表あり
+一次ソースあり
+理由を見る
+🔗
+出典を明記
+出典: OpenAI（2026年11月24日）
+✓
+公式発表あり
+出典（OpenAI）は発表元の公式サイト（openai.com）です
+◎
+一次ソースあり
+出典のリンク先が発表元のページ（openai.com）です
+記事の出典と本文から、確認できた根拠だけを表示しています（確認できないものは表示しません）。内容の正しさや立場の良し悪しを判定するものではありません。
+要点
+ブラジルのフードデリバリー大手iFoodは、OpenAIのGPT-5.6 Lunaを使う社内の仕組み「Remote Agents Platform」で、1万5000を超えるコード保管庫の定型作業をAIに任せている。
+これまでに2万5000件超を処理し、1回あたりの平均費用は約4セント。
+脆弱性の修正数は2倍以上に増えた。
+この記事のポイント
+ブラジルのフードデリバリー大手iFoodは、OpenAIのGPT-5.6 Lunaを使う社内の仕組み「Remote Agents Platform」で、1万5000を超えるコード保管庫の定型作業をAIに任せている。
+これまでに2万5000件超を処理し、1回あたりの平均費用は約4セント。
+脆弱性の修正数は2倍以上に増えた。
+画像: OpenAI公式（iFood導入事例）
+ブラジルのフードデリバリー大手
+iFood
+は、
+OpenAI
+のAIモデル「
+GPT-5.6 Luna
+」を使った社内の仕組み「
+Remote Agents Platform
+」で、
+1万5000を超えるコード保管庫（リポジトリ）
+の定型作業をAIに任せている。OpenAIが2026年11月24日に公開した導入事例によると、これまでに
+2万5000件を超える作業
+を処理し、1回あたりの平均費用は
+約4セント（約6円）
+だった。
+どんな仕組み？
+OpenAIの事例紹介によると、iFoodでは社内基準に合っているかの確認や、危険な部品（依存ライブラリ）の更新といった作業が、膨大な数の保管庫で定期的に必要になる。1つずつなら簡単でも、数が増えると手が回らない。そこで同社は、作業を頼む窓口を「REST API」という共通の呼び出し口にまとめた。社員が指示文と必要な環境を送ると、隔離された作業場所（サンドボックス）でAIが作業し、結果は「マージリクエスト（変更の提案）」として戻ってくる。保管庫の複製や結果の公開といった決まった手順はプログラムが行い、その間の考える作業だけをAIが担う設計だ。
+成果は？
+iFoodのシニアソフトウェアエンジニア、Victor Coelho氏は事例の中で、GPT-5.6 Lunaを選んだ理由を「賢さ・効率・速さのバランス」と説明している。処理した作業で使われた文字の単位（トークン）は270億を超えた。最初の大口の利用者は社内のセキュリティ部門で、この仕組みに移ってから
+修正の正確さと、解決した脆弱性の数がともに2倍以上
+になったという。AIが作業を終えたかどうかは、あらかじめ決めた形式で答えを返させる「Structured Outputs」という機能で自動判定している。
+作業は頼んだら見張る必要がなく、会議中でもコード修正を任せられる点が、開発者の時間を生んでいるとしている。iFoodは今後、ほかの社内サービスにも対象を広げる計画だが、拡大できるかどうかは1回あたりの費用で判断するという。OpenAIのコーディングAIの動きは「
+OpenAIとCiscoの「Shirudo」
+」の記事でも伝えている。
+関連商品
+PR
+ChatGPT・AI活用の本
+ChatGPTなどのAIを仕事に生かす方法を解説した本を探せます。価格は変動します。
+Amazonで探す
+生成AIの仕事術の本
+Amazonで「生成AI 仕事術 本」を検索
+Amazonで探す
+プロンプトの解説書
+Amazonで「プロンプトエンジニアリング 本」を検索
+Amazonで探す
+AIリテラシーの入門書
+Amazonで「AIリテラシー 本」を検索
+Amazonで探す
+※ Amazonアソシエイトリンクを含みます
+楽天市場の関連商品
+PR
+AIスマートグラス
+楽天市場で「AI スマートグラス」を検索
+楽天市場で見る
+AI PC（NPU搭載ノートPC）
+楽天市場で「AI PC ノートPC」を検索
+楽天市場で見る
+Claude Codeの解説書
+楽天市場で「Claude Code 本」を検索
+楽天市場で見る
+ローカルLLMの入門書
+楽天市場で「ローカルLLM 本」を検索
+楽天市場で見る
+※ 楽天アフィリエイトリンクを含みます
+ロボとペラの用語解説
+「リポジトリ（コード保管庫）」って？
+プログラムのファイルと、その変更の記録をまとめてしまっておく場所のことだよ。会社によっては何千、何万も持っているんだ。
+用語辞典でほかの言葉も見る
+編集部の考察
+AIにコードを書かせる話題は多いものの、iFoodの事例は「何万件もの作業を、いくらで、どう確かめるか」という運用の具体像を示した点で参考になります。1回約4セントという費用を設計の前提に置き、決まった手順はプログラム、考える部分だけをAIに任せる分担は、費用と品質を両立させる現実的な方法です。結果を決まった形式で返させて成否を自動判定する工夫も、AIに任せきりにしないための大切な仕組みと言えます。当サイトが伝えてきたOpenAIの企業向けの動きと合わせると、AIの活用は個人の便利ツールから、会社全体の作業を流れ作業で回す段階へ進んでいることが分かります。KEN TECH TIMESとしては、日本の企業でも、まず数が多く手順がはっきりした作業から試すのが成功の近道だと考えます。
+        出典: 
+OpenAI
+（2026年11月24日）
+本記事は上記出典の報道内容をもとに、事実関係を日本語で再構成したものです。
+#OpenAI
+#GPT-5.6
+#AIエージェント
+#海外のAI活用事例
+Xでシェア
+LINEで友だち追加
+Facebookでシェア
+リンクをコピー
+YouTubeで見る
+TikTokで見る
+執筆者・運営: 
+KEN TECH TIMES 編集部
+（KEN TECH TIMES）／記事の誤りのご指摘は
+訂正方針
+をご覧ください
+本記事はアフィリエイトプログラムによる収益を得ている場合があります
+楽天市場の関連商品
+PR
+VRAM 16GBのグラフィックボード
+楽天市場で「グラフィックボード VRAM 16GB」を検索
+楽天市場で見る
+Mac mini
+楽天市場で「Mac mini」を検索
+楽天市場で見る
+NVMe SSD（2TB）
+楽天市場で「NVMe SSD 2TB」を検索
+楽天市場で見る
+Google Workspaceの解説書
+楽天市場で「Google Workspace 本」を検索
+楽天市場で見る
+※ 楽天アフィリエイトリンクを含みます
+よくある質問
+Q
+iFoodはAIに何を任せていますか？
+A
+OpenAIの事例紹介によると、1万5000を超えるコード保管庫での社内基準の確認や、危険な依存ライブラリの更新などの定型作業を任せています。
+Q
+費用はどのくらいですか？
+A
+2万5000件を超える作業を処理し、1回あたりの平均費用は約4セントとされています。
+Q
+使っているAIモデルは何ですか？
+A
+すべての作業でOpenAIのGPT-5.6 Lunaを使っています。
+答えはこの記事の本文と出典の範囲で書いています。
+ロボとペラに質問する
+この記事の内容について、AIが記事の中から探して答えます。記事に無いことはWebで調べて、出典つきで答えます。
+例:
+iFoodはAIに何を任せていますか？
+費用はどのくらいですか？
+使っているAIモデルは何ですか？
+リポジトリ（コード保管庫）とは？
+この記事の「よくある質問」を見る
+サイト内検索で記事を探す
+この話題のこれまでの流れ
+#OpenAI
+2026/11/24
+OpenAI、AIエージェント「Codex」の大量の作業に耐える新しいGitの仕組み「Pando」を公開　送信の待ち時間は約80%短縮、1日約1ペタバイトを配信
+2026/11/24
+AnthropicとOpenAIの社員に「未公開のAIは安全に出せない」との声、米Axiosが報道　関係者20人超に取材、学習の停止も選択肢に
+2026/11/25
+OpenAIの推論AI「o1」生みの親ノーム・ブラウン氏、「有望な学生は大学をやめてAI研究所へ」　今後1〜2年は「非常に急な進歩」、今は人とAIが組む「ケンタウロス期」
+2026/11/25
+【リーク】ChatGPTの常駐AI「Dots」に専用メールアドレスか、隠れた設定画面が見つかる　CCに入れて「日程調整して」と頼める形に
+2026/11/25
+ChatGPTに病院などの「医療の広告」が登場へ、米WebMD Igniteが出稿サービス開始　米国だけの解禁で、病気を思わせる会話には出さない
+2026/11/25
+「ChatGPT Health」がAndroidに対応、「Health Connect」経由で睡眠や運動の記録を読み込み　米国の18歳以上で無料プランから利用可
+2026/11/25
+ブラジルのフードデリバリー大手iFood、1万5000のコード保管庫をAIで一括保守　1回4セントで2万5000件超を処理
+いま読んでいる記事
+その後の続報
+2026/11/25
+OpenAIとAnthropicの社内で「次のAIは公開できないほど危険かも」と懸念、米Axiosが20人超の関係者取材で報道
+「OpenAI」の記事をすべて見る
+関連記事
+1
+ChatGPT
+報道
+11/17 10:33
+OpenAI、ChatGPTに旅行機能を本格導入へ　買収したOdessiaの創業者が初の「旅行責任者」に、宿や交通の比較画面を開発
+この記事でも出てきた「AIエージェント」の記事です
+OpenAIが、買収したAI旅行スタートアップOdessiaの創業者フランシス・デビッドソン氏を初の「旅行責任者」に迎え、ChatGPTに旅行の機能を組み込むエンジニアの採用を始めたと旅行業界メディアのSkiftが報じた。求人では、宿泊先や交通手段を比べる専用画面の開発がうたわれている。
+＋ あとで読む
+2
+ChatGPT
+報道
+図解あり
+11/17 03:30
+OpenAI、医療現場の事務を代行する「画面操作エージェント」を提供開始　CVS Healthは数か月分の滞留を週末で解消
+この記事でも出てきた「AIエージェント」の記事です
+OpenAIは11月16日、医療機関の事務作業を画面操作で代行するAIエージェントを、ChatGPT for HealthcareやAPI経由で提供すると発表した。電子カルテの受信箱の作業を確認した325件のうち99%が臨床的に安全と評価され、米CVS Healthでは数か月分の書類送付の滞留を週末で片付けたという。
+＋ あとで読む
+3
+ChatGPT
+報道
+11/16 22:00
+ChatGPTの「ビジネスエージェント」が米国で表示開始　ペット用品のChewyに「チャット開始」ボタン、企業向け作成ツールも一部に
+この記事でも出てきた「AIエージェント」の記事です
+OpenAIが先週始めた企業向けの「Business Hub」で、企業が自前のAI窓口をChatGPT内に置ける「ビジネスエージェント」が実際の画面に現れ始めた。米ペット用品通販Chewyのプロフィールに「チャット開始」ボタンが付き、作成ツールを使えた事業者も出ている。
+＋ あとで読む
+4
+ChatGPT
+公式
+11/14 13:40
+OpenAI、エージェント決済「ChatGPT Wallet」を発表——カード番号を共有しない仕組みを導入
+この記事でも出てきた「AIエージェント」の記事です
+OpenAIは11月14日、AIエージェントがユーザーの代わりに買い物の支払いを行える「ChatGPT Wallet」を公式ブログで発表した。カード番号を店舗やエージェントに渡さず、購入ごとに生体認証などで承認する仕組みで、まずは米国のChatGPT Pro契約者向けに提供を開始する。
+＋ あとで読む
+5
+ChatGPT
+報道
+11/19 10:29
+米サラダチェーンsweetgreen、ChatGPTとClaudeから注文できる「エージェント注文」を開始　「乳製品なし・高たんぱくで」と頼むだけでボウルを提案
+この記事でも出てきた「AIエージェント」の記事です
+米国の人気サラダチェーン「sweetgreen」は11月18日、ChatGPTとClaudeの会話の中で注文を組み立てられる「エージェント注文」を始めた。食事制限や栄養の目標を伝えると、AIが価格やカロリー付きでメニューを提案し、カートに入れられる。支払いはsweetgreenのアプリかWebサイトで行う。
+＋ あとで読む
+6
+ChatGPT
+報道
+11/24 21:54
+OpenAI、AI前提の新しい法律事務所と人材獲得の交渉　事務所側は断り独立を選ぶ　英Artificial Lawyerが関係者の話として報道
+この記事でも出てきた「OpenAI」の記事です
+OpenAIが、AIを前提に業務を組み立てる米国の新しいタイプの法律事務所と、主要な人材を迎え入れる方向で交渉していたと、法律テック専門メディアの英Artificial Lawyerが2026年11月24日に報じた。事務所側はOpenAIの申し出を断り、自力での成長を選んだという。
+＋ あとで読む
+ChatGPTの最新ニュース
+2026年11月24日 17:14
+OpenAIの元技術者、社内の会議の隠し録音に「Codex」を使ったと米検察が主張　声を検知する機能を追加させ録音をDropboxで整理
+2026年11月24日 17:08
+ChatGPTの音声入力、10分の長さ制限がなくなる　話しながら文字が出る「ライブ音声入力」に、全プランで利用可能
+2026年11月24日 17:05
+ChatGPTの常駐エージェント「Dots」がEUでも利用可能に　海外でも使える「旅行モード」と新デザインの切り替えも見つかる
+2026年11月24日 17:01
+Amazon、ChatGPTにブラックフライデーの広告を出稿　一方でOpenAIのデータ収集ロボットは自社サイトから締め出し
+2026年11月24日 11:08
+OpenAI「OpenWorks」開始、地域の小さな店にAIの使い方を教える人へ月最大8,000ドル　米国20地域で、店側は無料・「ChatGPT Business」3か月分つき
+ChatGPTのニュースをすべて見る ›
+この記事の関連商品
+PR
+AIエージェントの解説書
+Amazonで「AIエージェント 本」を検索
+Amazonで探す
+ブロックチェーンの仕組みがわかる本
+Amazonで「ブロックチェーン 仕組み 図解」を検索
+Amazonで探す
+この1冊でしっかりわかる ChatGPTの教科書
+Amazonで購入
+AIと著作権・法律の本
+Amazonで「AI 著作権 本」を検索
+Amazonで探す
+※ Amazonアソシエイトリンクを含みます
+おすすめサービス
+PR
+Audible 無料体験
+本を耳で聴く。話題作も聴き放題
+無料体験はこちら
+Kindle+ 読み放題
+旧Kindle Unlimited。無料体験あり
+無料体験はこちら
+Amazon Music Unlimited
+1億曲が聴き放題。無料体験あり
+無料体験はこちら
+Prime Video チャンネル
+dアニメストアなど専門チャンネル
+チャンネルを見る
+Amazonプライム 無料体験
+配送料無料＋Prime Video見放題
+無料体験はこちら
+
+===== https://www.explainx.ai/blog/ifood-remote-agent-platform-15000-repos-openai-november-2026
+(status 200)
+iFood turned agentic coding into an internal platform API
+ and OpenAI published the numbers on 
+November 24, 2026
+. The 
+customer story
+ — also listed at 
+openai.com/index/ifood
+ — is one of the most concrete 
+enterprise Codex
+ write-ups of the year: 
+15,000
+ repositories, 
+25,000+
+ completed runs, about 
+US$0.04
+ average cost per run, and 
+more than double
+ the vulnerability fixes from the security scanner after migration.
+table · 2 cols
+Copy
+Metric (OpenAI / iFood)
+Value
+Repositories
+15,000+
+Completed runs
+25,000+
+Tokens consumed
+27B+
+Average inference cost
+~$0.04 / run
+Model
+GPT-5.6 Luna
+Security fixes
+2x+
+ accuracy and volume
+What is the Remote Agents Platform?
+Victor Coelho, senior software engineer at iFood, frames the problem as 
+scale
+, not difficulty: validating a dependency, running analysis, or patching a CVE is easy 
+once
+, impossible when 
+fifteen thousand
+ Git repos need the same treatment on different stacks.
+The Remote Agents Platform (
+RAP
+) exposes 
+one REST entry point
+. Callers send a prompt plus environment requirements; the control plane schedules an 
+ephemeral runner
+; results arrive later as 
+artifacts and merge requests
+. Progress is observable in real time, but developers are not required to babysit the session — a deliberate productivity bet.
+Deterministic steps 
+bookend
+ each job: clone, import 
+skills
+, branch setup, then after the model runs, publish the MR and expose artifacts. The middle is 
+agentic
+: GPT-5.6 Luna edits, compiles, and tests inside the sandbox. Coelho calls it 
+deterministic steps plus agentic execution
+ in one workflow — the same pattern OpenAI described for 
+Codex sandbox permissions
+, but lifted to 
+datacenter runners
+ instead of a laptop.
+Why a dedicated runtime beat fragmented tools
+Before RAP, iFood teams built 
+one-off automations
+ that all hit the same wall: no shared 
+agentic runtime
+ with corporate network access, private package feeds, and multi-language compilers. Coelho''s quote in the OpenAI story is blunt: teams lacked 
+execution infrastructure
+, not ideas.
+That mirrors what 
+ShellBench
+ measured last week — frontier models still miss rubric lines — and what 
+OpenAI''s performance factory
+ engineers optimize for at 
+ChatGPT scale
+. iFood''s answer is 
+platform
+, not 
+per-repo scripts
+.
+Sandboxes run 
+Ubuntu
+ with iFood''s language matrix and reach 
+Nexus, GitLab, Docker, Snyk, Kubernetes, and AWS
+. This is the missing layer between 
+“we bought Codex seats”
+ and 
+“we patched six hundred repos last quarter.”
+Model choice: GPT-5.6 Luna and four-cent runs
+Coelho told OpenAI they picked 
+GPT-5.6 Luna
+ for 
+intelligence, efficiency, and speed together
+, not a single leaderboard column. At 
+27 billion tokens
+ across 
+25,000
+ runs, 
+four cents
+ per task is not marketing fluff — it is the 
+envelope
+ for which automations stay on.
+Compare that economics mindset to 
+Anthropic Ship''s PR steward story
+: both labs are selling 
+governed automation
+, but iFood publishes 
+unit cost
+ where many vendors still hide it behind enterprise quotes.
+Structured Outputs as the completion detector
+Delegating thousands of jobs fails without 
+machine-checkable success
+. iFood runs each finished session through 
+OpenAI Structured Outputs
+ with a fixed schema so downstream orchestration knows pass, fail, or partial states without reading raw logs.
+That design choice pairs with explainx.ai''s broader warning in 
+agent evals on real repos
+: 
+harness contract
+ matters as much as model IQ. If your platform cannot classify outcomes, you cannot safely parallelize across fifteen thousand repositories.
+Security platform: the first killer app
+The security team scans 
+all 15,000 repos
+ for vulnerable dependencies and attempts fixes. OpenAI reports 
+more than double
+ the accuracy of changes and 
+more than double
+ vulnerabilities resolved after the migration — without that team becoming agent orchestration experts.
+They only had to 
+call an API
+. That is the product lesson for CISOs comparing 
+Daybreak red programs
+ with 
+batch patch factories
+.
+Builders wiring 
+GitHub Actions parallel QA
+ should note the asymmetry: iFood optimizes for 
+breadth
+ (every repo) while mobile testers optimize for 
+depth
+ (one app''s CI). Both need 
+green CI
+ as the trust signal.
+Async execution and developer attention
+Coelho emphasizes 
+meetings while agents run
+: launch a routine fix, walk away, retrieve the MR later. The productivity gain is 
+attention
+, not raw tokens per second — the opposite of watching a terminal spinner.
+OpenAI says RAP 
+modeled interfaces on Batch API and Agents API
+ internally. If you are evaluating OpenAI''s external Agents API for your company, iFood is effectively a 
+reference architecture
+ for 
+private-network sandboxes
+ wrapped in the same async metaphor.
+Lessons for platform teams
+Expose agents as REST
+, not only IDE plugins — other product teams become customers.
+Ephemeral sandboxes per run
+ — do not share mutable VMs across untrusted repos.
+Preinstall corporate toolchains
+ — agents fail when 
+go private
+ or Nexus auth is missing.
+Structured completion contracts
+ — without them, fleet scale is blind.
+Publish cost per run
+ — iFood proves 
+four cents
+ can justify security automation; your finance team will ask anyway.
+How iFood compares to other OpenAI coding case studies
+OpenAI''s business site already hosts 
+Cisco Codex
+, 
+Rakuten
+, and 
+Endava
+ stories. iFood is the 
+largest repo count
+ named in the November 24 wave and the clearest 
+internal platform API
+ narrative. It sits between 
+single-product Codex wins
+ and 
+OpenAI scaling Git monorepo hygiene
+ inside OpenAI itself.
+For readers choosing 
+Claude Code versus Codex
+ at org scale, pair this post with 
+Satya Nadella''s pragmatic engineer interview
+ — market narrative is noisy, but 
+platform runtimes
+ are where spend consolidates.
+Architecture diagram in prose
+Think of three layers:
+table · 2 cols
+Copy
+Layer
+Responsibility
+Client teams
+Security, platform, product squads — each submits REST jobs with repo coordinates and skills
+Control plane
+Schedules runs, tracks state, applies org policies, routes to runner pool
+Ephemeral runner
+Ubuntu sandbox with toolchain matrix, agent harness, outbound access to GitLab/Nexus/AWS
+Deterministic 
+pre
+ steps guarantee every run starts from a known commit and branch. Deterministic 
+post
+ steps guarantee every successful run ends in an auditable MR URL — critical when compliance asks 
+what changed
+ across thousands of repos.
+The agentic middle is where 
+GPT-5.6 Luna
+ spends tokens. iFood does not describe a human review 
+inside
+ the sandbox loop; human review happens at 
+merge time
+ in GitLab, which is the same gate most enterprises already trust.
+Governance questions platform teams should copy
+OpenAI''s story is light on 
+RBAC
+ details, but any internal clone needs explicit answers:
+Who may dispatch
+ a run against a production microservice repo?
+Which MCP skills
+ are mounted per job type?
+What outbound network
+ paths does each sandbox get — full AWS API or read-only artifact buckets?
+How long
+ are runner logs retained for forensic review?
+What happens
+ when Structured Outputs return 
+negative
+ — auto-close MR or queue for human triage?
+These mirror questions we raised in 
+OpenAI''s shared responsibility gap coverage
+: models improve, but 
+platform policy
+ decides blast radius.
+Cost math at fleet scale
+$0.04
+ times 
+25,000
+ runs is about 
+$1,000
+ in inference spend for the published sample — trivial next to engineer salaries, enormous if you fire 
+millions
+ of jobs without caps. iFood''s choice of Luna is explicitly about 
+sustainable scale
+, not peak benchmark prestige.
+Finance teams should model:
+Tokens per repo class
+ (Java monoliths vs tiny Node utilities).
+Retry rate
+ when Structured Outputs flag failure — retries double spend silently.
+Runner compute
+ billed separately from tokens (the story focuses on inference, not VM hours).
+Where this does 
+not
+ apply
+iFood''s pattern is wrong for 
+creative writing
+, 
+one-off prototypes
+, or 
+founder laptops
+. It shines when:
+You have 
+hundreds or thousands
+ of similar repos.
+Tasks are 
+repeatable
+ (standards checks, dependency bumps, static analysis fixes).
+Green CI
+ is the acceptance test.
+It is a poor fit for 
+novel feature work
+ requiring product judgment every hour — exactly the work 
+ShellBench
+ shows agents still fail often on messy folders.
+OpenAI DevDays context
+iFood engineers previewed RAP at 
+OpenAI DevDays São Paulo
+ before the November 24 customer story dropped. Event reporting described 
+RFC rollouts across hundreds of repos
+ and 
+AutoBuild
+ exercises — useful color, but 
+OpenAI''s customer story
+ remains the canonical source for 
+25,000+
+ runs and 
+four-cent
+ averages.
+If your organization attended DevDays and wants to replicate the pattern, start with 
+one internal customer
+ (security scanning, as iFood did), prove 
+structured completion metrics
+, then open the API to other departments. Document 
+merge acceptance rate
+ weekly so leadership sees when automation is ready to widen.
+Search and operator FAQ table
+table · 2 cols
+Copy
+Query
+Answer from OpenAI / iFood
+Remote Agent Platform iFood
+Internal REST API for async coding agents across 
+15k
+ repos.
+iFood GPT model
+GPT-5.6 Luna
+ in sandboxes.
+iFood coding agent cost
+~$0.04
+ average inference per run in the published totals.
+iFood vulnerabilities fixed
+Security product 
+more than doubled
+ fix accuracy post-migration.
+Teams measuring 
+merge rate
+ should align with how 
+GitHub and Microsoft OSS AI findings
+ separate 
+suggested
+ from 
+verified
+ patches — iFood''s Structured Outputs step is the enterprise version of that gate.
+Related reading
+OpenAI Codex sandbox permissions
+OpenAI performance factory and Codex agents
+ShellBench real-world agent benchmark
+AI coding agent evals on real repos
+Anthropic Claude Ship PR steward
+Mobile agent testers in GitHub Actions
+OpenAI Daybreak red factory
+Hugging Face agentic evaluation guide
+
+===== https://openai.com/business/customer-stories/ifood/
+(status 200)
+November 24, 2026
+How iFood scales coding agents across 15,000 repositories
+Contact sales
+Company size: 
+Enterprise
+Region: 
+Latin America
+Industry: 
+Technology
+Products: 
+API
+15,000
+code repositories at iFood
+25,000+
+runs completed by the platform
+US$0.04
+average inference cost per run
+2x+
+as many vulnerabilities fixed through the security platform
+Share
+The Remote Agents Platform turned engineering tasks into API calls: teams delegate the work, execution takes place in a remote sandbox, and the result comes back as a merge request. In the internal security platform, the number of vulnerabilities fixed more than doubled.
+The challenge isn’t the task—it’s the scale
+iFood maintains more than 15,000 code repositories. Each periodically needs specific tasks performed: validating code to ensure it meets internal standards, fixing vulnerable dependencies, or running an analysis.
+None of these tasks is difficult on its own. The challenge comes when those tasks multiply.
+“Solving this for one repository is easy. The challenge is solving it at scale,” says Victor Coelho, Senior Software Engineer at iFood. “The Remote Agents Platform is designed to make it possible to solve this at scale across all 15,000 repositories.”
+Before the platform, each team tackled the problem in its own way—and they all ran into the same obstacle.
+“Before, we had fragmented solutions. Imagine several teams at iFood trying to solve different problems, but without this layer, this agentic runtime, available to them. In the end, those solutions always ran into the same problem.”
+What was missing wasn’t intelligence or a use case. It was execution infrastructure. A dedicated 
+runtime
+.
+“Teams can focus on solving their business problems and delegate execution to our platform.”
+—Victor Coelho, Senior Software Engineer, iFood
+A coding agent in the cloud, accessible through an API
+The team describes the Remote Agents Platform as an API that launches a remote agentic coding task. The cycle has three steps: the user submits a prompt and environment requirements through a REST call; the platform processes the task on a dedicated remote runner inside an isolated sandbox; and the result is retrieved later.
+“The platform’s entry point, its interface, is a simple REST API. Users can use this API to create the runs they need. Internally, we handle and manage the entire lifecycle and delegate execution to isolated sandboxes,” he explains. Task progress can be monitored in real time.
+The runner’s internal design alternates between two different types of steps—and that combination makes the overall workflow predictable.
+Deterministic steps bookend the workflow: cloning the repository, importing the 
+skills
+ the agent can use, and setting up the working branch at the start; publishing the merge request and making the generated artifacts available at the end. In between is the agentic execution itself, running GPT‑5.6 Luna inside the sandbox.
+“It’s a combination of those two things: deterministic steps and agentic execution within the workflow.”
+The sandbox runs Ubuntu and includes the toolchains iFood’s ecosystem requires—Python, Java, Kotlin, C#, TypeScript, Rust, JavaScript, and Go—along with general-purpose tools. Beyond the sandbox, the agent can access Nexus, GitLab, Docker, Snyk, Kubernetes, and AWS.
+Why GPT‑5.6 Luna
+The model choice came down to three factors considered together, rather than just one.
+“We chose GPT‑5.6 Luna because, among models at the same checkpoint, the benchmarks showed it offered a great balance of intelligence, efficiency, and execution speed—how quickly it could complete tasks. Those three qualities together led us to choose GPT‑5.6 Luna.”
+That balance matters more for a platform built to scale than it would for a one-off use case. With tens of thousands of tokens being consumed, the average cost of four U.S. cents per run stops being a minor detail and becomes an architectural consideration.
+“Given our plans to scale the platform across many use cases at iFood, the balance of efficiency and intelligence that OpenAI’s model provides ensures we can scale sustainably.”
+—Victor Coelho, Senior Software Engineer, iFood
+How to tell whether the agent completed the task
+Delegating execution at scale creates a new challenge: automatically determining whether the agent did what it was supposed to do.
+iFood’s answer comes in the step after the session. Once execution is complete, the result is processed using OpenAI’s Structured Outputs, which requires the output to conform to a predefined contract.
+“We process the result using Structured Outputs, which ensures the response follows a predefined contract. From the agent’s session, we can identify the outputs within the response structure we expect. This helps reduce uncertainty and ensures we can always get a response from the agent’s session, whether positive or negative.”
+—Victor Coelho, Senior Software Engineer, iFood
+The first major user: security
+The platform already powers an internal iFood security product that scans the 15,000 repositories for vulnerable dependencies and attempts to fix them.
+The migration had a direct impact: “With our platform, the accuracy of those changes, those fixes, more than doubled,” says Coelho.
+This use case illustrates the idea behind the platform: the security team didn’t need to build its own agentic runtime or become experts in agent orchestration. It needed to call an API.
+Asynchronous execution gives developers their time back
+The team emphasizes what asynchronous execution frees developers to do, rather than replacement.
+Because the task is delegated and runs without supervision, the developer doesn’t have to stay focused on monitoring it.
+“While they’re in a meeting, they can launch a code fix, a performance analysis, or another task that’s a little more routine—something they can delegate without having to monitor it at that moment.”
+Routine work no longer competes for the team’s attention. That leaves time for problems that require judgment.
+“You can unlock those productivity gains without necessarily having to monitor the work as it happens.”
+—Victor Coelho, Senior Software Engineer, iFood
+Modeled on the APIs that inspired it
+The Remote Agents Platform was designed as an internal layer with similarities to the way OpenAI makes this type of task available to external customers.
+“The Remote Agents Platform drew a lot of inspiration from OpenAI’s APIs, both the Batch API and the Agents API, which is an even more recent OpenAI product. We built a platform that resembles those products, but is internal to iFood.”
+The inspiration went beyond the concept. It extends to the design of the interfaces, the organization of resources, and the approach to asynchronous execution with results retrieved later.
+“These products directly inspired how we built our solution.”
+—Victor Coelho, Senior Software Engineer, iFood
+Results at a glance
+The platform has completed more than 25,000 tasks, consuming more than 27 billion tokens, at an average cost of US$0.04 per run.
+After migrating to the Remote Agents Platform, the internal security platform more than doubled both the accuracy of its fixes and the number of vulnerabilities resolved.
+Coverage extends across iFood’s more than 15,000 code repositories.
+All runs use GPT‑5.6 Luna, chosen for its balance of intelligence, efficiency, and speed.
+Structured Outputs ensures that each session returns a result that follows a predefined contract, whether positive or negative.
+Product teams have moved from building fragmented solutions to delegating agentic execution through a REST API.
+Lessons for leaders
+The bottleneck is often the runtime, not the use case.
+ Several teams already knew what they wanted to automate; they lacked an environment in which to run it.
+Combine deterministic steps with agentic execution.
+ Cloning, publishing, and making artifacts available don’t require a model; the complex task in between does.
+Treat cost per run as an architectural decision.
+ At scale, the cost per task determines what is feasible to automate.
+Require outputs to follow a contract.
+ Without a structured response, there’s no way to know at scale whether the agent achieved its objective.
+Asynchronous execution is the real productivity gain.
+ The value lies in not having to monitor the work, rather than completing it faster while watching over it.
+Tips
+Expose agentic capabilities through an internal API so other teams can use them without rebuilding the infrastructure.
+Isolate each run in its own sandbox, with your ecosystem’s toolchains already installed.
+Choose a model by considering intelligence, cost, and speed together, rather than a single benchmark.
+Use structured outputs to classify success and failure automatically.
+Start with an internal user with a clear pain point and high volume—at iFood, that was the security platform.
+Next steps
+The team plans to bring the platform to many more use cases across iFood, expanding the range of internal products that delegate agentic execution to it—with cost per task determining whether that expansion can be sustained.
+Join the new era of work
+More than 1 million businesses around the world are achieving meaningful results with OpenAI.
+Contact sales
+Get OpenAI for Business updates
+Product updates, practical guides, upcoming events, and more.
+Keep reading
+Cisco and OpenAI redefine enterprise engineering with Codex
+May 27, 2026
+Rakuten fixes issues twice as fast with Codex
+Mar 11, 2026
+How Endava builds an agentic organization with Codex
+May 28, 2026

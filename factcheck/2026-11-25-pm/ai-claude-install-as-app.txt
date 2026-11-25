@@ -1,0 +1,194 @@
+===== https://www.itmedia.co.jp/news/article/2611/25/2000003431/
+(status 200)
+Share
+印刷する
+「Claude」で作ったアプリをMac／Windowsにインストール可能に　全プランでβ提供
+公開
+2026年11月25日 10時07分
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+　米Anthropicは11月24日（現地時間）、AIアシスタント「Claude」で作成した「アーティファクト」（Artifacts）を、macOSおよびWindows向けのデスクトップアプリとしてインストールできる機能「Install as app」を発表した。Mac／Windows向けのClaudeアプリで、全プランを対象にβ版として順次提供する。
+　アーティファクトは、Claudeとの対話の中で生成されるチャートやWebページなどの成果物だ。Anthropicによると、当初は人と共有するための成果物という位置付けだったが、現在は日常業務のツールとしても使われているという。例えば、カレンダーやメールから定期的に情報を取り込む会議準備ページや、その日に発送する注文の管理ツールなどだ。同社のエンジニア、フェリックス・リーゼバーグ氏は、Install as appをWeb上で動作するインタラクティブなページであるアーティファクトに機能を追加したものだと説明している。
+　インストールしたアプリは独自のアイコンを持ち、Claudeの画面内ではなく、専用のウィンドウで開く。アプリからClaudeやコネクタを利用でき、元のアーティファクトを編集すると自動で更新される。通知を送ったり、macOSのメニューバーやWindowsのシステムトレイに項目を追加したりすることも可能だ。作ったアプリはリンクを送って他の人と共有でき、受け取った人もインストールできる。
+　使い方は、作りたいアプリをClaudeに説明し、アーティファクトとして試した後、共有メニューから「Install as app」を選ぶだけだ。パッケージ化や署名は不要で、Claudeアカウントをそのまま使うため、APIキーや別途のログインも不要だ。リーゼバーグ氏は、プログラミングの知識がなくてもアプリを作れるとしている。
+　Anthropicは、社員が作ったアプリの例を紹介している。レイヤーに対応した画像エディタ「Linnet」、フォルダにルールを設定してClaudeでファイルを整理する「Sift」、Claudeが助言や説明をしてくれるターミナル「Tern」、PCの稼働状況を確認できるメニューバー／トレイアプリ「Vitals」などだ。リーゼバーグ氏も、ディスク容量の使い道を可視化するアプリや人体の構造を学べるアプリ、休憩を促すリマインダーなどのデモアプリを公開している。ただし、これらはAnthropicの公式製品ではないとしている。
+社員が作ったデモアプリ例（画像：Anthropic）
+　アプリに与える「権限」は3段階ある。標準の状態では、Webブラウザ上で可能な操作に制限される。権限を与えると、常に最前面に表示されるウィンドウやグローバルショートカット、通知などを利用できる。最も強い「フルアクセス権」では、アプリが確認なしにプログラムを実行したり、ファイルを読み取り・変更・削除したりできる。許可はそのバージョンにだけ有効で、アプリが更新されるたびに、自分で編集した場合も含めて再び確認を求める。ただし、アプリの一部を外部のWebサイトから読み込んでいる場合、その部分は再確認なしに変わる可能性があるという。
+　フルアクセス権を与えられるのは、自分で作ったアプリか、Team／Enterpriseプランで同じ組織のメンバーが作ったアプリに限られる。Anthropicはインストール前にアプリを審査しないため、信頼できるアプリにだけフルアクセスを与えるよう呼び掛けている。
+　Teamプランでは、この機能は最初から有効になっている（フルアクセス権は無効）。Enterpriseプランでは、オーナーが有効にするまで使えない。両プランの管理者は、組織全体でアプリ権限とフルアクセスの可否を設定できる。米国の医療情報保護法（HIPAA）対応の組織や、ハイブリッド構成の環境では利用できない。アプリを開くには、オンラインでClaudeにサインインしている必要がある。また、「Claude Docs」「Slides」「Sheets」など一部のアーティファクトはインストールできない。
+　利用にはClaudeのデスクトップアプリのバージョン6.28899.0以降が必要だ。インストールしたアプリを開くには、インターネットに接続し、Claudeにサインインしている必要がある。LinuxやWebブラウザ、モバイルでは利用できない。また、「Claude Docs」「Claude Slides」「Claude Sheets」のテンプレートから作成したアーティファクトや、旧形式のアーティファクト、「Claude Cowork」のライブアーティファクトなどはインストールできない。
+　料金について、発表では追加料金に触れていない。
+ヘルプページ
+によると、アプリの作成と、アプリからClaudeへのリクエストは、いずれも利用者の契約プランの利用枠を消費する。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+公式ブログ
+                    コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは 
+ログイン
+が必要です
+Special
+PR
+関連記事
+AIエージェントは隙あらばサンドボックスの外に出るのか　Anthropicが評価手法「Siren」を発表
+「Claude」に共同編集の「Sheets」「Whiteboards」　外部アプリもClaude内で開いて作業可能に
+Anthropic、Claudeの「チャット」と「Cowork」を統合　資料作成の「Docs」「Slides」も
+Anthropicの新機能「Artifacts」　会話しながら成果物を改良するワークスペース
+Special
+PR
+こんなメディアも見られています
+        ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+            メールマガジン最新号
+Microsoft 365で大規模障害　「Outlook」でメールにアクセスできず、「Teams」な ど複数サービスに影響
+「AIとのチャット記録」が漏えいか、Notion　委託先に不正アクセス
+Special
+PR
+本日の新着記事
+タイムズカー免許画像漏えいの見舞金、「現金かカーシェアeチケット3000円分」　12月1日から案内
+子どもの成績や月謝、口座番号など最大5万件漏えいか　学習塾「ベスト個別」運営元に不正アクセス
+タワレコ、会員情報約1100万件流出　「3年以内の退会者」も対象　通販サイト停止続く
+AIでドーピングしたコンサルの実力は　使わない人材との能力差、BCG約500人で検証　Nature系列誌
+六花亭のカード情報流出、対応が「誠実」と評判　再発行時の「伝え方」まで明記
+アクセスランキング
+1
+ソフトバンク、アイティメディアの売却検討か　2社「コメント控える」「決定した事実ない」
+2
+“新イギリス国旗”、2ちゃんねるデザインが人気
+3
+「Claude」で作ったアプリをMac／Windowsにインストール可能に　全プランでβ提供
+4
+月に3度の障害……揺らぐドコモの信頼　通信品質が安定しない理由は？
+5
+無印良品、不正アクセスで株主優待が“紙に逆戻り”　電子クーポンにはいつ戻る？　広報に聞いた
+6
+AIエージェントは隙あらばサンドボックスの外に出るのか　Anthropicが評価手法「Siren」を発表
+7
+CrowdStrike、Zscalerを約439億ドルで買収へ　狙いはAIエージェントの安全確保
+8
+京王、1100万人超の個人情報漏えいか　一部クレカ番号なども　9月のランサム被害で
+9
+爆増するサイバー攻撃、魔の手はITだけでなく「OT」にも　元米軍のセキュリティ専門家が警鐘
+10
+VTuber・みけねこ、「ホロライブ」運営カバーとの協議が円満解決　“2年越し”に報告
+ もっと見る 
+    ITmedia NEWS SNS
+ITmedia News
+ Tweets by itmedia_news 
+        @itmedia_newsをフォロー
+    インフォメーション
+        注目情報をチェック
+メールマガジン
+Specialインデックス
+        お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+        ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR
+
+===== https://www.watch.impress.co.jp/docs/news/2159019.html
+(status 200)
+ニュース
+Claudeで作ったアプリをチームに共有・管理できる「Install as app」
+臼田勤哉
+2026年11月25日 12:30
+ Anthropicは24日(米国時間)、「Claude」のアーティファクト(Artifacts)を利用して、デスクトップアプリの作成、実行、共有が可能になる「Install as app(アプリとしてインストール)」機能を提供開始した。Claude for MacとWindowsでベータ版として利用できる。 
+ アーティファクトはClaude上で動作するWebアプリを作成できる機能。今回のInstall as appは、Mac/Windowsアプリとしてインストールすると、独自のアイコンが割り当てられ、Claude内ではなく独立したウィンドウで起動する。 
+ アプリを開くには、Claude Desktopにサインインしている必要があり、Claudeとのやりとりはそれぞれの利用枠を活用する。コンピュータとやり取りを行なうにはユーザーの許可が必要で、許可の範囲はユーザーが選択できる。 
+ 各アプリはClaudeやコネクタを利用でき、基盤となるアーティファクトが編集されると、自動的に更新される。これにより、アプリの構築と保守のプロセスを簡素化できるという。なお、アプリからClaudeへのリクエストは、利用プランの使用制限に準ずる。 
+ アーティファクトは当初、チャートやWebページなどの共有に使われてきたが、現在はカレンダーやメールから定期的に情報を取得するミーティングの準備ページや、その日に出荷が必要な注文を追跡するトラッカーなど、日常業務のツールとして活用が広がっている。Install as appの提供開始により、アーティファクトの活用の幅を広げていく。 
+Turn artifacts into Mac and Windows apps
+ アプリの権限は、デフォルトではブラウザ内で実行可能な操作のみ。通知対応や、コンピューターへのフルアクセスは、ユーザーの求めに応じて設定できる。なおフルアクセス権を付与できるのは、自身が作成したアプリ、もしくはTeam/Enterpriseプランの場合、組織内のメンバーが作成したアプリに限られる。 
+ Anthropicでは、フル機能のレイヤー対応画像エディタ「
+Linnet
+」、ファイルマネージャー「
+Phosphor
+」、フォルダルールを設定し、Claudeを活用してファイルを整理整頓する「
+Sift
+」、Claudeがサポートや説明を行なうターミナル「
+Tern
+」、コンピュータのパフォーマンスをざっと確認できるメニューバーおよびトレイアプリ「
+Vitals
+」などのデモを紹介している。 
+Linnet
+Vitals
+
+===== https://claude.com/resources/articles/install-as-app
+(status 200)
+Starting today, you can use Claude artifacts to create, run, and share desktop apps. The "Install as app" feature is rolling out in beta in Claude for Mac and Windows.
+When an artifact is installed as a Mac or Windows app, it gets its own icon and opens in its own window instead of inside Claude. You can share it with others, and it needs your permission before it can interact with your computer. You choose how much to allow.
+Each app can use Claude and your connectors, and it updates automatically when the underlying artifact is edited. This simplifies the process for building and maintaining apps for both knowledge workers and developers. Requests the app makes to Claude count toward your plan’s usage limits.
+Artifacts started out as a work output you’d share, like a chart or a webpage. People now use them as tools for everyday work, like a meeting prep page that regularly pulls from their calendar and email, or a tracker for the orders that need to ship that day.
+If you rely on a tool for work, it should open like the rest of your apps and remind you when something needs your attention.
+What installed apps can do
+Installed apps can send notifications or add items to your menu bar or system tray. You choose permissions for each app, and Team and Enterprise admins can turn app permissions and full access on or off for their organization.
+People at Anthropic have used these to make:
+Linnet
+ (opens in new tab)
+, a full layered image editor
+Phosphor
+ (opens in new tab)
+, a file manager that looks made for a movie set
+Sift
+ (opens in new tab)
+, which sets up folder rules and uses Claude to keep your stuff organized
+Tern
+ (opens in new tab)
+, a terminal with Claude by your side to help and explain
+Vitals
+ (opens in new tab)
+, a menu bar and tray app for peeking at your computer’s performance
+You can see more demo apps made by one of our engineers 
+here
+ (opens in new tab)
+.
+Permissions
+There are three levels of permissions:
+Default:
+ Installed apps can only do what they’d be able to do in a browser.
+App permissions:
+ Apps can ask to use common features that Claude can tightly control, like creating always-on-top windows, listening for global shortcuts, or sending notifications.
+Full computer access:
+ Apps can ask to run programs and read, change, or delete your files without asking each time.
+Your permission only covers the current version of the app, so Claude asks again after every update, even your own edits. If part of an app comes from another website, that part can change without Claude asking you again.
+You can only give full access to apps you made or, on Team and Enterprise, apps made by people in your organization. Anthropic doesn’t review apps before you install them, so only give full access to apps you trust.
+Getting started
+Describe your app to Claude, try it as an artifact, and then click "Install as app." You don’t have to package or sign it, and it uses your Claude account, so there’s no API key or separate login.
+Install as app is rolling out in beta on all plans. HIPAA-ready organizations and hybrid deployments can’t use it. It’s on by default for Team, with full access off. On Enterprise, it’s off until an owner turns it on. You need to be online and signed in to Claude to open an app. Some artifacts can’t be installed, including Claude Docs, Slides, and Sheets.
+Update Claude for Mac or Windows, open an artifact you use every day, and choose "Install as app" from the Share menu.
+Article
+Nov 24, 2026
+MCP servers can now ship skills, run tasks, and more with Claude
+Claude apps
+Claude Platform
+Article
+Nov 23, 2026
+Zero data retention with Enterprise Frontier Safeguards is now in beta
+Claude Platform
+Article
+Nov 23, 2026
+Introducing Claude Ship
+Open a pull request and get back to building. Claude can now review pull requests, fix them, and approve the ones that a team's policy allows.
+Claude Ship
+Article
+Nov 17, 2026
+Linked billing on the Claude Platform
+Claude Platform
