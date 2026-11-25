@@ -22,6 +22,26 @@ def article(date, sid):
     return {}
 
 
+def story_info(c, a):
+    sources = [a.get("source_url")]
+    sources.extend(r.get("url") if isinstance(r, dict) else r for r in a.get("refs") or [])
+    sources = list(dict.fromkeys(url for url in sources if isinstance(url, str) and url))
+    txt = [b.get("text", "") for b in a.get("body", []) if b.get("type") in ("h", "p")]
+    pictures = [a.get("image") or {}]
+    for b in a.get("body", []):
+        if b.get("type") == "img":
+            pictures.append(b)
+        elif b.get("type") == "gallery":
+            pictures.extend(b.get("items", []))
+    press = sum(1 for p in pictures if p.get("src") and p.get("kind") == "press")
+    info = [f"# {c['title']}", "", f"summary: {c.get('summary', '')}", "", "## article text", *txt, "",
+            "## article source URLs", *(sources or ["(none)"]), "",
+            f"## official pictures already in the article: {press}",
+            "", "## candidates (n | size | page it was found on | credit | alt text)"]
+    info += [f"{im['n']} | {im.get('w')}x{im.get('h')} | {im['page']} | {im.get('credit', '')} | {im.get('alt', '')}" for im in c["imgs"]]
+    return "\n".join(info) + "\n"
+
+
 def prep(src, jobs):
     import requests
     from PIL import Image, ImageDraw, ImageFont
@@ -48,12 +68,8 @@ def prep(src, jobs):
             dr.rectangle([x, y, x + CW - 1, y + CH + 49], outline=(190, 190, 190))
         sheet.save(os.path.join(d, "story.jpg"), quality=88)
         a = article(c["date"], sid)
-        txt = [b.get("text", "") for b in a.get("body", []) if b.get("type") in ("h", "p")]
-        info = [f"# {c['title']}", "", f"summary: {c.get('summary', '')}", "", "## article text", *txt, "",
-                f"## pictures already in the article: {sum(1 for b in a.get('body', []) if b.get('type') == 'img') + (1 if a.get('image') else 0)}",
-                "", "## candidates (n | size | page it was found on | credit | alt text)"]
-        info += [f"{im['n']} | {im.get('w')}x{im.get('h')} | {im['page']} | {im.get('credit', '')} | {im.get('alt', '')}" for im in imgs]
-        open(os.path.join(d, "info.md"), "w", encoding="utf-8").write("\n".join(info) + "\n")
+        with open(os.path.join(d, "info.md"), "w", encoding="utf-8") as f:
+            f.write(story_info(c, a))
     print("pick jobs:", len(cand))
 
 

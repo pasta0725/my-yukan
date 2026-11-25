@@ -38,8 +38,8 @@
    - 出力は WORKDIR/<担当名>.json（例 mobile_A.json）。build_edition.py が1日の上限（AI14・その他8・宇宙4・ほか各7）で切る。
    - 朝刊は Codex（GPT-6.2 Sol、深さ medium）、夕刊は Sonnet が全担当を書く（2026-11-19〜、下の「Codexに任せる作業」の④）。朝刊はニュースが取れたらすぐ codex-write.yml を全担当で動かす。codexwrite/ED/<担当名>.json が無い・空・締め切りまでに出ないときだけ、その担当を Claude（Sonnet）で書く。Codex はネット検索をしないので、ニュースフォルダにない関心の話題は拾いにくい（2026-11-14 の比較：正確さは同じ、ルールの守り方は Codex が上、深さは Sonnet が上）。
    - ユーザーが個人的に関心のある話題（Apple・Google・Xiaomi・Anker・Dreame・任天堂・SONY・GeForce NOW・ChatGPT・Claude・Grok・Muse）は積極的に記事にする（2026-11-09）。各担当が自分のカテゴリに合うものを検索で探し、build_edition.py はこれらを優先して残し、カテゴリごとに上限を2本まで超えてよい。詳しくは spec.md の Personal-interest topics。
-3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD-am（または -pm） [重複して外すid ...]` で data/ を作る（重複・ニュース写真2枚制限・14日分の一覧を自動処理）。公式画像の補充（add_official_images.py）のあとに `python3 -I tools/place_images.py data/YYYY-MM-DD.json` で画像を本文の合間に配る（2026-11-08 ユーザーの希望）。
-4. 見出し一覧を見て、同じ出来事が別ジャンルにも入っていれば id を指定して作り直す。
+3. `python3 -I tools/build_edition.py WORKDIR YYYY-MM-DD-am（または -pm） [重複して外すid ...]` で data/ を作る（同じ記事IDや同じ出典URLの重複・ニュース写真2枚制限・14日分の一覧を自動処理）。公式画像の補充（add_official_images.py）のあとに `python3 -I tools/place_images.py data/YYYY-MM-DD.json` で画像を本文の合間に配る（2026-11-08 ユーザーの希望）。
+4. 見出し一覧を見て、同じ出来事が複数の記事に出ていれば、同じジャンルでも別ジャンルでも、外す記事の id を指定して作り直す。
 5. コミットして main に push する。
 
 ## 自動で賢くなる仕組み（2026-11-10〜）
@@ -84,7 +84,7 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 3. 終わったら `git fetch origin research && git archive origin/research research/ED | tar -x -C WORKDIR`。research/ED/<記事id>.txt に別メディアと公式ページの本文（`===== URL` と `(status 200)` の行で区切り）、<記事id>.json に見つけたURL・媒体名・公式画像のURL。
 4. `python3 -I tools/research_pages.py export data/ED.json WORKDIR/arts` で記事を1本ずつのファイルにし、Sonnet（effort high）8本に分けて書き足させる。各担当は WORKDIR/arts/<id>.json と research/ED/<id>.txt だけを読み、ウェブは開かない。同じ出来事を伝えているページ（status 200 で本文があるもの）から、新しい事実（数字・日付・価格・仕様・対象・背景・各社の反応・今後）を style.md どおり自分の言葉で足す。媒体どうしで食い違えば「〇〇は△△と伝えています」。使ったページだけを refs に {name,url} で足す（最大6本、source_url を先頭のまま）。別の出来事のページ・まとめサイト・転載は使わない。id・category・image は変えない。同じファイルに上書き保存。スクリプトや一時ファイルは自分の組のフォルダ WORKDIR/fill_<組番号>/ にだけ置き、共有のスクラッチパッドや他の組のファイルは使わない・実行しない（2026-11-12 Issue #14：別の組のスクリプトを実行して refs が重複した）。
 5. `python3 -I tools/research_pages.py import data/ED.json WORKDIR/arts` で戻す（x-todo.json の見出し・要約も合わせる）。そのあと手順5-1・5-2へ（事実の点検は新しい refs も取得する）。
-6. 2026-11-14〜：2. を `-f 'inputs[fill]=yes'` 付きで動かすと、調べたページを push したあと Codex が4. の書き足しまで行う（codex-fill.yml、8組で同時に、合わせて10〜15分）。結果はブランチ research の research/ED/arts/<記事id>.json（検査に通った記事だけ）と arts/report.md。Claude は `python3 -I tools/research_pages.py import data/ED.json WORKDIR/research/ED/arts` で取り込み、report.md で「却下」「未処理」の記事だけを4. のやり方（Sonnet）で書き足す。arts が無いときは4. のやり方で全部。
+6. 2026-11-14〜：2. を `-f 'inputs[fill]=yes'` 付きで動かすと、調べたページを push したあと Codex が4. の書き足しまで行う（codex-fill.yml）。8組に分け、各組は同時に2本ずつ進める。15分は1記事の1回の実行にかける上限。結果はブランチ research の research/ED/arts/<記事id>.json（検査に通った記事だけ）と arts/report.md。Claude は `python3 -I tools/research_pages.py import data/ED.json WORKDIR/research/ED/arts` で取り込み、report.md で「却下」「未処理」の記事だけを4. のやり方（Sonnet）で書き足す。arts が無いときは4. のやり方で全部。
 - Codexが締め切り（5:15／15:25）までに終わらなければ待たずに次へ進む。
 - Codexが見つけた公式ページは、あとの「公式画像の補充」がそのまま使う（`python3 -I tools/research_pages.py imgjobs WORKDIR/research/ED imgjobs/ED.json` → official-images.yml の extra。補充の作業は自分では検索しない。2026-11-10）。
 

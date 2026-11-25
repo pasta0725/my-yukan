@@ -27,10 +27,12 @@ How to fix:
 2. A fact that no readable page contains: if it is important and plausible, attribute it softly as
    「〜と伝えられています」 (or name the outlet if the article says which one reported it); if it is a detail or looks
    invented, delete it. Do not attribute or delete facts that ARE on a readable page.
+   Keep an existing statement that an important detail is unannounced or unknown if the readable sources leave it
+   unanswered. This includes reports of harm and responses in Japan. Correct it if a readable source answers it.
    When the article makes a claim about availability in Japan or support for Japanese, check each claim separately.
    If a readable source establishes domestic use, such as a rollout for staff in Japan, or a release date for Japan,
    keep that information. The language of a news article alone does not establish the release region or language support.
-   Use 「発表されていません」 only to correct an existing claim about a relevant detail the readable sources leave unanswered.
+   Add 「発表されていません」 only to correct an existing claim about a relevant detail the readable sources leave unanswered.
    Do not add a caveat just because the article omits availability in Japan or support for Japanese. For example, an article
    about a company expanding its AI consulting team does not need a caveat about the launch of a product in Japan.
 3. If no page could be read for this article, only fix internal contradictions (title vs body, stat vs body, wrong
