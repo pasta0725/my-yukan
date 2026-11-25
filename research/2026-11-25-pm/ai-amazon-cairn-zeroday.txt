@@ -1,0 +1,401 @@
+===== https://www.theregister.com/security/2026/11/20/china-attackers-deployed-ai-agents-that-autonomously-found-and-exploited-a-0-day-to-take-over-a-university-server/5311382
+(status 200)
+security
+    China attackers deployed AI agents that autonomously found and exploited a 0-day to take over a university server
+        'Agents kept adapting for nearly a full day without human direction,' Amazon CISO said
+Jessica Lyons
+Jessica
+Lyons
+Cybersecurity Editor
+Published
+fri 20 Nov 2026 // 17:30 UTC
+Make us preferred on Google
+READ MORE
+AI godfather Yann LeCun torches Anthropic CEO over AI gatekeeping
+6 hours ago
+Microsoft refreshes Copilot app search for users without an AI subscription
+10 hours ago
+Microsoft brings serverless PostgreSQL into Fabric to bridge transactions and analytics
+11 hours ago
+Claude Ship puts AI at the helm of pull request approvals
+12 hours ago
+UK gov invests in defense startup making virtual training ground for AI
+18 hours ago
+Suspected Chinese spies deployed AI agents which worked autonomously to find a zero-day in an open source application and then abuse the flaw to break into university networks, gaining full control of a server, according to Amazon CISO CJ Moses. 
+The China-linked attacker used Cairn, an open source, penetration-testing framework that has become increasingly popular with cybercriminals who use the AI tool to carry out multi-stage intrusions 
+with no human assistance
+.
+In this case, the agents found and exploited a zero-day 
+MONAI Label,
+ an open-source medical imaging AI application. Amazon notified the project's maintainers of the vulnerability, and they released a 
+fix and a security advisory
+.
+REG AD
+On September 10, Amazon's Threat Intelligence Team found a server with a publicly hosted instance of Cairn that provided visibility into the campaign targeting universities in East Asia, outside Mainland China, Moses said in a 
+Friday report 
+shared with 
+The Register
+. 
+REG AD
+The campaign occurred over a period of 48 hours beginning on September 8, and the prompts were written in Simplified Chinese, with timestamps in executed scripts configured to China Standard Time.
+Before the AI agents found and exploited the zero day, however, they tried to break into another university’s Redis server over about 16 hours and 148 sequential actions, including abusing Redis's replication feature to load unauthorized code, escaping its scripting sandbox, writing to its configuration files, and corrupting its memory.
+None of these were successful, and when those actions failed, the agents also attempted a 
+Log4Shell injection
+ against a different service, a server-side request forgery (SSRF) attack against a vulnerability in a co-located Qdrant instance, and several credential sprays against PostgreSQL, SSH, and other tools. 
+Meanwhile, a separate operation running for more than 6 hours targeted a university GPU server with another credential-spray attack, compiling a list of 80 real user names found across the school’s public websites, academic papers and other documents.  
+"Neither operation succeeded, yet together they show that the agents kept adapting for nearly a full day without human direction," Moses wrote.
+Then the AI agents found the zero-day path traversal vulnerability in MONAI Label, and this time they were able to gain access to the server.
+"The agents identified the application's framework, mapped its API endpoints, and found an upload endpoint with a filename parameter," Moses wrote. They tested that parameter for path traversal, and the parameter was vulnerable. In about 11 minutes, the agents went from mapping the application’s API to arbitrarily writing files on the server."
+Later, the agents abused the same flaw to execute a Python reverse shell running as root.
+REG AD
+In another session, after the agents discovered the zero-day, the human operator provided them with a proxy that tunneled into a second university network, and connected to a server running the same vulnerable code. 
+Amazon's discovery follows an earlier report by Gambit Security's threat intelligence team that also documented a 
+Chinese operator using Cairn
+ to carry out at least 105 attacks, and managing to compromise, "to varying degrees," at least 27 companies.
+This campaign also occurred in September. In addition to Cairn, the attacker used two other open source AI harnesses to steal credit card records and other sensitive data from a Fortune 500 hospitality company, a major US airline, a large private US industrial supplies distributor, and a US online fashion retailer, and other companies.
+"Together, these cases show that this autonomous AI agent framework is being adopted in both espionage and criminal operations," Moses wrote. ®
+ai and ml
+security
+Make us preferred on Google
+
+===== https://thenextweb.com/news/cairn-ai-agents-zero-day-monai-label-cisa-amazon
+(status 200)
+AWS chief executive Matt Garman during his keynote at AWS re:Invent 2024 in Las Vegas
+Credit: Amazon
+US federal agencies have until Thursday to patch a flaw that hackers’ AI agents found and exploited on their own. The bug is in MONAI Label, a medical imaging tool. On Monday, the US Cybersecurity and Infrastructure Security Agency (CISA) added it to its 
+catalog of exploited vulnerabilities
+, with a 26 November deadline.
+The listing follows a 
+report from Amazon Threat Intelligence
+. CJ Moses, chief information security officer of Amazon Integrated Security, published it on 20 November. In it, Amazon said an attacker gave a team of AI agents a list of university servers in East Asia and one goal: “obtain shell access”. The agents did the rest.
+“These findings show that agentic offensive operations are already happening,” Amazon wrote.
+Eleven minutes to a zero-day
+The agents ran on Cairn, an open-source framework built for penetration testing. That is the hacking companies pay for to test their own defences. Amazon found the attacker’s Cairn server on 10 September. It sat open to the internet with no login, so anyone could see its full history of prompts and output.
+The attacker wrote the prompts in Simplified Chinese and set the timestamps to China Standard Time. Based on those clues and the targets, Amazon says with moderate confidence that the actor is linked to China. The campaign began on 8 September and ran for about 48 hours.
+Most of it failed. The agents spent about 16 hours and 148 steps on one university’s Redis database and got nowhere. On a university GPU server, they built about 80 usernames and tried more than 30,000 password combinations. That failed too.
+The third target ran MONAI Label, an open-source tool for labelling medical images with AI. There, the agents mapped the app and found an upload feature. They tested one of its fields for path traversal, a flaw that lets an attacker write files where they should not. The field was vulnerable. About 11 minutes passed from mapping the app to writing files on the server.
+In a later session, the agents used the flaw to plant code that Python loads at start-up. That gave them a remote connection running as root. Amazon says no fix, advisory or public mention of the bug existed then, so it was a zero-day.
+The human stepped in only after that. The attacker gave the agents a tunnel into a second university network and pointed them at the machines inside. Amazon believes the attacker opened that tunnel through the same flaw.
+Fixed, and flagged
+Amazon told the MONAI Label maintainers, who released a fix and a security advisory. The affected universities were not AWS customers, so Amazon worked with a government partner to alert them.
+Cairn has turned up before. In October, one attacker used it to break into 
+more than 100 sites
+. Earlier this month, Palo Alto Networks’ 
+Unit 42
+ said Chinese-speaking attackers used it in 25 operations against at least 19 organisations. They got in at 10 of them, mostly in chips, defence and civil society. And this month, 
+Google’s threat team
+ said attackers had used AI to turn security patches into working exploits.
+Amazon’s advice to defenders is to rely on high-confidence detections that trigger automated responses, with people overseeing the results. CISA already lists other flaws 
+exploited at scale
+ this autumn. An agent that finds and exploits a flaw in minutes can finish before many security teams can review an alert, it said.
+Amazon’s case for engineering
+Three days after the report, Amazon published a 
+blog post by AWS chief executive Matt Garman
+ on AI safety. He argued that the fix for risky AI lies in security engineering around the models, not in an emergency stop.
+“If your security posture depends on trusting the model to behave, you’re relying on hope,” Garman wrote.
+He wants each AI agent to have its own identity. Its permissions should be no wider than those of the human running it. He also wants containment stronger than the thing being contained, and monitoring that the agent cannot touch.
+Get the TNW newsletter
+Get the most important tech news in your inbox each week.
+Get more TNW on Google
+Add as a preferred source
+Read more TNW news
+Follow on Google
+@thenextweb
+
+===== https://hacked.com/news/amazon-cairn-ai-zero-day-monai-label/
+(status 200)
+AI-generated conceptual illustration, not a photograph of the incident or a real patient scan.
+What happened:
+ Amazon says agents operating through Cairn found and exploited a previously unknown MONAI Label weakness during an attack on a university server. A later session used the same flaw to gain administrator-level control.
+What matters now:
+ As checked on November 21, the maintainers say a fix is in the code but list no patched release. They recommend restricting network access, enabling authentication and limiting permissions while administrators check their exposure.
+Jump to a section
+Eleven minutes was enough for an AI agent to find a way to write files where it should not have been allowed.
+On November 20, 
+Amazon Threat Intelligence
+ described a September attack in which agents using an open-source framework called Cairn found a previously unknown weakness in a medical-imaging research application. Amazon links to the affected project’s advisory for MONAI Label, software used to help researchers label medical images. In a later session, the same weakness was used to gain root access, the highest level of control on the affected server.
+The attacker was not absent. A person supplied targets and an objective, and later stepped in again. What changed was how much work the agents could perform between those instructions.
+Amazon's account describes a 
+zero-day vulnerability
+, a software weakness for which a fix was not available at the time of discovery. It does not establish that patient records were stolen, that hospitals using the application were compromised, or that this attack caused any of the recent service outages.
+What happened in those 11 minutes
+Amazon says it discovered the operation on September 10 after finding an unauthenticated Cairn server that exposed the operator's instructions and the agents' activity. The records showed a roughly 48-hour campaign, beginning September 8, against internet addresses associated with universities in East Asia outside mainland China.
+Cairn coordinates 
+AI agents
+, software systems that can use a model and tools to pursue an objective. In Amazon's account, the operator supplied target addresses and instructed the agents to gain shell access, a way to run commands on a computer. The agents then planned and adjusted their own steps within that task.
+On one server, Amazon says, the agents identified the application, examined its interfaces and found a file-upload weakness. The flaw allowed a file to be written outside the directory where the application was supposed to store it. In about 11 minutes, the agents went from mapping that interface to making the unauthorized file write. That time does 
+not
+ measure the entire campaign or the time to full server control.
+In a later session, the agents used the same weakness to place malicious code where the application would load it. Amazon says the result was a remote connection running as root. The distinction matters: the initial file-writing breakthrough and the later takeover were separate stages, not an 11-minute countdown to every possible consequence.
+Amazon assessed with high confidence that the flaw was a zero-day at the time, because it found no corresponding fix, issue, advisory or prior vulnerability-database reference. The company assessed a China-linked actor with 
+moderate confidence
+, based on factors including language, timestamps and targets. That is an attribution assessment, not proof of a particular person or government unit.
+The fix exists. The release question is different.
+The 
+MONAI Label security advisory
+ rates the flaw critical and lists versions through 0.8.5 as affected. It says the issue was fixed in a 
+code change merged on October 19
+, but that the fix will be included in the next release.
+As checked on November 21, the advisory lists no patched package version.
+ The 
+Python Package Index listing
+ showed 0.8.5 as the latest stable release. A code change in a project's repository and an update installed on a production server are different things. Some installations may use a custom build that already contains the fix, so administrators need to verify what their own deployment actually runs.
+BleepingComputer described
+ a security update released on November 18. The advisory supports a narrower description: a fix is in the source code, while the listed package has no patched release yet. 
+VentureBeat also identified this distinction
+. Release status can change, so check the maintainer's current advisory before acting.
+That gap is the overlooked part of this story. A fix can exist in a public code repository while the ordinary package update still installs an affected version. Even after a release ships, someone must identify the exposed server, test the change where necessary and deploy it.
+The dates show why those steps should not be treated as one event:
+September 8 to 10:
+ Amazon says the observed attack campaign took place.
+October 19:
+ The project merged the code change that its advisory identifies as the fix.
+November 18:
+ The maintainer published the security advisory.
+November 20:
+ Amazon published its account of the attacks.
+November 21:
+ When Hacked.com checked, the advisory still listed no patched package version.
+These dates do not establish when Amazon notified the maintainers or why a package had not been released. They show that a merged fix, a public advisory and an installable update are separate milestones.
+What MONAI Label administrators should do
+If your organization runs MONAI Label, involve the team responsible for the application and its infrastructure. Do not assume a server is safe merely because it is used for research, or compromised merely because it uses the software.
+Find the deployment and check its version.
+ Identify servers, containers and externally managed instances. Compare the installed package or custom build with the current maintainer advisory and confirm whether the actual code includes the fix.
+Remove unnecessary exposure.
+ The maintainers recommend keeping the server off untrusted networks. If the service is not needed, consider taking it offline through your normal operational process. Coordinate with the people who depend on it.
+Enable authentication and restrict access.
+ The advisory says authentication is disabled by default. When it is enabled, the relevant annotator role can still reach the affected functionality, so do not grant that role to untrusted users.
+Limit what the service can change.
+ Run it without administrator privileges and restrict write access to its intended data directory, as the maintainers recommend. These steps reduce exposure; they do not prove the server was never accessed.
+Check for earlier compromise.
+ Ask the responsible security team or provider to review relevant logs, application changes and account activity. Preserve useful evidence, but do not delay urgent containment to collect it. If suspicious activity is found, use your incident-response process and involve qualified help.
+Track the release and update safely.
+ When a supported release containing the fix is available, plan and verify the deployment. A custom build or package from an unverified source is not a substitute for a trusted update process.
+For a broader plan covering exposed services, account access and recovery, see our 
+business security guide
+ and 
+business incident response steps
+.
+When AI finds the flaw before anyone publishes it
+Our earlier report, 
+The Patch Became a Map
+, examined Google's finding that an attack system could study published software fixes and use them to develop exploits. The Cairn case describes a different problem: Amazon says these agents found a weakness before there was a known fix.
+The two cases are separate. Neither establishes that the same attackers, victims or software were involved. Together, they show why there are two clocks for defenders: the time before a weakness becomes known and the time between a fix becoming available and a system actually receiving it.
+Google's 
+Project Zero
+ has said AI-assisted discovery and exploitation are among the reasons it is shortening its own vulnerability disclosure timelines. It plans to move its disclosure deadline to 60 days in February 2027 and 30 days in January 2028. Those are planned disclosure deadlines for Project Zero's reports, not a requirement that all software vendors meet those dates, and not a rule governing the MONAI case.
+Our coverage of the 
+FBI's ARTEX warning
+ and 
+stolen AI keys used in attacks
+ describes other investigations. They help explain the wider use of agentic tools and computing resources, but they do not establish a connection to the Cairn operator.
+The attacks that did not work
+Amazon's report is not a story of an unstoppable machine. In one operation, agents spent about 16 hours taking 148 sequential actions against a server without succeeding. In another, they tried more than 30,000 username and password combinations over more than six hours and did not find a working login.
+Those failures do not erase the successful intrusion. They do show that access controls, limited privileges and other barriers can make a difference, even when an attacker can keep trying. Amazon recommends high-confidence detections and automated responses where appropriate, with people overseeing the results. Automation can help defenders move faster, but a poorly chosen automatic action can also interrupt a legitimate service. Plan and test it against the systems you actually operate.
+Most people do not need to check a medical-imaging server at home. The useful question for an organization is more concrete: which systems can be reached from outside, who owns them, and what happens when the fix exists but the update is not ready?
+
+===== https://ai-industry.jp/trends/cairn-ai-agent-zero-day-amazon-report/
+(status 200)
+AIエージェントが未知の欠陥を自力で見つけ、大学サーバーを乗っ取り Amazonが報告
+2026
+11/25
+2026年11月25日
+URLをコピーしました！
+執筆: 
+AI産業通信 編集部
+　公開: 2026年11月25日 02:27
+Amazon
+の脅威インテリジェンスチームは、AIエージェントが東アジアの大学のサーバーで、修正も勧告もない未知の欠陥（ゼロデイ）を自力で見つけて悪用し、最上位の管理者権限（root）を奪ったと報告した。使われたのは、企業が自社の弱点を探すために作られたオープンソースのAI侵入テスト基盤「
+Cairn
+」だ。
+人間が与えたのは、標的のIPアドレス（ネット上の住所）の一覧と「シェルアクセスを得る」（遠隔から操作できる状態にする）という1行の目標だけだった。この記事では、攻撃の中身、AIが破れなかった攻撃との違い、守る側が確認すべき点が分かる。
+目次
+AIが11分で未知の脆弱性を突き全権奪取
+ファイルを書き込める状態まで
+約11分
+で到達し、その後の別セッションでrootを奪った。報告したのはAmazon、攻撃したのは身元不明の攻撃者、標的は東アジアの大学のサーバーである。
+標的で動いていたのは、医用画像の分析にAIを使うオープンソースのアプリ「
+MONAI Label
+」だ。報道では、この欠陥にCVE-2026-133968という識別番号が付き、深刻度を示すCVSSのスコアは10点満点中
+9.8
+と伝えられている。ただし、
+CISA
+やNVDの原文では確認できていない。
+欠陥があったのは、ファイルをアップロードする窓口だ。ファイル名の扱いに不備があり、細工をすると本来は許されない場所にファイルを書き込める。この種の欠陥はパストラバーサルと呼ばれる。
+「11分」の範囲
+11分はAIがAPI（外部から機能を呼び出すための窓口）の構成を把握してから、任意のファイルを書き込める状態に至るまでの時間だ。root（サーバーの全権を持つ最上位の管理者権限）の奪取は、後の別セッションで行われた。
+手順はこうだ。
+AIはまず、Pythonが起動するたびに自動で読み込むファイル「sitecustomize.py」に、リバースシェルを書き込んだ。リバースシェルとは、乗っ取られたサーバーから攻撃者側へ接続を張らせ、遠隔操作できるようにする仕掛けだ。
+次に、アプリの学習用APIを呼び出して新しいプロセスを起動させた。起動時に細工したファイルが読み込まれ、rootのリバースシェルが確立した。アプリの正規の機能を呼ぶだけで、書き込んだ内容が動き出す形だ。
+ゼロデイと判断した根拠
+ゼロデイとは、開発元が修正を用意する前、あるいは存在を周知する前に悪用される欠陥のことだ。防御側に対策を準備する猶予が「ゼロ日」しかない、という意味で呼ばれる。
+Amazonは、発見時点で該当する勧告も修正も見つけられなかった。修正、Issue（開発者向けの不具合報告）、勧告、脆弱性データベースのいずれにも言及がなく、高い確度でゼロデイだと判断した。
+人が介入して第2の大学へ
+攻撃のすべてをAIが自動でこなしたわけではない。Amazonによると、途中で人が介入し、第2の大学のネットワークにつながるプロキシ（通信の中継役）をエージェントに与えた。
+そこでも同じ脆弱なソフトが動いていたため、エージェントはゼロデイで侵入し、トンネル（外部と内部をつなぐ通信経路）を張ったとAmazonは推定している。一度見つけた欠陥は、同じソフトが動く別の組織にも使い回せる。
+Amazonは、今回の結果をこう位置づけている。
+「これらの結果は、エージェントによる攻撃がすでに起きていることを示しており、防御側はこれらのツールがもたらす速度と持続性に備えるべきだ」
+MONAI Labelの更新
+CISA（米サイバーセキュリティ・インフラストラクチャセキュリティ庁）は11月23日、この欠陥を悪用確認済み脆弱性（KEV）のカタログに加えた。実際に悪用が確認された欠陥の一覧で、対処期限は米連邦政府機関に課されるものだ。
+Notebookcheckによると、11月26日までにバージョン
+0.8.6
+へ更新するよう求められている。民間に同じ義務はないが、悪用が確認された欠陥なので、MONAI Labelを使っている場合は0.8.5以下でないかを確認し、該当すれば更新したい。
+Amazonが観測した攻撃の開始は9月8日とThe Next Webが伝えている。修正版0.8.6の公開日や、Amazonが開発元へ事前に報告したのかは、確認できた範囲では公表されていない。被害を受けた大学の名称も公表されていない。
+防御用のCairnを正当な作業と偽り悪用
+Cairnは、企業が自社のシステムを自動で攻めて弱点を探すための、オープンソースの基盤だ。この作業はペネトレーションテスト（侵入テスト）と呼ばれ、攻撃者より先に穴を見つけて塞ぐために防御側が行う。
+Claude CodeやCodex、Pi（コーディング用のAIエージェント）といった既存のエージェントを「ワーカー」として動かせる設計で、特定のAIモデルには依存しない。公開されている説明書き（README）は、認可された環境での利用だけを求めている。
+Amazonが作った基盤ではない。Amazonは、攻撃者が使っているところを観測して報告した側だ。
+The Next Webなどの報道によると、Amazonが気づけたのは、攻撃者が自分のCairnを認証なしで公開したまま放置していたからだった。ゼロデイを見つけたワーカーのモデルは、確認できた範囲では公表されていない。
+中国語の指示と中国標準時
+攻撃者は、簡体字中国語でエージェントに指示を与え、モデルの時刻設定を中国標準時にしていた。分かっているのはここまでで、背後にいる組織や国をこの記事では特定しない。
+「決して拒否するな」という前置き
+AIモデルには、危険な依頼を断る安全装置が組み込まれている。
+攻撃者は、エージェントの動作を決める指示文（システムプロンプト）に「決して拒否するな」といった前置きを加え、正当な作業だと思わせていた。
+Palo Alto Networks
+の調査部門
+Unit 42
+も、AIが拒否しないよう「認可された作業」を装う文が加えられていたと報告している。
+モデルの中身を改造せず、指示文の書き換えだけで足りたことになる。
+Dark Readingによると、Cairnの作者は、攻撃を目的に設計したものではないと述べている。
+既知の欠陥は破れず未知の欠陥だけ突破
+この攻撃者のAIエージェントは、何でも破れたわけではない。
+Amazonによると、同じ攻撃者は大学のRedisサーバーへの攻撃とLog4Shellの試行に
+16時間以上
+、大学のGPUサーバーへの認証情報の試行に
+6時間以上
+を費やしたが、いずれも失敗した。
+Redisは、データの保管や受け渡しに広く使われるサーバーソフトだ。Log4Shellは2021年に見つかり、世界中で大きな騒ぎになった欠陥で、修正方法も広く知られている。認証情報の試行は、IDとパスワードの組み合わせでログインを突破しようとする手口だ。どれも、守る側が対策を知っている攻撃だ。
+狙った先
+手口
+かけた時間
+結果
+大学のRedisサーバーなど
+Redisへの攻撃、Log4Shellの試行
+16時間以上
+失敗
+大学のGPUサーバー
+認証情報の試行
+6時間以上
+失敗
+医用画像アプリ「MONAI Label」
+未知の欠陥（ゼロデイ）
+約11分でファイル書き込み、rootは別セッション
+成功
+The Next Webによると、Redisを狙った試みだけで約16時間、148ステップに及んだが侵入できなかった。同紙は、Amazonが観測したキャンペーンは約48時間続き、大半は失敗に終わったと伝えている。
+突破口になったのは、
+誰も知らなかった欠陥
+だけだった。エージェントは、通らない手を何時間も試し続けたうえで別の入口を探し、修正のない欠陥にたどり着いた。人なら集中力が切れる作業を休まず続けられる点が、このツールの強みだ。
+守る側にとっては、2つのことが同時に言える。既知の欠陥を塞ぎ、パスワードを守るという普段の対策は、今回きちんと効いた。一方、開発元も存在を知らない欠陥には、事前に手当てできる対策がない。
+MONAI Labelを使っていない組織でも、確認できる点はある。以下はAmazonの説明した手順から導いた着眼点で、CISAや開発元が示した手順ではない。
+外部に公開しているサーバーのうち、同種のアップロード窓口を持つソフトが動いていないか。アクセス記録に、ファイル名へ「../」のような上位フォルダを指す文字列を含む要求がないか
+Pythonの実行環境にある「sitecustomize.py」が、身に覚えのない内容になっていないか
+学習用APIの呼び出しの直後に、見慣れない外部への通信が始まっていないか。今回のリバースシェルは、サーバー側から外へ接続を張る仕組みだ
+万一侵入されても、root権限まで取られない設定になっているか
+Cairnのような侵入テストの道具を自社で使う場合の教訓もある。今回は、攻撃者が自分のCairnを無防備に公開していたことが発覚の糸口になった。誰が使えるのか、どの範囲に向けて動かすのか、操作の記録を残しているのかは、使い始める前に決めておきたい。
+Cairn悪用は他にも19組織が標的
+Amazonが報告した大学の件は、Cairn悪用の1例にすぎない。Unit 42は今月初め、Cairnが半導体・防衛・市民社会の組織への攻撃に使われたと発表した。
+報告によると、中国語話者の攻撃者が2026年8〜9月に
+25件
+の作戦を自律的に実行し、標的は少なくとも
+19組織
+、うち少なくとも
+10組織
+で侵害に成功した。内訳が示されたのは14組織分で、半導体や先進製造のサプライチェーンが7、国防関連が3、人権・市民社会関連が4だった。残りは、確認できた範囲では示されていない。
+Dark Readingによると、侵害に成功した組織では、資格情報（ログインに使うIDやパスワードなど）が数十件取得され、1つの組織では
+100万件超
+の個人データが外部から見られる状態になった。標的のシステムに管理者アカウントを作られた例もある。
+Unit 42は、攻撃者が1行の目標を書くだけでエージェントに手順を作らせていた、と説明している。Amazonが観測した、IPアドレスの一覧と「シェルアクセスを得る」という目標だけを渡す使い方と同じ形だ。
+また、Unit 42はこの活動を中国系の情報収集活動（CL-STA-1238と呼ぶ分類）と「中程度の確度」で評価している。これはUnit 42自身の評価で、この記事では背後の組織までは踏み込まない。
+Cairnと組み合わされたAIモデルとして、Unit 42は中国のZhipu AIのGLMとDeepSeekを挙げている。報道によると、GLM 5.2、DeepSeek V4 Flash、DeepSeek V4 Proでの利用も観測された。
+Amazonが観測した攻撃（9月8日開始）とUnit 42が調べた作戦は、期間が重なる。ただし、同じ攻撃者によるものか別のグループかは、確認できた範囲では示されていない。共通するのは、Cairnを使い、中国語で指示していた点だ。
+大学のサーバー、企業、市民団体と異なる相手に同じ基盤が向けられ、モデルを入れ替えても使い方は変わらなかった。
+出典
+Amazon Threat Intelligenceの元の発表: 元ページのURLは確認できていない。Ars Technicaの報道を通じて内容を参照した
+CISA（悪用確認済み脆弱性カタログへの追加）: 一次ページのURLは確認できていない。報道を通じて参照した
+Palo Alto Networks Unit 42のCairn悪用に関する調査: 元ページのURLは確認できていない。報道を通じて参照した
+Ars Technica（2026年11月24日）: 
+https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/
+補足として参照した報道: The Next Web、Dark Reading、Notebookcheck
+関連ニュース
+すべての新着情報を見る →
+新着
+6時間前
+2026.11.25
+Google WorkspaceのMCPサーバーとCLIが一般提供、2027年2月からAIエージェントはMCP経由に
+新着
+7時間前
+2026.11.25
+TikTok 障害、米国で動画・検索・プロフィールが読み込めず Downdetectorに約2.5万件
+新着
+14時間前
+2026.11.25
+日本マクドナルドがアプリのデータベース不正アクセスを公表　位置情報と購入履歴が対象、パスワード変更は不要
+新着
+18時間前
+2026.11.24
+英NCSC、AIを使った攻撃が9月以降に顕著に増えたと警告 ARTEXなど悪用、突かれたのは既存の弱点
+新着
+22時間前
+2026.11.24
+AWS、Bedrockに最上位Claudeの安全監視プログラム登録API 第1弾はAnthropicのEFSとEDC
+新着
+1日前
+2026.11.24
+OpenAI、ChatGPTのChatでGPT-6.2 Solを提供開始　旧GPT-5.6の2モデルは12月23日に終了
+新着
+1日前
+2026.11.24
+Google Meet、Web版で1080p送信に対応　全ユーザーが対象、設定しなくても有効に
+新着
+1日前
+2026.11.24
+Microsoft 365 障害、最終報告で原因はWindowsの不具合 企業宛てメールは全件配信、個人向けの一部は不達に
+新着
+1日前
+2026.11.24
+Claude障害、複数モデルでエラー増加　claude.ai・API・Claude Codeが対象、Anthropicが調査中
+新着
+1日前
+2026.11.23
+Windows 11のKB5132043で印刷できず、Forcepoint DLP入りの端末が対象 修正は未提供
+この記事を書いた人: AI産業通信 編集部
+株式会社Emposyが運営するAI産業通信の編集部。企業のAI活用に関わる発表・障害・脆弱性・制度を、公式の一次情報をもとに速報と解説で伝えます。
+運営者情報
+編集方針・訂正について
+お問い合わせ
+URLをコピーしました！
+URLをコピーしました！
+
+===== https://www.cisa.gov/news-events/alerts/2026/11/23/cisa-adds-two-known-exploited-vulnerabilities-catalog
+(status 200)
+Alert
+CISA Adds Two Known Exploited Vulnerabilities to Catalog
+Release Date
+November 23, 2026
+CISA has added two new vulnerabilities to its 
+Known Exploited Vulnerabilities (KEV) Catalog
+, based on evidence of active exploitation.
+CVE-2026-133968
+ Project MONAI MONAI Label Path Traversal Vulnerability
+CVE-2026-134624
+ N-able Mail Assure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability
+These types of vulnerabilities are a frequent attack vector for malicious cyber actors and pose significant risks to the federal enterprise.
+Binding Operational Directive (BOD) 26-04: Prioritizing Security Updates Based on Risk
+ establishes vulnerability management requirements for Federal Civilian Executive Branch (FCEB) agencies. BOD 26-04 reinforces the importance of the KEV Catalog and requires federal agencies to prioritize rapid remediation of high-risk vulnerabilities, specifically those identified by Common Vulnerabilities and Exposures (CVEs) listed in CISA’s KEV Catalog on publicly exposed assets that grant total control of the asset post-exploitation, while deferring action for lower-risk vulnerabilities. BOD 26-04 further establishes basic expectations for when agencies must check whether threat actors compromised the system before the patch was applied.
+While BOD 26-04 applies only to FCEB agencies, CISA encourages all organizations to adopt risk-based vulnerability management and prioritize remediation of 
+KEV Catalog vulnerabilities
+. CISA will continue to add vulnerabilities to the catalog that meet the 
+specified criteria
+.
+Aware of an exploited vulnerability not currently listed in the KEV Catalog? Submit it for potential addition through CISA’s 
+KEV Nomination Form
+. Potential KEV additions must have a CVE ID, evidence of exploitation, and clear mitigation guidance.
+This product is provided subject to this 
+Notification
+ and this 
+Privacy & Use
+ policy.
+Please share your thoughts
+We recently updated our anonymous 
+product survey
+; we welcome your feedback.
