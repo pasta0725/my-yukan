@@ -33,6 +33,7 @@ Since 2026-11-10 there are two editions a day: 朝刊 (ready 7:00) and 夕刊 (r
   - Rules or bans about AI made by a non-AI company (an airline, a bank, a school banning AI agents or AI use) are ai, not service or other. If the main source is English, ai_D takes it; otherwise ai_A (2026-11-12, Issue #14: ai_D, service_A and other_A all wrote the same airline story).
   - A new phone, tablet or PC model (e.g. a new iPad mini) is mobile_A's if it is on ITmedia Mobile/ケータイ Watch/Apple Newsroom, otherwise mobile_B's. mobile_B never writes a model that mobile_A's sites also cover; hands-on reviews of the same model are part of that one story.
   - A change to a service or app feature or availability (a support forum closing, a feature ending) is service. Security fixes for server software (e.g. a GitLab security update) belong to other_A.
+  - 情報漏えい・不正アクセスと、それに伴う見舞金などの被害者への対応は、サービスやアプリに関するものも other_A が担当する。
   - ec_A covers EC trade media and public agencies. ec_B covers online shops' and payment services' own announcements. When both workers find the same store or payment service announcement, ec_B takes it.
   - The same AI feature or API from one company is ONE story even if ITmedia, Impress and the official blog all cover it: ai_A takes it if ITmedia has it, else ai_B, and ai_C only when no news site covers it yet.
   - A story that continues something in used.txt from another angle (a new outlet or detail on the same event) is the same story: skip it unless there is a real new development.
@@ -74,6 +75,7 @@ The user is personally interested in: Apple, Google (Gemini, Android, Pixel, Chr
   - (2026-11-10, replaces the 2026-11-07 "at least 3 searches" rule) Do NOT spend WebSearch queries on finding the official page — in the unattended morning/evening task official sites mostly refuse to open, and those searches used up the shared search limit (2026-11-10 朝刊: limit hit at 4:25, 25 of 54 stories had only 1 source). Official images are collected afterwards on GitHub by the 「公式画像の補充」 job (6:12 / 16:31). Take official images only when an official page happens to be among the pages you already opened (a same-event search result, or a link inside a news article) and it opens without error.
 - News-site photos (kind "ogp"): from the news article itself, at most 2 in total.
 - Image URLs: use the OG_IMAGE and IMAGES lines of the story's .txt (or what WebFetch returned for a search-result page). Use ONLY those URLs. Never guess or construct URLs.
+- 画像の説明は、画像そのものか、その画像に付いた説明文で中身を確かめられたときだけ書く。
 - Skip: photos where a person's face is the main subject, logos alone, icons, ads/banners, site-generic share images, tiny thumbnails (prefer the large version).
 - Zero official images is fine; the later job adds them. Do not retry pages that refused to open.
 - Placement (user, 2026-11-08): put each picture right after the h section it illustrates, as an "img" block between paragraphs/sections — not all together at the end. Use "gallery" only for leftovers. tools/place_images.py also spreads any gallery through the text automatically.

@@ -76,6 +76,7 @@ def from_page(u, html):
 
 def listing(site):
     errs = []
+    best_items, best_source = [], ""
     for u in site["urls"]:
         try:
             r = get(u)
@@ -89,11 +90,16 @@ def listing(site):
                 how = "json"
             else:
                 items, how = from_page(u, body)
-            if len(items) >= 3: return items, f"{how} {u}", errs
-            errs.append(f"{u}: only {len(items)} items")
+            source = f"{how} {u}"
+            if len(items) >= 3:
+                return items, source, errs
+            if len(items) > len(best_items):
+                best_items, best_source = items, source
+            if not items:
+                errs.append(f"{u}: no items")
         except Exception as e:
             errs.append(f"{u}: {type(e).__name__} {str(e)[:80]}")
-    return [], "", errs
+    return best_items, best_source, errs
 
 
 def page(u):
@@ -116,7 +122,7 @@ def page(u):
             if src in seen or re.search(r"logo|icon|avatar|banner|sprite|blank|pixel|ads?[/_.]|media-amazon|_SL\d+_", src, re.I): continue
             seen.add(src); imgs.append(f"{src} | {(im.get('alt') or '').strip()[:80]}")
         text = re.sub(r"\n{3,}", "\n\n", body.get_text("\n", strip=True))
-        return {"ok": True, "pub": pub, "og": og, "imgs": imgs[:15], "text": text[:15000]}
+        return {"ok": bool(text), "pub": pub, "og": og, "imgs": imgs[:15], "text": text[:15000]}
     except Exception as e:
         return {"ok": False, "text": f"(could not open: {type(e).__name__} {str(e)[:80]})"}
 
