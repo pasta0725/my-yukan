@@ -218,13 +218,12 @@ const S={
  // switching carriers: just under 1,000 yen a month for 2 years
  mnp(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'2年間')),d-0.9);
    withEnter(enter(u,0),()=>{ipic('shop2',130,400,820,600,28,1.0+0.04*u/Math.max(1,d),0.5,0.5);creditAt(IT,935,980);});
-   tagI('乗り換え',300,470,(u-0.3)/0.3,C.brand,'#FFFFFF',56);
-   if(u>t2)bigNum('月1000','円未満',CX,1110,(u-t2)/0.3,C.acc,130);},
+   tagI('乗り換え',CX,1010,(u-0.3)/0.3,C.brand,'#FFFFFF',56);
+   if(u>t2)bigNum('月1000','円未満',CX,1150,(u-t2)/0.3,C.acc,130);},
  // but only for switching; an upgrade can be about 5,000 yen a month
  cond(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'機種変更')),d-0.8);
-   row('乗り換え','月1000円未満',470,C.acc,enter(u,0.1));
-   row('機種変更','月5000円ほど',720,C.warn,enter(u,t2));
-   },
+   withEnter(enter(u,0.1),()=>{card(240,430,600,200,36,C.card2);text('機種変更',CX,530,84,'#FFFFFF','center',900,520);});
+   if(u>t2+0.3)bigNum('月5000','円ほど',CX,800,(u-t2-0.3)/0.3,C.warn,150);},
  // fewer people pay in one go
  bulk(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.8,telHas(L,'減った')),d-0.6);
    withEnter(enter(u,0),()=>{card(240,420,600,200,36,C.card2);text('一括払い',CX,520,84,'#FFFFFF','center',900,520);});
