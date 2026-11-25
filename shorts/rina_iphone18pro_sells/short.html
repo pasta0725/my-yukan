@@ -180,7 +180,7 @@ function arrowV(x,y0,y1,col,k,wid=46){if(k<=0)return;const y=y0+(y1-y0)*ease(k),
 function row(a,b,y,col,k){withEnter(k,()=>{card(150,y,780,190,32);text(a,330,y+95,54,C.text,'center',900,300);text(b,700,y+95,62,col,'center',900,400);});}
 const S={
  // 0 s: only Apple's official iPhone 18 Pro photo (full screen) and the huge telop of the first sentence, chunk by chunk.
- open(u,d,L){abs(()=>{fullPic('large',1.05+0.05*u/Math.max(1,d),0.5,0.4);creditAt(AP,1000,1640);
+ open(u,d,L){abs(()=>{fullPic('shop1',1.05+0.05*u/Math.max(1,d),0.72,0.45);creditAt(IT,1000,1640);
      const T=P.tel.filter(x=>x.start<L.start+d-0.01);let last=T[0].text,t0=0;for(const x of T){if(x.start-L.start<=u){last=x.text;t0=Math.max(0,x.start-L.start);}}
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // the cheapest one is still 219,800 yen (price pops in when she says it)
@@ -197,7 +197,7 @@ const S={
  first(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'売る側')),d-0.8);
    withEnter(enter(u,0),()=>person(300,860,1.5,C.card2));
    sayBox('高い！',420,400,500,260,C.warn,enter(u,0.25,0.3));
-   if(u>t2)tagI('売る側も',CX,1100,(u-t2)/0.3,C.card2,'#FFFFFF',58);},
+   withEnter(enter(u,t2),()=>{person(820,980,1.1,C.brand);text('店員',820,1110,48,C.brand,'center',900);});},
  // this year's new model: only Pro; no regular "18"
  lineup(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'ふつう')),d-1.0);
    withEnter(enter(u,0),()=>{card(160,430,360,480,36);text('Pro',340,620,120,C.brand,'center',900,300);text('新型',340,790,60,C.text,'center',900,300);});
@@ -208,7 +208,7 @@ const S={
  twist(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'売れ行き')),d-0.8);
    const st=ease(u/0.25);g.save();g.translate(CX,450);g.rotate(-0.05);g.scale(1.35-0.35*st,1.35-0.35*st);g.globalAlpha=st;rrect(-180,-60,360,120,22,C.warn);text('ところが',0,0,70,'#FFFFFF');g.restore();
    withEnter(enter(u,0.3),()=>phone(410,600,260,440,'Pro'));
-   arrowV(830,1020,640,C.acc,(u-t2)/0.5,40);
+   if(u>t2+0.1)arrowV(830,1020,640,C.acc,(u-t2-0.1)/0.5,40);
    if(u>t2+0.3)tagI('売れ行き好調',CX,1120,(u-t2-0.3)/0.3,C.brand,'#FFFFFF',58);},
  // the secret: hand the phone back after about 2 years -> lower monthly payments
  secret(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'2年')),d-1.2),t3=Math.min(Math.max(t2+0.6,telHas(L,'月々')),d-0.6);
@@ -224,13 +224,13 @@ const S={
    if(u>t2)bigNum('月1000','円未満',CX,1110,(u-t2)/0.3,C.acc,130);},
  // but only for switching; an upgrade can be about 5,000 yen a month
  cond(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'機種変更')),d-0.8);
-   row('乗り換え','月1000円未満',470,C.brand,enter(u,0.1));
+   row('乗り換え','月1000円未満',470,C.acc,enter(u,0.1));
    row('機種変更','月5000円ほど',720,C.warn,enter(u,t2));
    if(u>t2+0.5)tagI('同じ会社のまま',CX,1030,(u-t2-0.5)/0.3,C.card2,'#FFFFFF',52);},
  // fewer people pay in one go
  bulk(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.8,telHas(L,'減った')),d-0.6);
    withEnter(enter(u,0),()=>{card(240,420,600,200,36,C.card2);text('一括払い',CX,520,84,'#FFFFFF','center',900,520);});
-   arrowV(CX,680,960,C.warn,(u-0.3)/0.5,44);
+   if(u>0.45)arrowV(CX,680,960,C.warn,(u-0.45)/0.5,44);
    if(u>t2)tagI('かなり減った',CX,1080,(u-t2)/0.3,C.warn,'#FFFFFF',60);},
  // Android phones over 200,000 yen are starting to sell too
  android(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'20万')),d-0.8);
@@ -240,8 +240,8 @@ const S={
  verdict(u,d,L){bg(u);const t2=Math.max(0.8,d-1.3);const kz=ease((u-t2)/0.6);
    abs(()=>{const P0=[90,300,900,500],P1=[0,0,W,H];const R=P0.map((v,i)=>v+(P1[i]-v)*kz);
      if(kz<1)glow(CX,1250,600,C.brand,0.32);
-     g.save();g.beginPath();g.roundRect(R[0],R[1],R[2],R[3],28*(1-kz));g.clip();const i=IMG.large;if(i){const z=1+0.15*kz,s=Math.max(R[2]/i.width,R[3]/i.height)*z,iw=i.width*s,ih=i.height*s;g.drawImage(i,clamp(R[0]+R[2]*0.5-iw*0.5,R[0]+R[2]-iw,R[0]),clamp(R[1]+R[3]/2-ih*0.4,R[1]+R[3]-ih,R[1]),iw,ih);}g.restore();
-     if(kz<0.05)creditAt(AP,975,340);else if(kz>0.95)creditAt(AP,1000,1640);
+     g.save();g.beginPath();g.roundRect(R[0],R[1],R[2],R[3],28*(1-kz));g.clip();const i=IMG.shop1;if(i){const z=1+0.15*kz,s=Math.max(R[2]/i.width,R[3]/i.height)*z,iw=i.width*s,ih=i.height*s;g.drawImage(i,clamp(R[0]+R[2]*0.5-iw*0.72,R[0]+R[2]-iw,R[0]),clamp(R[1]+R[3]/2-ih*0.45,R[1]+R[3]-ih,R[1]),iw,ih);}g.restore();
+     if(kz<0.05)creditAt(IT,975,340);else if(kz>0.95)creditAt(IT,1000,1640);
      bigRina(VERD_R);});},
 };
 const BIGS=['hook','verdict'];
