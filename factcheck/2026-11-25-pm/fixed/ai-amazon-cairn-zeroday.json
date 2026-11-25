@@ -1,0 +1,157 @@
+{
+ "id": "ai-amazon-cairn-zeroday",
+ "category": "ai",
+ "title": "Amazon、AIが約11分で大学サーバーの弱点突く",
+ "summary": "医療画像ソフトの弱点が悪用され、利用する組織には修正状況の確認が必要です。",
+ "image": {
+  "src": "https://cdn.arstechnica.net/wp-content/uploads/2026/11/cairn-banner.jpg",
+  "kind": "ogp",
+  "credit": "Ars Technica",
+  "page": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "AIの攻撃"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "攻撃者が標的と目標を伝えると、AIが大学サーバーの未知の弱点を突きました。",
+    "AIは調査から約11分でファイルを書き込めました。遠隔操作はその後です。",
+    "医療画像ソフト「MONAI Label」を使う組織は、修正が入っているか確認してください。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Amazonは11月20日、AIが東アジアの大学サーバーで未知の弱点を突いたと発表しました。医療画像ソフトを使う組織には対処が必要です。"
+  },
+  {
+   "type": "h",
+   "text": "攻撃の時期と発覚の経緯"
+  },
+  {
+   "type": "p",
+   "text": "攻撃は9月8日から約48時間、中国本土の外にある東アジアの大学を狙って続きました。Amazonは9月10日、攻撃者側の記録からこの動きを把握しました。その記録はログインせずに閲覧できる状態でした。"
+  },
+  {
+   "type": "p",
+   "text": "攻撃に使われたCairnは、自分のシステムに弱点がないか試すために作られた公開ソフトです。攻撃者がAIに与えたのは、標的の一覧と遠隔操作を求める指示でした。指示は簡体字の中国語で書かれ、時刻の設定は中国標準時でした。Amazonはこの点などから、中国につながりがあると中程度の確度で判断しています。"
+  },
+  {
+   "type": "h",
+   "text": "約11分で突かれた弱点"
+  },
+  {
+   "type": "p",
+   "text": "弱点があったのは、AIで医療画像に目印を付ける公開ソフト「MONAI Label」です。AIはソフトの調査から約11分で、本来は許されない場所にファイルを書き込めるようになりました。その後、AIは最上位の管理権限でサーバーを遠隔操作できるようにしました。Amazonは、攻撃当時は修正がなく、未知の弱点だった可能性が高いと判断しました。"
+  },
+  {
+   "type": "p",
+   "text": "弱点が見つかった後、攻撃者は別の大学につながる通信経路をAIに渡しました。そこでも同じソフトが動いていました。Amazonは、その経路も同じ弱点を使って開かれたとみています。"
+  },
+  {
+   "type": "p",
+   "text": "The Next Webによると、被害を受けた大学はAmazonのクラウド事業の顧客ではありませんでした。Amazonは政府側の協力を得て、大学に今回の件を知らせました。大学名は公表されていません。患者の記録が流出したかはわかっていません。"
+  },
+  {
+   "type": "h",
+   "text": "うまくいかなかった攻撃"
+  },
+  {
+   "type": "p",
+   "text": "別の大学では、データを保存するソフト「Redis」が狙われました。AIは約16時間にわたって148の操作を試しましたが、入り込めませんでした。すでに知られた弱点「Log4Shell」を別のサービスで突く試みも失敗しました。"
+  },
+  {
+   "type": "p",
+   "text": "画像処理などを得意とする部品「GPU」を積んだ大学のサーバーでも、AIはログインに失敗しました。6時間以上かけて、80の利用者名で組み合わせを試しました。Ars Technicaは3万通り、The Next WebとHacked.comは3万通り超と報じました。"
+  },
+  {
+   "type": "h",
+   "text": "修正の状況と米国の対応"
+  },
+  {
+   "type": "p",
+   "text": "開発元の案内では、MONAI Labelのバージョン0.8.5以下が影響を受けます。開発元は10月19日に開発中のソフトを修正しました。11月18日には利用者向けの注意情報を出しました。Hacked.comによると、11月21日時点で修正が入った配布版はありませんでした。"
+  },
+  {
+   "type": "p",
+   "text": "米国のサイバー対策を担うCISAは11月23日、悪用を確認した弱点の一覧にこの件を加えました。管理番号はCVE-2026-133968です。米連邦政府の文民機関の対処期限は11月26日です。AI産業通信は、Notebookcheckの報道として、0.8.6への更新が求められると伝えています。"
+  },
+  {
+   "type": "p",
+   "text": "開発元は次の配布版に修正を入れる予定です。外部からの接続は必要な相手に絞るよう勧めています。利用者をログインで確認する設定も対策の一つです。ソフトに与える権限は、動作に必要な範囲に限るよう呼びかけています。"
+  },
+  {
+   "type": "h",
+   "text": "広がるAIによる侵入"
+  },
+  {
+   "type": "p",
+   "text": "セキュリティ会社Palo Alto Networksは今月、Cairnを使った自動攻撃を25回確認したと発表しました。半導体や防衛の企業、市民団体など、少なくとも19組織が標的になりました。少なくとも10組織で侵入に成功しています。1組織では、100万件を超える個人データが外部から見られる状態になりました。"
+  },
+  {
+   "type": "p",
+   "text": "Amazonは、攻撃の可能性が高い警告には自動で対処し、人が結果を確かめる方法を勧めています。攻撃が数分で進むと、警告を1件ずつ人が確認する体制では間に合わない場合があります。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "約11分",
+     "label": "調査から書き込みまで"
+    },
+    {
+     "value": "25回",
+     "label": "確認された自動攻撃"
+    },
+    {
+     "value": "10組織以上",
+     "label": "侵入に成功した組織"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "MONAI Labelを使う組織は、利用中の版に修正が入っているか開発元の案内で確かめてください。",
+    "修正を適用するまで、運用担当者は外部からの接続を絞り、ログインの設定を確認してください。",
+    "組織のセキュリティ担当者は、次の警告が出る前に、対処までの流れを見直しましょう。",
+    "家庭でふだんどおりにアプリや機器を使う人は、今回の件で特にすることはありません。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "修正ができてから自分の組織で使えるようになるまでには、時間が空く場合があります。その間に誰がソフトを使えるのかも、日ごろから把握しておくと判断しやすくなります。"
+  }
+ ],
+ "source_name": "Ars Technica",
+ "source_url": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/",
+ "published": "2026-11-24",
+ "refs": [
+  {
+   "name": "Ars Technica",
+   "url": "https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/"
+  },
+  {
+   "name": "The Register",
+   "url": "https://www.theregister.com/security/2026/11/20/china-attackers-deployed-ai-agents-that-autonomously-found-and-exploited-a-0-day-to-take-over-a-university-server/5311382"
+  },
+  {
+   "name": "The Next Web",
+   "url": "https://thenextweb.com/news/cairn-ai-agents-zero-day-monai-label-cisa-amazon"
+  },
+  {
+   "name": "Hacked.com",
+   "url": "https://hacked.com/news/amazon-cairn-ai-zero-day-monai-label/"
+  },
+  {
+   "name": "AI産業通信",
+   "url": "https://ai-industry.jp/trends/cairn-ai-agent-zero-day-amazon-report/"
+  },
+  {
+   "name": "CISA",
+   "url": "https://www.cisa.gov/news-events/alerts/2026/11/23/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+  }
+ ]
+}
