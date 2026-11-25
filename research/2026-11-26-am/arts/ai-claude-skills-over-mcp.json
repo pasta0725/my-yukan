@@ -1,0 +1,165 @@
+{
+ "id": "ai-claude-skills-over-mcp",
+ "category": "ai",
+ "title": "Claude、外部ツールの操作手順を自動で取得",
+ "summary": "外部ツールの機能が変わっても、AIが必要な手順をその場で受け取れます。",
+ "image": {
+  "src": "https://www.publickey1.jp/2026/skills-over-mcp-beta.png",
+  "kind": "ogp",
+  "credit": "Publickey（図はAnthropic）",
+  "page": "https://www.publickey1.jp/blog/26/mcpskills_over_mcpmcp.html"
+ },
+ "visual": {
+  "icon": "ai",
+  "kicker": "操作手順"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Claudeが外部ツールに接続した際、ツール側が用意した操作手順を受け取れるように",
+    "有料の3プランでは初めから有効で、Teamでは管理者がオンにできます",
+    "チームで使うツールが更新されたとき、AIに古い手順が残るのを防ぎやすくなる"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Anthropicは現地時間11月24日、Claudeの「Skills over MCP」の試験提供を始めました。Publickeyは11月26日に報じました。"
+  },
+  {
+   "type": "h",
+   "text": "外部ツールを操作する仕組み"
+  },
+  {
+   "type": "p",
+   "text": "MCPは、指示を受けて作業するAIと外部ツールをつなぐ共通の決まりです。AIはこの仕組みで共有カレンダーに会議を登録できます。データの集計を頼まれたときは、データベースにも接続できます。"
+  },
+  {
+   "type": "p",
+   "text": "Anthropicは2024年11月にMCPを公開しました。現在はAgentic AI Foundationが運営する、誰でも使える規格です。今回の機能に対応したツールは、同じ機能を備えたほかのアプリでも使えます。"
+  },
+  {
+   "type": "p",
+   "text": "Anthropicによると、Claudeを外部ツールにつなぐ連携機能は1万を超えています。MCPに対応する機能を作るための開発キットは、月に7億回を超えてダウンロードされています。"
+  },
+  {
+   "type": "h",
+   "text": "手順をツール側から取得"
+  },
+  {
+   "type": "p",
+   "text": "従来、ツールの操作手順はAIを動かす環境に別のファイルで用意していました。ツールに機能が増えても、手順の更新が追いつかない場合がありました。新機能では、ツール側がMCP経由で最新の手順を渡せます。"
+  },
+  {
+   "type": "p",
+   "text": "Anthropicは、会社ごとの仕事の進め方も手順に盛り込めると説明しています。Shopifyでは、Claudeがネットショップの設計から更新まで手伝います。"
+  },
+  {
+   "type": "p",
+   "text": "HubSpotは、顧客がClaudeを使い始める際の設定にこの機能を使います。Atlassianでは、Claudeが社内の情報を使って仕事の状況を分析します。"
+  },
+  {
+   "type": "p",
+   "text": "AnthropicはCartaも近く対応すると案内しています。Claudeが受け取った書類をもとに、株式の発行を手伝えるようになります。"
+  },
+  {
+   "type": "h",
+   "text": "必要な手順だけ読み込む"
+  },
+  {
+   "type": "p",
+   "text": "AIが手順を読み込むのは、そのツールを使うときです。先に多くのツールの手順を抱える場合に比べ、AIが一度に処理する情報を減らせます。"
+  },
+  {
+   "type": "p",
+   "text": "手順はツールと一緒に更新されます。利用者は手順を別に追加する必要がありません。"
+  },
+  {
+   "type": "h",
+   "text": "利用できるプランと料金"
+  },
+  {
+   "type": "p",
+   "text": "ClaudeとClaude Codeの2製品で、一般向けの試験版を使えます。有料の3プランでは、初めから機能が有効です。"
+  },
+  {
+   "type": "p",
+   "text": "Teamでは、管理者が機能をオンにすると使えます。Enterpriseにも近く広がる予定で、開始日は未発表です。"
+  },
+  {
+   "type": "p",
+   "text": "月額は、TRAILが10月31日に確認した時点で次のとおりです。日本の利用者には4月1日から10%の消費税が別にかかります。\n・Proは20ドル（税別）\n・Maxは100ドル（税別）\n・Ultraは200ドル（税別）"
+  },
+  {
+   "type": "p",
+   "text": "無料プランで使えるか、追加料金がかかるかは未発表です。日本での利用や日本語への対応は、まだわかっていません。"
+  },
+  {
+   "type": "h",
+   "text": "同時に発表した作業支援機能"
+  },
+  {
+   "type": "p",
+   "text": "「Tasks」は、時間のかかる処理を外部ツールに任せる機能です。たとえばZoomInfoが企業の情報を調べる間、Claudeは別の作業を進められます。処理が終わると、その結果を受け取れます。"
+  },
+  {
+   "type": "p",
+   "text": "「Elicitation」は、作業を一時停止して利用者に入力を求める機能です。Supabaseでは、有料のプロジェクトを作る前に費用を確認できます。GitHubは、Claudeがプログラムの保管場所を消す前に、その名前の入力を求めます。"
+  },
+  {
+   "type": "p",
+   "text": "この2つは、ClaudeとClaude Codeで正式版になりました。操作手順の機能が初めから有効な3プランで使えます。TeamとEnterpriseにも順次広がります。"
+  },
+  {
+   "type": "p",
+   "text": "Claudeから外部ツールにPDFや表計算のファイルなどを渡せる「File Uploads」も近く始まります。画像も送れます。送る前にClaudeがファイルを読み込む必要はありません。対象は有料の3プランと、条件を満たすTeamやEnterpriseです。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "2製品",
+     "label": "試験提供の対応製品"
+    },
+    {
+     "value": "3プラン",
+     "label": "初めから有効な契約"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "対象プランで外部ツールを使う人は、次に接続するときにツール側の対応を確認してください。",
+    "職場でTeamを使う人は、外部ツールをつなぐ前に、今の設定を管理者に確認してください。",
+    "手順を別ファイルで管理する人は、次にツールを更新するときに手順の配り方を確認してください。",
+    "無料プランで使いたい人は、対象プランが広がるか確認してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "予約や集計のたびに操作方法を指示し直しているなら、手間が減るかもしれません。よく更新されるツールほど、操作手順も同じ窓口から受け取れる利点がありそうです。"
+  }
+ ],
+ "source_name": "Publickey",
+ "source_url": "https://www.publickey1.jp/blog/26/mcpskills_over_mcpmcp.html",
+ "published": "2026-11-26",
+ "refs": [
+  {
+   "name": "Publickey",
+   "url": "https://www.publickey1.jp/blog/26/mcpskills_over_mcpmcp.html"
+  },
+  {
+   "name": "Anthropic",
+   "url": "https://claude.com/resources/articles/skills-over-mcp-tasks-and-more"
+  },
+  {
+   "name": "ゲームメーカーズ",
+   "url": "https://gamemakers.jp/article/2026_11_25_151764/"
+  },
+  {
+   "name": "TRAIL",
+   "url": "https://thetrail.jp/news/claude-skills-over-mcp/"
+  }
+ ]
+}

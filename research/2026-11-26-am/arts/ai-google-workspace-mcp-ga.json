@@ -1,0 +1,169 @@
+{
+ "id": "ai-google-workspace-mcp-ga",
+ "category": "ai",
+ "title": "Google、GmailのAI接続を正式提供",
+ "summary": "個人も企業向け契約なしで、メールや予定表をAIから扱えるようになります。",
+ "image": {
+  "src": "https://www.publickey1.jp/2026/HX6RoD8WUAAqFeu.jpg",
+  "kind": "ogp",
+  "credit": "Publickey",
+  "page": "https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html"
+ },
+ "visual": {
+  "icon": "ai",
+  "kicker": "業務アプリ"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "GoogleがGmailやカレンダーなどをAIで操作するための接続機能を正式提供",
+    "個人向けの無料枠があり、Googleへの支払い用カードの登録は要りません。",
+    "メールを送ったり資料を共有したりする前に、利用者が確認する仕組みがあります"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Googleは米国時間11月24日、GmailなどをAIで操作する接続機能を正式版にしました。業務アプリ群Workspaceに接続する方法は2つです。"
+  },
+  {
+   "type": "h",
+   "text": "AIで操作できるサービス"
+  },
+  {
+   "type": "p",
+   "text": "Google Workspace MCP Serverは、ウェブなどで動くAIをアプリにつなぐ窓口です。Gmailでメールの下書きを作ったり、カレンダーで予定の空きを探したりできます。Googleが案内するGmail用のMCPに、送信機能はありません。ドライブ用のMCPにも共有機能はありません。"
+  },
+  {
+   "type": "p",
+   "text": "Googleが対応を発表したのは次の8サービスです。\n・Gmail、Googleカレンダー\n・Googleドライブ、Googleドキュメント\n・Googleスプレッドシート、Googleスライド\n・Google Chat、Google Tasks\nメモアプリのGoogle Keepも今後加わる予定です。"
+  },
+  {
+   "type": "p",
+   "text": "GoogleはすべてのWorkspace利用者と開発者を対象にしています。組織向けの接続機能や管理機能は、2週間かけて順次提供します。11月19日更新のGoogleの設定ガイドには、試験提供の表示が残っています。日本での利用可否や日本語対応について、Googleは明らかにしていません。"
+  },
+  {
+   "type": "h",
+   "text": "手元のパソコンから操作"
+  },
+  {
+   "type": "p",
+   "text": "Google Workspace CLIは、手元のパソコンで文字の命令を入力してつなぐ仕組みです。AIも利用者本人もWorkspaceを操作できます。許可する作業の範囲は、読み取りだけにも絞れます。"
+  },
+  {
+   "type": "p",
+   "text": "Googleの案内では、CLIは初期設定で利用状況を送信します。送るのは、使ったサービスや操作などです。文書の識別番号やメールアドレスは送信の対象外です。利用状況の送信はオフにできます。"
+  },
+  {
+   "type": "h",
+   "text": "個人の無料枠と課金条件"
+  },
+  {
+   "type": "p",
+   "text": "個人で試すときは、Google Cloudで「Personal mode」を選びます。自分のアカウントをつなぐ場合は、アプリの審査を受けずに使い始められます。GoogleのAI研究部門のPhilipp Schmid氏は、企業向け契約も支払い用カードも不要と案内しました。同氏が示した無料枠は1サービスにつき1日5000回です。"
+  },
+  {
+   "type": "p",
+   "text": "ミーネクストによると、Claudeからつなぐ場合は次のいずれかのプランが必要です。\n・Pro、Max\n・Team、Enterprise\nGoogle側の無料枠とは別の条件です。"
+  },
+  {
+   "type": "p",
+   "text": "Googleは、無料で使えるStandardと、上限が高いScaledを設けました。最初に導入するのは次のサービスです。\n・Gmail\n・Googleドライブ\n・Googleカレンダー\nScaledの課金は2027年4月1日に始まります。1日ごとの無料枠がある場合は、超えた分に料金がかかります。"
+  },
+  {
+   "type": "p",
+   "text": "Sulatによると、Googleのカレンダー向け案内では、無料枠はプロジェクトごとに1日5000回です。プロジェクトは、Google Cloudで接続の設定をまとめる単位です。AIがサービスを呼び出すたびに、無料枠を使います。同じ案内では、Scaledを選ぶと最初の1回から課金されます。"
+  },
+  {
+   "type": "p",
+   "text": "社内だけで使う仕組みは、管理者が社内用に登録すると高い上限を維持できます。社外でも使う場合は、請求先を登録してScaledに切り替えます。すでに高い上限を使っていても、手続きがなければ4月1日に無料の上限に戻ります。"
+  },
+  {
+   "type": "h",
+   "text": "送信や共有の前に確認"
+  },
+  {
+   "type": "p",
+   "text": "Googleは、AIによるメールの送信やドライブの共有設定の変更に、利用者の確認を求めます。まとめて編集するときも同じです。CLIでは、ゴミ箱に入れるときや削除するときにも確認が出ます。メールの下書きは確認なしで作れます。"
+  },
+  {
+   "type": "p",
+   "text": "会社の管理者は、接続を許可する外部AIを選べます。社外のファイルを読む前に、本人の確認を求める設定もできます。管理画面には、AIの操作と利用者が確認した記録が残ります。社内の情報漏えい対策は、AIの操作にも自動で適用されます。"
+  },
+  {
+   "type": "p",
+   "text": "Googleは今後、利用者本人もAIの操作履歴を見られるようにする予定です。AIが自分のメールやファイルを扱う許可も取り消せるようになります。特定のメールやファイルをAIに見せない設定も加える予定です。"
+  },
+  {
+   "type": "p",
+   "text": "Googleは新しい規約で、AIツールがWorkspaceから取得したデータを学習に使うことを禁じました。一部のデータの長期保存や、データを機械的に集める行為も禁止です。利用者が接続を切った場合は、取得したデータなどの削除も求めます。"
+  },
+  {
+   "type": "h",
+   "text": "AIの接続方法が変わる日"
+  },
+  {
+   "type": "p",
+   "text": "Googleは2027年2月1日から、AIの接続に新しいルールを適用します。従来の接続口であるREST APIを直接使うAIは、接続の切り替えが必要です。この接続口は、従来のアプリ向けに使えます。"
+  },
+  {
+   "type": "p",
+   "text": "Google Workspaceの発表では、AIの接続にMCPを使うよう求めています。Google Cloudの発表では、手元のパソコンから使うCLIも新しい接続手段に含めています。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "8サービス",
+     "label": "MCP接続の対象"
+    },
+    {
+     "value": "1日5000回",
+     "label": "無料枠の1日あたりの回数"
+    },
+    {
+     "value": "2027年2月1日",
+     "label": "AIの接続ルールの適用開始"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "個人で試す人は、使い始めるときにGoogle Cloudで個人向けに設定し、まず読み取りだけを許可してください。",
+    "AIでメールを扱う人は、送信前に宛先と本文を確認してください。",
+    "従来の方法でつなぐAIを開発するチームは、2027年2月1日までに接続を切り替えてください。",
+    "職場で外部のAIを使う人は、2027年2月1日以降も使えるか事前に提供元へ確認してください。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "予定の空きを探す作業なら、カレンダーと見比べながらAIの使い勝手を試せそうです。メールは下書きまで任せて、自分で仕上げる使い方もよさそうです。"
+  }
+ ],
+ "source_name": "Publickey",
+ "source_url": "https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html",
+ "published": "2026-11-26",
+ "refs": [
+  {
+   "name": "Publickey",
+   "url": "https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html"
+  },
+  {
+   "name": "Google Workspace Updates",
+   "url": "https://workspaceupdates.googleblog.com/2026/11/mcp-servers-cli-standardized-usage-tiers-now-available.html"
+  },
+  {
+   "name": "Google Cloud",
+   "url": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise"
+  },
+  {
+   "name": "Sulat",
+   "url": "https://news.sulat.com/2026/11/25/google-workspace-mcp/"
+  },
+  {
+   "name": "ミーネクスト",
+   "url": "https://menext.jp/news/google-workspace-mcp-servers-ai-agent-admin-controls"
+  }
+ ]
+}
