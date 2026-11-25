@@ -1,0 +1,58 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2159159.html
+TITLE: 「Edge」に“ロックダウンモード”、WebGL/WebGPUをブロックして攻撃対象領域を削減／高リスクユーザー向けの追加セキュリティ、Canaryチャネルで試験提供中
+SITE: 窓の杜
+PUBLISHED: 2026-11-25 18:56 (page: 2026-11-25T18:56:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2159/159/microsoft_edge.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/159/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/1389/955/list.jpg | 
+- https://asset.watch.impress.co.jp/img/wf/list/2127/553/list.jpg | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/159/image2_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/159/image3_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/159/image4_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/159/image5_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0D5VMQD1F.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「Edge」に“ロックダウンモード”、WebGL/WebGPUをブロックして攻撃対象領域を削減
+高リスクユーザー向けの追加セキュリティ、Canaryチャネルで試験提供中
+樽井 秀人
+2026年11月25日 18:56
+「Microsoft Browser Vulnerability Research」ブログの記事
+米Microsoftは11月14日（現地時間）、「Microsoft Edge」の新しいセキュリティ機能「Lockdown Mode」（ロックダウンモード）を発表した。Webブラウザーの攻撃対象領域を減らし、脆弱性を悪用されるリスクを抑える仕組みで、現在Canaryチャネルでテスト中。
+同社によると、AIの活用で脆弱性の発見や悪用を取り巻く状況が変わり、修正パッチを早く届けるとともに、攻撃対象領域を減らすことが重要になっているという。
+そのための機能として、「Edge」にはもともと「Enhanced Security Mode」（ESM）という仕組みが備わっており、JavaScriptエンジン「V8」のJITコンパイラーを無効化するなど、多少のパフォーマンスを犠牲にセキュリティを高めることができた。コンポーネントをメモリ破壊バグを出しにくい「Rust」言語実装にする取り組みも進められている。
+関連記事
+インターネット
+Webブラウザー
+Windows
+「Microsoft Edge」の「めっちゃすげえセキュリティモード」、CET/ACGの導入で鉄壁に
+インターネット
+Webブラウザー
+Windows
+「Chromium」の画像デコードをRustに ～脆弱性削減、処理時間も最大50％短縮
+ロックダウンモードとは？
+今回発表された「ロックダウンモード」は、この考えをさらに拡張したものだ。名称は米Appleが「iOS 16」などで導入した同名の機能にならったものだという。
+初期バージョンでは、GPUプロセスが対象となる。Webブラウザーを狙った高度な攻撃においては、レンダラーの脆弱性でコード実行を成立させた上で、さらにGPUプロセスなど権限の高いプロセスの脆弱性を突いてサンドボックスを脱出する“エクスプロイトチェーン”が使われることが多い。
+そこで、GPUプロセスへの主な入り口である「WebGL」「WebGL2」「WebGPU」をWebサイトから使えないようにすることで、チェーンを断ち切ろうというわけだ。
+「Chromium」でWebページからローカルコードの実行に至るまでの攻撃の流れ（「Microsoft Browser Vulnerability Research」より引用）
+同社の分析では、2022年2月以降に悪用が確認された「Chromium」の脆弱性の約55％に対し、「ESM」が有効だったという。また、Canary版のロックダウンモードでは、同時期に実際に観測された権限昇格攻撃の約60％を緩和できたと推定している。
+ただし、当然ながらデメリットも存在する。たとえば互換性が犠牲となり、Webゲームや地図サービス、デザインツール、データ可視化サイトといったグラフィックスを多用するWebサイトが動作しなくなる可能性がある。
+そのため、すべてのユーザーで既定で有効化することは想定されていない。あくまで以下のような高リスクユーザー向けの保護機能として位置付けられる。
+ジャーナリスト
+企業経営者
+セキュリティ研究者
+システム管理者
+標的型攻撃を受けやすい人や組織
+試してみたい場合は
+本機能は現在、Canaryチャネルで試験提供されており、将来的にはGPU機能以外にも制限対象を広げる予定。試してみたい場合は、まず「edge://flags/#edge-sdsm-plus」で「Enhanced Security Mode Plus」を［Enabled］にして、ブラウザーを再起動する。
+「edge://flags/#edge-sdsm-plus」で「Enhanced Security Mode Plus」を有効化
+次に、設定画面（edge://settings/privacy/security）で「Web 上のセキュリティを強化する」をONにし、［厳重］を選択。すると、その下に「WebGL グラフィックスをブロックする」「WebGPU グラフィックスをブロックする」オプションが現れる。これまでESMを使ったことのないプロファイルでは既定でONになるが、既存のESMユーザーは自分でONにする必要がある点には注意。
+「Web 上のセキュリティを強化する」で［厳重］を選ぶと、「WebGL」「WebGPU」をブロックするオプションが現れる
+設定後、すでに開いているページは再読み込みする。「WebGL」や「WebGPU」がブロックされたページでは、アドレスバーに「ロックダウンが有効」と表示される。ブロックの設定や過去の判定は「edge://security-diagnostics」の「Enhanced Security Mode」欄で確認できる。
+アドレスバーの「ロックダウンが有効」表示
+同社は、セキュリティ研究者や管理者、開発者など技術に詳しいユーザーにテストへの協力を呼びかけている。サイトが動作しないといった問題に遭遇した場合は、「Lockdown Mode」に言及した上で、設定画面からフィードバックを送ってほしいとのこと。
+Amazonで購入
+「Microsoft Edge」関連商品
+Amazonで購入

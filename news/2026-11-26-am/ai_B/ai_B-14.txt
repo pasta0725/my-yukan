@@ -1,0 +1,143 @@
+URL: https://www.publickey1.jp/blog/26/google_workspace_mcpgoogle_workspace_cli.html
+TITLE: 「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+SITE: Publickey
+PUBLISHED: 2026-11-26 00:27 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/HX6RoD8WUAAqFeu.jpg
+IMAGES:
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+2026年11月26日
+Googleは、Google WorkspaceをAIエージェントが操作するためのインターフェイスとして「Google Workspace MCP Server」と「Google Workspace CLI」が
+正式版になったことを発表しました
+。
+下記は、Alphabet傘下でGoogleのAI研究開発を行っているGoogle Deepmind所属のPhilipp Schmid氏のポストです。
+Google Workspace MCP servers and gwscli are GA today. No Enterprise plan or billing card needed with the new 1-click Personal mode setup.
+
+- 8 servers: Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks
+- Free tier: 5,000 req/day per product
+- Built-in HITL for send & share
+
+You still have to go through Google Cloud, which is not optimal, but it is much better than the old OAuth consent screen and app review flow. Try it and leave feedback.
+— Philipp Schmid (@_philschmid)
+November 24, 2026
+Workspace MCPサーバは、Googleがマネージドサービスとして提供するMCPサーバです。
+Google WorkspaceのGmail、Google Drive、Google Docs、Google Sheets、Google Slides、Google Calendar、Google Chat、Google Tasksの各サービスにAIエージェントから接続し操作できます。Google Keepもまもなく対応予定。
+Workspace CLIは、ユーザーやAIエージェントのローカルマシン環境からGoogle Workspaceの各サービスにコマンドラインインターフェイスで接続できる機能です。
+いずれもAIエージェントが操作することを前提に開発されており、Google Workspaceにアクセスする従来の手法として提供されていたRestful APIと比較してトークン効率が優れており、今後も継続的な開発が行われ、ユーザー確認機能、監査ログ、管理管理機能を備えたデフォルトでセキュアなインフラストラクチャなどによって企業に適した仕組みを備えています。
+Googleは今後、AIエージェントによるGoogle WorkspaceへのアクセスはMCP経由で行うことを求める方向性を明確にしており、Restful APIでのアクセスを利用しているAIエージェントは2027年2月までにMCPへの移行が求められることになります。
+あわせて読みたい
+Google Cloud
+Office
+クラウド
+業務アプリケーション
+機械学習・AI
+Google
+≫次の記事
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+≪前の記事
+AWS、DynamoDB互換データベースをローカルマシンで構築可能にするオープンソース「ExtendDB」がバージョン1.0に到達
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+AWS、DynamoDB互換データベースをローカルマシンで構築可能にするオープンソース「ExtendDB」がバージョン1.0に到達
+jQuery 4.1正式版がリリース、内部実装をquerySelectorAllに統一でより高速に。jQuery 3.x系最後となるjQuery 3.8も同時リリース
+DHH氏が開発する「Omarchy 4.5」リリース。一般的なマルチウィンドウをサポート。最速7秒で導入、Appleシリコン対応、Webアプリ版MS Office用ランチャーなど新機能
+PostgreSQL 19正式リリース。ノンブロッキングなREPACKやI/Oワーカーのオートスケールなど新機能
+マイクロソフト、クラウドやオンプレミスのデータベースを一元管理する「Database Hub」正式リリース。AIエージェントによる運用監視の自動化も
+マイクロソフト、AIによるサイバー攻撃にAIエージェントで対抗する新サービス「Microsoft Perception」提供開始
+マイクロソフト、AIが生成したアプリを企業内で安全に実行するランタイム「Copilot Managed Runtime」正式リリース
+Windows Server 2028がパブリックプレビュー公開。Microsoft FoundryなどAIによる推論の実行基盤へと拡張
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

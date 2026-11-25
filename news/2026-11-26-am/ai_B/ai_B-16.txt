@@ -1,0 +1,138 @@
+URL: https://www.publickey1.jp/blog/26/jquery_41queryselectoralljquery_3xjquery_38.html
+TITLE: jQuery 4.1正式版がリリース、内部実装をquerySelectorAllに統一でより高速に。jQuery 3.x系最後となるjQuery 3.8も同時リリース
+SITE: Publickey
+PUBLISHED: 2026-11-25 00:15 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/jquery41ga.png
+IMAGES:
+- https://www.publickey1.jp/2026/jquery41ga.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+jQuery 4.1正式版がリリース、内部実装をquerySelectorAllに統一でより高速に。jQuery 3.x系最後となるjQuery 3.8も同時リリース
+2026年11月25日
+jQuery開発チームは、JavaScriptライブラリ「jQuery」の最新版となる
+「jQuery 4.1」正式版のリリースを発表しました
+。
+また同時にjQuery 3.x系の最後のリリースとなる「jQuery 3.8」も同時にリリースしました。
+jQuery 4.x系は、基本的にはいわゆるモダンブラウザを対象としたJavaScriptライブラリであり、Internet Explorer 10もしくはそれ以前のバージョンのサポートは終了しています。
+Internet Explorer 11のサポートは継続されますが、次のjQuery 5.0では削除される見通しです。
+今回リリースされたjQuery 4.1では、これまで内部実装として利用していたgetElementsByTagNameやgetElementsByClassNameなどをすべてquerySelectorAllに置き換えています。一般に新しいAPIであるquerySelectorAllの方が処理が速いため、jQuery 4.1での高速化も期待されます。
+また新機能として「jqXHR.responseURL」オブジェクトを追加。リダイレクト後の最終URLが取得可能になりました。
+「uniqueSort()」の性能向上 により、大量要素の重複排除の処理が高速化されています。
+新機能ではありませんが、AJAX Transport のコールバックAPIを拡張したことで今後の機能追加がしやすくなっています。
+jQuery 3.8での変更点など
+同時にリリースされたjQuery 3.8は、セレクタ処理の ReDoS（正規表現によるサービス妨害）脆弱性の修正や、古いInternet Explorer/Microsoft Edge Legacy関連の比較処理を見直し、まれなクラッシュの防止処理、そしてjQuery 4.0導入された各種バグ修正のバックポートが行われています。
+今後はjQuery 4.x系の開発が継続される
+jQuery 3.x系は、いわゆるレガシーブラウザをサポートするためのバージョンとして存続してきましたが、今回のjQuery 3.8が最後のバージョンとなり、今後は原則として重大なバグや脆弱性が発見された場合のみ修正版が提供されることとなります。
+そしてjQueryの開発はjQuery 4.x系に一本化され、今後も継続的に新バージョンが登場する予定です。
+あわせて読みたい
+JavaScript
+Web技術
+プログラミング言語
+≫次の記事
+AWS、DynamoDB互換データベースをローカルマシンで構築可能にするオープンソース「ExtendDB」がバージョン1.0に到達
+≪前の記事
+DHH氏が開発する「Omarchy 4.5」リリース。一般的なマルチウィンドウをサポート。最速7秒で導入、Appleシリコン対応、Webアプリ版MS Office用ランチャーなど新機能
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+AWS、DynamoDB互換データベースをローカルマシンで構築可能にするオープンソース「ExtendDB」がバージョン1.0に到達
+jQuery 4.1正式版がリリース、内部実装をquerySelectorAllに統一でより高速に。jQuery 3.x系最後となるjQuery 3.8も同時リリース
+DHH氏が開発する「Omarchy 4.5」リリース。一般的なマルチウィンドウをサポート。最速7秒で導入、Appleシリコン対応、Webアプリ版MS Office用ランチャーなど新機能
+PostgreSQL 19正式リリース。ノンブロッキングなREPACKやI/Oワーカーのオートスケールなど新機能
+マイクロソフト、クラウドやオンプレミスのデータベースを一元管理する「Database Hub」正式リリース。AIエージェントによる運用監視の自動化も
+マイクロソフト、AIによるサイバー攻撃にAIエージェントで対抗する新サービス「Microsoft Perception」提供開始
+マイクロソフト、AIが生成したアプリを企業内で安全に実行するランタイム「Copilot Managed Runtime」正式リリース
+Windows Server 2028がパブリックプレビュー公開。Microsoft FoundryなどAIによる推論の実行基盤へと拡張
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて
