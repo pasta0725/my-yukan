@@ -1,6 +1,5 @@
-RESULT: LOOK
-- LOOK 台本2行目｜使える音声が check_split で LOOK のものだけ｜narration/rina_iphone18pro_sells_fix1/split/s1.wav｜say「アップルのお店でも、いちばん安くて、にじゅういちまんきゅうせ」
-- LOOK 台本9行目｜使える音声が check_split で LOOK のものだけ｜narration/rina_iphone18pro_sells_fix1/split/s2.wav｜say「にひゃくごじゅうろくギガを、番号そのまま乗り換えるなら、にね」
+RESULT: OK
+
 
 使った音声：
 - s1: narration/rina_iphone18pro_sells/split/s1.wav
