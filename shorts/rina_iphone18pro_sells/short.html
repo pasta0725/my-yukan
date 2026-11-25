@@ -25,7 +25,7 @@ const CH={};function charImg(f){return new Promise(r=>{if(CH[f])return r(CH[f]);
 let CUR=null;
 function origT(t){const W=P.warp;if(!W||!W.length)return t;if(t>=P.voice_end)return P.orig_voice_end+(t-P.voice_end);
   if(t<=W[0][0])return W[0][1]-(W[0][0]-t);for(let i=1;i<W.length;i++){if(t<=W[i][0]){const[a,b]=W[i-1],[c,d]=W[i];return c>a?b+(t-a)*(d-b)/(c-a):d;}}return W[W.length-1][1];}
-window.ready=(async()=>{await Promise.all([...['large','colors','shop1'].map(k=>load(k,'img/'+k+'.jpg')),(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]);await document.fonts.ready;measureFits();})();
+window.ready=(async()=>{await Promise.all([...['large','colors','shop1','shop2'].map(k=>load(k,'img/'+k+'.jpg')),(Puppet.assets.big_hq=Object.assign({},Puppet.assets.big_base),Puppet.load('../../channel/rina_puppet/'))]);await document.fonts.ready;measureFits();})();
 const telAt=(txt)=>P.tel.find(x=>x.text===txt);
 const telHas=(L,txt)=>{const t=P.tel.find(x=>x.start>=L.start-0.01&&x.text.includes(txt));return t?t.start-L.start:0;};  // start of the caption chunk containing txt, relative to the line
 // ---------- helpers ----------
@@ -218,11 +218,10 @@ const S={
      g.fillStyle=C.brand;g.beginPath();g.moveTo(790,800);g.lineTo(745,730);g.lineTo(840,735);g.closePath();g.fill();g.restore();text('2年ほど',640,880,56,C.acc,'center',900,300);});
    if(u>t3)tagI('月々の支払い↓',CX,1100,(u-t3)/0.3,C.brand,'#FFFFFF',58);},
  // switching carriers: just under 1,000 yen a month for 2 years
- mnp(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'1000')),d-0.8);
-   tagI('乗り換え',CX,450,u/0.3,C.brand,'#FFFFFF',70);
-   withEnter(enter(u,0.4),()=>text('2年間',CX,640,64,C.text,'center',900));
-   if(u>t2)bigNum('月1000','円未満',CX,860,(u-t2)/0.3,C.acc,150);
-   if(u>t2+0.5)withEnter(enter(u,t2+0.5),()=>text('ギリギリ切る例も',CX,1060,52,C.sub,'center',900));},
+ mnp(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'2年間')),d-0.9);
+   withEnter(enter(u,0),()=>{ipic('shop2',130,400,820,600,28,1.0+0.04*u/Math.max(1,d),0.5,0.5);creditAt(IT,935,980);});
+   tagI('乗り換え',300,470,(u-0.3)/0.3,C.brand,'#FFFFFF',56);
+   if(u>t2)bigNum('月1000','円未満',CX,1110,(u-t2)/0.3,C.acc,130);},
  // but only for switching; an upgrade can be about 5,000 yen a month
  cond(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'機種変更')),d-0.8);
    row('乗り換え','月1000円未満',470,C.brand,enter(u,0.1));
