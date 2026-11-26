@@ -1,0 +1,164 @@
+{
+ "id": "ai-obsidian-agent-skills",
+ "category": "ai",
+ "title": "ObsidianがAI向けの公式スキル7つを公開",
+ "summary": "ChatGPTやClaudeなど各種AIから、手元のメモ庫を操作できるようになります。",
+ "image": {
+  "src": "https://www.itmedia.co.jp/aiplus/article/ogp/2611/26/2000003470/10013003/2048",
+  "kind": "ogp",
+  "credit": "ITmedia",
+  "page": "https://www.itmedia.co.jp/aiplus/article/2611/26/2000003470/"
+ },
+ "visual": {
+  "icon": "doc",
+  "kicker": "Obsidian"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Obsidianが11月26日、AIにメモの扱い方を教える公式スキル集を公開",
+    "スキルは7つ。ファイルを扱えるAIなら、パソコン版なしでメモや図表を作れる",
+    "AIが読んだメモは会話の一部に。共有する前に、利用先のデータの扱いを確認"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "メモアプリ「Obsidian」の開発チームは、日本時間の11月26日にAI向けの公式スキル集を公開しました。AIで手元のメモを探したり、書き直したりできます。"
+  },
+  {
+   "type": "img",
+   "src": "https://www.itmedia.co.jp/aiplus/article/image/2611/26/2000003470/10013001/728",
+   "kind": "ogp",
+   "credit": "ITmedia",
+   "caption": "Web版Claudeのプラグインインストール画面（ITmedia編集部の環境）",
+   "page": "https://www.itmedia.co.jp/aiplus/article/2611/26/2000003470/"
+  },
+  {
+   "type": "h",
+   "text": "7つのスキルでできること"
+  },
+  {
+   "type": "p",
+   "text": "スキルは、AIに保管庫（メモをまとめたフォルダー）の扱い方を教える説明書です。Obsidianは中身を誰でも確認できる形で7つを公開しました。AIは見出しなどを記号で表すマークダウン形式でメモを書けます。図や表も作れます。"
+  },
+  {
+   "type": "p",
+   "text": "AIはWebページから本文を抜き出せます。表などのデータから、決まった書式に沿ってメモを作るスキルもあります。どちらのスキルも別のツールが必要です。ツールが入っていない場合、AIは追加してよいか尋ねます。"
+  },
+  {
+   "type": "h",
+   "text": "対応するAIと追加方法"
+  },
+  {
+   "type": "p",
+   "text": "Obsidianは、AIとつなぐ仕組みを「コネクタ」と呼んでいます。7つのAI向けに公式プラグイン（追加機能）を用意しました。OpenAIのChatGPTとAnthropicのClaudeは、Web版やデスクトップ版の画面から追加できます。ChatGPT向けの追加機能は、CodexやDotsでも使えます。"
+  },
+  {
+   "type": "p",
+   "text": "Grok BotとCursorでも、一覧からObsidianを追加できます。HermesやKiroにも公式の追加機能があります。"
+  },
+  {
+   "type": "p",
+   "text": "Google Antigravityなどでは、案内に沿って文字で指示を入力し、スキルを追加します。スキルに対応するほかのAIにも、Obsidianの配布先から入れられます。"
+  },
+  {
+   "type": "p",
+   "text": "スキルは無料で公開されています。AIサービス側で有料プランが必要かは明らかになっていません。日本での提供条件や日本語への対応は発表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "パソコンで使うときの条件"
+  },
+  {
+   "type": "p",
+   "text": "ITmedia AI+は、パソコン版を文字で操作する「Obsidian CLI」が必要と報じました。Obsidianの案内では、条件はスキルごとに違います。ファイルを読み書きできるAIなら、メモや図表を作るスキルはそのまま使えます。"
+  },
+  {
+   "type": "p",
+   "text": "アプリを通じてメモを検索・管理するには、パソコン版のObsidianを起動します。設定の「General」で「Command line interface」をオンにします。AIにも、同じパソコンで文字の指示を実行できる機能が必要です。"
+  },
+  {
+   "type": "p",
+   "text": "ITFISは、1.12のインストーラーが必要で、1.12.7以降への更新が案内されたと報じました。Sulatは、インストーラーの条件を1.12.7以降と伝えています。"
+  },
+  {
+   "type": "h",
+   "text": "クラウド接続の条件と今後"
+  },
+  {
+   "type": "p",
+   "text": "手元のアプリを操作する機能では、ネット上（クラウド）だけに置いた保管庫に接続できません。Metaのクラウドで動くMuseでも、Obsidian CLIは使えません。"
+  },
+  {
+   "type": "p",
+   "text": "Muse向けには、パソコン版なしで同期できる「Obsidian Headless」の手順があります。使う際は、Metaのクラウドにサインインして保管庫を同期します。公式がこの手順を案内しているのはMuse向けだけです。"
+  },
+  {
+   "type": "p",
+   "text": "Headlessは試験公開中で、同期には有料のObsidian Syncが必要です。Syncは1人あたり年払いで月4米ドル、月払いで月5米ドルからです。Webでの公開に使うObsidian Publishは、年払いで1サイトあたり月8米ドルです。いずれも税込みか税別かは案内されていません。"
+  },
+  {
+   "type": "p",
+   "text": "Obsidianは、AIを外部サービスにつなぐ共通の仕組み「MCP」での接続も計画しています。CLIやHeadlessを使えないAI向けです。提供時期は発表されていません。"
+  },
+  {
+   "type": "h",
+   "text": "AIに渡したメモの扱い"
+  },
+  {
+   "type": "p",
+   "text": "Obsidian本体はアカウント登録なしで無料で使えます。アプリにAIは入っておらず、これまでどおりAIを使わずにメモを取れます。メモはほかのアプリで扱える形式で端末に残り、ネットにつながっていなくても読めます。"
+  },
+  {
+   "type": "p",
+   "text": "Obsidianによると、同社は端末上のメモにアクセスできません。公式の追加機能そのものも、メモを外部に送りません。AIが読んだメモは会話の一部になり、利用先のAIで処理されます。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "11月26日",
+     "label": "発表日（日本時間）"
+    },
+    {
+     "value": "7つ",
+     "label": "公開したスキルの数"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "ChatGPTやClaudeを使っている人は、まず追加機能の一覧でObsidianを探しましょう。",
+    "パソコン版のObsidianでAIにメモを検索させたい人は、使う前に設定でCLIを有効にしましょう。",
+    "大切なメモをAIに読ませる前に、そのAIサービスのプライバシー方針を確認しましょう。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "書きためたメモから、前に残した記録を探すときに役立ちそうです。まずは公開しても困らないメモだけを入れた保管庫で、試してみると安心です。"
+  }
+ ],
+ "source_name": "ITmedia AI+",
+ "source_url": "https://www.itmedia.co.jp/aiplus/article/2611/26/2000003470/",
+ "published": "2026-11-26",
+ "refs": [
+  {
+   "name": "ITmedia AI+",
+   "url": "https://www.itmedia.co.jp/aiplus/article/2611/26/2000003470/"
+  },
+  {
+   "name": "Obsidian",
+   "url": "https://github.com/obsidianmd/obsidian-skills"
+  },
+  {
+   "name": "ITFIS",
+   "url": "https://itfis.net/archives/1449"
+  },
+  {
+   "name": "Sulat AI & Tech News",
+   "url": "https://news.sulat.com/2026/11/26/obsidian-connectors-agents/"
+  }
+ ]
+}
