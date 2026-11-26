@@ -213,15 +213,20 @@ def ahash(img):
 
 def check_img(c):
     r = get(c["src"], timeout=25, referer=REFERER, stream=True)
-    if r is None or r.status_code != 200: return None
-    ct = r.headers.get("content-type", "")
-    if not ct.startswith("image/") or "svg" in ct: return None
-    # browsers refuse to show pictures marked same-origin/same-site on our site
-    if r.headers.get("cross-origin-resource-policy", "").lower() in ("same-origin", "same-site"): return None
+    if r is None: return None
     data = b""
-    for chunk in r.iter_content(65536):
-        data += chunk
-        if len(data) > 12_000_000: return None
+    try:
+        with r:
+            if r.status_code != 200: return None
+            ct = r.headers.get("content-type", "")
+            if not ct.startswith("image/") or "svg" in ct: return None
+            # browsers refuse to show pictures marked same-origin/same-site on our site
+            if r.headers.get("cross-origin-resource-policy", "").lower() in ("same-origin", "same-site"): return None
+            for chunk in r.iter_content(65536):
+                data += chunk
+                if len(data) > 12_000_000: return None
+    except requests.exceptions.RequestException:
+        return None
     if len(data) < 12_000: return None
     try:
         im = Image.open(io.BytesIO(data)); im.load()
