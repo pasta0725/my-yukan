@@ -1,0 +1,22 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2159567.html
+TITLE: SSDでGPUメモリをペタバイト級に拡張、キオクシアとNVIDIAがAI向けの実証
+SITE: PC Watch
+PUBLISHED: 2026-11-26 16:33 (page: 2026-11-26T16:33:28+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2159/567/001.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2159/567/001_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B08PTPTMH5.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+SSDでGPUメモリをペタバイト級に拡張、キオクシアとNVIDIAがAI向けの実証
+稲津 定晃
+2026年11月26日 16:33
+実証で使用しているSSD「KIOXIA XD8」シリーズ
+キオクシアは11月26日、NVIDIAと共同で、SSDを活用してGPUメモリの実効容量をペタバイト規模まで拡張するAI向けの実証を開始したと発表した。NVIDIAのStorage-Nextイニシアチブに対応する取り組みで、約2兆個のベクトルからなるデータベースを処理する可能性を検証する。
+今回の実証は、AIで扱うデータセットの拡大に伴う、GPUの高帯域幅メモリ(HBM)の容量不足に対処する取り組み。HBMだけで大規模なデータセットを処理する場合、ワークロードを小さく分割し、メモリと低速なストレージの間で頻繁にデータをやり取りする必要が生じることがある。
+実証では、キオクシアのNVMe SSDとNVIDIAのソフトウェアライブラリ「SCADA」を組み合わせ、HBMの容量制約を補い、AI生成時に大規模なデータセットをより効率的に参照する仕組みの実現可能性を検証する。SCADAは、SSDを使ってGPUの実効メモリ容量を拡張するよう設計されており、小さなブロック単位のきめ細かなデータアクセスに対応する。
+検証システムには、18個のサーバーノードを持つNVIDIAのラックスケールシステム「GB200 NVL72」を使用。「KIOXIA XD8」シリーズから容量7.68TBのE1.S NVMe SSDを各ノードに8台ずつ、計144台搭載し、ノードあたり約60TB、システム全体で約1.1PBの拡張容量を確保する。SSDに512byte単位でランダムアクセスでき、約2兆個のベクトルデータを処理できるかを検証する。大規模なベクトルデータベースに加え、グラフニューラルネットワーク(GNN)向けのデータセットにも対応する。
+両社は今後もSCADAおよびStorage-Nextアーキテクチャの技術的な可能性や性能の評価を続ける。またキオクシアでは、XD8シリーズに加え、Super High IOPS SSD「KIOXIA GPシリーズ」を含む高性能SSD技術の開発にも取り組むとしている。
+「キオクシア」関連アイテム
+Amazonで購入

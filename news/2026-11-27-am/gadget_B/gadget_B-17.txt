@@ -1,0 +1,62 @@
+URL: https://www.gizmodo.jp/article/2611-ai-rsa-encryption-breakthrough/
+TITLE: インターネットが危ない？ ネットの秘密を守る「RSA暗号」が破られるというウワサ
+SITE: GIZMODO JAPAN
+PUBLISHED: 2026-11-26 22:35 (page: 2026-11-26T22:35:00+09:00)
+OG_IMAGE: https://media.loom-app.com/loom/2026/11/26/d3b40f7c-86f9-408d-ac51-6158dfe2f4dc/original.jpg?w=1200&h=630
+IMAGES:
+- https://media.loom-app.com/loom/2026/11/26/d3b40f7c-86f9-408d-ac51-6158dfe2f4dc/original.jpg?w=1200 | インターネットが危ない？ ネットの秘密を守る「RSA暗号」が破られるというウワサ
+
+TEXT:
+インターネットが危ない？ ネットの秘密を守る「RSA暗号」が破られるというウワサ
+Nov 26,2026 22:35
+ヤマダユウス型
+( GIZMODOライター )
+Google検索でギズモードを
+お気に入りに追加
+Image: ギズモード・ジャパン generated with ChatGPT
+大丈夫なのか、インターネット…？
+量子計算や計算量理論の研究で知られるテキサス大学のスコット・アーロンソン教授が、
+自身のブログ
+の
+コメント欄
+で気になる噂に触れました。
+その噂とは「
+AI研究所が素因数分解を効率よく解く方法を手にしている
+」というもの。AIについて発信している作家のアンドリュー・カラン氏も、AnthropicとOpenAIについて同じ噂を聞いたとXに投稿しています。
+Advertisement
+ただの数学的発見のように思えますが、もしこの噂が本当なら、僕らのインターネットを支えている仕組みのひとつである
+RSA暗号
+が破られるかもしれない、とセキュリティ界隈にざわめきが広がっています。
+Scott Aaronson on his blog. I have also heard this. In fact, this rumor has persisted for about ten days, about both Anthropic and OpenAI.  Considering how closely their recent math results have mirrored each other, if one has it, they probably both do. This would crack RSA. https://t.co/s5AHbmcDFP
+— Andrew Curran (@AndrewCurran_)
+November 25, 2026
+RSA暗号って？
+RSAは、Webサイトとの通信の保護などに広く使われてきた暗号方式。
+「スーパーコンピュータを使っても、解読には1億年以上かかるから破られない」なんて説明を聞いたことはありませんか？ それがRSA暗号です。
+仕組みのキモとなるのは
+大きな数の素因数分解
+です。2つの大きな素数をかけ算するのは簡単ですが、その答えから元の2つの素数を割り出すのは、いまのコンピューターでは現実的な時間で終わりません。
+17×23＝391は、簡単にかけ算で計算できます。しかし逆に「391はどの素数とどの素数をかけたもの？」と聞かれると、組み合わせを試すしかない。これを何百桁にしたのがRSA暗号。
+この「割り出すのがとても難しい」性質が、RSAの安全性を支えています。ゆえに、
+もし素因数分解を効率よく解く方法
+が見つかれば...RSAで守られた通信は読み解かれてしまうかもしれないのです。
+RSA暗号が破られた場合、それを利用したインターネット上の通信、認証、デジタル署名が役立たずになってしまいます。
+また、「盗まれたけど暗号化されて読めないからセーフ」という機密データが、セーフでなくなるケースも考えられます。
+AIがインターネットの根底を変える、かも
+噂が本当ならば、RSAに頼る仕組みは作り直しが必要になります。量子コンピューター対策として、素因数分解の難しさに頼らない新しい暗号への切り替えはすでに始まっていますが、その切り替えを急ぐ必要が出てくるでしょう。
+昨今のAI研究所は、数学や計算機科学の難問を解いたと次々に発表しています。11月20日にはAnthropicの数学者がClaudeと一緒に、160年以上解かれていなかったリーマン予想の証明を見つけたと発表。11月下旬にはAnthropicとOpenAIが、計算機科学の未解決問題であるVP≠VNP予想の証明を公開しました。
+OpenAI has posted their own VP ≠ VNP proof in response to Anthropic's, and says their result 'was obtained on November 6, 2026.' Two weeks ago. The ETH papers were also released in an similar oneupmanship fashion. As with Anthropic's result, no name on the paper (my guess is this was GPT-Aeon). Also like Anthropic: no announcement, no blog post, no tweet.   This is a significant result, yet both OpenAI and Anthropic chose to simply dump it online with no comment. I was listening to a Scott Aaronson interview this morning where he said this specific result would update him toward 'a solution to P ≠ NP by the AIs might really be around the corner.' To me this is more evidence for my argument that both OpenAI and Anthropic are sitting on a dragon's hoard of scientific results they are not releasing to the public. The first massive 700+ paper OpenAI GitHub dump took five weeks for their model to generate. It's been seven weeks since then, and their internal model has continued to improve. They said they had it working on 4,000 problems. How many have been solved in the last seven weeks? Based on the last release, 1,000+ is not unreasonable.  I will quote OpenAI Chief Scientist Jakub Pachocki from the blog post 'Perplexity and Intelligence,' posted 48 hours ago:  'We have recently witnessed unprecedented acceleration in another domain. For more than a year, we have been posing open problems in mathematics to our models as one of the ways of evaluating them. Once we upgraded to a model of log-perplexity ~0.76, it started producing groundbreaking results. For many of us that have previously worked in mathematics and adjacent fields, seeing the resolutions to questions we've long thought about coming out of the model one after another in a single Slack thread felt deeply surreal.'  There have also been, of late, multiple rumors about breakthroughs in cryptography that I have been reluctant to post about for obvious reasons. Specifically, there have been rumors of an encryption breakthrough at Anthropic. What I personally took from the big OpenAI math release was that all encryption will be cracked much sooner than people are expecting, and that the rate of scientific discoveries will continually increase as we continue to scale up. No, not will increase, *has increased*. At both labs. We just don't know about it yet. Because unless you work at those labs, the current frontier is completely invisible. But it won't stay that way forever. Or to put it another way: prepare yourself for revelations.
+— Andrew Curran (@AndrewCurran_)
+November 24, 2026
+アーロンソン教授も、AIが見つけるアルゴリズムの中には
+いま使われている暗号を破るものも出てくるだろう
+と述べています。
+もちろん、そもそもの噂が真実なのかはまだわかりませんが、AIの進化はインターネットの在り方をも変えるかもしれません。
+Source:
+Shtetl-Optimized
+,
+X
+,
+Github
+,
+phys.org

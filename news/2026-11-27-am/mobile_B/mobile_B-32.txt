@@ -1,0 +1,43 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2159305.html
+TITLE: 「Apache Tomcat」に“致命的”な脆弱性、修正版は未公開／未認証ノードがクラスターに参加可能に。対象環境では「TLS 1.2」への切り替えを推奨
+SITE: 窓の杜
+PUBLISHED: 2026-11-26 14:40 (page: 2026-11-26T14:40:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2159/305/apache_tomcat.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/305/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/4873117054.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+「Apache Tomcat」に“致命的”な脆弱性、修正版は未公開
+未認証ノードがクラスターに参加可能に。対象環境では「TLS 1.2」への切り替えを推奨
+樽井 秀人
+2026年11月26日 14:40
+「JVNVU#92527429」
+脆弱性対策情報ポータルサイト「JVN」は11月25日、脆弱性レポート「JVNVU#92527429」を公開した。「Apache Tomcat」に11件の脆弱性が存在するという。
+開発元のThe Apache Software Foundation（ASF）によると、これらはv9.0/v10.1/v11.0系統に影響する。このうち1件は、深刻度がもっとも高い「Critical」と評価されている。
+この「Critical」と評価された脆弱性（CVE-2026-133325）は、クラスター通信を「TLS 1.3」と「TLS-PSK」で保護している場合に、認証されていないノードがクラスターに参加できてしまうというもの。影響を受けるのはv11.0.28～v11.0.29、v10.1.62、v9.0.124と、直近のバージョンに限られる。
+本脆弱性を修正したv11.0.30/v10.1.63/v9.0.125は、本稿執筆時点ではまだリリースされていない。それまではクラスターの暗号化を「TLS 1.2」（「TLS-PSK」）へ切り替えることが推奨されている。
+そのほかの10件のうち、以下の9件は11月13日公開のv11.0.29/v9.0.124、および11月16日公開のv10.1.62で修正済みだ。残る1件は「EncryptInterceptor」に関するもので、ASFは代替機能への移行を推奨している。
+CVE-2026-116600
+（Important）：OWBモジュールでWebSocketを利用する際のメモリリークによるサービス拒否（DoS）
+CVE-2026-116830
+（Important）：HTTP/2の初期接続処理におけるDoS
+CVE-2026-118028
+（Important）：「RewriteValve」で［F］［G］［R］フラグのルールに一致しても処理が止まらない
+CVE-2026-121649
+（Important）：「ExpiresFilter」が認証レイヤーによって設定された「Cache-Control: private」ヘッダーを削除し、機密情報がキャッシュされるおそれ
+CVE-2026-118436
+（Moderate）：「CGIServlet」でPOSTボディを処理する際のDoS
+CVE-2026-106012
+（Low）：RequestDispatcher.forward()で転送する際、認可が正しく行われない
+CVE-2026-116561
+（Low）：Jakarta Authentication（v9系統ではJASPIC）のsecureResponse()で例外が発生した際、保護されていないHTTP 200応答を返す
+CVE-2026-117517
+（Low）：「CVE-2026-25854」の修正が不完全
+CVE-2026-118233
+（Low）：HTTPアップグレード時のメモリリークによるDoS
+「EncryptInterceptor」の脆弱性（CVE-2026-95517、Moderate）は未修正で、同機能は非推奨となった。ASFは「TLS-PSK」への移行を推奨しており、「CVE-2026-133325」の修正版が公開されるまでは「TLS 1.2」を使うよう呼び掛けている。
+Amazonで購入
+「Apache Tomcat」関連商品
+Amazonで購入

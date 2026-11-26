@@ -1,0 +1,142 @@
+URL: https://www.publickey1.jp/blog/26/mcpskills_over_mcpmcp.html
+TITLE: MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+SITE: Publickey
+PUBLISHED: 2026-11-26 00:29 (page: )
+OG_IMAGE: https://www.publickey1.jp/2026/skills-over-mcp-beta.png
+IMAGES:
+- https://www.publickey1.jp/2026/skills-over-mcp-beta.png | fig
+- https://www.publickey1.jp/2026/google_preferred_source202608.png | Googleで優先する情報源としてこのWebサイトを追加する
+- https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png | このエントリーをはてなブックマークに追加
+- https://www.publickey1.jp/2024/fbshare_btn.png | fbシェア
+- https://www.publickey1.jp/2024/xpost_btn.png | Xポスト
+- https://www.publickey1.jp/2024/feedly_btn.png | Feedly
+- https://www.publickey1.jp/images/profile.jpg | photo of jniino
+
+TEXT:
+×
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+2026年11月26日
+AIエージェントと外部ツールを接続する業界標準となっているMCP（Model Context Protocol）に、新機能として「
+Skills over MCP
+」が
+β版として追加されました
+。
+Skills over MCPを利用することで、AIエージェントはMCP経由でMCPサーバからつねに最新のスキルを取得できるようになります。また、必要なときだけスキルを読み込めるためコンテキストの節約にもなります。
+下図はMCPの開発を主導するAnthropicのブログ「
+MCP servers can now ship skills, run tasks, and more with Claude
+」からの引用です。
+AIエージェントと外部ツールをつなぐMCP
+MCPはAIエージェントと外部ツールを接続するためのプロトコルとして登場しました。
+例えばAIエージェントがデータを集計するためにデータベースの操作を行う場合、あるいはAIエージェントがミーティングを設定するために共有カレンダーを操作する際などに、AIエージェントはMCP経由でデータベースや共有カレンダーなどの外部ツールと接続し、操作を行います。
+このとき、AIエージェントが的確に外部ツールを操作するためには、AIエージェントにスキルを注入することが必要です。
+いままでMCPとそれを使うスキルは別だった
+これまでこのスキルは、AIエージェントの実行環境においてSKILL.mdファイルなどのスキルファイルを用いてAIエージェントに提供されてきました。
+しかしこの方法だと、外部ツールがアップデートされて機能が追加されたり更新されたとしても古いスキルのまま放置される可能性があることや、最初から多数の外部ツールのスキルを読み込ませることで余計なコンテキストが増えてしまう、といった課題がありました。
+MCPサーバからスキルを読み込ませる
+今回β版となった新機能Skills over MCPは、AIエージェントがMCP経由で外部ツールを操作できるだけでなく、MCP経由でスキルも読み込むことができるようになるというものです。
+これによりAIエージェントはつねに外部ツールが用意した最新のスキルを得ることができます。
+またAIエージェントが必要なときだけスキルを読み込むことができるため、コンテキストを効率的に使うことも可能になります。
+AnthropicはこのパブリックベータとなったSkills over MCPの対応を開始しており、ClaudeおよびClaude CodeのPro、Max、Ultraプランではデフォルトで有効化されるとのことです。
+あわせて読みたい
+機械学習・AI
+≫次の記事
+さくらインターネット、AWSやAzureなど他クラウドでバックアップ可能な新ストレージ「Object Storage Suite」（OS2）発表
+≪前の記事
+「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+タグクラウド
+クラウド
+AWS
+/
+Azure
+/
+Google Cloud
+クラウドネイティブ
+/
+サーバレス
+クラウドのシェア
+/
+クラウドの障害
+コンテナ型仮想化
+プログラミング言語
+JavaScript
+/
+Java
+/
+.NET
+WebAssembly
+/
+Web標準
+開発ツール
+/
+テスト・品質
+アジャイル開発
+/
+スクラム
+/
+DevOps
+データベース
+/
+機械学習・AI
+RDB
+/
+NoSQL
+ネットワーク
+/
+セキュリティ
+HTTP
+/
+QUIC
+OS
+/
+Windows
+/
+Linux
+/
+仮想化
+サーバ
+/
+ストレージ
+/
+ハードウェア
+ITエンジニアの給与・年収
+/
+働き方
+殿堂入り
+/
+おもしろ
+/
+編集後記
+全てのタグを見る
+Blogger in Chief
+Junichi Niino（jniino）
+IT系の雑誌編集者、オンラインメディア発行人を経て独立。2009年にPublickeyを開始しました。
+（
+詳しいプロフィール
+）
+Publickeyの新着情報をチェックしませんか？
+Twitterで ：
+@Publickey
+Facebookで ：
+Publickeyのページ
+RSSリーダーで ：
+Feed
+最新記事10本
+さくらインターネットが大規模イベント開催。田中社長「日本から世界へ挑戦するためのデジタル基盤を支える」
+さくらのクラウド、新ネットワーク基盤、新データベースサービスなど投入。東京リージョン第三ゾーン新設も発表
+さくらインターネット、AIを月額固定料金で提供する「シンプルAI」発表、システムへの組み込み用途を想定
+さくらインターネット、AWSやAzureなど他クラウドでバックアップ可能な新ストレージ「Object Storage Suite」（OS2）発表
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+「Google Workspace MCPサーバ」と「Google Workspace CLI」が正式版としてリリース
+AWS、DynamoDB互換データベースをローカルマシンで構築可能にするオープンソース「ExtendDB」がバージョン1.0に到達
+jQuery 4.1正式版がリリース、内部実装をquerySelectorAllに統一でより高速に。jQuery 3.x系最後となるjQuery 3.8も同時リリース
+DHH氏が開発する「Omarchy 4.5」リリース。一般的なマルチウィンドウをサポート。最速7秒で導入、Appleシリコン対応、Webアプリ版MS Office用ランチャーなど新機能
+PostgreSQL 19正式リリース。ノンブロッキングなREPACKやI/Oワーカーのオートスケールなど新機能
+Feed / RSS
+X/Twitter
+Facebook
+About us
+Publickeyについて／運営者について
+お問い合わせ
+広告について
+プライバシーポリシー
+読者が安心して記事を読めるようにするための取り組みについて

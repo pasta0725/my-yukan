@@ -1,0 +1,42 @@
+URL: https://forest.watch.impress.co.jp/docs/serial/yajiuma/2159318.html
+TITLE: 「Windows Update」後にPCが起動しない！ 古いDVD書き込み用ドライバーが関係？／初期化せずに復旧できた事例が「X」（Twitter）で報告される【やじうまの杜】
+SITE: 窓の杜
+PUBLISHED: 2026-11-26 15:11 (page: 2026-11-26T15:11:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2159/318/windows11.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/318/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/432409814X.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+やじうまの杜
+「Windows Update」後にPCが起動しない！ 古いDVD書き込み用ドライバーが関係？
+初期化せずに復旧できた事例が「X」（Twitter）で報告される
+樽井 秀人
+2026年11月26日 15:11
+「やじうまの杜」では、ニュース・レビューにこだわらない幅広い話題をお伝えします。
+渋川パソコンサポートが公開した、Windows Update後の起動トラブルの復旧事例
+2026年10月のプレビューパッチ「KB5127936」
+以降を適用したWindows 11環境で、「Windows Update」の適用後に起動しなくなる事例が報告されているようです。
+本日お預かりしたDELL PCもこれが原因でした
+メーカーロゴを過ぎWindowsが起動する瞬間に再起動が入りそれを繰り返します
+一瞬ハードウェア障害も疑う症状ですがBIOSは正常なのでその線は薄いと判断
+i7 8thだったので世代的に怪しいと思いPxHlpa64を確認したらビンゴ
+無効化しサクッと修復・起動です https://t.co/m0rl5oi1kZ
+— 渋川パソコンサポート (@shibukawa_pc)
+November 25, 2026
+事例で共通していたのは、古いDVD書き込み用ドライバー「PxHlpa64.sys」がWindowsの起動時に読み込まれていたことと、［仮想化ベースのセキュリティ］（VBS）が有効になっていたこと。渋川パソコンサポート（
+@shibukawa_pc
+）さんによると、「Roxio Creator LJ」「Roxio BackOnTrack」「Corel WinDVD」などがインストールされた2018年前後のPCで、この問題が起きることがあるようです。
+Microsoftは2026年10月より、VBS（Virtualization-Based Security）を利用した保護機能
+［メモリ整合性］を順次有効化
+しています。上記アプリを販売しているCorel社も旧版の「PxHlpa64.sys」とメモリ整合性の互換性問題を案内しており、今回の起動不良にも古いドライバーと保護機能の組み合わせが関係しているものと思われます。
+もしトラブルに見舞われた場合は、まず回復環境の［スタートアップ修復］を試してみてください。それでもダメであれば、渋川パソコンサポートさんが公開している
+復旧例
+を参考にしながら作業するとよいでしょう。
+めっちゃ簡単に言うと、2018年前後の国産PCでRoxio Creator LJやRoxio BackOnTrack、Corel WinDVDなどがインストールされてると、WindowsUpdate後に起動しなくなる事があるので気を付けてくださいってのと
+そうなった際初期化せずに治す方法です 単純な初期化だと原因のドライバが残り再発する場合も
+— 渋川パソコンサポート (@shibukawa_pc)
+November 24, 2026
+Amazonで購入
+「復旧」関連商品
+Amazonで購入
