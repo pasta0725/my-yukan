@@ -1,0 +1,38 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2159320.html
+TITLE: パスワード管理「1Password」でデータ流出、一部顧客の氏名やメールアドレスなど／パスワード保管庫やその鍵は無事、招待・復旧メールを装ったフィッシングに注意
+SITE: 窓の杜
+PUBLISHED: 2026-11-26 07:55 (page: 2026-11-26T07:55:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2159/320/1password.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/320/image1_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0CPHQBQGC.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+パスワード管理「1Password」でデータ流出、一部顧客の氏名やメールアドレスなど
+パスワード保管庫やその鍵は無事、招待・復旧メールを装ったフィッシングに注意
+樽井 秀人
+2026年11月26日 07:55
+「1Password」の公式ブログ
+加AgileBitsは11月25日（現地時間、以下同）、パスワード管理サービス「1Password」のバックエンドシステムの一部が不正アクセスを受け、一部顧客の氏名やメールアドレスなどが流出したと発表した。同社によると、ユーザーのパスワード保管庫（Vault）の中身や、それを保護する鍵への影響はなかった。
+同社は11月19日、従業員の企業用「GitHub」アカウントに攻撃者がアクセスした形跡があるとして調査を開始。攻撃者がこのアカウントを使ってソースコードにアクセスしてバックエンドサービスへ悪意あるコードをプッシュしたほか、顧客に関する管理データをダウンロードしたことが判明した。攻撃者が持ち出したアカウント記録には、以下の情報が含まれる。
+氏名とメールアドレス
+アカウントとユーザーの識別子、アカウントの作成日時と最終サインイン日時
+公開鍵（設計上公開されているもので、ユーザーのセキュリティには影響しない）
+Secure Remote Password（SRP）プロトコルのパラメーター（アカウントへのアクセスには利用できない）
+招待、プロビジョニング、アカウント復旧に関する一部のメールのリンクに含まれるトークン
+バージョンやファイルの識別番号など、アカウントに関する機密性のない内部メタデータ
+さらに攻撃者は、非公開リポジトリのソースコードをコピーし、開発・配布に使うCI/CDシステムにもアクセスしていた。ソースコードに顧客データやユーザーの秘密情報は含まれなかったが、同社は侵入経路を遮断し、漏洩した可能性のある内部認証情報を交換または失効させたという。封じ込めと復旧措置の検証は外部の専門家に依頼しており、アプリとサービスは通常どおり稼働しているとのこと。
+なお、流出した招待・復旧用のトークンだけではアカウントにアクセスできないが、念のため、確認コードを数字6桁から英数字10文字へ変更して推測を難しくするなどの対策がとられたという。該当する少数のユーザーには個別に通知済みで、流出したプロビジョニング用トークンによるアカウント乗っ取りの証拠は見つかっていないとしている。
+We’re sharing an update about a recent security incident involving some of 1Password’s backend systems. 𝗡𝗼 𝗰𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝘃𝗮𝘂𝗹𝘁 𝗰𝗼𝗻𝘁𝗲𝗻𝘁, 𝗶𝗻𝗰𝗹𝘂𝗱𝗶𝗻𝗴 𝘀𝗲𝗰𝗿𝗲𝘁𝘀, 𝗽𝗮𝘀𝘀𝘄𝗼𝗿𝗱𝘀 𝗮𝗻𝗱 𝗼𝘁𝗵𝗲𝗿 𝘃𝗮𝘂𝗹𝘁 𝗶𝘁𝗲𝗺𝘀, 𝗼𝗿 𝘁𝗵𝗲 𝗸𝗲𝘆𝘀 𝘁𝗵𝗮𝘁 𝗽𝗿𝗼𝘁𝗲𝗰𝘁 𝘁𝗵𝗲𝗺 𝘄𝗲𝗿𝗲 𝗮𝗰𝗰𝗲𝘀𝘀𝗲𝗱 𝗼𝗿 𝗰𝗼𝗺𝗽𝗿𝗼𝗺𝗶𝘀𝗲𝗱 𝗱𝘂𝗿𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗶𝗻𝗰𝗶𝗱𝗲𝗻𝘁. We have confirmed that all customer vaults and credentials remain secure. Our services continue operating normally.
+Independent cybersecurity experts have been engaged to validate our containment approaches and remediation efforts.
+While we took immediate steps to contain the incident, the attacker gained access to some of our backend systems and accessed a limited amount of customer account information from a subset of our customers, including names and email addresses.
+No action is required by customers, their 1Password accounts remain secure. As always, please keep alert to unexpected phishing attempts.
+Your vault secrets are encrypted with keys that only you hold, so we can’t access them, and they cannot be retrieved from our systems.
+You can read more about the steps we’ve taken on our blog at: https://t.co/9fbzzAJYQ9
+— 1Password (@1Password)
+November 25, 2026
+本件に関し、ユーザーがアカウント設定やパスワードを変更する必要はない。ただし、「1Password」を名乗る心当たりのない招待やアカウント復旧の連絡には注意したい。同社がメールや電話などでアカウントのパスワードやシークレットキー（Secret Key）を尋ねることはないとしている。
+Amazonで購入
+「1Password」関連商品
+Amazonで購入

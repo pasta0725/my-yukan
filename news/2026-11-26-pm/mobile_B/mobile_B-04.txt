@@ -1,0 +1,27 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2159364.html
+TITLE: LLMが動くだけのOS。24KBの全アセンブリ製Qwen3-0.6B専用
+SITE: PC Watch
+PUBLISHED: 2026-11-26 11:00 (page: 2026-11-26T11:00:47+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2159/364/1.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2159/364/1_l.png | 
+- https://asset.watch.impress.co.jp/img/pcw/docs/2159/364/2_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B002DEKTH0.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+LLMが動くだけのOS。24KBの全アセンブリ製Qwen3-0.6B専用
+劉 尭
+2026年11月26日 11:00
+LLMを動かすだけならOSの余計な機能は不要――それは理にかなっていて、実際に速かった。Alexey Fateev氏(GitHubハンドル名: alesha-pro)は11月26日(日本時間)、LLM専用OS「asm-llm-os.elf」をX(旧Twitter)で発表した。PCを起動するとそのまま「Qwen3-0.6B」とチャットできる。カーネルのサイズは約24KBしかない。ライセンスはMIT。
+同氏は純粋なx86-64アセンブリで記述した3つのLLMプロジェクト「llm.asm」を公開している。フェーズ1として、NASMで記述したLinux向けのQwen3-0.6B用推論エンジン「01-qwen3-inference」を開発。これをベースに、Linuxへの依存をなくし、OS部分も含めてアセンブリで記述したのが、フェーズ2となるasm-llm-os.elfだ。C/C++やRustは使っておらず、libcやlibm、動的リンカーなど、一切のランタイムに依存しない。
+動作には、AVX2/FMA/F16Cに対応したx86-64 CPUが必要。メモリはモデルの消費分(FP16スケールで614MiB、FP32スケールで649MiB)に加え、KVキャッシュなどに使う449MiBの領域が必要とされている。ディスクドライバはなく、OSとモデルはすべてRAM上で動作するため、ディスク容量0GBの仮想マシンでも起動できる。コンテキスト長は標準で2,048トークンで、上限に近づくと会話履歴(KVキャッシュ)がリセットされる。
+ドライバは、COM1シリアル、80×25のカラーVGAコンソール、PS/2キーボード、PIT/RDTSCによる時間計測、そしてACPIによる電源オフだけ。ベアメタルで動作するため高速で、カーネルの起動から対話プロンプトの表示まではわずか74～94ms。ISOから起動するProxmox VE上の仮想マシンでも、5秒未満でプロンプトが表示されるという。4GiBまでのメモリ空間を2MiBの巨大ページでマッピングしたことで、614MiBあるモデルを読むときにページテーブルを細かくたどらずに済む。
+同氏がAMD EPYC 7642を搭載したマシンで計測したベンチマークによれば、asm-llm-os.elfのデコード速度は、Linux上でネイティブ動作させたllama.cpp(CPU動作、Q8_0)の1.31～1.54倍(1～16スレッド)だったという。16vCPUのQEMU/KVM仮想マシンでは134.94tok/sを記録し、llama.cppの103.03tok/sを31%上回った。
+I deleted Linux completely, baked Qwen3-0.6B into a 24 KB pure x86-64 assembly OS, and it runs up to 54% faster than native Linux llama.cpp.
+The entire Multiboot OS binary (asm-llm-os.elf) is 24,252 bytes, written from scratch without Linux, Windows, C, Rust, or libc. It boots…
+pic.twitter.com/q0t2E5GNyb
+— Alexey Fateev (@superalesha)
+November 25, 2026
+「CPU」関連アイテム
+Amazonで購入

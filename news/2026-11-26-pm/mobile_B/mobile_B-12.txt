@@ -1,0 +1,30 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2159286.html
+TITLE: NVIDIA、LLM方式の画像生成AI「Nemotron-Labs-Image」を無償公開
+SITE: PC Watch
+PUBLISHED: 2026-11-25 22:29 (page: 2026-11-25T22:29:23+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2159/286/01.png
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2159/286/01_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0GQ2WNFHT.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+NVIDIA、LLM方式の画像生成AI「Nemotron-Labs-Image」を無償公開
+竹元 かつみ
+2026年11月25日 22:29
+LLM(大規模言語モデル)が文章を出力するのと同じ方式で画像を生成するAIモデルが、無償でダウンロードできるようになった。NVIDIAが「Nemotron-Labs-Image-30B-A3B」のオープンウェイト(モデルの重み)を、11月25日(日本時間)までにHugging Faceで公開した。利用は非商用の研究・評価目的に限られる。
+Nemotron-Labs-Image-30B-A3Bは、文章の指示から画像を生成するAIモデルだ。NVIDIAが構想する視覚生成フレームワーク「Nemotron-Labs-VisualCreation」のうち、ラスター画像(ピクセルの集まりで表す画像)の生成を担う部分にあたる。総パラメータ数は30B(300億)だが、計算量を抑えるMoE(Mixture-of-Experts)型のため、生成時に動くアクティブパラメータ数は3B(30億)だけだ。コンテキスト長(一度に扱える入力量)は26万2,144トークン。
+最大の特徴は生成の方式だ。Stable Diffusionなどがノイズを段階的に取り除くデノイジング方式で画像を仕上げるのに対し、本モデルはLLMが文章をトークン(処理単位)ごとに出力するのと同じ自己回帰方式を採用する。土台は同社のLLM「Nemotron 3 Nano」で、文章用の語彙に19万6,560個の「視覚トークン」を追加し、画像もトークンの列として出力できるようにした。出力された視覚トークンは、付属の変換モデル(トークナイザ)がピクセルに復元する。
+フレームワーク全体は、エージェント(AIが自律的に作業を進める使い方)が文章と画像をまとめて扱う視覚制作を掲げており、本モデルが描画を担うのはそのうちラスター画像の経路だ。もう1つの経路では、グラフやWebページのような内容を、SVGやHTML/CSS、グラフ描画コードといったプログラムの形で出力し、レンダリングして画像にする。コードが残るため、生成後も文字や配置を直接編集できる。この経路を担うのがモデル群「Nemotron-Labs-VisionCode」で、生成した画像を編集できるWebページに埋め込む組み合わせも想定する。
+公開されたのは、フレームワークの一部にとどまる。本体と対をなす実行環境(ハーネス)と、前述のNemotron-Labs-VisionCodeは「法務上の確認が済み次第公開」とされ、時期は示されていない。
+Nemotron-Labs-Image-30B-A3Bの主な仕様
+入手先とライセンス
+: Hugging Faceの「nvidia/Nemotron-Labs-Image-30B-A3B」から無償でダウンロードできる。ライセンスはNVIDIA Licenseで、非商用の研究・評価目的のみ利用可
+規模と方式
+: 総パラメータ数30B(300億)、生成時に動くのは3B(30億)のMoE型。デノイジングではなく、視覚トークンを順に出力する自己回帰方式
+生成サイズ
+: 縦横とも16の倍数で指定可。推奨は1,024×1,024ピクセルなど4種
+動作環境
+: LinuxとPython 3.12、CUDA 13.0対応ドライバが必要。公式サンプルはH100 80GBを4基使用。Diffusers非対応で、推論はvLLMを土台にした付属コードで実行
+「画像生成AI」関連アイテム
+Amazonで購入
