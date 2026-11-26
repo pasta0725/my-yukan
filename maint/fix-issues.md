@@ -1,5 +1,5 @@
-RESULT: FIXED=0 PARTIAL=1 HOLD=1 KEEP=0 NONE=0 COMMIT=ad5b58d
-#54 保留：Colabに残り単位があり、借りられない理由の確認待ち
-#61 一部直した（残りは保留）：少ない候補も残すよう修正し、担当の重複と画像の説明の決まりを明記
-実行：https://github.com/pasta0725/my-yukan/actions/runs/45715649073
-run_id: 45715649073
+RESULT: FIXED=1 PARTIAL=0 HOLD=0 KEEP=1 NONE=0 COMMIT=30cb0c9
+#61 保留のまま：記事不足や取得できない例が続いているため保留のまま
+#64 直した：読み込みが止まった画像だけを飛ばすように修正
+実行：https://github.com/pasta0725/my-yukan/actions/runs/45785613528
+run_id: 45785613528
