@@ -1,0 +1,160 @@
+{
+ "id": "mobile-edge-lockdown-mode",
+ "category": "mobile",
+ "title": "Edgeが「ロックダウンモード」を試験提供",
+ "summary": "狙われやすい人は守りを強められますが、一部の地図やゲームに支障が出る場合があります。",
+ "image": {
+  "src": "https://forest.watch.impress.co.jp/img/wf/list/2159/159/microsoft_edge.jpg",
+  "kind": "ogp",
+  "credit": "窓の杜",
+  "page": "https://forest.watch.impress.co.jp/docs/news/2159159.html"
+ },
+ "visual": {
+  "icon": "lock",
+  "kicker": "Edge保護"
+ },
+ "body": [
+  {
+   "type": "keys",
+   "items": [
+    "Edgeが狙われやすい人に向け、パソコン用の試験版で新しい保護機能を公開しました。",
+    "サイトが画面を描く機能を制限して、ブラウザーを狙う攻撃の入り口を減らします。",
+    "普段のEdgeは設定を変えずに使えます。試す人は、仕事で使うサイトの動きを確かめます。"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "米Microsoftは11月、Edgeの保護機能「ロックダウンモード」を発表しました。ネットで狙われやすい人に向け、試験版で提供しています。"
+  },
+  {
+   "type": "img",
+   "src": "https://asset.watch.impress.co.jp/img/wf/docs/2159/159/image1_l.png",
+   "kind": "ogp",
+   "credit": "窓の杜",
+   "caption": "Microsoftの公式ブログ「Microsoft Browser Vulnerability Research」の記事",
+   "page": "https://forest.watch.impress.co.jp/docs/news/2159159.html"
+  },
+  {
+   "type": "h",
+   "text": "試験の対象とサイトへの影響"
+  },
+  {
+   "type": "p",
+   "text": "窓の杜は、発表日を現地時間の11月14日と報じました。WPTeqは、公式ブログの公開日を現地時間の11月13日と伝えています。"
+  },
+  {
+   "type": "p",
+   "text": "Help Desk Geekによると、試せるのはパソコン向けのCanary（試験版）です。利用者が選んで使う機能で、全員の初期設定でオンにする予定はありません。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftが想定するのは、狙いを定めた攻撃を受けやすい人や組織です。例に挙げているのは、記者や企業の経営者です。セキュリティの研究者やシステム管理者も含みます。端末の使い方を厳しく制限している環境でも、役立つとみています。"
+  },
+  {
+   "type": "p",
+   "text": "描画に頼るサイトでは、一部の機能が使えなくなる場合があります。地図の表示やゲームの動きに支障が出るのが例です。デザインツールやグラフを操作するサイトも影響を受けます。"
+  },
+  {
+   "type": "h",
+   "text": "新しい保護機能の仕組み"
+  },
+  {
+   "type": "p",
+   "text": "このモードは、サイトがWebGL（WebGL2を含む）とWebGPUを使うのを止めます。どちらも、サイトが画面を描くためにGPU（画像の計算を受け持つ部品）を使う仕組みです。"
+  },
+  {
+   "type": "p",
+   "text": "手の込んだ攻撃では、まずページを処理する機能の弱点を突いて、ブラウザーに不正な指示を実行させます。次にGPUを扱う機能などを狙い、本来は触れないデータや機能に近づきます。Microsoftは、描画への入り口を閉じて、この連鎖を途中で止める狙いです。"
+  },
+  {
+   "type": "h",
+   "text": "これまでの対策と効果"
+  },
+  {
+   "type": "p",
+   "text": "Edgeの従来の保護機能は「Enhanced Security Mode」（ESM）です。Microsoftは2022年2月16日に、Edge 98で正式提供を発表しました。ウェブ上で動くJavaScriptの処理を速める仕組み（JIT）を止めます。新しいモードは、そこに画面描画の制限を加えます。"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは、2022年2月以降に攻撃に使われた弱点を調べました。対象は、Edgeなどの土台になっているChromiumです。その弱点の約55%に、従来の保護機能が有効でした。同じ時期に本来できない操作まで可能にした攻撃の約60%は、新しいモードで防げたと見積もっています。"
+  },
+  {
+   "type": "p",
+   "text": "名前は、Appleが2022年にiOS 16などで導入した同名の機能にちなんでいます。Appleの機能は、ウェブの閲覧を含め、端末全体に制限をかけます。"
+  },
+  {
+   "type": "h",
+   "text": "試験版で設定を切り替える手順"
+  },
+  {
+   "type": "p",
+   "text": "まずEdge Canaryを最新版に更新します。更新したら、アドレスバーで「edge://flags/#edge-sdsm-plus」を開きます。切り替える項目は「Enhanced Security Mode Plus」です。［Enabled］（有効）を選び、Edgeを再起動します。"
+  },
+  {
+   "type": "p",
+   "text": "次に設定の「edge://settings/privacy/security」を開きます。「Web 上のセキュリティを強化する」をオンにし、［厳重］を選びます。「WebGL グラフィックスをブロックする」と「WebGPU グラフィックスをブロックする」が出ます。"
+  },
+  {
+   "type": "p",
+   "text": "ESMを使ったことがないプロファイル（利用者ごとの設定）では、初めから両方ともオンです。すでにESMを使っている場合は、自分で両方をオンにします。開いているページは再読み込みします。描画機能を止めたページでは、アドレスバーに「ロックダウンが有効」と出ます。"
+  },
+  {
+   "type": "p",
+   "text": "診断画面の「Enhanced Security Mode」で、設定や遮断の履歴を確認できます。サイトが動かないときは、設定のヘルプとサポートから、Microsoftに報告します。「Lockdown Mode」と書き、使えなかったサイトや行おうとした操作も添えます。"
+  },
+  {
+   "type": "h",
+   "text": "正式提供に向けた予定"
+  },
+  {
+   "type": "p",
+   "text": "Microsoftは試験結果をもとに、何を制限するのかを分かりやすく説明する予定です。信頼できるサイトだけで制限を緩める設定も計画しています。現在はGPUの処理が対象で、今後は数回の更新をかけて制限できる機能を増やす見通しです。通常版で使える日はまだ発表されていません。"
+  },
+  {
+   "type": "stat",
+   "items": [
+    {
+     "value": "約55%",
+     "label": "ESMが有効だった脆弱性"
+    },
+    {
+     "value": "約60%",
+     "label": "ロックダウンで防げる見積もり"
+    }
+   ]
+  },
+  {
+   "type": "point",
+   "items": [
+    "普段のEdgeを使う人は、今のところ設定を変える必要はありません。",
+    "狙われやすい仕事の人や管理者は、Canaryを最新版にして、仕事で使うサイトが動くか確かめます。",
+    "試験版でサイトが動かないときは、設定のヘルプとサポートから、使えなかったサイトと操作を報告します。"
+   ]
+  },
+  {
+   "type": "rina",
+   "text": "守りを強めたい人でも、仕事に欠かせないサイトが止まると困ります。信頼できるサイトだけ制限を緩められるかが、普段も使うかどうかの分かれ目になりそうです。"
+  }
+ ],
+ "source_name": "窓の杜",
+ "source_url": "https://forest.watch.impress.co.jp/docs/news/2159159.html",
+ "published": "2026-11-25",
+ "refs": [
+  {
+   "name": "窓の杜",
+   "url": "https://forest.watch.impress.co.jp/docs/news/2159159.html"
+  },
+  {
+   "name": "Microsoft",
+   "url": "https://microsoftedge.github.io/edgevr/posts/Lockdown-Mode/"
+  },
+  {
+   "name": "Help Desk Geek",
+   "url": "https://helpdeskgeek.com/microsoft-edge-lockdown-mode-canary/"
+  },
+  {
+   "name": "WPTeq",
+   "url": "https://wpteq.org/windows/20261120-microsoft-edge-lockdown-mode-webgl-webgpu-test/"
+  }
+ ]
+}
