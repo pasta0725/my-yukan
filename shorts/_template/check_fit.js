@@ -4,6 +4,7 @@
 // usage (in the short's folder): node ../_template/check_fit.js      exit 0 = none, 5 = some (fix them before rendering), 6 = only the palette differs
 //   OVERFLOW <scene> t=<s>s  "<text>"  <n>px outside its box
 //   BREAK <scene> t=<s>s  "<line1／line2>"  <what is wrong>
+//   BUBBLE <scene or function>  <what is wrong>   (a speech bubble drawn by hand, not with talkBox)
 const { chromium } = require('playwright');
 const { check } = require('./wrap_rules');
 (async () => {
@@ -12,6 +13,16 @@ const { check } = require('./wrap_rules');
   const fs = require('fs'); const tpl = fs.readFileSync(__dirname + '/pal.js', 'utf8').trim();
   const own = fs.existsSync(D + 'pal.js') ? fs.readFileSync(D + 'pal.js', 'utf8').trim() : '';
   let palBad = false; if (D !== __dirname + '/' && own !== tpl) { palBad = true; console.log('PALETTE pal.js がひな形（shorts/_template/pal.js）と違います。配色が変わるので、ひな形をそのままコピーしてください'); }
+  // hand-made speech bubble (2026-11-26, user: 「フキダシが変」): a box (roundRect) and a tail (lineTo) drawn as two shapes leave the box's edge across the tail's root.
+  // Speech in a scene must use the template's person() + talkBox() (one outline). Only lines that are not in the template are looked at.
+  const tplLines = new Set(fs.readFileSync(__dirname + '/short.html', 'utf8').split('\n').map(x => x.trim()));
+  const handBubbles = []; let owner = '';
+  if (D !== __dirname + '/') for (const raw of fs.readFileSync(D + 'short.html', 'utf8').split('\n')) {
+    const ln = raw.trim(); const m = ln.match(/^(?:function\s+)?(\w+)\s*\([^)]*\)\s*\{/); if (m) owner = m[1];
+    if (tplLines.has(ln)) continue;
+    for (const seg of ln.split(/beginPath\(\)/)) if (/roundRect\(/.test(seg) && /lineTo\(/.test(seg.slice(seg.indexOf('roundRect(')))) { handBubbles.push(owner || '?'); break; }
+  }
+  for (const o of new Set(handBubbles)) console.log(`BUBBLE ${o}  四角としっぽを別々に描いた吹き出し。ひな形の person()・talkBox() で描き直す`);
   const b = await chromium.launch({ args: ['--allow-file-access-from-files'] }); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   await p.goto('file://' + D + 'short.html'); await p.evaluate(() => window.ready);
   // short.html made from the template after 2026-11-18 logs its layouts (window.WRAP_LOG); an older copy only has wrapJa(), which is watched instead
@@ -40,6 +51,6 @@ const { check } = require('./wrap_rules');
   for (const x of seen.values()) console.log(`OVERFLOW ${x.scene} t=${x.t}s  "${x.text}"  ${x.over}px outside its box`);
   console.log(`breaks: ${brk.size} captions checked, ${bads.length} break the rules`);
   for (const x of bads) console.log(`BREAK ${x.scene} t=${x.t}s  "${x.lines.join('／')}"  ${x.bad.join('; ')}`);
-  if (seen.size || bads.length) process.exit(5);
+  if (seen.size || bads.length || handBubbles.length) process.exit(5);
   if (palBad) process.exit(6);
 })();
