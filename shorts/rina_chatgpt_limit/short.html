@@ -202,8 +202,8 @@ const S={
      const k=u-t0;const sc=u<0.05?1:0.9+0.1*back(k/0.18);g.save();g.translate(CX,1400);g.scale(sc,sc);g.translate(-CX,-1400);bigTelop(last,1400);g.restore();});},
  // and this is what the company itself says (OpenAI's e-mail to subscribers)
  tease(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.6,telHas(L,'会社')),d-0.7);
-   withEnter(enter(u,0),()=>{ipic('email',130,400,820,640,28,1.7+0.05*u/Math.max(1,d),0.62,0.42);creditAt(BC,935,1020);});
-   if(u>t2)tagI('会社自身の説明',CX,1110,(u-t2)/0.3,C.acc,C.onAcc,60);},
+   withEnter(enter(u,0),()=>{ipic('email',130,400,820,640,28,1.25+0.04*u/Math.max(1,d),0.6,0.4);creditAt(BC,950,1075);});
+   if(u>t2)tagI('会社自身の説明',CX,1170,(u-t2)/0.3,C.acc,C.onAcc,60);},
  // "1分でまとめます" (reused pose clip): Crypto Briefing's picture behind her, a little darker
  hook(u,d,L){abs(()=>{fullPic('bc',1.0+0.06*u/Math.max(1,d),0.5,0.45,0.4);creditAt(BC,1000,340);bigRina(HOOK_R);});},
  // chat + work slide together into one screen
@@ -224,25 +224,23 @@ const S={
    withEnter(enter(u,t2),()=>{webIcon(740,720,1.2,C.acc);text('サイト',740,920,56,C.text,'center',900);});},
  // December: Plus, Pro, Business
  dec(u,d,L){bg(u);mini(u);
-   withEnter(enter(u,0),()=>{rrect(370,400,340,300,36,C.card);g.fillStyle=C.warn;g.beginPath();g.roundRect(370,400,340,80,[36,36,0,0]);g.fill();text('12月',CX,600,110,C.acc,'center',900,300);});
+   withEnter(enter(u,0),()=>{const sc=0.9+0.1*back(u/0.4);g.translate(CX,550);g.scale(sc,sc);g.translate(-CX,-550);rrect(370,400,340,300,36,C.card);g.fillStyle=C.warn;g.beginPath();g.roundRect(370,400,340,80,[36,36,0,0]);g.fill();text('12月',CX,600,110,C.acc,'center',900,300);});
    const tp=[telHas(L,'Plus'),telHas(L,'Pro'),telHas(L,'Business')];
-   ['Plus','Pro','Business'].forEach((s,i)=>{const t0=Math.max(0.3+i*0.35,tp[i]||0);if(u>t0)tagI(s,CX,800+i*130,(u-t0)/0.3,C.brand,'#FFFFFF',56);});},
+   },
  // chat, work and Codex all use the same allowance
  share(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'同じ枠')),d-0.8);
    ['会話','作業','Codex'].forEach((s,i)=>{const x=250+i*290;withEnter(enter(u,0.1+i*0.25),()=>{g.beginPath();g.arc(x,520,110,0,7);g.fillStyle=i==2?C.card2:C.card;g.fill();g.lineWidth=6;g.strokeStyle=C.brand;g.stroke();
      text(s,x,522,s==='Codex'?50:60,i==2?'#FFFFFF':C.brand,'center',900,190);});
      if(u>t2)arrowV(x,650,760,C.sub,(u-t2)/0.4,26);});
    if(u>t2+0.2)gauge(150,820,780,130,[[0.34,C.brand],[0.33,C.acc],[0.33,C.card2]],enter(u,t2+0.2));
-   if(u>t2+0.4)tagI('同じ枠',CX,1060,(u-t2-0.4)/0.3,C.acc,C.onAcc,60);},
+   },
  // until now: talking to the advanced model had its own limit
  before(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'別')),d-0.7);
-   tagI('これまで',CX,420,u/0.3,C.card2,'#FFFFFF',60);
    withEnter(enter(u,0.2),()=>{text('会話',CX,560,56,C.brand,'center',900);});gauge(190,610,700,110,[[1,C.brand]],enter(u,0.25));
    withEnter(enter(u,0.4),()=>{text('作業',CX,820,56,C.acc,'center',900);});gauge(190,870,700,110,[[1,C.acc]],enter(u,0.45));
    if(u>t2)tagI('別の上限',CX,1080,(u-t2)/0.3,C.brand,'#FFFFFF',56);},
  // from now: the longer you chat, the less is left for work
  after(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'作業')),d-0.7);const f=0.3+0.5*ease((u-0.3)/Math.max(0.5,t2));
-   tagI('これから',CX,420,u/0.3,C.acc,C.onAcc,60);
    gauge(150,620,780,150,[[f,C.brand,'会話'],[1-f,C.acc,'作業']],enter(u,0.1));
    if(u>t2)arrowV(150+780*(f+(1-f)/2),820,1000,C.warn,(u-t2)/0.4,40);
    if(u>t2+0.3)tagI('作業の分が減る',CX,1110,(u-t2-0.3)/0.3,C.warn,'#FFFFFF',56);},
@@ -250,8 +248,7 @@ const S={
  instant(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'使い切って')),d-0.7);
    stamp('ただし',CX,430,u/0.25,C.warn,64);
    withEnter(enter(u,0.3),()=>{card(220,560,640,260,40,C.card2);text('Instant',CX,690,110,'#FFFFFF','center',900,560);});
-   if(u>0.6)tagI('別枠',CX,890,(u-0.6)/0.3,C.brand,'#FFFFFF',64);
-   if(u>t2)tagI('使い切っても会話OK',CX,1050,(u-t2)/0.3,C.acc,C.onAcc,54);},
+   if(u>t2)tagI('枠に数えない',CX,950,(u-t2)/0.3,C.acc,C.onAcc,54);},
  // the size of the new allowance is not public
  size(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.9,telHas(L,'非公開')),d-0.6);
    gauge(150,520,780,150,[[0.5,C.bar]],enter(u,0));
