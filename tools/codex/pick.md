@@ -25,7 +25,8 @@ A picture fits only if ALL of these are true:
 3. It is not: a photo dominated by people's faces (a portrait, a speaker on stage, a headshot, a group around a table
    with large faces in view, or a video thumbnail made of a face and big text, e.g. YouTube); a generic stock or mood
    photo (hands, people at a laptop, an abstract "AI" image) that does not show the real product, screen or event, even if
-   the people are far away or their faces are hidden; a logo or wordmark alone; an icon or app icon alone;
+   the people are far away or their faces are hidden; an image made up only of logos, wordmarks or icons,
+   including a lineup of connected app icons; a screenshot that shows the actual feature can still fit;
    an ad, banner, campaign or coupon graphic that is mainly text (but a guide image that shows the article's own screen or
    feature may be chosen even if it has a lot of text); a generic site share image;
    a blurry, broken, mostly empty or "(could not load)" picture; a near-duplicate of a picture you
