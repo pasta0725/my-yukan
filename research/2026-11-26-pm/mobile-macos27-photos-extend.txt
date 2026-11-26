@@ -1,0 +1,491 @@
+===== https://arstechnica.com/gadgets/2026/09/macos-27-golden-gate-the-ars-technica-review/
+(status 200)
+Text
+        settings
+Story text
+Size
+Small
+Standard
+Large
+Width
+*
+Standard
+Wide
+Links
+Standard
+Orange
+* Subscribers only
+Learn more
+            Minimize to nav
+Apple Intelligence is back, baby! That’s right: Two years after its initial launch, Apple is giving its generative AI features their first significant upgrade, along with a new version of Siri that the company has been 
+strongly insinuating
+ would be a part of each of the last two macOS releases, without ever actually announcing a release date.
+Generative AI is unavoidable if you install macOS 27 Golden Gate. I’m being very literal: There used to be a toggle you could hit if you wanted to turn off Apple Intelligence and delete the gigabytes’ worth of AI models it would download to your disk, and now there isn’t. Apple Intelligence defines the Golden Gate release, in everything from its marketing to its features to the chips it runs on to the amount of space it takes on your disk. Ready or not, here it is.
+But if you can manage to look past that fanfare somehow, the operating system underneath Apple Intelligence is getting the kind of update that macOS users usually proclaim to like. Golden Gate addresses the most irritating of macOS 26 Tahoe’s design sins, adds a big pile of incremental improvements, and promises a bunch of under-the-hood fit-and-finish optimizations to make common tasks feel just a little faster and more reliable than before.
+This makes for a combination that is occasionally jarring: big, hard-to-ignore and impossible-to-disable AI changes wedded to an understated update that in other years might have been called a “
+Snow Leopard release
+.”
+Table of Contents
+Jump to section
+System requirements: Farewell to Intel
+The Golden Gate update is the first macOS release since the mid-2000s not to run on any Intel Macs. Six years after the beginning of the Apple Silicon era, Apple has dropped support for the last handful of 2019 and 2020-era Intel Macs that could officially run macOS 26 Tahoe.
+That means that the Golden Gate update requires an Apple M1 chip or better/newer, a list of hardware that includes the following:
+2020 M1 MacBook Air or newer
+2020 M1 MacBook Pro or newer
+2020 M1 Mac mini or newer
+2021 M1 iMac or newer
+2023 Mac Pro
+Any Mac Studio
+2026 MacBook Neo
+My primary testing hardware for this review has included an M1 MacBook Air (16GB/1TB), a 15-inch M3 MacBook Air (24GB/512GB), and a MacBook Neo (8GB/512GB), which means I have a pretty good sense of how Golden Gate and future macOS releases will treat Apple’s least-capable hardware.
+The good news is that if you own 
+any
+ Apple Silicon Mac that isn’t falling apart, Golden Gate should run mostly happily. It also means all Macs support Apple Intelligence, which never ran on Intel-based hardware.
+Apple Intelligence requirements
+Golden Gate introduces a minor split between older Apple Silicon Macs and newer ones. Apple Intelligence in Golden Gate is powered by its AFM 3 Core model, which has been built “in collaboration with Google.” But there’s also an AFM 3 Core Advanced model, Apple’s “most powerful on-device model,” which has additional hardware requirements.
+To run AFM 3 Core Advanced, you need 
+both
+ of the following:
+An M3-family processor or newer
+At least 12GB of RAM
+(The RAM requirement is a bit odd—no Apple Silicon Mac has shipped with 12GB of RAM, though there are several iPhones and iPads that have shipped with that amount. Optimists can choose to believe that this means a MacBook Neo with an A19 Pro and 12GB of RAM will be released at some point during Golden Gate’s lifespan).
+If you have an M1 or M2 Mac with 16GB or more of RAM, you’re still unsupported. If you own an M3 Mac with 8GB of RAM, you’re still unsupported. All M4, M5, and M6-based Macs clear the bar.
+So far, the only features that 
+require
+ the more-capable model are more expressive voice capabilities for the new Siri and an improved voice-dictation feature. But I would expect to see the gap between older/less-capable Apple Silicon Macs and new ones grow, if and when Apple makes more changes to Apple Intelligence.
+What to do with an unsupported Mac
+              The 2019 Mac Pro is one of the latter-day Intel Macs being dropped by Golden Gate.
+                  Credit:
+                                      Samuel Axon
+      The 2019 Mac Pro is one of the latter-day Intel Macs being dropped by Golden Gate.
+          Credit:
+          Samuel Axon
+Supposing you own an Intel Mac you’d like to keep using, your options are dwindling.
+If the Mac you’re using still officially supports macOS 15 Sequoia or macOS 26 Tahoe, the path of least resistance is to continue running those operating systems until their security and Safari updates stop in the fall of 2027 and 2028, respectively (assuming Apple sticks with its past practice).
+You won’t get most new features, and Apple doesn’t always patch every single security flaw in older OSes that it patches in the latest release. But you’ll still be officially supported, your system will continue to function, and you can just install stuff through Software Update without worrying about it too much.
+If your Mac is older than that, if it stops at 2023’s macOS 14 Sonoma or an older version, you have fewer options. You can keep running unsupported macOS versions—Google Chrome supports everything going back to macOS 13 Ventura, and Firefox will run on versions as old as macOS 10.15 Catalina, to give you a sense of how long you can keep a Mac running at a sort of minimum-viable level of functionality. At that point, though, you’re opening yourself up to a long list of security vulnerabilities.
+At one point, running newer versions of macOS on older hardware was possible through projects like the OpenCore Legacy Patcher, but that project has foundered as Apple has removed more Intel-native code from newer macOS versions. The project has never supported macOS Tahoe at a software level or the Apple T2 chip at a hardware level. You can get macOS 15 Sequoia running on mid-2010s-vintage Mac hardware if you like, but expect a hit-or-miss experience depending on your exact hardware.
+Running Windows 10 via Boot Camp is supported on most of these Macs, but its security updates are drying up. It’s possible to install Windows 11 while using the old Windows 10 drivers, but unsupported Windows 11 installs come with their own quirks. And I think it’s pretty safe to say that most people don’t buy Macs to run Windows on them.
+Linux is an option for some Macs, and it should generally run well enough on 2017-and-older models. But Macs with an Apple T2 chip use that coprocessor for a bunch of critical I/O functions, and support in Linux for those functions is 
+hit or miss
+. 
+Some special distros
+ exist that aim to offer improved support for those Mac models, and the bleeding-edge-curious 
+CachyOS
+ provides support out of the box (
+with several prominent pre-install asterisks
+). But the energy that exists in the Linux-on-Mac community is understandably mostly focused on more forward-looking Apple Silicon support.
+My recommendation, due to how awful pricing has gotten thanks to the ongoing RAM and storage crisis, is that anyone with a Mac too old to run macOS 15 Sequoia should very strongly consider a hardware upgrade. That’s not 
+just
+ because of software support; Apple Silicon Macs are generally a huge step up in performance, battery life, and power efficiency. For older MacBook Air and MacBook owners, even the relatively underpowered MacBook Neo will feel like a decent step up in both speed and hardware build quality.
+If your hardware is genuinely still functional, it’s frustrating to have to replace it. But at this point, that Mac is at least seven or eight years old, and new hardware will be the easiest way to keep going for the next seven or eight years.
+Branding
+              The evolution of macOS installer icons over the last 12 releases.
+                  Credit:
+                                      Andrew Cunningham
+      The evolution of macOS installer icons over the last 12 releases.
+          Credit:
+          Andrew Cunningham
+As someone who has been to California pretty much exclusively for work and for weddings, I’ve always tried to approach Apple’s California-themed macOS codenames as an opportunity to learn a little something about the areas and landmarks that Apple has used for inspiration. I have rarely, if ever, found any kind of verifiable thematic link between the features or stated goals of a release and the name it has been given. But it’s been fun to try.
+Golden Gate is our second consecutive release named for a body of water, following a stretch of releases named for towns/regions (Big Sur, Monterey, Ventura, Sonoma, Sequoia) and another stretch named after things that are 
+mostly rocks
+ (Yosemite, El Capitan, Sierra, High Sierra, Mojave, Catalina). Maybe naming the Liquid Glass releases of macOS for bodies of water was intentional and maybe it wasn’t—only Craig Federighi can say for sure.
+You might think that macOS 27 is named for the 
+Golden Gate Bridge
+ since it’s an iconic landmark and it factors into all the real-world desktop wallpaper videos in the operating system (there’s also, per usual, an “abstract color swirl” option, which in this release is gold that fades to black). Since opening to the public in 1937, this bridge has become synonymous with San Francisco and the Bay Area, the same way that the Empire State Building symbolizes New York City, or that 
+sports hooligans
+ symbolize 
+Philadelphia
+.
+But that’s not right! Did you know that the Golden Gate Bridge is so named because it’s a bridge that spans a strait 
+called
+ the Golden Gate? And not because it’s a bridge that is sort of arguably golden-looking and loosely resembles a gate? It had never once occurred to me to check my assumptions about this until now.
+The name dates back at least as far as the 1840s, according to the 
+memoirs
+ of explorer and politician John Charles Frémont, which say that he recorded the name on a map of the area that he submitted to the US Senate in 1848. The name was appropriate, given the 
+gold rush
+ that began swelling the area’s population in that same year.
+              Towers go up in the Golden Gate Strait as the now-iconic bridge is built.
+                  Credit:
+Golden Gate Bridge Highway and Transportation District
+      Towers go up in the Golden Gate Strait as the now-iconic bridge is built.
+          Credit:
+          Golden Gate Bridge Highway and Transportation District
+The website for the Golden Gate Bridge Highway and Transportation District has a bunch of neat historical pictures and factoids about the construction of the bridge itself. The bridge was originally coated with lead paint to reduce corrosion from the Bay Area’s saltwater and fog (current coatings use zinc instead), and 11 people died during the bridge’s four-year construction process (“Although tragic, the number of lives lost was very low compared to the size of the project and the dangers involved.”)
+The installer icon for the Tahoe update broke with 25 years of macOS tradition by moving away from the “circle with an arrow pointing downward toward it” format that macOS installers had used since the dawn of Mac OS X. Apple was trying to standardize on the squircle-style icon, and the installer followed suit. Golden Gate’s installer is another squircle, though if anything, it has an even larger, glassier arrow inside of it, as if to say, “You can complain all you want, but Liquid Glass is here to stay.”
+Though Golden Gate takes up quite a bit more space on your disk than Tahoe—more on that momentarily—the installer itself isn’t all that much bigger than last year’s, at roughly 17GB. For those 
+still creating USB install drives
+ for new macOS updates, you’ll definitely need at least a 32GB disk to install Golden Gate.
+Installation and free space: Golden Gate, devourer of GBs
+It’s not a given that every macOS update will take up more space than the one before it—as recently as macOS 12 Monterey and 
+macOS 13 Ventura
+, overall install size actually decreased in newer versions, possibly because of the steady removal of old Intel support code. But disk space requirements have been climbing steadily over the last several releases.
+I had hoped that the removal of Intel code would mean that Golden Gate would save some gigabytes—the disk space savings that came from the removal of PowerPC code was one of the better features of macOS 10.6 Snow Leopard. But any way you slice it, Golden Gate requires significantly more disk space than Tahoe.
+M1 MacBook Air, 16GB RAM, 1TB SSD
+System
+Preboot
+Data
+Recovery
+All volumes
+macOS Tahoe 26.6.2, no AI
+12.64GB
+7.33GB
+4.69GB
+1.51GB
+26.17GB
+macOS Tahoe 26.6.2, AI enabled
+12.64GB
+7.33GB
+17.16GB
+1.51GB
+38.64GB
+macOS Golden Gate 27.0 b7, no AI (no Internet connection)
+12.65GB
+10.73GB
+5.91GB
+1.69GB
+30.98GB
+macOS Golden Gate 27.0 b7, AI enabled
+12.65GB
+10.73GB
+17.85GB
+1.69GB
+42.92GB
+The main culprit is Apple Intelligence, which went from being an optional multi-gigabyte download in macOS 15 Sequoia and macOS 26 Tahoe to a mandatory multi-gigabyte system component in Golden Gate. It was bad enough that macOS updates would occasionally 
+flip Apple Intelligence back on
+ even after users had turned it off; now the option is gone entirely.
+In an apples-to-apples comparison between Tahoe 26.6.2 with Apple Intelligence turned on and Golden Gate 27.0 beta 7 with Apple Intelligence turned on, Golden Gate needed a little over 4GB of extra space on an M1 MacBook Air, which is already a larger-than-usual increase. If you were running Tahoe with Apple Intelligence turned off, Golden Gate needed a whopping 17GB more space on the M1 MacBook Air, thanks to a mandatory multi-gigabyte language model download that kicks in automatically the first time you connect a freshly restored Golden Gate Mac to the Internet.
+And if you have a Mac that can run the AFM 3 Core Advanced model—remember, that’s any M3-or-newer Mac with 12GB or more of RAM—you’ll need even 
+more
+ disk space. The Storage tab of the System Settings app says that the M1 MacBook Air and MacBook Neo needed around 14GB of space for Apple Intelligence after a fresh install. On the M3 MacBook Air, that number was 22.42GB.
+One could be forgiven for being upset about a software update that consumes so much disk space in the middle of a historic RAM and storage shortage. What’s particularly frustrating is that Apple Intelligence is still fundamentally a fully optional component that is layered over the top of the core macOS experience.
+Downloaded installers and recovery files don’t include it; if you set up a new Mac and don’t connect it to the Internet, everything else about the Mac still looks and works much like it did in Tahoe (complete with the older Spotlight and Siri designs). Set up Golden Gate in a virtual machine on top of macOS, and it never offers Apple Intelligence 
+or
+ downloads those models. It works perfectly fine (accounting for the additional overhead that comes from virtualization, anyway).
+This is presumably how Macs in the EU will behave, since Apple still hasn’t committed to shipping the Apple Intelligence updates there yet.
+For those who have been following Windows 11’s development since it launched in late 2021, this may feel familiar. Microsoft has been aggressively pushing its AI features on users, and the company has a long history of failing to respect its users’ choices. It’s possible to turn off or uninstall many of the AI-powered features in modern Windows, including the nth iteration of the Copilot desktop app, the 
+Windows Recall data scraper
+, and the inscrutably named “
+Click to Do
+.” But it’s not possible to turn off 
+all
+ of them, even if you chase down each of those individual toggles.
+I understand that Apple wants people to use its new technologies and that it thinks it finally has a version of Apple Intelligence that is 
+worth
+ including by default on all of its devices. And there’s some benefit to Apple and app developers in being able to assume that any Mac running Golden Gate has Apple Intelligence and its baseline AFM 3 Core model installed. Apple probably doesn’t want to have to maintain the old Spotlight and the new Siri-fied Spotlight in perpetuity. I could go on.
+But I still feel like users who want to opt out should still be allowed to—both because that toggle has already existed for two years and because there’s nothing keeping Golden Gate from functioning perfectly normally without Apple Intelligence installed. Some users don’t want AI at all; others might want to skip Apple’s entirely in favor of more capable third-party options. The way Golden Gate handles it, unless you’re in a country where Apple isn’t shipping this stuff, you have to set aside space for Apple Intelligence whether you want it or not.
+Liquid Glass, take two
+              Golden Gate’s version of Liquid Glass is subtly refined. Users have more control over the glassiness, some icons have been spruced up while others have been removed, and windows once again have consistent corners.
+                  Credit:
+                                      Andrew Cunningham
+      Golden Gate’s version of Liquid Glass is subtly refined. Users have more control over the glassiness, some icons have been spruced up while others have been removed, and windows once again have consistent corners.
+          Credit:
+          Andrew Cunningham
+Reports that users were 
+holding off on operating system upgrades
+ because of the Liquid Glass makeover turned out to be based on flawed assumptions. But grumbling about the new look and feel, particularly its macOS implementation, has been steady and sustained among the Apple fan/developer community’s design nerds (my biggest gripes are 
+cataloged in last year’s review
+).
+The Golden Gate update to Liquid Glass solves a fair number of the most common criticisms through both design changes and customizable settings. It doesn’t fix everything, and the changes are primarily iterative—if your quarrel is with the overall design direction, this update won’t help you.
+Choose your glass
+              The new Liquid Glass slider is part of the setup flow. It’s in System Settings too.
+                  Credit:
+                                      Andrew Cunningham
+      The new Liquid Glass slider is part of the setup flow. It’s in System Settings too.
+          Credit:
+          Andrew Cunningham
+The biggest change, and one that now appears as part of the device setup flow on new or newly upgraded devices, is a slider for the intensity of the glass effect. This builds on the binary “Clear/Tinted” toggle that Apple 
+introduced in the 26.1 update
+. Sliding all the way to the left embraces the glassy bits and their light-bending properties; sliding all the way to the right tones down the sheen and translucency to levels more consistent with the old Big Sur-era design. The default setting is right in the middle (I’ll be evaluating it mostly based on how that middle setting looks).
+If you were already using Liquid Glass in “Tinted” mode, the new slider doesn’t really change anything for you. But if you 
+like
+ the glass effect, you can now decide the exact amount you want to live with.
+      Glassiest.
+                      Andrew Cunningham
+Glassiest.
+                      Andrew Cunningham
+      Medium glassy, the default.
+                      Andrew Cunningham
+Medium glassy, the default.
+                      Andrew Cunningham
+      Maximum tint, which is the closest you’ll get to the old Big Sur-era styling. 
+                      Andrew Cunningham
+Maximum tint, which is the closest you’ll get to the old Big Sur-era styling. 
+                      Andrew Cunningham
+Medium glassy, the default.
+                      Andrew Cunningham
+Maximum tint, which is the closest you’ll get to the old Big Sur-era styling. 
+                      Andrew Cunningham
+When the UI is glassy, Golden Gate includes some subtle tweaks to the way
+
+===== https://9to5mac.com/2026/09/17/macos-27-whats-new-for-the-photos-app/
+(status 200)
+macOS 27: What’s new for the Photos app?
+Zac Hall
+ | Sep 17 2026 - 2:52 pm PT																
+								1 Comment							
+9to5Mac is brought to you by 
+CleanMyMac by MacPaw
+. With the release of macOS 27 Golden Gate, use CleanMyMac first to free up space, optimize your system, and ensure your new Mac runs at 100% on day one. 
+Learn more
+.
+macOS 27 Golden Gate doesn’t give the Photos app a dramatic redesign. Instead, Photos gains a surprisingly broad set of various improvements this year. These range from Apple Intelligence-powered editing, new ways to organize and sort your collection, better sharing tools, and much more.
+More powerful Apple Intelligence editing
+The flashiest updates to the Photos app in macOS 27 Golden Gate live in a new Tools pane. They require Apple Intelligence on a compatible Mac.
+Clean Up gets a significant quality boost. Apple says it can now handle larger objects and more complex scenes with more realistic results.
+Separately, a fast mode is intended for small blemishes, while high quality mode tackles more intricate edits not possible before.
+The new Extend tool uses generative models to expand an image beyond its original edges.
+That can help when straightening a horizon, changing an aspect ratio, or simply creating more space around a subject. Extend is also available from the Crop tool.
+Then there’s Spatial Reframing.
+First, Photos builds a 3D view of a scene using on-device spatial models. This lets you rotate around a subject, pan, or zoom to change the apparent camera position.
+When the new perspective exposes gaps, image models generate the missing areas.
+iCloud Shared Albums get a major upgrade
+In macOS 27, iCloud Shared Albums finally support full-resolution sharing and all common photo and video formats.
+They’re also becoming much friendlier to people outside the Apple ecosystem. Friends using Android or Windows can join a Shared Album and contribute their own photos through iCloud.com.
+Apple is also addressing some everyday friction. You can save every photo from a Shared Album to your personal library with a single click.
+For albums that do not need to live forever, there is a new option to have them expire after 30 days.
+Slideshows, ratings, and a new collection
+Next, Photos is bringing back more control over slideshows. You can turn any selection of photos and videos into a slideshow, then customize its slide duration, transition style, and music.
+After that, the finished slideshow can be saved as a video file in your photo library. That makes it much easier to replay or share the presentation without making it again each time.
+Additionally, a new Captured by Me collection gathers photos you took with the Camera app, including shots captured on previous devices. The same criteria can also be used as a filter elsewhere in your library.
+And photographers who want another way to organize their work, Photos adds one-to-five-star ratings. Ratings can then be used to filter the main library and collections. Just be sure to enable star ratings in Photos app settings as it’s off by default.
+Faster uploads and better search
+Lastly, two less visible changes could make Photos feel better in daily use.
+macOS 27 lets you prioritize iCloud Photos syncing so new photos and videos begin uploading sooner.
+This sounds especially useful when you’ve just imported a large batch and want it available on your other devices without waiting for lower-priority work.
+Apple has also rebuilt the search foundation used by Spotlight, Photos, and Mail. Apple says the new system creates a more comprehensive index of your content and keeps it updated throughout the day, so that can only be positive.
+macOS 27 Golden Gate improves how you share, organize, find, sync, present, and edit your photos. Together, these changes make for a more meaningful year for the app for regular Photos app users.
+9to5Mac is brought to you by 
+CleanMyMac by MacPaw
+. With the release of macOS 27 Golden Gate, use CleanMyMac first to free up space, optimize your system, and ensure your new Mac runs at 100% on day one. 
+Learn more
+.
+FTC: We use income earning auto affiliate links.
+More.
+You’re reading 9to5Mac — experts who break news about Apple and its surrounding ecosystem, day after day. Be sure to check out 
+our homepage
+ for all the latest news, and follow 9to5Mac on 
+Twitter
+, 
+Facebook
+, and 
+LinkedIn
+ to stay in the loop. Don’t know where to start? Check out our 
+exclusive stories
+, 
+reviews
+, 
+how-tos
+, and 
+subscribe to our YouTube channel
+Check out 9to5Mac on YouTube for more Apple news:
+Comments
+Expand
+Close
+ comments
+Expand
+Close
+ comments
+Guides
+News
+Author
+			Zac Hall		
+apollozac			
+Zac Hall is a Senior Editor, covering Apple, apps, and AI. He joined 9to5Mac in 2013.
+
+===== https://images.apple.com/jp/newsroom/2026/09/the-next-generation-of-apple-intelligence-is-available-today/
+(status 200)
+新着情報
+2026 年 9 月 14 日
+        次世代のApple Intelligenceを提供開始
+                    Siriのまったく新しいバージョンであるSiri AIが、まもなく日本語で利用できるようになります
+Siri AIを実現し、ユーザーが日々頼りにしているアプリと体験をこれまで以上にパーソナルで役立つものにする、次世代のApple Intelligenceの機能を提供開始しました。
+カリフォルニア州クパティーノ
+ Appleはユーザーが日々頼りにしているアプリと体験にパワフルなAI機能をもたらす、次世代のApple Intelligenceの提供を開始しました。すべての段階でプライバシーを考慮して設計された、斬新なアーキテクチャを基盤として構築された最新のApple Foundation Modelは、オペレーティングシステム全体にわたって深く統合され、iPhone、iPad、Mac、Apple Watch、Apple Vision Proをさらにパーソナルで便利なものにします。ユーザーは、写真アプリで構図の改善や編集をするための新しい方法や、Safariのブラウジングをユーザーに合わせて調整するインテリジェントなツールのほか、写真のようにリアルな画像を含む、新しいImage Playgroundで創造性を発揮する機能などを利用できるようになります。対応言語に設定した対応製品をお持ちのユーザーは、iOS 27、iPadOS 27、macOS 27、watchOS 27、visionOS 27でこれらの新機能を体験できます。
+また、Appleは、これまでよりはるかにパーソナルで、より有能で、より自然な会話ができるようになった、Siriのまったく新しいバージョンであるSiri AIを、10月より、フランス語、韓国語、ポルトガル語、スペイン語に加えて日本語でもベータ版で提供開始することを発表しました。
+写真アプリのパワフルな編集機能
+写真アプリは一段とパワフルな画像モデルを活用し、撮影されたオリジナルの瞬間を尊重するインテリジェントな編集ツールを提供します。
+空間リフレームにより、ユーザーは撮影後に写真の構図を修正できます。Apple Vision Proによって得られたAppleの空間モデルに対する深い理解にもとづいて構築されているため、ユーザーはタッチしてドラッグすることで、写真の視点の変化をリアルタイムでプレビューできます。Apple Intelligenceは、視点が変わったところだけ新しいコンテンツを生成し、再構成された写真と元のシーンとの整合性が維持されるようにします。
+写真アプリの空間リフレームにより、ユーザーは撮影後に写真の構図を修正できます。
+ユーザーは拡張ツールで画像を拡張することもできます。単に被写体にもっと快適な空間を提供したい時や、アスペクト比を調整したい時、あるいは重要なものが切れないように曲がった水平線をまっすぐにしたりしたい時でも、拡張ツールが足りない部分を埋めてくれます。
+                                ユーザーは、被写体にもっと快適な空間を提供したい時でも、アスペクト比を調整したい時でも、重要なものが切れないように曲がった水平線をまっすぐにしたい時でも、拡張ツールを使って画像を拡張できます。
+また、人気のクリーンアップツールが大幅にアップグレードされるので、シーンが複雑でも、ユーザーはより高品質で、よりリアルな補間処理で不要なものを削除できます。さらに、今後予定されているSynthID標準への対応により、ユーザーはApple Intelligenceを活用したツールを使って、AIで生成または編集された画像を識別できます
+1
+。
+アップグレードされたクリーンアップツールにより、シーンが複雑でも、ユーザーは、より高品質で、よりリアルな補間処理で不要なものを削除できます。
+Safariでのブラウズのための新しい方法
+Apple Intelligenceのパワーを備えた新しいツールは、ユーザーがSafariでウェブをブラウズする方法を一変させます。Safariのインテリジェンスはプライバシーを念頭に置いて構築されており、Appleを含む誰に対しても個人のブラウジングデータを開示することなく、便利な機能を提供します。
+Safariは、ユーザーのタブを関連トピックに自動的に整理することによって、ブラウジングをシンプルにできるようになります。例えば、ユーザーが週末の旅行を計画している場合、Safariは旅行計画のすべてのタブを1つのトピックにまとめることができます。ユーザーのブラウズに応じて、Safariは引き続き、新しいタブを既存のトピックに整理したり、新しいトピックを作成したりします。
+「通知を受け取る」により、ユーザーは、製品の再入荷や値下がりなど、ウェブページの変更をモニタリングするようSafariに頼めるので、関心があることについて常に最新情報を把握できます。ユーザーは、Safariでモニタリングしてほしい変更について説明するだけで、Safariがそのウェブページで変更を検出すると通知が届くので、アクションを実行できます。
+「機能拡張を説明」により、ユーザーは何が必要かを説明するだけで、カスタムのSafariの機能拡張を作成できます。Safariは、試したレシピを保存して評価するためのボタンを追加するなど、カスタムの機能拡張をツールバーに直接生成します。
+Safariは、ユーザーのタブをトピックごとに自動的に整理することによって、ブラウズ体験をシンプルにできるようになります。
+「通知を受け取る」により、Safariは、製品の再入荷や値下がりなどのウェブサイトの変更をユーザーに通知することができます。
+再設計されたImage Playgroundで写真のようにリアルな画像を実現
+Image Playgroundはこれまで以上にパワフルで便利になり、ユーザーが自分らしさを表現する新しい方法を提供します。プライベートクラウドコンピューティング上で実行される新しい生成モデルにより、ユーザーは創造性を発揮して、写真のようにリアルな画像を含め、ほぼすべてのスタイルで高品質の画像を生成できます。この機能は新しいSiriでも利用可能で、ユーザーはSiri AIアプリで説明するだけで画像を生成できます。すべてがImage Playgroundによってシームレスに実現します。
+Image Playgroundは、画像の変更を簡単かつ直感的にします。ユーザーは、どのような変更を行いたいかを説明できるほか、単に対象物をタップしたり、丸で囲んだり、ブラシを使ったりしてハイライトして、移動やサイズ変更を行うことができます。
+ユーザーは、作成した画像を新しい方法で楽しむこともできます。メッセージなどのほかに、ロック画面の壁紙と連絡先ポスターを生成するためにImage Playgroundを使えるようになります。また、ウェブサイト用の横向き画像やチラシ用の縦向き画像など、作成しているものに合わせたアスペクト比を選択できます。
+                                Image Playgroundはこれまで以上にパワフルで便利になり、ユーザーが自分らしさを表現する新しい方法を提供します。
+コミュニケーションとスケジュールの管理に役立つ機能
+メール、電話、カレンダーの新しいApple Intelligenceの機能は、ユーザーがコミュニケーションやスケジュールを管理するのを手助けします。
+他社製アプリでアクションを実行する機能により、メールアプリの提案がさらに有能になります。また、メールとメッセージのスマートリプライで、ユーザーのパーソナライズされた文体を使用できます。
+ユーザーが企業に電話をかける際、通話コンテキストは電話アプリで直接、確認コードや予約番号などの関連情報を自律的に表示します。通話コンテキストは、ユーザーが何を言っているかではなく誰に電話しているかを見て、役立つ情報を表示します。完全にデバイス上で実行されるため、Appleにも、ほかの誰にも何も共有されません。
+                                ユーザーが企業と電話で話している時は、通話コンテキストが電話アプリで直接、関連する情報を自律的に表示します。
+Apple Intelligenceは、予定を説明するだけで、カレンダーで予定を追加または変更することも可能にします。ユーザーが入力するとカレンダーが連絡先と場所を特定し、予定のタイトルを作成します。
+ショートカットでパワフルなオートメーションを作成するさらに簡単な方法
+ショートカットは、幅広いタスクを自動化することでユーザーが様々なタスクをより速くこなすのに役立ち、「ショートカットを説明」によってこれまで以上に親しみやすくなります。Apple Intelligenceのパワーを利用して、ショートカットは、ユーザーの説明を受け取り、ユーザーの代わりに必要な手順を組み立てることができます。微調整や追加が必要なものをユーザーが見つけた場合、その変更を説明するだけでショートカットアプリが調整してくれます。
+例えば、ユーザーは夜の就寝準備の習慣のためのオートメーションを作成できます。おやすみモードをオンにして、画面の明るさを暗くし、iPhone上の瞑想アプリを開き、アラームを午前7時に設定し、週末にはこの設定を自動的に午前8時に更新することができます。
+                                「ショートカットを説明」は、Apple Intelligenceのパワーを利用して、ユーザーの説明を受け取り、ユーザーの代わりに必要な手順を組み立てます。
+ホームのためのインテリジェントな機能
+Apple Intelligenceは、アクセサリの通知や、HomeKitセキュアビデオカメラの新しい機能により、ホームアプリにスマートな機能をもたらします。ホームアプリは、関連する通知を単一のアクティビティとして理解できるようになるため、ユーザーは、アクティビティの発生時に更新される通知を1件受け取ります
+2
+。
+生成されたビデオの説明により、ユーザーは、一連のビデオクリップを見なくても、何が起こったかをすばやく理解できます
+3
+。カメラクリップの検索もできるため、荷物の配達など、探しているものを簡単に見つけることができます。検索ページの上部で、ホームアプリは、ユーザーが確認したいと思う注目すべきクリップを上に表示するので、重要な瞬間をすばやく見ることができます
+4
+。
+                                ホームアプリでは、生成されたビデオの説明により、ユーザーは、一連のビデオクリップを見なくても、何が起こったかをすばやく理解できます。
+さらにパワフルになったアクセシビリティ機能
+Apple Intelligenceは、多くのユーザーが日々頼りにしているツールに新しい機能をもたらす、
+アクセシビリティ機能に関するアップデート
+を実現します。
+VoiceOverはこれまで以上にパワフルになり、視覚に障がいのあるユーザーが周囲にあるものや画面上の画像を把握するのに役立ちます。ユーザーは、画像のより詳しい説明を受け取ることができ、ライブ認識のアップデートにより、iPhoneのアクションボタンを押して周囲にあるものについてすばやく質問し、詳しい回答を得ることができます。拡大鏡では、Apple Intelligenceにより、弱視のユーザー向けに設計された高コントラストのインターフェイスで、従来と同様に探索のサポートを提供します
+5
+。
+ユーザーが声だけでiPhoneやiPadを操作できるようにする音声コントロールが、これまで以上に直感的に進化します
+6
+。ユーザーは正確なラベル名や番号を記憶しなくても、画面上のボタンやコントロールをシンプルに説明できます。また、様々な障がいを持つユーザーのためのカスタマイズされた読書体験を提供するアクセシビリティリーダーは、より複雑な資料にも対応するようになり、オンデマンドの要約と翻訳を提供できます。
+その他の新機能
+Apple Intelligenceは、オペレーティングシステム全体にさらに便利な機能をもたらします。Appleのこれまでで最も先進的なオンデバイスモデルであるAFM Core Advancedに対応する製品では、システム全体の音声入力の精度が大幅に向上し、ユーザーが話している内容をさらに的確に、洗練されたテキストとしてとらえられるようになり、ユーザーが話す際に大文字（英語の場合）、句読点、書式を自動的に処理します
+7
+。自動校正により、ユーザーは、システム全体で入力する際にスペルや文法に関する改善案を受け取ることができます。ファイルやフォルダの内容にもとづいて、ファイル名やフォルダ名のインテリジェントな提案を受け取ることもできます
+8
+。Workout Buddyはスペイン語で利用できるようになり、ユーザーのiPhoneが近くになくてもApple Watchで使用できます
+9
+。また、モチベーションを高める洞察を提供する際に、さらに多くのフィットネスデータを取り込みます。さらに、ジェン文字が向上し、ユーザーはどのような変更を行いたいかを説明できます。
+まったく新しいバージョンのSiriが日本語でまもなく利用可能に
+Siri AIは、完全に生まれ変わったバージョンのSiriとして、よりパーソナルでパワフルになりました。詳細な回答と、より充実した自然な会話により、Siri AIはユーザーがこれまで以上に多くのことをできるようにします。Siri AIは、iPhone、iPad、Mac、Apple Watch、Apple Vision Proに深く組み込まれています。パーソナルコンテクストの理解、幅広い知識、オンスクリーン認識、システム全体で使えるアプリ内でのアクションを組み合わせることで、ユーザーがその時に必要とするものを正確に見つけられるよう手助けします。Siri AIはこれまで以上に有能になり、ほぼすべてのトピックについてウェブから情報を取得して質問に答えたり、個人的なメッセージ、Eメール、写真から詳細情報を表示したり、アプリ内で直接アクションを実行したりできます。また、専用のSiriアプリで過去の会話を振り返ったり、新しい会話を始めることもできます
+10
+。SiriアプリはiCloudを使って、プライバシーを保護しながら、会話の履歴をユーザーの製品間で同期します。そのため、iPhoneでSiriと会話を始めても、Mac、iPad、Apple Watch、またはApple Vision Proでその会話を引き継ぐことができ、リッチな会話を一か所にまとめることができます。
+Appleによる2027年のソフトウェアリリース開始にあたり、Siri AIは、英語でベータ版の提供を開始し、来月には日本語、フランス語、韓国語、ポルトガル語、スペイン語に対応します。
+Siri AIは、完全に生まれ変わったバージョンのSiriとして、よりパーソナルでパワフルになり、Mac、iPhone、iPad、Apple Watch、Apple Vision Proで、ユーザーがこれまで以上に多くのことをできるようにします。
+Siri AIは、完全に生まれ変わったバージョンのSiriとして、よりパーソナルでパワフルになり、Mac、iPhone、iPad、Apple Watch、Apple Vision Proで、ユーザーがこれまで以上に多くのことをできるようにします。
+プライバシー最優先で構築された、斬新なアーキテクチャ
+これらの新しい機能は、深く統合されたApple Intelligence体験のためにGoogleおよび同社のGeminiモデルとの連携によって独自に構築された、次世代のApple Foundation Modelによって実現します。これらの最新モデルは、デバイス上およびプライベートクラウドコンピューティングを使用してサーバ上で実行されます。最新のApple Foundation Modelから、これらのモデルをAppleのプラットフォームに深く統合する中核のオペレーティングシステムテクノロジーまで、新しいApple Intelligenceアーキテクチャのあらゆる側面がプライバシー最優先で構築されています。
+Apple Intelligenceは、ユーザーのプライバシーを保護するのに役立つ、オンデバイス処理とプライベートクラウドコンピューティングを使用します。プライベートクラウドコンピューティングは、最先端のインテリジェンスへのアクセスをユーザーに提供すると同時に、iPhoneのプライバシーとセキュリティをクラウドへと拡張します。プライベートクラウドコンピューティングがユーザーのリクエストを処理している時、ユーザーの個人データは、Appleにも、ほかの誰にも、保存またはアクセスされることはありません。外部の専門家はいつでも、このプライバシーに関する約束が守られているかを継続的に検証できます。
+提供について
+iOS 27、iPadOS 27、macOS 27、watchOS 27、visionOS 27のApple Intelligenceは、iPhone 16以降のモデル、iPhone 15 Pro、iPhone 15 Pro Max、iPad mini（A17 Pro）、M1以降を搭載したiPadモデル、MacBook Neo（A18 Pro）、M1以降を搭載したMacモデル、Apple Vision Pro、およびApple Intelligenceを有効にした近くにあるiPhoneとペアリングしたApple Watch Series 9以降、Apple Watch Ultra 2以降、Apple Watch SE 3で利用できます。
+Apple Intelligenceは、Siriとデバイスの言語を日本語、中国語（簡体字）、中国語（繁体字）、デンマーク語、オランダ語、英語、フランス語、ドイツ語、イタリア語、韓国語、ノルウェー語、ポルトガル語、スペイン語、スウェーデン語、トルコ語、またはベトナム語に設定した場合に利用できます。地域や言語によっては一部の機能を利用できない場合があります。地域によっては一部のデバイスを利用できない場合があります。
+Siri AIは、iOS 27、iPadOS 27、macOS 27、watchOS 27、visionOS 27でベータ版で利用できます。Apple Intelligenceを有効にしたデバイスを対応言語に設定する必要があります。Siri AIは、最初は英語で利用できます。
+EUにおいては、初期段階ではSiri AIをiOS、iPadOS、watchOSで利用できません。EUでは、Siri AIに依存する機能も、iOS、iPadOS、watchOSで利用できません。Appleは、ユーザーのプライバシーとセキュリティを保護しながら、進むべき道を探す努力を重ねています。
+Siri AIおよびその他のApple Intelligenceの新機能は、Appleが規制要件への対応に取り組んでいる間、中国では利用できません。
+Siri AI、インテリジェントな写真編集ツール、Image Playground、ショートカットのAFM 3 Cloudモデルなど、サーバサイドモデルに依存する一部のApple Intelligenceの機能には、1日の使用回数の制限が適用されます。1日あたりの制限は、機能、リクエストの複雑さ、システムへの負荷、システムポリシー、その他の要因によって異なる場合があります。当該機能へのアクセスは今後、有料で拡大する予定です。これらの機能の使用にはApple Intelligenceの利用規約が適用されます。詳しくは
+apple.com/jp/apple-intelligence
+をご覧ください。
+共有
+Media
+記事本文
+2026 年 9 月 14 日
+新着情報
+次世代のApple Intelligenceを提供開始
+Siriのまったく新しいバージョンであるSiri AIが、まもなく日本語で利用できるようになります
+カリフォルニア州クパティーノ
+ Appleはユーザーが日々頼りにしているアプリと体験にパワフルなAI機能をもたらす、次世代のApple Intelligenceの提供を開始しました。すべての段階でプライバシーを考慮して設計された、斬新なアーキテクチャを基盤として構築された最新のApple Foundation Modelは、オペレーティングシステム全体にわたって深く統合され、iPhone、iPad、Mac、Apple Watch、Apple Vision Proをさらにパーソナルで便利なものにします。ユーザーは、写真アプリで構図の改善や編集をするための新しい方法や、Safariのブラウジングをユーザーに合わせて調整するインテリジェントなツールのほか、写真のようにリアルな画像を含む、新しいImage Playgroundで創造性を発揮する機能などを利用できるようになります。対応言語に設定した対応製品をお持ちのユーザーは、iOS 27、iPadOS 27、macOS 27、watchOS 27、visionOS 27でこれらの新機能を体験できます。
+また、Appleは、これまでよりはるかにパーソナルで、より有能で、より自然な会話ができるようになった、Siriのまったく新しいバージョンであるSiri AIを、10月より、フランス語、韓国語、ポルトガル語、スペイン語に加えて日本語でもベータ版で提供開始することを発表しました。
+写真アプリのパワフルな編集機能
+写真アプリは一段とパワフルな画像モデルを活用し、撮影されたオリジナルの瞬間を尊重するインテリジェントな編集ツールを提供します。
+空間リフレームにより、ユーザーは撮影後に写真の構図を修正できます。Apple Vision Proによって得られたAppleの空間モデルに対する深い理解にもとづいて構築されているため、ユーザーはタッチしてドラッグすることで、写真の視点の変化をリアルタイムでプレビューできます。Apple Intelligenceは、視点が変わったところだけ新しいコンテンツを生成し、再構成された写真と元のシーンとの整合性が維持されるようにします。
+ユーザーは拡張ツールで画像を拡張することもできます。単に被写体にもっと快適な空間を提供したい時や、アスペクト比を調整したい時、あるいは重要なものが切れないように曲がった水平線をまっすぐにしたりしたい時でも、拡張ツールが足りない部分を埋めてくれます。
+また、人気のクリーンアップツールが大幅にアップグレードされるので、シーンが複雑でも、ユーザーはより高品質で、よりリアルな補間処理で不要なものを削除できます。さらに、今後予定されているSynthID標準への対応により、ユーザーはApple Intelligenceを活用したツールを使って、AIで生成または編集された画像を識別できます
+1
+。
+Safariでのブラウズのための新しい方法
+Apple Intelligenceのパワーを備えた新しいツールは、ユーザーがSafariでウェブをブラウズする方法を一変させます。Safariのインテリジェンスはプライバシーを念頭に置いて構築されており、Appleを含む誰に対しても個人のブラウジングデータを開示することなく、便利な機能を提供します。
+Safariは、ユーザーのタブを関連トピックに自動的に整理することによって、ブラウジングをシンプルにできるようになります。例えば、ユーザーが週末の旅行を計画している場合、Safariは旅行計画のすべてのタブを1つのトピックにまとめることができます。ユーザーのブラウズに応じて、Safariは引き続き、新しいタブを既存のトピックに整理したり、新しいトピックを作成したりします。
+「通知を受け取る」により、ユーザーは、製品の再入荷や値下がりなど、ウェブページの変更をモニタリングするようSafariに頼めるので、関心があることについて常に最新情報を把握できます。ユーザーは、Safariでモニタリングしてほしい変更について説明するだけで、Safariがそのウェブページで変更を検出すると通知が届くので、アクションを実行できます。
+「機能拡張を説明」により、ユーザーは何が必要かを説明するだけで、カスタムのSafariの機能拡張を作成できます。Safariは、試したレシピを保存して評価するためのボタンを追加するなど、カスタムの機能拡張をツールバーに直接生成します。
+再設計されたImage Playgroundで写真のようにリアルな画像を実現
+Image Playgroundはこれまで以上にパワフルで便利になり、ユーザーが自分らしさを表現する新しい方法を提供します。プライベートクラウドコンピューティング上で実行される新しい生成モデルにより、ユーザーは創造性を発揮して、写真のようにリアルな画像を含め、ほぼすべてのスタイルで高品質の画像を生成できます。この機能は新しいSiriでも利用可能で、ユーザーはSiri AIアプリで説明するだけで画像を生成できます。すべてがImage Playgroundによってシームレスに実現します。
+Image Playgroundは、画像の変更を簡単かつ直感的にします。ユーザーは、どのような変更を行いたいかを説明できるほか、単に対象物をタップしたり、丸で囲んだり、ブラシを使ったりしてハイライトして、移動やサイズ変更を行うことができます。
+ユーザーは、作成した画像を新しい方法で楽しむこともできます。メッセージなどのほかに、ロック画面の壁紙と連絡先ポスターを生成するためにImage Playgroundを使えるようになります。また、ウェブサイト用の横向き画像やチラシ用の縦向き画像など、作成しているものに合わせたアスペクト比を選択できます。
+コミュニケーションとスケジュールの管理に役立つ機能
+メール、電話、カレンダーの新しいApple Intelligenceの機能は、ユーザーがコミュニケーションやスケジュールを管理するのを手助けします。
+他社製アプリでアクションを実行する機能により、メールアプリの提案がさらに有能になります。また、メールとメッセージのスマートリプライで、ユーザーのパーソナライズされた文体を使用できます。
+ユーザーが企業に電話をかける際、通話コンテキストは電話アプリで直接、確認コードや予約番号などの関連情報を自律的に表示します。通話コンテキストは、ユーザーが何を言っているかではなく誰に電話しているかを見て、役立つ情報を表示します。完全にデバイス上で実行されるため、Appleにも、ほかの誰にも何も共有されません。
+Apple Intelligenceは、予定を説明するだけで、カレンダーで予定を追加または変更することも可能にします。ユーザーが入力するとカレンダーが連絡先と場所を特定し、予定のタイトルを作成します。
+ショートカットでパワフルなオートメーションを作成するさらに簡単な方法
+ショートカットは、幅広いタスクを自動化することでユーザーが様々なタスクをより速くこなすのに役立ち、「ショートカットを説明」によってこれまで以上に親しみやすくなります。Apple Intelligenceのパワーを利用して、ショートカットは、ユーザーの説明を受け取り、ユーザーの代わりに必要な手順を組み立てることができます。微調整や追加が必要なものをユーザーが見つけた場合、その変更を説明するだけでショートカットアプリが調整してくれます。
+例えば、ユーザーは夜の就寝準備の習慣のためのオートメーションを作成できます。おやすみモードをオンにして、画面の明るさを暗くし、iPhone上の瞑想アプリを開き、アラームを午前7時に設定し、週末にはこの設定を自動的に午前8時に更新することができます。
+ホームのためのインテリジェントな機能
+Apple Intelligenceは、アクセサリの通知や、HomeKitセキュアビデオカメラの新しい機能により、ホームアプリにスマートな機能をもたらします。ホームアプリは、関連する通知を単一のアクティビティとして理解できるようになるため、ユーザーは、アクティビティの発生時に更新される通知を1件受け取ります
+2
+。
+生成されたビデオの説明により、ユーザーは、一連のビデオクリップを見なくても、何が起こったかをすばやく理解できます
+3
+。カメラクリップの検索もできるため、荷物の配達など、探しているものを簡単に見つけることができます。検索ページの上部で、ホームアプリは、ユーザーが確認したいと思う注目すべきクリップを上に表示するので、重要な瞬間をすばやく見ることができます
+4
+。
+さらにパワフルになったアクセシビリティ機能
+Apple Intelligenceは、多くのユーザーが日々頼りにしているツールに新しい機能をもたらす、
+アクセシビリティ機能に関するアップデート
+を実現します。
+VoiceOverはこれまで以上にパワフルになり、視覚に障がいのあるユーザーが周囲にあるものや画面上の画像を把握するのに役立ちます。ユーザーは、画像のより詳しい説明を受け取ることができ、ライブ認識のアップデートにより、iPhoneのアクションボタンを押して周囲にあるものについてすばやく質問し、詳しい回答を得ることができます。拡大鏡では、Apple Intelligenceにより、弱視のユーザー向けに設計された高コントラストのインターフェイスで、従来と同様に探索のサポートを提供します
+5
+。
+ユーザーが声だけでiPhoneやiPadを操作できるようにする音声コントロールが、これまで以上に直感的に進化します
+6
+。ユーザーは正確なラベル名や番号を記憶しなくても、画面上のボタンやコントロールをシンプルに説明できます。また、様々な障がいを持つユーザーのためのカスタマイズされた読書体験を提供するアクセシビリティリーダーは、より複雑な資料にも対応するようになり、オンデマンドの要約と翻訳を提供できます。
+その他の新機能
+Apple Intelligenceは、オペレーティングシステム全体にさらに便利な機能をもたらします。Appleのこれまでで最も先進的なオンデバイスモデルであるAFM Core Advancedに対応する製品では、システム全体の音声入力の精度が大幅に向上し、ユーザーが話している内容をさらに的確に、洗練されたテキストとしてとらえられるようになり、ユーザーが話す際に大文字（英語の場合）、句読点、書式を自動的に処理します
+7
+。自動校正により、ユーザーは、システム全体で入力する際にスペルや文法に関する改善案を受け取ることができます。ファイルやフォルダの内容にもとづいて、ファイル名やフォルダ名のインテリジェントな提案を受け取ることもできます
+8
+。Workout Buddyはスペイン語で利用できるようになり、ユーザーのiPhoneが近くになくてもApple Watchで使用できます
+9
+。また、モチベーションを高める洞察を提供する際に、さらに多くのフィットネスデータを取り込みます。さらに、ジェン文字が向上し、ユーザーはどのような変更を行いたいかを説明できます。
+まったく新しいバージョンのSiriが日本語でまもなく利用可能に
+Siri AIは、完全に生まれ変わったバージョンのSiriとして、よりパーソナルでパワフルになりました。詳細な回答と、より充実した自然な会話により、Siri AIはユーザーがこれまで以上に多くのことをできるようにします。Siri AIは、iPhone、iPad、Mac、Apple Watch、Apple Vision Proに深く組み込まれています。パーソナルコンテクストの理解、幅広い知識、オンスクリーン認識、システム全体で使えるアプリ内でのアクションを組み合わせることで、ユーザーがその時に必要とするものを正確に見つけられるよう手助けします。Siri AIはこれまで以上に有能になり、ほぼすべてのトピックについてウェブから情報を取得して質問に答えたり、個人的なメッセージ、Eメール、写真から詳細情報を表示したり、アプリ内で直接アクションを実行したりできます。また、専用のSiriアプリで過去の会話を振り返ったり、新しい会話を始めることもできます
+10
+。SiriアプリはiCloudを使って、プライバシーを保護しながら、会話の履歴をユーザーの製品間で同期します。そのため、iPhoneでSiriと会話を始めても、Mac、iPad、Apple Watch、またはApple Vision Proでその会話を引き継ぐことができ、リッチな会話を一か所にまとめることができます。
+Appleによる2027年のソフトウェアリリース開始にあたり、Siri AIは、英語でベータ版の提供を開始し、来月には日本語、フランス語、韓国語、ポルトガル語、スペイン語に対応します。
+プライバシー最優先で構築された、斬新なアーキテクチャ
+これらの新しい機能は、深く統合されたApple Intelligence体験のためにGoogleおよび同社のGeminiモデルとの連携によって独自に構築された、次世代のApple Foundation Modelによって実現します。これらの最新モデルは、デバイス上およびプライベートクラウドコンピューティングを使用してサーバ上で実行されます。最新のApple Foundation Modelから、これらのモデルをAppleのプラットフォームに深く統合する中核のオペレーティングシステムテクノロジーまで、新しいApple Intelligenceアーキテクチャのあらゆる側面がプライバシー最優先で構築されています。
+Apple Intelligenceは、ユーザーのプライバシーを保護するのに役立つ、オンデバイス処理とプライベートクラウドコンピューティングを使用します。プライベートクラウドコンピューティングは、最先端のインテリジェンスへのアクセスをユーザーに提供すると同時に、iPhoneのプライバシーとセキュリティをクラウドへと拡張します。プライベートクラウドコンピューティングがユーザーのリクエストを処理している時、ユーザーの個人データは、Appleにも、ほかの誰にも、保存またはアクセスされることはありません。外部の専門家はいつでも、このプライバシーに関する約束が守られているかを継続的に検証できます。
+提供について
+iOS 27、iPadOS 27、macOS 27、watchOS 27、visionOS 27のApple Intelligenceは、iPhone 16以降のモデル、iPhone 15 Pro、iPhone 15 Pro Max、iPad mini（A17 Pro）、M1以降を搭載したiPadモデル、MacBook Neo（A18 Pro）、M1以降を搭載したMacモデル、Apple Vision Pro、およびApple Intelligenceを有効にした近くにあるiPhoneとペアリングしたApple Watch Series 9以降、Apple Watch Ultra 2以降、Apple Watch SE 3で利用できます。
+Apple Intelligenceは、Siriとデバイスの言語を日本語、中国語（簡体字）、中国語（繁体字）、デンマーク語、オランダ語、英語、フランス語、ドイツ語、イタリア語、韓国語、ノルウェー語、ポルトガル語、スペイン語、スウェーデン語、トルコ語、またはベトナム語に設定した場合に利用できます。地域や言語によっては一部の機能を利用できない場合があります。地域によっては一部のデバイスを利用できない場合があります。
+Siri AIは、iOS 27、iPadOS 27、macOS 27、watchOS 27、visionOS 27でベータ版で利用できます。Apple Intelligenceを有効にしたデバイスを対応言語に設定する必要があります。Siri AIは、最初は英語で利用できます。
+EUにおいては、初期段階ではSiri AIをiOS、iPadOS、watchOSで利用できません。EUでは、Siri AIに依存する機能も、iOS、iPadOS、watchOSで利用できません。Appleは、ユーザーのプライバシーとセキュリティを保護しながら、進むべき道を探す努力を重ねています。
+Siri AIおよびその他のApple Intelligenceの新機能は、Appleが規制要件への対応に取り組んでいる間、中国では利用できません。
+Siri AI、インテリジェントな写真編集ツール、Image Playground、ショートカットのAFM 3 Cloudモデルなど、サーバサイドモデルに依存する一部のApple Intelligenceの機能には、1日の使用回数の制限が適用されます。1日あたりの制限は、機能、リクエストの複雑さ、システムへの負荷、システムポリシー、その他の要因によって異なる場合があります。当該機能へのアクセスは今後、有料で拡大する予定です。これらの機能の使用にはApple Intelligenceの利用規約が適用されます。詳しくは
+apple.com/jp/apple-intelligence
+をご覧ください。
+SynthIDは、年内にソフトウェアアップデートで利用できるようになり、適用された編集内容に応じて、ほとんどの編集済み画像に組み込まれます。
+Apple Intelligenceを有効にしたiPhoneまたはiPadと、最新のオペレーティングシステムソフトウェアを搭載したHomePod（第2世代）、HomePod mini、またはApple TV 4Kなどのホームハブが必要です。ホームアプリとホームアクセサリの位置情報サービスを有効にする必要があります。
+最新のオペレーティングシステムソフトウェアを搭載したHomePod（第2世代）、HomePod mini、またはApple TV 4Kなどのホームハブが必要です。ホームオーナーは、Apple Intelligenceを有効にしたiPhoneを所有し、ホームアプリでApple Intelligenceを有効にし、対象のiCloud+プランに登録する必要があります。
+自然な言葉づかいで検索するには、Apple Intelligenceを有効にしたデバイスが必要です。HomeKitセキュアビデオを使用するには、最新のオペレーティングシステムソフトウェアを搭載したHomePod（第2世代）、HomePod mini、またはApple TV 4Kなどのホームハブが必要です。ホームオーナーは、Apple Intelligenceを有効にしたiPhoneを所有し、ホームアプリでApple Intelligenceを有効にし、対象のiCloud+プランに登録する必要があります。
+危害を受けたり負傷する可能性がある環境、リスクが高い状況、方向確認、病状の診断や治療の目的では、VoiceOverおよび拡大鏡に依存しないでください。
+Apple Intelligenceを利用した音声コントロールは、米国、カナダ、英国、オーストラリアで英語で利用できます。
+Appleの最もパワフルなオンデバイスモデルと、それにより利用可能になる機能（表現力豊かな音声、より先進的な音声入力など）は、iPhone Duo、iPhone 18 Pro、iPhone 18 Pro Max、iPhone Air、iPhone 17 Pro、iPhone 17 Pro Max、最小で12GBのユニファイドメモリを搭載したiPad（M4）以降、最小で12GBのユニファイドメモリを搭載したMac（M3）以降で利用可能です。このモデルと表現力豊かな声は、Apple Vision Pro（M5）でも利用できます。
+メールの提案、通話コンテキスト、ファイルとフォルダのインテリジェントな命名は、英語で利用できるようになります。
+watchOS 27のWorkout Buddyのアップデートは、Apple Watch Series 9以降、Apple Watch SE 3、Apple Watch Ultra 2以降を、Apple Intelligenceを有効にしたiPhoneおよびBluetoothヘッドフォンまたはスピーカーとペアリングし、デバイスとSiriの言語を英語またはスペイン語に設定した場合に利用できます。
+13歳未満の方はSiri AIを利用できません。
+メディア関係者お問い合わせ先
+Apple Japan 広報部
+media_japan@apple.com
+本文
+この記事のメディア
+すべての画像をダウンロード
+SynthIDは、年内にソフトウェアアップデートで利用できるようになり、適用された編集内容に応じて、ほとんどの編集済み画像に組み込まれます。
+Apple Intelligenceを有効にしたiPhoneまたはiPadと、最新のオペレーティングシステムソフトウェアを搭載したHomePod（第2世代）、HomePod mini、またはApple TV 4Kなどのホームハブが必要です。ホームアプリとホームアクセサリの位置情報サービスを有効にする必要があります。
+最新のオペレーティングシステムソフトウェアを搭載したHomePod（第2世代）、HomePod mini、またはApple TV 4Kなどのホームハブが必要です。ホームオーナーは、Apple Intelligenceを有効にしたiPhoneを所有し、ホームアプリでApple Intelligenceを有効にし、対象のiCloud+プランに登録する必要があります。
+自然な言葉づかいで検索するには、Apple Intelligenceを有効にしたデバイスが必要です。HomeKitセキュアビデオを使用するには、最新のオペレーティングシステムソフトウェアを搭載したHomePod（第2世代）、HomePod mini、またはApple TV 4Kなどのホームハブが必要です。ホームオーナーは、Apple Intelligenceを有効にしたiPhoneを所有し、ホームアプリでApple Intelligenceを有効にし、対象のiCloud+プランに登録する必要があります。
+危害を受けたり負傷する可能性がある環境、リスクが高い状況、方向確認、病状の診断や治療の目的では、VoiceOverおよび拡大鏡に依存しないでください。
+Apple Intelligenceを利用した音声コントロールは、米国、カナダ、英国、オーストラリアで英語で利用できます。
+Appleの最もパワフルなオンデバイスモデルと、それにより利用可能になる機能（表現力豊かな音声、より先進的な音声入力など）は、iPhone Duo、iPhone 18 Pro、iPhone 18 Pro Max、iPhone Air、iPhone 17 Pro、iPhone 17 Pro Max、最小で12GBのユニファイドメモリを搭載したiPad（M4）以降、最小で12GBのユニファイドメモリを搭載したMac（M3）以降で利用可能です。このモデルと表現力豊かな声は、Apple Vision Pro（M5）でも利用できます。
+メールの提案、通話コンテキスト、ファイルとフォルダのインテリジェントな命名は、英語で利用できるようになります。
+watchOS 27のWorkout Buddyのアップデートは、Apple Watch Series 9以降、Apple Watch SE 3、Apple Watch Ultra 2以降を、Apple Intelligenceを有効にしたiPhoneおよびBluetoothヘッドフォンまたはスピーカーとペアリングし、デバイスとSiriの言語を英語またはスペイン語に設定した場合に利用できます。
+13歳未満の方はSiri AIを利用できません。
+メディア関係者お問い合わせ先
+Apple Japan 広報部
+media_japan@apple.com

@@ -1,0 +1,394 @@
+===== https://itfis.net/archives/1449
+(status 200)
+ノートアプリ「Obsidian」の公式アカウント（@obsdmd、表示名はObsidian、認証済み）は、日本時間2026年11月26日6時19分（協定世界時2026年11月25日21時19分32秒）、Xに「Obsidian now has official connectors for every agent.」と投稿した。認証の種別は、API上のverified_typeがblueである。添付は横4096ピクセル、縦2304ピクセルの画像1点で、複数のエージェントが同じボールトを共有する様子を描いた図になっている。投稿の全文では、エージェントに共有の知識ベースへアクセスさせつつ、データの所有は利用者が完全に持てると説明している。エージェントを切り替えたり、互いに協力させたり、知識をノート、図、Canvas、表、かんばんなどとして整理したりできる、とした。作成したものは利用者が所有するオープン形式のファイルとして各端末に保存され、オフラインでも参照できる、という。続けて、従来どおりObsidian本体にAIは内蔵されておらず、アカウントは不要で、分析（analytics）もなく、同社は利用者のデータにアクセスできない、と述べている。Obsidianは無料でプライベートであり、保存容量の上限や機能の制限（gated features）もない、とした。既定の体験はAIを使わない使い方であり、完全にAIなしで使う選択もできる、と強調している。Obsidianは100パーセント利用者の支援で成り立っている、とも記し、有料でエンドツーエンド暗号の公式同期サービス「Obsidian Sync」を使えるほか、ヘルプサイトに記された代替手段としてGit、iCloud、Dropbox、GDrive、OneDrive、NextCloudなどを挙げている。エージェントにボールトへのアクセスを渡したい場合は、各エージェントのマーケットプレイスやプラグインディレクトリを見るよう案内し、Claude、ChatGPT、Grok Bot、Hermesなどに対応している、と「以下にリンクした手順」を示した。同じ会話の直後、日本時間同日6時20分（協定世界時21時20分14秒）の公式返信で、手順として公式ヘルプ「Obsidian Connectors for agents」（https://obsidian.md/help/connectors）を案内している。ITFISで「Obsidian」を検索すると、402「Google Pixel 10aがついに日本でも発売、スペックもおさらい」と、157「Pixel10aが発表！カメラにちょっとした進化だけ？」がヒットするが、いずれもスマートフォンの色名「Obsidian」への言及であり、ノートアプリのObsidianや今回のコネクタとは関係がない。オブシディアン、obsidian-skills、カテゴリ「Obsidian」での確認でも、同アプリを主題にした既存記事は見当たらなかった。本稿が、この公式発表を一次情報に沿って整理する最初の記事になる。
+発表の位置づけ：ボールトを共有の知識ベースにし、所有権は手元に残す
+公式投稿の中心は、エージェントへボールトを渡しても、データの置き場と形式の主導権は利用者側に残る、という説明である。作成物は端末上のオープン形式のファイルとして保存され、オフラインでも使える、としている。公式のAboutページは、データを将来にわたって使えるようにするため、単純でオープンなファイル形式を使う、利用者が閉じ込められないようにする、と掲げている。プライバシーの原則としては、データは端末に保存され、同社からはアクセスできない、オンラインサービスを使う場合はエンドツーエンド暗号で保護する、とも書いている。今回の投稿は、その原則をエージェント接続の文脈で改めて示した形である。
+公式は、コネクタが「フォルダをエージェントに見せるだけ」と何が違うのかについても答えている。日本時間同日6時33分の公式返信で、コネクタはエージェントにスキルを与え、ボールトとのやりとりをより速く、より少ないトークンで、費用対効果高く進められるようにする、と説明した。あわせて、Canvas、Bases、テンプレート、リンクなど、Obsidianの機能と形式の使い方をエージェントへ指示し、最新の機能に合わせて頻繁に更新されるため、エージェント側も追従しやすい、としている。つまり公式の位置づけは、単なるファイル公開ではなく、Obsidian固有の記法と操作を教える層だ、ということになる。
+同じ公式アカウントは、日本時間2026年11月20日3時34分（協定世界時2026年11月19日18時34分2秒）にも、Grok BotがObsidianのボールトへ接続できるようになった、と投稿していた。そちらでは、ノートの作成、検索、管理、リンクの更新、ウェブからの取り込み、BasesやCanvasの作成、Obsidian Syncによる端末間の反映、と具体例を挙げていた。今回の投稿は、対象を「すべてのエージェント向けの公式コネクタ」へと広げ、Claude、ChatGPT、Grok Bot、Hermesなどを明示した発表になっている。
+コネクタの実体：公式スキルと、各社ディレクトリの公式プラグイン
+公式ヘルプのパーマリンクはconnectorsで、ページタイトルと本文ではConnectorsと呼ぶ。同時に、フロントマターの別名としてObsidian Skills、Agent Skills、skillsが付いており、以前の案内経路だったhttps://obsidian.md/help/skillsからも同じ内容へたどり着ける。説明文は「Obsidian Skills teach AI agents how to work with your vault and Obsidian file formats.」である。本文は、Claude、ChatGPT、Antigravity、Cursor、GitHub Copilot、Grok Bot、Hermes、Kiro、Muse、OpenCodeなど、スキルに対応する任意のAIエージェントへObsidianをつなげられる、としている。スキルはオープンソースの公式リポジトリobsidianmd/obsidian-skillsで公開されている。形式は公開仕様のAgent Skillsに沿う、と公式ヘルプと公式リポジトリのREADMEが説明している。
+ここで押さえておきたいのは、本稿の確認範囲では、公式コネクタはMCPサーバそのものとしては案内されていない、という点である。公式ロードマップのActive項目には「MCP」があり、Obsidian CLIやObsidian Headlessに対応していないエージェント向けに、MCPでボールトへ接続する、と書かれている。日本時間同日6時55分、公式は「Obsidianが管理する同期ボールトのうえにMCPが欲しい」という利用者への返信で、それはロードマップにある、と答え、同じロードマップページを示している。したがって、今回「提供開始」と発表された公式コネクタと、ロードマップ上のMCPは別の項目として読む必要がある。MCPがいつ、どの形で出るかは、ロードマップと今回の返信以上の公式日程は確認できていない。
+導入の入り口は、エージェント側のプラグインディレクトリである。公式ヘルプは、Claude、ChatGPT、Dots、Cursor、Grok Bot、Hermes、Kiroではプラグイン一覧からObsidianを検索すれば見つかる、としている。これ以外の多くのエージェントは、このヘルプページのリンクを渡せばスキルを導入できる、という書き方である。Obsidianアプリ内のコミュニティプラグインとして入れる、という手順にはなっていない。コネクタはエージェントにスキルを持たせる仕組みであり、Obsidian本体へAIを組み込む機能ではない。
+エージェントができることと、動作に必要な条件
+公式ヘルプは、エージェントが学べることとして、次の四つを挙げている。Obsidian Flavored Markdownでノートを書くこと（ウィキリンク、埋め込み、コールアウト、プロパティを含む）。BasesとCanvasファイルを作成、編集すること。起動中のアプリに対し、Obsidian CLIでノートの検索、読み取り、管理を行うこと。デスクトップアプリなしで、Obsidian Headlessによりボールトの同期と公開（Publish）を行うこと、である。公式投稿が列挙したノート、図、Canvas、表、かんばんは、このスキル群が扱う形式と重なる。かんばんという語は、公式ヘルプのBasesスキル説明では「ビュー、フィルタ、数式、集計」とまとめられており、Cursor Marketplaceに公開されている公式プラグイン説明では、Basesのスキルが表、カード、かんばんボードに触れる場面でも使う、と書かれている。
+同梱スキルは7種である。obsidian-markdownはObsidian Flavored Markdownの作成と編集。obsidian-basesはBases（.base）の作成と編集。json-canvasはJSON Canvas形式（.canvas）の作成と編集。obsidian-cliはObsidian CLIを通じたボールト操作（プラグインやテーマの開発を含む）。obsidian-headlessはObsidian Headlessによるコマンドラインからの同期と公開。defuddleはウェブページから整理したMarkdownを取り出すこと。knapはJSONやCSVからMarkdownテンプレートを描画すること、である。公式CEOのSteph Ango氏（@kepano）は、日本時間2026年11月15日に、この7種を列挙する投稿をしており、公式アカウントもそれをリポストしている。今回のヘルプ本文も、同じ7種を掲載している。
+要件はスキルごとに違う。公式ヘルプによれば、obsidian-cliスキルは、Obsidianのデスクトップアプリが起動しており、Obsidian CLIが有効であること、さらにコンピュータ上でコマンドを実行できるエージェントであることが必要である。公式のCLIヘルプは、CLIを使うにはObsidian 1.12のインストーラが必要で、1.12.7以降への更新を案内している。有効化は設定のGeneralから「Command line interface」を入れる手順である。CLIはアプリが起動している必要があり、起動していなければ最初のコマンドでアプリを立ち上げる、とも書いている。一方、Markdown、Bases、Canvasのスキルはファイル形式を説明するだけなので、ボールト内のファイルを読み書きできるエージェントであれば使える、としている。defuddle、knap、Obsidian Headlessはスキルに同梱されておらず、別ツールである。欠けている場合は、スキルがnpmからの導入を確認してから入れる、と公式ヘルプは説明している。
+Obsidian Headlessはオープンベータのスタンドアロンクライアントで、デスクトップアプリなしに公式サービスへ接続する。公式ヘルプは、Node.js 22以降が必要で、npmのパッケージobsidian-headlessをグローバル導入する、と案内している。用途の例として、遠隔バックアップの自動化、サイト公開の自動化、コンピュータ全体ではなくボールトだけをエージェントへ渡すこと、共有のチームボールトをサーバへ同期して他のツールへ渡すこと、デイリーノートの集計や自動タグ付けなどの定期処理を挙げている。Headless Syncを使うには、有効なObsidian Syncの契約が必要である。デスクトップアプリのSyncとHeadless Syncを同じ端末で同時に使うと競合し得るため、端末ごとに一方だけを使うよう、公式ヘルプは強く注意している。Museについては、Metaのクラウド上で動くためobsidian-cliスキルは使えない、Headlessを使う場合はMetaのクラウドでサインインしてボールトを同期する、と公式ヘルプが明記している。クラウド側で同期する場合のデータの扱いは、エージェント側の環境に依存する点として、公式自身が注意を促している。
+読み書きの範囲について、公式ヘルプは「検索、読み取り、管理」「作成と編集」といった説明に留めている。削除や上書きの確認手順、対象フォルダの限定方法、エージェントがボールト全体を常に読めるのかどうかなど、運用上の細目は、確認した公式ヘルプと今回の投稿だけでは確定できない。未確認として扱う。
+対応エージェントと、公式が示す導入経路
+公式投稿が名前を出したのは、Claude、ChatGPT、Grok Bot、Hermes、「その他」である。公式ヘルプの本文は、それにAntigravity、Cursor、GitHub Copilot、Kiro、Muse、OpenCodeを加え、スキル対応の他クライアントへも広げている。さらに公式は、日本時間同日6時34分の返信で、OpenClawも公式に対応している、同じ手順を見ればよい、と答えている。
+Claudeは、公式のClaudeプラグインディレクトリからObsidianを追加する。Claude CodeのCLIでは、公式マーケットプレイスobsidianmd/obsidian-skillsを追加したうえで、obsidian@obsidian-skillsを導入する。更新はclaude plugin updateの手順が案内されている。本稿の確認環境からClaudeのディレクトリURLへアクセスすると、403が返り、掲載文面そのものは取得できなかった。リンク先は公式ヘルプが示しているものであり、公式リポジトリの1.2.2リリース（協定世界時2026年11月25日16時17分、日本時間翌1時17分）も「Obsidian is now an official plugin in Claude.」と記している。ディレクトリの画面上の説明文や料金表示までは、本稿では一次の画面として確認できていない。
+ChatGPTは、ChatGPTのプラグインディレクトリからObsidianを追加する。公式ヘルプは、このプラグインがChatGPT、Codex、Dotsで動作する、と書いている。公式アカウントは11月20日のスレッドでも、同じChatGPTプラグインURLを「公式のChatGPTプラグインはここ」と案内していた。本稿で同URLを取得したところページ自体は返ったが、内容はJavaScriptで描画される構成で、プラグイン説明の本文を静的に取り出すことはできなかった。公式ヘルプと公式投稿が示す掲載先であることは確認できるが、ディレクトリ画面の全文は未確認である。
+Grok Botは、公式ページ「Obsidian for Grok Bot」（https://x.ai/bot/plugin/88871845）を開き、「Add to Grok Bot」を選ぶ手順である。本稿が確認した同ページは、公開者をObsidian、説明を「Work with local Obsidian vaults using the Obsidian CLI and skills for Markdown, Bases, Canvas, Sync and Publish, web extraction, and templates.」としていた。Cursor Marketplaceに掲載されている公式のObsidianページ（https://cursor.com/marketplace/obsidian、ページタイトルはObsidian、Cursor Plugins）も、同じ説明文で、公開者はObsidian、リポジトリは公式のobsidianmd/obsidian-skills、状態は公開掲載、と読み取れる。公式ヘルプはCursor Marketplaceからインストールするよう案内している。Hermesは、公式ヘルプが「hermes plugins install obsidian」と示し、Kiroは「kiro-cli powers install obsidian」、AntigravityのCLIは公式リポジトリURLを指定してagy plugin installする手順である。GitHub CopilotやOpenCodeなどには、npx skillsで公式リポジトリを追加するか、スキル用フォルダを手でコピーする方法が書かれている。
+公式リポジトリのREADMEには、Gemini CLI向けに公式リポジトリを拡張として入れる手順も載っている。ただし、本稿が確認した公式ヘルプ「Connectors」の導入節には、Geminiの独立した項目はない。Gemini CLIの扱いをヘルプ本文と完全に同一視することは、現時点では控える。各マーケットプレイスの利用料金や、エージェント本体の有料プランが必要なのかどうかは、公式ヘルプに記載がなく、確認できたGrok BotとCursorの掲載情報にも料金は出ていなかった。コネクタ（スキル）自体は公式リポジトリで公開されている。有料かどうかは未確認とし、エージェント側の契約条件は各サービスの公式案内を見る必要がある。
+プライバシー：既定はAIなし、コネクタ自身は何も送らない
+公式投稿は、Obsidian本体にAIはなく、アカウントは不要で、analyticsもなく、同社はデータにアクセスできない、既定体験はAIを使わない使い方だ、と繰り返している。公式の価格ページは「制限なく無料」「サインアップ不要」「一切の制約なし」と掲げ、アプリは個人情報を共有しなくても使え、データは端末に保存されるため同社からはアクセスできない、テレメトリデータは収集せず、ユーザーデータを販売しない、とFAQで説明している。公式プライバシーポリシーも、データはすべて端末へ保存されサーバへ送られない、テレメトリは収集しない、とアプリについて述べている。投稿が言う「保存容量の上限や機能の制限がない」は、この本体の無料利用を指すと読むのが自然である。後述するObsidian Syncは有料のアドオンで、プランごとの保存上限がある。本体の話と、同期サービスの話は分けておく必要がある。
+コネクタのプライバシーについて、公式ヘルプは短いが明確である。Obsidianのコネクタは、それ自体としては何も送信しない。エージェントがコネクタを使ったとき、読み取ったノートは会話の一部になり、利用中のAIモデルで処理される。機密を含むボールトへエージェントを向ける前に、そのエージェントのプライバシーポリシーを確認するよう求めている。つまり、ローカル保存と「同社は読めない」というObsidian側の原則は、エージェントへ渡したあとの処理までは保証しない、という書き方である。どのノートが送られるか、送信のたびに確認画面が出るか、履歴の残し方はどうかといった、エージェント製品ごとの振る舞いは、公式ヘルプには書かれておらず未確認である。
+同期と料金：公式Syncは有料、代替手段も公式ヘルプが案内
+公式投稿は、手頃でエンドツーエンド暗号のSyncがチームの支援になると述べつつ、使わなくてもよい、と代替を列挙している。公式価格ページでは、Syncは年払いなら1ユーザーあたり月4米ドル、月払いなら月5米ドルから、と表示されている。同期の紹介ページでは、これをSync Standardとし、保存容量は合計1GB、ファイルサイズ上限などはヘルプ「Plans and storage limits」で補足されている。上位のSync Plusは、年払いなら月8米ドル、月払いなら月10米ドル、保存容量は10GBで、最大100GBまで増やせると公式は説明している。ヘルプの対比では、Standardは同期ボールト1つ、1ファイルあたり最大5MB、バージョン履歴は1か月、Plusはボールト10、ファイル最大200MB、履歴12か月、デバイス数はどちらも無制限、共有ボールトはどちらも利用可、となっている。Headless Syncを使う場合は、この有料のSync契約が前提である。暗号化について、同期の紹介ページはAES-256によるエンドツーエンド暗号と説明している。
+代替手段について、公式投稿はヘルプサイトにGit、iCloud、Dropbox、GDrive、OneDrive、NextCloudなどがあると書いた。確認した公式ヘルプ「Sync your notes across devices」（パーマリンクはsync-notes）は、第一の公式手段としてObsidian Syncを置き、サードパーティのクラウドとしてiCloud、OneDrive、Google Drive、ローカル同期としてSyncthing、バージョン管理としてGitとWorking Copyを解説している。iCloudはmacOSとiOS向けに手順が詳しく、Windows上のiCloud Driveは重複や破損の恐れがある、と注意している。Google Driveは人気の手段としたうえで、ボールト同期としては公式サポートではない、と但し書きがある。Dropboxは、iOSでは公式にサポートされない選択肢の一つとして名前が出る。一方、公式投稿が挙げたNextCloudについては、確認した同期ヘルプと、公開ヘルプの索引のいずれにも独立した解説は見当たらなかった。投稿は「ヘルプサイトに書いてある代替」として列挙しているが、NextCloudの手順を公式ヘルプから確認することは、本稿の範囲ではできていない。未確認とする。公式ヘルプは、同じボールトを複数の同期サービスで同時に扱わないよう、競合や破損を避ける注意も書いている。
+Commercialライセンス（公式価格ページでは1ユーザーあたり年50米ドル）は必須ではなく、組織で業務利用する場合に独立を保つための支援として推奨されている、とFAQは説明している。Catalystは25米ドルの一次支払いの支援ライセンスである。これらはコネクタの利用条件としては書かれておらず、本体の支援策である。
+今後の焦点は、CLIやHeadlessを使えない環境への接続
+今回の発表で公式が「提供開始」としたのは、各エージェントのマーケットプレイスから入れられる公式コネクタ（スキルと公式プラグイン）である。ボールトは端末のオープン形式のまま残し、Obsidian本体はAIなしが既定、接続するかどうかは利用者が選ぶ、という立場を、公式は繰り返し示している。一方で、CLIはデスクトップアプリの起動と、端末上でコマンドを実行できるエージェントを前提にし、Headless Syncは有料のSync契約とオープンベータのコマンドラインクライアントを前提にする。クラウド上でだけ動くエージェントでは、CLIが使えない例が公式ヘルプに既に書かれている。公式ロードマップがActiveに置くMCPは、まさにCLIやHeadlessに対応しないエージェント向けの接続として説明されている。MCPの提供時期や、同期済みの遠隔ボールトへ直接つなぐ形になるかどうかは、公式にはこれから、としか言えない。公式コネクタの対応先がさらに広がるか、ヘルプと各ディレクトリの表記がどこまで揃うかが、今後の確認点になる。
+参考
+Obsidian公式X投稿（2026年11月26日）
+Obsidian公式X返信「Learn more about Obsidian Connectors for agents」（ヘルプへの案内）
+Obsidian公式X返信（コネクタとスキルの違いについての説明）
+Obsidian公式X返信（OpenClawも公式対応）
+Obsidian公式X返信（MCPはロードマップ上）
+Obsidian公式X投稿「Grok Bot can now connect to your Obsidian vault.」（2026年11月20日）
+Obsidian公式ヘルプ「Connectors」（https://obsidian.md/help/connectors）
+Obsidian公式ヘルプ「Obsidian CLI」
+Obsidian公式ヘルプ「Obsidian Headless」
+Obsidian公式ヘルプ「Headless Sync」
+Obsidian公式ヘルプ「Plans and storage limits」
+Obsidian公式ヘルプ「Sync your notes across devices」
+Obsidian公式「Pricing」
+Obsidian公式「Sync」
+Obsidian公式「About」
+Obsidian公式「Privacy」
+Obsidian公式「Roadmap」
+公式GitHubリポジトリ obsidianmd/obsidian-skills
+Claude公式プラグインディレクトリのObsidian（公式ヘルプが示す掲載先）
+ChatGPTプラグインディレクトリのObsidian（公式ヘルプが示す掲載先）
+Obsidian for Grok Bot（公式ヘルプが示す掲載先）
+Cursor Marketplace「Obsidian」（公式ヘルプが示す掲載先）
+Share this content:
+            他のストーリー          
+                                 AI関連
+                                 Perplexity
+                      Perplexity、Search APIとContext APIに過去時点のWebを検索できる「Time Machine」を追加 最大365日前までの保存コピーに限定して検索・読み込み                    
+                    hisiragi                
+            2026-11-26          
+                        0                    
+                                 AI関連
+                                 Claude
+                      Anthropic、Claudeのアーティファクトを「アプリとしてインストール」可能に MacとWindows向けにベータ提供、通知やメニューバー連携、許可制でファイル操作やプログラム実行にも対応                    
+                    hisiragi                
+            2026-11-26          
+                        0                    
+                                 AI関連
+                                 Google
+                      Google、Geminiアプリに地域別の新音声66種を順次提供 AndroidとiOSのLiveと読み上げに適用、米・英・印・インドネシア・韓国・ブラジルなどに対応                    
+                    hisiragi                
+            2026-11-26          
+                        0                    
+コメントを残す 
+コメントをキャンセル
+
+===== https://news.sulat.com/2026/11/26/obsidian-connectors-agents/
+(status 200)
+At a glance
+Obsidian's connectors page says its notes app connects to any AI agent, with plugin-directory listings for Claude, ChatGPT, Dots, Cursor, Grok Bot, Hermes and Kiro, and install routes for the rest.
+The connectors are the seven open-source Obsidian Skills, which teach an agent Obsidian's file formats and tools. Obsidian does not publish an official MCP server, and the skills open no network path to a vault.
+The Markdown, Bases and Canvas skills work in any agent that can read and write files, while the obsidian-cli skill needs the desktop app running with the CLI switched on.
+Obsidian says connectors send nothing by themselves, but the notes an agent reads are processed by the AI model you use; Muse runs in Meta's cloud, so Headless there syncs the vault into that cloud.
+Notion runs a hosted MCP server with OAuth sign-in and Anytype publishes a local MCP server that uses an API key; Obsidian ships skills and a command line instead.
+Obsidian says its notes app now has official connectors for every AI agent, but the connectors are the open-source 
+Obsidian Skills
+ packaged for more agents, not a hosted server. 
+Obsidian’s help page
+ lists plugin-directory entries for seven agents and install routes for the rest. Nothing new opens a path into your notes. What changes is that an agent now arrives knowing how Obsidian files work.
+Obsidian now has official connectors for every agent.
+That means you can easily give your agents access to a shared knowledge base, while keeping total ownership of your data.
+You can switch agents, let them collaborate with each other, organize your knowledge as notes,… 
+pic.twitter.com/2raq6s4hlI
+— Obsidian (@obsdmd) 
+November 25, 2026
+The post from the official Obsidian account reads “Obsidian now has official connectors for every agent”. The word “connector” invites the obvious question: is this an MCP server? Obsidian’s own page answers it. The connectors are the same seven skills covered in our 
+earlier report on the seventh skill
+, now listed where people already install agent add-ons.
+Switch agents and the notes stay where they are. Illustration: Sulat.
+What shipped
+Obsidian’s help page says the connectors let an agent learn to write notes in Obsidian Flavored Markdown, create and edit Bases and Canvas files, search and manage notes in the running app through the Obsidian CLI, and sync and publish vaults through Obsidian Headless. The skills are open source in the obsidianmd/obsidian-skills repository, under an MIT licence.
+The page names Claude, ChatGPT, Antigravity, Cursor, GitHub Copilot, Grok Bot, Hermes, Kiro, Muse and OpenCode, and says “many more” are covered through the 
+Agent Skills client list
+. Seven of them offer Obsidian by search in their plugin lists: Claude, ChatGPT, Dots, Cursor, Grok Bot, Hermes and Kiro. Obsidian says most other agents can install the skills if they are sent a link to the help page.
+Skill
+What it does
+obsidian-markdown
+Create and edit Obsidian Flavored Markdown notes
+obsidian-bases
+Create and edit Bases with views, filters, formulas and summaries
+json-canvas
+Create and edit Canvas files in the JSON Canvas format
+obsidian-cli
+Work with the vault through the Obsidian CLI, including plugin and theme development
+obsidian-headless
+Sync and publish vaults from the command line with Obsidian Headless
+defuddle
+Extract clean Markdown from web pages with Defuddle
+knap
+Render Markdown templates from JSON or CSV data with Knap
+The seven skills, from Obsidian’s connectors page.
+A connector here is a manual, not a door
+In most of the AI tooling world, a connector is a server: a program that holds credentials and exposes tools an agent can call. Obsidian’s are different. A skill is a set of written instructions the agent loads when it needs them. It teaches the agent the syntax of wikilinks, the structure of a 
+.base
+ file, or the flags of the CLI. It does not open a network connection to your vault.
+A skill adds know-how, not access. Illustration: Sulat.
+That matters for what each skill can do on its own. Obsidian’s requirements section says the Markdown, Bases and Canvas skills only describe file formats, so they work in any agent that can read and write files in your vault. The 
+obsidian-cli
+ skill needs the desktop app running with the CLI switched on, and an agent that can run commands on your computer. Obsidian’s CLI help adds that it needs installer version 1.12.7 or later.
+Obsidian Headless, Defuddle and Knap are separate tools that are not bundled. When one is missing, the skill asks before installing it from npm. 
+Obsidian Headless
+ is the standalone client, still in open beta, that needs Node.js 22 or later, plus an active Sync or Publish subscription for those services. It is separate from the CLI, which controls the desktop app.
+So “every agent” overstates the reach of two of the seven skills. A chat-only agent can write a correct note or Canvas file for you to drop into the vault. It cannot search your vault or run the CLI. An agent with a terminal and the desktop app open can do all of it.
+How to install it
+Obsidian’s page gives a different route for each agent. For Claude Code, the commands are:
+Code
+Copy
+claude plugin marketplace add obsidianmd/obsidian-skills
+claude plugin install obsidian@obsidian-skills
+# later, to pull in new skills
+claude plugin update obsidian@obsidian-skills
+Antigravity, Hermes and Kiro each have a one-line command, and the rest use the cross-agent installer:
+Code
+Copy
+agy plugin install https://github.com/obsidianmd/obsidian-skills
+hermes plugins install obsidian
+kiro-cli powers install obsidian
+npx skills add https://github.com/obsidianmd/obsidian-skills
+Claude, ChatGPT, Cursor and Grok Bot also have listings in their own plugin directories, and the ChatGPT plugin is described by Obsidian as working in ChatGPT, Codex and Dots. For GitHub Copilot and OpenCode, 
+npx skills
+ asks which agents to install into. To install by hand, copy the folders in 
+plugins/obsidian/skills/
+ into the agent’s skills folder, for example 
+~/.copilot/skills/
+ for GitHub Copilot.
+Seven agents list Obsidian in a plugin directory; the rest install the skills from GitHub.
+Privacy: the notes go to the model you chose
+Obsidian’s page says the connectors “don’t send anything by themselves”. When an agent uses them, the notes it reads become part of the conversation and are processed by the AI model behind it. Obsidian tells users to review their agent’s privacy policy before pointing it at a vault with sensitive notes.
+One agent gets a specific warning. Muse runs in Meta’s cloud, so the 
+obsidian-cli
+ skill does not work there, and anyone using Obsidian Headless in Muse signs in and syncs the vault in Meta’s cloud. In that setup the vault itself sits in the agent maker’s cloud, which is a bigger step than letting an agent read a few notes.
+The notes an agent opens go to the model you picked. Illustration: Sulat.
+How it compares with Notion and Anytype
+Other note apps that court agents take a different route. 
+Notion
+ runs a hosted MCP server at 
+mcp.notion.com/mcp
+ that agents reach through an OAuth sign-in, so the agent talks to Notion’s cloud. 
+Anytype
+ publishes a local MCP server on npm as 
+@anyproto/anytype-mcp
+, which an agent runs against the desktop app using an API key. Obsidian ships neither. It ships skills and a command line.
+App
+Route for agents
+Where the access lives
+Notion
+Hosted MCP server, OAuth sign-in
+Notion’s cloud
+Anytype
+Local MCP server from npm, API key
+Your machine, through the Anytype app
+Obsidian
+Skills, plus the CLI and Headless
+Plain files in your vault, or the running desktop app
+Official routes as documented by each app. Obsidian has no official MCP server.
+Notion and Anytype run servers; Obsidian ships skills and a command line instead.
+Readers who want an MCP server for Obsidian still have one route. The community Local REST API plugin, which is not made by Obsidian, has a built-in MCP endpoint at 
+/mcp/
+. Its status is the plugin author’s to describe, not Obsidian’s, and it runs a local server inside the app, which the skills do not.
+The design fits the product. A vault is a folder of Markdown files, so the most reliable thing an agent can do is read and write those files correctly, and the skills exist to make that correct. The cost is that capability depends on what the agent itself can reach. A server gives the same tools to any client. A skill gives each agent instructions and leaves the rest to that agent.
+The business behind the announcement
+Obsidian’s 
+pricing page
+ describes the company as “100% user-supported”. Sync costs US$4 per user per month billed annually, Publish costs US$8 per site per month billed annually, a Catalyst supporter licence is a US$25 one-off payment, and a commercial licence is optional. The app was started in 2020 by Shida Li and Erica Xu, and Steph Ango, who posts as kepano, has been CEO since February 2023.
+The connectors may also work as a funnel. The free skills cover files, but Headless, the piece that lets an agent sync and publish without the desktop app, depends on paid Sync and Publish plans. Obsidian does not say so and the page does not push it, so that reading is inference.
+How to check it yourself
+Open 
+obsidian.md/help/connectors
+ and read the requirements and privacy sections before installing anything.
+Install the skills with the route for your agent from the page, or search for Obsidian in the plugin list if it is one of the seven.
+Test the format skills first. Ask the agent for a note with wikilinks, a callout and properties, and open it in Obsidian.
+Switch on the CLI in the desktop app only if you want the agent to search the vault, and keep a backup of the vault folder first.
+Check which model your agent sends notes to, and keep sensitive folders out of the vault you share with it.
+Sources: 
+Obsidian Help, Connectors
+; the 
+obsidianmd/obsidian-skills repository
+; 
+Obsidian pricing
+; 
+Obsidian Headless help
+; Notion’s and Anytype’s MCP documentation as linked above; and the 
+Obsidian post on X
+. The install commands were not run for this report.
+Discover more from Sulat AI & Tech News
+Subscribe to get the latest posts sent to your email.
+#Agent Skills
+#Anytype
+#Claude Code
+#Cursor
+#MCP
+#Notion
+#Obsidian
+
+===== https://tech-news.croud.jp/items/2026-11-26-x-obsidian-connectors/
+(status 200)
+â†� ä¸€è¦§ã�¸
+Obsidianã€�Claudeãƒ»ChatGPTãƒ»Grok Botã�ªã�©ã�¨ã�¤ã�ªã��å…¬å¼�ã‚³ãƒ�ã‚¯ã‚¿ã‚’ç™ºè¡¨
+ x / DevTool / X / 2026/11/26 06:19 JST
+å…¬å¼�
+claude
+chatgpt
+è¦�ç´„
+ãƒ�ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã�®Obsidianã�Œã€�Claudeã€�ChatGPTã€�Grok Botã�ªã�©å�„ç¤¾ã�®AIã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆå�‘ã�‘ã�«å…¬å¼�ã�®ã‚³ãƒ�ã‚¯ã‚¿ã‚’ç™ºè¡¨ã�—ã�Ÿã€‚æ‰‹å…ƒã�«ä¿�å­˜ã�—ã�Ÿãƒ�ãƒ¼ãƒˆã‚„å›³ã€�ã‚«ãƒ³ãƒ�ãƒ³ã‚’ã€�ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã�Œå�‚ç…§ã�™ã‚‹çŸ¥è­˜ã�¨ã�—ã�¦æ¸¡ã�›ã‚‹ã€‚ãƒ‡ãƒ¼ã‚¿ã�¯ã‚ªãƒ¼ãƒ—ãƒ³ã�ªå½¢å¼�ã�§ç«¯æœ«ã�«ä¿�å­˜ã�•ã‚Œã€�æŒ�ã�¡ä¸»ã�¯åˆ©ç”¨è€…ã�®ã�¾ã�¾ã€‚ã‚¢ãƒ—ãƒªæœ¬ä½“ã�«AIã�¯å…¥ã‚Œã�šã€�ã‚¢ã‚«ã‚¦ãƒ³ãƒˆç™»éŒ²ã‚„åˆ©ç”¨ãƒ‡ãƒ¼ã‚¿ã�®å��é›†ã‚‚ã�ªã��ã€�AIã‚’ä½¿ã‚�ã�ªã�„ã�®ã�Œåˆ�æœŸè¨­å®šã� ã�¨ã�—ã�¦ã�„ã‚‹ã€‚ã‚³ãƒ�ã‚¯ã‚¿ã�®ã‚¹ã‚­ãƒ«ã�¯ã‚ªãƒ¼ãƒ—ãƒ³ã‚½ãƒ¼ã‚¹ã�§å…¬é–‹ã�•ã‚Œã�¦ã�„ã‚‹ã€‚
+X
+DevTool
+å‡ºå…¸ã‚µã‚¤ãƒˆã�§å�Ÿæ–‡ã‚’é–‹ã�� â†’
+X ã�§ã�®å��å¿œã�¾ã�¨ã‚�
+ãƒ�ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã�®Obsidianã�Œã€�Claudeã€�ChatGPTã€�Grok Botã�ªã�©å�„ç¤¾ã�®AIã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆå�‘ã�‘ã�«å…¬å¼�ã�®ã‚³ãƒ�ã‚¯ã‚¿ã‚’å‡ºã�™ã�¨ç™ºè¡¨ã�—ã�Ÿ
+æ‰‹å…ƒã�«ä¿�å­˜ã�—ã�Ÿãƒ�ãƒ¼ãƒˆã‚„å›³ã€�ã‚«ãƒ³ãƒ�ãƒ³ã‚’ã€�ã‚¨ãƒ¼ã‚¸ã‚§ãƒ³ãƒˆã�Œå�‚ç…§ã�™ã‚‹çŸ¥è­˜ã�¨ã�—ã�¦æ¸¡ã�›ã‚‹
+ãƒ‡ãƒ¼ã‚¿ã�¯ã‚ªãƒ¼ãƒ—ãƒ³ã�ªå½¢å¼�ã�§ç«¯æœ«ã�«ä¿�å­˜ã�•ã‚Œã€�æŒ�ã�¡ä¸»ã�¯åˆ©ç”¨è€…ã�®ã�¾ã�¾
+ã‚¢ãƒ—ãƒªæœ¬ä½“ã�«AIã�¯å…¥ã‚Œã�šã€�ã‚¢ã‚«ã‚¦ãƒ³ãƒˆç™»éŒ²ã‚‚åˆ©ç”¨ãƒ‡ãƒ¼ã‚¿ã�®å��é›†ã‚‚ã�ªã��ã€�AIã‚’ä½¿ã‚�ã�ªã�„ã�®ã�Œåˆ�æœŸè¨­å®šã� ã�¨å¼·èª¿ã�—ã�¦ã�„ã‚‹
+ã‚³ãƒ�ã‚¯ã‚¿ã�®ã‚¹ã‚­ãƒ«ã�¯ã‚ªãƒ¼ãƒ—ãƒ³ã‚½ãƒ¼ã‚¹ï¼ˆobsidianmd/obsidian-skillsï¼‰ã�§å…¬é–‹ã�•ã‚Œã�¦ã�„ã‚‹
+å…¬å¼�ã‚¢ã‚«ã‚¦ãƒ³ãƒˆã�®æŠ•ç¨¿ï¼ˆ11æœˆ26æ—¥ 06:19 JSTï¼‰ã�¯ç´„14ä¸‡å›�è¡¨ç¤ºã�•ã‚Œã€�ç´„4,400ä»¶ã�®ã�„ã�„ã�­ã‚’é›†ã‚�ã�Ÿ
+å‡ºå…¸: 
+Obsidianã�®ãƒ�ã‚¹ãƒˆ
+ / 
+Obsidianãƒ˜ãƒ«ãƒ—ã€ŒConnectorsã€�
+Xã�®è©±é¡Œ ã�®æœ€æ–°è¨˜äº‹
+SpaceXã€�è»Œé�“ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ³ã‚¿ãƒ¼ã€ŒStarmindã€�ã�¸è¡›æ˜Ÿ100ä¸‡åŸºã�®æ‰“ã�¡ä¸Šã�’ã‚’FCCã�Œæ‰¿èª�
+x / 11/26
+Anthropicã€�Claudeã�®ã€ŒMessages APIã€�ã‚’Pythonã�‹ã‚‰Rustã�«æ›¸ã��æ�›ã�ˆ
+x / 11/26
+Microsoftã�Œã€ŒCode Redã€�å®£è¨€ â€” å�²ä¸Šæœ€å¤§ã�®Microsoft 365éšœå®³ã‚’å�—ã�‘æœ€å„ªå…ˆã�§å†�ç™ºé˜²æ­¢ã�¸
+x / 11/25
+ãƒ�ã‚¤ãƒ³ã‚¯ãƒ©ãƒ•ãƒˆã�®ç”Ÿã�¿ã�®è¦ªNotchæ°�ã€�WebGPUã‚’ä½¿ã�„ã‚„ã�™ã��ã�™ã‚‹ãƒ„ãƒ¼ãƒ«ã‚’å…¬é–‹ã�—ã�Ÿã�„ã�¨æŠ•ç¨¿
+x / 11/25
+Anthropicã€�AIã�Œã‚µãƒ³ãƒ‰ãƒœãƒƒã‚¯ã‚¹ã�‹ã‚‰æŠœã�‘å‡ºã��ã�†ã�¨ã�™ã‚‹ã�‹ã‚’æ¸¬ã‚‹è©•ä¾¡ã€ŒSirenã€�ã‚’ç™ºè¡¨
+x / 11/25
+ã�“ã�®è¨˜äº‹ã‚’ã‚·ã‚§ã‚¢
+ğ�•� ã�§ãƒ�ã‚¹ãƒˆ
+LINEã�§é€�ã‚‹
+URLã‚’ã‚³ãƒ”ãƒ¼
+
+===== https://news.nabulines.com/2026/11/25/obsidian-adds-official-connectors-for-every-agent
+(status 200)
+Image from the original post by @obsdmd on X
+Obsidian (@obsdmd) posted that it now has official connectors for every agent, so you can give your agents access to a shared knowledge base while keeping total ownership of your data.
+Users can switch agents and let them collaborate, organizing knowledge as notes, diagrams, canvas, tables and kanban. Files are saved locally in open formats, and Obsidian still has no built-in AI and needs no account.
+The post passed 1,174 likes Wednesday.
+Share on X
+More in AI agents
+All of today's stories
+
+===== https://github.com/obsidianmd/obsidian-skills
+(status 200)
+Agent Skills for use with Obsidian.
+These skills follow the 
+Agent Skills specification
+, so they work with any agent that supports skills, including Claude Code, Claude, ChatGPT, Antigravity, Cursor, GitHub Copilot, Grok Bot, Hermes Agent, Kiro, Muse, OpenCode, and 
+many more
+.
+Installation
+Obsidian is an official plugin for Claude, ChatGPT, Dots, Cursor, Grok Bot, Hermes, and Kiro. Most other agents can install the skills from GitHub.
+Claude
+Add 
+Obsidian
+ from the official Claude plugin directory.
+For the Claude Code CLI use:
+claude plugin marketplace add obsidianmd/obsidian-skills
+claude plugin install obsidian@obsidian-skills
+From within a Claude Code session:
+/plugin marketplace add obsidianmd/obsidian-skills
+/plugin install obsidian@obsidian-skills
+To get new skills later, run 
+claude plugin update obsidian@obsidian-skills
+.
+ChatGPT
+Add 
+Obsidian
+ from the ChatGPT plugin directory. The plugin works in ChatGPT, Codex, and Dots.
+To install from this repo instead:
+codex plugin marketplace add obsidianmd/obsidian-skills
+Then install Obsidian from the plugin directory in Codex or the ChatGPT desktop app.
+Antigravity
+In the Antigravity CLI, run:
+agy plugin install https://github.com/obsidianmd/obsidian-skills
+Grok Bot
+Open 
+Obsidian for Grok Bot
+ and select 
+Add to Grok Bot
+.
+Muse
+Ask Muse to install the skills from 
+https://github.com/obsidianmd/obsidian-skills
+.
+Muse runs in Meta's cloud, so the 
+obsidian-cli
+ skill doesn't work there. If you use Obsidian Headless in Muse, you sign in and sync your vault in Meta's cloud.
+Cursor
+Install 
+Obsidian
+ from the Cursor Marketplace.
+Hermes Agent
+hermes plugins install obsidian
+Kiro
+kiro-cli powers install obsidian
+GitHub Copilot, OpenCode, and other agents
+Install with 
+npx skills
+, which asks which agents to install into:
+npx skills add https://github.com/obsidianmd/obsidian-skills
+To install by hand, copy the folders in 
+plugins/obsidian/skills/
+ into your agent's skills folder, e.g. 
+~/.copilot/skills/
+ for GitHub Copilot.
+Release maintenance
+Update the plugin version in every manifest with:
+./scripts/bump.sh patch
+The script also accepts 
+major
+, 
+minor
+, or an explicit version like 
+1.1.0
+.
+Gemini CLI installs from the latest GitHub release, so publish a release for each version, tagged with the version number. The 
+Gemini release archive
+ workflow then attaches 
+obsidian-gemini.tar.gz
+, which has real copies of the skills. Don't attach other files to a release, because Gemini CLI only picks a file when there's exactly one; otherwise it falls back to the source archive, which has no Gemini manifest. To build the archive locally, run 
+./scripts/package-gemini.sh
+.
+Skills
+Skill
+Description
+obsidian-markdown
+Create and edit 
+Obsidian Flavored Markdown
+ (
+.md
+) with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax
+obsidian-bases
+Create and edit 
+Obsidian Bases
+ (
+.base
+) with views, filters, formulas, and summaries
+json-canvas
+Create and edit 
+JSON Canvas
+ files (
+.canvas
+) with nodes, edges, groups, and connections
+obsidian-cli
+Interact with Obsidian vaults via the 
+Obsidian CLI
+ including plugin and theme development
+obsidian-headless
+Sync and publish vaults from the command line with 
+Obsidian Headless
+, without the desktop app
+defuddle
+Extract clean markdown from web pages using 
+Defuddle
+, removing clutter to save tokens
+knap
+Render Markdown templates from JSON or CSV data using 
+Knap
+, including batch file generation

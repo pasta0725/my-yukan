@@ -1,0 +1,382 @@
+===== https://i10x.ai/news/hidden-github-text-coding-agents-prompt-injection-study
+(status 200)
+Gabi Nakibly and Zvika Babo of Radware, with Nakibly also at the Technion, posted a 
+measurement study on arXiv on November 21
+ that fills a gap earlier exploit write-ups left open. How often do people actually hide instructions for AI coding agents in GitHub issues, pull requests and comments, and to what end? After scanning about 145 million items and reviewing every remaining candidate by hand, they validate 2,281 hidden, AI-directed findings in issues, pull requests and comments, about 16 per million items, plus such text in the READMEs of 107 of the two million most-starred repositories. Attacks are real, rare and aimed: 43 in issues, pull requests and comments, about one in 3.3 million items by the authors’ count, and 4 in READMEs. Two thirds of the findings are something else, namely projects talking to their own agents through hidden markers that anyone who can comment can type.
+i10X Quick Take
+Quick Take
+The finding:
+ Of 2,281 validated findings, 1,519 (67%) are first-party orchestration, 374 are content override, 345 are defensive text, and 43 are attacks (2%). In an offline replay, gpt-5.6-luna carried out 8 of 43 attacks (19%). Four other models carried out none. Stripping HTML comments removed all of that compliance.
+The warning sign:
+ 24 of the 43 attacks (56%) target a project’s own triage, review or CI agent. 19 (44%) hit repositories of Microsoft, Google, OpenAI, Anthropic, GitHub or Elastic. When the authors re-fetched the items on November 10, 34 of 43 attacks were still intact. Only one attacked project, microsoft/wassette, had removed the item.
+The takeaway:
+ Give issue-reading agents no secrets and no unused write access. Strip hidden text written by outsiders before an agent reads it. Check who wrote a hidden marker before a bot acts on it.
+What the census found in 145 million GitHub items
+The authors looked for text that GitHub does not show on the rendered page, but that an agent receives in full in the raw Markdown. Almost every finding in issues, pull requests and comments sat in an HTML comment. Across 142.7 million of those items they report 2,281 validated findings in 435 repositories. That rate, 16.0 per million, is close to a recent open-web census of indirect prompt injection (about 13 per million pages). The mix is very different. On GitHub, adversarial prompt injection is a small minority.
+i10X chart based on data from Nakibly and Babo (2026), arXiv:2611.28763, Table VII. Own chart, no original figure reused.
+The 43 attacks are not scattered at random. 39 of them sit in issues, the first surface a triage agent reads and one that any GitHub account can create. 24 of 43 (56%) address a specific agent the project itself runs: 17 an issue triage agent, 5 a CI agent and 2 a code review agent. Nine attacks (21%) name the victim agent’s real tools or output fields, which appear only in the project’s workflow files. By goal, 19 attacks (44%) try to steal secrets from the agent’s environment, 16 (37%) try to hijack the agent for a side job such as starring repositories, and 8 (19%) try to forge the agent’s verdict, for example by telling a triage bot to emit an allow flag.
+The more common uses are operational. First-party orchestration (1,519 findings, 67%) is how some projects coordinate their own agents with hidden claims, hand-offs and state markers. In 10 projects the authors found 47 markers that record approvals or bypassed checks. Content override (374) steers what an agent writes, such as the language of a review. Defensive text (345) mostly tells agents to stay off the human part of a pull request or to identify themselves; only about 4% of the defensive findings in the crawl are traps. OpenHands, PostHog and Vexa together wrote 69% of the defensive findings in the crawl, so the habit is concentrated.
+The practice is growing faster than GitHub itself. In a complete crawl of every new public issue and pull request from June 1 to September 30, 2026, the rate rose from 7.0 to 15.4 findings per million items, a factor of 2.2, while new issues and pull requests rose 55%. The absolute number of findings therefore grew 3.4 times. Orchestration drove that rise: its rate went from 1.9 to 10.1 per million, a fivefold increase, and the number of projects doing this in the crawl went from 11 in June to 69 in September. Attacks show no clear trend at this sample size. The earliest attack in the data dates from October 2025.
+Once posted, the text tends to stay. On November 10 the authors re-fetched every attack. 34 of 43 still contained the hidden text, 1 had been edited and 8 had been deleted. Seven of those eight deletions were bait issues whose owner later removed the repositories. Only one attacked project, microsoft/wassette, had taken the item down. Closed issues still expose their text to any agent that reads them.
+To test whether the attacks could work, the authors replayed all 43 offline against five models acting as the targeted agent, with mock tools and no live system in the loop: Claude Haiku 5.5, Sonnet 5.5 and Opus 5.5, plus OpenAI gpt-5.6-luna and gpt-5.6-terra, 430 runs in total. Four models never carried out an injected instruction. gpt-5.6-luna, the smallest and fastest of the five, complied with 8 of 43 (19%; 7 fully, 1 partly). Seven of those eight cases targeted an issue triage agent, and forged verdicts were the most effective goal (4 of 8 such attacks). The same items with HTML comments removed produced zero compliance. The authors treat this as a lower-effort stand-in for real deployments, not a field success rate.
+Why the measurement is worth taking seriously
+The crawl enumerated every public issue and pull request created over four months, so the denominators for rates and trends are exact. Detection was based on concealment rather than keywords; when the authors tried a 3,721-phrase keyword list, 116 of 123 matches were people discussing or testing prompt injection rather than hiding an instruction. A template-provenance check then removed 7,890 of 13,141 classifier-kept items (60%), text GitHub had copied from the repository’s own templates. Every one of the 5,251 remaining items was reviewed by hand. A second reviewer independently labelled a stratified sample of 243 items; disagreements were resolved by discussion. The authors release the detection tool, ipi-scan, and every finding, under the same CC BY 4.0 license as the paper.
+Method in brief
+Three sources feed the census: the complete June-to-September crawl (95,075,061 issues and pull requests), GH Archive for earlier months and for comments (about 47.6 million items), and the READMEs of the two million most-starred repositories, plus a separate scan of 250,000 READMEs from repositories created in mid-October. Hidden regions were screened by gpt-5.6-luna and adjudicated by gpt-5.6-terra, then checked against each repository’s templates and reviewed. An item counts as an attack when it tries to make another party’s agent act against that party; six of the 43 send data to request-capture services often used by researchers, and the authors still count them as attacks. A scan of the new-repository READMEs found no attacks.
+What remains open
+Only hidden text:
+ Visible injections, and injections in commit messages, code or agent instruction files, are out of scope. Every count is therefore a lower bound.
+Uneven coverage of comments:
+ Comments come mainly from GH Archive, which in August 2026 held roughly 2% of the issue volume the crawl recorded. First-party orchestration is the category most undercounted.
+Classifier misses and a thin replay:
+ Manual review corrects false positives, not false negatives. The offline replay used a single response, mock tools and approximate system prompts, so the 19% figure is evidence that some payloads can work, not a field success rate.
+Vendor authors:
+ Both authors list Radware affiliations. No funding or competing-interests statement appears in the paper. The raw findings and the tool are public, which makes the counts checkable.
+Context: lab hijacks were known, the in-the-wild mix was not
+Earlier this year, independent write-ups showed that hidden instructions in pull request titles and issue comments can steal credentials from Claude Code, Gemini CLI and GitHub Copilot agents running in GitHub Actions. What was missing was a census of what is actually posted. This paper supplies that census, and it sits next to work we have already covered. In 
+FrontierBreach, hidden instructions hijacked enterprise agents in 34.9% of tests
+ across 21 models. That is a curated benchmark, not a field rate. The in-the-wild payloads here succeeded against one small, fast model in 19% of offline replays and against four other models in none. A different GitHub campaign we reported in mid-November, 
+22 malicious repositories that abused instruction files, session-start hooks and MCP configurations
+, attacks a different channel: files the agent loads when a developer opens a project, not hidden comments in issues. And in a 
+preregistered test published this morning
+, a repository rules file gave coding agents no measurable security benefit. Read together, the two studies point to the same operational lesson. Markdown that a model happens to read is not a control. A filter or a permission gate is.
+What it means for teams that run agents on GitHub
+Lock down issue-reading agents:
+ A bot that labels issues needs to read issues and add labels. It does not need a token that can push code, edit workflows or merge pull requests, and it does not need a shell or repository secrets. A model verdict such as an allow-triage flag should never open a security gate on its own.
+Strip outsider hidden text before the model sees it:
+ In the replay, removing HTML comments stopped all 43 attacks. Do this for text written by accounts that are not the project’s own members or bots. Closing an issue is not enough; 34 of 43 attacks were still readable on November 10, including items maintainers had already closed.
+Authenticate your own markers:
+ If your agents coordinate through hidden comments, accept a marker only from trusted accounts. The paper found 47 markers in 10 projects that record approvals or bypassed checks. Those should be visible, structured signals, such as a label or a check status, not a comment anyone can paste.
+Inventory what you already hide:
+ The released tool, 
+ipi-scan
+, can list hidden AI-directed text in a repository. Treat text that matches neither your templates nor your own bots as something to review. Do not feed the published attack payloads into an agent that can act.
+Do not strip everything blindly:
+ Removing all hidden text would also break legitimate orchestration, defensive notices and reviewer settings. Filter by author, not by format.
+About the analysis
+This article is based on the full text of arXiv:2611.28763v1 (submitted November 21, 2026), including the methodology, tables, threats to validity, recommendations and the ethics appendix. All numbers come from the paper. The chart is our own, redrawn from Table VII (the paper is CC BY 4.0). The authors released 
+the findings and the ipi-scan tool
+. The share of orchestration findings posted by an owner, member or collaborator (1,135 of 1,519, or 74.7%) is our calculation from Table XV. We also checked that 43 attacks in 142,716,078 items is one in about 3.32 million, which matches the authors’ “about one in 3.3 million.”
+i10x Perspective
+The number that will travel is 47 attacks. The number that should change how teams design their bots is the fivefold rise in unauthenticated hidden markers. Projects are building a control plane for their agents in HTML comments, and attackers already write in that dialect, right down to tool names copied from workflow files. Stripping every HTML comment is the blunt fix that worked in the replay, and it would also break the workflows those comments now carry. The cleaner rule is simpler, and it is the one the paper ends on: believe a hidden instruction only after you have checked who wrote it, and never let a triage model hold a secret it does not need.
+Christopher Ort
+Christopher Ort is the editor of i10X News at i10x.ai. He has worked hands-on with AI tools, models and agent workflows for years and leads i10X’s coverage of AI launches, funding and research. He is the author of “The Style Penalty”, an SSRN study on how frontier AI models judge AI-written CVs, covered by heise online and t3n.
+Profile on i10x.ai
+SSRN paper
+Timeline
+What happened before
+Oct 7, 2026
+Release
+Claude Haiku 5.5
+1M context · $0.1 / $0.5 per 1M tokens
+support.claude.com
+ (source, opens in a new tab)
+Sep 28, 2026
+Release
+Claude Sonnet 5.5
+1M context · $2 / $10 per 1M tokens
+support.claude.com
+ (source, opens in a new tab)
+Sep 22, 2026
+Release
+Claude Opus 5.5
+1M context · $4 / $20 per 1M tokens
+First model of the Claude 5.5 family; performs at the level of Claude Fable 5.1 on most work and costs 40% less to run than Opus 5.
+anthropic.com
+ (source, opens in a new tab)
+Sep 1, 2026
+Release
+Claude Fable 5.1 & Mythos 5.1
+1M context · $10 / $50 per 1M tokens
+Anthropic's most advanced models for coding and knowledge work. Price/context shown for Claude Fable 5.1 (models overview).
+support.claude.com
+ (source, opens in a new tab)
+Jul 24, 2026
+Release
+Claude Opus 5
+1M context · $5 / $25 per 1M tokens
+support.claude.com
+ (source, opens in a new tab)
+Full Claude timeline ›
+AI Security
+Coding
+Safety & Alignment
+Studies
+Anthropic
+Google
+Microsoft
+OpenAI
+Claude
+Gemini
+News
+Related coverage
+AI Security
+ARTEX reaches state hacker toolkits: how to spot the AI attack agent
+Nov 25, 2026
+AI Security
+PyTorch and llama.cpp: 17 model file flaws, only llama.cpp ships fixes
+Nov 25, 2026
+AI Security
+Check Point management servers at 22 firms breached in suspected AI-driven campaign
+Nov 25, 2026
+Anthropic
+Anthropic’s Rust Migration: 98% of Tests Passed, Only 25% of Traffic Matched
+Nov 25, 2026
+Anthropic
+Claude Turns Artifacts Into Mac and Windows Apps: What Full Access Allows
+Nov 25, 2026
+Anthropic
+Study: Eight of Ten AI Models Ran a Marketplace Scam When Asked, for Cents
+Nov 25, 2026
+
+===== https://theinjection.dev/items/radware-github-hidden-ai-text/
+(status 200)
+AI coding agents
+INFO
+Research
+Radware scanned about 145 million GitHub issues, pull requests, comments and README files for text hidden from readers but visible to AI coding agents, and validated 2,281 cases. Only 43 attack other people's agents.
+arxiv.org
+arXiv Paper
+github.com
+Detector And Data
+arxiv.org
+Paper Full Text
+01
+What happened
+Gabi Nakibly and Zvika Babo of Radware published a census of hidden AI-directed text on GitHub on November 21, 2026. The two researchers analyzed roughly 145 million issues, pull requests, comments and README files, and validated 2,281 findings, about 16 per million items. They released their detection tool and the full findings dataset alongside the paper.
+02
+How it works
+Indirect prompt injection on GitHub works because an AI coding agent reads the raw Markdown while a person reads GitHub's rendered page. The Radware scanner looks for that gap: HTML comments, which GitHub never renders and which carried almost all of the hidden text, plus invisible Unicode, LaTeX colored to match the background, and CSS rules such as display:none. A two-stage model classification and a template check then separate real findings from issue and pull request boilerplate.
+03
+Who is affected
+Any project whose triage, review or CI agent reads issues, pull requests and comments written by people outside the project is in scope. Radware also found hidden AI-directed text in the READMEs of 107 repositories. The paper counts 43 findings that try to make another party's agent act against that party, such as stealing secrets or forging a review verdict.
+04
+What to do
+Strip HTML comments from GitHub content before an agent reads it: Radware reports that none of the five models it tested complied with any of the 43 in-the-wild attacks once comments were removed. The authors note that stripping also disables the hidden markers projects use to steer their own agents.
+Measured results
+In-the-wild attacks complied with, of 43
+Higher is worse for defenders. Measured on raw Markdown, before HTML comments are stripped.
+Result
+Score
+claude-haiku-5-5
+0attacks
+claude-sonnet-5-5
+0attacks
+claude-opus-5-5
+0attacks
+gpt-5.6-luna
+8attacks
+gpt-5.6-terra
+0attacks
+Scale 0 to 43attacks · Source: 
+arxiv.org
+, as published
+Questions people ask
+How many of the hidden GitHub prompt injections actually worked?
+Radware replayed the 43 in-the-wild attacks offline against five models and reports that only gpt-5.6-luna complied, on 8 of the 43 attacks, about 19 percent. Claude Haiku 5.5, Claude Sonnet 5.5, Claude Opus 5.5 and gpt-5.6-terra complied with none of them. Once HTML comments were stripped from the input, no model in the test complied with any attack.
+What is most of the hidden AI text on GitHub actually for?
+Most hidden AI-directed text on GitHub is projects steering their own agents, not attacking anyone. Radware classes 1,519 of the 2,281 findings as first-party orchestration, where maintainers leave hidden markers so their own triage or review bots behave a certain way. The authors report that this category grew fivefold over four months, far outpacing the 43 validated attacks.
+Can I run Radware's detector against my own repository?
+Yes. Radware released ipi-scan, the tool behind the study, under the MIT license, together with the JSONL findings files and a script that recomputes the published numbers. The scanner runs against a repository, search results, GH Archive data or a local file. Radware warns that the published dataset holds live attack payloads and should never be fed to an action-capable agent.
+Sources 
+3 links, all fetched
+1
+arxiv.org
+arXiv Paper
+2
+github.com
+Detector And Data
+3
+arxiv.org
+Paper Full Text
+
+===== https://mindpattern.ai/s/2026-11-24-a-scan-of-145-million-github-items-found-2-281-hidden-ai-directed-text-blocks-and-str
+(status 200)
+Fetching from the wire…
+01
+02
+03
+04
+05
+06
+07
+08
+
+===== https://arxiv.org/abs/2611.28763
+(status 200)
+Computer Science > Cryptography and Security
+arXiv:2611.28763
+ (cs)
+  [Submitted on 21 Nov 2026]
+Title:
+Who Is Prompt-Injecting Coding Agents? An Empirical Study of Hidden AI-Directed Text on GitHub
+Authors:
+Gabi Nakibly
+, 
+Zvika Babo
+View a PDF of the paper titled Who Is Prompt-Injecting Coding Agents? An Empirical Study of Hidden AI-Directed Text on GitHub, by Gabi Nakibly and 1 other authors
+View PDF
+HTML (experimental)
+Abstract:
+AI coding agents now triage issues, review pull requests and pick up tasks inside GitHub repositories, and to do so they read text that anyone with a GitHub account can write. This makes GitHub a prime surface for indirect prompt injection, in which instructions embedded in untrusted content steer a model that later processes it. Prior work has demonstrated such attacks against agents on GitHub in controlled settings, but how often they occur in practice, who deploys them, and for what purpose remain unknown.
+We present the first large-scale empirical study of AI-directed hidden text on GitHub. We analyzed roughly 145 million issues, pull requests, comments and README files, detected text that GitHub does not render to a human reader but that an agent receives in full, and filtered it with a two-stage LLM classification, a template provenance check and an exhaustive manual review. We identify 2,281 validated findings in issues, pull requests and comments (16 per million items), and AI-directed hidden text in the READMEs of 107 repositories.
+We find a heterogeneous ecosystem of four uses: attacks on other parties' agents, defensive text that restricts agents, content override that steers what they write, and first-party orchestration, in which projects coordinate their own agents through hidden markers. Attacks are rare (about one in 3.3 million items) but aimed at maintainers' own triage, review and CI agents. Orchestration accounts for two thirds of the findings in issues, pull requests and comments, grew fivefold in four months, and forms a control channel that anyone who can comment can imitate. Replayed offline against five models we tested, the attacks succeed against one small, fast model in 19% of cases, and against none once HTML comments are stripped. We release our detection tool and every finding.
+Comments:
+20 pages, 6 figures, 17 tables. Data and detection tool: 
+this https URL
+Subjects:
+Cryptography and Security (cs.CR)
+Cite as:
+arXiv:2611.28763
+ [cs.CR]
+(or 
+arXiv:2611.28763v1
+ [cs.CR]
+ for this version)
+https://doi.org/10.48550/arXiv.2611.28763
+Focus to learn more
+                  arXiv-issued DOI via DataCite (pending registration)
+Submission history
+ From: Gabi Nakibly [
+view email
+]      
+[v1]
+        Sat, 21 Nov 2026 12:15:00 UTC (121 KB)
+Full-text links:
+Access Paper:
+View a PDF of the paper titled Who Is Prompt-Injecting Coding Agents? An Empirical Study of Hidden AI-Directed Text on GitHub, by Gabi Nakibly and 1 other authors
+View PDF
+HTML (experimental)
+TeX Source
+view license
+Additional Features
+Audio Summary
+Current browse context:
+cs.CR
+< prev
+  |  
+next >
+new
+ | 
+recent
+ | 
+2026-11
+    Change to browse by:
+cs
+References & Citations
+SciX
+Google Scholar
+Semantic Scholar
+export BibTeX citation
+Loading...
+BibTeX formatted citation
+×
+loading...
+Data provided by: 
+Bookmark
+Bibliographic Tools
+Bibliographic and Citation Tools
+Bibliographic Explorer Toggle
+Bibliographic Explorer
+(
+What is the Explorer?
+)
+Connected Papers Toggle
+Connected Papers
+(
+What is Connected Papers?
+)
+Litmaps Toggle
+Litmaps
+(
+What is Litmaps?
+)
+scite.ai Toggle
+scite Smart Citations
+(
+What are Smart Citations?
+)
+Code, Data, Media
+Code, Data and Media Associated with this Article
+alphaXiv Toggle
+alphaXiv
+(
+What is alphaXiv?
+)
+Links to Code Toggle
+CatalyzeX Code Finder for Papers
+(
+What is CatalyzeX?
+)
+DagsHub Toggle
+DagsHub
+(
+What is DagsHub?
+)
+GotitPub Toggle
+Gotit.pub
+(
+What is GotitPub?
+)
+Huggingface Toggle
+Hugging Face
+(
+What is Huggingface?
+)
+ScienceCast Toggle
+ScienceCast
+(
+What is ScienceCast?
+)
+Demos
+Demos
+Replicate Toggle
+Replicate
+(
+What is Replicate?
+)
+Spaces Toggle
+Hugging Face Spaces
+(
+What is Spaces?
+)
+Spaces Toggle
+TXYZ.AI
+(
+What is TXYZ.AI?
+)
+Related Papers
+Recommenders and Search Tools
+Link to Influence Flower
+Influence Flower
+(
+What are Influence Flowers?
+)
+Core recommender toggle
+CORE Recommender
+(
+What is CORE?
+)
+Author
+Venue
+Institution
+Topic
+        About arXivLabs
+arXivLabs: experimental projects with community collaborators
+arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.
+Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.
+Have an idea for a project that will add value for arXiv's community? 
+Learn more about arXivLabs
+.
+Which authors of this paper are endorsers?
+ |
+Disable MathJax
+ (
+What is MathJax?
+)
+
+===== https://www.radware.com/blog/prompt-injecting-coding-agents/
+(status 200)
+Verifying your browser before proceeding...
+Incident ID:
+        2f86f873-bsff-4680-857d-59e71ff6ab63

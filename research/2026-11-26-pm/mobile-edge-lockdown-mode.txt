@@ -1,0 +1,305 @@
+===== https://www.bleepingcomputer.com/news/microsoft/microsoft-tests-new-edge-lockdown-mode-that-disables-gpu-apis/amp/
+(status 200)
+Microsoft tests new Edge Lockdown Mode that disables GPU APIs
+By 
+Sergiu Gatlan
+November 19, 2026
+06:46 AM
+​Microsoft is developing a new Edge security feature to reduce the attack surface by disabling the WebGL, WebGL2, and WebGPU APIs.
+Inspired by Apple's Lockdown Mode, the new feature shares the same name and builds on Edge Enhanced Security Mode (also known internally as 
+Super Duper Secure Mode
+), which disables Just-In-Time Compilation (JIT) from the V8 processing pipeline.
+The new Edge Lockdown Mode offers optional, extreme protections for users facing highly targeted attacks who are willing to sacrifice website compatibility for stronger defenses.
+"Lockdown Mode is designed for users who are at particular risk of being targeted in cybersecurity campaigns. This may include journalists, executives, security researchers, and administrators," 
+said Partner Security Group Manager Gareth Evans
+.
+"Individuals whose threat model justifies accepting reduced compatibility in exchange for stronger protection. It may also apply to devices operating within highly restricted environments."
+Evans also warned that websites that use the disabled APIs (especially those with interactive graphics like games or maps) may not work as expected when this security feature is toggled on.
+Edge users can test Lockdown Mode by switching to the Canary release channel, enabling the #edge-sdsm-plus flag, restarting the browser, then toggling on Strict mode for "Enhance your security on the web" and blocking WebGL graphics and WebGPU graphics.
+After enabling it, users will see a new "Lockdown Enabled" indicator in the address bar when WebGL or WebGPU is blocked on a web page.
+Lockdown Mode indicator (Microsoft)
+​While the current Edge Canary Lockdown Mode blocks websites from using WebGL, WebGL2, and WebGPU APIs to stop attacks that try to escalate privileges and escape the sandbox, Microsoft plans to extend the feature in upcoming releases.
+"The initial set of Lockdown Mode mitigations focus is the GPU process, a more privileged component that handles complex graphics workloads across browser code, third-party libraries, and device drivers,"  Evans added.
+"Results from this experiment will inform the finished Lockdown Mode experience, including clearer descriptions of restricted capabilities and site-level exceptions that restore trusted sites without weakening protection everywhere else."
+According to the company's estimates, this new security feature would have blocked around 60% of privilege escalation attacks targeting Edge users in the wild.
+Last year, Microsoft also 
+introduced a new Edge scareware sensor
+ to ensure Defender SmartScreen blocks scam pages faster, and 
+restricted access to Edge's Internet Explorer mode
+ after learning that hackers were leveraging zero-day exploits in the Chakra JavaScript engine to access target devices.
+Uncover email threats your existing defenses may miss. 
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.
+Related Articles:
+Microsoft confirms authentication issues after November updates
+Microsoft Azure flaw exploited to steal customers' API credentials  
+Microsoft testing fix for Windows 11 Bluetooth audio quality drops
+Microsoft testing Remote Lock for lost or stolen Windows devices
+Microsoft confirms Windows printing issues affecting Forcepoint users
+Browser
+GPU
+Lockdown Mode
+Microsoft
+Microsoft Edge
+Web Browser
+WebGL
+View Comments
+Popular Stories
+Microsoft Azure flaw exploited to steal customers' API credentials  
+Microsoft confirms authentication issues after November updates
+CISA flags critical Cisco RCE flaw as actively exploited in attacks
+
+===== https://www.neowin.net/news/microsoft-is-bringing-lockdown-mode-to-edge-and-wants-you-to-help-test-it/
+(status 403)
+
+
+===== https://helpdeskgeek.com/microsoft-edge-lockdown-mode-canary/
+(status 200)
+Microsoft is testing Edge Lockdown Mode in its desktop Canary browser. Microsoft detailed the feature in a mid-November 2026 post on its 
+Microsoft Edge Vulnerability Research
+ blog. See also our guide on 
+How to Use Edge Flags (edge://flags) to Fix Problems and Reset Them
+.
+Everyday users can stick with regular Edge; high-risk users get another protection option, but graphics-heavy sites may break.
+What Happened: Edge Lockdown Mode Targets Graphics APIs
+Microsoft’s experiment blocks WebGL, WebGL2, and WebGPU. Websites use these interfaces to draw graphics with your GPU, or graphics processor. They run through Edge’s GPU process. Microsoft frames blocking them as a way to shrink the attack surface that compromised code can reach, making it harder for an exploit to escape the browser’s sandbox and gain more permissions.
+Lockdown Mode extends 
+Enhanced Security Mode
+, previously nicknamed “Super Duper Secure Mode.” That protection turns off JavaScript’s Just-In-Time compilation, which compiles code as it runs. This reduces openings for attacks. The new experiment adds graphics limits.
+Microsoft names journalists, executives, security researchers, and system administrators among its intended users. The trade-off suits people who face targeted attacks and can accept fewer site functions.
+The experiment sits behind the 
+#edge-sdsm-plus
+ flag in Canary. Testers set the flag at 
+edge://flags/#edge-sdsm-plus
+ to 
+Enabled
+ and restart Edge for it to take effect.
+Windows
+Everyday Windows users running Stable Edge don’t need to act. Canary testers must enable the experiment, then set 
+Enhance your security on the web
+ to 
+Strict
+ in Edge’s security settings to access the graphics controls.
+The controls are 
+Block WebGL graphics
+ and 
+Block WebGPU graphics
+. Microsoft says they’re on by default only for profiles that had never used Enhanced Security Mode; if you already used Enhanced Security Mode, you need to turn both on yourself. Check both toggles individually rather than assuming either is already on.
+macOS
+Mac users should treat Lockdown Mode as a Canary experiment specific to Edge, rather than an announced change to regular Edge.
+The name echoes Apple’s own Lockdown Mode, but the two features work differently and aren’t directly comparable.
+How It Stacks Up
+The useful comparison is what protection costs you in daily browsing.
+Option
+Protection and scope
+Compatibility cost
+Edge Enhanced Security Mode, Strict
+Existing Stable protection that turns off JavaScript JIT compilation
+Can affect site behavior; doesn’t add this experiment’s graphics blocking
+Edge Lockdown Mode
+Canary experiment adding WebGL, WebGL2, and WebGPU restrictions
+GPU-dependent games, maps, and visualizations may fail
+Apple Lockdown Mode
+Optional setting on iPhone, iPad, and Mac that limits several system features, including some web technologies
+Affects more than one browser, so it isn’t a like-for-like comparison
+Sources: 
+Microsoft’s announcement
+ and 
+BleepingComputer’s comparison
+.
+Microsoft estimates the current Canary version would have mitigated roughly 
+60% of privilege escalation exploits observed in the wild
+, based on its analysis of known exploited Chromium vulnerabilities since February 2022, as 
+BleepingComputer reports
+. Privilege escalation exploits are the ones that let attack code gain permissions beyond those it first had.
+It’s a 
+Microsoft-reported estimate
+, without independent verification. It doesn’t promise protection against future attacks.
+The immediate cost is easier to grasp. A site that needs blocked graphics APIs may stop drawing its map, game, or chart. Sites with other ways to draw that content may behave differently.
+Microsoft describes site-level exceptions as planned rather than part of the current Canary experiment. That makes broken sites harder to manage. For now, testers can’t count on exempting one trusted site while keeping these restrictions everywhere else.
+Microsoft’s post shows an indicator in the address bar when a page’s graphics access is blocked. If a page breaks, testers can turn off the specific graphics restriction causing the problem, or open the site in regular Edge instead.
+The Reaction
+Reaction is still forming around this Canary experiment. The practical question matters more than the headline percentage. How much broken site functionality will its intended users accept?
+Our Take
+Verdict: Stick with regular Edge for everyday browsing; test cautiously if your work puts you at higher risk.
+Stable users have little reason to expect this announcement to change their websites. Canary testers should check essential graphics-heavy sites before relying on the restrictions. For high-risk users, reducing ways to attack the GPU process is worth a look. But experimental software and missing site exceptions add friction.
+Conclusion
+Stick with Stable Edge if you need dependable daily browsing. Test Canary if you’re assessing protection against targeted attacks, and check your essential sites first. I’d wait for site exceptions before choosing Lockdown Mode for daily use.
+
+===== https://wpteq.org/windows/20261120-microsoft-edge-lockdown-mode-webgl-webgpu-test/
+(status 200)
+HOME
+									>
+Windows
+										>
+Windows
+『Microsoft Edge』新機能「Lockdown Mode」を試験提供
+2026年11月22日										
+2026年11月26日
+Microsoftは、『Microsoft Edge』の実験版であるCanaryチャネルにおいて、攻撃対象領域（アタックサーフェス）を大幅に減らす新機能
+「Lockdown Mode」の試験提供を開始
+しました。
+Microsoft Browser Vulnerability Researchの公式ブログ
+（現地時間2026年11月13日公開）および海外メディア
+BleepingComputer
+（同11月19日公開）によると、本機能は従来の「Enhanced Security Mode（強化されたセキュリティモード）」を拡張したものです。WebGLやWebGL2、WebGPUといったGPU関連APIを遮断することで、2022年2月以降に確認された権限昇格攻撃の約60％を防げた試算になるとしています。
+従来のJITコンパイラ無効化（Enhanced Security Mode）に加え、WebGL・WebGL2・WebGPUの利用を遮断
+ジャーナリストや経営幹部、セキュリティ研究者など標的型攻撃のリスクが高いユーザー向け
+互換性よりも防御力を優先する設計のため、ゲームや地図など一部サイトが動かなくなる場合がある
+GPUプロセスを狙うサンドボックス回避攻撃を遮断
+『Microsoft Edge』では2022年2月提供のEdge 98以降、JavaScriptのJITコンパイラを無効化する「Enhanced Security Mode（内部名称：Super Duper Secure Mode）」が導入されており、これまでに確認されたChromiumの悪用済み脆弱性のうち55％を軽減できたと分析されています。
+今回の「Lockdown Mode」は、その防御対象を
+GPUプロセス
+へ広げる取り組みです。高度なブラウザ攻撃では、まずレンダラーの脆弱性からコードを実行し、続いてより高い権限を持つGPUプロセスやOSカーネルの脆弱性を突いてサンドボックスを突破する「エクスプロイトチェーン」がよく使われます。
+WebGLやWebGPUはブラウザ上で高度な3D描画やGPU計算を実現する一方、実装が複雑で過去にもANGLEやDawn周辺で悪用される脆弱性が報告されてきました。MicrosoftはこれらのAPIをあらかじめ遮断することで、権限昇格につながる攻撃経路の連鎖を断ち切る狙いです。
+対象ユーザーと今後の機能拡張
+「Lockdown Mode」という名称はAppleが2022年に導入した同名機能と同じ考え方に立つもので、すべての一般ユーザーが常時オンにする機能としては想定されていません。Partner Security Group ManagerのGareth Evans氏は、ジャーナリストや企業の経営幹部、セキュリティ研究者、システム管理者、あるいは厳格に制限された環境で使われる端末を主な対象に挙げています。
+GPU APIを無効化する性質上、ブラウザゲームや3D地図、デザインツールなどインタラクティブな描画を使うWebサイトでは表示や動作に支障が出ることがあります。そのためMicrosoftは、Canary版での検証結果をもとに、今後は制限される機能の説明をより分かりやすく整えるほか、信頼できるサイトだけ保護を緩める
+サイト単位の例外設定
+なども段階的に追加していく計画です。
+Canary版で「Lockdown Mode」を試す手順
+現在、安定版の『Microsoft Edge』での正式提供日は発表されていませんが、検証向けのEdge Canaryでは以下の手順で試験機能を試せます。
+step
+1
+Edge Canaryで「edge://settings/help」を開き、最新バージョンへ更新する
+step
+1
+アドレスバーに「edge://flags/#edge-sdsm-plus」と入力し、設定を「Enabled」に変更してブラウザを再起動する
+step
+1
+「edge://settings/privacy/security」を開き、「Webでのセキュリティを強化する」を有効にして「厳重（Strict）」を選択する
+step
+1
+下に表示される「Block WebGL graphics」と「Block WebGPU graphics」がオンになっていることを確認し、検証したいページを再読み込みする
+設定が有効になると、WebGLやWebGPUがブロックされたページではアドレスバーに
+「Lockdown Enabled」のインジケーター
+が表示されます。なお、ブロックの履歴や設定状態は「edge://security-diagnostics」内のEnhanced Security Mode項目から確認でき、不具合があった場合は設定メニューのフィードバック機能から報告するよう呼びかけられています。
+まとめ
+『Microsoft Edge』で試験が始まった「Lockdown Mode」は、Webサイトの互換性を一部犠牲にしてでもブラウザの防御力を極限まで高めたいユーザー向けの強力な選択肢です。まだCanary版での初期テスト段階ですが、今後サイト単位の例外管理などが整えば、高リスク環境での標準的な保護手段として広がっていきそうです。
+出典
+https://microsoftedge.github.io/edgevr/posts/Lockdown-Mode/
+microsoftedge.github.io
+外部サイトへ
+https://www.bleepingcomputer.com/news/microsoft/microsoft-tests-new-edge-lockdown-mode-that-disables-gpu-apis/
+www.bleepingcomputer.com
+外部サイトへ
+Xbox Store
+単品販売なし
+セキュリティ
+Series X|S
+Xbox One
+PC
+Play Anywhere
+日本語対応
+”簡単な”仕事 『Security 51』は、独特の世界観を展開し、『Papers, Please』や『Paranoia SCP』にヒントを得た警備員が主役のシミュレーションゲームだ。君はエリア51の地下要塞で任務に就いているが、その中でも最も危険とされているのはエレベーターから始まるエリアだ。シャフトは数マイルも下の計り知れない深層へと続いている。それが研究所なのか、異常現象なのか、非人間的な実験なのか、あるいは何か異世界のものなのか…それは知るべきではない。君の任務は簡単だ。アクセスを許可された者を中に入れて、許可が下りなかった者をはじき出す…表面上は”問題なし”とされてもだ。 確保、収容、保護 た者は書類や許可証、あるいは口頭指示書を所持している。君の仕事は、名前、役職、許可レベル、そして時間を調べて、出入りする人数が一致していることを確認し、不審な点に注意を払うことだ。不審な点には、誤った回答、規定から外れた行動、ろれつの回らない話し方、さらにあまりにも完璧すぎる書類も含まれる。時間が経つにつれて不審な点に気づくことが増えていく。唯一君が頼れるのは規定だ。だが、規定さえも間違っていることがある。 総合制御 経験を積むにつれ、血液検査といった本人確認を行ううえでより精密な方法を用いることができるようになる。あの用務員は単に間違った扉を開いてしまっただけなのか？あるいは敵国のスパイなのだろうか？それとも、彼らは人間ですらないのか？疑わしい時は容疑者を拘束せよ。時に過ちを犯し、普通の従業員を閉じ込めてしまうこともあるだろう。そして、チタン製の独房が中から強引に開かれているのを発見することも。君が行う決断の中には即座に結果が出るものもある。何度かの勤務シフトの後に分かるものもある。 脅威を封じ込めよ あらゆる過ちの代償は、職場における問題以上のものだ。不適切とされる者を一人でも外に出してしまえば、感染症が街に破壊的な被害をもたらす。手遅れになる前に、不審な従業員を隔離して、異常事態を調べ、新たな作戦を開始して脅威を封じ込めなければならない。 中に入れる者だけが重要なのではなく、この世に放った”者”や”物”も同じく重要だということを覚えておこう。
+関連記事を見る                                    
+ストアで見る                                
+データベースで見る                                
+収益について
+当サイトはGoogleアドセンス、Amazonアフィリエイト、楽天、A8.net、バリューコマース、ソニーストア、マイクロソフト、U-NEXT等のアフィリエイトプログラムを利用して収入を得て運営されてい
+ます。
+この記事タイトルとURLをコピー
+Post
+Share
+Hatena
+Pinterest
+LINE
+note
+コメント
+この記事を書いた人
+のっそす（WPTeq運営）
+WPTeqのメインライター兼管理人。
+初めてパソコンを購入した際にWindows Meでトラブルに見舞われ、それ以降Windowsに関するさまざまな資料を読むようになる。
+Zuneに惚れ込んで以来、Microsoft製品にハマる。
+好きなピニャータはファッジホッグ。
+-
+Windows
+-
+Lockdown Mode
+, 
+Microsoft Edge
+, 
+WebGL
+, 
+WebGPU
+, 
+セキュリティ
+
+===== https://microsoftedge.github.io/edgevr/posts/Lockdown-Mode/
+(status 200)
+Reducing the Opportunity for Exploitation with Edge Lockdown Mode
+Contents
+Reducing the Opportunity for Exploitation with Edge Lockdown Mode
+In a previous 
+blog post
+, I discussed how artificial intelligence is changing the economics of vulnerability discovery and exploitation. In that post, I shared threat intelligence from Microsoft and its partners showing attackers targeting Edge and Chrome users by weaponising known vulnerabilities disclosed in Chromium’s open-source code.
+In Edge we are adopting a multi-pronged defensive strategy to tackle these threat actors:
+We are improving how Edge delivers security updates, including the new ‘Update on Idle’ feature now available in all channels.
+We are 
+hardening the core browser
+ by rewriting core parts of Edge and Chromium in Rust.
+We are reducing the attack surface that the browser exposes by implementing new process restrictions or Sandboxes and allowing customers to disable optional functionality, the primary focus of the remainder of this post
+Traditionally browser vendors have relied on finding and fixing bugs, then getting them to customers faster than the bad guys can exploit them. But faster updates alone cannot eliminate every opportunity for exploitation: a known vulnerability remains exposed until the fix reaches users, while undiscovered vulnerabilities have no patch at all. That’s why we also invest heavily in making essential code safer and limiting what attack surface compromised code can reach.
+Enhanced Security Mode for Edge allowed customers to disable the most frequently attacked capabilities – namely V8’s just-in-time (JIT) compiler. We’re now taking the next step by building on ESM to deliver Edge Lockdown mode. These new configuration options further reduce browser attack surface by only allowing selected capabilities on bypassed sites while also strengthening the boundaries around the entire browser.
+Apple first coined the name “Lockdown Mode” and we believe that it sets the right end user expectation. Lockdown Mode is designed for users who are at particular risk of being targeted in cybersecurity campaigns. This may include journalists, executives, security researchers, and administrators. Individuals whose threat model justifies accepting reduced compatibility in exchange for stronger protection. It may also apply to devices operating within highly restricted environments. Some websites, especially those with interactive graphics like games or maps may not work as expected with Lockdown mode and require a manual bypass, as such we do not anticipate that this will be used or desirable by most Edge users.
+Enhanced Security Mode already changes exploit economics
+Edge first announced the experiment that became Enhanced Security Mode (internally called “Super Duper Secure Mode”) on 
+4th August 2021
+, challenging the assumption that maximum JavaScript performance should always take priority over security. On 
+16th February 2022
+, we announced the general availability of the feature in Microsoft Edge 98. The feature allowed users to choose between balanced or strict mode; balanced mode applies these protections adaptively to unfamiliar sites, while strict mode enables them by default; users and administrators can add exceptions when compatibility requires it.
+Our analysis of the known exploited vulnerabilities in Chromium since February 2022 demonstrates that customers who enabled ESM were safe from 55% of them. By disabling JIT compilation, Edge accepts some performance impact while removing a heavily targeted source of vulnerabilities and enabling additional exploit mitigations. JavaScript and WebAssembly continue to run through interpreters. Another benefit of removing dynamic code generation is that Edge can apply stronger operating system protections including ACG and CET which also help mitigate vulnerabilities. More technical detail is available in our 
+original Enhanced Security Mode blog
+.
+Apple adopted the same attack-surface-reduction principle when it announced 
+Lockdown Mode on 6 July 2022
+. Designed as an optional, extreme protection for people facing highly targeted attacks, it restricts capabilities across the device, including JIT JavaScript compilation in web browsing unless the user excludes a trusted site. Lockdown Mode became available with 
+iOS 16 on 12 September 2022
+, followed by iPadOS 16 and 
+macOS Ventura on 24 October 2022
+. Its arrival reinforced the idea behind Enhanced Security Mode: for users at elevated risk, deliberately limiting powerful capabilities can be a worthwhile trade-off for reducing exploitable attack surface.
+Why broaden the model beyond JIT
+The principle of attack-surface reduction extends well beyond JIT compilation: if a feature or API is unavailable to untrusted web content, an attacker cannot exploit vulnerabilities in the code behind it.
+Sophisticated browser attacks often rely on an exploit chain. An attacker may first gain code execution in the renderer through a vulnerability in a component such as V8 or Blink, then exploit a second vulnerability in the operating system kernel or a more privileged browser process, such as the GPU process, to escape the sandbox. With those privileges, the attacker can compromise the device, steal data, or deploy malware such as ransomware. Breaking any link in the chain can prevent the overall attack from succeeding, which is why removing even one reachable component can materially improve security. We have promising work under way to reduce the Windows kernel attack surface, which we will discuss in a future blog.
+The initial set of Lockdown Mode mitigations focus is the GPU process, a more privileged component that handles complex graphics workloads across browser code, third-party libraries, and device drivers. Web content reaches this stack primarily through 
+WebGL
+, which provides hardware-accelerated 2D and 3D graphics, and 
+WebGPU
+, which exposes modern GPU rendering and general-purpose computation; WebNN can also use hardware acceleration for machine-learning workloads. These APIs enable important web experiences, but their implementation complexity has repeatedly been exploited. Google confirmed exploitation of an 
+ANGLE and GPU vulnerability in July 2025
+ and 
+another ANGLE vulnerability in December 2025
+, while Chromium security updates continue to address high-severity 
+vulnerabilities in Dawn and WebGPU
+.
+Edge’s current Canary implementation prevents sites from using WebGL, WebGL2, and WebGPU; we expect the full suite to take several releases. Results from this experiment will inform the finished Lockdown Mode experience, including clearer descriptions of restricted capabilities and site-level exceptions that restore trusted sites without weakening protection everywhere else.
+As previously mentioned, these protections come with intentional compatibility cost. Games, design tools, maps, visualisations, and other graphics-intensive sites may fail or lose functionality when their GPU interfaces are unavailable. Lockdown Mode is therefore not a default for every user: it is an explicit choice for people whose exposure to targeted attack makes a smaller browser attack surface worth occasional site breakage.
+Our analysis of the known exploited vulnerabilities since February 2022 shows that today’s Canary version of Lockdown Mode would have mitigated roughly 60% of all privilege escalation exploits observed in the wild.
+Help us test Lockdown Mode
+We need help to test Edge Lockdown Mode against real browsing tasks before it is productised more broadly. Security researchers, administrators, developers, and other technically sophisticated users can help us determine whether the protections are effective, the trade-offs are understandable, and trusted sites recover cleanly when an exception is required.
+When you encounter a failure, use the “send feedback” option under Settings, Help and Support. Include the task you were attempting, the affected site and capability, whether a narrow exception restored the experience, and whether the protection was clear enough to diagnose. Be sure to mention Lockdown Mode in your report.
+How to test Lockdown Mode in Canary
+Update Canary: edge://settings/help. While here, security-conscious users may wish to consider turning on “Update on Idle” see our 
+support article
+ for more information.
+Enable the flag: edge://flags/#edge-sdsm-plus → Enabled → Restart. 
+Turn it on: edge://settings/privacy/security → turn on Enhance your security on the web → choose Strict. Block WebGL graphics and Block WebGPU graphics appear below it. They are enabled by default on profiles that had not previously used enhanced security before. Existing ESM users currently have to opt-into this change by enabling these two setting.
+Reload any existing test pages. A “Lockdown Enabled” indicator appears in the address bar when WebGL or WebGPU is blocked for that page.
+Open the DevTools Console while testing the page. Warnings identify WebGL or WebGPU requests blocked by Lockdown Mode.
+Check blocking settings and past block decisions in edge://security-diagnostics → Enhanced Security Mode.
+What’s next
+The first version of Edge Lockdown Mode is now available in Canary behind the #edge-sdsm-plus flag. It currently lets you block WebGL and WebGPU, and we plan to extend it to more capabilities over the coming releases. In the meantime, please try it using the steps above and send us feedback through Settings, Help and Support.
+Reducing attack surface complements faster updates and safer code. For users and organisations who may be targeted with new exploits, these trade-offs can be worthwhile. Thank you for testing Lockdown Mode and helping us refine the balance between stronger protection and everyday usability.
+Security
+, 
+Mitigations
+, 
+Features
+Lockdown Mode
+Mitigations
+Features
+ This post is licensed under 
+ CC BY 4.0 
+ by the author.
+Share
