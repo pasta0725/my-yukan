@@ -1,0 +1,342 @@
+===== https://www.watch.impress.co.jp/docs/news/2159451.html
+(status 200)
+ニュース
+DeepL、より自然なAI音声翻訳「Aure v2」　翻訳の遅延を50%削減
+浅井 淳志
+2026年11月26日 15:00
+ DeepLは26日、イベント「Unmute Tokyo 26」で音声AIモデル「Aure v2」を発表した。DeepL Voiceユーザー向けに提供開始し、前モデル「Aure」と比較して翻訳の遅延を50%削減し、翻訳精度と表現力を高めている。 
+ Aureは、話者の声の特徴を保ちながら、会話中のトーンや感情、強調、話すペースなどの変化を翻訳音声にリアルタイムで反映する音声AIモデル。 
+ 従来のモデルでは、会話冒頭で捉えた話者の声をもとに翻訳音声を生成していたが、Aureでは翻訳された言葉と元の音声の両方を用いて、「何を話しているか」「どのように話しているか」を継続的に分析する。話し方の変化に応じて翻訳音声を調整することで、より自然で表現豊かな音声翻訳を実現する。 
+DeepL、感情や抑揚の変化も伝える音声翻訳AI「Aure」
+2026年11月12日 08:00
+ Aure v2では、音声から音声へ直接翻訳するエンドツーエンド型のアーキテクチャを新たに導入。従来はそれぞれ別のモデルが順番に行なっていた「音声の文字起こし」「別の言語への翻訳」「翻訳結果の音声生成」の3工程を1つのプロセスに統合し、遅延を大幅に削減した。 
+ また、翻訳を開始するタイミングを最適化するために強化学習も行なった。リアルタイム音声翻訳では、翻訳を早く始めすぎると文脈を捉えきれず、精度が低下する一方、開始が遅れると会話のテンポが損なわれる問題がある。 
+ 強化学習により正確かつ素早く開始された翻訳を評価する仕組みを取り入れ、正確な翻訳に必要な文脈が得られたタイミングをモデル自身が判断できるようにした。これにより、翻訳精度と表現力を高めながら、翻訳開始までの遅延も削減している。 
+ 新たなアーキテクチャと強化学習により、前モデル「Aure」と比較して翻訳開始までの遅延の中央値を50%削減。社内ベンチマークでは、英語から日本語への翻訳においてGoogle Gemini 3.5 Live Translateと比較して翻訳エラーを32%削減したほか、テストした10の言語ペアすべてで競合システムを上回る品質を達成したとしている。 
+ Aure v2は、現時点で日本語、英語、ドイツ語、フランス語、スペイン語、韓国語の6言語に対応する。「DeepL Voice for Online Meetings」「DeepL Voice for In-Person Conversations」「DeepL API for Voice」で利用でき、対応言語では追加の設定を必要とせず自動的に適用される。 
+Aure v2適用のDeepL Voice for Online Meetingsのデモの様子
+Aure v2適用後はUIに「Aure v2」のロゴが表示される
+
+===== https://www.deepl.com/ja/press-release/aure-v2
+(status 200)
+プレスリリースへ戻る
+DeepL、最速の音声AI翻訳モデル「Aure v2」を発表
+2026-11-26
+日本語を含む6言語で提供開始。DeepL Voiceの翻訳遅延を50％削減しながら、精度と表現力をさらに向上。社内ベンチマークで評価した6つの競合システムを上回る翻訳品質を実現
+英語・日本語の翻訳エラーをGoogle Gemini 3.5 Live Translate比で32％削減
+総利用時間は前年比8倍以上、日本における会議での翻訳利用時間は約7倍に
+東京／ケルン（ドイツ）発 －
+2026年11月26日 －
+ グローバルビジネスを支える言語AI企業のDeepLは本日、東京で初開催となる「Unmute Tokyo 26」で、新たな音声AIモデル「
+Aure v2
+」を発表しました。Aure v2はDeepL Voiceのユーザー向けに本日から提供を開始しており、前モデルと比較して翻訳の遅延を50％削減しました。翻訳精度と表現力を高め、多言語でのリアルタイムな会話がよりスムーズで自然になります。
+Aure v2は、提供開始時点で日本語、英語、ドイツ語、フランス語、スペイン語、韓国語の6言語に対応しており、今後さらに対応言語を拡大する予定です。Aure v2は、「DeepL Voice for Online Meetings」「DeepL Voice for In-Person Conversations」および「DeepL API for Voice」で利用でき、対応言語では追加の設定を必要とせず自動的に適用されます。
+Aure v2は、今月発表した音声AIモデル「
+Aure
+」の後継モデルです。Aureは、会話を通じて、話者のトーン、抑揚に継続的に適応し、翻訳音声をより自然で表現豊かにしました。Aure v2ではさらに、新たなエンドツーエンド型のモデルアーキテクチャと強化学習を導入し、翻訳精度や表現力を高めながら、翻訳が始まるまでの遅延を大幅に削減しています。これらの技術によりDeepLは、遅延や誤解に妨げられることなく、誰もが自然にコミュニケーションできる未来の実現にさらに近づきます。
+DeepL創業者兼CEOであるヤレック・クテロフスキー
+は、次のように述べています。
+「Aure v2では、翻訳の遅延を大幅に削減すると同時に、DeepL Voiceの精度と品質をさらに高めることができました。これは技術面での大きなブレークスルーですが、それ以上に心躍るのは、お客様ができることが大きく広がることです。例えば、グローバル会議では、アイデアが共有されたその瞬間に反応できるようになります。また、カスタマーサービスでは、会話のニュアンスを損なうことなく、より迅速に課題を解決できます。私たちが目指しているのは、こうしたスピード、信頼性、そして相互理解が大きく影響する場面で、言語の壁をなくすことです。」
+速さと、競合を上回る翻訳品質を両立
+どれだけ正確で表現力のある翻訳でも、届くまでに時間がかかれば、会話の流れを妨げてしまいます。リアルタイム音声翻訳では、スピードと精度のバランスが重要です。正確に意味を捉えるには十分な文脈が必要ですが、文脈を待ちすぎると自然な会話のテンポが損なわれます。
+Aure v2は、このバランスを大きく前進させました。DeepLの社内ベンチマーク*では、以下の結果を達成しています。
+前モデルのAureと比較して、翻訳開始までの遅延の中央値を50％削減
+リアルタイム音声翻訳で特に難しい言語ペアの一つである英語から日本語への翻訳において、Google Gemini 3.5 Live Translateと比較して翻訳エラーを32％削減
+10の言語ペアすべてにおいて、テストした6つの競合システムを上回る翻訳品質を達成
+このスピードと精度の両立は、カスタマーサポートセンターや大切な商談など、業務に直結する場面で特に重要です。遅延は会話の流れを妨げ、誤解はビジネスに大きな影響を与える可能性があります。
+リアルタイム音声翻訳を進化させる新たなアプローチ
+Aure v2の高い性能を支えているのが、音声から音声へ直接翻訳する新たなエンドツーエンド型のモデルアーキテクチャです。これにより、文字起こし、翻訳、音声生成をそれぞれ別の工程で行う必要がなくなりました。
+従来のリアルタイム音声翻訳では、まず音声をテキストに変換し、そのテキストを別の言語に翻訳した後、翻訳結果から音声を生成するという3つの工程が一般的でした。それぞれの工程が前の処理結果に依存するため、処理時間が積み重なり、自然な会話を妨げる遅延につながることがあります。Aure v2ではこれらを一つのプロセスに統合し、音声から音声へ直接翻訳することで、遅延を大幅に削減しています。
+今回の進化は、アーキテクチャによる高速化だけではありません。リアルタイム音声翻訳における最大の課題の一つは、「いつ翻訳を始めるか」を判断することです。翻訳を早く始めすぎると重要な文脈を捉えきれず、正確性を損なう可能性があります。一方で、開始を遅らせすぎると、翻訳は正確でも会話のテンポが落ちてしまいます。特に日本語やドイツ語のように、文末に重要な情報が置かれることがある言語では、この判断がより難しくなります。
+こうした判断をAIモデルに学習させることは容易ではありません。適切なタイミングや表現を含むリアルタイム音声翻訳の高品質な音声データは希少です。そこでDeepLは、大量のデータのみに頼るのではなく、強化学習を活用して、Aure v2が速く、かつ正確に翻訳できるよう学習させました。トレーニングでは、正確でありながら素早く開始された翻訳を評価する仕組みを導入。学習を重ねることで、Aure v2は正確な翻訳を始めるために十分な文脈を得られたタイミングを判断できるようになりました。
+DeepL最高技術責任者（CTO）のセバスチャン・エンダーライン
+は、次のように述べています。
+「リアルタイム翻訳で重要なのは、単に音声をより速く処理することではありません。正確に翻訳するために十分な情報がそろったタイミングを見極めることです。Aure v2では、根本から刷新したAIアーキテクチャと強化学習を組み合わせることで、スピードと精度という2つの課題に同時に取り組みました。言語を越えて意味やニュアンスを伝えるDeepLの長年の知見を生かし、同時通訳をさらに高速かつ正確にし、自然な会話のテンポに近づけています。」
+エンタープライズ向けに設計、グローバルで導入が加速
+DeepL Voiceのグローバルでの利用も大きく拡大しています。2026年第3四半期（Q3）には、DeepL Voiceの総利用時間が前年比で8倍以上に増加し、会議での翻訳利用時間も約7倍に拡大しました。
+特にアジアでは高い成長が続いており、米国やドイツでも利用が拡大しています。中でも日本では、2026年第3四半期の会議でのDeepL Voiceの利用時間が前年同期比で
+7倍以上に増加しました。韓国でも5倍に
+拡大し
+、米国・ドイツでもそれぞれ6倍以上に拡大しています。
+さらに2026年10月時点で、会議でDeepL Voiceを利用しているアクティブなサブスクリプション数は、日本と韓国を合わせて前年同期比で約12倍、米国では8倍、ドイツでは9倍に増加しました。
+利用が拡大する一方、DeepL Voiceは企業が求めるセキュリティおよびデータプライバシー要件にも対応しています。法人顧客の音声、文字起こし、翻訳データがDeepLのAIモデルのトレーニングに使用されることはありません。また、会議データは、通話終了時に削除されます。DeepLはISO 27001およびSOC 2 Type II認証を取得しており、GDPRにも準拠するなど、エンタープライズレベルのセキュリティとプライバシー保護に取り組んでいます。
+Aure v2の詳細は、
+DeepL公式サイト
+をご覧ください。
+*DeepLによる2026年11月の社内調査結果。10の言語ペアを対象に、1分間の実際の音声録音と、人による確認済みの文字起こしデータを使用して評価。すべてのモデルを公開API経由でテストし、アプリケーションによる処理時間は含まれていません。実際の会話では結果が異なる場合があります。記載されている第三者の製品名および会社名は、それぞれの所有者の商標です。これらの名称は識別のみを目的として使用しており、当該企業との提携または当該企業による推奨を意味するものではありません。
+DeepLについて
+DeepLは、グローバルビジネスを支える言語インフラを構築するAI企業です。20万社以上の法人顧客と数百万人の個人がDeepLの言語AIプラットフォームを活用し、言語の壁を越えたコミュニケーションやコラボレーションを実現し、多言語環境での業務遂行を支えています。革新的なAIモデルとエンタープライズレベルのセキュリティおよびプライバシー保護を組み合わせることで、企業や組織が、市場や文化の違いを越えて円滑に事業を展開できるよう支援しています。2017年にCEOのヤレック・クテロフスキーによって設立されたDeepLは、現在約900人以上の従業員を擁し、Benchmark、IVP、Index Venturesなどの有力投資家から支援を受けています。詳しくは www.deepl.com をご覧ください。
+
+===== https://corriente.jp/deepl-aure-v2-voice-translation-model/
+(status 200)
+DeepLは11月26日、東京で初開催となるイベント「Unmute Tokyo 26」で音声AIモデル「Aure v2」を発表した。DeepL Voiceのユーザー向けに同日から提供を開始している。日本語を含む6言語に対応する。
+スポンサーリンク
+文字起こし・翻訳・音声化を1つに統合。翻訳の遅延を50％削減
+「Aure v2」は、今月11日にDeepLが発表した音声AIモデル「Aure」の後継モデル。「Aure」は会話を通じ
+て話者のトーン、抑揚に継続的に適応し、より自然で表現豊かな翻訳音声を生成することができた。「Aure
+v2」では、新たなエンドツーエンド型のモデルアーキテクチャと強化学習を導入したことで、翻訳精度や表現力を高めつつ、翻訳が始まるまでの遅延を大幅に削減している。
+DeepLの社内ベンチマークでは、翻訳開始までの遅延の中央値を前モデルのAureと比べて50％削減。英語から日本語への翻訳では、Google Gemini 3.5 Live Translateと比べて翻訳エラーを32％削減し、10の言語ペアすべてでテストした6つの競合システムを上回る翻訳品質を達成したという。
+従来のリアルタイム音声翻訳では、音声をテキストに変換し、別の言語に翻訳してから音声を生成するという3つの工程を順に実行しており、工程ごとに処理時間が積み重なり、会話のテンポを損なう遅延につながっていた。「Aure v2」はこれらを1つのプロセスに統合し、音声から音声へ直接翻訳することで遅延を大幅に削減したという。
+翻訳の開始タイミングも強化学習で学ばせた。早く始めすぎると文脈を捉えきれず、遅らせすぎると会話のテンポが落ちる。日本語やドイツ語のように文末に重要な情報が置かれる言語では、この判断がさらに難しい。DeepLは正確でありながら素早く開始された翻訳を評価する仕組みで学習を重ね、十分な文脈を得られたタイミングを判断できるようにした。翻訳された単語の半数は3.3秒以内に届き、1分間の連続した発話でも遅延の増加は0.1秒にとどまるという。
+スポンサーリンク
+日本語を含む6言語に対応。設定不要で自動適用
+「Aure v2」の対応言語は日本語、英語、ドイツ語、フランス語、スペイン語、韓国語の6言語で、今後さらに拡大する予定。「DeepL Voice for Online Meetings」「DeepL Voice for In-Person Conversations」「DeepL API for Voice」で利用でき、対応言語では追加の設定なしに自動的に適用される。
+「Aure v2」モデルを利用するには話す言語・聞く言語の両方が6言語の範囲内である必要があり、対象外の言語では従来の音声モデルが使われる。話す言語は明示的に選ぶ必要があり、自動検出にはまだ対応していない。
+DeepL創業者兼CEOのヤレック・クテロフスキー氏は、「Aure v2」では翻訳の遅延を大幅に削減すると同時にDeepL Voiceの精度と品質をさらに高めることができたと述べた。グローバル会議ではアイデアが共有された瞬間に反応できるようになり、カスタマーサービスでは会話のニュアンスを損なうことなく、より迅速に課題を解決できるようになるという。
+DeepL Voiceの総利用時間は2026年第3四半期に前年比で8倍以上に増加し、会議での翻訳利用時間も約7倍に拡大した。日本における会議での利用時間は前年同期比で7倍以上に増え、韓国では5倍、米国とドイツではそれぞれ6倍以上に拡大している。2026年10月時点で、会議でDeepL Voiceを利用しているアクティブなサブスクリプション数は、日本と韓国を合わせて前年同期比で約12倍、米国では8倍、ドイツでは9倍になった。
+企業向けのセキュリティにも配慮している。法人顧客の音声や文字起こし、翻訳データはDeepLのAIモデルのトレーニングに使われず、会議データは通話終了時に削除される。ISO 27001とSOC 2 Type IIの認証を取得し、GDPRに準拠しているという。
+関連リンク
+The new standard for speed and accuracy – DeepL
+DeepL、トーンや感情まで翻訳音声に反映するVoice AIモデル「Aure」発表。日本語を含む8言語に対応
+DeepLがリアルタイム音声翻訳「DeepL Voice」を支える新Voice AIモデル「Aure」を発表。話者のトーンや感情、強調、話すペースの変化を翻訳音声にリアルタイムで反映する。日本語を含む8言語に対応し、オンライン会議や対面会話、APIで追加設定なしに自動適用される。
+corriente.jp
+(画像：DeepL)
+
+===== https://thetrail.jp/news/deepl-aure-v2/
+(status 200)
+この記事の要点
+DeepL は2026年11月26日、音声翻訳の DeepL Voice で動く新しいモデル Aure v2 を公開した。東京で開いた Unmute Summit で発表した。
+訳が出るまでの遅れの中央値は、DeepL の社内評価で、11月11日に出た前のモデル Aure より50%短い。
+対応は英語、ドイツ語、フランス語、スペイン語、日本語、韓国語の6言語だ。会議向けと対面向けの DeepL Voice と API に自動で適用される。
+目次
+6
+何が発表されたか
+DeepL
+ は2026年11月26日、
+音声翻訳モデル Aure v2 を公開した
+。発表の場は東京で初めて開いた Unmute Summit である。Aure v2 は会話をその場で訳す DeepL Voice の中で動く。前のモデルの Aure は会話の間ずっと話し手の声、語調、抑揚に合わせ、訳を自然にするモデルだった。Aure については
+11月20日の記事
+にまとめている。
+DeepL の発表
+によると、v2 で変わったのは主に2点だ。
+1つ目は訳し方の構成である。これまでの音声翻訳は3つの段階に分かれていた。音声を文字にし、その文字を訳し、訳から音声を作る。各段階は前の段階に頼るので、処理の時間と遅れが増える。
+Aure v2 はこれを1つの段階にまとめ、音声から音声へ直接訳す
+。DeepL はこれを end-to-end の構成と呼んでいる。
+2つ目は訳し始める時機の学習だ。早く訳し始めると、大事な文脈が抜けて誤訳になることがある。待ちすぎると会話が遅れる。ドイツ語や日本語は大事な情報が文の終わりに来ることがあり、とくに難しいと発表は説明している。ちょうどよい時機で訳した録音のデータは少ない。そこで DeepL は強化学習（試行の結果に報酬を与えて出力を良くしていく学習の方法）を使った。学習では正確で、しかも早く訳し始めた訳に報酬を与えた。やがて、モデルは訳し始めてよいだけの文脈を聞いたかを見分けられるようになったという。
+性能の数字はすべて DeepL の社内評価による。
+訳が出るまでの遅れの中央値は、前の Aure より50%少ない。
+比べた6つの他社の仕組みより、すべての言語の組で訳の品質が高い。
+英語と日本語の間の訳の誤りは、Google の Gemini 3.5 Live Translate より32%少ない。
+評価は2026年11月の社内調査で、10の言語の組について、実際の話し声を録った1分の録音を使った。書き起こしは人が確かめたもので、各モデルは公開の API を通して試した。
+実際の会話では結果が変わることがあると、発表自身が断っている
+。
+発表は DeepL Voice の利用の伸びも挙げた。2026年第3四半期の音声の総利用時間は、前の年の同じ時期の8倍を超えた。同じ期間に、日本での会議の利用時間は7倍を超えた。2026年10月時点で、会議で使われている有効な DeepL Voice の契約の数は、日本と韓国を合わせて前の年の約12倍になった。
+年表で見ると
+TRAIL の年表で、DeepL のモデル更新は Aure v2 を含めて3件ある。2024年7月17日の
+翻訳向けの次世代の言語モデル
+、2026年11月11日の 
+Aure
+、そして今回の Aure v2 だ。Aure から Aure v2 までの間隔は15日である。その前の間隔は847日だった。
+音声の分野では2026年9月15日に
+話し手の声を保ったまま訳せるようになった
+。11月25日にはマクニカと組んで被災地の自治体などに対面向けの DeepL Voice を無料で出す取り組みを発表した。こちらは
+11月25日の記事
+にある。年表にある2026年11月の DeepL の出来事は、Aure v2 を入れて3件になる。
+対応言語は Aure と Aure v2 で違う。Aure は発表の時点で、英語、ドイツ語、スペイン語、フランス語、イタリア語、日本語、ポルトガル語、韓国語の8言語だった。Aure v2 は発表の時点で6言語である。
+TRAIL の年表では、
+DeepL のモデル更新の間隔は847日から15日になり、Aure の次のモデルは15日で出た
+。
+同じカテゴリで比べると
+DeepL は TRAIL の
+比較表
+で業務効率化の分野に入る。同じ分野のツールで、年表にある最新のモデル更新は次のとおり。日数は2026年11月26日から数えている。
+ツール
+最新のモデル更新
+日付
+何日前
+DeepL
+音声翻訳モデル Aure v2 を公開
+2026年11月26日
+0日前
+tsuzumi
+tsuzumi 2 をアップデート
+2026年5月19日
+191日前
+Notion AI
+Claude Opus 4.7 を Notion に追加
+2026年4月16日
+224日前
+Gamma
+なし
+―
+―
+tsuzumi
+ と 
+Notion AI
+ の最新のモデル更新は、どちらも半年以上前である。
+Gamma
+ には、年表にモデル更新の記録がない。
+誰が、いくらで使えるか
+Aure v2 は、DeepL Voice の利用者に向けて提供が始まった。適用先は次の3つで、対応言語では設定なしで自動で有効になる。
+DeepL Voice for Online Meetings（オンライン会議向け）
+DeepL Voice for In-Person Conversations（対面の会話向け）
+DeepL API for Voice（ほかのサービスに音声翻訳を組み込む API）
+日本語は6つの対応言語に入っている。発表は英語と日本語の組を、その場で訳す音声翻訳で最も難しい組の1つとしている。
+企業での扱いも書かれている。企業の顧客の音声、書き起こし、訳は DeepL の AI モデルの学習に使わない。会議のデータは通話が終わると消す。ただし、保存の設定は顧客が決められる。DeepL は ISO 27001 と SOC 2 Type II の認証を持つ。
+料金は発表に書かれていない。TRAIL が2026年10月24日に確かめた DeepL の料金表（無料版、Individual、Team、Business、Enterprise）にも、DeepL Voice の扱いは載っていない。
+まだ分からないこと
+DeepL Voice の料金と、どのプランで Aure v2 を使えるかは、発表からは分からない
+。6言語以外の言語をどのモデルで訳すかも書かれていない。遅れが実際に何秒短くなったかは、割合でしか示されていない。比べた6つの他社の仕組みの名前も、Gemini 3.5 Live Translate のほかは示されていない。
+次に見るもの
+DeepL は対応言語を近く増やすとしている。追加される言語の発表が次の材料になる。
+年表で見ると：
+DeepL
+ の節目と更新
+年表を見る
+73日
+152日
+57日
+15日
+2026.02.02 DeepL Voice API を一般提供
+2026.02.02
+DeepL Voice
+API を一般…
+DeepL Voice API を一般…
+2026.04.16 訳した声を届ける DeepL Voice-to-Voice を発表
+2026.04.16
+訳した声を届け
+る DeepL V…
+訳した声を届ける DeepL V…
+2026.09.15 DeepL Voice が話し手の声を保ったまま訳せるように
+2026.09.15
+DeepL Voice
+が話し手の声…
+DeepL Voice が話し手の…
+2026.11.11 音声翻訳の新モデル Aure を発表
+2026.11.11
+音声翻訳の新モ
+デル Aure…
+音声翻訳の新モデル Aure…
+2026.11.26 音声翻訳モデル Aure v2 を公開
+2026.11.26
+音声翻訳モデル
+Aure v2 を…
+音声翻訳モデル Aure v2…
+TRAIL の年表（重要度2以上）から作成。
+2026.11.26
+ まで。
+この記事を共有
+X でシェア
+共有
+リンクをコピー
+出典
+DeepL introduces Aure v2, its fastest Voice AI translation model
+DeepL
+
+===== https://mini.joho-todai.com/en/deepl-aure-v2-direct-speech-translation/
+(status 200)
+Direct speech-to-speech translation
+On November 26, DeepL 
+announced
+ its new Aure v2 speech AI model at the Unmute Tokyo 26 event in Tokyo.
+The previous Aure model preserves characteristics of the speaker's voice while reflecting changes in emotion, intonation, and emphasis in the translated speech.
+Conventional real-time speech translation commonly converts speech to text, translates it into another language, and then generates translated speech. Because each step depends on the result of the preceding one, the delays can accumulate.
+Aure v2 uses an end-to-end model that 
+integrates the individual stages
+ and translates directly from speech to speech.
+DeepL Aure v2 Speech Processing and Translation-Start Decisions
+Dimension
+Conventional method / challenge
+Aure v2 design
+Processing
+Transcription
+→ translation →
+Speech generation
+Speech to speech
+Direct translation
+Start
+Too early:
+Risk of mistranslation
+Too late:
+Conversation delay
+Evaluated through reinforcement learning
+Accuracy / speed of starting
+Sufficient context
+Determines the point
+Learning when to begin translating
+Consider an utterance where it becomes clear only at the end whether the speaker supports or opposes a proposal. If translation begins before the conclusion is clear, it may convey a meaning different from the speaker's intent.
+DeepL says deciding when to begin is particularly difficult in real-time speech translation for languages such as Japanese and German, where important information can appear at the end of a sentence.
+Waiting for the rest of the utterance makes it easier to capture the meaning accurately. It also lengthens the time before the translation can be heard.
+In reinforcement learning for Aure v2, DeepL evaluated 
+both accuracy and how quickly translation began
+. The company says this taught the model to decide for itself when it had enough context for translation.
+In addition to accelerating translation processing, making the decision about how much must be heard before conveying the meaning part of the learning process is notable.
+Speed and accuracy evaluated in internal tests
+DeepL conducted internal tests on 10 language pairs in November 2026. It used one-minute real-world audio recordings and human-verified transcripts, while an AI counted translation errors according to DeepL's own evaluation metric.
+The tests were 
+conducted through a public API
+ and did not include processing time specific to meeting applications or other software.
+Published Figures From DeepL Aure v2 Internal Tests (As of November 26)
+Figure in announcement materials
+Median latency before translation begins
+(vs. Aure)
+50% reduction
+Figures by language version of product page
+Japanese version
+English version
+From speech until translated voice is heard
+(vs. Aure)
+46% shorter
+50% shorter
+Bidirectional English-Japanese translation errors
+(vs. Google)
+36% reduction
+32% reduction
+November 2026 internal test:
+10 language pairs
+・
+One-minute real-world recordings
+Measured through public API (excluding app-specific processing time)
+AI counted translation errors using a proprietary metric
+The November 26 announcement says the model reduced 
+median latency before translation began
+ by 50% compared with the previous Aure model. As of November 26, the product page described the time from speech until the translated voice could be heard as 46% shorter on the 
+Japanese page
+ and 50% shorter on the 
+English page
+, both compared with Aure. The reported reduction in bidirectional English-Japanese translation errors compared with Google also differed: 36% on the Japanese page and 32% on the English page.
+The time until translation begins and the time until the translated words can actually be heard need to be distinguished. Published figures also differ by language version, so determining how much the wait is reduced in conversation requires testing under consistent measurement conditions.
+Japanese-language meetings and disaster-area support
+Aure v2 supports Japanese, English, German, French, Spanish, and Korean. At launch on November 26, 
+both the input and output must be in supported languages
+.
+It is applied to supported languages in online meetings, in-person conversations, and the speech translation API without requiring additional model configuration. To let the other participant hear Aure v2's translated speech, users must 
+explicitly select the language being spoken
+. Automatic language detection was not supported at launch.
+According to usage figures 
+published by DeepL
+, the aggregate time spent by meeting participants using DeepL Voice in Japan from July through September 2026 was more than seven times the year-earlier level. DeepL also highlighted its use in multilingual meetings at NEC and Asahi Group Holdings.
+DeepL also 
+announced
+ on November 25 that it was partnering with Macnica to begin a free in-person speech translation program on November 26 for municipalities and international exchange organizations in areas covered by Japan's Disaster Relief Act, as well as nonprofit organizations supporting disaster victims. The program is intended to assist conversations needed in disaster areas, such as notices about changes to water distribution times and questions about people's health.
+To participate in a conversation and exchange ideas, both the accuracy of translated words and the timing of their delivery matter.
+G
+B!
+G
+Add Joho no Todai as a preferred source on Google
+Share on Bluesky
+B!
+Add to Hatena Bookmark
+Share via email
+Copy link
+LinkedIn
+Facebook
+LINE
+Reddit
+n
+note
+Get more with a free account
+Confirmation email sent
+ — we sent a link to this address. Open the email and click the link to finish signing up. If it doesn't arrive, please check your spam folder.
+Could not send. Please check your email address.
+AI
+Software
+DeepL
+Google
+DeepL Voice
+Speech Translation
+← Previous article
+Anthropic Adds Japan to Research Preview for Always-On AI Agent Claude Duet
+TOP
+Next article →
+Kioxia and NVIDIA Begin SSD-Based GPU Memory Expansion Trial as Kioxia Develops GP2
