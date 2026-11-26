@@ -139,6 +139,17 @@ function bubblePath(){g.beginPath();g.moveTo(BX+44,BY);g.lineTo(BX+BW-44,BY);g.a
   g.lineTo(BX+44,BY+BH);g.arcTo(BX,BY+BH,BX,BY+BH-44,44);g.lineTo(BX,BY+150);g.lineTo(BX-40,BY+122);g.lineTo(BX,BY+94);g.lineTo(BX,BY+44);g.arcTo(BX,BY,BX+44,BY,44);g.closePath();}  // tail at Rina's mouth
 function bubble(){abs(()=>{g.save();g.shadowColor=C.cardShadow||'rgba(0,0,0,0.2)';g.shadowBlur=24;g.shadowOffsetY=8;bubblePath();g.fillStyle='#FFFFFF';g.fill();g.restore();
   bubblePath();g.lineWidth=7;g.strokeStyle=C.brand;g.lineJoin='round';g.stroke();});}
+// ---------- a person in the diagram and what they say (user 2026-11-26: a hand-made bubble had a line across the tail's root and its tail aimed at empty air) ----------
+// person(): silhouette + its name under it (every speaker gets a name). talkBox(): white box + tail as ONE outline, tail tip at the speaker's mouth (tx,ty).
+// Never draw a bubble with roundRect + a separate triangle. Use these two for any speech in a scene.
+function person(x,y,s,col,name){g.save();g.translate(x,y);g.scale(s,s);g.fillStyle=col;g.beginPath();g.arc(0,-70,52,0,7);g.fill();g.beginPath();g.ellipse(0,60,92,70,0,Math.PI,0);g.fill();g.fillRect(-92,58,184,30);g.restore();
+  if(name)text(name,x,y+110*s,Math.round(44*Math.max(1,s*0.8)),col,'center',900,260);}
+function personMouth(x,y,s,bubbleX){return [x+Math.sign((bubbleX??x+1)-x||1)*68*s,y-80*s];}  // tail tip for person(x,y,s): just outside the head, on the bubble's side
+function talkPath(x,y,w,h,tx,ty){const r=40,hw=38,down=ty>y+h/2,ey=down?y+h:y,bx=Math.min(Math.max(tx,x+r+hw+10),x+w-r-hw-10);
+  g.beginPath();g.moveTo(x+r,y);if(!down){g.lineTo(bx-hw,y);g.lineTo(tx,ty);g.lineTo(bx+hw,y);}g.lineTo(x+w-r,y);g.arcTo(x+w,y,x+w,y+r,r);g.lineTo(x+w,y+h-r);g.arcTo(x+w,y+h,x+w-r,y+h,r);
+  if(down){g.lineTo(bx+hw,ey);g.lineTo(tx,ty);g.lineTo(bx-hw,ey);}g.lineTo(x+r,y+h);g.arcTo(x,y+h,x,y+h-r,r);g.lineTo(x,y+r);g.arcTo(x,y,x+r,y,r);g.closePath();}
+function talkBox(s,x,y,w,h,col,k,tx,ty){withEnter(k,()=>{g.save();talkPath(x,y,w,h,tx,ty);g.fillStyle='#FFFFFF';g.fill();g.lineWidth=8;g.lineJoin='round';g.strokeStyle=col;g.stroke();g.restore();
+  noteBox(x,y,w,h);text(s,x+w/2,y+h/2,Math.min(120,h*0.5),C.ink||'#141A2B','center',900,w-60);});}
 function bubbleText(s,k,warn){abs(()=>{const o=bubbleLayout(s),lines=o.lines,size=o.size;
   const lh=size*1.22,cy=BY+BH/2,y0=cy-(lines.length-1)*lh/2;g.save();g.globalAlpha*=clamp(0.5+k/0.16);
   const m=marks(s,warn);let off=0;lines.forEach((L,li)=>{g.font=`900 ${size}px ${FONT}`;const w=g.measureText(L).width;let x=BCX-w/2;
