@@ -1,0 +1,134 @@
+URL: https://www.itmedia.co.jp/news/article/2611/27/2000003513/
+TITLE: MCPに新機能「Skills over MCP」登場 ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+SITE: ITmedia NEWS
+PUBLISHED: 2026-11-27 13:33 (page: 2026-11-27T13:33:51)
+OG_IMAGE: https://www.itmedia.co.jp/news/article/ogp/2611/27/2000003513/10013127/2048
+IMAGES:
+- https://www.itmedia.co.jp/news/article/image/2611/27/2000003513/10013118/728 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2603/26/1260326089/822218/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2506/26/1250626079/794832/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2607/02/1260702017/848036/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2607/10/1260710086/849798/280 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/27/2000003516/10013136/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/27/2000003513/10013126/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/27/2000003503/10013090/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/27/2000003502/10013086/232 | 
+- https://www.itmedia.co.jp/news/article/thumbnail/2611/27/2000003512/10013125/232 | 
+
+TEXT:
+Share
+印刷する
+MCPに新機能「Skills over MCP」登場　ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+公開
+2026年11月27日 13時33分
+著者
+新野淳一
+[ITmedia]
+印刷する
+Googleで優先するソースとして追加
+この記事は新野淳一氏のブログ「Publickey」に掲載された「
+MCPに新機能「Skills over MCP」登場。ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+」（2026年11月27日掲載）を、ITmedia NEWS編集部で一部編集し、転載したものです。
+AIエージェントと外部ツールを接続する業界標準となっているMCP（Model Context Protocol）に、新機能として「
+Skills over MCP
+」がβ版として追加されました。
+Skills over MCPを利用することで、AIエージェントはMCP経由でMCPサーバからつねに最新のスキルを取得できるようになります。また、必要なときだけスキルを読み込めるためコンテキストの節約にもなります。
+下図はMCPの開発を主導するAnthropicのブログ「
+MCP servers can now ship skills, run tasks, and more with Claude
+」からの引用です。
+AIエージェントと外部ツールをつなぐMCP
+MCPはAIエージェントと外部ツールを接続するためのプロトコルとして登場しました。
+例えばAIエージェントがデータを集計するためにデータベースの操作を行う場合、あるいはAIエージェントがミーティングを設定するために共有カレンダーを操作する際などに、AIエージェントはMCP経由でデータベースや共有カレンダーなどの外部ツールと接続し、操作を行います。
+このとき、AIエージェントが的確に外部ツールを操作するためには、AIエージェントにスキルを注入することが必要です。
+いままでMCPとそれを使うスキルは別だった
+これまでこのスキルは、AIエージェントの実行環境においてSKILL.mdファイルなどのスキルファイルを用いてAIエージェントに提供されてきました。
+しかしこの方法だと、外部ツールがアップデートされて機能が追加されたり更新されたとしても古いスキルのまま放置される可能性があることや、最初から多数の外部ツールのスキルを読み込ませることで余計なコンテキストが増えてしまう、といった課題がありました。
+MCPサーバからスキルを読み込ませる
+今回β版となった新機能Skills over MCPは、AIエージェントがMCP経由で外部ツールを操作できるだけでなく、MCP経由でスキルも読み込むことができるようになるというものです。
+これによりAIエージェントはつねに外部ツールが用意した最新のスキルを得ることができます。
+またAIエージェントが必要なときだけスキルを読み込むことができるため、コンテキストを効率的に使うことも可能になります。
+AnthropicはこのパブリックベータとなったSkills over MCPの対応を開始しており、ClaudeおよびClaude CodeのPro、Max、Ultraプランではデフォルトで有効化されるとのことです。
+Copyright © ITmedia, Inc. All Rights Reserved.
+印刷する
+SNSでシェア
+関連リンク
+Publickey
+コメントをすべて読むには、コメントの利用規約に同意し「アイティメディアID」および「ITmedia NEWS アンカーデスクマガジン」の登録、もしくは
+ログイン
+が必要です
+Special
+PR
+この記事の著者
+新野淳一
+関連記事
+Claude Codeに「このアプリをデプロイせよ」と指示→AIが最適なインフラ構成やサービスでデプロイする「Azure Skills Plugin」 Microsoftが公開
+AWS、Google、MicrosoftらがAIエージェント連携のため「Agent2Agentプロジェクト」設立 Linux Foundation傘下で
+Anthropicの営業はAIエージェントをこう使う！　日本法人メンバーが明かす手の内
+Anthropic、Claudeの使い方を振り返る新機能「reflect」（振り返り）追加──AIとの付き合い方を見直すために
+Special
+PR
+こんなメディアも見られています
+ITmedia NEWSに関連する情報をお探しであれば、こちらのメディアもお役に立てるかもしれません。
+企業ITのトレンドを詳説
+ITmedia エンタープライズ
+エネルギーの専門メディア
+スマートジャパン
+建設×テクノロジーの最前線
+BUILT
+ビジネスと働き方のヒント
+ITmedia ビジネスオンライン
+メールマガジンを配信中
+メールマガジンを配信中
+国内外の業界動向、AIやクラウドなどの最新技術、キャリア情報など今知りたい情報をまとめてお届けします。
+いますぐご登録
+メールマガジン最新号
+京大がAI依存チェックリスト公開　「当てはまるものあれば、しばらくAI触らないで」
+Microsoft 365で大規模障害　「Outlook」でメールにアクセスできず、「Teams」な ど複数サービスに影響
+Special
+PR
+本日の新着記事
+聴覚障害の社員にスマートグラス支給　会話をリアルタイムに文字表示　ソフトバンク、連携アプリも独自開発
+MCPに新機能「Skills over MCP」登場　ツールとの接続だけでなく使い方のスキルもMCP経由で提供
+サブスクの「お試し→自動更新」は客を逃していた？　新規購読者数は「お試し→自動解約」比23％減　140万人で実験
+「フィッシング対策訓練」って実効性あるの？　約1.2万人に模擬メール送り検証、結果は……
+JAXA宇宙飛行士、5年ぶり募集へ　月面探査を担う人材育成
+アクセスランキング
+1
+「PayPayマネーライト現金化」サービス、PayPay「当社は関与していない」「絶対に利用しないで」
+2
+AIでドーピングしたコンサルの実力は　使わない人材との能力差、BCG約500人で検証　Nature系列誌
+3
+六花亭のカード情報流出、対応が「誠実」と評判　再発行時の「伝え方」まで明記
+4
+「サツドラ」顧客情報22万件流出　委託先サイバーエージェントがデータ誤公開、1年以上気づかず
+5
+飲食店の“AI商品画像”は景品表示法違反にならないの？　弁護士の見解
+6
+1Password、一部顧客の氏名やメールアドレスが流出　保管庫内のデータに「影響なし」
+7
+X、「ペアレンタルコントロール」を導入　メッセージ内容は見られず
+8
+GitHubに「人には見えない隠し文字」　小型AIの操作狙うものも……1億4500万件を調査
+9
+SpaceXとマスク氏、米国の子どもに自社株を計2株ずつ贈与へ　トランプ政権の「Trump Account」経由で
+10
+タイムズカー免許画像漏えいの見舞金、「現金かカーシェアeチケット3000円分」　12月1日から案内
+もっと見る
+ITmedia NEWS SNS
+ITmedia News
+Tweets by itmedia_news
+@itmedia_newsをフォロー
+インフォメーション
+注目情報をチェック
+メールマガジン
+Specialインデックス
+お問い合わせ
+ご意見・ご感想
+リリース送付先
+広告に関するお問い合わせ
+ITmediaNEWSをフォロー
+Facebook
+X（旧Twitter）
+RSS
+あなたにおすすめの記事
+PR

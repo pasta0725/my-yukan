@@ -1,0 +1,76 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2159771.html
+TITLE: ファイル送受信ツール「LocalSend」v1.19.0が公開、CLI版の送信コマンドを刷新／受信の承諾・拒否をキーボードで操作可能に、ウィンドウの最前面表示も
+SITE: 窓の杜
+PUBLISHED: 2026-11-27 09:15 (page: 2026-11-27T09:15:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2159/771/localsend.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/771/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/list/2122/218/list.jpg | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/771/image3_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/771/image2_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/4862140831.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+ファイル送受信ツール「LocalSend」v1.19.0が公開、CLI版の送信コマンドを刷新
+受信の承諾・拒否をキーボードで操作可能に、ウィンドウの最前面表示も
+樽井 秀人
+2026年11月27日 09:15
+「LocalSend」v1.19.0
+クロスプラットフォーム対応のファイル送受信ツール「LocalSend」が11月25日（日本時間）、v1.19.0へアップデートされた。Linux対応の大幅強化、使い勝手の向上、セキュリティ強化などが行われている。
+「LocalSend」は、同じローカルネットワークにつながっているデバイス同士でファイルやテキストを簡単にやり取りできるようにするツール。Apple製品における「AirDrop」のようなことを、クロスプラットフォーム（Windows/macOS/Linux、iOS/Android）で行えるのが魅力だ。特定のクラウドサービスを介したり、アカウントを作成する必要もない。
+関連記事
+システム・ファイル
+ファイル
+Windows
+手持ちのデバイスすべてに入れておきたいお手軽ファイル共有ツール「LocalSend」
+今回のアップデートにおける改善は、以下の通り。
+Linux向け強化
+・RPMパッケージを初めて提供（Fedoraなどで利用しやすくなった）
+・Alpine Linux向けCLIビルドを追加
+・AppImageの差分更新（delta updates）に対応
+・ソフトウェアレンダリングの切り替え機能を追加
+CLI（コマンドライン版）の仕様変更
+・ファイル送信時の「--file」オプションが廃止され、「send」コマンドへ変更
+・テキスト送信用の「--text」オプションを追加。標準入力（stdin）からの送信も可能
+送信時のチェックサム生成は既定でOFFとなり、必要に応じて有効化する方式（オプトイン）に変更
+UI・使い勝手の向上
+・受信の承諾・拒否をキーボードショートカットで操作可能
+・デスクトップ版に、ウィンドウを常に最前面に表示するオプションを追加
+・以前の「ハッシュタグコードによる接続」を復活
+・暗号化有効時にHTTPSバッジを表示
+・デバイスごとの到達性（通信可能かどうか）を表示し、ファイアウォール問題の診断を支援
+・ログ画面のコピー機能追加
+・アップデート後に「What's New（新機能）」を表示
+セキュリティ強化
+・同時接続数を制限し、リソースの枯渇を防止
+・リンク経由の共有で、クライアント証明書を持たない送信者がお気に入りのデバイスになりすますのを防止
+・CLIで受信テキストをサニタイズして表示
+・エラーメッセージからPINが漏れないよう修正
+パフォーマンス改善
+・ファイル転送時のメモリ使用量を削減
+Windows向け修正
+・「winget」でインストールしたあとに起動できない問題を修正
+・Arm64版MSIXのアーキテクチャ問題を修正
+・アンインストール時に自動起動設定やファイアウォールルールなどを適切に削除
+・Windowsの共有メニューで「LocalSend」のアイコンが表示されるよう修正
+暗号化が有効なデバイスに表示される「HTTPS」バッジ
+Windowsの「リンクの共有」画面に表示された「LocalSend」のアイコン
+コマンドライン（CLI）版はv1.18.0から提供されており、Windows向けにはGUI版とは別にx64版とArm64版が用意されている（LocalSend-CLI-1.19.0-windows-x86-64|arm-64.exe）。
+本バージョンではファイルやフォルダーを送信する際の「--file」オプションを「send」サブコマンドに置き換える破壊的変更が加えられており、従来のコマンドはそのままでは使えなくなっているので注意したい。このサブコマンドをそのまま実行すると送信先を一覧から選べるほか、「--to」で端末名やIPアドレスを直接指定することも可能。
+localsend-cli send report.pdf photo.jpg ./project-backup
+localsend-cli send --to "Cute Tomato" report.pdf
+「LocalSend」は「GitHub」でホストされているオープンソースプロジェクトで、ライセンスは「Apache-2.0」。プロジェクトのリリースページから無償でダウンロードできる。
+Amazonで購入
+「ファイル共有」関連商品
+Amazonで購入
+ソフトウェア情報
+「LocalSend」Windows版
+【著作権者】
+Tien Do Nam 氏
+【対応OS】
+Windows 10以降（編集部にてWindows 11で動作確認）
+【ソフト種別】
+フリーソフト
+【バージョン】
+1.19.0（26/11/25）

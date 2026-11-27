@@ -1,0 +1,54 @@
+URL: https://www.gizmodo.jp/article/2611-1password-security-breach-vaults-safe/
+TITLE: 1Passwordが不正アクセス被害。保管庫のパスワードは無事とのこと
+SITE: GIZMODO JAPAN
+PUBLISHED: 2026-11-27 12:30 (page: 2026-11-27T12:30:00+09:00)
+OG_IMAGE: https://media.loom-app.com/loom/2026/11/27/ca35bea9-fbb9-4d06-a4e5-3770d51c05ab/original.jpg?w=1200&h=630
+IMAGES:
+- https://media.loom-app.com/loom/2026/11/27/ca35bea9-fbb9-4d06-a4e5-3770d51c05ab/original.jpg?w=1200 | 1Passwordが不正アクセス被害。保管庫のパスワードは無事とのこと
+
+TEXT:
+1Passwordが不正アクセス被害。保管庫のパスワードは無事とのこと
+Nov 27,2026 12:30
+ヤマダユウス型
+( GIZMODOライター )
+Google検索でギズモードを
+お気に入りに追加
+Image: Samuel Boivin / Shutterstock.com
+ついにこういうところ被害に…。
+パスワード管理アプリ「
+1Password
+」が、社内システムへの不正アクセスを受けたと発表しました。
+We’re sharing an update about a recent security incident involving some of 1Password’s backend systems. 𝗡𝗼 𝗰𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝘃𝗮𝘂𝗹𝘁 𝗰𝗼𝗻𝘁𝗲𝗻𝘁, 𝗶𝗻𝗰𝗹𝘂𝗱𝗶𝗻𝗴 𝘀𝗲𝗰𝗿𝗲𝘁𝘀, 𝗽𝗮𝘀𝘀𝘄𝗼𝗿𝗱𝘀 𝗮𝗻𝗱 𝗼𝘁𝗵𝗲𝗿 𝘃𝗮𝘂𝗹𝘁 𝗶𝘁𝗲𝗺𝘀, 𝗼𝗿 𝘁𝗵𝗲 𝗸𝗲𝘆𝘀 𝘁𝗵𝗮𝘁 𝗽𝗿𝗼𝘁𝗲𝗰𝘁 𝘁𝗵𝗲𝗺 𝘄𝗲𝗿𝗲 𝗮𝗰𝗰𝗲𝘀𝘀𝗲𝗱 𝗼𝗿 𝗰𝗼𝗺𝗽𝗿𝗼𝗺𝗶𝘀𝗲𝗱 𝗱𝘂𝗿𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗶𝗻𝗰𝗶𝗱𝗲𝗻𝘁. We have confirmed that all customer vaults and credentials remain secure. Our services continue operating normally. 
+
+Independent cybersecurity experts have been engaged to validate our containment approaches and remediation efforts.
+
+While we took immediate steps to contain the incident, the attacker gained access to some of our backend systems and accessed a limited amount of customer account information from a subset of our customers, including names and email addresses. 
+
+No action is required by customers, their 1Password accounts remain secure. As always, please keep alert to unexpected phishing attempts.
+
+Your vault secrets are encrypted with keys that only you hold, so we can’t access them, and they cannot be retrieved from our systems.
+
+You can read more about the steps we’ve taken on our blog at: https://t.co/9fbzzAJYQ9
+— 1Password (@1Password)
+November 25, 2026
+Advertisement
+2026年11月25日（現地時間）公開の
+ブログ
+によると、一部ユーザーの氏名やメールアドレスなどが攻撃者に渡ったものの、
+パスワードなどをしまっておく保管庫の中身にはアクセスされていない
+とのことです。よ、よかった…。
+ユーザーは焦らずともOK
+原因は、社員の業務用GitHubアカウントの乗っ取り。攻撃者はそこからバックエンドに悪意あるコードを送り込み、一部ユーザーの氏名やメールアドレス、アカウントIDなどを持ち出しました。アカウント復旧用リンクのトークンも一部含まれていましたが、単体ではログインできないとのこと。
+一方、
+パスワードはそもそも1Passwordの手元にありません
+。アカウントパスワードとSecret Keyは自社で保管しておらず、保管庫の中身もユーザーだけが持つ鍵で暗号化されているので、同社でも開けない仕組みです。なので、ユーザー側で設定を変える必要もないそうな。
+Secret Key
+…自分のパスワードと組み合わせて初めてデータを開けられる、ユーザー専用のもうひとつの鍵（34文字の英数字）のこと。これは運営会社も持っていません。
+ただ、これから気をつけたいのは
+フィッシング
+です。名前とメールアドレスが漏れた以上、1Passwordを名乗る偽メールが届くかもしれません。
+同社はパスワードやSecret Keyを尋ねることは決してないとブログで明言しています。焦る気持ちはわかりますが、「1Passwordから大事なお知らせ」的なメールが来ても、いったん立ち止まってくださいね！
+Source:
+1Password
+,
+X

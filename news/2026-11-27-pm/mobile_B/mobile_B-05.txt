@@ -1,0 +1,24 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2159894.html
+TITLE: DeNA、相づちを聞き逃さない日本語音声認識モデル3種を無償公開
+SITE: PC Watch
+PUBLISHED: 2026-11-27 12:46 (page: 2026-11-27T12:46:11+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2159/894/1.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2159/894/1_l.jpg | 
+- https://asset.watch.impress.co.jp/img/pcw/docs/2159/894/2_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0CL9BTQRF.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+DeNA、相づちを聞き逃さない日本語音声認識モデル3種を無償公開
+劉 尭
+2026年11月27日 12:46
+3モデルの特徴と追加学習の効果
+音声AIに「うん」と返したのに無視された、という経験がある人は多いかもしれない。株式会社ディー・エヌ・エー(DeNA)は11月26日、音声対話向けに追加学習した日本語音声認識(ASR)モデル3種のオープンウェイト(モデルの重み)を、Hugging Faceで無償公開した。
+ライセンスは、Nemotron版が「OpenMDW License 1.1」、Haas版が「Apache License 2.0」、Parakeet版が「CC BY 4.0」。いずれも商用利用を含めて無償で利用できる。
+今回公開したのは、3つのモデルをそれぞれ元にした追加学習版だ。元のモデルは、米NVIDIAのストリーミング専用の「Nemotron 3.5 ASR Streaming 0.6B」、精度が高くて速い「Parakeet-ja」、約4万6,000時間の音声で学習した大規模な「Haas-ja-v1.0」の3つ。
+DeNAによる追加学習前の元モデルの評価では、Nemotronは背景雑音による幻聴がなかったが、相づちを取りこぼすことが多かった。Parakeet-jaは背景雑音での幻聴が多いのが弱点だった。Haas-jaは幻聴があるほか、「ええ」や「うーん」といった相づちを「うん」に寄せる傾向があったという。
+追加学習の効果
+DeNAは今回の追加学習によって、「うん」、「ええ」といった短い相づちを正しく書き起こせるようになったほか、背景の雑音を言葉として誤認識することも抑えた。認識の速さは追加学習の前と変わらないという。
+「マイク」関連アイテム
+Amazonで購入
