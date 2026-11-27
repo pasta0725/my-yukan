@@ -1,0 +1,20 @@
+URL: https://pc.watch.impress.co.jp/docs/news/2159943.html
+TITLE: ClaudeのMessages API、Rust化されてCPU使用率が70%削減
+SITE: PC Watch
+PUBLISHED: 2026-11-27 14:06 (page: 2026-11-27T14:06:30+09:00)
+OG_IMAGE: https://pc.watch.impress.co.jp/img/pcw/list/2159/943/01.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/pcw/docs/2159/943/01_l.jpg | 
+- https://images-na.ssl-images-amazon.com/images/P/B0HGWL46Y5.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+ClaudeのMessages API、Rust化されてCPU使用率が70%削減
+宇都宮 充
+2026年11月27日 14:06
+「Claude Code」や「Cowork」などがClaudeにアクセスする際に利用されている「Messages API」が、サービスを止めないままPythonからRustへ移行した。Anthropicは11月25日に明らかにしたもので、急増するトラフィックに対し、CPU使用率の削減やメモリ効率の改善などを通じてパフォーマンス向上を図ったとしている。
+同社の説明によれば、APIをRustで再構築したことで、1リクエストあたりのCPU使用率を約70%削減。加えて、最初のトークンが生成されるまでの時間を中央値で約20%短縮し、1リクエストあたりのメモリ使用量を80%以上減らすことに成功した。
+今回の移行作業にはClaudeを活用。作業は新規機能の開発を止めることなく並行して進められ、APIサービスを停止することなく作業を完了した。
+Messages APIは2023年に構築されたもので、研究用に社内で広く用いられていたPythonで実装された。当初はシンプルなAPIだったが、徐々に機能を拡充し、コードベースに深く組み込まれていくにつれて、別の言語への移行が困難になっていた。さらに、2024年初頭から2026年秋にかけてAPIトラフィックが約1,800倍に増加しており、サービスの効率化を図らなければならなくなったという。
+「Claude」関連書籍
+Amazonで購入

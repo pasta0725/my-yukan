@@ -1,0 +1,46 @@
+URL: https://forest.watch.impress.co.jp/docs/news/2159777.html
+TITLE: さまざまなドキュメントを“AIが読める形”にする.NET API、Microsoftが「DocumentExtractionClient」を発表／OCRサービスやローカルモデルを切り替えて使える共通の仕組み、まずはプレビュー
+SITE: 窓の杜
+PUBLISHED: 2026-11-27 14:29 (page: 2026-11-27T14:29:00+09:00)
+OG_IMAGE: https://forest.watch.impress.co.jp/img/wf/list/2159/777/dotnet.jpg
+IMAGES:
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/777/image1_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/777/image3_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/777/image4_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/777/image5_l.png | 
+- https://asset.watch.impress.co.jp/img/wf/docs/2159/777/image2_l.png | 
+- https://images-na.ssl-images-amazon.com/images/P/B0CTHQXNJL.09._SCTZZZZZZZ_PE.jpg | 
+
+TEXT:
+ニュース
+さまざまなドキュメントを“AIが読める形”にする.NET API、Microsoftが「DocumentExtractionClient」を発表
+OCRサービスやローカルモデルを切り替えて使える共通の仕組み、まずはプレビュー
+樽井 秀人
+2026年11月27日 14:29
+「DocumentExtractionClient」がプレビュー公開
+米Microsoftは11月24日（現地時間）、「.NET」向けの新しいドキュメント抽出ライブラリ「DocumentExtractionClient」をプレビュー公開した（「Microsoft.Extensions.DocumentExtraction」パッケージ）。PDFファイル、画像ファイル、スキャンしたドキュメント、「Microsoft Office」ドキュメントなどから、“構造化コンテンツ”（structured content）を取り出すための共通APIだ。
+“構造化コンテンツ”とは、単なるテキストではなく、見出し構造や表の行列関係、図表、元のページ位置といった情報まで含んだデータを指す。データが構造化されていれば、RAG（検索拡張生成）向けに文書を見出しや表のまとまりを意識して分割したり、回答の出典として元のページを示したりしやすくなるため、AIの検索精度向上などに役立つ。もちろん、AI以外の用途でも利用できる。
+ページの各部分に見出しや表、ページ番号といった役割が付与される（Microsoft公式ブログより、以下同）
+従来の「.NET」では、こうしたドキュメント解析のツールやサービスに統一された手法がなく、ツールやサービスを乗り換える際はコードに大きく手を入れる必要があった。「DocumentExtractionClient」はこの課題を解消するために導入されたAPIで、「Microsoft.Extensions.AI」の「IChatClient」と同様、共通の呼び出し方と戻り値の型を定めることで、後続の処理を保ったままプロバイダーを差し替えやすくする。
+「.NET」のAIスタックにおける位置づけ。抽出したデータは「DataIngestion」で分割し、「VectorData」に格納できる
+たとえば、まずPDF文書のテキストレイヤーを読み取り（PDFプロバイダー）、テキストがほとんど得られなければスキャン画像とみなしてOCRにかける（OCRプロバイダー）といった処理もシンプルに書くことが可能。結果は共通の「ExtractionDocument」型で返り、テキストや表、図などをツリー構造で扱える。
+抽出結果「ExtractionDocument」のツリー構造
+プロバイダーを差し替えても、抽出結果は共通の「ExtractionDocument」型で扱える
+プロバイダーは、「.NET AI Community Toolkit」で以下のものがプレビューとして用意されている。
+PdfPig
+：プロセス内で動作。テキストレイヤーを持つPDF向け
+Vision language model
+：画像を受け付ける任意のAIモデル（「IChatClient」経由、ローカル・ホスト型を問わない）で動作。スキャンや画像向け
+Azure Content Understanding
+：Azureで動作。OCR、レイアウト、表、図の解析に加え、カスタマイズ可能なアナライザーも
+Azure AI Document Intelligence
+：Azureで動作。OCR、レイアウト、表、ページ座標
+Mistral OCR
+：「Microsoft Foundry」または「Mistral API」で動作。Markdownへの高速なOCR
+また、「DocumentExtractionClient」を継承して「ExtractAsync」を実装すれば、独自のプロバイダーを作ることもできる。
+Microsoftが公開したサンプルを実行するには、
+「.NET 11」
+のSDKが必要だ。サンプルは「GitHub」で公開されており、各例は単一のC#ファイルを「dotnet run」で指定して実行できる。
+Amazonで購入
+「.NET」関連商品
+Amazonで購入
