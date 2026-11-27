@@ -209,7 +209,7 @@ const S={
  // docomo, from December 1: three steps
  when(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'3段階')),d-0.7);
    tagI('ドコモ',CX,430,u/0.3,C.brand,'#FFFFFF',60);
-   withEnter(enter(u,0.2),()=>{const sc=0.9+0.1*back((u-0.2)/0.4);g.save();g.translate(CX,680);g.scale(sc,sc);g.translate(-CX,-680);rrect(340,520,400,320,36,C.card);g.fillStyle=C.warn;g.beginPath();g.roundRect(340,520,400,86,[36,36,0,0]);g.fill();text('12月1日',CX,730,96,C.acc,'center',900,360);g.restore();});
+   withEnter(enter(u,0.2),()=>{const sc=0.9+0.1*back((u-0.2)/0.4);g.save();g.translate(CX,680);g.scale(sc,sc);g.translate(-CX,-680);rrect(340,520,400,320,36,C.card);g.fillStyle=C.brand;g.beginPath();g.roundRect(340,520,400,86,[36,36,0,0]);g.fill();text('12月1日',CX,730,96,C.acc,'center',900,360);g.restore();});
    if(u>t2)tagI('料金が3段階に',CX,960,(u-t2)/0.3,C.acc,C.onAcc,60);},
  // step 1: up to 40GB, 3135 yen
  t1(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.7,telHas(L,'3135')),d-0.5);
@@ -235,13 +235,13 @@ const S={
    if(u>t3)stamp('自動で終了',CX,1010,(u-t3)/0.3,C.warn,62);},
  // compared with 4950 yen (with oomori): months up to 60GB get cheaper
  cheap(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.4,telHas(L,'60GB')),d-0.8);
-   bar2('大盛り付き','4950円',520,1,C.bar,enter(u,0));
+   bar2('大盛り付き','4950円',520,1,C.card2,enter(u,0));
    if(u>t2)bar2('60GBまで','4125円',800,4125/4950,C.brand,enter(u,t2));
    if(u>t2+0.4)tagI('安くなる',CX,1030,(u-t2-0.4)/0.3,C.acc,C.onAcc,60);},
  // but: months over 60GB cost 165 yen more
  twist(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'165')),d-0.6);
    stamp('ただし',CX,420,u/0.25,C.warn,64);
-   bar2('大盛り付き','4950円',620,4950/5115,C.bar,enter(u,0.2));
+   bar2('大盛り付き','4950円',620,4950/5115,C.card2,enter(u,0.2));
    bar2('60GB超','5115円',870,1,C.warn,enter(u,0.5));
    if(u>t2)tagI('＋165円',CX,1080,(u-t2)/0.3,C.warn,'#FFFFFF',64);},
  // a 40GB stop is set automatically for people without oomori
