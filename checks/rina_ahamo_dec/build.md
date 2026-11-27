@@ -7,7 +7,6 @@ RESULT: LOOK
 - LOOK [声] 台本12行目｜読みが違う｜台本「す」（今、大盛りを付けていない人は、40ギガで止まる上）｜聞こえた「した」…がじどうでつきましたどこもは30ぎが…
 - LOOK [声] 台本14行目｜台本にない声｜台本「」（何もしなくても変わるので、じゅうにがつの前に、毎）｜聞こえた「ありがとうございました」…おいてくださいねありがとうございました…
 - LOOK [画面] 画面｜自動の確認が答えを出せなかった（FAILED）｜従来の手順で確認｜checks/rina_ahamo_dec/frames.md
-- LOOK [事実] 事実｜自動の確認が答えを出せなかった（FAILED）｜従来の手順で確認｜checks/rina_ahamo_dec/facts.md
 
 ショートの自動の書き出しと確認：rina_ahamo_dec
 - 声のつなぎ：OK
@@ -18,6 +17,6 @@ RESULT: LOOK
 - 書き出し：OK
 - 声：LOOK
 - 画面：FAILED
-- 事実：FAILED
+- 事実：OK
 
 完成動画：ブランチ work の final/rina_ahamo_dec.mp4（1秒ごとのコマ一覧は final/rina_ahamo_dec_sheets/）。各確認の詳細はブランチ checks の checks/rina_ahamo_dec/
