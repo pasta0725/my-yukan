@@ -53,8 +53,9 @@ if LOW:
             "    dit.to(local_rank); vae.to(local_rank)  # LOWVRAM: text encoder stays on the CPU\n"
             "    _dev = torch.device(f'cuda:{local_rank}')\n"
             "    type(pipe)._execution_device = property(lambda self: _dev); type(pipe).device = property(lambda self: _dev)\n"
-            # 2026-11-28 (L4, 22 GB): keep a quarter of the DiT blocks off the GPU at any time; first and last 12 blocks take turns
-            "    _A = list(dit.blocks[:12]); _B = list(dit.blocks[36:])\n"
+            # 2026-11-28 (L4, 22 GB): keep a third of the DiT blocks off the GPU at any time; first and last 16 blocks take turns
+            # (12+12 ran short by 1.3 GB in self-attention at 720p)
+            "    _A = list(dit.blocks[:16]); _B = list(dit.blocks[32:])\n"
             "    def _swap(o, i):\n"
             "        for b in o: b.to('cpu')\n"
             "        torch.cuda.empty_cache()\n"
@@ -62,7 +63,7 @@ if LOW:
             "    if _vram < 30000:\n"
             "        _swap(_B, [])\n"
             "        dit.blocks[0].register_forward_pre_hook(lambda m, a: _swap(_B, _A))\n"
-            "        dit.blocks[36].register_forward_pre_hook(lambda m, a: _swap(_A, _B))\n", 1)
+            "        dit.blocks[32].register_forward_pre_hook(lambda m, a: _swap(_A, _B))\n", 1)
         # Whisper (fp32, about 5.75 GB) is only needed for the audio embedding: send it to the CPU right after
         t = t.replace('            raise ValueError(f"broken audio embedding with nan values")\n',
                       '            raise ValueError(f"broken audio embedding with nan values")\n'
@@ -164,13 +165,17 @@ for job in jobs:
     if not os.path.exists(f"/content/in/{name}.wav"): continue
     js = f"/content/in/{name}.json"
     json.dump({"prompt": (PROMPT + " " + extra).strip(), "cond_image": f"/content/in/{img}", "cond_audio": {"person1": f"/content/in/{name}.wav"}}, open(js, "w"))
-    try:
+    for _try_res in ([res, "480p"] if LOW and res == "720p" else [res]):  # L4: if 720p runs out of GPU memory, 480p in the same run
+      res = _try_res
+      try:
         sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
            f"--context_parallel_size=1 --checkpoint_dir={W}/LongCat-Video-Avatar-1.5 --stage_1=ai2v --input_json={js} "
            f"--use_distill --model_type avatar-v1.5 {'--use_int8 ' if LOW else ''}--resolution {res} --num_segments {seg} --output_dir /content/out/{name} "
            f"2>&1")
         _v = sorted(glob.glob(f"/content/out/{name}/**/*.mp4", recursive=True), key=os.path.getmtime)
+        log(f"clip {name} made at {res}")
         if _v: sh(f"ffmpeg -loglevel error -y -i {_v[-1]} -t {dur:.3f} -c:v libx264 -crf 16 -preset fast -c:a aac {_v[-1]}.cut.mp4 && mv {_v[-1]}.cut.mp4 {_v[-1]}")  # back to the line's length
-    except subprocess.CalledProcessError as e:  # one failed clip must not stop the next one (2026-11-16: hook failed in segment 2, verdict never ran)
-        log(f"CLIP FAILED {name}: {e.returncode}")
+        break
+      except subprocess.CalledProcessError as e:  # one failed clip must not stop the next one (2026-11-16: hook failed in segment 2, verdict never ran)
+        log(f"CLIP FAILED {name} at {res}: {e.returncode}")
 sh("ls -laR /content/out")
