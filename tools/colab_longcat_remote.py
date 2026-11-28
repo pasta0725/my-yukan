@@ -58,6 +58,29 @@ if LOW:
     t = t.replace("self.text_encoder(text_input_ids.to(device), mask.to(device)).last_hidden_state",
                   "self.text_encoder(text_input_ids.to(self.text_encoder.device), mask.to(self.text_encoder.device)).last_hidden_state.to(device)")
     open(d, "w").write(t)
+    # 2026-11-28 (L4 trial): load_quantized_dit first built the whole DiT in float32 on the CPU (about 54 GB) before swapping in the
+    # int8 layers, and the L4 machine's RAM ran out (SIGKILL while "Loading INT8 quantized DiT model"). Now the model is built on
+    # the "meta" device (no memory), given empty memory directly on the GPU, and filled one 4 GB shard at a time straight from
+    # disk to the GPU, so the CPU never holds the DiT. The fp32 -> bf16 cast then also happens on the GPU.
+    d = "LongCat-Video/longcat_video/modules/quantization.py"; t = open(d).read()
+    if "LOWRAM" not in t:
+        t = t.replace("    model = LongCatVideoAvatarTransformer3DModel(**config)\n",
+                      "    with torch.device('meta'):  # LOWRAM\n        model = LongCatVideoAvatarTransformer3DModel(**config)\n", 1)
+        t = t.replace("                ql = QuantizedLinear(module.in_features, module.out_features, bias=module.bias is not None)\n",
+                      "                with torch.device('meta'):\n                    ql = QuantizedLinear(module.in_features, module.out_features, bias=module.bias is not None)\n", 1)
+        t = t.replace("        state_dict = {}\n        for shard_file in sorted(shard_files):\n",
+                      "        _dev = torch.device('cuda', int(os.environ.get('LOCAL_RANK', '0')))\n"
+                      "        model = model.to_empty(device=_dev); _left = set(model.state_dict().keys())\n"
+                      "        for shard_file in sorted(shard_files):\n"
+                      "            _sd = load_file(os.path.join(quantized_dir, shard_file), device=str(_dev))\n"
+                      "            model.load_state_dict(_sd, strict=False); _left -= set(_sd.keys()); del _sd; torch.cuda.empty_cache()\n"
+                      "        assert not _left, f'weights missing from the int8 shards: {sorted(_left)[:5]}'\n"
+                      "        state_dict = None\n"
+                      "        for shard_file in []:\n", 1)
+        t = t.replace("    model.load_state_dict(state_dict, strict=True)\n",
+                      "    if state_dict is not None: model.load_state_dict(state_dict, strict=True)\n", 1)
+        assert t.count("LOWRAM") == 1 and "to_empty" in t and "if state_dict is not None" in t, "quantization.py changed upstream"
+        open(d, "w").write(t)
 W = "/content/w"
 if not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/lora/dmd_lora.safetensors") or (LOW and not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/base_model_int8")):
     sh(f"""HF_HUB_ENABLE_HF_TRANSFER=1 python -c "
