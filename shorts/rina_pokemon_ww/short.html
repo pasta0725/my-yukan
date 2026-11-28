@@ -240,7 +240,7 @@ const S={
    if(u>t2)tagI('新しい3匹も',CX,1190,(u-t2)/0.3,C.acc,C.onAcc,52);},
  // 550 yen to 13200 yen
  range(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'1万')),d-0.6);
-   withEnter(enter(u,0.1),()=>{card(150,560,780,330,32,C.card);text('グッズの値段',CX,640,50,C.sub,'center',800,700);text('550円',u>t2?330:CX,780,84,C.acc,'center',900,330);if(u>t2){text('〜',530,780,70,C.sub,'center',900);text('1万3200円',735,780,80,C.acc,'center',900,360);}});},
+   withEnter(enter(u,0.1),()=>{card(150,560,780,330,32,C.card);text('グッズの値段',CX,640,50,C.sub,'center',800,700);text('550円',u>t2?290:CX,780,84,C.acc,'center',900,260);if(u>t2){text('〜',455,780,70,C.sub,'center',900);text('1万3200円',705,780,80,C.acc,'center',900,400);}});},
  // rina's view: choose a partner before the game
  view(u,d,L){bg(u);mini(u);plush3(110,450,860,440,1.08+0.05*u/Math.max(1,d),enter(u,0));creditAt(CRP,955,480);
    const t2=Math.min(Math.max(0.6,telHas(L,'先に')),d-0.6);if(u>t2)tagI('ゲームより先に',CX,1030,(u-t2)/0.3,C.acc,C.onAcc,64);},
