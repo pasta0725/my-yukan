@@ -1,0 +1,42 @@
+URL: https://news.mynavi.jp/techplus/article/military_it-690/
+TITLE: 軍事とIT 第690回 GPSが使えなくても飛べる？ 航空機が現在位置を把握する仕組み(2)EAGLE-MとVNS
+SITE: マイナビニュース
+PUBLISHED: 2026-11-28 11:35 (page: 2026-11-28T11:35:33+09:00)
+OG_IMAGE: https://news.mynavi.jp/techplus/article/military_it-690/ogp_images/ogp.jpg
+IMAGES:
+- https://news.mynavi.jp/techplus/article/military_it-690/images/001.jpg | 新旧のGPS衛星。ブロックII、ブロックIIR、ブロックIIF、ブロックIIIという顔ぶれ。(Image : US Space Force)
+- https://news.mynavi.jp/techplus/article/military_it-690/images/002.jpg | これがRQ-20プーマ。手で投げて発進させるため、カタパルトのような機材を必要としない。(Photo : USMC)
+- https://news.mynavi.jp/publicimg/author/image/233/inoue.jpg | 井上孝司
+
+TEXT:
+前回は、GPS(Global Positioning System)をはじめとするGNSS(Global Navigation Satellite System)への妨害・欺瞞について解説した。今回からは、それらに立ち向かうための具体的な技術や製品を取り上げていく。つまり、A-PNT(Assured Position, Navigation, and Timing)を実現するための手段である。→
+連載「軍事とIT」のこれまでの回はこちらを参照
+新旧のGPS衛星。ブロックII、ブロックIIR、ブロックIIF、ブロックIIIという顔ぶれ。(Image : US Space Force)
+閉じる
+GPSへの妨害・欺瞞に対抗する技術
+第620回で取り上げた、ロケーションマインド(LocationMind Inc.)と、同社から独立発足したサイフィク(CYPHIC Inc.)のソリューションは、電波の“特徴” を手掛かりにして、本物のシグナルを選り分けて偽物のシグナルを排除するという考え方を土台としている。
+すでに米軍の装備品で広く使われているSAASM(Selective Availability Anti-Spoofing Module)や、BAEシステムズが2023年に発表した新形GPS受信機 “NavGuide” は、GPS受信機そのものの改良によって妨害や欺瞞に強くしようというアプローチの典型例。
+軍用シグナルでは暗号化技術を活用する話も入ってくる。それがMコードで、すでに対応する衛星や受信機の配備が進んでいる。もちろん軍用限定である。Mコードで注意が必要なのは、受信機だけでなく衛星の対応も必要になることで、2005年に打ち上げを開始したブロックIIR-M以降の衛星がMコード対応になっている。
+暗号化技術を活用するとなると、受信機に対して正しい暗号鍵を配布・維持する仕組みも構築・運用しなければならない。そうなると、これは民生用ではとりづらい手法であろう。インストールベースが多すぎるし、秘密保全という問題も惹起してしまう。
+GPSを慣性航法システムで補完する
+2022年に、米陸軍がゼネラル・アトミックス・エアロノーティカル・システムズ(GA-ASI)と組んでカリフォルニア州のエルミラージュで行った実験では、EAGLE-M(Enhanced Aviation, Global Air Traffic Management, Localizer Performance with Vertical Guidance, Embedded Global Positioning System/Inertial Navigation System M-Code)と、耐妨害型の新形アンテナ MAGMA(Multi-Platform Anti-Jam Global Positioning System Navigation Antenna)を対象とした。
+EAGLE-Mは、前述したMコードに対応する航法システム。しかもこれはEGI(Embedded Global Positioning System/Inertial Navigation System)、つまりGPS受信機とINSを組み合わせて測位を行うため、GPSが無力化されてもINSで補完できる。
+レオナルドDRSが2021年に発表したAC2ES(A-PNT Converged Computing - Embedded and Scalable)も、耐妨害・耐欺瞞・Mコード対応のGPS受信機に慣性計測ユニット(IMU : Inertial Measurement Unit)を併用するとの説明なので、考え方は近いかもしれない。
+衛星携帯電話でおなじみのイリジウム・コミュニケーションズは2025年11月に、GNSSの保護を企図したASIC(Application-Specific Integrated Circuit)、”Iridium PNT ASIC” を発表した。妨害や欺瞞に対処する機能を提供する、特定用途向け集積回路である。これを用いて信頼性が高い受信機を作りましょうという話になる。
+カメラの映像と慣性センサーを活用した自律航法
+こうしたアプローチがある一方で、面白いことを始めたのが、無人機メーカーとしてもお馴染みのエアロヴァイロンメント。同社は2022年から、自社のRQ-20プーマ無人機に対してVNS(Visual Navigation System)の導入を始めている。最初に導入したのはプーマ2AEとプーマ3AE、続いて2025年12月に、プーマLE(Long Endurance)が対象に加わった。
+これがRQ-20プーマ。手で投げて発進させるため、カタパルトのような機材を必要としない。(Photo : USMC)
+VNSの基本的な考え方は「地文航法」である。というのは、これは「下向きに設置したカメラやセンサーで得られる下方地形の映像と、機上プロセッサによる映像分析を用いる」と説明されているからだ。ただしそれだけでなく、機上の慣性センサーから得る加速度情報を組み合わせて、VIOを実現する。
+VIOといっても脱毛サロンの話ではなく、Visual Inertial Odometryの略。つまり映像情報と慣性センサー(=加速度を積分して得られる移動量の情報)を組み合わせることで、現在位置を割り出しましょうという考え方。ちなみにこれ、無人機に限った話ではなくて、クルマの自動運転に応用する話も出ていると聞く。
+起点となる場所が分かっていて、そこからどちら向きにどれだけ進んだかが分かれば、現在位置は計算できる。INSでは起点となる場所の緯度・経度を手作業で入力するが、VNSはそれを映像解析で実現しようという話になるのではないか。
+ただ、映像に頼る以上、視界が確保できないと「私は誰? ここはどこ?」になるようにも思える。また、起伏が少ない砂漠地帯、あるいは大きな湖や海の上では、有効性が落ちる可能性はあるかも知れない。
+この「映像を用いる一種の地文航法」は、トルコのバイカルが2026年3月に発表した自爆突入型UAV「K2」でも用いているという。ただし、これがエアロヴァイロンメントのVNSと同じ仕組みかどうかは確認できていない。
+井上孝司
+いのうえこうじ
+鉄道・航空といった各種交通機関や軍事分野で、技術分野を中心とする著述活動を展開中のテクニカルライター。
+マイクロソフト株式会社を経て1999年春に独立。『戦うコンピュータ(V)3』(潮書房光人社)のように情報通信技術を切口にする展開に加えて、さまざまな分野の記事を手掛ける。マイナ4ビニュースに加えて『軍事研究』『丸』『Jwings』『航空ファン』『世界の艦船』『新幹線EX』などにも寄稿している。このほど、
+本連載「軍事とIT」
+の単行本第6弾
+『軍用通信 (わかりやすい防衛テクノロジー)』
+が刊行された。
+この著者の記事一覧はこちら
