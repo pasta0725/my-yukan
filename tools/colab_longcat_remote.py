@@ -52,12 +52,92 @@ if LOW:
         t = t.replace("    pipe.to(local_rank)\n",
             "    dit.to(local_rank); vae.to(local_rank)  # LOWVRAM: text encoder stays on the CPU\n"
             "    _dev = torch.device(f'cuda:{local_rank}')\n"
-            "    type(pipe)._execution_device = property(lambda self: _dev); type(pipe).device = property(lambda self: _dev)\n", 1)
+            "    type(pipe)._execution_device = property(lambda self: _dev); type(pipe).device = property(lambda self: _dev)\n"
+            # 2026-11-28 (L4, 22 GB): keep a third of the DiT blocks off the GPU at any time; first and last 16 blocks take turns
+            # (12+12 ran short by 1.3 GB in self-attention at 720p)
+            "    _A = list(dit.blocks[:16]); _B = list(dit.blocks[32:])\n"
+            "    def _swap(o, i):\n"
+            "        for b in o: b.to('cpu')\n"
+            "        torch.cuda.empty_cache()\n"
+            "        for b in i: b.to(_dev)\n"
+            "    if _vram < 30000:\n"
+            "        _swap(_B, [])\n"
+            "        dit.blocks[0].register_forward_pre_hook(lambda m, a: _swap(_B, _A))\n"
+            "        dit.blocks[32].register_forward_pre_hook(lambda m, a: _swap(_A, _B))\n", 1)
+        # Whisper (fp32, about 5.75 GB) is only needed for the audio embedding: send it to the CPU right after
+        t = t.replace('            raise ValueError(f"broken audio embedding with nan values")\n',
+                      '            raise ValueError(f"broken audio embedding with nan values")\n'
+                      "        pipe.audio_encoder.to('cpu'); torch.cuda.empty_cache()  # LOWVRAM\n", 1)
+        t = t.replace("    _dev = torch.device(f'cuda:{local_rank}')\n",
+                      "    _dev = torch.device(f'cuda:{local_rank}')\n    _vram = torch.cuda.get_device_properties(_dev).total_memory // 2**20\n", 1)
         t = t.replace("offload_kv_cache=False", "offload_kv_cache=True"); open(d, "w").write(t)
+    # FFN over the tokens in pieces of 8192 (same maths, about 5 GB less at 720p)
+    d = "LongCat-Video/longcat_video/modules/blocks.py"; t = open(d).read()
+    t = t.replace("        return self.w2(F.silu(self.w1(x)) * self.w3(x))",
+                  "        return torch.cat([self.w2(F.silu(self.w1(c)) * self.w3(c)) for c in x.split(8192, dim=1)], dim=1)  # LOWVRAM", 1)
+    open(d, "w").write(t)
+    # the DiT waits on the CPU while the VAE turns the result into frames (decode needs 6-8 GB at 720p)
     d = "LongCat-Video/longcat_video/pipeline_longcat_video_avatar.py"; t = open(d).read()
+    if "self.dit.to('cpu')" not in t:
+        t = t.replace("        output_video = self._decode_video_latents(latents)\n",
+                      "        _dd = latents.device; self.dit.to('cpu'); torch.cuda.empty_cache()  # LOWVRAM\n"
+                      "        output_video = self._decode_video_latents(latents)\n"
+                      "        self.dit.to(_dd)\n")
     t = t.replace("self.text_encoder(text_input_ids.to(device), mask.to(device)).last_hidden_state",
                   "self.text_encoder(text_input_ids.to(self.text_encoder.device), mask.to(self.text_encoder.device)).last_hidden_state.to(device)")
     open(d, "w").write(t)
+    # 2026-11-28 (L4 trial): load_quantized_dit first built the whole DiT in float32 on the CPU (about 54 GB) before swapping in the
+    # int8 layers, and the L4 machine's RAM ran out (SIGKILL while "Loading INT8 quantized DiT model"). Now the model is built on
+    # the "meta" device (no memory), given empty memory directly on the GPU, and filled one 4 GB shard at a time straight from
+    # disk to the GPU, so the CPU never holds the DiT. The fp32 -> bf16 cast then also happens on the GPU.
+    d = "LongCat-Video/longcat_video/modules/quantization.py"; t = open(d).read()
+    if "LOWRAM" not in t:
+        t = t.replace("    model = LongCatVideoAvatarTransformer3DModel(**config)\n",
+                      "    with torch.device('meta'):  # LOWRAM\n        model = LongCatVideoAvatarTransformer3DModel(**config)\n", 1)
+        t = t.replace("                ql = QuantizedLinear(module.in_features, module.out_features, bias=module.bias is not None)\n",
+                      "                with torch.device('meta'):\n                    ql = QuantizedLinear(module.in_features, module.out_features, bias=module.bias is not None)\n", 1)
+        t = t.replace("        state_dict = {}\n        for shard_file in sorted(shard_files):\n",
+                      "        _dev = torch.device('cuda', int(os.environ.get('LOCAL_RANK', '0')))\n"
+                      "        model = model.to_empty(device=_dev); _left = set(model.state_dict().keys())\n"
+                      "        for shard_file in sorted(shard_files):\n"
+                      "            _sd = load_file(os.path.join(quantized_dir, shard_file), device=str(_dev))\n"
+                      "            model.load_state_dict(_sd, strict=False); _left -= set(_sd.keys()); del _sd; torch.cuda.empty_cache()\n"
+                      "        assert not _left, f'weights missing from the int8 shards: {sorted(_left)[:5]}'\n"
+                      "        state_dict = None\n"
+                      "        for shard_file in []:\n", 1)
+        t = t.replace("    model.load_state_dict(state_dict, strict=True)\n",
+                      "    if state_dict is not None: model.load_state_dict(state_dict, strict=True)\n", 1)
+        assert t.count("LOWRAM") == 1 and "to_empty" in t and "if state_dict is not None" in t, "quantization.py changed upstream"
+        open(d, "w").write(t)
+    # 2026-11-28 (L4 trial 2): with int8 layers the 8-step LoRA could not be merged ("Static LoRA target must be Linear, got
+    # QuantizedLinear"). For an int8 layer the merge now happens on the GPU, one layer at a time: weight = int8 x scale, add the
+    # LoRA change, and quantize back to int8 with a new per-row scale (same method as the official quantizer).
+    d = "LongCat-Video/longcat_video/modules/avatar/longcat_video_dit_avatar.py"; t = open(d).read()
+    if "LOWRAM" not in t:
+        a = 'if module.__class__.__name__ != "Linear":'
+        b = ("            with torch.no_grad():\n            for module, lora in targets:\n"
+             "                origin_dtype = module.weight.dtype\n")
+        b = b.replace("            with", "        with")
+        assert a in t and b in t, "merge_lora changed upstream"
+        t = t.replace(a, 'if module.__class__.__name__ not in ("Linear", "QuantizedLinear"):  # LOWRAM', 1)
+        t = t.replace(b, (
+            "        with torch.no_grad():\n            for module, lora in targets:\n"
+            "                if module.__class__.__name__ == 'QuantizedLinear':\n"
+            "                    _d = module.weight_int8.device; lora.to(device=_d, dtype=torch.float32)\n"
+            "                    _dn = lora.lora_down.weight\n"
+            "                    if hasattr(lora.lora_up, 'blocks'):\n"
+            "                        _c = torch.chunk(_dn, len(lora.lora_up.blocks), dim=0)\n"
+            "                        _delta = torch.cat([torch.mm(bk.weight, _c[i]) for i, bk in enumerate(lora.lora_up.blocks)], dim=0)\n"
+            "                    else:\n"
+            "                        _delta = torch.mm(lora.lora_up.weight, _dn)\n"
+            "                    _w = module.weight_int8.float() * module.weight_scale.float().unsqueeze(1)\n"
+            "                    _w += lora.multiplier * float(lora.alpha_scale.float().item()) * _delta\n"
+            "                    _s = _w.abs().amax(dim=1).clamp(min=1e-8) / 127.0\n"
+            "                    module.weight_int8.copy_((_w / _s.unsqueeze(1)).round().clamp(-128, 127).to(torch.int8))\n"
+            "                    module.weight_scale.copy_(_s.to(module.weight_scale.dtype)); del _w, _delta, _s\n"
+            "                    lora.to('cpu'); continue\n"
+            "                origin_dtype = module.weight.dtype\n"), 1)
+        open(d, "w").write(t)
 W = "/content/w"
 if not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/lora/dmd_lora.safetensors") or (LOW and not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/base_model_int8")):
     sh(f"""HF_HUB_ENABLE_HF_TRANSFER=1 python -c "
@@ -85,13 +165,17 @@ for job in jobs:
     if not os.path.exists(f"/content/in/{name}.wav"): continue
     js = f"/content/in/{name}.json"
     json.dump({"prompt": (PROMPT + " " + extra).strip(), "cond_image": f"/content/in/{img}", "cond_audio": {"person1": f"/content/in/{name}.wav"}}, open(js, "w"))
-    try:
+    for _try_res in ([res, "480p"] if LOW and res == "720p" else [res]):  # L4: if 720p runs out of GPU memory, 480p in the same run
+      res = _try_res
+      try:
         sh(f"cd LongCat-Video && PYTHONPATH=/content/shim torchrun --nproc_per_node=1 run_demo_avatar_single_audio_to_video.py "
            f"--context_parallel_size=1 --checkpoint_dir={W}/LongCat-Video-Avatar-1.5 --stage_1=ai2v --input_json={js} "
            f"--use_distill --model_type avatar-v1.5 {'--use_int8 ' if LOW else ''}--resolution {res} --num_segments {seg} --output_dir /content/out/{name} "
            f"2>&1")
         _v = sorted(glob.glob(f"/content/out/{name}/**/*.mp4", recursive=True), key=os.path.getmtime)
+        log(f"clip {name} made at {res}")
         if _v: sh(f"ffmpeg -loglevel error -y -i {_v[-1]} -t {dur:.3f} -c:v libx264 -crf 16 -preset fast -c:a aac {_v[-1]}.cut.mp4 && mv {_v[-1]}.cut.mp4 {_v[-1]}")  # back to the line's length
-    except subprocess.CalledProcessError as e:  # one failed clip must not stop the next one (2026-11-16: hook failed in segment 2, verdict never ran)
-        log(f"CLIP FAILED {name}: {e.returncode}")
+        break
+      except subprocess.CalledProcessError as e:  # one failed clip must not stop the next one (2026-11-16: hook failed in segment 2, verdict never ran)
+        log(f"CLIP FAILED {name} at {res}: {e.returncode}")
 sh("ls -laR /content/out")
