@@ -1,0 +1,75 @@
+name: codex-auth-refresh
+# 2026-11-28 (the user's request, Issue #27): keep the Codex login (secret CODEX_AUTH) from expiring.
+# Why it expired: the login has a "refresh token" that can be used only once. When any Codex job renewed the login,
+# the new token stayed inside that job and the secret kept the old, now-used one, so every later job got
+# "401 ... refresh token was already used" until the user logged in again (11/16, 11/27).
+# What this does, once a day before the morning edition and right after the user updates CODEX_AUTH:
+#   1 sets up Codex from CODEX_AUTH and marks the login as old, so Codex renews it now (Codex renews a login older than 8 days)
+#   2 runs one tiny Codex request (this is what makes Codex renew)
+#   3 if the login changed, writes the new auth.json back to the secret CODEX_AUTH (needs the secret CODEX_AUTH_WRITER:
+#     a fine-grained token for this repository with "Secrets: Read and write"; GITHUB_TOKEN cannot change secrets)
+#   4 on failure, opens (or comments on) an Issue so the next edition knows before it starts
+# Because the login is always less than a day old, the other Codex jobs never renew it themselves, so they cannot
+# use up the token at the same time. The secret value is never printed.
+on:
+  schedule:
+    - cron: "37 18 * * *"   # 03:37 Japan time, before the morning edition (about 04:10) and no other Codex job runs then
+  workflow_dispatch:
+concurrency: { group: codex-auth-refresh, cancel-in-progress: false }
+permissions:
+  contents: read
+  issues: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/codex-setup
+        with: { auth: "${{ secrets.CODEX_AUTH }}" }
+      - name: check the writer token
+        env: { W: "${{ secrets.CODEX_AUTH_WRITER }}" }
+        run: |
+          test -n "$W" || { echo "RESULT: FAILED no secret CODEX_AUTH_WRITER (the user has to add it, see tools/README.md「Codexのログイン」)" | tee -a "$GITHUB_STEP_SUMMARY"; exit 1; }
+      - name: renew the login
+        run: |
+          A="$CODEX_HOME/auth.json"
+          python3 - "$A" <<'EOF'
+          import json, sys
+          p = sys.argv[1]; d = json.load(open(p))
+          t = d.get("tokens") or {}
+          if not t.get("refresh_token"): sys.exit("RESULT: FAILED CODEX_AUTH has no refresh_token (it must be the whole auth.json of a ChatGPT login)")
+          open(p + ".before", "w").write(t["refresh_token"])
+          d["last_refresh"] = "2000-01-01T00:00:00Z"   # old on purpose: Codex renews the login before the request
+          json.dump(d, open(p, "w"))
+          EOF
+          mkdir -p /tmp/ping && cd /tmp/ping
+          timeout 180 codex exec --skip-git-repo-check -s read-only "Reply with the single word OK." > /tmp/ping/out.txt 2>&1 || true
+          if grep -qiE "401 Unauthorized|refresh token|sign in again" /tmp/ping/out.txt; then
+            echo "RESULT: FAILED the Codex login has expired. The user has to log in again and update CODEX_AUTH." | tee -a "$GITHUB_STEP_SUMMARY"
+            grep -iE "401 Unauthorized|refresh token|sign in again" /tmp/ping/out.txt | head -3 | sed 's/eyJ[A-Za-z0-9._-]*/<token>/g'
+            exit 1
+          fi
+          python3 - "$A" <<'EOF'
+          import json, sys
+          p = sys.argv[1]; d = json.load(open(p))
+          new = (d.get("tokens") or {}).get("refresh_token", "")
+          old = open(p + ".before").read()
+          if d.get("last_refresh", "").startswith("2000"): sys.exit("RESULT: FAILED Codex did not renew the login (see the Codex output above)")
+          print("renewed" if new != old else "same refresh token, new date")
+          EOF
+      - name: write the new login back to CODEX_AUTH
+        env: { GH_TOKEN: "${{ secrets.CODEX_AUTH_WRITER }}" }
+        run: |
+          gh secret set CODEX_AUTH --repo "$GITHUB_REPOSITORY" < "$CODEX_HOME/auth.json"
+          rm -f "$CODEX_HOME/auth.json.before"
+          echo "RESULT: OK the Codex login was renewed and saved to CODEX_AUTH ($(date -u +%FT%TZ))" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: report a failure in an Issue
+        if: failure()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          T="[自動] Codexのログインを更新できませんでした"
+          B="codex-auth-refresh（$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID）が失敗しました。要約（Summary）の RESULT の行に理由があります。ログイン切れなら、tools/README.md「Codexのログイン」の手順で、ユーザーが Codex にログインし直して CODEX_AUTH を更新してください。直るまで Codex の作業（記事・点検・サムネ・画面の確認）は Sonnet の予備で行います。"
+          N=$(gh api "repos/$GITHUB_REPOSITORY/issues?state=open&labels=AIからの報告&per_page=50" --jq ".[] | select(.title==\"$T\") | .number" | head -1)
+          if [ -n "$N" ]; then gh api "repos/$GITHUB_REPOSITORY/issues/$N/comments" -f body="$(date -u +%F) も失敗。$B"
+          else gh api "repos/$GITHUB_REPOSITORY/issues" -f title="$T" -f body="$B" -f 'labels[]=AIからの報告'; fi

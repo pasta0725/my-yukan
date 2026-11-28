@@ -18,6 +18,9 @@ runs:
         printf '%s' "$CODEX_AUTH" > "$CODEX_HOME/auth.json"; chmod 600 "$CODEX_HOME/auth.json"
         printf 'cli_auth_credentials_store = "file"\n' > "$CODEX_HOME/config.toml"
         echo "CODEX_HOME=$CODEX_HOME" >> "$GITHUB_ENV"
+        # 2026-11-28 Issue #27: codex-auth-refresh.yml renews the login every day. If it is older than 2 days, that job is not working
+        # and this job may renew the login itself and use up the token (the next jobs then fail with 401). Only warns.
+        python3 -c "import json,sys,datetime as D;r=json.load(open(sys.argv[1])).get('last_refresh','');a=(D.datetime.now(D.timezone.utc)-D.datetime.fromisoformat(r.replace('Z','+00:00'))).days if r else 99;a>2 and print('::warning::Codex login last renewed %s days ago: check codex-auth-refresh.yml' % a)" "$CODEX_HOME/auth.json" || true
     - name: list models
       shell: bash
       run: |

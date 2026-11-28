@@ -112,6 +112,8 @@ GitHub 上の Codex（ChatGPT のプラン、CODEX_AUTH）に、Claude のサブ
 - 指示文は tools/codex/（fill.md・factcheck.md・pick.md・write.md）。①②④は tools/style.md も渡す。④は make_briefs.py の担当別の指示書に、ネットなしの差分（write.md）を足したもの。
 - 機械の検査 tools/codex_check.py：JSON が壊れている、id・category・image・source_url・published が変わった、画像が増減した、refs が6本を超える／取ったページ（status 200）以外のURL（点検では元の refs 以外）、必要な部品（keys・h 3〜5・stat・point・最後の rina）がない、200字を超える段落、120字を超える rina、舞台裏の言い回し、本文にURL、文字が減った（点検は2割以上）、点検で書き換えが多すぎる（6か所かつ4割を超える）ものは使わない（元のまま）。④は、ニュースフォルダにないURL・掲載済み・期間外の記事を落とす。
 - どれも失敗・時間切れ・却下のときは、その分だけ今までどおり Claude が行う（予備）。モデルは入力 model・effort で変えられる（2026-11-19 から既定は gpt-6.2-sol。①②は high、③④は medium。Codex の利用枠が朝刊の途中で尽きたため、Astra をやめ、記事を書く深さを下げ、夕刊の記事は Sonnet に戻した。調べ物①の検索そのものも同じモデルで動く）。実際に使ったモデルは各実行の要約（Summary）に出る。共通の準備は .github/actions/codex-setup、実行は tools/codex_run.py。
+- **Codexのログイン（2026-11-28〜、Issue #27）**：ログイン情報（シークレット CODEX_AUTH）は「次の更新に使う札」が1回しか使えない。どれかの作業が更新すると新しい札はその作業の中に残り、CODEX_AUTH は使い終わった札のままになって、次から全部が 401（refresh token already used）になっていた（11/16・11/27）。そこで codex-auth-refresh.yml が毎日 3:37 に、ログインをわざと更新して新しい auth.json を CODEX_AUTH に書き戻す（書き戻しにはシークレット CODEX_AUTH_WRITER＝このリポジトリだけの細かい権限のトークン、権限は「Secrets：読み書き」が要る）。ログインがいつも1日以内に新しいので、ほかの作業は自分で更新しない。失敗するとラベル「AIからの報告」の Issue「[自動] Codexのログインを更新できませんでした」が立つので、号づくり・ショートの前にこれが開いていたら Codex は使わず Sonnet の予備で進める。codex-setup はログインが2日より古いと警告を出す。
+  - ログインし直すとき（ユーザーの作業）：パソコンで codex login → できた auth.json（Mac は ~/.codex/auth.json、Windows は %USERPROFILE%\.codex\auth.json）の中身を全部 CODEX_AUTH に貼る → パソコンの auth.json を消す（同じログインをパソコンとGitHubで使い回すと、片方の更新でもう片方が切れる。パソコンで Codex を使うなら、もう一度 codex login して別のログインにする）→ codex-auth-refresh.yml を手で1回動かし、RESULT: OK を確かめる。
 - 2026-11-14 の試し（11/13夕刊）：①49本中46本採用（3本は追加なし）、②52本中38本を直した（直した点94か所）、③8本中1本に2枚、④8本とも検査に通った。
 
 ## 図解（2026-11-09〜、公式画像の補充のあと）
