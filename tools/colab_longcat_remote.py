@@ -81,6 +81,35 @@ if LOW:
                       "    if state_dict is not None: model.load_state_dict(state_dict, strict=True)\n", 1)
         assert t.count("LOWRAM") == 1 and "to_empty" in t and "if state_dict is not None" in t, "quantization.py changed upstream"
         open(d, "w").write(t)
+    # 2026-11-28 (L4 trial 2): with int8 layers the 8-step LoRA could not be merged ("Static LoRA target must be Linear, got
+    # QuantizedLinear"). For an int8 layer the merge now happens on the GPU, one layer at a time: weight = int8 x scale, add the
+    # LoRA change, and quantize back to int8 with a new per-row scale (same method as the official quantizer).
+    d = "LongCat-Video/longcat_video/modules/avatar/longcat_video_dit_avatar.py"; t = open(d).read()
+    if "LOWRAM" not in t:
+        a = 'if module.__class__.__name__ != "Linear":'
+        b = ("            with torch.no_grad():\n            for module, lora in targets:\n"
+             "                origin_dtype = module.weight.dtype\n")
+        b = b.replace("            with", "        with")
+        assert a in t and b in t, "merge_lora changed upstream"
+        t = t.replace(a, 'if module.__class__.__name__ not in ("Linear", "QuantizedLinear"):  # LOWRAM', 1)
+        t = t.replace(b, (
+            "        with torch.no_grad():\n            for module, lora in targets:\n"
+            "                if module.__class__.__name__ == 'QuantizedLinear':\n"
+            "                    _d = module.weight_int8.device; lora.to(device=_d, dtype=torch.float32)\n"
+            "                    _dn = lora.lora_down.weight\n"
+            "                    if hasattr(lora.lora_up, 'blocks'):\n"
+            "                        _c = torch.chunk(_dn, len(lora.lora_up.blocks), dim=0)\n"
+            "                        _delta = torch.cat([torch.mm(bk.weight, _c[i]) for i, bk in enumerate(lora.lora_up.blocks)], dim=0)\n"
+            "                    else:\n"
+            "                        _delta = torch.mm(lora.lora_up.weight, _dn)\n"
+            "                    _w = module.weight_int8.float() * module.weight_scale.float().unsqueeze(1)\n"
+            "                    _w += lora.multiplier * float(lora.alpha_scale.float().item()) * _delta\n"
+            "                    _s = _w.abs().amax(dim=1).clamp(min=1e-8) / 127.0\n"
+            "                    module.weight_int8.copy_((_w / _s.unsqueeze(1)).round().clamp(-128, 127).to(torch.int8))\n"
+            "                    module.weight_scale.copy_(_s.to(module.weight_scale.dtype)); del _w, _delta, _s\n"
+            "                    lora.to('cpu'); continue\n"
+            "                origin_dtype = module.weight.dtype\n"), 1)
+        open(d, "w").write(t)
 W = "/content/w"
 if not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/lora/dmd_lora.safetensors") or (LOW and not os.path.exists(f"{W}/LongCat-Video-Avatar-1.5/base_model_int8")):
     sh(f"""HF_HUB_ENABLE_HF_TRANSFER=1 python -c "
