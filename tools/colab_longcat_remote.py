@@ -52,9 +52,36 @@ if LOW:
         t = t.replace("    pipe.to(local_rank)\n",
             "    dit.to(local_rank); vae.to(local_rank)  # LOWVRAM: text encoder stays on the CPU\n"
             "    _dev = torch.device(f'cuda:{local_rank}')\n"
-            "    type(pipe)._execution_device = property(lambda self: _dev); type(pipe).device = property(lambda self: _dev)\n", 1)
+            "    type(pipe)._execution_device = property(lambda self: _dev); type(pipe).device = property(lambda self: _dev)\n"
+            # 2026-11-28 (L4, 22 GB): keep a quarter of the DiT blocks off the GPU at any time; first and last 12 blocks take turns
+            "    _A = list(dit.blocks[:12]); _B = list(dit.blocks[36:])\n"
+            "    def _swap(o, i):\n"
+            "        for b in o: b.to('cpu')\n"
+            "        torch.cuda.empty_cache()\n"
+            "        for b in i: b.to(_dev)\n"
+            "    if _vram < 30000:\n"
+            "        _swap(_B, [])\n"
+            "        dit.blocks[0].register_forward_pre_hook(lambda m, a: _swap(_B, _A))\n"
+            "        dit.blocks[36].register_forward_pre_hook(lambda m, a: _swap(_A, _B))\n", 1)
+        # Whisper (fp32, about 5.75 GB) is only needed for the audio embedding: send it to the CPU right after
+        t = t.replace('            raise ValueError(f"broken audio embedding with nan values")\n',
+                      '            raise ValueError(f"broken audio embedding with nan values")\n'
+                      "        pipe.audio_encoder.to('cpu'); torch.cuda.empty_cache()  # LOWVRAM\n", 1)
+        t = t.replace("    _dev = torch.device(f'cuda:{local_rank}')\n",
+                      "    _dev = torch.device(f'cuda:{local_rank}')\n    _vram = torch.cuda.get_device_properties(_dev).total_memory // 2**20\n", 1)
         t = t.replace("offload_kv_cache=False", "offload_kv_cache=True"); open(d, "w").write(t)
+    # FFN over the tokens in pieces of 8192 (same maths, about 5 GB less at 720p)
+    d = "LongCat-Video/longcat_video/modules/blocks.py"; t = open(d).read()
+    t = t.replace("        return self.w2(F.silu(self.w1(x)) * self.w3(x))",
+                  "        return torch.cat([self.w2(F.silu(self.w1(c)) * self.w3(c)) for c in x.split(8192, dim=1)], dim=1)  # LOWVRAM", 1)
+    open(d, "w").write(t)
+    # the DiT waits on the CPU while the VAE turns the result into frames (decode needs 6-8 GB at 720p)
     d = "LongCat-Video/longcat_video/pipeline_longcat_video_avatar.py"; t = open(d).read()
+    if "self.dit.to('cpu')" not in t:
+        t = t.replace("        output_video = self._decode_video_latents(latents)\n",
+                      "        _dd = latents.device; self.dit.to('cpu'); torch.cuda.empty_cache()  # LOWVRAM\n"
+                      "        output_video = self._decode_video_latents(latents)\n"
+                      "        self.dit.to(_dd)\n")
     t = t.replace("self.text_encoder(text_input_ids.to(device), mask.to(device)).last_hidden_state",
                   "self.text_encoder(text_input_ids.to(self.text_encoder.device), mask.to(self.text_encoder.device)).last_hidden_state.to(device)")
     open(d, "w").write(t)
