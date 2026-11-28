@@ -219,8 +219,7 @@ const S={
    if(u>t2)bigNum('2200','円',CX,1010,(u-t2)/0.3,C.acc,150);},
  // online December 3 10:00 / shops December 5
  dates(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.2,telHas(L,'お店')),d-0.6);
-   dateCard('ネット','12月3日 10時',470,C.acc,enter(u,0));
-   dateCard('お店','12月5日',780,C.acc,enter(u,t2));},
+   if(u<t2)dateCard('ネット','12月3日 10時',620,C.acc,enter(u,0));else dateCard('お店','12月5日',620,C.acc,enter(u,t2));},
  // the game: a brand-new title for Switch 2
  game(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'ウインド')),d-0.6);
    console2(150,460,780,380,'',enter(u,0));
@@ -229,9 +228,7 @@ const S={
  // but: release date and price still undecided
  twist(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'価格')),d-0.6),t3=Math.min(Math.max(t2+0.4,telHas(L,'未定')),d-0.4);
    stamp('ただし',CX,420,u/0.25,C.warn,64);
-   withEnter(enter(u,0.3),()=>{card(150,540,370,330,32,C.card);text('発売日',335,620,52,C.text,'center',900,320);});
-   withEnter(enter(u,t2),()=>{card(560,540,370,330,32,C.card);text('価格',745,620,52,C.text,'center',900,320);});
-   if(u>t3){text('未定',335,760,90,C.warn,'center',900,320);text('未定',745,760,90,C.warn,'center',900,320);}},
+   withEnter(enter(u,0.3),()=>{card(150,560,780,330,32,C.card);text('発売日と価格',CX,650,60,C.text,'center',900,700);if(u>t3)text('未定',CX,790,110,C.warn,'center',900,700);});},
  // the same day in shops: goods drawn with every first partner
  set(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(0.8,telHas(L,'グッズ')),d-0.6);
    withEnter(enter(u,0),()=>{ipic('lineup',110,430,860,573,28,1.0+0.05*u/Math.max(1,d),0.5,0.5);});creditAt(CRP,960,1040);
@@ -243,9 +240,7 @@ const S={
    if(u>t2)tagI('新しい3匹も',CX,1190,(u-t2)/0.3,C.acc,C.onAcc,52);},
  // 550 yen to 13200 yen
  range(u,d,L){bg(u);mini(u);const t2=Math.min(Math.max(1.0,telHas(L,'1万')),d-0.6);
-   priceCard('クリアファイル','550円',150,420,780,C.acc,enter(u,0.1));
-   arrowV(CX,690,770,C.sub,(u-t2+0.3)/0.3,30);
-   priceCard('額装アート','1万3200円',150,790,780,C.acc,enter(u,t2));},
+   withEnter(enter(u,0.1),()=>{card(150,560,780,330,32,C.card);text('グッズの値段',CX,640,50,C.sub,'center',800,700);text('550円',u>t2?330:CX,780,84,C.acc,'center',900,330);if(u>t2){text('〜',530,780,70,C.sub,'center',900);text('1万3200円',735,780,80,C.acc,'center',900,360);}});},
  // rina's view: choose a partner before the game
  view(u,d,L){bg(u);mini(u);plush3(110,450,860,440,1.08+0.05*u/Math.max(1,d),enter(u,0));creditAt(CRP,955,480);
    const t2=Math.min(Math.max(0.6,telHas(L,'先に')),d-0.6);if(u>t2)tagI('ゲームより先に',CX,1030,(u-t2)/0.3,C.acc,C.onAcc,64);},
