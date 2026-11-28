@@ -43,9 +43,14 @@ def story_info(c, a):
 
 
 def prep(src, jobs):
+    cand = json.load(open(os.path.join(src, "candidates.json"), encoding="utf-8"))
+    os.makedirs(jobs, exist_ok=True)
+    if not cand:
+        print("pick jobs: 0")
+        return
+
     import requests
     from PIL import Image, ImageDraw, ImageFont
-    cand = json.load(open(os.path.join(src, "candidates.json"), encoding="utf-8"))
     try: f1 = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 44)
     except Exception: f1 = ImageFont.load_default()
     CW, CH, COLS = 480, 330, 4

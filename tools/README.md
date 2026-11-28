@@ -86,7 +86,7 @@ Claudeの検索回数には1回の作業あたりの上限（約200回）があ�
 5. `python3 -I tools/research_pages.py import data/ED.json WORKDIR/arts` で戻す（x-todo.json の見出し・要約も合わせる）。そのあと手順5-1・5-2へ（事実の点検は新しい refs も取得する）。
 6. 2026-11-14〜：2. を `-f 'inputs[fill]=yes'` 付きで動かすと、調べたページを push したあと Codex が4. の書き足しまで行う（codex-fill.yml）。8組に分け、各組は同時に2本ずつ進める。15分は1記事の1回の実行にかける上限。結果はブランチ research の research/ED/arts/<記事id>.json（検査に通った記事だけ）と arts/report.md。Claude は `python3 -I tools/research_pages.py import data/ED.json WORKDIR/research/ED/arts` で取り込み、report.md で「却下」「未処理」の記事だけを4. のやり方（Sonnet）で書き足す。arts が無いときは4. のやり方で全部。
 - Codexが締め切り（5:15／15:25）までに終わらなければ待たずに次へ進む。
-- Codexが見つけた公式ページは、あとの「公式画像の補充」がそのまま使う（`python3 -I tools/research_pages.py imgjobs WORKDIR/research/ED imgjobs/ED.json` → official-images.yml の extra。補充の作業は自分では検索しない。2026-11-10）。
+- Codexが見つけた公式ページは、あとの「公式画像の補充」の1回目に渡す（`python3 -I tools/research_pages.py imgjobs WORKDIR/research/ED imgjobs/ED.json` → official-images.yml の extra）。調査結果が見つからなければ、号づくり側で実行の有無と検索の結果を確かめ、補充の1回目は extra なしで進める。公式ページを自分で検索するのは、下の手順3の2回目だけ。
 
 ## 公式画像の補充（2026-11-09〜、毎日6:12と16:31の別作業）
 - 2026-11-10〜：号づくりの各担当は公式ページを検索して探さない（自動の作業では公式サイトが開けず、検索の上限を使い切ったため）。公式画像はこの補充作業が担当する。各担当は自分専用のフォルダ WORKDIR/<担当名>/ を使い、push の前に必ず git fetch → git rebase origin/main で最新に合わせる。

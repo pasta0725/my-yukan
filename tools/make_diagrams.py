@@ -110,7 +110,7 @@ h1{position:absolute;left:56px;top:74px;width:900px;height:96px;color:#fff;font-
 .tl:before{content:"";position:absolute;left:10px;right:10px;top:50%;margin-top:-4px;height:8px;background:#1246C4;z-index:0}
 .ev{flex:1 1 0;min-width:0;position:relative;z-index:1;background:#fff;border:3px solid #CDDAF1;padding:26px 18px;text-align:center;max-height:100%;overflow:hidden}
 .ev:before{content:"";position:absolute;left:0;top:0;width:100%;height:10px;background:#FF8A00}
-.when{font-size:38px;font-weight:900;color:#1246C4;line-height:1.2}
+.when{font-size:38px;font-weight:900;color:#1246C4;line-height:1.2;white-space:nowrap;overflow-wrap:anywhere}
 .what{margin-top:12px;font-size:30px;font-weight:700;line-height:1.38}
 table{flex:1;border-collapse:separate;border-spacing:0 10px;table-layout:fixed}
 th{font-size:26px;font-weight:900;color:#fff;background:#0B1F4D;padding:10px}
@@ -128,6 +128,10 @@ FIT = """
 (()=>{
 function fit(el,min){let s=parseFloat(getComputedStyle(el).fontSize);while((el.scrollHeight>el.clientHeight+1||el.scrollWidth>el.clientWidth+1)&&s>min){s-=1;el.style.fontSize=s+'px';}}
 document.querySelectorAll('h1').forEach(e=>fit(e,26));
+document.querySelectorAll('.when').forEach(e=>{
+    fit(e,24);
+    if(e.scrollWidth>e.clientWidth+1)e.style.whiteSpace='normal';
+});
 document.querySelectorAll('.val').forEach(e=>{e.style.display='block';e.style.width='100%';let z=parseFloat(getComputedStyle(e).fontSize);while(e.scrollWidth>e.clientWidth+1&&z>30){z-=2;e.style.fontSize=z+'px';}});
 document.querySelectorAll('.card,.pt,.ev,.w').forEach(c=>{let k=0;while(c.scrollHeight>c.clientHeight+1&&k<40){c.querySelectorAll('.lab,.ptx,.what,.wt,.when').forEach(t=>{t.style.fontSize=(parseFloat(getComputedStyle(t).fontSize)-1)+'px'});k++;}});
 let m=document.querySelector('.main'),k=0;while(m.scrollHeight>m.clientHeight+1&&k<40){m.querySelectorAll('.lab,.ptx,.what,.wt,td').forEach(t=>{t.style.fontSize=(parseFloat(getComputedStyle(t).fontSize)-1)+'px'});k++;}

@@ -3,7 +3,7 @@ Everything on main stays in GitHub's history forever (about 18MB a day of narrat
 "work" is deleted after the video is published and moved to Google Drive (drive-store.yml), so its files leave GitHub.
 
   python3 tools/work_branch.py put <path> [<path> ...]   copy these files/folders from the working tree to "work" (same paths) and push
-  python3 tools/work_branch.py get <path> [<path> ...]   copy these paths from "work" into the working tree (not staged, never committed to main)
+  python3 tools/work_branch.py get <path> [<path> ...]   copy these paths from "work", preserving local media/<name>/urls.txt
   python3 tools/work_branch.py ls [<path>]                list what "work" holds
 
 Run it inside a clone of pasta0725/my-yukan. main's .gitignore keeps these files out of main, so a plain `git add` cannot put them back there.
@@ -60,7 +60,8 @@ def get(paths):
     if not fetch(): print("work: the branch does not exist yet"); sys.exit(1)
     top = git("rev-parse", "--show-toplevel").strip()
     paths = [os.path.relpath(os.path.abspath(p), top) for p in paths]
-    files = git("ls-tree", "-r", "--name-only", f"origin/{B}", "--", *paths, cwd=top).split()
+    files = git("ls-tree", "-rz", "--name-only", f"origin/{B}", "--", *paths, cwd=top).split("\0")[:-1]
+    files = [f for f in files if not (f.startswith("media/") and f.count("/") == 2 and f.endswith("/urls.txt"))]
     for f in files:
         data = subprocess.run(["git", "show", f"origin/{B}:{f}"], cwd=top, capture_output=True).stdout
         os.makedirs(os.path.dirname(os.path.join(top, f)) or ".", exist_ok=True)

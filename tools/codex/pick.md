@@ -18,6 +18,8 @@ A picture fits only if ALL of these are true:
    Compare the candidate's page with the article's source URLs and text. A separate official page can fit if it is about the
    same news. Skip separate announcements about other events, even from the same company.
    A picture on the same page as the source must still show the article's specific feature or subject.
+   「FAKE DATA」など、仮の数値を使ったと明記されたグラフは外す。
+   人物が主役で、記事で扱う製品や機能が小さく写っているだけの写真は外す。
    Skip pictures of other features in the same announcement (e.g. search results in a story about stereo sound in calls).
    Not an older edition: if a banner or picture shows a date, check it fits the article's year (a weekday that does not
    match this year's date means it is from another year, e.g. a sale page from last year). Not the single products of a

@@ -43,6 +43,8 @@ How to fix:
 6. Keep the article's structure, length and wording except where a fix is needed; change only the words that are wrong. Fixed text must follow style.md
    (です・ます, paragraph ≤ 200 characters, numbers as in section 6, no behind-the-scenes phrases of section 8 such as
    「見つけられず」「今回読んだ」「参照した」「私は」, never mention pages or files).
+   調べた範囲を示す「記事には書かれていません」「この記事では確認できません」は本文に書かない。
+   上の2に当てはまるときは「価格はまだ発表されていません」のように書く。
 7. Never change "id", "category", "image", "source_url", "source_name", "published", "visual", "refs" (you may only
    remove a ref whose page is clearly about another event), and never add/remove/change pictures ("img", "gallery").
 8. If everything is correct, write out.json identical to article.json and write 「直すところなし」 in changes.txt.
