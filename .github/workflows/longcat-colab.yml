@@ -6,17 +6,21 @@ name: longcat-colab
 # So it retries every 30 s for up to `wait` minutes, and if no GPU (or no clip) it makes the clips on Modal instead.
 # 2026-11-10 (colab-check): the 80GB A100 needs the --high-mem option ("A100:hm"); without it Colab gives the 40GB one.
 # H100 and G4 --high-mem are not allowed on this account; plain G4 answers "Service Unavailable" every time so far.
+# 2026-11-28 (Issue #54): since 11-22 every paid GPU (A100:hm, A100, G4, L4) answers "Service Unavailable" while T4 is given at once,
+# with the Google AI plan active and 402 units left. G4 was never given since 11-10, so it is no longer tried by default.
+# colab-cli retried each request 3 more times inside (10+20+40 s), so one try took about 3 minutes and 20 minutes gave only 6 tries;
+# now COLAB_CLI_ASSIGN_RETRIES=0 (one request per try, then 30 s) and Colab's own answer (status and body) is printed on each refusal.
 on:
   workflow_dispatch:
     inputs:
       dir: {description: "input folder in the repo (e.g. shorts/rina_health/longcat)", required: true}
-      gpu: {description: "GPUs to try in order (space separated, ':hm' = --high-mem). A100:hm is the 80GB A100", default: "A100:hm G4"}
+      gpu: {description: "GPUs to try in order (space separated, ':hm' = --high-mem). A100:hm is the 80GB A100", default: "A100:hm"}
       wait: {description: "minutes to keep retrying Colab before using Modal", default: "20"}
       fallback: {description: "use Modal when Colab gives no clip (yes/no)", default: "yes"}
   workflow_call:   # 2026-11-14: also run as one step of short-build.yml (same inputs)
     inputs:
       dir: {type: string, required: true}
-      gpu: {type: string, default: "A100:hm G4"}
+      gpu: {type: string, default: "A100:hm"}
       wait: {type: string, default: "20"}
       fallback: {type: string, default: "yes"}
 permissions:
@@ -37,10 +41,12 @@ jobs:
           COLAB_ADC: ${{ secrets.COLAB_ADC }}
           GPU: ${{ inputs.gpu }}
           DIR: ${{ inputs.dir }}
+          COLAB_CLI_ASSIGN_RETRIES: "0"
         run: |
           printf '%s' "$COLAB_ADC" > "$RUNNER_TEMP/adc.json"
           export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/adc.json" PYTHONWARNINGS=ignore
           C="colab --auth=adc"
+          CL="$HOME/.config/colab-cli/colab.log"
           $C usage || true
           mkdir -p /tmp/out
           end=$(( $(date +%s) + ${{ inputs.wait }} * 60 )); got=""; n=0
@@ -55,6 +61,9 @@ jobs:
                 echo "  too little memory, giving it back"; $C stop -s lc || true
               else
                 echo "try $n: $g $(grep -oE 'Service Unavailable|Too Many Requests|rejected accelerator|quota|entitlement' /tmp/new.log | head -1)"
+                # Colab's own answer to the request (tokens are masked by colab-cli); kept short
+                grep -E 'Response: [0-9]|Response Body:' "$CL" 2>/dev/null | tail -2 | sed -E 's/^.* - (Response)/  \1/' | cut -c1-300 || true
+                : > "$CL" 2>/dev/null || true
               fi
             done
             [ -z "$got" ] && sleep 30
