@@ -10,8 +10,8 @@ RESULT: OK
 - s6: narration/rina_pokemon_ww/split/s5.wav
 - s7: narration/rina_pokemon_ww/split/s6.wav
 - s8: narration/rina_pokemon_ww/split/s7.wav
-- s9: narration/rina_pokemon_ww/split/s8.wav
-- s10: narration/rina_pokemon_ww/split/s9.wav
+- s9: narration/rina_pokemon_ww_fix1/split/s1.wav
+- s10: narration/rina_pokemon_ww_fix1/split/s2.wav
 - s11: narration/rina_pokemon_ww/split/s10.wav
 - s12: narration/rina_pokemon_ww/split/s11.wav
 - s13: narration/rina_pokemon_ww/split/s12.wav
